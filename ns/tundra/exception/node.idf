@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="node_type">interface</value>
+  <value name="node_nsName">tundra.exception</value>
+  <value name="shared">Ly8gdGhyb3dzIGEgbmV3IFNlcnZpY2VFeGNlcHRpb24gd2l0aCB0aGUgY2xhc3MgYW5kIG1lc3Nh
+Z2UgZnJvbSB0aGUgZ2l2ZW4gVGhyb3dhYmxlLCB3aGljaAovLyBpcyB1c2VmdWwgYmVjYXVzZSBq
+YXZhIHNlcnZpY2VzIGFyZSBoYXJkLXdpcmVkIHRvIG9ubHkgdGhyb3cgU2VydmljZUV4Y2VwdGlv
+bnMKcHVibGljIHN0YXRpYyB2b2lkIHJhaXNlKFRocm93YWJsZSBleGNlcHRpb24pIHRocm93cyBT
+ZXJ2aWNlRXhjZXB0aW9uIHsKICBpZiAoZXhjZXB0aW9uICE9IG51bGwpIHJhaXNlKG1lc3NhZ2Uo
+ZXhjZXB0aW9uKSk7Cn0KCi8vIHRocm93cyBhIG5ldyBTZXJ2aWNlRXhjZXB0aW9uIHdpdGggdGhl
+IGdpdmVuIG1lc3NhZ2UKcHVibGljIHN0YXRpYyB2b2lkIHJhaXNlKFN0cmluZyBtZXNzYWdlKSB0
+aHJvd3MgU2VydmljZUV4Y2VwdGlvbiB7CiAgdGhyb3cgbmV3IFNlcnZpY2VFeGNlcHRpb24obWVz
+c2FnZSA9PSBudWxsID8gIiIgOiBtZXNzYWdlKTsKfQoKLy8gcmV0dXJucyBhbiBleGNlcHRpb24g
+YXMgYSBzdHJpbmcKcHVibGljIHN0YXRpYyBTdHJpbmcgbWVzc2FnZShUaHJvd2FibGUgZXhjZXB0
+aW9uKSB7CglyZXR1cm4gZXhjZXB0aW9uLmdldENsYXNzKCkuZ2V0TmFtZSgpICsgIjogIiArIGV4
+Y2VwdGlvbi5nZXRNZXNzYWdlKCk7Cn0=</value>
+  <value name="encodeutf8">true</value>
+  <value name="extends"></value>
+  <array name="implements" type="value" depth="1">
+  </array>
+  <array name="imports" type="value" depth="1">
+  </array>
+</Values>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="node_type">interface</value>
+  <value name="node_nsName">tundra.assertion.list.object</value>
+  <value name="shared">Ly8gYXNzZXJ0cyB0aGF0IHR3byBkb2N1bWVudHMgYXJlIGVxdWFsCnB1YmxpYyBzdGF0aWMgdm9p
+ZCBlcXVhbChPYmplY3RbXSBleHBlY3RlZCwgT2JqZWN0W10gYWN0dWFsLCBTdHJpbmcgbWVzc2Fn
+ZSkgewogIGlmICghdHVuZHJhLmxpc3Qub2JqZWN0LmVxdWFsKGV4cGVjdGVkLCBhY3R1YWwpKSB7
+CiAgICBpZiAobWVzc2FnZSA9PSBudWxsKSB7CiAgICAgIG1lc3NhZ2UgPSBqYXZhLnRleHQuTWVz
+c2FnZUZvcm1hdC5mb3JtYXQoIkFzc2VydGlvbiBmYWlsZWQ6IGV4cGVjdGVkICd7J3swfSd9JyBp
+cyBub3QgZXF1YWwgdG8gYWN0dWFsICd7J3sxfSd9JyIsIGV4cGVjdGVkLCBhY3R1YWwpOwogICAg
+fSBlbHNlIHsKICAgICAgbWVzc2FnZSA9IGphdmEudGV4dC5NZXNzYWdlRm9ybWF0LmZvcm1hdCgi
+QXNzZXJ0aW9uIGZhaWxlZDogezB9IChleHBlY3RlZCAneyd7MX0nfScgaXMgbm90IGVxdWFsIHRv
+IGFjdHVhbCAneyd7Mn0nfScpIiwgbWVzc2FnZSwgZXhwZWN0ZWQsIGFjdHVhbCk7CiAgICB9CiAg
+ICB0aHJvdyBuZXcgQXNzZXJ0aW9uRXJyb3IobWVzc2FnZSk7CiAgfQp9CgovLyBhc3NlcnRzIHRo
+YXQgdHdvIGRvY3VtZW50cyBhcmUgbm90IGVxdWFsIApwdWJsaWMgc3RhdGljIHZvaWQgdW5lcXVh
+bChPYmplY3RbXSBleHBlY3RlZCwgT2JqZWN0W10gYWN0dWFsLCBTdHJpbmcgbWVzc2FnZSkgewog
+IGlmICh0dW5kcmEubGlzdC5vYmplY3QuZXF1YWwoZXhwZWN0ZWQsIGFjdHVhbCkpIHsKICAgIGlm
+IChtZXNzYWdlID09IG51bGwpIHsKICAgICAgbWVzc2FnZSA9IGphdmEudGV4dC5NZXNzYWdlRm9y
+bWF0LmZvcm1hdCgiQXNzZXJ0aW9uIGZhaWxlZDogZXhwZWN0ZWQgJ3snezB9J30nIGlzIGVxdWFs
+IHRvIGFjdHVhbCAneyd7MX0nfSciLCBleHBlY3RlZCwgYWN0dWFsKTsKICAgIH0gZWxzZSB7CiAg
+ICAgIG1lc3NhZ2UgPSBqYXZhLnRleHQuTWVzc2FnZUZvcm1hdC5mb3JtYXQoIkFzc2VydGlvbiBm
+YWlsZWQ6IHswfSAoZXhwZWN0ZWQgJ3snezF9J30nIGlzIGVxdWFsIHRvIGFjdHVhbCAneyd7Mn0n
+fScpIiwgbWVzc2FnZSwgZXhwZWN0ZWQsIGFjdHVhbCk7CiAgICB9CiAgICB0aHJvdyBuZXcgQXNz
+ZXJ0aW9uRXJyb3IobWVzc2FnZSk7CiAgfQp9</value>
+  <value name="encodeutf8">true</value>
+  <value name="extends"></value>
+  <array name="implements" type="value" depth="1">
+  </array>
+  <array name="imports" type="value" depth="1">
+  </array>
+</Values>

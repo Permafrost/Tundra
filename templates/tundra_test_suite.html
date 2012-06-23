@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+  <title>%value $result/package% Package Test</title>
+  <style>
+    body{font:normal 14px/18px Helvetica, Arial, sans-serif;}
+    table{border-collapse:separate;margin-bottom:1.4em;width:100%;border:none;}
+    table,td,th{vertical-align:top;}
+    th{font-weight:bold;}
+    td{font-weight:normal;}
+    th,td,caption{padding:4px 10px 4px 5px;text-align:left;}
+    th,td{border:none;border-bottom:1px solid #ddd;}
+    th,tfoot td{background-color:#ddd;color:black;}
+    tfoot{font-size:.9em;}
+    caption{text-align:center;font-weight:bold;font-size:1em;line-height:1em;}
+    .fail{background-color:rgb(255,175,175);}
+    span.pass{background-color:rgb(175,255,175);}
+  </style>
+</head>
+<body>
+<table>
+  <caption class="%ifvar passed? equals('false')%fail%else%pass%endif%">%value $result/package% Package Test: %value $result/counts/total% tests executed; <span class='pass'>%value $result/counts/passed% tests passed</span>; <span class='fail'>%value $result/counts/failed% tests failed</span></caption>
+  <thead>
+    <tr>
+      <th rowspan='2'>Test Case</th>
+      <th colspan='2'>Test Result</th>
+    </tr>
+    <tr>
+      <th>Passed</th>
+      <th width="15%">Reason</th>
+    </tr>  
+  </thead>
+  <tbody>
+  %loop $result/cases%
+    <tr class="%ifvar passed? equals('false')%fail%else%pass%endif%">
+      <td>%value description%</td>
+      <td>%value passed?%</td>
+      <td>%ifvar message%%value message%%else%&mdash;%endif%</td>
+    </tr>
+  %endloop%
+  </tbody>
+  <tfoot>
+    <tr class="%ifvar passed? equals('false')%fail%else%pass%endif%">
+      <td colspan='3'>%value $result/counts/total% tests executed; <span class='pass'>%value $result/counts/passed% tests passed</span>; <span class='fail'>%value $result/counts/failed% tests failed</span></td>
+    </tr>
+  </tfoot>  
+</table>
+</body>
+</html>

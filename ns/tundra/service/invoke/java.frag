@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">invoke</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogIFN0cmlu
+ZyBzZXJ2aWNlID0gSURhdGFVdGlsLmdldFN0cmluZyhjdXJzb3IsICIkc2VydmljZSIpOwogIElE
+YXRhIHNjb3BlID0gSURhdGFVdGlsLmdldElEYXRhKGN1cnNvciwgIiRwaXBlbGluZSIpOwogIFN0
+cmluZyBtb2RlID0gSURhdGFVdGlsLmdldFN0cmluZyhjdXJzb3IsICIkbW9kZSIpOwoKICBpZiAo
+bW9kZSA9PSBudWxsKSBtb2RlID0gInN5bmNocm9ub3VzIjsKICBib29sZWFuIHNjb3BlZCA9IHNj
+b3BlICE9IG51bGw7CgogIE9iamVjdCB2YWx1ZSA9IHR1bmRyYS5zZXJ2aWNlLmludm9rZShzZXJ2
+aWNlLCBzY29wZWQgPyBzY29wZSA6IHBpcGVsaW5lLCBtb2RlKTsKICBTdHJpbmcga2V5ID0gbW9k
+ZS5lcXVhbHMoImFzeW5jaHJvbm91cyIpPyAiJHRocmVhZCIgOiAiJHBpcGVsaW5lIjsKCiAgaWYg
+KHNjb3BlZCB8fCBtb2RlLmVxdWFscygiYXN5bmNocm9ub3VzIikpIHsKICAgIElEYXRhVXRpbC5w
+dXQoY3Vyc29yLCBrZXksIHZhbHVlKTsKICB9Cn0gZmluYWxseSB7CiAgY3Vyc29yLmRlc3Ryb3ko
+KTsKfQ==</value>
+</Values>

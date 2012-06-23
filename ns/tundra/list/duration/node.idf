@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="node_type">interface</value>
+  <value name="node_nsName">tundra.list.duration</value>
+  <value name="encodeutf8">true</value>
+  <value name="shared">Ly8gZm9ybWF0cyBhIGxpc3Qgb2YgZHVyYXRpb24gc3RyaW5ncyB0byB0aGUgZGVzaXJlZCBwYXR0
+ZXJuCnB1YmxpYyBzdGF0aWMgU3RyaW5nW10gZm9ybWF0KFN0cmluZ1tdIGR1cmF0aW9ucywgU3Ry
+aW5nIGluUGF0dGVybiwgU3RyaW5nIG91dFBhdHRlcm4pIHsKICByZXR1cm4gZm9ybWF0KGR1cmF0
+aW9ucywgaW5QYXR0ZXJuLCBvdXRQYXR0ZXJuLCBudWxsKTsKfQoKLy8gZm9ybWF0cyBhIGxpc3Qg
+b2YgZHVyYXRpb24gc3RyaW5ncyB0byB0aGUgZGVzaXJlZCBwYXR0ZXJuCnB1YmxpYyBzdGF0aWMg
+U3RyaW5nW10gZm9ybWF0KFN0cmluZ1tdIGR1cmF0aW9ucywgU3RyaW5nIGluUGF0dGVybiwgU3Ry
+aW5nIG91dFBhdHRlcm4sIFN0cmluZyBkYXRldGltZSkgewogIFN0cmluZ1tdIHJlc3VsdHMgPSBu
+dWxsOwogIGlmIChkdXJhdGlvbnMgIT0gbnVsbCkgewogICAgcmVzdWx0cyA9IG5ldyBTdHJpbmdb
+ZHVyYXRpb25zLmxlbmd0aF07CgogICAgZm9yIChpbnQgaSA9IDA7IGkgPCBkdXJhdGlvbnMubGVu
+Z3RoOyBpKyspIHsKICAgICAgcmVzdWx0c1tpXSA9IHR1bmRyYS5kdXJhdGlvbi5mb3JtYXQoZHVy
+YXRpb25zW2ldLCBpblBhdHRlcm4sIG91dFBhdHRlcm4sIGRhdGV0aW1lKTsKICAgIH0KICB9CiAg
+cmV0dXJuIHJlc3VsdHM7Cn0=</value>
+  <value name="extends"></value>
+  <array name="implements" type="value" depth="1">
+  </array>
+  <array name="imports" type="value" depth="1">
+  </array>
+</Values>

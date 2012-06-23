@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="node_type">interface</value>
+  <value name="node_nsName">tundra.document</value>
+  <value name="encodeutf8">true</value>
+  <value name="shared">Ly8gcmV0dXJucyB3aGV0aGVyIHR3byBkb2N1bWVudHMgYXJlIGVxdWFsCnB1YmxpYyBzdGF0aWMg
+Ym9vbGVhbiBlcXVhbChJRGF0YSB4LCBJRGF0YSB5KSB7CiAgcmV0dXJuIHR1bmRyYS5vYmplY3Qu
+ZXF1YWwoeCwgeSk7Cn0=</value>
+  <value name="extends"></value>
+  <array name="implements" type="value" depth="1">
+  </array>
+  <array name="imports" type="value" depth="1">
+  </array>
+</Values>
