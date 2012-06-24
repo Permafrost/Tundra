@@ -1,6 +1,6 @@
 # Tundra ❄
 
-Package of useful services for webMethods Integration Server 7.1 or higher.
+A package of useful services for webMethods Integration Server 7.1 or higher.
 
 ## Installation
 
@@ -19,7 +19,7 @@ Then activate and enable the package from the package management web page on the
 3. Single-word argument names are preferred. Where multiple words are necessary, words are separated with a
    '.'
 4. Service namespace is kept flat.  Namespace folders are usually nouns. Service names are usually verbs,
-   indicating the action performed on the parent folder (noun).
+   indicating the action performed on the parent folder (noun)
 
 ## Services
 
