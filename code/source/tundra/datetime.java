@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-06-23 10:58:53 EST
+// -----( CREATED: 2012-06-24 19:28:33 EST
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -114,14 +114,14 @@ public final class datetime
 		// --- <<IS-START(duration)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional $datetime.x
-		// [i] field:0:optional $datetime.y
+		// [i] field:0:optional $datetime.start
+		// [i] field:0:optional $datetime.end
 		// [o] field:0:optional $duration
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  String start = IDataUtil.getString(cursor, "$datetime.x");
-		  String end = IDataUtil.getString(cursor, "$datetime.y");
+		  String start = IDataUtil.getString(cursor, "$datetime.start");
+		  String end = IDataUtil.getString(cursor, "$datetime.end");
 		
 		  IDataUtil.put(cursor, "$duration", duration(start, end));
 		} finally {

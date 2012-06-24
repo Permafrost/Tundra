@@ -113,7 +113,7 @@ Services for manipulating datetimes:
     tundra.datetime:concatenate($date, $time)
 
     # returns the duration of time between two datetimes
-    tundra.datetime:duration($datetime.x, $datetime.y)
+    tundra.datetime:duration($datetime.start, $datetime.end)
 
     # formats a datetime that conforms to the input pattern, according to the output pattern
     tundra.datetime:format($datetime, $pattern.input, $pattern.output)
