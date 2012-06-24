@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-05-16 20:19:40 EST
+// -----( CREATED: 2012-06-24 12:57:19 EST
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -50,6 +50,12 @@ public final class exception
 	// --- <<IS-START-SHARED>> ---
 	// throws a new ServiceException with the class and message from the given Throwable, which
 	// is useful because java services are hard-wired to only throw ServiceExceptions
+	public static void raise(Throwable[] exceptions) throws ServiceException {
+	  if (exceptions != null) raise(message(exceptions));
+	}
+	
+	// throws a new ServiceException with the class and message from the given Throwable, which
+	// is useful because java services are hard-wired to only throw ServiceExceptions
 	public static void raise(Throwable exception) throws ServiceException {
 	  if (exception != null) raise(message(exception));
 	}
@@ -61,7 +67,21 @@ public final class exception
 	
 	// returns an exception as a string
 	public static String message(Throwable exception) {
-		return exception.getClass().getName() + ": " + exception.getMessage();
+	  return exception.getClass().getName() + ": " + exception.getMessage();
+	}
+	
+	// returns a list of exceptions as a string
+	public static String message(Throwable[] exceptions) {
+	  StringBuilder msg = new StringBuilder();
+	  if (exceptions != null) {
+	    for (int i = 0; i < exceptions.length; i++) {
+	      if (exceptions[i] != null) {
+	        msg.append("[").append(i).append("]: ").append(message(exceptions[i]));
+	        if (i < exceptions.length - 1) msg.append("\n");
+	      }
+	    }
+	  }
+	  return msg.toString();
 	}
 	// --- <<IS-END-SHARED>> ---
 }
