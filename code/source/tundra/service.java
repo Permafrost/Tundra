@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-06-23 16:14:07 EST
+// -----( CREATED: 2012-06-24 19:22:26 EST
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -109,6 +109,28 @@ public final class service
                 
 	}
 
+
+
+	public static final void sleep (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(sleep)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $duration
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String duration = IDataUtil.getString(cursor, "$duration");
+		  sleep(duration);
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
 	// --- <<IS-START-SHARED>> ---
 	// returns the invocation call stack
 	private static final String[] callstack() {
@@ -186,6 +208,20 @@ public final class service
 	  }
 	  
 	  return pipeline;
+	}
+	
+	// sleeps the current thread for the given duration
+	public static void sleep(String duration) throws ServiceException {
+	  sleep(tundra.duration.parse(duration).getTimeInMillis(new java.util.Date()));
+	}
+	
+	// sleeps the current thread for the given duration
+	public static void sleep(long milliseconds) throws ServiceException {
+	  try {
+	    Thread.sleep(milliseconds);
+	  } catch(InterruptedException ex) {
+	    tundra.exception.raise(ex);
+	  }
 	}
 	// --- <<IS-END-SHARED>> ---
 }

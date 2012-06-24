@@ -359,6 +359,10 @@ Services for manipulating java.lang.Object objects:
     # calls the given service dynamically, either synchronously or asynchronously
     tundra.service:invoke($service, $pipeline, $mode)
 
+    # sends the currently executing thread to sleep (temporarily cease execution) for the specified
+    # duration, subject to the precision and accuracy of system timers and schedulers
+    tundra.service:sleep($duration)
+
 #### Stream
 
 Services for manipulating java.io.InputStream and java.io.OutputStream objects:
