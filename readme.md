@@ -23,6 +23,13 @@ Then activate and enable the package from the package management web page on the
 
 ## Services
 
+    # writes a message to the server log, automatically prefixed with the call stack
+    tundra:log($message, $level)
+
+    # runs all *test*:should* services in the given package, returning the test results
+    # (a test case passes if no exceptions are thrown)
+    tundra:test($package)
+
 #### Assertion
 
 Supports unit testing by providing the following bare-bones assertion services:
@@ -379,14 +386,7 @@ Services for manipulating java.lang.String objects:
     # returns the given string in upper case
     tundra.string:uppercase($string, $locale)
 
-#### Test
-
-    # runs all *test*:should* services in the given package, returning the test results
-    # (a test case passes if no exceptions are thrown)
-    tundra.test:suite($package)
-
-
-## Contributing
+## Contributions
 
 1. Check out the latest master to make sure the feature hasn’t been implemented or the bug hasn’t been fixed yet
 2. Check out the issue tracker to make sure someone already hasn’t requested it and/or contributed it
