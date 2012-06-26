@@ -7,7 +7,7 @@ A package of useful services for webMethods Integration Server 7.1 or higher.
 From your Integration Server installation:
 
     $ cd ./packages
-    $ git clone git://github.com/Permafrost/Tundra.git
+    $ git clone https://github.com/Permafrost/Tundra.git
 
 Then activate and enable the package from the package management web page on the Integration Server web administration site.
 
@@ -21,7 +21,19 @@ Then activate and enable the package from the package management web page on the
 4. Service namespace is kept flat.  Namespace folders are usually nouns. Service names are usually verbs,
    indicating the action performed on the parent folder (noun)
 
+## Tests
+
+*Almost* every service in Tundra has unit tests, located in the tundra.support.test folder.
+
+To run the test suite, either run `tundra:test($package = "Tundra")` directly, or visit
+<http://localhost:5555/invoke/tundra/test?$package=Tundra> (substituting localhost:5555 for your own
+Integration Server host and port).
+
 ## Services
+
+### Tundra
+
+Top-level services for the most common tasks:
 
     # writes a message to the server log, automatically prefixed with the call stack
     tundra:log($message, $level)
