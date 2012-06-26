@@ -209,6 +209,7 @@
               <value name="field_name">cases</value>
               <value name="field_type">record</value>
               <value name="field_dim">1</value>
+              <value name="field_opt">true</value>
               <value name="nillable">true</value>
               <value name="form_qualified">false</value>
               <value name="is_global">false</value>
