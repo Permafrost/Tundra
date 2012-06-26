@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-  <title>%value $result/package% Package Test</title>
+  <title>Test: %value $result/package%</title>
   <style>
     body{font:normal 14px/18px Helvetica, Arial, sans-serif;}
     table{border-collapse:separate;margin-bottom:1.4em;width:100%;border:none;}
@@ -19,7 +19,7 @@
 </head>
 <body>
 <table>
-  <caption class="%ifvar passed? equals('false')%fail%else%pass%endif%">%value $result/package% Package Test: %value $result/counts/total% tests executed; <span class='pass'>%value $result/counts/passed% tests passed</span>; <span class='fail'>%value $result/counts/failed% tests failed</span></caption>
+  <caption class="%ifvar passed? equals('false')%fail%else%pass%endif%">%value $result/package%: %value $result/counts/total% tests executed; <span class='pass'>%value $result/counts/passed% tests passed</span>; <span class='fail'>%value $result/counts/failed% tests failed</span></caption>
   <thead>
     <tr>
       <th rowspan='2'>Test Case</th>

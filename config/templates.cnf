@@ -5,5 +5,8 @@
     <record name="tundra_test_suite.html" javaclass="com.wm.util.Values">
       <value name="encoding">UTF8</value>
     </record>
+    <record name="tundra_test.html" javaclass="com.wm.util.Values">
+      <value name="encoding">UTF8</value>
+    </record>
   </record>
 </Values>
