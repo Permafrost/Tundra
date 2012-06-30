@@ -22,7 +22,7 @@ Then activate and enable the package from the package management web page on the
    indicating the action performed on the noun (parent folder)
 5. All private elements are kept in the tundra.support folder. All other elements are public and form the public API
    of the package. As the private elements do not contribute to the public API, they are liable to change at any time.
-   Enter at your own risk.
+   Enter at your own risk
 
 ## Tests
 
