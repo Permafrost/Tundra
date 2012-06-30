@@ -390,8 +390,12 @@ Services for manipulating java.lang.Object objects:
     # is then invoked, whether an exception was thrown by $service or not
     tundra.service:ensure($service, $catch, $finally, $pipeline)
 
-    # calls the given service dynamically, either synchronously or asynchronously
+    # calls the given service dynamically, either synchronously or asynchronously; if asynchronous
+    # a service thread is returned which can be waited on to finish (joined) using tundra.service:join
     tundra.service:invoke($service, $pipeline, $mode)
+
+    # waits for the given service thread to finish before returning the service output pipeline
+    tundra.service:join($thread)
 
     # sends the currently executing thread to sleep (temporarily cease execution) for the specified
     # duration, subject to the precision and accuracy of system timers and schedulers
