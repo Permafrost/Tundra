@@ -367,6 +367,12 @@ Services for manipulating java.lang.Object objects:
     # converts the given object to a string by calling its toString method
     tundra.object:stringify($object)
 
+#### Pipeline
+
+    # returns a clone of the current pipeline as a document: useful if you want to
+    # pass the pipeline itself as an input to a service
+    tundra.pipeline:capture
+
 #### Service
 
     # returns the current thread's call stack
