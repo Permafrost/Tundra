@@ -28,7 +28,7 @@ Then activate and enable the package from the package management web page on the
 
 *Almost* every service in Tundra has unit tests, located in the tundra.support.test folder.
 
-To run the test suite, either run `tundra:test($package = "Tundra")` directly, or visit
+To run the test suite, either run `tundra:test($package = "Tundra")` service directly, or visit
 <http://localhost:5555/invoke/tundra/test?$package=Tundra> (substituting  your own
 Integration Server host and port for localhost:5555).
 
