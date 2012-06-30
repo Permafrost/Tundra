@@ -364,6 +364,9 @@ Services for manipulating java.lang.Object objects:
     # primitive type, such as an int, or byte
     tundra.object:reflect($object)
 
+    # converts the given object to a string by calling its toString method
+    tundra.object:stringify($object)
+
 #### Service
 
     # returns the current thread's call stack

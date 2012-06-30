@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-06-22 13:58:24 EST
+// -----( CREATED: 2012-06-30 15:27:05.652
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -117,6 +117,29 @@ public final class object
 		    IDataUtil.put(cursor, "$array?", "" + klass.isArray());
 		    IDataUtil.put(cursor, "$primitive?", "" + primitive(object));
 		  }
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void stringify (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(stringify)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:0:optional $object
+		// [o] field:0:optional $string
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  Object object = IDataUtil.get(cursor, "$object");
+		  if (object != null) IDataUtil.put(cursor, "$string", object.toString());
 		} finally {
 		  cursor.destroy();
 		}
