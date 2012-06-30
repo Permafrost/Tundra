@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">ensure</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogIFN0cmlu
+ZyAkc2VydmljZSA9IElEYXRhVXRpbC5nZXRTdHJpbmcoY3Vyc29yLCAiJHNlcnZpY2UiKTsKICBT
+dHJpbmcgJGNhdGNoID0gSURhdGFVdGlsLmdldFN0cmluZyhjdXJzb3IsICIkY2F0Y2giKTsKICBT
+dHJpbmcgJGZpbmFsbHkgPSBJRGF0YVV0aWwuZ2V0U3RyaW5nKGN1cnNvciwgIiRmaW5hbGx5Iik7
+CiAgSURhdGEgc2NvcGUgPSBJRGF0YVV0aWwuZ2V0SURhdGEoY3Vyc29yLCAiJHBpcGVsaW5lIik7
+CiAgYm9vbGVhbiBzY29wZWQgPSBzY29wZSAhPSBudWxsOwoKICBzY29wZSA9IGVuc3VyZSgkc2Vy
+dmljZSwgc2NvcGVkID8gc2NvcGUgOiBwaXBlbGluZSwgJGNhdGNoLCAkZmluYWxseSk7CgogIGlm
+IChzY29wZWQpIElEYXRhVXRpbC5wdXQoY3Vyc29yLCAiJHBpcGVsaW5lIiwgc2NvcGUpOwp9IGZp
+bmFsbHkgewogIGN1cnNvci5kZXN0cm95KCk7Cn0=</value>
+</Values>

@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-06-30 15:14:22.504
+// -----( CREATED: 2012-06-30 16:01:31.660
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -68,7 +68,7 @@ public final class exception
 	    if (exception instanceof ServiceException) {
 	      throw (ServiceException)exception;
 	    } else {
-		  raise(message(exception));
+	    raise(message(exception));
 	    }
 	  }
 	}
@@ -105,6 +105,29 @@ public final class exception
 	    }
 	  }
 	  return msg.toString();
+	}
+	
+	public static IData[] stack(Throwable t) {
+	  IData[] output = null;
+	
+	  if (t != null) {
+	    StackTraceElement[] stack = t.getStackTrace();
+	    output = new IData[stack.length];
+	
+	    for (int i = 0; i < stack.length; i++) {
+	      output[i] = IDataFactory.create();
+	      IDataCursor cursor = output[i].getCursor();
+	      IDataUtil.put(cursor, "description", stack[i].toString());
+	      IDataUtil.put(cursor, "file", stack[i].getFileName());
+	      IDataUtil.put(cursor, "class", stack[i].getClassName());
+	      IDataUtil.put(cursor, "method", stack[i].getMethodName());
+	      IDataUtil.put(cursor, "line", "" + stack[i].getLineNumber());
+	      IDataUtil.put(cursor, "native?", "" + stack[i].isNativeMethod());
+	      cursor.destroy();
+	    }
+	  }
+	
+	  return output;
 	}
 	// --- <<IS-END-SHARED>> ---
 }

@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-06-24 19:22:26 EST
+// -----( CREATED: 2012-06-30 16:10:22.588
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -38,6 +38,39 @@ public final class service
 		
 		try {
 		  IDataUtil.put(cursor, "$callstack", callstack());
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void ensure (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(ensure)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $service
+		// [i] field:0:optional $catch
+		// [i] field:0:optional $finally
+		// [i] record:0:optional $pipeline
+		// [o] record:0:optional $pipeline
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String $service = IDataUtil.getString(cursor, "$service");
+		  String $catch = IDataUtil.getString(cursor, "$catch");
+		  String $finally = IDataUtil.getString(cursor, "$finally");
+		  IData scope = IDataUtil.getIData(cursor, "$pipeline");
+		  boolean scoped = scope != null;
+		
+		  scope = ensure($service, scoped ? scope : pipeline, $catch, $finally);
+		
+		  if (scoped) IDataUtil.put(cursor, "$pipeline", scope);
 		} finally {
 		  cursor.destroy();
 		}
@@ -133,7 +166,7 @@ public final class service
 
 	// --- <<IS-START-SHARED>> ---
 	// returns the invocation call stack
-	private static final String[] callstack() {
+	private static String[] callstack() {
 	  java.util.Iterator stack = com.wm.app.b2b.server.InvokeState.getCurrentState().getCallStack().iterator();
 	  java.util.List<String> services = new java.util.ArrayList<String>();
 	  while (stack.hasNext()) {
@@ -222,6 +255,48 @@ public final class service
 	  } catch(InterruptedException ex) {
 	    tundra.exception.raise(ex);
 	  }
+	}
+	
+	public static IData ensure(String service, IData pipeline) throws ServiceException {
+	  return ensure(service, pipeline, null, null);
+	}
+	
+	public static IData ensure(String service, IData pipeline, String catchService, String finallyService) throws ServiceException {
+	  if (catchService == null) {
+	    pipeline = tryFinally(service, pipeline, finallyService);
+	  } else {
+	    pipeline = tryCatchFinally(service, pipeline, catchService, finallyService);
+	  }
+	  return pipeline;
+	}
+	
+	private static IData tryFinally(String service, IData pipeline, String finallyService) throws ServiceException {
+	  try {
+	    pipeline = invoke.synchronous(service, pipeline);
+	  } finally {
+	    if (finallyService != null) pipeline = ensure(finallyService, pipeline);
+	  }
+	
+	  return pipeline;
+	}
+	
+	private static IData tryCatchFinally(String service, IData pipeline, String catchService, String finallyService) throws ServiceException {
+	  try {
+	    pipeline = invoke.synchronous(service, pipeline);
+	  } catch (Throwable t) {
+	    IDataCursor cursor = pipeline.getCursor();
+	    IDataUtil.put(cursor, "$exception", t);
+	    IDataUtil.put(cursor, "$exception.class", t.getClass().getName());
+	    IDataUtil.put(cursor, "$exception.message", t.getMessage());
+	    IDataUtil.put(cursor, "$exception.stack", tundra.exception.stack(t));
+	    cursor.destroy();
+	
+	    pipeline = ensure(catchService, pipeline);
+	  } finally {
+	    if (finallyService != null) pipeline = ensure(finallyService, pipeline);
+	  }
+	
+	  return pipeline;
 	}
 	// --- <<IS-END-SHARED>> ---
 }
