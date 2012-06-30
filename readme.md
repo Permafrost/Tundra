@@ -170,7 +170,8 @@ Services for manipulating com.wm.data.IData objects:
 #### Exception
 
     # throws a new com.wm.app.b2b.server.ServiceException with the given message
-    tundra.exception:raise($message)
+    # or rethrows the given exception
+    tundra.exception:raise($message, $exception)
 
 #### ID
 

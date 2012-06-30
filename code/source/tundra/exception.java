@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-06-24 12:57:19 EST
+// -----( CREATED: 2012-06-30 15:14:22.504
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -34,11 +34,18 @@ public final class exception
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $message
+		// [i] object:0:optional $exception
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String message = IDataUtil.getString(cursor, "$message");
-		  raise(message);
+		  Throwable exception = (Throwable)IDataUtil.get(cursor, "$exception");
+		
+		  if (exception != null) {
+		    raise(exception);
+		  } else {
+		    raise(message);
+		  } 
 		} finally {
 		  cursor.destroy();
 		}
@@ -57,7 +64,13 @@ public final class exception
 	// throws a new ServiceException with the class and message from the given Throwable, which
 	// is useful because java services are hard-wired to only throw ServiceExceptions
 	public static void raise(Throwable exception) throws ServiceException {
-	  if (exception != null) raise(message(exception));
+	  if (exception != null) {
+	    if (exception instanceof ServiceException) {
+	      throw (ServiceException)exception;
+	    } else {
+		  raise(message(exception));
+	    }
+	  }
 	}
 	
 	// throws a new ServiceException with the given message
@@ -67,7 +80,17 @@ public final class exception
 	
 	// returns an exception as a string
 	public static String message(Throwable exception) {
-	  return exception.getClass().getName() + ": " + exception.getMessage();
+	  String message = "";
+	
+	  if (exception != null) {
+	    if (exception instanceof ServiceException) {
+	      message = exception.getMessage();
+	    } else {
+	      message = exception.getClass().getName() + ": " + exception.getMessage();
+	    }
+	  }
+	
+	  return message;
 	}
 	
 	// returns a list of exceptions as a string
