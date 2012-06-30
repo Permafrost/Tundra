@@ -373,6 +373,9 @@ Services for manipulating java.lang.Object objects:
     # pass the pipeline itself as an input to a service
     tundra.pipeline:capture
 
+    # writes the current pipeline to the server log
+    tundra.pipeline:log($level)
+
 #### Service
 
     # returns the current thread's call stack
