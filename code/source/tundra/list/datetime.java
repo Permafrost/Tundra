@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-06-23 11:00:56 EST
+// -----( CREATED: 2012-07-05 15:35:43.324
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -33,18 +33,18 @@ public final class datetime
 		// --- <<IS-START(format)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:1:optional $datetimes
+		// [i] field:1:optional $list
 		// [i] field:0:optional $pattern.input {&quot;datetime&quot;,&quot;date&quot;,&quot;time&quot;,&quot;milliseconds&quot;}
 		// [i] field:0:optional $pattern.output {&quot;datetime&quot;,&quot;date&quot;,&quot;time&quot;,&quot;milliseconds&quot;}
-		// [o] field:1:optional $datetimes
+		// [o] field:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  String[] datetimes = IDataUtil.getStringArray(cursor, "$datetimes");
+		  String[] list = IDataUtil.getStringArray(cursor, "$list");
 		  String inPattern = IDataUtil.getString(cursor, "$pattern.input");
 		  String outPattern = IDataUtil.getString(cursor, "$pattern.output");
 		
-		  IDataUtil.put(cursor, "$datetimes", format(datetimes, inPattern, outPattern));
+		  IDataUtil.put(cursor, "$list", format(list, inPattern, outPattern));
 		} finally {
 		  cursor.destroy();
 		}

@@ -188,7 +188,7 @@ Services for manipulating lists:
 
     # formats a list of datetimes that conform to the input pattern, according
     # to the output pattern
-    tundra.list.datetime:format($datetimes[], $pattern.input, $pattern.output)
+    tundra.list.datetime:format($list[], $pattern.input, $pattern.output)
 
     # appends a single item to the end of a list, such that appending an item to a
     # list containing n items results in a new list of n + 1 items
@@ -208,7 +208,7 @@ Services for manipulating lists:
     tundra.list.document:equal($list.x[], $list.y[])
 
     # returns true if the given item is found in the given list
-    tundra.list.string:include($list[], $item)
+    tundra.list.document:include($list[], $item)
 
     # returns a new list with the given item inserted at the desired index in the given list
     tundra.list.document:insert($list[], $item, $index)
@@ -241,7 +241,7 @@ Services for manipulating lists:
     # (a start instant, $datetime, may be required when formatting fields with
     # indeterminate values, such as converting months to days, because the number
     # of days in a month varies)
-    tundra.list.duration:format($durations[], $datetime, $pattern.input, $pattern.output)
+    tundra.list.duration:format($list[], $datetime, $pattern.input, $pattern.output)
 
     # appends a single item to the end of a list, such that appending an item to a list
     # containing n items results in a new list of n + 1 items
