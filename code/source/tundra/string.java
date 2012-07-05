@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-05 15:46:39.973
+// -----( CREATED: 2012-07-05 16:09:16.151
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -24,6 +24,28 @@ public final class string
 
 	// ---( server methods )---
 
+
+
+
+	public static final void length (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(length)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $string
+		// [o] field:0:optional $length
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  IDataUtil.put(cursor, "$length", "" + length(IDataUtil.getString(cursor, "$string")));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
 
 
 
@@ -136,6 +158,7 @@ public final class string
 	}
 
 	// --- <<IS-START-SHARED>> ---
+	// converts a byte array, input stream or string to a string
 	public static String normalize(Object object, String encoding) throws java.io.IOException {
 	  if (encoding == null) encoding = tundra.support.constant.DEFAULT_CHARACTER_ENCODING;
 	  
@@ -158,10 +181,12 @@ public final class string
 	  return string;
 	}
 	
+	// converts a byte array, input stream or string to a string
 	public static String normalize(Object object) throws java.io.IOException {
 	  return normalize(object, tundra.support.constant.DEFAULT_CHARACTER_ENCODING);
 	}
 	
+	// returns a new java.util.Locale object for the given language, country and variant
 	public static java.util.Locale locale(String language, String country, String variant) {
 	  java.util.Locale locale = java.util.Locale.getDefault();
 	  
@@ -178,6 +203,7 @@ public final class string
 	  return locale;
 	}
 	
+	// converts an IData locale object to a java.util.Locale object
 	public static java.util.Locale locale(IData document) {
 	  String language = null, country = null, variant = null;
 	  
@@ -192,10 +218,18 @@ public final class string
 	  return locale(language, country, variant);
 	}
 	
+	// returns the given string with leading and trailing whitespace removed
 	public static String trim(String input) {
 	  String output = null;
 	  if (input != null) output = input.trim();
 	  return output;
+	}
+	
+	// returns the length (number of characters) of the string
+	public static int length(String input) {
+	  int length = 0;
+	  if (input != null) length = input.length();
+	  return length;
 	}
 	// --- <<IS-END-SHARED>> ---
 }

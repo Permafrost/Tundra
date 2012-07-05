@@ -419,6 +419,9 @@ Services for manipulating java.io.InputStream and java.io.OutputStream objects:
 
 Services for manipulating java.lang.String objects:
 
+    # returns the number of characters in the given string
+    tundra.string:length($string)
+
     # returns the given string in lower case
     tundra.string:lowercase($string, $locale)
 
