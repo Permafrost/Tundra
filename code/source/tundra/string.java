@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-06-16 13:28:17 EST
+// -----( CREATED: 2012-07-05 15:46:39.973
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -75,6 +75,28 @@ public final class string
 		  IDataUtil.put(cursor, "$string", normalize(object, encoding));
 		} catch(java.io.IOException ex) {
 		  tundra.exception.raise(ex);
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void trim (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(trim)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $string
+		// [o] field:0:optional $string
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  IDataUtil.put(cursor, "$string", trim(IDataUtil.getString(cursor, "$string")));
 		} finally {
 		  cursor.destroy();
 		}
@@ -168,6 +190,12 @@ public final class string
 	  }
 	  
 	  return locale(language, country, variant);
+	}
+	
+	public static String trim(String input) {
+	  String output = null;
+	  if (input != null) output = input.trim();
+	  return output;
 	}
 	// --- <<IS-END-SHARED>> ---
 }

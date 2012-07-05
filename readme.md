@@ -425,6 +425,9 @@ Services for manipulating java.lang.String objects:
     # converts a string, byte array or input stream to a string
     tundra.string:normalize($object, $encoding)
 
+    # returns the given string with leading and trailing whitespace removed
+    tundra.string:trim($string)
+
     # returns the given string in upper case
     tundra.string:uppercase($string, $locale)
 
