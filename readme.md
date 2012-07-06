@@ -425,6 +425,10 @@ Services for manipulating java.lang.String objects:
     # returns the given string in lower case
     tundra.string:lowercase($string, $locale)
 
+    # returns whether the given regular expression pattern matches the given string
+    # refer: <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html>
+    tundra.string:match($string, $pattern)
+
     # converts a string, byte array or input stream to a string
     tundra.string:normalize($object, $encoding)
 

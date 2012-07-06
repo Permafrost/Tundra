@@ -47,7 +47,10 @@ bnVsbDsKICBpZiAoaW5wdXQgIT0gbnVsbCkgb3V0cHV0ID0gaW5wdXQudHJpbSgpOwogIHJldHVy
 biBvdXRwdXQ7Cn0KCi8vIHJldHVybnMgdGhlIGxlbmd0aCAobnVtYmVyIG9mIGNoYXJhY3RlcnMp
 IG9mIHRoZSBzdHJpbmcKcHVibGljIHN0YXRpYyBpbnQgbGVuZ3RoKFN0cmluZyBpbnB1dCkgewog
 IGludCBsZW5ndGggPSAwOwogIGlmIChpbnB1dCAhPSBudWxsKSBsZW5ndGggPSBpbnB1dC5sZW5n
-dGgoKTsKICByZXR1cm4gbGVuZ3RoOwp9</value>
+dGgoKTsKICByZXR1cm4gbGVuZ3RoOwp9CgpwdWJsaWMgc3RhdGljIGJvb2xlYW4gbWF0Y2goU3Ry
+aW5nIGlucHV0LCBTdHJpbmcgcmVnZXgpIHsKICBib29sZWFuIG1hdGNoID0gZmFsc2U7CiAgaWYg
+KGlucHV0ICE9IG51bGwgJiYgcmVnZXggIT0gbnVsbCkgbWF0Y2ggPSBpbnB1dC5tYXRjaGVzKHJl
+Z2V4KTsKICByZXR1cm4gbWF0Y2g7Cn0=</value>
   <value name="encodeutf8">true</value>
   <value name="extends"></value>
   <array name="implements" type="value" depth="1">

@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-05 16:09:16.151
+// -----( CREATED: 2012-07-06 11:55:59.951
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -69,6 +69,32 @@ public final class string
 		  if (string != null) {
 		    IDataUtil.put(cursor, "$string", string.toLowerCase(locale(document)));
 		  }
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void match (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(match)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $string
+		// [i] field:0:optional $pattern
+		// [o] field:0:required $match?
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String string = IDataUtil.getString(cursor, "$string");
+		  String pattern = IDataUtil.getString(cursor, "$pattern");
+		
+		  IDataUtil.put(cursor, "$match?", "" + match(string, pattern));
 		} finally {
 		  cursor.destroy();
 		}
@@ -230,6 +256,12 @@ public final class string
 	  int length = 0;
 	  if (input != null) length = input.length();
 	  return length;
+	}
+	
+	public static boolean match(String input, String regex) {
+	  boolean match = false;
+	  if (input != null && regex != null) match = input.matches(regex);
+	  return match;
 	}
 	// --- <<IS-END-SHARED>> ---
 }
