@@ -23,6 +23,9 @@ Then activate and enable the package from the package management web page on the
 5. All private elements are kept in the tundra.support folder. All other elements are public and form the public API
    of the package. As the private elements do not contribute to the public API, they are liable to change at any time.
    Enter at your own risk
+6. *Almost* all services are written in Java, and are *almost* always overloaded by a backing method in the shared source,
+   which provides the actual implementation. This way, backing methods can be used by other backing methods directly,
+   without needing to deal with the IData/IDataCursor/IDataUtil nastiness that a fronting Java service is required to
 
 ## Tests
 
