@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-13 15:54:36.913
-// -----( ON-HOST: TNFDEVWAP103.test.qr.com.au
+// -----( CREATED: 2012-07-13 16:59:23.137
+// -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -38,9 +38,8 @@ public final class file
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  String filename = IDataUtil.getString(cursor, "$file");
-		
-		  IDataUtil.put(cursor, "$type", type(filename));
+		  String file = IDataUtil.getString(cursor, "$file");
+		  IDataUtil.put(cursor, "$type", type(file));
 		} finally {
 		  cursor.destroy();
 		}
