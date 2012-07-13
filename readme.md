@@ -179,6 +179,15 @@ Services for manipulating com.wm.data.IData objects:
     # or rethrows the given exception
     tundra.exception:raise($message, $exception)
 
+#### File
+
+	# determines the mime type for the given file name or file URI; Integration Server 
+	# file extension to mime type mappings are defined in the file ./lib/mime.types;
+	# if the mime type cannot be found, it defaults to the type for arbitrary binary 
+	# data: application/octet-stream.
+	# refer: <http://en.wikipedia.org/wiki/Internet_media_type>
+	tundra.file:type($file)
+	
 #### ID
 
     # generates an immutable 128-bit universally unique identifier
