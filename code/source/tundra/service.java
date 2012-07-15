@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-06-30 16:10:22.588
+// -----( CREATED: 2012-07-15 17:40:31.468
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -177,7 +177,7 @@ public final class service
 	  return (String[])services.toArray(new String[services.size()]);
 	}
 	
-	// invokes the given service either synchronously or asynchronously
+	// invokes the given service synchronously
 	public static IData invoke(String service, IData pipeline) throws ServiceException {  
 	  return (IData)invoke(service, pipeline, "synchronous");
 	}
