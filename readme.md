@@ -152,6 +152,27 @@ Services for manipulating com.wm.data.IData objects:
     # returns true if the two IData documents are equal (contain the same keys and values)
     tundra.document:equal($document.x, $document.y)
 
+#### Directory
+
+    # creates a new directory
+    tundra.directory:create($directory)
+
+    # returns true if the directory exists and it is directory
+    tundra.directory:exists($directory)
+
+    # lists a directory, optionally filtering based on the given regular expression pattern
+    tundra.directory:list($directory, $pattern, $recurse?)
+
+    # returns the canonical file: URI that represents the given directory
+    tundra.directory:normalize($directory)
+
+    # deletes the given directory; all child files and directories will also be recursively
+    # deleted if $recurse is true
+    tundra.directory:remove($directory, $recurse?)
+
+    # renames the source directory to the target directory name
+    tundra.directory:rename($directory.source, $directory.target)
+
 #### Duration
 
     # adds two durations together
@@ -181,12 +202,53 @@ Services for manipulating com.wm.data.IData objects:
 
 #### File
 
+    # atomically creates a new, empty file
+    tundra.file:create($file)
+
+    # returns true if the file can be executed
+    tundra.file:executable($file)
+
+    # returns true if the file exists and is a file
+    tundra.file:exists($file)
+
+    # returns the length of the given file in bytes
+    tundra.file:length($file)
+
+    # returns the canonical file: URI that represents the given file
+    tundra.file:normalize($file)
+
+    # opens a file for reading, appending, or writing, and calls the given service 
+    # passing the resulting $stream file stream object
+    tundra.file:open($file, $mode, $service, $pipeline)
+
+    # reads a file in full, returning the content as either a byte array or string
+    tundra.file:read($file, $mode, $encoding)
+
+    # returns true if the file can be read
+    tundra.file:readable($file)
+
+    # deletes the given file
+    tundra.file:remove($file)
+
+    # renames the source file to the target name
+    tundra.file:rename($file.source, $file.target)
+
+    # updates the modified time, or creates a new file if it doesn't already exist
+    tundra.file:touch($file)
+
 	# determines the mime type for the given file name or file URI; Integration Server 
 	# file extension to mime type mappings are defined in the file ./lib/mime.types;
 	# if the mime type cannot be found, it defaults to the type for arbitrary binary 
 	# data: application/octet-stream.
 	# refer: <http://en.wikipedia.org/wiki/Internet_media_type>
 	tundra.file:type($file)
+
+    # returns true if the file can be written to
+    tundra.file:writable($file)
+
+    # writes or appends data (provided as a string, byte array or input stream) to 
+    # the given file
+    tundra.file:write($file, $mode, $content, $encoding)
 	
 #### ID
 

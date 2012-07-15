@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">list</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogIFN0cmlu
+ZyBkaXJlY3RvcnkgPSBJRGF0YVV0aWwuZ2V0U3RyaW5nKGN1cnNvciwgIiRkaXJlY3RvcnkiKTsK
+ICBTdHJpbmcgcGF0dGVybiA9IElEYXRhVXRpbC5nZXRTdHJpbmcoY3Vyc29yLCAiJHBhdHRlcm4i
+KTsKICBib29sZWFuIHJlY3Vyc2UgPSBCb29sZWFuLnBhcnNlQm9vbGVhbihJRGF0YVV0aWwuZ2V0
+U3RyaW5nKGN1cnNvciwgIiRyZWN1cnNlPyIpKTsKCiAgSURhdGFVdGlsLnB1dChjdXJzb3IsICIk
+ZGlyZWN0b3JpZXMiLCBsaXN0LmRpcmVjdG9yaWVzKGRpcmVjdG9yeSwgcGF0dGVybiwgcmVjdXJz
+ZSkpOwogIElEYXRhVXRpbC5wdXQoY3Vyc29yLCAiJGZpbGVzIiwgbGlzdC5maWxlcyhkaXJlY3Rv
+cnksIHBhdHRlcm4sIHJlY3Vyc2UpKTsKfSBmaW5hbGx5IHsKICBjdXJzb3IuZGVzdHJveSgpOwp9
+</value>
+</Values>
