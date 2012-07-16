@@ -425,11 +425,11 @@ Services for manipulating java.lang.Object lists:
 
     # invokes a list of services either synchronously (with an optional level of
     # concurrency) or asynchronously
-    tundra.list.service:invoke($invocations, $mode, $concurrency)
+    tundra.list.service:invoke($invocations[], $mode, $concurrency)
 
     # waits for each service thread in the given list to finish before returning
     # the each output pipeline
-    tundra.list.service:join($threads)
+    tundra.list.service:join($threads[])
 
 ##### String List
 
