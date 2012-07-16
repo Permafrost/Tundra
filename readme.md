@@ -39,7 +39,7 @@ tundra.support.test folder.
 
 To run the test suite, either:
 * run tundra:test($package = "Tundra") service directly
-* visit <http://localhost:5555/invoke/tundra/test?$package=Tundra> 
+* visit <http://localhost:5555/invoke/tundra/test?$package=Tundra>  
   (substitute your own Integration Server host and port for localhost:5555)
 
 ## Services
