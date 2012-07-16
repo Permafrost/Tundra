@@ -39,8 +39,8 @@ tundra.support.test folder.
 
 To run the test suite, either:
 * run tundra:test($package = "Tundra") service directly
-* or visit <http://localhost:5555/invoke/tundra/test?$package=Tundra> 
-  (substituting  your own Integration Server host and port for localhost:5555)
+* visit <http://localhost:5555/invoke/tundra/test?$package=Tundra> 
+  (substitute your own Integration Server host and port for localhost:5555)
 
 ## Services
 
@@ -420,6 +420,16 @@ Services for manipulating java.lang.Object lists:
     # returns a new list with all duplicates from the given list removed, such 
     # that no two items are equal
     tundra.list.object:unique($list[])
+
+##### Service List
+
+    # invokes a list of services either synchronously (with an optional level of
+    # concurrency) or asynchronously
+    tundra.list.service:invoke($invocations, $mode, $concurrency)
+
+    # waits for each service thread in the given list to finish before returning
+    # the each output pipeline
+    tundra.list.service:join($threads)
 
 ##### String List
 
