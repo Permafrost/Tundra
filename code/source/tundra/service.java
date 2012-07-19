@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-19 10:12:52.653
+// -----( CREATED: 2012-07-19 10:14:54.112
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -257,10 +257,7 @@ public final class service
 	  }
 	}
 	
-	public static IData ensure(String service, IData pipeline) throws ServiceException {
-	  return ensure(service, pipeline, null, null);
-	}
-	
+	// provides a try/catch/finally pattern for flow services
 	public static IData ensure(String service, IData pipeline, String catchService, String finallyService) throws ServiceException {
 	  if (catchService == null) {
 	    pipeline = tryFinally(service, pipeline, finallyService);
@@ -270,16 +267,18 @@ public final class service
 	  return pipeline;
 	}
 	
+	// provides a try/finally pattern for flow services
 	private static IData tryFinally(String service, IData pipeline, String finallyService) throws ServiceException {
 	  try {
 	    pipeline = invoke.synchronous(service, pipeline);
 	  } finally {
-	    if (finallyService != null) pipeline = ensure(finallyService, pipeline);
+	    if (finallyService != null) pipeline = invoke(finallyService, pipeline);
 	  }
 	
 	  return pipeline;
 	}
 	
+	// provides a try/catch/finally patter for flow services
 	private static IData tryCatchFinally(String service, IData pipeline, String catchService, String finallyService) throws ServiceException {
 	  try {
 	    pipeline = invoke.synchronous(service, pipeline);
@@ -291,9 +290,9 @@ public final class service
 	    IDataUtil.put(cursor, "$exception.stack", tundra.exception.stack(t));
 	    cursor.destroy();
 	
-	    pipeline = ensure(catchService, pipeline);
+	    pipeline = invoke(catchService, pipeline);
 	  } finally {
-	    if (finallyService != null) pipeline = ensure(finallyService, pipeline);
+	    if (finallyService != null) pipeline = invoke(finallyService, pipeline);
 	  }
 	
 	  return pipeline;
