@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-19 10:14:54.112
+// -----( CREATED: 2012-07-19 11:21:02.409
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -132,8 +132,6 @@ public final class service
 		  com.wm.app.b2b.server.ServiceThread thread = (com.wm.app.b2b.server.ServiceThread)IDataUtil.get(cursor, "$thread");
 		
 		  if (thread != null) IDataUtil.put(cursor, "$pipeline", join(thread));
-		} catch(Exception ex) {
-		  tundra.exception.raise(ex);
 		} finally {
 		  cursor.destroy();
 		}
