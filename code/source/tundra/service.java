@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-15 17:40:31.468
+// -----( CREATED: 2012-07-19 10:12:52.653
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -102,7 +102,7 @@ public final class service
 		  if (mode == null) mode = "synchronous";
 		  boolean scoped = scope != null;
 		
-		  Object value = tundra.service.invoke(service, scoped ? scope : pipeline, mode);
+		  Object value = invoke(service, scoped ? scope : pipeline, mode);
 		  String key = mode.equals("asynchronous")? "$thread" : "$pipeline";
 		
 		  if (scoped || mode.equals("asynchronous")) {
