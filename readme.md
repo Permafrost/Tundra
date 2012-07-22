@@ -166,6 +166,9 @@ Services for manipulating date, time and datetime strings:
 
 Services for manipulating com.wm.data.IData objects:
 
+    # removes all null values from the given IData document
+    tundra.document:compact($document)
+
     # returns true if the two IData documents are equal (contain the same keys 
     # and values)
     tundra.document:equal($document.x, $document.y)

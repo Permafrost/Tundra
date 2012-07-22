@@ -60,6 +60,7 @@
       </array>
     </record>
   </record>
+  <value name="node_comment">Removes all null values from the given IData document.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

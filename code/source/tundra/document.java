@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-22 16:07:46.402
+// -----( CREATED: 2012-07-22 16:33:25.309
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -434,7 +434,7 @@ public final class document
 	public static IData map(IData input, String service, IData pipeline, String keyInput, String keyOutput, String valueInput, String valueOutput, Class valueClass, boolean recurse) throws ServiceException {
 	  IData output = null;
 	
-	  if (input != null) {
+	  if (input != null && service != null) {
 	    IDataCursor ic = input.getCursor();
 	    output = IDataFactory.create();
 	    IDataCursor oc = output.getCursor();
@@ -469,10 +469,9 @@ public final class document
 	                  Tuple<String> t = map(new Tuple<String>(tuple.key, iary[i][j]), service, pipeline, keyInput, keyOutput, valueInput, valueOutput, valueClass);
 	                  oary[i][j] = t.value;
 	                }
-	                oary[i] = tundra.list.object.compact(oary[i]);
 	              }
 	            }
-	            tuple.value = tundra.list.object.compact(oary);
+	            tuple.value = oary;
 	          } else if (tuple.value instanceof String[]) {
 	            String[] iary = (String[])tuple.value;
 	            String[] oary = new String[iary.length];
@@ -480,7 +479,7 @@ public final class document
 	              Tuple<String> t = map(new Tuple<String>(tuple.key, iary[i]), service, pipeline, keyInput, keyOutput, valueInput, valueOutput, valueClass);
 	              oary[i] = t.value;
 	            }
-	            tuple.value = tundra.list.object.compact(oary);
+	            tuple.value = oary;
 	          } else if (tuple.value instanceof Object[]) {
 	            Object[] iary = (Object[])tuple.value;
 	            Object[] oary = new Object[iary.length];
@@ -488,11 +487,11 @@ public final class document
 	              Tuple<Object> t = map(new Tuple<Object>(tuple.key, iary[i]), service, pipeline, keyInput, keyOutput, valueInput, valueOutput, valueClass);
 	              oary[i] = t.value;
 	            }
-	            tuple.value = tundra.list.object.compact(oary);
+	            tuple.value = oary;
 	          }
 	        }
 	        tuple = map(tuple, service, pipeline, keyInput, keyOutput, valueInput, valueOutput, valueClass);
-	        if (tuple.value != null) IDataUtil.put(oc, tuple.key, tuple.value);
+	        IDataUtil.put(oc, tuple.key, tuple.value);
 	      }
 	    } finally {
 	      ic.destroy();
@@ -523,7 +522,7 @@ public final class document
 	    IDataUtil.put(cursor, valueInput, tuple.value);
 	    cursor.destroy();
 	
-	    if (service != null) pipeline = tundra.service.invoke(service, pipeline);
+	    pipeline = tundra.service.invoke(service, pipeline);
 	
 	    // clean up the input pipeline
 	    cursor = pipeline.getCursor();
@@ -571,8 +570,51 @@ public final class document
 	}
 	
 	// removes all null values from the given IData document
-	public static IData compact(IData input, boolean recurse) throws ServiceException {
-	  return map(input, null, null, null, null, null, null, null, true);
+	public static IData compact(IData input, boolean recurse) {
+	  IData output = null;
+	
+	  if (input != null) {
+	    output = IDataFactory.create();
+	    IDataCursor ic = input.getCursor();
+	    IDataCursor oc = output.getCursor();
+	
+	    try {
+	      while(ic.next()) {
+	        String key = ic.getKey();
+	        Object value = ic.getValue();
+	
+	        if (value != null) {
+	          if (recurse) {
+	            if (value instanceof IData) {
+	              value = compact((IData)value, recurse);
+	            } else if (value instanceof IData[]) {
+	              IData[] array = tundra.list.object.compact((IData[])value);
+	              for (int i = 0; i < array.length; i++) {
+	                array[i] = compact(array[i], recurse);
+	              }
+	              value = array;
+	            } else if (value instanceof String[][]) {
+	              String[][] array = (String[][])value;
+	              for (int i = 0; i < array.length; i++) {
+	                array[i] = tundra.list.object.compact(array[i]);
+	              }
+	              value = array;
+	            } else if (value instanceof String[]) {
+	              value = tundra.list.object.compact((String[])value);
+	            } else if (value instanceof Object[]) {
+	              value = tundra.list.object.compact((Object[])value);
+	            }
+	          }
+	          IDataUtil.put(oc, key, value);
+	        }
+	      }
+	    } finally {
+	      ic.destroy();
+	      oc.destroy();
+	    }
+	  }
+	
+	  return output;
 	}
 	// --- <<IS-END-SHARED>> ---
 }
