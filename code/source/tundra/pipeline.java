@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-22 15:33:31.813
+// -----( CREATED: 2012-07-22 16:50:37.463
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -72,10 +72,10 @@ public final class pipeline
 
 
 
-	public static final void set (IData pipeline)
+	public static final void put (IData pipeline)
         throws ServiceException
 	{
-		// --- <<IS-START(set)>> ---
+		// --- <<IS-START(put)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $key
@@ -87,7 +87,7 @@ public final class pipeline
 		  String key = IDataUtil.getString(cursor, "$key");
 		  Object value = IDataUtil.get(cursor, "$value");
 		
-		  tundra.document.set(pipeline, key, value);
+		  tundra.document.put(pipeline, key, value);
 		} finally {
 		  cursor.destroy();
 		}

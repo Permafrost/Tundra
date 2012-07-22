@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-22 16:33:25.309
+// -----( CREATED: 2012-07-22 16:50:19.231
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -272,6 +272,34 @@ public final class document
 
 
 
+	public static final void put (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(put)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:0:optional $document
+		// [i] field:0:optional $key
+		// [i] object:0:optional $value
+		// [o] record:0:optional $document
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  IData document = IDataUtil.getIData(cursor, "$document");
+		  String key = IDataUtil.getString(cursor, "$key");
+		  Object value = IDataUtil.get(cursor, "$value");
+		
+		  IDataUtil.put(cursor, "$document", put(document, key, value));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void remove (IData pipeline)
         throws ServiceException
 	{
@@ -287,34 +315,6 @@ public final class document
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  String key = IDataUtil.getString(cursor, "$key");
 		  IDataUtil.put(cursor, "$document", remove(document, key));
-		} finally {
-		  cursor.destroy();
-		}
-		// --- <<IS-END>> ---
-
-                
-	}
-
-
-
-	public static final void set (IData pipeline)
-        throws ServiceException
-	{
-		// --- <<IS-START(set)>> ---
-		// @subtype unknown
-		// @sigtype java 3.5
-		// [i] record:0:optional $document
-		// [i] field:0:optional $key
-		// [i] object:0:optional $value
-		// [o] record:0:optional $document
-		IDataCursor cursor = pipeline.getCursor();
-		
-		try {
-		  IData document = IDataUtil.getIData(cursor, "$document");
-		  String key = IDataUtil.getString(cursor, "$key");
-		  Object value = IDataUtil.get(cursor, "$value");
-		
-		  IDataUtil.put(cursor, "$document", set(document, key, value));
 		} finally {
 		  cursor.destroy();
 		}
@@ -557,7 +557,7 @@ public final class document
 	}
 	
 	// sets the value associated with the given key in the given IData document
-	public static IData set(IData input, String key, Object value) {
+	public static IData put(IData input, String key, Object value) {
 	  if (input != null && key != null) {
 	    IDataCursor cursor = input.getCursor();
 	    try {
