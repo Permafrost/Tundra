@@ -68,7 +68,7 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Returns the value associated with the given key from the given IData document, or null if
+  <value name="node_comment">Returns the value associated with the given key from the pipeline, or null if
 it doesn't exist.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>

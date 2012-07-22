@@ -173,6 +173,14 @@ Services for manipulating com.wm.data.IData objects:
     # and values)
     tundra.document:equal($document.x, $document.y)
 
+    # returns the value associated with the given key from the given IData
+    # document, or null if the key doesn't exist
+    tundra.document:get($document, $key)
+
+    # sets the value associated with the given key in the given IData
+    # document
+    tundra.document:put($document, $key, $value)
+
 #### Directory
 
 File system services for working with directories or folders:
@@ -522,11 +530,18 @@ Services for manipulating java.lang.Object objects:
     # to pass the pipeline itself as an input to a service
     tundra.pipeline:capture
 
+    # returns the value associated with the given key from the pipeline, or null
+    # if the key doesn't exist
+    tundra.pipeline:get($key)
+
     # returns the number of top-level elements in the pipeline
     tundra.pipeline:length
 
     # writes the current pipeline to the server log
     tundra.pipeline:log($level)
+
+    # sets the value associated with the given key in the pipeline
+    tundra.pipeline:put($key, $value)
 
 #### Service
 
