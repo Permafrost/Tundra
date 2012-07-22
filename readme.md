@@ -184,6 +184,9 @@ Services for manipulating com.wm.data.IData objects:
     # document
     tundra.document:put($document, $key, $value)
 
+    # returns the list of top-level values in the given IData document
+    tundra.document:values($document)
+
 #### Directory
 
 File system services for working with directories or folders:
