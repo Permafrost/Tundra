@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-06 11:55:59.951
+// -----( CREATED: 2012-07-22 14:19:19.468
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -123,6 +123,61 @@ public final class string
 		  IDataUtil.put(cursor, "$string", normalize(object, encoding));
 		} catch(java.io.IOException ex) {
 		  tundra.exception.raise(ex);
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void replace (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(replace)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $string
+		// [i] field:0:optional $pattern
+		// [i] field:0:optional $replacement
+		// [i] field:0:optional $literal? {&quot;false&quot;,&quot;true&quot;}
+		// [o] field:0:optional $string
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String string = IDataUtil.getString(cursor, "$string");
+		  String pattern = IDataUtil.getString(cursor, "$pattern");
+		  String replacement = IDataUtil.getString(cursor, "$replacement");
+		  boolean literal = Boolean.parseBoolean(IDataUtil.getString(cursor, "$literal?"));
+		
+		  IDataUtil.put(cursor, "$string", replace(string, pattern, replacement, literal));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void split (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(split)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $string
+		// [i] field:0:optional $pattern
+		// [o] field:1:optional $list
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String string = IDataUtil.getString(cursor, "$string");
+		  String pattern = IDataUtil.getString(cursor, "$pattern");
+		  IDataUtil.put(cursor, "$list", split(string, pattern));
 		} finally {
 		  cursor.destroy();
 		}
@@ -258,10 +313,33 @@ public final class string
 	  return length;
 	}
 	
+	// returns true if the given regular expression is found in the given string
 	public static boolean match(String input, String regex) {
 	  boolean match = false;
 	  if (input != null && regex != null) match = input.matches(regex);
 	  return match;
+	}
+	
+	// replaces all occurrences of the given regular expression in the given string with the given replacement
+	public static String replace(String input, String regex, String replacement, boolean literal) {
+	  String output = input;
+	  if (input != null && regex != null && replacement != null) {
+	    if (literal) replacement = java.util.regex.Matcher.quoteReplacement(replacement);
+	    java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(regex);
+	    java.util.regex.Matcher matcher = pattern.matcher(input);
+	    output = matcher.replaceAll(replacement);
+	  }
+	  return output;
+	}
+	
+	// splits a string around each match of the given regular expression pattern
+	public static String[] split(String input, String regex) {
+	  String[] output = null;
+	  if (input != null && regex != null) {
+	    java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(regex);
+	    output = pattern.split(input);
+	  }
+	  return output;
 	}
 	// --- <<IS-END-SHARED>> ---
 }

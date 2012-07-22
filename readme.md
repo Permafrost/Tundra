@@ -580,6 +580,15 @@ Services for manipulating java.lang.String objects:
     # converts a string, byte array or input stream to a string
     tundra.string:normalize($object, $encoding)
 
+    # replaces all occurrences of the given regular expression pattern in the 
+    # given string, with the replacement string
+    # refer: <http://download.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html>,
+    #        <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Matcher.html>
+    tundra.string:replace($string, $pattern, $replacement, $literal?)
+
+    # splits the given string around matches of the given regular expression pattern
+    tundra.string:split($string, $pattern)
+
     # returns the given string with leading and trailing whitespace removed
     tundra.string:trim($string)
 
