@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-06-27 12:58:32 EST
+// -----( CREATED: 2012-07-22 15:33:31.813
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -33,11 +33,61 @@ public final class pipeline
 		// --- <<IS-START(capture)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [o] record:0:optional $pipeline
+		// [o] record:0:required $pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  IDataUtil.put(cursor, "$pipeline", IDataUtil.clone(pipeline));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void get (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(get)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $key
+		// [o] object:0:optional $value
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  IData document = IDataUtil.getIData(cursor, "$document");
+		  String key = IDataUtil.getString(cursor, "$key");
+		  IDataUtil.put(cursor, "$value", tundra.document.get(pipeline, key));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void set (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(set)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $key
+		// [i] object:0:optional $value
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  IData document = IDataUtil.getIData(cursor, "$document");
+		  String key = IDataUtil.getString(cursor, "$key");
+		  Object value = IDataUtil.get(cursor, "$value");
+		
+		  tundra.document.set(pipeline, key, value);
 		} finally {
 		  cursor.destroy();
 		}
