@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-06-23 16:12:59 EST
+// -----( CREATED: 2012-07-22 14:27:28.145
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -283,6 +283,7 @@ public final class object
 		// @sigtype java 3.5
 		// [i] object:1:optional $list
 		// [i] field:0:optional $service
+		// [i] record:0:optional $pipeline
 		// [i] field:0:optional $item.input
 		// [i] field:0:optional $item.output
 		// [o] object:1:optional $list
@@ -291,12 +292,15 @@ public final class object
 		try {
 		  Object[] list = IDataUtil.getObjectArray(cursor, "$list");
 		  String service = IDataUtil.getString(cursor, "$service");
+		  IData scope = IDataUtil.getIData(cursor, "$pipeline");
 		  String input = IDataUtil.getString(cursor, "$item.input");
 		  String output = IDataUtil.getString(cursor, "$item.output");
 		
+		  boolean scoped = scope != null;
+		
 		  // invoke the service for each item in the list, passing $item and $index variables on each invocation
 		  // and collect the returned $item's into a new list
-		  IDataUtil.put(cursor, "$list", map(list, service, pipeline, input, output));
+		  IDataUtil.put(cursor, "$list", map(list, service, scoped ? scope : pipeline, input, output));
 		} finally {
 		  cursor.destroy();
 		}
