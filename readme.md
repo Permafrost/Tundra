@@ -177,6 +177,9 @@ Services for manipulating com.wm.data.IData objects:
     # document, or null if the key doesn't exist
     tundra.document:get($document, $key)
 
+    # returns the list of top-level keys in the given IData document
+    tundra.document:keys($document)
+
     # sets the value associated with the given key in the given IData
     # document
     tundra.document:put($document, $key, $value)
