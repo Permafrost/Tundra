@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-22 16:50:19.231
+// -----( CREATED: 2012-07-22 17:01:11.166
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -558,7 +558,8 @@ public final class document
 	
 	// sets the value associated with the given key in the given IData document
 	public static IData put(IData input, String key, Object value) {
-	  if (input != null && key != null) {
+	  if (key != null) {
+	    if (input == null) input = IDataFactory.create();
 	    IDataCursor cursor = input.getCursor();
 	    try {
 	      IDataUtil.put(cursor, key, value);
@@ -605,8 +606,9 @@ public final class document
 	              value = tundra.list.object.compact((Object[])value);
 	            }
 	          }
-	          IDataUtil.put(oc, key, value);
 	        }
+	
+	        if (value != null) IDataUtil.put(oc, key, value);
 	      }
 	    } finally {
 	      ic.destroy();
