@@ -522,6 +522,9 @@ Services for manipulating java.lang.Object objects:
     # to pass the pipeline itself as an input to a service
     tundra.pipeline:capture
 
+    # returns the number of top-level elements in the pipeline
+    tundra.pipeline:length
+
     # writes the current pipeline to the server log
     tundra.pipeline:log($level)
 

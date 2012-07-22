@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-22 16:50:37.463
+// -----( CREATED: 2012-07-22 17:17:29.087
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -62,6 +62,27 @@ public final class pipeline
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  String key = IDataUtil.getString(cursor, "$key");
 		  IDataUtil.put(cursor, "$value", tundra.document.get(pipeline, key));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void length (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(length)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [o] field:0:required $length
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  IDataUtil.put(cursor, "$length", "" + tundra.document.size(pipeline));
 		} finally {
 		  cursor.destroy();
 		}
