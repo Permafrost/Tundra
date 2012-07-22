@@ -180,6 +180,9 @@ Services for manipulating com.wm.data.IData objects:
     # returns the list of top-level keys in the given IData document
     tundra.document:keys($document)
 
+    # returns the number of top-level elements in the given IData document
+    tundra.document:length($document)
+
     # sets the value associated with the given key in the given IData
     # document
     tundra.document:put($document, $key, $value)
