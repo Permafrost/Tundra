@@ -178,7 +178,7 @@ Services for manipulating com.wm.data.IData objects:
 
     # iterates over all elements in the given IData document, invoking the given service for
     # each {key, value} pair
-    tundra.document:each($document, $service, $pipeline, $key.input, $value.input, $value.class)
+    tundra.document:each($document, $service, $pipeline, $key.input, $value.input, $value.class, $recurse?)
 
     # returns true if the two IData documents are equal (contain the same keys 
     # and values)

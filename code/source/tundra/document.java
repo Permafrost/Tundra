@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-23 14:24:51.151
+// -----( CREATED: 2012-07-23 15:03:32.028
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -112,6 +112,7 @@ public final class document
 		// [i] field:0:optional $key.input
 		// [i] field:0:optional $value.input
 		// [i] field:0:optional $value.class
+		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -121,9 +122,10 @@ public final class document
 		  String keyInput = IDataUtil.getString(cursor, "$key.input");
 		  String valueInput = IDataUtil.getString(cursor, "$value.input");
 		  String valueClass = IDataUtil.getString(cursor, "$value.class");
+		  boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
 		  boolean scoped = scope != null;
 		
-		  each(document, service, scoped ? scope: pipeline, keyInput, valueInput, valueClass == null? null : Class.forName(valueClass), true);
+		  each(document, service, scoped ? scope: pipeline, keyInput, valueInput, valueClass == null? null : Class.forName(valueClass), recurse);
 		} catch (ClassNotFoundException ex) {
 		  tundra.exception.raise(ex);
 		} finally {
@@ -247,6 +249,7 @@ public final class document
 		// [i] field:0:optional $value.input
 		// [i] field:0:optional $value.output
 		// [i] field:0:optional $value.class
+		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -259,9 +262,10 @@ public final class document
 		  String valueInput = IDataUtil.getString(cursor, "$value.input");
 		  String valueOutput = IDataUtil.getString(cursor, "$value.output");
 		  String valueClass = IDataUtil.getString(cursor, "$value.class");
+		  boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
 		  boolean scoped = scope != null;
 		
-		  IDataUtil.put(cursor, "$document", map(document, service, scoped ? scope: pipeline, keyInput, keyOutput, valueInput, valueOutput, valueClass == null? null : Class.forName(valueClass), true));
+		  IDataUtil.put(cursor, "$document", map(document, service, scoped ? scope: pipeline, keyInput, keyOutput, valueInput, valueOutput, valueClass == null? null : Class.forName(valueClass), recurse));
 		} catch (ClassNotFoundException ex) {
 		  tundra.exception.raise(ex);
 		} finally {
