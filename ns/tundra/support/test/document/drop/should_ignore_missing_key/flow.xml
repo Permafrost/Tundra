@@ -5,7 +5,7 @@
 
   <!-- nodes -->
 
-<INVOKE TIMEOUT="" SERVICE="tundra.document:remove" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+<INVOKE TIMEOUT="" SERVICE="tundra.document:drop" VALIDATE-IN="$none" VALIDATE-OUT="$none">
   <COMMENT></COMMENT>
 
   <!-- nodes -->
@@ -149,7 +149,7 @@
   <DATA ENCODING="XMLValues" I18N="true">
 
 <Values version="2.0">
-  <value name="xml">c</value>
+  <value name="xml">d</value>
   <record name="type" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
     <value name="node_comment"></value>
@@ -273,7 +273,7 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
-            <value name="node_type">unknown</value>
+            <value name="node_type">record</value>
             <value name="field_name">a</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -282,8 +282,17 @@
             <value name="is_global">false</value>
           </record>
           <record javaclass="com.wm.util.Values">
-            <value name="node_type">unknown</value>
+            <value name="node_type">record</value>
             <value name="field_name">b</value>
+            <value name="field_type">string</value>
+            <value name="field_dim">0</value>
+            <value name="nillable">true</value>
+            <value name="form_qualified">false</value>
+            <value name="is_global">false</value>
+          </record>
+          <record javaclass="com.wm.util.Values">
+            <value name="node_type">record</value>
+            <value name="field_name">c</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
             <value name="nillable">true</value>
@@ -388,6 +397,15 @@
           </record>
         </array>
       </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$key</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
     </array>
   </record>
 </Values>
@@ -398,9 +416,6 @@
 <MAPCOPY NAME="Link" FROM="/$document;2;0" TO="/$actual;2;0">
 </MAPCOPY>
 
-<MAPDELETE NAME="Dropper" FIELD="/$document;2;0">
-</MAPDELETE>
-
 <MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$expected;2;0">
   <DATA ENCODING="XMLValues" I18N="true">
 
@@ -408,6 +423,7 @@
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="a">1</value>
     <value name="b">2</value>
+    <value name="c">3</value>
   </record>
   <record name="type" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
@@ -424,7 +440,7 @@
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
+        <value name="node_type">record</value>
         <value name="field_name">a</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -433,8 +449,17 @@
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
+        <value name="node_type">record</value>
         <value name="field_name">b</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="field_name">c</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -446,6 +471,9 @@
 </Values>
 </DATA>
 </MAPSET>
+
+<MAPDELETE NAME="Dropper" FIELD="/$document;2;0">
+</MAPDELETE>
 </MAP>
 
 <MAP MODE="OUTPUT">
@@ -508,6 +536,26 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="field_name">$document</value>
+        <value name="field_type">record</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+        <array name="rec_fields" type="record" depth="1">
+        </array>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$key</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
       </record>
     </array>
   </record>

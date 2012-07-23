@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-22 17:01:11.166
+// -----( CREATED: 2012-07-23 14:24:51.151
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -65,6 +65,31 @@ public final class document
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
 		  IDataUtil.put(cursor, "$copy", copy(document, recurse));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void drop (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(drop)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:0:optional $document
+		// [i] field:0:optional $key
+		// [o] record:0:optional $document
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  IData document = IDataUtil.getIData(cursor, "$document");
+		  String key = IDataUtil.getString(cursor, "$key");
+		  IDataUtil.put(cursor, "$document", drop(document, key));
 		} finally {
 		  cursor.destroy();
 		}
@@ -300,31 +325,6 @@ public final class document
 
 
 
-	public static final void remove (IData pipeline)
-        throws ServiceException
-	{
-		// --- <<IS-START(remove)>> ---
-		// @subtype unknown
-		// @sigtype java 3.5
-		// [i] record:0:optional $document
-		// [i] field:0:optional $key
-		// [o] record:0:optional $document
-		IDataCursor cursor = pipeline.getCursor();
-		
-		try {
-		  IData document = IDataUtil.getIData(cursor, "$document");
-		  String key = IDataUtil.getString(cursor, "$key");
-		  IDataUtil.put(cursor, "$document", remove(document, key));
-		} finally {
-		  cursor.destroy();
-		}
-		// --- <<IS-END>> ---
-
-                
-	}
-
-
-
 	public static final void values (IData pipeline)
         throws ServiceException
 	{
@@ -421,7 +421,7 @@ public final class document
 	}
 	
 	// removes the value with the given key from the given IData document
-	public static IData remove(IData input, String key) {
+	public static IData drop(IData input, String key) {
 	  if (input != null && key != null) {
 	    IDataCursor cursor = input.getCursor();
 	    IDataUtil.remove(cursor, key);

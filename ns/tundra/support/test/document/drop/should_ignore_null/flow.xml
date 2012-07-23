@@ -4,7 +4,7 @@
 
   <!-- nodes -->
 
-<INVOKE SERVICE="tundra.document:remove">
+<INVOKE SERVICE="tundra.document:drop">
 </INVOKE>
 
 <INVOKE TIMEOUT="" SERVICE="tundra.assertion.object:nothing" VALIDATE-IN="$none" VALIDATE-OUT="$none">

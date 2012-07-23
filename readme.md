@@ -173,6 +173,9 @@ Services for manipulating com.wm.data.IData objects:
     # of the given IData document
     tundra.document:copy($document, $recurse?)
 
+    # removes the element with the given key from the given IData document
+    tundra.document:drop($document, $key)
+
     # returns true if the two IData documents are equal (contain the same keys 
     # and values)
     tundra.document:equal($document.x, $document.y)
@@ -190,9 +193,6 @@ Services for manipulating com.wm.data.IData objects:
     # sets the value associated with the given key in the given IData
     # document
     tundra.document:put($document, $key, $value)
-
-    # deletes the element with the given key from the given IData document
-    tundra.document:remove($document, $key)
 
     # returns the list of top-level values in the given IData document
     tundra.document:values($document)
