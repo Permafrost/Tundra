@@ -190,6 +190,11 @@ Services for manipulating com.wm.data.IData objects:
     # returns the number of top-level elements in the given IData document
     tundra.document:length($document)
 
+    # merges multiple IData documents into a single document; only top-level 
+    # elements are merged, and if duplicate keys exist in the documents being 
+    # merged, the latest wins
+    tundra.document:merge($documents[])
+
     # sets the value associated with the given key in the given IData
     # document
     tundra.document:put($document, $key, $value)
