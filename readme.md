@@ -225,6 +225,12 @@ Services for manipulating com.wm.data.IData objects:
     # converts all String elements in the given IData document to lower case
     tundra.document.value:lowercase($document, $recurse?)
 
+    # replaces all occurrences of the given regular expression pattern in each String value
+    # in the given IData document with the replacement string
+    # refer: <http://download.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html>,
+    #        <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Matcher.html>
+    tundra.document.value:replace($document, $pattern, $replacement, $literal?, $recurse?)
+
     # removes leading and trailing whitespace from all String elements in the given IData document
     tundra.document.value:trim($document, $recurse?)
 
