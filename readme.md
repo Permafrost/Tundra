@@ -191,6 +191,9 @@ Services for manipulating com.wm.data.IData objects:
     # document
     tundra.document:put($document, $key, $value)
 
+    # deletes the element with the given key from the given IData document
+    tundra.document:remove($document, $key)
+
     # returns the list of top-level values in the given IData document
     tundra.document:values($document)
 
