@@ -546,6 +546,9 @@ Services for manipulating java.lang.Object objects:
     # to pass the pipeline itself as an input to a service
     tundra.pipeline:capture
 
+    # removes the element with the given key from the pipeline
+    tundra.pipeline:drop($key)
+
     # returns the value associated with the given key from the pipeline, or null
     # if the key doesn't exist
     tundra.pipeline:get($key)
