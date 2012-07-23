@@ -188,6 +188,9 @@ Services for manipulating com.wm.data.IData objects:
     # document, or null if the key doesn't exist
     tundra.document:get($document, $key)
 
+    # converts all keys in the given IData document to lower case
+    tundra.document.key:lowercase($document, $recurse?)
+
     # returns the list of top-level keys in the given IData document
     tundra.document:keys($document)
 
