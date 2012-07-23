@@ -176,6 +176,10 @@ Services for manipulating com.wm.data.IData objects:
     # removes the element with the given key from the given IData document
     tundra.document:drop($document, $key)
 
+    # iterates over all elements in the given IData document, invoking the given service for
+    # each {key, value} pair
+    tundra.document:each($document, $service, $pipeline, $key.input, $value.input, $value.class)
+
     # returns true if the two IData documents are equal (contain the same keys 
     # and values)
     tundra.document:equal($document.x, $document.y)

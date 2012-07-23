@@ -168,8 +168,8 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Returns a new IData document created by invoking the given service for each {key, value} pair 
-in the given document, and collecting the new {key, value} pair returned.</value>
+  <value name="node_comment">Iterates over all elements in the given IData document, invoking the given service for
+each {key, value} pair.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
