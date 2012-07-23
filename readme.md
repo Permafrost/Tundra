@@ -191,6 +191,9 @@ Services for manipulating com.wm.data.IData objects:
     # converts all keys in the given IData document to lower case
     tundra.document.key:lowercase($document, $recurse?)
 
+    # removes leading and trailing whitespace from all keys in the given IData document
+    tundra.document.key:trim($document, $recurse?)
+
     # converts all keys in the given IData document to upper case
     tundra.document.key:uppercase($document, $recurse?)
 
