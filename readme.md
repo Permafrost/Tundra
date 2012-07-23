@@ -194,6 +194,10 @@ Services for manipulating com.wm.data.IData objects:
     # returns the number of top-level elements in the given IData document
     tundra.document:length($document)
 
+    # returns a new IData document created by invoking the given service for each {key, value} pair 
+    # in the given document, and collecting new the {key, value} pair returned
+    tundra.document:map($document, $service, $pipeline, $key.input, $key.output, $value.input, $value.output, $value.class, $recurse?)
+
     # merges multiple IData documents into a single document; only top-level 
     # elements are merged, and if duplicate keys exist in the documents being 
     # merged, the latest wins
