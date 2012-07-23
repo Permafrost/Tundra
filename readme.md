@@ -225,6 +225,9 @@ Services for manipulating com.wm.data.IData objects:
     # converts all String elements in the given IData document to lower case
     tundra.document.value:lowercase($document, $recurse?)
 
+    # removes leading and trailing whitespace from all String elements in the given IData document
+    tundra.document.value:trim($document, $recurse?)
+
     # converts all String elements in the given IData document to upper case
     tundra.document.value:uppercase($document, $recurse?)
 
