@@ -222,6 +222,9 @@ Services for manipulating com.wm.data.IData objects:
     # document
     tundra.document:put($document, $key, $value)
 
+    # converts all String elements in the given IData document to lower case
+    tundra.document.value:lowercase($document, $recurse?)
+
     # returns the list of top-level values in the given IData document
     tundra.document:values($document)
 
