@@ -3,7 +3,7 @@
 <Values version="2.0">
   <record name="record" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="node_nsName">tundra.support.test.node.get:document</value>
+    <value name="node_nsName">tundra.support.test.node.type:document</value>
     <value name="node_pkg">Tundra</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>

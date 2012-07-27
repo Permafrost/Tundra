@@ -570,17 +570,16 @@ Services for manipulating string lists:
 
 Services for querying Integration Server namespace nodes:
 
-    # returns true if a node with the given name is defined on this server
-    tundra.node:exists($name)
+    # returns true if a node with the given node exists on this server
+    tundra.node:exists($node)
 
-    # returns properties for the given node, such as the type of node, and what 
-    # package it belongs to
-    tundra.node:get($name)
-
-    # returns a list of all child nodes defined under the given interface, or
-    # root if no interface is specified
-    tundra.node:list
-
+    # lists an interface's child nodes; optionally filters based on the given 
+    # regular expression pattern, and node type
+    tundra.node:list($interface, $pattern, $type, $recurse?)
+    
+    # returns the type of the given node, such as whether it is an interface, 
+    # service, or record
+    tundra.node:type($node)
 
 #### Object
 
