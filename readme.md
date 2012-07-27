@@ -566,6 +566,22 @@ Services for manipulating string lists:
     # that no two items are equal
     tundra.list.string:unique($list[])
 
+#### Node
+
+Services for querying Integration Server namespace nodes:
+
+    # returns true if a node with the given name is defined on this server
+    tundra.node:exists($name)
+
+    # returns properties for the given node, such as the type of node, and what 
+    # package it belongs to
+    tundra.node:get($name)
+
+    # returns a list of all child nodes defined under the given interface, or
+    # root if no interface is specified
+    tundra.node:list
+
+
 #### Object
 
 Services for manipulating java.lang.Object objects:
