@@ -132,6 +132,23 @@ Services for manipulating byte arrays:
     # converts a string, byte array or input stream to a byte array
     tundra.bytes:normalize($object, $encoding)
 
+#### Content
+
+Services for manipulating arbitrary textual content, such as XML or CSV content:
+
+    # converts an IData document to an XML or flat file string, byte array or 
+    # input stream
+    tundra.content:emit($document, $encoding, $schema, $mode)
+
+    # parses XML and flat file content (specified as a string, byte array, or 
+    # input stream) into an IData document
+    tundra.content:parse($content, $encoding, $schema)
+
+    # converts XML or flat file content to another format by calling the given 
+    # translation service and passing the parsed content as an input, and emitting
+    # the translated content as output
+    tundra.content:translate($content, $service, $encoding.input, $encoding.output, $schema.input, $schema.output, $content.input, $content.output, $mode.output)
+
 #### Datetime
 
 Services for manipulating date, time and datetime strings:

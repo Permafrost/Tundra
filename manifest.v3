@@ -7,6 +7,10 @@
   <null name="startup_services"/>
   <null name="shutdown_services"/>
   <null name="replication_services"/>
-  <null name="requires"/>
+  <record name="requires" javaclass="com.wm.util.Values">
+    <value name="WmFlatFile">*.*</value>
+    <value name="WmPublic">*.*</value>
+    <value name="WmRoot">*.*</value>
+  </record>
   <value name="listACL">Default</value>
 </Values>
