@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-22 14:19:19.468
+// -----( CREATED: 2012-07-28 11:43:19.488
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -39,6 +39,29 @@ public final class string
 		
 		try {
 		  IDataUtil.put(cursor, "$length", "" + length(IDataUtil.getString(cursor, "$string")));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void lines (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(lines)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $string
+		// [o] field:1:optional $lines
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String string = IDataUtil.getString(cursor, "$string");
+		  IDataUtil.put(cursor, "$lines", lines(string));
 		} finally {
 		  cursor.destroy();
 		}
@@ -340,6 +363,11 @@ public final class string
 	    output = pattern.split(input);
 	  }
 	  return output;
+	}
+	
+	// returns all the lines in the given string as an array
+	public static String[] lines(String input) {
+	  return split(input, "\n");
 	}
 	// --- <<IS-END-SHARED>> ---
 }

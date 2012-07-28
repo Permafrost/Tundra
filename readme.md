@@ -667,6 +667,9 @@ Services for manipulating java.lang.String objects:
     # returns the number of characters in the given string
     tundra.string:length($string)
 
+    # returns all the lines in the give string as a list
+    tundra.string:lines($string)
+
     # returns the given string in lower case
     tundra.string:lowercase($string, $locale)
 
