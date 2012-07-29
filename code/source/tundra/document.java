@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-29 12:38:41.888
+// -----( CREATED: 2012-07-29 16:42:00.611
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -50,31 +50,6 @@ public final class document
 
 
 
-	public static final void copy (IData pipeline)
-        throws ServiceException
-	{
-		// --- <<IS-START(copy)>> ---
-		// @subtype unknown
-		// @sigtype java 3.5
-		// [i] record:0:optional $document
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
-		// [o] record:0:optional $copy
-		IDataCursor cursor = pipeline.getCursor();
-		
-		try {
-		  IData document = IDataUtil.getIData(cursor, "$document");
-		  boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
-		  IDataUtil.put(cursor, "$copy", copy(document, recurse));
-		} finally {
-		  cursor.destroy();
-		}
-		// --- <<IS-END>> ---
-
-                
-	}
-
-
-
 	public static final void drop (IData pipeline)
         throws ServiceException
 	{
@@ -90,6 +65,31 @@ public final class document
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  String key = IDataUtil.getString(cursor, "$key");
 		  IDataUtil.put(cursor, "$document", drop(document, key));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void duplicate (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(duplicate)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:0:optional $document
+		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [o] record:0:optional $duplicate
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  IData document = IDataUtil.getIData(cursor, "$document");
+		  boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
+		  IDataUtil.put(cursor, "$duplicate", duplicate(document, recurse));
 		} finally {
 		  cursor.destroy();
 		}
@@ -432,7 +432,7 @@ public final class document
 	}
 	
 	// returns a clone of the given IData document
-	public static IData copy(IData input, boolean recurse) throws ServiceException {
+	public static IData duplicate(IData input, boolean recurse) throws ServiceException {
 	  IData output = null;
 	  if (input != null) {
 	    IDataCursor cursor = input.getCursor();
@@ -529,7 +529,7 @@ public final class document
 	      oc.destroy();
 	    }
 	  } else {
-	    output = copy(input, recurse);
+	    output = duplicate(input, recurse);
 	  }
 	
 	  return output;

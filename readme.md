@@ -190,12 +190,12 @@ Services for manipulating com.wm.data.IData objects:
     # removes all null values from the given IData document
     tundra.document:compact($document)
 
-    # returns either a shallow (top-level elements) or deep (recursive) copy
-    # of the given IData document
-    tundra.document:copy($document, $recurse?)
-
     # removes the element with the given key from the given IData document
     tundra.document:drop($document, $key)
+
+    # returns either a shallow (top-level elements) or deep (recursive) clone
+    # of the given IData document
+    tundra.document:duplicate($document, $recurse?)
 
     # iterates over all elements in the given IData document, invoking the given service for
     # each {key, value} pair
