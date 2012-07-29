@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-29 12:53:48.385
+// -----( CREATED: 2012-07-29 17:10:54.235
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -311,23 +311,7 @@ public final class object
 		// [i] field:0:optional $item.input
 		// [i] field:0:optional $item.output
 		// [o] object:1:optional $list
-		IDataCursor cursor = pipeline.getCursor();
-		
-		try {
-		  Object[] list = IDataUtil.getObjectArray(cursor, "$list");
-		  String service = IDataUtil.getString(cursor, "$service");
-		  IData scope = IDataUtil.getIData(cursor, "$pipeline");
-		  String input = IDataUtil.getString(cursor, "$item.input");
-		  String output = IDataUtil.getString(cursor, "$item.output");
-		
-		  boolean scoped = scope != null;
-		
-		  // invoke the service for each item in the list, passing $item and $index variables on each invocation
-		  // and collect the returned $item's into a new list
-		  IDataUtil.put(cursor, "$list", map(list, service, scoped ? scope : pipeline, input, output));
-		} finally {
-		  cursor.destroy();
-		}
+		map(pipeline, Object.class);
 		// --- <<IS-END>> ---
 
                 
@@ -640,6 +624,26 @@ public final class object
 	// returns the length of the given array
 	public static <T> int length(T[] array) {
 	  return (array == null? 0 : array.length);
+	}
+	
+	public static <T> void map(IData pipeline, Class<T> klass) throws ServiceException {
+	  IDataCursor cursor = pipeline.getCursor();
+	
+	  try {
+	    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
+	    String service = IDataUtil.getString(cursor, "$service");
+	    IData scope = IDataUtil.getIData(cursor, "$pipeline");
+	    String input = IDataUtil.getString(cursor, "$item.input");
+	    String output = IDataUtil.getString(cursor, "$item.output");
+	
+	    boolean scoped = scope != null;
+	
+	    // invoke the service for each item in the list, passing $item and $index variables on each invocation
+	    // and collect the returned $item's into a new list
+	    IDataUtil.put(cursor, "$list", map(list == null ? null : java.util.Arrays.copyOf(list, list.length, (Class<T[]>)java.lang.reflect.Array.newInstance(klass, 0).getClass()), service, scoped ? scope : pipeline, input, output));
+	  } finally {
+	    cursor.destroy();
+	  }
 	}
 	
 	// maps the given array to a new array by invoking a service for each element and collecting the output

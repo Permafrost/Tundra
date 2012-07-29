@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-06-23 16:04:04 EST
+// -----( CREATED: 2012-07-29 17:09:41.079
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -188,10 +188,11 @@ public final class document
 		// @sigtype java 3.5
 		// [i] record:1:optional $list
 		// [i] field:0:optional $service
+		// [i] record:0:optional $pipeline
 		// [i] field:0:optional $item.input
 		// [i] field:0:optional $item.output
 		// [o] record:1:optional $list
-		tundra.list.object.map(pipeline);
+		tundra.list.object.map(pipeline, IData.class);
 		// --- <<IS-END>> ---
 
                 
