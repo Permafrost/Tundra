@@ -136,7 +136,7 @@ Services for manipulating byte arrays:
 
 Services for manipulating arbitrary textual content, such as XML or CSV content:
 
-    # converts an IData document to an XML or flat file string, byte array or 
+    # converts an IData document to an XML or flat file string, byte array, or 
     # input stream
     tundra.content:emit($document, $encoding, $schema, $mode)
 
@@ -399,8 +399,9 @@ Services for manipulating document (com.wm.data.IData) lists:
     # a list containing n items results in a new list of n + 1 items
     tundra.list.document:append($list[], $item)
 
-    # removes all null items from the given list, thereby shortening the length 
-    # of the list
+    # removes all null values from each IData item in the given list, and then 
+    # removes all null items themselves from the given list, thereby shortening 
+    # the length of the list
     tundra.list.document:compact($list[])
 
     # returns a new list containing all the items in the given $list and $items 
@@ -425,6 +426,21 @@ Services for manipulating document (com.wm.data.IData) lists:
     # reverse indexing)
     tundra.list.document:item($list[], $index)
 
+    # converts all keys in each IData item in the given list to lower case
+    tundra.list.document.key:lowercase($list[], $recurse?)
+
+    # replaces all occurrences of the given regular expression pattern in each key
+    # in each IData item in the given list with the replacement string
+    # refer: <http://download.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html>,
+    #        <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Matcher.html>
+    tundra.list.document.key:replace($list[], $pattern, $replacement, $literal?, $recurse?)
+
+    # removes leading and trailing whitespace from all keys in each IData item in the given list
+    tundra.list.document.key:trim($list[], $recurse?)
+
+    # converts all keys in the each IData item in the given list to upper case
+    tundra.list.document.key:uppercase($list[], $recurse?)
+
     # returns the number of items in the given list
     tundra.list.document:length($list[])
 
@@ -446,6 +462,22 @@ Services for manipulating document (com.wm.data.IData) lists:
     # list's items
     # refer: <http://docs.oracle.com/javase/6/docs/api/java/lang/Comparable.html>
     tundra.list.document:sort($list[], $key)
+
+    # converts all String elements in each IData item in the given list to lower case
+    tundra.list.document.value:lowercase($list[], $recurse?)
+
+    # replaces all occurrences of the given regular expression pattern in each String value
+    # in each IData item in the given list with the replacement string
+    # refer: <http://download.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html>,
+    #        <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Matcher.html>
+    tundra.list.document.value:replace($list[], $pattern, $replacement, $literal?, $recurse?)
+
+    # removes leading and trailing whitespace from all String elements in each IData item
+    # in the given list
+    tundra.list.document.value:trim($list[], $recurse?)
+
+    # converts all String elements in each IData item in the given list to upper case
+    tundra.list.document.value:uppercase($list[], $recurse?)
 
 ##### Duration List
 
