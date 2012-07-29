@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-28 11:43:19.488
+// -----( CREATED: 2012-07-29 11:01:13.734
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -211,6 +211,29 @@ public final class string
 
 
 
+	public static final void squeeze (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(squeeze)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $string
+		// [o] field:0:optional $string
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String string = IDataUtil.getString(cursor, "$string");
+		  IDataUtil.put(cursor, "$string", squeeze(string));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void trim (IData pipeline)
         throws ServiceException
 	{
@@ -368,6 +391,11 @@ public final class string
 	// returns all the lines in the given string as an array
 	public static String[] lines(String input) {
 	  return split(input, "\n");
+	}
+	
+	// replaces runs of whitespace characters with a single space
+	public static String squeeze(String input) {
+	  return replace(input, "\\s+", " ", false);
 	}
 	// --- <<IS-END-SHARED>> ---
 }

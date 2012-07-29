@@ -707,6 +707,10 @@ Services for manipulating java.lang.String objects:
     # splits the given string around matches of the given regular expression pattern
     tundra.string:split($string, $pattern)
 
+    # replaces runs of one or more whitespace characters (space, tab, carriage return, 
+    # line feed) with a single space character
+    tundra.string:squeeze($string)
+
     # returns the given string with leading and trailing whitespace removed
     tundra.string:trim($string)
 
