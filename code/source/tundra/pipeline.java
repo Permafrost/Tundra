@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-29 12:40:19.628
+// -----( CREATED: 2012-07-29 16:51:31.048
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -38,6 +38,30 @@ public final class pipeline
 		
 		try {
 		  IDataUtil.put(cursor, "$pipeline", IDataUtil.clone(pipeline));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void copy (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(copy)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $key.source
+		// [i] field:0:required $key.target
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String source = IDataUtil.getString(cursor, "$key.source");
+		  String target = IDataUtil.getString(cursor, "$key.target");
+		  tundra.document.copy(pipeline, source, target);
 		} finally {
 		  cursor.destroy();
 		}

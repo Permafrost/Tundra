@@ -190,6 +190,9 @@ Services for manipulating com.wm.data.IData objects:
     # removes all null values from the given IData document
     tundra.document:compact($document)
 
+    # copies the value associated with the source key to the target key in the given IData document
+    tundra.document:copy($document, $key.source, $key.target)
+
     # removes the element with the given key from the given IData document
     tundra.document:drop($document, $key)
 
@@ -612,7 +615,6 @@ Services for manipulating string lists:
     # converts each item to upper case
     tundra.list.string:uppercase($list[])
 
-
 #### Node
 
 Services for querying Integration Server namespace nodes:
@@ -650,6 +652,10 @@ Services for manipulating java.lang.Object objects:
     # returns a clone of the current pipeline as a document: useful if you want 
     # to pass the pipeline itself as an input to a service
     tundra.pipeline:capture
+
+    # copies the value associated with the source key to the target key in the pipeline
+    tundra.pipeline:copy($key.source, $key.target)
+
 
     # removes the element with the given key from the pipeline
     tundra.pipeline:drop($key)

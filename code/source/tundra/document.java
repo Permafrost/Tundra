@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-29 16:42:00.611
+// -----( CREATED: 2012-07-29 16:53:59.171
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -40,6 +40,33 @@ public final class document
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  IDataUtil.put(cursor, "$document", compact(document, true));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void copy (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(copy)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:0:optional $document
+		// [i] field:0:required $key.source
+		// [i] field:0:required $key.target
+		// [o] record:0:optional $document
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  IData document = IDataUtil.getIData(cursor, "$document");
+		  String source = IDataUtil.getString(cursor, "$key.source");
+		  String target = IDataUtil.getString(cursor, "$key.target");
+		  IDataUtil.put(cursor, "$document", copy(document, source, target));
 		} finally {
 		  cursor.destroy();
 		}
@@ -603,10 +630,13 @@ public final class document
 	
 	// renames a key from source to target within the given IData document
 	public static IData rename(IData input, String source, String target) {
-	  Object value = get(input, source);
-	  if (value != null) input = put(input, target, value);
-	  input = drop(input, source);
-	  return input;
+	  return drop(copy(input, source, target), source);
+	}
+	
+	// copies a value from source key to target key within the given IData document
+	public static IData copy(IData input, String source, String target) {
+	  if (source.equals(target)) return input;
+	  return put(input, target, get(input, source));
 	}
 	
 	// removes all null values from the given IData document
