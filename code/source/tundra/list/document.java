@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-29 17:09:41.079
+// -----( CREATED: 2012-07-29 17:37:31.183
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -52,7 +52,14 @@ public final class document
 		// @sigtype java 3.5
 		// [i] record:1:optional $list
 		// [o] record:1:optional $list
-		tundra.list.object.compact(pipeline);
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  IData[] list = IDataUtil.getIDataArray(cursor, "$list");
+		  IDataUtil.put(cursor, "$list", compact(list));
+		} finally {
+		  cursor.destroy();
+		}
 		// --- <<IS-END>> ---
 
                 
@@ -279,6 +286,21 @@ public final class document
 	// returns a new array with all elements sorted
 	public static IData[] sort(IData[] array, String key) {
 	  return IDataUtil.sortIDataArrayByKey(array, key, IDataUtil.COMPARE_TYPE_COLLATION, false);
+	}
+	
+	// compacts an IData array by removing all null values from each IData, and all null IData objects from the list
+	public static IData[] compact(IData[] array) {
+	  if (array == null || array.length == 0) return array;
+	
+	  // take a copy of the array, to make sure it's really an IData[] and not some subclass that won't
+	  // be able to store different IData implementations
+	  array = (IData[])java.util.Arrays.copyOf(array, array.length, (new IData[0]).getClass());
+	
+	  for (int i = 0; i < array.length; i++) {
+	    if (array[i] != null) array[i] = tundra.document.compact(array[i], true);
+	  }
+	
+	  return tundra.list.object.compact(array);
 	}
 	// --- <<IS-END-SHARED>> ---
 }
