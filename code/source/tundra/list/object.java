@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-22 14:27:28.145
+// -----( CREATED: 2012-07-29 12:53:48.385
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -190,6 +190,30 @@ public final class object
 		// [i] field:0:required $index
 		// [o] object:1:required $list
 		insert(pipeline, Object.class);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void instance (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(instance)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:1:optional $list
+		// [i] field:0:optional $class
+		// [o] field:0:optional $instance?
+		IDataCursor cursor = pipeline.getCursor();
+		try {
+		  Object[] list = IDataUtil.getObjectArray(cursor, "$list");
+		  String klass = IDataUtil.getString(cursor, "$class");
+		  if (list != null && klass != null) IDataUtil.put(cursor, "$instance?", "" + tundra.object.instance(list, klass));
+		} finally {
+		  cursor.destroy();
+		}
 		// --- <<IS-END>> ---
 
                 

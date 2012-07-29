@@ -282,20 +282,20 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$content.translated</value>
+          <value name="field_name">$contents</value>
           <value name="field_type">object</value>
-          <value name="field_dim">0</value>
+          <value name="field_dim">1</value>
           <value name="field_opt">true</value>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
+          <value name="is_soap_array_encoding_used">false</value>
         </record>
       </array>
     </record>
   </record>
-  <value name="node_comment">Converts XML or flat file content to another format by calling the given 
-translation service and passing the parsed content as an input, and emitting
-the translated content as output.</value>
+  <value name="node_comment">Like tundra.content:translate for one-to-many content conversions. The splitting service must
+accept a single IData document, and return an IData document list.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

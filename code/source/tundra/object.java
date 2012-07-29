@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-06-30 15:27:05.652
+// -----( CREATED: 2012-07-29 12:52:56.500
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -66,11 +66,7 @@ public final class object
 		try {
 		  Object object = IDataUtil.get(cursor, "$object");
 		  String klass = IDataUtil.getString(cursor, "$class");
-		  if (object != null && klass != null) {
-		    IDataUtil.put(cursor, "$instance?", "" + Class.forName(klass).isInstance(object));
-		  }
-		} catch (ClassNotFoundException e) {
-		  tundra.exception.raise(e);
+		  if (object != null && klass != null) IDataUtil.put(cursor, "$instance?", "" + instance(object, klass));
 		} finally {
 		  cursor.destroy();
 		}
@@ -171,6 +167,22 @@ public final class object
 	
 	  Class klass = object.getClass();
 	  return klass.isPrimitive() || (klass.isArray() && !(object instanceof Object[]));
+	}
+	
+	// returns true if the given object is an instance of the given class
+	public static boolean instance(Object object, String className) throws ServiceException {
+	  boolean instance = false;
+	  try {
+	    instance = className != null && instance(object, Class.forName(className));
+	  } catch(ClassNotFoundException ex) {
+	    tundra.exception.raise(ex);
+	  }
+	  return instance;
+	}
+	
+	// returns true if the given object is an instance of the given class
+	public static boolean instance(Object object, Class klass) {
+	  return object != null && klass != null && klass.isInstance(object);
 	}
 	// --- <<IS-END-SHARED>> ---
 }

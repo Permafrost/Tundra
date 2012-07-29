@@ -20,7 +20,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="field_name">csv</value>
+        <value name="field_name">xml</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -49,14 +49,19 @@
 
   <!-- nodes -->
 
-<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/csv;1;0">
+<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/xml;1;0">
   <DATA ENCODING="XMLValues" I18N="true">
 
 <Values version="2.0">
-  <value name="xml">John Doe,1234 5678,john.doe@example.com</value>
+  <value name="xml">&lt;?xml version="1.0"?&gt;
+&lt;person&gt;
+  &lt;name&gt;John Doe&lt;/name&gt;
+  &lt;phone&gt;1234 5678&lt;/phone&gt;
+  &lt;email&gt;john.doe@example.com&lt;/email&gt;
+&lt;/person&gt;</value>
   <record name="type" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="field_name">csv</value>
+    <value name="field_name">input</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -68,7 +73,7 @@
 </MAPSET>
 </MAP>
 
-<INVOKE TIMEOUT="" SERVICE="tundra.content:translate" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+<INVOKE TIMEOUT="" SERVICE="tundra.content:split" VALIDATE-IN="$none" VALIDATE-OUT="$none">
   <COMMENT></COMMENT>
 
   <!-- nodes -->
@@ -95,8 +100,7 @@
         <value name="field_name">$content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
-        <value name="field_opt">true</value>
-        <value name="nillable">true</value>
+        <value name="nillable">false</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
       </record>
@@ -354,7 +358,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="field_name">csv</value>
+        <value name="field_name">xml</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -368,14 +372,14 @@
 
   <!-- nodes -->
 
-<MAPCOPY NAME="Link" FROM="/csv;1;0" TO="/$content;3;0">
+<MAPCOPY NAME="Link" FROM="/xml;1;0" TO="/$content;3;0">
 </MAPCOPY>
 
 <MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$service;1;0">
   <DATA ENCODING="XMLValues" I18N="true">
 
 <Values version="2.0">
-  <value name="xml">tundra.support.test.content.translate:csv_to_xml</value>
+  <value name="xml">tundra.support.test.content.split:xml_to_csv</value>
   <record name="type" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
     <value name="node_comment"></value>
@@ -410,7 +414,7 @@
   <DATA ENCODING="XMLValues" I18N="true">
 
 <Values version="2.0">
-  <value name="xml">tundra.support.test.content.translate.csv:schema</value>
+  <value name="xml">tundra.support.test.content.translate.xml:document</value>
   <record name="type" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
     <value name="node_comment"></value>
@@ -446,7 +450,7 @@
   <DATA ENCODING="XMLValues" I18N="true">
 
 <Values version="2.0">
-  <value name="xml">tundra.support.test.content.translate.xml:document</value>
+  <value name="xml">tundra.support.test.content.translate.csv:schema</value>
   <record name="type" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
     <value name="node_comment"></value>
@@ -672,15 +676,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="field_name">csv</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
         <value name="field_name">$schema.input</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -731,13 +726,14 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="field_name">$content.translated</value>
+        <value name="field_name">$contents</value>
         <value name="field_type">object</value>
-        <value name="field_dim">0</value>
+        <value name="field_dim">1</value>
         <value name="field_opt">true</value>
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
+        <value name="is_soap_array_encoding_used">false</value>
       </record>
     </array>
   </record>
@@ -754,21 +750,6 @@
     <value name="form_qualified">false</value>
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">record</value>
-        <value name="node_comment"></value>
-        <record name="node_hints" javaclass="com.wm.util.Values">
-          <value name="field_largerEditor">false</value>
-          <value name="field_password">false</value>
-        </record>
-        <value name="field_name">$content.translated</value>
-        <value name="field_type">object</value>
-        <value name="field_dim">0</value>
-        <value name="field_opt">true</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
     </array>
   </record>
 </Values>
@@ -796,16 +777,10 @@
 
 <MAPDELETE NAME="Dropper" FIELD="/$mode.output;1;0">
 </MAPDELETE>
-
-<MAPCOPY NAME="Link" FROM="/$content.translated;3;0" TO="/xml;1;0">
-</MAPCOPY>
-
-<MAPDELETE NAME="Dropper" FIELD="/$content.translated;3;0">
-</MAPDELETE>
 </MAP>
 </INVOKE>
 
-<INVOKE TIMEOUT="" SERVICE="tundra.string:squeeze" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+<INVOKE TIMEOUT="" SERVICE="tundra.list.string:squeeze" VALIDATE-IN="$none" VALIDATE-OUT="$none">
   <COMMENT></COMMENT>
 
   <!-- nodes -->
@@ -826,13 +801,12 @@
         <value name="node_type">record</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
-          <null name="field_usereditable"/>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="field_name">$string</value>
+        <value name="field_name">$list</value>
         <value name="field_type">string</value>
-        <value name="field_dim">0</value>
+        <value name="field_dim">1</value>
         <value name="field_opt">true</value>
         <record name="field_content_type" javaclass="com.wm.util.Values">
           <value name="contentType">1</value>
@@ -848,6 +822,7 @@
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
+        <value name="is_soap_array_encoding_used">false</value>
       </record>
     </array>
   </record>
@@ -874,13 +849,20 @@
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="field_name">csv</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
+        <value name="node_type">record</value>
+        <value name="node_comment"></value>
+        <record name="node_hints" javaclass="com.wm.util.Values">
+          <value name="field_largerEditor">false</value>
+          <value name="field_password">false</value>
+        </record>
+        <value name="field_name">$contents</value>
+        <value name="field_type">object</value>
+        <value name="field_dim">1</value>
+        <value name="field_opt">true</value>
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
+        <value name="is_soap_array_encoding_used">false</value>
       </record>
     </array>
   </record>
@@ -889,7 +871,7 @@
 
   <!-- nodes -->
 
-<MAPCOPY NAME="Link" FROM="/xml;1;0" TO="/$string;1;0">
+<MAPCOPY NAME="Link" FROM="/$contents;3;1" TO="/$list;1;1">
 </MAPCOPY>
 </MAP>
 
@@ -907,6 +889,16 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="field_name">$list</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">1</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+        <value name="is_soap_array_encoding_used">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
         <value name="field_name">$string</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -924,13 +916,20 @@
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="field_name">csv</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
+        <value name="node_type">record</value>
+        <value name="node_comment"></value>
+        <record name="node_hints" javaclass="com.wm.util.Values">
+          <value name="field_largerEditor">false</value>
+          <value name="field_password">false</value>
+        </record>
+        <value name="field_name">$contents</value>
+        <value name="field_type">object</value>
+        <value name="field_dim">1</value>
+        <value name="field_opt">true</value>
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
+        <value name="is_soap_array_encoding_used">false</value>
       </record>
     </array>
   </record>
@@ -951,13 +950,12 @@
         <value name="node_type">record</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
-          <null name="field_usereditable"/>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="field_name">$string</value>
+        <value name="field_name">$list</value>
         <value name="field_type">string</value>
-        <value name="field_dim">0</value>
+        <value name="field_dim">1</value>
         <value name="field_opt">true</value>
         <record name="field_content_type" javaclass="com.wm.util.Values">
           <value name="contentType">1</value>
@@ -973,6 +971,7 @@
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
+        <value name="is_soap_array_encoding_used">false</value>
       </record>
     </array>
   </record>
@@ -981,15 +980,18 @@
 
   <!-- nodes -->
 
-<MAPCOPY NAME="Link" FROM="/$string;1;0" TO="/xml;1;0">
+<MAPDELETE NAME="Dropper" FIELD="/$string;1;0">
+</MAPDELETE>
+
+<MAPCOPY NAME="Link" FROM="/$list;1;1" TO="/$contents;3;1">
 </MAPCOPY>
 
-<MAPDELETE NAME="Dropper" FIELD="/$string;1;0">
+<MAPDELETE NAME="Dropper" FIELD="/$list;1;1">
 </MAPDELETE>
 </MAP>
 </INVOKE>
 
-<INVOKE TIMEOUT="" SERVICE="tundra.assertion.string:equal" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+<INVOKE TIMEOUT="" SERVICE="tundra.assertion.list.string:equal" VALIDATE-IN="$none" VALIDATE-OUT="$none">
   <COMMENT></COMMENT>
 
   <!-- nodes -->
@@ -1010,13 +1012,12 @@
         <value name="node_type">record</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
-          <null name="field_usereditable"/>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
         <value name="field_name">$expected</value>
         <value name="field_type">string</value>
-        <value name="field_dim">0</value>
+        <value name="field_dim">1</value>
         <record name="field_content_type" javaclass="com.wm.util.Values">
           <value name="contentType">1</value>
           <value name="internalType">reference</value>
@@ -1031,18 +1032,18 @@
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
+        <value name="is_soap_array_encoding_used">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
-          <null name="field_usereditable"/>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
         <value name="field_name">$actual</value>
         <value name="field_type">string</value>
-        <value name="field_dim">0</value>
+        <value name="field_dim">1</value>
         <record name="field_content_type" javaclass="com.wm.util.Values">
           <value name="contentType">1</value>
           <value name="internalType">reference</value>
@@ -1057,6 +1058,7 @@
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
+        <value name="is_soap_array_encoding_used">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
@@ -1110,28 +1112,20 @@
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="field_name">csv</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="field_name">$content.translated</value>
+        <value name="field_name">$contents</value>
         <value name="field_type">object</value>
-        <value name="field_dim">0</value>
+        <value name="field_dim">1</value>
         <value name="field_opt">true</value>
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
+        <value name="is_soap_array_encoding_used">false</value>
       </record>
     </array>
   </record>
@@ -1140,25 +1134,27 @@
 
   <!-- nodes -->
 
-<MAPCOPY NAME="Link" FROM="/xml;1;0" TO="/$actual;1;0">
+<MAPCOPY NAME="Link" FROM="/$contents;3;1" TO="/$actual;1;1">
 </MAPCOPY>
 
-<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$expected;1;0">
+<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$expected;1;1">
   <DATA ENCODING="XMLValues" I18N="true">
 
 <Values version="2.0">
-  <value name="xml">&lt;?xml version="1.0"?&gt; &lt;person&gt; &lt;name&gt;John Doe&lt;/name&gt; &lt;phone&gt;1234 5678&lt;/phone&gt; &lt;email&gt;john.doe@example.com&lt;/email&gt; &lt;/person&gt;</value>
+  <array name="xml" type="value" depth="1">
+    <value>John Doe,1234 5678,john.doe@example.com </value>
+    <value>John Doe,1234 5678,john.doe@example.com </value>
+  </array>
   <record name="type" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
     <value name="node_comment"></value>
     <record name="node_hints" javaclass="com.wm.util.Values">
-      <null name="field_usereditable"/>
       <value name="field_largerEditor">false</value>
       <value name="field_password">false</value>
     </record>
     <value name="field_name">$expected</value>
     <value name="field_type">string</value>
-    <value name="field_dim">0</value>
+    <value name="field_dim">1</value>
     <record name="field_content_type" javaclass="com.wm.util.Values">
       <value name="contentType">1</value>
       <value name="internalType">reference</value>
@@ -1173,6 +1169,7 @@
     <value name="nillable">true</value>
     <value name="form_qualified">false</value>
     <value name="is_global">false</value>
+    <value name="is_soap_array_encoding_used">false</value>
   </record>
 </Values>
 </DATA>
@@ -1195,32 +1192,25 @@
         <value name="node_type">unknown</value>
         <value name="field_name">$expected</value>
         <value name="field_type">string</value>
-        <value name="field_dim">0</value>
+        <value name="field_dim">1</value>
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
+        <value name="is_soap_array_encoding_used">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
         <value name="field_name">$actual</value>
         <value name="field_type">string</value>
-        <value name="field_dim">0</value>
+        <value name="field_dim">1</value>
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
+        <value name="is_soap_array_encoding_used">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
         <value name="field_name">xml</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="field_name">csv</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -1234,13 +1224,14 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="field_name">$content.translated</value>
+        <value name="field_name">$contents</value>
         <value name="field_type">object</value>
-        <value name="field_dim">0</value>
+        <value name="field_dim">1</value>
         <value name="field_opt">true</value>
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
+        <value name="is_soap_array_encoding_used">false</value>
       </record>
     </array>
   </record>
@@ -1272,7 +1263,7 @@
 </MAP>
 </INVOKE>
 
-<MAP NAME="drop" MODE="STANDALONE">
+<MAP NAME="drop" TIMEOUT="" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
@@ -1285,6 +1276,22 @@
     <value name="form_qualified">false</value>
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="node_comment"></value>
+        <record name="node_hints" javaclass="com.wm.util.Values">
+          <value name="field_largerEditor">false</value>
+          <value name="field_password">false</value>
+        </record>
+        <value name="field_name">$contents</value>
+        <value name="field_type">object</value>
+        <value name="field_dim">1</value>
+        <value name="field_opt">true</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+        <value name="is_soap_array_encoding_used">false</value>
+      </record>
     </array>
   </record>
 </Values>
@@ -1318,6 +1325,22 @@
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
       </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="node_comment"></value>
+        <record name="node_hints" javaclass="com.wm.util.Values">
+          <value name="field_largerEditor">false</value>
+          <value name="field_password">false</value>
+        </record>
+        <value name="field_name">$contents</value>
+        <value name="field_type">object</value>
+        <value name="field_dim">1</value>
+        <value name="field_opt">true</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+        <value name="is_soap_array_encoding_used">false</value>
+      </record>
     </array>
   </record>
 </Values>
@@ -1328,7 +1351,7 @@
 <MAPDELETE NAME="Dropper" FIELD="/xml;1;0">
 </MAPDELETE>
 
-<MAPDELETE NAME="Dropper" FIELD="/csv;1;0">
+<MAPDELETE NAME="Dropper" FIELD="/$contents;3;1">
 </MAPDELETE>
 </MAP>
 </FLOW>

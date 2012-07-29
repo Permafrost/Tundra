@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-23 15:03:32.028
+// -----( CREATED: 2012-07-29 12:38:41.888
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -329,6 +329,33 @@ public final class document
 
 
 
+	public static final void rename (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(rename)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:0:optional $document
+		// [i] field:0:required $key.source
+		// [i] field:0:required $key.target
+		// [o] record:0:optional $document
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  IData document = IDataUtil.getIData(cursor, "$document");
+		  String source = IDataUtil.getString(cursor, "$key.source");
+		  String target = IDataUtil.getString(cursor, "$key.target");
+		  IDataUtil.put(cursor, "$document", rename(document, source, target));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void values (IData pipeline)
         throws ServiceException
 	{
@@ -571,6 +598,14 @@ public final class document
 	      cursor.destroy();
 	    }
 	  }
+	  return input;
+	}
+	
+	// renames a key from source to target within the given IData document
+	public static IData rename(IData input, String source, String target) {
+	  Object value = get(input, source);
+	  if (value != null) input = put(input, target, value);
+	  input = drop(input, source);
 	  return input;
 	}
 	

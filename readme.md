@@ -144,6 +144,10 @@ Services for manipulating arbitrary textual content, such as XML or CSV content:
     # input stream) into an IData document
     tundra.content:parse($content, $encoding, $schema)
 
+    # like tundra.content:translate for one-to-many content conversions; the splitting service must
+    # accept a single IData document, and return an IData document list
+    tundra.content:split($content, $service, $encoding.input, $encoding.output, $schema.input, $schema.output, $content.input, $content.output, $mode.output)
+
     # converts XML or flat file content to another format by calling the given 
     # translation service and passing the parsed content as an input, and emitting
     # the translated content as output
@@ -238,6 +242,9 @@ Services for manipulating com.wm.data.IData objects:
     # sets the value associated with the given key in the given IData
     # document
     tundra.document:put($document, $key, $value)
+
+    # renames the value with the source key to have the target key in the given IData document
+    tundra.document:rename($document, $key.source, $key.target)
 
     # converts all String elements in the given IData document to lower case
     tundra.document.value:lowercase($document, $recurse?)
@@ -475,6 +482,9 @@ Services for manipulating java.lang.Object lists:
     # the given list
     tundra.list.object:insert($list[], $item, $index)
 
+    # returns true if the list is an instance of given class
+    tundra.list.object:instance($list[], $class)
+
     # returns the item stored at a given index in a list (supports forward and 
     # reverse indexing)
     tundra.list.object:item($list[], $index)
@@ -656,6 +666,9 @@ Services for manipulating java.lang.Object objects:
 
     # sets the value associated with the given key in the pipeline
     tundra.pipeline:put($key, $value)
+
+    # renames the value with the source key to have the target key
+    tundra.pipeline:rename($key.source, $key.target)
 
 #### Service
 

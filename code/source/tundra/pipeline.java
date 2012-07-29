@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-23 14:26:40.761
+// -----( CREATED: 2012-07-29 12:40:19.628
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -81,7 +81,6 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  IData document = IDataUtil.getIData(cursor, "$document");
 		  String key = IDataUtil.getString(cursor, "$key");
 		  IDataUtil.put(cursor, "$value", tundra.document.get(pipeline, key));
 		} finally {
@@ -126,11 +125,33 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  IData document = IDataUtil.getIData(cursor, "$document");
 		  String key = IDataUtil.getString(cursor, "$key");
 		  Object value = IDataUtil.get(cursor, "$value");
-		
 		  tundra.document.put(pipeline, key, value);
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void rename (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(rename)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $key.source
+		// [i] field:0:required $key.target
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String source = IDataUtil.getString(cursor, "$key.source");
+		  String target = IDataUtil.getString(cursor, "$key.target");
+		  tundra.document.rename(pipeline, source, target);
 		} finally {
 		  cursor.destroy();
 		}
