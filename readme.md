@@ -560,6 +560,9 @@ Services for manipulating string lists:
     # returns the number of items in the given list
     tundra.list.string:length($list[])
 
+    # converts each item to lower case
+    tundra.list.string:lowercase($list[])
+
     # returns a new list created by invoking the given service for each item in 
     # the given list, and collecting new the values returned
     tundra.list.string:map($list[], $service, $item.input, $item.output)
@@ -567,6 +570,12 @@ Services for manipulating string lists:
     # prepends a single item to the front of a list, such that prepending an 
     # item to a list containing n items results in a new list of n + 1 items
     tundra.list.string:prepend($list[], $item)
+
+    # replaces all occurrences of the given regular expression pattern in the each 
+    # item, with the replacement string
+    # refer: <http://download.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html>,
+    #        <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Matcher.html>
+    tundra.list.string:replace($list[], $pattern, $replacement, $literal?)
 
     # returns a new list with all items from the given list in reverse order
     tundra.list.string:reverse($list[])
@@ -579,9 +588,20 @@ Services for manipulating string lists:
     # refer: <http://docs.oracle.com/javase/6/docs/api/java/lang/Comparable.html>
     tundra.list.string:sort($list[])
 
+    # replaces runs of one or more whitespace characters (space, tab, carriage 
+    # return, line feed) with a single space character
+    tundra.list.string:squeeze($list[])
+
+    # removes all leading and trailing whitespace
+    tundra.list.string:trim($list[])
+
     # returns a new list with all duplicates from the given list removed, such 
     # that no two items are equal
     tundra.list.string:unique($list[])
+
+    # converts each item to upper case
+    tundra.list.string:uppercase($list[])
+
 
 #### Node
 
