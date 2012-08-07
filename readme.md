@@ -365,8 +365,8 @@ File system services for working with files:
     # Server file extension to mime type mappings are defined in the file 
     # ./lib/mime.types; if the mime type cannot be found, it defaults to the 
     # type for arbitrary binary data: application/octet-stream
-	# refer: <http://en.wikipedia.org/wiki/Internet_media_type>
-	tundra.file:type($file)
+    # refer: <http://en.wikipedia.org/wiki/Internet_media_type>
+    tundra.file:type($file)
 
     # returns true if the file can be written to
     tundra.file:writable($file)
@@ -688,7 +688,6 @@ Services for manipulating java.lang.Object objects:
     # copies the value associated with the source key to the target key in the pipeline
     tundra.pipeline:copy($key.source, $key.target)
 
-
     # removes the element with the given key from the pipeline
     tundra.pipeline:drop($key)
 
@@ -755,7 +754,7 @@ Services for manipulating java.lang.String objects:
     # returns the number of characters in the given string
     tundra.string:length($string)
 
-    # returns all the lines in the give string as a list
+    # returns all the lines in the given string as a list
     tundra.string:lines($string)
 
     # returns the given string in lower case
