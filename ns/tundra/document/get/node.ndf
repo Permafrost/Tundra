@@ -86,7 +86,7 @@
     </record>
   </record>
   <value name="node_comment">Returns the value associated with the given key from the given IData document, or null if
-it doesn't exist.</value>
+it doesn't exist. Keys can be simple or fully qualified, such as a/b/c[0]/d.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

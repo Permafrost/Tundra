@@ -53,7 +53,8 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Drops the element with the given key from the pipeline.</value>
+  <value name="node_comment">Drops the element with the given key from the pipeline. Keys can be simple or fully 
+qualified, such as a/b/c[0]/d.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

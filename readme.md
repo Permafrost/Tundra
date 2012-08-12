@@ -191,9 +191,11 @@ Services for manipulating com.wm.data.IData objects:
     tundra.document:compact($document)
 
     # copies the value associated with the source key to the target key in the given IData document
+    # keys can be simple or fully qualified, such as a/b/c[0]/d
     tundra.document:copy($document, $key.source, $key.target)
 
     # removes the element with the given key from the given IData document
+    # keys can be simple or fully qualified, such as a/b/c[0]/d
     tundra.document:drop($document, $key)
 
     # returns either a shallow (top-level elements) or deep (recursive) clone
@@ -210,6 +212,7 @@ Services for manipulating com.wm.data.IData objects:
 
     # returns the value associated with the given key from the given IData
     # document, or null if the key doesn't exist
+    # keys can be simple or fully qualified, such as a/b/c[0]/d    
     tundra.document:get($document, $key)
 
     # converts all keys in the given IData document to lower case
@@ -244,9 +247,11 @@ Services for manipulating com.wm.data.IData objects:
 
     # sets the value associated with the given key in the given IData
     # document
+    # keys can be simple or fully qualified, such as a/b/c[0]/d
     tundra.document:put($document, $key, $value)
 
     # renames the value with the source key to have the target key in the given IData document
+    # keys can be simple or fully qualified, such as a/b/c[0]/d    
     tundra.document:rename($document, $key.source, $key.target)
 
     # converts all String elements in the given IData document to lower case
@@ -408,6 +413,9 @@ Services for manipulating document (com.wm.data.IData) lists:
     # input arguments
     tundra.list.document:concatenate($list.x[], $list.y[])
 
+    # removes the item with the given index from the given list
+    tundra.list.document:drop($list, $index)    
+
     # iterates through the given list, invoking the given service for each item 
     # in the list, passing $item, $index, $iteration and $length variables
     tundra.list.document:each($list[], $service, $pipeline, $item.input)
@@ -415,16 +423,16 @@ Services for manipulating document (com.wm.data.IData) lists:
     # returns true if the two given lists are equal
     tundra.list.document:equal($list.x[], $list.y[])
 
+    # returns the item stored at a given index in a list (supports forward and 
+    # reverse indexing)
+    tundra.list.document:get($list[], $index)
+
     # returns true if the given item is found in the given list
     tundra.list.document:include($list[], $item)
 
     # returns a new list with the given item inserted at the desired index in 
     # the given list
     tundra.list.document:insert($list[], $item, $index)
-
-    # returns the item stored at a given index in a list (supports forward and 
-    # reverse indexing)
-    tundra.list.document:item($list[], $index)
 
     # converts all keys in each IData item in the given list to lower case
     tundra.list.document.key:lowercase($list[], $recurse?)
@@ -451,6 +459,10 @@ Services for manipulating document (com.wm.data.IData) lists:
     # prepends a single item to the front of a list, such that prepending an 
     # item to a list containing n items results in a new list of n + 1 items
     tundra.list.document:prepend($list[], $item)
+
+    # sets the value of the item stored at a given index in a list (supports forward and 
+    # reverse indexing)
+    tundra.list.document:put($list[], $item, $index)      
 
     # returns a new list with all items from the given list in reverse order
     tundra.list.document:reverse($list[])
@@ -503,12 +515,19 @@ Services for manipulating java.lang.Object lists:
     # input arguments
     tundra.list.object:concatenate($list.x[], $list.y[])
 
+    # removes the item with the given index from the given list
+    tundra.list.object:drop($list, $index)
+
     # iterates through the given list, invoking the given service for each item 
     # in the list, passing $item, $index, $iteration and $length variables
     tundra.list.object:each($list[], $service, $pipeline, $item.input)
 
     # returns true if the two given lists are equal
     tundra.list.object:equal($list.x[], $list.y[])
+
+    # returns the item stored at a given index in a list (supports forward and 
+    # reverse indexing)
+    tundra.list.object:get($list[], $index)
 
     # returns true if the given item is found in the given list
     tundra.list.object:include($list[], $item)
@@ -519,10 +538,6 @@ Services for manipulating java.lang.Object lists:
 
     # returns true if the list is an instance of given class
     tundra.list.object:instance($list[], $class)
-
-    # returns the item stored at a given index in a list (supports forward and 
-    # reverse indexing)
-    tundra.list.object:item($list[], $index)
 
     # returns a string created by converting each list item to a string, 
     # separated by the given separator string
@@ -538,6 +553,10 @@ Services for manipulating java.lang.Object lists:
     # prepends a single item to the front of a list, such that prepending an 
     # item to a list containing n items results in a new list of n + 1 items
     tundra.list.object:prepend($list[], $item)
+
+    # sets the value of the item stored at a given index in a list (supports forward and 
+    # reverse indexing)
+    tundra.list.object:put($list[], $item, $index)      
 
     # returns a new list with all items from the given list in reverse order
     tundra.list.object:reverse($list[])
@@ -580,6 +599,9 @@ Services for manipulating string lists:
     # input arguments
     tundra.list.string:concatenate($list.x[], $list.y[])
 
+    # removes the item with the given index from the given list
+    tundra.list.string:drop($list, $index)    
+
     # iterates through the given list, invoking the given service for each item 
     # in the list, passing $item, $index, $iteration and $length variables
     tundra.list.string:each($list[], $service, $pipeline, $item.input)
@@ -587,16 +609,16 @@ Services for manipulating string lists:
     # returns true if the two given lists are equal
     tundra.list.string:equal($list.x[], $list.y[])
 
+    # returns the item stored at a given index in a list (supports forward and 
+    # reverse indexing)
+    tundra.list.string:get($list[], $index)
+
     # returns true if the given item is found in the given list
     tundra.list.string:include($list[], $item)
 
     # returns a new list with the given item inserted at the desired index in 
     # the given list
     tundra.list.string:insert($list[], $item, $index)
-
-    # returns the item stored at a given index in a list (supports forward and 
-    # reverse indexing)
-    tundra.list.string:item($list[], $index)
 
     # returns a string created by converting each list item to a string, 
     # separated by the given separator string
@@ -615,6 +637,10 @@ Services for manipulating string lists:
     # prepends a single item to the front of a list, such that prepending an 
     # item to a list containing n items results in a new list of n + 1 items
     tundra.list.string:prepend($list[], $item)
+
+    # sets the value of the item stored at a given index in a list (supports forward and 
+    # reverse indexing)
+    tundra.list.string:put($list[], $item, $index)    
 
     # replaces all occurrences of the given regular expression pattern in the each 
     # item, with the replacement string
@@ -686,13 +712,16 @@ Services for manipulating java.lang.Object objects:
     tundra.pipeline:capture
 
     # copies the value associated with the source key to the target key in the pipeline
+    # keys can be simple or fully qualified, such as a/b/c[0]/d    
     tundra.pipeline:copy($key.source, $key.target)
 
     # removes the element with the given key from the pipeline
+    # keys can be simple or fully qualified, such as a/b/c[0]/d    
     tundra.pipeline:drop($key)
 
     # returns the value associated with the given key from the pipeline, or null
     # if the key doesn't exist
+    # keys can be simple or fully qualified, such as a/b/c[0]/d    
     tundra.pipeline:get($key)
 
     # returns the number of top-level elements in the pipeline
@@ -702,9 +731,11 @@ Services for manipulating java.lang.Object objects:
     tundra.pipeline:log($level)
 
     # sets the value associated with the given key in the pipeline
+    # keys can be simple or fully qualified, such as a/b/c[0]/d    
     tundra.pipeline:put($key, $value)
 
     # renames the value with the source key to have the target key
+    # keys can be simple or fully qualified, such as a/b/c[0]/d    
     tundra.pipeline:rename($key.source, $key.target)
 
 #### Service

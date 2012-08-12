@@ -68,7 +68,8 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Sets the value associated with the given key in the pipeline.</value>
+  <value name="node_comment">Sets the value associated with the given key in the pipeline. Keys can be
+simple or fully qualified, such as a/b/c[0]/d.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

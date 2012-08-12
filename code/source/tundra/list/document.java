@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-29 17:37:31.183
+// -----( CREATED: 2012-08-12 21:16:30.221
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -84,6 +84,22 @@ public final class document
 
 
 
+	public static final void drop (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(drop)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:1:optional $list
+		// [i] field:0:required $index
+		tundra.list.object.drop(pipeline);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void each (IData pipeline)
         throws ServiceException
 	{
@@ -119,6 +135,23 @@ public final class document
 
 
 
+	public static final void get (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(get)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:1:optional $list
+		// [i] field:0:required $index
+		// [o] record:0:optional $item
+		tundra.list.object.get(pipeline);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void include (IData pipeline)
         throws ServiceException
 	{
@@ -147,23 +180,6 @@ public final class document
 		// [i] field:0:required $index
 		// [o] record:1:required $list
 		tundra.list.object.insert(pipeline, IData.class);
-		// --- <<IS-END>> ---
-
-                
-	}
-
-
-
-	public static final void item (IData pipeline)
-        throws ServiceException
-	{
-		// --- <<IS-START(item)>> ---
-		// @subtype unknown
-		// @sigtype java 3.5
-		// [i] record:1:optional $list
-		// [i] field:0:required $index
-		// [o] record:0:optional $item
-		tundra.list.object.item(pipeline);
 		// --- <<IS-END>> ---
 
                 
@@ -217,6 +233,24 @@ public final class document
 		// [i] record:0:optional $item
 		// [o] record:1:required $list
 		tundra.list.object.prepend(pipeline, IData.class);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void put (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(put)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:1:optional $list
+		// [i] record:0:optional $item
+		// [i] field:0:required $index
+		// [o] record:1:required $list
+		tundra.list.object.put(pipeline, IData.class);
 		// --- <<IS-END>> ---
 
                 
