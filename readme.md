@@ -793,6 +793,10 @@ tundra.pipeline:length();
 // writes the current pipeline to the server log
 tundra.pipeline:log($level);
 
+// iterates over each element in the pipeline, deconstructing all fully qualified 
+// keys (for example, 'a/b/c' or 'x/y[0]/z[1]') into their constituent parts
+tundra.pipeline:normalize();
+
 // sets the value associated with the given key in the pipeline
 // keys can be simple or fully qualified, such as a/b/c[0]/d    
 tundra.pipeline:put($key, $value);

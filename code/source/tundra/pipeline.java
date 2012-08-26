@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-29 16:51:31.048
+// -----( CREATED: 2012-08-26 16:10:53.619
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -128,6 +128,28 @@ public final class pipeline
 		
 		try {
 		  IDataUtil.put(cursor, "$length", "" + tundra.document.size(pipeline));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void normalize (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(normalize)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  IData dup = tundra.document.normalize(pipeline, true);
+		  tundra.document.clear(pipeline);
+		  IDataUtil.merge(dup, pipeline);
 		} finally {
 		  cursor.destroy();
 		}

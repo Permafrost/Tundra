@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-08-26 12:40:59.603
+// -----( CREATED: 2012-08-26 16:09:09.771
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -877,6 +877,15 @@ public final class document
 	  }
 	
 	  return output;
+	}
+	
+	// removes all keys from the given IData document
+	public static void clear(IData input) {
+	  if (input == null) return;
+	  IDataCursor cursor = input.getCursor();
+	  cursor.first();
+	  while(cursor.delete());
+	  cursor.destroy();
 	}
 	// --- <<IS-END-SHARED>> ---
 }
