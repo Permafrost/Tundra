@@ -245,6 +245,10 @@ Services for manipulating com.wm.data.IData objects:
     # merged, the latest wins
     tundra.document:merge($documents[])
 
+    # returns a new IData document, with all fully qualified keys (for example, 
+    # 'a/b/c' or 'x/y[0]/z[1]') deconstructed into their constituent parts
+    tundra.document:normalize($document)
+
     # sets the value associated with the given key in the given IData
     # document
     # keys can be simple or fully qualified, such as a/b/c[0]/d

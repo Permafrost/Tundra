@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-08-12 21:25:35.377
+// -----( CREATED: 2012-08-26 12:40:59.603
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -318,6 +318,29 @@ public final class document
 		try {
 		  IData[] documents = IDataUtil.getIDataArray(cursor, "$documents");
 		  IDataUtil.put(cursor, "$document", merge(documents));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void normalize (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(normalize)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:0:optional $document
+		// [o] record:0:optional $document
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  IData document = IDataUtil.getIData(cursor, "$document");
+		  IDataUtil.put(cursor, "$document", normalize(document, true));
 		} finally {
 		  cursor.destroy();
 		}
@@ -819,6 +842,38 @@ public final class document
 	      ic.destroy();
 	      oc.destroy();
 	    }
+	  }
+	
+	  return output;
+	}
+	
+	// returns a new IData document, where all IDatas are implemented with the same class, and all
+	// fully qualified keys are replaced with a nested structure
+	public static IData normalize(IData input, boolean recurse) {
+	  if (input == null) return null;
+	
+	  IData output = IDataFactory.create();
+	  IDataCursor ic = input.getCursor();
+	
+	  try {
+	    while(ic.next()) {
+	      String key = ic.getKey();
+	      Object value = ic.getValue();
+	
+	      if (recurse && value != null) {
+	        if (value instanceof IData) {
+	          value = normalize((IData)value, recurse);
+	        } else if (value instanceof IData[] || value instanceof com.wm.util.Table) {
+	          IData[] iary = value instanceof IData[] ? (IData[])value : ((com.wm.util.Table)value).getValues();
+	          IData[] oary = new IData[iary.length];
+	          for (int i = 0; i < iary.length; i++) oary[i] = normalize(iary[i], recurse);
+	          value = oary;
+	        }
+	      }
+	      put(output, key, value);
+	    }
+	  } finally {
+	    ic.destroy();
 	  }
 	
 	  return output;
