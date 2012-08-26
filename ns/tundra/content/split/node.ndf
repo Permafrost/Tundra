@@ -58,6 +58,23 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="field_name">$pipeline</value>
+          <value name="field_type">record</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+          <array name="rec_fields" type="record" depth="1">
+          </array>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
             <null name="field_usereditable"/>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
@@ -294,8 +311,10 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Like tundra.content:translate for one-to-many content conversions. The splitting service must
-accept a single IData document, and return an IData document list.</value>
+  <value name="node_comment">One-to-many conversion of XML or flat file content to another format.  Calls the given 
+splitting service, passing the parsed content as an input, and emitting the split 
+list of contents as output.  The splitting service must accept a single IData document, 
+and return an IData document list.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
