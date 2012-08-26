@@ -158,6 +158,12 @@ Services for manipulating arbitrary textual content, such as XML or CSV content:
 // input stream
 tundra.content:emit($document, $encoding, $schema, $mode);
 
+// many-to-one conversion of XML or flat file content to another format.  Calls the given 
+// joining service, passing the parsed list of contents as an input, and emitting the joined 
+// content as output; the splitting service must accept an IData document list, and return 
+// a single IData
+tundra.content.join($contents, $service, $pipeline, $encoding.input, $encoding.output, $schema.input, $schema.output, $content.input, $content.output, $mode.output);
+
 // parses XML and flat file content (specified as a string, byte array, or 
 // input stream) into an IData document
 tundra.content:parse($content, $encoding, $schema);
