@@ -6,22 +6,26 @@ A package of useful services for webMethods Integration Server 7.1 or higher.
 
 From your Integration Server installation:
 
-    $ cd ./packages
-    $ git clone https://github.com/Permafrost/Tundra.git
-    $ git checkout v<n.n.n> # where <n.n.n> is the desired version
+```sh
+$ cd ./packages
+$ git clone https://github.com/Permafrost/Tundra.git
+$ git checkout v<n.n.n> # where <n.n.n> is the desired version
+```
 
-Then activate and enable the package from the package management web page on the
+Then activate and enable the Tundra package from the package management web page on the
 Integration Server web administration site.
 
 ## Upgrading
 
 From your Integration Server installation:
 
-    $ cd ./packages
-    $ git fetch
-    $ git checkout v<n.n.n> # where <n.n.n> is the desired version
+```sh
+$ cd ./packages/Tundra
+$ git fetch
+$ git checkout v<n.n.n> # where <n.n.n> is the desired version
+```
 
-Then activate and enable the package from the package management web page on the
+Then reload the Tundra package from the package management web page on the
 Integration Server web administration site.
 
 ## Conventions
