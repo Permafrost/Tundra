@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-08-26 16:10:53.619
+// -----( CREATED: 2012-08-28 20:23:50.233
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -106,7 +106,7 @@ public final class pipeline
 		
 		try {
 		  String key = IDataUtil.getString(cursor, "$key");
-		  IDataUtil.put(cursor, "$value", tundra.document.get(pipeline, key));
+		  IDataUtil.put(cursor, "$value", tundra.support.document.get(pipeline, key));
 		} finally {
 		  cursor.destroy();
 		}
@@ -173,7 +173,7 @@ public final class pipeline
 		try {
 		  String key = IDataUtil.getString(cursor, "$key");
 		  Object value = IDataUtil.get(cursor, "$value");
-		  tundra.document.put(pipeline, key, value);
+		  tundra.support.document.put(pipeline, key, value);
 		} finally {
 		  cursor.destroy();
 		}
@@ -198,6 +198,28 @@ public final class pipeline
 		  String source = IDataUtil.getString(cursor, "$key.source");
 		  String target = IDataUtil.getString(cursor, "$key.target");
 		  tundra.document.rename(pipeline, source, target);
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void substitute (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(substitute)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  IData dup = tundra.document.substitute(pipeline, pipeline, true);
+		  tundra.document.clear(pipeline);
+		  IDataUtil.merge(dup, pipeline);
 		} finally {
 		  cursor.destroy();
 		}

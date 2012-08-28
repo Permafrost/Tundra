@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-08-26 16:09:09.771
+// -----( CREATED: 2012-08-28 20:21:15.129
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -205,7 +205,7 @@ public final class document
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  String key = IDataUtil.getString(cursor, "$key");
-		  IDataUtil.put(cursor, "$value", get(document, key));
+		  IDataUtil.put(cursor, "$value", tundra.support.document.get(document, key));
 		} finally {
 		  cursor.destroy();
 		}
@@ -368,7 +368,7 @@ public final class document
 		  String key = IDataUtil.getString(cursor, "$key");
 		  Object value = IDataUtil.get(cursor, "$value");
 		
-		  IDataUtil.put(cursor, "$document", put(document, key, value));
+		  IDataUtil.put(cursor, "$document", tundra.support.document.put(document, key, value));
 		} finally {
 		  cursor.destroy();
 		}
@@ -396,6 +396,32 @@ public final class document
 		  String source = IDataUtil.getString(cursor, "$key.source");
 		  String target = IDataUtil.getString(cursor, "$key.target");
 		  IDataUtil.put(cursor, "$document", rename(document, source, target));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void substitute (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(substitute)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:0:optional $document
+		// [i] record:0:optional $pipeline
+		// [o] record:0:optional $document
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  IData document = IDataUtil.getIData(cursor, "$document");
+		  IData scope = IDataUtil.getIData(cursor, "$pipeline");
+		
+		  IDataUtil.put(cursor, "$document", substitute(document, scope == null ? pipeline : scope, true));
 		} finally {
 		  cursor.destroy();
 		}
@@ -508,16 +534,16 @@ public final class document
 	    IDataUtil.remove(cursor, key);
 	    cursor.destroy();
 	
-	    if (Key.isFullyQualified(key)) drop(input, Key.parse(key));
+	    if (tundra.support.document.Key.isFullyQualified(key)) drop(input, tundra.support.document.Key.parse(key));
 	  }
 	  return input;
 	}
 	
 	// removes the value with the given key from the given IData document
-	protected static IData drop(IData input, java.util.Queue<Key> keys) {
+	protected static IData drop(IData input, java.util.Queue<tundra.support.document.Key> keys) {
 	  if (input != null && keys != null && keys.size() > 0) {
 	    IDataCursor cursor = input.getCursor();
-	    Key key = keys.remove();
+	    tundra.support.document.Key key = keys.remove();
 	
 	    if (keys.size() > 0) {
 	      if (key.hasIndex()) {
@@ -651,142 +677,6 @@ public final class document
 	  map(input, service, pipeline, keyInput, null, valueInput, null, valueClass, recurse);
 	}
 	
-	// wrapper class for fully qualified IData keys
-	protected static class Key {
-	  public static final String SEPARATOR = "/";
-	  public static final java.util.regex.Pattern INDEX_PATTERN = java.util.regex.Pattern.compile("\\[(-?\\d+?)\\]$");
-	
-	  protected boolean hasIndex = false;
-	  protected int index = 0;
-	  protected String key = null;
-	
-	  public Key(String key) {
-	    java.util.regex.Matcher matcher = INDEX_PATTERN.matcher(key);
-	    StringBuffer buffer = new StringBuffer();
-	    while(matcher.find()) {
-	      hasIndex = true;
-	      index = Integer.parseInt(matcher.group(1));
-	      matcher.appendReplacement(buffer, "");
-	    }
-	    matcher.appendTail(buffer);
-	    this.key = buffer.toString();
-	  }
-	
-	  public boolean hasIndex() {
-	    return hasIndex;
-	  }
-	
-	  public int getIndex() {
-	    return index;
-	  }
-	
-	  public String toString() {
-	    return key;
-	  }
-	
-	  public static java.util.Queue<Key> parse(String key) {
-	    String[] parts = key.split(SEPARATOR);
-	    java.util.Queue<Key> queue = new java.util.ArrayDeque<Key>(parts.length);
-	
-	    for (int i = 0; i < parts.length; i++) {
-	      queue.add(new Key(parts[i]));
-	    }
-	    return queue;
-	  }
-	
-	  public static boolean isFullyQualified(String key) {
-	    return key != null && (key.contains(SEPARATOR) || INDEX_PATTERN.matcher(key).find());
-	  }
-	}
-	
-	// returns the value associated with the given key from the given IData document
-	public static Object get(IData input, String key) {
-	  Object value = null;
-	  if (input != null && key != null) {
-	    // try finding a value that matches the literal key
-	    IDataCursor cursor = input.getCursor();
-	    try {
-	      value = IDataUtil.get(cursor, key);
-	    } finally {
-	      cursor.destroy();
-	    }
-	
-	    // if value wasn't found using the literal key, the key could be fully qualified
-	    if (value == null && Key.isFullyQualified(key)) value = get(input, Key.parse(key));
-	  }
-	  return value;
-	}
-	
-	// gets a value from an IData document with a fully qualified key
-	protected static Object get(IData input, java.util.Queue<Key> keys) {
-	  Object value = null;
-	
-	  if (input != null && keys != null && keys.size() > 0) {
-	    IDataCursor cursor = input.getCursor();
-	    Key key = keys.remove();
-	
-	    if (keys.size() > 0) {
-	      if (key.hasIndex()) {
-	        IData[] array = IDataUtil.getIDataArray(cursor, key.toString());
-	        value = get(tundra.list.object.get(array, key.getIndex()), keys);
-	      } else {
-	        value = get(IDataUtil.getIData(cursor, key.toString()), keys);
-	      }
-	    } else {
-	      if (key.hasIndex()) {
-	        Object[] array = IDataUtil.getObjectArray(cursor, key.toString());
-	        value = tundra.list.object.get(array, key.getIndex());
-	      } else {
-	        value = IDataUtil.get(cursor, key.toString());
-	      }
-	    }
-	
-	    cursor.destroy();
-	  }
-	
-	  return value;
-	}
-	
-	// sets the value associated with the given key in the given IData document
-	public static IData put(IData input, String key, Object value) {
-	  return put(input, key == null ? null : Key.parse(key), value);
-	}
-	
-	// sets the value associated with the given fully qualified key in the given IData document
-	protected static IData put(IData input, java.util.Queue<Key> keys, Object value) {
-	  if (keys != null && keys.size() > 0) {
-	    if (input == null) input = IDataFactory.create();
-	
-	    IDataCursor cursor = input.getCursor();
-	    Key key = keys.remove();
-	
-	    if (keys.size() > 0) {
-	      if (key.hasIndex()) {
-	        IData[] array = IDataUtil.getIDataArray(cursor, key.toString());
-	        IData child = null;
-	        try { child = tundra.list.object.get(array, key.getIndex()); } catch(ArrayIndexOutOfBoundsException ex) { }
-	        value = tundra.list.object.put(array, put(child, keys, value), key.getIndex(), IData.class);
-	      } else {
-	        value = put(IDataUtil.getIData(cursor, key.toString()), keys, value);
-	      }
-	    } else if (key.hasIndex()) {
-	      Class klass = Object.class;
-	      if (value != null) {
-	        if (value instanceof String) {
-	          klass = String.class;
-	        } else if (value instanceof IData) {
-	          klass = IData.class;
-	        }
-	      }
-	      value = tundra.list.object.put(IDataUtil.getObjectArray(cursor, key.toString()), value, key.getIndex(), klass);
-	    }
-	    IDataUtil.put(cursor, key.toString(), value);
-	    cursor.destroy();
-	  }
-	
-	  return input;
-	}
-	
 	// renames a key from source to target within the given IData document
 	public static IData rename(IData input, String source, String target) {
 	  return drop(copy(input, source, target), source);
@@ -795,7 +685,7 @@ public final class document
 	// copies a value from source key to target key within the given IData document
 	public static IData copy(IData input, String source, String target) {
 	  if (source.equals(target)) return input;
-	  return put(input, target, get(input, source));
+	  return tundra.support.document.put(input, target, tundra.support.document.get(input, source));
 	}
 	
 	// removes all null values from the given IData document
@@ -870,7 +760,7 @@ public final class document
 	          value = oary;
 	        }
 	      }
-	      put(output, key, value);
+	      tundra.support.document.put(output, key, value);
 	    }
 	  } finally {
 	    ic.destroy();
@@ -886,6 +776,46 @@ public final class document
 	  cursor.first();
 	  while(cursor.delete());
 	  cursor.destroy();
+	}
+	
+	// performs variable substitution on all elements of the given IData input document
+	public static IData substitute(IData input, IData scope, boolean recurse) {
+	  if (input == null) return null;
+	  if (scope == null) scope = input;
+	
+	  IData output = IDataFactory.create();
+	
+	  IDataCursor ic = input.getCursor();
+	  IDataCursor oc = output.getCursor();
+	
+	  try {
+	    while(ic.next()) {
+	      String key = ic.getKey();
+	      Object value = ic.getValue();
+	      if (value != null) {
+	        if (recurse && value instanceof IData) {
+	          value = substitute((IData)value, scope, recurse);
+	        } else if (recurse && (value instanceof IData[] || value instanceof com.wm.util.Table)) {
+	          IData[] iary = value instanceof IData[] ? (IData[])value : ((com.wm.util.Table)value).getValues();
+	          IData[] oary = new IData[iary.length];
+	          for (int i = 0; i < iary.length; i++) oary[i] = substitute(iary[i], scope, recurse);
+	          value = oary;
+	        } else if (value instanceof String) {
+	          value = tundra.string.substitute((String)value, scope);
+	        } else if (value instanceof String[]) {
+	          value = tundra.list.string.substitute((String[])value, scope);
+	        } else if (value instanceof String[][]) {
+	          value = tundra.list.string.substitute((String[][])value, scope);
+	        }
+	      }
+	      IDataUtil.put(oc, key, value);
+	    }
+	  } finally {
+	    ic.destroy();
+	    oc.destroy();
+	  }
+	
+	  return output;
 	}
 	// --- <<IS-END-SHARED>> ---
 }

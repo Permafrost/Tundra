@@ -293,6 +293,11 @@ tundra.document:put($document, $key, $value);
 // keys can be simple or fully qualified, such as a/b/c[0]/d    
 tundra.document:rename($document, $key.source, $key.target);
 
+// attempts variable substitution on each string element in the given IData document by 
+// replacing all occurrences of substrings matching "%key%" with the associated (optionally 
+// scoped) value
+tundra.document:substitute($document, $pipeline);
+
 // converts all String elements in the given IData document to lower case
 tundra.document.value:lowercase($document, $recurse?);
 
@@ -528,6 +533,11 @@ tundra.list.document:slice($list[], $index, $list);
 // refer: <http://docs.oracle.com/javase/6/docs/api/java/lang/Comparable.html>
 tundra.list.document:sort($list[], $key);
 
+// attempts variable substitution on each string element in each IData document 
+// in the given list by replacing all occurrences of substrings matching "%key%" 
+// with the associated (optionally scoped) value
+tundra.list.document:substitute($list[], $pipeline);
+
 // converts all String elements in each IData item in the given list to lower case
 tundra.list.document.value:lowercase($list[], $recurse?);
 
@@ -724,6 +734,11 @@ tundra.list.string:sort($list[]);
 // return, line feed) with a single space character
 tundra.list.string:squeeze($list[]);
 
+// attempts variable substitution on each string in the given list by replacing 
+// all occurrences of substrings matching "%key%" with the associated (optionally 
+// scoped) value
+tundra.list.string:substitute($list[], $pipeline);
+
 // removes all leading and trailing whitespace
 tundra.list.string:trim($list[]);
 
@@ -808,6 +823,11 @@ tundra.pipeline:put($key, $value);
 // renames the value with the source key to have the target key
 // keys can be simple or fully qualified, such as a/b/c[0]/d    
 tundra.pipeline:rename($key.source, $key.target);
+
+// attempts variable substitution on every string element in the pipeline by replacing 
+// all occurrences of substrings matching "%key%" with the associated (optionally scoped) 
+// value
+tundra.pipeline:substitute();
 ```
 
 #### Service
@@ -888,6 +908,10 @@ tundra.string:split($string, $pattern);
 // replaces runs of one or more whitespace characters (space, tab, carriage return, 
 // line feed) with a single space character
 tundra.string:squeeze($string);
+
+// attempts variable substitution on the given string by replacing all occurrences of 
+// substrings matching "%key%" with the associated (optionally scoped) value
+tundra.string:substitute($string, $pipeline);
 
 // returns the given string with leading and trailing whitespace removed
 tundra.string:trim($string);

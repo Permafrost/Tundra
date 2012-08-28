@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-29 11:01:13.734
+// -----( CREATED: 2012-08-28 20:16:19.525
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -234,6 +234,32 @@ public final class string
 
 
 
+	public static final void substitute (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(substitute)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $string
+		// [i] record:0:optional $pipeline
+		// [o] field:0:optional $string
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String string = IDataUtil.getString(cursor, "$string");
+		  IData scope = IDataUtil.getIData(cursor, "$pipeline");
+		
+		  IDataUtil.put(cursor, "$string", substitute(string, scope == null ? pipeline : scope));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void trim (IData pipeline)
         throws ServiceException
 	{
@@ -396,6 +422,31 @@ public final class string
 	// replaces runs of whitespace characters with a single space
 	public static String squeeze(String input) {
 	  return replace(input, "\\s+", " ", false);
+	}
+	
+	public static final java.util.regex.Pattern SUBSTITUTION_PATTERN = java.util.regex.Pattern.compile("%([^%]+)%");
+	
+	// performs variable substitution on the given string by replacing all occurrences of 
+	// substrings matching "%key%" with the associated value from the given scope
+	public static String substitute(String input, IData scope) {
+	  if (input == null || scope == null) return input;
+	
+	  java.util.regex.Matcher matcher = SUBSTITUTION_PATTERN.matcher(input);
+	  StringBuffer output = new StringBuffer();
+	
+	  while(matcher.find()) {
+	    String key = matcher.group(1);
+	    Object value = tundra.support.document.get(scope, key);
+	
+	    if (value != null && value instanceof String) {
+	      matcher.appendReplacement(output, matcher.quoteReplacement((String)value));
+	    } else {
+	      matcher.appendReplacement(output, matcher.quoteReplacement(matcher.group(0)));
+	    }
+	  }
+	
+	  matcher.appendTail(output);
+	  return output.toString();
 	}
 	// --- <<IS-END-SHARED>> ---
 }

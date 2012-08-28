@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-08-12 21:05:48.915
+// -----( CREATED: 2012-08-28 20:18:06.893
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -85,7 +85,6 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:1:optional $list
 		// [i] field:0:required $index
-		// [o] field:0:optional $item
 		tundra.list.object.drop(pipeline);
 		// --- <<IS-END>> ---
 
@@ -319,6 +318,32 @@ public final class string
 
 
 
+	public static final void substitute (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(substitute)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:1:optional $list
+		// [i] record:0:optional $pipeline
+		// [o] field:1:optional $list
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String[] list = IDataUtil.getStringArray(cursor, "$list");
+		  IData scope = IDataUtil.getIData(cursor, "$pipeline");
+		
+		  IDataUtil.put(cursor, "$list", substitute(list, scope == null ? pipeline : scope));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void unique (IData pipeline)
         throws ServiceException
 	{
@@ -337,6 +362,32 @@ public final class string
 	// returns a new array with all elements sorted
 	public static IData[] sort(IData[] array, String key) {
 	  return IDataUtil.sortIDataArrayByKey(array, key, IDataUtil.COMPARE_TYPE_COLLATION, false);
+	}
+	
+	// performs variable substitution on each string in the given list by replacing all occurrences of 
+	// substrings matching "%key%" with the associated value from the given scope
+	public static String[] substitute(String[] input, IData scope) {
+	  if (input == null || scope == null) return input;
+	
+	  String[] output = new String[input.length];
+	  for (int i = 0; i < input.length; i++) {
+	    output[i] = tundra.string.substitute(input[i], scope);
+	  }
+	
+	  return output;
+	}
+	
+	// performs variable substitution on each string in the given table by replacing all occurrences of 
+	// substrings matching "%key%" with the associated value from the given scope
+	public static String[][] substitute(String[][] input, IData scope) {
+	  if (input == null || scope == null) return input;
+	
+	  String[][] output = new String[input.length][];
+	  for (int i = 0; i < input.length; i++) {
+	    output[i] = substitute(input[i], scope);
+	  }
+	
+	  return output;
 	}
 	// --- <<IS-END-SHARED>> ---
 }
