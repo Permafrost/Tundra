@@ -2,6 +2,14 @@
 
 A package of useful services for webMethods Integration Server 7.1 or higher.
 
+## Dependencies
+
+Tundra is dependent on the following packages:
+
+* WmFlatFile
+* WmPublic
+* WmRoot
+
 ## Installation
 
 From your Integration Server installation:
@@ -35,11 +43,11 @@ Integration Server web administration site.
 2. All boolean arguments are suffixed with a '?'
 3. Single-word argument names are preferred. Where multiple words are necessary, 
    words are separated with a '.'
-4. Service namespace is kept flat.  Namespace folders are usually nouns. Service 
+4. Service namespace is kept flat. Namespace folders are usually nouns. Service 
    names are usually verbs, indicating the action performed on the noun (parent 
    folder)
 5. All private elements are kept in the tundra.support folder. All other 
-   elements are public and form the public API of the package. As the private 
+   elements comprise the public API of the package. As the private 
    elements do not contribute to the public API, they are liable to change at 
    any time. Enter at your own risk
 6. *Almost* all services are written in Java, and are *almost* always overloaded 
