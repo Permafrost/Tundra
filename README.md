@@ -170,12 +170,6 @@ Services for manipulating arbitrary textual content, such as XML or CSV content:
 // input stream
 tundra.content:emit($document, $encoding, $schema, $mode);
 
-// many-to-one conversion of XML or flat file content to another format; calls the given 
-// joining service, passing the parsed list of contents as an input, and emitting the joined 
-// content as output; the splitting service must accept an IData document list, and return 
-// a single IData
-tundra.content.join($contents, $service, $pipeline, $encoding.input, $encoding.output, $schema.input, $schema.output, $content.input, $content.output, $mode.output);
-
 // parses XML and flat file content (specified as a string, byte array, or 
 // input stream) into an IData document
 tundra.content:parse($content, $encoding, $schema);
@@ -184,13 +178,13 @@ tundra.content:parse($content, $encoding, $schema);
 // splitting service, passing the parsed content as an input, and emitting the split 
 // list of contents as output; the splitting service must accept a single IData document, 
 // and return an IData document list
-tundra.content:split($content, $service, $pipeline, $encoding.input, $encoding.output, $schema.input, $schema.output, $content.input, $content.output, $mode.output);
+tundra.content:split($content, $service, $pipeline, $encoding.input, $encoding.output, $schema.input, $schema.output, $service.input, $service.output, $mode.output);
 
 // one-to-one conversion of XML or flat file content to another format; calls the given 
 // translation service, passing the parsed content as an input, and emitting
 // the translated content as output; the translation service must accept a single IData
 // document and return a single IData document
-tundra.content:translate($content, $service, $encoding.input, $encoding.output, $schema.input, $schema.output, $content.input, $content.output, $mode.output);
+tundra.content:translate($content, $service, $encoding.input, $encoding.output, $schema.input, $schema.output, $service.input, $service.output, $mode.output);
 ```
 
 #### Datetime
@@ -301,10 +295,22 @@ tundra.document:put($document, $key, $value);
 // keys can be simple or fully qualified, such as a/b/c[0]/d    
 tundra.document:rename($document, $key.source, $key.target);
 
+// one-to-many conversion of an IData document to an IData[] document list; calls the given 
+// splitting service, passing the document as an input, and emitting the split 
+// list of documents as output; the splitting service must accept a single IData document, 
+// and return an IData document list
+tundra.document:split($document, $service, $pipeline, $service.input, $service.output);
+
 // attempts variable substitution on each string element in the given IData document by 
 // replacing all occurrences of substrings matching "%key%" with the associated (optionally 
 // scoped) value
 tundra.document:substitute($document, $pipeline);
+
+// one-to-one conversion of an IData document to another IData document; calls the given 
+// translation service, passing the document as an input, and emitting
+// the translated document as output; the translation service must accept a single IData
+// document and return a single IData document
+tundra.document:translate($document, $service, $pipeline, $service.input, $service.output);
 
 // converts all String elements in the given IData document to lower case
 tundra.document.value:lowercase($document, $recurse?);
@@ -453,6 +459,24 @@ tundra.id:generate();
 
 Services for manipulating lists:
 
+##### Content
+
+```java
+// converts an IData[] document list to a list of XML or flat file strings, bytes, or 
+// input streams
+tundra.list.content:emit($documents[], $encoding, $schema, $mode);
+
+// many-to-one conversion of XML or flat file content to another format; calls the given 
+// joining service, passing the parsed list of contents as an input, and emitting the joined 
+// content as output; the splitting service must accept an IData[] document list, and return 
+// a single IData document
+tundra.list.content.join($contents[], $service, $pipeline, $encoding.input, $encoding.output, $schema.input, $schema.output, $service.input, $service.output, $mode.output);
+
+// parses a list of XML and flat file content (specified as a list of strings, bytes, or 
+// input streams) into an IData[] document list
+tundra.list.content:parse($contents[], $encoding, $schema);
+```
+
 ##### Datetime List
 
 ```java
@@ -499,6 +523,12 @@ tundra.list.document:include($list[], $item);
 // returns a new list with the given item inserted at the desired index in 
 // the given list
 tundra.list.document:insert($list[], $item, $index);
+
+// many-to-one conversion of an IData[] document list to an IData document; calls the given 
+// joining service, passing the list of documents as an input, and emitting the joined 
+// document as output; the splitting service must accept an IData[] document list, and return 
+// a single IData document
+tundra.list.document.join($documents[], $service, $pipeline, $service.input, $service.output);
 
 // converts all keys in each IData item in the given list to lower case
 tundra.list.document.key:lowercase($list[], $recurse?);

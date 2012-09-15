@@ -5,7 +5,7 @@
 
   <!-- nodes -->
 
-<INVOKE TIMEOUT="" SERVICE="tundra.content:parse" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+<INVOKE TIMEOUT="" SERVICE="tundra.list.content:parse" VALIDATE-IN="$none" VALIDATE-OUT="$none">
   <COMMENT></COMMENT>
 
   <!-- nodes -->
@@ -29,12 +29,14 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="field_name">$content</value>
+        <value name="field_name">$contents</value>
         <value name="field_type">object</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">false</value>
+        <value name="field_dim">1</value>
+        <value name="field_opt">true</value>
+        <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
+        <value name="is_soap_array_encoding_used">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
@@ -112,12 +114,14 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="field_name">$content</value>
+        <value name="field_name">$contents</value>
         <value name="field_type">object</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">false</value>
+        <value name="field_dim">1</value>
+        <value name="field_opt">true</value>
+        <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
+        <value name="is_soap_array_encoding_used">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
@@ -256,7 +260,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="field_name">$service.input</value>
+        <value name="field_name">$content.input</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="field_opt">true</value>
@@ -283,7 +287,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="field_name">$service.output</value>
+        <value name="field_name">$content.output</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="field_opt">true</value>
@@ -386,9 +390,6 @@
 <MAPCOPY NAME="Link" FROM="/$schema.input;1;0" TO="/$schema;1;0">
 </MAPCOPY>
 
-<MAPCOPY NAME="Link" FROM="/$content;3;0" TO="/$content;3;0">
-</MAPCOPY>
-
 <MAPDELETE NAME="Dropper" FIELD="/$encoding.input;1;0">
 </MAPDELETE>
 
@@ -415,12 +416,14 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="field_name">$content</value>
+        <value name="field_name">$contents</value>
         <value name="field_type">object</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">false</value>
+        <value name="field_dim">1</value>
+        <value name="field_opt">true</value>
+        <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
+        <value name="is_soap_array_encoding_used">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
@@ -534,7 +537,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="field_name">$service.input</value>
+        <value name="field_name">$content.input</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="field_opt">true</value>
@@ -561,7 +564,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="field_name">$service.output</value>
+        <value name="field_name">$content.output</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="field_opt">true</value>
@@ -658,12 +661,14 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="field_name">$document</value>
+        <value name="field_name">$documents</value>
         <value name="field_type">record</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">false</value>
+        <value name="field_dim">1</value>
+        <value name="field_opt">true</value>
+        <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
+        <value name="is_soap_array_encoding_used">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
       </record>
@@ -682,22 +687,6 @@
     <value name="form_qualified">false</value>
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">record</value>
-        <value name="node_comment"></value>
-        <record name="node_hints" javaclass="com.wm.util.Values">
-          <value name="field_largerEditor">false</value>
-          <value name="field_password">false</value>
-        </record>
-        <value name="field_name">$document</value>
-        <value name="field_type">record</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">false</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-        <array name="rec_fields" type="record" depth="1">
-        </array>
-      </record>
     </array>
   </record>
 </Values>
@@ -705,21 +694,18 @@
 
   <!-- nodes -->
 
-<MAPDELETE NAME="Dropper" FIELD="/$schema;1;0">
+<MAPDELETE NAME="Dropper" FIELD="/$contents;3;1">
 </MAPDELETE>
 
 <MAPDELETE NAME="Dropper" FIELD="/$encoding;1;0">
 </MAPDELETE>
 
-<MAPDELETE NAME="Dropper" FIELD="/$content;3;0">
+<MAPDELETE NAME="Dropper" FIELD="/$schema;1;0">
 </MAPDELETE>
-
-<MAPCOPY NAME="Link" FROM="/$document;2;0" TO="/$document;2;0">
-</MAPCOPY>
 </MAP>
 </INVOKE>
 
-<INVOKE TIMEOUT="" SERVICE="tundra.document:translate" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+<INVOKE TIMEOUT="" SERVICE="tundra.list.document:join" VALIDATE-IN="$none" VALIDATE-OUT="$none">
   <COMMENT></COMMENT>
 
   <!-- nodes -->
@@ -743,12 +729,14 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="field_name">$document</value>
+        <value name="field_name">$documents</value>
         <value name="field_type">record</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">false</value>
+        <value name="field_dim">1</value>
+        <value name="field_opt">true</value>
+        <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
+        <value name="is_soap_array_encoding_used">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
       </record>
@@ -818,7 +806,7 @@
             </record>
           </array>
         </record>
-        <value name="nillable">true</value>
+        <value name="nillable">false</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
       </record>
@@ -845,7 +833,7 @@
             </record>
           </array>
         </record>
-        <value name="nillable">true</value>
+        <value name="nillable">false</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
       </record>
@@ -1082,12 +1070,14 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="field_name">$document</value>
+        <value name="field_name">$documents</value>
         <value name="field_type">record</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">false</value>
+        <value name="field_dim">1</value>
+        <value name="field_opt">true</value>
+        <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
+        <value name="is_soap_array_encoding_used">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
       </record>
@@ -1104,13 +1094,13 @@
 <MAPCOPY NAME="Link" FROM="/$pipeline;2;0" TO="/$pipeline;2;0">
 </MAPCOPY>
 
+<MAPCOPY NAME="Link" FROM="/$documents;2;1" TO="/$documents;2;1">
+</MAPCOPY>
+
 <MAPCOPY NAME="Link" FROM="/$service.input;1;0" TO="/$service.input;1;0">
 </MAPCOPY>
 
 <MAPCOPY NAME="Link" FROM="/$service.output;1;0" TO="/$service.output;1;0">
-</MAPCOPY>
-
-<MAPCOPY NAME="Link" FROM="/$document;2;0" TO="/$document;2;0">
 </MAPCOPY>
 </MAP>
 
@@ -1344,12 +1334,14 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="field_name">$document</value>
+        <value name="field_name">$documents</value>
         <value name="field_type">record</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">false</value>
+        <value name="field_dim">1</value>
+        <value name="field_opt">true</value>
+        <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
+        <value name="is_soap_array_encoding_used">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
       </record>
@@ -1360,10 +1352,11 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="field_name">$translation</value>
+        <value name="field_name">$document</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
-        <value name="nillable">false</value>
+        <value name="field_opt">true</value>
+        <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
@@ -1384,22 +1377,6 @@
     <value name="form_qualified">false</value>
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">record</value>
-        <value name="node_comment"></value>
-        <record name="node_hints" javaclass="com.wm.util.Values">
-          <value name="field_largerEditor">false</value>
-          <value name="field_password">false</value>
-        </record>
-        <value name="field_name">$translation</value>
-        <value name="field_type">record</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">false</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-        <array name="rec_fields" type="record" depth="1">
-        </array>
-      </record>
     </array>
   </record>
 </Values>
@@ -1407,13 +1384,7 @@
 
   <!-- nodes -->
 
-<MAPDELETE NAME="Dropper" FIELD="/$document;2;0">
-</MAPDELETE>
-
 <MAPDELETE NAME="Dropper" FIELD="/$service;1;0">
-</MAPDELETE>
-
-<MAPDELETE NAME="Dropper" FIELD="/$pipeline;2;0">
 </MAPDELETE>
 
 <MAPDELETE NAME="Dropper" FIELD="/$service.input;1;0">
@@ -1422,8 +1393,11 @@
 <MAPDELETE NAME="Dropper" FIELD="/$service.output;1;0">
 </MAPDELETE>
 
-<MAPCOPY NAME="Link" FROM="/$translation;2;0" TO="/$translation;2;0">
-</MAPCOPY>
+<MAPDELETE NAME="Dropper" FIELD="/$pipeline;2;0">
+</MAPDELETE>
+
+<MAPDELETE NAME="Dropper" FIELD="/$documents;2;1">
+</MAPDELETE>
 </MAP>
 </INVOKE>
 
@@ -1454,7 +1428,8 @@
         <value name="field_name">$document</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
-        <value name="nillable">false</value>
+        <value name="field_opt">true</value>
+        <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
@@ -1721,10 +1696,11 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="field_name">$translation</value>
+        <value name="field_name">$document</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
-        <value name="nillable">false</value>
+        <value name="field_opt">true</value>
+        <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
@@ -1740,26 +1716,14 @@
 <MAPCOPY NAME="Link" FROM="/$mode.output;1;0" TO="/$mode;1;0">
 </MAPCOPY>
 
-<MAPCOPY NAME="Link" FROM="/$encoding.output;1;0" TO="/$encoding;1;0">
-</MAPCOPY>
-
 <MAPCOPY NAME="Link" FROM="/$schema.output;1;0" TO="/$schema;1;0">
 </MAPCOPY>
 
-<MAPCOPY NAME="Link" FROM="/$translation;2;0" TO="/$document;2;0">
+<MAPCOPY NAME="Link" FROM="/$encoding.output;1;0" TO="/$encoding;1;0">
 </MAPCOPY>
 
-<MAPDELETE NAME="Dropper" FIELD="/$translation;2;0">
-</MAPDELETE>
-
-<MAPDELETE NAME="Dropper" FIELD="/$encoding.output;1;0">
-</MAPDELETE>
-
-<MAPDELETE NAME="Dropper" FIELD="/$schema.output;1;0">
-</MAPDELETE>
-
-<MAPDELETE NAME="Dropper" FIELD="/$mode.output;1;0">
-</MAPDELETE>
+<MAPCOPY NAME="Link" FROM="/$document;2;0" TO="/$document;2;0">
+</MAPCOPY>
 </MAP>
 
 <MAP MODE="OUTPUT">
@@ -1776,14 +1740,19 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
-        <value name="field_name">$document</value>
-        <value name="field_type">record</value>
+        <value name="node_comment"></value>
+        <record name="node_hints" javaclass="com.wm.util.Values">
+          <null name="field_usereditable"/>
+          <value name="field_largerEditor">false</value>
+          <value name="field_password">false</value>
+        </record>
+        <value name="field_name">$encoding.output</value>
+        <value name="field_type">string</value>
         <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
-        <array name="rec_fields" type="record" depth="1">
-        </array>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
@@ -1816,13 +1785,97 @@
         <value name="node_type">record</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
+          <null name="field_usereditable"/>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="field_name">$content</value>
-        <value name="field_type">object</value>
+        <value name="field_name">$schema.output</value>
+        <value name="field_type">string</value>
         <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
+        <record name="field_content_type" javaclass="com.wm.util.Values">
+          <value name="contentType">1</value>
+          <value name="internalType">reference</value>
+          <value name="dataTypeVersion">dtVersion2</value>
+          <array name="targetNames" type="record" depth="1">
+            <record javaclass="com.wm.util.Values">
+              <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+              <value name="ncName">string</value>
+            </record>
+          </array>
+        </record>
         <value name="nillable">false</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="node_comment"></value>
+        <record name="node_hints" javaclass="com.wm.util.Values">
+          <value name="field_usereditable">false</value>
+          <value name="field_largerEditor">false</value>
+          <value name="field_password">false</value>
+        </record>
+        <value name="field_name">$mode.output</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
+        <array name="field_options" type="value" depth="1">
+          <value>stream</value>
+          <value>bytes</value>
+          <value>string</value>
+        </array>
+        <record name="field_content_type" javaclass="com.wm.util.Values">
+          <array name="enumeration" type="record" depth="1">
+            <record javaclass="com.wm.util.Values">
+              <value name="primitiveType">0</value>
+              <value name="lexRep">stream</value>
+              <value name="isList">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="primitiveType">0</value>
+              <value name="lexRep">bytes</value>
+              <value name="isList">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="primitiveType">0</value>
+              <value name="lexRep">string</value>
+              <value name="isList">false</value>
+            </record>
+          </array>
+          <value name="contentType">1</value>
+          <value name="internalType">instance</value>
+          <value name="ct_class">com.wm.lang.schema.datatypev2.WmString</value>
+          <value name="name">string_customized</value>
+          <array name="parent-ancestors" type="record" depth="1">
+            <record javaclass="com.wm.util.Values">
+              <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+              <value name="ncName">anySimpleType</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+              <value name="ncName">anyType</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+              <value name="ncName">string</value>
+            </record>
+          </array>
+          <record name="baseType" javaclass="com.wm.util.Values">
+            <record name="whiteSpace" javaclass="com.wm.util.Values">
+              <record name="FacetWSCValue" javaclass="com.wm.util.Values">
+                <value name="cDecimalValue">3</value>
+              </record>
+              <value name="facetFixed">false</value>
+            </record>
+            <value name="contentType">1</value>
+            <value name="internalType">instance</value>
+            <value name="ct_class">com.wm.lang.schema.datatypev2.WmString</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+          </record>
+          <value name="dataTypeVersion">dtVersion2</value>
+        </record>
+        <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
       </record>
@@ -1833,10 +1886,28 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="field_name">$translation</value>
+        <value name="field_name">$document</value>
+        <value name="field_type">record</value>
+        <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+        <array name="rec_fields" type="record" depth="1">
+        </array>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="node_comment"></value>
+        <record name="node_hints" javaclass="com.wm.util.Values">
+          <value name="field_largerEditor">false</value>
+          <value name="field_password">false</value>
+        </record>
+        <value name="field_name">$content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
-        <value name="nillable">false</value>
+        <value name="field_opt">true</value>
+        <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
       </record>
@@ -1855,20 +1926,6 @@
     <value name="form_qualified">false</value>
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">record</value>
-        <value name="node_comment"></value>
-        <record name="node_hints" javaclass="com.wm.util.Values">
-          <value name="field_largerEditor">false</value>
-          <value name="field_password">false</value>
-        </record>
-        <value name="field_name">$content</value>
-        <value name="field_type">object</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">false</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
     </array>
   </record>
 </Values>
@@ -1888,10 +1945,13 @@
 <MAPDELETE NAME="Dropper" FIELD="/$mode;1;0">
 </MAPDELETE>
 
-<MAPCOPY NAME="Link" FROM="/$content;3;0" TO="/$translation;3;0">
-</MAPCOPY>
+<MAPDELETE NAME="Dropper" FIELD="/$encoding.output;1;0">
+</MAPDELETE>
 
-<MAPDELETE NAME="Dropper" FIELD="/$content;3;0">
+<MAPDELETE NAME="Dropper" FIELD="/$schema.output;1;0">
+</MAPDELETE>
+
+<MAPDELETE NAME="Dropper" FIELD="/$mode.output;1;0">
 </MAPDELETE>
 </MAP>
 </INVOKE>
