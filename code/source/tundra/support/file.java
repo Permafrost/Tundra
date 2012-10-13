@@ -1,8 +1,8 @@
 package tundra.support;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-14 16:27:49.171
-// -----( ON-HOST: 172.16.70.129
+// -----( CREATED: 2012-10-13 10:14:43 EST
+// -----( ON-HOST: 172.16.189.130
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -47,6 +47,14 @@ public final class file
 	    if (filename.toLowerCase().startsWith("file:")) {
 	      try {
 	        file = new java.io.File(new java.net.URI(filename));
+	      } catch(java.lang.IllegalArgumentException ex) {
+	        // work around java's weird handling of file://server/path style URIs on Windows, by changing the URI
+	        // to be file:////server/path
+	        if (filename.toLowerCase().startsWith("file://") && !filename.toLowerCase().startsWith("file:///")) {
+	          file = construct("file:////" + filename.substring(6, filename.length()));
+	        } else {
+	          tundra.exception.raise(ex);
+	        }
 	      } catch(java.net.URISyntaxException ex) {
 	        tundra.exception.raise(ex);
 	      }
@@ -61,7 +69,7 @@ public final class file
 	public static String normalize(java.io.File file) throws ServiceException {
 	  String normalize = null;
 	  try {
-	    if (file != null) normalize = file.getCanonicalFile().toURI().toString();
+	    if (file != null) normalize = tundra.uri.normalize(file.getCanonicalFile().toURI().toString());
 	  } catch (java.io.IOException ex) {
 	    tundra.exception.raise(ex);
 	  }
