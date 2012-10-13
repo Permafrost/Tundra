@@ -958,6 +958,127 @@ tundra.string:trim($string);
 tundra.string:uppercase($string, $locale);
 ```
 
+#### URI
+
+Services for manipulating parsing and emitting Uniform Resource Identifier (URI) strings.
+
+```java
+// Decodes a URL-encoded (application/x-www-form-urlencoded) string.
+//
+// The following rules are applied in the conversion:
+//  - The alphanumeric characters "a" through "z", "A" through "Z" and "0" 
+//    through "9" remain the same.
+//  - The special characters ".", "-", "*", and "_" remain the same
+//  - The plus sign "+" is converted into a space character " ".
+//  - A sequence of the form "%xy" will be treated as representing a byte 
+//    where xy is the two-digit hexadecimal representation of the 8 bits. Then, 
+//    all substrings that contain one or more of these byte sequences.
+//    consecutively will be replaced by the character(s) whose encoding would 
+//    result in those consecutive bytes. The encoding scheme used to decode 
+//    these characters may be specified, or if unspecified, the default 
+//    encoding of the platform will be used.
+//
+// Refer: <http://docs.oracle.com/javase/6/docs/api/java/net/URLDecoder.html>.
+tundra.uri:decode($string);
+
+// Emits a Uniform Resource Identifier (URI) string, according to RFC 2396 
+// <http://www.ietf.org/rfc/rfc2396.txt>, given its constituent parts.
+// 
+// URIs can be categorized as either hierarchical, where the scheme and body 
+// parts are separated by the character sequence '://', or opaque, where the scheme 
+// and body parts are separated by a ':' character.
+// 
+// Examples of hierarchical URIs:
+//   - http://example.com/
+//   - ftp://example.com/path/file.txt
+// 
+// Examples of opaque URIs:
+//   - mailto:john.doe@example.com
+//   - news:comp.lang.java
+//   - urn:isbn:096139210x
+// 
+// Opaque URIs are constructed according to the following syntax:
+// 
+//   [scheme:]body[?query][#fragment] 
+// 
+// Where square brackets [...] delineate optional components and the characters ':',
+// '?', and '#' stand for themselves.
+// 
+// Hierarchical URIs are constructed according to the following syntax:
+// 
+//   [scheme:][//authority][path][?query][#fragment]
+// 
+// Where the characters ':', '/', '?', and '#' stand for themselves. The authority
+// component, if specified, can be either server-based or registry-based. If server-
+// based, it is constructed according to the syntax:
+// 
+//   [user:password@]host[:port]
+// 
+// refer: <http://docs.oracle.com/javase/6/docs/api/java/net/URI.html>.
+tundra.uri:emit($uri);
+
+// URL encodes (application/x-www-form-urlencoded) a string.
+//
+// The following rules are applied in the conversion:
+//   - The alphanumeric characters "a" through "z", "A" through "Z" and "0" 
+//     through "9" remain the same.
+//   - The special characters ".", "-", "*", and "_" remain the same.
+//   - The space character " " is converted into a plus sign "+".
+//   - All other characters are unsafe and are first converted into one or 
+//     more bytes using some encoding scheme. Then each byte is represented 
+//     by the 3-character string "%xy", where xy is the two-digit hexadecimal 
+//     representation of the byte. The recommended encoding scheme to use is 
+//     UTF-8. However, for compatibility reasons, if an encoding is not 
+//     specified, then the default encoding of the platform is used.
+// 
+// Refer: <http://docs.oracle.com/javase/6/docs/api/java/net/URLEncoder.html>.
+tundra.uri:encode($string);
+
+// Parses a Uniform Resource Identifier (URI) string, according to RFC 2396 
+// <http://www.ietf.org/rfc/rfc2396.txt>, to its constituent parts.  
+// 
+// URIs can be categorized as either hierarchical, where the scheme and body 
+// parts are separated by the character sequence '://', or opaque, where the scheme 
+// and body parts are separated by a ':' character.
+// 
+// Examples of hierarchical URIs:
+//   - http://example.com/
+//   - ftp://example.com/path/file.txt
+// 
+// Examples of opaque URIs:
+//   - mailto:john.doe@example.com
+//   - news:comp.lang.java
+//   - urn:isbn:096139210x
+// 
+// URIs are constructed from the following parts:
+// 
+//   [scheme:]body[?query][#fragment] 
+// 
+// Where square brackets [...] delineate optional components and the characters ':' 
+// and '#' stand for themselves.
+// 
+// Hierarchical URI bodies are subject to further parsing according to the following
+// syntax:
+// 
+//   [scheme:][//authority][path][file][?query][#fragment]
+// 
+// Where the characters ':', '/', '?', and '#' stand for themselves. The authority
+// component, if specified, can be either server-based or registry-based. If server-
+// based, it can be further parsed according to the syntax:
+// 
+//   [user:password@]host[:port]
+// 
+// Where the characters '@' and ':' stand for themselves.
+// 
+// Opaque URI bodies are not subject to further parsing, however, to accomodate 
+// the mailto: URI's use of a query string for additional data (such as cc, bcc, 
+// subject, and body), this service checks if the body contains a query string and, 
+// if so, parses the query string also.
+// 
+// Refer: <http://docs.oracle.com/javase/6/docs/api/java/net/URI.html>
+tundra.uri.parse($string);
+````
+
 ## Contributions
 
 1. Check out the latest master to make sure the feature hasn't been implemented 
