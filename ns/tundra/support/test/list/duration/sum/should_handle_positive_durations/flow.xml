@@ -5,7 +5,7 @@
 
   <!-- nodes -->
 
-<INVOKE TIMEOUT="" SERVICE="tundra.duration:sum" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+<INVOKE TIMEOUT="" SERVICE="tundra.list.duration:sum" VALIDATE-IN="$none" VALIDATE-OUT="$none">
   <COMMENT></COMMENT>
 
   <!-- nodes -->
@@ -29,7 +29,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="field_name">$durations</value>
+        <value name="field_name">$list</value>
         <value name="field_type">string</value>
         <value name="field_dim">1</value>
         <value name="field_opt">true</value>
@@ -71,15 +71,16 @@
 
   <!-- nodes -->
 
-<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$durations;1;1">
+<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$list;1;1">
   <DATA ENCODING="XMLValues" I18N="true">
 
 <Values version="2.0">
   <array name="xml" type="value" depth="1">
-    <value>-P1D</value>
-    <value>-P2D</value>
-    <value>-PT1H</value>
-    <value>-PT2H</value>
+    <value>P1D</value>
+    <value>P2D</value>
+    <value>PT1H</value>
+    <value>PT2H</value>
+    <value>P1Y10M5D</value>
   </array>
   <record name="type" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
@@ -88,7 +89,7 @@
       <value name="field_largerEditor">false</value>
       <value name="field_password">false</value>
     </record>
-    <value name="field_name">$durations</value>
+    <value name="field_name">$list</value>
     <value name="field_type">string</value>
     <value name="field_dim">1</value>
     <value name="field_opt">true</value>
@@ -127,7 +128,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="field_name">$durations</value>
+        <value name="field_name">$list</value>
         <value name="field_type">string</value>
         <value name="field_dim">1</value>
         <value name="nillable">true</value>
@@ -183,7 +184,7 @@
 
   <!-- nodes -->
 
-<MAPDELETE NAME="Dropper" FIELD="/$durations;1;1">
+<MAPDELETE NAME="Dropper" FIELD="/$list;1;1">
 </MAPDELETE>
 </MAP>
 </INVOKE>
@@ -314,7 +315,7 @@
   <DATA ENCODING="XMLValues" I18N="true">
 
 <Values version="2.0">
-  <value name="xml">-P3DT3H</value>
+  <value name="xml">P1Y10M8DT3H</value>
   <record name="type" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
     <value name="node_comment"></value>
