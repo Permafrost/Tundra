@@ -172,7 +172,6 @@ Services for manipulating arbitrary textual content, such as XML or CSV content:
 //  - file: writes the given content to the file specified by the destination URI.  The
 //          following additional options can be provided via the $pipeline document:
 //            - $mode: append / write
-//            - $encoding: charset name
 //
 // additional delivery protocols can be implemented by creating a service named for the
 // URI scheme in the folder tundra.support.content.deliver; services in this folder should
@@ -254,7 +253,6 @@ tundra.document:copy($document, $key.source, $key.target);
 //  - file: writes the given content to the file specified by the destination URI.  The
 //          following additional options can be provided via the $pipeline document:
 //            - $mode: append / write
-//            - $encoding: charset name
 //
 // additional delivery protocols can be implemented by creating a service named for the
 // URI scheme in the folder tundra.support.content.deliver; services in this folder should
