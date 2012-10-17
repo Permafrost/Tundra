@@ -166,6 +166,23 @@ tundra.bytes:normalize($object, $encoding);
 Services for manipulating arbitrary textual content, such as XML or CSV content:
 
 ```java
+// delivers arbitrary content (string, bytes, or input stream) to the given destination URI
+//
+// supports the following delivery protocols / URI schemes:
+//  - file: writes the given content to the file specified by the destination URI.  The
+//          following additional options can be provided via the $pipeline document:
+//            - $mode: append / write
+//            - $encoding: charset name
+//
+// additional delivery protocols can be implemented by creating a service named for the
+// URI scheme in the folder tundra.support.content.deliver; services in this folder should
+// implement the tundra.support.content.deliver.protocol:handler specification
+//
+// an optional response stream may be returned by specific delivery protocols, for example, an
+// http delivery returns the http response as a stream, which is useful for logging, however a
+// file delivery returns no such response as none exists
+tundra.content:deliver($content, $encoding, $destination, $pipeline);
+
 // converts an IData document to an XML or flat file string, byte array, or 
 // input stream
 tundra.content:emit($document, $encoding, $schema, $mode);
@@ -230,6 +247,23 @@ tundra.document:compact($document);
 // copies the value associated with the source key to the target key in the given IData document
 // keys can be simple or fully qualified, such as a/b/c[0]/d
 tundra.document:copy($document, $key.source, $key.target);
+
+// delivers a document to the given destination URI
+//
+// supports the following delivery protocols / URI schemes:
+//  - file: writes the given content to the file specified by the destination URI.  The
+//          following additional options can be provided via the $pipeline document:
+//            - $mode: append / write
+//            - $encoding: charset name
+//
+// additional delivery protocols can be implemented by creating a service named for the
+// URI scheme in the folder tundra.support.content.deliver; services in this folder should
+// implement the tundra.support.content.deliver.protocol:handler specification
+//
+// an optional response stream may be returned by specific delivery protocols, for example, an
+// http delivery returns the http response as a stream, which is useful for logging, however a
+// file delivery returns no such response as none exists
+tundra.document:deliver($document, $encoding, $schema, $destination, $pipeline);
 
 // removes the element with the given key from the given IData document
 // keys can be simple or fully qualified, such as a/b/c[0]/d
