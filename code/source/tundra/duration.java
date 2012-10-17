@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-29 17:47:43.401
-// -----( ON-HOST: 172.16.70.129
+// -----( CREATED: 2012-10-16 10:18:27.112
+// -----( ON-HOST: TNFDEVWAP103.test.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -121,6 +121,56 @@ public final class duration
 
 
 
+	public static final void multiply (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(multiply)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $duration
+		// [i] field:0:optional $datetime
+		// [i] field:0:optional $factor
+		// [o] field:0:optional $duration
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String duration = IDataUtil.getString(cursor, "$duration");
+		  String datetime = IDataUtil.getString(cursor, "$datetime");
+		  String factor = IDataUtil.getString(cursor, "$factor");
+		  IDataUtil.put(cursor, "$duration", multiply(duration, factor, datetime));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void negate (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(negate)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $duration
+		// [o] field:0:optional $duration
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String duration = IDataUtil.getString(cursor, "$duration");
+		  IDataUtil.put(cursor, "$duration", negate(duration));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void subtract (IData pipeline)
         throws ServiceException
 	{
@@ -136,29 +186,6 @@ public final class duration
 		  String x = IDataUtil.getString(cursor, "$duration.x");
 		  String y = IDataUtil.getString(cursor, "$duration.y");
 		  IDataUtil.put(cursor, "$duration", subtract(x, y));
-		} finally {
-		  cursor.destroy();
-		}
-		// --- <<IS-END>> ---
-
-                
-	}
-
-
-
-	public static final void sum (IData pipeline)
-        throws ServiceException
-	{
-		// --- <<IS-START(sum)>> ---
-		// @subtype unknown
-		// @sigtype java 3.5
-		// [i] field:1:optional $durations
-		// [o] field:0:required $duration
-		IDataCursor cursor = pipeline.getCursor();
-		
-		try {
-		  String[] durations = IDataUtil.getStringArray(cursor, "$durations");
-		  IDataUtil.put(cursor, "$duration", add(durations));
 		} finally {
 		  cursor.destroy();
 		}
@@ -323,6 +350,26 @@ public final class duration
 	  }
 	  
 	  return output;
+	}
+	
+	// computes a new duration by multiplying the given duration by the given factor
+	public static String multiply(String duration, String factor, String datetime) {
+	  if (duration == null || factor == null) return duration;
+	
+	  java.util.Calendar instant = null;
+	  if (datetime == null) {
+	    instant = java.util.Calendar.getInstance();
+	  } else {
+	    instant = javax.xml.bind.DatatypeConverter.parseDateTime(datetime);  
+	  }
+	
+	  return emit(parse(duration).normalizeWith(instant).multiply(new java.math.BigDecimal(factor)));
+	}
+	
+	// reverses the sign of the given duration
+	public static String negate(String duration) {
+	  if (duration == null) return null;
+	  return emit(parse(duration).negate());
 	}
 	// --- <<IS-END-SHARED>> ---
 }

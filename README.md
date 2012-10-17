@@ -410,11 +410,16 @@ tundra.duration:compare($duration.x, $duration.y);
 // number of days in a month varies)
 tundra.duration:format($duration, $datetime, $pattern.input, $pattern.output);
 
+// multiplies the given duration by the given factor (a start instant, $datetime,
+// may be required when multiplying fields with indeterminate values, such as 
+// months, because the number of days in a month varies)
+tundra.duration:multiply($duration, $datetime, $factor);
+
+// reverses the sign of the given duration
+tundra.duration:negate($duration)
+
 // subtracts one duration from another
 tundra.duration:subtract($duration.x, $duration.y);
-
-// returns the sum of all the given durations, returning (x1 + x2 + ... + xn)
-tundra.duration:sum($durations[]);
 ```
 
 #### Exception
@@ -635,6 +640,9 @@ tundra.list.document.value:uppercase($list[], $recurse?);
 // indeterminate values, such as converting months to days, because the 
 // number of days in a month varies)
 tundra.list.duration:format($list[], $datetime, $pattern.input, $pattern.output);
+
+// returns the sum of all the given durations, returning (x1 + x2 + ... + xn)
+tundra.duration:sum($durations[]);
 ```
 
 ##### Object List
@@ -994,7 +1002,7 @@ tundra.string:uppercase($string, $locale);
 
 #### URI
 
-Services for manipulating parsing and emitting Uniform Resource Identifier (URI) strings.
+Services for parsing and emitting Uniform Resource Identifier (URI) strings.
 
 ```java
 // Decodes a URL-encoded (application/x-www-form-urlencoded) string.
