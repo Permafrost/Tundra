@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-06-24 19:28:33 EST
-// -----( ON-HOST: 172.16.70.129
+// -----( CREATED: 2012-10-20 20:19:14 EST
+// -----( ON-HOST: 172.16.189.132
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -88,16 +88,16 @@ public final class datetime
 		// --- <<IS-START(concatenate)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:required $date
-		// [i] field:0:required $time
-		// [o] field:0:required $datetime
+		// [i] field:0:optional $date
+		// [i] field:0:optional $time
+		// [o] field:0:optional $datetime
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String date = IDataUtil.getString(cursor, "$date");
 		  String time = IDataUtil.getString(cursor, "$time");
 		
-		  IDataUtil.put(cursor, "$datetime", concatenate(date, time));
+		  if (date != null && time != null) IDataUtil.put(cursor, "$datetime", concatenate(date, time));
 		} finally {
 		  cursor.destroy();
 		}
@@ -271,7 +271,7 @@ public final class datetime
 	
 	// concatenates a xml date and xml time together to form an xml datetime
 	public static String concatenate(String date, String time) {
-	  return emit(concatenate(parse(date, "date.xml"), parse(time, "time.xml")));
+	  return emit(concatenate(parse(date, "date"), parse(time, "time")));
 	}
 	
 	// adds two dates together
