@@ -613,6 +613,13 @@ tundra.list.document:sort($list[], $key);
 // with the associated (optionally scoped) value
 tundra.list.document:substitute($list[], $pipeline);
 
+// one-to-one conversion of a document list (IData[]) to another document list (IData[]);
+// calls the given translation service, passing each list item as an input, and collecting
+// the translated item as output;
+// the translation service must accept a single IData document and return a single 
+// IData document
+tundra.list.document:translate($list[], $service, $pipeline, $service.input, $service.output);
+
 // converts all String elements in each IData item in the given list to lower case
 tundra.list.document.value:lowercase($list[], $recurse?);
 
