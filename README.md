@@ -943,6 +943,18 @@ tundra.service:join($thread);
 tundra.service:sleep($duration);
 ```
 
+#### Session
+
+Services for storing and retrieving values in session state.
+
+```java
+// returns information about the current session, including values stored in state
+tundra.session:get();
+
+// stores the given key value pair in the current session's state
+tundra.session:put($key, $value);
+```
+
 #### Stream
 
 Services for manipulating java.io.InputStream and java.io.OutputStream objects:
