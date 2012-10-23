@@ -166,6 +166,22 @@ tundra.bytes:normalize($object, $encoding);
 Services for manipulating arbitrary textual content, such as XML or CSV content:
 
 ```java
+// delivers arbitrary content (string, bytes, or input stream) to the given destination URI
+//
+// supports the following delivery protocols / URI schemes:
+//  - file: writes the given content to the file specified by the destination URI.  The
+//          following additional options can be provided via the $pipeline document:
+//            - $mode: append / write
+//
+// additional delivery protocols can be implemented by creating a service named for the
+// URI scheme in the folder tundra.support.content.deliver; services in this folder should
+// implement the tundra.support.content.deliver.protocol:handler specification
+//
+// an optional response stream may be returned by specific delivery protocols, for example, an
+// http delivery returns the http response as a stream, which is useful for logging, however a
+// file delivery returns no such response as none exists
+tundra.content:deliver($content, $encoding, $destination, $pipeline);
+
 // converts an IData document to an XML or flat file string, byte array, or 
 // input stream
 tundra.content:emit($document, $encoding, $schema, $mode);
@@ -230,6 +246,22 @@ tundra.document:compact($document);
 // copies the value associated with the source key to the target key in the given IData document
 // keys can be simple or fully qualified, such as a/b/c[0]/d
 tundra.document:copy($document, $key.source, $key.target);
+
+// delivers a document to the given destination URI
+//
+// supports the following delivery protocols / URI schemes:
+//  - file: writes the given content to the file specified by the destination URI.  The
+//          following additional options can be provided via the $pipeline document:
+//            - $mode: append / write
+//
+// additional delivery protocols can be implemented by creating a service named for the
+// URI scheme in the folder tundra.support.content.deliver; services in this folder should
+// implement the tundra.support.content.deliver.protocol:handler specification
+//
+// an optional response stream may be returned by specific delivery protocols, for example, an
+// http delivery returns the http response as a stream, which is useful for logging, however a
+// file delivery returns no such response as none exists
+tundra.document:deliver($document, $encoding, $schema, $destination, $pipeline);
 
 // removes the element with the given key from the given IData document
 // keys can be simple or fully qualified, such as a/b/c[0]/d
@@ -357,6 +389,17 @@ tundra.directory:remove($directory, $recurse?);
 tundra.directory:rename($directory.source, $directory.target);
 ```
 
+#### DNS
+
+Services for resolving names in the domain name system (DNS).
+
+```java
+// looks up the given name in the Domain Name System (DNS), returning the
+// fully-qualifed domain name, host name, and IP address, if found;
+// refer: http://en.wikipedia.org/wiki/Domain_Name_System
+tundra.dns:resolve($name);
+```
+
 #### Duration
 
 Services for manipulating durations of time:
@@ -376,11 +419,16 @@ tundra.duration:compare($duration.x, $duration.y);
 // number of days in a month varies)
 tundra.duration:format($duration, $datetime, $pattern.input, $pattern.output);
 
+// multiplies the given duration by the given factor (a start instant, $datetime,
+// may be required when multiplying fields with indeterminate values, such as 
+// months, because the number of days in a month varies)
+tundra.duration:multiply($duration, $datetime, $factor);
+
+// reverses the sign of the given duration
+tundra.duration:negate($duration)
+
 // subtracts one duration from another
 tundra.duration:subtract($duration.x, $duration.y);
-
-// returns the sum of all the given durations, returning (x1 + x2 + ... + xn)
-tundra.duration:sum($durations[]);
 ```
 
 #### Exception
@@ -576,6 +624,13 @@ tundra.list.document:sort($list[], $key);
 // with the associated (optionally scoped) value
 tundra.list.document:substitute($list[], $pipeline);
 
+// one-to-one conversion of a document list (IData[]) to another document list (IData[]);
+// calls the given translation service, passing each list item as an input, and collecting
+// the translated item as output;
+// the translation service must accept a single IData document and return a single 
+// IData document
+tundra.list.document:translate($list[], $service, $pipeline, $service.input, $service.output);
+
 // converts all String elements in each IData item in the given list to lower case
 tundra.list.document.value:lowercase($list[], $recurse?);
 
@@ -601,6 +656,9 @@ tundra.list.document.value:uppercase($list[], $recurse?);
 // indeterminate values, such as converting months to days, because the 
 // number of days in a month varies)
 tundra.list.duration:format($list[], $datetime, $pattern.input, $pattern.output);
+
+// returns the sum of all the given durations, returning (x1 + x2 + ... + xn)
+tundra.duration:sum($durations[]);
 ```
 
 ##### Object List
@@ -896,6 +954,18 @@ tundra.service:join($thread);
 tundra.service:sleep($duration);
 ```
 
+#### Session
+
+Services for storing and retrieving values in session state.
+
+```java
+// returns information about the current session, including values stored in state
+tundra.session:get();
+
+// stores the given key value pair in the current session's state
+tundra.session:put($key, $value);
+```
+
 #### Stream
 
 Services for manipulating java.io.InputStream and java.io.OutputStream objects:
@@ -960,7 +1030,7 @@ tundra.string:uppercase($string, $locale);
 
 #### URI
 
-Services for manipulating parsing and emitting Uniform Resource Identifier (URI) strings.
+Services for parsing and emitting Uniform Resource Identifier (URI) strings.
 
 ```java
 // Decodes a URL-encoded (application/x-www-form-urlencoded) string.
