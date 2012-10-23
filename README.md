@@ -389,6 +389,17 @@ tundra.directory:remove($directory, $recurse?);
 tundra.directory:rename($directory.source, $directory.target);
 ```
 
+#### DNS
+
+Services for resolving names in the domain name system (DNS).
+
+```java
+// looks up the given name in the Domain Name System (DNS), returning the
+// fully-qualifed domain name, host name, and IP address, if found;
+// refer: http://en.wikipedia.org/wiki/Domain_Name_System
+tundra.dns:resolve($name);
+```
+
 #### Duration
 
 Services for manipulating durations of time:
