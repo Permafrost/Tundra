@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-10-23 19:54:01 EST
-// -----( ON-HOST: 172.16.189.132
+// -----( CREATED: 2012-10-30 09:24:43.204
+// -----( ON-HOST: TNFDEVWAP103.test.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -42,9 +42,9 @@ public final class dns
 		try {
 		  String name = IDataUtil.getString(cursor, "$name");
 		  java.net.InetAddress address = java.net.InetAddress.getByName(name);
-		  IDataUtil.put(cursor, "$domain", address.getCanonicalHostName());
-		  IDataUtil.put(cursor, "$host", address.getHostName());
-		  IDataUtil.put(cursor, "$ip", address.getHostAddress());
+		  IDataUtil.put(cursor, "$domain", address.getCanonicalHostName().toLowerCase());
+		  IDataUtil.put(cursor, "$host", address.getHostName().toLowerCase());
+		  IDataUtil.put(cursor, "$ip", address.getHostAddress().toLowerCase());
 		} catch (java.net.UnknownHostException ex) {
 		  tundra.exception.raise(ex);
 		} finally {
