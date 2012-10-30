@@ -152,6 +152,20 @@ tundra.assertion.string:equal($expected, $actual, $message);
 tundra.assertion.string:unequal($expected, $actual, $message);
 ```
 
+#### Base64
+
+Services for encoding and decoding base64 strings.
+
+```java
+// base64 decodes the given string, byte array, or input stream
+// refer: <http://en.wikipedia.org/wiki/Base64>
+tundra.base64:decode($base64, $encoding, $mode);
+
+// base64 encodes the given string, byte array, or input stream
+// refer: <http://en.wikipedia.org/wiki/Base64>
+tundra.base64:encode($object, $encoding, $mode);
+```
+
 #### Bytes
 
 Services for manipulating byte arrays:
