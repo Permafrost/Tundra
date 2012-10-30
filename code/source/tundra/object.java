@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-29 12:52:56.500
-// -----( ON-HOST: 172.16.70.129
+// -----( CREATED: 2012-10-30 10:52:08.351
+// -----( ON-HOST: TNFDEVWAP103.test.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -24,6 +24,36 @@ public final class object
 
 	// ---( server methods )---
 
+
+
+
+	public static final void convert (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(convert)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:0:optional $object
+		// [i] field:0:optional $encoding
+		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
+		// [o] object:0:optional $object
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  Object object = IDataUtil.get(cursor, "$object");
+		  String encoding = IDataUtil.getString(cursor, "$encoding");
+		  String mode = IDataUtil.getString(cursor, "$mode");
+		
+		  IDataUtil.put(cursor, "$object", convert(object, encoding, mode));
+		} catch(java.io.IOException ex) {
+		  tundra.exception.raise(ex);
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
 
 
 
@@ -183,6 +213,21 @@ public final class object
 	// returns true if the given object is an instance of the given class
 	public static boolean instance(Object object, Class klass) {
 	  return object != null && klass != null && klass.isInstance(object);
+	}
+	
+	// converts a string, byte array or stream to a string, byte array or stream
+	public static Object convert(Object object, String encoding, String mode) throws java.io.IOException {
+	  if (mode ==  null) mode = "stream";
+	
+	  if (mode.equals("bytes")) {
+	    object = tundra.bytes.normalize(object, encoding);
+	  } else if (mode.equals("string")) {
+	    object = tundra.string.normalize(object, encoding);
+	  } else {
+	    object = tundra.stream.normalize(object, encoding);
+	  }
+	
+	  return object;
 	}
 	// --- <<IS-END-SHARED>> ---
 }

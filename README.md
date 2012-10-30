@@ -868,6 +868,13 @@ tundra.node:type($node);
 Services for manipulating java.lang.Object objects:
 
 ```java
+// converts a string, byte array, or input stream object to a
+// string, byte array, or input stream object
+tundra.object:convert($object, $encoding, $mode);
+
+// returns true if the given objects are equal
+tundra.object:equal($object.x, $object.y);
+
 // returns true if object is an instance of given class
 tundra.object:instance($object, $class);
 
