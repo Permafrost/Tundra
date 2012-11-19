@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-10-30 09:24:43.204
+// -----( CREATED: 2012-11-19 10:29:17.529
 // -----( ON-HOST: TNFDEVWAP103.test.qr.com.au
 
 import com.wm.data.*;
@@ -27,13 +27,41 @@ public final class dns
 
 
 
+	public static final void localhost (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(localhost)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $name
+		// [o] field:0:required $domain
+		// [o] field:0:required $host
+		// [o] field:0:required $ip
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  java.net.InetAddress address = java.net.InetAddress.getLocalHost();
+		  IDataUtil.put(cursor, "$domain", address.getCanonicalHostName().toLowerCase());
+		  IDataUtil.put(cursor, "$host", address.getHostName().toLowerCase());
+		  IDataUtil.put(cursor, "$ip", address.getHostAddress().toLowerCase());
+		} catch (java.net.UnknownHostException ex) {
+		  tundra.exception.raise(ex);
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void resolve (IData pipeline)
         throws ServiceException
 	{
 		// --- <<IS-START(resolve)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:required $name
 		// [o] field:0:required $domain
 		// [o] field:0:required $host
 		// [o] field:0:required $ip

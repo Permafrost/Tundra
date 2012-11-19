@@ -408,6 +408,10 @@ tundra.directory:rename($directory.source, $directory.target);
 Services for resolving names in the domain name system (DNS).
 
 ```java
+// returns the fully-qualifed domain name, host name, and IP address for the
+// localhost
+tundra.dns:localhost();
+
 // looks up the given name in the Domain Name System (DNS), returning the
 // fully-qualifed domain name, host name, and IP address, if found;
 // refer: http://en.wikipedia.org/wiki/Domain_Name_System
