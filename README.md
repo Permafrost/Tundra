@@ -509,7 +509,8 @@ tundra.file:type($file);
 tundra.file:writable($file);
 
 // writes or appends data (provided as a string, byte array or input stream) 
-// to the given file
+// to the given file; if $file is null, a new temporary file is automatically
+// created
 tundra.file:write($file, $mode, $content, $encoding);
 ```
 
