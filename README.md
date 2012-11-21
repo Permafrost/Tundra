@@ -477,9 +477,9 @@ tundra.file:length($file);
 // returns the canonical file: URI that represents the given file
 tundra.file:normalize($file);
 
-// opens a file for reading, appending, or writing, and calls the given 
-// service passing the resulting $stream file stream object
-tundra.file:open($file, $mode, $service, $pipeline);
+// opens a file for reading, appending, or writing, calls the given service passing
+// the resulting $stream file stream object, and closes the stream when done
+tundra.file:process($file, $mode, $service, $pipeline);
 
 // reads a file in full, returning the content as either a byte array or 
 // string

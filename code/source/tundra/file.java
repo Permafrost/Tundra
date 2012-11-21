@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-11-21 09:45:09.107
+// -----( CREATED: 2012-11-21 15:20:02.468
 // -----( ON-HOST: TNFDEVWAP103.test.qr.com.au
 
 import com.wm.data.*;
@@ -139,16 +139,17 @@ public final class file
 
 
 
-	public static final void open (IData pipeline)
+	public static final void process (IData pipeline)
         throws ServiceException
 	{
-		// --- <<IS-START(open)>> ---
+		// --- <<IS-START(process)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $file
 		// [i] field:0:optional $mode {&quot;read&quot;,&quot;append&quot;,&quot;write&quot;}
 		// [i] field:0:required $service
 		// [i] record:0:optional $pipeline
+		// [o] record:0:optional $pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -156,8 +157,11 @@ public final class file
 		  String mode = IDataUtil.getString(cursor, "$mode");
 		  String service = IDataUtil.getString(cursor, "$service");
 		  IData scope = IDataUtil.getIData(cursor, "$pipeline");
+		  boolean scoped = scope != null;
 		
-		  open(file, mode, service, scope == null? pipeline : scope);
+		  scope = process(file, mode, service, scoped? scope : pipeline);
+		
+		  if (scoped) IDataUtil.put(cursor, "$pipeline", scope);
 		} finally {
 		  cursor.destroy();
 		}
@@ -538,8 +542,8 @@ public final class file
 	  return tundra.support.file.normalize(write(tundra.support.file.construct(filename), mode, content, encoding));
 	}
 	
-	// opens a file for reading, appending, or writing, and calls the given service with the resulting $stream
-	public static void open(java.io.File file, String mode, String service, IData pipeline) throws ServiceException {
+	// opens a file for reading, appending, or writing, and processes it by calling the given service with the resulting $stream
+	public static IData process(java.io.File file, String mode, String service, IData pipeline) throws ServiceException {
 	  if (file != null) {
 	    Object stream = null;
 	
@@ -555,7 +559,7 @@ public final class file
 	      IDataUtil.put(cursor, "$stream", stream);
 	      cursor.destroy();
 	
-	      tundra.service.invoke(service, pipeline);
+	      pipeline = tundra.service.invoke(service, pipeline);
 	    } catch (java.io.IOException ex) {
 	      tundra.exception.raise(ex);
 	    } finally {
@@ -566,11 +570,12 @@ public final class file
 	      cursor.destroy();
 	    }
 	  }
+	  return pipeline;
 	}
 	
-	// opens a file for reading, appending, or writing, and calls the given service with the resulting $stream
-	public static void open(String filename, String mode, String service, IData pipeline) throws ServiceException {
-	  open(tundra.support.file.construct(filename), mode, service, pipeline);
+	// opens a file for reading, appending, or writing, and processes it by calling the given service with the resulting $stream
+	public static IData process(String filename, String mode, String service, IData pipeline) throws ServiceException {
+	  return process(tundra.support.file.construct(filename), mode, service, pipeline);
 	}
 	// --- <<IS-END-SHARED>> ---
 }
