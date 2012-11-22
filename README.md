@@ -478,8 +478,9 @@ tundra.file:length($file);
 tundra.file:normalize($file);
 
 // opens a file for reading, appending, or writing, calls the given service passing
-// the resulting $stream file stream object, and closes the stream when done
-tundra.file:process($file, $mode, $service, $pipeline);
+// the resulting file stream object as an input argument, with the name specified by 
+// $service.input or '$stream' if not specified, and closes the stream when done
+tundra.file:process($file, $mode, $service, $pipeline, $service.input);
 
 // reads a file in full, returning the content as either a byte array or 
 // string
