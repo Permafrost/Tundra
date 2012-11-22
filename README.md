@@ -1175,6 +1175,17 @@ tundra.uri:encode($string);
 tundra.uri.parse($string);
 ````
 
+#### XML
+
+```java
+// validates the given string, byte array, or input stream as XML, optionally against 
+// an XML schema (XSD) also specified as a string, byte array or input stream; uses 
+// the Simple API for XML (SAX) algorithm for parsing which, as it is event-based, is 
+// not memory-constrained and can handle arbitrarily large documents when parsing from 
+// an input stream
+tundra.xml:validate($content, $schema, $raise?);
+```
+
 ## Contributions
 
 1. Check out the latest master to make sure the feature hasn't been implemented 
