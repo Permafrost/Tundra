@@ -173,6 +173,9 @@ Services for manipulating byte arrays:
 ```java
 // converts a string, byte array or input stream to a byte array
 tundra.bytes:normalize($object, $encoding);
+
+// returns the length of the given byte array
+tundra.bytes:length($bytes);
 ```
 
 #### Content

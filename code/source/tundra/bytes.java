@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-05-12 17:02:53 EST
-// -----( ON-HOST: 172.16.70.129
+// -----( CREATED: 2012-11-23 09:56:39.508
+// -----( ON-HOST: TNFDEVWAP103.test.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -24,6 +24,29 @@ public final class bytes
 
 	// ---( server methods )---
 
+
+
+
+	public static final void length (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(length)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:0:optional $bytes
+		// [o] field:0:required $length
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  byte[] bytes = (byte[])IDataUtil.get(cursor, "$bytes");
+		  IDataUtil.put(cursor, "$length", "" + length(bytes));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
 
 
 
@@ -54,6 +77,7 @@ public final class bytes
 	}
 
 	// --- <<IS-START-SHARED>> ---
+	// converts a string, bytes or input stream to bytes
 	public static byte[] normalize(Object object, String encoding) throws java.io.IOException {
 	  if (encoding == null) encoding = tundra.support.constant.DEFAULT_CHARACTER_ENCODING;
 	  
@@ -74,6 +98,13 @@ public final class bytes
 	  }
 	
 	  return bytes;
+	}
+	
+	// returns the length of the given byte array
+	public static int length(byte[] bytes) {
+	  int len = 0;
+	  if (bytes != null) len = bytes.length;
+	  return len;
 	}
 	// --- <<IS-END-SHARED>> ---
 }
