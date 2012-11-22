@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-10-30 13:20:10.131
+// -----( CREATED: 2012-11-22 15:13:55.617
 // -----( ON-HOST: TNFDEVWAP103.test.qr.com.au
 
 import com.wm.data.*;
@@ -36,7 +36,7 @@ public final class base64
 		// [i] object:0:optional $base64
 		// [i] field:0:optional $encoding
 		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
-		// [o] object:0:optional $object
+		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -44,7 +44,7 @@ public final class base64
 		  String encoding = IDataUtil.getString(cursor, "$encoding");
 		  String mode = IDataUtil.getString(cursor, "$mode");
 		
-		  IDataUtil.put(cursor, "$object", decode(input, encoding, mode));
+		  IDataUtil.put(cursor, "$content", decode(input, encoding, mode));
 		} catch(java.io.IOException ex) {
 		  tundra.exception.raise(ex);
 		} finally {
@@ -63,18 +63,18 @@ public final class base64
 		// --- <<IS-START(encode)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] object:0:optional $object
+		// [i] object:0:optional $content
 		// [i] field:0:optional $encoding
 		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
 		// [o] object:0:optional $base64
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  Object input = IDataUtil.get(cursor, "$object");
+		  Object content = IDataUtil.get(cursor, "$content");
 		  String encoding = IDataUtil.getString(cursor, "$encoding");
 		  String mode = IDataUtil.getString(cursor, "$mode");
 		
-		  IDataUtil.put(cursor, "$base64", encode(input, encoding, mode));
+		  IDataUtil.put(cursor, "$base64", encode(content, encoding, mode));
 		} catch(java.io.IOException ex) {
 		  tundra.exception.raise(ex);
 		} finally {

@@ -143,7 +143,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$object</value>
+          <value name="field_name">$content</value>
           <value name="field_type">object</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>

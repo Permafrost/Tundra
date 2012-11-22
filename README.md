@@ -163,7 +163,7 @@ tundra.base64:decode($base64, $encoding, $mode);
 
 // base64 encodes the given string, byte array, or input stream
 // refer: <http://en.wikipedia.org/wiki/Base64>
-tundra.base64:encode($object, $encoding, $mode);
+tundra.base64:encode($content, $encoding, $mode);
 ```
 
 #### Bytes
