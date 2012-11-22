@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-11-22 16:14:30.297
+// -----( CREATED: 2012-11-23 09:47:49.099
 // -----( ON-HOST: TNFDEVWAP103.test.qr.com.au
 
 import com.wm.data.*;
@@ -231,7 +231,7 @@ public final class file
 		// --- <<IS-START(remove)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:required $file
+		// [i] field:0:optional $file
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -454,7 +454,7 @@ public final class file
 	
 	// deletes a file
 	public static void remove(java.io.File file) throws ServiceException {
-	  if (exists(file) && !file.delete()) {
+	  if (file != null && exists(file) && !file.delete()) {
 	    tundra.exception.raise("Unable to remove file: " + tundra.support.file.normalize(file));
 	  }
 	}
