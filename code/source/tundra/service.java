@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-19 11:21:02.409
-// -----( ON-HOST: 172.16.70.129
+// -----( CREATED: 2012-11-23 15:47:36.205
+// -----( ON-HOST: TNFDEVWAP103.test.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -135,6 +135,19 @@ public final class service
 		} finally {
 		  cursor.destroy();
 		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void noop (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(noop)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
 		// --- <<IS-END>> ---
 
                 
