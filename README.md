@@ -938,6 +938,9 @@ tundra.pipeline:length();
 // writes the current pipeline to the server log
 tundra.pipeline:log($level);
 
+// merges the elements in the given IData document into the pipeline
+tundra.pipeline:merge($document);
+
 // iterates over each element in the pipeline, deconstructing all fully qualified 
 // keys (for example, 'a/b/c' or 'x/y[0]/z[1]') into their constituent parts
 tundra.pipeline:normalize();
