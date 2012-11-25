@@ -2,7 +2,7 @@ package tundra;
 
 // -----( IS Java Code Template v1.2
 // -----( CREATED: 2012-11-23 09:56:39.508
-// -----( ON-HOST: TNFDEVWAP103.test.qr.com.au
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
