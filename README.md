@@ -1127,7 +1127,6 @@ tundra.uri:emit($uri);
 //   - The alphanumeric characters "a" through "z", "A" through "Z" and "0" 
 //     through "9" remain the same.
 //   - The special characters ".", "-", "*", and "_" remain the same.
-//   - The space character " " is converted into a plus sign "+".
 //   - All other characters are unsafe and are first converted into one or 
 //     more bytes using some encoding scheme. Then each byte is represented 
 //     by the 3-character string "%xy", where xy is the two-digit hexadecimal 
