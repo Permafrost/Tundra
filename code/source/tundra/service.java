@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-19 11:21:02.409
-// -----( ON-HOST: 172.16.70.129
+// -----( CREATED: 2012-11-27 10:58:00.443
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -142,6 +142,40 @@ public final class service
 
 
 
+	public static final void noop (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(noop)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void self (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(self)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [o] field:0:optional $self
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  IDataUtil.put(cursor, "$self", self());
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void sleep (IData pipeline)
         throws ServiceException
 	{
@@ -164,7 +198,7 @@ public final class service
 
 	// --- <<IS-START-SHARED>> ---
 	// returns the invocation call stack
-	private static String[] callstack() {
+	public static String[] callstack() {
 	  java.util.Iterator stack = com.wm.app.b2b.server.InvokeState.getCurrentState().getCallStack().iterator();
 	  java.util.List<String> services = new java.util.ArrayList<String>();
 	  while (stack.hasNext()) {
@@ -173,6 +207,14 @@ public final class service
 	  // remove call to tundra.invoke:callstack from the stack
 	  if (services.size() > 0) services.remove(services.size() - 1);
 	  return (String[])services.toArray(new String[services.size()]);
+	}
+	
+	// returns the name of the current service
+	public static String self() {
+	  String self = null;
+	  String[] callstack = callstack();
+	  if (callstack.length > 0) self = tundra.list.object.get(callstack, -1); // last element in list
+	  return self;
 	}
 	
 	// invokes the given service synchronously

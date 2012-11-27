@@ -112,13 +112,7 @@
     </record>
   </record>
   <value name="node_comment">Returns whether the given object is an array, a primitive type or an array of a primitive type, and 
-its Java class name.
-
-Examples:
-  tundra.object:reflect(_object = null)       returns nothing
-  tundra.object:reflect(_object = byte array) returns _class = [B,                  _array? = true, _primitive = true
-  tundra.object:reflect(_object = ["a", "b"]) returns _class = [Ljava.lang.String;, _array = true,  _primitive = false
-  tundra.object:reflect(_object = "a")        returns _class = java.lang.String,    _array = false, _primitive = false</value>
+its Java class name.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">process</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogIFN0cmlu
+ZyBmaWxlID0gSURhdGFVdGlsLmdldFN0cmluZyhjdXJzb3IsICIkZmlsZSIpOwogIFN0cmluZyBt
+b2RlID0gSURhdGFVdGlsLmdldFN0cmluZyhjdXJzb3IsICIkbW9kZSIpOwogIFN0cmluZyBzZXJ2
+aWNlID0gSURhdGFVdGlsLmdldFN0cmluZyhjdXJzb3IsICIkc2VydmljZSIpOwogIFN0cmluZyBp
+bnB1dCA9IElEYXRhVXRpbC5nZXRTdHJpbmcoY3Vyc29yLCAiJHNlcnZpY2UuaW5wdXQiKTsKICBJ
+RGF0YSBzY29wZSA9IElEYXRhVXRpbC5nZXRJRGF0YShjdXJzb3IsICIkcGlwZWxpbmUiKTsKICBi
+b29sZWFuIHNjb3BlZCA9IHNjb3BlICE9IG51bGw7CgogIHNjb3BlID0gcHJvY2VzcyhmaWxlLCBt
+b2RlLCBzZXJ2aWNlLCBpbnB1dCwgc2NvcGVkPyBzY29wZSA6IHBpcGVsaW5lKTsKCiAgaWYgKHNj
+b3BlZCkgSURhdGFVdGlsLnB1dChjdXJzb3IsICIkcGlwZWxpbmUiLCBzY29wZSk7Cn0gZmluYWxs
+eSB7CiAgY3Vyc29yLmRlc3Ryb3koKTsKfQ==</value>
+</Values>

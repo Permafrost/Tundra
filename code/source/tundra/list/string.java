@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-08-28 20:18:06.893
-// -----( ON-HOST: 172.16.70.129
+// -----( CREATED: 2012-10-30 14:32:54.719
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -359,11 +359,6 @@ public final class string
 	}
 
 	// --- <<IS-START-SHARED>> ---
-	// returns a new array with all elements sorted
-	public static IData[] sort(IData[] array, String key) {
-	  return IDataUtil.sortIDataArrayByKey(array, key, IDataUtil.COMPARE_TYPE_COLLATION, false);
-	}
-	
 	// performs variable substitution on each string in the given list by replacing all occurrences of 
 	// substrings matching "%key%" with the associated value from the given scope
 	public static String[] substitute(String[] input, IData scope) {

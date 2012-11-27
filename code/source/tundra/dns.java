@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-10-23 19:54:01 EST
-// -----( ON-HOST: 172.16.189.132
+// -----( CREATED: 2012-11-19 10:29:17.529
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -27,10 +27,10 @@ public final class dns
 
 
 
-	public static final void resolve (IData pipeline)
+	public static final void localhost (IData pipeline)
         throws ServiceException
 	{
-		// --- <<IS-START(resolve)>> ---
+		// --- <<IS-START(localhost)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $name
@@ -40,11 +40,39 @@ public final class dns
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
+		  java.net.InetAddress address = java.net.InetAddress.getLocalHost();
+		  IDataUtil.put(cursor, "$domain", address.getCanonicalHostName().toLowerCase());
+		  IDataUtil.put(cursor, "$host", address.getHostName().toLowerCase());
+		  IDataUtil.put(cursor, "$ip", address.getHostAddress().toLowerCase());
+		} catch (java.net.UnknownHostException ex) {
+		  tundra.exception.raise(ex);
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void resolve (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(resolve)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [o] field:0:required $domain
+		// [o] field:0:required $host
+		// [o] field:0:required $ip
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
 		  String name = IDataUtil.getString(cursor, "$name");
 		  java.net.InetAddress address = java.net.InetAddress.getByName(name);
-		  IDataUtil.put(cursor, "$domain", address.getCanonicalHostName());
-		  IDataUtil.put(cursor, "$host", address.getHostName());
-		  IDataUtil.put(cursor, "$ip", address.getHostAddress());
+		  IDataUtil.put(cursor, "$domain", address.getCanonicalHostName().toLowerCase());
+		  IDataUtil.put(cursor, "$host", address.getHostName().toLowerCase());
+		  IDataUtil.put(cursor, "$ip", address.getHostAddress().toLowerCase());
 		} catch (java.net.UnknownHostException ex) {
 		  tundra.exception.raise(ex);
 		} finally {
