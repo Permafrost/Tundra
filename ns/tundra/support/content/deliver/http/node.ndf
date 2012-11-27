@@ -5,7 +5,7 @@
   <value name="svc_subtype">default</value>
   <value name="svc_sigtype">java 3.5</value>
   <value name="svc_spec">tundra.support.content.deliver:handler</value>
-  <value name="node_comment">Delivers arbitrary content to a file: URI destination.</value>
+  <value name="node_comment">Delivers arbitrary content to an http: URI destination.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

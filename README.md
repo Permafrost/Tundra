@@ -181,20 +181,25 @@ tundra.bytes:length($bytes);
 Services for manipulating arbitrary textual content, such as XML or CSV content:
 
 ```java
-// delivers arbitrary content (string, bytes, or input stream) to the given destination URI
-//
-// supports the following delivery protocols / URI schemes:
-//  - file: writes the given content to the file specified by the destination URI.  The
-//          following additional options can be provided via the $pipeline document:
-//            - $mode: append / write
-//
-// additional delivery protocols can be implemented by creating a service named for the
-// URI scheme in the folder tundra.support.content.deliver; services in this folder should
-// implement the tundra.support.content.deliver.protocol:handler specification
-//
-// an optional response stream may be returned by specific delivery protocols, for example, an
-// http delivery returns the http response as a stream, which is useful for logging, however a
-// file delivery returns no such response as none exists
+// Delivers arbitrary content (string, bytes, or input stream) to the given destination URI.
+// 
+// Supports the following delivery protocols / URI schemes:
+//   - file: writes the given content to the file specified by the destination URI.  The
+//           following additional options can be provided via the $pipeline document:
+//           - $mode: append / write
+//   - http: transmits the given content to the destination URI. The following adttional
+//           options can be provided via the $pipeline document:
+//           - $method: get / put / post / delete / head / trace / options
+//           - $headers/*: additional HTTP headers as required
+//           - $authority/user: the username to log on to the remote web server with
+//           - $authority/password: the password to log on to the remote web server with
+//   - https: refer to http
+// 
+// Additional delivery protocols can be implemented by creating a service named for the
+// URI scheme in the folder tundra.support.content.deliver.  Services in this folder should
+// implement the tundra.support.content.deliver.protocol:handler specification.
+// 
+// An optional response message, useful for logging, may be returned by specific delivery protocols.
 tundra.content:deliver($content, $encoding, $destination, $pipeline);
 
 // converts an IData document to an XML or flat file string, byte array, or 
@@ -514,6 +519,15 @@ tundra.file:writable($file);
 // to the given file; if $file is null, a new temporary file is automatically
 // created
 tundra.file:write($file, $mode, $content, $encoding);
+```
+
+### HTTP
+
+```java
+// Provides an HTTP client for interacting with HTTP servers. A custom 
+// response handler can be specified ($service), when the standard handler 
+// (tundra.support.http.client.response:handle) does not suffice.
+tundra.http:client($uri, $method, $content, $encoding, $authority, $headers, $timeout, $service);
 ```
 
 ### ID

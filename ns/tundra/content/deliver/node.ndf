@@ -132,15 +132,20 @@
 Supports the following delivery protocols / URI schemes:
   - file: writes the given content to the file specified by the destination URI.  The
           following additional options can be provided via the $pipeline document:
-            - $mode: append / write
+          - $mode: append / write
+  - http: transmits the given content to the destination URI. The following additional
+          options can be provided via the $pipeline document:
+          - $method: get / put / post / delete / head / trace / options
+          - $headers/*: additional HTTP headers as required
+          - $authority/user: the username to log on to the remote web server with
+          - $authority/password: the password to log on to the remote web server with
+  - https: refer to http
 
 Additional delivery protocols can be implemented by creating a service named for the
 URI scheme in the folder tundra.support.content.deliver.  Services in this folder should
-implement the tundra.support.content.deliver.protocol:handler specification.
+implement the tundra.support.content.deliver:handler specification.
 
-An optional response stream may be returned by specific delivery protocols. For example, an
-http delivery returns the http response as a stream, which is useful for logging, however a
-file delivery returns no such response as none exists.</value>
+An optional response message, useful for logging, may be returned by specific delivery protocols.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

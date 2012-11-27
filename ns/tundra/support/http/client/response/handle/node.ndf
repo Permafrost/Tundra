@@ -4,15 +4,14 @@
   <value name="svc_type">flow</value>
   <value name="svc_subtype">default</value>
   <value name="svc_sigtype">java 3.5</value>
-  <value name="svc_spec">tundra.support.content.deliver:handler</value>
-  <value name="node_comment">Delivers arbitrary content to a file: URI destination.</value>
+  <value name="svc_spec">tundra.support.http.client.response:handler</value>
+  <value name="node_comment">Standard HTTP response handler: checks that the response code is &lt; 4xx, normalizes 
+headers to lower case, and converts the response stream to bytes.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
-  <value name="template">tundra_support_content_deliver_file</value>
-  <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
   <value name="icontext_policy">$null</value>
