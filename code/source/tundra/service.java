@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-11-27 10:36:00.731
+// -----( CREATED: 2012-11-27 10:58:00.443
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -165,8 +165,7 @@ public final class service
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  String[] callstack = callstack();
-		  if (callstack.length > 0) IDataUtil.put(cursor, "$self", tundra.list.object.get(callstack, -1));
+		  IDataUtil.put(cursor, "$self", self());
 		} finally {
 		  cursor.destroy();
 		}
@@ -199,7 +198,7 @@ public final class service
 
 	// --- <<IS-START-SHARED>> ---
 	// returns the invocation call stack
-	private static String[] callstack() {
+	public static String[] callstack() {
 	  java.util.Iterator stack = com.wm.app.b2b.server.InvokeState.getCurrentState().getCallStack().iterator();
 	  java.util.List<String> services = new java.util.ArrayList<String>();
 	  while (stack.hasNext()) {
@@ -208,6 +207,14 @@ public final class service
 	  // remove call to tundra.invoke:callstack from the stack
 	  if (services.size() > 0) services.remove(services.size() - 1);
 	  return (String[])services.toArray(new String[services.size()]);
+	}
+	
+	// returns the name of the current service
+	public static String self() {
+	  String self = null;
+	  String[] callstack = callstack();
+	  if (callstack.length > 0) self = tundra.list.object.get(callstack, -1); // last element in list
+	  return self;
 	}
 	
 	// invokes the given service synchronously
