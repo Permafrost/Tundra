@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-11-23 15:47:36.205
+// -----( CREATED: 2012-11-27 10:36:00.731
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -148,6 +148,28 @@ public final class service
 		// --- <<IS-START(noop)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void self (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(self)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [o] field:0:optional $self
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String[] callstack = callstack();
+		  if (callstack.length > 0) IDataUtil.put(cursor, "$self", tundra.list.object.get(callstack, -1));
+		} finally {
+		  cursor.destroy();
+		}
 		// --- <<IS-END>> ---
 
                 

@@ -982,6 +982,9 @@ tundra.service:join($thread);
 // this service deliberately does nothing (noop = no operations)
 tundra.service:noop();
 
+// returns the name of the current service, or null if invoked directly
+tundra.service:self();
+
 // sends the currently executing thread to sleep (temporarily cease 
 // execution) for the specified duration, subject to the precision and 
 // accuracy of system timers and schedulers
