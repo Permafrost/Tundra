@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-10-20 20:19:14 EST
-// -----( ON-HOST: 172.16.189.132
+// -----( CREATED: 2012-11-22 15:42:13.784
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -211,28 +211,27 @@ public final class datetime
 	{
 		// --- <<IS-START(validate)>> ---
 		// @sigtype java 3.5
-		// [i] field:0:optional $datetime
+		// [i] field:0:required $datetime
 		// [i] field:0:optional $pattern {&quot;date.jdbc&quot;,&quot;date.xml&quot;,&quot;datetime.jdbc&quot;,&quot;datetime.xml&quot;,&quot;datetime.xcbl&quot;,&quot;datetime.sapiens&quot;,&quot;datetime.epoch.milliseconds&quot;,&quot;time.jdbc&quot;,&quot;time.xml&quot;}
+		// [i] field:0:optional $raise? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:required $valid?
-		/*
 		IDataCursor cursor = pipeline.getCursor();
-		boolean valid = true;
 		
+		boolean valid = true, raise = false;
 		try {
 		  String datetime = IDataUtil.getString(cursor, "$datetime");
-		  String pattern = IDataUtil.getString(cursor, "$datetime.pattern");
+		  String pattern = IDataUtil.getString(cursor, "$pattern");
+		  raise = Boolean.parseBoolean(IDataUtil.getString(cursor, "$raise?"));
 		
-		  if (datetime != null) {
-		      // attempt to parse the datetime string, if no exception is thrown then the string is valid
-		      parse(datetime, pattern);
-		  }
+		  // attempt to parse the datetime string, if no exception is thrown then the string is valid
+		  parse(datetime, pattern);
 		} catch (IllegalArgumentException ex) {
+		  if (raise) tundra.exception.raise(ex);
 		  valid = false;
 		} finally {
 		  IDataUtil.put(cursor, "$valid?", "" + valid);
 		  cursor.destroy();
 		}
-		*/
 		// --- <<IS-END>> ---
 
                 

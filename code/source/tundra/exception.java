@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-06-30 16:01:31.660
-// -----( ON-HOST: 172.16.70.129
+// -----( CREATED: 2012-11-22 14:29:20.741
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -55,10 +55,16 @@ public final class exception
 	}
 
 	// --- <<IS-START-SHARED>> ---
-	// throws a new ServiceException with the class and message from the given Throwable, which
+	// throws a new ServiceException with the class and message from the given Throwables, which
 	// is useful because java services are hard-wired to only throw ServiceExceptions
 	public static void raise(Throwable[] exceptions) throws ServiceException {
 	  if (exceptions != null) raise(message(exceptions));
+	}
+	
+	// throws a new ServiceException with the class and message from the given Throwables, which
+	// is useful because java services are hard-wired to only throw ServiceExceptions
+	public static void raise(java.util.List<Throwable> exceptions) throws ServiceException {
+	  if (exceptions != null) raise(message((Throwable[])exceptions.toArray(new Throwable[0])));
 	}
 	
 	// throws a new ServiceException with the class and message from the given Throwable, which

@@ -68,8 +68,6 @@ To run the test suite, either:
 
 ## Services
 
-### Tundra
-
 Top-level services for the most common tasks:
 
 ```java
@@ -82,7 +80,7 @@ tundra:log($message, $level);
 tundra:test($package);
 ```
 
-#### Assertion
+### Assertion
 
 Supports unit testing by providing the following bare-bones assertion services:
 
@@ -152,34 +150,56 @@ tundra.assertion.string:equal($expected, $actual, $message);
 tundra.assertion.string:unequal($expected, $actual, $message);
 ```
 
-#### Bytes
+### Base64
+
+Services for encoding and decoding base64 strings.
+
+```java
+// base64 decodes the given string, byte array, or input stream
+// refer: <http://en.wikipedia.org/wiki/Base64>
+tundra.base64:decode($base64, $encoding, $mode);
+
+// base64 encodes the given string, byte array, or input stream
+// refer: <http://en.wikipedia.org/wiki/Base64>
+tundra.base64:encode($content, $encoding, $mode);
+```
+
+### Bytes
 
 Services for manipulating byte arrays:
 
 ```java
 // converts a string, byte array or input stream to a byte array
 tundra.bytes:normalize($object, $encoding);
+
+// returns the length of the given byte array
+tundra.bytes:length($bytes);
 ```
 
-#### Content
+### Content
 
 Services for manipulating arbitrary textual content, such as XML or CSV content:
 
 ```java
-// delivers arbitrary content (string, bytes, or input stream) to the given destination URI
-//
-// supports the following delivery protocols / URI schemes:
-//  - file: writes the given content to the file specified by the destination URI.  The
-//          following additional options can be provided via the $pipeline document:
-//            - $mode: append / write
-//
-// additional delivery protocols can be implemented by creating a service named for the
-// URI scheme in the folder tundra.support.content.deliver; services in this folder should
-// implement the tundra.support.content.deliver.protocol:handler specification
-//
-// an optional response stream may be returned by specific delivery protocols, for example, an
-// http delivery returns the http response as a stream, which is useful for logging, however a
-// file delivery returns no such response as none exists
+// Delivers arbitrary content (string, bytes, or input stream) to the given destination URI.
+// 
+// Supports the following delivery protocols / URI schemes:
+//   - file: writes the given content to the file specified by the destination URI.  The
+//           following additional options can be provided via the $pipeline document:
+//           - $mode: append / write
+//   - http: transmits the given content to the destination URI. The following adttional
+//           options can be provided via the $pipeline document:
+//           - $method: get / put / post / delete / head / trace / options
+//           - $headers/*: additional HTTP headers as required
+//           - $authority/user: the username to log on to the remote web server with
+//           - $authority/password: the password to log on to the remote web server with
+//   - https: refer to http
+// 
+// Additional delivery protocols can be implemented by creating a service named for the
+// URI scheme in the folder tundra.support.content.deliver.  Services in this folder should
+// implement the tundra.support.content.deliver.protocol:handler specification.
+// 
+// An optional response message, useful for logging, may be returned by specific delivery protocols.
 tundra.content:deliver($content, $encoding, $destination, $pipeline);
 
 // converts an IData document to an XML or flat file string, byte array, or 
@@ -203,7 +223,7 @@ tundra.content:split($content, $service, $pipeline, $encoding.input, $encoding.o
 tundra.content:translate($content, $service, $encoding.input, $encoding.output, $schema.input, $schema.output, $service.input, $service.output, $mode.output);
 ```
 
-#### Datetime
+### Datetime
 
 Services for manipulating date, time and datetime strings:
 
@@ -235,7 +255,7 @@ tundra.datetime.subtract($datetime, $duration);
 tundra.datetime.validate($datetime, $pattern);
 ```
 
-#### Document
+### Document
 
 Services for manipulating com.wm.data.IData objects:
 
@@ -363,7 +383,7 @@ tundra.document.value:uppercase($document, $recurse?);
 tundra.document:values($document);
 ```
 
-#### Directory
+### Directory
 
 File system services for working with directories or folders:
 
@@ -389,18 +409,22 @@ tundra.directory:remove($directory, $recurse?);
 tundra.directory:rename($directory.source, $directory.target);
 ```
 
-#### DNS
+### DNS
 
 Services for resolving names in the domain name system (DNS).
 
 ```java
+// returns the fully-qualifed domain name, host name, and IP address for the
+// localhost
+tundra.dns:localhost();
+
 // looks up the given name in the Domain Name System (DNS), returning the
 // fully-qualifed domain name, host name, and IP address, if found;
 // refer: http://en.wikipedia.org/wiki/Domain_Name_System
 tundra.dns:resolve($name);
 ```
 
-#### Duration
+### Duration
 
 Services for manipulating durations of time:
 
@@ -431,7 +455,7 @@ tundra.duration:negate($duration)
 tundra.duration:subtract($duration.x, $duration.y);
 ```
 
-#### Exception
+### Exception
 
 ```java
 // throws a new com.wm.app.b2b.server.ServiceException with the given message
@@ -439,7 +463,7 @@ tundra.duration:subtract($duration.x, $duration.y);
 tundra.exception:raise($message, $exception);
 ```
 
-#### File
+### File
 
 File system services for working with files:
 
@@ -459,9 +483,10 @@ tundra.file:length($file);
 // returns the canonical file: URI that represents the given file
 tundra.file:normalize($file);
 
-// opens a file for reading, appending, or writing, and calls the given 
-// service passing the resulting $stream file stream object
-tundra.file:open($file, $mode, $service, $pipeline);
+// opens a file for reading, appending, or writing, calls the given service passing
+// the resulting file stream object as an input argument, with the name specified by 
+// $service.input or '$stream' if not specified, and closes the stream when done
+tundra.file:process($file, $mode, $service, $pipeline, $service.input);
 
 // reads a file in full, returning the content as either a byte array or 
 // string
@@ -491,11 +516,21 @@ tundra.file:type($file);
 tundra.file:writable($file);
 
 // writes or appends data (provided as a string, byte array or input stream) 
-// to the given file
+// to the given file; if $file is null, a new temporary file is automatically
+// created
 tundra.file:write($file, $mode, $content, $encoding);
 ```
 
-#### ID
+### HTTP
+
+```java
+// Provides an HTTP client for interacting with HTTP servers. A custom 
+// response handler can be specified ($service), when the standard handler 
+// (tundra.support.http.client.response:handle) does not suffice.
+tundra.http:client($uri, $method, $content, $encoding, $authority, $headers, $timeout, $service);
+```
+
+### ID
 
 ```java
 // generates an immutable 128-bit universally unique identifier
@@ -503,11 +538,11 @@ tundra.file:write($file, $mode, $content, $encoding);
 tundra.id:generate();
 ```
 
-#### List
+### List
 
 Services for manipulating lists:
 
-##### Content
+#### Content
 
 ```java
 // converts an IData[] document list to a list of XML or flat file strings, bytes, or 
@@ -525,7 +560,7 @@ tundra.list.content.join($contents[], $service, $pipeline, $encoding.input, $enc
 tundra.list.content:parse($contents[], $encoding, $schema);
 ```
 
-##### Datetime List
+#### Datetime List
 
 ```java
 // formats a list of datetimes that conform to the input pattern, according
@@ -533,7 +568,7 @@ tundra.list.content:parse($contents[], $encoding, $schema);
 tundra.list.datetime:format($list[], $pattern.input, $pattern.output);
 ```
 
-##### Document List
+#### Document List
 
 Services for manipulating document (com.wm.data.IData) lists:
 
@@ -648,7 +683,7 @@ tundra.list.document.value:trim($list[], $recurse?);
 tundra.list.document.value:uppercase($list[], $recurse?);
 ```
 
-##### Duration List
+#### Duration List
 
 ```java
 // formats a list of duration strings according to the desired pattern
@@ -661,7 +696,7 @@ tundra.list.duration:format($list[], $datetime, $pattern.input, $pattern.output)
 tundra.duration:sum($durations[]);
 ```
 
-##### Object List
+#### Object List
 
 Services for manipulating java.lang.Object lists:
 
@@ -737,7 +772,7 @@ tundra.list.object:sort($list[]);
 tundra.list.object:unique($list[]);
 ```
 
-##### Service List
+#### Service List
 
 ```java
 // invokes a list of services either synchronously (with an optional level of
@@ -749,7 +784,7 @@ tundra.list.service:invoke($invocations[], $mode, $concurrency);
 tundra.list.service:join($threads[]);
 ```
 
-##### String List
+#### String List
 
 Services for manipulating string lists:
 
@@ -846,7 +881,7 @@ tundra.list.string:unique($list[]);
 tundra.list.string:uppercase($list[]);
 ```
 
-#### Node
+### Node
 
 Services for querying Integration Server namespace nodes:
 
@@ -863,11 +898,18 @@ tundra.node:list($interface, $pattern, $type, $recurse?);
 tundra.node:type($node);
 ```
 
-#### Object
+### Object
 
 Services for manipulating java.lang.Object objects:
 
 ```java
+// converts a string, byte array, or input stream object to a
+// string, byte array, or input stream object
+tundra.object:convert($object, $encoding, $mode);
+
+// returns true if the given objects are equal
+tundra.object:equal($object.x, $object.y);
+
 // returns true if object is an instance of given class
 tundra.object:instance($object, $class);
 
@@ -882,7 +924,7 @@ tundra.object:reflect($object);
 tundra.object:stringify($object);
 ```
 
-#### Pipeline
+### Pipeline
 
 ```java
 // returns a clone of the current pipeline as a document: useful if you want 
@@ -908,6 +950,9 @@ tundra.pipeline:length();
 // writes the current pipeline to the server log
 tundra.pipeline:log($level);
 
+// merges the elements in the given IData document into the pipeline
+tundra.pipeline:merge($document);
+
 // iterates over each element in the pipeline, deconstructing all fully qualified 
 // keys (for example, 'a/b/c' or 'x/y[0]/z[1]') into their constituent parts
 tundra.pipeline:normalize();
@@ -926,7 +971,7 @@ tundra.pipeline:rename($key.source, $key.target);
 tundra.pipeline:substitute();
 ```
 
-#### Service
+### Service
 
 ```java
 // returns the current thread's call stack
@@ -948,13 +993,19 @@ tundra.service:invoke($service, $pipeline, $mode);
 // output pipeline
 tundra.service:join($thread);
 
+// this service deliberately does nothing (noop = no operations)
+tundra.service:noop();
+
+// returns the name of the current service, or null if invoked directly
+tundra.service:self();
+
 // sends the currently executing thread to sleep (temporarily cease 
 // execution) for the specified duration, subject to the precision and 
 // accuracy of system timers and schedulers
 tundra.service:sleep($duration);
 ```
 
-#### Session
+### Session
 
 Services for storing and retrieving values in session state.
 
@@ -966,7 +1017,7 @@ tundra.session:get();
 tundra.session:put($key, $value);
 ```
 
-#### Stream
+### Stream
 
 Services for manipulating java.io.InputStream and java.io.OutputStream objects:
 
@@ -982,7 +1033,7 @@ tundra.stream:copy($input, $output);
 tundra.stream:normalize($object, $encoding);
 ```
 
-#### String
+### String
 
 Services for manipulating java.lang.String objects:
 
@@ -1028,7 +1079,7 @@ tundra.string:trim($string);
 tundra.string:uppercase($string, $locale);
 ```
 
-#### URI
+### URI
 
 Services for parsing and emitting Uniform Resource Identifier (URI) strings.
 
@@ -1093,7 +1144,6 @@ tundra.uri:emit($uri);
 //   - The alphanumeric characters "a" through "z", "A" through "Z" and "0" 
 //     through "9" remain the same.
 //   - The special characters ".", "-", "*", and "_" remain the same.
-//   - The space character " " is converted into a plus sign "+".
 //   - All other characters are unsafe and are first converted into one or 
 //     more bytes using some encoding scheme. Then each byte is represented 
 //     by the 3-character string "%xy", where xy is the two-digit hexadecimal 
@@ -1148,6 +1198,17 @@ tundra.uri:encode($string);
 // Refer: <http://docs.oracle.com/javase/6/docs/api/java/net/URI.html>
 tundra.uri.parse($string);
 ````
+
+### XML
+
+```java
+// validates the given string, byte array, or input stream as XML, optionally against 
+// an XML schema (XSD) also specified as a string, byte array or input stream; uses 
+// the Simple API for XML (SAX) algorithm for parsing which, as it is event-based, is 
+// not memory-constrained and can handle arbitrarily large documents when parsing from 
+// an input stream
+tundra.xml:validate($content, $schema, $raise?);
+```
 
 ## Contributions
 

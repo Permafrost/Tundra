@@ -4,7 +4,7 @@
   <value name="svc_type">flow</value>
   <value name="svc_subtype">default</value>
   <value name="svc_sigtype">java 3.5</value>
-  <value name="svc_spec">tundra.support.content.deliver.protocol:handler</value>
+  <value name="svc_spec">tundra.support.content.deliver:handler</value>
   <value name="node_comment">Delivers arbitrary content to a file: URI destination.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
@@ -22,16 +22,10 @@
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
-  <null name="auditfields_input"/>
-  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
-  <value name="pipeline_option">1</value>
-  <null name="originURI"/>
-  <value name="modifiable">true</value>
-  <value name="is_public">false</value>
 </Values>

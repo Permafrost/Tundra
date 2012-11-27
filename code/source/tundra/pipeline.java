@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-08-28 20:23:50.233
-// -----( ON-HOST: 172.16.70.129
+// -----( CREATED: 2012-11-23 14:17:13.202
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -138,6 +138,27 @@ public final class pipeline
 
 
 
+	public static final void merge (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(merge)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:0:optional $document
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  merge(pipeline, IDataUtil.getIData(cursor, "$document"));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void normalize (IData pipeline)
         throws ServiceException
 	{
@@ -227,5 +248,12 @@ public final class pipeline
 
                 
 	}
+
+	// --- <<IS-START-SHARED>> ---
+	// merges the contents of the given document into the given pipeline
+	public static void merge(IData target, IData source) {
+	  if (target != null && source != null) IDataUtil.merge(source, target);
+	}
+	// --- <<IS-END-SHARED>> ---
 }
 

@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-10-13 10:14:10 EST
-// -----( ON-HOST: 172.16.189.130
+// -----( CREATED: 2012-11-26 15:01:21.769
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -352,7 +352,7 @@ public final class uri
 	
 	  String output = null;
 	  try {
-	    output =  java.net.URLEncoder.encode(input, encoding);  
+	    output =  java.net.URLEncoder.encode(input, encoding).replace("+", "%20");
 	  } catch(java.io.UnsupportedEncodingException ex) {
 	    tundra.exception.raise(ex);
 	  }
