@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-02-17 16:37:57 EST
-// -----( ON-HOST: 172.16.189.142
+// -----( CREATED: 2013-02-21 20:48:25 EST
+// -----( ON-HOST: 172.16.189.144
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -39,7 +39,7 @@ public final class service
 		
 		try {
 		  String[] stack = callstack();
-		  String message = tundra.list.object.join(stack, " => ");
+		  String message = tundra.list.object.join(stack, " \u2192 ");
 		  IDataUtil.put(cursor, "$callstack", stack);
 		  IDataUtil.put(cursor, "$message", message);
 		} finally {
