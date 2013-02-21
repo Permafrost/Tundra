@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-02-21 20:48:25 EST
+// -----( CREATED: 2013-02-21 21:13:41 EST
 // -----( ON-HOST: 172.16.189.144
 
 import com.wm.data.*;
@@ -34,14 +34,15 @@ public final class service
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [o] field:1:required $callstack
-		// [o] field:0:required $message
+		// [o] field:0:required $callers
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String[] stack = callstack();
-		  String message = tundra.list.object.join(stack, " \u2192 ");
+		  String callers = tundra.list.object.join(stack, " \u2192 ");
 		  IDataUtil.put(cursor, "$callstack", stack);
-		  IDataUtil.put(cursor, "$message", message);
+		  IDataUtil.put(cursor, "$callers", callers);
+		  IDataUtil.put(cursor, "$caller", stack.length > 0 ? stack[0] : "");
 		} finally {
 		  cursor.destroy();
 		}
