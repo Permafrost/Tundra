@@ -999,8 +999,8 @@ tundra.service:invoke($service, $pipeline, $mode);
 // output pipeline
 tundra.service:join($thread);
 
-// this service deliberately does nothing (noop = no operation)
-tundra.service:noop();
+// this service deliberately does nothing
+tundra.service:nothing();
 
 // returns the name of the current service, or null if invoked directly
 tundra.service:self();

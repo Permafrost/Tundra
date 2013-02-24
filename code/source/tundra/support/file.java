@@ -1,8 +1,8 @@
 package tundra.support;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-10-13 10:14:43 EST
-// -----( ON-HOST: 172.16.189.130
+// -----( CREATED: 2013-02-24 15:43:56 EST
+// -----( ON-HOST: 172.16.189.144
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -27,10 +27,10 @@ public final class file
 
 
 
-	public static final void noop (IData pipeline)
+	public static final void _ (IData pipeline)
         throws ServiceException
 	{
-		// --- <<IS-START(noop)>> ---
+		// --- <<IS-START(_)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
 		// --- <<IS-END>> ---
