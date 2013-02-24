@@ -977,11 +977,17 @@ tundra.pipeline:substitute();
 // returns the current thread's call stack
 tundra.service:callstack();
 
-// provides a try/catch/finally pattern for flow services: if $service throws 
-// an exception when invoked, then the $catch service is invoked (with 
-// $exception, $exception.class, $exception.message and $exception.stack 
-// arguments added to pipeline); the $finally service is then invoked, 
-// whether an exception was thrown by $service or not
+// provides a try/catch/finally pattern for flow services
+//
+// if $service throws an exception when invoked, then the arguments $exception, 
+// $exception?, $exception.class, $exception.message and $exception.stack are 
+// added to the pipeline
+//
+// if specified, the $catch service is invoked to handle the exception, otherwise 
+// the exception is rethrown
+//
+// if specified, the $finally service is always invoked, whether an exception was 
+// thrown by $service or not
 tundra.service:ensure($service, $catch, $finally, $pipeline);
 
 // calls the given service dynamically, either synchronously or 
@@ -993,7 +999,7 @@ tundra.service:invoke($service, $pipeline, $mode);
 // output pipeline
 tundra.service:join($thread);
 
-// this service deliberately does nothing (noop = no operations)
+// this service deliberately does nothing (noop = no operation)
 tundra.service:noop();
 
 // returns the name of the current service, or null if invoked directly

@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-02-21 21:13:41 EST
+// -----( CREATED: 2013-02-24 15:11:46 EST
 // -----( ON-HOST: 172.16.189.144
 
 import com.wm.data.*;
@@ -35,6 +35,7 @@ public final class service
 		// @sigtype java 3.5
 		// [o] field:1:required $callstack
 		// [o] field:0:required $callers
+		// [o] field:0:required $caller
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -302,40 +303,24 @@ public final class service
 	  }
 	}
 	
-	// provides a try/catch/finally pattern for flow services
-	public static IData ensure(String service, IData pipeline, String catchService, String finallyService) throws ServiceException {
-	  if (catchService == null) {
-	    pipeline = tryFinally(service, pipeline, finallyService);
-	  } else {
-	    pipeline = tryCatchFinally(service, pipeline, catchService, finallyService);
-	  }
-	  return pipeline;
-	}
-	
-	// provides a try/finally pattern for flow services
-	private static IData tryFinally(String service, IData pipeline, String finallyService) throws ServiceException {
-	  try {
-	    pipeline = invoke.synchronous(service, pipeline);
-	  } finally {
-	    if (finallyService != null) pipeline = invoke(finallyService, pipeline);
-	  }
-	
-	  return pipeline;
-	}
-	
 	// provides a try/catch/finally patter for flow services
-	private static IData tryCatchFinally(String service, IData pipeline, String catchService, String finallyService) throws ServiceException {
+	public static IData ensure(String service, IData pipeline, String catchService, String finallyService) throws ServiceException {
 	  try {
 	    pipeline = invoke.synchronous(service, pipeline);
 	  } catch (Throwable t) {
 	    IDataCursor cursor = pipeline.getCursor();
 	    IDataUtil.put(cursor, "$exception", t);
+	    IDataUtil.put(cursor, "$exception?", "true");
 	    IDataUtil.put(cursor, "$exception.class", t.getClass().getName());
 	    IDataUtil.put(cursor, "$exception.message", t.getMessage());
 	    IDataUtil.put(cursor, "$exception.stack", tundra.exception.stack(t));
 	    cursor.destroy();
 	
-	    pipeline = invoke(catchService, pipeline);
+	    if (catchService == null) {
+	      tundra.exception.raise(t);
+	    } else {
+	      pipeline = invoke(catchService, pipeline);
+	    }
 	  } finally {
 	    if (finallyService != null) pipeline = invoke(finallyService, pipeline);
 	  }
