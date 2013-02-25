@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-02-24 15:42:27 EST
+// -----( CREATED: 2013-02-25 10:53:32 EST
 // -----( ON-HOST: 172.16.189.144
 
 import com.wm.data.*;
@@ -750,14 +750,21 @@ public final class document
 	      String key = ic.getKey();
 	      Object value = ic.getValue();
 	
-	      if (recurse && value != null) {
-	        if (value instanceof IData) {
+	      if (value != null) {
+	        if (value instanceof com.wm.util.coder.IDataCodable) {
+	          value = ((com.wm.util.coder.IDataCodable)value).getIData();
+	        } else if (value instanceof com.wm.util.coder.ValuesCodable) {
+	          value = ((com.wm.util.coder.ValuesCodable)value).getValues();
+	        } else if (value instanceof com.wm.util.coder.IDataCodable[]) {
+	          value = normalize((com.wm.util.coder.IDataCodable[])value, recurse);
+	        } else if (value instanceof com.wm.util.coder.ValuesCodable[]) {
+	          value = normalize((com.wm.util.coder.ValuesCodable[])value, recurse);
+	        } else if (value instanceof IData[]) {
+	          value = normalize((IData[])value, recurse);
+	        } else if (value instanceof com.wm.util.Table) {
+	          value = normalize(((com.wm.util.Table)value).getValues(), recurse);
+	        } else if (recurse && value instanceof IData) {
 	          value = normalize((IData)value, recurse);
-	        } else if (value instanceof IData[] || value instanceof com.wm.util.Table) {
-	          IData[] iary = value instanceof IData[] ? (IData[])value : ((com.wm.util.Table)value).getValues();
-	          IData[] oary = new IData[iary.length];
-	          for (int i = 0; i < iary.length; i++) oary[i] = normalize(iary[i], recurse);
-	          value = oary;
 	        }
 	      }
 	      tundra.support.document.put(output, key, value);
@@ -768,6 +775,46 @@ public final class document
 	
 	  return output;
 	}
+	
+	// normalizes an IData[], where all IDatas are implemented with the same class, and all
+	// fully qualified keys are replaced with a nested structure
+	protected static IData[] normalize(IData[] input, boolean recurse) {
+	  if (input == null) return null;
+	
+	  IData[] output = new IData[input.length];
+	  for (int i = 0; i < input.length; i++) {
+	    output[i] = normalize(input[i], recurse);
+	  }
+	
+	  return output;
+	}
+	
+	// converts an IDataCodable[] to an IData[] and normalizes, where all IDatas are implemented 
+	// with the same class, and all fully qualified keys are replaced with a nested structure
+	protected static IData[] normalize(com.wm.util.coder.IDataCodable[] input, boolean recurse) {
+	  if (input == null) return null;
+	
+	  IData[] output = new IData[input.length];
+	  for (int i = 0; i < input.length; i++) {
+	    output[i] = normalize(input[i].getIData(), recurse);
+	  }
+	  
+	  return output;
+	}
+	
+	// converts a ValuesCodable[] to an IData[] and normalizes, where all IDatas are implemented 
+	// with the same class, and all fully qualified keys are replaced with a nested structure
+	protected static IData[] normalize(com.wm.util.coder.ValuesCodable[] input, boolean recurse) {
+	  if (input == null) return null;
+	
+	  IData[] output = new IData[input.length];
+	  for (int i = 0; i < input.length; i++) {
+	    output[i] = normalize(input[i].getValues(), recurse);
+	  }
+	  
+	  return output;
+	}
+	
 	
 	// removes all keys from the given IData document
 	public static void clear(IData input) {
