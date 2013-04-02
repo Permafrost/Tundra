@@ -780,7 +780,7 @@ tundra.list.object:unique($list[]);
 tundra.list.service:invoke($invocations[], $mode, $concurrency);
 
 // waits for each service thread in the given list to finish before returning
-// the each output pipeline
+// each output pipeline
 tundra.list.service:join($threads[]);
 ```
 
