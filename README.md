@@ -23,6 +23,10 @@ $ git checkout v<n.n.n> # where <n.n.n> is the desired version
 Then activate and enable the Tundra package from the package management web page on the
 Integration Server web administration site.
 
+Or, if you don't want to use git, you can download the full package from GitHub by clicking 
+the ZIP button above, then copy the resulting Tundra.zip file to your Integration 
+Server's ./replicate/inbound folder, and install it from the Package Management web page.
+
 ## Upgrading
 
 From your Integration Server installation:
