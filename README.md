@@ -1218,7 +1218,7 @@ tundra.uri.parse($string);
 // the Simple API for XML (SAX) algorithm for parsing which, as it is event-based, is 
 // not memory-constrained and can handle arbitrarily large documents when parsing from 
 // an input stream
-tundra.xml:validate($content, $schema, $raise?);
+tundra.xml:validate($content, $content.encoding, $schema, $schema.encoding, $raise?);
 ```
 
 ## Contributions

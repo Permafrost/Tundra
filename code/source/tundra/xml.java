@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-11-22 15:27:50.091
+// -----( CREATED: 2013-05-16 09:46:56.396
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -34,18 +34,22 @@ public final class xml
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:0:optional $content
+		// [i] field:0:optional $content.encoding
 		// [i] object:0:optional $schema
-		// [i] field:0:optional $raise? {&quot;true&quot;,&quot;false&quot;}
+		// [i] field:0:optional $schema.encoding
+		// [i] field:0:optional $raise? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:required $valid?
 		// [o] field:1:optional $errors
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  Object content = IDataUtil.get(cursor, "$content");
+		  String contentEncoding = IDataUtil.getString(cursor, "$content.encoding");
 		  Object schema = IDataUtil.get(cursor, "$schema");
+		  String schemaEncoding = IDataUtil.getString(cursor, "$schema.encoding");
 		  boolean raise = Boolean.parseBoolean(IDataUtil.getString(cursor, "$raise?"));
 		
-		  String[] errors = validate(tundra.stream.normalize(content), tundra.stream.normalize(schema), raise);
+		  String[] errors = validate(tundra.stream.normalize(content, contentEncoding), tundra.stream.normalize(schema, schemaEncoding), raise);
 		  boolean valid = errors == null || errors.length == 0;
 		
 		  IDataUtil.put(cursor, "$valid?", "" + valid);
