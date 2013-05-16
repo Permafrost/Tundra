@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-05-16 09:46:56.396
+// -----( CREATED: 2013-05-16 09:58:33.044
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -73,60 +73,62 @@ public final class xml
 	  java.util.List<Throwable> errors = new java.util.ArrayList<Throwable>();
 	  try {
 	    javax.xml.parsers.SAXParserFactory factory = javax.xml.parsers.SAXParserFactory.newInstance();
-			factory.setNamespaceAware(true);
-			factory.setXIncludeAware(true);
+	    factory.setNamespaceAware(true);
+	    factory.setXIncludeAware(true);
 	
 	    if (schema != null) {
 	      factory.setSchema(javax.xml.validation.SchemaFactory.newInstance(javax.xml.XMLConstants.W3C_XML_SCHEMA_NS_URI).newSchema(new javax.xml.transform.stream.StreamSource(schema)));
 	    }
-			javax.xml.parsers.SAXParser parser = factory.newSAXParser();
-			ErrorHandler handler = new ErrorHandler();
+	    javax.xml.parsers.SAXParser parser = factory.newSAXParser();
+	    ErrorHandler handler = new ErrorHandler();
 	    parser.parse(content, handler);
 	    errors.addAll(handler.getErrors());
-		} catch (java.io.IOException ex) {
+	  } catch (java.io.IOException ex) {
 	    errors.add(ex);
-		} catch (javax.xml.parsers.ParserConfigurationException ex) {
-			errors.add(ex);
-		} catch (org.xml.sax.SAXParseException ex) {
-			errors.add(ex);
-		} catch (org.xml.sax.SAXException ex) {
-			errors.add(ex);
-		}
+	  } catch (javax.xml.parsers.ParserConfigurationException ex) {
+	    errors.add(ex);
+	  } catch (org.xml.sax.SAXParseException ex) {
+	    errors.add(ex);
+	  } catch (org.xml.sax.SAXException ex) {
+	    errors.add(ex);
+	  } finally {
+	    tundra.stream.close(content, schema);
+	  }
 	
-		if (errors.size() > 0 && raise) {
+	  if (errors.size() > 0 && raise) {
 	    tundra.exception.raise(errors);
-		}
+	  }
 	  
 	  return format(errors);
 	}
 	
 	public static class ErrorHandler extends org.xml.sax.helpers.DefaultHandler {
-		private java.util.List<Throwable> errors = new java.util.ArrayList<Throwable>();
+	  private java.util.List<Throwable> errors = new java.util.ArrayList<Throwable>();
 	
-		public ErrorHandler() {
-			super();
-		}
+	  public ErrorHandler() {
+	    super();
+	  }
 	
 	  // returns the list of formatted error messages encountered while parsing XML
-		public java.util.List<Throwable> getErrors() {
-			return errors;
-		}
+	  public java.util.List<Throwable> getErrors() {
+	    return errors;
+	  }
 	
 	  // handles an XML error by appending it to the list of errors encountered while parsing
-		public void error(org.xml.sax.SAXParseException ex) throws org.xml.sax.SAXException {
-			append(ex);
-		}
+	  public void error(org.xml.sax.SAXParseException ex) throws org.xml.sax.SAXException {
+	    append(ex);
+	  }
 	
 	  // handles a fatal XML error by appending it to the list of errors encountered while parsing
-		public void fatalError(org.xml.sax.SAXParseException ex) throws org.xml.sax.SAXException {
-			append(ex);
-		}
-		
+	  public void fatalError(org.xml.sax.SAXParseException ex) throws org.xml.sax.SAXException {
+	    append(ex);
+	  }
+	  
 	  // formats the given exception as a string, and appends it to the list of errors encountered
 	  // while parsing
-		protected void append(org.xml.sax.SAXParseException ex) {
-			errors.add(ex);
-		}
+	  protected void append(org.xml.sax.SAXParseException ex) {
+	    errors.add(ex);
+	  }
 	}
 	
 	// formats the given exception as a string
