@@ -1221,6 +1221,13 @@ tundra.uri.parse($string);
 tundra.xml:validate($content, $content.encoding, $schema, $schema.encoding, $raise?);
 ```
 
+### XPath
+
+```java
+// returns true if the given XPath expression $expression exists in the given XML $content
+tundra.xpath:exists($content, $encoding, $expression, $namespace);
+```
+
 ## Contributions
 
 1. Check out the latest master to make sure the feature hasn't been implemented 
