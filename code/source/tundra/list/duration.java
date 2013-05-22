@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-05 15:36:53.612
-// -----( ON-HOST: 172.16.70.129
+// -----( CREATED: 2012-10-15 14:36:48.677
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -36,7 +36,7 @@ public final class duration
 		// [i] field:1:optional $list
 		// [i] field:0:optional $datetime
 		// [i] field:0:optional $pattern.input {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
-		// [i] field:0:optional $pattern.output {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;english&quot;}
+		// [i] field:0:optional $pattern.output {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;}
 		// [o] field:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -47,6 +47,29 @@ public final class duration
 		  String outPattern = IDataUtil.getString(cursor, "$pattern.output");
 		  
 		  IDataUtil.put(cursor, "$list", format(list, inPattern, outPattern, datetime));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void sum (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(sum)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:1:optional $list
+		// [o] field:0:required $duration
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String[] list = IDataUtil.getStringArray(cursor, "$list");
+		  IDataUtil.put(cursor, "$duration", tundra.duration.add(list));
 		} finally {
 		  cursor.destroy();
 		}

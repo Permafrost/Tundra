@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-05-12 17:12:12 EST
-// -----( ON-HOST: 172.16.70.129
+// -----( CREATED: 2013-04-21 10:29:44 EST
+// -----( ON-HOST: 172.16.189.153
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -102,6 +102,8 @@ public final class stream
 	}
 
 	// --- <<IS-START-SHARED>> ---
+	// converts the given object, which must be either an input stream, byte array, or string, to an input stream, using the 
+	// given encoding if the object was a string
 	public static java.io.InputStream normalize(Object object, String encoding) throws java.io.UnsupportedEncodingException {
 	  if (encoding == null) encoding = tundra.support.constant.DEFAULT_CHARACTER_ENCODING;
 	  
@@ -124,10 +126,12 @@ public final class stream
 	  return stream;
 	}
 	
+	// converts the given object, which must be either an input stream, byte array, or string, to an input stream
 	public static java.io.InputStream normalize(Object object) throws java.io.UnsupportedEncodingException {
 	  return normalize(object, tundra.support.constant.DEFAULT_CHARACTER_ENCODING);
 	}
 	
+	// copies all the data from the reader to the writer, then closes both
 	public static void copy(java.io.Reader reader, java.io.Writer writer) throws java.io.IOException {  
 	  try {
 	    if (reader == null || writer == null) return;
@@ -146,7 +150,8 @@ public final class stream
 	  }
 	}
 	
-	public static void copy(java.io.InputStream in, java.io.OutputStream out) throws java.io.IOException {  
+	// copies all data from the input stream to the output stream, and optionally closes both streams
+	public static void copy(java.io.InputStream in, java.io.OutputStream out, boolean close) throws java.io.IOException {  
 	  try {
 	    if (in == null || out == null) return;
 	  
@@ -160,8 +165,13 @@ public final class stream
 	      out.write(buffer, 0, length);
 	    }
 	  } finally {
-	    close(in, out);
+	    if (close) close(in, out);
 	  }
+	}
+	
+	// copies all data from the input stream to the output stream, then closes both streams
+	public static void copy(java.io.InputStream in, java.io.OutputStream out) throws java.io.IOException {  
+	  copy(in, out, true);
 	}
 	
 	public static void copy(Object input, Object output) throws java.io.IOException {
@@ -171,6 +181,8 @@ public final class stream
 	  copy(normalize(input), (java.io.OutputStream)output);
 	}
 	
+	// closes the given list of objects, which must be one of the following types: java.io.InputStream, 
+	// java.io.OutputStream, java.io.Reader, or java.io.Writer
 	public static void close(Object ... streams) {
 	  if (streams == null) return;
 	  

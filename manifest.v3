@@ -3,10 +3,17 @@
 <Values version="2.0">
   <value name="enabled">yes</value>
   <value name="system_package">no</value>
-  <value name="version">0.0.1</value>
+  <value name="version">0.0.4</value>
   <null name="startup_services"/>
   <null name="shutdown_services"/>
   <null name="replication_services"/>
-  <null name="requires"/>
+  <record name="requires" javaclass="com.wm.util.Values">
+    <value name="WmFlatFile">*.*</value>
+    <value name="WmPublic">*.*</value>
+    <value name="WmRoot">*.*</value>
+  </record>
   <value name="listACL">Default</value>
+  <value name="description">A package of useful services for webMethods Integration Server 7.1 or higher</value>
+  <value name="publisher">Lachlan Dowding &lt;lachlan@permafro.st&gt;</value>
+  <value name="webappLoad">yes</value>
 </Values>

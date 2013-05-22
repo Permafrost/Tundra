@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-06-23 16:12:59 EST
+// -----( CREATED: 2012-08-12 21:14:26.375
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -94,6 +94,31 @@ public final class object
 
 
 
+	public static final void drop (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(drop)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:1:optional $list
+		// [i] field:0:required $index
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  Object[] list = IDataUtil.getObjectArray(cursor, "$list");
+		  String index = IDataUtil.getString(cursor, "$index");
+		
+		  if (index != null) IDataUtil.put(cursor, "$list", drop(list, index));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void each (IData pipeline)
         throws ServiceException
 	{
@@ -153,6 +178,32 @@ public final class object
 
 
 
+	public static final void get (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(get)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:1:optional $list
+		// [i] field:0:required $index
+		// [o] object:0:optional $item
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  Object[] list = IDataUtil.getObjectArray(cursor, "$list");
+		  String index = IDataUtil.getString(cursor, "$index");
+		
+		  if (index != null) IDataUtil.put(cursor, "$item", get(list, index));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void include (IData pipeline)
         throws ServiceException
 	{
@@ -197,24 +248,20 @@ public final class object
 
 
 
-	public static final void item (IData pipeline)
+	public static final void instance (IData pipeline)
         throws ServiceException
 	{
-		// --- <<IS-START(item)>> ---
+		// --- <<IS-START(instance)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:1:optional $list
-		// [i] field:0:required $index
-		// [o] object:0:optional $item
+		// [i] field:0:optional $class
+		// [o] field:0:optional $instance?
 		IDataCursor cursor = pipeline.getCursor();
-		
 		try {
 		  Object[] list = IDataUtil.getObjectArray(cursor, "$list");
-		  String index = IDataUtil.getString(cursor, "$index");
-		
-		  if (index != null) {
-		    IDataUtil.put(cursor, "$item", item(list, index));
-		  }
+		  String klass = IDataUtil.getString(cursor, "$class");
+		  if (list != null && klass != null) IDataUtil.put(cursor, "$instance?", "" + tundra.object.instance(list, klass));
 		} finally {
 		  cursor.destroy();
 		}
@@ -283,23 +330,11 @@ public final class object
 		// @sigtype java 3.5
 		// [i] object:1:optional $list
 		// [i] field:0:optional $service
+		// [i] record:0:optional $pipeline
 		// [i] field:0:optional $item.input
 		// [i] field:0:optional $item.output
 		// [o] object:1:optional $list
-		IDataCursor cursor = pipeline.getCursor();
-		
-		try {
-		  Object[] list = IDataUtil.getObjectArray(cursor, "$list");
-		  String service = IDataUtil.getString(cursor, "$service");
-		  String input = IDataUtil.getString(cursor, "$item.input");
-		  String output = IDataUtil.getString(cursor, "$item.output");
-		
-		  // invoke the service for each item in the list, passing $item and $index variables on each invocation
-		  // and collect the returned $item's into a new list
-		  IDataUtil.put(cursor, "$list", map(list, service, pipeline, input, output));
-		} finally {
-		  cursor.destroy();
-		}
+		map(pipeline, Object.class);
 		// --- <<IS-END>> ---
 
                 
@@ -317,6 +352,24 @@ public final class object
 		// [i] object:0:optional $item
 		// [o] object:1:required $list
 		prepend(pipeline, Object.class);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void put (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(put)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:1:optional $list
+		// [i] object:0:optional $item
+		// [i] field:0:required $index
+		// [o] object:1:required $list
+		put(pipeline, Object.class);
 		// --- <<IS-END>> ---
 
                 
@@ -470,6 +523,27 @@ public final class object
 	  return list.toArray(java.util.Arrays.copyOf(array, 0));
 	}
 	
+	// removes the element at the given index from the given list
+	public static <T> T[] drop(T[] array, String index) {
+	  return drop(array, Integer.parseInt(index));
+	}
+	
+	// removes the element at the given index from the given list
+	public static <T> T[] drop(T[] array, int index) {
+	  if (array != null) {
+	    // support reverse/tail indexing
+	    if (index < 0) index += array.length;
+	    if (index < 0 || array.length <= index) throw new ArrayIndexOutOfBoundsException(index);
+	
+	    T[] head = slice(array, 0, index);
+	    T[] tail = slice(array, index + 1, array.length - index);
+	
+	    array = concatenate(head, tail);      
+	  }
+	
+	  return array;
+	}
+	
 	// invokes the given service for each element in the array
 	public static <T> void each(T[] array, String service, IData pipeline, String input) throws ServiceException {
 	  map(array, service, pipeline, input, null);
@@ -511,6 +585,26 @@ public final class object
 	  }
 	  
 	  return list.toArray(java.util.Arrays.copyOf(array, 0));  
+	}
+	
+	
+	// returns the element from the given array at the given index (supports ruby-style reverse indexing)
+	public static <T> T get(T[] array, String index) {
+	  return get(array, Integer.parseInt(index));
+	}
+	
+	// returns the element from the given array at the given index (supports ruby-style reverse indexing)
+	public static <T> T get(T[] array, int index) {
+	  T item = null;
+	  
+	  if (array != null) {
+	    // support reverse/tail indexing
+	    if (index < 0) index += array.length;
+	    
+	    item = array[index];
+	  }
+	  
+	  return item;
 	}
 	
 	// returns true if the given item is found in the given array
@@ -560,7 +654,7 @@ public final class object
 	  return list.toArray(array);
 	}
 	
-	// returns a new array, with the given element inserted at the end
+	// returns a new array, with the given element inserted at the given index
 	public static <T> void insert(IData pipeline, Class<T> klass) {
 	  IDataCursor cursor = pipeline.getCursor();
 	
@@ -573,25 +667,6 @@ public final class object
 	  } finally {
 	    cursor.destroy();
 	  }
-	}
-	
-	// returns the element from the given array at the given index (supports ruby-style reverse indexing)
-	public static <T> T item(T[] array, String index) {
-	  return item(array, Integer.parseInt(index));
-	}
-	
-	// returns the element from the given array at the given index (supports ruby-style reverse indexing)
-	public static <T> T item(T[] array, int index) {
-	  T item = null;
-	  
-	  if (array != null) {
-	    // support reverse/tail indexing
-	    if (index < 0) index += array.length;
-	    
-	    item = array[index];
-	  }
-	  
-	  return item;
 	}
 	
 	// returns a string created by concatenating each element of the given array, separated by the given separator string
@@ -612,6 +687,27 @@ public final class object
 	// returns the length of the given array
 	public static <T> int length(T[] array) {
 	  return (array == null? 0 : array.length);
+	}
+	
+	// maps the given array to a new array by invoking a service for each element and collecting the output
+	public static <T> void map(IData pipeline, Class<T> klass) throws ServiceException {
+	  IDataCursor cursor = pipeline.getCursor();
+	
+	  try {
+	    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
+	    String service = IDataUtil.getString(cursor, "$service");
+	    IData scope = IDataUtil.getIData(cursor, "$pipeline");
+	    String input = IDataUtil.getString(cursor, "$item.input");
+	    String output = IDataUtil.getString(cursor, "$item.output");
+	
+	    boolean scoped = scope != null;
+	
+	    // invoke the service for each item in the list, passing $item and $index variables on each invocation
+	    // and collect the returned $item's into a new list
+	    IDataUtil.put(cursor, "$list", map(list == null ? null : java.util.Arrays.copyOf(list, list.length, (Class<T[]>)java.lang.reflect.Array.newInstance(klass, 0).getClass()), service, scoped ? scope : pipeline, input, output));
+	  } finally {
+	    cursor.destroy();
+	  }
 	}
 	
 	// maps the given array to a new array by invoking a service for each element and collecting the output
@@ -669,6 +765,46 @@ public final class object
 	    list = prepend(list == null ? null : java.util.Arrays.copyOf(list, list.length, (Class<T[]>)java.lang.reflect.Array.newInstance(klass, 0).getClass()), item, klass);
 	
 	    if (list != null) IDataUtil.put(cursor, "$list", list);
+	  } finally {
+	    cursor.destroy();
+	  }
+	}
+	
+	// sets the element from the given array at the given index (supports ruby-style reverse indexing)
+	public static <T> T[] put(T[] array, T item, String index, Class<T> klass) {
+	  return put(array, item, Integer.parseInt(index), klass);
+	}
+	
+	// sets the element from the given array at the given index (supports ruby-style reverse indexing)
+	public static <T> T[] put(T[] array, T item, int index, Class<T> klass) {
+	  if (array == null) array = (T[])java.lang.reflect.Array.newInstance(klass, 0);
+	
+	  // support reverse/tail indexing
+	  if (index < 0) index += array.length;
+	  int capacity = 0;
+	  if (index < 0) {
+	    capacity = (index * -1) + array.length;
+	    index = 0;
+	  } else {
+	    capacity = index + 1;
+	  }
+	  if (capacity > array.length) array = java.util.Arrays.copyOf(array, capacity);
+	
+	  array[index] = item;
+	
+	  return array;
+	}
+	
+	// sets the element from the given array at the given index (supports ruby-style reverse indexing)
+	public static <T> void put(IData pipeline, Class<T> klass) {
+	  IDataCursor cursor = pipeline.getCursor();
+	
+	  try {
+	    T[] list = (T[])IDataUtil.getObjectArray(cursor, "$list");
+	    T item = (T)IDataUtil.get(cursor, "$item");
+	    String index = IDataUtil.getString(cursor, "$index");
+	
+	    IDataUtil.put(cursor, "$list", put(list == null ? null : java.util.Arrays.copyOf(list, list.length, (Class<T[]>)java.lang.reflect.Array.newInstance(klass, 0).getClass()), item, index, klass));
 	  } finally {
 	    cursor.destroy();
 	  }

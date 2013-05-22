@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-06 11:55:59.951
+// -----( CREATED: 2012-08-28 20:16:19.525
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -39,6 +39,29 @@ public final class string
 		
 		try {
 		  IDataUtil.put(cursor, "$length", "" + length(IDataUtil.getString(cursor, "$string")));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void lines (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(lines)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $string
+		// [o] field:1:optional $lines
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String string = IDataUtil.getString(cursor, "$string");
+		  IDataUtil.put(cursor, "$lines", lines(string));
 		} finally {
 		  cursor.destroy();
 		}
@@ -123,6 +146,110 @@ public final class string
 		  IDataUtil.put(cursor, "$string", normalize(object, encoding));
 		} catch(java.io.IOException ex) {
 		  tundra.exception.raise(ex);
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void replace (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(replace)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $string
+		// [i] field:0:optional $pattern
+		// [i] field:0:optional $replacement
+		// [i] field:0:optional $literal? {&quot;false&quot;,&quot;true&quot;}
+		// [o] field:0:optional $string
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String string = IDataUtil.getString(cursor, "$string");
+		  String pattern = IDataUtil.getString(cursor, "$pattern");
+		  String replacement = IDataUtil.getString(cursor, "$replacement");
+		  boolean literal = Boolean.parseBoolean(IDataUtil.getString(cursor, "$literal?"));
+		
+		  IDataUtil.put(cursor, "$string", replace(string, pattern, replacement, literal));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void split (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(split)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $string
+		// [i] field:0:optional $pattern
+		// [o] field:1:optional $list
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String string = IDataUtil.getString(cursor, "$string");
+		  String pattern = IDataUtil.getString(cursor, "$pattern");
+		  IDataUtil.put(cursor, "$list", split(string, pattern));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void squeeze (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(squeeze)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $string
+		// [o] field:0:optional $string
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String string = IDataUtil.getString(cursor, "$string");
+		  IDataUtil.put(cursor, "$string", squeeze(string));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void substitute (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(substitute)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $string
+		// [i] record:0:optional $pipeline
+		// [o] field:0:optional $string
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String string = IDataUtil.getString(cursor, "$string");
+		  IData scope = IDataUtil.getIData(cursor, "$pipeline");
+		
+		  IDataUtil.put(cursor, "$string", substitute(string, scope == null ? pipeline : scope));
 		} finally {
 		  cursor.destroy();
 		}
@@ -258,10 +385,68 @@ public final class string
 	  return length;
 	}
 	
+	// returns true if the given regular expression is found in the given string
 	public static boolean match(String input, String regex) {
 	  boolean match = false;
 	  if (input != null && regex != null) match = input.matches(regex);
 	  return match;
+	}
+	
+	// replaces all occurrences of the given regular expression in the given string with the given replacement
+	public static String replace(String input, String regex, String replacement, boolean literal) {
+	  String output = input;
+	  if (input != null && regex != null && replacement != null) {
+	    if (literal) replacement = java.util.regex.Matcher.quoteReplacement(replacement);
+	    java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(regex);
+	    java.util.regex.Matcher matcher = pattern.matcher(input);
+	    output = matcher.replaceAll(replacement);
+	  }
+	  return output;
+	}
+	
+	// splits a string around each match of the given regular expression pattern
+	public static String[] split(String input, String regex) {
+	  String[] output = null;
+	  if (input != null && regex != null) {
+	    java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(regex);
+	    output = pattern.split(input);
+	  }
+	  return output;
+	}
+	
+	// returns all the lines in the given string as an array
+	public static String[] lines(String input) {
+	  return split(input, "\n");
+	}
+	
+	// replaces runs of whitespace characters with a single space
+	public static String squeeze(String input) {
+	  return replace(input, "\\s+", " ", false);
+	}
+	
+	public static final java.util.regex.Pattern SUBSTITUTION_PATTERN = java.util.regex.Pattern.compile("%([^%]+)%");
+	
+	// performs variable substitution on the given string by replacing all occurrences of 
+	// substrings matching "%key%" with the associated value from the given scope
+	public static String substitute(String input, IData scope) {
+	  if (input == null || scope == null) return input;
+	
+	  java.util.regex.Matcher matcher = SUBSTITUTION_PATTERN.matcher(input);
+	  StringBuffer output = new StringBuffer();
+	
+	  while(matcher.find()) {
+	    String key = matcher.group(1);
+	    Object value = tundra.support.document.get(scope, key);
+	
+	    if (value != null && value instanceof String) {
+	      matcher.appendReplacement(output, matcher.quoteReplacement((String)value));
+	    } else {
+	      matcher.appendReplacement(output, matcher.quoteReplacement(matcher.group(0)));
+	    }
+	  }
+	
+	  matcher.appendTail(output);
+	  return output.toString();
 	}
 	// --- <<IS-END-SHARED>> ---
 }

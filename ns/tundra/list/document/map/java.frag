@@ -3,5 +3,5 @@
 <Values version="2.0">
   <value name="name">map</value>
   <value name="encodeutf8">true</value>
-  <value name="body">dHVuZHJhLmxpc3Qub2JqZWN0Lm1hcChwaXBlbGluZSk7</value>
+  <value name="body">dHVuZHJhLmxpc3Qub2JqZWN0Lm1hcChwaXBlbGluZSwgSURhdGEuY2xhc3MpOw==</value>
 </Values>

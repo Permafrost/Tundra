@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-06-30 16:10:22.588
-// -----( ON-HOST: 172.16.70.129
+// -----( CREATED: 2013-02-24 15:31:23 EST
+// -----( ON-HOST: 172.16.189.144
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -34,10 +34,16 @@ public final class service
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [o] field:1:required $callstack
+		// [o] field:0:required $callers
+		// [o] field:0:required $caller
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  IDataUtil.put(cursor, "$callstack", callstack());
+		  String[] stack = callstack();
+		  String callers = tundra.list.object.join(stack, " \u2192 ");
+		  IDataUtil.put(cursor, "$callstack", stack);
+		  IDataUtil.put(cursor, "$callers", callers);
+		  IDataUtil.put(cursor, "$caller", stack.length > 0 ? stack[0] : "");
 		} finally {
 		  cursor.destroy();
 		}
@@ -102,7 +108,7 @@ public final class service
 		  if (mode == null) mode = "synchronous";
 		  boolean scoped = scope != null;
 		
-		  Object value = tundra.service.invoke(service, scoped ? scope : pipeline, mode);
+		  Object value = invoke(service, scoped ? scope : pipeline, mode);
 		  String key = mode.equals("asynchronous")? "$thread" : "$pipeline";
 		
 		  if (scoped || mode.equals("asynchronous")) {
@@ -132,8 +138,40 @@ public final class service
 		  com.wm.app.b2b.server.ServiceThread thread = (com.wm.app.b2b.server.ServiceThread)IDataUtil.get(cursor, "$thread");
 		
 		  if (thread != null) IDataUtil.put(cursor, "$pipeline", join(thread));
-		} catch(Exception ex) {
-		  tundra.exception.raise(ex);
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void nothing (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(nothing)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void self (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(self)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [o] field:0:optional $self
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  IDataUtil.put(cursor, "$self", self());
 		} finally {
 		  cursor.destroy();
 		}
@@ -166,7 +204,7 @@ public final class service
 
 	// --- <<IS-START-SHARED>> ---
 	// returns the invocation call stack
-	private static String[] callstack() {
+	public static String[] callstack() {
 	  java.util.Iterator stack = com.wm.app.b2b.server.InvokeState.getCurrentState().getCallStack().iterator();
 	  java.util.List<String> services = new java.util.ArrayList<String>();
 	  while (stack.hasNext()) {
@@ -177,7 +215,15 @@ public final class service
 	  return (String[])services.toArray(new String[services.size()]);
 	}
 	
-	// invokes the given service either synchronously or asynchronously
+	// returns the name of the current service
+	public static String self() {
+	  String self = null;
+	  String[] callstack = callstack();
+	  if (callstack.length > 0) self = tundra.list.object.get(callstack, -1); // last element in list
+	  return self;
+	}
+	
+	// invokes the given service synchronously
 	public static IData invoke(String service, IData pipeline) throws ServiceException {  
 	  return (IData)invoke(service, pipeline, "synchronous");
 	}
@@ -257,43 +303,26 @@ public final class service
 	  }
 	}
 	
-	public static IData ensure(String service, IData pipeline) throws ServiceException {
-	  return ensure(service, pipeline, null, null);
-	}
-	
+	// provides a try/catch/finally patter for flow services
 	public static IData ensure(String service, IData pipeline, String catchService, String finallyService) throws ServiceException {
-	  if (catchService == null) {
-	    pipeline = tryFinally(service, pipeline, finallyService);
-	  } else {
-	    pipeline = tryCatchFinally(service, pipeline, catchService, finallyService);
-	  }
-	  return pipeline;
-	}
-	
-	private static IData tryFinally(String service, IData pipeline, String finallyService) throws ServiceException {
-	  try {
-	    pipeline = invoke.synchronous(service, pipeline);
-	  } finally {
-	    if (finallyService != null) pipeline = ensure(finallyService, pipeline);
-	  }
-	
-	  return pipeline;
-	}
-	
-	private static IData tryCatchFinally(String service, IData pipeline, String catchService, String finallyService) throws ServiceException {
 	  try {
 	    pipeline = invoke.synchronous(service, pipeline);
 	  } catch (Throwable t) {
 	    IDataCursor cursor = pipeline.getCursor();
 	    IDataUtil.put(cursor, "$exception", t);
+	    IDataUtil.put(cursor, "$exception?", "true");
 	    IDataUtil.put(cursor, "$exception.class", t.getClass().getName());
 	    IDataUtil.put(cursor, "$exception.message", t.getMessage());
 	    IDataUtil.put(cursor, "$exception.stack", tundra.exception.stack(t));
 	    cursor.destroy();
 	
-	    pipeline = ensure(catchService, pipeline);
+	    if (catchService == null) {
+	      tundra.exception.raise(t);
+	    } else {
+	      pipeline = invoke(catchService, pipeline);
+	    }
 	  } finally {
-	    if (finallyService != null) pipeline = ensure(finallyService, pipeline);
+	    if (finallyService != null) pipeline = invoke(finallyService, pipeline);
 	  }
 	
 	  return pipeline;

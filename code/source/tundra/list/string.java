@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-06-23 15:58:03 EST
-// -----( ON-HOST: 172.16.70.129
+// -----( CREATED: 2012-10-30 14:32:54.719
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -77,6 +77,22 @@ public final class string
 
 
 
+	public static final void drop (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(drop)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:1:optional $list
+		// [i] field:0:required $index
+		tundra.list.object.drop(pipeline);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void each (IData pipeline)
         throws ServiceException
 	{
@@ -112,6 +128,23 @@ public final class string
 
 
 
+	public static final void get (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(get)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:1:optional $list
+		// [i] field:0:required $index
+		// [o] field:0:optional $item
+		tundra.list.object.get(pipeline);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void include (IData pipeline)
         throws ServiceException
 	{
@@ -140,23 +173,6 @@ public final class string
 		// [i] field:0:required $index
 		// [o] field:1:required $list
 		tundra.list.object.insert(pipeline, String.class);
-		// --- <<IS-END>> ---
-
-                
-	}
-
-
-
-	public static final void item (IData pipeline)
-        throws ServiceException
-	{
-		// --- <<IS-START(item)>> ---
-		// @subtype unknown
-		// @sigtype java 3.5
-		// [i] field:1:optional $list
-		// [i] field:0:required $index
-		// [o] field:0:optional $item
-		tundra.list.object.item(pipeline);
 		// --- <<IS-END>> ---
 
                 
@@ -205,10 +221,11 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:1:optional $list
 		// [i] field:0:optional $service
+		// [i] record:0:optional $pipeline
 		// [i] field:0:optional $item.input
 		// [i] field:0:optional $item.output
 		// [o] field:1:optional $list
-		tundra.list.object.map(pipeline);
+		tundra.list.object.map(pipeline, String.class);
 		// --- <<IS-END>> ---
 
                 
@@ -226,6 +243,24 @@ public final class string
 		// [i] field:0:optional $item
 		// [o] field:1:required $list
 		tundra.list.object.prepend(pipeline, String.class);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void put (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(put)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:1:optional $list
+		// [i] field:0:optional $item
+		// [i] field:0:required $index
+		// [o] field:1:required $list
+		tundra.list.object.put(pipeline, String.class);
 		// --- <<IS-END>> ---
 
                 
@@ -283,6 +318,32 @@ public final class string
 
 
 
+	public static final void substitute (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(substitute)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:1:optional $list
+		// [i] record:0:optional $pipeline
+		// [o] field:1:optional $list
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String[] list = IDataUtil.getStringArray(cursor, "$list");
+		  IData scope = IDataUtil.getIData(cursor, "$pipeline");
+		
+		  IDataUtil.put(cursor, "$list", substitute(list, scope == null ? pipeline : scope));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void unique (IData pipeline)
         throws ServiceException
 	{
@@ -298,9 +359,30 @@ public final class string
 	}
 
 	// --- <<IS-START-SHARED>> ---
-	// returns a new array with all elements sorted
-	public static IData[] sort(IData[] array, String key) {
-	  return IDataUtil.sortIDataArrayByKey(array, key, IDataUtil.COMPARE_TYPE_COLLATION, false);
+	// performs variable substitution on each string in the given list by replacing all occurrences of 
+	// substrings matching "%key%" with the associated value from the given scope
+	public static String[] substitute(String[] input, IData scope) {
+	  if (input == null || scope == null) return input;
+	
+	  String[] output = new String[input.length];
+	  for (int i = 0; i < input.length; i++) {
+	    output[i] = tundra.string.substitute(input[i], scope);
+	  }
+	
+	  return output;
+	}
+	
+	// performs variable substitution on each string in the given table by replacing all occurrences of 
+	// substrings matching "%key%" with the associated value from the given scope
+	public static String[][] substitute(String[][] input, IData scope) {
+	  if (input == null || scope == null) return input;
+	
+	  String[][] output = new String[input.length][];
+	  for (int i = 0; i < input.length; i++) {
+	    output[i] = substitute(input[i], scope);
+	  }
+	
+	  return output;
 	}
 	// --- <<IS-END-SHARED>> ---
 }

@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-05-13 15:38:28 EST
-// -----( ON-HOST: 172.16.70.129
+// -----( CREATED: 2012-10-16 10:18:27.112
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -100,7 +100,7 @@ public final class duration
 		// [i] field:0:optional $duration
 		// [i] field:0:optional $datetime
 		// [i] field:0:optional $pattern.input {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
-		// [i] field:0:optional $pattern.output {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;english&quot;}
+		// [i] field:0:optional $pattern.output {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;}
 		// [o] field:0:optional $duration
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -111,6 +111,56 @@ public final class duration
 		  String outPattern = IDataUtil.getString(cursor, "$pattern.output");
 		  
 		  IDataUtil.put(cursor, "$duration", format(duration, inPattern, outPattern, datetime));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void multiply (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(multiply)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $duration
+		// [i] field:0:optional $datetime
+		// [i] field:0:optional $factor
+		// [o] field:0:optional $duration
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String duration = IDataUtil.getString(cursor, "$duration");
+		  String datetime = IDataUtil.getString(cursor, "$datetime");
+		  String factor = IDataUtil.getString(cursor, "$factor");
+		  IDataUtil.put(cursor, "$duration", multiply(duration, factor, datetime));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void negate (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(negate)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $duration
+		// [o] field:0:optional $duration
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String duration = IDataUtil.getString(cursor, "$duration");
+		  IDataUtil.put(cursor, "$duration", negate(duration));
 		} finally {
 		  cursor.destroy();
 		}
@@ -136,29 +186,6 @@ public final class duration
 		  String x = IDataUtil.getString(cursor, "$duration.x");
 		  String y = IDataUtil.getString(cursor, "$duration.y");
 		  IDataUtil.put(cursor, "$duration", subtract(x, y));
-		} finally {
-		  cursor.destroy();
-		}
-		// --- <<IS-END>> ---
-
-                
-	}
-
-
-
-	public static final void sum (IData pipeline)
-        throws ServiceException
-	{
-		// --- <<IS-START(sum)>> ---
-		// @subtype unknown
-		// @sigtype java 3.5
-		// [i] field:1:optional $durations
-		// [o] field:0:required $duration
-		IDataCursor cursor = pipeline.getCursor();
-		
-		try {
-		  String[] durations = IDataUtil.getStringArray(cursor, "$durations");
-		  IDataUtil.put(cursor, "$duration", add(durations));
 		} finally {
 		  cursor.destroy();
 		}
@@ -317,25 +344,6 @@ public final class duration
 	      output = "" + (input.getTimeInMillis(instant) / MILLISECONDS_PER_WEEK);
 	    } else if (pattern.equals("xml")) {
 	      output = input.toString();
-	    } else if (pattern.equals("english")) {
-	      String[] fields = new String[6];
-	      fields[0] = format((java.math.BigInteger)input.getField(javax.xml.datatype.DatatypeConstants.YEARS), "year");
-	      fields[1] = format((java.math.BigInteger)input.getField(javax.xml.datatype.DatatypeConstants.MONTHS), "month");
-	      fields[2] = format((java.math.BigInteger)input.getField(javax.xml.datatype.DatatypeConstants.DAYS), "day");
-	      fields[3] = format((java.math.BigInteger)input.getField(javax.xml.datatype.DatatypeConstants.HOURS), "hour");
-	      fields[4] = format((java.math.BigInteger)input.getField(javax.xml.datatype.DatatypeConstants.MINUTES), "minute");
-	      fields[5] = format((java.math.BigDecimal)input.getField(javax.xml.datatype.DatatypeConstants.SECONDS), "second");
-	
-	      StringBuffer buffer = new StringBuffer();
-	      for (int i = 0; i < fields.length; i++) {
-	       if (!fields[i].equals("")) {
-	         if (buffer.length() > 0) buffer.append(", ");
-	         buffer.append(fields[i]);
-	       }
-	      }
-	      if (buffer.length() == 0) buffer.append("0 seconds");
-	      
-	      output = buffer.toString();
 	    } else {
 	      throw new IllegalArgumentException("Unparseable pattern: " + pattern);
 	    }
@@ -344,54 +352,24 @@ public final class duration
 	  return output;
 	}
 	
-	// returns an empty string if the given number is zero, otherwise
-	// a string equal to the number and correctly pluralized units
-	private static String format(java.math.BigInteger number, String unit) {
-	  StringBuffer output = new StringBuffer();
-	  if (number != null) {
-	    java.math.BigInteger zero = new java.math.BigInteger("0");
-	    if (number.compareTo(zero) != 0) {
-	      output.append(number.toString());
-	      output.append(" ");
-	      output.append(pluralize(number, unit));
-	    }
+	// computes a new duration by multiplying the given duration by the given factor
+	public static String multiply(String duration, String factor, String datetime) {
+	  if (duration == null || factor == null) return duration;
+	
+	  java.util.Calendar instant = null;
+	  if (datetime == null) {
+	    instant = java.util.Calendar.getInstance();
+	  } else {
+	    instant = javax.xml.bind.DatatypeConverter.parseDateTime(datetime);  
 	  }
-	  return output.toString();
+	
+	  return emit(parse(duration).normalizeWith(instant).multiply(new java.math.BigDecimal(factor)));
 	}
 	
-	// returns an empty string if the given number is zero, otherwise
-	// a string equal to the number and correctly pluralized units
-	private static String format(java.math.BigDecimal number, String unit) {
-	  StringBuffer output = new StringBuffer();
-	  if (number != null) {
-	    java.math.BigDecimal zero = new java.math.BigDecimal("0");
-	    if (number.compareTo(zero) != 0) {
-	      output.append(number.toString());
-	      output.append(" ");
-	      output.append(pluralize(number, unit));
-	    }
-	  }
-	  return output.toString();
-	}
-	
-	// naive pluralization algorithm
-	private static String pluralize(java.math.BigInteger number, String unit) {
-	  java.math.BigInteger positiveOne = new java.math.BigInteger("1");
-	  java.math.BigInteger negativeOne = new java.math.BigInteger("-1");
-	
-	  if (number.compareTo(positiveOne) != 0 && number.compareTo(negativeOne) != 0) unit = unit + "s";
-	
-	  return unit;
-	}
-	
-	// naive pluralization algorithm
-	private static String pluralize(java.math.BigDecimal number, String unit) {
-	  java.math.BigDecimal positiveOne = new java.math.BigDecimal("1");
-	  java.math.BigDecimal negativeOne = new java.math.BigDecimal("-1");
-	
-	  if (number.compareTo(positiveOne) != 0 && number.compareTo(negativeOne) != 0) unit = unit + "s";
-	
-	  return unit;
+	// reverses the sign of the given duration
+	public static String negate(String duration) {
+	  if (duration == null) return null;
+	  return emit(parse(duration).negate());
 	}
 	// --- <<IS-END-SHARED>> ---
 }

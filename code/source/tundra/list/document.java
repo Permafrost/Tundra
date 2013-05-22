@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-06-23 16:04:04 EST
+// -----( CREATED: 2012-08-12 21:16:30.221
 // -----( ON-HOST: 172.16.70.129
 
 import com.wm.data.*;
@@ -52,7 +52,14 @@ public final class document
 		// @sigtype java 3.5
 		// [i] record:1:optional $list
 		// [o] record:1:optional $list
-		tundra.list.object.compact(pipeline);
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  IData[] list = IDataUtil.getIDataArray(cursor, "$list");
+		  IDataUtil.put(cursor, "$list", compact(list));
+		} finally {
+		  cursor.destroy();
+		}
 		// --- <<IS-END>> ---
 
                 
@@ -70,6 +77,22 @@ public final class document
 		// [i] record:1:optional $list.y
 		// [o] record:1:optional $list
 		tundra.list.object.concatenate(pipeline);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void drop (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(drop)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:1:optional $list
+		// [i] field:0:required $index
+		tundra.list.object.drop(pipeline);
 		// --- <<IS-END>> ---
 
                 
@@ -112,6 +135,23 @@ public final class document
 
 
 
+	public static final void get (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(get)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:1:optional $list
+		// [i] field:0:required $index
+		// [o] record:0:optional $item
+		tundra.list.object.get(pipeline);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void include (IData pipeline)
         throws ServiceException
 	{
@@ -147,23 +187,6 @@ public final class document
 
 
 
-	public static final void item (IData pipeline)
-        throws ServiceException
-	{
-		// --- <<IS-START(item)>> ---
-		// @subtype unknown
-		// @sigtype java 3.5
-		// [i] record:1:optional $list
-		// [i] field:0:required $index
-		// [o] record:0:optional $item
-		tundra.list.object.item(pipeline);
-		// --- <<IS-END>> ---
-
-                
-	}
-
-
-
 	public static final void length (IData pipeline)
         throws ServiceException
 	{
@@ -188,10 +211,11 @@ public final class document
 		// @sigtype java 3.5
 		// [i] record:1:optional $list
 		// [i] field:0:optional $service
+		// [i] record:0:optional $pipeline
 		// [i] field:0:optional $item.input
 		// [i] field:0:optional $item.output
 		// [o] record:1:optional $list
-		tundra.list.object.map(pipeline);
+		tundra.list.object.map(pipeline, IData.class);
 		// --- <<IS-END>> ---
 
                 
@@ -209,6 +233,24 @@ public final class document
 		// [i] record:0:optional $item
 		// [o] record:1:required $list
 		tundra.list.object.prepend(pipeline, IData.class);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void put (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(put)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:1:optional $list
+		// [i] record:0:optional $item
+		// [i] field:0:required $index
+		// [o] record:1:required $list
+		tundra.list.object.put(pipeline, IData.class);
 		// --- <<IS-END>> ---
 
                 
@@ -278,6 +320,21 @@ public final class document
 	// returns a new array with all elements sorted
 	public static IData[] sort(IData[] array, String key) {
 	  return IDataUtil.sortIDataArrayByKey(array, key, IDataUtil.COMPARE_TYPE_COLLATION, false);
+	}
+	
+	// compacts an IData array by removing all null values from each IData, and all null IData objects from the list
+	public static IData[] compact(IData[] array) {
+	  if (array == null || array.length == 0) return array;
+	
+	  // take a copy of the array, to make sure it's really an IData[] and not some subclass that won't
+	  // be able to store different IData implementations
+	  array = (IData[])java.util.Arrays.copyOf(array, array.length, (new IData[0]).getClass());
+	
+	  for (int i = 0; i < array.length; i++) {
+	    if (array[i] != null) array[i] = tundra.document.compact(array[i], true);
+	  }
+	
+	  return tundra.list.object.compact(array);
 	}
 	// --- <<IS-END-SHARED>> ---
 }

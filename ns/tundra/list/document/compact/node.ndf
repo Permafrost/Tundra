@@ -62,7 +62,8 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Removes all null items from the given list, thereby shortening the length of the list.</value>
+  <value name="node_comment">Removes all null values from each IData item in the list, and all null IData items from the 
+given list, thereby shortening the length of the list.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

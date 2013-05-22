@@ -125,7 +125,6 @@
             <value>hours</value>
             <value>days</value>
             <value>weeks</value>
-            <value>english</value>
           </array>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <value name="contentType">1</value>
@@ -186,7 +185,7 @@
 
 A start instant ($datetime) may be required when formatting fields with 
 indeterminate values, such as converting months to days (because the number 
-of days in a month varies.</value>
+of days in a month varies).</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
