@@ -783,6 +783,19 @@ tundra.list.object:unique($list[]);
 // invokes each service in the given list in order, sharing the pipeline across all invokes
 tundra.list.service:chain($services, $pipeline);
 
+// provides a try/catch/finally pattern for chained flow services
+//
+// If one of the given list of $services throws an exception when invoked, then the arguments
+// $exception, $exception?, $exception.class, $exception.message and $exception.stack are added
+// to the pipeline.
+//
+// If specified, the $catch service is invoked to handle the exception, otherwise the exception
+// is rethrown.
+//
+// If specified, the $finally service is always invoked, whether an exception was thrown by one
+// of the invoked $services or not.
+tundra.list.service:ensure($services[], $catch, $finally, $pipeline);
+
 // invokes a list of services either synchronously (with an optional level of
 // concurrency) or asynchronously
 tundra.list.service:invoke($invocations[], $mode, $concurrency);

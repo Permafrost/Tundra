@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-05-26 11:52:04 EST
+// -----( CREATED: 2013-05-26 12:13:29 EST
 // -----( ON-HOST: 172.16.189.135
 
 import com.wm.data.*;
@@ -44,6 +44,34 @@ public final class service
 		  boolean scoped = scope != null;
 		
 		  scope = chain(services, scoped ? scope : pipeline);
+		
+		  if (scoped) IDataUtil.put(cursor, "$pipeline", scope);
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void ensure (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(ensure)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String[] $services = IDataUtil.getStringArray(cursor, "$services");
+		  String $catch = IDataUtil.getString(cursor, "$catch");
+		  String $finally = IDataUtil.getString(cursor, "$finally");
+		  IData scope = IDataUtil.getIData(cursor, "$pipeline");
+		  boolean scoped = scope != null;
+		
+		  scope = ensure($services, scoped ? scope : pipeline, $catch, $finally);
 		
 		  if (scoped) IDataUtil.put(cursor, "$pipeline", scope);
 		} finally {
@@ -118,6 +146,31 @@ public final class service
 	      pipeline = tundra.service.invoke(services[i], pipeline);
 	    }
 	  }
+	  return pipeline;
+	}
+	
+	// provides a try/catch/finally pattern for chained flow services
+	public static IData ensure(String[] services, IData pipeline, String catchService, String finallyService) throws ServiceException {
+	  try {
+	    pipeline = chain(services, pipeline);
+	  } catch (Throwable t) {
+	    IDataCursor cursor = pipeline.getCursor();
+	    IDataUtil.put(cursor, "$exception", t);
+	    IDataUtil.put(cursor, "$exception?", "true");
+	    IDataUtil.put(cursor, "$exception.class", t.getClass().getName());
+	    IDataUtil.put(cursor, "$exception.message", t.getMessage());
+	    IDataUtil.put(cursor, "$exception.stack", tundra.exception.stack(t));
+	    cursor.destroy();
+	
+	    if (catchService == null) {
+	      tundra.exception.raise(t);
+	    } else {
+	      pipeline = tundra.service.invoke(catchService, pipeline);
+	    }
+	  } finally {
+	    if (finallyService != null) pipeline = tundra.service.invoke(finallyService, pipeline);
+	  }
+	
 	  return pipeline;
 	}
 	
