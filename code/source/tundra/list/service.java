@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-16 19:22:37.243
-// -----( ON-HOST: 172.16.70.129
+// -----( CREATED: 2013-05-26 11:52:04 EST
+// -----( ON-HOST: 172.16.189.135
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -24,6 +24,35 @@ public final class service
 
 	// ---( server methods )---
 
+
+
+
+	public static final void chain (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(chain)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:1:required $services
+		// [i] record:0:optional $pipeline
+		// [o] record:0:optional $pipeline
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String[] services = IDataUtil.getStringArray(cursor, "$services");
+		  IData scope = IDataUtil.getIData(cursor, "$pipeline");
+		  boolean scoped = scope != null;
+		
+		  scope = chain(services, scoped ? scope : pipeline);
+		
+		  if (scoped) IDataUtil.put(cursor, "$pipeline", scope);
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
 
 
 
@@ -82,6 +111,16 @@ public final class service
 	}
 
 	// --- <<IS-START-SHARED>> ---
+	// invokes a list of services with a shared pipeline
+	public static IData chain(String[] services, IData pipeline) throws ServiceException {
+	  if (services != null) {
+	    for (int i = 0; i < services.length; i++) {
+	      pipeline = tundra.service.invoke(services[i], pipeline);
+	    }
+	  }
+	  return pipeline;
+	}
+	
 	// invokes a list of services either synchronously or asynchronously
 	public static IData[] invoke(IData[] invocations, String mode, String concurrency) throws ServiceException {
 	  return invoke(invocations, mode, concurrency == null ? 1 : Integer.parseInt(concurrency));
