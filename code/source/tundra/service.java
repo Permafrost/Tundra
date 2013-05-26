@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-02-24 15:31:23 EST
-// -----( ON-HOST: 172.16.189.144
+// -----( CREATED: 2013-05-26 12:09:13 EST
+// -----( ON-HOST: 172.16.189.135
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -303,7 +303,7 @@ public final class service
 	  }
 	}
 	
-	// provides a try/catch/finally patter for flow services
+	// provides a try/catch/finally pattern for flow services
 	public static IData ensure(String service, IData pipeline, String catchService, String finallyService) throws ServiceException {
 	  try {
 	    pipeline = invoke.synchronous(service, pipeline);
