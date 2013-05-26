@@ -25,6 +25,7 @@
           <value name="field_name">$services</value>
           <value name="field_type">string</value>
           <value name="field_dim">1</value>
+          <value name="field_opt">true</value>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <value name="contentType">1</value>
             <value name="internalType">reference</value>
@@ -36,7 +37,7 @@
               </record>
             </array>
           </record>
-          <value name="nillable">false</value>
+          <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
           <value name="is_soap_array_encoding_used">false</value>

@@ -781,7 +781,7 @@ tundra.list.object:unique($list[]);
 
 ```java
 // invokes each service in the given list in order, sharing the pipeline across all invokes
-tundra.list.service:chain($services, $pipeline);
+tundra.list.service:chain($services[], $pipeline);
 
 // provides a try/catch/finally pattern for chained flow services
 //
