@@ -355,7 +355,8 @@ tundra.document:rename($document, $key.source, $key.target);
 // one-to-many conversion of an IData document to an IData[] document list; calls the given
 // splitting service, passing the document as an input, and emitting the split
 // list of documents as output; the splitting service must accept a single IData document,
-// and return an IData document list
+// and return an IData document list; the splitting service may also return a list of $schemas
+// that each return document conforms to
 tundra.document:split($document, $service, $pipeline, $service.input, $service.output);
 
 // attempts variable substitution on each string element in the given IData document by
