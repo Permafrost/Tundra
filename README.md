@@ -857,6 +857,9 @@ tundra.list.string:lowercase($list[]);
 // the given list, and collecting new the values returned
 tundra.list.string:map($list[], $service, $item.input, $item.output);
 
+// converts a list of string, bytes or input streams to a list of strings
+tundra.list.string:normalize($objects[], $encoding);
+
 // prepends a single item to the front of a list, such that prepending an
 // item to a list containing n items results in a new list of n + 1 items
 tundra.list.string:prepend($list[], $item);
