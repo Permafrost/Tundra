@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-06-08 12:50:47 EST
+// -----( CREATED: 2013-06-08 13:05:09 EST
 // -----( ON-HOST: 172.16.189.177
 
 import com.wm.data.*;
@@ -207,8 +207,10 @@ public final class document
 		  if (document != null) {
 		    IDataCursor dc = document.getCursor();
 		    if (dc.first()) {
-		      IDataUtil.put(cursor, "$key", dc.getKey());
-		      IDataUtil.put(cursor, "$value", dc.getValue());
+		      String key = dc.getKey();
+		      Object value = dc.getValue();
+		      IDataUtil.put(cursor, "$key", key);
+		      IDataUtil.put(cursor, "$value", value);
 		    }
 		    dc.destroy();
 		  }
@@ -276,6 +278,9 @@ public final class document
 		// --- <<IS-START(last)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
+		// [i] record:0:optional $document
+		// [o] field:0:optional $key
+		// [o] object:0:optional $value
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -283,8 +288,10 @@ public final class document
 		  if (document != null) {
 		    IDataCursor dc = document.getCursor();
 		    if (dc.last()) {
-		      IDataUtil.put(cursor, "$key", dc.getKey());
-		      IDataUtil.put(cursor, "$value", dc.getValue());
+		      String key = dc.getKey();
+		      Object value = dc.getValue();
+		      IDataUtil.put(cursor, "$key", key);
+		      IDataUtil.put(cursor, "$value", value);
 		    }
 		    dc.destroy();
 		  }
