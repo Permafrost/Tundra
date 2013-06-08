@@ -1013,6 +1013,9 @@ tundra.pipeline:drop($key);
 // keys can be simple or fully qualified, such as a/b/c[0]/d
 tundra.pipeline:get($key);
 
+// returns the last {key, value} pair from the pipeline
+tundra.pipeline:last();
+
 // returns the number of top-level elements in the pipeline
 tundra.pipeline:length();
 
