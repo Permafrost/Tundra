@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-02-25 10:53:32 EST
-// -----( ON-HOST: 172.16.189.144
+// -----( CREATED: 2013-06-08 12:45:50 EST
+// -----( ON-HOST: 172.16.189.177
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -181,6 +181,37 @@ public final class document
 		  IData y = IDataUtil.getIData(cursor, "$document.y");
 		
 		  IDataUtil.put(cursor, "$equal?", "" + equal(x, y));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void first (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(first)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:0:optional $document
+		// [o] field:0:optional $key
+		// [o] object:0:optional $value
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  IData document = IDataUtil.getIData(cursor, "$document");
+		  if (document != null) {
+		    IDataCursor dc = document.getCursor();
+		    if (dc.first()) {
+		      IDataUtil.put(cursor, "$key", dc.getKey());
+		      IDataUtil.put(cursor, "$value", dc.getValue());
+		    }
+		    dc.destroy();
+		  }
 		} finally {
 		  cursor.destroy();
 		}

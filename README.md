@@ -342,6 +342,9 @@ tundra.document:each($document, $service, $pipeline, $key.input, $value.input, $
 // and values)
 tundra.document:equal($document.x, $document.y);
 
+// returns the first {key, value} pair from the given IData document
+tundra.document:first($document);
+
 // returns the value associated with the given key from the given IData
 // document, or null if the key doesn't exist
 // keys can be simple or fully qualified, such as a/b/c[0]/d
