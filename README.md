@@ -368,6 +368,9 @@ tundra.document.key:uppercase($document, $recurse?);
 // returns the list of top-level keys in the given IData document
 tundra.document:keys($document);
 
+// returns the last {key, value} pair from the given IData document
+tundra.document:last($document);
+
 // returns the number of top-level elements in the given IData document
 tundra.document:length($document);
 

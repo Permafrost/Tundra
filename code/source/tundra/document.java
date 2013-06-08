@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-06-08 12:45:50 EST
+// -----( CREATED: 2013-06-08 12:50:47 EST
 // -----( ON-HOST: 172.16.189.177
 
 import com.wm.data.*;
@@ -260,6 +260,34 @@ public final class document
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  IDataUtil.put(cursor, "$keys", keyset(document));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void last (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(last)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  IData document = IDataUtil.getIData(cursor, "$document");
+		  if (document != null) {
+		    IDataCursor dc = document.getCursor();
+		    if (dc.last()) {
+		      IDataUtil.put(cursor, "$key", dc.getKey());
+		      IDataUtil.put(cursor, "$value", dc.getValue());
+		    }
+		    dc.destroy();
+		  }
 		} finally {
 		  cursor.destroy();
 		}
