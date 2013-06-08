@@ -12,34 +12,72 @@ Tundra is dependent on the following packages:
 
 ## Installation
 
+You have two choices for installing Tundra: git or zip. If you are comfortable using git,
+I recommend this method as you can then easily switch between package versions using git
+checkout and download new versions using git fetch.
+
+### Using Git
+
+To install with this method, first make sure that:
+* Git is [installed](http://git-scm.com/downloads) on your Integration Server
+* Your Integration Server has internet access to https://github.com (for cloning the repository)
+* The dependent packages listed above are installed and enabled on your Integration Server
+
 From your Integration Server installation:
 
 ```sh
-$ cd ./packages
+$ cd ./packages/
 $ git clone https://github.com/Permafrost/Tundra.git
+$ cd ./Tundra/
 $ git checkout v<n.n.n> # where <n.n.n> is the desired version
 ```
 
-Then activate and enable the Tundra package from the package management web page on the
-Integration Server web administration site.
+Then activate and enable the Tundra package from the package management web page on your Integration Server
+web administration site.
 
-Or, if you don't want to use git, you can download the full package from GitHub by clicking
-the ZIP button above, then extract the resulting Tundra-master.zip file to your Integration
-Server's ./packages/ folder, rename the folder to Tundra, and then activate and enable it
-from the package management web page on the Integration Server web administration site.
+### Using Zip
+
+1. Download a zip of the desired version of the package from https://github.com/Permafrost/Tundra/tags
+2. Extract the downloaded Tundra-n.n.n.zip file to your Integration Server's ./packages/ folder
+3. Rename the ./packages/Tundra-n.n.n/ folder to ./packages/Tundra/
+4. Activate and enable Tundra from the package management web page on your Integration Server web
+administration site
 
 ## Upgrading
 
+When upgrading you have to choose the same method used to originally install the package. Unfortunately, if git
+wasn't used to install the package then you can't use git to upgrade it either. However, if you want to switch
+to using git to manage the package, delete the installed package and start over using the git method for
+installation.
+
+### Using Git
+
+To upgrade with this method, first make sure that:
+* Git is [installed](http://git-scm.com/downloads) on your Integration Server
+* Your Integration Server has internet access to https://github.com (for fetching updates from the repository)
+* The dependent packages listed above are installed and enabled on your Integration Server
+* You originally installed Tundra using the git method described above
+
 From your Integration Server installation:
 
 ```sh
-$ cd ./packages/Tundra
+$ cd ./packages/Tundra/
 $ git fetch
-$ git checkout v<n.n.n> # where <n.n.n> is the desired version
+$ git checkout v<n.n.n> # where <n.n.n> is the desired updated version
 ```
 
-Then reload the Tundra package from the package management web page on the
-Integration Server web administration site.
+Then reload the Tundra package from the package management web page on your Integration Server web administration
+site.
+
+### Using Zip
+
+1. Delete your existing version of the Tundra package using the package management web page on your Integration
+Server web administration site
+2. Download a zip of the desired updated version of the package from https://github.com/Permafrost/Tundra/tags
+3. Extract the downloaded Tundra-n.n.n.zip file to your Integration Server's ./packages/ folder
+3. Rename the ./packages/Tundra-n.n.n/ folder to ./packages/Tundra/
+4. Activate and enable Tundra from the package management web page on your Integration Server web administration
+site
 
 ## Conventions
 
