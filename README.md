@@ -588,6 +588,45 @@ tundra.http:client($uri, $method, $content, $encoding, $authority, $headers, $ti
 tundra.id:generate();
 ```
 
+### Integer
+
+Services for working with arbitrary precision integers (uses java.math.BigInteger as its implementation):
+
+```java
+// returns the absolute value of the given integer
+tundra.integer.absolute($integer);
+
+// adds the given integers together, returning the result
+tundra.integer.add($integers[]);
+
+// decrements the given integer by one
+tundra.integer.decrement($integer);
+
+// divides the given integer x by y, returning the result
+tundra.integer.divide($integer.x, $integer.y);
+
+// increments the given integer by one
+tundra.integer.increment($integer);
+
+// multiplies the given integers together, returning the result
+tundra.integer.multiply($integers[]);
+
+// returns the negative value of the given integer (-x)
+tundra.integer.negate($integer);
+
+// raises the given integer to the power of the given exponent (i^e)
+tundra.integer.power($integer, $exponent);
+
+// returns the remainder from dividing the given integer x by y
+tundra.integer.remainder($integer.x, $integer.y);
+
+// subtracts the given integer y from x, returning the result
+tundra.integer.subtract($integer.x, $integer.y);
+
+// returns true if the given string can be parsed as an integer
+tundra.integer.validate($integer);
+```
+
 ### List
 
 Services for manipulating lists:
