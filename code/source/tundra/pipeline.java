@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-06-08 12:59:35 EST
+// -----( CREATED: 2013-06-08 13:01:59 EST
 // -----( ON-HOST: 172.16.189.177
 
 import com.wm.data.*;
@@ -94,6 +94,32 @@ public final class pipeline
 
 
 
+	public static final void first (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(first)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [o] field:0:optional $key
+		// [o] object:0:optional $value
+		IDataCursor cursor = pipeline.getCursor();
+		try {
+		  if (cursor.first()) {
+		    String key = cursor.getKey();
+		    Object value = cursor.getValue();
+		    IDataUtil.put(cursor, "$key", key);
+		    IDataUtil.put(cursor, "$value", value);
+		  }
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void get (IData pipeline)
         throws ServiceException
 	{
@@ -130,7 +156,7 @@ public final class pipeline
 		  if (cursor.last()) {
 		    String key = cursor.getKey();
 		    Object value = cursor.getValue();
-		    IDataUtil.put(cursor, "$key",key);
+		    IDataUtil.put(cursor, "$key", key);
 		    IDataUtil.put(cursor, "$value", value);
 		  }
 		} finally {
