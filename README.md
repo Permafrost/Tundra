@@ -298,6 +298,89 @@ tundra.datetime.subtract($datetime, $duration);
 tundra.datetime.validate($datetime, $pattern);
 ```
 
+### Decimal
+
+Services for working with arbitrary precision decimals (uses java.math.BigDecimal as its implementation):
+
+```java
+// returns the absolute value of the given decimal
+tundra.decimal:absolute($decimal);
+
+// adds the given decimals, returning the result optionally rounded to the given precision (number of
+// decimal places) using the given rounding algorithm
+//
+// refer to <http://docs.oracle.com/javase/6/docs/api/java/math/RoundingMode.html> for details on
+// each rounding algorithm; if not specified, the default rounding algorithm used is HALF_UP
+tundra.decimal:add($decimals[], $precision, $rounding);
+
+// divides the given decimal x by y, returning the result optionally rounded to the given precision
+// (number of decimal places) using the given rounding algorithm
+//
+// refer to <http://docs.oracle.com/javase/6/docs/api/java/math/RoundingMode.html> for details on
+// each rounding algorithm; if not specified, the default rounding algorithm used is HALF_UP
+tundra.decimal:divide($decimal.x, $decimal.y, $precision, $rounding);
+
+// multiplies the given decimals, returning the result optionally rounded to the given precision
+// (number of decimal places) using the given rounding algorithm
+//
+// refer to <http://docs.oracle.com/javase/6/docs/api/java/math/RoundingMode.html> for details on
+// each rounding algorithm; if not specified, the default rounding algorithm used is HALF_UP
+tundra.decimal:multiply($decimals[], $precision, $rounding);
+
+// returns the negative value of the given decimal (-x)
+tundra.decimal:negate($decimal);
+
+// raises the given decimal to the power of the given exponent (d^e), optionally rounded to the
+// given precision (number of decimal places) using the given rounding algorithm
+//
+// refer to <http://docs.oracle.com/javase/6/docs/api/java/math/RoundingMode.html> for details on
+// each rounding algorithm; if not specified, the default rounding algorithm used is HALF_UP
+tundra.decimal:power($decimal, $exponent, $precision, $rounding);
+
+// rounds the given decimal to given precision (number of decimal places) using the given rounding
+// algorithm
+//
+// refer to <http://docs.oracle.com/javase/6/docs/api/java/math/RoundingMode.html> for details on
+// each rounding algorithm; if not specified, the default rounding algorithm used is HALF_UP
+tundra.decimal:round($decimal, $precision, $rounding);
+
+// subtracts the given decimal y from x, returning the result optionally rounded to the given precision
+// (number of decimal places) using the given rounding algorithm.
+//
+// refer to <http://docs.oracle.com/javase/6/docs/api/java/math/RoundingMode.html> for details on
+// each rounding algorithm; if not specified, the default rounding algorithm used is HALF_UP
+tundra.decimal:subtract($decimal.x, $decimal.y, $precision, $rounding);
+
+// returns true if the given string can be parsed as a decimal
+tundra.decimal:validate($decimal);
+```
+
+### Directory
+
+File system services for working with directories or folders:
+
+```java
+// creates a new directory
+tundra.directory:create($directory);
+
+// returns true if the directory exists and it is directory
+tundra.directory:exists($directory);
+
+// lists a directory, optionally filtering based on the given regular
+// expression pattern
+tundra.directory:list($directory, $pattern, $recurse?);
+
+// returns the canonical file: URI that represents the given directory
+tundra.directory:normalize($directory);
+
+// deletes the given directory; all child files and directories will be
+// deleted if $recurse? is true
+tundra.directory:remove($directory, $recurse?);
+
+// renames the source directory to the target directory name
+tundra.directory:rename($directory.source, $directory.target);
+```
+
 ### Document
 
 Services for manipulating com.wm.data.IData objects:
@@ -431,32 +514,6 @@ tundra.document.value:uppercase($document, $recurse?);
 
 // returns the list of top-level values in the given IData document
 tundra.document:values($document);
-```
-
-### Directory
-
-File system services for working with directories or folders:
-
-```java
-// creates a new directory
-tundra.directory:create($directory);
-
-// returns true if the directory exists and it is directory
-tundra.directory:exists($directory);
-
-// lists a directory, optionally filtering based on the given regular
-// expression pattern
-tundra.directory:list($directory, $pattern, $recurse?);
-
-// returns the canonical file: URI that represents the given directory
-tundra.directory:normalize($directory);
-
-// deletes the given directory; all child files and directories will be
-// deleted if $recurse? is true
-tundra.directory:remove($directory, $recurse?);
-
-// renames the source directory to the target directory name
-tundra.directory:rename($directory.source, $directory.target);
 ```
 
 ### DNS
