@@ -219,6 +219,33 @@ tundra.bytes:normalize($object, $encoding);
 tundra.bytes:length($bytes);
 ```
 
+### Condition
+
+Services for evaluating conditional statements:
+
+```java
+// Evaluates the given condition against the pipeline (or optional scope IData document).
+//
+// Condition statements have the following form:
+// <condition> = <key> == <key>   [and|or <condition>]
+//             | <key> != <key>   [and|or <condition>]
+//             | <key> == <value> [and|or <condition>]
+//             | <key> != <value> [and|or <condition>]
+//
+// Where <key>   is a fully qualified percent delimited IData key, such as %a/b/c[0]%
+//   and <value> is a literal string (double- or single-quoted), number, boolean,
+//               regular expression, or null
+//
+// Examples:
+// %a/b/c[0]% == "xyz"
+// %some/thing% != null
+// %num% == /\d\d/
+// %num% == 10
+// %flag% == true
+// %inString1% == "abc" and (%inString2% == "123" or %inString3% == "123")
+tundra.condition:evaluate($condition, $scope);
+```
+
 ### Content
 
 Services for manipulating arbitrary textual content, such as XML or CSV content:
