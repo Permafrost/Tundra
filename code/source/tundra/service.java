@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-05-26 12:09:13 EST
-// -----( ON-HOST: 172.16.189.135
+// -----( CREATED: 2013-06-17 16:42:06 EST
+// -----( ON-HOST: 172.16.189.194
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -202,7 +202,35 @@ public final class service
                 
 	}
 
+
+
+	public static final void validate (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(validate)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $service
+		// [o] field:0:required $valid?
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String service = IDataUtil.getString(cursor, "$service");
+		  IDataUtil.put(cursor, "$valid?", "" + validate(service));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
 	// --- <<IS-START-SHARED>> ---
+	// returns true if the given string is a service and exists
+	public static boolean validate(String service) {
+	  return tundra.node.exists(service) && tundra.node.type(service).equals("service");
+	}
+	
 	// returns the invocation call stack
 	public static String[] callstack() {
 	  java.util.Iterator stack = com.wm.app.b2b.server.InvokeState.getCurrentState().getCallStack().iterator();

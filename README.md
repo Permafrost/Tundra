@@ -1207,6 +1207,9 @@ tundra.service:self();
 // execution) for the specified duration, subject to the precision and
 // accuracy of system timers and schedulers
 tundra.service:sleep($duration);
+
+// returns true if the given service name exists and is actually a service
+tundra.service:validate($service);
 ```
 
 ### Session
