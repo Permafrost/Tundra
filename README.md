@@ -1435,7 +1435,7 @@ tundra.xpath:exists($content, $encoding, $expression, $namespace);
 3. Fork the project
 4. Start a feature/bugfix branch
 5. Commit and push until you are happy with your contribution
-6. Make sure to add tests for it. This is important so it won't in a future
+6. Make sure to add tests for it. This is important so it won't break in a future
    version unintentionally
 
 Please try not to mess with the package version, or history. If you want your
