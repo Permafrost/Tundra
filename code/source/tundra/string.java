@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-08-28 20:16:19.525
-// -----( ON-HOST: 172.16.70.129
+// -----( CREATED: 2013-06-18 10:41:06 EST
+// -----( ON-HOST: 172.16.189.173
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -34,7 +34,7 @@ public final class string
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
-		// [o] field:0:optional $length
+		// [o] field:0:required $length
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -241,15 +241,17 @@ public final class string
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
+		// [i] field:0:optional $default
 		// [i] record:0:optional $pipeline
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String string = IDataUtil.getString(cursor, "$string");
+		  String defaultValue = IDataUtil.getString(cursor, "$default");
 		  IData scope = IDataUtil.getIData(cursor, "$pipeline");
 		
-		  IDataUtil.put(cursor, "$string", substitute(string, scope == null ? pipeline : scope));
+		  IDataUtil.put(cursor, "$string", substitute(string, scope == null ? pipeline : scope, defaultValue));
 		} finally {
 		  cursor.destroy();
 		}
@@ -429,6 +431,13 @@ public final class string
 	// performs variable substitution on the given string by replacing all occurrences of 
 	// substrings matching "%key%" with the associated value from the given scope
 	public static String substitute(String input, IData scope) {
+	  return substitute(input, scope, null);
+	}
+	
+	// performs variable substitution on the given string by replacing all occurrences of 
+	// substrings matching "%key%" with the associated value from the given scope; if
+	// the key has no value, the given defaultValue is used instead
+	public static String substitute(String input, IData scope, String defaultValue) {
 	  if (input == null || scope == null) return input;
 	
 	  java.util.regex.Matcher matcher = SUBSTITUTION_PATTERN.matcher(input);
@@ -440,6 +449,8 @@ public final class string
 	
 	    if (value != null && value instanceof String) {
 	      matcher.appendReplacement(output, matcher.quoteReplacement((String)value));
+	    } else if (defaultValue != null) {
+	      matcher.appendReplacement(output, matcher.quoteReplacement(defaultValue));
 	    } else {
 	      matcher.appendReplacement(output, matcher.quoteReplacement(matcher.group(0)));
 	    }

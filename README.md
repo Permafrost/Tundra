@@ -1276,8 +1276,9 @@ tundra.string:split($string, $pattern);
 tundra.string:squeeze($string);
 
 // attempts variable substitution on the given string by replacing all occurrences of
-// substrings matching "%key%" with the associated (optionally scoped) value
-tundra.string:substitute($string, $pipeline);
+// substrings matching "%key%" with the associated (optionally scoped) value;
+// optionally replaces null or non-existent values with the given default value
+tundra.string:substitute($string, $pipeline, $default);
 
 // returns the given string with leading and trailing whitespace removed
 tundra.string:trim($string);
