@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-10-30 14:32:54.719
-// -----( ON-HOST: -
+// -----( CREATED: 2013-06-18 12:00:48 EST
+// -----( ON-HOST: 172.16.189.173
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -326,14 +326,16 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:1:optional $list
 		// [i] record:0:optional $pipeline
+		// [i] field:0:optional $default
 		// [o] field:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String[] list = IDataUtil.getStringArray(cursor, "$list");
 		  IData scope = IDataUtil.getIData(cursor, "$pipeline");
+		  String defaultValue = IDataUtil.getString(cursor, "$default");
 		
-		  IDataUtil.put(cursor, "$list", substitute(list, scope == null ? pipeline : scope));
+		  IDataUtil.put(cursor, "$list", substitute(list, scope == null ? pipeline : scope, defaultValue));
 		} finally {
 		  cursor.destroy();
 		}
@@ -362,11 +364,17 @@ public final class string
 	// performs variable substitution on each string in the given list by replacing all occurrences of 
 	// substrings matching "%key%" with the associated value from the given scope
 	public static String[] substitute(String[] input, IData scope) {
+	  return substitute(input, scope, null);
+	}
+	
+	// performs variable substitution on each string in the given list by replacing all occurrences of 
+	// substrings matching "%key%" with the associated value from the given scope
+	public static String[] substitute(String[] input, IData scope, String defaultValue) {
 	  if (input == null || scope == null) return input;
 	
 	  String[] output = new String[input.length];
 	  for (int i = 0; i < input.length; i++) {
-	    output[i] = tundra.string.substitute(input[i], scope);
+	    output[i] = tundra.string.substitute(input[i], scope, defaultValue);
 	  }
 	
 	  return output;
@@ -375,11 +383,17 @@ public final class string
 	// performs variable substitution on each string in the given table by replacing all occurrences of 
 	// substrings matching "%key%" with the associated value from the given scope
 	public static String[][] substitute(String[][] input, IData scope) {
+	  return substitute(input, scope, null);
+	}
+	
+	// performs variable substitution on each string in the given table by replacing all occurrences of 
+	// substrings matching "%key%" with the associated value from the given scope
+	public static String[][] substitute(String[][] input, IData scope, String defaultValue) {
 	  if (input == null || scope == null) return input;
 	
 	  String[][] output = new String[input.length][];
 	  for (int i = 0; i < input.length; i++) {
-	    output[i] = substitute(input[i], scope);
+	    output[i] = substitute(input[i], scope, defaultValue);
 	  }
 	
 	  return output;

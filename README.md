@@ -1059,7 +1059,8 @@ tundra.list.string:squeeze($list[]);
 
 // attempts variable substitution on each string in the given list by replacing
 // all occurrences of substrings matching "%key%" with the associated (optionally
-// scoped) value
+// scoped) value; optionally replaces null or non-existent values with the given
+// default value
 tundra.list.string:substitute($list[], $pipeline);
 
 // removes all leading and trailing whitespace
