@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-06-08 13:05:09 EST
-// -----( ON-HOST: 172.16.189.177
+// -----( CREATED: 2013-06-20 18:12:27 EST
+// -----( ON-HOST: 172.16.189.168
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -24,6 +24,34 @@ public final class document
 
 	// ---( server methods )---
 
+
+
+
+	public static final void amend (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(amend)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:0:optional $document
+		// [i] record:1:optional $amendments
+		// [i] - field:0:required key
+		// [i] - field:0:optional value
+		// [o] record:0:optional $document
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  IData document = IDataUtil.getIData(cursor, "$document");
+		  IData[] amendments = IDataUtil.getIDataArray(cursor, "$amendments");
+		
+		  if (document != null) IDataUtil.put(cursor, "$document", amend(document, amendments, pipeline));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
 
 
 
@@ -520,6 +548,25 @@ public final class document
 	}
 
 	// --- <<IS-START-SHARED>> ---
+	// amends the given IData document with the {key,value} pairs specified in the
+	// amendments IData
+	public static IData amend(IData document, IData[] amendments, IData scope) {
+	  if (amendments == null) return document;
+	
+	  for (int i = 0; i < amendments.length; i++) {
+	    if (amendments[i] != null) {
+	      IData amendment = substitute(amendments[i], scope, true);
+	      IDataCursor cursor = amendment.getCursor();
+	      String key = IDataUtil.getString(cursor, "key");
+	      Object value = IDataUtil.get(cursor, "value");
+	      cursor.destroy();
+	      document = tundra.support.document.put(document, key, value);
+	    }
+	  }
+	
+	  return document;
+	}
+	
 	// returns whether two documents are equal
 	public static boolean equal(IData x, IData y) {
 	  return tundra.object.equal(x, y);

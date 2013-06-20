@@ -251,6 +251,14 @@ tundra.condition:evaluate($condition, $scope);
 Services for manipulating arbitrary textual content, such as XML or CSV content:
 
 ```java
+// Edits the given XML or flat file content with the list of {key, value} pairs specified in
+// $amendments.
+//
+// The keys in $amendments can be fully-qualified (for example, "a/b/c[0]"), and the values can
+// include percent-delimited variable substitution strings which will be substituted prior to
+// being inserted in $document.
+tundra.content:amend($content, $amendments[], $schema, $encoding.input, $encoding.output, $mode.output);
+
 // Delivers arbitrary content (string, bytes, or input stream) to the given destination URI.
 //
 // Supports the following delivery protocols / URI schemes:
@@ -413,6 +421,13 @@ tundra.directory:rename($directory.source, $directory.target);
 Services for manipulating com.wm.data.IData objects:
 
 ```java
+// Edits the given IData $document with the list of {key, value} pairs specified in $amendments.
+//
+// The keys in $amendments can be fully-qualified (for example, "a/b/c[0]"), and the values can
+// include percent-delimited variable substitution strings which will be substituted prior to
+// being inserted in $document.
+tundra.document:amend($document, $amendments[]);
+
 // removes all null values from the given IData document
 tundra.document:compact($document);
 
