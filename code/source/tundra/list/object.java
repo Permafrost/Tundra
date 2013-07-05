@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-08-12 21:14:26.375
-// -----( ON-HOST: 172.16.70.129
+// -----( CREATED: 2013-07-05 21:38:14 EST
+// -----( ON-HOST: 172.16.189.232
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -102,13 +102,13 @@ public final class object
 		// @sigtype java 3.5
 		// [i] object:1:optional $list
 		// [i] field:0:required $index
+		// [o] object:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  Object[] list = IDataUtil.getObjectArray(cursor, "$list");
 		  String index = IDataUtil.getString(cursor, "$index");
-		
-		  if (index != null) IDataUtil.put(cursor, "$list", drop(list, index));
+		  IDataUtil.put(cursor, "$list", drop(list, index));
 		} finally {
 		  cursor.destroy();
 		}
