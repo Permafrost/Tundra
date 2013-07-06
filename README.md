@@ -1036,6 +1036,10 @@ tundra.list.string:lowercase($list[]);
 // the given list, and collecting new the values returned
 tundra.list.string:map($list[], $service, $item.input, $item.output);
 
+// returns the list of items which matched, and the list of items which did not match, the given
+// regular expression pattern
+tundra.list.string:match($list[], $pattern);
+
 // converts a list of string, bytes or input streams to a list of strings
 tundra.list.string:normalize($objects[], $encoding);
 
