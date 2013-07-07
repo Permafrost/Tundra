@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-05-16 09:58:33.044
-// -----( ON-HOST: -
+// -----( CREATED: 2013-07-07 18:35:03 EST
+// -----( ON-HOST: 172.16.189.199
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -50,7 +50,7 @@ public final class xml
 		  boolean raise = Boolean.parseBoolean(IDataUtil.getString(cursor, "$raise?"));
 		
 		  String[] errors = validate(tundra.stream.normalize(content, contentEncoding), tundra.stream.normalize(schema, schemaEncoding), raise);
-		  boolean valid = errors == null || errors.length == 0;
+		  boolean valid = content != null && (errors == null || errors.length == 0);
 		
 		  IDataUtil.put(cursor, "$valid?", "" + valid);
 		  if (!valid) IDataUtil.put(cursor, "$errors", errors);
