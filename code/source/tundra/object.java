@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-10-30 10:52:08.351
-// -----( ON-HOST: -
+// -----( CREATED: 2013-07-07 18:16:51 EST
+// -----( ON-HOST: 172.16.189.199
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -96,7 +96,7 @@ public final class object
 		try {
 		  Object object = IDataUtil.get(cursor, "$object");
 		  String klass = IDataUtil.getString(cursor, "$class");
-		  if (object != null && klass != null) IDataUtil.put(cursor, "$instance?", "" + instance(object, klass));
+		  IDataUtil.put(cursor, "$instance?", "" + (object != null && klass != null && instance(object, klass)));
 		} finally {
 		  cursor.destroy();
 		}
