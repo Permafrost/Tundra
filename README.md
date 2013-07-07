@@ -1423,6 +1423,12 @@ tundra.uri:encode($string);
 tundra.uri.parse($string);
 ````
 
+### User
+
+```java
+// returns the current Integration Server user used to invoke this service
+tundra.user:current();
+
 ### XML
 
 ```java
