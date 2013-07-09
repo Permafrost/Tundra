@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-06-20 18:12:27 EST
-// -----( ON-HOST: 172.16.189.168
+// -----( CREATED: 2013-07-09 11:59:38.322
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -349,6 +349,23 @@ public final class document
 		} finally {
 		  cursor.destroy();
 		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void listify (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(listify)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $key
+		// [i] record:0:optional $scope
+		// [o] record:0:optional $scope
+		tundra.object.listify(pipeline, IData.class);
 		// --- <<IS-END>> ---
 
                 

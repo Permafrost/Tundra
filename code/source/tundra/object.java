@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-07-07 18:16:51 EST
-// -----( ON-HOST: 172.16.189.199
+// -----( CREATED: 2013-07-09 11:41:38.017
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -91,7 +91,7 @@ public final class object
 		// @sigtype java 3.5
 		// [i] object:0:optional $object
 		// [i] field:0:optional $class
-		// [o] field:0:optional $instance?
+		// [o] field:0:required $instance?
 		IDataCursor cursor = pipeline.getCursor();
 		try {
 		  Object object = IDataUtil.get(cursor, "$object");
@@ -100,6 +100,23 @@ public final class object
 		} finally {
 		  cursor.destroy();
 		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void listify (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(listify)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $key
+		// [i] record:0:optional $scope
+		// [o] record:0:optional $scope
+		listify(pipeline, Object.class);
 		// --- <<IS-END>> ---
 
                 
@@ -175,6 +192,48 @@ public final class object
 	}
 
 	// --- <<IS-START-SHARED>> ---
+	// returns a new list containing item, or item itself if it is
+	// already a list
+	public static <T> T[] listify(Object item, Class<T> klass) {
+	  T[] list;
+	
+	  if (item == null) {
+	    list = (T[])java.lang.reflect.Array.newInstance(klass, 0);
+	  } else if (item.getClass().isArray()) {
+	    list = (T[])item;
+	  } else {
+	    list = (T[])java.lang.reflect.Array.newInstance(klass, 1);
+	    list[0] = (T)item;
+	  }
+	  
+	  return list;
+	}
+	
+	// converts the value identified by key in the given scope document to a new
+	// list containing the original value, unless the value is already a list
+	public static <T> IData listify(IData scope, String key, Class<T> klass) {
+	  return tundra.support.document.put(scope, key, listify(tundra.support.document.get(scope, key), klass));
+	}
+	
+	// converts the value identified by $key in the given $scope document (or
+	// pipeline if not specified) to a new list containing the original value, 
+	// unless the value is already a list
+	public static <T> void listify(IData pipeline, Class<T> klass) {
+	  IDataCursor cursor = pipeline.getCursor();
+	
+	  try {
+	    String key = IDataUtil.getString(cursor, "$key");
+	    IData scope = IDataUtil.getIData(cursor, "$scope");
+	    boolean scoped = scope != null;
+	    
+	    scope = listify(scoped? scope : pipeline, key, klass);
+	
+	    if (scoped) IDataUtil.put(cursor, "$scope", scope);
+	  } finally {
+	    cursor.destroy();
+	  }
+	}
+	
 	// returns true if the two objects are equal
 	public static boolean equal(Object x, Object y) {
 	  boolean result = true;

@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-06-18 10:41:06 EST
-// -----( ON-HOST: 172.16.189.173
+// -----( CREATED: 2013-07-09 11:47:46.421
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -65,6 +65,23 @@ public final class string
 		} finally {
 		  cursor.destroy();
 		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void listify (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(listify)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $key
+		// [i] record:0:optional $scope
+		// [o] record:0:optional $scope
+		tundra.object.listify(pipeline, String.class);
 		// --- <<IS-END>> ---
 
                 
@@ -241,8 +258,8 @@ public final class string
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
-		// [i] field:0:optional $default
 		// [i] record:0:optional $pipeline
+		// [i] field:0:optional $default
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
 		

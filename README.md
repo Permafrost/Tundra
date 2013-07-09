@@ -495,6 +495,12 @@ tundra.document:last($document);
 // returns the number of top-level elements in the given IData document
 tundra.document:length($document);
 
+// converts the IData value identified by $key in the given $scope IData document (or the pipeline, 
+// if not specified) to a new list of type IData[] containing the original value as its single item,
+// unless the original value was already list; the given key can be simple or fully qualified, such 
+// as a/b/c[0]/d
+tundra.document:listify($key, $scope);
+
 // returns a new IData document created by invoking the given service for each {key, value} pair
 // in the given document, and collecting new the {key, value} pair returned
 tundra.document:map($document, $service, $pipeline, $key.input, $key.output, $value.input, $value.output, $value.class, $recurse?);
@@ -1121,6 +1127,12 @@ tundra.object:equal($object.x, $object.y);
 // returns true if object is an instance of given class
 tundra.object:instance($object, $class);
 
+// converts the value identified by $key in the given $scope IData document (or the pipeline, if not 
+// specified) to a new list of type Object[] containing the original value as its single item, unless 
+// the original value is already list; the given key can be simple or fully qualified, such as 
+// a/b/c[0]/d
+tundra.object:listify($key, $scope);
+
 // returns null
 tundra.object:nothing();
 
@@ -1266,6 +1278,12 @@ tundra.string:length($string);
 
 // returns all the lines in the given string as a list
 tundra.string:lines($string);
+
+// converts the String value identified by $key in the given $scope IData document (or the pipeline, 
+// if not specified) to a new list of type String[] containing the original value as its single item,
+// unless the original value is already list; the given key can be simple or fully qualified, such 
+// as a/b/c[0]/d
+tundra.string:listify($key, $scope);
 
 // returns the given string in lower case
 tundra.string:lowercase($string, $locale);
