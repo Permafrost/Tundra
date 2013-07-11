@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-27 19:46:21.774
-// -----( ON-HOST: 172.16.70.129
+// -----( CREATED: 2013-07-11 13:49:48.434
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -24,6 +24,33 @@ public final class node
 
 	// ---( server methods )---
 
+
+
+
+	public static final void access (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(access)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $node
+		// [i] record:1:optional $permissions
+		// [i] - field:0:required type {&quot;list&quot;,&quot;read&quot;,&quot;write&quot;,&quot;execute&quot;}
+		// [i] - field:0:optional acl
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String node = IDataUtil.getString(cursor, "$node");
+		  IData[] permissions = IDataUtil.getIDataArray(cursor, "$permissions");
+		
+		  access(node, permissions);
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
 
 
 
@@ -158,6 +185,37 @@ public final class node
 	  }
 	
 	  return children;
+	}
+	
+	// grants the specified permissions on the given node
+	public static void access(String node, IData[] permissions) {
+	  if (node == null || permissions == null) return;
+	
+	  for (int i = 0; i < permissions.length; i++) {
+	    if (permissions[i] != null) {
+	      IDataCursor cursor = permissions[i].getCursor();
+	      String type = IDataUtil.getString(cursor, "type");
+	      String acl = IDataUtil.getString(cursor, "acl");
+	      access(node, type, acl);
+	    }
+	  }
+	}
+	
+	// grants the specified permission on the given node
+	public static void access(String node, String permission, String acl) {
+	  if (node == null || permission == null) return;
+	
+	  if (permission.equalsIgnoreCase("list")) {
+	    com.wm.app.b2b.server.ACLManager.setBrowseAclGroup(node, acl);
+	  } else if (permission.equalsIgnoreCase("read")) {
+	    com.wm.app.b2b.server.ACLManager.setReadAclGroup(node, acl);
+	  } else if (permission.equalsIgnoreCase("write")) {
+	    com.wm.app.b2b.server.ACLManager.setWriteAclGroup(node, acl);
+	  } else if (permission.equalsIgnoreCase("execute")) {
+	    com.wm.app.b2b.server.ACLManager.setAclGroup(node, acl);
+	  } else {
+	    throw new IllegalArgumentException("Permission type not supported: " + permission);
+	  }
 	}
 	// --- <<IS-END-SHARED>> ---
 }

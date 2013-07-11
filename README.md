@@ -1151,6 +1151,9 @@ tundra.mime.type:validate($string);
 Services for querying Integration Server namespace nodes:
 
 ```java
+// grants the specified permissions on the given namespace node
+tundra.node:access($node, $permissions[]);
+
 // returns true if a node with the given node exists on this server
 tundra.node:exists($node);
 
