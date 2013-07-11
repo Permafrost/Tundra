@@ -1106,6 +1106,46 @@ tundra.list.string:unique($list[]);
 tundra.list.string:uppercase($list[]);
 ```
 
+### MIME
+
+Services related to Multipurpose Internet Mail Extension (MIME):
+
+```java
+// Parses a Multipurpose Internet Mail Extension (MIME) type, according to RFC 2045 
+// <http://www.ietf.org/rfc/rfc2045.txt> and 2046 <http://www.ietf.org/rfc/rfc2046.txt>, 
+// into its constituent parts.
+// 
+// Refer: <http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html>
+tundra.mime.type:equal($string.x, $string.y)
+
+// Emits a Multipurpose Internet Mail Extension (MIME) type, according to RFC 2045 
+// <http://www.ietf.org/rfc/rfc2045.txt> and 2046 <http://www.ietf.org/rfc/rfc2046.txt>, 
+// given its constituent parts.
+// 
+// Refer: <http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html>
+tundra.mime.type:emit($type);
+
+// Normalizes a Multipurpose Internet Mail Extension (MIME) type by removing extraneous
+// whitespace characters, and listing parameters in alphabetical order.
+// 
+// Refer: <http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html>
+tundra.mime.type:normalize($string);
+
+// Parses a Multipurpose Internet Mail Extension (MIME) type, according to RFC 2045 
+// <http://www.ietf.org/rfc/rfc2045.txt> and 2046 <http://www.ietf.org/rfc/rfc2046.txt>, 
+// into its constituent parts.
+// 
+// Refer: <http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html>
+tundra.mime.type:parse($string);
+
+// Returns true if the given string can be parsed as a valid Multipurpose Internet Mail 
+// Extension (MIME) type, according to RFC 2045 <http://www.ietf.org/rfc/rfc2045.txt> 
+// and 2046 <http://www.ietf.org/rfc/rfc2046.txt>.
+// 
+// Refer: <http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html>
+tundra.mime.type:validate($string);
+```
+
 ### Node
 
 Services for querying Integration Server namespace nodes:
