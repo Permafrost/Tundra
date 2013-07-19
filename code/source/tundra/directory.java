@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-15 15:23:54.883
-// -----( ON-HOST: 172.16.70.129
+// -----( CREATED: 2013-07-19 21:18:38 EST
+// -----( ON-HOST: 172.16.189.227
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -79,6 +79,7 @@ public final class directory
 		// @sigtype java 3.5
 		// [i] field:0:required $directory
 		// [i] field:0:optional $pattern
+		// [i] field:0:optional $mode {&quot;regex&quot;,&quot;wildcard&quot;}
 		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:1:required $directories
 		// [o] field:1:required $files
@@ -87,10 +88,13 @@ public final class directory
 		try {
 		  String directory = IDataUtil.getString(cursor, "$directory");
 		  String pattern = IDataUtil.getString(cursor, "$pattern");
+		  String mode = IDataUtil.getString(cursor, "$mode");
 		  boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
 		
-		  IDataUtil.put(cursor, "$directories", list.directories(directory, pattern, recurse));
-		  IDataUtil.put(cursor, "$files", list.files(directory, pattern, recurse));
+		  boolean regex = (mode == null || !mode.equalsIgnoreCase("wildcard"));
+		
+		  IDataUtil.put(cursor, "$directories", list.directories(directory, pattern, regex, recurse));
+		  IDataUtil.put(cursor, "$files", list.files(directory, pattern, regex, recurse));
 		} finally {
 		  cursor.destroy();
 		}
@@ -107,8 +111,8 @@ public final class directory
 		// --- <<IS-START(normalize)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional $directory
-		// [o] field:0:optional $directory
+		// [i] field:0:required $directory
+		// [o] field:0:required $directory
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -129,7 +133,7 @@ public final class directory
 		// --- <<IS-START(remove)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional $directory
+		// [i] field:0:required $directory
 		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -228,24 +232,46 @@ public final class directory
 	
 	// lists a directory
 	public static class list {
-	  // lists all files in a directory
-	  public static java.io.File[] files(java.io.File directory, String pattern, boolean recurse) throws ServiceException {
-	    return list(directory, pattern == null? new FileFilter() : new RegularExpressionFileFilter(pattern), recurse);
+	  protected static java.io.FileFilter filter(boolean directory, boolean regex, String pattern) {
+	    java.io.FileFilter filter = null;
+	    if (directory) {
+	      if (pattern == null) {
+	        filter = new DirectoryFilter();
+	      } else if (regex) {
+	        filter = new RegularExpressionDirectoryFilter(pattern);
+	      } else {
+	        filter = new WildcardDirectoryFilter(pattern);
+	      }
+	    } else {
+	      if (pattern == null) {
+	        filter = new FileFilter();
+	      } else if (regex) {
+	        filter = new RegularExpressionFileFilter(pattern);
+	      } else {
+	        filter = new WildcardFileFilter(pattern);
+	      }
+	    }
+	    return filter;
 	  }
 	
 	  // lists all files in a directory
-	  public static String[] files(String directory, String pattern, boolean recurse) throws ServiceException {
-	    return toStringList(files(tundra.support.file.construct(directory), pattern, recurse));
+	  public static java.io.File[] files(java.io.File directory, String pattern, boolean regex, boolean recurse) throws ServiceException {
+	    return list(directory, filter(false, regex, pattern), recurse);
+	  }
+	
+	  // lists all files in a directory
+	  public static String[] files(String directory, String pattern, boolean regex, boolean recurse) throws ServiceException {
+	    return toStringList(files(tundra.support.file.construct(directory), pattern, regex, recurse));
 	  }
 	
 	  // lists all directories in a directory
-	  public static java.io.File[] directories(java.io.File directory, String pattern, boolean recurse) throws ServiceException {
-	    return list(directory, pattern == null? new DirectoryFilter() : new RegularExpressionDirectoryFilter(pattern), recurse);    
+	  public static java.io.File[] directories(java.io.File directory, String pattern, boolean regex, boolean recurse) throws ServiceException {
+	    return list(directory, filter(true, regex, pattern), recurse);    
 	  }
 	
 	  // lists all directories in a directory
-	  public static String[] directories(String directory, String pattern, boolean recurse) throws ServiceException {
-	    return toStringList(directories(tundra.support.file.construct(directory), pattern, recurse));
+	  public static String[] directories(String directory, String pattern, boolean regex, boolean recurse) throws ServiceException {
+	    return toStringList(directories(tundra.support.file.construct(directory), pattern, regex, recurse));
 	  }
 	
 	  // lists all objects in a directory
@@ -302,11 +328,16 @@ public final class directory
 	    protected java.util.regex.Pattern pattern;
 	
 	    public RegularExpressionFilter(String pattern) {
+	      if (caseInsensitive()) pattern = "(?i)" + pattern;
 	      this.pattern = java.util.regex.Pattern.compile(pattern);
 	    }
 	
 	    public boolean accept(java.io.File file) {
 	      return pattern.matcher(file.getName()).matches();
+	    }
+	
+	    protected static boolean caseInsensitive() {
+	      return (new java.io.File("TUNDRA")).equals(new java.io.File("tundra"));
 	    }
 	  }
 	
@@ -324,6 +355,53 @@ public final class directory
 	  // filter that only accepts directories whose names match the given regular expression
 	  public static class RegularExpressionDirectoryFilter extends RegularExpressionFilter {
 	    public RegularExpressionDirectoryFilter(String pattern) {
+	      super(pattern);
+	    }
+	
+	    public boolean accept(java.io.File file) {
+	      return file.isDirectory() && super.accept(file);
+	    }
+	  }
+	
+	  // filter that only accepts objects that match the given wildcard expression
+	  public static class WildcardFilter extends RegularExpressionFilter {
+	    public WildcardFilter(String pattern) {
+	      super(convertToRegex(pattern));
+	    }
+	
+	    protected static String convertToRegex(String pattern) {
+	      StringBuilder buffer = new StringBuilder();
+	      char[] characters = pattern.toCharArray();
+	
+	      for (int i = 0; i < characters.length; ++i) {
+	        if (characters[i] == '*') {
+	          buffer.append(".*");
+	        } else if (characters[i] == '?') {
+	          buffer.append(".");
+	        } else if ("+()^$.{}[]|\\".indexOf(characters[i]) != -1) {
+	          buffer.append('\\').append(characters[i]);
+	        } else {
+	          buffer.append(characters[i]);
+	        }
+	      }
+	      return buffer.toString();
+	    }
+	  }
+	
+	  // filter that only accepts files whose names match the given wildcard expression
+	  public static class WildcardFileFilter extends WildcardFilter {
+	    public WildcardFileFilter(String pattern) {
+	      super(pattern);
+	    }
+	
+	    public boolean accept(java.io.File file) {
+	      return file.isFile() && super.accept(file);
+	    }
+	  }
+	
+	  // filter that only accepts directories whose names match the given wildcard expression
+	  public static class WildcardDirectoryFilter extends WildcardFilter {
+	    public WildcardDirectoryFilter(String pattern) {
 	      super(pattern);
 	    }
 	
