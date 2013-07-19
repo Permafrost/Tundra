@@ -270,7 +270,7 @@ tundra.content:amend($content, $amendments[], $schema, $encoding.input, $encodin
 //   - https:   refer to http
 //   - mailto: sends an email with the given content attached. An example mailto URI is
 //             as follows: mailto:bob@example.com?cc=jane@example.com&subject=Example&body=Example&attachment=message.xml
-//             The following additional override options can be provided via the $pipeline 
+//             The following additional override options can be provided via the $pipeline
 //             document:
 //             - $attachment: the attached file's name
 //             - $from: email address to send the email from
@@ -294,6 +294,25 @@ tundra.content:emit($document, $encoding, $schema, $mode);
 // parses XML and flat file content (specified as a string, byte array, or
 // input stream) into an IData document
 tundra.content:parse($content, $encoding, $schema);
+
+// Retrieves arbitrary content (XML, flat files, binary) from the given $source URI, and calls the
+// given content processing service to process it.
+//
+// Content processing services must implement the tundra.schema.content.retrieve:processor
+// specification.
+//
+// Supports the following retrieval protocols / URI schemes:
+//   - file:   processes each file matching the given $source URI with the given processing $service.
+//             The file component of the URI can include wildcards or globs (such as *.txt or *.j?r)
+//             for matching multiple files at once. For example, file:////server:port/directory/*.txt
+//             would process all .txt files in the specified directory.
+//             To ensure each file processed is not locked or being written to by another process, the
+//             file is first moved to a ./archive directory prior to processing.
+//
+// Additional retrieval protocols can be implemented by creating a service named for the URI scheme in
+// the folder tundra.support.content.retrieve.  Services in this folder must implement the
+// tundra.schema.content.retrieve:handler specification.
+tundra.content:retrieve($source, $service);
 
 // one-to-many conversion of XML or flat file content to another format; calls the given
 // splitting service, passing the parsed content as an input, and emitting the split
@@ -506,9 +525,9 @@ tundra.document:last($document);
 // returns the number of top-level elements in the given IData document
 tundra.document:length($document);
 
-// converts the IData value identified by $key in the given $scope IData document (or the pipeline, 
+// converts the IData value identified by $key in the given $scope IData document (or the pipeline,
 // if not specified) to a new list of type IData[] containing the original value as its single item,
-// unless the original value was already list; the given key can be simple or fully qualified, such 
+// unless the original value was already list; the given key can be simple or fully qualified, such
 // as a/b/c[0]/d
 tundra.document:listify($key, $scope);
 
@@ -1111,37 +1130,37 @@ tundra.list.string:uppercase($list[]);
 Services related to Multipurpose Internet Mail Extension (MIME):
 
 ```java
-// Parses a Multipurpose Internet Mail Extension (MIME) type, according to RFC 2045 
-// <http://www.ietf.org/rfc/rfc2045.txt> and 2046 <http://www.ietf.org/rfc/rfc2046.txt>, 
+// Parses a Multipurpose Internet Mail Extension (MIME) type, according to RFC 2045
+// <http://www.ietf.org/rfc/rfc2045.txt> and 2046 <http://www.ietf.org/rfc/rfc2046.txt>,
 // into its constituent parts.
-// 
+//
 // Refer: <http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html>
 tundra.mime.type:equal($string.x, $string.y)
 
-// Emits a Multipurpose Internet Mail Extension (MIME) type, according to RFC 2045 
-// <http://www.ietf.org/rfc/rfc2045.txt> and 2046 <http://www.ietf.org/rfc/rfc2046.txt>, 
+// Emits a Multipurpose Internet Mail Extension (MIME) type, according to RFC 2045
+// <http://www.ietf.org/rfc/rfc2045.txt> and 2046 <http://www.ietf.org/rfc/rfc2046.txt>,
 // given its constituent parts.
-// 
+//
 // Refer: <http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html>
 tundra.mime.type:emit($type);
 
 // Normalizes a Multipurpose Internet Mail Extension (MIME) type by removing extraneous
 // whitespace characters, and listing parameters in alphabetical order.
-// 
+//
 // Refer: <http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html>
 tundra.mime.type:normalize($string);
 
-// Parses a Multipurpose Internet Mail Extension (MIME) type, according to RFC 2045 
-// <http://www.ietf.org/rfc/rfc2045.txt> and 2046 <http://www.ietf.org/rfc/rfc2046.txt>, 
+// Parses a Multipurpose Internet Mail Extension (MIME) type, according to RFC 2045
+// <http://www.ietf.org/rfc/rfc2045.txt> and 2046 <http://www.ietf.org/rfc/rfc2046.txt>,
 // into its constituent parts.
-// 
+//
 // Refer: <http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html>
 tundra.mime.type:parse($string);
 
-// Returns true if the given string can be parsed as a valid Multipurpose Internet Mail 
-// Extension (MIME) type, according to RFC 2045 <http://www.ietf.org/rfc/rfc2045.txt> 
+// Returns true if the given string can be parsed as a valid Multipurpose Internet Mail
+// Extension (MIME) type, according to RFC 2045 <http://www.ietf.org/rfc/rfc2045.txt>
 // and 2046 <http://www.ietf.org/rfc/rfc2046.txt>.
-// 
+//
 // Refer: <http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html>
 tundra.mime.type:validate($string);
 ```
@@ -1181,9 +1200,9 @@ tundra.object:equal($object.x, $object.y);
 // returns true if object is an instance of given class
 tundra.object:instance($object, $class);
 
-// converts the value identified by $key in the given $scope IData document (or the pipeline, if not 
-// specified) to a new list of type Object[] containing the original value as its single item, unless 
-// the original value is already list; the given key can be simple or fully qualified, such as 
+// converts the value identified by $key in the given $scope IData document (or the pipeline, if not
+// specified) to a new list of type Object[] containing the original value as its single item, unless
+// the original value is already list; the given key can be simple or fully qualified, such as
 // a/b/c[0]/d
 tundra.object:listify($key, $scope);
 
@@ -1249,6 +1268,21 @@ tundra.pipeline:rename($key.source, $key.target);
 // all occurrences of substrings matching "%key%" with the associated (optionally scoped)
 // value
 tundra.pipeline:substitute();
+```
+
+### Schema
+
+Document references and service specifications:
+
+```java
+// Content retrieval protocol handling services used by tundra.content:retrieve must implement this
+// specification.
+tundra.schema.content.retrieve:handler;
+
+// Content processing services used by tundra.content:retrieve must implement this specification. The
+// $content is specified as a java.io.InputStream, along with optional meta data about the content,
+// such as its mime type ($content.type) and name ($content.name).
+tundra.schema.content.retrieve:processor;
 ```
 
 ### Service
@@ -1333,9 +1367,9 @@ tundra.string:length($string);
 // returns all the lines in the given string as a list
 tundra.string:lines($string);
 
-// converts the String value identified by $key in the given $scope IData document (or the pipeline, 
+// converts the String value identified by $key in the given $scope IData document (or the pipeline,
 // if not specified) to a new list of type String[] containing the original value as its single item,
-// unless the original value is already list; the given key can be simple or fully qualified, such 
+// unless the original value is already list; the given key can be simple or fully qualified, such
 // as a/b/c[0]/d
 tundra.string:listify($key, $scope);
 
@@ -1378,7 +1412,7 @@ tundra.string:uppercase($string, $locale);
 ### System
 
 ```java
-// returns information about Integration Server, such as the software version, 
+// returns information about Integration Server, such as the software version,
 // environment settings, Java properties, well-known directory locations, and
 // memory usage
 tundra.system:reflect();
