@@ -427,9 +427,10 @@ tundra.directory:create($directory);
 // returns true if the directory exists and it is directory
 tundra.directory:exists($directory);
 
-// lists a directory, optionally filtering based on the given regular
-// expression pattern
-tundra.directory:list($directory, $pattern, $recurse?);
+// lists a directory, optionally filtering based on the given pattern, which can be either a
+// regular expression (for example, "\w+\.\w+") or a wildcard expression (for example, "*.txt")
+// depending on the $mode selected (default is "regex")
+tundra.directory:list($directory, $pattern, $mode, $recurse?);
 
 // returns the canonical file: URI that represents the given directory
 tundra.directory:normalize($directory);
