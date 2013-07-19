@@ -312,7 +312,10 @@ tundra.content:parse($content, $encoding, $schema);
 // Additional retrieval protocols can be implemented by creating a service named for the URI scheme in
 // the folder tundra.support.content.retrieve.  Services in this folder must implement the
 // tundra.schema.content.retrieve:handler specification.
-tundra.content:retrieve($source, $service);
+//
+// Use the $limit input to configure the maximum number of content matches to be processed in a single
+// execution (defaults to 1000).
+tundra.content:retrieve($source, $service, $limit);
 
 // one-to-many conversion of XML or flat file content to another format; calls the given
 // splitting service, passing the parsed content as an input, and emitting the split
