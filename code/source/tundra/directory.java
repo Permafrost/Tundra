@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-07-19 21:18:38 EST
+// -----( CREATED: 2013-07-19 22:12:27 EST
 // -----( ON-HOST: 172.16.189.227
 
 import com.wm.data.*;
@@ -91,7 +91,7 @@ public final class directory
 		  String mode = IDataUtil.getString(cursor, "$mode");
 		  boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
 		
-		  boolean regex = (mode == null || !mode.equalsIgnoreCase("wildcard"));
+		  boolean regex = (mode == null || mode.equalsIgnoreCase("regex"));
 		
 		  IDataUtil.put(cursor, "$directories", list.directories(directory, pattern, regex, recurse));
 		  IDataUtil.put(cursor, "$files", list.files(directory, pattern, regex, recurse));
