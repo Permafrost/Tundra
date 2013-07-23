@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="node_type">interface</value>
+  <value name="node_nsName">tundra.bool</value>
+  <value name="shared">Ly8gbm9ybWFsaXplcyBhIGJvb2xlYW4gc3RyaW5nIHRvIGVpdGhlciAidHJ1ZSIgb3IgImZhbHNl
+IgpwdWJsaWMgc3RhdGljIFN0cmluZyBub3JtYWxpemUoU3RyaW5nIHMpIHsKICByZXR1cm4gZW1p
+dChwYXJzZShzKSk7Cn0KCi8vIHBhcnNlcyBhIHN0cmluZyB0aGF0IGNhbiBjb250YWluICJ0cnVl
+IiAoaWdub3JpbmcgY2FzZSkgb3IgIjEiIHRvIAovLyByZXByZXNlbnQgdHJ1ZSwgYW5kICJmYWxz
+ZSIgKGlnbm9yaW5nIGNhc2UpIG9yICIwIiB0byByZXByZXNlbnQKLy8gZmFsc2UKcHVibGljIHN0
+YXRpYyBib29sZWFuIHBhcnNlKFN0cmluZyBzKSB7CiAgaWYgKHMgIT0gbnVsbCkgewogICAgLy8g
+aGFuZGxlIHhzOmJvb2xlYW4gc3RyaW5ncyB3aGljaCBjYW4gY29udGFpbiAwIG9yIDEKICAgIGlm
+IChzLmVxdWFscygiMCIpKSB7CiAgICAgIHMgPSAiZmFsc2UiOwogICAgfSBlbHNlIGlmIChzLmVx
+dWFscygiMSIpKSB7CiAgICAgIHMgPSAidHJ1ZSI7CiAgICB9CiAgfQogIHJldHVybiBCb29sZWFu
+LnBhcnNlQm9vbGVhbihzKTsKfQoKLy8gcmV0dXJucyBhIGJvb2xlYW4gdmFsdWUgaW4gaXRzIGNh
+bm9uaWNhbCBzdHJpbmcgZm9ybTogInRydWUiIG9yICJmYWxzZSIKcHVibGljIHN0YXRpYyBTdHJp
+bmcgZW1pdChib29sZWFuIGIpIHsKICByZXR1cm4gIiIgKyBiOwp9CgovLyByZXR1cm5zIHRoZSBu
+ZWdhdGVkIGJvb2xlYW4gdmFsdWUgb2YgdGhlIGdpdmVuIHN0cmluZwpwdWJsaWMgc3RhdGljIFN0
+cmluZyBuZWdhdGUoU3RyaW5nIHMpIHsKICByZXR1cm4gZW1pdChuZWdhdGUocGFyc2UocykpKTsK
+fQoKLy8gcmV0dXJucyB0aGUgbmVnYXRlZCB2YWx1ZSBvZiB0aGUgZ2l2ZW4gYm9vbGVhbgpwdWJs
+aWMgc3RhdGljIGJvb2xlYW4gbmVnYXRlKGJvb2xlYW4gYikgewogIHJldHVybiAhYjsKfQ==</value>
+  <value name="encodeutf8">true</value>
+  <value name="extends"></value>
+  <array name="implements" type="value" depth="1">
+  </array>
+  <array name="imports" type="value" depth="1">
+  </array>
+</Values>

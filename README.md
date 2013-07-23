@@ -203,6 +203,20 @@ tundra.base64:decode($base64, $encoding, $mode);
 tundra.base64:encode($content, $encoding, $mode);
 ```
 
+### Bool
+
+Services for manipulating boolean values.
+
+```
+// returns the negated canonical string form for the given boolean string: 
+// either "true" or "false
+tundra.bool:negate($boolean);
+
+// returns the canonical string form for the given boolean string: either 
+// "true" or "false
+tundra.bool:normalize($boolean);
+```
+
 ### Bytes
 
 Services for manipulating byte arrays:
