@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-07-22 21:33:31 EST
+// -----( CREATED: 2013-07-23 19:25:29 EST
 // -----( ON-HOST: 172.16.189.250
 
 import com.wm.data.*;
@@ -188,7 +188,7 @@ public final class directory
 	
 	// returns whether the given file exists
 	public static boolean exists(java.io.File directory) throws ServiceException {
-	  return directory == null ? false : directory.exists() && directory.isDirectory();
+	  return directory != null && directory.exists() && directory.isDirectory();
 	}
 	
 	// returns whether the given file exists
@@ -233,6 +233,7 @@ public final class directory
 	}
 	
 	public static class Lister {
+	  protected java.io.FilenameFilter isDirectory = new DirectoryFilter();
 	  protected java.io.FilenameFilter directoryFilter;
 	  protected java.io.FilenameFilter fileFilter;
 	
@@ -273,30 +274,39 @@ public final class directory
 	  }
 	
 	  protected String[][] list(java.io.File directory, boolean recurse) throws ServiceException {
-	    java.io.FilenameFilter isDirectory = new DirectoryFilter();
+	    if (!exists(directory)) tundra.exception.raise("Unable to list directory as it does not exist: " + tundra.support.file.normalize(directory));
+	
+	    String[][] result = new String[2][];
 	
 	    String[] listing = directory.list();
 	
-	    java.util.List<String> files = new java.util.ArrayList<String>(listing.length);    
-	    java.util.List<String> directories = new java.util.ArrayList<String>(listing.length);
+	    if (listing == null) {
+	      result[0] = new String[0];
+	      result[1] = new String[0];
+	    } else {
+	      // if listing is a reasonable size, just use that for the initial capacity for our list
+	      // of files and directories; otherwise set capacity to 1000 and let it grow as needed
+	      int capacity = listing.length > 1000? 1000 : listing.length;
+	      java.util.List<String> files = new java.util.ArrayList<String>(capacity);    
+	      java.util.List<String> directories = new java.util.ArrayList<String>(capacity);
 	
-	    for (String item : listing) {
-	      if (fileFilter.accept(directory, item)) {
-	        files.add(tundra.support.file.normalize(new java.io.File(directory, item)));
-	      } else if (directoryFilter.accept(directory, item)) {
-	        directories.add(tundra.support.file.normalize(new java.io.File(directory, item)));
+	      for (String item : listing) {
+	        if (fileFilter.accept(directory, item)) {
+	          files.add(tundra.support.file.normalize(new java.io.File(directory, item)));
+	        } else if (directoryFilter.accept(directory, item)) {
+	          directories.add(tundra.support.file.normalize(new java.io.File(directory, item)));
+	        }
+	
+	        if (recurse && isDirectory.accept(directory, item)) {
+	          String[][] children = list(new java.io.File(directory, item), recurse);
+	          files.addAll(java.util.Arrays.asList(children[0]));        
+	          directories.addAll(java.util.Arrays.asList(children[1]));
+	        }
 	      }
 	
-	      if (recurse && isDirectory.accept(directory, item)) {
-	        String[][] children = list(new java.io.File(directory, item), recurse);
-	        files.addAll(java.util.Arrays.asList(children[0]));        
-	        directories.addAll(java.util.Arrays.asList(children[1]));
-	      }
+	      result[0] = (String[])files.toArray(new String[0]);
+	      result[1] = (String[])directories.toArray(new String[0]);
 	    }
-	
-	    String[][] result = new String[2][];
-	    result[0] = (String[])files.toArray(new String[0]);
-	    result[1] = (String[])directories.toArray(new String[0]);
 	
 	    return result;
 	  }
