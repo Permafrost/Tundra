@@ -435,6 +435,11 @@ tundra.directory:exists($directory);
 // depending on the $mode selected (default is "regex")
 tundra.directory:list($directory, $pattern, $mode, $recurse?);
 
+// returns a raw directory listing with no additional processing: useful for when performance
+// takes priority over ease of use; for example, when the directory contains hundreds of
+// thousands or more files
+tundra.directory:ls($directory);
+
 // returns the canonical file: URI that represents the given directory
 tundra.directory:normalize($directory);
 

@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-07-24 07:46:01 EST
+// -----( CREATED: 2013-07-24 08:05:57 EST
 // -----( ON-HOST: 172.16.189.250
 
 import com.wm.data.*;
@@ -97,6 +97,27 @@ public final class directory
 		
 		  IDataUtil.put(cursor, "$directories", lister.directories());
 		  IDataUtil.put(cursor, "$files", lister.files());
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void ls (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(ls)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String directory = IDataUtil.getString(cursor, "$directory");
+		  IDataUtil.put(cursor, "$list", ls(directory));
 		} finally {
 		  cursor.destroy();
 		}
@@ -390,6 +411,21 @@ public final class directory
 	      return buffer.toString();
 	    }
 	  }
+	}
+	
+	// returns a raw directory listing with no additional processing: useful for when performance
+	// takes priority over ease of use; for example, when the directory contains hundreds of 
+	// thousands or more files
+	public static String[] ls(String directory) throws ServiceException {
+	  return ls(tundra.support.file.construct(directory));
+	}
+	
+	// returns a raw directory listing with no additional processing: useful for when performance
+	// takes priority over ease of use; for example, when the directory contains hundreds of 
+	// thousands or more files
+	public static String[] ls(java.io.File directory) throws ServiceException {
+	  if (!tundra.directory.exists(directory)) tundra.exception.raise("Unable to list directory as it does not exist: " + tundra.support.file.normalize(directory));
+	  return directory.list();
 	}
 	// --- <<IS-END-SHARED>> ---
 }
