@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-07-23 19:25:29 EST
+// -----( CREATED: 2013-07-24 07:46:01 EST
 // -----( ON-HOST: 172.16.189.250
 
 import com.wm.data.*;
@@ -280,7 +280,7 @@ public final class directory
 	
 	    String[] listing = directory.list();
 	
-	    if (listing == null) {
+	    if (listing == null || listing.length == 0) {
 	      result[0] = new String[0];
 	      result[1] = new String[0];
 	    } else {
