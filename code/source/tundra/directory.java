@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-07-24 08:05:57 EST
+// -----( CREATED: 2013-07-24 08:29:51 EST
 // -----( ON-HOST: 172.16.189.250
 
 import com.wm.data.*;
@@ -71,6 +71,32 @@ public final class directory
 
 
 
+	public static final void join (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(join)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $parent
+		// [i] field:0:required $child
+		// [o] field:0:required $uri
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String parent = IDataUtil.getString(cursor, "$parent");
+		  String child = IDataUtil.getString(cursor, "$child");
+		
+		  IDataUtil.put(cursor, "$uri", join(parent, child));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void list (IData pipeline)
         throws ServiceException
 	{
@@ -113,6 +139,8 @@ public final class directory
 		// --- <<IS-START(ls)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
+		// [i] field:0:required $directory
+		// [o] field:1:required $list
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -426,6 +454,15 @@ public final class directory
 	public static String[] ls(java.io.File directory) throws ServiceException {
 	  if (!tundra.directory.exists(directory)) tundra.exception.raise("Unable to list directory as it does not exist: " + tundra.support.file.normalize(directory));
 	  return directory.list();
+	}
+	
+	// creates a new path given a parent directory and child item
+	public static String join(String parent, String child) throws ServiceException {
+	  return join(tundra.support.file.construct(parent), child);
+	}
+	
+	public static String join(java.io.File parent, String child) throws ServiceException {
+	  return tundra.support.file.normalize(new java.io.File(parent, child));
 	}
 	// --- <<IS-END-SHARED>> ---
 }

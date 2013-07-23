@@ -430,6 +430,9 @@ tundra.directory:create($directory);
 // returns true if the directory exists and it is directory
 tundra.directory:exists($directory);
 
+// returns a new file path URI, given a $parent path and $child path or file name
+tundra.directory:join($parent, $child);
+
 // lists a directory, optionally filtering based on the given pattern, which can be either a
 // regular expression (for example, "\w+\.\w+") or a wildcard expression (for example, "*.txt")
 // depending on the $mode selected (default is "regex")
