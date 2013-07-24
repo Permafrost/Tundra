@@ -148,19 +148,8 @@
   </record>
   <value name="node_comment">Formats a datetime that conforms to the input pattern, according to the output pattern.
 
-  The following named formats can be used:
-    date.jdbc
-    date.xml
-    datetime.jdbc 
-    datetime.xml
-    datetime.xcbl
-    datetime.sapiens
-    datetime.epoch.milliseconds
-    time.jdbc
-    time.xml
-
-  Alternatively custom formats can be specified using the following
-  java.text.SimpleDateFormat compatible patterns:
+  Custom formats can be specified using the following java.text.SimpleDateFormat 
+  compatible patterns:
 
   Symbol  Meaning                      Presentation  Examples
   ------  -------                      ------------  -------
@@ -186,18 +175,7 @@
   z       time zone                    text          Pacific Standard Time; PST
   Z       time zone offset/id          zone          -0800; -08:00; Asia/Tokyo
   '       escape for text              delimiter
-  ''      single quote                 literal       '
-
-  * Time without a time zone will be treated as local unless 
-    $datetime-zone is specified.
-  * Time with time zone other than local will be converted to 
-    local time zone (day of the month/hour/minute value may change).
-  * Time zone pattern 'Z' outputs offset without a colon, 'ZZ' outputs 
-    the offset with a colon, and 'ZZZ' outputs the zone ID.
-  * The Joda library does not support time zone abbreviations (e.g. EST),
-    and therefore cannot parse datetime strings with such abbreviations.
-  * XML datetime format is flexible when used as input: the time component,
-    or the fractional seconds and the time zone can be omitted.</value>
+  ''      single quote                 literal       '</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
