@@ -26,6 +26,7 @@
           <value name="field_name">$integer</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <value name="contentType">1</value>
             <value name="internalType">reference</value>
@@ -37,7 +38,7 @@
               </record>
             </array>
           </record>
-          <value name="nillable">false</value>
+          <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
         </record>
@@ -84,7 +85,8 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Decrements the given integer by one.</value>
+  <value name="node_comment">Decrements the given $integer by one. Returns minus one if $integer is not specified so that
+this service can be used in a loop to both initialize and decrement a counter variable.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

@@ -756,7 +756,8 @@ tundra.integer.absolute($integer);
 // adds the given integers together, returning the result
 tundra.integer.add($integers[]);
 
-// decrements the given integer by one
+// decrements the given $integer by one; returns minus one if $integer is not specified so that
+// this service can be used in a loop to both initialize and decrement a counter variable.
 tundra.integer.decrement($integer);
 
 // divides the given integer x by y, returning the result

@@ -85,7 +85,7 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Increments the given $integer by one. Returns one if $integer is not specified, so that
+  <value name="node_comment">Increments the given $integer by one. Returns one if $integer is not specified so that
 this service can be used in a loop to both initialize and increment a counter variable.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
