@@ -1,8 +1,8 @@
 package tundra.support;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-02-24 15:43:56 EST
-// -----( ON-HOST: 172.16.189.144
+// -----( CREATED: 2013-07-24 19:25:04 EST
+// -----( ON-HOST: 172.16.189.250
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -79,6 +79,86 @@ public final class file
 	// returns the canonical file: URI representation of the given file
 	public static String normalize(String filename) throws ServiceException {
 	  return normalize(construct(filename));
+	}
+	
+	// filter that lets you chain together other filters
+	public static class ChainFilter implements java.io.FilenameFilter {
+	  protected java.io.FilenameFilter[] filters;
+	
+	  public ChainFilter(java.io.FilenameFilter ... filters) {
+	    this.filters = filters;
+	  }
+	
+	  public boolean accept(java.io.File dir, String name) {
+	    boolean accept = true;
+	
+	    if (filters != null) {
+	      for (java.io.FilenameFilter filter : filters) {
+	        if (filter != null) {
+	          accept = accept && filter.accept(dir, name);
+	          if (!accept) break; // short circuit chain if file rejected            
+	        }
+	      }
+	    }
+	    return accept;
+	  }
+	}
+	
+	// filter that only accepts files
+	public static class FileFilter implements java.io.FilenameFilter {
+	  public boolean accept(java.io.File dir, String name) {
+	    return (new java.io.File(dir, name)).isFile();
+	  }
+	}
+	
+	// filter that only accepts directories
+	public static class DirectoryFilter implements java.io.FilenameFilter {
+	  public boolean accept(java.io.File dir, String name) {
+	    return (new java.io.File(dir, name)).isDirectory();
+	  }
+	}
+	
+	// filter that only accepts objects whose names match the given regular expression
+	public static class RegularExpressionFilter implements java.io.FilenameFilter {
+	  protected java.util.regex.Pattern pattern;
+	
+	  public RegularExpressionFilter(String pattern) {
+	    if (caseInsensitive()) pattern = "(?i)" + pattern;
+	    this.pattern = java.util.regex.Pattern.compile(pattern);
+	  }
+	
+	  public boolean accept(java.io.File dir, String name) {
+	    return pattern.matcher(name).matches();
+	  }
+	
+	  protected static boolean caseInsensitive() {
+	    return (new java.io.File("TUNDRA")).equals(new java.io.File("tundra"));
+	  }
+	}
+	
+	// filter that only accepts objects that match the given wildcard expression
+	public static class WildcardFilter extends RegularExpressionFilter {
+	  public WildcardFilter(String pattern) {
+	    super(convertWildcardToRegex(pattern));
+	  }
+	
+	  public static String convertWildcardToRegex(String pattern) {
+	    StringBuilder buffer = new StringBuilder();
+	    char[] characters = pattern.toCharArray();
+	
+	    for (int i = 0; i < characters.length; ++i) {
+	      if (characters[i] == '*') {
+	        buffer.append(".*");
+	      } else if (characters[i] == '?') {
+	        buffer.append(".");
+	      } else if ("+()^$.{}[]|\\".indexOf(characters[i]) != -1) {
+	        buffer.append('\\').append(characters[i]);
+	      } else {
+	        buffer.append(characters[i]);
+	      }
+	    }
+	    return buffer.toString();
+	  }
 	}
 	// --- <<IS-END-SHARED>> ---
 }

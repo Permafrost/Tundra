@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-07-24 08:29:51 EST
+// -----( CREATED: 2013-07-24 19:27:44 EST
 // -----( ON-HOST: 172.16.189.250
 
 import com.wm.data.*;
@@ -281,8 +281,9 @@ public final class directory
 	  rename(tundra.support.file.construct(source), tundra.support.file.construct(target));
 	}
 	
+	// directory lister which supports regex and wildcard file name filtering
 	public static class Lister {
-	  protected java.io.FilenameFilter isDirectory = new DirectoryFilter();
+	  protected java.io.FilenameFilter isDirectory = new tundra.support.file.DirectoryFilter();
 	  protected java.io.FilenameFilter directoryFilter;
 	  protected java.io.FilenameFilter fileFilter;
 	
@@ -290,18 +291,18 @@ public final class directory
 	  String[] directories;
 	
 	  public Lister(java.io.File directory, String pattern, boolean patternIsRegularExpression, boolean recurse) throws ServiceException {
-	    directoryFilter = new DirectoryFilter();
-	    fileFilter = new FileFilter();
+	    directoryFilter = new tundra.support.file.DirectoryFilter();
+	    fileFilter = new tundra.support.file.FileFilter();
 	
 	    if (pattern != null) {
 	      java.io.FilenameFilter filter = null;
 	      if (patternIsRegularExpression) {
-	        filter = new RegularExpressionFilter(pattern);
+	        filter = new tundra.support.file.RegularExpressionFilter(pattern);
 	      } else {
-	        filter = new WildcardFilter(pattern);
+	        filter = new tundra.support.file.WildcardFilter(pattern);
 	      }
-	      directoryFilter = new ChainFilter(filter, directoryFilter);
-	      fileFilter = new ChainFilter(filter, fileFilter);
+	      directoryFilter = new tundra.support.file.ChainFilter(filter, directoryFilter);
+	      fileFilter = new tundra.support.file.ChainFilter(filter, fileFilter);
 	    }
 	
 	    String[][] listing = list(directory, recurse);
@@ -358,86 +359,6 @@ public final class directory
 	    }
 	
 	    return result;
-	  }
-	
-	  // filter that lets you chain together other filters
-	  public static class ChainFilter implements java.io.FilenameFilter {
-	    protected java.io.FilenameFilter[] filters;
-	
-	    public ChainFilter(java.io.FilenameFilter ... filters) {
-	      this.filters = filters;
-	    }
-	
-	    public boolean accept(java.io.File dir, String name) {
-	      boolean accept = true;
-	
-	      if (filters != null) {
-	        for (java.io.FilenameFilter filter : filters) {
-	          if (filter != null) {
-	            accept = accept && filter.accept(dir, name);
-	            if (!accept) break; // short circuit chain if file rejected            
-	          }
-	        }
-	      }
-	      return accept;
-	    }
-	  }
-	
-	  // filter that only accepts files
-	  public static class FileFilter implements java.io.FilenameFilter {
-	    public boolean accept(java.io.File dir, String name) {
-	      return (new java.io.File(dir, name)).isFile();
-	    }
-	  }
-	
-	  // filter that only accepts directories
-	  public static class DirectoryFilter implements java.io.FilenameFilter {
-	    public boolean accept(java.io.File dir, String name) {
-	      return (new java.io.File(dir, name)).isDirectory();
-	    }
-	  }
-	
-	  // filter that only accepts objects whose names match the given regular expression
-	  public static class RegularExpressionFilter implements java.io.FilenameFilter {
-	    protected java.util.regex.Pattern pattern;
-	
-	    public RegularExpressionFilter(String pattern) {
-	      if (caseInsensitive()) pattern = "(?i)" + pattern;
-	      this.pattern = java.util.regex.Pattern.compile(pattern);
-	    }
-	
-	    public boolean accept(java.io.File dir, String name) {
-	      return pattern.matcher(name).matches();
-	    }
-	
-	    protected static boolean caseInsensitive() {
-	      return (new java.io.File("TUNDRA")).equals(new java.io.File("tundra"));
-	    }
-	  }
-	
-	  // filter that only accepts objects that match the given wildcard expression
-	  public static class WildcardFilter extends RegularExpressionFilter {
-	    public WildcardFilter(String pattern) {
-	      super(convertToRegex(pattern));
-	    }
-	
-	    protected static String convertToRegex(String pattern) {
-	      StringBuilder buffer = new StringBuilder();
-	      char[] characters = pattern.toCharArray();
-	
-	      for (int i = 0; i < characters.length; ++i) {
-	        if (characters[i] == '*') {
-	          buffer.append(".*");
-	        } else if (characters[i] == '?') {
-	          buffer.append(".");
-	        } else if ("+()^$.{}[]|\\".indexOf(characters[i]) != -1) {
-	          buffer.append('\\').append(characters[i]);
-	        } else {
-	          buffer.append(characters[i]);
-	        }
-	      }
-	      return buffer.toString();
-	    }
 	  }
 	}
 	
