@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-11-23 09:47:49.099
-// -----( ON-HOST: -
+// -----( CREATED: 2013-07-24 20:02:11 EST
+// -----( ON-HOST: 172.16.189.250
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -107,6 +107,35 @@ public final class file
 		try {
 		  String file = IDataUtil.getString(cursor, "$file");
 		  IDataUtil.put(cursor, "$length", "" + length(file));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void match (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(match)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $file
+		// [i] field:0:required $pattern
+		// [i] field:0:optional $mode {&quot;regex&quot;,&quot;wildcard&quot;}
+		// [o] field:0:required $match?
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String file = IDataUtil.getString(cursor, "$file");
+		  String pattern = IDataUtil.getString(cursor, "$pattern");
+		  String mode = IDataUtil.getString(cursor, "$mode");
+		  boolean regex = (mode == null || mode.equalsIgnoreCase("regex"));
+		
+		  IDataUtil.put(cursor, "$match?", "" + tundra.support.file.match(file, pattern, regex));
 		} finally {
 		  cursor.destroy();
 		}

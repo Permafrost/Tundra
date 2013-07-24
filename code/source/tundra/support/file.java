@@ -1,7 +1,7 @@
 package tundra.support;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-07-24 19:25:04 EST
+// -----( CREATED: 2013-07-24 20:02:00 EST
 // -----( ON-HOST: 172.16.189.250
 
 import com.wm.data.*;
@@ -159,6 +159,25 @@ public final class file
 	    }
 	    return buffer.toString();
 	  }
+	}
+	
+	// returns true if the given filename matches the given regular expression or wildcard pattern (only the file name is 
+	// considered in the match, not the path)
+	public static boolean match(String filename, String pattern, boolean regex) throws ServiceException {
+	  boolean match = false;
+	
+	  if (pattern != null) {
+	    java.io.FilenameFilter filter = null;
+	    if (regex) {
+	      filter = new tundra.support.file.RegularExpressionFilter(pattern);
+	    } else {
+	      filter = new tundra.support.file.WildcardFilter(pattern);
+	    }
+	    java.io.File file = tundra.support.file.construct(filename);
+	    match = filter.accept(file.getParentFile(), file.getName());
+	  }
+	
+	  return match;
 	}
 	// --- <<IS-END-SHARED>> ---
 }

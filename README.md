@@ -687,6 +687,10 @@ tundra.file:exists($file);
 // returns the length of the given file in bytes
 tundra.file:length($file);
 
+// returns true if the given filename matches the given regular expression or wildcard
+// pattern; note: only the file name is considered in the match, not the path
+tundra.file:match($file, $pattern, $mode);
+
 // returns the canonical file: URI that represents the given file
 tundra.file:normalize($file);
 
