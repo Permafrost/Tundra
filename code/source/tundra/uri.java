@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-11-26 15:01:21.769
+// -----( CREATED: 2013-07-24 13:32:00.530
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -165,7 +165,8 @@ public final class uri
 	  IDataCursor oc = output.getCursor();
 	
 	  try {
-	    java.net.URI uri = java.net.URI.create(input).normalize();
+	    java.net.URI uri = new java.net.URI(input);
+		uri.normalize();
 	    
 	    String scheme = uri.getScheme();
 	    // schemes are case-insensitive, according to RFC 2396
@@ -244,6 +245,8 @@ public final class uri
 	
 	    IDataUtil.put(oc, "absolute?", "" + uri.isAbsolute());
 	    IDataUtil.put(oc, "opaque?", "" + uri.isOpaque());
+	  } catch(java.net.URISyntaxException ex) {
+	    tundra.exception.raise(ex);
 	  } finally {
 	    oc.destroy();
 	  }
