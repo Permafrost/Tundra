@@ -208,11 +208,11 @@ tundra.base64:encode($content, $encoding, $mode);
 Services for manipulating boolean values.
 
 ```
-// returns the negated canonical string form for the given boolean string: 
+// returns the negated canonical string form for the given boolean string:
 // either "true" or "false
 tundra.bool:negate($boolean);
 
-// returns the canonical string form for the given boolean string: either 
+// returns the canonical string form for the given boolean string: either
 // "true" or "false
 tundra.bool:normalize($boolean);
 ```
@@ -762,7 +762,8 @@ tundra.integer.decrement($integer);
 // divides the given integer x by y, returning the result
 tundra.integer.divide($integer.x, $integer.y);
 
-// increments the given integer by one
+// increments the given $integer by one; returns one if $integer is not specified so that
+// this service can be used in a loop to both initialize and increment a counter variable
 tundra.integer.increment($integer);
 
 // multiplies the given integers together, returning the result
