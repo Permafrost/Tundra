@@ -865,7 +865,7 @@ tundra.list.document:insert($list[], $item, $index);
 
 // many-to-one conversion of an IData[] document list to an IData document; calls the given
 // joining service, passing the list of documents as an input, and emitting the joined
-// document as output; the splitting service must accept an IData[] document list, and return
+// document as output; the joining service must accept an IData[] document list, and return
 // a single IData document
 tundra.list.document.join($documents[], $service, $pipeline, $service.input, $service.output);
 
