@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-07-09 11:59:38.322
-// -----( ON-HOST: -
+// -----( CREATED: 2013-07-25 20:34:40 EST
+// -----( ON-HOST: 172.16.189.223
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -45,6 +45,32 @@ public final class document
 		  IData[] amendments = IDataUtil.getIDataArray(cursor, "$amendments");
 		
 		  if (document != null) IDataUtil.put(cursor, "$document", amend(document, amendments, pipeline));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void clear (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(clear)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:0:optional $document
+		// [i] field:1:optional $preserve
+		// [o] record:0:optional $document
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  IData document = IDataUtil.getIData(cursor, "$document");
+		  String[] keys = IDataUtil.getStringArray(cursor, "$preserve");
+		
+		  clear(document, keys);
 		} finally {
 		  cursor.destroy();
 		}
@@ -945,14 +971,25 @@ public final class document
 	  return output;
 	}
 	
+	// removes all keys except those specified from the given IData document
+	public static void clear(IData document, String[] keys) {
+	  if (document == null) return;
 	
-	// removes all keys from the given IData document
-	public static void clear(IData input) {
-	  if (input == null) return;
-	  IDataCursor cursor = input.getCursor();
+	  IData saved = null;
+	  if (keys != null) {
+	    saved = IDataFactory.create();
+	    for (int i = 0; i < keys.length; i++) {
+	      Object value = tundra.support.document.get(document, keys[i]);
+	      if (value != null) tundra.support.document.put(saved, keys[i], value);
+	    }
+	  }
+	
+	  IDataCursor cursor = document.getCursor();
 	  cursor.first();
 	  while(cursor.delete());
 	  cursor.destroy();
+	
+	  if (keys != null) IDataUtil.merge(saved, document);
 	}
 	
 	// performs variable substitution on all elements of the given IData input document

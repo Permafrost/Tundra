@@ -37,19 +37,14 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <value name="field_usereditable">false</value>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$recurse?</value>
+          <value name="field_name">$preserve</value>
           <value name="field_type">string</value>
-          <value name="field_dim">0</value>
+          <value name="field_dim">1</value>
           <value name="field_opt">true</value>
-          <array name="field_options" type="value" depth="1">
-            <value>false</value>
-            <value>true</value>
-          </array>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <value name="contentType">1</value>
             <value name="internalType">reference</value>
@@ -57,13 +52,14 @@
             <array name="targetNames" type="record" depth="1">
               <record javaclass="com.wm.util.Values">
                 <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">boolean</value>
+                <value name="ncName">string</value>
               </record>
             </array>
           </record>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
+          <value name="is_soap_array_encoding_used">false</value>
         </record>
       </array>
       <value name="modifiable">true</value>
@@ -85,7 +81,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$duplicate</value>
+          <value name="field_name">$document</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -100,13 +96,14 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns an optionally recursive clone of the the given IData document.</value>
+  <value name="node_comment">Removes all elements from the given IData $document, except for any keys specified
+in the $preserve list. Keys can be simple or fully qualified, such as a/b/c[0]/d.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
-  <value name="template">tundra_document_duplicate</value>
+  <value name="template">tundra_document_clear</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>

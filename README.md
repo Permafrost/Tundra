@@ -480,6 +480,10 @@ Services for manipulating com.wm.data.IData objects:
 // being inserted in $document.
 tundra.document:amend($document, $amendments[]);
 
+// removes all elements from the given IData $document, except for any keys specified
+// in the $preserve list; keys can be simple or fully qualified, such as a/b/c[0]/d
+tundra.document:clear($document, $preserve[]);
+
 // removes all null values from the given IData document
 tundra.document:compact($document);
 

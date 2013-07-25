@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-06-08 13:01:59 EST
-// -----( ON-HOST: 172.16.189.177
+// -----( CREATED: 2013-07-25 20:39:46 EST
+// -----( ON-HOST: 172.16.189.223
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -291,7 +291,7 @@ public final class pipeline
 		
 		try {
 		  IData dup = tundra.document.substitute(pipeline, pipeline, true);
-		  tundra.document.clear(pipeline);
+		  tundra.document.clear(pipeline, null);
 		  IDataUtil.merge(dup, pipeline);
 		} finally {
 		  cursor.destroy();
