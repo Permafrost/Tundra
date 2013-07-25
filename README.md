@@ -833,6 +833,11 @@ Services for manipulating document (com.wm.data.IData) lists:
 // a list containing n items results in a new list of n + 1 items
 tundra.list.document:append($list[], $item);
 
+// removes all elements from each IData document in the given list, except for any keys
+// specified in the $preserve list; keys can be simple or fully qualified, such as
+// a/b/c[0]/d
+tundra.list.document.clear($list[], $preserve[]);
+
 // removes all null values from each IData item in the given list, and then
 // removes all null items themselves from the given list, thereby shortening
 // the length of the list
