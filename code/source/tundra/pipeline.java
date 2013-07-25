@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-07-25 20:39:46 EST
+// -----( CREATED: 2013-07-25 20:44:22 EST
 // -----( ON-HOST: 172.16.189.223
 
 import com.wm.data.*;
@@ -38,6 +38,27 @@ public final class pipeline
 		
 		try {
 		  IDataUtil.put(cursor, "$pipeline", IDataUtil.clone(pipeline));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void clear (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(clear)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String[] keys = IDataUtil.getStringArray(cursor, "$preserve");
+		  tundra.document.clear(pipeline, keys);
 		} finally {
 		  cursor.destroy();
 		}

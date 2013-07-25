@@ -1260,6 +1260,10 @@ tundra.object:stringify($object);
 // to pass the pipeline itself as an input to a service
 tundra.pipeline:capture();
 
+// removes all elements from the pipeline, except for any keys specified in the $preserve
+// list; keys can be simple or fully qualified, such as a/b/c[0]/d
+tundra.pipeline:clear($preserve[]);
+
 // copies the value associated with the source key to the target key in the pipeline
 // keys can be simple or fully qualified, such as a/b/c[0]/d
 tundra.pipeline:copy($key.source, $key.target);
