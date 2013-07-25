@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-06-08 15:27:48 EST
-// -----( ON-HOST: 172.16.189.177
+// -----( CREATED: 2013-07-25 21:32:23 EST
+// -----( ON-HOST: 172.16.189.223
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -73,13 +73,37 @@ public final class integer
 
 
 
+	public static final void average (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(average)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:1:optional $integers
+		// [o] field:0:optional $integer
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String[] list = IDataUtil.getStringArray(cursor, "$integers");
+		  String i = average(list);
+		  if (i != null) IDataUtil.put(cursor, "$integer", i);
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void decrement (IData pipeline)
         throws ServiceException
 	{
 		// --- <<IS-START(decrement)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:required $integer
+		// [i] field:0:optional $integer
 		// [o] field:0:required $integer
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -128,13 +152,61 @@ public final class integer
 		// --- <<IS-START(increment)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:required $integer
+		// [i] field:0:optional $integer
 		// [o] field:0:required $integer
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String i = IDataUtil.getString(cursor, "$integer");
 		  IDataUtil.put(cursor, "$integer", increment(i));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void maximum (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(maximum)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:1:optional $integers
+		// [o] field:0:optional $integer
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String[] list = IDataUtil.getStringArray(cursor, "$integers");
+		  String i = maximum(list);
+		  if (i != null) IDataUtil.put(cursor, "$integer", i);
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void minimum (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(minimum)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:1:optional $integers
+		// [o] field:0:optional $integer
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String[] list = IDataUtil.getStringArray(cursor, "$integers");
+		  String i = minimum(list);
+		  if (i != null) IDataUtil.put(cursor, "$integer", i);
 		} finally {
 		  cursor.destroy();
 		}
@@ -364,6 +436,49 @@ public final class integer
 	  java.math.BigInteger i = java.math.BigInteger.ZERO;
 	  if (s != null) i = new java.math.BigInteger(s);
 	  return i;
+	}
+	
+	public static String minimum(String ... s) {
+	  if (s == null) return null;
+	
+	  java.math.BigInteger result = null;
+	  for (int i = 0; i < s.length; i++) {
+	    java.math.BigInteger n = parse(s[i]);
+	    if (result == null) {
+	      result = n;
+	    } else {
+	      result = result.min(n);
+	    }
+	  }
+	  
+	  return emit(result);
+	}
+	
+	public static String maximum(String ... s) {
+	  if (s == null) return null;
+	
+	  java.math.BigInteger result = null;
+	  for (int i = 0; i < s.length; i++) {
+	    java.math.BigInteger n = parse(s[i]);
+	    if (result == null) {
+	      result = n;
+	    } else {
+	      result = result.max(n);
+	    }
+	  }
+	  
+	  return emit(result);
+	}
+	
+	public static String average(String ... s) {
+	  if (s == null) return null;
+	
+	  java.math.BigInteger total = java.math.BigInteger.ZERO;
+	  for (int i = 0; i < s.length; i++) {
+	    total = total.add(parse(s[i]));
+	  }
+	  
+	  return emit(total.divide(parse("" + s.length)));
 	}
 	// --- <<IS-END-SHARED>> ---
 }
