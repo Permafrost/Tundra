@@ -384,6 +384,12 @@ Services for working with arbitrary precision decimals (uses java.math.BigDecima
 // returns the absolute value of the given decimal
 tundra.decimal:absolute($decimal);
 
+// returns the average value of the given list of decimals
+//
+// refer to <http://docs.oracle.com/javase/6/docs/api/java/math/RoundingMode.html> for details on
+// each rounding algorithm; if not specified, the default rounding algorithm used is HALF_UP
+tundra.decimal:average($decimals[], $precision, $rounding);
+
 // adds the given decimals, returning the result optionally rounded to the given precision (number of
 // decimal places) using the given rounding algorithm
 //
@@ -397,6 +403,18 @@ tundra.decimal:add($decimals[], $precision, $rounding);
 // refer to <http://docs.oracle.com/javase/6/docs/api/java/math/RoundingMode.html> for details on
 // each rounding algorithm; if not specified, the default rounding algorithm used is HALF_UP
 tundra.decimal:divide($decimal.x, $decimal.y, $precision, $rounding);
+
+// returns the maximum value in the given list of decimals
+//
+// refer to <http://docs.oracle.com/javase/6/docs/api/java/math/RoundingMode.html> for details on
+// each rounding algorithm; if not specified, the default rounding algorithm used is HALF_UP
+tundra.decimal:maximum($decimals[], $precision, $rounding);
+
+// returns the minimum value in the given list of decimals
+//
+// refer to <http://docs.oracle.com/javase/6/docs/api/java/math/RoundingMode.html> for details on
+// each rounding algorithm; if not specified, the default rounding algorithm used is HALF_UP
+tundra.decimal:minimum($decimals[], $precision, $rounding);
 
 // multiplies the given decimals, returning the result optionally rounded to the given precision
 // (number of decimal places) using the given rounding algorithm

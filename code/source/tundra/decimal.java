@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-06-10 09:54:51 EST
-// -----( ON-HOST: 172.16.189.177
+// -----( CREATED: 2013-07-26 08:25:41 EST
+// -----( ON-HOST: 172.16.189.223
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -78,6 +78,36 @@ public final class decimal
 
 
 
+	public static final void average (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(average)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:1:optional $decimals
+		// [i] field:0:optional $precision
+		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
+		// [o] field:0:required $decimal
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String[] list = IDataUtil.getStringArray(cursor, "$decimals");
+		  String precision = IDataUtil.getString(cursor, "$precision");
+		  String rounding = IDataUtil.getString(cursor, "$rounding");
+		
+		  String result = average(list, precision, rounding);
+		
+		  if (result != null) IDataUtil.put(cursor, "$decimal", result);
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void divide (IData pipeline)
         throws ServiceException
 	{
@@ -85,7 +115,7 @@ public final class decimal
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $decimal.x
-		// [i] field:0:optional $decimal.y
+		// [i] field:0:required $decimal.y
 		// [i] field:0:optional $precision
 		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
 		// [o] field:0:required $decimal
@@ -98,6 +128,66 @@ public final class decimal
 		  String rounding = IDataUtil.getString(cursor, "$rounding");
 		
 		  IDataUtil.put(cursor, "$decimal", divide(x, y, precision, rounding));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void maximum (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(maximum)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:1:optional $decimals
+		// [i] field:0:optional $precision
+		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
+		// [o] field:0:required $decimal
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String[] list = IDataUtil.getStringArray(cursor, "$decimals");
+		  String precision = IDataUtil.getString(cursor, "$precision");
+		  String rounding = IDataUtil.getString(cursor, "$rounding");
+		
+		  String result = maximum(list, precision, rounding);
+		
+		  if (result != null) IDataUtil.put(cursor, "$decimal", result);
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void minimum (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(minimum)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:1:optional $decimals
+		// [i] field:0:optional $precision
+		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
+		// [o] field:0:required $decimal
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String[] list = IDataUtil.getStringArray(cursor, "$decimals");
+		  String precision = IDataUtil.getString(cursor, "$precision");
+		  String rounding = IDataUtil.getString(cursor, "$rounding");
+		
+		  String result = minimum(list, precision, rounding);
+		
+		  if (result != null) IDataUtil.put(cursor, "$decimal", result);
 		} finally {
 		  cursor.destroy();
 		}
@@ -224,7 +314,7 @@ public final class decimal
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $decimal.x
-		// [i] field:0:required $decimal.y
+		// [i] field:0:optional $decimal.y
 		// [i] field:0:optional $precision
 		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
 		// [o] field:0:required $decimal
@@ -356,6 +446,52 @@ public final class decimal
 	  java.math.BigDecimal d = java.math.BigDecimal.ZERO;
 	  if (s != null) d = new java.math.BigDecimal(s);
 	  return d;
+	}
+	
+	public static String minimum(String[] list, String precision, String rounding) {
+	  if (list == null) return null;
+	
+	  java.math.BigDecimal result = null;
+	
+	  for (int i = 0; i < list.length; i++) {
+	    java.math.BigDecimal n = parse(list[i]);
+	    if (result == null) {
+	      result = n;
+	    } else {
+	      result = result.min(n);
+	    }
+	  }
+	
+	  return emit(round(result, precision, rounding));
+	}
+	
+	public static String maximum(String[] list, String precision, String rounding) {
+	  if (list == null) return null;
+	
+	  java.math.BigDecimal result = null;
+	
+	  for (int i = 0; i < list.length; i++) {
+	    java.math.BigDecimal n = parse(list[i]);
+	    if (result == null) {
+	      result = n;
+	    } else {
+	      result = result.max(n);
+	    }
+	  }
+	
+	  return emit(round(result, precision, rounding));
+	}
+	
+	public static String average(String[] list, String precision, String rounding) {
+	  if (list == null) return null;
+	
+	  java.math.BigDecimal total = java.math.BigDecimal.ZERO;
+	
+	  for (int i = 0; i < list.length; i++) {
+	    total = total.add(parse(list[i]));
+	  }
+	
+	  return emit(divide(total, new java.math.BigDecimal(list.length), precision, rounding));
 	}
 	// --- <<IS-END-SHARED>> ---
 }
