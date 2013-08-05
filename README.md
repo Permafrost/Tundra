@@ -1606,6 +1606,7 @@ tundra.uri.parse($string);
 ```java
 // returns the current Integration Server user used to invoke this service
 tundra.user:current();
+```
 
 ### XML
 
