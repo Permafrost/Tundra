@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-08-09 08:52:35.184
+// -----( CREATED: 2013-08-09 11:17:29.586
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -58,6 +58,7 @@ public final class datetime
 		// @sigtype java 3.5
 		// [i] field:0:optional $datetime.x
 		// [i] field:0:optional $datetime.y
+		// [i] field:0:optional $pattern {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
 		// [o] field:0:required $before?
 		// [o] field:0:required $equal?
 		// [o] field:0:required $after?
@@ -66,8 +67,9 @@ public final class datetime
 		try {
 		  String dx = IDataUtil.getString(cursor, "$datetime.x");
 		  String dy = IDataUtil.getString(cursor, "$datetime.y");
+		  String pattern = IDataUtil.getString(cursor, "$pattern");
 		
-		  int comparison = compare(dx, dy);
+		  int comparison = compare(dx, dy, pattern);
 		
 		  IDataUtil.put(cursor, "$before?", "" + (comparison < 0));
 		  IDataUtil.put(cursor, "$equal?", "" + (comparison == 0));
@@ -216,7 +218,7 @@ public final class datetime
 		// --- <<IS-START(validate)>> ---
 		// @sigtype java 3.5
 		// [i] field:0:required $datetime
-		// [i] field:0:optional $pattern {&quot;date.jdbc&quot;,&quot;date.xml&quot;,&quot;datetime.jdbc&quot;,&quot;datetime.xml&quot;,&quot;datetime.xcbl&quot;,&quot;datetime.sapiens&quot;,&quot;datetime.epoch.milliseconds&quot;,&quot;time.jdbc&quot;,&quot;time.xml&quot;}
+		// [i] field:0:optional $pattern {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
 		// [i] field:0:optional $raise? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:required $valid?
 		IDataCursor cursor = pipeline.getCursor();
@@ -272,8 +274,14 @@ public final class datetime
 	
 	// compares two xml datetime strings
 	public static int compare(String dx, String dy) {
-	  return compare(parse(dx), parse(dy));
+	  return compare(dx, dy, null);
 	}
+	
+	// compares two xml datetime strings
+	public static int compare(String dx, String dy, String pattern) {
+	  return compare(parse(dx, pattern), parse(dy, pattern));
+	}
+	
 	
 	// compares two datetimes
 	public static int compare(java.util.Calendar cx, java.util.Calendar cy) {

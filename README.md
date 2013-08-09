@@ -354,7 +354,7 @@ tundra.datetime:add($datetime, $duration);
 
 // compares two datetime strings, indicating position in time relative to one
 // another; returns three booleans: $before?, $equal?, and $after?
-tundra.datetime:compare($datetime.x, $datetime.y);
+tundra.datetime:compare($datetime.x, $datetime.y, $pattern);
 
 // concatenates a date and time into a single datetime
 tundra.datetime:concatenate($date, $time);
