@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-08-09 11:30:57.101
+// -----( CREATED: 2013-08-09 11:40:32.097
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -120,14 +120,16 @@ public final class datetime
 		// @sigtype java 3.5
 		// [i] field:0:optional $datetime.start
 		// [i] field:0:optional $datetime.end
+		// [i] field:0:optional $pattern {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
 		// [o] field:0:optional $duration
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String start = IDataUtil.getString(cursor, "$datetime.start");
 		  String end = IDataUtil.getString(cursor, "$datetime.end");
+		  String pattern = IDataUtil.getString(cursor, "$pattern");
 		
-		  IDataUtil.put(cursor, "$duration", duration(start, end));
+		  IDataUtil.put(cursor, "$duration", duration(start, end, pattern));
 		} finally {
 		  cursor.destroy();
 		}
@@ -316,7 +318,12 @@ public final class datetime
 	
 	// returns the xml duration between two given xml datetimes
 	public static String duration(String start, String end) {
-	  return tundra.duration.emit(duration(parse(start), parse(end)));
+	  return duration(start, end, null);
+	}
+	
+	// returns the xml duration between two given xml datetimes
+	public static String duration(String start, String end, String pattern) {
+	  return tundra.duration.emit(duration(parse(start, pattern), parse(end, pattern)));
 	}
 	
 	// returns the xml duration between two given xml datetimes

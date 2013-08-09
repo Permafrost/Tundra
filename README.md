@@ -360,7 +360,7 @@ tundra.datetime:compare($datetime.x, $datetime.y, $pattern);
 tundra.datetime:concatenate($date, $time);
 
 // returns the duration of time between two datetimes
-tundra.datetime:duration($datetime.start, $datetime.end);
+tundra.datetime:duration($datetime.start, $datetime.end, $pattern);
 
 // formats a datetime that conforms to the input pattern, according to the
 // output pattern
