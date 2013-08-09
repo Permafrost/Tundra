@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-07-25 08:32:04.534
+// -----( CREATED: 2013-08-09 08:52:35.184
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -140,8 +140,8 @@ public final class datetime
 		// --- <<IS-START(format)>> ---
 		// @sigtype java 3.5
 		// [i] field:0:optional $datetime
-		// [i] field:0:optional $pattern.input {&quot;datetime&quot;,&quot;date&quot;,&quot;time&quot;,&quot;milliseconds&quot;}
-		// [i] field:0:optional $pattern.output {&quot;datetime&quot;,&quot;date&quot;,&quot;time&quot;,&quot;milliseconds&quot;}
+		// [i] field:0:optional $pattern.input {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
+		// [i] field:0:optional $pattern.output {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
 		// [o] field:0:optional $datetime
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -169,11 +169,13 @@ public final class datetime
 		// --- <<IS-START(now)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
+		// [i] field:0:optional $pattern {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
 		// [o] field:0:required $datetime
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  IDataUtil.put(cursor, "$datetime", now());
+		  String pattern = IDataUtil.getString(cursor, "$pattern");
+		  IDataUtil.put(cursor, "$datetime", now(pattern));
 		} finally {
 		  cursor.destroy();
 		}
@@ -240,7 +242,19 @@ public final class datetime
 	}
 
 	// --- <<IS-START-SHARED>> ---
-	private static final String DEFAULT_DATETIME_PATTERN = "datetime";
+	protected static final String DEFAULT_DATETIME_PATTERN = "datetime";
+	
+	protected static final java.util.Map<String, String> namedPatterns = constructNamedPatterns();
+	
+	protected static final java.util.Map<String, String> constructNamedPatterns() {
+	  java.util.Map<String, String> map = new java.util.TreeMap<String, String>();
+	
+	  map.put("datetime.jdbc", "yyyy-MM-dd HH:mm:ss.SSS");
+	  map.put("date.jdbc", "yyyy-MM-dd");
+	  map.put("time.jdbc", "HH:mm:ss");
+	
+	  return map;
+	}
 	
 	// adds the given xml duration to the given xml datetime returning the result
 	public static String add(String datetime, String duration) {
@@ -305,15 +319,16 @@ public final class datetime
 	  String output = null;
 	  
 	  if (input != null) {
-	    if (pattern.equals("datetime")) {
+	    if (pattern.equals("datetime") || pattern.equals("datetime.xml")) {
 	      output = javax.xml.bind.DatatypeConverter.printDateTime(input);
-	    } else if (pattern.equals("date")) {
+	    } else if (pattern.equals("date") || pattern.equals("date.xml")) {
 	      output = javax.xml.bind.DatatypeConverter.printDate(input);
-	    } else if (pattern.equals("time"))    {
+	    } else if (pattern.equals("time") || pattern.equals("time.xml"))    {
 	      output = javax.xml.bind.DatatypeConverter.printTime(input);
 	    } else if (pattern.equals("milliseconds")) {
 	      output = "" + input.getTimeInMillis();  
 	    } else {
+	      if (namedPatterns.containsKey(pattern)) pattern = namedPatterns.get(pattern);
 	      java.text.DateFormat formatter = new java.text.SimpleDateFormat(pattern);
 	      formatter.setLenient(false);
 	      output = formatter.format(input.getTime());
@@ -330,7 +345,12 @@ public final class datetime
 	
 	// returns the current datetime as an xml datetime string
 	public static String now() {
-	  return emit(java.util.Calendar.getInstance());
+	  return now("datetime");
+	}
+	
+	// returns the current datetime as an datetime string formatted according to the given pattern
+	public static String now(String pattern) {
+	  return emit(java.util.Calendar.getInstance(), pattern);
 	}
 	
 	// parses an xml datetime string and returns a java.util.Date object
@@ -345,16 +365,18 @@ public final class datetime
 	  java.util.Calendar output = null;
 	  
 	  if (input != null) {
-	    if (pattern.equals("datetime")) {
+	    if (pattern.equals("datetime") || pattern.equals("datetime.xml")) {
 	      output = javax.xml.bind.DatatypeConverter.parseDateTime(input);
-	    } else if (pattern.equals("date")) {
+	    } else if (pattern.equals("date") || pattern.equals("date.xml")) {
 	      output = javax.xml.bind.DatatypeConverter.parseDate(input);
-	    } else if (pattern.equals("time")) {
+	    } else if (pattern.equals("time") || pattern.equals("time.xml")) {
 	      output = javax.xml.bind.DatatypeConverter.parseTime(input);
 	    } else if (pattern.equals("milliseconds")) {
 	      output = java.util.Calendar.getInstance();
 	      output.setTimeInMillis(Long.parseLong(input));
 	    } else {
+	      if (namedPatterns.containsKey(pattern)) pattern = namedPatterns.get(pattern);
+	      
 	      java.text.DateFormat formatter = new java.text.SimpleDateFormat(pattern);
 	      formatter.setLenient(false);
 	      output = java.util.Calendar.getInstance();

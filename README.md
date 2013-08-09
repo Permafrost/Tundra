@@ -366,8 +366,8 @@ tundra.datetime:duration($datetime.start, $datetime.end);
 // output pattern
 tundra.datetime:format($datetime, $pattern.input, $pattern.output);
 
-// returns the current datetime
-tundra.datetime:now();
+// returns the current datetime formatted according to the given pattern
+tundra.datetime:now($pattern);
 
 // subtracts a duration of time from the given datetime
 tundra.datetime.subtract($datetime, $duration);
