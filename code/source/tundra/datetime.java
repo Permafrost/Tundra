@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-08-09 11:25:13.516
+// -----( CREATED: 2013-08-09 11:30:57.101
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -196,14 +196,16 @@ public final class datetime
 		// --- <<IS-START(subtract)>> ---
 		// @sigtype java 3.5
 		// [i] field:0:optional $datetime
+		// [i] field:0:optional $pattern {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
 		// [i] field:0:optional $duration
 		// [o] field:0:optional $datetime
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String datetime = IDataUtil.getString(cursor, "$datetime");
+		  String pattern = IDataUtil.getString(cursor, "$pattern");
 		  String duration = IDataUtil.getString(cursor, "$duration");
-		  IDataUtil.put(cursor, "$datetime", subtract(datetime, duration));
+		  IDataUtil.put(cursor, "$datetime", subtract(datetime, pattern, duration));
 		} finally {
 		  cursor.destroy();
 		}
@@ -408,7 +410,12 @@ public final class datetime
 	
 	// subtracts the given xml duration from the given xml datetime returning the result
 	public static String subtract(String datetime, String duration) {
-	  return emit(subtract(parse(datetime), tundra.duration.parse(duration)));
+	  return subtract(datetime, null, duration);
+	}
+	
+	// subtracts the given xml duration from the given xml datetime returning the result
+	public static String subtract(String datetime, String pattern, String duration) {
+	  return emit(subtract(parse(datetime, pattern), tundra.duration.parse(duration)), pattern);
 	}
 	
 	// subtracts the given duration from the given datetime returning the result

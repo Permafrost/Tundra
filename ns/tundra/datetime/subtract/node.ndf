@@ -32,7 +32,43 @@
             <array name="targetNames" type="record" depth="1">
               <record javaclass="com.wm.util.Values">
                 <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">dateTime</value>
+                <value name="ncName">string</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_usereditable">true</value>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="field_name">$pattern</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <array name="field_options" type="value" depth="1">
+            <value>datetime</value>
+            <value>datetime.jdbc</value>
+            <value>date</value>
+            <value>date.jdbc</value>
+            <value>time</value>
+            <value>time.jdbc</value>
+            <value>milliseconds</value>
+          </array>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">string</value>
               </record>
             </array>
           </record>
@@ -96,7 +132,7 @@
             <array name="targetNames" type="record" depth="1">
               <record javaclass="com.wm.util.Values">
                 <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">dateTime</value>
+                <value name="ncName">string</value>
               </record>
             </array>
           </record>
@@ -107,7 +143,50 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Subtracts a duration of time from the given datetime.</value>
+  <value name="node_comment">Subtracts a duration of time from the given datetime formatted according to the given pattern (defaults 
+to an ISO8601/XML datetime pattern).
+
+Supports a handful of well-known named patterns:
+
+Name           Pattern
+-------------  ---------------
+datetime       ISO8601/XML datetime
+datetime.jdbc  yyyy-MM-dd HH:mm:ss
+date           ISO8601/XML date
+date.jdbc      yyyy-mm-dd
+time           ISO8601/XML time
+time.jdbc      HH:mm:ss
+milliseconds   Number of milliseconds since the Epoch, 
+               January 1, 1970 00:00:00.000 GMT (Gregorian)
+
+Custom patterns can be specified using the following java.text.SimpleDateFormat 
+compatible pattern strings:
+
+Symbol  Meaning                      Presentation  Examples
+------  -------                      ------------  -------
+G       era                          text          AD
+C       century of era (&gt;=0)         number        20
+Y       year of era (&gt;=0)            year          1996
+x       weekyear                     year          1996
+w       week of weekyear             number        27
+e       day of week                  number        2
+E       day of week                  text          Tuesday; Tue
+y       year                         year          1996
+D       day of year                  number        189
+M       month of year                month         July; Jul; 07
+d       day of month                 number        10
+a       halfday of day               text          PM
+K       hour of halfday (0~11)       number        0
+h       clockhour of halfday (1~12)  number        12
+H       hour of day (0~23)           number        0
+k       clockhour of day (1~24)      number        24
+m       minute of hour               number        30
+s       second of minute             number        55
+S       fraction of second           number        978
+z       time zone                    text          Pacific Standard Time; PST
+Z       time zone offset/id          zone          -0800; -08:00; Asia/Tokyo
+'       escape for text              delimiter
+''      single quote                 literal       '</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

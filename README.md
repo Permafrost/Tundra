@@ -370,7 +370,7 @@ tundra.datetime:format($datetime, $pattern.input, $pattern.output);
 tundra.datetime:now($pattern);
 
 // subtracts a duration of time from the given datetime
-tundra.datetime.subtract($datetime, $duration);
+tundra.datetime.subtract($datetime, $pattern, $duration);
 
 // returns true if the given datetime conforms to the given pattern
 tundra.datetime.validate($datetime, $pattern);
