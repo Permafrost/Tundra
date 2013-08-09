@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-08-09 11:17:29.586
+// -----( CREATED: 2013-08-09 11:25:13.516
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -33,14 +33,16 @@ public final class datetime
 		// --- <<IS-START(add)>> ---
 		// @sigtype java 3.5
 		// [i] field:0:optional $datetime
+		// [i] field:0:optional $pattern {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
 		// [i] field:0:optional $duration
 		// [o] field:0:optional $datetime
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String datetime = IDataUtil.getString(cursor, "$datetime");
+		  String pattern = IDataUtil.getString(cursor, "$pattern");
 		  String duration = IDataUtil.getString(cursor, "$duration");
-		  IDataUtil.put(cursor, "$datetime", add(datetime, duration));
+		  IDataUtil.put(cursor, "$datetime", add(datetime, pattern, duration));
 		} finally {
 		  cursor.destroy();
 		}
@@ -260,7 +262,12 @@ public final class datetime
 	
 	// adds the given xml duration to the given xml datetime returning the result
 	public static String add(String datetime, String duration) {
-	  return emit(add(parse(datetime), tundra.duration.parse(duration)));
+	  return add(datetime, null, duration);
+	}
+	
+	// adds the given xml duration to the given xml datetime returning the result
+	public static String add(String datetime, String pattern, String duration) {
+	  return emit(add(parse(datetime, pattern), tundra.duration.parse(duration)), pattern);
 	}
 	
 	// adds the given xml duration to the given xml datetime returning the result

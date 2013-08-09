@@ -350,7 +350,7 @@ Services for manipulating date, time and datetime strings:
 
 ```java
 // adds a duration of time to the given datetime
-tundra.datetime:add($datetime, $duration);
+tundra.datetime:add($datetime, $pattern, $duration);
 
 // compares two datetime strings, indicating position in time relative to one
 // another; returns three booleans: $before?, $equal?, and $after?
