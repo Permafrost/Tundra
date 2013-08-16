@@ -16,7 +16,7 @@
       <array name="rec_fields" type="record" depth="1">
         <record javaclass="com.wm.util.Values">
           <value name="node_type">record</value>
-          <value name="node_comment">Input date.</value>
+          <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
             <null name="field_usereditable"/>
             <value name="field_largerEditor">false</value>
@@ -44,7 +44,7 @@
         </record>
         <record javaclass="com.wm.util.Values">
           <value name="node_type">record</value>
-          <value name="node_comment">Input time.</value>
+          <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
             <value name="field_usereditable">false</value>
             <value name="field_largerEditor">false</value>
@@ -84,7 +84,7 @@
       <array name="rec_fields" type="record" depth="1">
         <record javaclass="com.wm.util.Values">
           <value name="node_type">record</value>
-          <value name="node_comment">Concatenation of inDate + inTime in XML date/time format.</value>
+          <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
             <null name="field_usereditable"/>
             <value name="field_largerEditor">false</value>

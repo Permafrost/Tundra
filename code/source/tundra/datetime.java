@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-08-09 11:40:32.097
-// -----( ON-HOST: -
+// -----( CREATED: 2013-08-16 13:15:15 EST
+// -----( ON-HOST: 172.16.189.189
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -140,6 +140,32 @@ public final class datetime
 
 
 
+	public static final void emit (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(emit)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:0:optional $datetime.object
+		// [i] field:0:optional $pattern {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
+		// [o] field:0:optional $datetime
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  java.util.Date datetime = (java.util.Date)IDataUtil.get(cursor, "$datetime.object");
+		  String pattern = IDataUtil.getString(cursor, "$pattern");
+		
+		  if (datetime != null) IDataUtil.put(cursor, "$datetime", emit(datetime, pattern));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void format (IData pipeline)
         throws ServiceException
 	{
@@ -182,6 +208,32 @@ public final class datetime
 		try {
 		  String pattern = IDataUtil.getString(cursor, "$pattern");
 		  IDataUtil.put(cursor, "$datetime", now(pattern));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void parse (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(parse)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $datetime
+		// [i] field:0:optional $pattern {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
+		// [o] object:0:optional $datetime.object
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String datetime = IDataUtil.getString(cursor, "$datetime");
+		  String pattern = IDataUtil.getString(cursor, "$pattern");
+		
+		  if (datetime != null) IDataUtil.put(cursor, "$datetime.object", parse(datetime, pattern).getTime());
 		} finally {
 		  cursor.destroy();
 		}
@@ -330,6 +382,21 @@ public final class datetime
 	public static javax.xml.datatype.Duration duration(java.util.Calendar start, java.util.Calendar end) {
 	  if (start == null || end == null) return null;
 	  return tundra.duration.parse("" + (end.getTimeInMillis() - start.getTimeInMillis()), "milliseconds");
+	}
+	
+	// returns the given datetime as an xml datetime string
+	public static String emit(java.util.Date input) {
+	  return emit(input, null);
+	}
+	
+	// returns the given datetime as a string adhering to the given pattern
+	public static String emit(java.util.Date input, String pattern) {
+	  if (input == null) return null;
+	
+	  java.util.Calendar calendar = java.util.Calendar.getInstance();
+	  calendar.setTime(input);
+	
+	  return emit(calendar, pattern);
 	}
 	
 	// returns the given datetime as an xml datetime string

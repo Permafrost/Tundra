@@ -362,12 +362,19 @@ tundra.datetime:concatenate($date, $time);
 // returns the duration of time between two datetimes
 tundra.datetime:duration($datetime.start, $datetime.end, $pattern);
 
+// returns the given java.util.Date object as a string adhering to the given datetime pattern
+tundra.datetime:emit($datetime.object, $pattern);
+
 // formats a datetime that conforms to the input pattern, according to the
 // output pattern
 tundra.datetime:format($datetime, $pattern.input, $pattern.output);
 
 // returns the current datetime formatted according to the given pattern
 tundra.datetime:now($pattern);
+
+// parses the given datetime string according to the given pattern, and returns a corresponding
+// java.util.Date object
+tundra.datetime:parse($datetime, $pattern);
 
 // subtracts a duration of time from the given datetime
 tundra.datetime.subtract($datetime, $pattern, $duration);
