@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-07-24 09:18:51.707
+// -----( CREATED: 2013-08-19 10:33:05.678
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -24,6 +24,34 @@ public final class bool
 
 	// ---( server methods )---
 
+
+
+
+	public static final void emit (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(emit)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $boolean
+		// [i] field:0:required $value.true
+		// [i] field:0:required $value.false
+		// [o] field:0:optional $string
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String s = IDataUtil.getString(cursor, "$boolean");
+		  String t = IDataUtil.getString(cursor, "$value.true");
+		  String f = IDataUtil.getString(cursor, "$value.false");
+		
+		  if (s != null) IDataUtil.put(cursor, "$string", emit(s, t, f));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
 
 
 
@@ -56,13 +84,15 @@ public final class bool
 		// --- <<IS-START(normalize)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:required $boolean
+		// [i] field:0:optional $boolean
+		// [i] field:0:optional $default
 		// [o] field:0:required $boolean
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String s = IDataUtil.getString(cursor, "$boolean");
-		  IDataUtil.put(cursor, "$boolean", normalize(s));
+		  String d = IDataUtil.getString(cursor, "$default");
+		  IDataUtil.put(cursor, "$boolean", normalize(s, d));
 		} finally {
 		  cursor.destroy();
 		}
@@ -72,6 +102,12 @@ public final class bool
 	}
 
 	// --- <<IS-START-SHARED>> ---
+	// normalizes a boolean string to either "true" or "false", substituting
+	// the given default if the string is null
+	public static String normalize(String s, String def) {
+	  return normalize(s == null ? def : s);
+	}
+	
 	// normalizes a boolean string to either "true" or "false"
 	public static String normalize(String s) {
 	  return emit(parse(s));
@@ -90,6 +126,17 @@ public final class bool
 	    }
 	  }
 	  return Boolean.parseBoolean(s);
+	}
+	
+	// parses the given string s as a boolean, then returns the boolean value
+	// as the appropriate trueValue or falseValue string
+	public static String emit(String s, String trueValue, String falseValue) {
+	  return emit(parse(s), trueValue, falseValue);
+	}
+	
+	// returns a boolean value as the appropriate trueValue or falseValue string
+	public static String emit(boolean b, String trueValue, String falseValue) {
+	  return b ? trueValue : falseValue;
 	}
 	
 	// returns a boolean value in its canonical string form: "true" or "false"

@@ -208,13 +208,18 @@ tundra.base64:encode($content, $encoding, $mode);
 Services for manipulating boolean values.
 
 ```
-// returns the negated canonical string form for the given boolean string:
+// converts the given $boolean value to a string using the appropriate string values specified
+// for true and false
+tundra.bool:emit($boolean, $value.true, $value.false);
+
+// returns the negated canonical string form for the given $boolean string:
 // either "true" or "false
 tundra.bool:negate($boolean);
 
-// returns the canonical string form for the given boolean string: either
-// "true" or "false
-tundra.bool:normalize($boolean);
+// returns the canonical string form for the given $boolean string: either "true" or "false;
+// if $boolean is null and $default is not null, then $default's boolean value will be 
+// returned; if $boolean is null and $default is null, then "false" will be returned
+tundra.bool:normalize($boolean, $default);
 ```
 
 ### Bytes
