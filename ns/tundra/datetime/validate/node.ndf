@@ -151,9 +151,9 @@ defaults to an ISO8601/XML datetime.
 Supports a handful of well-known named patterns:
 
 Name           Pattern
--------------  ---------------
+-------------  --------------------------------------------
 datetime       ISO8601/XML datetime
-datetime.jdbc  yyyy-MM-dd HH:mm:ss
+datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
 date           ISO8601/XML date
 date.jdbc      yyyy-mm-dd
 time           ISO8601/XML time

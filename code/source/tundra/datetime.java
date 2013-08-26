@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-08-16 13:15:15 EST
-// -----( ON-HOST: 172.16.189.189
+// -----( CREATED: 2013-08-26 12:32:53.670
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -309,7 +309,6 @@ public final class datetime
 	protected static final java.util.Map<String, String> constructNamedPatterns() {
 	  java.util.Map<String, String> map = new java.util.TreeMap<String, String>();
 	
-	  map.put("datetime.jdbc", "yyyy-MM-dd HH:mm:ss.SSS");
 	  map.put("date.jdbc", "yyyy-MM-dd");
 	  map.put("time.jdbc", "HH:mm:ss");
 	
@@ -412,6 +411,8 @@ public final class datetime
 	  if (input != null) {
 	    if (pattern.equals("datetime") || pattern.equals("datetime.xml")) {
 	      output = javax.xml.bind.DatatypeConverter.printDateTime(input);
+	    } else if (pattern.equals("datetime.jdbc")) {
+	      output = (new java.sql.Timestamp(input.getTimeInMillis())).toString();
 	    } else if (pattern.equals("date") || pattern.equals("date.xml")) {
 	      output = javax.xml.bind.DatatypeConverter.printDate(input);
 	    } else if (pattern.equals("time") || pattern.equals("time.xml"))    {
@@ -458,6 +459,9 @@ public final class datetime
 	  if (input != null) {
 	    if (pattern.equals("datetime") || pattern.equals("datetime.xml")) {
 	      output = javax.xml.bind.DatatypeConverter.parseDateTime(input);
+	    } else if (pattern.equals("datetime.jdbc")) {
+	      output = java.util.Calendar.getInstance();
+	      output.setTime(java.sql.Timestamp.valueOf(input));
 	    } else if (pattern.equals("date") || pattern.equals("date.xml")) {
 	      output = javax.xml.bind.DatatypeConverter.parseDate(input);
 	    } else if (pattern.equals("time") || pattern.equals("time.xml")) {
