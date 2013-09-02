@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-07-25 20:44:22 EST
-// -----( ON-HOST: 172.16.189.223
+// -----( CREATED: 2013-09-02 15:06:50.751
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -54,6 +54,7 @@ public final class pipeline
 		// --- <<IS-START(clear)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
+		// [i] field:1:optional $preserve
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -105,6 +106,36 @@ public final class pipeline
 		try {
 		  String key = IDataUtil.getString(cursor, "$key");
 		  tundra.document.drop(pipeline, key);
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void emit (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(emit)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $encoding
+		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
+		// [o] object:0:optional $content
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String encoding = IDataUtil.getString(cursor, "$encoding");
+		  String mode = IDataUtil.getString(cursor, "$mode");
+		  IDataUtil.remove(cursor, "$encoding");
+		  IDataUtil.remove(cursor, "$mode");
+		
+		  IDataUtil.put(cursor, "$content", tundra.document.emit(pipeline, encoding, mode));
+		} catch(java.io.IOException ex) {
+		  tundra.exception.raise(ex);
 		} finally {
 		  cursor.destroy();
 		}
@@ -244,6 +275,33 @@ public final class pipeline
 		  IData dup = tundra.document.normalize(pipeline, true);
 		  tundra.document.clear(pipeline);
 		  IDataUtil.merge(dup, pipeline);
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void parse (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(parse)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:0:optional $content
+		// [i] field:0:optional $encoding
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  Object content = IDataUtil.get(cursor, "$content");
+		  String encoding = IDataUtil.getString(cursor, "$encoding");
+		
+		  IDataUtil.merge(tundra.document.parse(content, encoding), pipeline);
+		} catch(java.io.IOException ex) {
+		  tundra.exception.raise(ex);
 		} finally {
 		  cursor.destroy();
 		}

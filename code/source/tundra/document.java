@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-07-25 20:34:40 EST
-// -----( ON-HOST: 172.16.189.223
+// -----( CREATED: 2013-09-02 14:55:20.543
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -208,6 +208,36 @@ public final class document
 		
 		  each(document, service, scoped ? scope: pipeline, keyInput, valueInput, valueClass == null? null : Class.forName(valueClass), recurse);
 		} catch (ClassNotFoundException ex) {
+		  tundra.exception.raise(ex);
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void emit (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(emit)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:0:optional $document
+		// [i] field:0:optional $encoding
+		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
+		// [o] object:0:optional $content
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  IData document = IDataUtil.getIData(cursor, "$document");
+		  String encoding = IDataUtil.getString(cursor, "$encoding");
+		  String mode = IDataUtil.getString(cursor, "$mode");
+		
+		  if (document != null) IDataUtil.put(cursor, "$content", emit(document, encoding, mode));
+		} catch(java.io.IOException ex) {
 		  tundra.exception.raise(ex);
 		} finally {
 		  cursor.destroy();
@@ -478,6 +508,34 @@ public final class document
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  IDataUtil.put(cursor, "$document", normalize(document, true));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void parse (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(parse)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:0:optional $content
+		// [i] field:0:optional $encoding
+		// [o] record:0:optional $document
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  Object content = IDataUtil.get(cursor, "$content");
+		  String encoding = IDataUtil.getString(cursor, "$encoding");
+		
+		  if (content != null) IDataUtil.put(cursor, "$document", parse(content, encoding));
+		} catch(java.io.IOException ex) {
+		  tundra.exception.raise(ex);
 		} finally {
 		  cursor.destroy();
 		}
@@ -1030,6 +1088,32 @@ public final class document
 	  }
 	
 	  return output;
+	}
+	
+	// parses an IData XML input stream to an IData object
+	public static IData parse(java.io.InputStream in) throws java.io.IOException {
+	  com.wm.util.coder.XMLCoderWrapper codec = new com.wm.util.coder.XMLCoderWrapper();
+	  return codec.decode(in);
+	}
+	
+	// parses an IData XML string, byte array or input stream to an IData object
+	public static IData parse(Object content, String encoding) throws java.io.IOException {
+	  return parse((java.io.InputStream)tundra.object.convert(content, encoding, "stream"));
+	}
+	
+	// emits an IData object as a an IData XML string, byte array or stream
+	public static Object emit(IData document, String encoding, String mode) throws java.io.IOException {
+	  com.wm.util.coder.IDataXMLCoder codec = null;
+	  if (encoding == null) {
+	    codec = new com.wm.util.coder.IDataXMLCoder();
+	  } else {
+	    codec = new com.wm.util.coder.IDataXMLCoder(encoding);
+	  }
+	
+	  java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream();
+	  codec.encode(out, document);
+	
+	  return tundra.object.convert(out.toByteArray(), encoding, mode);
 	}
 	// --- <<IS-END-SHARED>> ---
 }

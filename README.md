@@ -553,6 +553,10 @@ tundra.document:each($document, $service, $pipeline, $key.input, $value.input, $
 // and values)
 tundra.document:equal($document.x, $document.y);
 
+// emits (or encodes) the given IData document as an IData XML string, byte array, or input stream
+// refer: <http://documentation.softwareag.com/webmethods/wmsuites/wmsuite8-2_sp2/Integration_Server/8-2-SP1_Integration_Server_Java_API_Reference/com/wm/util/coder/IDataXMLCoder.html>
+tundra.document:emit($document, $encoding, $mode);
+
 // returns the first {key, value} pair from the given IData document
 tundra.document:first($document);
 
@@ -603,6 +607,11 @@ tundra.document:merge($documents[]);
 // returns a new IData document, with all fully qualified keys (for example,
 // 'a/b/c' or 'x/y[0]/z[1]') deconstructed into their constituent parts
 tundra.document:normalize($document);
+
+// parses (or decodes) the given IData XML string, byte array, or input stream to an IData document
+// refer: <http://documentation.softwareag.com/webmethods/wmsuites/wmsuite8-2_sp2/Integration_Server/8-2-SP1_Integration_Server_Java_API_Reference/com/wm/util/coder/IDataXMLCoder.html>
+//        <http://documentation.softwareag.com/webmethods/wmsuites/wmsuite8-2_sp2/Integration_Server/8-2-SP1_Integration_Server_Java_API_Reference/com/wm/util/coder/XMLCoderWrapper.html>
+tundra.document:parse($content, $encoding);
 
 // sets the value associated with the given key in the given IData
 // document
@@ -1307,6 +1316,10 @@ tundra.pipeline:copy($key.source, $key.target);
 // keys can be simple or fully qualified, such as a/b/c[0]/d
 tundra.pipeline:drop($key);
 
+// emits (or encodes) the current pipeline as an IData XML string, byte array, or input stream
+// refer: <http://documentation.softwareag.com/webmethods/wmsuites/wmsuite8-2_sp2/Integration_Server/8-2-SP1_Integration_Server_Java_API_Reference/com/wm/util/coder/IDataXMLCoder.html>
+tundra.pipeline:emit($encoding, $mode)
+
 // returns the value associated with the given key from the pipeline, or null
 // if the key doesn't exist
 // keys can be simple or fully qualified, such as a/b/c[0]/d
@@ -1330,6 +1343,11 @@ tundra.pipeline:merge($document);
 // iterates over each element in the pipeline, deconstructing all fully qualified
 // keys (for example, 'a/b/c' or 'x/y[0]/z[1]') into their constituent parts
 tundra.pipeline:normalize();
+
+// parses (or decodes) the given IData XML string, byte array, or input stream and merges it into the pipeline
+// refer: <http://documentation.softwareag.com/webmethods/wmsuites/wmsuite8-2_sp2/Integration_Server/8-2-SP1_Integration_Server_Java_API_Reference/com/wm/util/coder/IDataXMLCoder.html>
+//        <http://documentation.softwareag.com/webmethods/wmsuites/wmsuite8-2_sp2/Integration_Server/8-2-SP1_Integration_Server_Java_API_Reference/com/wm/util/coder/XMLCoderWrapper.html>
+tundra.pipeline:parse($content, $encoding);
 
 // sets the value associated with the given key in the pipeline
 // keys can be simple or fully qualified, such as a/b/c[0]/d

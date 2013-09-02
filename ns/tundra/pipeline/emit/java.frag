@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">emit</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogIFN0cmlu
+ZyBlbmNvZGluZyA9IElEYXRhVXRpbC5nZXRTdHJpbmcoY3Vyc29yLCAiJGVuY29kaW5nIik7CiAg
+U3RyaW5nIG1vZGUgPSBJRGF0YVV0aWwuZ2V0U3RyaW5nKGN1cnNvciwgIiRtb2RlIik7CiAgSURh
+dGFVdGlsLnJlbW92ZShjdXJzb3IsICIkZW5jb2RpbmciKTsKICBJRGF0YVV0aWwucmVtb3ZlKGN1
+cnNvciwgIiRtb2RlIik7CgogIElEYXRhVXRpbC5wdXQoY3Vyc29yLCAiJGNvbnRlbnQiLCB0dW5k
+cmEuZG9jdW1lbnQuZW1pdChwaXBlbGluZSwgZW5jb2RpbmcsIG1vZGUpKTsKfSBjYXRjaChqYXZh
+LmlvLklPRXhjZXB0aW9uIGV4KSB7CiAgdHVuZHJhLmV4Y2VwdGlvbi5yYWlzZShleCk7Cn0gZmlu
+YWxseSB7CiAgY3Vyc29yLmRlc3Ryb3koKTsKfQ==</value>
+</Values>
