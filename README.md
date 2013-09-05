@@ -124,6 +124,13 @@ tundra:test($package);
 Supports unit testing by providing the following bare-bones assertion services:
 
 ```java
+// throws an assertion error if the expected and actual datetimes are not 
+// equal
+tundra.assertion.datetime:equal($expected, $actual, $pattern, $message);
+
+// throws an assertion error if the expected and actual datetimes are equal
+tundra.assertion.datetime:unequal($expected, $actual, $pattern, $message);
+
 // throws an assertion error if the expected and actual documents are not
 // equal
 tundra.assertion.document:equal($expected, $actual, $message);
