@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-08-26 12:32:53.670
+// -----( CREATED: 2013-09-05 11:39:54.360
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -129,7 +129,7 @@ public final class datetime
 		  String end = IDataUtil.getString(cursor, "$datetime.end");
 		  String pattern = IDataUtil.getString(cursor, "$pattern");
 		
-		  IDataUtil.put(cursor, "$duration", duration(start, end, pattern));
+		  if (start != null && end != null) IDataUtil.put(cursor, "$duration", duration(start, end, pattern));
 		} finally {
 		  cursor.destroy();
 		}
