@@ -4,16 +4,16 @@
   <value name="svc_type">flow</value>
   <value name="svc_subtype">default</value>
   <value name="svc_sigtype">java 3.5</value>
-  <value name="node_comment">Performs the following startup services for the package:
-  - sets appropriate list|read|write|execute ACLs on tundra namespace
-  - sets execute ACL on tundra.content:discard to Anonymous
-  - sets execute ACL on tundra.content:reject to Anonymous</value>
+  <value name="node_comment">Receives arbitrary (XML or flat file) content and then rejects it by always returning an 
+error to the client.
+
+This service is intended to be invoked by clients via HTTP or FTP.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
-  <value name="template">tundra_support_startup</value>
+  <value name="template">tundra_content_reject</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>

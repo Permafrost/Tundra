@@ -124,7 +124,7 @@ tundra:test($package);
 Supports unit testing by providing the following bare-bones assertion services:
 
 ```java
-// throws an assertion error if the expected and actual datetimes are not 
+// throws an assertion error if the expected and actual datetimes are not
 // equal
 tundra.assertion.datetime:equal($expected, $actual, $pattern, $message);
 
@@ -313,6 +313,15 @@ tundra.content:amend($content, $amendments[], $schema, $encoding.input, $encodin
 // An optional response message, useful for logging, may be returned by specific delivery protocols.
 tundra.content:deliver($content, $encoding, $destination, $pipeline);
 
+// Receives arbitrary (XML or flat file) content and then discards it (does nothing with it). This is the
+// Tundra equivalent of Unix's /dev/null[1], which is useful for successfully receiving messages that do
+// not need to be saved or processed.
+//
+// This service is intended to be invoked by clients via HTTP or FTP.
+//
+// [1] http://en.wikipedia.org/wiki//dev/null
+tundra.content:discard();
+
 // converts an IData document to an XML or flat file string, byte array, or
 // input stream
 tundra.content:emit($document, $encoding, $schema, $mode);
@@ -320,6 +329,12 @@ tundra.content:emit($document, $encoding, $schema, $mode);
 // parses XML and flat file content (specified as a string, byte array, or
 // input stream) into an IData document
 tundra.content:parse($content, $encoding, $schema);
+
+// Receives arbitrary (XML or flat file) content and then rejects it by always returning an
+// error to the client.
+//
+// This service is intended to be invoked by clients via HTTP or FTP.
+tundra.content:reject();
 
 // Retrieves arbitrary content (XML, flat files, binary) from the given $source URI, and calls the
 // given content processing service to process it.
