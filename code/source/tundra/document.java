@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-09-02 14:55:20.543
-// -----( ON-HOST: -
+// -----( CREATED: 2013-09-14 20:12:27 EST
+// -----( ON-HOST: 172.16.189.245
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -893,7 +893,8 @@ public final class document
 	
 	// renames a key from source to target within the given IData document
 	public static IData rename(IData input, String source, String target) {
-	  return drop(copy(input, source, target), source);
+	  if (!source.equals(target)) input = drop(copy(input, source, target), source);
+	  return input;
 	}
 	
 	// copies a value from source key to target key within the given IData document
