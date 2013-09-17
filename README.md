@@ -654,6 +654,11 @@ tundra.document:sort($document, $recurse?);
 // that each return document conforms to
 tundra.document:split($document, $service, $pipeline, $service.input, $service.output);
 
+// trims all leading and trailing whitespace from all string values, then converts
+// empty strings to nulls, then compacts the IData document by removing all null 
+// values
+tundra.document:squeeze($document, $recurse?);
+
 // attempts variable substitution on each string element in the given IData document by
 // replacing all occurrences of substrings matching "%key%" with the associated (optionally
 // scoped) value

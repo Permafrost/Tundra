@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-09-17 15:42:41.157
+// -----( CREATED: 2013-09-17 17:17:30.590
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -609,13 +609,38 @@ public final class document
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
 		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
-		// [o] record:0:optional $ocument
+		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
 		  if (document != null) IDataUtil.put(cursor, "$document", sort(document, recurse));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void squeeze (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(squeeze)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:0:optional $document
+		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [o] record:0:optional $document
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  IData document = IDataUtil.getIData(cursor, "$document");
+		  boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
+		  if (document != null) IDataUtil.put(cursor, "$document", squeeze(document, recurse));
 		} finally {
 		  cursor.destroy();
 		}
@@ -735,6 +760,7 @@ public final class document
 	  return output;
 	}
 	
+	// sorts the given IData document by its keys in natural ascending order
 	public static IData sort(IData input, boolean recurse) {
 	  if (input == null) return null;
 	
@@ -776,6 +802,68 @@ public final class document
 	  oc.destroy();
 	
 	  return output;
+	}
+	
+	// trims all string values, then converts empty strings to nulls, then compacts by removing all null values
+	public static IData squeeze(IData input, boolean recurse) {
+	  if (input == null) return null;
+	
+	  IData output = IDataFactory.create();
+	  IDataCursor ic = input.getCursor();
+	  IDataCursor oc = output.getCursor();
+	
+	  while(ic.next()) {
+	    String key = ic.getKey();
+	    Object value = ic.getValue();
+	
+	    if (value != null) {
+	      if (value instanceof String) {
+	        String string = (String)value;
+	        string = string.trim();
+	        if (string.equals("")) string = null;
+	
+	        value = string;
+	      } else if (value instanceof String[]) {
+	        String[] array = (String[])value;
+	        for (int i = 0; i < array.length; i++) {
+	          if (array[i] != null) {
+	            array[i] = array[i].trim();
+	            if (array[i].equals("")) array[i] = null;
+	          }
+	        }
+	
+	        value = array;
+	      } else if (value instanceof String[][]) {
+	        String[][] array = (String[][])value;
+	        for (int i = 0; i < array.length; i++) {
+	          for (int j = 0; j < array[i].length; j++) {
+	            if (array[i][j] != null) {
+	              array[i][j] = array[i][j].trim();
+	              if (array[i][j].equals("")) array[i][j] = null;
+	            }
+	          }
+	        }
+	
+	        value = array;
+	      } else if (recurse && value instanceof IData) {
+	        value = squeeze((IData)value, recurse);
+	      } else if (recurse && (value instanceof IData[] || value instanceof com.wm.util.Table)) {
+	        IData[] array = value instanceof IData[] ? (IData[])value : ((com.wm.util.Table)value).getValues();
+	        for (int i = 0; i < array.length; i++) {
+	          array[i] = squeeze(array[i], recurse);
+	        }
+	
+	        value = array;
+	      }
+	
+	      oc.insertAfter(key, value);
+	    }
+	  }
+	
+	  ic.destroy();
+	  oc.destroy();
+	
+	  return compact(output, recurse);
 	}
 	
 	// returns the number of top-level {key, value} pairs in the given IData document
