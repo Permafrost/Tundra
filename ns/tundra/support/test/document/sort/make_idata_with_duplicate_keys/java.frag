@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">make_idata_with_duplicate_keys</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogIElEYXRh
+IGRvY3VtZW50ID0gSURhdGFGYWN0b3J5LmNyZWF0ZSgpOwogIElEYXRhQ3Vyc29yIGRjID0gZG9j
+dW1lbnQuZ2V0Q3Vyc29yKCk7CiAgZGMuaW5zZXJ0QWZ0ZXIoInoiLCAiMSIpOwogIGRjLmluc2Vy
+dEFmdGVyKCJhIiwgIjIiKTsKICBkYy5pbnNlcnRBZnRlcigieiIsICIzIik7CiAgZGMuZGVzdHJv
+eSgpOwogIElEYXRhVXRpbC5wdXQoY3Vyc29yLCAiJGRvY3VtZW50IiwgZG9jdW1lbnQpOwoKICBJ
+RGF0YSBleHBlY3RlZCA9IElEYXRhRmFjdG9yeS5jcmVhdGUoKTsKICBJRGF0YUN1cnNvciBlYyA9
+IGV4cGVjdGVkLmdldEN1cnNvcigpOwogIGVjLmluc2VydEFmdGVyKCJhIiwgIjIiKTsKICBlYy5p
+bnNlcnRBZnRlcigieiIsICIxIik7CiAgZWMuaW5zZXJ0QWZ0ZXIoInoiLCAiMyIpOwogIGVjLmRl
+c3Ryb3koKTsKICBJRGF0YVV0aWwucHV0KGN1cnNvciwgIiRleHBlY3RlZCIsIGV4cGVjdGVkKTsK
+fSBmaW5hbGx5IHsKICBjdXJzb3IuZGVzdHJveSgpOwp9</value>
+</Values>

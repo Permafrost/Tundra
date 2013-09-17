@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-09-14 20:12:27 EST
-// -----( ON-HOST: 172.16.189.245
+// -----( CREATED: 2013-09-17 15:42:41.157
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -601,6 +601,31 @@ public final class document
 
 
 
+	public static final void sort (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(sort)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:0:optional $document
+		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [o] record:0:optional $ocument
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  IData document = IDataUtil.getIData(cursor, "$document");
+		  boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
+		  if (document != null) IDataUtil.put(cursor, "$document", sort(document, recurse));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void substitute (IData pipeline)
         throws ServiceException
 	{
@@ -707,6 +732,49 @@ public final class document
 	      IDataUtil.merge(input[i], output);
 	    }
 	  }
+	  return output;
+	}
+	
+	public static IData sort(IData input, boolean recurse) {
+	  if (input == null) return null;
+	
+	  String[] keys = keyset(input);
+	  java.util.Arrays.sort(keys);
+	
+	  IData output = IDataFactory.create();
+	  IDataCursor ic = input.getCursor();
+	  IDataCursor oc = output.getCursor();
+	
+	  for (int i = 0; i < keys.length; i++) {
+	    boolean result;
+	
+	    if (i > 0 && keys[i].equals(keys[i-1])) {
+	      result = ic.next(keys[i]);
+	    } else {
+	      result = ic.first(keys[i]);
+	    }
+	
+	    if (result) {
+	      Object value = ic.getValue();
+	
+	      if (value != null && recurse) {
+	        if (value instanceof IData) {
+	          value = sort((IData)value, recurse);
+	        } else if (value instanceof IData[] || value instanceof com.wm.util.Table) {
+	          IData[] array = value instanceof IData[] ? (IData[])value : ((com.wm.util.Table)value).getValues();
+	          for (int j = 0; j < array.length; j++) {
+	            array[j] = sort(array[j], recurse);
+	          }
+	          value = array;
+	        }
+	      }
+	      oc.insertAfter(keys[i], value);
+	    }
+	  }
+	
+	  ic.destroy();
+	  oc.destroy();
+	
 	  return output;
 	}
 	

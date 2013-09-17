@@ -644,6 +644,9 @@ tundra.document:put($document, $key, $value);
 // keys can be simple or fully qualified, such as a/b/c[0]/d
 tundra.document:rename($document, $key.source, $key.target);
 
+// sorts the given IData document by its keys in natural ascending order
+tundra.document:sort($document, $recurse?);
+
 // one-to-many conversion of an IData document to an IData[] document list; calls the given
 // splitting service, passing the document as an input, and emitting the split
 // list of documents as output; the splitting service must accept a single IData document,
