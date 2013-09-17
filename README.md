@@ -803,7 +803,7 @@ tundra.file:write($file, $mode, $content, $encoding);
 // Provides an HTTP client for interacting with HTTP servers. A custom
 // response handler can be specified ($service), when the standard handler
 // (tundra.support.http.client.response:handle) does not suffice.
-tundra.http:client($uri, $method, $content, $encoding, $authority, $headers, $timeout, $service);
+tundra.http:client($request, $service);
 ```
 
 ### ID
