@@ -98,12 +98,13 @@ on your Integration Server's web administration site
 ## Tests
 
 *Almost* every service in Tundra has unit tests, located in the
-tundra.support.test folder.
+[TundraTest](https://github.com/Permafrost/TundraTest) package.
 
-To run the test suite, either:
-* run tundra:test($package = "Tundra") service directly
-* visit <http://localhost:5555/invoke/tundra/test?$package=Tundra>
-  (substitute your own Integration Server host and port for localhost:5555)
+To run the test suite first install the [TundraTest](https://github.com/Permafrost/TundraTest)
+package, and then either:
+* run the Tundra/tundra:test($package = "TundraTest") service directly, or
+* visit <http://localhost:5555/invoke/tundra/test?$package=TundraTest>
+  (substitute your own Integration Server host and port for localhost:5555).
 
 ## Services
 
@@ -655,7 +656,7 @@ tundra.document:sort($document, $recurse?);
 tundra.document:split($document, $service, $pipeline, $service.input, $service.output);
 
 // trims all leading and trailing whitespace from all string values, then converts
-// empty strings to nulls, then compacts the IData document by removing all null 
+// empty strings to nulls, then compacts the IData document by removing all null
 // values
 tundra.document:squeeze($document, $recurse?);
 
