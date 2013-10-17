@@ -410,7 +410,7 @@
 
   <!-- nodes -->
 
-<EXIT NAME="false" FROM="$flow" SIGNAL="FAILURE" FAILURE-MESSAGE="Unexpected HTTP response: %$status/code% %$status/message%">
+<EXIT NAME="false" FROM="$flow" SIGNAL="FAILURE" FAILURE-MESSAGE="Unexpected HTTP response: %$response/status/code% %$response/status/message%">
   <COMMENT></COMMENT>
 </EXIT>
 </BRANCH>
@@ -579,7 +579,6 @@
             <value name="field_type">object</value>
             <value name="field_dim">0</value>
             <value name="field_opt">true</value>
-            <value name="wrapper_type">byte []</value>
             <value name="nillable">true</value>
             <value name="form_qualified">false</value>
             <value name="is_global">false</value>
@@ -779,7 +778,6 @@
             <value name="field_type">object</value>
             <value name="field_dim">0</value>
             <value name="field_opt">true</value>
-            <value name="wrapper_type">byte []</value>
             <value name="nillable">true</value>
             <value name="form_qualified">false</value>
             <value name="is_global">false</value>
