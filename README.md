@@ -1407,6 +1407,10 @@ tundra.schema.content.retrieve:handler;
 // $content is specified as a java.io.InputStream, along with optional meta data about the content,
 // such as its mime type ($content.type) and name ($content.name).
 tundra.schema.content.retrieve:processor;
+
+// Exception handling $catch services called by tundra.service:ensure can implement this 
+// specification.
+tundra.schema.exception:handler;
 ```
 
 ### Service
@@ -1422,7 +1426,8 @@ tundra.service:callstack();
 // added to the pipeline
 //
 // if specified, the $catch service is invoked to handle the exception, otherwise
-// the exception is rethrown
+// the exception is rethrown; the $catch service should implement the 
+// Tundra/tundra.schema.exception:handler specification
 //
 // if specified, the $finally service is always invoked, whether an exception was
 // thrown by $service or not
