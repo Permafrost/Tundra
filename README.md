@@ -1044,8 +1044,12 @@ tundra.list.object:compact($list[]);
 // input arguments
 tundra.list.object:concatenate($list.x[], $list.y[]);
 
+// returns a list of only the items in $list.x that are not also present in 
+// $list.y
+tundra.list.object:difference($list.x[], $list.y[]);
+
 // removes the item with the given index from the given list
-tundra.list.object:drop($list, $index);
+tundra.list.object:drop($list[], $index);
 
 // iterates through the given list, invoking the given service for each item
 // in the list, passing $item, $index, $iteration and $length variables
@@ -1067,6 +1071,10 @@ tundra.list.object:insert($list[], $item, $index);
 
 // returns true if the list is an instance of given class
 tundra.list.object:instance($list[], $class);
+
+// returns a list of only the items in $list.x that are also present in 
+// $list.y
+tundra.list.object:intersection($list.x[], $list.y[]);
 
 // returns a string created by converting each list item to a string,
 // separated by the given separator string
@@ -1148,6 +1156,10 @@ tundra.list.string:compact($list[]);
 // input arguments
 tundra.list.string:concatenate($list.x[], $list.y[]);
 
+// returns a list of only the items in $list.x that are not also present in 
+// $list.y
+tundra.list.string:difference($list.x[], $list.y[]);
+
 // removes the item with the given index from the given list
 tundra.list.string:drop($list, $index);
 
@@ -1168,6 +1180,10 @@ tundra.list.string:include($list[], $item);
 // returns a new list with the given item inserted at the desired index in
 // the given list
 tundra.list.string:insert($list[], $item, $index);
+
+// returns a list of only the items in $list.x that are also present in 
+// $list.y
+tundra.list.string:intersection($list.x[], $list.y[]);
 
 // returns a string created by converting each list item to a string,
 // separated by the given separator string

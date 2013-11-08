@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-07-05 21:38:14 EST
-// -----( ON-HOST: 172.16.189.232
+// -----( CREATED: 2013-11-08 14:44:46.747
+// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -84,6 +84,32 @@ public final class object
 		  Object[] items = IDataUtil.getObjectArray(cursor, "$list.y");
 		
 		  IDataUtil.put(cursor, "$list", concatenate(list, items));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void difference (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(difference)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:1:optional $list.x
+		// [i] object:1:optional $list.y
+		// [o] object:1:optional $list
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  Object[] x = IDataUtil.getObjectArray(cursor, "$list.x");
+		  Object[] y = IDataUtil.getObjectArray(cursor, "$list.y");
+		
+		  if (x != null) IDataUtil.put(cursor, "$list", difference(x, y));
 		} finally {
 		  cursor.destroy();
 		}
@@ -262,6 +288,32 @@ public final class object
 		  Object[] list = IDataUtil.getObjectArray(cursor, "$list");
 		  String klass = IDataUtil.getString(cursor, "$class");
 		  if (list != null && klass != null) IDataUtil.put(cursor, "$instance?", "" + tundra.object.instance(list, klass));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void intersection (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(intersection)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:1:optional $list.x
+		// [i] object:1:optional $list.y
+		// [o] object:1:optional $list
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  Object[] x = IDataUtil.getObjectArray(cursor, "$list.x");
+		  Object[] y = IDataUtil.getObjectArray(cursor, "$list.y");
+		
+		  if (x != null && y != null) IDataUtil.put(cursor, "$list", intersection(x, y));
 		} finally {
 		  cursor.destroy();
 		}
@@ -523,6 +575,17 @@ public final class object
 	  return list.toArray(java.util.Arrays.copyOf(array, 0));
 	}
 	
+	// returns only the items in x that are not also in y
+	public static <T> T[] difference(T[] x, T[] y) {
+	  if (x == null || y == null) return x;
+	
+	  java.util.List<T> d = new java.util.ArrayList<T>(x.length);
+	  d.addAll(java.util.Arrays.asList(x));
+	  d.removeAll(java.util.Arrays.asList(y));
+	  
+	  return d.toArray(java.util.Arrays.copyOf(x, 0));
+	}
+	
 	// removes the element at the given index from the given list
 	public static <T> T[] drop(T[] array, String index) {
 	  return drop(array, Integer.parseInt(index));
@@ -667,6 +730,17 @@ public final class object
 	  } finally {
 	    cursor.destroy();
 	  }
+	}
+	
+	// returns only the items in x that are also in y
+	public static <T> T[] intersection(T[] x, T[] y) {
+	  if (x == null || y == null) return null;
+	
+	  java.util.List<T> d = new java.util.ArrayList<T>(x.length);
+	  d.addAll(java.util.Arrays.asList(x));
+	  d.retainAll(java.util.Arrays.asList(y));
+	  
+	  return d.toArray(java.util.Arrays.copyOf(x, 0));
 	}
 	
 	// returns a string created by concatenating each element of the given array, separated by the given separator string

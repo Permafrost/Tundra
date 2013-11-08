@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-06-18 12:00:48 EST
-// -----( ON-HOST: 172.16.189.173
+// -----( CREATED: 2013-11-08 14:40:36.108
+// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -77,6 +77,23 @@ public final class string
 
 
 
+	public static final void difference (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(difference)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:1:optional $list.x
+		// [i] field:1:optional $list.y
+		// [o] field:1:optional $list
+		tundra.list.object.difference(pipeline);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void drop (IData pipeline)
         throws ServiceException
 	{
@@ -85,6 +102,7 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:1:optional $list
 		// [i] field:0:required $index
+		// [o] field:1:optional $list
 		tundra.list.object.drop(pipeline);
 		// --- <<IS-END>> ---
 
@@ -173,6 +191,23 @@ public final class string
 		// [i] field:0:required $index
 		// [o] field:1:required $list
 		tundra.list.object.insert(pipeline, String.class);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void intersection (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(intersection)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:1:optional $list.x
+		// [i] field:1:optional $list.y
+		// [o] field:1:optional $list
+		tundra.list.object.intersection(pipeline);
 		// --- <<IS-END>> ---
 
                 
