@@ -108,269 +108,469 @@ package, and then either:
 
 ## Services
 
-Top-level services for the most common tasks:
+Top-level services for the most common tasks.
 
-```java
-// writes a message to the server log, automatically prefixed with the call
-// stack
-tundra:log($message, $level);
+* #### tundra:log
 
-// runs all *test*:should* services in the given package, returning the test
-// results (a test case passes if no exceptions are thrown)
-tundra:test($package);
-```
+  Writes a message to the server log, automatically prefixed with the call stack.
 
-### Assertion
+  * Inputs:
+    * `$message` is the message to be written to the server log.
+    * `$level` is the logging level of the message, one of {Fatal, Error, Warn, Info, Debug, Trace, Off}.
 
-Supports unit testing by providing the following bare-bones assertion services:
+* #### tundra:test
 
-```java
-// throws an assertion error if the expected and actual datetimes are not
-// equal
-tundra.assertion.datetime:equal($expected, $actual, $pattern, $message);
+  Runs all *test*:should* services in the given package, returning the test results (a test case passes if no exceptions are thrown).
 
-// throws an assertion error if the expected and actual datetimes are equal
-tundra.assertion.datetime:unequal($expected, $actual, $pattern, $message);
+  * Inputs:
+    * `$package` is the name of the package which contains the test cases to be executed.
 
-// throws an assertion error if the expected and actual documents are not
-// equal
-tundra.assertion.document:equal($expected, $actual, $message);
+### Assertions
 
-// throws an assertion error if the expected and actual documents are equal
-tundra.assertion.document:unequal($expected, $actual, $message);
+Supports unit testing by providing the following bare-bones assertion services.
 
-// throws an assertion error if the expected and actual document lists are
-// not equal
-tundra.assertion.list.document:equal($expected[], $actual[], $message);
+* #### tundra.assertion.datetime:equal
 
-// throws an assertion error if the expected and actual document lists are
-// equal
-tundra.assertion.list.document:unequal($expected[], $actual[], $message);
+  Throws an assertion error if the expected and actual datetimes are not equal.
 
-// throws an assertion error if the expected and actual lists are not equal
-tundra.assertion.list.object:equal($expected[], $actual[], $message);
+  * Inputs:
+    * `$expected` is the expected datetime string value.
+    * `$actual` is the actual datetime string value. If this value is not equal to the expected value, an assertion error will be thrown.
+    * `$pattern` is an optional datetime string pattern the above values conform to, which defaults to an ISO8601/XML datetime pattern. Can either be a [java.text.SimpleDateFormat](http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html) pattern, or one of the following handful of well-known named patterns:
+      * `datetime`       - ISO8601/XML datetime
+      * `datetime.jdbc`  - yyyy-MM-dd HH:mm:ss.SSS
+      * `date`           - ISO8601/XML date
+      * `date.jdbc`      - yyyy-MM-dd
+      * `time`           - ISO8601/XML time
+      * `time.jdbc`      - HH:mm:ss
+      * `milliseconds`   - The number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
+    * `$message` is an optional custom message to be used as the assertion error message if the assertion fails.
 
-// throws an assertion error if the given list is null
-tundra.assertion.list.object:exists($list[], $message);
+* #### tundra.assertion.datetime:unequal
 
-// throws an assertion error if the given list is not an instance of the
-// given class
-tundra.assertion.list.object:instance($list[], $class, $message);
+  Throws an assertion error if the expected and actual datetimes are equal.
 
-// throws an assertion error if the given list is not null
-tundra.assertion.list.object:nothing($list[], $message);
+  * Inputs:
+    * `$expected` is the expected datetime string value.
+    * `$actual` is the actual datetime string value. If this value is equal to the expected value, an assertion error will be thrown.
+    * `$pattern` is an optional datetime string pattern the above values conform to, which defaults to an ISO8601/XML datetime pattern. Can either be a [java.text.SimpleDateFormat](http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html) pattern, or one of the following handful of well-known named patterns:
+      * `datetime`       - ISO8601/XML datetime
+      * `datetime.jdbc`  - yyyy-MM-dd HH:mm:ss.SSS
+      * `date`           - ISO8601/XML date
+      * `date.jdbc`      - yyyy-MM-dd
+      * `time`           - ISO8601/XML time
+      * `time.jdbc`      - HH:mm:ss
+      * `milliseconds`   - The number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
+    * `$message` is an optional custom message to be used as the assertion error message if the assertion fails.
 
-// throws an assertion error if the expected and actual lists are equal
-tundra.assertion.list.object:unequal($expected[], $actual[], $message);
+* #### tundra.assertion.document:equal
 
-// throws an assertion error if the expected and actual string lists are not
-// equal
-tundra.assertion.list.string:equal($expected[], $actual[], $message);
+  Throws an assertion error if the expected and actual documents are not equal.
 
-// throws an assertion error if the expected and actual string lists are
-// equal
-tundra.assertion.list.string:unequal($expected[], $actual[], $message);
+  * Inputs:
+    * `$expected` is the expected IData document.
+    * `$actual` is the actual IData document. If this document is not equal to the expected document, an assertion error will be thrown.
+    * `$message` is an optional custom message to be used as the assertion error message if the assertion fails.
 
-// throws an assertion error if the expected and actual objects are not equal
-tundra.assertion.object:equal($expected, $actual, $message);
+* #### tundra.assertion.document:unequal
 
-// throws an assertion error if the given object is null
-tundra.assertion.object:exists($object, $message);
+  Throws an assertion error if the expected and actual documents are equal.
 
-// throws an assertion error if the given object is not an instance of the
-// given class
-tundra.assertion.object:instance($object, $class, $message);
+   * Inputs:
+      * `$expected` is the expected IData document.
+      * `$actual` is the actual IData document. If this document is equal to the expected document, an assertion error will be thrown.
+      * `$message` is an optional custom message to be used as the assertion error message if the assertion fails.
 
-// throws an assertion error if the given object is not null
-tundra.assertion.object:nothing($object, $message);
+* #### tundra.assertion.list.document:equal
 
-// throws an assertion error if the expected and actual objects are equal
-tundra.assertion.object:unequal($expected, $actual, $message);
+  Throws an assertion error if the expected and actual document lists are not equal.
 
-// throws an assertion error if this service is executed
-tundra.assertion.step:unreached($message);
+  * Inputs:
+    * `$expected[]` is the expected IData document list.
+    * `$actual[]` is the actual IData document list. If this document list is not equal to the expected document list, an assertion error will be thrown.
+    * `$message` is an optional custom message to be used as the assertion error message if the assertion fails.
 
-// throws an assertion error if the expected and actual strings are not equal
-tundra.assertion.string:equal($expected, $actual, $message);
+* #### tundra.assertion.list.document:unequal
 
-// throws an assertion error if the expected and actual strings are equal
-tundra.assertion.string:unequal($expected, $actual, $message);
-```
+  Throws an assertion error if the expected and actual document lists are equal.
+
+  * Inputs:
+    * `$expected` is the expected IData document list.
+    * `$actual` is the actual IData document list. If this document list is equal to the expected document list, an assertion error will be thrown.
+    * `$message` is an optional custom message to be used as the assertion error message if the assertion fails.
+
+* #### tundra.assertion.list.object:equal
+
+  Throws an assertion error if the expected and actual lists are not equal.
+
+  * Inputs:
+    * `$expected` is the expected java.lang.Object list.
+    * `$actual` is the actual java.lang.Object list. If this list is not equal to the expected list, an assertion error will be thrown.
+    * `$message` is an optional custom message to be used as the assertion error message if the assertion fails.
+
+* #### tundra.assertion.list.object:exists
+
+  Throws an assertion error if the given list is null.
+
+  * Inputs:
+    * `$list` is the java.lang.Object list to assert existence of.
+    * `$message` is an optional custom message to be used as the assertion error message if the assertion fails.
+
+* #### tundra.assertion.list.object:instance
+
+  Throws an assertion error if the given list is not an instance of the given class.
+
+  * Inputs:
+    * `$list` is the java.lang.Object list to be tested as an instance of the specified class.
+    * `$class` is the Java array class name the given list is asserted to be an instance of. Note that Java array class names are [different and distinct](http://docs.oracle.com/javase/tutorial/reflect/special/arrayComponents.html) to normal Java singleton object class names. For example, an array of java.lang.String objects has the class name `[Ljava.lang.String;`.
+    * `$message` is an optional custom message to be used as the assertion error message if the assertion fails.
+
+* #### tundra.assertion.list.object:nothing
+
+  Throws an assertion error if the given list is not null.
+
+  * Inputs:
+    * `$list` is the java.lang.Object list expected to be null.
+    * `$message` is an optional custom message to be used as the assertion error message if the assertion fails.
+
+* #### tundra.assertion.list.object:unequal
+
+  Throws an assertion error if the expected and actual lists are equal.
+
+  * Inputs:
+    * `$expected` is the expected oObject list.
+    * `$actual` is the actual object list. If this list is equal to the expected list, an assertion error will be thrown.
+    * `$message` is an optional custom message to be used as the assertion error message if the assertion fails.
+
+* #### tundra.assertion.list.string:equal
+
+  Throws an assertion error if the expected and actual string lists are not equal.
+
+  * Inputs:
+    * `$expected` is the expected string list.
+    * `$actual` is the actual string list. If this list is not equal to the expected list, an assertion error will be thrown.
+    * `$message` is an optional custom message to be used as the assertion error message if the assertion fails.
+
+* #### tundra.assertion.list.string:unequal
+
+  Throws an assertion error if the expected and actual string lists are equal.
+
+  * Inputs:
+    * `$expected` is the expected string list.
+    * `$actual` is the actual string list. If this list is equal to the expected list, an assertion error will be thrown.
+    * `$message` is an optional custom message to be used as the assertion error message if the assertion fails.
+
+* #### tundra.assertion.object:equal
+
+  Throws an assertion error if the expected and actual objects are not equal.
+
+  * Inputs:
+    * `$expected` is the expected object value.
+    * `$actual` is the actual object value. If this value is not equal to the expected value, an assertion error will be thrown.
+    * `$message` is an optional custom message to be used as the assertion error message if the assertion fails.
+
+* #### tundra.assertion.object:exists
+
+  Throws an assertion error if the given object is null.
+
+  * Inputs:
+    * `$object` is the object expected to not be null.
+    * `$message` is an optional custom message to be used as the assertion error message if the assertion fails.
+
+* #### tundra.assertion.object:instance
+
+  Throws an assertion error if the given object is not an instance of the given class.
+
+  * Inputs:
+    * `$object` is the object to be tested as an instance of the specified class.
+    * `$class` is the Java class name the given object is asserted to be an instance of.
+    * `$message` is an optional custom message to be used as the assertion error message if the assertion fails.
+
+* #### tundra.assertion.object:nothing
+
+  Throws an assertion error if the given object is not null
+
+  * Inputs:
+    * `$object` is the object that is expected to be null.
+    * `$message` is an optional custom message to be used as the assertion error message if the assertion fails.
+
+* #### tundra.assertion.object:unequal
+
+  Throws an assertion error if the expected and actual objects are equal.
+
+  * Inputs:
+    * `$expected` is the expected object.
+    * `$actual` is the actual object. If this object is equal to the expected object, an assertion error will be thrown.
+    * `$message` is an optional custom message to be used as the assertion error message if the assertion fails.
+
+* #### tundra.assertion.step:unreached
+
+  Throws an assertion error if this service is executed.
+
+  * Inputs:
+    * `$message` is an optional custom message to be used as the assertion error message if the assertion fails.
+
+* #### tundra.assertion.string:equal
+
+  Throws an assertion error if the expected and actual strings are not equal.
+
+  * Inputs:
+    * `$expected` is the expected string value.
+    * `$actual` is the actual string value. If this value is not equal to the expected value, an assertion error will be thrown.
+    * `$message` is an optional custom message to be used as the assertion error message if the assertion fails.
+
+* #### tundra.assertion.string:unequal
+
+  Throws an assertion error if the expected and actual strings are equal.
+
+  * Inputs:
+    * `$expected` is the expected string value.
+    * `$actual` is the actual string value. If this value is equal to the expected value, an assertion error will be thrown.
+    * `$message` is an optional custom message to be used as the assertion error message if the assertion fails.
 
 ### Base64
 
 Services for encoding and decoding base64 strings.
 
-```java
-// base64 decodes the given string, byte array, or input stream
-// refer: <http://en.wikipedia.org/wiki/Base64>
-tundra.base64:decode($base64, $encoding, $mode);
+* #### tundra.base64:decode
 
-// base64 encodes the given string, byte array, or input stream
-// refer: <http://en.wikipedia.org/wiki/Base64>
-tundra.base64:encode($content, $encoding, $mode);
-```
+  [Base64](http://en.wikipedia.org/wiki/Base64) decodes the given string, byte array, or input stream.
 
-### Bool
+  * Inputs:
+    * `$base64` is either a base-64 encoded string, byte array, or input stream to be decoded.
+    * `$encoding` is the optional character set used to decode the text data when `$base64` is provided as a byte array or input stream. Defaults to the Java virtual machine [default charset](http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset). Not used when `$base64` is provided as a string.
+    * `$mode` is an optional choice of {stream, bytes, string} which determines the type of the output `$content` object. Defaults to stream.
+  * Outputs:
+    * `$content` is the base-64 decoded data as a string, byte array, or input stream (depending on the `$mode` chosen).
+
+* #### tundra.base64:encode
+
+  [Base64](http://en.wikipedia.org/wiki/Base64) encodes the given string, byte array, or input stream.
+
+  * Inputs:
+    * `$content` is either a string, byte array, or input stream containing data to be base-64 encoded.
+    * `$encoding` is the optional character set used to decode the text data when `$content` is provided as a byte array or input stream. Defaults to the Java virtual machine [default charset](http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset). Not used when `$base64` is provided as a string.
+    * `$mode` is an optional choice of {stream, bytes, string} which determines the type of the output `$base64` object. Defaults to stream.
+  * Outputs:
+    * `$base64` is the base-64 encoded data as a string, byte array, or input stream (depending on the `$mode` chosen).
+
+### Boolean
 
 Services for manipulating boolean values.
 
-```java
-// converts the given $boolean value to a string using the appropriate string values specified
-// for true and false
-tundra.bool:emit($boolean, $value.true, $value.false);
+* #### tundra.bool:emit
 
-// returns the negated canonical string form for the given $boolean string:
-// either "true" or "false
-tundra.bool:negate($boolean);
+  Converts the given `$boolean` value to a string using the appropriate string values specified for true and false.
 
-// returns the canonical string form for the given $boolean string: either "true" or "false;
-// if $boolean is null and $default is not null, then $default's boolean value will be
-// returned; if $boolean is null and $default is null, then "false" will be returned
-tundra.bool:normalize($boolean, $default);
-```
+  * Inputs:
+    * `$boolean` is the value to be converted.
+    * `$value.true` is the value returned if `$boolean` is true.
+    * `$value.false` is the value returned if `$boolean` is false.
+  * Outputs:
+    * `$string` is the converted boolean value.
+
+* #### tundra.bool:negate
+
+  Returns the negated canonical string form for the given `$boolean` string: either "true" or "false".
+
+  * Inputs:
+    * `$boolean` is the value to be negated.
+  * Outputs:
+    * `$boolean` is the negated input value.
+
+* #### tundra.bool:normalize
+
+  Returns the canonical string form for the given $boolean string: either "true" or "false. If `$boolean` is null and `$default` is not null, then `$default`'s boolean value will be returned. If `$boolean` is null and `$default` is null, then "false" will be returned.
+
+  * Inputs:
+    * `$boolean` is the value to be normalized.
+    * `$default` is the value to use if `$boolean` is null.
+  * Outputs:
+    * `$boolean` is the normalized input value, guaranteed to be either the string "true" or "false".
 
 ### Bytes
 
 Services for manipulating byte arrays:
 
-```java
-// converts a string, byte array or input stream to a byte array
-tundra.bytes:normalize($object, $encoding);
+* #### tundra.bytes:length
 
-// returns the length of the given byte array
-tundra.bytes:length($bytes);
-```
+  Returns the length of the given byte array.
+
+  * Inputs:
+    * `$bytes` must be a byte array.
+  * Outputs:
+    * `$length` is the length of the given byte array.
+
+* #### tundra.bytes:normalize
+
+  Converts a string, byte array or input stream to a byte array.
+
+  * Inputs:
+    * `$object` is the string, byte array or input stream to be normalized.
+    * `$encoding` is the optional character set to use to encode `$object` when it is a string. Defaults to the Java virtual machine [default charset](http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset).
+  * Outputs:
+    * `$bytes` is a byte array representation of the input `$object` data.
 
 ### Condition
 
-Services for evaluating conditional statements:
+Services for evaluating conditional statements.
 
-```java
-// Evaluates the given condition against the pipeline (or optional scope IData document).
-//
-// Condition statements have the following form:
-// <condition> = <key> == <key>   [and|or <condition>]
-//             | <key> != <key>   [and|or <condition>]
-//             | <key> == <value> [and|or <condition>]
-//             | <key> != <value> [and|or <condition>]
-//
-// Where <key>   is a fully qualified percent delimited IData key, such as %a/b/c[0]%
-//   and <value> is a literal string (double- or single-quoted), number, boolean,
-//               regular expression, or null
-//
-// Examples:
-// %a/b/c[0]% == "xyz"
-// %some/thing% != null
-// %num% == /\d\d/
-// %num% == 10
-// %flag% == true
-// %inString1% == "abc" and (%inString2% == "123" or %inString3% == "123")
-tundra.condition:evaluate($condition, $scope);
-```
+* #### tundra.condition:evaluate
+
+  Evaluates the given condition against the pipeline (or optional scope IData document).
+
+  * Inputs:
+    * `$condition` is the conditional statement to be evaluated.
+
+       Conditional statements have the following form:
+
+             <condition> = <key> == <key>   [and|or <condition>]
+                         | <key> != <key>   [and|or <condition>]
+                         | <key> == <value> [and|or <condition>]
+                         | <key> != <value> [and|or <condition>]
+
+       Where `<key>`   is a fully qualified percent delimited IData key, such as `%a/b/c[0]%`
+         and `<value>` is a literal string (double- or single-quoted), number, boolean,
+                     regular expression, or null.
+
+       Examples:
+
+             %a/b/c[0]% == "xyz"
+             %some/thing% != null
+             %num% == /\d\d/
+             %num% == 10
+             %flag% == true
+             %inString1% == "abc" and (%inString2% == "123" or %inString3% == "123")
+
+    * `$scope` is an optional IData document containing the variables against which `$condition` will be evaluated. If not specified, the `$condition` will be evaluated against the pipeline.
+  * Outputs:
+    * `$result?` is the boolean result of the evaluation.
 
 ### Content
 
-Services for manipulating arbitrary textual content, such as XML or CSV content:
+Services for manipulating arbitrary textual content, such as XML or CSV content.
 
-```java
-// Edits the given XML or flat file content with the list of {key, value} pairs specified in
-// $amendments.
-//
-// The keys in $amendments can be fully-qualified (for example, "a/b/c[0]"), and the values can
-// include percent-delimited variable substitution strings which will be substituted prior to
-// being inserted in $document.
-tundra.content:amend($content, $amendments[], $schema, $encoding.input, $encoding.output, $mode.output);
+* #### tundra.content:amend
 
-// Delivers arbitrary content (string, bytes, or input stream) to the given destination URI.
-//
-// Supports the following delivery protocols / URI schemes:
-//   - file:   writes the given content to the file specified by the destination URI.  The
-//             following additional options can be provided via the $pipeline document:
-//             - $mode: append / write
-//   - http:   transmits the given content to the destination URI. The following additional
-//             options can be provided via the $pipeline document:
-//             - $method: get / put / post / delete / head / trace / options
-//             - $headers/*: additional HTTP headers as required
-//             - $authority/user: the username to log on to the remote web server with
-//             - $authority/password: the password to log on to the remote web server with
-//   - https:   refer to http
-//   - mailto: sends an email with the given content attached. An example mailto URI is
-//             as follows: mailto:bob@example.com?cc=jane@example.com&subject=Example&body=Example&attachment=message.xml
-//             The following additional override options can be provided via the $pipeline
-//             document:
-//             - $attachment: the attached file's name
-//             - $from: email address to send the email from
-//             - $subject: the subject line text
-//             - $body: the main text of the email
-//             - $smtp: an SMTP URI specifying the SMTP server to use (for example,
-//               smtp://user:password@host:port), defaults to the SMTP server configured
-//               in the Integration Server setting watt.server.smtpServer
-//
-// Additional delivery protocols can be implemented by creating a service named for the
-// URI scheme in the folder tundra.support.content.deliver.  Services in this folder should
-// implement the tundra.support.content.deliver.protocol:handler specification.
-//
-// An optional response message, useful for logging, may be returned by specific delivery protocols.
-tundra.content:deliver($content, $encoding, $destination, $pipeline);
+  Edits the given XML or flat file content with the list of {key, value} pairs specified in `$amendments`.
 
-// Receives arbitrary (XML or flat file) content and then discards it (does nothing with it). This is the
-// Tundra equivalent of Unix's /dev/null[1], which is useful for successfully receiving messages that do
-// not need to be saved or processed.
-//
-// This service is intended to be invoked by clients via HTTP or FTP.
-//
-// [1] http://en.wikipedia.org/wiki//dev/null
-tundra.content:discard();
+  * Inputs:
+    * `$content` is a string, byte array, or input stream containing the XML or flat file content to be amended.
+    * `$amendments` is an IData document list containing all the edits to be made to the given `$content`.
+      * `key` is a fully-qualified (for example, `a/b/c[0]`) key identifying the value in the parsed `$content` to be edited.
+      * `value` is the value to be assigned to the item identified by `key`, and can include percent-delimited variable substitution strings which will be substituted prior to being inserted into the parsed `$content`.
+    * `$schema` is the fully-qualified name of the document reference (for XML) or flat file schema (for flat files) used to parse `$content`.
+    * `$encoding.input` is an optional character set used to decode the text data if `$content` is provided as a byte array or input stream. Defaults to the Java virtual machine [default charset](http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset).
+    * `$encoding.output` is an optional character set used to encode the amended text data if `$mode.output` is a byte array or input stream. Defaults to the Java virtual machine [default charset](http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset).
+    * `$mode.output` is an optional choice of {stream, bytes, string} which specifies the type of object `$content` is returned as. Defaults to stream.
+  * Outputs:
+    * `$content` is the resulting edited XML or flat file content.
 
-// converts an IData document to an XML or flat file string, byte array, or
-// input stream
-tundra.content:emit($document, $encoding, $schema, $mode);
+* #### tundra.content:deliver
 
-// parses XML and flat file content (specified as a string, byte array, or
-// input stream) into an IData document
-tundra.content:parse($content, $encoding, $schema);
+  Delivers arbitrary content (string, bytes, or input stream) to the given destination URI. Additional delivery protocols can be implemented by creating a service named for the URI scheme in the folder `tundra.support.content.deliver`.  Services in this folder should implement the `tundra.support.content.deliver.protocol:handler` specification.
 
-// Receives arbitrary (XML or flat file) content and then rejects it by always returning an
-// error to the client.
-//
-// This service is intended to be invoked by clients via HTTP or FTP.
-tundra.content:reject();
+  * Inputs:
+    * `$content` is a string, byte array, or input stream containing data to be delivered to the `$destination` URI.
+    * `$content.type` is an optional MIME media type describing the type content being delivered.
+    * `$encoding` is an optional character set to use when `$content` is provided as a string to encode the text data upon delivery. Defaults to the Java virtual machine [default charset](http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset).
+    * `$destination` is a URI identifying the location where the given `$content` should be delivered. Supports the following delivery protocols / URI schemes:
+      * `file`: writes the given content to the file specified by the destination URI. The following additional options can be provided via the $pipeline document:
+        * `$mode`: append / write
+      * `http`:   transmits the given content to the destination URI. The following additional options can be provided via the $pipeline document:
+        * `$method`: get / put / post / delete / head / trace / options
+        * `$headers/*`: additional HTTP headers as required
+        * `$authority/user`: the username to log on to the remote web server with
+        * `$authority/password`: the password to log on to the remote web server with
+      * `https`: refer to `http`
+      * `mailto`: sends an email with the given content attached. An example mailto URI is as follows: `mailto:bob@example.com?cc=jane@example.com&subject=Example&body=Example&attachment=message.xml`. The following additional override options can be provided via the `$pipeline` document:
+        * `$attachment`: the attached file's name
+        * `$from`: email address to send the email from
+        * `$subject`: the subject line text
+        * `$body`: the main text of the email
+        * `$smtp`: an SMTP URI specifying the SMTP server to use (for example, `smtp://user:password@host:port`), defaults to the SMTP server configured in the Integration Server setting `watt.server.smtpServer`.
+    * `$pipeline` is an optional IData document for providing arbitrary variables to the delivery implementation service.
+  * Outputs:
+    * `$message` is an optional response message, useful for logging, that may be returned by specific delivery protocols.
+    * `$response` is an optional response content returned by the delivery (for example, the HTTP response body).
+    * `$response.type` is an optional MIME media type describing the type of `$response` returned.
 
-// Retrieves arbitrary content (XML, flat files, binary) from the given $source URI, and calls the
-// given content processing service to process it.
-//
-// Content processing services must implement the tundra.schema.content.retrieve:processor
-// specification.
-//
-// Supports the following retrieval protocols / URI schemes:
-//   - file:   processes each file matching the given $source URI with the given processing $service.
-//             The file component of the URI can include wildcards or globs (such as *.txt or *.j?r)
-//             for matching multiple files at once. For example, file:////server:port/directory/*.txt
-//             would process all .txt files in the specified directory.
-//             To ensure each file processed is not locked or being written to by another process, the
-//             file is first moved to a ./archive directory prior to processing.
-//
-// Additional retrieval protocols can be implemented by creating a service named for the URI scheme in
-// the folder tundra.support.content.retrieve.  Services in this folder must implement the
-// tundra.schema.content.retrieve:handler specification.
-//
-// Use the $limit input to configure the maximum number of content matches to be processed in a single
-// execution (defaults to 1000).
-tundra.content:retrieve($source, $service, $limit);
+* #### tundra.content:discard
 
-// one-to-many conversion of XML or flat file content to another format; calls the given
-// splitting service, passing the parsed content as an input, and emitting the split
-// list of contents as output; the splitting service must accept a single IData document,
-// and return an IData document list
-tundra.content:split($content, $service, $pipeline, $encoding.input, $encoding.output, $schema.input, $schema.output, $service.input, $service.output, $mode.output);
+  Receives arbitrary (XML or flat file) content and then discards it (does nothing with it). This is the Tundra equivalent of Unix's [/dev/null](http://en.wikipedia.org/wiki//dev/null), which is useful for successfully receiving messages that do not need to be saved or processed. This service is intended to be invoked by clients via HTTP or FTP.
 
-// one-to-one conversion of XML or flat file content to another format; calls the given
-// translation service, passing the parsed content as an input, and emitting
-// the translated content as output; the translation service must accept a single IData
-// document and return a single IData document
-tundra.content:translate($content, $service, $encoding.input, $encoding.output, $schema.input, $schema.output, $service.input, $service.output, $mode.output);
-```
+* #### tundra.content:emit
+
+  Converts an IData document to an XML or flat file string, byte array, or input stream.
+
+  * Inputs:
+    * `$document` is the IData document to be serialized as a string, byte array, or input stream.
+    * `$encoding` is an optional character set to use when encoding the resulting text data to a byte array or input stream. Defaults to the Java virtual machine [default charset](http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset).
+    * `$schema` is the fully-qualified name of the document reference (for XML) or flat file schema (for flat files) used to serialize `$document`.
+    * `$mode` is an optional choice of {stream, bytes, string} which specifies the type of object `$content` is returned as. Defaults to stream.
+  * Outputs:
+    * `$content` is the resulting serialization of `$document` as XML or flat file content.
+
+* #### tundra.content:parse
+
+  Parses XML and flat file content (specified as a string, byte array, or input stream) into an IData document.
+
+  * Inputs:
+    * `$content` is a string, byte array, or input stream containing XML or flat file content to be parsed.
+    * `$encoding` is an optional character set to use when `$content` is provided as a byte array or input stream to decode the contained text data. Defaults to the Java virtual machine [default charset](http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset).
+    * `$schema` is the fully-qualified name of the document reference (for XML) or flat file schema (for flat files) used to parse `$content`.
+  * Outputs:
+    * `$document` is the resulting IData document representing the parsed `$content`.
+
+* #### tundra.content:reject
+
+  Receives arbitrary (XML or flat file) content and then rejects it by always returning an error to the client. This service is intended to be invoked by clients via HTTP or FTP.
+
+* #### tundra.content:retrieve
+
+  Retrieves arbitrary content (XML, flat files, binary) from the given `$source` URI, and calls the given content processing service to process it. Additional retrieval protocols can be implemented by creating a service named for the URI scheme in the folder `tundra.support.content.retrieve`.  Services in this folder must implement the `tundra.schema.content.retrieve:handler` specification.
+
+  * Inputs:
+    * `$source` is a URI identifying the location from which content is to be retrieved. Supports the following retrieval protocols / URI schemes:
+      * `file`: processes each file matching the given $source URI with the given processing $service. The file component of the URI can include wildcards or globs (such as *.txt or *.j?r) for matching multiple files at once. For example, `file:////server:port/directory/*.txt` would process all .txt files in the specified directory. To ensure each file processed is not locked or being written to by another process, the file is first moved to a `./archive` directory prior to processing.
+    * `$service` is the fully-qualified name of the content processing service, which implements the `tundra.schema.content.retrieve:processor` specification, invoked to process each item of content retrieved from the `$source` URI.
+    * `$limit` is an optional maximum number of content matches to be processed in a single execution. Defaults to 1000.
+
+* #### tundra.content:split
+
+  One-to-many conversion of XML or flat file content to another format. Calls the given splitting service, passing the parsed `$content` as an input, and emitting the split list of `$contents` as output.
+
+  * Inputs:
+    * `$content` is a string, byte array, or input stream of XML or flat file content to be split.
+    * `$service` is the fully-qualified name of the splitting service, which accepts a single IData document and returns an IData document list, called to split the parsed `$content`.
+    * `$pipeline` is an optional IData document containing arbitrary variables to be included in the input pipeline of the invocation of `$service`.
+    * `$encoding.input` is an optional character set used to decode the text data if `$content` is provided as a byte array or input stream. Defaults to the Java virtual machine [default charset](http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset).
+    * `$encoding.output` is an optional character set used to encode the split text datum if the specified `$mode.output` is a byte array or stream. Defaults to the Java virtual machine [default charset](http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset).
+    * `$schema.input` is the fully-qualified name of the document reference (for XML) or flat file schema (for flat files) used to parse `$content`.
+    * `$schema.output` is an optional fully-qualified name of the document reference (for XML) or flat file schema (for flat files) used to emit or serialize the resulting list of IData documents returned by `$service` when all documents in the list are alike. Alternatively, it is perfectly permissible for the resulting list returned by `$service` to contain unlike documents (documents whose formats are different), and in this case `$service` is required to return a string list `$schemas`, where each item in `$schemas` is the fully-qualified document reference (for XML) or flat file schema (for flat files) corresponding to the same indexed item in the returned document list to be used to emit/serialize that item.
+    * `$service.input` is an optional variable name to use in the input pipeline of the call to `$service` for the parsed `$content` IData document. Defaults to `$document`.
+    * `$service.output` is an optional variable name used to extract the output IData document list from the output pipeline of the call to `$service`. Defaults to `$documents`.
+    * `$mode.output` is an optional choice of {stream, bytes, string} which specifies the type of object each item in `$contents` is returned as. Defaults to stream.
+  * Outputs:
+    * `$contents` is the resulting list of split XML or flat file content.
+    * `$schemas` is the list of fully-qualified document reference (for XML) or flat file schema (for flat files) names, if the `$contents` list contains unlike content formats.
+
+* #### tundra.content:translate
+
+  One-to-one conversion of XML or flat file content to another format. Calls the given translation service, passing the parsed content as an input, and emitting the translated content as output.
+
+  * Inputs:
+    * `$content` is a string, byte array or input stream containing XML or flat file content to be translated to another format.
+    * `$service` is the fully-qualified name of the translation service, which accepts a single IData document and returns a single IData document, called to translate the parsed `$content`.
+    * `$encoding.input` is an optional character set used to decode the text data if `$content` is provided as a byte array or input stream. Defaults to the Java virtual machine [default charset](http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset).
+    * `$encoding.output` is an optional character set used to encode the translated text data if the specified `$mode.output` is a byte array or stream. Defaults to the Java virtual machine [default charset](http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset).
+    * `$schema.input` is the fully-qualified name of the document reference (for XML) or flat file schema (for flat files) used to parse `$content`.
+    * `$schema.output` is the fully-qualified name of the document reference (for XML) or flat file schema (for flat files) used to emit or serialize the resulting IData document returned by `$service`.
+    * `$service.input` is an optional variable name to use in the input pipeline of the call to `$service` for the parsed `$content` IData document. Defaults to `$document`.
+    * `$service.output` is an optional variable name used to extract the output IData document list from the output pipeline of the call to `$service`. Defaults to `$translation`.
+    * `$mode.output` is an optional choice of {stream, bytes, string} which specifies the type of object `$translation` is returned as. Defaults to stream.
+  * Outputs:
+    * `$translation` is the translated XML or flat file content returned as a string, byte array or input stream (depending on the `$mode.output` chosen).
 
 ### Datetime
 
@@ -864,11 +1064,7 @@ tundra.integer.subtract($integer.x, $integer.y);
 tundra.integer.validate($integer);
 ```
 
-### List
-
-Services for manipulating lists:
-
-#### Content
+### Content List
 
 ```java
 // converts an IData[] document list to a list of XML or flat file strings, bytes, or
@@ -886,7 +1082,7 @@ tundra.list.content.join($contents[], $service, $pipeline, $encoding.input, $enc
 tundra.list.content:parse($contents[], $encoding, $schema);
 ```
 
-#### Datetime List
+### Datetime List
 
 ```java
 // formats a list of datetimes that conform to the input pattern, according
@@ -894,7 +1090,7 @@ tundra.list.content:parse($contents[], $encoding, $schema);
 tundra.list.datetime:format($list[], $pattern.input, $pattern.output);
 ```
 
-#### Document List
+### Document List
 
 Services for manipulating document (com.wm.data.IData) lists:
 
@@ -1014,7 +1210,7 @@ tundra.list.document.value:trim($list[], $recurse?);
 tundra.list.document.value:uppercase($list[], $recurse?);
 ```
 
-#### Duration List
+### Duration List
 
 ```java
 // formats a list of duration strings according to the desired pattern
@@ -1027,7 +1223,7 @@ tundra.list.duration:format($list[], $datetime, $pattern.input, $pattern.output)
 tundra.duration:sum($durations[]);
 ```
 
-#### Object List
+### Object List
 
 Services for manipulating java.lang.Object lists:
 
@@ -1044,12 +1240,12 @@ tundra.list.object:compact($list[]);
 // input arguments
 tundra.list.object:concatenate($list.x[], $list.y[]);
 
-// returns a list of only the items in $list.x that are not also present in 
+// returns a list of only the items in $list.x that are not also present in
 // $list.y
 tundra.list.object:difference($list.x[], $list.y[]);
 
 // removes the item with the given index from the given list
-tundra.list.object:drop($list[], $index);
+tundra.list.object:drop($list, $index);
 
 // iterates through the given list, invoking the given service for each item
 // in the list, passing $item, $index, $iteration and $length variables
@@ -1072,7 +1268,7 @@ tundra.list.object:insert($list[], $item, $index);
 // returns true if the list is an instance of given class
 tundra.list.object:instance($list[], $class);
 
-// returns a list of only the items in $list.x that are also present in 
+// returns a list of only the items in $list.x that are also present in
 // $list.y
 tundra.list.object:intersection($list.x[], $list.y[]);
 
@@ -1111,7 +1307,7 @@ tundra.list.object:sort($list[]);
 tundra.list.object:unique($list[]);
 ```
 
-#### Service List
+### Service List
 
 ```java
 // invokes each service in the given list in order, sharing the pipeline across all invokes
@@ -1139,7 +1335,7 @@ tundra.list.service:invoke($invocations[], $mode, $concurrency);
 tundra.list.service:join($threads[]);
 ```
 
-#### String List
+### String List
 
 Services for manipulating string lists:
 
@@ -1156,7 +1352,7 @@ tundra.list.string:compact($list[]);
 // input arguments
 tundra.list.string:concatenate($list.x[], $list.y[]);
 
-// returns a list of only the items in $list.x that are not also present in 
+// returns a list of only the items in $list.x that are not also present in
 // $list.y
 tundra.list.string:difference($list.x[], $list.y[]);
 
@@ -1181,7 +1377,7 @@ tundra.list.string:include($list[], $item);
 // the given list
 tundra.list.string:insert($list[], $item, $index);
 
-// returns a list of only the items in $list.x that are also present in 
+// returns a list of only the items in $list.x that are also present in
 // $list.y
 tundra.list.string:intersection($list.x[], $list.y[]);
 
@@ -1424,7 +1620,7 @@ tundra.schema.content.retrieve:handler;
 // such as its mime type ($content.type) and name ($content.name).
 tundra.schema.content.retrieve:processor;
 
-// Exception handling $catch services called by tundra.service:ensure can implement this 
+// Exception handling $catch services called by tundra.service:ensure can implement this
 // specification.
 tundra.schema.exception:handler;
 ```
@@ -1442,7 +1638,7 @@ tundra.service:callstack();
 // added to the pipeline
 //
 // if specified, the $catch service is invoked to handle the exception, otherwise
-// the exception is rethrown; the $catch service should implement the 
+// the exception is rethrown; the $catch service should implement the
 // Tundra/tundra.schema.exception:handler specification
 //
 // if specified, the $finally service is always invoked, whether an exception was
@@ -1701,7 +1897,7 @@ tundra.user:current();
 tundra.xml:validate($content, $content.encoding, $schema, $schema.encoding, $raise?);
 ```
 
-### XPath
+## XPath
 
 ```java
 // returns true if the given XPath expression $expression exists in the given XML $content
