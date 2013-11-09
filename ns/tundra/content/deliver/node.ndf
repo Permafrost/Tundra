@@ -7,6 +7,7 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -20,6 +21,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$content</value>
           <value name="field_type">object</value>
           <value name="field_dim">0</value>
@@ -36,6 +38,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$content.type</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -63,6 +66,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$encoding</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -79,6 +83,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$destination</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -104,6 +109,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$pipeline</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
@@ -113,11 +119,14 @@
           <value name="is_global">false</value>
           <array name="rec_fields" type="record" depth="1">
           </array>
+          <value name="modifiable">true</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -132,6 +141,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$message</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -158,6 +168,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$response</value>
           <value name="field_type">object</value>
           <value name="field_dim">0</value>
@@ -174,6 +185,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$response.type</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -194,38 +206,68 @@
           <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Delivers arbitrary content (string, bytes, or input stream) to the given destination URI.
+  <value name="node_comment">Delivers arbitrary content (string, bytes, or input stream) to the given destination 
+URI. Additional delivery protocols can be implemented by creating a service named for 
+the URI scheme in the folder tundra.support.content.deliver. Services in this folder 
+should implement the tundra.support.content.deliver.protocol:handler specification.
 
-Supports the following delivery protocols / URI schemes:
-  - file:   writes the given content to the file specified by the destination URI.  The
-            following additional options can be provided via the $pipeline document:
-            - $mode: append / write
-  - http:   transmits the given content to the destination URI. The following additional
-            options can be provided via the $pipeline document:
-            - $method: get / put / post / delete / head / trace / options
-            - $headers/*: additional HTTP headers as required
-            - $authority/user: the username to log on to the remote web server with
-            - $authority/password: the password to log on to the remote web server with
-  - https:  refer to http
-  - mailto: sends an email with the given content attached. An example mailto URI is
-            as follows: mailto:bob@example.com?cc=jane@example.com&amp;subject=Example&amp;body=Example&amp;attachment=message.xml
-            The following additional override options can be provided via the $pipeline 
-            document:
-            - $attachment: the attached file's name
-            - $from: email address to send the email from
-            - $subject: the subject line text
-            - $body: the main text of the email
-            - $smtp: an SMTP URI specifying the SMTP server to use (for example,
-              smtp://user:password@host:port), defaults to the SMTP server configured
-              in the Integration Server setting watt.server.smtpServer
+* Inputs:
+  * $content is a string, byte array, or input stream containing data to be delivered 
+    to the $destination URI.
 
-Additional delivery protocols can be implemented by creating a service named for the
-URI scheme in the folder tundra.support.content.deliver.  Services in this folder should
-implement the tundra.support.content.deliver:handler specification.
+  * $content.type is an optional MIME media type describing the type content being 
+    delivered.
 
-An optional response message, useful for logging, may be returned by specific delivery protocols.</value>
+  * $encoding is an optional character set to use when $content is provided as a string 
+    to encode the text data upon delivery. Defaults to the Java virtual machine [default 
+    charset][1].
+
+  * $destination is a URI identifying the location where the given $content should be 
+    delivered. Supports the following delivery protocols / URI schemes:
+    * file: writes the given content to the file specified by the destination URI. The 
+      following additional options can be provided via the $pipeline document:
+      * $mode: append / write
+
+    * http: transmits the given content to the destination URI. The following additional 
+      options can be provided via the $pipeline document:
+      * $method: get / put / post / delete / head / trace / options
+      * $headers/*: additional HTTP headers as required
+      * $authority/user: the username to log on to the remote web server with
+      * $authority/password: the password to log on to the remote web server with
+
+    * https: refer to http
+
+    * mailto: sends an email with the given content attached. An example mailto URI is as 
+      follows: 
+      
+      mailto:bob@example.com?cc=jane@example.com&amp;subject=Example&amp;body=Example&amp;attachment=message.xml. 
+      
+      The following additional override options can be provided via the $pipeline document:
+      * $attachment: the attached file's name
+      * $from: email address to send the email from
+      * $subject: the subject line text
+      * $body: the main text of the email
+      * $smtp: an SMTP URI specifying the SMTP server to use (for example, 
+        smtp://user:password@host:port), defaults to the SMTP server configured in the 
+        Integration Server setting watt.server.smtpServer.
+
+  * $pipeline is an optional IData document for providing arbitrary variables to the 
+    delivery implementation service.
+
+* Outputs:
+  * $message is an optional response message, useful for logging, that may be returned 
+    by specific delivery protocols.
+
+  * $response is an optional response content returned by the delivery (for example, 
+    the HTTP response body).
+
+  * $response.type is an optional MIME media type describing the type of $response 
+    returned.
+
+[1]: &lt;http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
@@ -242,10 +284,16 @@ An optional response message, useful for logging, may be returned by specific de
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
 </Values>

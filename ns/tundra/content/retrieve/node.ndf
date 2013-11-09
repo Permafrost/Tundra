@@ -112,26 +112,29 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Retrieves arbitrary content (XML, flat files, binary) from the given $source URI, and calls the
-given content processing service to process it.
+  <value name="node_comment">Retrieves arbitrary content (XML, flat files, binary) from the given $source 
+URI, and calls the given content processing service to process it. Additional 
+retrieval protocols can be implemented by creating a service named for the URI 
+scheme in the folder tundra.support.content.retrieve.  Services in this folder 
+must implement the tundra.schema.content.retrieve:handler specification.
 
-Content processing services must implement the tundra.schema.content.retrieve:processor 
-specification.
+* Inputs:
+  * $source is a URI identifying the location from which content is to be 
+    retrieved. Supports the following retrieval protocols / URI schemes:
+    * file: processes each file matching the given $source URI with the given 
+      processing $service. The file component of the URI can include wildcards 
+      or globs (such as *.txt or *.j?r) for matching multiple files at once. 
+      For example, file:////server:port/directory/*.txt would process all *.txt 
+      files in the specified directory. To ensure each file processed is not 
+      locked or being written to by another process, the file is first moved to 
+      a ./archive directory prior to processing.
 
-Supports the following retrieval protocols / URI schemes:
-  - file:   processes each file matching the given $source URI with the given processing $service. 
-            The file component of the URI can include wildcards or globs (such as *.txt or *.j?r)
-            for matching multiple files at once. For example, file:////server:port/directory/*.txt 
-            would process all .txt files in the specified directory.
-            To ensure each file processed is not locked or being written to by another process, the
-            file is first moved to a ./archive directory prior to processing.
+  * $service is the fully-qualified name of the content processing service, which 
+    implements the tundra.schema.content.retrieve:processor specification, invoked 
+    to process each item of content retrieved from the $source URI.
 
-Additional retrieval protocols can be implemented by creating a service named for the URI scheme in 
-the folder tundra.support.content.retrieve.  Services in this folder must implement the 
-tundra.schema.content.retrieve:handler specification.
-
-Use the $limit input to configure the maximum number of content matches to be processed in a single
-execution (defaults to 1000).</value>
+  * $limit is an optional maximum number of content matches to be processed in a 
+    single execution. Defaults to 1000.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

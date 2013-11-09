@@ -7,6 +7,7 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -21,6 +22,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$expected</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -47,6 +49,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$actual</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -73,6 +76,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$pattern</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -109,6 +113,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$message</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -129,9 +134,11 @@
           <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -139,57 +146,40 @@
       <value name="is_global">false</value>
       <array name="rec_fields" type="record" depth="1">
       </array>
+      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">Throws an assertion error if the expected and actual datetimes are equal.
-Pattern defaults to an ISO8601/XML datetime.
 
-Supports a handful of well-known named patterns:
+* Inputs:
+  * $expected is the expected datetime string value.
 
-Name           Pattern
--------------  --------------------------------------------
-datetime       ISO8601/XML datetime
-datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-date           ISO8601/XML date
-date.jdbc      yyyy-mm-dd
-time           ISO8601/XML time
-time.jdbc      HH:mm:ss
-milliseconds   Number of milliseconds since the Epoch, 
-               January 1, 1970 00:00:00.000 GMT (Gregorian)
+  * $actual is the actual datetime string value. If this value is equal to 
+    the expected value, an assertion error will be thrown.
 
-Custom patterns can be specified using the following java.text.SimpleDateFormat 
-compatible pattern strings:
+  * $pattern is an optional datetime string pattern the above values conform 
+    to, which defaults to an ISO8601/XML datetime pattern. Can either be a 
+    [java.text.SimpleDateFormat][1] pattern, or one of the following handful 
+    of well-known named patterns:
+    * datetime       - ISO8601/XML datetime
+    * datetime.jdbc  - yyyy-MM-dd HH:mm:ss.SSS
+    * date           - ISO8601/XML date
+    * date.jdbc      - yyyy-MM-dd
+    * time           - ISO8601/XML time
+    * time.jdbc      - HH:mm:ss
+    * milliseconds   - The number of milliseconds since the Epoch, 
+                       January 1, 1970 00:00:00.000 GMT (Gregorian)
 
-Symbol  Meaning                      Presentation  Examples
-------  -------                      ------------  -------
-G       era                          text          AD
-C       century of era (&gt;=0)         number        20
-Y       year of era (&gt;=0)            year          1996
-x       weekyear                     year          1996
-w       week of weekyear             number        27
-e       day of week                  number        2
-E       day of week                  text          Tuesday; Tue
-y       year                         year          1996
-D       day of year                  number        189
-M       month of year                month         July; Jul; 07
-d       day of month                 number        10
-a       halfday of day               text          PM
-K       hour of halfday (0~11)       number        0
-h       clockhour of halfday (1~12)  number        12
-H       hour of day (0~23)           number        0
-k       clockhour of day (1~24)      number        24
-m       minute of hour               number        30
-s       second of minute             number        55
-S       fraction of second           number        978
-z       time zone                    text          Pacific Standard Time; PST
-Z       time zone offset/id          zone          -0800; -08:00; Asia/Tokyo
-'       escape for text              delimiter
-''      single quote                 literal       '</value>
+  * $message is an optional custom message to be used as the assertion error message if the assertion fails.
+
+[1]: &lt;http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template">tundra_assertion_datetime_unequal</value>
+  <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
   <value name="icontext_policy">$null</value>
@@ -199,10 +189,16 @@ Z       time zone offset/id          zone          -0800; -08:00; Asia/Tokyo
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
 </Values>

@@ -355,10 +355,62 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">One-to-many conversion of XML or flat file content to another format.  Calls the given 
-splitting service, passing the parsed content as an input, and emitting the split 
-list of contents as output.  The splitting service must accept a single IData document, 
-and return an IData document list.</value>
+  <value name="node_comment">One-to-many conversion of XML or flat file content to another format. Calls 
+the given splitting service, passing the parsed $content as an input, and 
+emitting the split list of $contents as output.
+
+* Inputs:
+  * $content is a string, byte array, or input stream of XML or flat file 
+    content to be split.
+
+  * $service is the fully-qualified name of the splitting service, which 
+    accepts a single IData document and returns an IData document list, 
+    called to split the parsed $content.
+
+  * $pipeline is an optional IData document containing arbitrary variables to 
+    be included in the input pipeline of the invocation of $service.
+
+  * $encoding.input is an optional character set used to decode the text data 
+    if $content is provided as a byte array or input stream. Defaults to the 
+    Java virtual machine [default charset][1].
+
+  * $encoding.output is an optional character set used to encode the split text 
+    datum if the specified $mode.output is a byte array or stream. Defaults to 
+    the Java virtual machine [default charset][1].
+
+  * $schema.input is the fully-qualified name of the document reference (for XML) 
+    or flat file schema (for flat files) used to parse $content.
+
+  * $schema.output is an optional fully-qualified name of the document reference 
+    (for XML) or flat file schema (for flat files) used to emit or serialize the 
+    resulting list of IData documents returned by $service when all documents in 
+    the list are alike. 
+
+    Alternatively, it is perfectly permissible for the resulting list returned by 
+    $service to contain unlike documents (documents whose formats are different), 
+    and in this case $service is required to return a string list $schemas, where 
+    each item in $schemas is the fully-qualified document reference (for XML) or 
+    flat file schema (for flat files) corresponding to the same indexed item in the 
+    returned document list to be used to emit/serialize that item.
+
+  * $service.input is an optional variable name to use in the input pipeline of the 
+    call to $service for the parsed $content IData document. Defaults to $document.
+
+  * $service.output is an optional variable name used to extract the output IData 
+    document list from the output pipeline of the call to $service. Defaults to 
+    $documents.
+
+  * $mode.output is an optional choice of {stream, bytes, string} which specifies the 
+    type of object each item in $contents is returned as. Defaults to stream.
+
+* Outputs:
+  * $contents is the resulting list of split XML or flat file content.
+
+  * $schemas is the list of fully-qualified document reference (for XML) or flat 
+    file schema (for flat files) names, if the $contents list contains unlike 
+    content formats.
+
+[1]: &lt;http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

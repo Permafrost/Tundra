@@ -272,12 +272,40 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Edits the given XML or flat file content with the list of {key, value} pairs specified in 
-$amendments. 
+  <value name="node_comment">Edits the given XML or flat file content with the list of {key, value} pairs 
+specified in $amendments.
 
-The keys in $amendments can be fully-qualified (for example, "a/b/c[0]"), and the values can
-include percent-delimited variable substitution strings which will be substituted prior to
-being inserted in $document.</value>
+* Inputs:
+  * $content is a string, byte array, or input stream containing the XML or 
+    flat file content to be amended.
+
+  * $amendments is an IData document list containing all the edits to be made 
+    to the given $content.
+    * key is a fully-qualified (for example, a/b/c[0]) key identifying the 
+      value in the parsed $content to be edited.
+
+    * value is the value to be assigned to the item identified by key, and 
+      can include percent-delimited variable substitution strings which will 
+      be substituted prior to being inserted into the parsed $content.
+
+  * $schema is the fully-qualified name of the document reference (for XML) or 
+    flat file schema (for flat files) used to parse $content.
+
+  * $encoding.input is an optional character set used to decode the text data if 
+    $content is provided as a byte array or input stream. Defaults to the Java 
+    virtual machine [default charset][1].
+
+  * $encoding.output is an optional character set used to encode the amended text 
+    data if $mode.output is a byte array or input stream. Defaults to the Java 
+    virtual machine [default charset][1].
+
+  * $mode.output is an optional choice of {stream, bytes, string} which specifies 
+    the type of object $content is returned as. Defaults to stream.
+
+* Outputs:
+  * $content is the resulting edited XML or flat file content.
+
+[1]: &lt;http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
