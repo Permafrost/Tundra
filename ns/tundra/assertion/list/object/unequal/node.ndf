@@ -93,7 +93,7 @@
   <value name="node_comment">Throws an assertion error if the expected and actual lists are equal.
 
 * Inputs:
-  * $expected is the expected oObject list.
+  * $expected is the expected object list.
 
   * $actual is the actual object list. If this list is equal to the expected 
     list, an assertion error will be thrown.
