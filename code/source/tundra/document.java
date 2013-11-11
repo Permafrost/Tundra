@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-09-17 17:17:30.590
-// -----( ON-HOST: -
+// -----( CREATED: 2013-11-11 10:12:15 EST
+// -----( ON-HOST: 172.16.189.193
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -37,6 +37,7 @@ public final class document
 		// [i] record:1:optional $amendments
 		// [i] - field:0:required key
 		// [i] - field:0:optional value
+		// [i] - field:0:optional condition
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -706,12 +707,18 @@ public final class document
 	
 	  for (int i = 0; i < amendments.length; i++) {
 	    if (amendments[i] != null) {
-	      IData amendment = substitute(amendments[i], scope, true);
-	      IDataCursor cursor = amendment.getCursor();
+	      IDataCursor cursor = amendments[i].getCursor();
 	      String key = IDataUtil.getString(cursor, "key");
-	      Object value = IDataUtil.get(cursor, "value");
+	      String value = IDataUtil.getString(cursor, "value");
+	      String condition = IDataUtil.getString(cursor, "condition");
 	      cursor.destroy();
-	      document = tundra.support.document.put(document, key, value);
+	
+	      key = tundra.string.substitute(key, scope);
+	      value = tundra.string.substitute(value, scope);
+	
+	      if ((condition == null) || tundra.condition.evaluate(condition, scope)) {
+	        document = tundra.support.document.put(document, key, value);
+	      }
 	    }
 	  }
 	

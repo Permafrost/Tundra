@@ -566,6 +566,11 @@ content.
       * `value` is the value to be assigned to the item identified by `key`,
         and can include percent-delimited variable substitution strings which
         will be substituted prior to being inserted into the parsed `$content`.
+      * `condition` is an optional `Tundra/tundra.condition:evaluate`
+        conditional statement, which is evaluated against the pipeline and
+        only if the condition evaluates to true will the associated amended
+        `value` be applied. If not specified, the amended `value` will always
+        be applied.
     * `$schema` is the fully-qualified name of the document reference (for
       XML) or flat file schema (for flat files) used to parse `$content`.
     * `$encoding.input` is an optional character set used to decode the text
@@ -586,8 +591,9 @@ content.
   destination URI.
 
   Additional delivery protocols can be implemented by creating a service named
-  for the URI scheme in the folder `tundra.support.content.deliver`. Services
-  in this folder should implement the `tundra.support.content.deliver.protocol:handler` specification.
+  for the URI scheme in the folder `Tundra/tundra.support.content.deliver`.
+  Services in this folder should implement the
+  `Tundra/tundra.support.content.deliver.protocol:handler` specification.
 
   * Inputs:
     * `$content` is a string, byte array, or input stream containing data to
@@ -696,8 +702,9 @@ content.
   Retrieves arbitrary content (XML, flat files, binary) from the given
   `$source` URI, and calls the given content processing service to process it.
 
-  Additional retrieval protocols can be implemented by creating a service named for the URI scheme in the folder `tundra.support.content.retrieve`.
-  Services in this folder must implement the `tundra.schema.content.retrieve:handler` specification.
+  Additional retrieval protocols can be implemented by creating a service
+  named for the URI scheme in the folder `Tundra/tundra.support.content.retrieve`.
+  Services in this folder must implement the `Tundra/tundra.schema.content.retrieve:handler` specification.
 
   * Inputs:
     * `$source` is a URI identifying the location from which content is to be
@@ -713,7 +720,7 @@ content.
         another process, the file is first moved to a `./archive` directory
         prior to processing.
     * `$service` is the fully-qualified name of the content processing
-      service, which implements the `tundra.schema.content.retrieve:processor`
+      service, which implements the `Tundra/tundra.schema.content.retrieve:processor`
       specification, invoked to process each item of content retrieved from
       the `$source` URI.
     * `$limit` is an optional maximum number of content matches to be
@@ -958,14 +965,33 @@ tundra.directory:rename($directory.source, $directory.target);
 
 Services for manipulating com.wm.data.IData objects:
 
-```java
-// Edits the given IData $document with the list of {key, value} pairs specified in $amendments.
-//
-// The keys in $amendments can be fully-qualified (for example, "a/b/c[0]"), and the values can
-// include percent-delimited variable substitution strings which will be substituted prior to
-// being inserted in $document.
-tundra.document:amend($document, $amendments[]);
+* #### tundra.document:amend
 
+  Edits the given IData `$document` with the list of {key, value} pairs
+  specified in `$amendments`.
+
+  * Inputs:
+    * `$document` is the IData document to be amended.
+
+    * `$amendments` is an IData document list containing all the edits to be
+      made to the given `$document`.
+      * `key` is a fully-qualified (for example, `a/b/c[0]`) key identifying
+        the value in `$document` to be edited.
+
+      * `value` is the value to be assigned to the item identified by `key`,
+        and can include percent-delimited variable substitution strings which
+        will be substituted prior to being inserted into the `$document`.
+
+      * `condition` is an optional `Tundra/tundra.condition:evaluate`
+        conditional statement, which is evaluated against the pipeline and
+        only if the condition evaluates to true will the associated amended
+        `value` be applied. If not specified, the amended `value` will always
+        be applied.
+
+  * Outputs:
+    * `$document` is the resulting edited IData document.
+
+```java
 // removes all elements from the given IData $document, except for any keys specified
 // in the $preserve list; keys can be simple or fully qualified, such as a/b/c[0]/d
 tundra.document:clear($document, $preserve[]);
