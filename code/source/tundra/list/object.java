@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-11-08 14:44:46.747
-// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
+// -----( CREATED: 2013-11-24 09:46:31 EST
+// -----( ON-HOST: 172.16.189.144
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -35,8 +35,18 @@ public final class object
 		// @sigtype java 3.5
 		// [i] object:1:optional $list
 		// [i] object:0:optional $item
+		// [i] field:0:optional $class
 		// [o] object:1:required $list
-		append(pipeline, Object.class);
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String className = IDataUtil.getString(cursor, "$class");
+		  append(pipeline, className == null ? Object.class : Class.forName(className));
+		} catch (ClassNotFoundException ex) {
+		  tundra.exception.raise(ex);
+		} finally {
+		  cursor.destroy();
+		}
 		// --- <<IS-END>> ---
 
                 
@@ -230,6 +240,34 @@ public final class object
 
 
 
+	public static final void grow (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(grow)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:1:optional $list
+		// [i] object:0:optional $item
+		// [i] field:0:required $count
+		// [i] field:0:optional $class
+		// [o] object:1:optional $list
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String className = IDataUtil.getString(cursor, "$class");
+		  grow(pipeline, className == null ? Object.class : Class.forName(className));
+		} catch (ClassNotFoundException ex) {
+		  tundra.exception.raise(ex);
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void include (IData pipeline)
         throws ServiceException
 	{
@@ -265,8 +303,18 @@ public final class object
 		// [i] object:1:optional $list
 		// [i] object:0:optional $item
 		// [i] field:0:required $index
+		// [i] field:0:optional $class
 		// [o] object:1:required $list
-		insert(pipeline, Object.class);
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String className = IDataUtil.getString(cursor, "$class");
+		  insert(pipeline, className == null ? Object.class : Class.forName(className));
+		} catch (ClassNotFoundException ex) {
+		  tundra.exception.raise(ex);
+		} finally {
+		  cursor.destroy();
+		}
 		// --- <<IS-END>> ---
 
                 
@@ -402,8 +450,18 @@ public final class object
 		// @sigtype java 3.5
 		// [i] object:1:optional $list
 		// [i] object:0:optional $item
+		// [i] field:0:optional $class
 		// [o] object:1:required $list
-		prepend(pipeline, Object.class);
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String className = IDataUtil.getString(cursor, "$class");
+		  prepend(pipeline, className == null ? Object.class : Class.forName(className));
+		} catch (ClassNotFoundException ex) {
+		  tundra.exception.raise(ex);
+		} finally {
+		  cursor.destroy();
+		}
 		// --- <<IS-END>> ---
 
                 
@@ -420,8 +478,46 @@ public final class object
 		// [i] object:1:optional $list
 		// [i] object:0:optional $item
 		// [i] field:0:required $index
+		// [i] field:0:optional $class
 		// [o] object:1:required $list
-		put(pipeline, Object.class);
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String className = IDataUtil.getString(cursor, "$class");
+		  put(pipeline, className == null ? Object.class : Class.forName(className));
+		} catch (ClassNotFoundException ex) {
+		  tundra.exception.raise(ex);
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void resize (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(resize)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:1:optional $list
+		// [i] object:0:optional $item
+		// [i] field:0:required $length
+		// [i] field:0:optional $class
+		// [o] object:1:optional $list
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String className = IDataUtil.getString(cursor, "$class");
+		  resize(pipeline, className == null ? Object.class : Class.forName(className));
+		} catch (ClassNotFoundException ex) {
+		  tundra.exception.raise(ex);
+		} finally {
+		  cursor.destroy();
+		}
 		// --- <<IS-END>> ---
 
                 
@@ -443,6 +539,34 @@ public final class object
 		  Object[] list = IDataUtil.getObjectArray(cursor, "$list");
 		
 		  IDataUtil.put(cursor, "$list", reverse(list));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void shrink (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(shrink)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:1:optional $list
+		// [i] field:0:required $count
+		// [o] object:1:optional $list
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  Object[] list = IDataUtil.getObjectArray(cursor, "$list");
+		  int count = Integer.parseInt(IDataUtil.getString(cursor, "$count"));
+		
+		  list = shrink(list, count);
+		
+		  if (list != null) IDataUtil.put(cursor, "$list", list);
 		} finally {
 		  cursor.destroy();
 		}
@@ -668,6 +792,78 @@ public final class object
 	  }
 	  
 	  return item;
+	}
+	
+	// resizes the given array (or instantiates a new array, if null) to the desired length, 
+	// and pads with the given item
+	public static <T> T[] resize(T[] array, int newLength, T item, Class<T> klass) {
+	  if (array == null) array = (T[])java.lang.reflect.Array.newInstance(klass, 0);
+	  return resize(array, newLength, item);
+	}
+	
+	// resizes the given array to the desired length, and pads with the given item
+	public static <T> T[] resize(T[] array, int newLength, T item) {
+	  if (newLength < 0) throw new NegativeArraySizeException();
+	
+	  int originalLength = array.length;
+	  array = java.util.Arrays.copyOf(array, newLength);
+	  if (item != null) {
+	    for (int i = originalLength; i < newLength; i++) array[i] = item;
+	  }
+	  return array;
+	}
+	
+	// resizes the given array to the desired length, and pads with nulls
+	public static <T> T[] resize(T[] array, int newLength) {
+	  return resize(array, newLength, null);
+	}
+	
+	// resizes the given array to the desired length, and pads with the given item
+	public static <T> void resize(IData pipeline, Class<T> klass) {
+	  IDataCursor cursor = pipeline.getCursor();
+	
+	  try {
+	    T[] list = (T[])IDataUtil.getObjectArray(cursor, "$list");
+	    int length = Integer.parseInt(IDataUtil.getString(cursor, "$length"));
+	    T item = (T)IDataUtil.get(cursor, "$item");
+	
+	    list = resize(list, length, item, klass);
+	
+	    if (list != null) IDataUtil.put(cursor, "$list", list);
+	  } finally {
+	    cursor.destroy();
+	  }
+	}
+	
+	// grows the size of the given array by the given count, and pads with the given item
+	public static <T> T[] grow(T[] array, int count, T item, Class<T> klass) {
+	  return resize(array, array == null ? count : array.length + count, item, klass);
+	}
+	
+	// grows the given array to the desired length, and pads with the given item
+	public static <T> void grow(IData pipeline, Class<T> klass) {
+	  IDataCursor cursor = pipeline.getCursor();
+	
+	  try {
+	    T[] list = (T[])IDataUtil.getObjectArray(cursor, "$list");
+	    int count = Integer.parseInt(IDataUtil.getString(cursor, "$count"));
+	    T item = (T)IDataUtil.get(cursor, "$item");
+	
+	    list = grow(list, count, item, klass);
+	
+	    if (list != null) IDataUtil.put(cursor, "$list", list);
+	  } finally {
+	    cursor.destroy();
+	  }
+	}
+	
+	// shrinks the size of the given array by the given count
+	public static <T> T[] shrink(T[] array, int count) {
+	  if (array != null) {
+	    int length = array.length - count;
+	    array = resize(array, length < 0 ? 0 : length);
+	  }
+	  return array;
 	}
 	
 	// returns true if the given item is found in the given array

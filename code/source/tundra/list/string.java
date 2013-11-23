@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-11-08 14:40:36.108
-// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
+// -----( CREATED: 2013-11-24 09:33:21 EST
+// -----( ON-HOST: 172.16.189.144
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -163,6 +163,24 @@ public final class string
 
 
 
+	public static final void grow (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(grow)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:1:optional $list
+		// [i] field:0:optional $item
+		// [i] field:0:required $count
+		// [o] field:1:optional $list
+		tundra.list.object.grow(pipeline, String.class);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void include (IData pipeline)
         throws ServiceException
 	{
@@ -303,6 +321,24 @@ public final class string
 
 
 
+	public static final void resize (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(resize)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:1:optional $list
+		// [i] field:0:optional $item
+		// [i] field:0:required $length
+		// [o] field:1:optional $list
+		tundra.list.object.resize(pipeline, String.class);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void reverse (IData pipeline)
         throws ServiceException
 	{
@@ -312,6 +348,23 @@ public final class string
 		// [i] field:1:optional $list
 		// [o] field:1:optional $list
 		tundra.list.object.reverse(pipeline);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void shrink (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(shrink)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:1:optional $list
+		// [i] field:0:required $count
+		// [o] field:1:optional $list
+		tundra.list.object.shrink(pipeline);
 		// --- <<IS-END>> ---
 
                 

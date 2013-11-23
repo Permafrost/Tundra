@@ -1469,6 +1469,54 @@ tundra.list.document.value:trim($list[], $recurse?);
 tundra.list.document.value:uppercase($list[], $recurse?);
 ```
 
+* #### tundra.list.document:grow
+
+  Increases the size of the given list by the given count of items, padded
+  with the given item (or null if not specified).
+
+  * Inputs:
+    * `$list` is the IData[] list to be grown.
+    * `$item` is an optional IData used to pad the newly grown section of the
+      list with.
+    * `$count` is the number of new items to add to the list.
+
+  * Outputs:
+    * `$list` is the IData[] list grown by the desired `$count` of items,
+      with the original items preserved and the new items padded with `$item`
+      (or null if not specified).
+
+* #### tundra.list.document:resize
+
+  Resizes the given list to the given length, truncated from the end when the
+  length is decreased, and padded with the given item (or null if not
+  specified) when the length is increased.
+
+  * Inputs:
+    * `$list` is the IData[] list to be grown.
+    * `$item` is an optional IData used to pad the list if increasing the
+      size.
+    * `$length` is the desired new length of the list.
+
+  * Outputs:
+    * `$list` is the IData[] list resized to the desired `$length`; if the new
+      length is less than the original length, the list is truncated from
+      the end; if the new length is greater than the original length, the
+      list is padded with `$item` (or null if not specified).
+
+* #### tundra.list.document:shrink
+
+  Decreases the size of the given list by the given count, truncating items
+  from the end.
+
+  * Inputs:
+    * `$list` is the IData[] list to be shrunk.
+    * `$count` is the number of items to truncate from the end of the list.
+
+  * Outputs:
+    * `$list` is the IData[] list shrunk from the end of the list by the
+      desired item count by truncating items from the end of the list. If
+      the list is smaller than the count, an empty list is returned.
+
 ### Duration List
 
 ```java
@@ -1489,7 +1537,7 @@ Services for manipulating java.lang.Object lists:
 ```java
 // appends a single item to the end of a list, such that appending an item to
 // a list containing n items results in a new list of n + 1 items
-tundra.list.object:append($list[], $item);
+tundra.list.object:append($list[], $item, $class);
 
 // removes all null items from the given list, thereby shortening the length
 // of the list
@@ -1522,7 +1570,7 @@ tundra.list.object:include($list[], $item);
 
 // returns a new list with the given item inserted at the desired index in
 // the given list
-tundra.list.object:insert($list[], $item, $index);
+tundra.list.object:insert($list[], $item, $index, $class);
 
 // returns true if the list is an instance of given class
 tundra.list.object:instance($list[], $class);
@@ -1544,11 +1592,11 @@ tundra.list.object:map($list[], $service, $item.input, $item.output);
 
 // prepends a single item to the front of a list, such that prepending an
 // item to a list containing n items results in a new list of n + 1 items
-tundra.list.object:prepend($list[], $item);
+tundra.list.object:prepend($list[], $item, $class);
 
 // sets the value of the item stored at a given index in a list (supports forward and
 // reverse indexing)
-tundra.list.object:put($list[], $item, $index);
+tundra.list.object:put($list[], $item, $index, $class);
 
 // returns a new list with all items from the given list in reverse order
 tundra.list.object:reverse($list[]);
@@ -1565,6 +1613,57 @@ tundra.list.object:sort($list[]);
 // that no two items are equal
 tundra.list.object:unique($list[]);
 ```
+
+* #### tundra.list.object:grow
+
+  Increases the size of the given list by the given count of items, padded
+  with the given item (or null if not specified).
+
+  * Inputs:
+    * `$list` is the Object[] list to be grown.
+    * `$item` is an optional Object used to pad the newly grown section of the
+      list with.
+    * `$count` is the number of new items to add to the list.
+    * `$class` is an optional Java class name used to instantiate a new list if
+      the provided `$list` is null.
+
+  * Outputs:
+    * `$list` is the Object[] list grown by the desired `$count` of items,
+      with the original items preserved and the new items padded with `$item`
+      (or null if not specified).
+
+* #### tundra.list.object:resize
+
+  Resizes the given list to the given length, truncated from the end when the
+  length is decreased, and padded with the given item (or null if not
+  specified) when the length is increased.
+
+  * Inputs:
+    * `$list` is the Object[] list to be grown.
+    * `$item` is an optional Object used to pad the list if increasing the
+      size.
+    * `$length` is the desired new length of the list.
+    * `$class` is an optional Java class name used to instantiate a new list if
+      the provided `$list` is null.
+
+  * Outputs:
+    * `$list` is the Object[] list resized to the desired `$length`; if the new
+      length is less than the original length, the list is truncated from
+      the end; if the new length is greater than the original length, the
+      list is padded with `$item` (or null if not specified).
+
+* #### tundra.list.object:shrink
+
+  Decreases the size of the given list by the given count, truncating items
+  from the end.
+
+  * Inputs:
+    * `$list` is the Object[] list to be shrunk.
+    * `$count` is the number of items to truncate from the end of the list.
+
+  * Outputs:
+    * `$list` is the Object[] list shrunk from the end of the list by the
+      desired item count by truncating items from the end of the list.
 
 ### Service List
 
@@ -1706,6 +1805,54 @@ tundra.list.string:unique($list[]);
 // converts each item to upper case
 tundra.list.string:uppercase($list[]);
 ```
+
+* #### tundra.list.string:grow
+
+  Increases the size of the given list by the given count of items, padded
+  with the given item (or null if not specified).
+
+  * Inputs:
+    * `$list` is the String[] list to be grown.
+    * `$item` is an optional String used to pad the newly grown section of the
+      list with.
+    * `$count` is the number of new items to add to the list.
+
+  * Outputs:
+    * `$list` is the String[] list grown by the desired `$count` of items,
+      with the original items preserved and the new items padded with `$item`
+      (or null if not specified).
+
+* #### tundra.list.string:resize
+
+  Resizes the given list to the given length, truncated from the end when the
+  length is decreased, and padded with the given item (or null if not
+  specified) when the length is increased.
+
+  * Inputs:
+    * `$list` is the String[] list to be grown.
+    * `$item` is an optional String used to pad the list if increasing the
+      size.
+    * `$length` is the desired new length of the list.
+
+  * Outputs:
+    * `$list` is the String[] list resized to the desired `$length`; if the new
+      length is less than the original length, the list is truncated from
+      the end; if the new length is greater than the original length, the
+      list is padded with `$item` (or null if not specified).
+
+* #### tundra.list.string:shrink
+
+  Decreases the size of the given list by the given count, truncating items
+  from the end.
+
+  * Inputs:
+    * `$list` is the String[] list to be shrunk.
+    * `$count` is the number of items to truncate from the end of the list.
+
+  * Outputs:
+    * `$list` is the String[] list shrunk from the end of the list by the
+      desired item count by truncating items from the end of the list. If
+      the list is smaller than the count, an empty list is returned.
 
 ### MIME
 

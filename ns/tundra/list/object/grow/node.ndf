@@ -56,7 +56,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$index</value>
+          <value name="field_name">$count</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <record name="field_content_type" javaclass="com.wm.util.Values">
@@ -66,7 +66,7 @@
             <array name="targetNames" type="record" depth="1">
               <record javaclass="com.wm.util.Values">
                 <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">integer</value>
+                <value name="ncName">nonNegativeInteger</value>
               </record>
             </array>
           </record>
@@ -125,6 +125,7 @@
           <value name="field_name">$list</value>
           <value name="field_type">object</value>
           <value name="field_dim">1</value>
+          <value name="field_opt">true</value>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
@@ -134,14 +135,27 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Sets the value of the item at the given index in the given list.  
-List indexing is zero-based.</value>
+  <value name="node_comment">Increases the size of the given list by the given count of items, padded 
+with the given item (or null if not specified).
+
+* Inputs:
+  * $list is the Object[] list to be grown.
+  * $item is an optional Object used to pad the newly grown section of the 
+    list with.
+  * $count is the number of new items to add to the list.
+  * $class is an optional Java class name used to instantiate a new list if
+    the provided $list is null.
+
+* Outputs:
+  * $list is the Object[] list grown by the desired $count of items, 
+    with the original items preserved and the new items padded with $item 
+    (or null if not specified).</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
-  <value name="template">tundra_list_object_put</value>
+  <value name="template">tundra_list_object_grow</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>

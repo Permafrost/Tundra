@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-08-12 21:16:30.221
-// -----( ON-HOST: 172.16.70.129
+// -----( CREATED: 2013-11-24 09:47:36 EST
+// -----( ON-HOST: 172.16.189.144
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -92,6 +92,7 @@ public final class document
 		// @sigtype java 3.5
 		// [i] record:1:optional $list
 		// [i] field:0:required $index
+		// [o] record:1:optional $list
 		tundra.list.object.drop(pipeline);
 		// --- <<IS-END>> ---
 
@@ -145,6 +146,24 @@ public final class document
 		// [i] field:0:required $index
 		// [o] record:0:optional $item
 		tundra.list.object.get(pipeline);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void grow (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(grow)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:1:optional $list
+		// [i] record:0:optional $item
+		// [i] field:0:required $count
+		// [o] record:1:required $list
+		tundra.list.object.grow(pipeline, IData.class);
 		// --- <<IS-END>> ---
 
                 
@@ -258,6 +277,24 @@ public final class document
 
 
 
+	public static final void resize (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(resize)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:1:optional $list
+		// [i] record:0:optional $item
+		// [i] field:0:required $length
+		// [o] record:1:required $list
+		tundra.list.object.resize(pipeline, IData.class);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void reverse (IData pipeline)
         throws ServiceException
 	{
@@ -267,6 +304,23 @@ public final class document
 		// [i] record:1:optional $list
 		// [o] record:1:optional $list
 		tundra.list.object.reverse(pipeline);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void shrink (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(shrink)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:1:optional $list
+		// [i] field:0:required $count
+		// [o] record:1:optional $list
+		tundra.list.object.shrink(pipeline);
 		// --- <<IS-END>> ---
 
                 
