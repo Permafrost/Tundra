@@ -2294,21 +2294,56 @@ tundra.user:current();
 
 ### XML
 
-```java
-// validates the given string, byte array, or input stream as XML, optionally against
-// an XML schema (XSD) also specified as a string, byte array or input stream; uses
-// the Simple API for XML (SAX) algorithm for parsing which, as it is event-based, is
-// not memory-constrained and can handle arbitrarily large documents when parsing from
-// an input stream
-tundra.xml:validate($content, $content.encoding, $schema, $schema.encoding, $raise?);
-```
+* #### tundra.xml:validate
 
-## XPath
+    Validates the given content as [XML], and optionally against an [XML] 
+    schema ([XSD]). Uses the Simple API for XML ([SAX]) algorithm for 
+    parsing which, as it is event-based, is not memory-constrained and
+    can handle arbitrarily large documents when parsing from an input stream.
 
-```java
-// returns true if the given XPath expression $expression exists in the given XML $content
-tundra.xpath:exists($content, $encoding, $expression, $namespace);
-```
+    * Inputs:
+      * `$content` is a string, byte array, or input stream containing 
+        (potentially) [XML] data.
+      * `$content.encoding` is the character set used by `$content` if provided as 
+        a byte array or input stream. Defaults to the Java virtual machine 
+        [default charset].
+      * `$schema` is a string, byte array, or input stream containing [XSD] data.
+      * `$schema.encoding` is the character set used by `$schema` if provided as 
+        a byte array or input stream. Defaults to the Java virtual machine 
+        [default charset].
+      * `$raise?` is an optional boolean flag, if true and `$content` is malformed
+        or invalid an exception will be thrown. If false, no exception will
+        be thrown. Defaults to false.
+
+    * Outputs:
+      * `$valid?` is true if the given `$content` is well-formed [XML] and, if a
+        `$schema` was specified, valid when compared to the given `$schema`.
+      * `$errors` is an optional list of the errors detected by the parser in
+        the given `$content`, provided when `$valid?` is false.
+
+[SAX]: <http://en.wikipedia.org/wiki/Simple_API_for_XML>
+[XML]: <http://www.w3.org/XML/>
+[XSD]: <http://www.w3.org/XML/Schema>
+
+### XPath
+
+* #### tundra.xpath:exists
+
+    Returns true if the given XPath expression `$expression` exists the given 
+    XML `$content`.
+
+    * Inputs:
+      * `$content` is a string, byte array, or input stream containing XML data.
+      * `$encoding` is the character set used by `$content` if provided as a byte 
+        array or input stream. Defaults to the Java virtual machine [default 
+        charset].
+      * `$expression` is the [XPath expression] to be tested against `$content`.
+
+    * Outputs:
+      * `$exists?` is true if the XPath expression was found to exist in the 
+        given `$content`.
+
+[XPath expression]: <http://www.w3.org/TR/xpath/>
 
 [default charset]: <http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()>
 [java.text.SimpleDateFormat]: <http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html>

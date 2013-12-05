@@ -7,7 +7,6 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
-      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -21,7 +20,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$content</value>
           <value name="field_type">object</value>
           <value name="field_dim">0</value>
@@ -38,7 +36,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$content.encoding</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -54,7 +51,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$schema</value>
           <value name="field_type">object</value>
           <value name="field_dim">0</value>
@@ -71,7 +67,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$schema.encoding</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -88,7 +83,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$raise?</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -113,11 +107,9 @@
           <value name="is_global">false</value>
         </record>
       </array>
-      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
-      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -132,7 +124,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$valid?</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -158,7 +149,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$errors</value>
           <value name="field_type">string</value>
           <value name="field_dim">1</value>
@@ -180,14 +170,37 @@
           <value name="is_soap_array_encoding_used">true</value>
         </record>
       </array>
-      <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Validates the given string, byte array, or input stream as XML, optionally against an XML schema (XSD) also specified
-as a string, byte array or input stream.
+  <value name="node_comment">Validates the given content as [XML], and optionally against an [XML] 
+schema ([XSD]). Uses the Simple API for XML ([SAX]) algorithm for 
+parsing which, as it is event-based, is not memory-constrained and
+can handle arbitrarily large documents when parsing from an input stream.
 
-Uses the Simple API for XML (SAX) algorithm for parsing which, as it is event-based, is not memory-constrained and
-can handle arbitrarily large documents when parsing from an input stream.</value>
+* Inputs:
+  * $content is a string, byte array, or input stream containing 
+    (potentially) [XML] data.
+  * $content.encoding is the character set used by $content if provided as 
+    a byte array or input stream. Defaults to the Java virtual machine 
+    [default charset].
+  * $schema is a string, byte array, or input stream containing [XSD] data.
+  * $schema.encoding is the character set used by $schema if provided as 
+    a byte array or input stream. Defaults to the Java virtual machine 
+    [default charset].
+  * $raise? is an optional boolean flag, if true and $content is malformed
+    or invalid an exception will be thrown. If false, no exception will
+    be thrown. Defaults to false.
+
+* Outputs:
+  * $valid? is true if the given $content is well-formed [XML] and, if a
+    $schema was specified, valid when compared to the given $schema.
+  * $errors is an optional list of the errors detected by the parser in
+    the given $content, provided when $valid? is false.
+
+[default charset]: &lt;http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()&gt;
+[SAX]: &lt;http://en.wikipedia.org/wiki/Simple_API_for_XML&gt;
+[XML]: &lt;http://www.w3.org/XML/&gt;
+[XSD]: &lt;http://www.w3.org/XML/Schema&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
@@ -204,16 +217,10 @@ can handle arbitrarily large documents when parsing from an input stream.</value
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
-  <null name="auditfields_input"/>
-  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
-  <value name="pipeline_option">1</value>
-  <null name="originURI"/>
-  <value name="modifiable">true</value>
-  <value name="is_public">false</value>
 </Values>
