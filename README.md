@@ -1446,32 +1446,101 @@ Services for resolving names in the domain name system ([DNS]).
 
 Services for manipulating durations of time:
 
-```java
-// adds two durations together
-tundra.duration:add($duration.x, $duration.y);
+* #### tundra.duration:add
 
-// compares two durations, returning if the first is less than, equal to, or
-// greater than the second duration, or if the comparison is indeterminate
-// (such as comparing a 1 month duration with a 30 days duration)
-tundra.duration:compare($duration.x, $duration.y);
+    Adds one duration (x) to another (y), returning (x + y).
 
-// formats the given duration string according to the desired pattern (a
-// start instant, $datetime, may be required when formatting fields with
-// indeterminate values, such as converting months to days, because the
-// number of days in a month varies)
-tundra.duration:format($duration, $datetime, $pattern.input, $pattern.output);
+    * Inputs:
+      * `$duration.x` is an [ISO8601]/XML duration string to be 
+        added to `$duration.y`.
+      * `$duration.y` is an [ISO8601]/XML duration string to be
+        added to `$duration.x`.
 
-// multiplies the given duration by the given factor (a start instant, $datetime,
-// may be required when multiplying fields with indeterminate values, such as
-// months, because the number of days in a month varies)
-tundra.duration:multiply($duration, $datetime, $factor);
+    * Outputs:
+      * `$duration` is an [ISO8601]/XML duration string equal to
+        (`$duration.x` + `$duration.y`).
 
-// reverses the sign of the given duration
-tundra.duration:negate($duration)
+* #### tundra.duration:compare
 
-// subtracts one duration from another
-tundra.duration:subtract($duration.x, $duration.y);
-```
+    Compares one duration (x) to another (y), returning if the first is less 
+    than, equal to, greater than, or if the comparison is indeterminate. 
+
+    Indeterminate comparisons occur when, for example, comparing 1 month with 
+    30 days: as the result could change depending on the month in question, it
+    is therefore considered indeterminate.
+
+    * Inputs:
+      * `$duration.x` is an [ISO8601]/XML duration string to be 
+        compared to `$duration.y`.
+      * `$duration.y` is an [ISO8601]/XML duration string to be
+        compared to `$duration.x`.
+
+    * Outputs:
+      * `$lesser?` is true if `$duration.x` is a smaller duration than `$duration.y`.
+      * `$equal?` is true if `$duration.x` is equivalent to `$duration.y`.
+      * `$greater?` is true if `$duration.x` is larger than `$duration.y`.
+      * `$indeterminate?` is true if `$duration.x` and `$duration.y` cannot be compared.
+
+* #### tundra.duration:format
+
+    Formats the given duration string according to the desired pattern.  
+
+    A start instant may be required when formatting fields with indeterminate 
+    values, such as converting months to days (because the number of days in 
+    a month varies).
+
+    * Inputs:
+      * `$duration` is a duration string to be formatted.
+      * `$datetime` is an optional [ISO8601]/XML datetime string used as a starting 
+        instant to resolve indeterminate values (such as the number of days in a month).
+      * `$pattern.input` is an optional pattern describing the type of duration 
+        specified by the `$duration` string. Defaults to an [ISO8601]/XML string.
+      * `$pattern.output` is an optional desired pattern used to format the 
+        `$duration` string. Defaults to an [ISO8601]/XML string.
+
+    * Outputs:
+      * `$duration` is the duration string formatted according to `$pattern.output`.
+
+* #### tundra.duration:multiply
+
+    Multiplies the given duration by the given factor.
+
+    A start instant may be required when formatting fields with indeterminate 
+    values, such as converting months to days (because the number of days in 
+    a month varies).
+
+    * Inputs:
+      * `$duration` is an [ISO8601]/XML duration string to be multiplied.
+      * `$datetime` is an optional [ISO8601]/XML datetime string used as a starting 
+        instant to resolve indeterminate values (such as the number of days in a month).
+      * `$factor` is a signed decimal used to muliply the given `$duration`.
+
+    * Outputs:
+      * `$duration` is the duration string multiplied by the given `$factor`.
+
+* #### tundra.duration:negate
+
+    Reverses the sign of the given duration.
+
+    * Inputs:
+      * `$duration` is an [ISO8601]/XML duration string to be multiplied.
+
+    * Outputs:
+      * `$duration` is the negated [ISO8601]/XML duration string.
+
+* #### tundra.duration:subtract
+
+    Subtracts one duration (x) to another (y), returning (x - y).
+
+    * Inputs:
+      * `$duration.x` is an [ISO8601]/XML duration string to subtract 
+        `$duration.y` from.
+      * `$duration.y` is an [ISO8601]/XML duration string to be
+        subtracted from `$duration.x`.
+
+    * Outputs:
+      * `$duration` is an [ISO8601]/XML duration string equal to
+        (`$duration.x` - `$duration.y`).
 
 ### Exception
 

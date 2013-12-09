@@ -106,7 +106,19 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Adds one duration (x) to another (y), returning (x + y).</value>
+  <value name="node_comment">Adds one duration (x) to another (y), returning (x + y).
+
+* Inputs:
+  * $duration.x is an [ISO8601]/XML duration string to be 
+    added to $duration.y.
+  * $duration.y is an [ISO8601]/XML duration string to be
+    added to $duration.x.
+
+* Outputs:
+  * $duration is an [ISO8601]/XML duration string equal to
+    ($duration.x + $duration.y).
+
+[ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

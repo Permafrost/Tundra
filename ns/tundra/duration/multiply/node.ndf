@@ -136,9 +136,20 @@
   </record>
   <value name="node_comment">Multiplies the given duration by the given factor.
 
-A start instant ($datetime) may be required when multiplying fields with 
-indeterminate values, such as months (because the number of days in a month 
-varies).</value>
+A start instant may be required when formatting fields with indeterminate 
+values, such as converting months to days (because the number of days in 
+a month varies).
+
+* Inputs:
+  * $duration is an [ISO8601]/XML duration string to be multiplied.
+  * $datetime is an optional [ISO8601]/XML datetime string used as a starting 
+    instant to resolve indeterminate values (such as the number of days in a month).
+  * $factor is a signed decimal used to muliply the given $duration.
+
+* Outputs:
+  * $duration is the duration string multiplied by the given $factor.
+
+[ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

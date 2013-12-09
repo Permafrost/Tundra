@@ -80,7 +80,15 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Reverses the sign of the given duration.</value>
+  <value name="node_comment">Reverses the sign of the given duration.
+
+* Inputs:
+  * $duration is an [ISO8601]/XML duration string to be multiplied.
+
+* Outputs:
+  * $duration is the negated [ISO8601]/XML duration string.
+
+[ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
