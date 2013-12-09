@@ -527,7 +527,12 @@
   </record>
   <value name="node_comment">Returns information about Integration Server, such as the software version, 
 environment settings, Java properties, well-known directory locations, and
-memory usage.</value>
+memory usage.
+
+* Outputs:
+  * $system is a returned IData document containing the software version, 
+    environment settings, Java properties, well-known directory locations, 
+    and memory usage.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

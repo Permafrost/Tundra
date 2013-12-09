@@ -2267,12 +2267,16 @@ tundra.string:uppercase($string, $locale);
 
 ### System
 
-```java
-// returns information about Integration Server, such as the software version,
-// environment settings, Java properties, well-known directory locations, and
-// memory usage
-tundra.system:reflect();
-```
+* #### tundra.system:reflect
+
+    Returns information about Integration Server, such as the software version, 
+    environment settings, Java properties, well-known directory locations, and
+    memory usage.
+
+    * Outputs:
+      * $system is a returned IData document containing the software version, 
+        environment settings, Java properties, well-known directory locations, 
+        and memory usage.
 
 ### URI
 
