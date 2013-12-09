@@ -78,7 +78,16 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Returns true if the given directory exists.</value>
+  <value name="node_comment">Returns true if the given directory exists.
+
+* Inputs:
+  * $directory is a string specifying a relative or absolute path 
+    or file: [URI].
+
+* Outputs:
+  * $exists? is true if $directory exists and is a directory.
+
+[URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

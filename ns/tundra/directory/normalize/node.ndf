@@ -78,7 +78,17 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Returns the canonical file: URI that represents the given directory.</value>
+  <value name="node_comment">Returns the canonical file: URI that represents the given directory.
+
+* Inputs:
+  * $directory is a relative or absolute path or file: [URI] to be
+    normalize.
+
+* Outputs:
+  * $directory is the equivalent canonical file: [URI] representing 
+    the directory.
+
+[URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

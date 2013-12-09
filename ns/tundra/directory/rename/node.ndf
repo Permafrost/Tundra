@@ -78,7 +78,16 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Renames the source directory to the target directory name.</value>
+  <value name="node_comment">Renames the source directory to the target directory name. If the
+target already exists, an exception will be thrown.
+
+* Inputs:
+  * $directory.source is a relative or absolute path or file: [URI] 
+    to be renamed.
+  * $directory.target is a relative or absolute path of file: [URI]
+    to rename $directory.source to.
+
+[URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

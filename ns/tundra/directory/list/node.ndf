@@ -7,7 +7,6 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
-      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -22,7 +21,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$directory</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -49,7 +47,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$pattern</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -77,7 +74,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$mode</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -143,7 +139,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$recurse?</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -168,11 +163,9 @@
           <value name="is_global">false</value>
         </record>
       </array>
-      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
-      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -186,7 +179,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$directories</value>
           <value name="field_type">string</value>
           <value name="field_dim">1</value>
@@ -213,7 +205,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$files</value>
           <value name="field_type">string</value>
           <value name="field_dim">1</value>
@@ -234,12 +225,31 @@
           <value name="is_soap_array_encoding_used">false</value>
         </record>
       </array>
-      <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Lists a directory, optionally filtering based on the given pattern, which can be either a 
-regular expression (for example, "\w+\.\w+") or a wildcard expression (for example, "*.txt") 
-depending on the $mode selected (default is "regex").</value>
+  <value name="node_comment">Lists a directory, optionally filtering based on the given pattern, 
+which can be either a regular expression (for example, "\w+\.\w+") 
+or a wildcard expression (for example, "*.txt"), depending on the 
+selected mode.
+
+* Inputs:
+  * $directory is a relative or absolute path or file: [URI] to be
+    listed.
+  * $pattern is either an optional regular expression pattern, or 
+    wildcard file glob pattern (depending on the $mode selected), used
+    to filter the resulting listings.
+  * $mode is an optional choice if either 'regex' or 'wildcard', which 
+    determines the type of $pattern specified. Defaults to 'regex'.
+  * $recurse? is an optional boolean flag indicating if subdirectories
+    should also be listed recursively. Defaults to false.
+
+* Outputs:
+  * $directories is a string list of all subdirectories, optionally filtered
+    to only those items whose name match the given $pattern.
+  * $files is a string list of all files in the given $directory, optionally 
+    filtered to only those items whose name match the given $pattern.
+
+[URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
@@ -256,16 +266,10 @@ depending on the $mode selected (default is "regex").</value>
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
-  <null name="auditfields_input"/>
-  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
-  <value name="pipeline_option">1</value>
-  <null name="originURI"/>
-  <value name="modifiable">true</value>
-  <value name="is_public">false</value>
 </Values>

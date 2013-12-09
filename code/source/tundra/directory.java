@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-07-24 19:27:44 EST
-// -----( ON-HOST: 172.16.189.250
+// -----( CREATED: 2013-12-09 16:15:29.268
+// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -34,10 +34,15 @@ public final class directory
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $directory
+		// [i] field:0:optional $raise? {&quot;true&quot;,&quot;false&quot;}
 		IDataCursor cursor = pipeline.getCursor();
+		boolean raise = true;
 		
 		try {
-		  create(IDataUtil.getString(cursor, "$directory"));
+		  String dir = IDataUtil.getString(cursor, "$directory");
+		  String raiseString = IDataUtil.getString(cursor, "$raise?");
+		  if (raiseString != null) raise = tundra.bool.parse(raiseString);
+		  create(dir, raise);
 		} finally {
 		  cursor.destroy();
 		}
@@ -227,12 +232,28 @@ public final class directory
 	// --- <<IS-START-SHARED>> ---
 	// creates a new directory
 	public static void create(java.io.File directory) throws ServiceException {
-	  if (directory != null && !directory.mkdirs()) tundra.exception.raise("Unable to create directory: " + tundra.support.file.normalize(directory));
+	  create(directory, true);
+	}
+	
+	// creates a new directory
+	public static void create(java.io.File directory, boolean raise) throws ServiceException {
+	  if (directory != null) {
+	    if (raise || !exists(directory)) {
+	      if (!directory.mkdirs()) {
+	        tundra.exception.raise("Unable to create directory: " + tundra.support.file.normalize(directory));
+	      }
+	    }
+	  }
 	}
 	
 	// creates a new directory
 	public static void create(String directory) throws ServiceException {
-	  create(tundra.support.file.construct(directory));
+	  create(directory, true);
+	}
+	
+	// creates a new directory
+	public static void create(String directory, boolean raise) throws ServiceException {
+	  create(tundra.support.file.construct(directory), raise);
 	}
 	
 	// returns whether the given file exists

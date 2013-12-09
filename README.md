@@ -1192,36 +1192,112 @@ tundra.decimal:validate($decimal);
 
 File system services for working with directories or folders:
 
-```java
-// creates a new directory
-tundra.directory:create($directory);
+* #### tundra.directory:create
 
-// returns true if the directory exists and it is directory
-tundra.directory:exists($directory);
+    Creates a new directory.
 
-// returns a new file path URI, given a $parent path and $child path or file name
-tundra.directory:join($parent, $child);
+    * Inputs:
+      * `$directory` is a string specifying a relative or absolute path 
+        or file: [URI]; all directories on this path will be created.
+      * `$raise?` is an optional boolean flag indicating if an exception
+        should be thrown if the directory already exists. Defaults to
+        true.
 
-// lists a directory, optionally filtering based on the given pattern, which can be either a
-// regular expression (for example, "\w+\.\w+") or a wildcard expression (for example, "*.txt")
-// depending on the $mode selected (default is "regex")
-tundra.directory:list($directory, $pattern, $mode, $recurse?);
+* #### tundra.directory:exists
 
-// returns a raw directory listing with no additional processing: useful for when performance
-// takes priority over ease of use; for example, when the directory contains hundreds of
-// thousands or more files
-tundra.directory:ls($directory);
+    Returns true if the given directory exists.
 
-// returns the canonical file: URI that represents the given directory
-tundra.directory:normalize($directory);
+    * Inputs:
+      * `$directory` is a string specifying a relative or absolute path 
+        or file: [URI].
 
-// deletes the given directory; all child files and directories will be
-// deleted if $recurse? is true
-tundra.directory:remove($directory, $recurse?);
+    * Outputs:
+      * `$exists?` is true if `$directory` exists and is a directory.
 
-// renames the source directory to the target directory name
-tundra.directory:rename($directory.source, $directory.target);
-```
+* #### tundra.directory:join
+
+    Returns a new file path [URI], given a parent path and a child path 
+    or file name.
+
+    * Inputs:
+      * `$parent` is a string specifying a relative or absolute parent path.
+      * `$child` is a string specifying a relative child path or file name.
+
+    * Outputs:
+      * `$uri` is a file: [URI] representing the path `$parent`/`$child`.
+
+* #### tundra.directory:list
+
+    Lists a directory, optionally filtering based on the given pattern, 
+    which can be either a regular expression (for example, "\w+\.\w+") 
+    or a wildcard expression (for example, "*.txt"), depending on the 
+    selected mode.
+
+    * Inputs:
+      * `$directory` is a relative or absolute path or file: [URI] to be
+        listed.
+      * `$pattern` is either an optional regular expression pattern, or 
+        wildcard file glob pattern (depending on the `$mode` selected), used
+        to filter the resulting directory listing.
+      * `$mode` is an optional choice if either 'regex' or 'wildcard', which 
+        determines the type of `$pattern` specified. Defaults to 'regex'.
+      * `$recurse?` is an optional boolean flag indicating if subdirectories
+        should also be listed recursively. Defaults to false.
+
+    * Outputs:
+      * `$directories` is a list of all subdirectories, optionally filtered
+        to only those items whose name match the given `$pattern`.
+      * `$files` is a list of all files in the given `$directory`, optionally 
+        filtered to only those items whose name match the given `$pattern`.
+
+* #### tundra.directory:ls
+
+    Returns a raw directory listing with no additional processing: useful for 
+    when performance takes priority over ease of use; for example, when the 
+    directory contains hundreds of thousands or more files.
+
+    * Inputs:
+      * `$directory` is a relative or absolute path or file: [URI] to be
+        listed.
+
+    * Outputs:
+      * `$list` is a raw list of the names of all items in the directory.
+
+* #### tundra.directory:normalize
+
+    Returns the canonical file: URI that represents the given directory.
+
+    * Inputs:
+      * `$directory` is a relative or absolute path or file: [URI] to be
+        normalize.
+
+    * Outputs:
+      * `$directory` is the equivalent canonical file: [URI] representing 
+        the directory.
+
+* #### tundra.directory:remove
+
+    Deletes the given directory,and optionally all child files and 
+    directories recursively if desired.
+
+    * Inputs:
+      * `$directory` is a relative or absolute path or file: [URI] to be
+        deleted.
+      * `$recurse?` is a boolean flag indicating that all child files and
+        directories should be recursively deleted also. If false, and 
+        the directory is not empty, an exception will be thrown. Defaults 
+        to false.
+
+* #### tundra.directory:rename
+
+    Renames the source directory to the target directory name. If the
+    target already exists, an exception will be thrown.
+
+    * Inputs:
+      * `$directory.source` is a relative or absolute path or file: [URI] 
+        to be renamed.
+      * `$directory.target` is a relative or absolute path of file: [URI]
+        to rename $directory.source to.
 
 ### Document
 
