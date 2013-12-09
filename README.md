@@ -1197,11 +1197,19 @@ tundra.duration:subtract($duration.x, $duration.y);
 
 ### Exception
 
-```java
-// throws a new com.wm.app.b2b.server.ServiceException with the given message
-// or rethrows the given exception
-tundra.exception:raise($message, $exception);
-```
+* #### tundra.exception:raise
+
+    Throws the given exception, or a new exception with the given message.
+
+    * Inputs:
+      * `$message` is an optional error message to use when constructing the 
+        new `com.wm.app.b2b.server.ServiceException` exception object to be
+        thrown. If not specified, an empty message will be used to construct
+        the exception object.
+      * `$exception` is an optional existing [java.lang.Throwable] object to be 
+        thrown. If specified, `$message` is not used.
+
+[java.lang.Throwable]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Throwable.html>
 
 ### File
 
