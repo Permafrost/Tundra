@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-12-09 15:18:07.024
+// -----( CREATED: 2013-12-09 16:13:14.003
 // -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
 
 import com.wm.data.*;
@@ -300,7 +300,7 @@ public final class datetime
 		try {
 		  String datetime = IDataUtil.getString(cursor, "$datetime");
 		  String pattern = IDataUtil.getString(cursor, "$pattern");
-		  raise = Boolean.parseBoolean(IDataUtil.getString(cursor, "$raise?"));
+		  raise = tundra.bool.parse(IDataUtil.getString(cursor, "$raise?"));
 		
 		  // attempt to parse the datetime string, if no exception is thrown then the string is valid
 		  parse(datetime, pattern);
