@@ -4,7 +4,7 @@
   <value name="svc_type">flow</value>
   <value name="svc_subtype">default</value>
   <value name="svc_sigtype">java 3.5</value>
-  <value name="svc_spec">tundra.http.response:handler</value>
+  <value name="svc_spec">tundra.schema.http.response:handler</value>
   <value name="node_comment">Standard [HTTP] response handler: checks that the [HTTP response code] is &lt; 400, 
 normalizes the response header keys to lower case, and converts the response body 
 stream to bytes. If the [HTTP response code] is &gt;= 400, an exception will be

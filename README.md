@@ -1299,9 +1299,9 @@ tundra.file:write($file, $mode, $content, $encoding);
       * `$request` is an IData document containing the parameters required for
         making an [HTTP] request to an [HTTP] server.
       * `$service` is an optional custom [HTTP] response handler service, which
-        implements the `tundra.http.response:handler` specification, and can be 
-        specified when the standard `tundra.http.response:handle` service does 
-        not suffice. The standard handler does the following:
+        implements the `tundra.schema.http.response:handler` specification, and 
+        can be specified when the standard `tundra.http.response:handle` service 
+        does not suffice. The standard handler does the following:
         * checks the [HTTP response code] is < 400, and throws an exception 
           when it is not
         * normalizes the response header keys to lower case
@@ -1325,22 +1325,6 @@ tundra.file:write($file, $mode, $content, $encoding);
       * `$response` is the processed [HTTP] response, where the [HTTP response code] is 
         guaranteed to be < 400, the response header keys are normalized to lower case, 
         and the response body is returned as a byte[] array.
-
-* #### tundra.http.response:handler
-
-    Specifies the required inputs and outputs for an [HTTP] response handling service
-    called by tundra.http:client.
-
-    * Inputs:
-      * `$response` is the [HTTP] response to be processed by this service.
-
-    * Outputs:
-      * `$response` is the processed [HTTP] response. How the response is processed is
-        at the discretion of the implementing service. Refer to the standard 
-        `tundra.http.response:handle` service for a reference implementation.
-
-[HTTP]: <http://tools.ietf.org/search/rfc2616>
-[HTTP response code]: <http://httpstatus.es/>
 
 ### ID
 
@@ -2147,20 +2131,60 @@ tundra.pipeline:substitute();
 
 Document references and service specifications:
 
-```java
-// Content retrieval protocol handling services used by tundra.content:retrieve must implement this
-// specification.
-tundra.schema.content.retrieve:handler;
+* #### tundra.schema.content.retrieve:handler
 
-// Content processing services used by tundra.content:retrieve must implement this specification. The
-// $content is specified as a java.io.InputStream, along with optional meta data about the content,
-// such as its mime type ($content.type) and name ($content.name).
-tundra.schema.content.retrieve:processor;
+    Content retrieval protocol handling services used by `tundra.content:retrieve` must 
+    implement this specification.
 
-// Exception handling $catch services called by tundra.service:ensure can implement this
-// specification.
-tundra.schema.exception:handler;
-```
+    * Inputs:
+      * `$source` is the source URI identifying the location and names of the content
+        to be retrieved.
+      * `$service` is the content processing service that is called for each item of 
+        content retrieved from `$source`. This service is required to implement the 
+        `tundra.schema.content.retrieve:processor` specification.
+      * `$limit` is an optional maximum number of content items to be retrieved from 
+        `$source` per retrieval.
+
+    * Outputs:
+      * `$message` is an optional diagnostic message describing the results of the 
+        retrieval.
+
+* #### tundra.schema.content.retrieve:processor
+
+    Content processing services used by `tundra.content:retrieve` must implement this 
+    specification. 
+
+    * Inputs:
+      * `$content` is the content to be processed, specified as a [java.io.InputStream].
+      * `$content.type` is the mime media type of the content to be processed.
+      * `$content.name` is the name associated with the content, such as a file name.
+
+* #### tundra.schema.exception:handler
+
+    Exception handling `$catch` services called by `tundra.service:ensure` can 
+    implement this specification.
+
+    * Inputs
+      * `$exception` is the [java.lang.Throwable] object that was caught by this 
+        handler to be handled.
+      * `$exception?` is a boolean flag indicating if an exception was thrown.
+      * `$exception.class` is the Java class name of the caught exception object.
+      * `$exception.message` is the exception message describing the error that has 
+        occurred.
+      * `$exception.stack` is the Java call stack describing where the error occurred.
+
+* #### tundra.schema.http.response:handler
+
+    Specifies the required inputs and outputs for an [HTTP] response handling service
+    called by tundra.http:client.
+
+    * Inputs:
+      * `$response` is the [HTTP] response to be processed by this service.
+
+    * Outputs:
+      * `$response` is the processed [HTTP] response. How the response is processed is
+        at the discretion of the implementing service. Refer to the standard 
+        `tundra.http.response:handle` service for a reference implementation.
 
 ### Service
 
@@ -2575,6 +2599,8 @@ Services for parsing and emitting Uniform Resource Identifier ([URI]) strings.
 
 [XPath expression]: <http://www.w3.org/TR/xpath/>
 [default charset]: <http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()>
+[HTTP]: <http://tools.ietf.org/search/rfc2616>
+[HTTP response code]: <http://httpstatus.es/>
 [ISO8601]: <http://en.wikipedia.org/wiki/ISO_8601>
 [java.text.SimpleDateFormat]: <http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html>
 

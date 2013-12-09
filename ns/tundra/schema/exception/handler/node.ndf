@@ -292,31 +292,17 @@
       </array>
     </record>
   </record>
-  <value name="node_comment"># Description
+  <value name="node_comment">Exception handling $catch services called by tundra.service:ensure can 
+implement this specification.
 
-Exception handling $catch services called by tundra.service:ensure can implement this 
-specification.
-
-# Inputs
-
-$exception
-  The java.lang.Throwable object that was caught by this handler to be handled.
-
-$exception?
-  Boolean flag indicating if an exception was thrown.
-
-$exception.class
-  The Java class name of the caught $exception object.
-
-$exception.message
-  The $exception message describing the error that has occurred.
-
-$exception.stack[]
-  The Java call stack describing where the error occurred.
-
-# Outputs
-
-This specification requires no outputs.</value>
+* Inputs
+  * $exception is the java.lang.Throwable object that was caught by this 
+    handler to be handled.
+  * $exception? is a Boolean flag indicating if an exception was thrown.
+  * $exception.class is the Java class name of the caught $exception object.
+  * $exception.message is the exception message describing the error that has 
+    occurred.
+  * $exception.stack is the Java call stack describing where the error occurred.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

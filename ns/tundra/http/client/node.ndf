@@ -425,9 +425,9 @@
   * $request is an IData document containing the parameters required for
     making an [HTTP] request to an [HTTP] server.
   * $service is an optional custom [HTTP] response handler service, which
-    implements the tundra.http.response:handler specification, and can be 
-    specified when the standard tundra.http.response:handle service does 
-    not suffice. The standard handler does the following:
+    implements the tundra.schema.http.response:handler specification, and 
+    can be specified when the standard tundra.http.response:handle service 
+    does not suffice. The standard handler does the following:
     * checks the [HTTP response code] is &lt; 400, and throws an exception 
       when it is not
     * normalizes the response header keys to lower case

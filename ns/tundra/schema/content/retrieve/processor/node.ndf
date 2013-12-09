@@ -7,7 +7,6 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
-      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -21,7 +20,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$content</value>
           <value name="field_type">object</value>
           <value name="field_dim">0</value>
@@ -37,7 +35,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$content.name</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -65,7 +62,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$content.type</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -86,11 +82,9 @@
           <value name="is_global">false</value>
         </record>
       </array>
-      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
-      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -98,12 +92,15 @@
       <value name="is_global">false</value>
       <array name="rec_fields" type="record" depth="1">
       </array>
-      <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Content processing services used by tundra.content:retrieve must implement this specification. The
-$content is specified as a java.io.InputStream, along with optional meta data about the content, 
-such as its mime type ($content.type) and name ($content.name).</value>
+  <value name="node_comment">Content processing services used by tundra.content:retrieve must implement this 
+specification. 
+
+* Inputs:
+  * $content is the content to be processed, specified as a [java.io.InputStream].
+  * $content.type is the mime media type of the content to be processed.
+  * $content.name is the name associated with the content, such as a file name.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
@@ -119,16 +116,10 @@ such as its mime type ($content.type) and name ($content.name).</value>
   <value name="svc_in_validator_options">none</value>
   <value name="svc_out_validator_options">none</value>
   <value name="auditoption">0</value>
-  <null name="auditfields_input"/>
-  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
-  <value name="pipeline_option">0</value>
-  <null name="originURI"/>
-  <value name="modifiable">true</value>
-  <value name="is_public">false</value>
 </Values>
