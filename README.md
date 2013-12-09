@@ -2335,6 +2335,9 @@ Services for storing and retrieving values in session state.
         this service does nothing, otherwise the key value pair is
         removed from session state.
 
+    * Outputs:
+      * `$value` was the value associated with the removed `$key`.
+
 ### Stream
 
 Services for manipulating java.io.InputStream and java.io.OutputStream objects:
