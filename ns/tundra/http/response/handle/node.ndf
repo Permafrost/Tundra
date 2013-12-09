@@ -4,9 +4,22 @@
   <value name="svc_type">flow</value>
   <value name="svc_subtype">default</value>
   <value name="svc_sigtype">java 3.5</value>
-  <value name="svc_spec">tundra.support.http.client.response:handler</value>
-  <value name="node_comment">Standard HTTP response handler: checks that the response code is &lt; 4xx, normalizes 
-headers to lower case, and converts the response stream to bytes.</value>
+  <value name="svc_spec">tundra.http.response:handler</value>
+  <value name="node_comment">Standard [HTTP] response handler: checks that the [HTTP response code] is &lt; 400, 
+normalizes the response header keys to lower case, and converts the response body 
+stream to bytes. If the [HTTP response code] is &gt;= 400, an exception will be
+thrown.
+
+* Inputs:
+  * $response is the [HTTP] response to be processed by this service.
+
+* Outputs:
+  * $response is the processed [HTTP] response, where the [HTTP response code] is 
+    guaranteed to be &lt; 400, the response header keys are normalized to lower case, 
+    and the response body is returned as a byte[] array.
+
+[HTTP]: &lt;http://tools.ietf.org/search/rfc2616&gt;
+[HTTP response code]: &lt;http://httpstatus.es/&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

@@ -1267,12 +1267,56 @@ tundra.file:write($file, $mode, $content, $encoding);
 
 ### HTTP
 
-```java
-// Provides an HTTP client for interacting with HTTP servers. A custom
-// response handler can be specified ($service), when the standard handler
-// (tundra.support.http.client.response:handle) does not suffice.
-tundra.http:client($request, $service);
-```
+* #### tundra.http:client
+
+    Provides an [HTTP] client for issuing requests against [HTTP] servers.
+
+    * Inputs:
+      * `$request` is an IData document containing the parameters required for
+        making an [HTTP] request to an [HTTP] server.
+      * `$service` is an optional custom [HTTP] response handler service, which
+        implements the `tundra.http.response:handler` specification, and can be 
+        specified when the standard `tundra.http.response:handle` service does 
+        not suffice. The standard handler does the following:
+        * checks the [HTTP response code] is < 400, and throws an exception 
+          when it is not
+        * normalizes the response header keys to lower case
+        * converts the response body stream to bytes
+
+    * Outputs:
+      * `$response` is an IData document containing the [HTTP] server response for
+        the given request.
+
+* #### tundra.http.response:handle
+
+    Standard [HTTP] response handler: checks that the [HTTP response code] is < 400, 
+    normalizes the response header keys to lower case, and converts the response body 
+    stream to bytes. If the [HTTP response code] is >= 400, an exception will be
+    thrown.
+
+    * Inputs:
+      * `$response` is the [HTTP] response to be processed by this service.
+
+    * Outputs:
+      * `$response` is the processed [HTTP] response, where the [HTTP response code] is 
+        guaranteed to be < 400, the response header keys are normalized to lower case, 
+        and the response body is returned as a byte[] array.
+
+* #### tundra.http.response:handler
+
+    Specifies the required inputs and outputs for an [HTTP] response handling service
+    called by tundra.http:client.
+
+    * Inputs:
+      * `$response` is the [HTTP] response to be processed by this service.
+
+    * Outputs:
+      * `$response` is the processed [HTTP] response. How the response is processed is
+        at the discretion of the implementing service. Refer to the standard 
+        `tundra.http.response:handle` service for a reference implementation.
+
+[HTTP]: <http://tools.ietf.org/search/rfc2616>
+[HTTP response code]: <http://httpstatus.es/>
 
 ### ID
 

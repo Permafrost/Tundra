@@ -301,7 +301,6 @@
               <value name="field_type">object</value>
               <value name="field_dim">0</value>
               <value name="field_opt">true</value>
-              <value name="wrapper_type">byte []</value>
               <value name="nillable">true</value>
               <value name="form_qualified">false</value>
               <value name="is_global">false</value>
@@ -311,6 +310,18 @@
       </array>
     </record>
   </record>
+  <value name="node_comment">Specifies the required inputs and outputs for an [HTTP] response handling service
+called by tundra.http:client.
+
+* Inputs:
+  * $response is the [HTTP] response to be processed by this service.
+
+* Outputs:
+  * $response is the processed [HTTP] response. How the response is processed is
+    at the discretion of the implementing service. Refer to the standard 
+    tundra.http.response:handle service for a reference implementation.
+
+[HTTP]: &lt;http://tools.ietf.org/search/rfc2616&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
