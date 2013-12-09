@@ -423,7 +423,7 @@ server-based, it is constructed according to the syntax:
 
     (user:password@)host(:port)
 
-Implemented with the [java.net.URI class].
+Implemented with the [java.net.URI] class.
 
 * Inputs:
   * $uri is an IData document containing the constituent parts to construct
@@ -433,7 +433,7 @@ Implemented with the [java.net.URI class].
   * $string is the resulting URI input string.
 
 [default charset]: &lt;http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()&gt;
-[java.net.URI class]: &lt;http://docs.oracle.com/javase/6/docs/api/java/net/URI.html&gt;
+[java.net.URI]: &lt;http://docs.oracle.com/javase/6/docs/api/java/net/URI.html&gt;
 [RFC 2396]: &lt;http://www.ietf.org/rfc/rfc2396.txt&gt;
 [URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
   <value name="stateless">no</value>

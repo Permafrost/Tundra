@@ -123,7 +123,7 @@ The following rules are applied in the conversion:
   these characters may be specified, or if unspecified, the default 
   encoding of the platform will be used.
 
-Implemented with the [java.net.URLDecoder class].
+Implemented with the [java.net.URLDecoder] class.
 
 * Inputs:
   * $string is a string containing URI-encoded data to be decoded.
@@ -135,7 +135,7 @@ Implemented with the [java.net.URLDecoder class].
   * $string is the decoded input string.
 
 [default charset]: &lt;http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()&gt;
-[java.net.URLDecoder class]: &lt;http://docs.oracle.com/javase/6/docs/api/java/net/URLDecoder.html&gt;
+[java.net.URLDecoder]: &lt;http://docs.oracle.com/javase/6/docs/api/java/net/URLDecoder.html&gt;
 [RFC 2396]: &lt;http://www.ietf.org/rfc/rfc2396.txt&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>

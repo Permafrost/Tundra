@@ -1357,7 +1357,7 @@ tundra.file:write($file, $mode, $content, $encoding);
     definition at ISO/IEC 11578:1996. 
 
     * Outputs:
-      * $id is the generated [UUID].
+      * `$id` is the generated [UUID].
 
 [UUID]: <http://docs.oracle.com/javase/6/docs/api/java/util/UUID.html>
 
@@ -2295,13 +2295,13 @@ tundra.string:uppercase($string, $locale);
     memory usage.
 
     * Outputs:
-      * $system is a returned IData document containing the software version, 
+      * `$system` is a returned IData document containing the software version, 
         environment settings, Java properties, well-known directory locations, 
         and memory usage.
 
 ### URI
 
-Services for parsing and emitting Uniform Resource Identifier (URI) strings.
+Services for parsing and emitting Uniform Resource Identifier ([URI]) strings.
 
 * #### tundra.uri:decode
 
@@ -2321,7 +2321,7 @@ Services for parsing and emitting Uniform Resource Identifier (URI) strings.
       these characters may be specified, or if unspecified, the default 
       encoding of the platform will be used.
 
-    Implemented with the [java.net.URLDecoder class].
+    Implemented with the [java.net.URLDecoder] class.
 
     * Inputs:
       * `$string` is a string containing URI-encoded data to be decoded.
@@ -2367,7 +2367,7 @@ Services for parsing and emitting Uniform Resource Identifier (URI) strings.
 
         (user:password@)host(:port)
 
-    Implemented with the [java.net.URI class].
+    Implemented with the [java.net.URI] class.
 
     * Inputs:
       * `$uri` is an IData document containing the constituent parts to construct
@@ -2394,7 +2394,7 @@ Services for parsing and emitting Uniform Resource Identifier (URI) strings.
       these characters may be specified, or if unspecified, the default 
       encoding of the platform will be used.
 
-    Implemented with the [java.net.URLEncoder class].
+    Implemented with the [java.net.URLEncoder] class.
 
     * Inputs:
       * `$string` is a string containing data to be URI-encoded.
@@ -2446,7 +2446,7 @@ Services for parsing and emitting Uniform Resource Identifier (URI) strings.
     subject, and body), this service checks if the body contains a query string 
     and, if so, parses the query string also.
 
-    Implemented with the [java.net.URI class].
+    Implemented with the [java.net.URI] class.
 
     * Inputs:
       * `$string` is the a URI string to be parsed.
@@ -2455,9 +2455,9 @@ Services for parsing and emitting Uniform Resource Identifier (URI) strings.
       * `$uri` is an IData document containing the constituent parts of the parsed
         URI string.
 
-[java.net.URLDecoder class]: <http://docs.oracle.com/javase/6/docs/api/java/net/URLDecoder.html>
-[java.net.URLEncoder class]: <http://docs.oracle.com/javase/6/docs/api/java/net/URLEncoder.html>
-[java.net.URI class]: <http://docs.oracle.com/javase/6/docs/api/java/net/URI.html>
+[java.net.URLDecoder]: <http://docs.oracle.com/javase/6/docs/api/java/net/URLDecoder.html>
+[java.net.URLEncoder]: <http://docs.oracle.com/javase/6/docs/api/java/net/URLEncoder.html>
+[java.net.URI]: <http://docs.oracle.com/javase/6/docs/api/java/net/URI.html>
 [RFC 2396]: <http://www.ietf.org/rfc/rfc2396.txt>
 [URI]: <http://www.w3.org/Addressing/>
 
