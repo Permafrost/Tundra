@@ -1151,18 +1151,34 @@ tundra.document:values($document);
 
 ### DNS
 
-Services for resolving names in the domain name system (DNS).
+Services for resolving names in the domain name system ([DNS]).
 
-```java
-// returns the fully-qualifed domain name, host name, and IP address for the
-// localhost
-tundra.dns:localhost();
+* #### tundra.dns:localhost
 
-// looks up the given name in the Domain Name System (DNS), returning the
-// fully-qualifed domain name, host name, and IP address, if found;
-// refer: http://en.wikipedia.org/wiki/Domain_Name_System
-tundra.dns:resolve($name);
-```
+    Returns the fully-qualifed domain name, host name, and IP address for 
+    the local host.
+
+    * Outputs:
+      * `$domain` is the fully-qualified domain name of the local host.
+      * `$host` is the local host name.
+      * `$ip` is the local IP address.
+
+* #### tundra.dns:resolve
+
+    Looks up the given name in the Domain Name System ([DNS]), returning the
+    fully-qualifed domain name, host name, and IP address, if found.
+
+    * Inputs:
+      * `$name` is a host name, domain name, or IP address to be resolved
+        against [DNS].
+
+    * Outputs:
+      * `$domain` is the fully-qualified domain name associated with the given 
+        name.
+      * `$host` is the host name associated with the given name.
+      * `$ip` is the IP address associated with the given name.
+
+[DNS]: <http://en.wikipedia.org/wiki/Domain_Name_System>
 
 ### Duration
 

@@ -104,7 +104,13 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Returns the fully-qualifed domain name, host name, and IP address for the localhost.</value>
+  <value name="node_comment">Returns the fully-qualifed domain name, host name, and IP address for 
+the local host.
+
+* Outputs:
+  * $domain is the fully-qualified domain name of the local host.
+  * $host is the local host name.
+  * $ip is the local IP address.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
