@@ -1446,12 +1446,40 @@ tundra.list.content:parse($contents[], $encoding, $schema);
 
 ### Datetime List
 
-```java
-// formats a list of datetimes that conform to the input pattern, according
-// to the output pattern
-tundra.list.datetime:format($list[], $pattern.input, $pattern.output);
-```
+* #### tundra.list.datetime:format
 
+    Formats a list of datetimes that conform to the input pattern, according 
+    to the output pattern. Pattern defaults to an [ISO8601]/XML datetime.
+
+    Supports a handful of well-known named patterns:
+
+        Name           Pattern
+        -------------  --------------------------------------------
+        datetime       ISO8601/XML datetime
+        datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
+        date           ISO8601/XML date
+        date.jdbc      yyyy-mm-dd
+        time           ISO8601/XML time
+        time.jdbc      HH:mm:ss
+        milliseconds   Number of milliseconds since the Epoch, 
+                       January 1, 1970 00:00:00.000 GMT (Gregorian)
+
+    Custom patterns can be specified using [java.text.SimpleDateFormat] 
+    compatible patterns.
+
+    * Inputs:
+      * `$list` is a list of datetime strings to be formatted.
+      * `$pattern.input` is the datetime pattern the input datetime strings
+        are formatted as.
+      * `$pattern.output` is the desired datetime pattern to format the 
+        output list of datetime strings as.
+
+    * Outputs:
+      * `$list` is the resulting list of datetime strings formatted according to
+        `$pattern.output`.
+
+[ISO8601]: <http://en.wikipedia.org/wiki/ISO_8601>
+[java.text.SimpleDateFormat]: <http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html>
 ### Document List
 
 Services for manipulating document (com.wm.data.IData) lists:
@@ -2546,8 +2574,8 @@ Services for parsing and emitting Uniform Resource Identifier ([URI]) strings.
         given `$content`.
 
 [XPath expression]: <http://www.w3.org/TR/xpath/>
-
 [default charset]: <http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()>
+[ISO8601]: <http://en.wikipedia.org/wiki/ISO_8601>
 [java.text.SimpleDateFormat]: <http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html>
 
 ## Contributions
