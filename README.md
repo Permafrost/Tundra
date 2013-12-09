@@ -2442,10 +2442,12 @@ Services for parsing and emitting Uniform Resource Identifier (URI) strings.
 
 ### User
 
-```java
-// returns the current Integration Server user used to invoke this service
-tundra.user:current();
-```
+* #### tundra.user:current
+
+    Returns the current Integration Server user used to invoke this service.
+
+    * Outputs:
+      * $user is the currently logged on user name that invoked this service.
 
 ### XML
 
