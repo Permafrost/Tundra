@@ -72,7 +72,23 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Converts a string, bytes or input stream to an input stream.</value>
+  <value name="node_comment">Converts a string, bytes or input stream to an input stream.
+
+* Inputs:
+  * $object is an optional [java.lang.String], byte[], or [java.io.InputStream] 
+    object to be converted to a [java.io.InputStream] object. If not specified, 
+    this service does nothing.
+  * $encoding is the character set used to encode the character data when $object
+    is specified as a [java.lang.String]. Defaults to the Java virtual machine 
+    [default charset].
+
+* Outputs:
+  * $stream is an optional [java.io.InputStream] object from which can be read the 
+    data represented by $object. If $object was not specified, no $stream is returned.
+
+[default charset]: &lt;http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()&gt;
+[java.io.InputStream]: &lt;http://docs.oracle.com/javase/6/docs/api/java/io/InputStream.html&gt;
+[java.lang.String]: &lt;http://docs.oracle.com/javase/6/docs/api/java/lang/String.html&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

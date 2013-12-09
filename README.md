@@ -2170,17 +2170,47 @@ tundra.session:put($key, $value);
 
 Services for manipulating java.io.InputStream and java.io.OutputStream objects:
 
-```java
-// closes the given input or output stream
-tundra.stream:close($stream);
+* #### tundra.stream:close
 
-// copies all data from the given input stream (or string or bytes) to the
-// given output stream, then closes the streams
-tundra.stream:copy($input, $output);
+    Closes the given input stream or output stream, and releases any associated
+    system resources.
 
-// converts a string, byte array or input stream to an input stream
-tundra.stream:normalize($object, $encoding);
-```
+    * Inputs:
+      * `$stream` is an optional [java.io.InputStream] or [java.io.OutputStream] object
+        to be closed. If specified, the stream is closed and any associated system
+        resources are released. If not specified, this service does nothing.
+
+* #### tundra.stream:copy
+
+    Copies all data from the given input stream (or string or bytes) to the given 
+    output stream, then closes the streams.
+
+    * Inputs:
+      * `$input` is an optional [java.io.InputStream] object containing data to be
+        written to `$output`. If not specified, this service does nothing.
+      * `$output` is an optional [java.io.OutputStream] object where data read from
+        `$input` is to be written. If not specified, this service does nothing.
+
+* #### tundra.stream:normalize
+
+    Converts a string, bytes or input stream to an input stream.
+
+    * Inputs:
+      * `$object` is an optional [java.lang.String], byte[], or [java.io.InputStream] 
+        object to be converted to a [java.io.InputStream] object. If not specified, 
+        this service does nothing.
+      * `$encoding` is the character set used to encode the character data when `$object`
+        is specified as a [java.lang.String]. Defaults to the Java virtual machine 
+        [default charset].
+
+    * Outputs:
+      * `$stream` is an optional [java.io.InputStream] object from which can be read the 
+        data represented by `$object`. If `$object` was not specified, no `$stream` is 
+        returned.
+
+[java.lang.String]: <http://docs.oracle.com/javase/6/docs/api/java/lang/String.html>
+[java.io.InputStream]: <http://docs.oracle.com/javase/6/docs/api/java/io/InputStream.html>
+[java.io.OutputStream]: <http://docs.oracle.com/javase/6/docs/api/java/io/OutputStream.html>
 
 ### String
 
