@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-10-21 19:42:59 EST
-// -----( ON-HOST: 172.16.189.132
+// -----( CREATED: 2013-12-09 10:27:46.317
+// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -79,7 +79,33 @@ public final class session
                 
 	}
 
+
+
+	public static final void remove (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(remove)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $key
+		// [o] object:0:optional $value
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String key = IDataUtil.getString(cursor, "$key");
+		  Object value = remove(key);
+		
+		  if (value != null) IDataUtil.put(cursor, "$value", value);
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
 	// --- <<IS-START-SHARED>> ---
+	// returns the current session as an IData document
 	public static IData get() {
 	  com.wm.app.b2b.server.Session session = com.wm.app.b2b.server.Service.getSession();
 	
@@ -100,8 +126,16 @@ public final class session
 	  return document;
 	}
 	
+	// stores the given key value pair in current session state
 	public static void put(String key, Object value) {
+	  if (key == null) return;
 	  com.wm.app.b2b.server.Service.getSession().put(key, value);
+	}
+	
+	// removes the given key value pair from current session state
+	public static Object remove(String key) {
+	  if (key == null) return null;
+	  return com.wm.app.b2b.server.Service.getSession().remove(key);
 	}
 	// --- <<IS-END-SHARED>> ---
 }

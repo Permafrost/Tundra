@@ -2158,13 +2158,34 @@ tundra.service:validate($service);
 
 Services for storing and retrieving values in session state.
 
-```java
-// returns information about the current session, including values stored in state
-tundra.session:get();
+* #### tundra.session:get
 
-// stores the given key value pair in the current session's state
-tundra.session:put($key, $value);
-```
+    Returns information about the current session, including values stored in
+    session state.
+
+    * Outputs:
+      * `$session` is an IData document containing information about the current
+        session.
+
+* #### tundra.session:put
+
+    Stores the given key value pair in current session state.
+
+    * Inputs:
+      * `$key` is the optional key name to use to identify the value 
+        to be stored in session state. If not specified, this
+        service does nothing.
+      * `$value` is the optional value to be stored in session state.
+
+* #### tundra.session:remove
+
+    Removes the given key value pair from current session state.
+
+    * Inputs:
+      * `$key` is the optional key name to use to identify the key 
+        value pair to be removed from session state. If not specified, 
+        this service does nothing, otherwise the key value pair is
+        removed from session state.
 
 ### Stream
 
