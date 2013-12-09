@@ -442,48 +442,59 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Parses a Uniform Resource Identifier (URI) string, according to RFC 2396 
-&lt;http://www.ietf.org/rfc/rfc2396.txt&gt;, to its constituent parts.  
+  <value name="node_comment">Parses a Uniform Resource Identifier ([URI]) string, according to [RFC 2396], 
+to its constituent parts.  
 
 URIs can be categorized as either hierarchical, where the scheme and body 
-parts are separated by the character sequence '://', or opaque, where the scheme 
-and body parts are separated by a ':' character.
+parts are separated by the character sequence '://', or opaque, where the 
+scheme and body parts are separated by a ':' character.
 
 Examples of hierarchical URIs:
-  - http://example.com/
-  - ftp://example.com/path/file.txt
+- http://example.com/
+- ftp://example.com/path/file.txt
 
 Examples of opaque URIs:
-  - mailto:john.doe@example.com
-  - news:comp.lang.java
-  - urn:isbn:096139210x
+- mailto:john.doe@example.com
+- news:comp.lang.java
+- urn:isbn:096139210x
 
-URIs are constructed from the following parts:
+Opaque URIs are constructed according to the following syntax:
 
-  [scheme:]body[?query][#fragment] 
+    (scheme:)body(?query)(#fragment)
 
-Where square brackets [...] delineate optional components and the characters ':' 
-and '#' stand for themselves.
+Where brackets (...) delineate optional components and the characters 
+':', '?', and '#' stand for themselves.
 
-Hierarchical URI bodies are subject to further parsing according to the following
-syntax:
+Hierarchical URIs are constructed according to the following syntax:
 
-  [scheme:][//authority][path][file][?query][#fragment]
+    (scheme:)(//authority)(path)(?query)(#fragment)
 
 Where the characters ':', '/', '?', and '#' stand for themselves. The authority
-component, if specified, can be either server-based or registry-based. If server-
-based, it can be further parsed according to the syntax:
+component, if specified, can be either server-based or registry-based. If 
+server-based, it is constructed according to the syntax:
 
-  [user:password@]host[:port]
+    (user:password@)host(:port)
 
 Where the characters '@' and ':' stand for themselves.
 
 Opaque URI bodies are not subject to further parsing, however, to accomodate 
 the mailto: URI's use of a query string for additional data (such as cc, bcc, 
-subject, and body), this service checks if the body contains a query string and, 
-if so, parses the query string also.
+subject, and body), this service checks if the body contains a query string 
+and, if so, parses the query string also.
 
-Refer: &lt;http://docs.oracle.com/javase/6/docs/api/java/net/URI.html&gt;.</value>
+Implemented with the [java.net.URI class].
+
+* Inputs:
+  * $string is the a URI string to be parsed.
+
+* Outputs:
+  * $uri is an IData document containing the constituent parts of the parsed
+    URI string.
+
+[default charset]: &lt;http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()&gt;
+[java.net.URI class]: &lt;http://docs.oracle.com/javase/6/docs/api/java/net/URI.html&gt;
+[RFC 2396]: &lt;http://www.ietf.org/rfc/rfc2396.txt&gt;
+[URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

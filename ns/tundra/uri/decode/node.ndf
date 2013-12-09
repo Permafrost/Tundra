@@ -7,7 +7,6 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
-      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -22,7 +21,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$string</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -50,7 +48,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$encoding</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -71,11 +68,9 @@
           <value name="is_global">false</value>
         </record>
       </array>
-      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
-      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -90,7 +85,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$string</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -111,27 +105,38 @@
           <value name="is_global">false</value>
         </record>
       </array>
-      <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Decodes a URL-encoded (application/x-www-form-urlencoded) string.
+  <value name="node_comment">Decodes a URI-encoded (application/x-www-form-urlencoded) string, according
+to [RFC 2396].
 
 The following rules are applied in the conversion:
-  - The alphanumeric characters "a" through "z", "A" through "Z" and "0" 
-    through "9" remain the same.
-  - The special characters ".", "-", "*", and "_" remain the same.
-  - The plus sign "+" is converted into a space character " " .
-  - A sequence of the form "%xy" will be treated as representing a byte 
-    where xy is the two-digit hexadecimal representation of the 8 bits. Then, 
-    all substrings that contain one or more of these byte sequences 
-    consecutively will be replaced by the character(s) whose encoding would 
-    result in those consecutive bytes. The encoding scheme used to decode 
-    these characters may be specified, or if unspecified, the default 
-    encoding of the platform will be used.
+- The alphanumeric characters "a" through "z", "A" through "Z" and "0" 
+  through "9" remain the same.
+- The special characters ".", "-", "*", and "_" remain the same.
+- The plus sign "+" is converted into a space character " " .
+- A sequence of the form "%xy" will be treated as representing a byte 
+  where xy is the two-digit hexadecimal representation of the 8 bits. Then, 
+  all substrings that contain one or more of these byte sequences 
+  consecutively will be replaced by the character(s) whose encoding would 
+  result in those consecutive bytes. The encoding scheme used to decode 
+  these characters may be specified, or if unspecified, the default 
+  encoding of the platform will be used.
 
-Refer: &lt;http://docs.oracle.com/javase/6/docs/api/java/net/URLDecoder.html&gt;.
+Implemented with the [java.net.URLDecoder class].
 
-</value>
+* Inputs:
+  * $string is a string containing URI-encoded data to be decoded.
+  * $encoding is the character set used to determine what characters are 
+    represented by any consecutive sequences of the form "%xy". Defaults 
+    to the Java virtual machine [default charset].
+
+* Outputs:
+  * $string is the decoded input string.
+
+[default charset]: &lt;http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()&gt;
+[java.net.URLDecoder class]: &lt;http://docs.oracle.com/javase/6/docs/api/java/net/URLDecoder.html&gt;
+[RFC 2396]: &lt;http://www.ietf.org/rfc/rfc2396.txt&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
@@ -148,16 +153,10 @@ Refer: &lt;http://docs.oracle.com/javase/6/docs/api/java/net/URLDecoder.html&gt;
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
-  <null name="auditfields_input"/>
-  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
-  <value name="pipeline_option">1</value>
-  <null name="originURI"/>
-  <value name="modifiable">true</value>
-  <value name="is_public">false</value>
 </Values>

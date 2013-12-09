@@ -107,20 +107,35 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">URL encodes (application/x-www-form-urlencoded) a string.
+  <value name="node_comment">URI encodes (application/x-www-form-urlencoded) a string, according
+to [RFC 2396].
 
 The following rules are applied in the conversion:
-  - The alphanumeric characters "a" through "z", "A" through "Z" and "0" 
-    through "9" remain the same.
-  - The special characters ".", "-", "*", and "_" remain the same.
-  - All other characters are unsafe and are first converted into one or 
-    more bytes using some encoding scheme. Then each byte is represented 
-    by the 3-character string "%xy", where xy is the two-digit hexadecimal 
-    representation of the byte. The recommended encoding scheme to use is 
-    UTF-8. However, for compatibility reasons, if an encoding is not 
-    specified, then the default encoding of the platform is used.
+- The alphanumeric characters "a" through "z", "A" through "Z" and "0" 
+  through "9" remain the same.
+- The special characters ".", "-", "*", and "_" remain the same.
+- The plus sign "+" is converted into a space character " " .
+- A sequence of the form "%xy" will be treated as representing a byte 
+  where xy is the two-digit hexadecimal representation of the 8 bits. Then, 
+  all substrings that contain one or more of these byte sequences 
+  consecutively will be replaced by the character(s) whose encoding would 
+  result in those consecutive bytes. The encoding scheme used to decode 
+  these characters may be specified, or if unspecified, the default 
+  encoding of the platform will be used.
 
-Refer: &lt;http://docs.oracle.com/javase/6/docs/api/java/net/URLEncoder.html&gt;.</value>
+Implemented with the [java.net.URLEncoder class].
+
+* Inputs:
+  * $string is a string containing data to be URI-encoded.
+  * $encoding is the character set used to obtain the bytes for unsafe 
+    characters.. Defaults to the Java virtual machine [default charset].
+
+* Outputs:
+  * $string is the URI-encoded input string.
+
+[default charset]: &lt;http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()&gt;
+[java.net.URLEncoder class]: &lt;http://docs.oracle.com/javase/6/docs/api/java/net/URLEncoder.html&gt;
+[RFC 2396]: &lt;http://www.ietf.org/rfc/rfc2396.txt&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
