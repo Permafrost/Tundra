@@ -816,40 +816,302 @@ content.
 
 Services for manipulating date, time and datetime strings:
 
-```java
-// adds a duration of time to the given datetime
-tundra.datetime:add($datetime, $pattern, $duration);
+* #### tundra.datetime:add
 
-// compares two datetime strings, indicating position in time relative to one
-// another; returns three booleans: $before?, $equal?, and $after?
-tundra.datetime:compare($datetime.x, $datetime.y, $pattern);
+    Adds a duration of time to the given datetime, formatted according to 
+    the given patterns.
 
-// concatenates a date and time into a single datetime
-tundra.datetime:concatenate($date, $time);
+    Supports a handful of well-known named datetime patterns:
 
-// returns the duration of time between two datetimes
-tundra.datetime:duration($datetime.start, $datetime.end, $pattern);
+        Name           Pattern
+        -------------  --------------------------------------------
+        datetime       [ISO8601]/XML datetime
+        datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
+        date           [ISO8601]/XML date
+        date.jdbc      yyyy-mm-dd
+        time           [ISO8601]/XML time
+        time.jdbc      HH:mm:ss
+        milliseconds   Number of milliseconds since the Epoch, 
+                       January 1, 1970 00:00:00.000 GMT (Gregorian)
 
-// returns the given java.util.Date object as a string adhering to the given datetime pattern
-tundra.datetime:emit($datetime.object, $pattern);
+    Custom datetime patterns can be specified using [java.text.SimpleDateFormat] 
+    compatible patterns.
 
-// formats a datetime that conforms to the input pattern, according to the
-// output pattern
-tundra.datetime:format($datetime, $pattern.input, $pattern.output);
+    * Inputs:
+      * `$datetime` is the datetime string to add the duration to.
+      * `$datetime.pattern` is an optional datetime pattern that `$datetime` 
+        conforms to. Defaults to an [ISO8601]/XML datetime.
+      * `$duration` is the duration to be added to `$datetime`.
+      * `$duration.pattern` is an optional duration pattern that `$duration` 
+        conforms to. Defaults to an [ISO8601]/XML duration.
 
-// returns the current datetime formatted according to the given pattern
-tundra.datetime:now($pattern);
+    * Outputs:
+      * `$datetime` is the resulting datetime with the added duration.
 
-// parses the given datetime string according to the given pattern, and returns a corresponding
-// java.util.Date object
-tundra.datetime:parse($datetime, $pattern);
+* #### tundra.datetime:compare
 
-// subtracts a duration of time from the given datetime
-tundra.datetime.subtract($datetime, $pattern, $duration);
+    Compares two datetime strings, formatted according to the given pattern, indicating 
+    their position in time relative to one another.
 
-// returns true if the given datetime conforms to the given pattern
-tundra.datetime.validate($datetime, $pattern);
-```
+    Supports a handful of well-known named datetime patterns:
+
+        Name           Pattern
+        -------------  --------------------------------------------
+        datetime       [ISO8601]/XML datetime
+        datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
+        date           [ISO8601]/XML date
+        date.jdbc      yyyy-mm-dd
+        time           [ISO8601]/XML time
+        time.jdbc      HH:mm:ss
+        milliseconds   Number of milliseconds since the Epoch, 
+                       January 1, 1970 00:00:00.000 GMT (Gregorian)
+
+    Custom datetime patterns can be specified using [java.text.SimpleDateFormat] 
+    compatible patterns.
+
+    * Inputs:
+      * `$datetime.x` is the datetime string to be compared to $datetime.y.
+      * `$datetime.y` is the datetime string to be compared to $datetime.x.
+      * `$pattern` is an optional datetime pattern that `$datetime.x` and `$datetime.y` 
+        conform to. Defaults to an [ISO8601]/XML datetime.
+
+    * Outputs:
+      * `$before?` is a boolean flag indicating if `$datetime.x` is an earlier instant 
+        in time than `$datetime.y`.
+      * `$equal?` is a boolean flag indicating if `$datetime.x` and `$datetime.y` represent
+        the same instant in time.
+      * `$after?` is a boolean flag indicating if `$datetime.x` is a later instant in
+        time than `$datetime.y`.
+
+* #### tundra.datetime:concatenate
+
+    Concatenates individual date and time strings into a single datetime string.
+
+    * Inputs:
+      * `$date` is an [ISO8601]/XML date string.
+      * `$time` is an [ISO8601]/XML time string.
+
+    * Outputs:
+      * `$datetime` is an [ISO8601]/XML datetime string that concatenates the inputs.
+
+* #### tundra.datetime:duration
+
+    Returns the duration between two datetimes.
+
+    Supports a handful of well-known named datetime patterns:
+
+        Name           Pattern
+        -------------  --------------------------------------------
+        datetime       [ISO8601]/XML datetime
+        datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
+        date           [ISO8601]/XML date
+        date.jdbc      yyyy-mm-dd
+        time           [ISO8601]/XML time
+        time.jdbc      HH:mm:ss
+        milliseconds   Number of milliseconds since the Epoch, 
+                       January 1, 1970 00:00:00.000 GMT (Gregorian)
+
+    Custom datetime patterns can be specified using [java.text.SimpleDateFormat] 
+    compatible patterns.
+
+    * Inputs:
+      * `$datetime.start` is the datetime string representing the starting instant 
+        for calculating the duration of time.
+      * `$datetime.end` is the datetime string representing the ending instant for 
+        calculating the duration of time.
+      * `$datetime.pattern` is an optional datetime pattern that `$datetime.start` 
+        and `$datetime.end` conform to. Defaults to an [ISO8601]/XML datetime.
+      * `$duration.pattern` is an optional duration pattern that the output `$duration`
+        will be formatted as. Defaults to an [ISO8601]/XML duration.
+
+    * Outputs:
+      * `$duration` is the duration of time between `$datetime.start` and `$datetime.end`,
+        formatted according to the given `$duration.pattern`.
+
+* #### tundra.datetime:emit
+
+    Returns the given [java.util.Date] object as a string formatted according to the 
+    given datetime pattern.
+
+    Supports a handful of well-known named datetime patterns:
+
+        Name           Pattern
+        -------------  --------------------------------------------
+        datetime       [ISO8601]/XML datetime
+        datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
+        date           [ISO8601]/XML date
+        date.jdbc      yyyy-mm-dd
+        time           [ISO8601]/XML time
+        time.jdbc      HH:mm:ss
+        milliseconds   Number of milliseconds since the Epoch, 
+                       January 1, 1970 00:00:00.000 GMT (Gregorian)
+
+    Custom datetime patterns can be specified using [java.text.SimpleDateFormat] 
+    compatible patterns.
+
+    * Inputs:
+      * `$datetime.object` is the [java.util.Date] to be formatted as a datetime string.
+      * `$pattern` is an optional datetime pattern that will be used to format the
+        resulting `$datetime` string. Defaults to an [ISO8601]/XML datetime.
+
+    * Outputs:
+      * `$datetime` is the [java.util.Date] object formatted as a string according to
+        the given `$pattern`.
+
+* #### tundra.datetime:format
+
+    Formats a datetime string that conforms to the input pattern, according to the 
+    output pattern.
+
+    Supports a handful of well-known named datetime patterns:
+
+        Name           Pattern
+        -------------  --------------------------------------------
+        datetime       [ISO8601]/XML datetime
+        datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
+        date           [ISO8601]/XML date
+        date.jdbc      yyyy-mm-dd
+        time           [ISO8601]/XML time
+        time.jdbc      HH:mm:ss
+        milliseconds   Number of milliseconds since the Epoch, 
+                       January 1, 1970 00:00:00.000 GMT (Gregorian)
+
+    Custom datetime patterns can be specified using [java.text.SimpleDateFormat] 
+    compatible patterns.
+
+    * Inputs:
+      * `$datetime` is the datetime string to be reformatted to a different pattern.
+      * `$pattern.input` is an optional datetime pattern that `$datetime` conforms to,
+        that will be used to parse the datetime string. Defaults to an [ISO8601]/XML 
+        datetime.
+      * `$pattern.output` is an optional datetime pattern that will be used to format the
+        resulting `$datetime` string. Defaults to an [ISO8601]/XML datetime.
+
+    * Outputs:
+      * `$datetime` is the datetime formatted as a string according to the given 
+        `$pattern.output`.
+
+* #### tundra.datetime:now
+
+    Returns the current datetime formatted according to the given pattern.
+
+    Supports a handful of well-known named datetime patterns:
+
+        Name           Pattern
+        -------------  --------------------------------------------
+        datetime       [ISO8601]/XML datetime
+        datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
+        date           [ISO8601]/XML date
+        date.jdbc      yyyy-mm-dd
+        time           [ISO8601]/XML time
+        time.jdbc      HH:mm:ss
+        milliseconds   Number of milliseconds since the Epoch, 
+                       January 1, 1970 00:00:00.000 GMT (Gregorian)
+
+    Custom datetime patterns can be specified using [java.text.SimpleDateFormat] 
+    compatible patterns.
+
+    * Inputs:
+      * `$pattern` is an optional datetime pattern that will be used to format the
+        resulting `$datetime` string. Defaults to an [ISO8601]/XML datetime.
+
+    * Outputs:
+      * `$datetime` is the current datetime formatted as a string according to the 
+        given `$pattern`.
+
+* #### tundra.datetime:parse
+
+    Parses the given datetime string according to the given pattern, and returns the 
+    resulting [java.util.Date] object.
+
+    Supports a handful of well-known named datetime patterns:
+
+        Name           Pattern
+        -------------  --------------------------------------------
+        datetime       [ISO8601]/XML datetime
+        datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
+        date           [ISO8601]/XML date
+        date.jdbc      yyyy-mm-dd
+        time           [ISO8601]/XML time
+        time.jdbc      HH:mm:ss
+        milliseconds   Number of milliseconds since the Epoch, 
+                       January 1, 1970 00:00:00.000 GMT (Gregorian)
+
+    Custom datetime patterns can be specified using [java.text.SimpleDateFormat] 
+    compatible patterns.
+
+    * Inputs:
+      * `$datetime` is the datetime string to be parsed.
+      * `$pattern` is an optional datetime pattern that `$datetime` conforms to, and
+        will be used to parse the datetime string. Defaults to an [ISO8601]/XML 
+        datetime.
+
+    * Outputs:
+      * `$datetime.object` is a [java.util.Date] object representing the same instant 
+        in time as the given `$datetime` string.
+
+* #### tundra.datetime:subtract
+
+    Subtracts a duration of time from the given datetime, formatted according to 
+    the given patterns.
+
+    Supports a handful of well-known named datetime patterns:
+
+        Name           Pattern
+        -------------  --------------------------------------------
+        datetime       [ISO8601]/XML datetime
+        datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
+        date           [ISO8601]/XML date
+        date.jdbc      yyyy-mm-dd
+        time           [ISO8601]/XML time
+        time.jdbc      HH:mm:ss
+        milliseconds   Number of milliseconds since the Epoch, 
+                       January 1, 1970 00:00:00.000 GMT (Gregorian)
+
+    Custom datetime patterns can be specified using [java.text.SimpleDateFormat] 
+    compatible patterns.
+
+    * Inputs:
+      * `$datetime` is the datetime string to subtract the duration from.
+      * `$datetime.pattern` is an optional datetime pattern that `$datetime` 
+        conforms to. Defaults to an [ISO8601]/XML datetime.
+      * `$duration` is the duration to be subtracted from `$datetime`.
+      * `$duration.pattern` is an optional duration pattern that `$duration` 
+        conforms to. Defaults to an [ISO8601]/XML duration.
+
+    * Outputs:
+      * `$datetime` is the resulting datetime with the subtracted duration.
+
+* #### tundra.datetime:validate
+
+    Returns true if the given datetime string conforms to the given pattern.
+
+    Supports a handful of well-known named datetime patterns:
+
+        Name           Pattern
+        -------------  --------------------------------------------
+        datetime       [ISO8601]/XML datetime
+        datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
+        date           [ISO8601]/XML date
+        date.jdbc      yyyy-mm-dd
+        time           [ISO8601]/XML time
+        time.jdbc      HH:mm:ss
+        milliseconds   Number of milliseconds since the Epoch, 
+                       January 1, 1970 00:00:00.000 GMT (Gregorian)
+
+    Custom datetime patterns can be specified using [java.text.SimpleDateFormat] 
+    compatible patterns.
+
+    * Inputs:
+      * `$datetime` is the datetime string to be validated.
+      * `$pattern` is an optional datetime pattern that `$datetime` is required to
+        conform to. Defaults to an [ISO8601]/XML datetime.
+      * `$raise?` is an optional boolean flag indicating if an exception should be
+        thrown if `$datetime` is found not to conform to `$pattern`. Defaults to false.
+
+    * Outputs:
+      * `$valid?` is a boolean flag indicating the given `$datetime` conforms to, and can
+        be parsed by, the given `$pattern`.
 
 ### Decimal
 
@@ -2380,10 +2642,6 @@ Services for manipulating java.io.InputStream and java.io.OutputStream objects:
         data represented by `$object`. If `$object` was not specified, no `$stream` is 
         returned.
 
-[java.lang.String]: <http://docs.oracle.com/javase/6/docs/api/java/lang/String.html>
-[java.io.InputStream]: <http://docs.oracle.com/javase/6/docs/api/java/io/InputStream.html>
-[java.io.OutputStream]: <http://docs.oracle.com/javase/6/docs/api/java/io/OutputStream.html>
-
 ### String
 
 Services for manipulating java.lang.String objects:
@@ -2606,12 +2864,6 @@ Services for parsing and emitting Uniform Resource Identifier ([URI]) strings.
       * `$uri` is an IData document containing the constituent parts of the parsed
         URI string.
 
-[java.net.URLDecoder]: <http://docs.oracle.com/javase/6/docs/api/java/net/URLDecoder.html>
-[java.net.URLEncoder]: <http://docs.oracle.com/javase/6/docs/api/java/net/URLEncoder.html>
-[java.net.URI]: <http://docs.oracle.com/javase/6/docs/api/java/net/URI.html>
-[RFC 2396]: <http://www.ietf.org/rfc/rfc2396.txt>
-[URI]: <http://www.w3.org/Addressing/>
-
 ### User
 
 * #### tundra.user:current
@@ -2650,10 +2902,6 @@ Services for parsing and emitting Uniform Resource Identifier ([URI]) strings.
       * `$errors` is an optional list of the errors detected by the parser in
         the given `$content`, provided when `$valid?` is false.
 
-[SAX]: <http://en.wikipedia.org/wiki/Simple_API_for_XML>
-[XML]: <http://www.w3.org/XML/>
-[XSD]: <http://www.w3.org/XML/Schema>
-
 ### XPath
 
 * #### tundra.xpath:exists
@@ -2671,13 +2919,6 @@ Services for parsing and emitting Uniform Resource Identifier ([URI]) strings.
     * Outputs:
       * `$exists?` is true if the XPath expression was found to exist in the 
         given `$content`.
-
-[XPath expression]: <http://www.w3.org/TR/xpath/>
-[default charset]: <http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()>
-[HTTP]: <http://tools.ietf.org/search/rfc2616>
-[HTTP response code]: <http://httpstatus.es/>
-[ISO8601]: <http://en.wikipedia.org/wiki/ISO_8601>
-[java.text.SimpleDateFormat]: <http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html>
 
 ## Contributions
 
@@ -2698,3 +2939,24 @@ around.
 ## Copyright
 
 Copyright © 2012 Lachlan Dowding. See license.txt for further details.
+
+[ISO8601]: <http://en.wikipedia.org/wiki/ISO_8601>
+[java.text.SimpleDateFormat]: <http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html>
+[java.util.Date]: <http://docs.oracle.com/javase/6/docs/api/java/util/Date.html>   
+[XPath expression]: <http://www.w3.org/TR/xpath/>
+[default charset]: <http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()>
+[HTTP]: <http://tools.ietf.org/search/rfc2616>
+[HTTP response code]: <http://httpstatus.es/>
+[ISO8601]: <http://en.wikipedia.org/wiki/ISO_8601>
+[java.text.SimpleDateFormat]: <http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html>
+[SAX]: <http://en.wikipedia.org/wiki/Simple_API_for_XML>
+[XML]: <http://www.w3.org/XML/>
+[XSD]: <http://www.w3.org/XML/Schema>
+[java.net.URLDecoder]: <http://docs.oracle.com/javase/6/docs/api/java/net/URLDecoder.html>
+[java.net.URLEncoder]: <http://docs.oracle.com/javase/6/docs/api/java/net/URLEncoder.html>
+[java.net.URI]: <http://docs.oracle.com/javase/6/docs/api/java/net/URI.html>
+[RFC 2396]: <http://www.ietf.org/rfc/rfc2396.txt>
+[URI]: <http://www.w3.org/Addressing/>
+[java.lang.String]: <http://docs.oracle.com/javase/6/docs/api/java/lang/String.html>
+[java.io.InputStream]: <http://docs.oracle.com/javase/6/docs/api/java/io/InputStream.html>
+[java.io.OutputStream]: <http://docs.oracle.com/javase/6/docs/api/java/io/OutputStream.html>

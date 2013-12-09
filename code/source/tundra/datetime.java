@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-09-05 11:39:54.360
-// -----( ON-HOST: -
+// -----( CREATED: 2013-12-09 15:18:07.024
+// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -33,16 +33,22 @@ public final class datetime
 		// --- <<IS-START(add)>> ---
 		// @sigtype java 3.5
 		// [i] field:0:optional $datetime
-		// [i] field:0:optional $pattern {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
+		// [i] field:0:optional $datetime.pattern {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
 		// [i] field:0:optional $duration
+		// [i] field:0:optional $duration.pattern {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
 		// [o] field:0:optional $datetime
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String datetime = IDataUtil.getString(cursor, "$datetime");
-		  String pattern = IDataUtil.getString(cursor, "$pattern");
+		  String datetimePattern = IDataUtil.getString(cursor, "$datetime.pattern");
+		  // support $pattern to be backwards compatible
+		  if (datetimePattern == null) datetimePattern = IDataUtil.getString(cursor, "$pattern");
+		
 		  String duration = IDataUtil.getString(cursor, "$duration");
-		  IDataUtil.put(cursor, "$datetime", add(datetime, pattern, duration));
+		  String durationPattern = IDataUtil.getString(cursor, "$duration.pattern");
+		
+		  IDataUtil.put(cursor, "$datetime", add(datetime, datetimePattern, duration, durationPattern));
 		} finally {
 		  cursor.destroy();
 		}
@@ -120,16 +126,20 @@ public final class datetime
 		// @sigtype java 3.5
 		// [i] field:0:optional $datetime.start
 		// [i] field:0:optional $datetime.end
-		// [i] field:0:optional $pattern {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
+		// [i] field:0:optional $datetime.pattern {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
+		// [i] field:0:optional $duration.pattern {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
 		// [o] field:0:optional $duration
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String start = IDataUtil.getString(cursor, "$datetime.start");
 		  String end = IDataUtil.getString(cursor, "$datetime.end");
-		  String pattern = IDataUtil.getString(cursor, "$pattern");
+		  String datetimePattern = IDataUtil.getString(cursor, "$datetime.pattern");
+		  // support $pattern to be backwards compatible
+		  if (datetimePattern == null) datetimePattern = IDataUtil.getString(cursor, "$pattern");
+		  String durationPattern = IDataUtil.getString(cursor, "$duration.pattern");
 		
-		  if (start != null && end != null) IDataUtil.put(cursor, "$duration", duration(start, end, pattern));
+		  if (start != null && end != null) IDataUtil.put(cursor, "$duration", duration(start, end, datetimePattern, durationPattern));
 		} finally {
 		  cursor.destroy();
 		}
@@ -250,16 +260,21 @@ public final class datetime
 		// --- <<IS-START(subtract)>> ---
 		// @sigtype java 3.5
 		// [i] field:0:optional $datetime
-		// [i] field:0:optional $pattern {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
+		// [i] field:0:optional $datetime.pattern {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
 		// [i] field:0:optional $duration
+		// [i] field:0:optional $duration.pattern {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
 		// [o] field:0:optional $datetime
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String datetime = IDataUtil.getString(cursor, "$datetime");
-		  String pattern = IDataUtil.getString(cursor, "$pattern");
+		  String datetimePattern = IDataUtil.getString(cursor, "$datetime.pattern");
+		  // support $pattern to be backwards compatible
+		  if (datetimePattern == null) datetimePattern = IDataUtil.getString(cursor, "$pattern");
 		  String duration = IDataUtil.getString(cursor, "$duration");
-		  IDataUtil.put(cursor, "$datetime", subtract(datetime, pattern, duration));
+		  String durationPattern = IDataUtil.getString(cursor, "$duration.pattern");
+		
+		  IDataUtil.put(cursor, "$datetime", subtract(datetime, datetimePattern, duration, durationPattern));
 		} finally {
 		  cursor.destroy();
 		}
@@ -322,7 +337,12 @@ public final class datetime
 	
 	// adds the given xml duration to the given xml datetime returning the result
 	public static String add(String datetime, String pattern, String duration) {
-	  return emit(add(parse(datetime, pattern), tundra.duration.parse(duration)), pattern);
+	  return add(datetime, pattern, duration, null);
+	}
+	
+	// adds the given xml duration to the given xml datetime returning the result
+	public static String add(String datetime, String datetimePattern, String duration, String durationPattern) {
+	  return emit(add(parse(datetime, datetimePattern), tundra.duration.parse(duration, durationPattern)), datetimePattern);
 	}
 	
 	// adds the given xml duration to the given xml datetime returning the result
@@ -373,8 +393,13 @@ public final class datetime
 	}
 	
 	// returns the xml duration between two given xml datetimes
-	public static String duration(String start, String end, String pattern) {
-	  return tundra.duration.emit(duration(parse(start, pattern), parse(end, pattern)));
+	public static String duration(String start, String end, String datetimePattern) {
+	  return duration(start, end, datetimePattern, null);
+	}
+	
+	// returns the xml duration between two given xml datetimes
+	public static String duration(String start, String end, String datetimePattern, String durationPattern) {
+	  return tundra.duration.emit(duration(parse(start, datetimePattern), parse(end, datetimePattern)), durationPattern);
 	}
 	
 	// returns the xml duration between two given xml datetimes
@@ -492,8 +517,13 @@ public final class datetime
 	}
 	
 	// subtracts the given xml duration from the given xml datetime returning the result
-	public static String subtract(String datetime, String pattern, String duration) {
-	  return emit(subtract(parse(datetime, pattern), tundra.duration.parse(duration)), pattern);
+	public static String subtract(String datetime, String datetimePattern, String duration) {
+	  return subtract(datetime, datetimePattern, duration, null);
+	}
+	
+	// subtracts the given xml duration from the given xml datetime returning the result
+	public static String subtract(String datetime, String datetimePattern, String duration, String durationPattern) {
+	  return emit(subtract(parse(datetime, datetimePattern), tundra.duration.parse(duration, durationPattern)), datetimePattern);
 	}
 	
 	// subtracts the given duration from the given datetime returning the result
