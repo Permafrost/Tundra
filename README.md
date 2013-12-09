@@ -2013,21 +2013,93 @@ tundra.mime.type:validate($string);
 
 Services for querying Integration Server namespace nodes:
 
-```java
-// grants the specified permissions on the given namespace node
-tundra.node:access($node, $permissions[]);
+* #### tundra.node:access
 
-// returns true if a node with the given node exists on this server
-tundra.node:exists($node);
+    Grants the specified permissions on the given namespace node.
 
-// lists an interface's child nodes; optionally filters based on the given
-// regular expression pattern, and node type
-tundra.node:list($interface, $pattern, $type, $recurse?);
+    * Inputs:
+      * `$node` is the Integration Server namespace node to grant
+        permissions on, provided as a normal namespace identifer:
 
-// returns the type of the given node, such as whether it is an interface,
-// service, or record
-tundra.node:type($node);
-```
+            folder(.folder)*(:object)
+
+        Where brackets indicate optional components of the namespace
+        identifer, '*' indicates 0 or more occurrences of a
+        component, '.' and ':' are literal characters.
+      * `$permissions` is the list of permissions to be granted on
+        the given `$node`.
+        * `type` identifies the type of permission to be granted, one of:
+          * `list` allows members of the given ACL to see the child items 
+            in the given node
+          * `read` allows members of the given ACL to view the given node
+          * `write` allows members of the given ACL to change the given node
+          * `execute` allows members of the given ACL to execute the given node
+        * `acl` is the name of the ACL object to be granted permission on
+          this namespace node.
+
+* #### tundra.node:exists
+
+    Returns true if the given namepace node exists.
+
+    * Inputs:
+      * `$node` is the Integration Server namespace node to check
+        existence of, provided as a normal namespace identifer:
+
+            folder(.folder)*(:object)
+
+        Where brackets indicate optional components of the namespace
+        identifer, '*' indicates 0 or more occurrences of a
+        component, '.' and ':' are literal characters.
+
+    * Outputs:
+      * `$exists?` is a boolean flag indicating if the given node
+        exists on this Integration Server.
+
+* #### tundra.node:list
+
+    Lists an interface's child nodes. Optionally filters based on 
+    the given regular expression pattern, and node type.
+
+    * Inputs:
+      * `$interface` is the Integration Server namespace folder to check
+        existence of, provided as a normal namespace interface node:
+
+            folder(.folder)*
+
+        Where brackets indicate optional components of the namespace
+        identifer, and '*' indicates 0 or more occurrences of a
+        component.
+      * `$pattern` is an optional regular expression pattern used to
+        filter the returned list of nodes (only nodes whose name
+        matches the given pattern are returned).
+      * `$type` is an optional node type used to filter the returned
+        list of nodes (only nodes whose type matches are returned).
+      * `$recurse?` is an optional boolean flag indicating whether to 
+        recursively list all items in all child folders/interfaces.
+        Defaults to false.
+
+    * Outputs:
+      * `$nodes` is the list of (optionally filtered) child nodes that
+        exist as items within the given `$interface`.
+
+* #### tundra.node:type
+
+    Returns the type of the given node, such as whether it is an 
+    interface, service, or record.
+
+    * Inputs:
+      * `$node` is the Integration Server namespace node to check
+        existence of, provided as a normal namespace identifer:
+
+            folder(.folder)*(:object)
+
+        Where brackets indicate optional components of the namespace
+        identifer, '*' indicates 0 or more occurrences of a
+        component, '.' and ':' are literal characters.
+
+    * Outputs:
+      * `$type` is the type of node that `$node` is, such as interface,
+        or service.
 
 ### Object
 

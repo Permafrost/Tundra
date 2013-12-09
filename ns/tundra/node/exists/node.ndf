@@ -79,7 +79,21 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Returns true if the given namepace node exists.</value>
+  <value name="node_comment">Returns true if the given namepace node exists.
+
+* Inputs:
+  * $node is the Integration Server namespace node to check
+    existence of, provided as a normal namespace identifer:
+
+        folder(.folder)*(:object)
+
+    Where brackets indicate optional components of the namespace
+    identifer, '*' indicates 0 or more occurrences of a
+    component, '.' and ':' are literal characters.
+
+* Outputs:
+  * $exists? is a boolean flag indicating if the given node
+    exists on this Integration Server.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

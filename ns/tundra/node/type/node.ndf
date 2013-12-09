@@ -80,7 +80,22 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Returns the type of the given node, such as whether it is an interface, service, or record.</value>
+  <value name="node_comment">Returns the type of the given node, such as whether it is an 
+interface, service, or record.
+
+* Inputs:
+  * $node is the Integration Server namespace node to check
+    existence of, provided as a normal namespace identifer:
+
+        folder(.folder)*(:object)
+
+    Where brackets indicate optional components of the namespace
+    identifer, '*' indicates 0 or more occurrences of a
+    component, '.' and ':' are literal characters.
+
+* Outputs:
+  * $type is the type of node that $node is, such as interface,
+    or service.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
