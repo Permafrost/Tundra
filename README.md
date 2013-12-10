@@ -1638,6 +1638,21 @@ Services for manipulating durations of time:
 
 File system services for working with files:
 
+* #### tundra.file:copy
+
+    Copies the content of the source file to the target file.
+
+    * Inputs:
+      * `$file.source` is the name of the file to be copied from, specified 
+        as either a relative or absolute file path or file: [URI].
+      * `$file.target` is the name of the file to be copied to, specified as 
+        either a relative or absolute file path or file: [URI]. If the 
+        target file already exists, it will be overwritten or appended to,
+        depending on the `$mode` selected, with the source file content.
+      * `$mode` is an optional choice of 'write' or 'append', which determines
+        whether the target file will be overwritten or appended to respectively.
+        Defaults to 'append', since this is the safer option.
+
 * #### tundra.file:create
 
     Atomically creates a new empty file if a file with this name does not 

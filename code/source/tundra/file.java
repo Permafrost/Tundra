@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-12-10 10:01:42.247
+// -----( CREATED: 2013-12-10 11:01:31.755
 // -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
 
 import com.wm.data.*;
@@ -24,6 +24,33 @@ public final class file
 
 	// ---( server methods )---
 
+
+
+
+	public static final void copy (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(copy)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $file.source
+		// [i] field:0:required $file.target
+		// [i] field:0:optional $mode {&quot;append&quot;,&quot;write&quot;}
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String source = IDataUtil.getString(cursor, "$file.source");
+		  String target = IDataUtil.getString(cursor, "$file.target");
+		  String mode = IDataUtil.getString(cursor, "$mode");
+		
+		  copy(source, target, mode);
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
 
 
 
@@ -610,6 +637,25 @@ public final class file
 	// opens a file for reading, appending, or writing, and processes it by calling the given service with the resulting $stream
 	public static IData process(String filename, String mode, String service, String input, IData pipeline) throws ServiceException {
 	  return process(tundra.support.file.construct(filename), mode, service, input, pipeline);
+	}
+	
+	// copies a source file to a target file
+	public static void copy(java.io.File source, java.io.File target, String mode) throws ServiceException {
+	  if (source != null && target != null) {
+	    try {
+	      java.io.InputStream input = new java.io.FileInputStream(source);
+	      java.io.OutputStream output = new java.io.FileOutputStream(target, mode == null || mode.equals("append"));
+	
+	      tundra.stream.copy(input, output);
+	    } catch (java.io.IOException ex) {
+	      tundra.exception.raise(ex);
+	    }
+	  }
+	}
+	
+	// copies a source file to a target file
+	public static void copy(String source, String target, String mode) throws ServiceException {
+	  copy(tundra.support.file.construct(source), tundra.support.file.construct(target), mode);
 	}
 	// --- <<IS-END-SHARED>> ---
 }
