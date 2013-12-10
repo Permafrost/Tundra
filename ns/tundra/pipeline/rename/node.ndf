@@ -78,8 +78,15 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Renames the value associated with the source key to have the target key in the pipeline.
-Keys can be simple or fully qualified, such as a/b/c[0]/d.</value>
+  <value name="node_comment">Renames the value associated with the source key to have the 
+target key in the pipeline. After being renamed, the source 
+key will no longer exist in the pipeline.
+
+* Inputs:
+  * $key.source is a simple or fully qualified key (a/b/c[0]/d) 
+    to be renamed to the given target key.
+  * $key.target is the new simple or fully qualified key that the
+    source key will be renamed to.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

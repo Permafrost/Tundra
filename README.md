@@ -2946,69 +2946,116 @@ Services for manipulating java.lang.Object objects:
     * Outputs:
       * `$value` is the value associated with the given `$key`.
 
-```java
-// returns a clone of the current pipeline as a document: useful if you want
-// to pass the pipeline itself as an input to a service
-tundra.pipeline:capture();
+* #### tundra.pipeline:last
 
-// removes all elements from the pipeline, except for any keys specified in the $preserve
-// list; keys can be simple or fully qualified, such as a/b/c[0]/d
-tundra.pipeline:clear($preserve[]);
+    Returns the last key value pair from the pipeline.
 
-// copies the value associated with the source key to the target key in the pipeline
-// keys can be simple or fully qualified, such as a/b/c[0]/d
-tundra.pipeline:copy($key.source, $key.target);
+    * Outputs:
+      * `$key` is the last key in the pipeline.
+      * `$value` is the last key's associated value.
 
-// removes the element with the given key from the pipeline
-// keys can be simple or fully qualified, such as a/b/c[0]/d
-tundra.pipeline:drop($key);
+* #### tundra.pipeline:length
 
-// emits (or encodes) the current pipeline as an IData XML string, byte array, or input stream
-// refer: <http://documentation.softwareag.com/webmethods/wmsuites/wmsuite8-2_sp2/Integration_Server/8-2-SP1_Integration_Server_Java_API_Reference/com/wm/util/coder/IDataXMLCoder.html>
-tundra.pipeline:emit($encoding, $mode)
+    Returns the number of top-level elements in the pipeline.
 
-// returns the value associated with the given key from the pipeline, or null
-// if the key doesn't exist
-// keys can be simple or fully qualified, such as a/b/c[0]/d
-tundra.pipeline:get($key);
+    * Outputs:
+      * `$length` is the number of top-level elements in the 
+        pipeline.
 
-// returns the first {key, value} pair from the pipeline
-tundra.pipeline:first();
+* #### tundra.pipeline:log
 
-// returns the last {key, value} pair from the pipeline
-tundra.pipeline:last();
+    Writes the current pipeline to the server log.
 
-// returns the number of top-level elements in the pipeline
-tundra.pipeline:length();
+    * Inputs:
+      * `$level` is the logging level used when writing the
+        pipeline contents to the server log.
 
-// writes the current pipeline to the server log
-tundra.pipeline:log($level);
+* #### tundra.pipeline:merge
 
-// merges the elements in the given IData document into the pipeline
-tundra.pipeline:merge($document);
+    Merges the elements in the given IData document into the 
+    pipeline.
 
-// iterates over each element in the pipeline, deconstructing all fully qualified
-// keys (for example, 'a/b/c' or 'x/y[0]/z[1]') into their constituent parts
-tundra.pipeline:normalize();
+    * Inputs:
+      * `$document` is an IData document whose top-level elements
+        are to be copied directly into the pipeline.
 
-// parses (or decodes) the given IData XML string, byte array, or input stream and merges it into the pipeline
-// refer: <http://documentation.softwareag.com/webmethods/wmsuites/wmsuite8-2_sp2/Integration_Server/8-2-SP1_Integration_Server_Java_API_Reference/com/wm/util/coder/IDataXMLCoder.html>
-//        <http://documentation.softwareag.com/webmethods/wmsuites/wmsuite8-2_sp2/Integration_Server/8-2-SP1_Integration_Server_Java_API_Reference/com/wm/util/coder/XMLCoderWrapper.html>
-tundra.pipeline:parse($content, $encoding);
+* #### tundra.pipeline:normalize
 
-// sets the value associated with the given key in the pipeline
-// keys can be simple or fully qualified, such as a/b/c[0]/d
-tundra.pipeline:put($key, $value);
+    Iterates over each element in the pipeline, deconstructing 
+    all fully qualified keys into their constituent parts.
 
-// renames the value with the source key to have the target key
-// keys can be simple or fully qualified, such as a/b/c[0]/d
-tundra.pipeline:rename($key.source, $key.target);
+    For example, if a pipeline contains the following key value
+    pairs (using [JSON] notation to represent the pipeline):
 
-// attempts variable substitution on every string element in the pipeline by replacing
-// all occurrences of substrings matching "%key%" with the associated (optionally scoped)
-// value
-tundra.pipeline:substitute();
-```
+        {
+          "a/b/c": "example 1",
+          "a/b/d": "example 2"
+          "e": "example 3",
+          "f[0]": "example 4",
+          "f[1]": "example 5"
+        }
+
+    This is normalized to the following:
+
+        {
+          "a": {
+            "b": {
+              "c": "example 1",
+              "d": "example 2"
+            }
+          },
+          "e": "example 3",
+          "f": ["example 4", "example 5"]
+        }
+
+    Keys using path-style notation, for example "a/b/c", are 
+    converted to nested IData documents with the final key
+    in the path, "c" in this example, assigned the value of
+    the original key.
+
+    Keys using array- or list-style notation, for example "f[0]", 
+    are converted to an array or list with the value of the 
+    original key assigned to the indexed item (the zeroth item in
+    this example).
+
+* #### tundra.pipeline:parse
+
+    Parses (or decodes) the given [IData XML] string, byte array, 
+    or input stream and merges it into the pipeline.
+
+    * Inputs:
+      * `$content` is a string, byte array, or input stream containing
+        [IData XML] data to be parsed and merged into the pipeline.
+      * `$encoding` is an optional character set to use when `$content` is
+        provided as a byte array or input stream. Defaults to the Java 
+        virtual machine [default charset].
+
+* #### tundra.pipeline:put
+
+    Sets the value associated with the given key in the pipeline. 
+
+    * Inputs:
+      * `$key` is a simple or fully qualified key (a/b/c[0]/d) to 
+        associate with the given $value.
+      * `$value` is the value to be associated with the given `$key`.
+
+* #### tundra.pipeline:rename
+
+    Renames the value associated with the source key to have the 
+    target key in the pipeline. After being renamed, the source 
+    key will no longer exist in the pipeline.
+
+    * Inputs:
+      * `$key.source` is a simple or fully qualified key (a/b/c[0]/d) 
+        to be renamed to the given target key.
+      * `$key.target` is the new simple or fully qualified key that the
+        source key will be renamed to.
+
+* #### tundra.pipeline:substitute
+
+    Attempts variable substitution on every string element in the 
+    pipeline by replacing all occurrences of substrings matching 
+    "%key%" with the associated value.
 
 ### Schema
 
@@ -3749,3 +3796,4 @@ Copyright © 2012 Lachlan Dowding. See license.txt for further details.
 [default locale]: <http://docs.oracle.com/javase/6/docs/api/java/util/Locale.html#getDefault()>
 [regular expression pattern]: <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html>
 [IData XML]: <http://documentation.softwareag.com/webmethods/wmsuites/wmsuite8-2_sp2/Integration_Server/8-2-SP1_Integration_Server_Java_API_Reference/com/wm/util/coder/IDataXMLCoder.html>
+[JSON]: <http://www.json.org/>
