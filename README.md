@@ -2996,47 +2996,135 @@ Document references and service specifications:
 
 ### Service
 
-```java
-// returns the current thread's call stack
-tundra.service:callstack();
+* #### tundra.service:callstack
 
-// provides a try/catch/finally pattern for flow services
-//
-// if $service throws an exception when invoked, then the arguments $exception,
-// $exception?, $exception.class, $exception.message and $exception.stack are
-// added to the pipeline
-//
-// if specified, the $catch service is invoked to handle the exception, otherwise
-// the exception is rethrown; the $catch service should implement the
-// Tundra/tundra.schema.exception:handler specification
-//
-// if specified, the $finally service is always invoked, whether an exception was
-// thrown by $service or not
-tundra.service:ensure($service, $catch, $finally, $pipeline);
+    Returns the current call stack.
 
-// calls the given service dynamically, either synchronously or
-// asynchronously; if asynchronous a service thread is returned which can be
-// waited on to finish (joined) using tundra.service:join
-tundra.service:invoke($service, $pipeline, $mode);
+    * Outputs:
+      * `$callstack` is a list of fully-qualified service names 
+        in invocation order with the top-level service as the
+        first item.
+      * `$callers` is a string representation of the call stack,
+        which is useful for diagnostics/logging.
+      * `$caller` is the fully-qualified service name of the
+        immediate caller of the service which invoked 
+        tundra.service:callstack, which is useful for obtaining
+        the name of the service which called the currently
+        executing service.
 
-// waits for the given service thread to finish before returning the service
-// output pipeline
-tundra.service:join($thread);
+* #### tundra.service:ensure
 
-// this service deliberately does nothing
-tundra.service:nothing();
+    Provides a try/catch/finally pattern for flow services. 
 
-// returns the name of the current service, or null if invoked directly
-tundra.service:self();
+    * Inputs
+      * `$service` is the fully-qualified name of a service invoked 
+        in the [try block].
+      * `$catch` is an optional fully-qualified name of a service
+        invoked in the [catch block]. This service should
+        implement the `Tundra/tundra.schema.exception:handler`
+        specification. If no `$catch` service is specified, the
+        exception will be rethrown.
+      * `$finally` is an optional fully-qualified name of a service
+        invoked in the [finally block] (always invoked regardless
+        of whether an exception is thrown by `$service` or not).
+      * `$pipeline` is an optional IData document which, if specified,
+        contains the input arguments for the invocations of `$service`, 
+        `$catch`, and `$finally`; in other words, the calls to these 
+        services are scoped to this IData document. If not specified, 
+        the invocations are not scoped, and hence these services 
+        operate directly against the pipeline itself.
 
-// sends the currently executing thread to sleep (temporarily cease
-// execution) for the specified duration, subject to the precision and
-// accuracy of system timers and schedulers
-tundra.service:sleep($duration);
+    * Outputs:
+      * `$pipeline` is the output pipeline of the invocations of
+        `$service`, `$catch`, and `$finally`. This is only returned if
+        `$pipeline` was specified as an input. Otherwise, the outputs
+        of these invocations are merged directly with the pipeline
+        itself.
 
-// returns true if the given service name exists and is actually a service
-tundra.service:validate($service);
-```
+* #### tundra.service:invoke
+
+    Invokes a service either synchronously or asynchronously, and 
+    either scoped or unscoped.
+
+    * Inputs
+      * `$service` is the fully-qualified name of the service to be
+        invoked.
+      * `$pipeline` is an optional IData document which, if specified,
+        contains the input arguments for the invocation of `$service`; 
+        in other words, the invocation is scoped to this IData document. 
+        If not specified, the invocation is unscoped, and hence the
+        service will operate directly against the pipeline itself.
+      * `$mode` is an optional choice of execution mode: either synchronous
+        or asynchronous. When synchronous, the invocation of 
+        `Tundra/tundra.service:invoke` blocks until the invocation of 
+        `$service` completes. When asynchronous, `Tundra/tundra.service:invoke` 
+        returns immediately and the invocation of `$service` occurs on another 
+        thread.
+
+    * Outputs:
+      * `$pipeline` is the output pipeline of the invocation of
+        `$service`. This is only returned if the `$mode` is synchronous,
+        and the invocation was scoped (`$pipeline` was specified as an 
+        input). If the invocation was synchronous and unscoped, the 
+        outputs of the invocation are merged directly with the pipeline 
+        itself. If the invocation was asynchronous, then no outputs
+        are returned.
+      * `$thread` is returned only when the invocation `$mode` is asynchronous, 
+        and is the thread object which can later be waited on to finish 
+        using `Tundra/tundra.service:join`.
+
+* #### tundra.service:join
+
+    Waits for the given service thread to finish before returning the 
+    service output pipeline.
+
+    * Inputs
+      * `$thread` is a service thread object returned by 
+        `Tundra/tundra.service:invoke` when a service is invoked
+        asynchronously.
+
+    * Outputs:
+      * `$pipeline` is the output pipeline returned by the service 
+        thread.
+
+* #### tundra.service:nothing
+
+    This service deliberately does nothing.
+
+* #### tundra.service:self
+
+    Returns the name of the current service, or null if invoked 
+    directly.
+
+    * Outputs:
+      * `$self` is the fully-qualified name of the current service 
+        (the service which called this service), or null if invoked 
+        directly.
+
+* #### tundra.service:sleep
+
+    Sends the currently executing thread to sleep (temporarily 
+    cease execution) for the specified duration, subject to the 
+    precision and accuracy of system timers and schedulers.
+
+    * Inputs:
+      * `$duration` is an [ISO8601]/XML duration for which the
+        current thread should sleep.
+
+* #### tundra.service:validate
+
+    Returns true if the given service name exists and is actually 
+    a service.
+
+    * Inputs:
+      * `$service` is the name to be validated.
+      * `$raise?` is a boolean flag indicating if an exception should
+        be thrown if the given service is not valid. Defaults to
+        false.
+
+    * Outputs:
+      * `$valid?` is a boolean flag indicating if the given service
+        exists and is actually a service on this Integration Server.
 
 ### Session
 
@@ -3440,3 +3528,6 @@ Copyright © 2012 Lachlan Dowding. See license.txt for further details.
 [MIME]: <http://en.wikipedia.org/wiki/MIME>
 [RFC 2045]: <http://www.ietf.org/rfc/rfc2045.txt>
 [RFC 2046]: <http://www.ietf.org/rfc/rfc2046.txt>
+[try block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/try.html>
+[catch block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/catch.html>
+[finally block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/finally.html>

@@ -52,8 +52,15 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Sends the currently executing thread to sleep (temporarily cease execution) for the specified 
-duration, subject to the precision and accuracy of system timers and schedulers.</value>
+  <value name="node_comment">Sends the currently executing thread to sleep (temporarily 
+cease execution) for the specified duration, subject to the 
+precision and accuracy of system timers and schedulers.
+
+* Inputs:
+  * $duration is an [ISO8601]/XML duration for which the
+    current thread should sleep.
+
+[ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

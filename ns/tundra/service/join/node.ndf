@@ -58,7 +58,17 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Waits for the given service thread to finish before returning the service output pipeline.</value>
+  <value name="node_comment">Waits for the given service thread to finish before returning the 
+service output pipeline.
+
+* Inputs
+  * $thread is a service thread object returned by 
+    Tundra/tundra.service:invoke when a service is invoked
+    asynchronously.
+
+* Outputs:
+  * $pipeline is the output pipeline returned by the service 
+    thread.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

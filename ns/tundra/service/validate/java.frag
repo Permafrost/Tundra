@@ -4,7 +4,9 @@
   <value name="name">validate</value>
   <value name="encodeutf8">true</value>
   <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogIFN0cmlu
-ZyBzZXJ2aWNlID0gSURhdGFVdGlsLmdldFN0cmluZyhjdXJzb3IsICIkc2VydmljZSIpOwogIElE
-YXRhVXRpbC5wdXQoY3Vyc29yLCAiJHZhbGlkPyIsICIiICsgdmFsaWRhdGUoc2VydmljZSkpOwp9
-IGZpbmFsbHkgewogIGN1cnNvci5kZXN0cm95KCk7Cn0=</value>
+ZyBzZXJ2aWNlID0gSURhdGFVdGlsLmdldFN0cmluZyhjdXJzb3IsICIkc2VydmljZSIpOwogIGJv
+b2xlYW4gcmFpc2UgPSB0dW5kcmEuYm9vbC5wYXJzZShJRGF0YVV0aWwuZ2V0U3RyaW5nKGN1cnNv
+ciwgIiRyYWlzZT8iKSk7CiAgSURhdGFVdGlsLnB1dChjdXJzb3IsICIkdmFsaWQ/IiwgIiIgKyB2
+YWxpZGF0ZShzZXJ2aWNlLCByYWlzZSkpOwp9IGZpbmFsbHkgewogIGN1cnNvci5kZXN0cm95KCk7
+Cn0=</value>
 </Values>

@@ -53,7 +53,13 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Returns the name of the current service, or null if invoked directly.</value>
+  <value name="node_comment">Returns the name of the current service, or null if invoked 
+directly.
+
+* Outputs:
+  * $self is the fully-qualified name of the current service 
+    (the service which called this service), or null if invoked 
+    directly.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

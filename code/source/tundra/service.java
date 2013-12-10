@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-06-17 16:42:06 EST
-// -----( ON-HOST: 172.16.189.194
+// -----( CREATED: 2013-12-10 15:13:01.413
+// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -211,12 +211,14 @@ public final class service
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $service
+		// [i] field:0:optional $raise? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:required $valid?
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String service = IDataUtil.getString(cursor, "$service");
-		  IDataUtil.put(cursor, "$valid?", "" + validate(service));
+		  boolean raise = tundra.bool.parse(IDataUtil.getString(cursor, "$raise?"));
+		  IDataUtil.put(cursor, "$valid?", "" + validate(service, raise));
 		} finally {
 		  cursor.destroy();
 		}
@@ -227,8 +229,17 @@ public final class service
 
 	// --- <<IS-START-SHARED>> ---
 	// returns true if the given string is a service and exists
-	public static boolean validate(String service) {
-	  return tundra.node.exists(service) && tundra.node.type(service).equals("service");
+	public static boolean validate(String service) throws ServiceException {
+	  return validate(service, false);
+	}
+	
+	// returns true if the given string is a service and exists
+	public static boolean validate(String service, boolean raise) throws ServiceException {
+	  boolean valid = tundra.node.exists(service) && "service".equals(tundra.node.type(service));
+	
+	  if (raise && !valid) throw new ServiceException("Service does not exist: " + service);
+	  
+	  return valid;
 	}
 	
 	// returns the invocation call stack

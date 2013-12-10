@@ -141,14 +141,36 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Provides a try/catch/finally pattern for flow services. If $service throws an exception when invoked, then 
-the arguments $exception, $exception?, $exception.class, $exception.message and $exception.stack are added
-to the pipeline.
+  <value name="node_comment">Provides a try/catch/finally pattern for flow services. 
 
-If specified, the $catch service is invoked to handle the exception, otherwise the exception is rethrown. 
-The $catch service should implement the Tundra/tundra.schema.exception:handler specification.
+* Inputs
+  * $service is the fully-qualified name of a service invoked 
+    in the [try block].
+  * $catch is an optional fully-qualified name of a service
+    invoked in the [catch block]. This service should
+    implement the Tundra/tundra.schema.exception:handler
+    specification. If no $catch service is specified, the
+    exception will be rethrown.
+  * $finally is an optional fully-qualified name of a service
+    invoked in the [finally block] (always invoked regardless
+    of whether an exception is thrown by $service or not).
+  * $pipeline is an optional IData document containing input
+    arguments for the invocation of $service. If specified,
+    the invocations of $service, $catch, and $finally are 
+    scoped to this document. If not specified, the invocations
+    are not scoped, and hence these services operate directly
+    against the pipeline itself.
 
-If specified, the $finally service is always invoked, whether an exception was thrown by $service or not.</value>
+* Outputs:
+  * $pipeline is the output pipeline of the invocations of
+    $service, $catch, and $finally. This is only returned if
+    $pipeline was specified as an input. Otherwise, the outputs
+    of these invocations are merged directly with the pipeline
+    itself.
+
+[try block]: &lt;http://docs.oracle.com/javase/tutorial/essential/exceptions/try.html&gt;
+[catch block]: &lt;http://docs.oracle.com/javase/tutorial/essential/exceptions/catch.html&gt;
+[finally block]: &lt;http://docs.oracle.com/javase/tutorial/essential/exceptions/finally.html&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
