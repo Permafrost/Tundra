@@ -1638,63 +1638,264 @@ Services for manipulating durations of time:
 
 File system services for working with files:
 
-```java
-// atomically creates a new, empty file
-tundra.file:create($file);
+* #### tundra.file:create
 
-// returns true if the file can be executed
-tundra.file:executable($file);
+    Atomically creates a new empty file if a file with this name does not 
+    yet exist. 
 
-// returns true if the file exists and is a file
-tundra.file:exists($file);
+    The check for the existence of the file and the creation of the file 
+    if it does not exist are a single operation that is atomic with respect 
+    to all other file system activities that might affect the file.
 
-// returns the length of the given file in bytes
-tundra.file:length($file);
+    * Inputs:
+      * `$file` is the name of the file to be created, specified as either a
+        relative or absolute file path or file: [URI]. If the file already
+        exists, an exception will be thrown.
 
-// returns true if the given filename matches the given regular expression or wildcard
-// pattern; note: only the file name is considered in the match, not the path
-tundra.file:match($file, $pattern, $mode);
+* #### tundra.file:executable
 
-// returns the canonical file: URI that represents the given file
-tundra.file:normalize($file);
+    Returns true if Integration Server can execute to the given file.
 
-// opens a file for reading, appending, or writing, calls the given service passing
-// the resulting file stream object as an input argument, with the name specified by
-// $service.input or '$stream' if not specified, and closes the stream when done
-tundra.file:process($file, $mode, $service, $pipeline, $service.input);
+    * Inputs:
+      * `$file` is the name of the file to test if Integration Server has
+        execution permissions, specified as either a relative or absolute 
+        file path or file: [URI].
 
-// reads a file in full, returning the content as either a byte array or
-// string
-tundra.file:read($file, $mode, $encoding);
+    * Outputs:
+      * `$executable?` is a boolean flag indicating if Integration Server
+        has permission to execute the given file. If the file does not
+        exist, false is returned.
 
-// returns true if the file can be read
-tundra.file:readable($file);
+* #### tundra.file:exists
 
-// deletes the given file
-tundra.file:remove($file);
+    Returns true if the given file exists.
 
-// renames the source file to the target name
-tundra.file:rename($file.source, $file.target);
+    * Inputs:
+      * `$file` is the name of the file to test existence of, specified as 
+        either a relative or absolute file path or file: [URI].
 
-// updates the modified time, or creates a new file if it doesn't already
-// exist
-tundra.file:touch($file);
+    * Outputs:
+      * `$exists?` is a boolean flag indicating if the given file exists.
 
-// determines the mime type for the given file name or file URI; Integration
-// Server file extension to mime type mappings are defined in the file
-// ./lib/mime.types; if the mime type cannot be found, it defaults to the
-// type for arbitrary binary data: application/octet-stream
-// refer: <http://en.wikipedia.org/wiki/Internet_media_type>
-tundra.file:type($file);
+* #### tundra.file:length
 
-// returns true if the file can be written to
-tundra.file:writable($file);
+    Returns the length of the given file in bytes.
 
-// writes or appends data (provided as a string, byte array or input stream)
-// to the given file; if $file is null, a new temporary file is automatically
-// created
-tundra.file:write($file, $mode, $content, $encoding);
-```
+    * Inputs:
+      * `$file` is the name of the file whose length is to be 
+        checked, specified as either a relative or absolute 
+        file path or file: [URI].
+
+    * Outputs:
+      * `$length` is the length or size in bytes of the given 
+        file. If the file does not exist, zero is returned.
+
+* #### tundra.file:match
+
+    Returns true if the given file name matches the given 
+    regular expression or wildcard pattern. 
+
+    * Inputs:
+      * `$file` is the name of the file to be checked against
+        the given `$pattern`, specified as either a relative or 
+        absolute file path or file: [URI].
+      * `$pattern` is either a regular expression or wildcard
+        pattern, depending on the `$mode` selected, to check 
+        the file name against
+      * `$mode` is an optional choice of either 'regex' or 
+        'wildcard' which determines the type of pattern
+        specified. Defaults to 'regex'.
+
+    * Outputs:
+      * `$match?` is a boolean flag indicating if the file name
+        matches the given `$pattern`. Only the file name is 
+        considered in the match, not the path.
+
+* #### tundra.file:normalize
+
+    Returns the canonical file: URI that represents the given 
+    file.
+
+    * Inputs:
+      * `$file` is the file name to be normalized to the canonical
+        file: [URI], specified as either a relative or absolute 
+        file path or file: [URI].
+
+    * Outputs:
+      * `$file` is the canonical file: [URI] that represents the
+        given file.
+
+* #### tundra.file:process
+
+    Provides a safe way of processing a file as a stream, which
+    is useful for large files or memory constrained environments, 
+    by opening a file for reading, writing, or appending, calling
+    the given service with the opened file stream object as an 
+    input, and finally closing the stream when done.
+
+    As such, the invoked service does not need to open or close the file
+    stream itself, it only needs to process the opened file stream.
+    The stream is guaranteed to be closed automatically, regardless
+    of whether an exception is encountered by the service.
+
+    * Inputs:
+      * `$file` is the name of the file to be processed, specified 
+        as either a relative or absolute file path or file: [URI].
+      * `$mode` is an optional choice of 'read', 'write', or
+        'append' which determines whether the file is opened for
+        reading, writing, or appending. Defaults to 'read'.
+      * `$service` is the fully-qualified name of the service which
+        will be called to process the opened file.
+      * `$pipeline` is an optional IData document for specifying
+        arbitrary input parameters to the call to `$service`. If 
+        provided, the call to `$service` is scoped with this IData,
+        and will not have access to the global pipeline.
+      * `$service.input` is an optional input parameter name used
+        when adding the opened file stream to the input pipeline
+        of the call tor `$service`. Defaults to '$stream'.
+
+    * Outputs:
+      * `$pipeline` is an optional IData document representing the 
+        output pipeline of the call to `$service`. This will only
+        be returned if an input `$pipeline` was provided. If no
+        input `$pipeline` was provided, any outputs from the call
+        to `$service` will be merged directly into the global 
+        pipeline.
+
+* #### tundra.file:read
+
+    Reads a file in full, returning the content as either an input 
+    stream, byte array, or string. 
+
+    As this service reads the entire file into memory, consider 
+    using tundra.file:process instead for large files or in memory 
+    constrained environments.
+
+    * Inputs:
+      * `$file` is the name of the file to be read, specified as 
+        either a relative or absolute file path or file: [URI].
+      * `$mode` is an optional choice of 'stream', 'bytes', or
+        'string' which determines how the file contents are
+        returned. Defaults to 'stream'.
+      * `$encoding` is an optional character set to use when reading
+        the file as a string. Defaults to the Java virtual machine 
+        [default charset].
+
+    * Outputs:
+      * `$content` is the file contents returned as either an input
+        stream, byte array, or string depending on the `$mode` 
+        selected. Note that even when returned as an input stream,
+        the entire file has been read into memory. This mode is 
+        provided as a convenience only, and since the file contents
+        are returned as a [java.io.ByteArrayInputStream] object the 
+        stream does not need to be explicitly closed as no system
+        resources (file handles) are held.
+
+* #### tundra.file:readable
+
+    Returns true if Integration Server can read the given file.
+
+    * Inputs:
+      * `$file` is the name of the file to test if Integration Server has
+        read permissions, specified as either a relative or absolute 
+        file path or file: [URI].
+
+    * Outputs:
+      * `$readable?` is a boolean flag indicating if Integration Server
+        has permission to read the given file. If the file does not
+        exist, false is returned.
+
+* #### tundra.file:remove
+
+    Deletes the given file, if it exists. This service does nothing if the
+    file does not exist (no exception is thrown).
+
+    * Inputs:
+      * `$file` is the name of the file to be deleted, specified as either a
+        relative or absolute file path or file: [URI]. If the file does not
+        exists, this service does nothing.
+
+* #### tundra.file:rename
+
+    Renames the source file to the target file name.
+
+    * Inputs:
+      * `$file.source` is the name of the file to be renamed, specified as either a
+        relative or absolute file path or file: [URI]. If the source file does not
+        exist, an exception will be thrown.
+      * `$file.target` is the new name for the renamed file, specified as either a
+        relative or absolute file path or file: [URI]. If the target file already
+        exists, an exception will be thrown.
+
+* #### tundra.file:touch
+
+    Updates the modification time of the given file to now, or creates a 
+    new file if it doesn't already exist.
+
+    * Inputs:
+      * `$file` is the name of the file to be touched, specified as either a
+        relative or absolute file path or file: [URI]. If the file does not
+        exist, it will be created. If the file does exist, its modification
+        time will be updated to current time.
+
+* #### tundra.file:type
+
+    Determines the [mime type] for the given file. 
+
+    Integration Server file extension to [mime type] mappings are defined 
+    in the file ./lib/mime.types. If the [mime type] cannot be found, it 
+    defaults to the [mime type] for arbitrary binary data: 
+
+        application/octet-stream
+
+    * Inputs:
+      * `$file` is the name of the file whose mime type is to be determined, 
+        specified as either a relative or absolute file path or file: [URI]. 
+        The file is not required to exist, since the mime type is determined
+        purely from the file name itself.
+
+    * Outputs:
+      * `$type` is the [mime type] of the given file.
+
+* #### tundra.file:writable
+
+    Returns true if Integration Server can write to the given file.
+
+    * Inputs:
+      * `$file` is the name of the file to test if Integration Server has
+        write permissions, specified as either a relative or absolute 
+        file path or file: [URI].
+
+    * Outputs:
+      * `$writable?` is a boolean flag indicating if Integration Server
+        has permission to write or append to the given file. If the 
+        file does not exist, false is returned.
+
+* #### tundra.file:write
+
+    Writes or appends the content, provided as a string, byte array or input 
+    stream, to the given file.
+
+    If no file is specified, a new temporary file is created automatically.
+
+    * Inputs:
+      * `$file` is the optional name of the file to which the given content
+        is to be written or appended, specified as either a relative or 
+        absolute file path or file: [URI]. If not specified, a new temporary
+        file will be created automatically.
+      * `$mode` is an optional choice of 'write' or 'append', which determines
+        whether the file will be overwritten or appended to respectively.
+        Defaults to 'append', since this is the safer option.
+      * `$content` is a string, byte array, or input stream containing data
+        to be written or appended to the given file.
+      * `$encoding` is an optional character set to use when $content has
+        been provided as a string. Defaults to the Java virtual machine 
+        [default charset].
+
+    * Outputs:
+      * `$file` is the name of the file that was written or appended to. If
+        no input file name was specified, this is the name of the temporary
+        file that was created automatically.
 
 ### HTTP
 
@@ -3105,3 +3306,5 @@ Copyright © 2012 Lachlan Dowding. See license.txt for further details.
 [java.lang.String]: <http://docs.oracle.com/javase/6/docs/api/java/lang/String.html>
 [java.io.InputStream]: <http://docs.oracle.com/javase/6/docs/api/java/io/InputStream.html>
 [java.io.OutputStream]: <http://docs.oracle.com/javase/6/docs/api/java/io/OutputStream.html>
+[java.io.ByteArrayInputStream]: <http://docs.oracle.com/javase/6/docs/api/java/io/ByteArrayInputStream.html>
+[mime type]: <http://en.wikipedia.org/wiki/Internet_media_type>

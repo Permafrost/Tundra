@@ -53,7 +53,15 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Deletes the given file.</value>
+  <value name="node_comment">Deletes the given file, if it exists. This service does nothing if the
+file does not exist (no exception is thrown).
+
+* Inputs:
+  * $file is the name of the file to be deleted, specified as either a
+    relative or absolute file path or file: [URI]. If the file does not
+    exists, this service does nothing.
+
+[URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

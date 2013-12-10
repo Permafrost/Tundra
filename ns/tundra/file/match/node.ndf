@@ -7,7 +7,6 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
-      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -22,7 +21,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$file</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -49,7 +47,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$pattern</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -76,7 +73,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$mode</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -135,11 +131,9 @@
           <value name="is_global">false</value>
         </record>
       </array>
-      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
-      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -154,7 +148,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$match?</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -174,11 +167,28 @@
           <value name="is_global">false</value>
         </record>
       </array>
-      <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns true if the given filename matches the given regular expression or wildcard 
-pattern. Note: only the file name is considered in the match, not the path.</value>
+  <value name="node_comment">Returns true if the given file name matches the given 
+regular expression or wildcard pattern. 
+
+* Inputs:
+  * $file is the name of the file to be checked against
+    the given pattern, specified as either a relative or 
+    absolute file path or file: [URI].
+  * $pattern is either a regular expression or wildcard
+    pattern, depending on the $mode selected, to check 
+    the file name against
+  * $mode is an optional choice of either 'regex' or 
+    'wildcard' which determines the type of pattern
+    specified. Defaults to 'regex'.
+
+* Outputs:
+  * $match? is a boolean flag indicating if the file name
+    matches the given $pattern. Only the file name is 
+    considered in the match, not the path.
+
+[URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
@@ -195,16 +205,10 @@ pattern. Note: only the file name is considered in the match, not the path.</val
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
-  <null name="auditfields_input"/>
-  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
-  <value name="pipeline_option">1</value>
-  <null name="originURI"/>
-  <value name="modifiable">true</value>
-  <value name="is_public">false</value>
 </Values>

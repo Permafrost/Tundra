@@ -78,11 +78,25 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Determines the mime type[1] for the given file name or file URI. Integration Server file extension 
-to mime type mappings are defined in the file ./lib/mime.types. If the mime type cannot be found, 
-it defaults to the type for arbitrary binary data: application/octet-stream.
+  <value name="node_comment">Determines the [mime type] for the given file. 
 
-[1]: &lt;http://en.wikipedia.org/wiki/Internet_media_type&gt;</value>
+Integration Server file extension to [mime type] mappings are defined 
+in the file ./lib/mime.types. If the [mime type] cannot be found, it 
+defaults to the [mime type] for arbitrary binary data: 
+
+    application/octet-stream
+
+* Inputs:
+  * $file is the name of the file whose mime type is to be determined, 
+    specified as either a relative or absolute file path or file: [URI]. 
+    The file is not required to exist, since the mime type is determined
+    purely from the file name itself.
+
+* Outputs:
+  * $type is the [mime type] of the given file.
+
+[mime type]: &lt;http://en.wikipedia.org/wiki/Internet_media_type&gt;
+[URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

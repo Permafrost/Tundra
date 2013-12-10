@@ -41,8 +41,16 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Updates the modification time of the given file to now, or creates a new file 
-if it doesn't already exist.</value>
+  <value name="node_comment">Updates the modification time of the given file to now, or creates a 
+new file if it doesn't already exist.
+
+* Inputs:
+  * $file is the name of the file to be touched, specified as either a
+    relative or absolute file path or file: [URI]. If the file does not
+    exist, it will be created. If the file does exist, its modification
+    time will be updated to current time.
+
+[URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

@@ -210,9 +210,42 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Opens a file for reading, appending, or writing, calls the given service passing
-the resulting file stream object as an input argument, with the name specified by 
-$service.input or '$stream' if not specified, and closes the stream when done.</value>
+  <value name="node_comment">Provides a safe way of processing a file as a stream, which
+is useful for large files or memory constrained environments, 
+by opening a file for reading, writing, or appending, calling
+the given service with the opened file stream object as an 
+input, and finally closing the stream when done.
+
+As such, the invoked service does not need to open or close the 
+file stream itself, it only needs to process the opened file 
+stream. The stream is guaranteed to be closed automatically, 
+regardless of whether an exception is encountered by the service.
+
+* Inputs:
+  * $file is the name of the file to be processed, specified 
+    as either a relative or absolute file path or file: [URI].
+  * $mode is an optional choice of 'read', 'write', or
+    'append' which determines whether the file is opened for
+    reading, writing, or appending. Defaults to 'read'.
+  * $service is the fully-qualified name of the service which
+    will be called to process the opened file.
+  * $pipeline is an optional IData document for specifying
+    arbitrary input parameters to the call to $service. If 
+    provided, the call to $service is scoped with this IData,
+    and will not have access to the global pipeline.
+  * $service.input is an optional input parameter name used
+    when adding the opened file stream to the input pipeline
+    of the call tor $service. Defaults to '$stream'.
+
+* Outputs:
+  * $pipeline is an optional IData document representing the 
+    output pipeline of the call to $service. This will only
+    be returned if an input $pipeline was provided. If no
+    input $pipeline was provided, any outputs from the call
+    to $service will be merged directly into the global 
+    pipeline.
+
+[URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

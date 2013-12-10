@@ -52,11 +52,19 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Atomically creates a new, empty file if a file with this name does not yet exist. 
+  <value name="node_comment">Atomically creates a new empty file if a file with this name does not 
+yet exist. 
 
-The check for the existence of the file and the creation of the file if it does 
-not exist are a single operation that is atomic with respect to all other 
-filesystem activities that might affect the file.</value>
+The check for the existence of the file and the creation of the file 
+if it does not exist are a single operation that is atomic with respect 
+to all other file system activities that might affect the file.
+
+* Inputs:
+  * $file is the name of the file to be created, specified as either a
+    relative or absolute file path or file: [URI]. If the file already
+    exists, an exception will be thrown.
+
+[URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

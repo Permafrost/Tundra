@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-07-24 20:02:11 EST
-// -----( ON-HOST: 172.16.189.250
+// -----( CREATED: 2013-12-10 10:01:42.247
+// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -210,7 +210,7 @@ public final class file
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $file
-		// [i] field:0:required $mode {&quot;bytes&quot;,&quot;string&quot;}
+		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
 		// [i] field:0:optional $encoding
 		// [o] object:0:required $content
 		IDataCursor cursor = pipeline.getCursor();
@@ -532,7 +532,9 @@ public final class file
 	
 	      tundra.stream.copy(input, output);
 	
-	      if (mode == null || mode.equals("bytes")) {
+	      if (mode == null || mode.equals("stream")) {
+	        content = new java.io.ByteArrayInputStream(output.toByteArray());
+	      } else if (mode.equals("bytes")) {
 	        content = output.toByteArray();
 	      } else {
 	        content = output.toString(encoding == null? tundra.support.constant.DEFAULT_CHARACTER_ENCODING : encoding);

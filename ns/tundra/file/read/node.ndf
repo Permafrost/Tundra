@@ -50,12 +50,19 @@
           <value name="field_name">$mode</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
           <array name="field_options" type="value" depth="1">
+            <value>stream</value>
             <value>bytes</value>
             <value>string</value>
           </array>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <array name="enumeration" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="primitiveType">0</value>
+                <value name="lexRep">stream</value>
+                <value name="isList">false</value>
+              </record>
               <record javaclass="com.wm.util.Values">
                 <value name="primitiveType">0</value>
                 <value name="lexRep">bytes</value>
@@ -99,7 +106,7 @@
             </record>
             <value name="dataTypeVersion">dtVersion2</value>
           </record>
-          <value name="nillable">false</value>
+          <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
         </record>
@@ -157,7 +164,36 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Reads a file in full, returning the content as either a byte array or string.</value>
+  <value name="node_comment">Reads a file in full, returning the content as either an input 
+stream, byte array, or string. 
+
+As this service reads the entire file into memory, consider 
+using tundra.file:process instead for large files or in memory 
+constrained environments.
+
+* Inputs:
+  * $file is the name of the file to be read, specified as 
+    either a relative or absolute file path or file: [URI].
+  * $mode is an optional choice of 'stream', 'bytes', or
+    'string' which determines how the file contents are
+    returned. Defaults to 'stream'.
+  * $encoding is an optional character set to use when reading
+    the file as a string. Defaults to the Java virtual machine 
+    [default charset].
+
+* Outputs:
+  * $content is the file contents returned as either an input
+    stream, byte array, or string depending on the $mode 
+    selected. Note that even when returned as an input stream,
+    the entire file has been read into memory. This mode is 
+    provided as a convenience only, and since the file contents
+    are returned as a [java.io.ByteArrayInputStream] object the 
+    stream does not need to be explicitly closed as no system
+    resources (file handles) are held.
+
+[default charset]: &lt;http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()&gt;
+[java.io.ByteArrayInputStream]: &lt;http://docs.oracle.com/javase/6/docs/api/java/io/ByteArrayInputStream.html&gt;
+[URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
