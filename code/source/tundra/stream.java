@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-04-21 10:29:44 EST
-// -----( ON-HOST: 172.16.189.153
+// -----( CREATED: 2013-12-10 11:52:24.282
+// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -113,7 +113,7 @@ public final class stream
 	    if (object instanceof java.io.BufferedInputStream) {
 	      stream = (java.io.BufferedInputStream)object;
 	    } else if (object instanceof java.io.InputStream) {
-	      stream = new java.io.BufferedInputStream((java.io.InputStream)object);
+	      stream = new java.io.BufferedInputStream((java.io.InputStream)object, tundra.support.constant.DEFAULT_BUFFER_SIZE);
 	    } else if (object instanceof byte[]) {
 	      stream = new java.io.ByteArrayInputStream((byte[])object);
 	    } else if (object instanceof String) {
@@ -139,8 +139,8 @@ public final class stream
 	    char[] buffer = new char[tundra.support.constant.DEFAULT_BUFFER_SIZE];
 	    int length = 0;
 	    
-	    if (!(reader instanceof java.io.BufferedReader)) reader = new java.io.BufferedReader(reader);
-	    if (!(writer instanceof java.io.BufferedWriter)) writer = new java.io.BufferedWriter(writer);
+	    if (!(reader instanceof java.io.BufferedReader)) reader = new java.io.BufferedReader(reader, tundra.support.constant.DEFAULT_BUFFER_SIZE);
+	    if (!(writer instanceof java.io.BufferedWriter)) writer = new java.io.BufferedWriter(writer, tundra.support.constant.DEFAULT_BUFFER_SIZE);
 	  
 	    while((length = reader.read(buffer)) > 0) {
 	      writer.write(buffer, 0, length);
@@ -158,8 +158,8 @@ public final class stream
 	    byte[] buffer = new byte[tundra.support.constant.DEFAULT_BUFFER_SIZE];
 	    int length = 0;
 	    
-	    if (!(in instanceof java.io.BufferedInputStream)) in = new java.io.BufferedInputStream(in);
-	    if (!(out instanceof java.io.BufferedOutputStream)) out = new java.io.BufferedOutputStream(out);
+	    if (!(in instanceof java.io.BufferedInputStream)) in = new java.io.BufferedInputStream(in, tundra.support.constant.DEFAULT_BUFFER_SIZE);
+	    if (!(out instanceof java.io.BufferedOutputStream)) out = new java.io.BufferedOutputStream(out, tundra.support.constant.DEFAULT_BUFFER_SIZE);
 	
 	    while((length = in.read(buffer)) > 0) {
 	      out.write(buffer, 0, length);
