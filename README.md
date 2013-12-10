@@ -2595,43 +2595,82 @@ tundra.list.string:uppercase($list[]);
 
 ### MIME
 
-Services related to Multipurpose Internet Mail Extension (MIME):
+Services related to Multipurpose Internet Mail Extension ([MIME]):
 
-```java
-// Parses a Multipurpose Internet Mail Extension (MIME) type, according to RFC 2045
-// <http://www.ietf.org/rfc/rfc2045.txt> and 2046 <http://www.ietf.org/rfc/rfc2046.txt>,
-// into its constituent parts.
-//
-// Refer: <http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html>
-tundra.mime.type:equal($string.x, $string.y)
+* #### tundra.mime.type:emit
 
-// Emits a Multipurpose Internet Mail Extension (MIME) type, according to RFC 2045
-// <http://www.ietf.org/rfc/rfc2045.txt> and 2046 <http://www.ietf.org/rfc/rfc2046.txt>,
-// given its constituent parts.
-//
-// Refer: <http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html>
-tundra.mime.type:emit($type);
+    Emits a Multipurpose Internet Mail Extension ([MIME]) type, 
+    according to [RFC 2045] and [RFC 2046], given its constituent 
+    parts.
 
-// Normalizes a Multipurpose Internet Mail Extension (MIME) type by removing extraneous
-// whitespace characters, and listing parameters in alphabetical order.
-//
-// Refer: <http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html>
-tundra.mime.type:normalize($string);
+    Implemented with the [javax.activation.MimeType] class.
 
-// Parses a Multipurpose Internet Mail Extension (MIME) type, according to RFC 2045
-// <http://www.ietf.org/rfc/rfc2045.txt> and 2046 <http://www.ietf.org/rfc/rfc2046.txt>,
-// into its constituent parts.
-//
-// Refer: <http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html>
-tundra.mime.type:parse($string);
+    * Inputs:
+      * `$type` is an optional [mime type] data structure of the
+        constituent parts that make a [mime type].
 
-// Returns true if the given string can be parsed as a valid Multipurpose Internet Mail
-// Extension (MIME) type, according to RFC 2045 <http://www.ietf.org/rfc/rfc2045.txt>
-// and 2046 <http://www.ietf.org/rfc/rfc2046.txt>.
-//
-// Refer: <http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html>
-tundra.mime.type:validate($string);
-```
+    * Outputs:
+      * `$string` is resulting [mime type] in its canonical string
+        representation.
+
+* #### tundra.mime.type:equal
+
+    Returns true if the given [mime type] strings are considered equal.
+
+    * Inputs:
+      * `$string.x` is an optional [mime type] string to be compared
+        with `$string.y`.
+      * `$string.y` is an optional [mime type] string to be compared
+        with `$string.x`.
+
+    * Outputs:
+      * `$equal?` is true if the given [mime type] strings are considered
+        equal (their base and sub types both match).
+
+* #### tundra.mime.type:normalize
+
+    Normalizes a mime type by removing extraneous whitespace characters, 
+    and listing parameters in alphabetical order.
+
+    Implemented with the [javax.activation.MimeType] class.
+
+    * Inputs:
+      * `$string` is an optional [mime type] string to be normalized.
+
+    * Outputs:
+      * `$string` is the normalized [mime type] string.
+
+* #### tundra.mime.type:parse
+
+    Parses a Multipurpose Internet Mail Extension ([MIME]) type, according 
+    to [RFC 2045] and [RFC 2046], into its constituent parts.
+
+    Implemented with the [javax.activation.MimeType] class.
+
+    * Inputs:
+      * `$string` is an optional [mime type] string to be normalized.
+
+    * Outputs:
+      * `$type` is an IData data structure representing the constituent
+        parts of a [mime type] string.
+
+* #### tundra.mime.type:validate
+
+    Returns true if the given string can be parsed as a valid Multipurpose 
+    Internet Mail Extension ([MIME]) type, according to [RFC 2045] and 
+    [RFC 2046].
+
+    Implemented with the [javax.activation.MimeType] class.
+
+    * Inputs:
+      * `$string` is an optional [mime type] string to be validated.
+      * `$raise?` is an optional boolean indicating whether to throw an
+        exception if the given string is not a valid [mime type] string.
+        Defaults to false.
+
+    * Outputs:
+      * `$valid?` is a boolean indicating if the given string is a valid
+        [mime type] string.
 
 ### Node
 
@@ -3382,8 +3421,6 @@ Copyright © 2012 Lachlan Dowding. See license.txt for further details.
 [default charset]: <http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()>
 [HTTP]: <http://tools.ietf.org/search/rfc2616>
 [HTTP response code]: <http://httpstatus.es/>
-[ISO8601]: <http://en.wikipedia.org/wiki/ISO_8601>
-[java.text.SimpleDateFormat]: <http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html>
 [SAX]: <http://en.wikipedia.org/wiki/Simple_API_for_XML>
 [XML]: <http://www.w3.org/XML/>
 [XSD]: <http://www.w3.org/XML/Schema>
@@ -3399,3 +3436,7 @@ Copyright © 2012 Lachlan Dowding. See license.txt for further details.
 [mime type]: <http://en.wikipedia.org/wiki/Internet_media_type>
 [primitive type]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Class.html#isPrimitive()>
 [Object.toString()]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html#toString()>
+[javax.activation.MimeType]: <http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html>
+[MIME]: <http://en.wikipedia.org/wiki/MIME>
+[RFC 2045]: <http://www.ietf.org/rfc/rfc2045.txt>
+[RFC 2046]: <http://www.ietf.org/rfc/rfc2046.txt>

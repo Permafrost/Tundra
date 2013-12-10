@@ -140,11 +140,25 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Emits a Multipurpose Internet Mail Extension (MIME) type, according to RFC 2045 
-&lt;http://www.ietf.org/rfc/rfc2045.txt&gt; and 2046 &lt;http://www.ietf.org/rfc/rfc2046.txt&gt;, 
-given its constituent parts.
+  <value name="node_comment">Emits a Multipurpose Internet Mail Extension ([MIME]) type, 
+according to [RFC 2045] and [RFC 2046], given its constituent 
+parts.
 
-Refer: &lt;http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html&gt;</value>
+Implemented with the [javax.activation.MimeType] class.
+
+* Inputs:
+  * $type is an optional [mime type] data structure of the
+    constituent parts that make a [mime type].
+
+* Outputs:
+  * $string is resulting [mime type] in its canonical string
+    representation.
+
+[javax.activation.MimeType]: &lt;http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html&gt;
+[MIME]: &lt;http://en.wikipedia.org/wiki/MIME&gt;
+[mime type]: &lt;http://en.wikipedia.org/wiki/Internet_media_type&gt;
+[RFC 2045]: &lt;http://www.ietf.org/rfc/rfc2045.txt&gt;
+[RFC 2046]: &lt;http://www.ietf.org/rfc/rfc2046.txt&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

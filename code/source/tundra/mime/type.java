@@ -1,8 +1,8 @@
 package tundra.mime;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-07-11 11:27:08.558
-// -----( ON-HOST: -
+// -----( CREATED: 2013-12-10 12:43:51.419
+// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -142,12 +142,15 @@ public final class type
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
+		// [i] field:0:optional $raise? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:required $valid?
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String string = IDataUtil.getString(cursor, "$string");
-		  IDataUtil.put(cursor, "$valid?", "" + validate(string));
+		  boolean raise = tundra.bool.parse(IDataUtil.getString(cursor, "$raise?"));
+		
+		  IDataUtil.put(cursor, "$valid?", "" + validate(string, raise));
 		} finally {
 		  cursor.destroy();
 		}
@@ -232,15 +235,22 @@ public final class type
 	}
 	
 	// returns true if the given string is a valid mime type
-	public static boolean validate(String string) {
+	public static boolean validate(String string, boolean raise) throws ServiceException {
 	  boolean valid = false;
 	  if (string != null) {
 	    try {
 	      javax.activation.MimeType type = new javax.activation.MimeType(string);
 	      valid = true;
-	    } catch (javax.activation.MimeTypeParseException ex) {}
+	    } catch (javax.activation.MimeTypeParseException ex) {
+	      if (raise) tundra.exception.raise(ex);
+	    }
 	  }
 	  return valid;
+	}
+	
+	// returns true if the given string is a valid mime type
+	public static boolean validate(String string) throws ServiceException {
+	  return validate(string, false);
 	}
 	// --- <<IS-END-SHARED>> ---
 }

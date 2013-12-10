@@ -106,11 +106,19 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Parses a Multipurpose Internet Mail Extension (MIME) type, according to RFC 2045 
-&lt;http://www.ietf.org/rfc/rfc2045.txt&gt; and 2046 &lt;http://www.ietf.org/rfc/rfc2046.txt&gt;, 
-into its constituent parts.
+  <value name="node_comment">Returns true if the given [mime type] strings are considered equal.
 
-Refer: &lt;http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html&gt;</value>
+* Inputs:
+  * $string.x is an optional [mime type] string to be compared
+    with $string.y.
+  * $string.y is an optional [mime type] string to be compared
+    with $string.x.
+
+* Outputs:
+  * $equal? is true if the given [mime type] strings are considered
+    equal (their base and sub types both match).
+
+[mime type]: &lt;http://en.wikipedia.org/wiki/Internet_media_type&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

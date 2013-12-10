@@ -80,10 +80,19 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Normalizes a Multipurpose Internet Mail Extension (MIME) type by removing extraneous
-whitespace characters, and listing parameters in alphabetical order.
+  <value name="node_comment">Normalizes a mime type by removing extraneous whitespace characters, 
+and listing parameters in alphabetical order.
 
-Refer: &lt;http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html&gt;</value>
+Implemented with the [javax.activation.MimeType] class.
+
+* Inputs:
+  * $string is an optional [mime type] string to be normalized.
+
+* Outputs:
+  * $string is the normalized [mime type] string.
+
+[javax.activation.MimeType]: &lt;http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html&gt;
+[mime type]: &lt;http://en.wikipedia.org/wiki/Internet_media_type&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

@@ -40,6 +40,37 @@
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
         </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_usereditable">false</value>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="field_name">$raise?</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <array name="field_options" type="value" depth="1">
+            <value>false</value>
+            <value>true</value>
+          </array>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">boolean</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
       </array>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
@@ -79,11 +110,27 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Returns true if the given string can be parsed as a valid Multipurpose Internet Mail 
-Extension (MIME) type, according to RFC 2045 &lt;http://www.ietf.org/rfc/rfc2045.txt&gt; 
-and 2046 &lt;http://www.ietf.org/rfc/rfc2046.txt&gt;.
+  <value name="node_comment">Returns true if the given string can be parsed as a valid Multipurpose 
+Internet Mail Extension ([MIME]) type, according to [RFC 2045] and 
+[RFC 2046].
 
-Refer: &lt;http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html&gt;</value>
+Implemented with the [javax.activation.MimeType] class.
+
+* Inputs:
+  * $string is an optional [mime type] string to be validated.
+  * $raise? is an optional boolean indicating whether to throw an
+    exception if the given string is not a valid [mime type] string.
+    Defaults to false.
+
+* Outputs:
+  * $valid? is a boolean indicating if the given string is a valid
+    [mime type] string.
+
+[javax.activation.MimeType]: &lt;http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html&gt;
+[MIME]: &lt;http://en.wikipedia.org/wiki/MIME&gt;
+[mime type]: &lt;http://en.wikipedia.org/wiki/Internet_media_type&gt;
+[RFC 2045]: &lt;http://www.ietf.org/rfc/rfc2045.txt&gt;
+[RFC 2046]: &lt;http://www.ietf.org/rfc/rfc2046.txt&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
