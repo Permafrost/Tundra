@@ -3208,54 +3208,193 @@ Services for manipulating java.io.InputStream and java.io.OutputStream objects:
 
 Services for manipulating java.lang.String objects:
 
-```java
-// returns the number of characters in the given string
-tundra.string:length($string);
+* #### tundra.string:length
 
-// returns all the lines in the given string as a list
-tundra.string:lines($string);
+    Returns the number of characters in the given string.
 
-// converts the String value identified by $key in the given $scope IData document (or the pipeline,
-// if not specified) to a new list of type String[] containing the original value as its single item,
-// unless the original value is already list; the given key can be simple or fully qualified, such
-// as a/b/c[0]/d
-tundra.string:listify($key, $scope);
+    * Inputs:
+      * `$string` is an optional string to return the length of.
 
-// returns the given string in lower case
-tundra.string:lowercase($string, $locale);
+    * Outputs:
+      * `$length` is the number of characters in the given string,
+        or zero if no string was specified.
 
-// returns whether the given regular expression pattern matches the given
-// string
-// refer: <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html>
-tundra.string:match($string, $pattern);
+* #### tundra.string:lines
 
-// converts a string, byte array or input stream to a string
-tundra.string:normalize($object, $encoding);
+    Returns all the lines in the given string as a list.
 
-// replaces all occurrences of the given regular expression pattern in the
-// given string, with the replacement string
-// refer: <http://download.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html>,
-//        <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Matcher.html>
-tundra.string:replace($string, $pattern, $replacement, $literal?);
+    * Inputs:
+      * `$string` is an optional string to split into lines.
 
-// splits the given string around matches of the given regular expression pattern
-tundra.string:split($string, $pattern);
+    * Outputs:
+      * `$lines` is a string list containing each line from
+        the given string.
 
-// replaces runs of one or more whitespace characters (space, tab, carriage return,
-// line feed) with a single space character
-tundra.string:squeeze($string);
+* #### tundra.string:listify
 
-// attempts variable substitution on the given string by replacing all occurrences of
-// substrings matching "%key%" with the associated (optionally scoped) value;
-// optionally replaces null or non-existent values with the given default value
-tundra.string:substitute($string, $pipeline, $default);
+    Converts the string value identified by the given key to a new list 
+    of type String[], containing the original value as its single item, 
+    unless the original value is already list in which case it remains 
+    unmodified.
 
-// returns the given string with leading and trailing whitespace removed
-tundra.string:trim($string);
+    * Inputs:
+      * `$key` is a simple or fully-qualified (such as a/b/c[0]/d) key 
+        identifying the string value to be converted to a list.
+      * `$scope` is an optional IData document that, if specified, is used
+        to resolve the given $key against. If not specified, `$key` is
+        resolved against the pipeline.
 
-// returns the given string in upper case
-tundra.string:uppercase($string, $locale);
-```
+    * Outputs:
+      * `$scope` is returned if an input `$scope` was provided, where the value
+        identified by $key within it has been converted to a list. If
+        no input `$scope` was specified, the value identified by `$key` in the
+        pipeline is instead converted to a list. If `$key` does not identify
+        any value, this service does nothing.
+
+* #### tundra.string:lowercase
+
+    Returns the given string in lower case.
+
+    * Inputs:
+      * `$string` is a string to be converted to lower case.
+      * `$locale` optionally identifies the case transformation rules 
+        to be used for a given [Locale]. If not specified, the 
+        [default locale] is used.
+
+    * Outputs:
+      * `$string` is a lower case version of the input string, where
+        all characters have been converted to their lower case
+        equivalent according to the transformation rules of the given
+        [Locale].
+
+* #### tundra.string:match
+
+    Returns whether the given [regular expression pattern] matches the 
+    given string. 
+
+    * Inputs:
+      * `$string` is a string to be matched against the given regular
+        expression.
+      * `$pattern` is the [regular expression pattern] to match against
+        the given string.
+
+    * Outputs:
+      * `$match?` is true if the given string matches the given
+        [regular expression pattern].
+
+* #### tundra.string:normalize
+
+    Converts a string, bytes or input stream to a string.
+
+    * Inputs:
+      * `$object` is a string, byte array, or input stream to be 
+        converted to a string.
+      * `$encoding` is an optional character set to use when `$object`
+        is a byte array or input stream. Defaults to the Java virtual 
+        machine [default charset].
+
+    * Outputs:
+      * `$string` is the given object converted to a string.
+
+* #### tundra.string:replace
+
+    Replaces all occurrences of the given [regular expression pattern] 
+    in the given string, with the replacement string.
+
+    * Inputs:
+      * `$string` is a string to have all occurrences of the given 
+        [regular expression pattern] replaced.
+      * `$pattern` is the [regular expression pattern] to match against
+        the given string.
+      * `$replacement` is the replacement string to be substituted in
+        the given string wherever the given pattern is found.
+      * `$literal?` is a boolean indicating if the replacement string
+        should be treated as a literal string. If false, captured
+        groups can be referred to with dollar-sign references, such
+        as $1, and other special characters may need to be escaped.
+        Defaults to false.
+
+    * Outputs:
+      * `$string` is the input string with all occurrences of the given
+        [regular expression pattern] replaced with `$replacement`.
+
+* #### tundra.string:split
+
+    Splits the given string around matches of the given [regular expression pattern].
+
+    * Inputs:
+      * `$string` is a string to be split into tokens using the given
+        pattern as the token separator.
+      * `$pattern` is the [regular expression pattern] to match against
+        the given string.
+
+    * Outputs:
+      * `$list` is the list of tokens that were found in the input string 
+        that were separated with an occurence of the given
+        [regular expression pattern].
+
+* #### tundra.string:split
+
+    Replaces runs of one or more whitespace characters (space, tab, 
+    carriage return, line feed) with a single space character.
+
+    * Inputs:
+      * `$string` is a string to squeeze extraneous whitespace from.
+
+    * Outputs:
+      * `$string` is the input string with extraneous whitespace
+        characters removed and replaced with a single space
+        character.
+
+* #### tundra.string:substitute
+
+    Attempts variable substitution on the given string by replacing all 
+    occurrences of substrings matching "%key%" with the associated 
+    (optionally scoped) value.
+
+    Optionally replaces null or non-existent values with the given default 
+    value.
+
+    * Inputs:
+      * `$string` is a string to perform variable substitution on.
+      * `$pipeline` is an optional IData document used to scope the
+        variable substitution. If not specified, the substitution
+        is unscoped (resolved against the pipeline itself).
+      * `$default` is an optional default value to substitute in place
+        of null or missing values.
+
+    * Outputs:
+      * `$string` is the input string with variable substitution patterns,
+        such as "%key%", replaced with the value of the key (resolved
+        against either $pipeline, if specified, or the pipeline itself).
+
+* #### tundra.string:trim
+
+    Removes leading and trailing whitespace from the given string.
+
+    * Inputs:
+      * `$string` is a string to be trimmed of leading and trailing 
+        whitespace characters.
+
+    * Outputs:
+      * `$string` is the input string leading and trailing whitespace
+        characters removed.
+
+* #### tundra.string:uppercase
+
+    Returns the given string in upper case.
+
+    * Inputs:
+      * `$string` is a string to be converted to upper case.
+      * `$locale` optionally identifies the case transformation rules 
+        to be used for a given [Locale]. If not specified, the 
+        [default locale] is used.
+
+    * Outputs:
+      * `$string` is an upper case version of the input string, where
+        all characters have been converted to their upper case
+        equivalent according to the transformation rules of the given
+        [Locale].
 
 ### System
 
@@ -3531,3 +3670,6 @@ Copyright © 2012 Lachlan Dowding. See license.txt for further details.
 [try block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/try.html>
 [catch block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/catch.html>
 [finally block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/finally.html>
+[Locale]: <http://docs.oracle.com/javase/6/docs/api/java/util/Locale.html>
+[default locale]: <http://docs.oracle.com/javase/6/docs/api/java/util/Locale.html#getDefault()>
+[regular expression pattern]: <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html>

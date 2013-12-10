@@ -80,7 +80,16 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Removes leading and trailing whitespace from the given string.</value>
+  <value name="node_comment">Removes leading and trailing whitespace from the given string.
+
+* Inputs:
+  * $string is a string to be trimmed of leading and trailing 
+    whitespace characters.
+
+* Outputs:
+  * $string is the input string leading and trailing whitespace
+    characters removed.
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

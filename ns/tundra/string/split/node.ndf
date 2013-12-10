@@ -107,7 +107,20 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Splits the given string around matches of the given regular expression pattern.</value>
+  <value name="node_comment">Splits the given string around matches of the given [regular expression pattern].
+
+* Inputs:
+  * $string is a string to be split into tokens using the given
+    pattern as the token separator.
+  * $pattern is the [regular expression pattern] to match against
+    the given string.
+
+* Outputs:
+  * $list is the list of tokens that were found in the input string 
+    that were separated with an occurence of the given
+    [regular expression pattern].
+
+[regular expression pattern]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

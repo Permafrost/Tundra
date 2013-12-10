@@ -88,7 +88,7 @@
   </record>
   <value name="node_comment">Converts the value identified by the given key to a new list of type 
 Object[], containing the original value as its single item, unless 
-the original value is already list in which it remains unmodified.
+the original value is already list in which case it remains unmodified.
 
 * Inputs:
   * $key is a simple or fully-qualified (such as a/b/c[0]/d) key 
@@ -98,7 +98,7 @@ the original value is already list in which it remains unmodified.
     resolved against the pipeline.
 
 * Outputs:
-  * $scope is returned if an input $scope was provide, where the value
+  * $scope is returned if an input $scope was provided, where the value
     identified by $key within it has been converted to a list. If
     no input $scope was specified, the value identified by $key in the
     pipeline is instead converted to a list. If $key does not identify

@@ -79,7 +79,14 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Returns the number of characters in the given string.</value>
+  <value name="node_comment">Returns the number of characters in the given string.
+
+* Inputs:
+  * $string is an optional string to return the length of.
+
+* Outputs:
+  * $length is the number of characters in the given string,
+    or zero if no string was specified.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

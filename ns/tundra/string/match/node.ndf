@@ -106,10 +106,20 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Returns whether the given regular expression pattern matches the given string. 
+  <value name="node_comment">Returns whether the given [regular expression pattern] matches the 
+given string. 
 
-Refer to &lt;http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html&gt; for more information
-on regular expression use in Java.</value>
+* Inputs:
+  * $string is a string to be matched against the given regular
+    expression.
+  * $pattern is the [regular expression pattern] to match against
+    the given string.
+
+* Outputs:
+  * $match? is true if the given string matches the given
+    [regular expression pattern].
+
+[regular expression pattern]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

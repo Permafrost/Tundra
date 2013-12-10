@@ -95,7 +95,19 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Converts a string, bytes or input stream to a string.</value>
+  <value name="node_comment">Converts a string, bytes or input stream to a string.
+
+* Inputs:
+  * $object is a string, byte array, or input stream to be 
+    converted to a string.
+  * $encoding is an optional character set to use when $object
+    is a byte array or input stream. Defaults to the Java virtual 
+    machine [default charset].
+
+* Outputs:
+  * $string is the given object converted to a string.
+
+[default charset]: &lt;http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
