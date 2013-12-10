@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-10-16 10:18:27.112
-// -----( ON-HOST: -
+// -----( CREATED: 2013-12-11 08:50:53.789
+// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -226,24 +226,65 @@ public final class duration
 	  return emit(parse(duration, inPattern), outPattern, datetime);
 	}
 	
+	// formats a list of duration strings to the desired pattern
+	public static String[] format(String[] durations, String inPattern, String outPattern) {
+	  return format(durations, inPattern, outPattern, null);
+	}
+	
+	// formats a list of duration strings to the desired pattern
+	public static String[] format(String[] durations, String inPattern, String outPattern, String datetime) {
+	  String[] results = null;
+	  if (durations != null) {
+	    results = new String[durations.length];
+	
+	    for (int i = 0; i < durations.length; i++) {
+	      results[i] = tundra.duration.format(durations[i], inPattern, outPattern, datetime);
+	    }
+	  }
+	  return results;
+	}
+	
 	// returns the sum of the given durations
-	public static String add(String ... durations) {
+	public static String add(String[] durations, String pattern) {
 	  javax.xml.datatype.Duration dz = factory().newDuration(0);
 	  if (durations != null) {
 	    for (int i = 0; i < durations.length; i++) {
-	      javax.xml.datatype.Duration dx = parse(durations[i]);
+	      javax.xml.datatype.Duration dx = parse(durations[i], pattern);
 	      if (dx != null) dz = dz.add(dx);
 	    }
 	  }
-	  return emit(dz);
+	  return emit(dz, pattern);
+	}
+	
+	// returns the sum of the given durations
+	public static String add(String ... durations) {
+	  return add(durations, null);
+	}
+	
+	// subtracts one duration from another returning (x - y)
+	public static String subtract(String x, String y, String pattern) {
+	  javax.xml.datatype.Duration dx = x == null? factory().newDuration(0) : parse(x, pattern);
+	  javax.xml.datatype.Duration dy = y == null? factory().newDuration(0) : parse(y, pattern);
+	  javax.xml.datatype.Duration dz = dx.subtract(dy);
+	  return emit(dz, pattern);
+	
 	}
 	
 	// subtracts one duration from another returning (x - y)
 	public static String subtract(String x, String y) {
-	  javax.xml.datatype.Duration dx = x == null? factory().newDuration(0) : parse(x);
-	  javax.xml.datatype.Duration dy = y == null? factory().newDuration(0) : parse(y);
-	  javax.xml.datatype.Duration dz = dx.subtract(dy);
-	  return emit(dz);
+	  return subtract(x, y, null);
+	}
+	
+	// compares two durations, returning one of the following values:
+	// - javax.xml.datatype.DatatypeConstants.LESSER if this Duration is shorter than duration parameter
+	// - javax.xml.datatype.DatatypeConstants.EQUAL if this Duration is equal to duration parameter
+	// - javax.xml.datatype.DatatypeConstants.GREATER if this Duration is longer than duration parameter
+	// - javax.xml.datatype.DatatypeConstants.INDETERMINATE if a conclusive partial order relation cannot be determined
+	public static int compare(String x, String y, String pattern) {
+	  if (x == null && y == null) return javax.xml.datatype.DatatypeConstants.EQUAL;
+	  if (x == null || y == null) return javax.xml.datatype.DatatypeConstants.INDETERMINATE;
+	  
+	  return parse(x, pattern).compare(parse(y, pattern));
 	}
 	
 	// compares two durations, returning one of the following values:
@@ -252,10 +293,7 @@ public final class duration
 	// - javax.xml.datatype.DatatypeConstants.GREATER if this Duration is longer than duration parameter
 	// - javax.xml.datatype.DatatypeConstants.INDETERMINATE if a conclusive partial order relation cannot be determined
 	public static int compare(String x, String y) {
-	  if (x == null && y == null) return javax.xml.datatype.DatatypeConstants.EQUAL;
-	  if (x == null || y == null) return javax.xml.datatype.DatatypeConstants.INDETERMINATE;
-	  
-	  return parse(x).compare(parse(y));
+	  return compare(x, y, null);
 	}
 	
 	// returns a parsed xml duration string
@@ -353,23 +391,33 @@ public final class duration
 	}
 	
 	// computes a new duration by multiplying the given duration by the given factor
-	public static String multiply(String duration, String factor, String datetime) {
+	public static String multiply(String duration, String factor, String datetime, String pattern) {
 	  if (duration == null || factor == null) return duration;
 	
 	  java.util.Calendar instant = null;
 	  if (datetime == null) {
 	    instant = java.util.Calendar.getInstance();
 	  } else {
-	    instant = javax.xml.bind.DatatypeConverter.parseDateTime(datetime);  
+	    instant = javax.xml.bind.DatatypeConverter.parseDateTime(datetime);
 	  }
 	
-	  return emit(parse(duration).normalizeWith(instant).multiply(new java.math.BigDecimal(factor)));
+	  return emit(parse(duration, pattern).normalizeWith(instant).multiply(new java.math.BigDecimal(factor)), pattern);
+	}
+	
+	// computes a new duration by multiplying the given duration by the given factor
+	public static String multiply(String duration, String factor, String datetime) {
+	  return multiply(duration, factor, datetime, null);
+	}
+	
+	// reverses the sign of the given duration
+	public static String negate(String duration, String pattern) {
+	  if (duration == null) return null;
+	  return emit(parse(duration, pattern).negate(), pattern);
 	}
 	
 	// reverses the sign of the given duration
 	public static String negate(String duration) {
-	  if (duration == null) return null;
-	  return emit(parse(duration).negate());
+	  return negate(duration, null);
 	}
 	// --- <<IS-END-SHARED>> ---
 }

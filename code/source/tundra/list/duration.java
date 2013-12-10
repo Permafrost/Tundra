@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-10-15 14:36:48.677
-// -----( ON-HOST: -
+// -----( CREATED: 2013-12-11 08:53:50.725
+// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -69,7 +69,7 @@ public final class duration
 		
 		try {
 		  String[] list = IDataUtil.getStringArray(cursor, "$list");
-		  IDataUtil.put(cursor, "$duration", tundra.duration.add(list));
+		  IDataUtil.put(cursor, "$duration", sum(list));
 		} finally {
 		  cursor.destroy();
 		}
@@ -81,20 +81,22 @@ public final class duration
 	// --- <<IS-START-SHARED>> ---
 	// formats a list of duration strings to the desired pattern
 	public static String[] format(String[] durations, String inPattern, String outPattern) {
-	  return format(durations, inPattern, outPattern, null);
+	  return tundra.duration.format(durations, inPattern, outPattern);
 	}
 	
 	// formats a list of duration strings to the desired pattern
 	public static String[] format(String[] durations, String inPattern, String outPattern, String datetime) {
-	  String[] results = null;
-	  if (durations != null) {
-	    results = new String[durations.length];
+	  return tundra.duration.format(durations, inPattern, outPattern, datetime);
+	}
 	
-	    for (int i = 0; i < durations.length; i++) {
-	      results[i] = tundra.duration.format(durations[i], inPattern, outPattern, datetime);
-	    }
-	  }
-	  return results;
+	// returns the sum of the given durations
+	public static String sum(String[] durations, String pattern) {
+	  return tundra.duration.add(durations, pattern);
+	}
+	
+	// returns the sum of the given durations
+	public static String sum(String[] durations) {
+	  return tundra.duration.add(durations);
 	}
 	// --- <<IS-END-SHARED>> ---
 }

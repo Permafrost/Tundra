@@ -181,11 +181,24 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Formats a list of duration strings according to the desired pattern.  
+  <value name="node_comment">Formats a list of duration strings according to the desired 
+pattern.  
 
-A start instant ($datetime) may be required when formatting fields with 
-indeterminate values, such as converting months to days (because the number 
-of days in a month varies.</value>
+A start instant may be required when formatting fields with 
+indeterminate values, such as converting months to days 
+(because the number of days in a month varies).
+
+* Inputs:
+  * $list is a list of duration strings to be reformatted.
+  * $datetime is an [ISO8601]/XML datetime string used as a
+    start instant for resolving indeterminate durations (such
+    as the number of days in a month).
+  * $pattern.input is the duration pattern the given list of
+    duration strings adhere to.
+  * $pattern.output is the desired duration pattern the list
+    of duration strings will be reformatted according to.
+
+[ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

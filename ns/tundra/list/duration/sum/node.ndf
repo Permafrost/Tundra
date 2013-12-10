@@ -79,7 +79,18 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Returns the sum of all the given durations, returning (x1 + x2 + ... + xn).</value>
+  <value name="node_comment">Returns the sum of all the given durations, returning 
+(x1 + x2 + ... + xn).
+
+* Inputs:
+  * $list is a list of [ISO8601]/XML duration strings to 
+    be added together.
+
+* Outputs:
+  * $duration is the sum of the duration strings in the 
+    given list in [ISO8601]/XML format.
+
+[ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

@@ -2258,16 +2258,37 @@ tundra.list.document.value:uppercase($list[], $recurse?);
 
 ### Duration List
 
-```java
-// formats a list of duration strings according to the desired pattern
-// (a start instant, $datetime, may be required when formatting fields with
-// indeterminate values, such as converting months to days, because the
-// number of days in a month varies)
-tundra.list.duration:format($list[], $datetime, $pattern.input, $pattern.output);
+* #### tundra.list.duration:format
 
-// returns the sum of all the given durations, returning (x1 + x2 + ... + xn)
-tundra.duration:sum($durations[]);
-```
+    Formats a list of duration strings according to the desired 
+    pattern.  
+
+    A start instant may be required when formatting fields with 
+    indeterminate values, such as converting months to days 
+    (because the number of days in a month varies).
+
+    * Inputs:
+      * `$list` is a list of duration strings to be reformatted.
+      * `$datetime` is an [ISO8601]/XML datetime string used as a
+        start instant for resolving indeterminate durations (such
+        as the number of days in a month).
+      * `$pattern.input` is the duration pattern the given list of
+        duration strings adhere to.
+      * `$pattern.output` is the desired duration pattern the list
+        of duration strings will be reformatted according to.
+
+* #### tundra.list.duration:sum
+
+    Returns the sum of all the given durations, returning 
+    (x1 + x2 + ... + xn).
+
+    * Inputs:
+      * `$list` is a list of [ISO8601]/XML duration strings to 
+        be added together.
+
+    * Outputs:
+      * `$duration` is the sum of the duration strings in the 
+        given list in [ISO8601]/XML format.
 
 ### Object List
 
@@ -3763,37 +3784,37 @@ around.
 
 Copyright © 2012 Lachlan Dowding. See license.txt for further details.
 
-[ISO8601]: <http://en.wikipedia.org/wiki/ISO_8601>
-[java.text.SimpleDateFormat]: <http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html>
-[java.util.Date]: <http://docs.oracle.com/javase/6/docs/api/java/util/Date.html>   
-[XPath expression]: <http://www.w3.org/TR/xpath/>
+[catch block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/catch.html>
 [default charset]: <http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()>
-[HTTP]: <http://tools.ietf.org/search/rfc2616>
+[default locale]: <http://docs.oracle.com/javase/6/docs/api/java/util/Locale.html#getDefault()>
+[finally block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/finally.html>
 [HTTP response code]: <http://httpstatus.es/>
-[SAX]: <http://en.wikipedia.org/wiki/Simple_API_for_XML>
-[XML]: <http://www.w3.org/XML/>
-[XSD]: <http://www.w3.org/XML/Schema>
-[java.net.URLDecoder]: <http://docs.oracle.com/javase/6/docs/api/java/net/URLDecoder.html>
-[java.net.URLEncoder]: <http://docs.oracle.com/javase/6/docs/api/java/net/URLEncoder.html>
-[java.net.URI]: <http://docs.oracle.com/javase/6/docs/api/java/net/URI.html>
-[RFC 2396]: <http://www.ietf.org/rfc/rfc2396.txt>
-[URI]: <http://www.w3.org/Addressing/>
-[java.lang.String]: <http://docs.oracle.com/javase/6/docs/api/java/lang/String.html>
+[HTTP]: <http://tools.ietf.org/search/rfc2616>
+[IData XML]: <http://documentation.softwareag.com/webmethods/wmsuites/wmsuite8-2_sp2/Integration_Server/8-2-SP1_Integration_Server_Java_API_Reference/com/wm/util/coder/IDataXMLCoder.html>
+[ISO8601]: <http://en.wikipedia.org/wiki/ISO_8601>
+[java.io.ByteArrayInputStream]: <http://docs.oracle.com/javase/6/docs/api/java/io/ByteArrayInputStream.html>
 [java.io.InputStream]: <http://docs.oracle.com/javase/6/docs/api/java/io/InputStream.html>
 [java.io.OutputStream]: <http://docs.oracle.com/javase/6/docs/api/java/io/OutputStream.html>
-[java.io.ByteArrayInputStream]: <http://docs.oracle.com/javase/6/docs/api/java/io/ByteArrayInputStream.html>
-[mime type]: <http://en.wikipedia.org/wiki/Internet_media_type>
-[primitive type]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Class.html#isPrimitive()>
-[Object.toString()]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html#toString()>
+[java.lang.String]: <http://docs.oracle.com/javase/6/docs/api/java/lang/String.html>
+[java.net.URI]: <http://docs.oracle.com/javase/6/docs/api/java/net/URI.html>
+[java.net.URLDecoder]: <http://docs.oracle.com/javase/6/docs/api/java/net/URLDecoder.html>
+[java.net.URLEncoder]: <http://docs.oracle.com/javase/6/docs/api/java/net/URLEncoder.html>
+[java.text.SimpleDateFormat]: <http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html>
+[java.util.Date]: <http://docs.oracle.com/javase/6/docs/api/java/util/Date.html>   
 [javax.activation.MimeType]: <http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html>
+[JSON]: <http://www.json.org/>
+[Locale]: <http://docs.oracle.com/javase/6/docs/api/java/util/Locale.html>
+[mime type]: <http://en.wikipedia.org/wiki/Internet_media_type>
 [MIME]: <http://en.wikipedia.org/wiki/MIME>
+[Object.toString()]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html#toString()>
+[primitive type]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Class.html#isPrimitive()>
+[regular expression pattern]: <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html>
 [RFC 2045]: <http://www.ietf.org/rfc/rfc2045.txt>
 [RFC 2046]: <http://www.ietf.org/rfc/rfc2046.txt>
+[RFC 2396]: <http://www.ietf.org/rfc/rfc2396.txt>
+[SAX]: <http://en.wikipedia.org/wiki/Simple_API_for_XML>
 [try block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/try.html>
-[catch block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/catch.html>
-[finally block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/finally.html>
-[Locale]: <http://docs.oracle.com/javase/6/docs/api/java/util/Locale.html>
-[default locale]: <http://docs.oracle.com/javase/6/docs/api/java/util/Locale.html#getDefault()>
-[regular expression pattern]: <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html>
-[IData XML]: <http://documentation.softwareag.com/webmethods/wmsuites/wmsuite8-2_sp2/Integration_Server/8-2-SP1_Integration_Server_Java_API_Reference/com/wm/util/coder/IDataXMLCoder.html>
-[JSON]: <http://www.json.org/>
+[URI]: <http://www.w3.org/Addressing/>
+[XML]: <http://www.w3.org/XML/>
+[XPath expression]: <http://www.w3.org/TR/xpath/>
+[XSD]: <http://www.w3.org/XML/Schema>
