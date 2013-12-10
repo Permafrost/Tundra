@@ -111,8 +111,20 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Returns whether the given object is an array, a primitive type or an array of a primitive type, and 
-its Java class name.</value>
+  <value name="node_comment">Returns whether the given object is an array, a primitive type or an 
+array of a [primitive type], and its Java class name.
+
+* Inputs:
+  * $object is an optional object to be reflected on. If not specified,
+    this service does nothing and no outputs are returned.
+
+* Outputs:
+  * $class is the Java class name of the given object.
+  * $array? is a boolean indicating if the given object is an array.
+  * $primitive? is a boolean indicating if the given object is a 
+    [primitive type], or an array of a [primitive type].
+
+[primitive type]: &lt;http://docs.oracle.com/javase/6/docs/api/java/lang/Class.html#isPrimitive()&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

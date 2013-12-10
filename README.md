@@ -2087,6 +2087,7 @@ tundra.list.content:parse($contents[], $encoding, $schema);
 
 [ISO8601]: <http://en.wikipedia.org/wiki/ISO_8601>
 [java.text.SimpleDateFormat]: <http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html>
+
 ### Document List
 
 Services for manipulating document (com.wm.data.IData) lists:
@@ -2728,33 +2729,106 @@ Services for querying Integration Server namespace nodes:
 
 Services for manipulating java.lang.Object objects:
 
-```java
-// converts a string, byte array, or input stream object to a
-// string, byte array, or input stream object
-tundra.object:convert($object, $encoding, $mode);
+* #### tundra.object:convert
 
-// returns true if the given objects are equal
-tundra.object:equal($object.x, $object.y);
+    Converts a string, byte array, or input stream object to a string, 
+    byte array or input stream object.
 
-// returns true if object is an instance of given class
-tundra.object:instance($object, $class);
+    * Inputs:
+      * `$object` is an optional string, byte array, or input stream
+        object. If null, this service does nothing.
+      * `$mode` is an optional choice of 'stream', 'bytes', or
+        'string', which determines the type of object returned by
+        this service. Defaults to 'stream'.
+      * `$encoding` is an optional character set to use when converting
+        from or to a string. Defaults to the Java virtual machine 
+        [default charset].
 
-// converts the value identified by $key in the given $scope IData document (or the pipeline, if not
-// specified) to a new list of type Object[] containing the original value as its single item, unless
-// the original value is already list; the given key can be simple or fully qualified, such as
-// a/b/c[0]/d
-tundra.object:listify($key, $scope);
+    * Outputs:
+      * `$object` is the input object converted to be either a string,
+        byte array, or input stream as determined by the selected
+        `$mode`, or null if the input object was null.
 
-// returns null
-tundra.object:nothing();
+* #### tundra.object:equal
 
-// returns the given object's class, whether it's an array, and whether it's
-// a primitive type, such as an int, or byte
-tundra.object:reflect($object);
+    Returns true if the two given objects are equal.
 
-// converts the given object to a string by calling its toString method
-tundra.object:stringify($object);
-```
+    * Inputs:
+      * `$object.x` is an optional object of any class to be compared
+        to `$object.y`.
+      * `$object.y` is an optional object of any class to be compared
+        to `$object.x`.
+
+    * Outputs:
+      * `$equal?` is true if the two input objects are considered 
+        equivalent.
+
+* #### tundra.object:instance
+
+    Returns true if the given object is an instance of the given class.
+
+    * Inputs:
+      * `$object` is an optional object of any class.
+      * `$class` is a Java class name.
+
+    * Outputs:
+      * `$instance?` is true if the give object is an instance of the given
+        Java class.
+
+* #### tundra.object:listify
+
+    Converts the value identified by the given key to a new list of type 
+    Object[], containing the original value as its single item, unless 
+    the original value is already list in which it remains unmodified.
+
+    * Inputs:
+      * `$key` is a simple or fully-qualified (such as a/b/c[0]/d) key 
+        identifying the value to be converted to a list.
+      * `$scope` is an optional IData document that, if specified, is used
+        to resolve the given $key against. If not specified, `$key` is
+        resolved against the pipeline.
+
+    * Outputs:
+      * `$scope` is returned if an input $scope was provide, where the value
+        identified by `$key` within it has been converted to a list. If
+        no input `$scope` was specified, the value identified by `$key` in the
+        pipeline is instead converted to a list. If `$key` does not identify
+        any value, this service does nothing.
+
+* #### tundra.object:nothing
+
+    Returns null.
+
+    * Outputs:
+      * `$nothing` is returned with a null value.
+
+* #### tundra.object:reflect
+
+    Returns whether the given object is an array, a primitive type or an 
+    array of a [primitive type], and its Java class name.
+
+    * Inputs:
+      * `$object` is an optional object to be reflected on. If not specified,
+        this service does nothing and no outputs are returned.
+
+    * Outputs:
+      * `$class` is the Java class name of the given object.
+      * `$array?` is a boolean indicating if the given object is an array.
+      * `$primitive?` is a boolean indicating if the given object is a 
+        [primitive type], or an array of a [primitive type].
+
+* #### tundra.object:stringify
+
+    Converts the given object to its string representation by calling 
+    [Object.toString()].
+
+    * Inputs:
+      * `$object` is an optional object to be converted to its string
+        representation.
+
+    * Outputs:
+      * `$string` is the given object converted to its string 
+        representation.
 
 ### Pipeline
 
@@ -3323,3 +3397,5 @@ Copyright © 2012 Lachlan Dowding. See license.txt for further details.
 [java.io.OutputStream]: <http://docs.oracle.com/javase/6/docs/api/java/io/OutputStream.html>
 [java.io.ByteArrayInputStream]: <http://docs.oracle.com/javase/6/docs/api/java/io/ByteArrayInputStream.html>
 [mime type]: <http://en.wikipedia.org/wiki/Internet_media_type>
+[primitive type]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Class.html#isPrimitive()>
+[Object.toString()]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html#toString()>

@@ -68,7 +68,18 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Converts the given object to its string representation by calling $object.toString()</value>
+  <value name="node_comment">Converts the given object to its string representation by calling 
+[Object.toString()].
+
+* Inputs:
+  * $object is an optional object to be converted to its string
+    representation.
+
+* Outputs:
+  * $string is the given object converted to its string 
+    representation.
+
+[Object.toString()]: &lt;http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html#toString()&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
