@@ -139,10 +139,22 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Emits (or encodes) the current pipeline as an IData XML string, byte array, or input stream.
+  <value name="node_comment">Emits (or encodes) the current pipeline as an [IData XML] string, 
+byte array, or input stream.
 
-References:
-[1] &lt;http://documentation.softwareag.com/webmethods/wmsuites/wmsuite8-2_sp2/Integration_Server/8-2-SP1_Integration_Server_Java_API_Reference/com/wm/util/coder/IDataXMLCoder.html&gt;</value>
+* Inputs:
+  * $encoding is an optional character set to use when $content is
+    returned as an input stream or byte array. Defaults to the Java 
+    virtual machine [default charset].
+  * $mode is an optional choice of 'stream', 'bytes', or 'string', 
+    and determines the type of content object returned.
+
+* Outputs:
+  * $content is an input stream, byte array, or string (depending on
+    the $mode selected) representing the encoded pipeline data.
+
+[default charset]: &lt;http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()&gt;
+[IData XML]: &lt;http://documentation.softwareag.com/webmethods/wmsuites/wmsuite8-2_sp2/Integration_Server/8-2-SP1_Integration_Server_Java_API_Reference/com/wm/util/coder/IDataXMLCoder.html&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

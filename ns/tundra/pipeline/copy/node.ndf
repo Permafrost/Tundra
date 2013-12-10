@@ -78,8 +78,14 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Copies the value associated with the source key to the target key in the given IData document.
-Keys can be simple or fully qualified, such as a/b/c[0]/d.</value>
+  <value name="node_comment">Copies the value associated with the source key to the target 
+key in the given IData document.
+
+* Inputs:
+  * $key.source identifies the value to be copied, and can be
+    simple or fully qualified, such as a/b/c[0]/d.
+  * $key.target is the key to copy the source value to, and 
+    can be simple or fully qualified, such as a/b/c[0]/d.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

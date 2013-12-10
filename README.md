@@ -2871,6 +2871,81 @@ Services for manipulating java.lang.Object objects:
 
 ### Pipeline
 
+* #### tundra.pipeline:capture
+
+    Clones the pipeline and returns it.  This is useful if you want 
+    to use the pipeline itself as a document, which you can then pass 
+    as input when calling a service for example.
+
+    * Outputs:
+      * `$pipeline` is the captured pipeline as an IData document.
+
+* #### tundra.pipeline:clear
+
+    Removes all elements from the pipeline, except for any keys 
+    specified in the preserve list.
+
+    * Inputs:
+      * `$preserve` is a list of keys (simple or fully qualified, 
+        such as a/b/c[0]/d) to not be dropped from the pipeline. 
+        All other keys not in this list will be dropped.
+
+* #### tundra.pipeline:copy
+
+    Copies the value associated with the source key to the target 
+    key in the given IData document.
+
+    * Inputs:
+      * `$key.source` identifies the value to be copied, and can be
+        simple or fully qualified, such as a/b/c[0]/d.
+      * `$key.target` is the key to copy the source value to, and 
+        can be simple or fully qualified, such as a/b/c[0]/d.
+
+* #### tundra.pipeline:drop
+
+    Drops the key value pair associated with the given key from 
+    the pipeline. 
+
+    * Inputs:
+      * `$key` identifies the key value pair to be dropped, and 
+        can be simple or fully qualified, such as a/b/c[0]/d.
+
+* #### tundra.pipeline:emit
+
+    Emits (or encodes) the current pipeline as an [IData XML] string, 
+    byte array, or input stream.
+
+    * Inputs:
+      * `$encoding` is an optional character set to use when $content is
+        returned as an input stream or byte array. Defaults to the Java 
+        virtual machine [default charset].
+      * `$mode` is an optional choice of 'stream', 'bytes', or 'string', 
+        and determines the type of content object returned.
+
+    * Outputs:
+      * `$content` is an input stream, byte array, or string (depending on
+        the `$mode` selected) representing the encoded pipeline data.
+
+* #### tundra.pipeline:first
+
+    Returns the first key value pair from the pipeline.
+
+    * Outputs:
+      * `$key` is the first key in the pipeline.
+      * `$value` is the first key's associated value.
+
+* #### tundra.pipeline:get
+
+    Returns the value associated with the given key from the 
+    pipeline, or null if it doesn't exist. 
+
+    * Inputs:
+      * `$key` identifies the value to be retrieved from the pipeline,
+        and can be simple or fully qualified, such as a/b/c[0]/d.
+
+    * Outputs:
+      * `$value` is the value associated with the given `$key`.
+
 ```java
 // returns a clone of the current pipeline as a document: useful if you want
 // to pass the pipeline itself as an input to a service
@@ -3673,3 +3748,4 @@ Copyright © 2012 Lachlan Dowding. See license.txt for further details.
 [Locale]: <http://docs.oracle.com/javase/6/docs/api/java/util/Locale.html>
 [default locale]: <http://docs.oracle.com/javase/6/docs/api/java/util/Locale.html#getDefault()>
 [regular expression pattern]: <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html>
+[IData XML]: <http://documentation.softwareag.com/webmethods/wmsuites/wmsuite8-2_sp2/Integration_Server/8-2-SP1_Integration_Server_Java_API_Reference/com/wm/util/coder/IDataXMLCoder.html>
