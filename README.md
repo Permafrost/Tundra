@@ -1994,44 +1994,167 @@ File system services for working with files:
 
 ### Integer
 
-Services for working with arbitrary precision integers (uses java.math.BigInteger as its implementation):
+Services for working with arbitrary precision integers (uses [java.math.BigInteger] as its implementation):
 
-```java
-// returns the absolute value of the given integer
-tundra.integer.absolute($integer);
+* #### tundra.integer:absolute
 
-// adds the given integers together, returning the result
-tundra.integer.add($integers[]);
+    Returns the absolute value of the given integer.
 
-// decrements the given $integer by one; returns minus one if $integer is not specified so that
-// this service can be used in a loop to both initialize and decrement a counter variable.
-tundra.integer.decrement($integer);
+    * Inputs:
+      * `$integer` is a signed integer.
 
-// divides the given integer x by y, returning the result
-tundra.integer.divide($integer.x, $integer.y);
+    * Outputs:
+      * `$integer` is the absolute (unsigned) value of the given 
+        integer.
 
-// increments the given $integer by one; returns one if $integer is not specified so that
-// this service can be used in a loop to both initialize and increment a counter variable
-tundra.integer.increment($integer);
+* #### tundra.integer:add
 
-// multiplies the given integers together, returning the result
-tundra.integer.multiply($integers[]);
+    Adds the given integers together, returning the result.
 
-// returns the negative value of the given integer (-x)
-tundra.integer.negate($integer);
+    * Inputs:
+      * `$integers` is a list of integers.
 
-// raises the given integer to the power of the given exponent (i^e)
-tundra.integer.power($integer, $exponent);
+    * Outputs:
+      * `$integer` is the total sum of the given integers.
 
-// returns the remainder from dividing the given integer x by y
-tundra.integer.remainder($integer.x, $integer.y);
+* #### tundra.integer:average
 
-// subtracts the given integer y from x, returning the result
-tundra.integer.subtract($integer.x, $integer.y);
+    Returns the average value of the given list of integers.
 
-// returns true if the given string can be parsed as an integer
-tundra.integer.validate($integer);
-```
+    * Inputs:
+      * `$integers` is a list of integers.
+
+    * Outputs:
+      * `$integer` is the average value of the given integers.
+
+* #### tundra.integer:decrement
+
+    Decrements the given integer by one. Returns minus one if 
+    no integer is specified, so that this service can be used 
+    in a loop to both initialize and decrement a counter variable.
+
+    * Inputs:
+      * `$integer` is the integer to be decremented by one.
+
+    * Outputs:
+      * `$integer` is the given integer minus one, or minus one,
+        if no input integer was specified.
+
+* #### tundra.integer:divide
+
+    Divides the given integer x by y, returning the result.
+
+    * Inputs:
+      * `$integer.x` is the numerator to be divided by `$integer.y`.
+      * `$integer.y` is the denominator to divide `$integer.x` by.
+
+    * Outputs:
+      * `$integer` is the result of dividing `$integer.x` by `$integer.y`.
+
+* #### tundra.integer:increment
+
+    Increments the given integer by one. Returns one if no integer 
+    was specified, so that this service can be used in a loop to 
+    both initialize and increment a counter variable.
+
+    * Inputs:
+      * `$integer` is the integer to be incremented by one.
+
+    * Outputs:
+      * `$integer` is the given integer plus one, or one if no
+        input integer was specified.
+
+* #### tundra.integer:maximum
+
+    Returns the maximum value in the given list of integers.
+
+    * Inputs:
+      * `$integers` is a list of integers.
+
+    * Outputs:
+      * `$integer` is the integer in the given list with the
+        largest value.
+
+* #### tundra.integer:minimum
+
+    Returns the minimum value in the given list of integers.
+
+    * Inputs:
+      * `$integers` is a list of integers.
+
+    * Outputs:
+      * `$integer` is the integer in the given list with the
+        smallest value.
+
+* #### tundra.integer:multiply
+
+    Multiplies the given integers together, returning the result.
+
+    * Inputs:
+      * `$integers` is a list of integers.
+
+    * Outputs:
+      * `$integer` is the result of multiplying every integer in
+        the given list together.
+
+* #### tundra.integer:negate
+
+    Returns the negative value of the given integer (-x).
+
+    * Inputs:
+      * `$integer` is an integer to be negated.
+
+    * Outputs:
+      * `$integer` is the given integer multiplied by minus
+        one.
+
+* #### tundra.integer:power
+
+    Raises the given integer to the power of the given exponent (i^e).
+
+    * Inputs:
+      * `$integer` is an integer value.
+      * `$exponent` is the exponent to raise the integer by.
+
+    * Outputs:
+      * `$integer` is the result of raising the given integer by
+        the given exponent (i^e).
+
+* #### tundra.integer:remainder
+
+    Returns the remainder from dividing the given integer x by y.
+
+    * Inputs:
+      * `$integer.x` is the numerator to be divided by `$integer.y`.
+      * `$integer.y` is the denominator to divide `$integer.x` by.
+
+    * Outputs:
+      * `$integer` is the remainder from dividing `$integer.x` by `$integer.y`.
+
+* #### tundra.integer:subtract
+
+    Subtracts the given integer y from x, returning the result.
+
+    * Inputs:
+      * `$integer.x` is an integer value to subtract `$integer.y` from.
+      * `$integer.y` is an integer value to subtract from `$integer.x`.
+
+    * Outputs:
+      * `$integer` is the result of subtracting `$integer.y` from `$integer.x`.
+
+* #### tundra.integer:validate
+
+    Returns true if the given string can be parsed as an integer.
+
+    * Inputs:
+      * `$integer` is a string to be validated as an integer.
+      * `$raise?` is an optional boolean indicating whether an exception
+        should be thrown if the given integer is invalid. Defaults to
+        false.
+
+    * Outputs:
+      * `$valid?` is a boolean indicating if the given string is a valid
+        integer. 
 
 ### Content List
 
@@ -3906,6 +4029,7 @@ Copyright © 2012 Lachlan Dowding. See license.txt for further details.
 [java.io.InputStream]: <http://docs.oracle.com/javase/6/docs/api/java/io/InputStream.html>
 [java.io.OutputStream]: <http://docs.oracle.com/javase/6/docs/api/java/io/OutputStream.html>
 [java.lang.String]: <http://docs.oracle.com/javase/6/docs/api/java/lang/String.html>
+[java.math.BigInteger]: <http://docs.oracle.com/javase/6/docs/api/java/math/BigInteger.html>
 [java.net.URI]: <http://docs.oracle.com/javase/6/docs/api/java/net/URI.html>
 [java.net.URLDecoder]: <http://docs.oracle.com/javase/6/docs/api/java/net/URLDecoder.html>
 [java.net.URLEncoder]: <http://docs.oracle.com/javase/6/docs/api/java/net/URLEncoder.html>

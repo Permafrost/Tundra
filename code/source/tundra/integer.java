@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-07-25 21:32:23 EST
-// -----( ON-HOST: 172.16.189.223
+// -----( CREATED: 2013-12-11 13:34:57.959
+// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -348,12 +348,14 @@ public final class integer
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $integer
+		// [i] field:0:optional $raise? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:required $valid?
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String i = IDataUtil.getString(cursor, "$integer");
-		  IDataUtil.put(cursor, "$valid?", "" + validate(i));
+		  boolean raise = tundra.bool.parse(IDataUtil.getString(cursor, "$raise?"));
+		  IDataUtil.put(cursor, "$valid?", "" + validate(i, raise));
 		} finally {
 		  cursor.destroy();
 		}
@@ -416,15 +418,21 @@ public final class integer
 	  return emit(parse(x).subtract(parse(y)));
 	}
 	
-	public static boolean validate(String s) {
+	public static boolean validate(String s, boolean raise) throws ServiceException {
 	  boolean valid = false;
 	  try {
 	    if (s != null) {
 	      parse(s);
 	      valid = true;
 	    }
-	  } catch(NumberFormatException ex) { }
+	  } catch(NumberFormatException ex) { 
+	    if (raise) tundra.exception.raise(ex);
+	  }
 	  return valid;
+	}
+	
+	public static boolean validate(String s) throws ServiceException {
+	  return validate(s, false);
 	}
 	
 	public static String emit(java.math.BigInteger i) {

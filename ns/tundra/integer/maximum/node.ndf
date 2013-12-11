@@ -80,7 +80,14 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Returns the maximum value in the given list of integers.</value>
+  <value name="node_comment">Returns the maximum value in the given list of integers.
+
+* Inputs:
+  * $integers is a list of integers.
+
+* Outputs:
+  * $integer is the integer in the given list with the
+    largest value.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
