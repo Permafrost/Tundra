@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-07-26 08:25:41 EST
-// -----( ON-HOST: 172.16.189.223
+// -----( CREATED: 2013-12-11 14:16:32.365
+// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -87,7 +87,7 @@ public final class decimal
 		// [i] field:1:optional $decimals
 		// [i] field:0:optional $precision
 		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
-		// [o] field:0:required $decimal
+		// [o] field:0:optional $decimal
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -147,7 +147,7 @@ public final class decimal
 		// [i] field:1:optional $decimals
 		// [i] field:0:optional $precision
 		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
-		// [o] field:0:required $decimal
+		// [o] field:0:optional $decimal
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -177,7 +177,7 @@ public final class decimal
 		// [i] field:1:optional $decimals
 		// [i] field:0:optional $precision
 		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
-		// [o] field:0:required $decimal
+		// [o] field:0:optional $decimal
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -344,12 +344,14 @@ public final class decimal
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $decimal
+		// [i] field:0:optional $raise? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:required $valid?
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String decimal = IDataUtil.getString(cursor, "$decimal");
-		  IDataUtil.put(cursor, "$valid?", "" + validate(decimal));
+		  boolean raise = tundra.bool.parse(IDataUtil.getString(cursor, "$raise?"));
+		  IDataUtil.put(cursor, "$valid?", "" + validate(decimal, raise));
 		} finally {
 		  cursor.destroy();
 		}
@@ -426,15 +428,21 @@ public final class decimal
 	  return emit(round(parse(x).subtract(parse(y)), precision, rounding));
 	}
 	
-	public static boolean validate(String decimal) {
+	public static boolean validate(String decimal, boolean raise) throws ServiceException {
 	  boolean valid = false;
 	  try {
 	    if (decimal != null) {
 	      parse(decimal);
 	      valid = true;
 	    }
-	  } catch(NumberFormatException ex) { }
+	  } catch(NumberFormatException ex) { 
+	    if (raise) tundra.exception.raise(ex);
+	  }
 	  return valid;
+	}
+	
+	public static boolean validate(String decimal) throws ServiceException {
+	  return validate(decimal, false);
 	}
 	
 	public static String emit(java.math.BigDecimal d) {

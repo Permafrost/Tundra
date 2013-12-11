@@ -1115,78 +1115,214 @@ Services for manipulating date, time and datetime strings:
 
 ### Decimal
 
-Services for working with arbitrary precision decimals (uses java.math.BigDecimal as its implementation):
+Services for working with arbitrary precision decimals (uses [java.math.BigDecimal] as its implementation):
 
-```java
-// returns the absolute value of the given decimal
-tundra.decimal:absolute($decimal);
+* #### tundra.decimal:absolute
 
-// returns the average value of the given list of decimals
-//
-// refer to <http://docs.oracle.com/javase/6/docs/api/java/math/RoundingMode.html> for details on
-// each rounding algorithm; if not specified, the default rounding algorithm used is HALF_UP
-tundra.decimal:average($decimals[], $precision, $rounding);
+    Returns the absolute value of the given decimal.
 
-// adds the given decimals, returning the result optionally rounded to the given precision (number of
-// decimal places) using the given rounding algorithm
-//
-// refer to <http://docs.oracle.com/javase/6/docs/api/java/math/RoundingMode.html> for details on
-// each rounding algorithm; if not specified, the default rounding algorithm used is HALF_UP
-tundra.decimal:add($decimals[], $precision, $rounding);
+    * Inputs:
+      * `$decimal` is a signed decimal value.
 
-// divides the given decimal x by y, returning the result optionally rounded to the given precision
-// (number of decimal places) using the given rounding algorithm
-//
-// refer to <http://docs.oracle.com/javase/6/docs/api/java/math/RoundingMode.html> for details on
-// each rounding algorithm; if not specified, the default rounding algorithm used is HALF_UP
-tundra.decimal:divide($decimal.x, $decimal.y, $precision, $rounding);
+    * Outputs:
+      * `$decimal` is the given decimal value unsigned.
 
-// returns the maximum value in the given list of decimals
-//
-// refer to <http://docs.oracle.com/javase/6/docs/api/java/math/RoundingMode.html> for details on
-// each rounding algorithm; if not specified, the default rounding algorithm used is HALF_UP
-tundra.decimal:maximum($decimals[], $precision, $rounding);
+* #### tundra.decimal:add
 
-// returns the minimum value in the given list of decimals
-//
-// refer to <http://docs.oracle.com/javase/6/docs/api/java/math/RoundingMode.html> for details on
-// each rounding algorithm; if not specified, the default rounding algorithm used is HALF_UP
-tundra.decimal:minimum($decimals[], $precision, $rounding);
+    Adds the given decimals, returning the result optionally rounded 
+    to the given precision (number of decimal places) using the 
+    given [rounding algorithm].
 
-// multiplies the given decimals, returning the result optionally rounded to the given precision
-// (number of decimal places) using the given rounding algorithm
-//
-// refer to <http://docs.oracle.com/javase/6/docs/api/java/math/RoundingMode.html> for details on
-// each rounding algorithm; if not specified, the default rounding algorithm used is HALF_UP
-tundra.decimal:multiply($decimals[], $precision, $rounding);
+    * Inputs:
+      * `$decimals` is a list of decimal values to be added together.
+      * `$precision` is an optional number of decimal places to be 
+        preserved in the result.
+      * `$rounding` is an optional choice of the [rounding algorithm] 
+        to use when rounding the result to the specified `$precision`.
+        Defaults to the HALF_UP algorithm.
 
-// returns the negative value of the given decimal (-x)
-tundra.decimal:negate($decimal);
+    * Outputs:
+      * `$decimal` is the result of adding the given list of decimals
+        and rounding to the given precision using the nominated
+        [rounding algorithm].
 
-// raises the given decimal to the power of the given exponent (d^e), optionally rounded to the
-// given precision (number of decimal places) using the given rounding algorithm
-//
-// refer to <http://docs.oracle.com/javase/6/docs/api/java/math/RoundingMode.html> for details on
-// each rounding algorithm; if not specified, the default rounding algorithm used is HALF_UP
-tundra.decimal:power($decimal, $exponent, $precision, $rounding);
+* #### tundra.decimal:average
 
-// rounds the given decimal to given precision (number of decimal places) using the given rounding
-// algorithm
-//
-// refer to <http://docs.oracle.com/javase/6/docs/api/java/math/RoundingMode.html> for details on
-// each rounding algorithm; if not specified, the default rounding algorithm used is HALF_UP
-tundra.decimal:round($decimal, $precision, $rounding);
+    Returns the average value of the given list of decimals, optionally 
+    rounded to the given precision (number of decimal places) using the 
+    given [rounding algorithm].
 
-// subtracts the given decimal y from x, returning the result optionally rounded to the given precision
-// (number of decimal places) using the given rounding algorithm.
-//
-// refer to <http://docs.oracle.com/javase/6/docs/api/java/math/RoundingMode.html> for details on
-// each rounding algorithm; if not specified, the default rounding algorithm used is HALF_UP
-tundra.decimal:subtract($decimal.x, $decimal.y, $precision, $rounding);
+    * Inputs:
+      * `$decimals` is a list of decimal values to average.
+      * `$precision` is an optional number of decimal places to be 
+        preserved in the result.
+      * `$rounding` is an optional choice of the [rounding algorithm] 
+        to use when rounding the result to the specified `$precision`.
+        Defaults to the HALF_UP algorithm.
 
-// returns true if the given string can be parsed as a decimal
-tundra.decimal:validate($decimal);
-```
+    * Outputs:
+      * `$decimal` is the result of averaging the given list of decimals
+        and rounding to the given precision using the nominated
+        [rounding algorithm].
+
+* #### tundra.decimal:divide
+
+    Divides the given decimal x by y, returning the result optionally 
+    rounded to the given precision (number of decimal places) using 
+    the given [rounding algorithm].
+
+    * Inputs:
+      * `$decimal.x` is the numerator decimal for the division.
+      * `$decimal.y` is the denominator decimal for the division.
+      * `$precision` is an optional number of decimal places to be 
+        preserved in the result.
+      * `$rounding` is an optional choice of the [rounding algorithm] 
+        to use when rounding the result to the specified $precision.
+        Defaults to the HALF_UP algorithm.
+
+    * Outputs:
+      * `$decimal` is the result of dividing `$decimal.x` by `$decimal.y`
+        and rounding to the given precision using the nominated
+        [rounding algorithm].
+
+* #### tundra.decimal:maximum
+
+    Returns the maximum value in the given list of decimals, optionally 
+    rounded to the given precision (number of decimal places) using the 
+    given [rounding algorithm].
+
+    * Inputs:
+      * `$decimals` is a list of decimal values.
+      * `$precision` is an optional number of decimal places to be 
+        preserved in the result.
+      * `$rounding` is an optional choice of the [rounding algorithm] 
+        to use when rounding the result to the specified `$precision`.
+        Defaults to the HALF_UP algorithm.
+
+    * Outputs:
+      * `$decimal` is the largest value in the given list of decimals,
+        rounded to the given precision using the nominated
+        [rounding algorithm].
+
+* #### tundra.decimal:minimum
+
+    Returns the minimum value in the given list of decimals, optionally 
+    rounded to the given precision (number of decimal places) using the 
+    given [rounding algorithm].
+
+    * Inputs:
+      * `$decimals` is a list of decimal values.
+      * `$precision` is an optional number of decimal places to be 
+        preserved in the result.
+      * `$rounding` is an optional choice of the [rounding algorithm] 
+        to use when rounding the result to the specified `$precision`.
+        Defaults to the HALF_UP algorithm.
+
+    * Outputs:
+      * `$decimal` is the smallest value in the given list of decimals,
+        rounded to the given precision using the nominated
+        [rounding algorithm].
+
+* #### tundra.decimal:multiply
+
+    Multiplies the given decimals, returning the result optionally 
+    rounded to the given precision (number of decimal places) using 
+    the given [rounding algorithm].
+
+    * Inputs:
+      * `$decimals` is a list of decimal values to multiply.
+      * `$precision` is an optional number of decimal places to be 
+        preserved in the result.
+      * `$rounding` is an optional choice of the [rounding algorithm] 
+        to use when rounding the result to the specified `$precision`.
+        Defaults to the HALF_UP algorithm.
+
+    * Outputs:
+      * `$decimal` is result of multiplying the given list of decimals
+        and rounding to the given precision using the nominated
+        [rounding algorithm].
+
+* #### tundra.decimal:negate
+
+    Returns the negative value of the given decimal (-x).
+
+    * Inputs:
+      * `$decimal` is a decimal value.
+
+    * Outputs:
+      * `$decimal` is the given decimal value multiplied
+        by minus one.
+
+* #### tundra.decimal:power
+
+    Raises the given decimal to the power of the given exponent (d^e), 
+    optionally rounded to the given precision (number of decimal places) 
+    using the given [rounding algorithm].
+
+    * Inputs:
+      * `$decimal` is a decimal value.
+      * `$exponent` is the value to raise the decimal by.
+      * `$precision` is an optional number of decimal places to be 
+        preserved in the result.
+      * `$rounding` is an optional choice of the [rounding algorithm] 
+        to use when rounding the result to the specified `$precision`.
+        Defaults to the HALF_UP algorithm.
+
+    * Outputs:
+      * `$decimal` is result of raising the given decimal by the 
+        given exponent, and rounding to the given precision 
+        using the nominated [rounding algorithm].
+
+* #### tundra.decimal:round
+
+    Rounds the given decimal to given precision (number of decimal 
+    places) using the given [rounding algorithm].
+
+    * Inputs:
+      * `$decimal` is a decimal value to be rounded.
+      * `$precision` is an optional number of decimal places to be 
+        preserved in the result.
+      * `$rounding` is an optional choice of the [rounding algorithm] 
+        to use when rounding the result to the specified $precision.
+        Defaults to the HALF_UP algorithm.
+
+    * Outputs:
+      * `$decimal` is the given decimal value rounded to the given 
+        precision using the nominated [rounding algorithm].
+
+* #### tundra.decimal:subtract
+
+    Subtracts the given decimal y from x, returning the result 
+    optionally rounded to the given precision (number of decimal places) 
+    using the given [rounding algorithm].
+
+    * Inputs:
+      * `$decimal.x` is a decimal value.
+      * `$decimal.y` is a decimal value.
+      * `$precision` is an optional number of decimal places to be 
+        preserved in the result.
+      * `$rounding` is an optional choice of the [rounding algorithm] 
+        to use when rounding the result to the specified `$precision`.
+        Defaults to the HALF_UP algorithm.
+
+    * Outputs:
+      * `$decimal` is result of subtracting `$decimal.y` from `$decimal.x`
+        and rounding to the given precision using the nominated 
+        [rounding algorithm].
+
+* #### tundra.decimal:validate
+
+    Returns true if the given string can be parsed as a decimal.
+
+    * Inputs:
+      * `$decimal` is a string to be validated as a decimal.
+      * `$raise?` is an optional boolean indicating if an exception
+        should be thrown if the given string is not a valid
+        decimal. Defaults to false.
+
+    * Outputs:
+      * `$valid?` is a boolean indicating if the given string is
+        a valid decimal number.
 
 ### Directory
 
@@ -2317,9 +2453,6 @@ Services for working with arbitrary precision integers (uses [java.math.BigInteg
     * Outputs:
       * `$list` is the resulting list of datetime strings formatted according to
         `$pattern.output`.
-
-[ISO8601]: <http://en.wikipedia.org/wiki/ISO_8601>
-[java.text.SimpleDateFormat]: <http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html>
 
 ### Document List
 
@@ -4029,6 +4162,7 @@ Copyright © 2012 Lachlan Dowding. See license.txt for further details.
 [java.io.InputStream]: <http://docs.oracle.com/javase/6/docs/api/java/io/InputStream.html>
 [java.io.OutputStream]: <http://docs.oracle.com/javase/6/docs/api/java/io/OutputStream.html>
 [java.lang.String]: <http://docs.oracle.com/javase/6/docs/api/java/lang/String.html>
+[java.math.BigDecimal]: <http://docs.oracle.com/javase/6/docs/api/java/math/BigDecimal.html>
 [java.math.BigInteger]: <http://docs.oracle.com/javase/6/docs/api/java/math/BigInteger.html>
 [java.net.URI]: <http://docs.oracle.com/javase/6/docs/api/java/net/URI.html>
 [java.net.URLDecoder]: <http://docs.oracle.com/javase/6/docs/api/java/net/URLDecoder.html>
@@ -4046,6 +4180,7 @@ Copyright © 2012 Lachlan Dowding. See license.txt for further details.
 [RFC 2045]: <http://www.ietf.org/rfc/rfc2045.txt>
 [RFC 2046]: <http://www.ietf.org/rfc/rfc2046.txt>
 [RFC 2396]: <http://www.ietf.org/rfc/rfc2396.txt>
+[rounding algorithm]: <http://docs.oracle.com/javase/6/docs/api/java/math/RoundingMode.html>
 [SAX]: <http://en.wikipedia.org/wiki/Simple_API_for_XML>
 [try block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/try.html>
 [URI]: <http://www.w3.org/Addressing/>

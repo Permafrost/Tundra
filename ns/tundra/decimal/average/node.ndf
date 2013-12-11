@@ -212,10 +212,24 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Returns the average value of the given list of decimals.
+  <value name="node_comment">Returns the average value of the given list of decimals, optionally 
+rounded to the given precision (number of decimal places) using the 
+given [rounding algorithm].
 
-Refer to &lt;http://docs.oracle.com/javase/6/docs/api/java/math/RoundingMode.html&gt; for details on
-each rounding algorithm. If not specified, the default rounding algorithm used is HALF_UP.</value>
+* Inputs:
+  * $decimals is a list of decimal values to average.
+  * $precision is an optional number of decimal places to be 
+    preserved in the result.
+  * $rounding is an optional choice of the [rounding algorithm] 
+    to use when rounding the result to the specified $precision.
+    Defaults to the HALF_UP algorithm.
+
+* Outputs:
+  * $decimal is the result of averaging the given list of decimals
+    and rounding to the given precision using the nominated
+    [rounding algorithm].
+
+[rounding algorithm]: &lt;http://docs.oracle.com/javase/6/docs/api/java/math/RoundingMode.html&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
