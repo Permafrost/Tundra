@@ -76,33 +76,28 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$encoding.input</value>
+          <value name="field_name">$schemas.input</value>
           <value name="field_type">string</value>
-          <value name="field_dim">0</value>
+          <value name="field_dim">1</value>
           <value name="field_opt">true</value>
-          <value name="nillable">true</value>
-          <value name="form_qualified">false</value>
-          <value name="is_global">false</value>
-        </record>
-        <record javaclass="com.wm.util.Values">
-          <value name="node_type">record</value>
-          <value name="node_comment"></value>
-          <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
-            <value name="field_largerEditor">false</value>
-            <value name="field_password">false</value>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">string</value>
+              </record>
+            </array>
           </record>
-          <value name="field_name">$encoding.output</value>
-          <value name="field_type">string</value>
-          <value name="field_dim">0</value>
-          <value name="field_opt">true</value>
-          <value name="nillable">true</value>
+          <value name="nillable">false</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
+          <value name="is_soap_array_encoding_used">false</value>
         </record>
         <record javaclass="com.wm.util.Values">
           <value name="node_type">record</value>
@@ -216,6 +211,38 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
+            <null name="field_usereditable"/>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="field_name">$encoding.input</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <null name="field_usereditable"/>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="field_name">$encoding.output</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
             <value name="field_usereditable">false</value>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
@@ -311,10 +338,70 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Many-to-one conversion of XML or flat file content to another format.  Calls the given 
-joining service, passing the parsed list of contents as an input, and emitting the joined 
-content as output.  The splitting service must accept an IData[] document list, and return 
-a single IData document.</value>
+  <value name="node_comment">Many-to-one conversion of XML or flat file content to another 
+format.  
+
+Calls the given joining service, passing the parsed list of 
+contents as an input, and emitting the joined content as output.  
+The joining service must accept an IData[] document list, and 
+return a single IData document.
+
+* Inputs:
+  * $contents is a list of strings, byte arrays, or input streams
+    containing content (structured/parseable data) to be joined
+    or aggregated together into one item of content.
+
+  * $service is the fully-qualified joining service name that is
+    called to join or aggregate the parsed contents. This service
+    must accept an IData[] document list, and return a single
+    IData document.
+
+  * $pipeline is an optional IData document for specifying 
+    arbitrary input arguments to the invocation of $service.
+
+  * $schemas.input is an optional list of fully-qualified document
+    references or flat file schemas (for XML or flat file content
+    respectively), where $schemas.input[n] is used to parse the 
+    $contents[n]. Use this input argument when $contents contains 
+    unlike formats (for example, a mixture of flat file and xml 
+    formats).
+
+  * $schema.input is an optional fully-qualified document reference
+    or flat file schema (for XML or flat file content respectively),
+    used to parse all items in $contents. Use this input argument 
+    when $contents contains like formats (for example, when all 
+    items adhere to the exact same XML schema).
+
+  * $schema.output is an optional fully-qualified document reference
+    or flat file schema (for XML or flat file content respectively),
+    used to serialize the joined IData document returned by $service.
+
+  * $service.input is an optional name to use for the parsed IData[]
+    document list for the input pipeline of the $service invocation.
+    Defaults to $documents.
+
+  * $service.output is an optional name to use for the output IData
+    parameter returned by the $service invocation. Defaults to 
+    $document.
+
+  * $encoding.input is an optional character set to use when the 
+    $contents is provided as a list of input streams or byte arrays. 
+    Defaults to the Java virtual machine [default charset].
+
+  * $encoding.output is an optional character set to use when the 
+    $mode.output selected is 'bytes' or 'stream'. Defaults to the 
+    Java virtual machine [default charset].
+
+  * $mode.output is an optional choice of 'stream', 'bytes', or 
+    'string', which determines the type of $content object returned.
+    Defaults to 'stream'.
+
+* Outputs:
+  * $content is a string, byte array, or input stream (depending on 
+    the $mode.output selected) of the serialized IData document 
+    returned by $service.
+
+[default charset]: &lt;http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()&gt;    </value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

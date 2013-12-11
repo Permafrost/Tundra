@@ -2035,21 +2035,131 @@ tundra.integer.validate($integer);
 
 ### Content List
 
-```java
-// converts an IData[] document list to a list of XML or flat file strings, bytes, or
-// input streams
-tundra.list.content:emit($documents[], $encoding, $schema, $mode);
+* #### tundra.list.content:emit
 
-// many-to-one conversion of XML or flat file content to another format; calls the given
-// joining service, passing the parsed list of contents as an input, and emitting the joined
-// content as output; the splitting service must accept an IData[] document list, and return
-// a single IData document
-tundra.list.content.join($contents[], $service, $pipeline, $encoding.input, $encoding.output, $schema.input, $schema.output, $service.input, $service.output, $mode.output);
+  Converts an IData[] document list to a list of XML or flat file 
+  strings, bytes or input streams.
 
-// parses a list of XML and flat file content (specified as a list of strings, bytes, or
-// input streams) into an IData[] document list
-tundra.list.content:parse($contents[], $encoding, $schema);
-```
+  * Inputs:
+    * `$documents` is a list of IData documents to be serialized
+      as a string, byte array, or input stream.
+    * `$schemas` is an optional list of fully-qualified document 
+      references or flat file schemas (for XML or flat file content 
+      respectively), with the same number of items as `$documents`,
+      where `$schemas[n]` is the schema used to serialize 
+      `$documents[n]`. Use this input argument when `$documents` 
+      contains unlike formats where different items in the list
+      are required to be serialized to different formats.
+    * `$schema` is an optional fully-qualified document reference or 
+      flat file schema (for XML or flat file content respectively) 
+      if all the items in the `$documents` list are to be serialized 
+      to the exact same format.
+    * `$mode` is an optional choice of 'stream', 'bytes', or 'string'
+      which determines the type of object the documents are serialized
+      to. Defaults to 'stream'.
+    * `$encoding` is an optional character set to use when the $mode
+      selected is 'bytes' or 'stream'. Defaults to the Java virtual 
+      machine [default charset].
+
+  * Outputs:
+    * `$contents` is a list of strings, byte arrays, or input streams 
+      (depending on the `$mode` selected) where each item is the
+      serialized like-indexed document. In other words, the 
+      `$contents[n]` item is the `$documents[n]` item serialized.
+
+* #### tundra.list.content:join
+
+    Many-to-one conversion of XML or flat file content to another 
+    format.  
+
+    Calls the given joining service, passing the parsed list of 
+    contents as an input, and emitting the joined content as output.  
+    The joining service must accept an IData[] document list, and 
+    return a single IData document.
+
+    * Inputs:
+      * `$contents` is a list of strings, byte arrays, or input streams
+        containing content (structured/parseable data) to be joined
+        or aggregated together into one item of content.
+
+      * `$service` is the fully-qualified joining service name that is
+        called to join or aggregate the parsed contents. This service
+        must accept an IData[] document list, and return a single
+        IData document.
+
+      * `$pipeline` is an optional IData document for specifying 
+        arbitrary input arguments to the invocation of `$service`.
+
+      * `$schemas.input` is an optional list of fully-qualified document
+        references or flat file schemas (for XML or flat file content
+        respectively), where `$schemas.input[n]` is used to parse the 
+        `$contents[n]`. Use this input argument when `$contents` contains 
+        unlike formats (for example, a mixture of flat file and xml 
+        formats).
+
+      * `$schema.input` is an optional fully-qualified document reference
+        or flat file schema (for XML or flat file content respectively),
+        used to parse all items in `$contents`. Use this input argument 
+        when `$contents` contains like formats (for example, when all 
+        items adhere to the exact same XML schema).
+
+      * `$schema.output` is an optional fully-qualified document reference
+        or flat file schema (for XML or flat file content respectively),
+        used to serialize the joined IData document returned by `$service`.
+
+      * `$service.input` is an optional name to use for the parsed IData[]
+        document list for the input pipeline of the `$service` invocation.
+        Defaults to `$documents`.
+
+      * `$service.output` is an optional name to use for the output IData
+        parameter returned by the `$service` invocation. Defaults to 
+        `$document`.
+
+      * `$encoding.input` is an optional character set to use when the 
+        `$contents` is provided as a list of input streams or byte arrays. 
+        Defaults to the Java virtual machine [default charset].
+
+      * `$encoding.output` is an optional character set to use when the 
+        `$mode.output` selected is 'bytes' or 'stream'. Defaults to the 
+        Java virtual machine [default charset].
+
+      * `$mode.output` is an optional choice of 'stream', 'bytes', or 
+        'string', which determines the type of `$content` object returned.
+        Defaults to 'stream'.
+
+    * Outputs:
+      * `$content` is a string, byte array, or input stream (depending on 
+        the `$mode.output` selected) of the serialized IData document 
+        returned by `$service`.
+
+* #### tundra.list.content:parse
+
+    Parses a list of XML and flat file content (specified as a list of 
+    strings, bytes, or input streams) into an IData[] document list.
+
+    * Inputs:
+      * `$contents` is a list of strings, byte arrays, or input streams
+        containing content (structured/parseable data) to be parsed.
+
+      * `$schemas` is an optional list of fully-qualified document
+        references or flat file schemas (for XML or flat file content
+        respectively), where `$schemas[n]` is used to parse `$contents[n]`. 
+        Use this input argument when `$contents` contains unlike formats 
+        (for example, a mixture of flat file and xml formats).
+
+      * `$schema` is an optional fully-qualified document reference or 
+        flat file schema (for XML or flat file content respectively),
+        used to parse all items in `$contents`. Use this input argument 
+        when `$contents` contains like formats (for example, when all 
+        items adhere to the exact same XML schema).
+
+      * `$encoding` is an optional character set to use when the 
+        `$contents` is provided as a list of input streams or byte arrays. 
+        Defaults to the Java virtual machine [default charset].
+
+    * Outputs:
+      * `$documents` is an IData[] document list of the parsed `$contents`,
+        where `$documents[n]` is the parsed version of `$contents[n]`.
 
 ### Datetime List
 

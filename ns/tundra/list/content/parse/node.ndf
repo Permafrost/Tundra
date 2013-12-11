@@ -33,13 +33,12 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$encoding</value>
+          <value name="field_name">$schemas</value>
           <value name="field_type">string</value>
-          <value name="field_dim">0</value>
+          <value name="field_dim">1</value>
           <value name="field_opt">true</value>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <value name="contentType">1</value>
@@ -55,6 +54,7 @@
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
+          <value name="is_soap_array_encoding_used">false</value>
         </record>
         <record javaclass="com.wm.util.Values">
           <value name="node_type">record</value>
@@ -80,6 +80,33 @@
             </array>
           </record>
           <value name="nillable">false</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <null name="field_usereditable"/>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="field_name">$encoding</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">string</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
         </record>
@@ -114,8 +141,34 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Parses a list of XML and flat file content (specified as a list of strings, bytes, or input streams) 
-into an IData[] document list.</value>
+  <value name="node_comment">Parses a list of XML and flat file content (specified as a list of 
+strings, bytes, or input streams) into an IData[] document list.
+
+* Inputs:
+  * $contents is a list of strings, byte arrays, or input streams
+    containing content (structured/parseable data) to be parsed.
+
+  * $schemas is an optional list of fully-qualified document
+    references or flat file schemas (for XML or flat file content
+    respectively), where $schemas[n] is used to parse $contents[n]. 
+    Use this input argument when $contents contains unlike formats 
+    (for example, a mixture of flat file and xml formats).
+
+  * $schema is an optional fully-qualified document reference or 
+    flat file schema (for XML or flat file content respectively),
+    used to parse all items in $contents. Use this input argument 
+    when $contents contains like formats (for example, when all 
+    items adhere to the exact same XML schema).
+
+  * $encoding is an optional character set to use when the 
+    $contents is provided as a list of input streams or byte arrays. 
+    Defaults to the Java virtual machine [default charset].
+
+* Outputs:
+  * $documents is an IData[] document list of the parsed $contents,
+    where $documents[n] is the parsed version of $contents[n].
+
+[default charset]: &lt;http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()&gt;    </value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
