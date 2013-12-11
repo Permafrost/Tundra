@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-11-24 09:46:31 EST
-// -----( ON-HOST: 172.16.189.144
+// -----( CREATED: 2013-12-11 09:42:37.533
+// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -221,15 +221,17 @@ public final class object
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:1:optional $list
-		// [i] field:0:required $index
+		// [i] field:0:optional $index
+		// [i] field:0:optional $iteration
 		// [o] object:0:optional $item
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  Object[] list = IDataUtil.getObjectArray(cursor, "$list");
 		  String index = IDataUtil.getString(cursor, "$index");
+		  String iteration = IDataUtil.getString(cursor, "$iteration");
 		
-		  if (index != null) IDataUtil.put(cursor, "$item", get(list, index));
+		  if (index != null || iteration != null) IDataUtil.put(cursor, "$item", get(list, index, iteration));
 		} finally {
 		  cursor.destroy();
 		}
@@ -774,10 +776,20 @@ public final class object
 	  return list.toArray(java.util.Arrays.copyOf(array, 0));  
 	}
 	
+	// returns the element from the given array at the given index (supports ruby-style reverse indexing)
+	public static <T> T get(T[] array, String index, String iteration) {
+	  int i = 0;
+	  if (index != null) {
+	    i = Integer.parseInt(index);
+	  } else {
+	    i = Integer.parseInt(iteration) - 1;
+	  }
+	  return get(array, i);
+	}
 	
 	// returns the element from the given array at the given index (supports ruby-style reverse indexing)
 	public static <T> T get(T[] array, String index) {
-	  return get(array, Integer.parseInt(index));
+	  return get(array, index, null);
 	}
 	
 	// returns the element from the given array at the given index (supports ruby-style reverse indexing)
@@ -806,6 +818,8 @@ public final class object
 	  if (newLength < 0) throw new NegativeArraySizeException();
 	
 	  int originalLength = array.length;
+	  if (newLength == originalLength) return array;
+	
 	  array = java.util.Arrays.copyOf(array, newLength);
 	  if (item != null) {
 	    for (int i = originalLength; i < newLength; i++) array[i] = item;
