@@ -60,7 +60,15 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Removes all null values from the given IData document.</value>
+  <value name="node_comment">Removes all null values from the given IData document.
+
+* Inputs:
+  * $document is an IData document from which null values are
+    to be removed.
+
+* Outputs:
+  * $document is the given IData document with all null values
+    removed.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

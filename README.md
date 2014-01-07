@@ -802,7 +802,7 @@ content.
       pipeline of the call to `$service` for the parsed `$content` IData
       document. Defaults to `$document`.
     * `$service.output` is an optional variable name used to extract the
-      output IData document list from the output pipeline of the call to
+      output IData document from the output pipeline of the call to
       `$service`. Defaults to `$translation`.
     * `$mode.output` is an optional choice of {stream, bytes, string} which
       specifies the type of object `$translation` is returned as. Defaults to
@@ -1465,163 +1465,739 @@ Services for manipulating com.wm.data.IData objects:
   * Outputs:
     * `$document` is the resulting edited IData document.
 
-```java
-// removes all elements from the given IData $document, except for any keys specified
-// in the $preserve list; keys can be simple or fully qualified, such as a/b/c[0]/d
-tundra.document:clear($document, $preserve[]);
+* #### tundra.document:clear
 
-// removes all null values from the given IData document
-tundra.document:compact($document);
+  Removes all elements from the given IData document, except for 
+  any keys specified in the preserve list.
 
-// copies the value associated with the source key to the target key in the given IData document
-// keys can be simple or fully qualified, such as a/b/c[0]/d
-tundra.document:copy($document, $key.source, $key.target);
+  * Inputs:
+    * `$document` is an IData document whose keys are to be removed.
+    * `$preserve` is list of keys which will not be removed from
+      the given IData document. Keys can be simple or fully
+      qualified, such as a/b/c[0]/d.
 
-// delivers a document to the given destination URI
-//
-// supports the following delivery protocols / URI schemes:
-//  - file: writes the given content to the file specified by the destination URI.  The
-//          following additional options can be provided via the $pipeline document:
-//            - $mode: append / write
-//
-// additional delivery protocols can be implemented by creating a service named for the
-// URI scheme in the folder tundra.support.content.deliver; services in this folder should
-// implement the tundra.support.content.deliver.protocol:handler specification
-//
-// an optional response stream may be returned by specific delivery protocols, for example, an
-// http delivery returns the http response as a stream, which is useful for logging, however a
-// file delivery returns no such response as none exists
-tundra.document:deliver($document, $encoding, $schema, $destination, $pipeline);
+  * Outputs:
+    * `$document` is the given IData document with all keys removed,
+      except for those specified in `$preserve`.
 
-// removes the element with the given key from the given IData document
-// keys can be simple or fully qualified, such as a/b/c[0]/d
-tundra.document:drop($document, $key);
+* #### tundra.document:compact
 
-// returns either a shallow (top-level elements) or deep (recursive) clone
-// of the given IData document
-tundra.document:duplicate($document, $recurse?);
+  Removes all null values from the given IData document.
 
-// iterates over all elements in the given IData document, invoking the given service for
-// each {key, value} pair
-tundra.document:each($document, $service, $pipeline, $key.input, $value.input, $value.class, $recurse?);
+  * Inputs:
+    * `$document` is an IData document from which null values are
+      to be removed.
 
-// returns true if the two IData documents are equal (contain the same keys
-// and values)
-tundra.document:equal($document.x, $document.y);
+  * Outputs:
+    * `$document` is the given IData document with all null values
+      removed.
 
-// emits (or encodes) the given IData document as an IData XML string, byte array, or input stream
-// refer: <http://documentation.softwareag.com/webmethods/wmsuites/wmsuite8-2_sp2/Integration_Server/8-2-SP1_Integration_Server_Java_API_Reference/com/wm/util/coder/IDataXMLCoder.html>
-tundra.document:emit($document, $encoding, $mode);
+* #### tundra.document:copy
 
-// returns the first {key, value} pair from the given IData document
-tundra.document:first($document);
+  Copies the value associated with the source key to the target key 
+  in the given IData document.
 
-// returns the value associated with the given key from the given IData
-// document, or null if the key doesn't exist
-// keys can be simple or fully qualified, such as a/b/c[0]/d
-tundra.document:get($document, $key);
+  * Inputs:
+    * `$document` is an IData document in which to copy the value
+      associated with the source key to the target key.
+    * `$key.source` is a key identifying the value to be copied,
+      and can be simple or fully qualified, such as a/b/c[0]/d.
+    * `$key.target` is the key to which the source key value is 
+      copied, and can be simple or fully qualified, such as 
+      a/b/c[0]/d.
 
-// converts all keys in the given IData document to lower case
-tundra.document.key:lowercase($document, $recurse?);
+  * Outputs:
+    * `$document` is the given IData document where the value
+      associated with `$key.source` has been copied to `$key.target`.
 
-// replaces all occurrences of the given regular expression pattern in each key
-// in the given IData document with the replacement string
-// refer: <http://download.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html>,
-//        <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Matcher.html>
-tundra.document.key:replace($document, $pattern, $replacement, $literal?, $recurse?);
+* #### tundra.document:deliver
 
-// removes leading and trailing whitespace from all keys in the given IData document
-tundra.document.key:trim($document, $recurse?);
+  Serializes the given IData document, and delivers it to the given destination URI. 
 
-// converts all keys in the given IData document to upper case
-tundra.document.key:uppercase($document, $recurse?);
+  Additional delivery protocols can be implemented by creating a service named for 
+  the URI scheme in the folder tundra.support.content.deliver. Services in this folder 
+  should implement the tundra.support.content.deliver.protocol:handler specification.
 
-// returns the list of top-level keys in the given IData document
-tundra.document:keys($document);
+  * Inputs:
+    * `$document` is the IData document to be serialized and delivered to the given 
+      destination URI.
 
-// returns the last {key, value} pair from the given IData document
-tundra.document:last($document);
+    * `$encoding` is an optional character set used to encode the serialized document
+      data upon delivery. Defaults to the Java virtual machine [default charset].
 
-// returns the number of top-level elements in the given IData document
-tundra.document:length($document);
+    * `$schema` is the fully-qualified name of the document reference (for XML) or 
+      flat file schema (for flat files) used to serialize `$document`.
 
-// converts the IData value identified by $key in the given $scope IData document (or the pipeline,
-// if not specified) to a new list of type IData[] containing the original value as its single item,
-// unless the original value was already list; the given key can be simple or fully qualified, such
-// as a/b/c[0]/d
-tundra.document:listify($key, $scope);
+    * `$content.type` is an optional MIME media type describing the type content being 
+      delivered.
 
-// returns a new IData document created by invoking the given service for each {key, value} pair
-// in the given document, and collecting new the {key, value} pair returned
-tundra.document:map($document, $service, $pipeline, $key.input, $key.output, $value.input, $value.output, $value.class, $recurse?);
+    * `$destination` is a URI identifying the location where the serialized document should 
+      be delivered. Supports the following delivery protocols / URI schemes:
+      * file: writes the given content to the file specified by the destination URI. The 
+        following additional options can be provided via the $pipeline document:
+        * `$mode`: append / write
 
-// merges multiple IData documents into a single document; only top-level
-// elements are merged, and if duplicate keys exist in the documents being
-// merged, the latest wins
-tundra.document:merge($documents[]);
+      * http: transmits the given content to the destination URI. The following additional 
+        options can be provided via the $pipeline document:
+        * `$method`: get / put / post / delete / head / trace / options
+        * `$headers/*`: additional HTTP headers as required
+        * `$authority/user`: the username to log on to the remote web server with
+        * `$authority/password`: the password to log on to the remote web server with
 
-// returns a new IData document, with all fully qualified keys (for example,
-// 'a/b/c' or 'x/y[0]/z[1]') deconstructed into their constituent parts
-tundra.document:normalize($document);
+      * https: refer to http
 
-// parses (or decodes) the given IData XML string, byte array, or input stream to an IData document
-// refer: <http://documentation.softwareag.com/webmethods/wmsuites/wmsuite8-2_sp2/Integration_Server/8-2-SP1_Integration_Server_Java_API_Reference/com/wm/util/coder/IDataXMLCoder.html>
-//        <http://documentation.softwareag.com/webmethods/wmsuites/wmsuite8-2_sp2/Integration_Server/8-2-SP1_Integration_Server_Java_API_Reference/com/wm/util/coder/XMLCoderWrapper.html>
-tundra.document:parse($content, $encoding);
+      * mailto: sends an email with the given content attached. An example mailto URI is as 
+        follows: 
+        
+        mailto:bob@example.com?cc=jane@example.com&subject=Example&body=Example&attachment=message.xml. 
+        
+        The following additional override options can be provided via the $pipeline document:
+        * `$attachment`: the attached file's name
+        * `$from`: email address to send the email from
+        * `$subject`: the subject line text
+        * `$body`: the main text of the email
+        * `$smtp`: an SMTP URI specifying the SMTP server to use (for example, 
+          smtp://user:password@host:port), defaults to the SMTP server configured in the 
+          Integration Server setting `watt.server.smtpServer`.
 
-// sets the value associated with the given key in the given IData
-// document
-// keys can be simple or fully qualified, such as a/b/c[0]/d
-tundra.document:put($document, $key, $value);
+    * `$pipeline` is an optional IData document for providing arbitrary variables to the 
+      delivery implementation service.
 
-// renames the value with the source key to have the target key in the given IData document
-// keys can be simple or fully qualified, such as a/b/c[0]/d
-tundra.document:rename($document, $key.source, $key.target);
+  * Outputs:
+    * `$message` is an optional response message, useful for logging, that may be returned 
+      by specific delivery protocols.
 
-// sorts the given IData document by its keys in natural ascending order
-tundra.document:sort($document, $recurse?);
+    * `$response` is an optional response content returned by the delivery (for example, 
+      the HTTP response body).
 
-// one-to-many conversion of an IData document to an IData[] document list; calls the given
-// splitting service, passing the document as an input, and emitting the split
-// list of documents as output; the splitting service must accept a single IData document,
-// and return an IData document list; the splitting service may also return a list of $schemas
-// that each return document conforms to
-tundra.document:split($document, $service, $pipeline, $service.input, $service.output);
+    * `$response.type` is an optional MIME media type describing the type of `$response` 
+      returned.
 
-// trims all leading and trailing whitespace from all string values, then converts
-// empty strings to nulls, then compacts the IData document by removing all null
-// values
-tundra.document:squeeze($document, $recurse?);
+* #### tundra.document:drop
 
-// attempts variable substitution on each string element in the given IData document by
-// replacing all occurrences of substrings matching "%key%" with the associated (optionally
-// scoped) value
-tundra.document:substitute($document, $pipeline);
+  Removes the element with the given key from the given IData document. 
 
-// one-to-one conversion of an IData document to another IData document; calls the given
-// translation service, passing the document as an input, and emitting
-// the translated document as output; the translation service must accept a single IData
-// document and return a single IData document
-tundra.document:translate($document, $service, $pipeline, $service.input, $service.output);
+  * Inputs:
+    * `$document` is an IData document from which to remove the element
+      identified by `$key`.
+    * `$key` is a key identifying the element in `$document` to be removed,
+      and can be simple or fully qualified, such as a/b/c[0]/d.
 
-// converts all String elements in the given IData document to lower case
-tundra.document.value:lowercase($document, $recurse?);
+  * Outputs:
+    * `$document` is the given IData document where the element
+      associated with `$key` has been removed.
 
-// replaces all occurrences of the given regular expression pattern in each String value
-// in the given IData document with the replacement string
-// refer: <http://download.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html>,
-//        <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Matcher.html>
-tundra.document.value:replace($document, $pattern, $replacement, $literal?, $recurse?);
+* #### tundra.document:duplicate
 
-// removes leading and trailing whitespace from all String elements in the given IData document
-tundra.document.value:trim($document, $recurse?);
+  Returns an optionally recursive clone of the the given IData 
+  document.
 
-// converts all String elements in the given IData document to upper case
-tundra.document.value:uppercase($document, $recurse?);
+  * Inputs:
+    * `$document` is an IData document to be cloned.
+    * `$recurse?` is an optional boolean indicating if embedded
+      IData documents and IData[] document lists should also
+      be cloned. If not cloned, the resulting IData document
+      will reference the same IData and IData[] objects as
+      the input document. Defaults to false.
 
-// returns the list of top-level values in the given IData document
-tundra.document:values($document);
-```
+  * Outputs:
+    * `$duplicate` is the cloned input IData document.
+
+* #### tundra.document:each
+
+  Iterates over all elements in the given IData document, invoking 
+  the given service for each key value pair.
+
+  * Inputs:
+    * `$document` is an IData document whose elements are to be
+      iterated over.
+    * `$service` is the fully-qualifed name of the service to
+      be called to process each element .
+    * `$pipeline` is an optional input pipeline for providing
+      arbitrary input arguments to `$service`.
+    * `$key.input` is the optional argument name used when 
+      passing each iteration's key in the input pipeline of 
+      each invocation of `$service`. Defaults to $key.
+    * `$value.input` is the optional argument name used when 
+      passing each iteration's value in the input pipeline of 
+      each invocation of `$service`. Defaults to $value.
+    * `$value.class` is an optional Java class name, which when
+      specified restricts the elements iterated to only those
+      whose value are an instance of the given class. When
+      not specified, all elements in the `$document` are iterated
+      over.
+    * `$recurse` is an optional boolean indicating if embedded
+      IData documents and IData[] document lists should also
+      be iterated over. Defaults to false.
+
+* #### tundra.document:emit
+
+  Serializes the given IData document as an [IData XML] string, 
+  byte array, or input stream.
+
+  * Inputs:
+    * `$document` is an IData document to be serialized.
+    * `$encoding` is an optional character set used to encode the 
+      serialized document when returned as a byte array or input
+      stream. Defaults to the Java virtual machine [default charset].
+    * `$mode` is an optional choice of 'stream', 'bytes', or
+      'string', which determines the type of object returned by
+      this service. Defaults to 'stream'.
+
+  * Outputs:
+    * $content is the resulting serialized document.
+
+* #### tundra.document:equal
+
+  Returns true if the given documents are equal (contain the same set 
+  of keys and values).
+
+  * Inputs:
+    * `$document.x` is an IData document to be compared to `$document.y`.
+    * `$document.y` is an IData document to be compared to `$document.x`.
+
+  * Outputs:
+    * `$equal?` is a boolean indicating if the given documents contain
+      the same set of keys and values.
+
+* #### tundra.document:first
+
+  Returns the first key value pair from the given IData document.
+
+  * Inputs:
+    * `$document` is an IData document from which to fetch the first
+      element.
+
+  * Outputs:
+    * `$key` is the key of the first element in the given IData 
+      document.
+    * `$value` is the value of the first element in the given IData
+      document.
+
+* #### tundra.document:get
+
+  Returns the value associated with the given key from the given 
+  IData document, or null if it doesn't exist.
+
+  * Inputs:
+    * `$document` is an IData document from which to fetch the first
+      element.
+    * `$key` is the key identifying the value in the given document
+      to be returned, and can be simple or fully qualified, such 
+      as a/b/c[0]/d.
+
+  * Outputs:
+    * `$value` is the value associated with the given key in the
+      given IData document.
+
+* #### tundra.document.key:lowercase
+
+  Converts all keys in the given IData document to lower case.
+
+  * Inputs:
+    * `$document` is an IData document whose keys are to be
+      converted to lower case.
+    * `$locale` optionally identifies the case transformation rules 
+      to be used for a given [Locale]. If not specified, the 
+      [default locale] is used.
+    * `$recurse?` is an optional boolean indicating if embedded
+      IData documents and IData[] document lists should also
+      have their keys converted to lower case. Defaults to 
+      false.
+
+  * Outputs:
+    * $document is the given IData document with all keys 
+      converted to lower case.
+
+* #### tundra.document.key:replace
+
+  Replaces all occurrences of the given [regular expression pattern] 
+  in each key in the given IData document with the replacement 
+  string.
+
+  * Inputs:
+    * `$document` is an IData document to have all occurrences of the 
+      given [regular expression pattern] in each key replaced.
+    * `$pattern` is the [regular expression pattern] to match against
+      the each key.
+    * `$replacement` is the replacement string to be substituted in
+      the each key wherever the given pattern is found.
+    * `$literal?` is a boolean indicating if the replacement string
+      should be treated as a literal string. If false, captured
+      groups can be referred to with dollar-sign references, such
+      as $1, and other special characters may need to be escaped.
+      Defaults to false.
+    * `$recurse?` is an optional boolean indicating if embedded
+      IData documents and IData[] document lists should also
+      have occurrences of the pattern in their string values 
+      replaced. Defaults to false.
+
+  * Outputs:
+    * `$document` is the given IData document with all occurrences of 
+      the given [regular expression pattern] in each key replaced 
+      with `$replacement`.
+
+* #### tundra.document.key:trim
+
+  Removes leading and trailing whitespace from all keys in the given 
+  IData document.
+
+  * Inputs:
+    * `$document` is an IData document whose keys are to be trimmed of 
+      leading and trailing whitespace characters.
+    * `$recurse?` is an optional boolean indicating if embedded
+      IData documents and IData[] document lists should also
+      have their keys trimmed. Defaults to false.
+
+  * Outputs:
+    * `$document` is the given IData document with all keys trimmed of
+      leading and trailing whitespace characters removed.
+
+* #### tundra.document.key:uppercase
+
+  Converts all keys in the given IData document to upper case.
+
+  * Inputs:
+    * `$document` is an IData document whose keys are to be
+      converted to upper case.
+    * `$locale` optionally identifies the case transformation rules 
+      to be used for a given [Locale]. If not specified, the 
+      [default locale] is used.
+    * `$recurse?` is an optional boolean indicating if embedded
+      IData documents and IData[] document lists should also
+      have their keys converted to upper case. Defaults to 
+      false.
+
+  * Outputs:
+    * `$document` is the given IData document with all keys 
+      converted to upper case.
+
+* #### tundra.document:keys
+
+  Returns all the top-level keys in the given IData document.
+
+  * Inputs:
+    * `$document` is an IData document from which all top-level
+      keys are to be fetched.
+
+  * Outputs:
+    * `$keys` is the list of all top-level keys in the given IData
+      document.
+
+* #### tundra.document:last
+
+  Returns the last key value pair from the given IData document.
+
+  * Inputs:
+    * `$document` is an IData document from which to fetch the last
+      element.
+
+  * Outputs:
+    * `$key` is the key of the last element in the given IData 
+      document.
+    * `$value` is the value of the last element in the given IData
+      document.
+
+* #### tundra.document:length
+
+  Returns the number of top-level key value pairs in the given 
+  IData document.
+
+  * Inputs:
+    * `$document` is an IData document.
+
+  * Outputs:
+    * `$length` is the number of top-level keys in the given IData
+      document.
+
+* #### tundra.document:listify
+
+  Converts the IData value identified by `$key` in the given `$scope` IData 
+  document (or the pipeline, if not specified) to a new list of type 
+  IData[] containing the original value as its single item, unless the 
+  original value was already a list.
+
+  * Inputs:
+    * `$key` is a key identifying the value to be coverted to an document
+      list (IData[]), and can be simple or fully qualified, such as 
+      a/b/c[0]/d.
+    * `$scope` is an optional IData document against which the given `$key`
+      is resolved. If not specified, $key is resolved against the pipeline.
+
+  * Outputs:
+    * `$scope` is an optional IData document in which the value associated 
+      with `$key` has been converted to a document list (IData[]). If no
+      `$scope` was provided as input, this output will not exist. Instead
+      the `$key` is resolved against the pipeline, and the associated 
+      value in the pipeline is converted to a document list (IData[]).
+
+* #### tundra.document:map
+
+  Constructs a new IData document by invoking the given service for 
+  each key value pair in the given IData document, and inserting 
+  the key value pair returned by the service in the resulting IData
+  document.
+
+  This is an implementation of a higher-order [map function] for
+  IData objects.
+
+  For an example of how to use this service, refer to the 
+  tundra.document.key:* and tundra.document.value:* services.
+
+  * Inputs:
+    * `$document` is an IData document whose elements are to be
+      processed by the given `$service`.
+    * `$service` is the fully-qualifed name of the service to
+      be called to process each element, and should return a
+      new key value pair as a result.
+    * `$pipeline` is an optional input pipeline for providing
+      arbitrary input arguments to `$service`.
+    * `$key.input` is the optional argument name used when 
+      passing each key to `$service`. Defaults to $key.
+    * `$key.output` is the optional argument name used by `$service`
+      when returning the resulting key. Defaults to $key.
+    * `$value.input` is the optional argument name used when 
+      passing each value to `$service`. Defaults to $value.
+    * `$value.output` is the optional argument name used by `$service`
+      when returning the resulting value. Defaults to $value.
+    * `$value.class` is an optional Java class name, which when
+      specified restricts the elements processed to only those
+      whose value are an instance of the given class. When
+      not specified, all elements in the `$document` are processed.
+    * `$recurse` is an optional boolean indicating if embedded
+      IData documents and IData[] document lists should also
+      be processed. Defaults to false.
+
+  * Outputs:
+    * `$document` is the resulting IData document created from the
+      key value pairs returned by `$service`.
+
+* #### tundra.document:merge
+
+  Merges multiple IData documents into a single document. Only top-level 
+  elements are merged, and if duplicate keys exist in the documents being 
+  merged, the latest wins.
+
+  This service can be useful for combining a document constructed with 
+  default values with a document sourced externally, where the merged
+  document will contain the key set union of both documents, and will
+  include default values where no value was present in the externally
+  sourced document.
+
+  * Inputs:
+    * `$documents` is a document list (IData[]) containing IData documents
+      to be merged into a single IData document.
+
+  * Outputs:
+    * `$document` is the merged IData document, containing all keys from all
+      documents in the given document list and the latest (in terms of list
+      index) values associated with those keys.
+
+* #### tundra.document:normalize
+
+  Returns a new IData document with all fully qualified keys (for example, 
+  'a/b/c' or 'x/y[0]/z[1]') deconstructed into their constituent parts, and
+  any non-IData objects converted to an IData representation wherever possible.
+
+  For example, if the IData document contains the following key value pairs 
+  (using [JSON] notation to represent the pipeline):
+
+      {
+        "a/b/c": "example 1",
+        "a/b/d": "example 2",
+        "e": "example 3",
+        "f[0]": "example 4",
+        "f[1]": "example 5"
+      }
+
+  This is normalized to the following:
+
+      {
+        "a": {
+          "b": {
+            "c": "example 1",
+            "d": "example 2"
+          }
+        },
+        "e": "example 3",
+        "f": ["example 4", "example 5"]
+      }
+
+  Keys using path-style notation, for example "a/b/c", are 
+  converted to nested IData documents with the final key
+  in the path, "c" in this example, assigned the value of
+  the original key.
+
+  Keys using array- or list-style notation, for example "f[0]", 
+  are converted to an array or list with the value of the 
+  original key assigned to the indexed item (the zeroth item in
+  this example).
+
+  * Inputs:
+    * `$document` is an IData document to be normalized.
+
+  * Outputs:
+    * `$document` is the resulting normalized IData document.
+
+* #### tundra.document:parse
+
+  Parses (or deserializes) the given [IData XML] string, byte array, or 
+  input stream to an IData document.
+
+  * Inputs:
+    * `$content` is a string, byte array, or input stream containing a
+      serialized IData document.
+    * `$encoding` is an optional character set used to decode the 
+      `$content` when provided as a byte array or input stream. Defaults 
+      to the Java virtual machine [default charset].
+
+  * Outputs:
+    * `$document` is the resulting deserialized IData document.
+
+* #### tundra.document:put
+
+  Sets the value associated with the given key in the given IData document. 
+
+  * Inputs:
+    * `$document` is an IData document in which to insert the given key
+      value pair.
+    * `$key` is the key to be inserted into the given IData document, and
+      can be simple or fully-qualified, such as a/b/c[0]/d. If the key 
+      already exists, it's value will be overwritten with the given value. 
+    * `$value` is the value to be associated with the given key. If not
+      specified, a null value will be inserted.
+
+  * Outputs:
+    * `$document` is the resulting IData document containing the new key 
+      value pair.
+
+* #### tundra.document:rename
+
+  Renames the value associated with the source key to have the target key 
+  in the given IData document.
+
+  * Inputs:
+    * `$document` is an IData document in which to rename the given key.
+    * `$key.source` is the key to be renamed, and can be simple or fully-
+      qualified, such as a/b/c[0]/d.
+    * `$key.target` is the new name that source key will be renamed to, 
+      and can be simple or fully-qualified, such as a/b/c[0]/d. If the
+      target key already exists, its value will be overwitten with the
+      value that was associated with the source key.
+
+  * Outputs:
+    * `$document` is the resulting IData document, where the source key
+      has been renamed to the target key.
+
+* #### tundra.document:sort
+
+  Sorts the given IData document by its keys in natural ascending order.
+
+  * Inputs:
+    * `$document` is an IData document to be sorted.
+    * `$recurse` is an optional boolean indicating if embedded
+      IData documents and IData[] document lists should also
+      be sorted. Defaults to false.
+
+  * Outputs:
+    * `$document` is the resulting IData document, where the elements have
+      been sorted by their keys into natural ascending order.
+
+* #### tundra.document:split
+
+  One-to-many conversion of an IData document to an IData[] document list.  Calls 
+  the given splitting service, passing the document as an input, and returning the 
+  split list of documents as output.
+
+  * Inputs:
+    * `$document` is an IData document to be processed by the given splitting
+      service.
+
+    * `$service` is the fully-qualified name of the splitting service, which 
+      accepts a single IData document and returns an IData document list, 
+      called to split `$document`. Also it is perfectly permissible for the 
+      resulting list returned by `$service` to contain unlike documents (documents 
+      whose formats are different), and in this case `$service` is required to 
+      return a string list $schemas, where each item in `$schemas` is the 
+      fully-qualified document reference (for XML) or flat file schema (for 
+      flat files) corresponding to the same indexed item in the returned document 
+      list to be used to emit/serialize that item.
+
+    * `$pipeline` is an optional IData document containing arbitrary variables to 
+      be included in the input pipeline of the invocation of `$service`.
+
+    * `$service.input` is an optional variable name to use in the input pipeline of the 
+      call to `$service` for the IData document. Defaults to $document.
+
+    * `$service.output` is an optional variable name used to extract the output IData 
+      document list from the output pipeline of the call to `$service`. Defaults to 
+      $documents.
+
+  * Outputs:
+    * `$documents` is the resulting list of IData documents.
+
+    * `$schemas` is the list of fully-qualified document reference (for XML) or flat 
+      file schema (for flat files) names, returned by `$service` for when the `$documents`
+      list contains unlike formats.
+
+* #### tundra.document:squeeze
+
+  Trims all leading and trailing whitespace from all string values, then 
+  converts empty strings to nulls, then compacts the IData document by 
+  removing all null values.
+
+  * Inputs:
+    * `$document` is an IData document to be squeezed.
+    * `$recurse?` is an optional boolean indicating if embedded
+      IData documents and IData[] document lists should also
+      be squeezed. Defaults to false.
+
+  * Outputs:
+    * `$document` is the resulting IData document with all string values 
+      trimmed of leading and trailing whitespace characters, and all 
+      empty string values and null values removed.
+
+* #### tundra.document:substitute
+
+  Attempts variable substitution on each string value in the given IData 
+  document by replacing all occurrences of substrings matching "%key%" with 
+  the associated (optionally scoped) value.
+
+  Optionally replaces null or non-existent values with the given default 
+  value.
+
+  * Inputs:
+    * `$document` is an IData document to perform variable substitution on.
+    * `$pipeline` is an optional scope used to resolve key references. If
+      not specified, keys are resolved against the pipeline itself.
+    * `$default` is an optional default value to substitute in place keys
+      that resolve to null or missing values. If not specified, no 
+      substitution will be made for keys that resolve to null or missing
+      values.
+
+  * Outputs:
+    * `$document` is the resulting IData document with all variable substitution 
+      patterns in all values, such as "%key%", replaced with the value of the 
+      key (resolved against either `$pipeline`, if specified, or the pipeline 
+      itself).
+
+* #### tundra.document:translate
+
+  One-to-one conversion of one IData document to another IData document. Calls 
+  the given translation service, passing the document as an input, and returning
+  the translated document as output.
+
+  * Inputs:
+    * `$document` is an IData document to be translated.
+
+    * `$service` is the fully-qualified name of the translation service, which accepts 
+      a single IData document and returns a single IData document, called to translate 
+      the given `$document`.
+
+    * `$service.input` is an optional variable name to use in the input pipeline of the 
+      call to `$service` for the given IData document. Defaults to $document.
+
+    * `$service.output` is an optional variable name used to extract the output IData 
+      document from the output pipeline of the call to `$service`. Defaults to 
+      $translation.
+
+  * Outputs:
+    * `$translation` is the translated IData document.
+
+* #### tundra.document.value:lowercase
+
+  Converts all string values in the given IData document to lower 
+  case.
+
+  * Inputs:
+    * `$document` is an IData document whose string values are to be
+      converted to lower case.
+    * `$locale` optionally identifies the case transformation rules 
+      to be used for a given [Locale]. If not specified, the 
+      [default locale] is used.
+    * `$recurse?` is an optional boolean indicating if embedded
+      IData documents and IData[] document lists should also
+      have their string values converted to lower case. Defaults 
+      to false.
+
+  * Outputs:
+    * `$document` is the given IData document with all string values 
+      converted to lower case.
+
+* #### tundra.document.value:replace
+
+  Replaces all occurrences of the given [regular expression pattern] 
+  in each string value in the given IData document with the replacement 
+  string.
+
+  * Inputs:
+    * `$document` is an IData document to have all occurrences of the 
+      given [regular expression pattern] in each string value replaced.
+    * `$pattern` is the [regular expression pattern] to match against
+      the each string value.
+    * `$replacement` is the replacement string to be substituted in
+      the each string value wherever the given pattern is found.
+    * `$literal?` is a boolean indicating if the replacement string
+      should be treated as a literal string. If false, captured
+      groups can be referred to with dollar-sign references, such
+      as $1, and other special characters may need to be escaped.
+      Defaults to false.
+    * `$recurse?` is an optional boolean indicating if embedded
+      IData documents and IData[] document lists should also
+      have occurrences of the pattern in their string values 
+      replaced. Defaults to false.
+
+  * Outputs:
+    * `$document` is the given IData document with all occurrences of 
+      the given [regular expression pattern] in each string value 
+      replaced with `$replacement`.
+
+* #### tundra.document.value:trim
+
+  Removes leading and trailing whitespace from all string value in the 
+  given IData document.
+
+  * Inputs:
+    * `$document` is an IData document whose string values are to be 
+      trimmed of leading and trailing whitespace characters.
+    * `$recurse?` is an optional boolean indicating if embedded
+      IData documents and IData[] document lists should also
+      have their string values trimmed. Defaults to false.
+
+  * Outputs:
+    * `$document` is the given IData document with all string values 
+      trimmed of leading and trailing whitespace characters removed.
+
+* #### tundra.document.value:uppercase
+
+  Converts all string values in the given IData document to upper case.
+
+  * Inputs:
+    * `$document` is an IData document whose string values are to be
+      converted to upper case.
+    * `$locale` optionally identifies the case transformation rules 
+      to be used for a given [Locale]. If not specified, the 
+      [default locale] is used.
+    * `$recurse?` is an optional boolean indicating if embedded
+      IData documents and IData[] document lists should also
+      have their string values converted to upper case. Defaults to 
+      false.
+
+  * Outputs:
+    * `$document` is the given IData document with all string values 
+      converted to upper case.
+
+* #### tundra.document:values
+
+  Returns all the top-level values in the given IData document.
+
+  * Inputs:
+    * `$document` is an IData document from which all top-level
+      values are to be fetched.
+
+  * Outputs:
+    * `$values` is the list of all top-level values in the given IData
+      document.
 
 ### DNS
 
@@ -3376,7 +3952,7 @@ Services for manipulating java.lang.Object objects:
 
         {
           "a/b/c": "example 1",
-          "a/b/d": "example 2"
+          "a/b/d": "example 2",
           "e": "example 3",
           "f[0]": "example 4",
           "f[1]": "example 5"
@@ -4172,6 +4748,7 @@ Copyright © 2012 Lachlan Dowding. See license.txt for further details.
 [javax.activation.MimeType]: <http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html>
 [JSON]: <http://www.json.org/>
 [Locale]: <http://docs.oracle.com/javase/6/docs/api/java/util/Locale.html>
+[map function]: <http://en.wikipedia.org/wiki/Map_(higher-order_function)>
 [mime type]: <http://en.wikipedia.org/wiki/Internet_media_type>
 [MIME]: <http://en.wikipedia.org/wiki/MIME>
 [Object.toString()]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html#toString()>

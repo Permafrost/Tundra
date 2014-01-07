@@ -34,7 +34,7 @@ pairs (using [JSON] notation to represent the pipeline):
 
     {
       "a/b/c": "example 1",
-      "a/b/d": "example 2"
+      "a/b/d": "example 2",
       "e": "example 3",
       "f[0]": "example 4",
       "f[1]": "example 5"

@@ -69,7 +69,15 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Returns all the top-level values in the given IData document.</value>
+  <value name="node_comment">Returns all the top-level values in the given IData document.
+
+* Inputs:
+  * $document is an IData document from which all top-level
+    values are to be fetched.
+
+* Outputs:
+  * $values is the list of all top-level values in the given IData
+    document.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

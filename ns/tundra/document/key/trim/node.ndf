@@ -91,7 +91,20 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Removes leading and trailing whitespace from all keys in the given IData document.</value>
+  <value name="node_comment">Removes leading and trailing whitespace from all keys in the given 
+IData document.
+
+* Inputs:
+  * $document is an IData document whose keys are to be trimmed of 
+    leading and trailing whitespace characters.
+  * $recurse? is an optional boolean indicating if embedded
+    IData documents and IData[] document lists should also
+    have their keys trimmed. Defaults to false.
+
+* Outputs:
+  * $document is the given IData document with all keys trimmed of
+    leading and trailing whitespace characters removed.
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

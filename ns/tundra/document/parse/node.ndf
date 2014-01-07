@@ -85,11 +85,21 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Parses (or decodes) the given IData XML string, byte array, or input stream to an IData document.
+  <value name="node_comment">Parses (or deserializes) the given [IData XML] string, byte array, or 
+input stream to an IData document.
 
-References:
-[1] &lt;http://documentation.softwareag.com/webmethods/wmsuites/wmsuite8-2_sp2/Integration_Server/8-2-SP1_Integration_Server_Java_API_Reference/com/wm/util/coder/IDataXMLCoder.html&gt;
-[2] &lt;http://documentation.softwareag.com/webmethods/wmsuites/wmsuite8-2_sp2/Integration_Server/8-2-SP1_Integration_Server_Java_API_Reference/com/wm/util/coder/XMLCoderWrapper.html&gt;</value>
+* Inputs:
+  * $content is a string, byte array, or input stream containing a
+    serialized IData document.
+  * $encoding is an optional character set used to decode the 
+    $content when provided as a byte array or input stream. Defaults 
+    to the Java virtual machine [default charset].
+
+* Outputs:
+  * $document is the resulting deserialized IData document.
+
+[default charset]: &lt;http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()&gt;
+[IData XML]: &lt;http://documentation.softwareag.com/webmethods/wmsuites/wmsuite8-2_sp2/Integration_Server/8-2-SP1_Integration_Server_Java_API_Reference/com/wm/util/coder/IDataXMLCoder.html&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

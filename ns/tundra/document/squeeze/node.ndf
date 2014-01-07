@@ -91,9 +91,20 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Trims all leading and trailing whitespace from all string values, then converts
-empty strings to nulls, then compacts the IData document by removing all null 
-values.</value>
+  <value name="node_comment">Trims all leading and trailing whitespace from all string values, then 
+converts empty strings to nulls, then compacts the IData document by 
+removing all null values.
+
+* Inputs:
+  * $document is an IData document to be squeezed.
+  * $recurse? is an optional boolean indicating if embedded
+    IData documents and IData[] document lists should also
+    be squeezed. Defaults to false.
+
+* Outputs:
+  * $document is the resulting IData document with all string values 
+    trimmed of leading and trailing whitespace characters, and all 
+    empty string values and null values removed.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

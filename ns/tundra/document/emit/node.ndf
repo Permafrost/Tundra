@@ -156,10 +156,23 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Emits (or encodes) the given IData document as an IData XML string, byte array, or input stream.
+  <value name="node_comment">Serializes the given IData document as an [IData XML] string, 
+byte array, or input stream.
 
-References:
-[1] &lt;http://documentation.softwareag.com/webmethods/wmsuites/wmsuite8-2_sp2/Integration_Server/8-2-SP1_Integration_Server_Java_API_Reference/com/wm/util/coder/IDataXMLCoder.html&gt;</value>
+* Inputs:
+  * $document is an IData document to be serialized.
+  * $encoding is an optional character set used to encode the 
+    serialized document when returned as a byte array or input
+    stream. Defaults to the Java virtual machine [default charset].
+  * $mode is an optional choice of 'stream', 'bytes', or
+    'string', which determines the type of object returned by
+    this service. Defaults to 'stream'.
+
+* Outputs:
+  * $content is the resulting serialized document.
+
+[default charset]: &lt;http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()&gt;
+[IData XML]: &lt;http://documentation.softwareag.com/webmethods/wmsuites/wmsuite8-2_sp2/Integration_Server/8-2-SP1_Integration_Server_Java_API_Reference/com/wm/util/coder/IDataXMLCoder.html&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

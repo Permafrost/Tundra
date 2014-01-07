@@ -174,11 +174,33 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Replaces all occurrences of the given regular expression pattern in each key
-in the given IData document with the replacement string.
+  <value name="node_comment">Replaces all occurrences of the given [regular expression pattern] 
+in each key in the given IData document with the replacement 
+string.
 
-Refer: &lt;http://download.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html&gt;,
-       &lt;http://docs.oracle.com/javase/6/docs/api/java/util/regex/Matcher.html&gt;</value>
+* Inputs:
+  * $document is an IData document to have all occurrences of the 
+    given [regular expression pattern] in each key replaced.
+  * $pattern is the [regular expression pattern] to match against
+    the each key.
+  * $replacement is the replacement string to be substituted in
+    the each key wherever the given pattern is found.
+  * $literal? is a boolean indicating if the replacement string
+    should be treated as a literal string. If false, captured
+    groups can be referred to with dollar-sign references, such
+    as $1, and other special characters may need to be escaped.
+    Defaults to false.
+  * $recurse? is an optional boolean indicating if embedded
+    IData documents and IData[] document lists should also
+    have occurrences of the pattern in their string values 
+    replaced. Defaults to false.
+
+* Outputs:
+  * $document is the given IData document with all occurrences of 
+    the given [regular expression pattern] in each key replaced 
+    with $replacement.
+
+[regular expression pattern]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

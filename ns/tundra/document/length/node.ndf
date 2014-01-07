@@ -69,7 +69,15 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Returns the number of top-level {key, value} pairs in the given IData document.</value>
+  <value name="node_comment">Returns the number of top-level key value pairs in the given 
+IData document.
+
+* Inputs:
+  * $document is an IData document.
+
+* Outputs:
+  * $length is the number of top-level keys in the given IData
+    document.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

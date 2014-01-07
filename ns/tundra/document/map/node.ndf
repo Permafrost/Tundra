@@ -270,8 +270,46 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Returns a new IData document created by invoking the given service for each {key, value} pair 
-in the given document, and collecting new the {key, value} pair returned.</value>
+  <value name="node_comment">Constructs a new IData document by invoking the given service for 
+each key value pair in the given IData document, and inserting 
+the key value pair returned by the service in the resulting IData
+document.
+
+This is an implementation of a higher-order [map function] for
+IData objects.
+
+For an example of how to use this service, refer to the 
+tundra.document.key:* and tundra.document.value:* services.
+
+* Inputs:
+  * $document is an IData document whose elements are to be
+    processed by the given $service.
+  * $service is the fully-qualifed name of the service to
+    be called to process each element, and should return a
+    new key value pair as a result.
+  * $pipeline is an optional input pipeline for providing
+    arbitrary input arguments to $service.
+  * $key.input is the optional argument name used when 
+    passing each key to $service. Defaults to $key.
+  * $key.output is the optional argument name used by $service
+    when returning the resulting key. Defaults to $key.
+  * $value.input is the optional argument name used when 
+    passing each value to $service. Defaults to $value.
+  * $value.output is the optional argument name used by $service 
+    when returning the resulting value. Defaults to $value.
+  * $value.class is an optional Java class name, which when
+    specified restricts the elements processed to only those
+    whose value are an instance of the given class. When
+    not specified, all elements in the $document are processed.
+  * $recurse is an optional boolean indicating if embedded
+    IData documents and IData[] document lists should also
+    be processed. Defaults to false.
+
+* Outputs:
+  * $document is the resulting IData document created from the
+    key value pairs returned by $service.
+
+[map function]: &lt;http://en.wikipedia.org/wiki/Map_(higher-order_function)&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

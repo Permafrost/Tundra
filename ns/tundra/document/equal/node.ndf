@@ -86,7 +86,16 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Returns true if the given documents are equal (contain the same set of keys and values).</value>
+  <value name="node_comment">Returns true if the given documents are equal (contain the same set 
+of keys and values).
+
+* Inputs:
+  * $document.x is an IData document to be compared to $document.y.
+  * $document.y is an IData document to be compared to $document.x.
+
+* Outputs:
+  * $equal? is a boolean indicating if the given documents contain
+    the same set of keys and values.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

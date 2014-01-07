@@ -86,11 +86,24 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Converts the IData value identified by $key in the given $scope IData document (or the pipeline, 
-if not specified) to a new list of type IData[] containing the original value as its single item,
-unless the original value was already list.
+  <value name="node_comment">Converts the IData value identified by $key in the given $scope IData 
+document (or the pipeline, if not specified) to a new list of type 
+IData[] containing the original value as its single item, unless the 
+original value was already a list.
 
-The given key can be simple or fully qualified, such as a/b/c[0]/d.</value>
+* Inputs:
+  * $key is a key identifying the value to be coverted to an document
+    list (IData[]), and can be simple or fully qualified, such as 
+    a/b/c[0]/d.
+  * $scope is an optional IData document against which the given $key
+    is resolved. If not specified, $key is resolved against the pipeline.
+
+* Outputs:
+  * $scope is an optional IData document in which the value associated 
+    with $key has been converted to a document list (IData[]). If no
+    $scope was provided as input, this output will not exist. Instead
+    the $key is resolved against the pipeline, and the associated 
+    value in the pipeline is converted to a document list (IData[]).</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

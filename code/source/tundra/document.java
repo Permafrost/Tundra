@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-11-11 10:12:15 EST
-// -----( ON-HOST: 172.16.189.193
+// -----( CREATED: 2014-01-08 09:03:21.300
+// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -660,14 +660,16 @@ public final class document
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
 		// [i] record:0:optional $pipeline
+		// [i] field:0:optional $default
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  IData scope = IDataUtil.getIData(cursor, "$pipeline");
+		  String defaultValue = IDataUtil.getString(cursor, "$default");
 		
-		  IDataUtil.put(cursor, "$document", substitute(document, scope == null ? pipeline : scope, true));
+		  IDataUtil.put(cursor, "$document", substitute(document, scope == null ? pipeline : scope, defaultValue, true));
 		} finally {
 		  cursor.destroy();
 		}
@@ -1216,6 +1218,11 @@ public final class document
 	
 	// performs variable substitution on all elements of the given IData input document
 	public static IData substitute(IData input, IData scope, boolean recurse) {
+	  return substitute(input, scope, null, recurse);
+	}
+	
+	// performs variable substitution on all elements of the given IData input document
+	public static IData substitute(IData input, IData scope, String defaultValue, boolean recurse) {
 	  if (input == null) return null;
 	  if (scope == null) scope = input;
 	
@@ -1230,18 +1237,18 @@ public final class document
 	      Object value = ic.getValue();
 	      if (value != null) {
 	        if (recurse && value instanceof IData) {
-	          value = substitute((IData)value, scope, recurse);
+	          value = substitute((IData)value, scope, defaultValue, recurse);
 	        } else if (recurse && (value instanceof IData[] || value instanceof com.wm.util.Table)) {
 	          IData[] iary = value instanceof IData[] ? (IData[])value : ((com.wm.util.Table)value).getValues();
 	          IData[] oary = new IData[iary.length];
-	          for (int i = 0; i < iary.length; i++) oary[i] = substitute(iary[i], scope, recurse);
+	          for (int i = 0; i < iary.length; i++) oary[i] = substitute(iary[i], scope, defaultValue, recurse);
 	          value = oary;
 	        } else if (value instanceof String) {
-	          value = tundra.string.substitute((String)value, scope);
+	          value = tundra.string.substitute((String)value, scope, defaultValue);
 	        } else if (value instanceof String[]) {
-	          value = tundra.list.string.substitute((String[])value, scope);
+	          value = tundra.list.string.substitute((String[])value, scope, defaultValue);
 	        } else if (value instanceof String[][]) {
-	          value = tundra.list.string.substitute((String[][])value, scope);
+	          value = tundra.list.string.substitute((String[][])value, scope, defaultValue);
 	        }
 	      }
 	      IDataUtil.put(oc, key, value);
