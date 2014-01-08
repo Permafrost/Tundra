@@ -3236,85 +3236,121 @@ tundra.list.document.value:uppercase($list[], $recurse?);
 
 Services for manipulating java.lang.Object lists:
 
-```java
-// appends a single item to the end of a list, such that appending an item to
-// a list containing n items results in a new list of n + 1 items
-tundra.list.object:append($list[], $item, $class);
+* #### tundra.list.object:append
 
-// removes all null items from the given list, thereby shortening the length
-// of the list
-tundra.list.object:compact($list[]);
+  Appends a single item to the end of a list, such that appending an item 
+  to a list containing n items results in a new list of n + 1 items.
 
-// returns a new list containing all the items in the given $list and $items
-// input arguments
-tundra.list.object:concatenate($list.x[], $list.y[]);
+  * Inputs:
+    * `$list` is a list to append an item to.
+    * `$item` is an item to be appended to the given list.
+    * `$class` is an optional Java class name that the list and item
+      to be appended are required to be instances of.
 
-// returns a list of only the items in $list.x that are not also present in
-// $list.y
-tundra.list.object:difference($list.x[], $list.y[]);
+  * Outputs:
+    * `$list` is the resulting list with the given `$item` appended to the
+      end.
 
-// removes the item with the given index from the given list
-tundra.list.object:drop($list, $index);
+* #### tundra.list.object:compact
 
-// iterates through the given list, invoking the given service for each item
-// in the list, passing $item, $index, $iteration and $length variables
-tundra.list.object:each($list[], $service, $pipeline, $item.input);
+  Removes all null items from the given list, thereby shortening the 
+  length of the list.
 
-// returns true if the two given lists are equal
-tundra.list.object:equal($list.x[], $list.y[]);
+  * Inputs:
+    * `$list` is a list to be compacted.
 
-// returns the item stored at a given index in a list (supports forward and
-// reverse indexing)
-tundra.list.object:get($list[], $index);
+  * Outputs:
+    * `$list` is the given list with all null items removed.
 
-// returns true if the given item is found in the given list
-tundra.list.object:include($list[], $item);
+* #### tundra.list.object:concatenate
 
-// returns a new list with the given item inserted at the desired index in
-// the given list
-tundra.list.object:insert($list[], $item, $index, $class);
+  Returns a new list containing all the items in the given lists.
 
-// returns true if the list is an instance of given class
-tundra.list.object:instance($list[], $class);
+  * Inputs:
+    * `$list.x` is the first list to be concatenated.
+    * `$list.y` is the second list to be concatenated.
 
-// returns a list of only the items in $list.x that are also present in
-// $list.y
-tundra.list.object:intersection($list.x[], $list.y[]);
+  * Outputs:
+    * `$list` is a new list containing all the items from the given
+      input lists.
 
-// returns a string created by converting each list item to a string,
-// separated by the given separator string
-tundra.list.object:join($list[], $separator);
+* #### tundra.list.object:difference
 
-// returns the number of items in the given list
-tundra.list.object:length($list[]);
+  Returns a list of only the items in `$list.x` that are not also 
+  present in `$list.y`.
 
-// returns a new list created by invoking the given service for each item in
-// the given list, and collecting new the values returned
-tundra.list.object:map($list[], $service, $item.input, $item.output);
+  * Inputs:
+    * `$list.x` is a list to be checked for differences against `$list.y`.
+    * `$list.y` is a list to be checked against `$list.x` for differnces.
 
-// prepends a single item to the front of a list, such that prepending an
-// item to a list containing n items results in a new list of n + 1 items
-tundra.list.object:prepend($list[], $item, $class);
+  * Outputs:
+    * `$list` is a new list containing only the items in `$list.x` that 
+      are not also present in `$list.y`.
 
-// sets the value of the item stored at a given index in a list (supports forward and
-// reverse indexing)
-tundra.list.object:put($list[], $item, $index, $class);
+* #### tundra.list.object:drop
 
-// returns a new list with all items from the given list in reverse order
-tundra.list.object:reverse($list[]);
+  Removes the item stored at a given index in the given list. 
 
-// returns a new list which is a subset of the items in the given list
-tundra.list.object:slice($list[], $index, $length);
+  * Inputs:
+    * `$list` is a list to remove the item from.
+    * `$index` is an integer identifying which item to be removed from
+      the given list. List indexing is zero-based. Supports both
+      forward and reverse indexing (where, for example, an index of 
+      -1 is the last item in the list, and an index of -2 is the 
+      second last item in the list).
 
-// returns a new list sorted according to the natural ordering of the given
-// list's items
-// refer: <http://docs.oracle.com/javase/6/docs/api/java/lang/Comparable.html>
-tundra.list.object:sort($list[]);
+  * Outputs:
+    * `$list` is the given list with the item identified by the given
+      index removed.
 
-// returns a new list with all duplicates from the given list removed, such
-// that no two items are equal
-tundra.list.object:unique($list[]);
-```
+* #### tundra.list.object:each
+
+  Iterates through the given list, invoking the given service for each 
+  item in the list, passing `$item`, `$index`, `$iteration` and `$length` 
+  variables.
+
+  * Inputs:
+    * `$list` is a list to be iterated over.
+    * `$service` is a fully-qualified service name identifying the
+      service to be invoked to process each item in the list.
+    * `$pipeline` is an optional IData document containing arbitrary
+      input arguments used when invoking $service.
+    * `$item.input` is an optional variable name used when passing each
+      item in the list to the invocation of $service. Defaults to
+      $item.
+
+* #### tundra.list.object:equal
+
+  Returns true if the two given lists are equal.
+
+  * Inputs:
+    * `$list.x` is a list to be compared with `$list.y`.
+    * `$list.y` is a list to be compared with `$list.x`.
+
+  * Outputs:
+    * `$equal?` is a boolean indicating if `$list.x` equals
+      `$list.y`.
+
+* #### tundra.list.object:get
+
+  Returns the item stored at a given index in a list. A zero-
+  based index can be specified using the `$index` input, or
+  a one-based index can be specified using the `$iteration` input
+  (which is useful when using this service inside a flow loop).
+
+  * Inputs:
+    * `$list` is a list to fetch an item from.
+    * `$index` is an optional zero-based index identifying
+      the item to be fetched. Supports forward and reverse 
+      indexing (where, for example, an index of -1 is the 
+      last item in the list, and an index of -2 is the 
+      second last item in the list).
+    * `$iteration` is an optional one-based index identifying
+      the item to be fetched.
+
+  * Outputs:
+    * `$item` is the item stored at the given index in the given 
+      list.
 
 * #### tundra.list.object:grow
 
@@ -3333,6 +3369,156 @@ tundra.list.object:unique($list[]);
     * `$list` is the Object[] list grown by the desired `$count` of items,
       with the original items preserved and the new items padded with `$item`
       (or null if not specified).
+
+* #### tundra.list.object:include
+
+  Returns true if the given item is found in the given list.
+
+  * Inputs:
+    * `$list` is a list to check whether the given $item exists
+      in.
+    * `$item` is the item to be checked against the given $list.
+
+  * Outputs:
+    * `$include?` is a boolean indicating the the given `$item`
+      exists as an item in the given `$list`.
+
+* #### tundra.list.object:insert
+
+  Returns a new list with the given item inserted at the desired 
+  index in the given list.  
+
+  * Inputs:
+    * `$list` is a list to check whether the given `$item` exists
+      in.
+    * `$item` is the item to be checked against the given `$list`.
+    * `$index` is the index at which to insert the item. List 
+      indexing is zero-based. Supports both forward and 
+      reverse indexing (where, for example, an index of -1 
+      is the last item in the list, and an index of -2 is the 
+      second last item in the list).
+    * `$class` is an optional Java class name that the list and 
+      item to be inserted are required to be instances of.
+
+  * Outputs:
+    * `$list` is the resulting list with the item inserted at the
+      desired index.
+
+* #### tundra.list.object:instance
+
+  Returns true if the given list is an instance of the given class.
+
+  * Inputs:
+    * `$list` is a list to check whether it is an instance of
+      the given Java class.
+    * `$class` is the [Java array class name] used to check the list
+      against. 
+
+  * Outputs:
+    * `$instance?` is a boolean indicating if the given list is an
+      instance of the given class.
+
+* #### tundra.list.object:intersection
+
+  Returns a list of only the items in `$list.x` that are also present in 
+  `$list.y`.
+
+  * Inputs:
+    * `$list.x` is a list to be intersected with `$list.y`.
+    * `$list.y` is a list to be intersected with `$list.x`.
+
+  * Outputs:
+    * `$list` is a new list containing only the items that are present 
+      in both input lists (the [set intersection]).
+
+* #### tundra.list.object:join
+
+  Returns a string created by converting each list item to a string, and
+  concatenating the resulting strings together separated by the given 
+  `$separator`.
+
+  * Inputs:
+    * `$list` is a list to be converted to a string.
+    * `$separator` is an optional string used to separate each list item 
+      in the resulting string. Defaults to an empty string.
+
+  * Outputs:
+    * `$result` is a string containing each item in the given list, converted
+      to a string and separated by the given `$separator`.
+
+* #### tundra.list.object:length
+
+  Returns the number of items in the given list.
+
+  * Inputs:
+    * `$list` is a list to count the number of items in.
+
+  * Outputs:
+    * `$length` is the number of items in the given list.
+
+* #### tundra.list.object:map
+
+  Returns a new list created by invoking the given service for each 
+  item in the input list, passing `$item`, `$index`, `$iteration` and 
+  `$length` variables, and collecting the values returned by the service
+  to form the new list.
+
+  This is an implementation of a higher-order [map function] for
+  object lists.
+
+  * Inputs:
+    * `$list` is a list to be iterated over.
+    * `$service` is a fully-qualified service name identifying the
+      service to be invoked to process each item in the list.
+    * `$pipeline` is an optional IData document containing arbitrary
+      input arguments used when invoking $service.
+    * `$item.input` is an optional variable name used when passing each
+      item in the list to the invocation of `$service`. Defaults to
+      $item.
+    * `$item.output` is an optional variable name used when extracting
+      the resulting item from the invocation of `$service`. Defaults to
+      $item.
+
+  * Outputs:
+      * `$list` is the newly constructed list containing the returned
+        items from invoking `$service` for each input list item.
+
+* #### tundra.list.object:prepend
+
+  Prepends a single item to the front of a list, such that prepending 
+  an item to a list containing n items results in a new list of n + 1 
+  items.
+
+  * Inputs:
+    * `$list` is a list to be prepended to.
+    * `$item` is the item to prepend to the given list.
+    * `$pipeline` is an optional IData document containing arbitrary
+      input arguments used when invoking `$service`.
+    * `$class` is an optional Java class name that the list and item
+      to be prepended are required to be instances of.
+
+  * Outputs:
+    * `$list` is the resulting list with the given `$item` prepended to the
+      start.
+
+* #### tundra.list.object:put
+
+  Sets the value of the item at the given index in the given list.  
+
+  * Inputs:
+    * `$list` is a list in which to set the given value.
+    * `$item` is the item to be set in the given list.
+    * `$index` is an optional zero-based index identifying
+      the item to be set. Supports forward and reverse 
+      indexing (where, for example, an index of -1 is the 
+      last item in the list, and an index of -2 is the 
+      second last item in the list).
+    * `$class` is an optional Java class name that the list 
+      and item are required to be instances of.
+
+  * Outputs:
+    * `$list` is the resulting list with the item at the given 
+      index set to the given value.
 
 * #### tundra.list.object:resize
 
@@ -3354,6 +3540,17 @@ tundra.list.object:unique($list[]);
       the end; if the new length is greater than the original length, the
       list is padded with `$item` (or null if not specified).
 
+* #### tundra.list.object:reverse
+
+  Returns a new list with all items from the given list in 
+  reverse order.
+
+  * Inputs:
+    * `$list` is the list to be reversed.
+
+  * Outputs:
+    * `$list` is the given list with item ordering reversed.
+
 * #### tundra.list.object:shrink
 
   Decreases the size of the given list by the given count, truncating items
@@ -3366,6 +3563,44 @@ tundra.list.object:unique($list[]);
   * Outputs:
     * `$list` is the Object[] list shrunk from the end of the list by the
       desired item count by truncating items from the end of the list.
+
+* #### tundra.list.object:slice
+
+  Returns a new list which is a subset of the items in the 
+  given list.
+
+  * Inputs:
+    * `$list` is the list to be sliced.
+    * `$index` is the zero-based start index from which to
+      take the slice.
+    * `$length` is the number of items to include in the 
+      slice.
+
+  * Outputs:
+    * `$list` is the desired subset or slice of the given list.
+
+* #### tundra.list.object:sort
+
+  Returns a new list sorted according to the [natural ordering] of 
+  the given list's items. 
+
+  * Inputs:
+    * `$list` is the list to be sorted.
+
+  * Outputs:
+    * `$list` is the sorted list.
+
+* #### tundra.list.object:unique
+
+  Returns a new list with all duplicates from the given list 
+  removed, such that no two items are equal.
+
+  * Inputs:
+    * `$list` is the list to process.
+
+  * Outputs:
+    * `$list` is the resulting list with all duplicate items
+      removed.
 
 ### Service List
 
@@ -4746,11 +4981,13 @@ Copyright © 2012 Lachlan Dowding. See license.txt for further details.
 [java.text.SimpleDateFormat]: <http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html>
 [java.util.Date]: <http://docs.oracle.com/javase/6/docs/api/java/util/Date.html>   
 [javax.activation.MimeType]: <http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html>
+[Java array class name]: <http://docs.oracle.com/javase/tutorial/reflect/special/arrayComponents.html>
 [JSON]: <http://www.json.org/>
 [Locale]: <http://docs.oracle.com/javase/6/docs/api/java/util/Locale.html>
 [map function]: <http://en.wikipedia.org/wiki/Map_(higher-order_function)>
 [mime type]: <http://en.wikipedia.org/wiki/Internet_media_type>
 [MIME]: <http://en.wikipedia.org/wiki/MIME>
+[natural ordering]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Comparable.html>
 [Object.toString()]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html#toString()>
 [primitive type]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Class.html#isPrimitive()>
 [regular expression pattern]: <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html>
@@ -4759,6 +4996,7 @@ Copyright © 2012 Lachlan Dowding. See license.txt for further details.
 [RFC 2396]: <http://www.ietf.org/rfc/rfc2396.txt>
 [rounding algorithm]: <http://docs.oracle.com/javase/6/docs/api/java/math/RoundingMode.html>
 [SAX]: <http://en.wikipedia.org/wiki/Simple_API_for_XML>
+[set intersection]: <http://en.wikipedia.org/wiki/Intersection_(set_theory)>
 [try block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/try.html>
 [URI]: <http://www.w3.org/Addressing/>
 [XML]: <http://www.w3.org/XML/>
