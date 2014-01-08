@@ -80,7 +80,14 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Returns a new list with all items from the given list in reverse order.</value>
+  <value name="node_comment">Returns a new list with all items from the given list in 
+reverse order.
+
+* Inputs:
+  * $list is the list to be reversed.
+
+* Outputs:
+  * $list is the given list with item ordering reversed.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

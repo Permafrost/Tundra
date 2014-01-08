@@ -80,8 +80,17 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Replaces runs of one or more whitespace characters (space, tab, carriage return, line feed) 
-with a single space character.</value>
+  <value name="node_comment">Replaces runs of one or more whitespace characters (space, tab, 
+carriage return, line feed) with a single space character in
+the given list of strings.
+
+* Inputs:
+  * $list is a list of strings to squeeze extraneous whitespace 
+    from.
+
+* Outputs:
+  * $list is the input list of strings with extraneous whitespace
+    characters removed and replaced with a single space character.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

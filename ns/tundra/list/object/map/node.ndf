@@ -178,8 +178,8 @@ object lists.
     $item.
 
 * Outputs:
-    * $list is the newly constructed list containing the returned
-      items from invoking $service for each input list item.
+  * $list is the newly constructed list containing the returned
+    items from invoking $service for each input list item.
 
 [map function]: &lt;http://en.wikipedia.org/wiki/Map_(higher-order_function)&gt;</value>
   <value name="stateless">no</value>

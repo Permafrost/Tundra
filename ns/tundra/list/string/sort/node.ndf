@@ -80,9 +80,17 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Returns a new list sorted according to the natural ordering[1] of the given list's items. 
+  <value name="node_comment">Returns a new list sorted according to the [natural ordering] of 
+the given list's items. 
 
-[1] http://docs.oracle.com/javase/6/docs/api/java/lang/Comparable.html</value>
+* Inputs:
+  * $list is the list to be sorted.
+
+* Outputs:
+  * $list is the sorted list.
+
+[natural ordering]: &lt;http://docs.oracle.com/javase/6/docs/api/java/lang/Comparable.html&gt;
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

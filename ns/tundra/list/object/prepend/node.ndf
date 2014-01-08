@@ -106,8 +106,6 @@ items.
 * Inputs:
   * $list is a list to be prepended to.
   * $item is the item to prepend to the given list.
-  * $pipeline is an optional IData document containing arbitrary
-    input arguments used when invoking $service.
   * $class is an optional Java class name that the list and item
     to be prepended are required to be instances of.
 

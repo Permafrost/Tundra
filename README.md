@@ -3480,8 +3480,8 @@ Services for manipulating java.lang.Object lists:
       $item.
 
   * Outputs:
-      * `$list` is the newly constructed list containing the returned
-        items from invoking `$service` for each input list item.
+    * `$list` is the newly constructed list containing the returned
+      items from invoking `$service` for each input list item.
 
 * #### tundra.list.object:prepend
 
@@ -3492,8 +3492,6 @@ Services for manipulating java.lang.Object lists:
   * Inputs:
     * `$list` is a list to be prepended to.
     * `$item` is the item to prepend to the given list.
-    * `$pipeline` is an optional IData document containing arbitrary
-      input arguments used when invoking `$service`.
     * `$class` is an optional Java class name that the list and item
       to be prepended are required to be instances of.
 
@@ -3709,114 +3707,119 @@ Services for manipulating java.lang.Object lists:
 
 Services for manipulating string lists:
 
-```java
-// appends a single item to the end of a list, such that appending an item to
-// a list containing n items results in a new list of n + 1 items
-tundra.list.string:append($list[], $item);
+* #### tundra.list.string:append
 
-// removes all null items from the given list, thereby shortening the length
-// of the list
-tundra.list.string:compact($list[]);
+  Appends a single item to the end of a list, such that appending an item 
+  to a list containing n items results in a new list of n + 1 items.
 
-// returns a new list containing all the items in the given $list and $items
-// input arguments
-tundra.list.string:concatenate($list.x[], $list.y[]);
+  * Inputs:
+    * `$list` is a list to append an item to.
+    * `$item` is an item to be appended to the given list.
 
-// returns a list of only the items in $list.x that are not also present in
-// $list.y
-tundra.list.string:difference($list.x[], $list.y[]);
+  * Outputs:
+    * `$list` is the resulting list with the given `$item` appended to the
+      end.
 
-// removes the item with the given index from the given list
-tundra.list.string:drop($list, $index);
+* #### tundra.list.string:compact
 
-// iterates through the given list, invoking the given service for each item
-// in the list, passing $item, $index, $iteration and $length variables
-tundra.list.string:each($list[], $service, $pipeline, $item.input);
+  Removes all null items from the given list, thereby shortening the 
+  length of the list.
 
-// returns true if the two given lists are equal
-tundra.list.string:equal($list.x[], $list.y[]);
+  * Inputs:
+    * `$list` is a list to be compacted.
 
-// returns the item stored at a given index in a list (supports forward and
-// reverse indexing)
-tundra.list.string:get($list[], $index);
+  * Outputs:
+    * `$list` is the given list with all null items removed.
 
-// returns true if the given item is found in the given list
-tundra.list.string:include($list[], $item);
+* #### tundra.list.string:concatenate
 
-// returns a new list with the given item inserted at the desired index in
-// the given list
-tundra.list.string:insert($list[], $item, $index);
+  Returns a new list containing all the items in the given lists.
 
-// returns a list of only the items in $list.x that are also present in
-// $list.y
-tundra.list.string:intersection($list.x[], $list.y[]);
+  * Inputs:
+    * `$list.x` is the first list to be concatenated.
+    * `$list.y` is the second list to be concatenated.
 
-// returns a string created by converting each list item to a string,
-// separated by the given separator string
-tundra.list.string:join($list[], $separator);
+  * Outputs:
+    * `$list` is a new list containing all the items from the given
+      input lists.
 
-// returns the number of items in the given list
-tundra.list.string:length($list[]);
+* #### tundra.list.string:difference
 
-// converts each item to lower case
-tundra.list.string:lowercase($list[]);
+  Returns a list of only the items in `$list.x` that are not also 
+  present in `$list.y`.
 
-// returns a new list created by invoking the given service for each item in
-// the given list, and collecting new the values returned
-tundra.list.string:map($list[], $service, $item.input, $item.output);
+  * Inputs:
+    * `$list.x` is a list to be checked for differences against `$list.y`.
+    * `$list.y` is a list to be checked against `$list.x` for differnces.
 
-// returns the list of items which matched, and the list of items which did not match, the given
-// regular expression pattern
-tundra.list.string:match($list[], $pattern);
+  * Outputs:
+    * `$list` is a new list containing only the items in `$list.x` that 
+      are not also present in `$list.y`.
 
-// converts a list of string, bytes or input streams to a list of strings
-tundra.list.string:normalize($objects[], $encoding);
+* #### tundra.list.string:drop
 
-// prepends a single item to the front of a list, such that prepending an
-// item to a list containing n items results in a new list of n + 1 items
-tundra.list.string:prepend($list[], $item);
+  Removes the item stored at a given index in the given list. 
 
-// sets the value of the item stored at a given index in a list (supports forward and
-// reverse indexing)
-tundra.list.string:put($list[], $item, $index);
+  * Inputs:
+    * `$list` is a list to remove the item from.
+    * `$index` is an integer identifying which item to be removed from
+      the given list. List indexing is zero-based. Supports both
+      forward and reverse indexing (where, for example, an index of 
+      -1 is the last item in the list, and an index of -2 is the 
+      second last item in the list).
 
-// replaces all occurrences of the given regular expression pattern in the each
-// item, with the replacement string
-// refer: <http://download.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html>,
-//        <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Matcher.html>
-tundra.list.string:replace($list[], $pattern, $replacement, $literal?);
+  * Outputs:
+    * `$list` is the given list with the item identified by the given
+      index removed.
 
-// returns a new list with all items from the given list in reverse order
-tundra.list.string:reverse($list[]);
+* #### tundra.list.string:each
 
-// returns a new list which is a subset of the items in the given list
-tundra.list.string:slice($list[], $index, $length);
+  Iterates through the given list, invoking the given service for each 
+  item in the list, passing `$item`, `$index`, `$iteration` and `$length` 
+  variables.
 
-// returns a new list sorted according to the natural ordering of the given
-// list's items
-// refer: <http://docs.oracle.com/javase/6/docs/api/java/lang/Comparable.html>
-tundra.list.string:sort($list[]);
+  * Inputs:
+    * `$list` is a list to be iterated over.
+    * `$service` is a fully-qualified service name identifying the
+      service to be invoked to process each item in the list.
+    * `$pipeline` is an optional IData document containing arbitrary
+      input arguments used when invoking `$service`.
+    * `$item.input` is an optional variable name used when passing each
+      item in the list to the invocation of `$service`. Defaults to
+      $item.
 
-// replaces runs of one or more whitespace characters (space, tab, carriage
-// return, line feed) with a single space character
-tundra.list.string:squeeze($list[]);
+* #### tundra.list.string:equal
 
-// attempts variable substitution on each string in the given list by replacing
-// all occurrences of substrings matching "%key%" with the associated (optionally
-// scoped) value; optionally replaces null or non-existent values with the given
-// default value
-tundra.list.string:substitute($list[], $pipeline);
+  Returns true if the two given lists are equal.
 
-// removes all leading and trailing whitespace
-tundra.list.string:trim($list[]);
+  * Inputs:
+    * `$list.x` is a list to be compared with `$list.y`.
+    * `$list.y` is a list to be compared with `$list.x`.
 
-// returns a new list with all duplicates from the given list removed, such
-// that no two items are equal
-tundra.list.string:unique($list[]);
+  * Outputs:
+    * `$equal?` is a boolean indicating if `$list.x` equals
+      `$list.y`.
 
-// converts each item to upper case
-tundra.list.string:uppercase($list[]);
-```
+* #### tundra.list.string:get
+
+  Returns the item stored at a given index in a list. A zero-
+  based index can be specified using the `$index` input, or
+  a one-based index can be specified using the `$iteration` input
+  (which is useful when using this service inside a flow loop).
+
+  * Inputs:
+    * `$list` is a list to fetch an item from.
+    * `$index` is an optional zero-based index identifying
+      the item to be fetched. Supports forward and reverse 
+      indexing (where, for example, an index of -1 is the 
+      last item in the list, and an index of -2 is the 
+      second last item in the list).
+    * `$iteration` is an optional one-based index identifying
+      the item to be fetched.
+
+  * Outputs:
+    * `$item` is the item stored at the given index in the given 
+      list.
 
 * #### tundra.list.string:grow
 
@@ -3833,6 +3836,217 @@ tundra.list.string:uppercase($list[]);
     * `$list` is the String[] list grown by the desired `$count` of items,
       with the original items preserved and the new items padded with `$item`
       (or null if not specified).
+
+* #### tundra.list.string:include
+
+  Returns true if the given item is found in the given list.
+
+  * Inputs:
+    * `$list` is a list to check whether the given `$item` exists
+      in.
+    * `$item` is the item to be checked against the given `$list`.
+
+  * Outputs:
+    * `$include?` is a boolean indicating the the given `$item`
+      exists as an item in the given `$list`.
+
+* #### tundra.list.string:insert
+
+  Returns a new list with the given item inserted at the desired 
+  index in the given list.  
+
+  * Inputs:
+    * `$list` is a list to check whether the given `$item` exists
+      in.
+    * `$item` is the item to be checked against the given `$list`.
+    * `$index` is the index at which to insert the item. List 
+      indexing is zero-based. Supports both forward and 
+      reverse indexing (where, for example, an index of -1 
+      is the last item in the list, and an index of -2 is the 
+      second last item in the list).
+
+  * Outputs:
+    * `$list` is the resulting list with the item inserted at the
+      desired index.
+
+* #### tundra.list.string:intersection
+
+  Returns a list of only the items in `$list.x` that are also present in 
+  `$list.y`.
+
+  * Inputs:
+    * `$list.x` is a list to be intersected with `$list.y`.
+    * `$list.y` is a list to be intersected with `$list.x`.
+
+  * Outputs:
+    * `$list` is a new list containing only the items that are present 
+      in both input lists (the [set intersection]).
+
+* #### tundra.list.string:join
+
+  Returns a string created by concatenating the list items together, 
+  separated by the given $separator.
+
+  * Inputs:
+    * `$list` is a list to be converted to a string.
+    * `$separator` is an optional string used to separate each list item 
+      in the resulting string. Defaults to an empty string.
+
+  * Outputs:
+    * `$result` is a string containing each item in the given list, converted
+      to a string and separated by the given `$separator`.
+
+* #### tundra.list.string:length
+
+  Returns the number of items in the given list.
+
+  * Inputs:
+    * `$list` is a list to count the number of items in.
+
+  * Outputs:
+    * `$length` is the number of items in the given list.
+
+* #### tundra.list.string:lowercase
+
+  Converts all strings in the given list to lower case.
+
+  * Inputs:
+    * `$list` is a list of strings to be converted to lower case.
+    * `$locale` optionally identifies the case transformation rules 
+      to be used for a given [Locale]. If not specified, the 
+      [default locale] is used.
+
+  * Outputs:
+    * `$list` is the resulting list of lower case strings, where
+      all characters have been converted to their lower case
+      equivalent according to the transformation rules of the given
+      [Locale].
+
+* #### tundra.list.string:map
+
+  Returns a new list created by invoking the given service for each 
+  item in the input list, passing `$item`, `$index`, `$iteration` and 
+  `$length` variables, and collecting the values returned by the service
+  to form the new list.
+
+  This is an implementation of a higher-order [map function] for
+  object lists.
+
+  * Inputs:
+    * `$list` is a list to be iterated over.
+    * `$service` is a fully-qualified service name identifying the
+      service to be invoked to process each item in the list.
+    * `$pipeline` is an optional IData document containing arbitrary
+      input arguments used when invoking `$service`.
+    * `$item.input` is an optional variable name used when passing each
+      item in the list to the invocation of `$service`. Defaults to
+      $item.
+    * `$item.output` is an optional variable name used when extracting
+      the resulting item from the invocation of `$service`. Defaults to
+      $item.
+
+  * Outputs:
+    * `$list` is the newly constructed list containing the returned
+      items from invoking `$service` for each input list item.
+
+* #### tundra.list.string:match
+
+  Returns the list of items which matched and the list of items which 
+  did not match the given [regular expression pattern].
+
+  * Inputs:
+    * `$list` is a list to be matched against the given regular
+      expression.
+    * `$pattern` is the [regular expression pattern] to match against
+      the given list.
+
+  * Outputs:
+    * `$matched` is the list of items which were found to match the given
+      [regular expression pattern].
+    * `$unmatched` is the list of items which were found to not match the 
+      given [regular expression pattern].
+
+* #### tundra.list.string:normalize
+
+  Converts a list of strings, byte arrays or input streams to a 
+  list of strings.
+
+  * Inputs:
+    * `$objects` is a list of strings, byte arrays, or input streams 
+      to be converted to a string.
+    * `$encoding` is an optional character set to use when `$objects`
+      is a list of byte arrays or input streams. Defaults to the Java 
+      virtual machine [default charset].
+
+  * Outputs:
+    * `$strings` is the resulting list of strings.
+
+* #### tundra.list.string:prepend
+
+  Prepends a single item to the front of a list, such that prepending 
+  an item to a list containing n items results in a new list of n + 1 
+  items.
+
+  * Inputs:
+    * `$list` is a list to be prepended to.
+    * `$item` is the item to prepend to the given list.
+    * `$pipeline` is an optional IData document containing arbitrary
+      input arguments used when invoking `$service`.
+
+  * Outputs:
+    * $list is the resulting list with the given $item prepended to the
+      Prepends a single item to the front of a list, such that prepending 
+  an item to a list containing n items results in a new list of n + 1 
+  items.
+
+  * Inputs:
+    * $list is a list to be prepended to.
+    * $item is the item to prepend to the given list.
+    * $pipeline is an optional IData document containing arbitrary
+      input arguments used when invoking $service.
+
+  * Outputs:
+    * $list is the resulting list with the given $item prepended to the
+      start.
+
+* #### tundra.list.string:put
+
+  Sets the value of the item at the given index in the given list.  
+
+  * Inputs:
+    * `$list` is a list in which to set the given value.
+    * `$item` is the item to be set in the given list.
+    * `$index` is an optional zero-based index identifying
+      the item to be set. Supports forward and reverse 
+      indexing (where, for example, an index of -1 is the 
+      last item in the list, and an index of -2 is the 
+      second last item in the list).
+
+  * Outputs:
+    * `$list` is the resulting list with the item at the given 
+      index set to the given value.
+
+* #### tundra.list.string:replace
+
+  Replaces all occurrences of the given [regular expression pattern] 
+  in the given list of strings, with the replacement string.
+
+  * Inputs:
+    * `$list` is a list of strings to have all occurrences of the given 
+      [regular expression pattern] replaced.
+    * `$pattern` is the [regular expression pattern] to match against
+      the given string.
+    * `$replacement` is the replacement string to be substituted in
+      the given string wherever the given pattern is found.
+    * `$literal?` is a boolean indicating if the replacement string
+      should be treated as a literal string. If false, captured
+      groups can be referred to with dollar-sign references, such
+      as $1, and other special characters may need to be escaped.
+      Defaults to false.
+
+  * Outputs:
+    * `$list` is the input list of strings with all occurrences of the given
+      [regular expression pattern] replaced with `$replacement`.
 
 * #### tundra.list.string:resize
 
@@ -3852,6 +4066,17 @@ tundra.list.string:uppercase($list[]);
       the end; if the new length is greater than the original length, the
       list is padded with `$item` (or null if not specified).
 
+* #### tundra.list.string:reverse
+
+  Returns a new list with all items from the given list in 
+  reverse order.
+
+  * Inputs:
+    * `$list` is the list to be reversed.
+
+  * Outputs:
+    * `$list` is the given list with item ordering reversed.
+
 * #### tundra.list.string:shrink
 
   Decreases the size of the given list by the given count, truncating items
@@ -3865,6 +4090,110 @@ tundra.list.string:uppercase($list[]);
     * `$list` is the String[] list shrunk from the end of the list by the
       desired item count by truncating items from the end of the list. If
       the list is smaller than the count, an empty list is returned.
+
+* #### tundra.list.string:slice
+
+  Returns a new list which is a subset of the items in the 
+  given list.
+
+  * Inputs:
+    * `$list` is the list to be sliced.
+    * `$index` is the zero-based start index from which to
+      take the slice.
+    * `$length` is the number of items to include in the 
+      slice.
+
+  * Outputs:
+    * `$list` is the desired subset or slice of the given list.
+
+* #### tundra.list.string:sort
+
+  Returns a new list sorted according to the [natural ordering] of 
+  the given list's items. 
+
+  * Inputs:
+    * `$list` is the list to be sorted.
+
+  * Outputs:
+    * `$list` is the sorted list.
+
+* #### tundra.list.string:squeeze
+
+  Replaces runs of one or more whitespace characters (space, tab, 
+  carriage return, line feed) with a single space character in
+  the given list of strings.
+
+  * Inputs:
+    * `$list` is a list of strings to squeeze extraneous whitespace 
+      from.
+
+  * Outputs:
+    * `$list` is the input list of strings with extraneous whitespace
+      characters removed and replaced with a single space character.
+
+* #### tundra.list.string:substitute
+
+  Attempts variable substitution on each string in the given list
+  by replacing all occurrences of substrings matching "%key%" with 
+  the associated (optionally scoped) value.
+
+  Optionally replaces null or non-existent values with the given 
+  default value.
+
+  * Inputs:
+    * `$list` is a list of strings to perform variable substitution on.
+    * `$pipeline` is an optional IData document used to scope the
+      variable substitution. If not specified, the substitution
+      is unscoped (resolved against the pipeline itself).
+    * `$default` is an optional default value to substitute in place
+      of null or missing values.
+
+  * Outputs:
+    * `$list` is the input list of strings with variable substitution 
+      patterns, such as "%key%", replaced with the value of the key 
+      (resolved against either `$pipeline`, if specified, or the pipeline 
+      itself).
+
+* #### tundra.list.string:trim
+
+  Removes leading and trailing whitespace from each string in the 
+  given list.
+
+  * Inputs:
+    * `$list` is a list of strings to be trimmed of leading and trailing 
+      whitespace characters.
+
+  * Outputs:
+    * `$list` is the input list of strings with leading and trailing 
+      whitespace characters removed.
+
+* #### tundra.list.string:unique
+
+  Returns a new list with all duplicates from the given list 
+  removed, such that no two items are equal.
+
+  * Inputs:
+    * `$list` is the list to process.
+
+  * Outputs:
+    * `$list` is the resulting list with all duplicate items
+      removed.
+
+* #### tundra.list.string:uppercase
+
+  Converts all strings in the given list to upper case.
+
+  * Inputs:
+    * `$list` is a list of strings to be converted to upper case.
+    * `$locale` optionally identifies the case transformation rules 
+      to be used for a given [Locale]. If not specified, the 
+      [default locale] is used.
+
+  * Outputs:
+    * `$list` is the resulting list of upper case strings, where
+      all characters have been converted to their upper case
+      equivalent according to the transformation rules of the given
+      [Locale].
 
 ### MIME
 
@@ -4772,7 +5101,7 @@ Services for manipulating java.lang.String objects:
         whitespace characters.
 
     * Outputs:
-      * `$string` is the input string leading and trailing whitespace
+      * `$string` is the input string with leading and trailing whitespace
         characters removed.
 
 * #### tundra.string:uppercase

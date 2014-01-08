@@ -107,7 +107,18 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Returns a list of only the items in $list.x that are also present in $list.y.</value>
+  <value name="node_comment">Returns a list of only the items in $list.x that are also present in 
+$list.y.
+
+* Inputs:
+  * $list.x is a list to be intersected with $list.y.
+  * $list.y is a list to be intersected with $list.x.
+
+* Outputs:
+  * $list is a new list containing only the items that are present 
+    in both input lists (the [set intersection]).
+
+[set intersection]: &lt;http://en.wikipedia.org/wiki/Intersection_(set_theory)&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
