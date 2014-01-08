@@ -7,7 +7,6 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
-      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -21,7 +20,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$services</value>
           <value name="field_type">string</value>
           <value name="field_dim">1</value>
@@ -50,7 +48,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$catch</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -78,7 +75,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$finally</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -105,7 +101,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$pipeline</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
@@ -115,14 +110,11 @@
           <value name="is_global">false</value>
           <array name="rec_fields" type="record" depth="1">
           </array>
-          <value name="modifiable">true</value>
         </record>
       </array>
-      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
-      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -136,7 +128,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$pipeline</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
@@ -146,20 +137,40 @@
           <value name="is_global">false</value>
           <array name="rec_fields" type="record" depth="1">
           </array>
-          <value name="modifiable">true</value>
         </record>
       </array>
-      <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Provides a try/catch/finally pattern for chained flow services. If one of the given list of $services throws 
-an exception when invoked, then the arguments $exception, $exception?, $exception.class, $exception.message 
-and $exception.stack are added to the pipeline.
+  <value name="node_comment">Provides a try/catch/finally pattern for chained flow services. Each
+service in the given list is invoked sequentially, and the pipeline
+is shared across all invokes.
 
-If specified, the $catch service is invoked to handle the exception, otherwise the exception is rethrown.
+* Inputs:
+  * $services is a list of fully-qualified service names 
+    identifying the services to be invoked sequentially in
+    the [try block].
+  * $catch is an optional fully-qualified name of a service
+    invoked in the [catch block]. This service should
+    implement the Tundra/tundra.schema.exception:handler
+    specification. If no $catch service is specified, the
+    exception will be rethrown.
+  * $finally is an optional fully-qualified name of a service
+    invoked in the [finally block] (always invoked regardless
+    of whether an exception is thrown).    
+  * $pipeline is an optional scoped pipeline to use when
+    invoking the services. If not specified, the pipeline
+    itself is used.
 
-If specified, the $finally service is always invoked, whether an exception was thrown by one of the invoked
-$services or not.</value>
+* Outputs:
+  * $pipeline is the output pipeline of the invocations of
+    $services, $catch, and $finally. This is only returned if
+    $pipeline was specified as an input. Otherwise, the outputs
+    of these invocations are merged directly with the pipeline
+    itself.
+
+[try block]: &lt;http://docs.oracle.com/javase/tutorial/essential/exceptions/try.html&gt;
+[catch block]: &lt;http://docs.oracle.com/javase/tutorial/essential/exceptions/catch.html&gt;
+[finally block]: &lt;http://docs.oracle.com/javase/tutorial/essential/exceptions/finally.html&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
@@ -176,16 +187,10 @@ $services or not.</value>
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
-  <null name="auditfields_input"/>
-  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
-  <value name="pipeline_option">1</value>
-  <null name="originURI"/>
-  <value name="modifiable">true</value>
-  <value name="is_public">false</value>
 </Values>

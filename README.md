@@ -3604,31 +3604,106 @@ Services for manipulating java.lang.Object lists:
 
 ### Service List
 
-```java
-// invokes each service in the given list in order, sharing the pipeline across all invokes
-tundra.list.service:chain($services[], $pipeline);
+* #### tundra.list.service:chain
 
-// provides a try/catch/finally pattern for chained flow services
-//
-// If one of the given list of $services throws an exception when invoked, then the arguments
-// $exception, $exception?, $exception.class, $exception.message and $exception.stack are added
-// to the pipeline.
-//
-// If specified, the $catch service is invoked to handle the exception, otherwise the exception
-// is rethrown.
-//
-// If specified, the $finally service is always invoked, whether an exception was thrown by one
-// of the invoked $services or not.
-tundra.list.service:ensure($services[], $catch, $finally, $pipeline);
+  Invokes each service in the given list sequentially, sharing 
+  the pipeline across all invokes.
 
-// invokes a list of services either synchronously (with an optional level of
-// concurrency) or asynchronously
-tundra.list.service:invoke($invocations[], $mode, $concurrency);
 
-// waits for each service thread in the given list to finish before returning
-// each output pipeline
-tundra.list.service:join($threads[]);
-```
+  * Inputs:
+    * `$services` is a list of fully-qualified service names 
+      identifying the services to be invoked sequentially.
+    * `$pipeline` is an optional scoped pipeline to use when
+      invoking the services. If not specified, the pipeline
+      itself is used.
+
+  * Outputs:
+    * `$pipeline` is the output pipeline of the invocations of
+      `$services`. This is only returned if `$pipeline` was specified 
+      as an input. Otherwise, the outputs of these invocations are 
+      merged directly with the pipeline itself.
+
+* #### tundra.list.service:ensure
+
+  Provides a try/catch/finally pattern for chained flow services. Each
+  service in the given list is invoked sequentially, and the pipeline
+  is shared across all invokes.
+
+  * Inputs:
+    * `$services` is a list of fully-qualified service names 
+      identifying the services to be invoked sequentially in
+      the [try block].
+    * `$catch` is an optional fully-qualified name of a service
+      invoked in the [catch block]. This service should
+      implement the `Tundra/tundra.schema.exception:handler`
+      specification. If no `$catch` service is specified, the
+      exception will be rethrown.
+    * `$finally` is an optional fully-qualified name of a service
+      invoked in the [finally block] (always invoked regardless
+      of whether an exception is thrown).    
+    * `$pipeline` is an optional scoped pipeline to use when
+      invoking the services. If not specified, the pipeline
+      itself is used.
+
+  * Outputs:
+    * `$pipeline` is the output pipeline of the invocations of
+      `$services`, `$catch`, and `$finally`. This is only returned if
+      `$pipeline` was specified as an input. Otherwise, the outputs
+      of these invocations are merged directly with the pipeline
+      itself.
+
+* #### tundra.list.service:invoke
+
+  Invokes a list of services either synchronously (with an optional 
+  level of concurrency) or asynchronously.
+
+  * Inputs:
+    * `$invocations` is a list of services and pipelines to be invoked.
+      * `service` is the fully-qualified name of the service to be
+        invoked.
+      * `pipeline` is an optional IData document which, if specified,
+        contains the input arguments for the invocation of `service`; 
+        in other words, the invocation is scoped to this IData document. 
+        If not specified, the invocation is unscoped, and hence the
+        service will operate directly against the pipeline itself.
+
+    * `$mode` is an optional choice of execution mode: either synchronous
+      or asynchronous. When synchronous, the invocation of 
+      `Tundra/tundra.list.service:invoke` blocks until all invocations 
+      complete. When asynchronous, `Tundra/tundra.list.service:invoke` returns 
+      immediately and the invocations occur on other threads.
+
+    * `$concurrency` is an optional number of threads used when invoking
+      synchronously. Defaults to 1.
+
+  * Outputs:
+    * `$invocations` is the resulting list of services, output pipelines, 
+      and threads (when invoked in asynchronous mode).
+      * `service` is the fully-qualified name of the service invoked.
+      * `pipeline` is the output pipeline of the invocation of
+        `service`. This is only returned if the `$mode` is synchronous,
+        and the invocation was scoped (`$invocations/pipeline` was specified 
+        as an input). If invocation was synchronous and unscoped, the 
+        outputs of the invocation are merged directly with the pipeline 
+        itself. If the invocation was asynchronous, then no outputs
+        are returned.
+      * `thread` is returned only when the invocation `$mode` is asynchronous, 
+        and is the thread object which can later be waited on to finish 
+        using `Tundra/tundra.list.service:join`.
+
+* #### tundra.list.service:join
+
+  Waits for each service thread in the given list to finish before 
+  returning each output pipeline.
+
+  * Inputs
+    * `$threads` is a list of service thread objects returned by 
+      `Tundra/tundra.list.service:invoke` when operating in the
+      asynchronous invocation mode.
+
+  * Outputs:
+    * `$pipelines` is a list of all the output pipelines returned 
+      by the service threads.
 
 ### String List
 
