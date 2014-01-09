@@ -1719,9 +1719,9 @@ Services for manipulating com.wm.data.IData objects:
     * `$document` is an IData document to have all occurrences of the 
       given [regular expression pattern] in each key replaced.
     * `$pattern` is the [regular expression pattern] to match against
-      the each key.
+      each key.
     * `$replacement` is the replacement string to be substituted in
-      the each key wherever the given pattern is found.
+      each key wherever the given pattern is found.
     * `$literal?` is a boolean indicating if the replacement string
       should be treated as a literal string. If false, captured
       groups can be referred to with dollar-sign references, such
@@ -1751,7 +1751,7 @@ Services for manipulating com.wm.data.IData objects:
 
   * Outputs:
     * `$document` is the given IData document with all keys trimmed of
-      leading and trailing whitespace characters removed.
+      leading and trailing whitespace characters.
 
 * #### tundra.document.key:uppercase
 
@@ -2070,7 +2070,7 @@ Services for manipulating com.wm.data.IData objects:
     * `$document` is an IData document to perform variable substitution on.
     * `$pipeline` is an optional scope used to resolve key references. If
       not specified, keys are resolved against the pipeline itself.
-    * `$default` is an optional default value to substitute in place keys
+    * `$default` is an optional default value to substitute in place of keys
       that resolve to null or missing values. If not specified, no 
       substitution will be made for keys that resolve to null or missing
       values.
@@ -2093,6 +2093,9 @@ Services for manipulating com.wm.data.IData objects:
     * `$service` is the fully-qualified name of the translation service, which accepts 
       a single IData document and returns a single IData document, called to translate 
       the given `$document`.
+
+    * $pipeline is an optional IData document for providing arbitrary variables to the 
+      invocation of $service.      
 
     * `$service.input` is an optional variable name to use in the input pipeline of the 
       call to `$service` for the given IData document. Defaults to $document.
@@ -2134,9 +2137,9 @@ Services for manipulating com.wm.data.IData objects:
     * `$document` is an IData document to have all occurrences of the 
       given [regular expression pattern] in each string value replaced.
     * `$pattern` is the [regular expression pattern] to match against
-      the each string value.
+      each string value.
     * `$replacement` is the replacement string to be substituted in
-      the each string value wherever the given pattern is found.
+      each string value wherever the given pattern is found.
     * `$literal?` is a boolean indicating if the replacement string
       should be treated as a literal string. If false, captured
       groups can be referred to with dollar-sign references, such
@@ -2154,7 +2157,7 @@ Services for manipulating com.wm.data.IData objects:
 
 * #### tundra.document.value:trim
 
-  Removes leading and trailing whitespace from all string value in the 
+  Removes leading and trailing whitespace from all string values in the 
   given IData document.
 
   * Inputs:
@@ -2166,7 +2169,7 @@ Services for manipulating com.wm.data.IData objects:
 
   * Outputs:
     * `$document` is the given IData document with all string values 
-      trimmed of leading and trailing whitespace characters removed.
+      trimmed of leading and trailing whitespace characters.
 
 * #### tundra.document.value:uppercase
 
@@ -2702,8 +2705,6 @@ File system services for working with files:
     * Outputs:
       * `$id` is the generated [UUID].
 
-[UUID]: <http://docs.oracle.com/javase/6/docs/api/java/util/UUID.html>
-
 ### Integer
 
 Services for working with arbitrary precision integers (uses [java.math.BigInteger] as its implementation):
@@ -3034,121 +3035,122 @@ Services for working with arbitrary precision integers (uses [java.math.BigInteg
 
 Services for manipulating document (com.wm.data.IData) lists:
 
-```java
-// appends a single item to the end of a list, such that appending an item to
-// a list containing n items results in a new list of n + 1 items
-tundra.list.document:append($list[], $item);
+* #### tundra.list.document:append
 
-// removes all elements from each IData document in the given list, except for any keys
-// specified in the $preserve list; keys can be simple or fully qualified, such as
-// a/b/c[0]/d
-tundra.list.document.clear($list[], $preserve[]);
+  Appends a single item to the end of a list, such that appending an item 
+  to a list containing n items results in a new list of n + 1 items.
 
-// removes all null values from each IData item in the given list, and then
-// removes all null items themselves from the given list, thereby shortening
-// the length of the list
-tundra.list.document:compact($list[]);
+  * Inputs:
+    * `$list` is a list to append an item to.
+    * `$item` is an item to be appended to the given list.
 
-// returns a new list containing all the items in the given $list and $items
-// input arguments
-tundra.list.document:concatenate($list.x[], $list.y[]);
+  * Outputs:
+    * `$list` is the resulting list with the given `$item` appended to the
+      end.
 
-// removes the item with the given index from the given list
-tundra.list.document:drop($list, $index);
+* #### tundra.list.document:clear
 
-// iterates through the given list, invoking the given service for each item
-// in the list, passing $item, $index, $iteration and $length variables
-tundra.list.document:each($list[], $service, $pipeline, $item.input);
+  Removes all elements from all items in the given IData document list, 
+  except for any keys specified in the preserve list.
 
-// returns true if the two given lists are equal
-tundra.list.document:equal($list.x[], $list.y[]);
+  * Inputs:
+    * `$list` is an IData document list for which to remove the keys in
+      each item.
+    * `$preserve` is list of keys which will not be removed from
+      the given IData document list. Keys can be simple or fully
+      qualified, such as a/b/c[0]/d.
 
-// returns the item stored at a given index in a list (supports forward and
-// reverse indexing)
-tundra.list.document:get($list[], $index);
+  * Outputs:
+    * `$list` is the given IData document list with all keys removed
+      from each item, except for those specified in `$preserve`.
 
-// returns true if the given item is found in the given list
-tundra.list.document:include($list[], $item);
+* #### tundra.list.document:compact
 
-// returns a new list with the given item inserted at the desired index in
-// the given list
-tundra.list.document:insert($list[], $item, $index);
+  Removes all null items from the given list, thereby shortening the 
+  length of the list.
 
-// many-to-one conversion of an IData[] document list to an IData document; calls the given
-// joining service, passing the list of documents as an input, and emitting the joined
-// document as output; the joining service must accept an IData[] document list, and return
-// a single IData document
-tundra.list.document.join($documents[], $service, $pipeline, $service.input, $service.output);
+  * Inputs:
+    * `$list` is a list to be compacted.
 
-// converts all keys in each IData item in the given list to lower case
-tundra.list.document.key:lowercase($list[], $recurse?);
+  * Outputs:
+    * `$list` is the given list with all null items removed.
 
-// replaces all occurrences of the given regular expression pattern in each key
-// in each IData item in the given list with the replacement string
-// refer: <http://download.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html>,
-//        <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Matcher.html>
-tundra.list.document.key:replace($list[], $pattern, $replacement, $literal?, $recurse?);
+* #### tundra.list.document:concatenate
 
-// removes leading and trailing whitespace from all keys in each IData item in the given list
-tundra.list.document.key:trim($list[], $recurse?);
+  Returns a new list containing all the items in the given lists.
 
-// converts all keys in the each IData item in the given list to upper case
-tundra.list.document.key:uppercase($list[], $recurse?);
+  * Inputs:
+    * `$list.x` is the first list to be concatenated.
+    * `$list.y` is the second list to be concatenated.
 
-// returns the number of items in the given list
-tundra.list.document:length($list[]);
+  * Outputs:
+    * `$list` is a new list containing all the items from the given
+      input lists.
 
-// returns a new list created by invoking the given service for each item in
-// the given list, and collecting new the values returned
-tundra.list.document:map($list[], $service, $item.input, $item.output);
+* #### tundra.list.document:drop
 
-// prepends a single item to the front of a list, such that prepending an
-// item to a list containing n items results in a new list of n + 1 items
-tundra.list.document:prepend($list[], $item);
+  Removes the item stored at a given index in the given list. 
 
-// sets the value of the item stored at a given index in a list (supports forward and
-// reverse indexing)
-tundra.list.document:put($list[], $item, $index);
+  * Inputs:
+    * `$list` is a list to remove the item from.
+    * `$index` is an integer identifying which item to be removed from
+      the given list. List indexing is zero-based. Supports both
+      forward and reverse indexing (where, for example, an index of 
+      -1 is the last item in the list, and an index of -2 is the 
+      second last item in the list).
 
-// returns a new list with all items from the given list in reverse order
-tundra.list.document:reverse($list[]);
+  * Outputs:
+    * `$list` is the given list with the item identified by the given
+      index removed.
 
-// returns a new list which is a subset of the items in the given list
-tundra.list.document:slice($list[], $index, $list);
+* #### tundra.list.document:each
 
-// returns a new list sorted according to the natural ordering of the given
-// list's items
-// refer: <http://docs.oracle.com/javase/6/docs/api/java/lang/Comparable.html>
-tundra.list.document:sort($list[], $key);
+  Iterates through the given list, invoking the given service for each 
+  item in the list, passing `$item`, `$index`, `$iteration` and `$length`
+  variables.
 
-// attempts variable substitution on each string element in each IData document
-// in the given list by replacing all occurrences of substrings matching "%key%"
-// with the associated (optionally scoped) value
-tundra.list.document:substitute($list[], $pipeline);
+  * Inputs:
+    * `$list` is a list to be iterated over.
+    * `$service` is a fully-qualified service name identifying the
+      service to be invoked to process each item in the list.
+    * `$pipeline` is an optional IData document containing arbitrary
+      input arguments used when invoking `$service`.
+    * `$item.input` is an optional variable name used when passing each
+      item in the list to the invocation of `$service`. Defaults to
+      $item.
 
-// one-to-one conversion of a document list (IData[]) to another document list (IData[]);
-// calls the given translation service, passing each list item as an input, and collecting
-// the translated item as output;
-// the translation service must accept a single IData document and return a single
-// IData document
-tundra.list.document:translate($list[], $service, $pipeline, $service.input, $service.output);
+* #### tundra.list.document:equal
 
-// converts all String elements in each IData item in the given list to lower case
-tundra.list.document.value:lowercase($list[], $recurse?);
+  Returns true if the two given lists are equal.
 
-// replaces all occurrences of the given regular expression pattern in each String value
-// in each IData item in the given list with the replacement string
-// refer: <http://download.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html>,
-//        <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Matcher.html>
-tundra.list.document.value:replace($list[], $pattern, $replacement, $literal?, $recurse?);
+  * Inputs:
+    * `$list.x` is a list to be compared with `$list.y`.
+    * `$list.y` is a list to be compared with `$list.x`.
 
-// removes leading and trailing whitespace from all String elements in each IData item
-// in the given list
-tundra.list.document.value:trim($list[], $recurse?);
+  * Outputs:
+    * `$equal?` is a boolean indicating if `$list.x` equals
+      `$list.y`.
 
-// converts all String elements in each IData item in the given list to upper case
-tundra.list.document.value:uppercase($list[], $recurse?);
-```
+* #### tundra.list.document:get
+
+  Returns the item stored at a given index in a list. A zero-
+  based index can be specified using the `$index` input, or
+  a one-based index can be specified using the `$iteration` input
+  (which is useful when using this service inside a flow loop).
+
+  * Inputs:
+    * `$list` is a list to fetch an item from.
+    * `$index` is an optional zero-based index identifying
+      the item to be fetched. Supports forward and reverse 
+      indexing (where, for example, an index of -1 is the 
+      last item in the list, and an index of -2 is the 
+      second last item in the list).
+    * `$iteration` is an optional one-based index identifying
+      the item to be fetched.
+
+  * Outputs:
+    * `$item` is the item stored at the given index in the given 
+      list.
 
 * #### tundra.list.document:grow
 
@@ -3165,6 +3167,223 @@ tundra.list.document.value:uppercase($list[], $recurse?);
     * `$list` is the IData[] list grown by the desired `$count` of items,
       with the original items preserved and the new items padded with `$item`
       (or null if not specified).
+
+* #### tundra.list.document:include
+
+  Returns true if the given item is found in the given list.
+
+  * Inputs:
+    * `$list` is a list to check whether the given `$item` exists
+      in.
+    * `$item` is the item to be checked against the given `$list`.
+
+  * Outputs:
+    * `$include?` is a boolean indicating the the given `$item`
+      exists as an item in the given `$list`.
+
+* #### tundra.list.document:insert
+
+  Returns a new list with the given item inserted at the desired 
+  index in the given list.  
+
+  * Inputs:
+    * `$list` is a list to check whether the given `$item` exists
+      in.
+    * `$item` is the item to be checked against the given `$list`.
+    * `$index` is the index at which to insert the item. List 
+      indexing is zero-based. Supports both forward and 
+      reverse indexing (where, for example, an index of -1 
+      is the last item in the list, and an index of -2 is the 
+      second last item in the list).
+
+  * Outputs:
+    * `$list` is the resulting list with the item inserted at the
+      desired index.
+
+* #### tundra.list.document:join
+
+  Many-to-one conversion of an IData document list to an IData document.
+
+  Calls the given joining service, passing the IData document list 
+  as an input, and returning the resulting IData document as output.  
+  The joining service must accept an IData document list, and 
+  return a single IData document.
+
+  * Inputs:
+    * `$documents` is an IData document list to be joined or 
+      aggregated together into one IData document.
+
+    * `$service` is the fully-qualified joining service name that is
+      called to join or aggregate the IData document list. This 
+      service must accept an IData[] array, and return a single 
+      IData object.
+
+    * `$pipeline` is an optional IData document for specifying 
+      arbitrary input arguments to the invocation of `$service`.
+
+    * `$service.input` is an optional name to use for the IData
+      document list for the input pipeline of the `$service` invocation.
+      Defaults to $documents.
+
+    * `$service.output` is an optional name to use for the output IData
+      parameter returned by the `$service` invocation. Defaults to 
+      $document.
+
+  * Outputs:
+    * `$document` is the resulting IData document returned by `$service`.
+
+* #### tundra.list.document.key:lowercase
+
+  Converts all keys in each item in the given IData document list to 
+  lower case.
+
+  * Inputs:
+    * `$list` is an IData document list whose item's keys are to be
+      converted to lower case.
+    * `$locale` optionally identifies the case transformation rules 
+      to be used for a given [Locale]. If not specified, the 
+      [default locale] is used.
+    * `$recurse?` is an optional boolean indicating if embedded
+      IData documents and IData document lists should also
+      have their keys converted to lower case. Defaults to 
+      false.
+
+  * Outputs:
+    * `$list` is the given IData document list with all item's keys 
+      converted to lower case.
+
+* #### tundra.list.document.key:replace
+
+  Replaces all occurrences of the given [regular expression pattern] 
+  in each item's keys in the given IData document list with the 
+  replacement string.
+
+  * Inputs:
+    * `$list` is an IData document list to have all occurrences of the 
+      given [regular expression pattern] in each item's keys replaced.
+    * `$pattern` is the [regular expression pattern] to match against
+      each key.
+    * `$replacement` is the replacement string to be substituted in
+      each key wherever the given pattern is found.
+    * `$literal?` is a boolean indicating if the replacement string
+      should be treated as a literal string. If false, captured
+      groups can be referred to with dollar-sign references, such
+      as $1, and other special characters may need to be escaped.
+      Defaults to false.
+    * `$recurse?` is an optional boolean indicating if embedded
+      IData documents and IData document lists should also
+      have occurrences of the pattern in their string values 
+      replaced. Defaults to false.
+
+  * Outputs:
+    * `$list` is the given IData document list with all occurrences of 
+      the given [regular expression pattern] in each item's keys replaced 
+      with `$replacement`.
+
+* #### tundra.list.document.key:trim
+
+  Removes leading and trailing whitespace from all item's keys 
+  in the given IData document list.
+
+  * Inputs:
+    * `$list` is an IData document list whose item's keys are to 
+      be trimmed of leading and trailing whitespace characters.
+    * `$recurse?` is an optional boolean indicating if embedded
+      IData documents and IData document lists should also
+      have their keys trimmed. Defaults to false.
+
+  * Outputs:
+    * `$list` is the given IData document list with all item's 
+      keys trimmed of leading and trailing whitespace characters 
+      removed.
+
+* #### tundra.list.document.key:uppercase
+
+  Converts all keys in each item in the given IData document list to 
+  upper case.
+
+  * Inputs:
+    * `$list` is an IData document list whose item's keys are to be
+      converted to upper case.
+    * `$locale` optionally identifies the case transformation rules 
+      to be used for a given [Locale]. If not specified, the 
+      [default locale] is used.
+    * `$recurse?` is an optional boolean indicating if embedded
+      IData documents and IData document lists should also
+      have their keys converted to upper case. Defaults to 
+      false.
+
+  * Outputs:
+    * `$list` is the given IData document list with all item's keys 
+      converted to upper case.
+
+* #### tundra.list.document:length
+
+  Returns the number of items in the given list.
+
+  * Inputs:
+    * `$list` is a list to count the number of items in.
+
+  * Outputs:
+    * `$length` is the number of items in the given list.
+
+* #### tundra.list.document:map
+
+  Returns a new list created by invoking the given service for each 
+  item in the input list, passing `$item`, `$index`, `$iteration` and 
+  `$length` variables, and collecting the values returned by the service
+  to form the new list.
+
+  This is an implementation of a higher-order [map function] for
+  document lists.
+
+  * Inputs:
+    * `$list` is a list to be iterated over.
+    * `$service` is a fully-qualified service name identifying the
+      service to be invoked to process each item in the list.
+    * `$pipeline` is an optional IData document containing arbitrary
+      input arguments used when invoking `$service`.
+    * `$item.input` is an optional variable name used when passing each
+      item in the list to the invocation of `$service`. Defaults to
+      $item.
+    * `$item.output` is an optional variable name used when extracting
+      the resulting item from the invocation of `$service`. Defaults to
+      $item.
+
+  * Outputs:
+    * `$list` is the newly constructed list containing the returned
+      items from invoking `$service` for each input list item.
+
+* #### tundra.list.document:prepend
+
+  Prepends a single item to the front of a list, such that prepending 
+  an item to a list containing n items results in a new list of n + 1 
+  items.
+
+  * Inputs:
+    * `$list` is a list to be prepended to.
+    * `$item` is the item to prepend to the given list.
+
+  * Outputs:
+    * `$list` is the resulting list with the given `$item` prepended to the
+      start.
+
+* #### tundra.list.document:put
+
+  Sets the value of the item at the given index in the given list.  
+
+  * Inputs:
+    * `$list` is a list in which to set the given value.
+    * `$item` is the item to be set in the given list.
+    * `$index` is an optional zero-based index identifying
+      the item to be set. Supports forward and reverse 
+      indexing (where, for example, an index of -1 is the 
+      last item in the list, and an index of -2 is the 
+      second last item in the list).
+
+  * Outputs:
+    * `$list` is the resulting list with the item at the given 
+      index set to the given value.
 
 * #### tundra.list.document:resize
 
@@ -3184,6 +3403,17 @@ tundra.list.document.value:uppercase($list[], $recurse?);
       the end; if the new length is greater than the original length, the
       list is padded with `$item` (or null if not specified).
 
+* #### tundra.list.document:reverse
+
+  Returns a new list with all items from the given list in 
+  reverse order.
+
+  * Inputs:
+    * `$list` is the list to be reversed.
+
+  * Outputs:
+    * `$list` is the given list with item ordering reversed.
+
 * #### tundra.list.document:shrink
 
   Decreases the size of the given list by the given count, truncating items
@@ -3197,6 +3427,171 @@ tundra.list.document.value:uppercase($list[], $recurse?);
     * `$list` is the IData[] list shrunk from the end of the list by the
       desired item count by truncating items from the end of the list. If
       the list is smaller than the count, an empty list is returned.
+
+* #### tundra.list.document:slice
+
+  Returns a new list which is a subset of the items in the 
+  given list.
+
+  * Inputs:
+    * `$list` is the list to be sliced.
+    * `$index` is the zero-based start index from which to
+      take the slice.
+    * `$length` is the number of items to include in the 
+      slice.
+
+  * Outputs:
+    * `$list` is the desired subset or slice of the given list.
+
+* #### tundra.list.document:sort
+
+  Returns a new list sorted according to the [natural ordering] of 
+  the values associated with the given key in each item.
+
+  * Inputs:
+    * `$list` is the list of IData documents to be sorted.
+    * `$key` is the key in each IData document to sort the list by.
+
+  * Outputs:
+    * `$list` is the sorted IData document list.
+
+* #### tundra.list.document:substitute
+
+  Attempts variable substitution on each string value in the given IData 
+  document list by replacing all occurrences of substrings matching "%key%" 
+  with the associated (optionally scoped) value.
+
+  Optionally replaces null or non-existent values with the given default 
+  value.
+
+  * Inputs:
+    * `$list` is an IData document list to perform variable substitution on.
+    * `$pipeline` is an optional scope used to resolve key references. If
+      not specified, keys are resolved against the pipeline itself.
+    * `$default` is an optional default value to substitute in place of keys
+      that resolve to null or missing values. If not specified, no 
+      substitution will be made for keys that resolve to null or missing
+      values.
+
+  * Outputs:
+    * `$list` is the resulting IData document list with all variable substitution 
+      patterns in all item's values, such as "%key%", replaced with the value of 
+      the key (resolved against either `$pipeline`, if specified, or the pipeline 
+      itself).
+
+* #### tundra.list.document:translate
+
+  One-to-one conversion of one IData document list to another IData document list. 
+  Calls the given translation service, passing the each IData document item in the
+  list as an input, and building a new IData document list from the translated 
+  documents returned by the translation service as output.
+
+  * Inputs:
+    * `$list` is an IData document list containing items to be translated.
+
+    * `$service` is the fully-qualified name of the translation service, which accepts 
+      a single IData document and returns a single IData document, called to translate 
+      the given `$document`.
+
+    * $pipeline is an optional IData document for providing arbitrary variables to the 
+      invocations of $service.      
+
+    * `$service.input` is an optional variable name to use in the input pipeline of the 
+      call to `$service` for the given IData document. Defaults to $document.
+
+    * `$service.output` is an optional variable name used to extract the output IData 
+      document from the output pipeline of the call to `$service`. Defaults to 
+      $translation.
+
+  * Outputs:
+    * `$translations` is the resulting IData document list containing the translated 
+      documents.
+
+* #### tundra.list.document.value:lowercase
+
+  Converts all item's string values in the given IData document 
+  list to lower case.
+
+  * Inputs:
+    * `$list` is an IData document list whose item's string values 
+      are to be converted to lower case.
+    * `$locale` optionally identifies the case transformation rules 
+      to be used for a given [Locale]. If not specified, the 
+      [default locale] is used.
+    * `$recurse?` is an optional boolean indicating if embedded
+      IData documents and IData document lists should also
+      have their string values converted to lower case. Defaults 
+      to false.
+
+  * Outputs:
+    * `$list` is the given IData document list with all item's string 
+      values converted to lower case.
+
+* #### tundra.list.document.value:replace
+
+  Replaces all occurrences of the given [regular expression pattern] 
+  in each item's string values in the given IData document list with 
+  the replacement string.
+
+  * Inputs:
+    * `$list` is an IData document list to have all occurrences of the 
+      given [regular expression pattern] in each item's string values
+      replaced.
+    * `$pattern` is the [regular expression pattern] to match against
+      each string value.
+    * `$replacement` is the replacement string to be substituted in
+      each string value wherever the given pattern is found.
+    * `$literal?` is a boolean indicating if the replacement string
+      should be treated as a literal string. If false, captured
+      groups can be referred to with dollar-sign references, such
+      as $1, and other special characters may need to be escaped.
+      Defaults to false.
+    * `$recurse?` is an optional boolean indicating if embedded
+      IData documents and IData document lists should also
+      have occurrences of the pattern in their string values 
+      replaced. Defaults to false.
+
+  * Outputs:
+    * `$list` is the given IData document list with all occurrences of 
+      the given [regular expression pattern] in each item's string 
+      values replaced with `$replacement`.
+
+* #### tundra.list.document.value:trim
+
+  Removes leading and trailing whitespace from all item's string 
+  values in the given IData document list.
+
+  * Inputs:
+    * `$list` is an IData document list whose item's string values 
+      are to be trimmed of leading and trailing whitespace 
+      characters.
+    * `$recurse?` is an optional boolean indicating if embedded
+      IData documents and IData document lists should also
+      have their string values trimmed. Defaults to false.
+
+  * Outputs:
+    * `$list` is the given IData document list with all item's string 
+      values trimmed of leading and trailing whitespace characters.
+
+* #### tundra.list.document.value:uppercase
+
+  Converts all item's string values in the given IData document 
+  list to upper case.
+
+  * Inputs:
+    * `$list` is an IData document list whose item's string values 
+      are to be converted to upper case.
+    * `$locale` optionally identifies the case transformation rules 
+      to be used for a given [Locale]. If not specified, the 
+      [default locale] is used.
+    * `$recurse?` is an optional boolean indicating if embedded
+      IData documents and IData document lists should also
+      have their string values converted to upper case. Defaults to 
+      false.
+
+  * Outputs:
+    * `$list` is the given IData document list with all string values 
+      converted to upper case.
 
 ### Duration List
 
@@ -3930,7 +4325,7 @@ Services for manipulating string lists:
   to form the new list.
 
   This is an implementation of a higher-order [map function] for
-  object lists.
+  string lists.
 
   * Inputs:
     * `$list` is a list to be iterated over.
@@ -5403,6 +5798,7 @@ Copyright © 2012 Lachlan Dowding. See license.txt for further details.
 [set intersection]: <http://en.wikipedia.org/wiki/Intersection_(set_theory)>
 [try block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/try.html>
 [URI]: <http://www.w3.org/Addressing/>
+[UUID]: <http://docs.oracle.com/javase/6/docs/api/java/util/UUID.html>
 [XML]: <http://www.w3.org/XML/>
 [XPath expression]: <http://www.w3.org/TR/xpath/>
 [XSD]: <http://www.w3.org/XML/Schema>

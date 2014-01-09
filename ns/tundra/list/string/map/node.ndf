@@ -184,7 +184,7 @@ $length variables, and collecting the values returned by the service
 to form the new list.
 
 This is an implementation of a higher-order [map function] for
-object lists.
+string lists.
 
 * Inputs:
   * $list is a list to be iterated over.

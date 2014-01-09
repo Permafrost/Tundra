@@ -78,8 +78,16 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Appends a single item to the end of a list, such that appending an item to a list 
-containing n items results in a new list of n + 1 items.</value>
+  <value name="node_comment">Appends a single item to the end of a list, such that appending an item 
+to a list containing n items results in a new list of n + 1 items.
+
+* Inputs:
+  * $list is a list to append an item to.
+  * $item is an item to be appended to the given list.
+
+* Outputs:
+  * $list is the resulting list with the given $item appended to the
+    end.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

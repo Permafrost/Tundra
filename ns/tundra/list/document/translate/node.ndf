@@ -7,7 +7,6 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
-      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -21,7 +20,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$list</value>
           <value name="field_type">record</value>
           <value name="field_dim">1</value>
@@ -32,7 +30,6 @@
           <value name="is_soap_array_encoding_used">false</value>
           <array name="rec_fields" type="record" depth="1">
           </array>
-          <value name="modifiable">true</value>
         </record>
         <record javaclass="com.wm.util.Values">
           <value name="node_type">record</value>
@@ -42,7 +39,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$service</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -68,7 +64,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$pipeline</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
@@ -78,7 +73,6 @@
           <value name="is_global">false</value>
           <array name="rec_fields" type="record" depth="1">
           </array>
-          <value name="modifiable">true</value>
         </record>
         <record javaclass="com.wm.util.Values">
           <value name="node_type">record</value>
@@ -88,7 +82,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$service.input</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -116,7 +109,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$service.output</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -137,11 +129,9 @@
           <value name="is_global">false</value>
         </record>
       </array>
-      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
-      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -155,7 +145,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$translations</value>
           <value name="field_type">record</value>
           <value name="field_dim">1</value>
@@ -166,18 +155,35 @@
           <value name="is_soap_array_encoding_used">false</value>
           <array name="rec_fields" type="record" depth="1">
           </array>
-          <value name="modifiable">true</value>
         </record>
       </array>
-      <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">One-to-one conversion of a document list (IData[]) to another document list (IData[]). 
-Calls the given translation service, passing each list item as an input, and collecting 
-the translated item as output. 
+  <value name="node_comment">One-to-one conversion of one IData document list to another IData document list. 
+Calls the given translation service, passing the each IData document item in the
+list as an input, and building a new IData document list from the translated 
+documents returned by the translation service as output.
 
-The translation service must accept a single IData document and return a single 
-IData document.</value>
+* Inputs:
+  * $list is an IData document list containing items to be translated.
+
+  * $service is the fully-qualified name of the translation service, which accepts 
+    a single IData document and returns a single IData document, called to translate 
+    the given $document.
+
+  * $pipeline is an optional IData document for providing arbitrary variables to the 
+    invocations of $service.
+
+  * $service.input is an optional variable name to use in the input pipeline of the 
+    call to $service for the given IData document. Defaults to $document.
+
+  * $service.output is an optional variable name used to extract the output IData 
+    document from the output pipeline of the call to $service. Defaults to 
+    $translation.
+
+* Outputs:
+  * $translations is the resulting IData document list containing the translated 
+    documents.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
@@ -194,16 +200,10 @@ IData document.</value>
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
-  <null name="auditfields_input"/>
-  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
-  <value name="pipeline_option">1</value>
-  <null name="originURI"/>
-  <value name="modifiable">true</value>
-  <value name="is_public">false</value>
 </Values>

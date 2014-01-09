@@ -91,7 +91,7 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Removes leading and trailing whitespace from all string value in the 
+  <value name="node_comment">Removes leading and trailing whitespace from all string values in the 
 given IData document.
 
 * Inputs:
@@ -103,7 +103,7 @@ given IData document.
 
 * Outputs:
   * $document is the given IData document with all string values 
-    trimmed of leading and trailing whitespace characters removed.
+    trimmed of leading and trailing whitespace characters.
 </value>
   <value name="stateless">no</value>
   <value name="caching">no</value>

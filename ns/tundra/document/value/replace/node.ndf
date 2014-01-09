@@ -182,9 +182,9 @@ string.
   * $document is an IData document to have all occurrences of the 
     given [regular expression pattern] in each string value replaced.
   * $pattern is the [regular expression pattern] to match against
-    the each string value.
+    each string value.
   * $replacement is the replacement string to be substituted in
-    the each string value wherever the given pattern is found.
+    each string value wherever the given pattern is found.
   * $literal? is a boolean indicating if the replacement string
     should be treated as a literal string. If false, captured
     groups can be referred to with dollar-sign references, such

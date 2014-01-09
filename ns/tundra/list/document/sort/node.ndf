@@ -88,9 +88,18 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Returns a new list sorted according to the natural ordering[1] of the given list's items. 
+  <value name="node_comment">Returns a new list sorted according to the [natural ordering] of 
+the values associated with the given key in each item.
 
-[1] http://docs.oracle.com/javase/6/docs/api/java/lang/Comparable.html</value>
+* Inputs:
+  * $list is the list of IData documents to be sorted.
+  * $key is the key in each IData document to sort the list by.
+
+* Outputs:
+  * $list is the sorted IData document list.
+
+[natural ordering]: &lt;http://docs.oracle.com/javase/6/docs/api/java/lang/Comparable.html&gt;
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

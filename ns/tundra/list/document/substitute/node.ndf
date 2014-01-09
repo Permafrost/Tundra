@@ -48,6 +48,33 @@
           <array name="rec_fields" type="record" depth="1">
           </array>
         </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <null name="field_usereditable"/>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="field_name">$default</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">string</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
       </array>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
@@ -79,8 +106,27 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Attempts variable substitution on each string element in each IData document in the given list by replacing 
-all occurrences of substrings matching "%key%" with the associated (optionally scoped) value.</value>
+  <value name="node_comment">Attempts variable substitution on each string value in the given IData 
+document list by replacing all occurrences of substrings matching "%key%" 
+with the associated (optionally scoped) value.
+
+Optionally replaces null or non-existent values with the given default 
+value.
+
+* Inputs:
+  * $list is an IData document list to perform variable substitution on.
+  * $pipeline is an optional scope used to resolve key references. If
+    not specified, keys are resolved against the pipeline itself.
+  * $default is an optional default value to substitute in place of keys
+    that resolve to null or missing values. If not specified, no 
+    substitution will be made for keys that resolve to null or missing
+    values.
+
+* Outputs:
+  * $list is the resulting IData document list with all variable substitution 
+    patterns in all item's values, such as "%key%", replaced with the value of 
+    the key (resolved against either $pipeline, if specified, or the pipeline 
+    itself).</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

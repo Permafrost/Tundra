@@ -168,6 +168,9 @@ the translated document as output.
     a single IData document and returns a single IData document, called to translate 
     the given $document.
 
+  * $pipeline is an optional IData document for providing arbitrary variables to the 
+    invocation of $service.
+
   * $service.input is an optional variable name to use in the input pipeline of the 
     call to $service for the given IData document. Defaults to $document.
 
