@@ -703,28 +703,39 @@ content.
   `$source` URI, and calls the given content processing service to process it.
 
   Additional retrieval protocols can be implemented by creating a service
-  named for the URI scheme in the folder `Tundra/tundra.support.content.retrieve`.
+  named for the URI scheme in the folder `Tundra/tundra.content.retrieve`.
   Services in this folder must implement the `Tundra/tundra.schema.content.retrieve:handler` specification.
 
   * Inputs:
     * `$source` is a URI identifying the location from which content is to be
       retrieved. Supports the following retrieval protocols / URI schemes:
-      * `file`: processes each file matching the given $source URI with the
-        given processing $service.
-
-        The file component of the URI can include wildcards or globs (such as *.txt or *.j?r) for matching multiple files at once. For example,
-        `file:////server:port/directory/*.txt` would process all *.txt files
-        in the specified directory.
-
-        To ensure each file processed is not locked or being written to by
-        another process, the file is first moved to a `./archive` directory
-        prior to processing.
+      * `file`: processes each file matching the given `$source` URI with the given 
+        processing `$service`. The file component of the URI can include wildcards 
+        or globs (such as `*.txt` or `*.j?r`) for matching multiple files at once. 
+        For example, `file:////server:port/directory/*.txt` would process all `*.txt` 
+        files in the specified directory. To ensure each file processed is not 
+        locked or being written to by another process, the file is first moved to 
+        an archive directory prior to processing. The name of this directory can
+        be configured by adding a query string parameter called archive to the URI,
+        for example `file:////server:port/directory/*.txt?archive=backup`. In this 
+        example, files are first moved to a subdirectory named backup. If not
+        specified, the archive directory defaults to a subdirectory named archive.
     * `$service` is the fully-qualified name of the content processing
       service, which implements the `Tundra/tundra.schema.content.retrieve:processor`
       specification, invoked to process each item of content retrieved from
       the `$source` URI.
     * `$limit` is an optional maximum number of content matches to be
       processed in a single execution. Defaults to 1000.
+
+* #### tundra.content.retrieve:file
+
+  The file protocol handler for the `Tundra/tundra.content:retrieve` 
+  service, which retrieves file content for files matching the given 
+  `$source` URI and calls the given `$service` content processing service 
+  to process each file.
+
+  Implements the `Tundra/tundra.schema.content.retrieve:handler` 
+  specification.
 
 * #### tundra.content:split
 
