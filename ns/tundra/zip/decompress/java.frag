@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">decompress</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogIE9iamVj
+dCB6aXAgPSBJRGF0YVV0aWwuZ2V0KGN1cnNvciwgIiRjb250ZW50cy56aXAiKTsKICBTdHJpbmcg
+ZW5jb2RpbmcgPSBJRGF0YVV0aWwuZ2V0U3RyaW5nKGN1cnNvciwgIiRlbmNvZGluZyIpOwogIFN0
+cmluZyBtb2RlID0gSURhdGFVdGlsLmdldFN0cmluZyhjdXJzb3IsICIkbW9kZSIpOwoKICBpZiAo
+emlwICE9IG51bGwpIElEYXRhVXRpbC5wdXQoY3Vyc29yLCAiJGNvbnRlbnRzIiwgZGVjb21wcmVz
+cyh6aXAsIGVuY29kaW5nLCBtb2RlKSk7Cn0gY2F0Y2goamF2YS5pby5JT0V4Y2VwdGlvbiBleCkg
+ewogIHR1bmRyYS5leGNlcHRpb24ucmFpc2UoZXgpOwp9IGZpbmFsbHkgewogIGN1cnNvci5kZXN0
+cm95KCk7Cn0=</value>
+</Values>

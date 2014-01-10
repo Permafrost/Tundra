@@ -5886,6 +5886,51 @@ Services for parsing and emitting Uniform Resource Identifier ([URI]) strings.
       * `$exists?` is true if the XPath expression was found to exist in the 
         given `$content`.
 
+### ZIP
+
+* #### tundra.zip:compress
+
+  Compresses the given contents using the [zip] file compression format.
+
+  * Inputs:
+    * `$contents` is an IData document list containing the data to be 
+      compressed.
+      * `name` is the file path and name given to this item in the 
+        resulting zip archive.
+      * `content` is the data to be compressed, specified as either a 
+        string, byte array, or input stream.
+      * `encoding` is an optional character set used when `content` is
+        specified as a string. Defaults to the Java virtual machine 
+        [default charset].
+    * `$mode` is an optional choice of 'stream', 'bytes', or
+      'string', which determines the type of object returned by
+      this service. If the 'string' mode is chosen, the resulting
+      zipped data is base64-encoded. Defaults to 'stream'.
+
+  * Outputs:
+    * `$contents.zip` is the resulting compressed data in [zip] format.
+
+* #### tundra.zip:decompress
+
+  Decompresses the given content using the [zip] file compression format.
+
+  * Inputs:
+    * `$contents.zip` is the [zip] compressed data to be decompressed, 
+      specified as a base64-encoded string, byte array, or input stream.
+    * `$encoding` is an optional character set used to decode the 
+      decompressed data when the chosen `$mode` is 'string'. Defaults to 
+      the Java virtual machine [default charset].
+    * `$mode` is an optional choice of 'stream', 'bytes', or 'string', 
+      which determines the type of content returned by this service. 
+      Defaults to 'stream'.
+
+  * Outputs:
+    * `$contents` is an IData document list containing the resulting 
+      decompressed data.
+      * `name` is the file path and name assigned to this item in the
+        zip archive.
+      * `content` is the decompressed data associated with this item.
+
 ## Contributions
 
 1. Check out the latest master to make sure the feature hasn't been implemented
@@ -5950,3 +5995,4 @@ Copyright © 2012 Lachlan Dowding. See license.txt for further details.
 [XML]: <http://www.w3.org/XML/>
 [XPath expression]: <http://www.w3.org/TR/xpath/>
 [XSD]: <http://www.w3.org/XML/Schema>
+[zip]: <http://en.wikipedia.org/wiki/Zip_(file_format)>
