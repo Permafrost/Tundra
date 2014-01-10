@@ -5539,6 +5539,102 @@ Services for manipulating java.lang.String objects:
         environment settings, Java properties, well-known directory locations, 
         and memory usage.
 
+### Time Zone
+
+* #### tundra.timezone:get
+
+  Returns the time zone associated with the given ID.
+
+  * Inputs:
+    * `$id` is a [java.util.TimeZone] ID identifying the time
+      zone to be returned. 
+    * `$datetime` is an optional XML datetime string identifying
+      the instant in time to be used to determine the Universal
+      Coordinated Time (UTC) offset and whether Daylight Savings 
+      Time (DST) is applicable. If not specified, defaults to 
+      the current datetime.
+
+  * Outputs:
+    * `$timezone` is an IData document describing the time zone
+      associated with the given `$id`.
+      * `id` is the [java.util.TimeZone] ID associated with the 
+        time zone.
+      * `name` is a short name associated with the time zone.
+      * `description` is a long name associated with the time zone.
+      * `utc.offset` is the historically correct XML duration added 
+        to UTC time to get local time in this time zone for the 
+        given `$datetime` instant. If daylight savings time is in 
+        effect for the given `$datetime` instant, then this value was
+        adjusted to include the daylight savings offset.
+      * `dst.used?` is a boolean indicating if daylight savings 
+        time is used by this time zone.
+      * `dst.active?` is a boolean indicating if daylight savings
+        time is in effect for the given `$datetime` instant.
+      * `dst.offset` is the XML duration added to the UTC offset
+        when daylight savings time is in effect.
+
+* #### tundra.timezone:list
+
+  Returns all time zones known to the Java Virtual Machine.
+
+  * Inputs:
+    * `$datetime` is an optional XML datetime string identifying
+      the instant in time to be used to determine the Universal
+      Coordinated Time (UTC) offset and whether Daylight Savings 
+      Time (DST) is applicable. If not specified, defaults to 
+      the current datetime.
+
+  * Outputs:
+    * `$timezones` is an IData document list of time zones known to 
+      the running instance of the Java Virtual Machine.
+      * `id` is the [java.util.TimeZone] ID associated with the 
+        time zone.
+      * `name` is a short name associated with the time zone.
+      * `description` is a long name associated with the time zone.
+      * `utc.offset` is the historically correct XML duration added 
+        to UTC time to get local time in this time zone for the 
+        given `$datetime` instant. If daylight savings time is in 
+        effect for the given `$datetime` instant, then this value was
+        adjusted to include the daylight savings offset.
+      * `dst.used?` is a boolean indicating if daylight savings 
+        time is used by this time zone.
+      * `dst.active?` is a boolean indicating if daylight savings
+        time is in effect for the given `$datetime` instant.
+      * `dst.offset` is the XML duration added to the UTC offset
+        when daylight savings time is in effect.
+
+* #### tundra.timezone:self
+
+  Returns the default time zone for this host.
+
+  * Inputs:
+    * `$datetime` is an optional XML datetime string identifying
+      the instant in time to be used to determine the Universal
+      Coordinated Time (UTC) offset and whether Daylight Savings 
+      Time (DST) is applicable. If not specified, defaults to 
+      the current datetime.
+
+  * Outputs:
+    * `$timezone` is an IData document describing the default time
+      zone.
+      * `id` is the [java.util.TimeZone] ID associated with the 
+        default time zone.
+      * `name` is a short name associated with the default time
+        zone.
+      * `description` is a long name associated with the default
+        time zone.
+      * `utc.offset` is the historically correct XML duration added 
+        to UTC time to get local time in the default time zone for
+        the given `$datetime` instant. If daylight savings time is in 
+        effect for the given `$datetime` instant, then this value was
+        adjusted to include the daylight savings offset.
+      * `dst.used?` is a boolean indicating if daylight savings 
+        time is used by this time zone.
+      * `dst.active?` is a boolean indicating if daylight savings
+        time is in effect for the given `$datetime` instant.
+      * `dst.offset` is the XML duration added to the UTC offset
+        when daylight savings time is in effect.
+
 ### URI
 
 Services for parsing and emitting Uniform Resource Identifier ([URI]) strings.
@@ -5790,6 +5886,7 @@ Copyright © 2012 Lachlan Dowding. See license.txt for further details.
 [java.net.URLEncoder]: <http://docs.oracle.com/javase/6/docs/api/java/net/URLEncoder.html>
 [java.text.SimpleDateFormat]: <http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html>
 [java.util.Date]: <http://docs.oracle.com/javase/6/docs/api/java/util/Date.html>   
+[java.util.TimeZone]: <http://docs.oracle.com/javase/6/docs/api/java/util/TimeZone.html>
 [javax.activation.MimeType]: <http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html>
 [Java array class name]: <http://docs.oracle.com/javase/tutorial/reflect/special/arrayComponents.html>
 [JSON]: <http://www.json.org/>
