@@ -2638,6 +2638,45 @@ File system services for working with files:
         no input file name was specified, this is the name of the temporary
         file that was created automatically.
 
+### GZIP
+
+Services for compressing and decompressing data using the [gzip] format.
+
+* #### tundra.gzip:compress
+
+  Compresses the given content using the [gzip] file compression format.
+
+  * Inputs:
+    * `$content` is the data to be compressed, specified as a string, 
+      byte array, or input stream.
+    * `$encoding` is an optional character set used when `$content` is
+      specified as a string. Defaults to the Java virtual machine 
+      [default charset].
+    * `$mode` is an optional choice of 'stream', 'bytes', or
+      'string', which determines the type of object returned by
+      this service. If the 'string' mode is chosen, the resulting
+      gzipped data is base64-encoded. Defaults to 'stream'.
+
+  * Outputs:
+    * `$content.gzip` is the resulting compressed data in [gzip] format.
+
+* #### tundra.gzip:decompress
+
+  Decompresses the given content using the [gzip] file compression format.
+
+  * Inputs:
+    * `$content.gzip` is the [gzip] compressed data to be decompressed, 
+      specified as a base64-encoded string, byte array, or input stream.
+    * `$encoding` is an optional character set used to decode the 
+      decompressed data when the chosen `$mode` is 'string'. Defaults to 
+      the Java virtual machine [default charset].
+    * `$mode` is an optional choice of 'stream', 'bytes', or
+      'string', which determines the type of object returned by
+      this service. Defaults to 'stream'.
+
+  * Outputs:
+    * `$content` is the resulting decompressed data.
+
 ### HTTP
 
 * #### tundra.http:client
@@ -5871,6 +5910,7 @@ Copyright © 2012 Lachlan Dowding. See license.txt for further details.
 [default charset]: <http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()>
 [default locale]: <http://docs.oracle.com/javase/6/docs/api/java/util/Locale.html#getDefault()>
 [finally block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/finally.html>
+[gzip]: <http://en.wikipedia.org/wiki/Gzip>
 [HTTP response code]: <http://httpstatus.es/>
 [HTTP]: <http://tools.ietf.org/search/rfc2616>
 [IData XML]: <http://documentation.softwareag.com/webmethods/wmsuites/wmsuite8-2_sp2/Integration_Server/8-2-SP1_Integration_Server_Java_API_Reference/com/wm/util/coder/IDataXMLCoder.html>
