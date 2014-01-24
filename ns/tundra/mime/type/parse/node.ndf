@@ -146,7 +146,7 @@ to [RFC 2045] and [RFC 2046], into its constituent parts.
 Implemented with the [javax.activation.MimeType] class.
 
 * Inputs:
-  * $string is an optional [mime type] string to be normalized.
+  * $string is an optional [mime type] string to be parsed.
 
 * Outputs:
   * $type is an IData data structure representing the constituent

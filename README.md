@@ -709,15 +709,15 @@ content.
   * Inputs:
     * `$source` is a URI identifying the location from which content is to be
       retrieved. Supports the following retrieval protocols / URI schemes:
-      * `file`: processes each file matching the given `$source` URI with the given 
-        processing `$service`. The file component of the URI can include wildcards 
-        or globs (such as `*.txt` or `*.j?r`) for matching multiple files at once. 
-        For example, `file:////server:port/directory/*.txt` would process all `*.txt` 
-        files in the specified directory. To ensure each file processed is not 
-        locked or being written to by another process, the file is first moved to 
+      * `file`: processes each file matching the given `$source` URI with the given
+        processing `$service`. The file component of the URI can include wildcards
+        or globs (such as `*.txt` or `*.j?r`) for matching multiple files at once.
+        For example, `file:////server:port/directory/*.txt` would process all `*.txt`
+        files in the specified directory. To ensure each file processed is not
+        locked or being written to by another process, the file is first moved to
         an archive directory prior to processing. The name of this directory can
         be configured by adding a query string parameter called archive to the URI,
-        for example `file:////server:port/directory/*.txt?archive=backup`. In this 
+        for example `file:////server:port/directory/*.txt?archive=backup`. In this
         example, files are first moved to a subdirectory named backup. If not
         specified, the archive directory defaults to a subdirectory named archive.
     * `$service` is the fully-qualified name of the content processing
@@ -729,12 +729,12 @@ content.
 
 * #### tundra.content.retrieve:file
 
-  The file protocol handler for the `Tundra/tundra.content:retrieve` 
-  service, which retrieves file content for files matching the given 
-  `$source` URI and calls the given `$service` content processing service 
+  The file protocol handler for the `Tundra/tundra.content:retrieve`
+  service, which retrieves file content for files matching the given
+  `$source` URI and calls the given `$service` content processing service
   to process each file.
 
-  Implements the `Tundra/tundra.schema.content.retrieve:handler` 
+  Implements the `Tundra/tundra.schema.content.retrieve:handler`
   specification.
 
 * #### tundra.content:split
@@ -829,7 +829,7 @@ Services for manipulating date, time and datetime strings:
 
 * #### tundra.datetime:add
 
-    Adds a duration of time to the given datetime, formatted according to 
+    Adds a duration of time to the given datetime, formatted according to
     the given patterns.
 
     Supports a handful of well-known named datetime patterns:
@@ -842,18 +842,18 @@ Services for manipulating date, time and datetime strings:
         date.jdbc      yyyy-mm-dd
         time           [ISO8601]/XML time
         time.jdbc      HH:mm:ss
-        milliseconds   Number of milliseconds since the Epoch, 
+        milliseconds   Number of milliseconds since the Epoch,
                        January 1, 1970 00:00:00.000 GMT (Gregorian)
 
-    Custom datetime patterns can be specified using [java.text.SimpleDateFormat] 
+    Custom datetime patterns can be specified using [java.text.SimpleDateFormat]
     compatible patterns.
 
     * Inputs:
       * `$datetime` is the datetime string to add the duration to.
-      * `$datetime.pattern` is an optional datetime pattern that `$datetime` 
+      * `$datetime.pattern` is an optional datetime pattern that `$datetime`
         conforms to. Defaults to an [ISO8601]/XML datetime.
       * `$duration` is the duration to be added to `$datetime`.
-      * `$duration.pattern` is an optional duration pattern that `$duration` 
+      * `$duration.pattern` is an optional duration pattern that `$duration`
         conforms to. Defaults to an [ISO8601]/XML duration.
 
     * Outputs:
@@ -861,7 +861,7 @@ Services for manipulating date, time and datetime strings:
 
 * #### tundra.datetime:compare
 
-    Compares two datetime strings, formatted according to the given pattern, indicating 
+    Compares two datetime strings, formatted according to the given pattern, indicating
     their position in time relative to one another.
 
     Supports a handful of well-known named datetime patterns:
@@ -874,20 +874,20 @@ Services for manipulating date, time and datetime strings:
         date.jdbc      yyyy-mm-dd
         time           [ISO8601]/XML time
         time.jdbc      HH:mm:ss
-        milliseconds   Number of milliseconds since the Epoch, 
+        milliseconds   Number of milliseconds since the Epoch,
                        January 1, 1970 00:00:00.000 GMT (Gregorian)
 
-    Custom datetime patterns can be specified using [java.text.SimpleDateFormat] 
+    Custom datetime patterns can be specified using [java.text.SimpleDateFormat]
     compatible patterns.
 
     * Inputs:
       * `$datetime.x` is the datetime string to be compared to $datetime.y.
       * `$datetime.y` is the datetime string to be compared to $datetime.x.
-      * `$pattern` is an optional datetime pattern that `$datetime.x` and `$datetime.y` 
+      * `$pattern` is an optional datetime pattern that `$datetime.x` and `$datetime.y`
         conform to. Defaults to an [ISO8601]/XML datetime.
 
     * Outputs:
-      * `$before?` is a boolean flag indicating if `$datetime.x` is an earlier instant 
+      * `$before?` is a boolean flag indicating if `$datetime.x` is an earlier instant
         in time than `$datetime.y`.
       * `$equal?` is a boolean flag indicating if `$datetime.x` and `$datetime.y` represent
         the same instant in time.
@@ -919,18 +919,18 @@ Services for manipulating date, time and datetime strings:
         date.jdbc      yyyy-mm-dd
         time           [ISO8601]/XML time
         time.jdbc      HH:mm:ss
-        milliseconds   Number of milliseconds since the Epoch, 
+        milliseconds   Number of milliseconds since the Epoch,
                        January 1, 1970 00:00:00.000 GMT (Gregorian)
 
-    Custom datetime patterns can be specified using [java.text.SimpleDateFormat] 
+    Custom datetime patterns can be specified using [java.text.SimpleDateFormat]
     compatible patterns.
 
     * Inputs:
-      * `$datetime.start` is the datetime string representing the starting instant 
+      * `$datetime.start` is the datetime string representing the starting instant
         for calculating the duration of time.
-      * `$datetime.end` is the datetime string representing the ending instant for 
+      * `$datetime.end` is the datetime string representing the ending instant for
         calculating the duration of time.
-      * `$datetime.pattern` is an optional datetime pattern that `$datetime.start` 
+      * `$datetime.pattern` is an optional datetime pattern that `$datetime.start`
         and `$datetime.end` conform to. Defaults to an [ISO8601]/XML datetime.
       * `$duration.pattern` is an optional duration pattern that the output `$duration`
         will be formatted as. Defaults to an [ISO8601]/XML duration.
@@ -941,7 +941,7 @@ Services for manipulating date, time and datetime strings:
 
 * #### tundra.datetime:emit
 
-    Returns the given [java.util.Date] object as a string formatted according to the 
+    Returns the given [java.util.Date] object as a string formatted according to the
     given datetime pattern.
 
     Supports a handful of well-known named datetime patterns:
@@ -954,10 +954,10 @@ Services for manipulating date, time and datetime strings:
         date.jdbc      yyyy-mm-dd
         time           [ISO8601]/XML time
         time.jdbc      HH:mm:ss
-        milliseconds   Number of milliseconds since the Epoch, 
+        milliseconds   Number of milliseconds since the Epoch,
                        January 1, 1970 00:00:00.000 GMT (Gregorian)
 
-    Custom datetime patterns can be specified using [java.text.SimpleDateFormat] 
+    Custom datetime patterns can be specified using [java.text.SimpleDateFormat]
     compatible patterns.
 
     * Inputs:
@@ -971,7 +971,7 @@ Services for manipulating date, time and datetime strings:
 
 * #### tundra.datetime:format
 
-    Formats a datetime string that conforms to the input pattern, according to the 
+    Formats a datetime string that conforms to the input pattern, according to the
     output pattern.
 
     Supports a handful of well-known named datetime patterns:
@@ -984,22 +984,22 @@ Services for manipulating date, time and datetime strings:
         date.jdbc      yyyy-mm-dd
         time           [ISO8601]/XML time
         time.jdbc      HH:mm:ss
-        milliseconds   Number of milliseconds since the Epoch, 
+        milliseconds   Number of milliseconds since the Epoch,
                        January 1, 1970 00:00:00.000 GMT (Gregorian)
 
-    Custom datetime patterns can be specified using [java.text.SimpleDateFormat] 
+    Custom datetime patterns can be specified using [java.text.SimpleDateFormat]
     compatible patterns.
 
     * Inputs:
       * `$datetime` is the datetime string to be reformatted to a different pattern.
       * `$pattern.input` is an optional datetime pattern that `$datetime` conforms to,
-        that will be used to parse the datetime string. Defaults to an [ISO8601]/XML 
+        that will be used to parse the datetime string. Defaults to an [ISO8601]/XML
         datetime.
       * `$pattern.output` is an optional datetime pattern that will be used to format the
         resulting `$datetime` string. Defaults to an [ISO8601]/XML datetime.
 
     * Outputs:
-      * `$datetime` is the datetime formatted as a string according to the given 
+      * `$datetime` is the datetime formatted as a string according to the given
         `$pattern.output`.
 
 * #### tundra.datetime:now
@@ -1016,10 +1016,10 @@ Services for manipulating date, time and datetime strings:
         date.jdbc      yyyy-mm-dd
         time           [ISO8601]/XML time
         time.jdbc      HH:mm:ss
-        milliseconds   Number of milliseconds since the Epoch, 
+        milliseconds   Number of milliseconds since the Epoch,
                        January 1, 1970 00:00:00.000 GMT (Gregorian)
 
-    Custom datetime patterns can be specified using [java.text.SimpleDateFormat] 
+    Custom datetime patterns can be specified using [java.text.SimpleDateFormat]
     compatible patterns.
 
     * Inputs:
@@ -1027,12 +1027,12 @@ Services for manipulating date, time and datetime strings:
         resulting `$datetime` string. Defaults to an [ISO8601]/XML datetime.
 
     * Outputs:
-      * `$datetime` is the current datetime formatted as a string according to the 
+      * `$datetime` is the current datetime formatted as a string according to the
         given `$pattern`.
 
 * #### tundra.datetime:parse
 
-    Parses the given datetime string according to the given pattern, and returns the 
+    Parses the given datetime string according to the given pattern, and returns the
     resulting [java.util.Date] object.
 
     Supports a handful of well-known named datetime patterns:
@@ -1045,25 +1045,25 @@ Services for manipulating date, time and datetime strings:
         date.jdbc      yyyy-mm-dd
         time           [ISO8601]/XML time
         time.jdbc      HH:mm:ss
-        milliseconds   Number of milliseconds since the Epoch, 
+        milliseconds   Number of milliseconds since the Epoch,
                        January 1, 1970 00:00:00.000 GMT (Gregorian)
 
-    Custom datetime patterns can be specified using [java.text.SimpleDateFormat] 
+    Custom datetime patterns can be specified using [java.text.SimpleDateFormat]
     compatible patterns.
 
     * Inputs:
       * `$datetime` is the datetime string to be parsed.
       * `$pattern` is an optional datetime pattern that `$datetime` conforms to, and
-        will be used to parse the datetime string. Defaults to an [ISO8601]/XML 
+        will be used to parse the datetime string. Defaults to an [ISO8601]/XML
         datetime.
 
     * Outputs:
-      * `$datetime.object` is a [java.util.Date] object representing the same instant 
+      * `$datetime.object` is a [java.util.Date] object representing the same instant
         in time as the given `$datetime` string.
 
 * #### tundra.datetime:subtract
 
-    Subtracts a duration of time from the given datetime, formatted according to 
+    Subtracts a duration of time from the given datetime, formatted according to
     the given patterns.
 
     Supports a handful of well-known named datetime patterns:
@@ -1076,18 +1076,18 @@ Services for manipulating date, time and datetime strings:
         date.jdbc      yyyy-mm-dd
         time           [ISO8601]/XML time
         time.jdbc      HH:mm:ss
-        milliseconds   Number of milliseconds since the Epoch, 
+        milliseconds   Number of milliseconds since the Epoch,
                        January 1, 1970 00:00:00.000 GMT (Gregorian)
 
-    Custom datetime patterns can be specified using [java.text.SimpleDateFormat] 
+    Custom datetime patterns can be specified using [java.text.SimpleDateFormat]
     compatible patterns.
 
     * Inputs:
       * `$datetime` is the datetime string to subtract the duration from.
-      * `$datetime.pattern` is an optional datetime pattern that `$datetime` 
+      * `$datetime.pattern` is an optional datetime pattern that `$datetime`
         conforms to. Defaults to an [ISO8601]/XML datetime.
       * `$duration` is the duration to be subtracted from `$datetime`.
-      * `$duration.pattern` is an optional duration pattern that `$duration` 
+      * `$duration.pattern` is an optional duration pattern that `$duration`
         conforms to. Defaults to an [ISO8601]/XML duration.
 
     * Outputs:
@@ -1107,10 +1107,10 @@ Services for manipulating date, time and datetime strings:
         date.jdbc      yyyy-mm-dd
         time           [ISO8601]/XML time
         time.jdbc      HH:mm:ss
-        milliseconds   Number of milliseconds since the Epoch, 
+        milliseconds   Number of milliseconds since the Epoch,
                        January 1, 1970 00:00:00.000 GMT (Gregorian)
 
-    Custom datetime patterns can be specified using [java.text.SimpleDateFormat] 
+    Custom datetime patterns can be specified using [java.text.SimpleDateFormat]
     compatible patterns.
 
     * Inputs:
@@ -1140,15 +1140,15 @@ Services for working with arbitrary precision decimals (uses [java.math.BigDecim
 
 * #### tundra.decimal:add
 
-    Adds the given decimals, returning the result optionally rounded 
-    to the given precision (number of decimal places) using the 
+    Adds the given decimals, returning the result optionally rounded
+    to the given precision (number of decimal places) using the
     given [rounding algorithm].
 
     * Inputs:
       * `$decimals` is a list of decimal values to be added together.
-      * `$precision` is an optional number of decimal places to be 
+      * `$precision` is an optional number of decimal places to be
         preserved in the result.
-      * `$rounding` is an optional choice of the [rounding algorithm] 
+      * `$rounding` is an optional choice of the [rounding algorithm]
         to use when rounding the result to the specified `$precision`.
         Defaults to the HALF_UP algorithm.
 
@@ -1159,15 +1159,15 @@ Services for working with arbitrary precision decimals (uses [java.math.BigDecim
 
 * #### tundra.decimal:average
 
-    Returns the average value of the given list of decimals, optionally 
-    rounded to the given precision (number of decimal places) using the 
+    Returns the average value of the given list of decimals, optionally
+    rounded to the given precision (number of decimal places) using the
     given [rounding algorithm].
 
     * Inputs:
       * `$decimals` is a list of decimal values to average.
-      * `$precision` is an optional number of decimal places to be 
+      * `$precision` is an optional number of decimal places to be
         preserved in the result.
-      * `$rounding` is an optional choice of the [rounding algorithm] 
+      * `$rounding` is an optional choice of the [rounding algorithm]
         to use when rounding the result to the specified `$precision`.
         Defaults to the HALF_UP algorithm.
 
@@ -1178,16 +1178,16 @@ Services for working with arbitrary precision decimals (uses [java.math.BigDecim
 
 * #### tundra.decimal:divide
 
-    Divides the given decimal x by y, returning the result optionally 
-    rounded to the given precision (number of decimal places) using 
+    Divides the given decimal x by y, returning the result optionally
+    rounded to the given precision (number of decimal places) using
     the given [rounding algorithm].
 
     * Inputs:
       * `$decimal.x` is the numerator decimal for the division.
       * `$decimal.y` is the denominator decimal for the division.
-      * `$precision` is an optional number of decimal places to be 
+      * `$precision` is an optional number of decimal places to be
         preserved in the result.
-      * `$rounding` is an optional choice of the [rounding algorithm] 
+      * `$rounding` is an optional choice of the [rounding algorithm]
         to use when rounding the result to the specified $precision.
         Defaults to the HALF_UP algorithm.
 
@@ -1198,15 +1198,15 @@ Services for working with arbitrary precision decimals (uses [java.math.BigDecim
 
 * #### tundra.decimal:maximum
 
-    Returns the maximum value in the given list of decimals, optionally 
-    rounded to the given precision (number of decimal places) using the 
+    Returns the maximum value in the given list of decimals, optionally
+    rounded to the given precision (number of decimal places) using the
     given [rounding algorithm].
 
     * Inputs:
       * `$decimals` is a list of decimal values.
-      * `$precision` is an optional number of decimal places to be 
+      * `$precision` is an optional number of decimal places to be
         preserved in the result.
-      * `$rounding` is an optional choice of the [rounding algorithm] 
+      * `$rounding` is an optional choice of the [rounding algorithm]
         to use when rounding the result to the specified `$precision`.
         Defaults to the HALF_UP algorithm.
 
@@ -1217,15 +1217,15 @@ Services for working with arbitrary precision decimals (uses [java.math.BigDecim
 
 * #### tundra.decimal:minimum
 
-    Returns the minimum value in the given list of decimals, optionally 
-    rounded to the given precision (number of decimal places) using the 
+    Returns the minimum value in the given list of decimals, optionally
+    rounded to the given precision (number of decimal places) using the
     given [rounding algorithm].
 
     * Inputs:
       * `$decimals` is a list of decimal values.
-      * `$precision` is an optional number of decimal places to be 
+      * `$precision` is an optional number of decimal places to be
         preserved in the result.
-      * `$rounding` is an optional choice of the [rounding algorithm] 
+      * `$rounding` is an optional choice of the [rounding algorithm]
         to use when rounding the result to the specified `$precision`.
         Defaults to the HALF_UP algorithm.
 
@@ -1236,15 +1236,15 @@ Services for working with arbitrary precision decimals (uses [java.math.BigDecim
 
 * #### tundra.decimal:multiply
 
-    Multiplies the given decimals, returning the result optionally 
-    rounded to the given precision (number of decimal places) using 
+    Multiplies the given decimals, returning the result optionally
+    rounded to the given precision (number of decimal places) using
     the given [rounding algorithm].
 
     * Inputs:
       * `$decimals` is a list of decimal values to multiply.
-      * `$precision` is an optional number of decimal places to be 
+      * `$precision` is an optional number of decimal places to be
         preserved in the result.
-      * `$rounding` is an optional choice of the [rounding algorithm] 
+      * `$rounding` is an optional choice of the [rounding algorithm]
         to use when rounding the result to the specified `$precision`.
         Defaults to the HALF_UP algorithm.
 
@@ -1266,59 +1266,59 @@ Services for working with arbitrary precision decimals (uses [java.math.BigDecim
 
 * #### tundra.decimal:power
 
-    Raises the given decimal to the power of the given exponent (d^e), 
-    optionally rounded to the given precision (number of decimal places) 
+    Raises the given decimal to the power of the given exponent (d^e),
+    optionally rounded to the given precision (number of decimal places)
     using the given [rounding algorithm].
 
     * Inputs:
       * `$decimal` is a decimal value.
       * `$exponent` is the value to raise the decimal by.
-      * `$precision` is an optional number of decimal places to be 
+      * `$precision` is an optional number of decimal places to be
         preserved in the result.
-      * `$rounding` is an optional choice of the [rounding algorithm] 
+      * `$rounding` is an optional choice of the [rounding algorithm]
         to use when rounding the result to the specified `$precision`.
         Defaults to the HALF_UP algorithm.
 
     * Outputs:
-      * `$decimal` is result of raising the given decimal by the 
-        given exponent, and rounding to the given precision 
+      * `$decimal` is result of raising the given decimal by the
+        given exponent, and rounding to the given precision
         using the nominated [rounding algorithm].
 
 * #### tundra.decimal:round
 
-    Rounds the given decimal to given precision (number of decimal 
+    Rounds the given decimal to given precision (number of decimal
     places) using the given [rounding algorithm].
 
     * Inputs:
       * `$decimal` is a decimal value to be rounded.
-      * `$precision` is an optional number of decimal places to be 
+      * `$precision` is an optional number of decimal places to be
         preserved in the result.
-      * `$rounding` is an optional choice of the [rounding algorithm] 
+      * `$rounding` is an optional choice of the [rounding algorithm]
         to use when rounding the result to the specified $precision.
         Defaults to the HALF_UP algorithm.
 
     * Outputs:
-      * `$decimal` is the given decimal value rounded to the given 
+      * `$decimal` is the given decimal value rounded to the given
         precision using the nominated [rounding algorithm].
 
 * #### tundra.decimal:subtract
 
-    Subtracts the given decimal y from x, returning the result 
-    optionally rounded to the given precision (number of decimal places) 
+    Subtracts the given decimal y from x, returning the result
+    optionally rounded to the given precision (number of decimal places)
     using the given [rounding algorithm].
 
     * Inputs:
       * `$decimal.x` is a decimal value.
       * `$decimal.y` is a decimal value.
-      * `$precision` is an optional number of decimal places to be 
+      * `$precision` is an optional number of decimal places to be
         preserved in the result.
-      * `$rounding` is an optional choice of the [rounding algorithm] 
+      * `$rounding` is an optional choice of the [rounding algorithm]
         to use when rounding the result to the specified `$precision`.
         Defaults to the HALF_UP algorithm.
 
     * Outputs:
       * `$decimal` is result of subtracting `$decimal.y` from `$decimal.x`
-        and rounding to the given precision using the nominated 
+        and rounding to the given precision using the nominated
         [rounding algorithm].
 
 * #### tundra.decimal:validate
@@ -1344,7 +1344,7 @@ File system services for working with directories or folders:
     Creates a new directory.
 
     * Inputs:
-      * `$directory` is a string specifying a relative or absolute path 
+      * `$directory` is a string specifying a relative or absolute path
         or file: [URI]; all directories on this path will be created.
       * `$raise?` is an optional boolean flag indicating if an exception
         should be thrown if the directory already exists. Defaults to
@@ -1355,7 +1355,7 @@ File system services for working with directories or folders:
     Returns true if the given directory exists.
 
     * Inputs:
-      * `$directory` is a string specifying a relative or absolute path 
+      * `$directory` is a string specifying a relative or absolute path
         or file: [URI].
 
     * Outputs:
@@ -1363,7 +1363,7 @@ File system services for working with directories or folders:
 
 * #### tundra.directory:join
 
-    Returns a new file path [URI], given a parent path and a child path 
+    Returns a new file path [URI], given a parent path and a child path
     or file name.
 
     * Inputs:
@@ -1375,18 +1375,18 @@ File system services for working with directories or folders:
 
 * #### tundra.directory:list
 
-    Lists a directory, optionally filtering based on the given pattern, 
-    which can be either a regular expression (for example, "\w+\.\w+") 
-    or a wildcard expression (for example, "*.txt"), depending on the 
+    Lists a directory, optionally filtering based on the given pattern,
+    which can be either a regular expression (for example, "\w+\.\w+")
+    or a wildcard expression (for example, "*.txt"), depending on the
     selected mode.
 
     * Inputs:
       * `$directory` is a relative or absolute path or file: [URI] to be
         listed.
-      * `$pattern` is either an optional regular expression pattern, or 
+      * `$pattern` is either an optional regular expression pattern, or
         wildcard file glob pattern (depending on the `$mode` selected), used
         to filter the resulting directory listing.
-      * `$mode` is an optional choice if either 'regex' or 'wildcard', which 
+      * `$mode` is an optional choice if either 'regex' or 'wildcard', which
         determines the type of `$pattern` specified. Defaults to 'regex'.
       * `$recurse?` is an optional boolean flag indicating if subdirectories
         should also be listed recursively. Defaults to false.
@@ -1394,13 +1394,13 @@ File system services for working with directories or folders:
     * Outputs:
       * `$directories` is a list of all subdirectories, optionally filtered
         to only those items whose name match the given `$pattern`.
-      * `$files` is a list of all files in the given `$directory`, optionally 
+      * `$files` is a list of all files in the given `$directory`, optionally
         filtered to only those items whose name match the given `$pattern`.
 
 * #### tundra.directory:ls
 
-    Returns a raw directory listing with no additional processing: useful for 
-    when performance takes priority over ease of use; for example, when the 
+    Returns a raw directory listing with no additional processing: useful for
+    when performance takes priority over ease of use; for example, when the
     directory contains hundreds of thousands or more files.
 
     * Inputs:
@@ -1419,20 +1419,20 @@ File system services for working with directories or folders:
         normalize.
 
     * Outputs:
-      * `$directory` is the equivalent canonical file: [URI] representing 
+      * `$directory` is the equivalent canonical file: [URI] representing
         the directory.
 
 * #### tundra.directory:remove
 
-    Deletes the given directory,and optionally all child files and 
+    Deletes the given directory,and optionally all child files and
     directories recursively if desired.
 
     * Inputs:
       * `$directory` is a relative or absolute path or file: [URI] to be
         deleted.
       * `$recurse?` is a boolean flag indicating that all child files and
-        directories should be recursively deleted also. If false, and 
-        the directory is not empty, an exception will be thrown. Defaults 
+        directories should be recursively deleted also. If false, and
+        the directory is not empty, an exception will be thrown. Defaults
         to false.
 
 * #### tundra.directory:rename
@@ -1441,7 +1441,7 @@ File system services for working with directories or folders:
     target already exists, an exception will be thrown.
 
     * Inputs:
-      * `$directory.source` is a relative or absolute path or file: [URI] 
+      * `$directory.source` is a relative or absolute path or file: [URI]
         to be renamed.
       * `$directory.target` is a relative or absolute path of file: [URI]
         to rename $directory.source to.
@@ -1478,7 +1478,7 @@ Services for manipulating com.wm.data.IData objects:
 
 * #### tundra.document:clear
 
-  Removes all elements from the given IData document, except for 
+  Removes all elements from the given IData document, except for
   any keys specified in the preserve list.
 
   * Inputs:
@@ -1505,7 +1505,7 @@ Services for manipulating com.wm.data.IData objects:
 
 * #### tundra.document:copy
 
-  Copies the value associated with the source key to the target key 
+  Copies the value associated with the source key to the target key
   in the given IData document.
 
   * Inputs:
@@ -1513,8 +1513,8 @@ Services for manipulating com.wm.data.IData objects:
       associated with the source key to the target key.
     * `$key.source` is a key identifying the value to be copied,
       and can be simple or fully qualified, such as a/b/c[0]/d.
-    * `$key.target` is the key to which the source key value is 
-      copied, and can be simple or fully qualified, such as 
+    * `$key.target` is the key to which the source key value is
+      copied, and can be simple or fully qualified, such as
       a/b/c[0]/d.
 
   * Outputs:
@@ -1523,32 +1523,32 @@ Services for manipulating com.wm.data.IData objects:
 
 * #### tundra.document:deliver
 
-  Serializes the given IData document, and delivers it to the given destination URI. 
+  Serializes the given IData document, and delivers it to the given destination URI.
 
-  Additional delivery protocols can be implemented by creating a service named for 
-  the URI scheme in the folder tundra.support.content.deliver. Services in this folder 
+  Additional delivery protocols can be implemented by creating a service named for
+  the URI scheme in the folder tundra.support.content.deliver. Services in this folder
   should implement the tundra.support.content.deliver.protocol:handler specification.
 
   * Inputs:
-    * `$document` is the IData document to be serialized and delivered to the given 
+    * `$document` is the IData document to be serialized and delivered to the given
       destination URI.
 
     * `$encoding` is an optional character set used to encode the serialized document
       data upon delivery. Defaults to the Java virtual machine [default charset].
 
-    * `$schema` is the fully-qualified name of the document reference (for XML) or 
+    * `$schema` is the fully-qualified name of the document reference (for XML) or
       flat file schema (for flat files) used to serialize `$document`.
 
-    * `$content.type` is an optional MIME media type describing the type content being 
+    * `$content.type` is an optional MIME media type describing the type content being
       delivered.
 
-    * `$destination` is a URI identifying the location where the serialized document should 
+    * `$destination` is a URI identifying the location where the serialized document should
       be delivered. Supports the following delivery protocols / URI schemes:
-      * file: writes the given content to the file specified by the destination URI. The 
+      * file: writes the given content to the file specified by the destination URI. The
         following additional options can be provided via the $pipeline document:
         * `$mode`: append / write
 
-      * http: transmits the given content to the destination URI. The following additional 
+      * http: transmits the given content to the destination URI. The following additional
         options can be provided via the $pipeline document:
         * `$method`: get / put / post / delete / head / trace / options
         * `$headers/*`: additional HTTP headers as required
@@ -1557,36 +1557,36 @@ Services for manipulating com.wm.data.IData objects:
 
       * https: refer to http
 
-      * mailto: sends an email with the given content attached. An example mailto URI is as 
-        follows: 
-        
-        mailto:bob@example.com?cc=jane@example.com&subject=Example&body=Example&attachment=message.xml. 
-        
+      * mailto: sends an email with the given content attached. An example mailto URI is as
+        follows:
+
+        mailto:bob@example.com?cc=jane@example.com&subject=Example&body=Example&attachment=message.xml.
+
         The following additional override options can be provided via the $pipeline document:
         * `$attachment`: the attached file's name
         * `$from`: email address to send the email from
         * `$subject`: the subject line text
         * `$body`: the main text of the email
-        * `$smtp`: an SMTP URI specifying the SMTP server to use (for example, 
-          smtp://user:password@host:port), defaults to the SMTP server configured in the 
+        * `$smtp`: an SMTP URI specifying the SMTP server to use (for example,
+          smtp://user:password@host:port), defaults to the SMTP server configured in the
           Integration Server setting `watt.server.smtpServer`.
 
-    * `$pipeline` is an optional IData document for providing arbitrary variables to the 
+    * `$pipeline` is an optional IData document for providing arbitrary variables to the
       delivery implementation service.
 
   * Outputs:
-    * `$message` is an optional response message, useful for logging, that may be returned 
+    * `$message` is an optional response message, useful for logging, that may be returned
       by specific delivery protocols.
 
-    * `$response` is an optional response content returned by the delivery (for example, 
+    * `$response` is an optional response content returned by the delivery (for example,
       the HTTP response body).
 
-    * `$response.type` is an optional MIME media type describing the type of `$response` 
+    * `$response.type` is an optional MIME media type describing the type of `$response`
       returned.
 
 * #### tundra.document:drop
 
-  Removes the element with the given key from the given IData document. 
+  Removes the element with the given key from the given IData document.
 
   * Inputs:
     * `$document` is an IData document from which to remove the element
@@ -1600,7 +1600,7 @@ Services for manipulating com.wm.data.IData objects:
 
 * #### tundra.document:duplicate
 
-  Returns an optionally recursive clone of the the given IData 
+  Returns an optionally recursive clone of the the given IData
   document.
 
   * Inputs:
@@ -1616,7 +1616,7 @@ Services for manipulating com.wm.data.IData objects:
 
 * #### tundra.document:each
 
-  Iterates over all elements in the given IData document, invoking 
+  Iterates over all elements in the given IData document, invoking
   the given service for each key value pair.
 
   * Inputs:
@@ -1626,11 +1626,11 @@ Services for manipulating com.wm.data.IData objects:
       be called to process each element .
     * `$pipeline` is an optional input pipeline for providing
       arbitrary input arguments to `$service`.
-    * `$key.input` is the optional argument name used when 
-      passing each iteration's key in the input pipeline of 
+    * `$key.input` is the optional argument name used when
+      passing each iteration's key in the input pipeline of
       each invocation of `$service`. Defaults to $key.
-    * `$value.input` is the optional argument name used when 
-      passing each iteration's value in the input pipeline of 
+    * `$value.input` is the optional argument name used when
+      passing each iteration's value in the input pipeline of
       each invocation of `$service`. Defaults to $value.
     * `$value.class` is an optional Java class name, which when
       specified restricts the elements iterated to only those
@@ -1643,12 +1643,12 @@ Services for manipulating com.wm.data.IData objects:
 
 * #### tundra.document:emit
 
-  Serializes the given IData document as an [IData XML] string, 
+  Serializes the given IData document as an [IData XML] string,
   byte array, or input stream.
 
   * Inputs:
     * `$document` is an IData document to be serialized.
-    * `$encoding` is an optional character set used to encode the 
+    * `$encoding` is an optional character set used to encode the
       serialized document when returned as a byte array or input
       stream. Defaults to the Java virtual machine [default charset].
     * `$mode` is an optional choice of 'stream', 'bytes', or
@@ -1660,7 +1660,7 @@ Services for manipulating com.wm.data.IData objects:
 
 * #### tundra.document:equal
 
-  Returns true if the given documents are equal (contain the same set 
+  Returns true if the given documents are equal (contain the same set
   of keys and values).
 
   * Inputs:
@@ -1680,21 +1680,21 @@ Services for manipulating com.wm.data.IData objects:
       element.
 
   * Outputs:
-    * `$key` is the key of the first element in the given IData 
+    * `$key` is the key of the first element in the given IData
       document.
     * `$value` is the value of the first element in the given IData
       document.
 
 * #### tundra.document:get
 
-  Returns the value associated with the given key from the given 
+  Returns the value associated with the given key from the given
   IData document, or null if it doesn't exist.
 
   * Inputs:
     * `$document` is an IData document from which to fetch the first
       element.
     * `$key` is the key identifying the value in the given document
-      to be returned, and can be simple or fully qualified, such 
+      to be returned, and can be simple or fully qualified, such
       as a/b/c[0]/d.
 
   * Outputs:
@@ -1708,26 +1708,26 @@ Services for manipulating com.wm.data.IData objects:
   * Inputs:
     * `$document` is an IData document whose keys are to be
       converted to lower case.
-    * `$locale` optionally identifies the case transformation rules 
-      to be used for a given [Locale]. If not specified, the 
+    * `$locale` optionally identifies the case transformation rules
+      to be used for a given [Locale]. If not specified, the
       [default locale] is used.
     * `$recurse?` is an optional boolean indicating if embedded
       IData documents and IData[] document lists should also
-      have their keys converted to lower case. Defaults to 
+      have their keys converted to lower case. Defaults to
       false.
 
   * Outputs:
-    * $document is the given IData document with all keys 
+    * $document is the given IData document with all keys
       converted to lower case.
 
 * #### tundra.document.key:replace
 
-  Replaces all occurrences of the given [regular expression pattern] 
-  in each key in the given IData document with the replacement 
+  Replaces all occurrences of the given [regular expression pattern]
+  in each key in the given IData document with the replacement
   string.
 
   * Inputs:
-    * `$document` is an IData document to have all occurrences of the 
+    * `$document` is an IData document to have all occurrences of the
       given [regular expression pattern] in each key replaced.
     * `$pattern` is the [regular expression pattern] to match against
       each key.
@@ -1740,21 +1740,21 @@ Services for manipulating com.wm.data.IData objects:
       Defaults to false.
     * `$recurse?` is an optional boolean indicating if embedded
       IData documents and IData[] document lists should also
-      have occurrences of the pattern in their string values 
+      have occurrences of the pattern in their string values
       replaced. Defaults to false.
 
   * Outputs:
-    * `$document` is the given IData document with all occurrences of 
-      the given [regular expression pattern] in each key replaced 
+    * `$document` is the given IData document with all occurrences of
+      the given [regular expression pattern] in each key replaced
       with `$replacement`.
 
 * #### tundra.document.key:trim
 
-  Removes leading and trailing whitespace from all keys in the given 
+  Removes leading and trailing whitespace from all keys in the given
   IData document.
 
   * Inputs:
-    * `$document` is an IData document whose keys are to be trimmed of 
+    * `$document` is an IData document whose keys are to be trimmed of
       leading and trailing whitespace characters.
     * `$recurse?` is an optional boolean indicating if embedded
       IData documents and IData[] document lists should also
@@ -1771,16 +1771,16 @@ Services for manipulating com.wm.data.IData objects:
   * Inputs:
     * `$document` is an IData document whose keys are to be
       converted to upper case.
-    * `$locale` optionally identifies the case transformation rules 
-      to be used for a given [Locale]. If not specified, the 
+    * `$locale` optionally identifies the case transformation rules
+      to be used for a given [Locale]. If not specified, the
       [default locale] is used.
     * `$recurse?` is an optional boolean indicating if embedded
       IData documents and IData[] document lists should also
-      have their keys converted to upper case. Defaults to 
+      have their keys converted to upper case. Defaults to
       false.
 
   * Outputs:
-    * `$document` is the given IData document with all keys 
+    * `$document` is the given IData document with all keys
       converted to upper case.
 
 * #### tundra.document:keys
@@ -1804,14 +1804,14 @@ Services for manipulating com.wm.data.IData objects:
       element.
 
   * Outputs:
-    * `$key` is the key of the last element in the given IData 
+    * `$key` is the key of the last element in the given IData
       document.
     * `$value` is the value of the last element in the given IData
       document.
 
 * #### tundra.document:length
 
-  Returns the number of top-level key value pairs in the given 
+  Returns the number of top-level key value pairs in the given
   IData document.
 
   * Inputs:
@@ -1823,36 +1823,36 @@ Services for manipulating com.wm.data.IData objects:
 
 * #### tundra.document:listify
 
-  Converts the IData value identified by `$key` in the given `$scope` IData 
-  document (or the pipeline, if not specified) to a new list of type 
-  IData[] containing the original value as its single item, unless the 
+  Converts the IData value identified by `$key` in the given `$scope` IData
+  document (or the pipeline, if not specified) to a new list of type
+  IData[] containing the original value as its single item, unless the
   original value was already a list.
 
   * Inputs:
     * `$key` is a key identifying the value to be coverted to an document
-      list (IData[]), and can be simple or fully qualified, such as 
+      list (IData[]), and can be simple or fully qualified, such as
       a/b/c[0]/d.
     * `$scope` is an optional IData document against which the given `$key`
       is resolved. If not specified, $key is resolved against the pipeline.
 
   * Outputs:
-    * `$scope` is an optional IData document in which the value associated 
+    * `$scope` is an optional IData document in which the value associated
       with `$key` has been converted to a document list (IData[]). If no
       `$scope` was provided as input, this output will not exist. Instead
-      the `$key` is resolved against the pipeline, and the associated 
+      the `$key` is resolved against the pipeline, and the associated
       value in the pipeline is converted to a document list (IData[]).
 
 * #### tundra.document:map
 
-  Constructs a new IData document by invoking the given service for 
-  each key value pair in the given IData document, and inserting 
+  Constructs a new IData document by invoking the given service for
+  each key value pair in the given IData document, and inserting
   the key value pair returned by the service in the resulting IData
   document.
 
   This is an implementation of a higher-order [map function] for
   IData objects.
 
-  For an example of how to use this service, refer to the 
+  For an example of how to use this service, refer to the
   tundra.document.key:* and tundra.document.value:* services.
 
   * Inputs:
@@ -1863,11 +1863,11 @@ Services for manipulating com.wm.data.IData objects:
       new key value pair as a result.
     * `$pipeline` is an optional input pipeline for providing
       arbitrary input arguments to `$service`.
-    * `$key.input` is the optional argument name used when 
+    * `$key.input` is the optional argument name used when
       passing each key to `$service`. Defaults to $key.
     * `$key.output` is the optional argument name used by `$service`
       when returning the resulting key. Defaults to $key.
-    * `$value.input` is the optional argument name used when 
+    * `$value.input` is the optional argument name used when
       passing each value to `$service`. Defaults to $value.
     * `$value.output` is the optional argument name used by `$service`
       when returning the resulting value. Defaults to $value.
@@ -1885,11 +1885,11 @@ Services for manipulating com.wm.data.IData objects:
 
 * #### tundra.document:merge
 
-  Merges multiple IData documents into a single document. Only top-level 
-  elements are merged, and if duplicate keys exist in the documents being 
+  Merges multiple IData documents into a single document. Only top-level
+  elements are merged, and if duplicate keys exist in the documents being
   merged, the latest wins.
 
-  This service can be useful for combining a document constructed with 
+  This service can be useful for combining a document constructed with
   default values with a document sourced externally, where the merged
   document will contain the key set union of both documents, and will
   include default values where no value was present in the externally
@@ -1906,11 +1906,11 @@ Services for manipulating com.wm.data.IData objects:
 
 * #### tundra.document:normalize
 
-  Returns a new IData document with all fully qualified keys (for example, 
+  Returns a new IData document with all fully qualified keys (for example,
   'a/b/c' or 'x/y[0]/z[1]') deconstructed into their constituent parts, and
   any non-IData objects converted to an IData representation wherever possible.
 
-  For example, if the IData document contains the following key value pairs 
+  For example, if the IData document contains the following key value pairs
   (using [JSON] notation to represent the pipeline):
 
       {
@@ -1934,13 +1934,13 @@ Services for manipulating com.wm.data.IData objects:
         "f": ["example 4", "example 5"]
       }
 
-  Keys using path-style notation, for example "a/b/c", are 
+  Keys using path-style notation, for example "a/b/c", are
   converted to nested IData documents with the final key
   in the path, "c" in this example, assigned the value of
   the original key.
 
-  Keys using array- or list-style notation, for example "f[0]", 
-  are converted to an array or list with the value of the 
+  Keys using array- or list-style notation, for example "f[0]",
+  are converted to an array or list with the value of the
   original key assigned to the indexed item (the zeroth item in
   this example).
 
@@ -1952,14 +1952,14 @@ Services for manipulating com.wm.data.IData objects:
 
 * #### tundra.document:parse
 
-  Parses (or deserializes) the given [IData XML] string, byte array, or 
+  Parses (or deserializes) the given [IData XML] string, byte array, or
   input stream to an IData document.
 
   * Inputs:
     * `$content` is a string, byte array, or input stream containing a
       serialized IData document.
-    * `$encoding` is an optional character set used to decode the 
-      `$content` when provided as a byte array or input stream. Defaults 
+    * `$encoding` is an optional character set used to decode the
+      `$content` when provided as a byte array or input stream. Defaults
       to the Java virtual machine [default charset].
 
   * Outputs:
@@ -1967,31 +1967,31 @@ Services for manipulating com.wm.data.IData objects:
 
 * #### tundra.document:put
 
-  Sets the value associated with the given key in the given IData document. 
+  Sets the value associated with the given key in the given IData document.
 
   * Inputs:
     * `$document` is an IData document in which to insert the given key
       value pair.
     * `$key` is the key to be inserted into the given IData document, and
-      can be simple or fully-qualified, such as a/b/c[0]/d. If the key 
-      already exists, it's value will be overwritten with the given value. 
+      can be simple or fully-qualified, such as a/b/c[0]/d. If the key
+      already exists, it's value will be overwritten with the given value.
     * `$value` is the value to be associated with the given key. If not
       specified, a null value will be inserted.
 
   * Outputs:
-    * `$document` is the resulting IData document containing the new key 
+    * `$document` is the resulting IData document containing the new key
       value pair.
 
 * #### tundra.document:rename
 
-  Renames the value associated with the source key to have the target key 
+  Renames the value associated with the source key to have the target key
   in the given IData document.
 
   * Inputs:
     * `$document` is an IData document in which to rename the given key.
     * `$key.source` is the key to be renamed, and can be simple or fully-
       qualified, such as a/b/c[0]/d.
-    * `$key.target` is the new name that source key will be renamed to, 
+    * `$key.target` is the new name that source key will be renamed to,
       and can be simple or fully-qualified, such as a/b/c[0]/d. If the
       target key already exists, its value will be overwitten with the
       value that was associated with the source key.
@@ -2016,45 +2016,45 @@ Services for manipulating com.wm.data.IData objects:
 
 * #### tundra.document:split
 
-  One-to-many conversion of an IData document to an IData[] document list.  Calls 
-  the given splitting service, passing the document as an input, and returning the 
+  One-to-many conversion of an IData document to an IData[] document list.  Calls
+  the given splitting service, passing the document as an input, and returning the
   split list of documents as output.
 
   * Inputs:
     * `$document` is an IData document to be processed by the given splitting
       service.
 
-    * `$service` is the fully-qualified name of the splitting service, which 
-      accepts a single IData document and returns an IData document list, 
-      called to split `$document`. Also it is perfectly permissible for the 
-      resulting list returned by `$service` to contain unlike documents (documents 
-      whose formats are different), and in this case `$service` is required to 
-      return a string list $schemas, where each item in `$schemas` is the 
-      fully-qualified document reference (for XML) or flat file schema (for 
-      flat files) corresponding to the same indexed item in the returned document 
+    * `$service` is the fully-qualified name of the splitting service, which
+      accepts a single IData document and returns an IData document list,
+      called to split `$document`. Also it is perfectly permissible for the
+      resulting list returned by `$service` to contain unlike documents (documents
+      whose formats are different), and in this case `$service` is required to
+      return a string list $schemas, where each item in `$schemas` is the
+      fully-qualified document reference (for XML) or flat file schema (for
+      flat files) corresponding to the same indexed item in the returned document
       list to be used to emit/serialize that item.
 
-    * `$pipeline` is an optional IData document containing arbitrary variables to 
+    * `$pipeline` is an optional IData document containing arbitrary variables to
       be included in the input pipeline of the invocation of `$service`.
 
-    * `$service.input` is an optional variable name to use in the input pipeline of the 
+    * `$service.input` is an optional variable name to use in the input pipeline of the
       call to `$service` for the IData document. Defaults to $document.
 
-    * `$service.output` is an optional variable name used to extract the output IData 
-      document list from the output pipeline of the call to `$service`. Defaults to 
+    * `$service.output` is an optional variable name used to extract the output IData
+      document list from the output pipeline of the call to `$service`. Defaults to
       $documents.
 
   * Outputs:
     * `$documents` is the resulting list of IData documents.
 
-    * `$schemas` is the list of fully-qualified document reference (for XML) or flat 
+    * `$schemas` is the list of fully-qualified document reference (for XML) or flat
       file schema (for flat files) names, returned by `$service` for when the `$documents`
       list contains unlike formats.
 
 * #### tundra.document:squeeze
 
-  Trims all leading and trailing whitespace from all string values, then 
-  converts empty strings to nulls, then compacts the IData document by 
+  Trims all leading and trailing whitespace from all string values, then
+  converts empty strings to nulls, then compacts the IData document by
   removing all null values.
 
   * Inputs:
@@ -2064,17 +2064,17 @@ Services for manipulating com.wm.data.IData objects:
       be squeezed. Defaults to false.
 
   * Outputs:
-    * `$document` is the resulting IData document with all string values 
-      trimmed of leading and trailing whitespace characters, and all 
+    * `$document` is the resulting IData document with all string values
+      trimmed of leading and trailing whitespace characters, and all
       empty string values and null values removed.
 
 * #### tundra.document:substitute
 
-  Attempts variable substitution on each string value in the given IData 
-  document by replacing all occurrences of substrings matching "%key%" with 
+  Attempts variable substitution on each string value in the given IData
+  document by replacing all occurrences of substrings matching "%key%" with
   the associated (optionally scoped) value.
 
-  Optionally replaces null or non-existent values with the given default 
+  Optionally replaces null or non-existent values with the given default
   value.
 
   * Inputs:
@@ -2082,37 +2082,37 @@ Services for manipulating com.wm.data.IData objects:
     * `$pipeline` is an optional scope used to resolve key references. If
       not specified, keys are resolved against the pipeline itself.
     * `$default` is an optional default value to substitute in place of keys
-      that resolve to null or missing values. If not specified, no 
+      that resolve to null or missing values. If not specified, no
       substitution will be made for keys that resolve to null or missing
       values.
 
   * Outputs:
-    * `$document` is the resulting IData document with all variable substitution 
-      patterns in all values, such as "%key%", replaced with the value of the 
-      key (resolved against either `$pipeline`, if specified, or the pipeline 
+    * `$document` is the resulting IData document with all variable substitution
+      patterns in all values, such as "%key%", replaced with the value of the
+      key (resolved against either `$pipeline`, if specified, or the pipeline
       itself).
 
 * #### tundra.document:translate
 
-  One-to-one conversion of one IData document to another IData document. Calls 
+  One-to-one conversion of one IData document to another IData document. Calls
   the given translation service, passing the document as an input, and returning
   the translated document as output.
 
   * Inputs:
     * `$document` is an IData document to be translated.
 
-    * `$service` is the fully-qualified name of the translation service, which accepts 
-      a single IData document and returns a single IData document, called to translate 
+    * `$service` is the fully-qualified name of the translation service, which accepts
+      a single IData document and returns a single IData document, called to translate
       the given `$document`.
 
-    * $pipeline is an optional IData document for providing arbitrary variables to the 
-      invocation of $service.      
+    * $pipeline is an optional IData document for providing arbitrary variables to the
+      invocation of $service.
 
-    * `$service.input` is an optional variable name to use in the input pipeline of the 
+    * `$service.input` is an optional variable name to use in the input pipeline of the
       call to `$service` for the given IData document. Defaults to $document.
 
-    * `$service.output` is an optional variable name used to extract the output IData 
-      document from the output pipeline of the call to `$service`. Defaults to 
+    * `$service.output` is an optional variable name used to extract the output IData
+      document from the output pipeline of the call to `$service`. Defaults to
       $translation.
 
   * Outputs:
@@ -2120,32 +2120,32 @@ Services for manipulating com.wm.data.IData objects:
 
 * #### tundra.document.value:lowercase
 
-  Converts all string values in the given IData document to lower 
+  Converts all string values in the given IData document to lower
   case.
 
   * Inputs:
     * `$document` is an IData document whose string values are to be
       converted to lower case.
-    * `$locale` optionally identifies the case transformation rules 
-      to be used for a given [Locale]. If not specified, the 
+    * `$locale` optionally identifies the case transformation rules
+      to be used for a given [Locale]. If not specified, the
       [default locale] is used.
     * `$recurse?` is an optional boolean indicating if embedded
       IData documents and IData[] document lists should also
-      have their string values converted to lower case. Defaults 
+      have their string values converted to lower case. Defaults
       to false.
 
   * Outputs:
-    * `$document` is the given IData document with all string values 
+    * `$document` is the given IData document with all string values
       converted to lower case.
 
 * #### tundra.document.value:replace
 
-  Replaces all occurrences of the given [regular expression pattern] 
-  in each string value in the given IData document with the replacement 
+  Replaces all occurrences of the given [regular expression pattern]
+  in each string value in the given IData document with the replacement
   string.
 
   * Inputs:
-    * `$document` is an IData document to have all occurrences of the 
+    * `$document` is an IData document to have all occurrences of the
       given [regular expression pattern] in each string value replaced.
     * `$pattern` is the [regular expression pattern] to match against
       each string value.
@@ -2158,28 +2158,28 @@ Services for manipulating com.wm.data.IData objects:
       Defaults to false.
     * `$recurse?` is an optional boolean indicating if embedded
       IData documents and IData[] document lists should also
-      have occurrences of the pattern in their string values 
+      have occurrences of the pattern in their string values
       replaced. Defaults to false.
 
   * Outputs:
-    * `$document` is the given IData document with all occurrences of 
-      the given [regular expression pattern] in each string value 
+    * `$document` is the given IData document with all occurrences of
+      the given [regular expression pattern] in each string value
       replaced with `$replacement`.
 
 * #### tundra.document.value:trim
 
-  Removes leading and trailing whitespace from all string values in the 
+  Removes leading and trailing whitespace from all string values in the
   given IData document.
 
   * Inputs:
-    * `$document` is an IData document whose string values are to be 
+    * `$document` is an IData document whose string values are to be
       trimmed of leading and trailing whitespace characters.
     * `$recurse?` is an optional boolean indicating if embedded
       IData documents and IData[] document lists should also
       have their string values trimmed. Defaults to false.
 
   * Outputs:
-    * `$document` is the given IData document with all string values 
+    * `$document` is the given IData document with all string values
       trimmed of leading and trailing whitespace characters.
 
 * #### tundra.document.value:uppercase
@@ -2189,16 +2189,16 @@ Services for manipulating com.wm.data.IData objects:
   * Inputs:
     * `$document` is an IData document whose string values are to be
       converted to upper case.
-    * `$locale` optionally identifies the case transformation rules 
-      to be used for a given [Locale]. If not specified, the 
+    * `$locale` optionally identifies the case transformation rules
+      to be used for a given [Locale]. If not specified, the
       [default locale] is used.
     * `$recurse?` is an optional boolean indicating if embedded
       IData documents and IData[] document lists should also
-      have their string values converted to upper case. Defaults to 
+      have their string values converted to upper case. Defaults to
       false.
 
   * Outputs:
-    * `$document` is the given IData document with all string values 
+    * `$document` is the given IData document with all string values
       converted to upper case.
 
 * #### tundra.document:values
@@ -2219,7 +2219,7 @@ Services for resolving names in the domain name system ([DNS]).
 
 * #### tundra.dns:localhost
 
-    Returns the fully-qualifed domain name, host name, and IP address for 
+    Returns the fully-qualifed domain name, host name, and IP address for
     the local host.
 
     * Outputs:
@@ -2237,7 +2237,7 @@ Services for resolving names in the domain name system ([DNS]).
         against [DNS].
 
     * Outputs:
-      * `$domain` is the fully-qualified domain name associated with the given 
+      * `$domain` is the fully-qualified domain name associated with the given
         name.
       * `$host` is the host name associated with the given name.
       * `$ip` is the IP address associated with the given name.
@@ -2253,7 +2253,7 @@ Services for manipulating durations of time:
     Adds one duration (x) to another (y), returning (x + y).
 
     * Inputs:
-      * `$duration.x` is an [ISO8601]/XML duration string to be 
+      * `$duration.x` is an [ISO8601]/XML duration string to be
         added to `$duration.y`.
       * `$duration.y` is an [ISO8601]/XML duration string to be
         added to `$duration.x`.
@@ -2264,15 +2264,15 @@ Services for manipulating durations of time:
 
 * #### tundra.duration:compare
 
-    Compares one duration (x) to another (y), returning if the first is less 
-    than, equal to, greater than, or if the comparison is indeterminate. 
+    Compares one duration (x) to another (y), returning if the first is less
+    than, equal to, greater than, or if the comparison is indeterminate.
 
-    Indeterminate comparisons occur when, for example, comparing 1 month with 
+    Indeterminate comparisons occur when, for example, comparing 1 month with
     30 days: as the result could change depending on the month in question, it
     is therefore considered indeterminate.
 
     * Inputs:
-      * `$duration.x` is an [ISO8601]/XML duration string to be 
+      * `$duration.x` is an [ISO8601]/XML duration string to be
         compared to `$duration.y`.
       * `$duration.y` is an [ISO8601]/XML duration string to be
         compared to `$duration.x`.
@@ -2285,19 +2285,19 @@ Services for manipulating durations of time:
 
 * #### tundra.duration:format
 
-    Formats the given duration string according to the desired pattern.  
+    Formats the given duration string according to the desired pattern.
 
-    A start instant may be required when formatting fields with indeterminate 
-    values, such as converting months to days (because the number of days in 
+    A start instant may be required when formatting fields with indeterminate
+    values, such as converting months to days (because the number of days in
     a month varies).
 
     * Inputs:
       * `$duration` is a duration string to be formatted.
-      * `$datetime` is an optional [ISO8601]/XML datetime string used as a starting 
+      * `$datetime` is an optional [ISO8601]/XML datetime string used as a starting
         instant to resolve indeterminate values (such as the number of days in a month).
-      * `$pattern.input` is an optional pattern describing the type of duration 
+      * `$pattern.input` is an optional pattern describing the type of duration
         specified by the `$duration` string. Defaults to an [ISO8601]/XML string.
-      * `$pattern.output` is an optional desired pattern used to format the 
+      * `$pattern.output` is an optional desired pattern used to format the
         `$duration` string. Defaults to an [ISO8601]/XML string.
 
     * Outputs:
@@ -2307,13 +2307,13 @@ Services for manipulating durations of time:
 
     Multiplies the given duration by the given factor.
 
-    A start instant may be required when formatting fields with indeterminate 
-    values, such as converting months to days (because the number of days in 
+    A start instant may be required when formatting fields with indeterminate
+    values, such as converting months to days (because the number of days in
     a month varies).
 
     * Inputs:
       * `$duration` is an [ISO8601]/XML duration string to be multiplied.
-      * `$datetime` is an optional [ISO8601]/XML datetime string used as a starting 
+      * `$datetime` is an optional [ISO8601]/XML datetime string used as a starting
         instant to resolve indeterminate values (such as the number of days in a month).
       * `$factor` is a signed decimal used to muliply the given `$duration`.
 
@@ -2335,7 +2335,7 @@ Services for manipulating durations of time:
     Subtracts one duration (x) to another (y), returning (x - y).
 
     * Inputs:
-      * `$duration.x` is an [ISO8601]/XML duration string to subtract 
+      * `$duration.x` is an [ISO8601]/XML duration string to subtract
         `$duration.y` from.
       * `$duration.y` is an [ISO8601]/XML duration string to be
         subtracted from `$duration.x`.
@@ -2351,11 +2351,11 @@ Services for manipulating durations of time:
     Throws the given exception, or a new exception with the given message.
 
     * Inputs:
-      * `$message` is an optional error message to use when constructing the 
+      * `$message` is an optional error message to use when constructing the
         new `com.wm.app.b2b.server.ServiceException` exception object to be
         thrown. If not specified, an empty message will be used to construct
         the exception object.
-      * `$exception` is an optional existing [java.lang.Throwable] object to be 
+      * `$exception` is an optional existing [java.lang.Throwable] object to be
         thrown. If specified, `$message` is not used.
 
 [java.lang.Throwable]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Throwable.html>
@@ -2369,10 +2369,10 @@ File system services for working with files:
     Copies the content of the source file to the target file.
 
     * Inputs:
-      * `$file.source` is the name of the file to be copied from, specified 
+      * `$file.source` is the name of the file to be copied from, specified
         as either a relative or absolute file path or file: [URI].
-      * `$file.target` is the name of the file to be copied to, specified as 
-        either a relative or absolute file path or file: [URI]. If the 
+      * `$file.target` is the name of the file to be copied to, specified as
+        either a relative or absolute file path or file: [URI]. If the
         target file already exists, it will be overwritten or appended to,
         depending on the `$mode` selected, with the source file content.
       * `$mode` is an optional choice of 'write' or 'append', which determines
@@ -2381,11 +2381,11 @@ File system services for working with files:
 
 * #### tundra.file:create
 
-    Atomically creates a new empty file if a file with this name does not 
-    yet exist. 
+    Atomically creates a new empty file if a file with this name does not
+    yet exist.
 
-    The check for the existence of the file and the creation of the file 
-    if it does not exist are a single operation that is atomic with respect 
+    The check for the existence of the file and the creation of the file
+    if it does not exist are a single operation that is atomic with respect
     to all other file system activities that might affect the file.
 
     * Inputs:
@@ -2399,7 +2399,7 @@ File system services for working with files:
 
     * Inputs:
       * `$file` is the name of the file to test if Integration Server has
-        execution permissions, specified as either a relative or absolute 
+        execution permissions, specified as either a relative or absolute
         file path or file: [URI].
 
     * Outputs:
@@ -2412,7 +2412,7 @@ File system services for working with files:
     Returns true if the given file exists.
 
     * Inputs:
-      * `$file` is the name of the file to test existence of, specified as 
+      * `$file` is the name of the file to test existence of, specified as
         either a relative or absolute file path or file: [URI].
 
     * Outputs:
@@ -2423,43 +2423,43 @@ File system services for working with files:
     Returns the length of the given file in bytes.
 
     * Inputs:
-      * `$file` is the name of the file whose length is to be 
-        checked, specified as either a relative or absolute 
+      * `$file` is the name of the file whose length is to be
+        checked, specified as either a relative or absolute
         file path or file: [URI].
 
     * Outputs:
-      * `$length` is the length or size in bytes of the given 
+      * `$length` is the length or size in bytes of the given
         file. If the file does not exist, zero is returned.
 
 * #### tundra.file:match
 
-    Returns true if the given file name matches the given 
-    regular expression or wildcard pattern. 
+    Returns true if the given file name matches the given
+    regular expression or wildcard pattern.
 
     * Inputs:
       * `$file` is the name of the file to be checked against
-        the given `$pattern`, specified as either a relative or 
+        the given `$pattern`, specified as either a relative or
         absolute file path or file: [URI].
       * `$pattern` is either a regular expression or wildcard
-        pattern, depending on the `$mode` selected, to check 
+        pattern, depending on the `$mode` selected, to check
         the file name against
-      * `$mode` is an optional choice of either 'regex' or 
+      * `$mode` is an optional choice of either 'regex' or
         'wildcard' which determines the type of pattern
         specified. Defaults to 'regex'.
 
     * Outputs:
       * `$match?` is a boolean flag indicating if the file name
-        matches the given `$pattern`. Only the file name is 
+        matches the given `$pattern`. Only the file name is
         considered in the match, not the path.
 
 * #### tundra.file:normalize
 
-    Returns the canonical file: URI that represents the given 
+    Returns the canonical file: URI that represents the given
     file.
 
     * Inputs:
       * `$file` is the file name to be normalized to the canonical
-        file: [URI], specified as either a relative or absolute 
+        file: [URI], specified as either a relative or absolute
         file path or file: [URI].
 
     * Outputs:
@@ -2469,9 +2469,9 @@ File system services for working with files:
 * #### tundra.file:process
 
     Provides a safe way of processing a file as a stream, which
-    is useful for large files or memory constrained environments, 
+    is useful for large files or memory constrained environments,
     by opening a file for reading, writing, or appending, calling
-    the given service with the opened file stream object as an 
+    the given service with the opened file stream object as an
     input, and finally closing the stream when done.
 
     As such, the invoked service does not need to open or close the file
@@ -2480,7 +2480,7 @@ File system services for working with files:
     of whether an exception is encountered by the service.
 
     * Inputs:
-      * `$file` is the name of the file to be processed, specified 
+      * `$file` is the name of the file to be processed, specified
         as either a relative or absolute file path or file: [URI].
       * `$mode` is an optional choice of 'read', 'write', or
         'append' which determines whether the file is opened for
@@ -2488,7 +2488,7 @@ File system services for working with files:
       * `$service` is the fully-qualified name of the service which
         will be called to process the opened file.
       * `$pipeline` is an optional IData document for specifying
-        arbitrary input parameters to the call to `$service`. If 
+        arbitrary input parameters to the call to `$service`. If
         provided, the call to `$service` is scoped with this IData,
         and will not have access to the global pipeline.
       * `$service.input` is an optional input parameter name used
@@ -2496,39 +2496,39 @@ File system services for working with files:
         of the call tor `$service`. Defaults to '$stream'.
 
     * Outputs:
-      * `$pipeline` is an optional IData document representing the 
+      * `$pipeline` is an optional IData document representing the
         output pipeline of the call to `$service`. This will only
         be returned if an input `$pipeline` was provided. If no
         input `$pipeline` was provided, any outputs from the call
-        to `$service` will be merged directly into the global 
+        to `$service` will be merged directly into the global
         pipeline.
 
 * #### tundra.file:read
 
-    Reads a file in full, returning the content as either an input 
-    stream, byte array, or string. 
+    Reads a file in full, returning the content as either an input
+    stream, byte array, or string.
 
-    As this service reads the entire file into memory, consider 
-    using tundra.file:process instead for large files or in memory 
+    As this service reads the entire file into memory, consider
+    using tundra.file:process instead for large files or in memory
     constrained environments.
 
     * Inputs:
-      * `$file` is the name of the file to be read, specified as 
+      * `$file` is the name of the file to be read, specified as
         either a relative or absolute file path or file: [URI].
       * `$mode` is an optional choice of 'stream', 'bytes', or
         'string' which determines how the file contents are
         returned. Defaults to 'stream'.
       * `$encoding` is an optional character set to use when reading
-        the file as a string. Defaults to the Java virtual machine 
+        the file as a string. Defaults to the Java virtual machine
         [default charset].
 
     * Outputs:
       * `$content` is the file contents returned as either an input
-        stream, byte array, or string depending on the `$mode` 
+        stream, byte array, or string depending on the `$mode`
         selected. Note that even when returned as an input stream,
-        the entire file has been read into memory. This mode is 
+        the entire file has been read into memory. This mode is
         provided as a convenience only, and since the file contents
-        are returned as a [java.io.ByteArrayInputStream] object the 
+        are returned as a [java.io.ByteArrayInputStream] object the
         stream does not need to be explicitly closed as no system
         resources (file handles) are held.
 
@@ -2538,7 +2538,7 @@ File system services for working with files:
 
     * Inputs:
       * `$file` is the name of the file to test if Integration Server has
-        read permissions, specified as either a relative or absolute 
+        read permissions, specified as either a relative or absolute
         file path or file: [URI].
 
     * Outputs:
@@ -2570,7 +2570,7 @@ File system services for working with files:
 
 * #### tundra.file:touch
 
-    Updates the modification time of the given file to now, or creates a 
+    Updates the modification time of the given file to now, or creates a
     new file if it doesn't already exist.
 
     * Inputs:
@@ -2581,17 +2581,17 @@ File system services for working with files:
 
 * #### tundra.file:type
 
-    Determines the [mime type] for the given file. 
+    Determines the [mime type] for the given file.
 
-    Integration Server file extension to [mime type] mappings are defined 
-    in the file ./lib/mime.types. If the [mime type] cannot be found, it 
-    defaults to the [mime type] for arbitrary binary data: 
+    Integration Server file extension to [mime type] mappings are defined
+    in the file ./lib/mime.types. If the [mime type] cannot be found, it
+    defaults to the [mime type] for arbitrary binary data:
 
         application/octet-stream
 
     * Inputs:
-      * `$file` is the name of the file whose mime type is to be determined, 
-        specified as either a relative or absolute file path or file: [URI]. 
+      * `$file` is the name of the file whose mime type is to be determined,
+        specified as either a relative or absolute file path or file: [URI].
         The file is not required to exist, since the mime type is determined
         purely from the file name itself.
 
@@ -2604,24 +2604,24 @@ File system services for working with files:
 
     * Inputs:
       * `$file` is the name of the file to test if Integration Server has
-        write permissions, specified as either a relative or absolute 
+        write permissions, specified as either a relative or absolute
         file path or file: [URI].
 
     * Outputs:
       * `$writable?` is a boolean flag indicating if Integration Server
-        has permission to write or append to the given file. If the 
+        has permission to write or append to the given file. If the
         file does not exist, false is returned.
 
 * #### tundra.file:write
 
-    Writes or appends the content, provided as a string, byte array or input 
+    Writes or appends the content, provided as a string, byte array or input
     stream, to the given file.
 
     If no file is specified, a new temporary file is created automatically.
 
     * Inputs:
       * `$file` is the optional name of the file to which the given content
-        is to be written or appended, specified as either a relative or 
+        is to be written or appended, specified as either a relative or
         absolute file path or file: [URI]. If not specified, a new temporary
         file will be created automatically.
       * `$mode` is an optional choice of 'write' or 'append', which determines
@@ -2630,7 +2630,7 @@ File system services for working with files:
       * `$content` is a string, byte array, or input stream containing data
         to be written or appended to the given file.
       * `$encoding` is an optional character set to use when $content has
-        been provided as a string. Defaults to the Java virtual machine 
+        been provided as a string. Defaults to the Java virtual machine
         [default charset].
 
     * Outputs:
@@ -2647,10 +2647,10 @@ Services for compressing and decompressing data using the [gzip] format.
   Compresses the given content using the [gzip] file compression format.
 
   * Inputs:
-    * `$content` is the data to be compressed, specified as a string, 
+    * `$content` is the data to be compressed, specified as a string,
       byte array, or input stream.
     * `$encoding` is an optional character set used when `$content` is
-      specified as a string. Defaults to the Java virtual machine 
+      specified as a string. Defaults to the Java virtual machine
       [default charset].
     * `$mode` is an optional choice of 'stream', 'bytes', or
       'string', which determines the type of object returned by
@@ -2665,10 +2665,10 @@ Services for compressing and decompressing data using the [gzip] format.
   Decompresses the given content using the [gzip] file compression format.
 
   * Inputs:
-    * `$content.gzip` is the [gzip] compressed data to be decompressed, 
+    * `$content.gzip` is the [gzip] compressed data to be decompressed,
       specified as a base64-encoded string, byte array, or input stream.
-    * `$encoding` is an optional character set used to decode the 
-      decompressed data when the chosen `$mode` is 'string'. Defaults to 
+    * `$encoding` is an optional character set used to decode the
+      decompressed data when the chosen `$mode` is 'string'. Defaults to
       the Java virtual machine [default charset].
     * `$mode` is an optional choice of 'stream', 'bytes', or
       'string', which determines the type of object returned by
@@ -2687,10 +2687,10 @@ Services for compressing and decompressing data using the [gzip] format.
       * `$request` is an IData document containing the parameters required for
         making an [HTTP] request to an [HTTP] server.
       * `$service` is an optional custom [HTTP] response handler service, which
-        implements the `tundra.schema.http.response:handler` specification, and 
-        can be specified when the standard `tundra.http.response:handle` service 
+        implements the `tundra.schema.http.response:handler` specification, and
+        can be specified when the standard `tundra.http.response:handle` service
         does not suffice. The standard handler does the following:
-        * checks the [HTTP response code] is < 400, and throws an exception 
+        * checks the [HTTP response code] is < 400, and throws an exception
           when it is not
         * normalizes the response header keys to lower case
         * converts the response body stream to bytes
@@ -2701,8 +2701,8 @@ Services for compressing and decompressing data using the [gzip] format.
 
 * #### tundra.http.response:handle
 
-    Standard [HTTP] response handler: checks that the [HTTP response code] is < 400, 
-    normalizes the response header keys to lower case, and converts the response body 
+    Standard [HTTP] response handler: checks that the [HTTP response code] is < 400,
+    normalizes the response header keys to lower case, and converts the response body
     stream to bytes. If the [HTTP response code] is >= 400, an exception will be
     thrown.
 
@@ -2710,22 +2710,22 @@ Services for compressing and decompressing data using the [gzip] format.
       * `$response` is the [HTTP] response to be processed by this service.
 
     * Outputs:
-      * `$response` is the processed [HTTP] response, where the [HTTP response code] is 
-        guaranteed to be < 400, the response header keys are normalized to lower case, 
+      * `$response` is the processed [HTTP] response, where the [HTTP response code] is
+        guaranteed to be < 400, the response header keys are normalized to lower case,
         and the response body is returned as a byte[] array.
 
 ### ID
 
 * #### tundra.id:generate
 
-    Generates an immutable universally unique identifier ([UUID]). A [UUID] 
+    Generates an immutable universally unique identifier ([UUID]). A [UUID]
     represents a 128-bit value.
 
-    There exist different variants of these global identifiers. The methods 
+    There exist different variants of these global identifiers. The methods
     of this class are for manipulating the Leach-Salz variant, although the
     constructors allow the creation of any variant of [UUID] (described below).
 
-    The layout of a variant 2 (Leach-Salz) [UUID] is as follows: The most 
+    The layout of a variant 2 (Leach-Salz) [UUID] is as follows: The most
     significant long consists of the following unsigned fields:
 
         0xFFFFFFFF00000000 time_low
@@ -2739,18 +2739,18 @@ Services for compressing and decompressing data using the [gzip] format.
         0x3FFF000000000000 clock_seq
         0x0000FFFFFFFFFFFF node
 
-    The variant field contains a value which identifies the layout of the 
-    [UUID]. The bit layout described above is valid only for a [UUID] with a 
+    The variant field contains a value which identifies the layout of the
+    [UUID]. The bit layout described above is valid only for a [UUID] with a
     variant value of 2, which indicates the Leach-Salz variant.
 
-    The version field holds a value that describes the type of this [UUID]. 
-    There are four different basic types of UUIDs: time-based, DCE 
-    security, name-based, and randomly generated UUIDs. These types 
+    The version field holds a value that describes the type of this [UUID].
+    There are four different basic types of UUIDs: time-based, DCE
+    security, name-based, and randomly generated UUIDs. These types
     have a version value of 1, 2, 3 and 4, respectively.
 
-    For more information including algorithms used to create UUIDs, 
-    see the Internet-Draft UUIDs and GUIDs or the standards body 
-    definition at ISO/IEC 11578:1996. 
+    For more information including algorithms used to create UUIDs,
+    see the Internet-Draft UUIDs and GUIDs or the standards body
+    definition at ISO/IEC 11578:1996.
 
     * Outputs:
       * `$id` is the generated [UUID].
@@ -2767,7 +2767,7 @@ Services for working with arbitrary precision integers (uses [java.math.BigInteg
       * `$integer` is a signed integer.
 
     * Outputs:
-      * `$integer` is the absolute (unsigned) value of the given 
+      * `$integer` is the absolute (unsigned) value of the given
         integer.
 
 * #### tundra.integer:add
@@ -2792,8 +2792,8 @@ Services for working with arbitrary precision integers (uses [java.math.BigInteg
 
 * #### tundra.integer:decrement
 
-    Decrements the given integer by one. Returns minus one if 
-    no integer is specified, so that this service can be used 
+    Decrements the given integer by one. Returns minus one if
+    no integer is specified, so that this service can be used
     in a loop to both initialize and decrement a counter variable.
 
     * Inputs:
@@ -2816,8 +2816,8 @@ Services for working with arbitrary precision integers (uses [java.math.BigInteg
 
 * #### tundra.integer:increment
 
-    Increments the given integer by one. Returns one if no integer 
-    was specified, so that this service can be used in a loop to 
+    Increments the given integer by one. Returns one if no integer
+    was specified, so that this service can be used in a loop to
     both initialize and increment a counter variable.
 
     * Inputs:
@@ -2917,50 +2917,50 @@ Services for working with arbitrary precision integers (uses [java.math.BigInteg
 
     * Outputs:
       * `$valid?` is a boolean indicating if the given string is a valid
-        integer. 
+        integer.
 
 ### Content List
 
 * #### tundra.list.content:emit
 
-  Converts an IData[] document list to a list of XML or flat file 
+  Converts an IData[] document list to a list of XML or flat file
   strings, bytes or input streams.
 
   * Inputs:
     * `$documents` is a list of IData documents to be serialized
       as a string, byte array, or input stream.
-    * `$schemas` is an optional list of fully-qualified document 
-      references or flat file schemas (for XML or flat file content 
+    * `$schemas` is an optional list of fully-qualified document
+      references or flat file schemas (for XML or flat file content
       respectively), with the same number of items as `$documents`,
-      where `$schemas[n]` is the schema used to serialize 
-      `$documents[n]`. Use this input argument when `$documents` 
+      where `$schemas[n]` is the schema used to serialize
+      `$documents[n]`. Use this input argument when `$documents`
       contains unlike formats where different items in the list
       are required to be serialized to different formats.
-    * `$schema` is an optional fully-qualified document reference or 
-      flat file schema (for XML or flat file content respectively) 
-      if all the items in the `$documents` list are to be serialized 
+    * `$schema` is an optional fully-qualified document reference or
+      flat file schema (for XML or flat file content respectively)
+      if all the items in the `$documents` list are to be serialized
       to the exact same format.
     * `$mode` is an optional choice of 'stream', 'bytes', or 'string'
       which determines the type of object the documents are serialized
       to. Defaults to 'stream'.
     * `$encoding` is an optional character set to use when the $mode
-      selected is 'bytes' or 'stream'. Defaults to the Java virtual 
+      selected is 'bytes' or 'stream'. Defaults to the Java virtual
       machine [default charset].
 
   * Outputs:
-    * `$contents` is a list of strings, byte arrays, or input streams 
+    * `$contents` is a list of strings, byte arrays, or input streams
       (depending on the `$mode` selected) where each item is the
-      serialized like-indexed document. In other words, the 
+      serialized like-indexed document. In other words, the
       `$contents[n]` item is the `$documents[n]` item serialized.
 
 * #### tundra.list.content:join
 
-    Many-to-one conversion of XML or flat file content to another 
-    format.  
+    Many-to-one conversion of XML or flat file content to another
+    format.
 
-    Calls the given joining service, passing the parsed list of 
-    contents as an input, and emitting the joined content as output.  
-    The joining service must accept an IData[] document list, and 
+    Calls the given joining service, passing the parsed list of
+    contents as an input, and emitting the joined content as output.
+    The joining service must accept an IData[] document list, and
     return a single IData document.
 
     * Inputs:
@@ -2973,20 +2973,20 @@ Services for working with arbitrary precision integers (uses [java.math.BigInteg
         must accept an IData[] document list, and return a single
         IData document.
 
-      * `$pipeline` is an optional IData document for specifying 
+      * `$pipeline` is an optional IData document for specifying
         arbitrary input arguments to the invocation of `$service`.
 
       * `$schemas.input` is an optional list of fully-qualified document
         references or flat file schemas (for XML or flat file content
-        respectively), where `$schemas.input[n]` is used to parse the 
-        `$contents[n]`. Use this input argument when `$contents` contains 
-        unlike formats (for example, a mixture of flat file and xml 
+        respectively), where `$schemas.input[n]` is used to parse the
+        `$contents[n]`. Use this input argument when `$contents` contains
+        unlike formats (for example, a mixture of flat file and xml
         formats).
 
       * `$schema.input` is an optional fully-qualified document reference
         or flat file schema (for XML or flat file content respectively),
-        used to parse all items in `$contents`. Use this input argument 
-        when `$contents` contains like formats (for example, when all 
+        used to parse all items in `$contents`. Use this input argument
+        when `$contents` contains like formats (for example, when all
         items adhere to the exact same XML schema).
 
       * `$schema.output` is an optional fully-qualified document reference
@@ -2998,29 +2998,29 @@ Services for working with arbitrary precision integers (uses [java.math.BigInteg
         Defaults to `$documents`.
 
       * `$service.output` is an optional name to use for the output IData
-        parameter returned by the `$service` invocation. Defaults to 
+        parameter returned by the `$service` invocation. Defaults to
         `$document`.
 
-      * `$encoding.input` is an optional character set to use when the 
-        `$contents` is provided as a list of input streams or byte arrays. 
+      * `$encoding.input` is an optional character set to use when the
+        `$contents` is provided as a list of input streams or byte arrays.
         Defaults to the Java virtual machine [default charset].
 
-      * `$encoding.output` is an optional character set to use when the 
-        `$mode.output` selected is 'bytes' or 'stream'. Defaults to the 
+      * `$encoding.output` is an optional character set to use when the
+        `$mode.output` selected is 'bytes' or 'stream'. Defaults to the
         Java virtual machine [default charset].
 
-      * `$mode.output` is an optional choice of 'stream', 'bytes', or 
+      * `$mode.output` is an optional choice of 'stream', 'bytes', or
         'string', which determines the type of `$content` object returned.
         Defaults to 'stream'.
 
     * Outputs:
-      * `$content` is a string, byte array, or input stream (depending on 
-        the `$mode.output` selected) of the serialized IData document 
+      * `$content` is a string, byte array, or input stream (depending on
+        the `$mode.output` selected) of the serialized IData document
         returned by `$service`.
 
 * #### tundra.list.content:parse
 
-    Parses a list of XML and flat file content (specified as a list of 
+    Parses a list of XML and flat file content (specified as a list of
     strings, bytes, or input streams) into an IData[] document list.
 
     * Inputs:
@@ -3029,18 +3029,18 @@ Services for working with arbitrary precision integers (uses [java.math.BigInteg
 
       * `$schemas` is an optional list of fully-qualified document
         references or flat file schemas (for XML or flat file content
-        respectively), where `$schemas[n]` is used to parse `$contents[n]`. 
-        Use this input argument when `$contents` contains unlike formats 
+        respectively), where `$schemas[n]` is used to parse `$contents[n]`.
+        Use this input argument when `$contents` contains unlike formats
         (for example, a mixture of flat file and xml formats).
 
-      * `$schema` is an optional fully-qualified document reference or 
+      * `$schema` is an optional fully-qualified document reference or
         flat file schema (for XML or flat file content respectively),
-        used to parse all items in `$contents`. Use this input argument 
-        when `$contents` contains like formats (for example, when all 
+        used to parse all items in `$contents`. Use this input argument
+        when `$contents` contains like formats (for example, when all
         items adhere to the exact same XML schema).
 
-      * `$encoding` is an optional character set to use when the 
-        `$contents` is provided as a list of input streams or byte arrays. 
+      * `$encoding` is an optional character set to use when the
+        `$contents` is provided as a list of input streams or byte arrays.
         Defaults to the Java virtual machine [default charset].
 
     * Outputs:
@@ -3051,7 +3051,7 @@ Services for working with arbitrary precision integers (uses [java.math.BigInteg
 
 * #### tundra.list.datetime:format
 
-    Formats a list of datetimes that conform to the input pattern, according 
+    Formats a list of datetimes that conform to the input pattern, according
     to the output pattern. Pattern defaults to an [ISO8601]/XML datetime.
 
     Supports a handful of well-known named patterns:
@@ -3064,17 +3064,17 @@ Services for working with arbitrary precision integers (uses [java.math.BigInteg
         date.jdbc      yyyy-mm-dd
         time           ISO8601/XML time
         time.jdbc      HH:mm:ss
-        milliseconds   Number of milliseconds since the Epoch, 
+        milliseconds   Number of milliseconds since the Epoch,
                        January 1, 1970 00:00:00.000 GMT (Gregorian)
 
-    Custom patterns can be specified using [java.text.SimpleDateFormat] 
+    Custom patterns can be specified using [java.text.SimpleDateFormat]
     compatible patterns.
 
     * Inputs:
       * `$list` is a list of datetime strings to be formatted.
       * `$pattern.input` is the datetime pattern the input datetime strings
         are formatted as.
-      * `$pattern.output` is the desired datetime pattern to format the 
+      * `$pattern.output` is the desired datetime pattern to format the
         output list of datetime strings as.
 
     * Outputs:
@@ -3087,7 +3087,7 @@ Services for manipulating document (com.wm.data.IData) lists:
 
 * #### tundra.list.document:append
 
-  Appends a single item to the end of a list, such that appending an item 
+  Appends a single item to the end of a list, such that appending an item
   to a list containing n items results in a new list of n + 1 items.
 
   * Inputs:
@@ -3100,7 +3100,7 @@ Services for manipulating document (com.wm.data.IData) lists:
 
 * #### tundra.list.document:clear
 
-  Removes all elements from all items in the given IData document list, 
+  Removes all elements from all items in the given IData document list,
   except for any keys specified in the preserve list.
 
   * Inputs:
@@ -3116,7 +3116,7 @@ Services for manipulating document (com.wm.data.IData) lists:
 
 * #### tundra.list.document:compact
 
-  Removes all null items from the given list, thereby shortening the 
+  Removes all null items from the given list, thereby shortening the
   length of the list.
 
   * Inputs:
@@ -3139,14 +3139,14 @@ Services for manipulating document (com.wm.data.IData) lists:
 
 * #### tundra.list.document:drop
 
-  Removes the item stored at a given index in the given list. 
+  Removes the item stored at a given index in the given list.
 
   * Inputs:
     * `$list` is a list to remove the item from.
     * `$index` is an integer identifying which item to be removed from
       the given list. List indexing is zero-based. Supports both
-      forward and reverse indexing (where, for example, an index of 
-      -1 is the last item in the list, and an index of -2 is the 
+      forward and reverse indexing (where, for example, an index of
+      -1 is the last item in the list, and an index of -2 is the
       second last item in the list).
 
   * Outputs:
@@ -3155,7 +3155,7 @@ Services for manipulating document (com.wm.data.IData) lists:
 
 * #### tundra.list.document:each
 
-  Iterates through the given list, invoking the given service for each 
+  Iterates through the given list, invoking the given service for each
   item in the list, passing `$item`, `$index`, `$iteration` and `$length`
   variables.
 
@@ -3191,15 +3191,15 @@ Services for manipulating document (com.wm.data.IData) lists:
   * Inputs:
     * `$list` is a list to fetch an item from.
     * `$index` is an optional zero-based index identifying
-      the item to be fetched. Supports forward and reverse 
-      indexing (where, for example, an index of -1 is the 
-      last item in the list, and an index of -2 is the 
+      the item to be fetched. Supports forward and reverse
+      indexing (where, for example, an index of -1 is the
+      last item in the list, and an index of -2 is the
       second last item in the list).
     * `$iteration` is an optional one-based index identifying
       the item to be fetched.
 
   * Outputs:
-    * `$item` is the item stored at the given index in the given 
+    * `$item` is the item stored at the given index in the given
       list.
 
 * #### tundra.list.document:grow
@@ -3233,17 +3233,17 @@ Services for manipulating document (com.wm.data.IData) lists:
 
 * #### tundra.list.document:insert
 
-  Returns a new list with the given item inserted at the desired 
-  index in the given list.  
+  Returns a new list with the given item inserted at the desired
+  index in the given list.
 
   * Inputs:
     * `$list` is a list to check whether the given `$item` exists
       in.
     * `$item` is the item to be checked against the given `$list`.
-    * `$index` is the index at which to insert the item. List 
-      indexing is zero-based. Supports both forward and 
-      reverse indexing (where, for example, an index of -1 
-      is the last item in the list, and an index of -2 is the 
+    * `$index` is the index at which to insert the item. List
+      indexing is zero-based. Supports both forward and
+      reverse indexing (where, for example, an index of -1
+      is the last item in the list, and an index of -2 is the
       second last item in the list).
 
   * Outputs:
@@ -3254,21 +3254,21 @@ Services for manipulating document (com.wm.data.IData) lists:
 
   Many-to-one conversion of an IData document list to an IData document.
 
-  Calls the given joining service, passing the IData document list 
-  as an input, and returning the resulting IData document as output.  
-  The joining service must accept an IData document list, and 
+  Calls the given joining service, passing the IData document list
+  as an input, and returning the resulting IData document as output.
+  The joining service must accept an IData document list, and
   return a single IData document.
 
   * Inputs:
-    * `$documents` is an IData document list to be joined or 
+    * `$documents` is an IData document list to be joined or
       aggregated together into one IData document.
 
     * `$service` is the fully-qualified joining service name that is
-      called to join or aggregate the IData document list. This 
-      service must accept an IData[] array, and return a single 
+      called to join or aggregate the IData document list. This
+      service must accept an IData[] array, and return a single
       IData object.
 
-    * `$pipeline` is an optional IData document for specifying 
+    * `$pipeline` is an optional IData document for specifying
       arbitrary input arguments to the invocation of `$service`.
 
     * `$service.input` is an optional name to use for the IData
@@ -3276,7 +3276,7 @@ Services for manipulating document (com.wm.data.IData) lists:
       Defaults to $documents.
 
     * `$service.output` is an optional name to use for the output IData
-      parameter returned by the `$service` invocation. Defaults to 
+      parameter returned by the `$service` invocation. Defaults to
       $document.
 
   * Outputs:
@@ -3284,32 +3284,32 @@ Services for manipulating document (com.wm.data.IData) lists:
 
 * #### tundra.list.document.key:lowercase
 
-  Converts all keys in each item in the given IData document list to 
+  Converts all keys in each item in the given IData document list to
   lower case.
 
   * Inputs:
     * `$list` is an IData document list whose item's keys are to be
       converted to lower case.
-    * `$locale` optionally identifies the case transformation rules 
-      to be used for a given [Locale]. If not specified, the 
+    * `$locale` optionally identifies the case transformation rules
+      to be used for a given [Locale]. If not specified, the
       [default locale] is used.
     * `$recurse?` is an optional boolean indicating if embedded
       IData documents and IData document lists should also
-      have their keys converted to lower case. Defaults to 
+      have their keys converted to lower case. Defaults to
       false.
 
   * Outputs:
-    * `$list` is the given IData document list with all item's keys 
+    * `$list` is the given IData document list with all item's keys
       converted to lower case.
 
 * #### tundra.list.document.key:replace
 
-  Replaces all occurrences of the given [regular expression pattern] 
-  in each item's keys in the given IData document list with the 
+  Replaces all occurrences of the given [regular expression pattern]
+  in each item's keys in the given IData document list with the
   replacement string.
 
   * Inputs:
-    * `$list` is an IData document list to have all occurrences of the 
+    * `$list` is an IData document list to have all occurrences of the
       given [regular expression pattern] in each item's keys replaced.
     * `$pattern` is the [regular expression pattern] to match against
       each key.
@@ -3322,49 +3322,49 @@ Services for manipulating document (com.wm.data.IData) lists:
       Defaults to false.
     * `$recurse?` is an optional boolean indicating if embedded
       IData documents and IData document lists should also
-      have occurrences of the pattern in their string values 
+      have occurrences of the pattern in their string values
       replaced. Defaults to false.
 
   * Outputs:
-    * `$list` is the given IData document list with all occurrences of 
-      the given [regular expression pattern] in each item's keys replaced 
+    * `$list` is the given IData document list with all occurrences of
+      the given [regular expression pattern] in each item's keys replaced
       with `$replacement`.
 
 * #### tundra.list.document.key:trim
 
-  Removes leading and trailing whitespace from all item's keys 
+  Removes leading and trailing whitespace from all item's keys
   in the given IData document list.
 
   * Inputs:
-    * `$list` is an IData document list whose item's keys are to 
+    * `$list` is an IData document list whose item's keys are to
       be trimmed of leading and trailing whitespace characters.
     * `$recurse?` is an optional boolean indicating if embedded
       IData documents and IData document lists should also
       have their keys trimmed. Defaults to false.
 
   * Outputs:
-    * `$list` is the given IData document list with all item's 
-      keys trimmed of leading and trailing whitespace characters 
+    * `$list` is the given IData document list with all item's
+      keys trimmed of leading and trailing whitespace characters
       removed.
 
 * #### tundra.list.document.key:uppercase
 
-  Converts all keys in each item in the given IData document list to 
+  Converts all keys in each item in the given IData document list to
   upper case.
 
   * Inputs:
     * `$list` is an IData document list whose item's keys are to be
       converted to upper case.
-    * `$locale` optionally identifies the case transformation rules 
-      to be used for a given [Locale]. If not specified, the 
+    * `$locale` optionally identifies the case transformation rules
+      to be used for a given [Locale]. If not specified, the
       [default locale] is used.
     * `$recurse?` is an optional boolean indicating if embedded
       IData documents and IData document lists should also
-      have their keys converted to upper case. Defaults to 
+      have their keys converted to upper case. Defaults to
       false.
 
   * Outputs:
-    * `$list` is the given IData document list with all item's keys 
+    * `$list` is the given IData document list with all item's keys
       converted to upper case.
 
 * #### tundra.list.document:length
@@ -3379,8 +3379,8 @@ Services for manipulating document (com.wm.data.IData) lists:
 
 * #### tundra.list.document:map
 
-  Returns a new list created by invoking the given service for each 
-  item in the input list, passing `$item`, `$index`, `$iteration` and 
+  Returns a new list created by invoking the given service for each
+  item in the input list, passing `$item`, `$index`, `$iteration` and
   `$length` variables, and collecting the values returned by the service
   to form the new list.
 
@@ -3406,8 +3406,8 @@ Services for manipulating document (com.wm.data.IData) lists:
 
 * #### tundra.list.document:prepend
 
-  Prepends a single item to the front of a list, such that prepending 
-  an item to a list containing n items results in a new list of n + 1 
+  Prepends a single item to the front of a list, such that prepending
+  an item to a list containing n items results in a new list of n + 1
   items.
 
   * Inputs:
@@ -3420,19 +3420,19 @@ Services for manipulating document (com.wm.data.IData) lists:
 
 * #### tundra.list.document:put
 
-  Sets the value of the item at the given index in the given list.  
+  Sets the value of the item at the given index in the given list.
 
   * Inputs:
     * `$list` is a list in which to set the given value.
     * `$item` is the item to be set in the given list.
     * `$index` is an optional zero-based index identifying
-      the item to be set. Supports forward and reverse 
-      indexing (where, for example, an index of -1 is the 
-      last item in the list, and an index of -2 is the 
+      the item to be set. Supports forward and reverse
+      indexing (where, for example, an index of -1 is the
+      last item in the list, and an index of -2 is the
       second last item in the list).
 
   * Outputs:
-    * `$list` is the resulting list with the item at the given 
+    * `$list` is the resulting list with the item at the given
       index set to the given value.
 
 * #### tundra.list.document:resize
@@ -3455,7 +3455,7 @@ Services for manipulating document (com.wm.data.IData) lists:
 
 * #### tundra.list.document:reverse
 
-  Returns a new list with all items from the given list in 
+  Returns a new list with all items from the given list in
   reverse order.
 
   * Inputs:
@@ -3480,14 +3480,14 @@ Services for manipulating document (com.wm.data.IData) lists:
 
 * #### tundra.list.document:slice
 
-  Returns a new list which is a subset of the items in the 
+  Returns a new list which is a subset of the items in the
   given list.
 
   * Inputs:
     * `$list` is the list to be sliced.
     * `$index` is the zero-based start index from which to
       take the slice.
-    * `$length` is the number of items to include in the 
+    * `$length` is the number of items to include in the
       slice.
 
   * Outputs:
@@ -3495,7 +3495,7 @@ Services for manipulating document (com.wm.data.IData) lists:
 
 * #### tundra.list.document:sort
 
-  Returns a new list sorted according to the [natural ordering] of 
+  Returns a new list sorted according to the [natural ordering] of
   the values associated with the given key in each item.
 
   * Inputs:
@@ -3507,11 +3507,11 @@ Services for manipulating document (com.wm.data.IData) lists:
 
 * #### tundra.list.document:substitute
 
-  Attempts variable substitution on each string value in the given IData 
-  document list by replacing all occurrences of substrings matching "%key%" 
+  Attempts variable substitution on each string value in the given IData
+  document list by replacing all occurrences of substrings matching "%key%"
   with the associated (optionally scoped) value.
 
-  Optionally replaces null or non-existent values with the given default 
+  Optionally replaces null or non-existent values with the given default
   value.
 
   * Inputs:
@@ -3519,72 +3519,72 @@ Services for manipulating document (com.wm.data.IData) lists:
     * `$pipeline` is an optional scope used to resolve key references. If
       not specified, keys are resolved against the pipeline itself.
     * `$default` is an optional default value to substitute in place of keys
-      that resolve to null or missing values. If not specified, no 
+      that resolve to null or missing values. If not specified, no
       substitution will be made for keys that resolve to null or missing
       values.
 
   * Outputs:
-    * `$list` is the resulting IData document list with all variable substitution 
-      patterns in all item's values, such as "%key%", replaced with the value of 
-      the key (resolved against either `$pipeline`, if specified, or the pipeline 
+    * `$list` is the resulting IData document list with all variable substitution
+      patterns in all item's values, such as "%key%", replaced with the value of
+      the key (resolved against either `$pipeline`, if specified, or the pipeline
       itself).
 
 * #### tundra.list.document:translate
 
-  One-to-one conversion of one IData document list to another IData document list. 
+  One-to-one conversion of one IData document list to another IData document list.
   Calls the given translation service, passing the each IData document item in the
-  list as an input, and building a new IData document list from the translated 
+  list as an input, and building a new IData document list from the translated
   documents returned by the translation service as output.
 
   * Inputs:
     * `$list` is an IData document list containing items to be translated.
 
-    * `$service` is the fully-qualified name of the translation service, which accepts 
-      a single IData document and returns a single IData document, called to translate 
+    * `$service` is the fully-qualified name of the translation service, which accepts
+      a single IData document and returns a single IData document, called to translate
       the given `$document`.
 
-    * $pipeline is an optional IData document for providing arbitrary variables to the 
-      invocations of $service.      
+    * $pipeline is an optional IData document for providing arbitrary variables to the
+      invocations of $service.
 
-    * `$service.input` is an optional variable name to use in the input pipeline of the 
+    * `$service.input` is an optional variable name to use in the input pipeline of the
       call to `$service` for the given IData document. Defaults to $document.
 
-    * `$service.output` is an optional variable name used to extract the output IData 
-      document from the output pipeline of the call to `$service`. Defaults to 
+    * `$service.output` is an optional variable name used to extract the output IData
+      document from the output pipeline of the call to `$service`. Defaults to
       $translation.
 
   * Outputs:
-    * `$translations` is the resulting IData document list containing the translated 
+    * `$translations` is the resulting IData document list containing the translated
       documents.
 
 * #### tundra.list.document.value:lowercase
 
-  Converts all item's string values in the given IData document 
+  Converts all item's string values in the given IData document
   list to lower case.
 
   * Inputs:
-    * `$list` is an IData document list whose item's string values 
+    * `$list` is an IData document list whose item's string values
       are to be converted to lower case.
-    * `$locale` optionally identifies the case transformation rules 
-      to be used for a given [Locale]. If not specified, the 
+    * `$locale` optionally identifies the case transformation rules
+      to be used for a given [Locale]. If not specified, the
       [default locale] is used.
     * `$recurse?` is an optional boolean indicating if embedded
       IData documents and IData document lists should also
-      have their string values converted to lower case. Defaults 
+      have their string values converted to lower case. Defaults
       to false.
 
   * Outputs:
-    * `$list` is the given IData document list with all item's string 
+    * `$list` is the given IData document list with all item's string
       values converted to lower case.
 
 * #### tundra.list.document.value:replace
 
-  Replaces all occurrences of the given [regular expression pattern] 
-  in each item's string values in the given IData document list with 
+  Replaces all occurrences of the given [regular expression pattern]
+  in each item's string values in the given IData document list with
   the replacement string.
 
   * Inputs:
-    * `$list` is an IData document list to have all occurrences of the 
+    * `$list` is an IData document list to have all occurrences of the
       given [regular expression pattern] in each item's string values
       replaced.
     * `$pattern` is the [regular expression pattern] to match against
@@ -3598,60 +3598,60 @@ Services for manipulating document (com.wm.data.IData) lists:
       Defaults to false.
     * `$recurse?` is an optional boolean indicating if embedded
       IData documents and IData document lists should also
-      have occurrences of the pattern in their string values 
+      have occurrences of the pattern in their string values
       replaced. Defaults to false.
 
   * Outputs:
-    * `$list` is the given IData document list with all occurrences of 
-      the given [regular expression pattern] in each item's string 
+    * `$list` is the given IData document list with all occurrences of
+      the given [regular expression pattern] in each item's string
       values replaced with `$replacement`.
 
 * #### tundra.list.document.value:trim
 
-  Removes leading and trailing whitespace from all item's string 
+  Removes leading and trailing whitespace from all item's string
   values in the given IData document list.
 
   * Inputs:
-    * `$list` is an IData document list whose item's string values 
-      are to be trimmed of leading and trailing whitespace 
+    * `$list` is an IData document list whose item's string values
+      are to be trimmed of leading and trailing whitespace
       characters.
     * `$recurse?` is an optional boolean indicating if embedded
       IData documents and IData document lists should also
       have their string values trimmed. Defaults to false.
 
   * Outputs:
-    * `$list` is the given IData document list with all item's string 
+    * `$list` is the given IData document list with all item's string
       values trimmed of leading and trailing whitespace characters.
 
 * #### tundra.list.document.value:uppercase
 
-  Converts all item's string values in the given IData document 
+  Converts all item's string values in the given IData document
   list to upper case.
 
   * Inputs:
-    * `$list` is an IData document list whose item's string values 
+    * `$list` is an IData document list whose item's string values
       are to be converted to upper case.
-    * `$locale` optionally identifies the case transformation rules 
-      to be used for a given [Locale]. If not specified, the 
+    * `$locale` optionally identifies the case transformation rules
+      to be used for a given [Locale]. If not specified, the
       [default locale] is used.
     * `$recurse?` is an optional boolean indicating if embedded
       IData documents and IData document lists should also
-      have their string values converted to upper case. Defaults to 
+      have their string values converted to upper case. Defaults to
       false.
 
   * Outputs:
-    * `$list` is the given IData document list with all string values 
+    * `$list` is the given IData document list with all string values
       converted to upper case.
 
 ### Duration List
 
 * #### tundra.list.duration:format
 
-    Formats a list of duration strings according to the desired 
-    pattern.  
+    Formats a list of duration strings according to the desired
+    pattern.
 
-    A start instant may be required when formatting fields with 
-    indeterminate values, such as converting months to days 
+    A start instant may be required when formatting fields with
+    indeterminate values, such as converting months to days
     (because the number of days in a month varies).
 
     * Inputs:
@@ -3666,15 +3666,15 @@ Services for manipulating document (com.wm.data.IData) lists:
 
 * #### tundra.list.duration:sum
 
-    Returns the sum of all the given durations, returning 
+    Returns the sum of all the given durations, returning
     (x1 + x2 + ... + xn).
 
     * Inputs:
-      * `$list` is a list of [ISO8601]/XML duration strings to 
+      * `$list` is a list of [ISO8601]/XML duration strings to
         be added together.
 
     * Outputs:
-      * `$duration` is the sum of the duration strings in the 
+      * `$duration` is the sum of the duration strings in the
         given list in [ISO8601]/XML format.
 
 ### Object List
@@ -3683,7 +3683,7 @@ Services for manipulating java.lang.Object lists:
 
 * #### tundra.list.object:append
 
-  Appends a single item to the end of a list, such that appending an item 
+  Appends a single item to the end of a list, such that appending an item
   to a list containing n items results in a new list of n + 1 items.
 
   * Inputs:
@@ -3698,7 +3698,7 @@ Services for manipulating java.lang.Object lists:
 
 * #### tundra.list.object:compact
 
-  Removes all null items from the given list, thereby shortening the 
+  Removes all null items from the given list, thereby shortening the
   length of the list.
 
   * Inputs:
@@ -3721,7 +3721,7 @@ Services for manipulating java.lang.Object lists:
 
 * #### tundra.list.object:difference
 
-  Returns a list of only the items in `$list.x` that are not also 
+  Returns a list of only the items in `$list.x` that are not also
   present in `$list.y`.
 
   * Inputs:
@@ -3729,19 +3729,19 @@ Services for manipulating java.lang.Object lists:
     * `$list.y` is a list to be checked against `$list.x` for differnces.
 
   * Outputs:
-    * `$list` is a new list containing only the items in `$list.x` that 
+    * `$list` is a new list containing only the items in `$list.x` that
       are not also present in `$list.y`.
 
 * #### tundra.list.object:drop
 
-  Removes the item stored at a given index in the given list. 
+  Removes the item stored at a given index in the given list.
 
   * Inputs:
     * `$list` is a list to remove the item from.
     * `$index` is an integer identifying which item to be removed from
       the given list. List indexing is zero-based. Supports both
-      forward and reverse indexing (where, for example, an index of 
-      -1 is the last item in the list, and an index of -2 is the 
+      forward and reverse indexing (where, for example, an index of
+      -1 is the last item in the list, and an index of -2 is the
       second last item in the list).
 
   * Outputs:
@@ -3750,8 +3750,8 @@ Services for manipulating java.lang.Object lists:
 
 * #### tundra.list.object:each
 
-  Iterates through the given list, invoking the given service for each 
-  item in the list, passing `$item`, `$index`, `$iteration` and `$length` 
+  Iterates through the given list, invoking the given service for each
+  item in the list, passing `$item`, `$index`, `$iteration` and `$length`
   variables.
 
   * Inputs:
@@ -3786,15 +3786,15 @@ Services for manipulating java.lang.Object lists:
   * Inputs:
     * `$list` is a list to fetch an item from.
     * `$index` is an optional zero-based index identifying
-      the item to be fetched. Supports forward and reverse 
-      indexing (where, for example, an index of -1 is the 
-      last item in the list, and an index of -2 is the 
+      the item to be fetched. Supports forward and reverse
+      indexing (where, for example, an index of -1 is the
+      last item in the list, and an index of -2 is the
       second last item in the list).
     * `$iteration` is an optional one-based index identifying
       the item to be fetched.
 
   * Outputs:
-    * `$item` is the item stored at the given index in the given 
+    * `$item` is the item stored at the given index in the given
       list.
 
 * #### tundra.list.object:grow
@@ -3830,19 +3830,19 @@ Services for manipulating java.lang.Object lists:
 
 * #### tundra.list.object:insert
 
-  Returns a new list with the given item inserted at the desired 
-  index in the given list.  
+  Returns a new list with the given item inserted at the desired
+  index in the given list.
 
   * Inputs:
     * `$list` is a list to check whether the given `$item` exists
       in.
     * `$item` is the item to be checked against the given `$list`.
-    * `$index` is the index at which to insert the item. List 
-      indexing is zero-based. Supports both forward and 
-      reverse indexing (where, for example, an index of -1 
-      is the last item in the list, and an index of -2 is the 
+    * `$index` is the index at which to insert the item. List
+      indexing is zero-based. Supports both forward and
+      reverse indexing (where, for example, an index of -1
+      is the last item in the list, and an index of -2 is the
       second last item in the list).
-    * `$class` is an optional Java class name that the list and 
+    * `$class` is an optional Java class name that the list and
       item to be inserted are required to be instances of.
 
   * Outputs:
@@ -3857,7 +3857,7 @@ Services for manipulating java.lang.Object lists:
     * `$list` is a list to check whether it is an instance of
       the given Java class.
     * `$class` is the [Java array class name] used to check the list
-      against. 
+      against.
 
   * Outputs:
     * `$instance?` is a boolean indicating if the given list is an
@@ -3865,7 +3865,7 @@ Services for manipulating java.lang.Object lists:
 
 * #### tundra.list.object:intersection
 
-  Returns a list of only the items in `$list.x` that are also present in 
+  Returns a list of only the items in `$list.x` that are also present in
   `$list.y`.
 
   * Inputs:
@@ -3873,18 +3873,18 @@ Services for manipulating java.lang.Object lists:
     * `$list.y` is a list to be intersected with `$list.x`.
 
   * Outputs:
-    * `$list` is a new list containing only the items that are present 
+    * `$list` is a new list containing only the items that are present
       in both input lists (the [set intersection]).
 
 * #### tundra.list.object:join
 
   Returns a string created by converting each list item to a string, and
-  concatenating the resulting strings together separated by the given 
+  concatenating the resulting strings together separated by the given
   `$separator`.
 
   * Inputs:
     * `$list` is a list to be converted to a string.
-    * `$separator` is an optional string used to separate each list item 
+    * `$separator` is an optional string used to separate each list item
       in the resulting string. Defaults to an empty string.
 
   * Outputs:
@@ -3903,8 +3903,8 @@ Services for manipulating java.lang.Object lists:
 
 * #### tundra.list.object:map
 
-  Returns a new list created by invoking the given service for each 
-  item in the input list, passing `$item`, `$index`, `$iteration` and 
+  Returns a new list created by invoking the given service for each
+  item in the input list, passing `$item`, `$index`, `$iteration` and
   `$length` variables, and collecting the values returned by the service
   to form the new list.
 
@@ -3930,8 +3930,8 @@ Services for manipulating java.lang.Object lists:
 
 * #### tundra.list.object:prepend
 
-  Prepends a single item to the front of a list, such that prepending 
-  an item to a list containing n items results in a new list of n + 1 
+  Prepends a single item to the front of a list, such that prepending
+  an item to a list containing n items results in a new list of n + 1
   items.
 
   * Inputs:
@@ -3946,21 +3946,21 @@ Services for manipulating java.lang.Object lists:
 
 * #### tundra.list.object:put
 
-  Sets the value of the item at the given index in the given list.  
+  Sets the value of the item at the given index in the given list.
 
   * Inputs:
     * `$list` is a list in which to set the given value.
     * `$item` is the item to be set in the given list.
     * `$index` is an optional zero-based index identifying
-      the item to be set. Supports forward and reverse 
-      indexing (where, for example, an index of -1 is the 
-      last item in the list, and an index of -2 is the 
+      the item to be set. Supports forward and reverse
+      indexing (where, for example, an index of -1 is the
+      last item in the list, and an index of -2 is the
       second last item in the list).
-    * `$class` is an optional Java class name that the list 
+    * `$class` is an optional Java class name that the list
       and item are required to be instances of.
 
   * Outputs:
-    * `$list` is the resulting list with the item at the given 
+    * `$list` is the resulting list with the item at the given
       index set to the given value.
 
 * #### tundra.list.object:resize
@@ -3985,7 +3985,7 @@ Services for manipulating java.lang.Object lists:
 
 * #### tundra.list.object:reverse
 
-  Returns a new list with all items from the given list in 
+  Returns a new list with all items from the given list in
   reverse order.
 
   * Inputs:
@@ -4009,14 +4009,14 @@ Services for manipulating java.lang.Object lists:
 
 * #### tundra.list.object:slice
 
-  Returns a new list which is a subset of the items in the 
+  Returns a new list which is a subset of the items in the
   given list.
 
   * Inputs:
     * `$list` is the list to be sliced.
     * `$index` is the zero-based start index from which to
       take the slice.
-    * `$length` is the number of items to include in the 
+    * `$length` is the number of items to include in the
       slice.
 
   * Outputs:
@@ -4024,8 +4024,8 @@ Services for manipulating java.lang.Object lists:
 
 * #### tundra.list.object:sort
 
-  Returns a new list sorted according to the [natural ordering] of 
-  the given list's items. 
+  Returns a new list sorted according to the [natural ordering] of
+  the given list's items.
 
   * Inputs:
     * `$list` is the list to be sorted.
@@ -4035,7 +4035,7 @@ Services for manipulating java.lang.Object lists:
 
 * #### tundra.list.object:unique
 
-  Returns a new list with all duplicates from the given list 
+  Returns a new list with all duplicates from the given list
   removed, such that no two items are equal.
 
   * Inputs:
@@ -4049,12 +4049,12 @@ Services for manipulating java.lang.Object lists:
 
 * #### tundra.list.service:chain
 
-  Invokes each service in the given list sequentially, sharing 
+  Invokes each service in the given list sequentially, sharing
   the pipeline across all invokes.
 
 
   * Inputs:
-    * `$services` is a list of fully-qualified service names 
+    * `$services` is a list of fully-qualified service names
       identifying the services to be invoked sequentially.
     * `$pipeline` is an optional scoped pipeline to use when
       invoking the services. If not specified, the pipeline
@@ -4062,8 +4062,8 @@ Services for manipulating java.lang.Object lists:
 
   * Outputs:
     * `$pipeline` is the output pipeline of the invocations of
-      `$services`. This is only returned if `$pipeline` was specified 
-      as an input. Otherwise, the outputs of these invocations are 
+      `$services`. This is only returned if `$pipeline` was specified
+      as an input. Otherwise, the outputs of these invocations are
       merged directly with the pipeline itself.
 
 * #### tundra.list.service:ensure
@@ -4073,7 +4073,7 @@ Services for manipulating java.lang.Object lists:
   is shared across all invokes.
 
   * Inputs:
-    * `$services` is a list of fully-qualified service names 
+    * `$services` is a list of fully-qualified service names
       identifying the services to be invoked sequentially in
       the [try block].
     * `$catch` is an optional fully-qualified name of a service
@@ -4083,7 +4083,7 @@ Services for manipulating java.lang.Object lists:
       exception will be rethrown.
     * `$finally` is an optional fully-qualified name of a service
       invoked in the [finally block] (always invoked regardless
-      of whether an exception is thrown).    
+      of whether an exception is thrown).
     * `$pipeline` is an optional scoped pipeline to use when
       invoking the services. If not specified, the pipeline
       itself is used.
@@ -4097,7 +4097,7 @@ Services for manipulating java.lang.Object lists:
 
 * #### tundra.list.service:invoke
 
-  Invokes a list of services either synchronously (with an optional 
+  Invokes a list of services either synchronously (with an optional
   level of concurrency) or asynchronously.
 
   * Inputs:
@@ -4105,47 +4105,47 @@ Services for manipulating java.lang.Object lists:
       * `service` is the fully-qualified name of the service to be
         invoked.
       * `pipeline` is an optional IData document which, if specified,
-        contains the input arguments for the invocation of `service`; 
-        in other words, the invocation is scoped to this IData document. 
+        contains the input arguments for the invocation of `service`;
+        in other words, the invocation is scoped to this IData document.
         If not specified, the invocation is unscoped, and hence the
         service will operate directly against the pipeline itself.
 
     * `$mode` is an optional choice of execution mode: either synchronous
-      or asynchronous. When synchronous, the invocation of 
-      `Tundra/tundra.list.service:invoke` blocks until all invocations 
-      complete. When asynchronous, `Tundra/tundra.list.service:invoke` returns 
+      or asynchronous. When synchronous, the invocation of
+      `Tundra/tundra.list.service:invoke` blocks until all invocations
+      complete. When asynchronous, `Tundra/tundra.list.service:invoke` returns
       immediately and the invocations occur on other threads.
 
     * `$concurrency` is an optional number of threads used when invoking
       synchronously. Defaults to 1.
 
   * Outputs:
-    * `$invocations` is the resulting list of services, output pipelines, 
+    * `$invocations` is the resulting list of services, output pipelines,
       and threads (when invoked in asynchronous mode).
       * `service` is the fully-qualified name of the service invoked.
       * `pipeline` is the output pipeline of the invocation of
         `service`. This is only returned if the `$mode` is synchronous,
-        and the invocation was scoped (`$invocations/pipeline` was specified 
-        as an input). If invocation was synchronous and unscoped, the 
-        outputs of the invocation are merged directly with the pipeline 
+        and the invocation was scoped (`$invocations/pipeline` was specified
+        as an input). If invocation was synchronous and unscoped, the
+        outputs of the invocation are merged directly with the pipeline
         itself. If the invocation was asynchronous, then no outputs
         are returned.
-      * `thread` is returned only when the invocation `$mode` is asynchronous, 
-        and is the thread object which can later be waited on to finish 
+      * `thread` is returned only when the invocation `$mode` is asynchronous,
+        and is the thread object which can later be waited on to finish
         using `Tundra/tundra.list.service:join`.
 
 * #### tundra.list.service:join
 
-  Waits for each service thread in the given list to finish before 
+  Waits for each service thread in the given list to finish before
   returning each output pipeline.
 
   * Inputs
-    * `$threads` is a list of service thread objects returned by 
+    * `$threads` is a list of service thread objects returned by
       `Tundra/tundra.list.service:invoke` when operating in the
       asynchronous invocation mode.
 
   * Outputs:
-    * `$pipelines` is a list of all the output pipelines returned 
+    * `$pipelines` is a list of all the output pipelines returned
       by the service threads.
 
 ### String List
@@ -4154,7 +4154,7 @@ Services for manipulating string lists:
 
 * #### tundra.list.string:append
 
-  Appends a single item to the end of a list, such that appending an item 
+  Appends a single item to the end of a list, such that appending an item
   to a list containing n items results in a new list of n + 1 items.
 
   * Inputs:
@@ -4167,7 +4167,7 @@ Services for manipulating string lists:
 
 * #### tundra.list.string:compact
 
-  Removes all null items from the given list, thereby shortening the 
+  Removes all null items from the given list, thereby shortening the
   length of the list.
 
   * Inputs:
@@ -4190,7 +4190,7 @@ Services for manipulating string lists:
 
 * #### tundra.list.string:difference
 
-  Returns a list of only the items in `$list.x` that are not also 
+  Returns a list of only the items in `$list.x` that are not also
   present in `$list.y`.
 
   * Inputs:
@@ -4198,19 +4198,19 @@ Services for manipulating string lists:
     * `$list.y` is a list to be checked against `$list.x` for differnces.
 
   * Outputs:
-    * `$list` is a new list containing only the items in `$list.x` that 
+    * `$list` is a new list containing only the items in `$list.x` that
       are not also present in `$list.y`.
 
 * #### tundra.list.string:drop
 
-  Removes the item stored at a given index in the given list. 
+  Removes the item stored at a given index in the given list.
 
   * Inputs:
     * `$list` is a list to remove the item from.
     * `$index` is an integer identifying which item to be removed from
       the given list. List indexing is zero-based. Supports both
-      forward and reverse indexing (where, for example, an index of 
-      -1 is the last item in the list, and an index of -2 is the 
+      forward and reverse indexing (where, for example, an index of
+      -1 is the last item in the list, and an index of -2 is the
       second last item in the list).
 
   * Outputs:
@@ -4219,8 +4219,8 @@ Services for manipulating string lists:
 
 * #### tundra.list.string:each
 
-  Iterates through the given list, invoking the given service for each 
-  item in the list, passing `$item`, `$index`, `$iteration` and `$length` 
+  Iterates through the given list, invoking the given service for each
+  item in the list, passing `$item`, `$index`, `$iteration` and `$length`
   variables.
 
   * Inputs:
@@ -4255,15 +4255,15 @@ Services for manipulating string lists:
   * Inputs:
     * `$list` is a list to fetch an item from.
     * `$index` is an optional zero-based index identifying
-      the item to be fetched. Supports forward and reverse 
-      indexing (where, for example, an index of -1 is the 
-      last item in the list, and an index of -2 is the 
+      the item to be fetched. Supports forward and reverse
+      indexing (where, for example, an index of -1 is the
+      last item in the list, and an index of -2 is the
       second last item in the list).
     * `$iteration` is an optional one-based index identifying
       the item to be fetched.
 
   * Outputs:
-    * `$item` is the item stored at the given index in the given 
+    * `$item` is the item stored at the given index in the given
       list.
 
 * #### tundra.list.string:grow
@@ -4297,17 +4297,17 @@ Services for manipulating string lists:
 
 * #### tundra.list.string:insert
 
-  Returns a new list with the given item inserted at the desired 
-  index in the given list.  
+  Returns a new list with the given item inserted at the desired
+  index in the given list.
 
   * Inputs:
     * `$list` is a list to check whether the given `$item` exists
       in.
     * `$item` is the item to be checked against the given `$list`.
-    * `$index` is the index at which to insert the item. List 
-      indexing is zero-based. Supports both forward and 
-      reverse indexing (where, for example, an index of -1 
-      is the last item in the list, and an index of -2 is the 
+    * `$index` is the index at which to insert the item. List
+      indexing is zero-based. Supports both forward and
+      reverse indexing (where, for example, an index of -1
+      is the last item in the list, and an index of -2 is the
       second last item in the list).
 
   * Outputs:
@@ -4316,7 +4316,7 @@ Services for manipulating string lists:
 
 * #### tundra.list.string:intersection
 
-  Returns a list of only the items in `$list.x` that are also present in 
+  Returns a list of only the items in `$list.x` that are also present in
   `$list.y`.
 
   * Inputs:
@@ -4324,17 +4324,17 @@ Services for manipulating string lists:
     * `$list.y` is a list to be intersected with `$list.x`.
 
   * Outputs:
-    * `$list` is a new list containing only the items that are present 
+    * `$list` is a new list containing only the items that are present
       in both input lists (the [set intersection]).
 
 * #### tundra.list.string:join
 
-  Returns a string created by concatenating the list items together, 
+  Returns a string created by concatenating the list items together,
   separated by the given $separator.
 
   * Inputs:
     * `$list` is a list to be converted to a string.
-    * `$separator` is an optional string used to separate each list item 
+    * `$separator` is an optional string used to separate each list item
       in the resulting string. Defaults to an empty string.
 
   * Outputs:
@@ -4357,8 +4357,8 @@ Services for manipulating string lists:
 
   * Inputs:
     * `$list` is a list of strings to be converted to lower case.
-    * `$locale` optionally identifies the case transformation rules 
-      to be used for a given [Locale]. If not specified, the 
+    * `$locale` optionally identifies the case transformation rules
+      to be used for a given [Locale]. If not specified, the
       [default locale] is used.
 
   * Outputs:
@@ -4369,8 +4369,8 @@ Services for manipulating string lists:
 
 * #### tundra.list.string:map
 
-  Returns a new list created by invoking the given service for each 
-  item in the input list, passing `$item`, `$index`, `$iteration` and 
+  Returns a new list created by invoking the given service for each
+  item in the input list, passing `$item`, `$index`, `$iteration` and
   `$length` variables, and collecting the values returned by the service
   to form the new list.
 
@@ -4396,7 +4396,7 @@ Services for manipulating string lists:
 
 * #### tundra.list.string:match
 
-  Returns the list of items which matched and the list of items which 
+  Returns the list of items which matched and the list of items which
   did not match the given [regular expression pattern].
 
   * Inputs:
@@ -4408,19 +4408,19 @@ Services for manipulating string lists:
   * Outputs:
     * `$matched` is the list of items which were found to match the given
       [regular expression pattern].
-    * `$unmatched` is the list of items which were found to not match the 
+    * `$unmatched` is the list of items which were found to not match the
       given [regular expression pattern].
 
 * #### tundra.list.string:normalize
 
-  Converts a list of strings, byte arrays or input streams to a 
+  Converts a list of strings, byte arrays or input streams to a
   list of strings.
 
   * Inputs:
-    * `$objects` is a list of strings, byte arrays, or input streams 
+    * `$objects` is a list of strings, byte arrays, or input streams
       to be converted to a string.
     * `$encoding` is an optional character set to use when `$objects`
-      is a list of byte arrays or input streams. Defaults to the Java 
+      is a list of byte arrays or input streams. Defaults to the Java
       virtual machine [default charset].
 
   * Outputs:
@@ -4428,8 +4428,8 @@ Services for manipulating string lists:
 
 * #### tundra.list.string:prepend
 
-  Prepends a single item to the front of a list, such that prepending 
-  an item to a list containing n items results in a new list of n + 1 
+  Prepends a single item to the front of a list, such that prepending
+  an item to a list containing n items results in a new list of n + 1
   items.
 
   * Inputs:
@@ -4440,8 +4440,8 @@ Services for manipulating string lists:
 
   * Outputs:
     * $list is the resulting list with the given $item prepended to the
-      Prepends a single item to the front of a list, such that prepending 
-  an item to a list containing n items results in a new list of n + 1 
+      Prepends a single item to the front of a list, such that prepending
+  an item to a list containing n items results in a new list of n + 1
   items.
 
   * Inputs:
@@ -4456,28 +4456,28 @@ Services for manipulating string lists:
 
 * #### tundra.list.string:put
 
-  Sets the value of the item at the given index in the given list.  
+  Sets the value of the item at the given index in the given list.
 
   * Inputs:
     * `$list` is a list in which to set the given value.
     * `$item` is the item to be set in the given list.
     * `$index` is an optional zero-based index identifying
-      the item to be set. Supports forward and reverse 
-      indexing (where, for example, an index of -1 is the 
-      last item in the list, and an index of -2 is the 
+      the item to be set. Supports forward and reverse
+      indexing (where, for example, an index of -1 is the
+      last item in the list, and an index of -2 is the
       second last item in the list).
 
   * Outputs:
-    * `$list` is the resulting list with the item at the given 
+    * `$list` is the resulting list with the item at the given
       index set to the given value.
 
 * #### tundra.list.string:replace
 
-  Replaces all occurrences of the given [regular expression pattern] 
+  Replaces all occurrences of the given [regular expression pattern]
   in the given list of strings, with the replacement string.
 
   * Inputs:
-    * `$list` is a list of strings to have all occurrences of the given 
+    * `$list` is a list of strings to have all occurrences of the given
       [regular expression pattern] replaced.
     * `$pattern` is the [regular expression pattern] to match against
       the given string.
@@ -4513,7 +4513,7 @@ Services for manipulating string lists:
 
 * #### tundra.list.string:reverse
 
-  Returns a new list with all items from the given list in 
+  Returns a new list with all items from the given list in
   reverse order.
 
   * Inputs:
@@ -4538,14 +4538,14 @@ Services for manipulating string lists:
 
 * #### tundra.list.string:slice
 
-  Returns a new list which is a subset of the items in the 
+  Returns a new list which is a subset of the items in the
   given list.
 
   * Inputs:
     * `$list` is the list to be sliced.
     * `$index` is the zero-based start index from which to
       take the slice.
-    * `$length` is the number of items to include in the 
+    * `$length` is the number of items to include in the
       slice.
 
   * Outputs:
@@ -4553,8 +4553,8 @@ Services for manipulating string lists:
 
 * #### tundra.list.string:sort
 
-  Returns a new list sorted according to the [natural ordering] of 
-  the given list's items. 
+  Returns a new list sorted according to the [natural ordering] of
+  the given list's items.
 
   * Inputs:
     * `$list` is the list to be sorted.
@@ -4564,12 +4564,12 @@ Services for manipulating string lists:
 
 * #### tundra.list.string:squeeze
 
-  Replaces runs of one or more whitespace characters (space, tab, 
+  Replaces runs of one or more whitespace characters (space, tab,
   carriage return, line feed) with a single space character in
   the given list of strings.
 
   * Inputs:
-    * `$list` is a list of strings to squeeze extraneous whitespace 
+    * `$list` is a list of strings to squeeze extraneous whitespace
       from.
 
   * Outputs:
@@ -4579,10 +4579,10 @@ Services for manipulating string lists:
 * #### tundra.list.string:substitute
 
   Attempts variable substitution on each string in the given list
-  by replacing all occurrences of substrings matching "%key%" with 
+  by replacing all occurrences of substrings matching "%key%" with
   the associated (optionally scoped) value.
 
-  Optionally replaces null or non-existent values with the given 
+  Optionally replaces null or non-existent values with the given
   default value.
 
   * Inputs:
@@ -4594,27 +4594,27 @@ Services for manipulating string lists:
       of null or missing values.
 
   * Outputs:
-    * `$list` is the input list of strings with variable substitution 
-      patterns, such as "%key%", replaced with the value of the key 
-      (resolved against either `$pipeline`, if specified, or the pipeline 
+    * `$list` is the input list of strings with variable substitution
+      patterns, such as "%key%", replaced with the value of the key
+      (resolved against either `$pipeline`, if specified, or the pipeline
       itself).
 
 * #### tundra.list.string:trim
 
-  Removes leading and trailing whitespace from each string in the 
+  Removes leading and trailing whitespace from each string in the
   given list.
 
   * Inputs:
-    * `$list` is a list of strings to be trimmed of leading and trailing 
+    * `$list` is a list of strings to be trimmed of leading and trailing
       whitespace characters.
 
   * Outputs:
-    * `$list` is the input list of strings with leading and trailing 
+    * `$list` is the input list of strings with leading and trailing
       whitespace characters removed.
 
 * #### tundra.list.string:unique
 
-  Returns a new list with all duplicates from the given list 
+  Returns a new list with all duplicates from the given list
   removed, such that no two items are equal.
 
   * Inputs:
@@ -4630,8 +4630,8 @@ Services for manipulating string lists:
 
   * Inputs:
     * `$list` is a list of strings to be converted to upper case.
-    * `$locale` optionally identifies the case transformation rules 
-      to be used for a given [Locale]. If not specified, the 
+    * `$locale` optionally identifies the case transformation rules
+      to be used for a given [Locale]. If not specified, the
       [default locale] is used.
 
   * Outputs:
@@ -4646,8 +4646,8 @@ Services related to Multipurpose Internet Mail Extension ([MIME]):
 
 * #### tundra.mime.type:emit
 
-    Emits a Multipurpose Internet Mail Extension ([MIME]) type, 
-    according to [RFC 2045] and [RFC 2046], given its constituent 
+    Emits a Multipurpose Internet Mail Extension ([MIME]) type,
+    according to [RFC 2045] and [RFC 2046], given its constituent
     parts.
 
     Implemented with the [javax.activation.MimeType] class.
@@ -4676,7 +4676,7 @@ Services related to Multipurpose Internet Mail Extension ([MIME]):
 
 * #### tundra.mime.type:normalize
 
-    Normalizes a mime type by removing extraneous whitespace characters, 
+    Normalizes a mime type by removing extraneous whitespace characters,
     and listing parameters in alphabetical order.
 
     Implemented with the [javax.activation.MimeType] class.
@@ -4689,13 +4689,13 @@ Services related to Multipurpose Internet Mail Extension ([MIME]):
 
 * #### tundra.mime.type:parse
 
-    Parses a Multipurpose Internet Mail Extension ([MIME]) type, according 
+    Parses a Multipurpose Internet Mail Extension ([MIME]) type, according
     to [RFC 2045] and [RFC 2046], into its constituent parts.
 
     Implemented with the [javax.activation.MimeType] class.
 
     * Inputs:
-      * `$string` is an optional [mime type] string to be normalized.
+      * `$string` is an optional [mime type] string to be parsed.
 
     * Outputs:
       * `$type` is an IData data structure representing the constituent
@@ -4703,8 +4703,8 @@ Services related to Multipurpose Internet Mail Extension ([MIME]):
 
 * #### tundra.mime.type:validate
 
-    Returns true if the given string can be parsed as a valid Multipurpose 
-    Internet Mail Extension ([MIME]) type, according to [RFC 2045] and 
+    Returns true if the given string can be parsed as a valid Multipurpose
+    Internet Mail Extension ([MIME]) type, according to [RFC 2045] and
     [RFC 2046].
 
     Implemented with the [javax.activation.MimeType] class.
@@ -4739,7 +4739,7 @@ Services for querying Integration Server namespace nodes:
       * `$permissions` is the list of permissions to be granted on
         the given `$node`.
         * `type` identifies the type of permission to be granted, one of:
-          * `list` allows members of the given ACL to see the child items 
+          * `list` allows members of the given ACL to see the child items
             in the given node
           * `read` allows members of the given ACL to view the given node
           * `write` allows members of the given ACL to change the given node
@@ -4767,7 +4767,7 @@ Services for querying Integration Server namespace nodes:
 
 * #### tundra.node:list
 
-    Lists an interface's child nodes. Optionally filters based on 
+    Lists an interface's child nodes. Optionally filters based on
     the given regular expression pattern, and node type.
 
     * Inputs:
@@ -4784,7 +4784,7 @@ Services for querying Integration Server namespace nodes:
         matches the given pattern are returned).
       * `$type` is an optional node type used to filter the returned
         list of nodes (only nodes whose type matches are returned).
-      * `$recurse?` is an optional boolean flag indicating whether to 
+      * `$recurse?` is an optional boolean flag indicating whether to
         recursively list all items in all child folders/interfaces.
         Defaults to false.
 
@@ -4794,7 +4794,7 @@ Services for querying Integration Server namespace nodes:
 
 * #### tundra.node:type
 
-    Returns the type of the given node, such as whether it is an 
+    Returns the type of the given node, such as whether it is an
     interface, service, or record.
 
     * Inputs:
@@ -4817,7 +4817,7 @@ Services for manipulating java.lang.Object objects:
 
 * #### tundra.object:convert
 
-    Converts a string, byte array, or input stream object to a string, 
+    Converts a string, byte array, or input stream object to a string,
     byte array or input stream object.
 
     * Inputs:
@@ -4827,7 +4827,7 @@ Services for manipulating java.lang.Object objects:
         'string', which determines the type of object returned by
         this service. Defaults to 'stream'.
       * `$encoding` is an optional character set to use when converting
-        from or to a string. Defaults to the Java virtual machine 
+        from or to a string. Defaults to the Java virtual machine
         [default charset].
 
     * Outputs:
@@ -4846,7 +4846,7 @@ Services for manipulating java.lang.Object objects:
         to `$object.x`.
 
     * Outputs:
-      * `$equal?` is true if the two input objects are considered 
+      * `$equal?` is true if the two input objects are considered
         equivalent.
 
 * #### tundra.object:instance
@@ -4863,12 +4863,12 @@ Services for manipulating java.lang.Object objects:
 
 * #### tundra.object:listify
 
-    Converts the value identified by the given key to a new list of type 
-    Object[], containing the original value as its single item, unless 
+    Converts the value identified by the given key to a new list of type
+    Object[], containing the original value as its single item, unless
     the original value is already list in which it remains unmodified.
 
     * Inputs:
-      * `$key` is a simple or fully-qualified (such as a/b/c[0]/d) key 
+      * `$key` is a simple or fully-qualified (such as a/b/c[0]/d) key
         identifying the value to be converted to a list.
       * `$scope` is an optional IData document that, if specified, is used
         to resolve the given $key against. If not specified, `$key` is
@@ -4890,7 +4890,7 @@ Services for manipulating java.lang.Object objects:
 
 * #### tundra.object:reflect
 
-    Returns whether the given object is an array, a primitive type or an 
+    Returns whether the given object is an array, a primitive type or an
     array of a [primitive type], and its Java class name.
 
     * Inputs:
@@ -4900,12 +4900,12 @@ Services for manipulating java.lang.Object objects:
     * Outputs:
       * `$class` is the Java class name of the given object.
       * `$array?` is a boolean indicating if the given object is an array.
-      * `$primitive?` is a boolean indicating if the given object is a 
+      * `$primitive?` is a boolean indicating if the given object is a
         [primitive type], or an array of a [primitive type].
 
 * #### tundra.object:stringify
 
-    Converts the given object to its string representation by calling 
+    Converts the given object to its string representation by calling
     [Object.toString()].
 
     * Inputs:
@@ -4913,15 +4913,15 @@ Services for manipulating java.lang.Object objects:
         representation.
 
     * Outputs:
-      * `$string` is the given object converted to its string 
+      * `$string` is the given object converted to its string
         representation.
 
 ### Pipeline
 
 * #### tundra.pipeline:capture
 
-    Clones the pipeline and returns it.  This is useful if you want 
-    to use the pipeline itself as a document, which you can then pass 
+    Clones the pipeline and returns it.  This is useful if you want
+    to use the pipeline itself as a document, which you can then pass
     as input when calling a service for example.
 
     * Outputs:
@@ -4929,44 +4929,44 @@ Services for manipulating java.lang.Object objects:
 
 * #### tundra.pipeline:clear
 
-    Removes all elements from the pipeline, except for any keys 
+    Removes all elements from the pipeline, except for any keys
     specified in the preserve list.
 
     * Inputs:
-      * `$preserve` is a list of keys (simple or fully qualified, 
-        such as a/b/c[0]/d) to not be dropped from the pipeline. 
+      * `$preserve` is a list of keys (simple or fully qualified,
+        such as a/b/c[0]/d) to not be dropped from the pipeline.
         All other keys not in this list will be dropped.
 
 * #### tundra.pipeline:copy
 
-    Copies the value associated with the source key to the target 
+    Copies the value associated with the source key to the target
     key in the given IData document.
 
     * Inputs:
       * `$key.source` identifies the value to be copied, and can be
         simple or fully qualified, such as a/b/c[0]/d.
-      * `$key.target` is the key to copy the source value to, and 
+      * `$key.target` is the key to copy the source value to, and
         can be simple or fully qualified, such as a/b/c[0]/d.
 
 * #### tundra.pipeline:drop
 
-    Drops the key value pair associated with the given key from 
-    the pipeline. 
+    Drops the key value pair associated with the given key from
+    the pipeline.
 
     * Inputs:
-      * `$key` identifies the key value pair to be dropped, and 
+      * `$key` identifies the key value pair to be dropped, and
         can be simple or fully qualified, such as a/b/c[0]/d.
 
 * #### tundra.pipeline:emit
 
-    Emits (or encodes) the current pipeline as an [IData XML] string, 
+    Emits (or encodes) the current pipeline as an [IData XML] string,
     byte array, or input stream.
 
     * Inputs:
       * `$encoding` is an optional character set to use when $content is
-        returned as an input stream or byte array. Defaults to the Java 
+        returned as an input stream or byte array. Defaults to the Java
         virtual machine [default charset].
-      * `$mode` is an optional choice of 'stream', 'bytes', or 'string', 
+      * `$mode` is an optional choice of 'stream', 'bytes', or 'string',
         and determines the type of content object returned.
 
     * Outputs:
@@ -4983,8 +4983,8 @@ Services for manipulating java.lang.Object objects:
 
 * #### tundra.pipeline:get
 
-    Returns the value associated with the given key from the 
-    pipeline, or null if it doesn't exist. 
+    Returns the value associated with the given key from the
+    pipeline, or null if it doesn't exist.
 
     * Inputs:
       * `$key` identifies the value to be retrieved from the pipeline,
@@ -5006,7 +5006,7 @@ Services for manipulating java.lang.Object objects:
     Returns the number of top-level elements in the pipeline.
 
     * Outputs:
-      * `$length` is the number of top-level elements in the 
+      * `$length` is the number of top-level elements in the
         pipeline.
 
 * #### tundra.pipeline:log
@@ -5019,7 +5019,7 @@ Services for manipulating java.lang.Object objects:
 
 * #### tundra.pipeline:merge
 
-    Merges the elements in the given IData document into the 
+    Merges the elements in the given IData document into the
     pipeline.
 
     * Inputs:
@@ -5028,7 +5028,7 @@ Services for manipulating java.lang.Object objects:
 
 * #### tundra.pipeline:normalize
 
-    Iterates over each element in the pipeline, deconstructing 
+    Iterates over each element in the pipeline, deconstructing
     all fully qualified keys into their constituent parts.
 
     For example, if a pipeline contains the following key value
@@ -5055,53 +5055,53 @@ Services for manipulating java.lang.Object objects:
           "f": ["example 4", "example 5"]
         }
 
-    Keys using path-style notation, for example "a/b/c", are 
+    Keys using path-style notation, for example "a/b/c", are
     converted to nested IData documents with the final key
     in the path, "c" in this example, assigned the value of
     the original key.
 
-    Keys using array- or list-style notation, for example "f[0]", 
-    are converted to an array or list with the value of the 
+    Keys using array- or list-style notation, for example "f[0]",
+    are converted to an array or list with the value of the
     original key assigned to the indexed item (the zeroth item in
     this example).
 
 * #### tundra.pipeline:parse
 
-    Parses (or decodes) the given [IData XML] string, byte array, 
+    Parses (or decodes) the given [IData XML] string, byte array,
     or input stream and merges it into the pipeline.
 
     * Inputs:
       * `$content` is a string, byte array, or input stream containing
         [IData XML] data to be parsed and merged into the pipeline.
       * `$encoding` is an optional character set to use when `$content` is
-        provided as a byte array or input stream. Defaults to the Java 
+        provided as a byte array or input stream. Defaults to the Java
         virtual machine [default charset].
 
 * #### tundra.pipeline:put
 
-    Sets the value associated with the given key in the pipeline. 
+    Sets the value associated with the given key in the pipeline.
 
     * Inputs:
-      * `$key` is a simple or fully qualified key (a/b/c[0]/d) to 
+      * `$key` is a simple or fully qualified key (a/b/c[0]/d) to
         associate with the given $value.
       * `$value` is the value to be associated with the given `$key`.
 
 * #### tundra.pipeline:rename
 
-    Renames the value associated with the source key to have the 
-    target key in the pipeline. After being renamed, the source 
+    Renames the value associated with the source key to have the
+    target key in the pipeline. After being renamed, the source
     key will no longer exist in the pipeline.
 
     * Inputs:
-      * `$key.source` is a simple or fully qualified key (a/b/c[0]/d) 
+      * `$key.source` is a simple or fully qualified key (a/b/c[0]/d)
         to be renamed to the given target key.
       * `$key.target` is the new simple or fully qualified key that the
         source key will be renamed to.
 
 * #### tundra.pipeline:substitute
 
-    Attempts variable substitution on every string element in the 
-    pipeline by replacing all occurrences of substrings matching 
+    Attempts variable substitution on every string element in the
+    pipeline by replacing all occurrences of substrings matching
     "%key%" with the associated value.
 
 ### Schema
@@ -5110,26 +5110,26 @@ Document references and service specifications:
 
 * #### tundra.schema.content.retrieve:handler
 
-    Content retrieval protocol handling services used by `tundra.content:retrieve` must 
+    Content retrieval protocol handling services used by `tundra.content:retrieve` must
     implement this specification.
 
     * Inputs:
       * `$source` is the source URI identifying the location and names of the content
         to be retrieved.
-      * `$service` is the content processing service that is called for each item of 
-        content retrieved from `$source`. This service is required to implement the 
+      * `$service` is the content processing service that is called for each item of
+        content retrieved from `$source`. This service is required to implement the
         `tundra.schema.content.retrieve:processor` specification.
-      * `$limit` is an optional maximum number of content items to be retrieved from 
+      * `$limit` is an optional maximum number of content items to be retrieved from
         `$source` per retrieval.
 
     * Outputs:
-      * `$message` is an optional diagnostic message describing the results of the 
+      * `$message` is an optional diagnostic message describing the results of the
         retrieval.
 
 * #### tundra.schema.content.retrieve:processor
 
-    Content processing services used by `tundra.content:retrieve` must implement this 
-    specification. 
+    Content processing services used by `tundra.content:retrieve` must implement this
+    specification.
 
     * Inputs:
       * `$content` is the content to be processed, specified as a [java.io.InputStream].
@@ -5138,15 +5138,15 @@ Document references and service specifications:
 
 * #### tundra.schema.exception:handler
 
-    Exception handling `$catch` services called by `tundra.service:ensure` can 
+    Exception handling `$catch` services called by `tundra.service:ensure` can
     implement this specification.
 
     * Inputs
-      * `$exception` is the [java.lang.Throwable] object that was caught by this 
+      * `$exception` is the [java.lang.Throwable] object that was caught by this
         handler to be handled.
       * `$exception?` is a boolean flag indicating if an exception was thrown.
       * `$exception.class` is the Java class name of the caught exception object.
-      * `$exception.message` is the exception message describing the error that has 
+      * `$exception.message` is the exception message describing the error that has
         occurred.
       * `$exception.stack` is the Java call stack describing where the error occurred.
 
@@ -5160,7 +5160,7 @@ Document references and service specifications:
 
     * Outputs:
       * `$response` is the processed [HTTP] response. How the response is processed is
-        at the discretion of the implementing service. Refer to the standard 
+        at the discretion of the implementing service. Refer to the standard
         `tundra.http.response:handle` service for a reference implementation.
 
 ### Service
@@ -5170,23 +5170,23 @@ Document references and service specifications:
     Returns the current call stack.
 
     * Outputs:
-      * `$callstack` is a list of fully-qualified service names 
+      * `$callstack` is a list of fully-qualified service names
         in invocation order with the top-level service as the
         first item.
       * `$callers` is a string representation of the call stack,
         which is useful for diagnostics/logging.
       * `$caller` is the fully-qualified service name of the
-        immediate caller of the service which invoked 
+        immediate caller of the service which invoked
         tundra.service:callstack, which is useful for obtaining
         the name of the service which called the currently
         executing service.
 
 * #### tundra.service:ensure
 
-    Provides a try/catch/finally pattern for flow services. 
+    Provides a try/catch/finally pattern for flow services.
 
     * Inputs
-      * `$service` is the fully-qualified name of a service invoked 
+      * `$service` is the fully-qualified name of a service invoked
         in the [try block].
       * `$catch` is an optional fully-qualified name of a service
         invoked in the [catch block]. This service should
@@ -5197,10 +5197,10 @@ Document references and service specifications:
         invoked in the [finally block] (always invoked regardless
         of whether an exception is thrown by `$service` or not).
       * `$pipeline` is an optional IData document which, if specified,
-        contains the input arguments for the invocations of `$service`, 
-        `$catch`, and `$finally`; in other words, the calls to these 
-        services are scoped to this IData document. If not specified, 
-        the invocations are not scoped, and hence these services 
+        contains the input arguments for the invocations of `$service`,
+        `$catch`, and `$finally`; in other words, the calls to these
+        services are scoped to this IData document. If not specified,
+        the invocations are not scoped, and hence these services
         operate directly against the pipeline itself.
 
     * Outputs:
@@ -5212,48 +5212,48 @@ Document references and service specifications:
 
 * #### tundra.service:invoke
 
-    Invokes a service either synchronously or asynchronously, and 
+    Invokes a service either synchronously or asynchronously, and
     either scoped or unscoped.
 
     * Inputs
       * `$service` is the fully-qualified name of the service to be
         invoked.
       * `$pipeline` is an optional IData document which, if specified,
-        contains the input arguments for the invocation of `$service`; 
-        in other words, the invocation is scoped to this IData document. 
+        contains the input arguments for the invocation of `$service`;
+        in other words, the invocation is scoped to this IData document.
         If not specified, the invocation is unscoped, and hence the
         service will operate directly against the pipeline itself.
       * `$mode` is an optional choice of execution mode: either synchronous
-        or asynchronous. When synchronous, the invocation of 
-        `Tundra/tundra.service:invoke` blocks until the invocation of 
-        `$service` completes. When asynchronous, `Tundra/tundra.service:invoke` 
-        returns immediately and the invocation of `$service` occurs on another 
+        or asynchronous. When synchronous, the invocation of
+        `Tundra/tundra.service:invoke` blocks until the invocation of
+        `$service` completes. When asynchronous, `Tundra/tundra.service:invoke`
+        returns immediately and the invocation of `$service` occurs on another
         thread.
 
     * Outputs:
       * `$pipeline` is the output pipeline of the invocation of
         `$service`. This is only returned if the `$mode` is synchronous,
-        and the invocation was scoped (`$pipeline` was specified as an 
-        input). If the invocation was synchronous and unscoped, the 
-        outputs of the invocation are merged directly with the pipeline 
+        and the invocation was scoped (`$pipeline` was specified as an
+        input). If the invocation was synchronous and unscoped, the
+        outputs of the invocation are merged directly with the pipeline
         itself. If the invocation was asynchronous, then no outputs
         are returned.
-      * `$thread` is returned only when the invocation `$mode` is asynchronous, 
-        and is the thread object which can later be waited on to finish 
+      * `$thread` is returned only when the invocation `$mode` is asynchronous,
+        and is the thread object which can later be waited on to finish
         using `Tundra/tundra.service:join`.
 
 * #### tundra.service:join
 
-    Waits for the given service thread to finish before returning the 
+    Waits for the given service thread to finish before returning the
     service output pipeline.
 
     * Inputs
-      * `$thread` is a service thread object returned by 
+      * `$thread` is a service thread object returned by
         `Tundra/tundra.service:invoke` when a service is invoked
         asynchronously.
 
     * Outputs:
-      * `$pipeline` is the output pipeline returned by the service 
+      * `$pipeline` is the output pipeline returned by the service
         thread.
 
 * #### tundra.service:nothing
@@ -5262,18 +5262,18 @@ Document references and service specifications:
 
 * #### tundra.service:self
 
-    Returns the name of the current service, or null if invoked 
+    Returns the name of the current service, or null if invoked
     directly.
 
     * Outputs:
-      * `$self` is the fully-qualified name of the current service 
-        (the service which called this service), or null if invoked 
+      * `$self` is the fully-qualified name of the current service
+        (the service which called this service), or null if invoked
         directly.
 
 * #### tundra.service:sleep
 
-    Sends the currently executing thread to sleep (temporarily 
-    cease execution) for the specified duration, subject to the 
+    Sends the currently executing thread to sleep (temporarily
+    cease execution) for the specified duration, subject to the
     precision and accuracy of system timers and schedulers.
 
     * Inputs:
@@ -5282,7 +5282,7 @@ Document references and service specifications:
 
 * #### tundra.service:validate
 
-    Returns true if the given service name exists and is actually 
+    Returns true if the given service name exists and is actually
     a service.
 
     * Inputs:
@@ -5313,7 +5313,7 @@ Services for storing and retrieving values in session state.
     Stores the given key value pair in current session state.
 
     * Inputs:
-      * `$key` is the optional key name to use to identify the value 
+      * `$key` is the optional key name to use to identify the value
         to be stored in session state. If not specified, this
         service does nothing.
       * `$value` is the optional value to be stored in session state.
@@ -5323,8 +5323,8 @@ Services for storing and retrieving values in session state.
     Removes the given key value pair from current session state.
 
     * Inputs:
-      * `$key` is the optional key name to use to identify the key 
-        value pair to be removed from session state. If not specified, 
+      * `$key` is the optional key name to use to identify the key
+        value pair to be removed from session state. If not specified,
         this service does nothing, otherwise the key value pair is
         removed from session state.
 
@@ -5347,7 +5347,7 @@ Services for manipulating java.io.InputStream and java.io.OutputStream objects:
 
 * #### tundra.stream:copy
 
-    Copies all data from the given input stream (or string or bytes) to the given 
+    Copies all data from the given input stream (or string or bytes) to the given
     output stream, then closes the streams.
 
     * Inputs:
@@ -5361,16 +5361,16 @@ Services for manipulating java.io.InputStream and java.io.OutputStream objects:
     Converts a string, bytes or input stream to an input stream.
 
     * Inputs:
-      * `$object` is an optional [java.lang.String], byte[], or [java.io.InputStream] 
-        object to be converted to a [java.io.InputStream] object. If not specified, 
+      * `$object` is an optional [java.lang.String], byte[], or [java.io.InputStream]
+        object to be converted to a [java.io.InputStream] object. If not specified,
         this service does nothing.
       * `$encoding` is the character set used to encode the character data when `$object`
-        is specified as a [java.lang.String]. Defaults to the Java virtual machine 
+        is specified as a [java.lang.String]. Defaults to the Java virtual machine
         [default charset].
 
     * Outputs:
-      * `$stream` is an optional [java.io.InputStream] object from which can be read the 
-        data represented by `$object`. If `$object` was not specified, no `$stream` is 
+      * `$stream` is an optional [java.io.InputStream] object from which can be read the
+        data represented by `$object`. If `$object` was not specified, no `$stream` is
         returned.
 
 ### String
@@ -5401,13 +5401,13 @@ Services for manipulating java.lang.String objects:
 
 * #### tundra.string:listify
 
-    Converts the string value identified by the given key to a new list 
-    of type String[], containing the original value as its single item, 
-    unless the original value is already list in which case it remains 
+    Converts the string value identified by the given key to a new list
+    of type String[], containing the original value as its single item,
+    unless the original value is already list in which case it remains
     unmodified.
 
     * Inputs:
-      * `$key` is a simple or fully-qualified (such as a/b/c[0]/d) key 
+      * `$key` is a simple or fully-qualified (such as a/b/c[0]/d) key
         identifying the string value to be converted to a list.
       * `$scope` is an optional IData document that, if specified, is used
         to resolve the given $key against. If not specified, `$key` is
@@ -5426,8 +5426,8 @@ Services for manipulating java.lang.String objects:
 
     * Inputs:
       * `$string` is a string to be converted to lower case.
-      * `$locale` optionally identifies the case transformation rules 
-        to be used for a given [Locale]. If not specified, the 
+      * `$locale` optionally identifies the case transformation rules
+        to be used for a given [Locale]. If not specified, the
         [default locale] is used.
 
     * Outputs:
@@ -5438,8 +5438,8 @@ Services for manipulating java.lang.String objects:
 
 * #### tundra.string:match
 
-    Returns whether the given [regular expression pattern] matches the 
-    given string. 
+    Returns whether the given [regular expression pattern] matches the
+    given string.
 
     * Inputs:
       * `$string` is a string to be matched against the given regular
@@ -5456,10 +5456,10 @@ Services for manipulating java.lang.String objects:
     Converts a string, bytes or input stream to a string.
 
     * Inputs:
-      * `$object` is a string, byte array, or input stream to be 
+      * `$object` is a string, byte array, or input stream to be
         converted to a string.
       * `$encoding` is an optional character set to use when `$object`
-        is a byte array or input stream. Defaults to the Java virtual 
+        is a byte array or input stream. Defaults to the Java virtual
         machine [default charset].
 
     * Outputs:
@@ -5467,11 +5467,11 @@ Services for manipulating java.lang.String objects:
 
 * #### tundra.string:replace
 
-    Replaces all occurrences of the given [regular expression pattern] 
+    Replaces all occurrences of the given [regular expression pattern]
     in the given string, with the replacement string.
 
     * Inputs:
-      * `$string` is a string to have all occurrences of the given 
+      * `$string` is a string to have all occurrences of the given
         [regular expression pattern] replaced.
       * `$pattern` is the [regular expression pattern] to match against
         the given string.
@@ -5498,13 +5498,13 @@ Services for manipulating java.lang.String objects:
         the given string.
 
     * Outputs:
-      * `$list` is the list of tokens that were found in the input string 
+      * `$list` is the list of tokens that were found in the input string
         that were separated with an occurence of the given
         [regular expression pattern].
 
 * #### tundra.string:split
 
-    Replaces runs of one or more whitespace characters (space, tab, 
+    Replaces runs of one or more whitespace characters (space, tab,
     carriage return, line feed) with a single space character.
 
     * Inputs:
@@ -5517,11 +5517,11 @@ Services for manipulating java.lang.String objects:
 
 * #### tundra.string:substitute
 
-    Attempts variable substitution on the given string by replacing all 
-    occurrences of substrings matching "%key%" with the associated 
+    Attempts variable substitution on the given string by replacing all
+    occurrences of substrings matching "%key%" with the associated
     (optionally scoped) value.
 
-    Optionally replaces null or non-existent values with the given default 
+    Optionally replaces null or non-existent values with the given default
     value.
 
     * Inputs:
@@ -5542,7 +5542,7 @@ Services for manipulating java.lang.String objects:
     Removes leading and trailing whitespace from the given string.
 
     * Inputs:
-      * `$string` is a string to be trimmed of leading and trailing 
+      * `$string` is a string to be trimmed of leading and trailing
         whitespace characters.
 
     * Outputs:
@@ -5555,8 +5555,8 @@ Services for manipulating java.lang.String objects:
 
     * Inputs:
       * `$string` is a string to be converted to upper case.
-      * `$locale` optionally identifies the case transformation rules 
-        to be used for a given [Locale]. If not specified, the 
+      * `$locale` optionally identifies the case transformation rules
+        to be used for a given [Locale]. If not specified, the
         [default locale] is used.
 
     * Outputs:
@@ -5569,13 +5569,13 @@ Services for manipulating java.lang.String objects:
 
 * #### tundra.system:reflect
 
-    Returns information about Integration Server, such as the software version, 
+    Returns information about Integration Server, such as the software version,
     environment settings, Java properties, well-known directory locations, and
     memory usage.
 
     * Outputs:
-      * `$system` is a returned IData document containing the software version, 
-        environment settings, Java properties, well-known directory locations, 
+      * `$system` is a returned IData document containing the software version,
+        environment settings, Java properties, well-known directory locations,
         and memory usage.
 
 ### Time Zone
@@ -5586,26 +5586,26 @@ Services for manipulating java.lang.String objects:
 
   * Inputs:
     * `$id` is a [java.util.TimeZone] ID identifying the time
-      zone to be returned. 
+      zone to be returned.
     * `$datetime` is an optional XML datetime string identifying
       the instant in time to be used to determine the Universal
-      Coordinated Time (UTC) offset and whether Daylight Savings 
-      Time (DST) is applicable. If not specified, defaults to 
+      Coordinated Time (UTC) offset and whether Daylight Savings
+      Time (DST) is applicable. If not specified, defaults to
       the current datetime.
 
   * Outputs:
     * `$timezone` is an IData document describing the time zone
       associated with the given `$id`.
-      * `id` is the [java.util.TimeZone] ID associated with the 
+      * `id` is the [java.util.TimeZone] ID associated with the
         time zone.
       * `name` is a short name associated with the time zone.
       * `description` is a long name associated with the time zone.
-      * `utc.offset` is the historically correct XML duration added 
-        to UTC time to get local time in this time zone for the 
-        given `$datetime` instant. If daylight savings time is in 
+      * `utc.offset` is the historically correct XML duration added
+        to UTC time to get local time in this time zone for the
+        given `$datetime` instant. If daylight savings time is in
         effect for the given `$datetime` instant, then this value was
         adjusted to include the daylight savings offset.
-      * `dst.used?` is a boolean indicating if daylight savings 
+      * `dst.used?` is a boolean indicating if daylight savings
         time is used by this time zone.
       * `dst.active?` is a boolean indicating if daylight savings
         time is in effect for the given `$datetime` instant.
@@ -5619,23 +5619,23 @@ Services for manipulating java.lang.String objects:
   * Inputs:
     * `$datetime` is an optional XML datetime string identifying
       the instant in time to be used to determine the Universal
-      Coordinated Time (UTC) offset and whether Daylight Savings 
-      Time (DST) is applicable. If not specified, defaults to 
+      Coordinated Time (UTC) offset and whether Daylight Savings
+      Time (DST) is applicable. If not specified, defaults to
       the current datetime.
 
   * Outputs:
-    * `$timezones` is an IData document list of time zones known to 
+    * `$timezones` is an IData document list of time zones known to
       the running instance of the Java Virtual Machine.
-      * `id` is the [java.util.TimeZone] ID associated with the 
+      * `id` is the [java.util.TimeZone] ID associated with the
         time zone.
       * `name` is a short name associated with the time zone.
       * `description` is a long name associated with the time zone.
-      * `utc.offset` is the historically correct XML duration added 
-        to UTC time to get local time in this time zone for the 
-        given `$datetime` instant. If daylight savings time is in 
+      * `utc.offset` is the historically correct XML duration added
+        to UTC time to get local time in this time zone for the
+        given `$datetime` instant. If daylight savings time is in
         effect for the given `$datetime` instant, then this value was
         adjusted to include the daylight savings offset.
-      * `dst.used?` is a boolean indicating if daylight savings 
+      * `dst.used?` is a boolean indicating if daylight savings
         time is used by this time zone.
       * `dst.active?` is a boolean indicating if daylight savings
         time is in effect for the given `$datetime` instant.
@@ -5649,25 +5649,25 @@ Services for manipulating java.lang.String objects:
   * Inputs:
     * `$datetime` is an optional XML datetime string identifying
       the instant in time to be used to determine the Universal
-      Coordinated Time (UTC) offset and whether Daylight Savings 
-      Time (DST) is applicable. If not specified, defaults to 
+      Coordinated Time (UTC) offset and whether Daylight Savings
+      Time (DST) is applicable. If not specified, defaults to
       the current datetime.
 
   * Outputs:
     * `$timezone` is an IData document describing the default time
       zone.
-      * `id` is the [java.util.TimeZone] ID associated with the 
+      * `id` is the [java.util.TimeZone] ID associated with the
         default time zone.
       * `name` is a short name associated with the default time
         zone.
       * `description` is a long name associated with the default
         time zone.
-      * `utc.offset` is the historically correct XML duration added 
+      * `utc.offset` is the historically correct XML duration added
         to UTC time to get local time in the default time zone for
-        the given `$datetime` instant. If daylight savings time is in 
+        the given `$datetime` instant. If daylight savings time is in
         effect for the given `$datetime` instant, then this value was
         adjusted to include the daylight savings offset.
-      * `dst.used?` is a boolean indicating if daylight savings 
+      * `dst.used?` is a boolean indicating if daylight savings
         time is used by this time zone.
       * `dst.active?` is a boolean indicating if daylight savings
         time is in effect for the given `$datetime` instant.
@@ -5684,24 +5684,24 @@ Services for parsing and emitting Uniform Resource Identifier ([URI]) strings.
     to [RFC 2396].
 
     The following rules are applied in the conversion:
-    - The alphanumeric characters "a" through "z", "A" through "Z" and "0" 
+    - The alphanumeric characters "a" through "z", "A" through "Z" and "0"
       through "9" remain the same.
     - The special characters ".", "-", "*", and "_" remain the same.
     - The plus sign "+" is converted into a space character " " .
-    - A sequence of the form "%xy" will be treated as representing a byte 
-      where xy is the two-digit hexadecimal representation of the 8 bits. Then, 
-      all substrings that contain one or more of these byte sequences 
-      consecutively will be replaced by the character(s) whose encoding would 
-      result in those consecutive bytes. The encoding scheme used to decode 
-      these characters may be specified, or if unspecified, the default 
+    - A sequence of the form "%xy" will be treated as representing a byte
+      where xy is the two-digit hexadecimal representation of the 8 bits. Then,
+      all substrings that contain one or more of these byte sequences
+      consecutively will be replaced by the character(s) whose encoding would
+      result in those consecutive bytes. The encoding scheme used to decode
+      these characters may be specified, or if unspecified, the default
       encoding of the platform will be used.
 
     Implemented with the [java.net.URLDecoder] class.
 
     * Inputs:
       * `$string` is a string containing URI-encoded data to be decoded.
-      * `$encoding` is the character set used to determine what characters are 
-        represented by any consecutive sequences of the form "%xy". Defaults 
+      * `$encoding` is the character set used to determine what characters are
+        represented by any consecutive sequences of the form "%xy". Defaults
         to the Java virtual machine [default charset].
 
     * Outputs:
@@ -5709,11 +5709,11 @@ Services for parsing and emitting Uniform Resource Identifier ([URI]) strings.
 
 * #### tundra.uri:emit
 
-    Emits a Uniform Resource Identifier ([URI]) string, according to [RFC 2396], 
+    Emits a Uniform Resource Identifier ([URI]) string, according to [RFC 2396],
     given its constituent parts.
 
-    URIs can be categorized as either hierarchical, where the scheme and body 
-    parts are separated by the character sequence '://', or opaque, where the 
+    URIs can be categorized as either hierarchical, where the scheme and body
+    parts are separated by the character sequence '://', or opaque, where the
     scheme and body parts are separated by a ':' character.
 
     Examples of hierarchical URIs:
@@ -5729,7 +5729,7 @@ Services for parsing and emitting Uniform Resource Identifier ([URI]) strings.
 
         (scheme:)body(?query)(#fragment)
 
-    Where brackets (...) delineate optional components and the characters 
+    Where brackets (...) delineate optional components and the characters
     ':', '?', and '#' stand for themselves.
 
     Hierarchical URIs are constructed according to the following syntax:
@@ -5737,7 +5737,7 @@ Services for parsing and emitting Uniform Resource Identifier ([URI]) strings.
         (scheme:)(//authority)(path)(?query)(#fragment)
 
     Where the characters ':', '/', '?', and '#' stand for themselves. The authority
-    component, if specified, can be either server-based or registry-based. If 
+    component, if specified, can be either server-based or registry-based. If
     server-based, it is constructed according to the syntax:
 
         (user:password@)host(:port)
@@ -5757,23 +5757,23 @@ Services for parsing and emitting Uniform Resource Identifier ([URI]) strings.
     to [RFC 2396].
 
     The following rules are applied in the conversion:
-    - The alphanumeric characters "a" through "z", "A" through "Z" and "0" 
+    - The alphanumeric characters "a" through "z", "A" through "Z" and "0"
       through "9" remain the same.
     - The special characters ".", "-", "*", and "_" remain the same.
     - The plus sign "+" is converted into a space character " " .
-    - A sequence of the form "%xy" will be treated as representing a byte 
-      where xy is the two-digit hexadecimal representation of the 8 bits. Then, 
-      all substrings that contain one or more of these byte sequences 
-      consecutively will be replaced by the character(s) whose encoding would 
-      result in those consecutive bytes. The encoding scheme used to decode 
-      these characters may be specified, or if unspecified, the default 
+    - A sequence of the form "%xy" will be treated as representing a byte
+      where xy is the two-digit hexadecimal representation of the 8 bits. Then,
+      all substrings that contain one or more of these byte sequences
+      consecutively will be replaced by the character(s) whose encoding would
+      result in those consecutive bytes. The encoding scheme used to decode
+      these characters may be specified, or if unspecified, the default
       encoding of the platform will be used.
 
     Implemented with the [java.net.URLEncoder] class.
 
     * Inputs:
       * `$string` is a string containing data to be URI-encoded.
-      * `$encoding` is the character set used to obtain the bytes for unsafe 
+      * `$encoding` is the character set used to obtain the bytes for unsafe
         characters.. Defaults to the Java virtual machine [default charset].
 
     * Outputs:
@@ -5781,11 +5781,11 @@ Services for parsing and emitting Uniform Resource Identifier ([URI]) strings.
 
 * #### tundra.uri:parse
 
-    Parses a Uniform Resource Identifier ([URI]) string, according to [RFC 2396], 
-    to its constituent parts.  
+    Parses a Uniform Resource Identifier ([URI]) string, according to [RFC 2396],
+    to its constituent parts.
 
-    URIs can be categorized as either hierarchical, where the scheme and body 
-    parts are separated by the character sequence '://', or opaque, where the 
+    URIs can be categorized as either hierarchical, where the scheme and body
+    parts are separated by the character sequence '://', or opaque, where the
     scheme and body parts are separated by a ':' character.
 
     Examples of hierarchical URIs:
@@ -5801,7 +5801,7 @@ Services for parsing and emitting Uniform Resource Identifier ([URI]) strings.
 
         (scheme:)body(?query)(#fragment)
 
-    Where brackets (...) delineate optional components and the characters 
+    Where brackets (...) delineate optional components and the characters
     ':', '?', and '#' stand for themselves.
 
     Hierarchical URIs are constructed according to the following syntax:
@@ -5809,16 +5809,16 @@ Services for parsing and emitting Uniform Resource Identifier ([URI]) strings.
         (scheme:)(//authority)(path)(?query)(#fragment)
 
     Where the characters ':', '/', '?', and '#' stand for themselves. The authority
-    component, if specified, can be either server-based or registry-based. If 
+    component, if specified, can be either server-based or registry-based. If
     server-based, it is constructed according to the syntax:
 
         (user:password@)host(:port)
 
     Where the characters '@' and ':' stand for themselves.
 
-    Opaque URI bodies are not subject to further parsing, however, to accomodate 
-    the mailto: URI's use of a query string for additional data (such as cc, bcc, 
-    subject, and body), this service checks if the body contains a query string 
+    Opaque URI bodies are not subject to further parsing, however, to accomodate
+    the mailto: URI's use of a query string for additional data (such as cc, bcc,
+    subject, and body), this service checks if the body contains a query string
     and, if so, parses the query string also.
 
     Implemented with the [java.net.URI] class.
@@ -5843,20 +5843,20 @@ Services for parsing and emitting Uniform Resource Identifier ([URI]) strings.
 
 * #### tundra.xml:validate
 
-    Validates the given content as [XML], and optionally against an [XML] 
-    schema ([XSD]). Uses the Simple API for XML ([SAX]) algorithm for 
+    Validates the given content as [XML], and optionally against an [XML]
+    schema ([XSD]). Uses the Simple API for XML ([SAX]) algorithm for
     parsing which, as it is event-based, is not memory-constrained and
     can handle arbitrarily large documents when parsing from an input stream.
 
     * Inputs:
-      * `$content` is a string, byte array, or input stream containing 
+      * `$content` is a string, byte array, or input stream containing
         (potentially) [XML] data.
-      * `$content.encoding` is the character set used by `$content` if provided as 
-        a byte array or input stream. Defaults to the Java virtual machine 
+      * `$content.encoding` is the character set used by `$content` if provided as
+        a byte array or input stream. Defaults to the Java virtual machine
         [default charset].
       * `$schema` is a string, byte array, or input stream containing [XSD] data.
-      * `$schema.encoding` is the character set used by `$schema` if provided as 
-        a byte array or input stream. Defaults to the Java virtual machine 
+      * `$schema.encoding` is the character set used by `$schema` if provided as
+        a byte array or input stream. Defaults to the Java virtual machine
         [default charset].
       * `$raise?` is an optional boolean flag, if true and `$content` is malformed
         or invalid an exception will be thrown. If false, no exception will
@@ -5872,18 +5872,18 @@ Services for parsing and emitting Uniform Resource Identifier ([URI]) strings.
 
 * #### tundra.xpath:exists
 
-    Returns true if the given XPath expression `$expression` exists the given 
+    Returns true if the given XPath expression `$expression` exists the given
     XML `$content`.
 
     * Inputs:
       * `$content` is a string, byte array, or input stream containing XML data.
-      * `$encoding` is the character set used by `$content` if provided as a byte 
-        array or input stream. Defaults to the Java virtual machine [default 
+      * `$encoding` is the character set used by `$content` if provided as a byte
+        array or input stream. Defaults to the Java virtual machine [default
         charset].
       * `$expression` is the [XPath expression] to be tested against `$content`.
 
     * Outputs:
-      * `$exists?` is true if the XPath expression was found to exist in the 
+      * `$exists?` is true if the XPath expression was found to exist in the
         given `$content`.
 
 ### ZIP
@@ -5893,14 +5893,14 @@ Services for parsing and emitting Uniform Resource Identifier ([URI]) strings.
   Compresses the given contents using the [zip] file compression format.
 
   * Inputs:
-    * `$contents` is an IData document list containing the data to be 
+    * `$contents` is an IData document list containing the data to be
       compressed.
-      * `name` is the file path and name given to this item in the 
+      * `name` is the file path and name given to this item in the
         resulting zip archive.
-      * `content` is the data to be compressed, specified as either a 
+      * `content` is the data to be compressed, specified as either a
         string, byte array, or input stream.
       * `encoding` is an optional character set used when `content` is
-        specified as a string. Defaults to the Java virtual machine 
+        specified as a string. Defaults to the Java virtual machine
         [default charset].
     * `$mode` is an optional choice of 'stream', 'bytes', or
       'string', which determines the type of object returned by
@@ -5915,17 +5915,17 @@ Services for parsing and emitting Uniform Resource Identifier ([URI]) strings.
   Decompresses the given content using the [zip] file compression format.
 
   * Inputs:
-    * `$contents.zip` is the [zip] compressed data to be decompressed, 
+    * `$contents.zip` is the [zip] compressed data to be decompressed,
       specified as a base64-encoded string, byte array, or input stream.
-    * `$encoding` is an optional character set used to decode the 
-      decompressed data when the chosen `$mode` is 'string'. Defaults to 
+    * `$encoding` is an optional character set used to decode the
+      decompressed data when the chosen `$mode` is 'string'. Defaults to
       the Java virtual machine [default charset].
-    * `$mode` is an optional choice of 'stream', 'bytes', or 'string', 
-      which determines the type of content returned by this service. 
+    * `$mode` is an optional choice of 'stream', 'bytes', or 'string',
+      which determines the type of content returned by this service.
       Defaults to 'stream'.
 
   * Outputs:
-    * `$contents` is an IData document list containing the resulting 
+    * `$contents` is an IData document list containing the resulting
       decompressed data.
       * `name` is the file path and name assigned to this item in the
         zip archive.
@@ -5970,7 +5970,7 @@ Copyright © 2012 Lachlan Dowding. See license.txt for further details.
 [java.net.URLDecoder]: <http://docs.oracle.com/javase/6/docs/api/java/net/URLDecoder.html>
 [java.net.URLEncoder]: <http://docs.oracle.com/javase/6/docs/api/java/net/URLEncoder.html>
 [java.text.SimpleDateFormat]: <http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html>
-[java.util.Date]: <http://docs.oracle.com/javase/6/docs/api/java/util/Date.html>   
+[java.util.Date]: <http://docs.oracle.com/javase/6/docs/api/java/util/Date.html>
 [java.util.TimeZone]: <http://docs.oracle.com/javase/6/docs/api/java/util/TimeZone.html>
 [javax.activation.MimeType]: <http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html>
 [Java array class name]: <http://docs.oracle.com/javase/tutorial/reflect/special/arrayComponents.html>
