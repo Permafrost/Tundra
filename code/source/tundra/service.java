@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-01-28 16:10:54.686
+// -----( CREATED: 2014-01-30 15:16:31.774
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -37,7 +37,7 @@ public final class service
 		// [o] field:0:required $callers
 		// [o] field:0:required $caller
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  String[] stack = callstack();
 		  String callers = tundra.list.object.join(stack, " \u2192 ");
@@ -49,7 +49,7 @@ public final class service
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -66,23 +66,23 @@ public final class service
 		// [i] record:0:optional $pipeline
 		// [o] record:0:optional $pipeline
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  String $service = IDataUtil.getString(cursor, "$service");
 		  String $catch = IDataUtil.getString(cursor, "$catch");
 		  String $finally = IDataUtil.getString(cursor, "$finally");
 		  IData scope = IDataUtil.getIData(cursor, "$pipeline");
 		  boolean scoped = scope != null;
-
+		
 		  scope = ensure($service, scoped ? scope : pipeline, $catch, $finally);
-
+		
 		  if (scoped) IDataUtil.put(cursor, "$pipeline", scope);
 		} finally {
 		  cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -95,7 +95,7 @@ public final class service
 		// @sigtype java 3.5
 		// [o] field:0:required $initiator?
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  IDataUtil.put(cursor, "$initiator?", "" + initiator());
 		} finally {
@@ -103,7 +103,7 @@ public final class service
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -120,18 +120,18 @@ public final class service
 		// [o] record:0:optional $pipeline
 		// [o] object:0:optional $thread
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  String service = IDataUtil.getString(cursor, "$service");
 		  IData scope = IDataUtil.getIData(cursor, "$pipeline");
 		  String mode = IDataUtil.getString(cursor, "$mode");
-
+		
 		  if (mode == null) mode = "synchronous";
 		  boolean scoped = scope != null;
-
+		
 		  Object value = invoke(service, scoped ? scope : pipeline, mode);
 		  String key = mode.equals("asynchronous")? "$thread" : "$pipeline";
-
+		
 		  if (scoped || mode.equals("asynchronous")) {
 		    IDataUtil.put(cursor, key, value);
 		  }
@@ -140,7 +140,7 @@ public final class service
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -154,17 +154,17 @@ public final class service
 		// [i] object:0:optional $thread
 		// [o] record:0:optional $pipeline
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  com.wm.app.b2b.server.ServiceThread thread = (com.wm.app.b2b.server.ServiceThread)IDataUtil.get(cursor, "$thread");
-
+		
 		  if (thread != null) IDataUtil.put(cursor, "$pipeline", join(thread));
 		} finally {
 		  cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -177,7 +177,7 @@ public final class service
 		// @sigtype java 3.5
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -195,7 +195,7 @@ public final class service
 		// [i] field:0:optional $content.type
 		// [i] field:0:optional $encoding
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  int code = Integer.parseInt(IDataUtil.getString(cursor, "$code"));
 		  String message = IDataUtil.getString(cursor, "$message");
@@ -203,14 +203,14 @@ public final class service
 		  Object content = IDataUtil.get(cursor, "$content");
 		  String contentType = IDataUtil.getString(cursor, "$content.type");
 		  String encoding = IDataUtil.getString(cursor, "$encoding");
-
+		
 		  respond(code, message, headers, content, contentType, encoding);
 		} finally {
 		  cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -223,7 +223,7 @@ public final class service
 		// @sigtype java 3.5
 		// [o] field:0:optional $self
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  IDataUtil.put(cursor, "$self", self());
 		} finally {
@@ -231,7 +231,7 @@ public final class service
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -244,7 +244,7 @@ public final class service
 		// @sigtype java 3.5
 		// [i] field:0:required $duration
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  String duration = IDataUtil.getString(cursor, "$duration");
 		  sleep(duration);
@@ -253,7 +253,7 @@ public final class service
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -268,7 +268,7 @@ public final class service
 		// [i] field:0:optional $raise? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:required $valid?
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  String service = IDataUtil.getString(cursor, "$service");
 		  boolean raise = tundra.bool.parse(IDataUtil.getString(cursor, "$raise?"));
@@ -278,7 +278,7 @@ public final class service
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 	// --- <<IS-START-SHARED>> ---
@@ -286,30 +286,30 @@ public final class service
 	public static void respond(int code, String message, IData headers, Object content, String contentType, String encoding) throws ServiceException {
 	  try {
 	    com.wm.net.HttpHeader response = com.wm.app.b2b.server.Service.getHttpResponseHeader();
-
-	    if (response == null) {
+	
+	    if (response == null) { 
 	      // not invoked via HTTP, so throw an exception instead for HTTP statuses >= 400
 	      if (code >= 400) tundra.exception.raise(tundra.string.normalize(content, encoding));
 	    } else {
 	      if (message == null) message = tundra.support.http.status(code);
 	      response.setResponse(code, message);
-
+	
 	      if (contentType == null) contentType = "application/octet-stream";
 	      if (encoding == null) encoding = tundra.support.constant.DEFAULT_CHARACTER_ENCODING;
-
+	
 	      javax.activation.MimeType mimeType = new javax.activation.MimeType(contentType);
 	      mimeType.setParameter("charset", encoding);
-
+	
 	      response.clearField("Content-Type");
 	      response.addField("Content-Type", mimeType.toString());
-
+	
 	      if (headers != null) {
 	        IDataCursor hc = headers.getCursor();
-
+	        
 	        while(hc.next()) {
 	          String key = hc.getKey();
 	          Object value = hc.getValue();
-
+	
 	          if (key != null && value != null) {
 	            response.clearField(key);
 	            response.addField(key, value.toString());
@@ -318,7 +318,7 @@ public final class service
 	        hc.destroy();
 	      }
 	    }
-
+	
 	    if (content == null) content = "";
 	    byte[] body = tundra.bytes.normalize(content, encoding);
 	    com.wm.app.b2b.server.Service.setResponse(body);
@@ -328,32 +328,27 @@ public final class service
 	    tundra.exception.raise(ex);
 	  }
 	}
-
-	// returns true if the calling service is the top-level initiating
+	
+	// returns true if the calling service is the top-level initiating 
 	// service of the current thread
 	public static boolean initiator() {
-	  String[] stack = callstack();
-
-	  boolean result = true;
-	  if (stack.length > 0) result = self() == stack[0];
-
-	  return result;
+	  return callstack().length <= 1;
 	}
-
+	
 	// returns true if the given string is a service and exists
 	public static boolean validate(String service) throws ServiceException {
 	  return validate(service, false);
 	}
-
+	
 	// returns true if the given string is a service and exists
 	public static boolean validate(String service, boolean raise) throws ServiceException {
 	  boolean valid = tundra.node.exists(service) && "service".equals(tundra.node.type(service));
-
+	
 	  if (raise && !valid) throw new ServiceException("Service does not exist: " + service);
-
+	  
 	  return valid;
 	}
-
+	
 	// returns the invocation call stack
 	public static String[] callstack() {
 	  java.util.Iterator stack = com.wm.app.b2b.server.InvokeState.getCurrentState().getCallStack().iterator();
@@ -365,7 +360,7 @@ public final class service
 	  if (services.size() > 0) services.remove(services.size() - 1);
 	  return (String[])services.toArray(new String[services.size()]);
 	}
-
+	
 	// returns the name of the current service
 	public static String self() {
 	  String self = null;
@@ -373,14 +368,14 @@ public final class service
 	  if (callstack.length > 0) self = tundra.list.object.get(callstack, -1); // last element in list
 	  return self;
 	}
-
+	
 	// invokes the given service synchronously
-	public static IData invoke(String service, IData pipeline) throws ServiceException {
+	public static IData invoke(String service, IData pipeline) throws ServiceException {  
 	  return (IData)invoke(service, pipeline, "synchronous");
 	}
-
+	
 	// invokes the given service either synchronously or asynchronously
-	public static Object invoke(String service, IData pipeline, String mode) throws ServiceException {
+	public static Object invoke(String service, IData pipeline, String mode) throws ServiceException {  
 	  Object result = null;
 	  if (mode.equals("synchronous")) {
 	    result = invoke.synchronous(service, pipeline);
@@ -391,44 +386,44 @@ public final class service
 	  }
 	  return result;
 	}
-
+	
 	public static class invoke {
 	  // invokes a service asynchronously
 	  public static com.wm.app.b2b.server.ServiceThread asynchronous(String service, IData pipeline) {
 	    if (pipeline == null) pipeline = IDataFactory.create();
 	    if (service == null) return null;
-
+	    
 	    IData scope = IDataUtil.clone(pipeline);
-	    com.wm.lang.ns.NSName name = com.wm.lang.ns.NSName.create(service);
+	    com.wm.lang.ns.NSName name = com.wm.lang.ns.NSName.create(service);  
 	    com.wm.app.b2b.server.ServiceThread thread = com.wm.app.b2b.server.Service.doThreadInvoke(name, scope);
-
+	
 	    return thread;
 	  }
-
+	
 	  // invokes a service synchronously
 	  public static IData synchronous(String service, IData pipeline) throws ServiceException {
 	    if (pipeline == null) pipeline = IDataFactory.create();
 	    if (service == null) return pipeline;
-
+	    
 	    IData scope = IDataUtil.clone(pipeline);
 	    com.wm.lang.ns.NSName name = com.wm.lang.ns.NSName.create(service);
-
+	
 	    try {
 	      scope = com.wm.app.b2b.server.Service.doInvoke(name, scope);
 	    } catch (Exception ex) {
 	      tundra.exception.raise(ex);
 	    }
-
+	
 	    IDataUtil.merge(scope, pipeline);
-
+	    
 	    return pipeline;
 	  }
 	}
-
+	
 	// waits for an asynchronously invoked service to complete
 	public static IData join(com.wm.app.b2b.server.ServiceThread thread) throws ServiceException {
 	  IData pipeline = IDataFactory.create();
-
+	
 	  if (thread != null) {
 	    try {
 	      pipeline = thread.getIData();
@@ -436,15 +431,15 @@ public final class service
 	      tundra.exception.raise(ex);
 	    }
 	  }
-
+	  
 	  return pipeline;
 	}
-
+	
 	// sleeps the current thread for the given duration
 	public static void sleep(String duration) throws ServiceException {
 	  sleep(tundra.duration.parse(duration).getTimeInMillis(new java.util.Date()));
 	}
-
+	
 	// sleeps the current thread for the given duration
 	public static void sleep(long milliseconds) throws ServiceException {
 	  try {
@@ -453,7 +448,7 @@ public final class service
 	    tundra.exception.raise(ex);
 	  }
 	}
-
+	
 	// provides a try/catch/finally pattern for flow services
 	public static IData ensure(String service, IData pipeline, String catchService, String finallyService) throws ServiceException {
 	  try {
@@ -466,7 +461,7 @@ public final class service
 	    IDataUtil.put(cursor, "$exception.message", t.getMessage());
 	    IDataUtil.put(cursor, "$exception.stack", tundra.exception.stack(t));
 	    cursor.destroy();
-
+	
 	    if (catchService == null) {
 	      tundra.exception.raise(t);
 	    } else {
@@ -475,7 +470,7 @@ public final class service
 	  } finally {
 	    if (finallyService != null) pipeline = invoke(finallyService, pipeline);
 	  }
-
+	
 	  return pipeline;
 	}
 	// --- <<IS-END-SHARED>> ---
