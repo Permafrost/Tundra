@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-12-11 08:50:53.789
-// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
+// -----( CREATED: 2014-01-30 16:49:26.156
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -310,7 +310,9 @@ public final class duration
 	  
 	  if (input != null) {
 	    if (pattern.equals("milliseconds")) {
-	      output = factory().newDuration(Long.parseLong(input));
+	      java.math.BigDecimal zero_ = new java.math.BigDecimal("0");
+	      java.math.BigDecimal value = (new java.math.BigDecimal(input)).divide(new java.math.BigDecimal(1000));
+	      output = factory().newDuration(value.compareTo(zero_) >= 0, null, null, null, null, null, value.abs());
 	    } else if (pattern.equals("seconds")) {
 	      java.math.BigDecimal zero_ = new java.math.BigDecimal("0");
 	      java.math.BigDecimal value = new java.math.BigDecimal(input);
