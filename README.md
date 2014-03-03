@@ -1,6 +1,10 @@
 # Tundra ❄
 
-A package of useful services for webMethods Integration Server 7.1 or higher.
+A package of useful services for webMethods Integration Server 7.1 and higher.
+
+## Related
+
+See also [TundraTN](https://github.com/Permafrost/TundraTN), a package of useful services for webMethods Trading Networks 7.1 and higher.
 
 ## Dependencies
 
