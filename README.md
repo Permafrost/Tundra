@@ -472,7 +472,7 @@ Services for manipulating boolean values.
 * #### tundra.bool:normalize
 
   Returns the canonical string form for the given $boolean string: either
-  "true" or "false.
+  "true" or "false".
 
   If `$boolean` is null and `$default` is not null, then `$default`'s boolean
   value will be returned.
