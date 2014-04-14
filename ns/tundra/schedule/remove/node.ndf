@@ -109,7 +109,7 @@ be specified.
     3. Delete only the scheduled tasks that are suspended for a service 
        whose name is stored in the pipeline variable svc:
 
-       %$schedule/status% == "suspended" and %$schedule/service% == %svc%"
+       %$schedule/status% == "suspended" and %$schedule/service% == %svc%
 
     Refer to the tundra.condition:evaluate service documentation for the
     format of conditional statements.</value>
