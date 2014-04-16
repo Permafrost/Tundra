@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-04-11 13:48:06.142
+// -----( CREATED: 2014-04-16 14:41:14.174
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -61,6 +61,7 @@ public final class schedule
 		// [o] - field:0:required id
 		// [o] - field:0:required type {&quot;complex&quot;,&quot;once&quot;,&quot;repeat&quot;}
 		// [o] - field:0:required service
+		// [o] - field:0:optional package
 		// [o] - field:0:optional description
 		// [o] - field:0:required target
 		// [o] - field:0:required user
@@ -81,8 +82,6 @@ public final class schedule
 		// [o] - record:0:optional pipeline
 		// [o] - field:0:required status
 		// [o] - field:0:optional next
-		// [o] - field:0:required exception?
-		// [o] - field:0:optional exception.message
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
@@ -110,6 +109,7 @@ public final class schedule
 		// [o] - field:0:required id
 		// [o] - field:0:required type {&quot;complex&quot;,&quot;once&quot;,&quot;repeat&quot;}
 		// [o] - field:0:required service
+		// [o] - field:0:optional package
 		// [o] - field:0:optional description
 		// [o] - field:0:required target
 		// [o] - field:0:required user
@@ -130,8 +130,6 @@ public final class schedule
 		// [o] - record:0:optional pipeline
 		// [o] - field:0:required status
 		// [o] - field:0:optional next
-		// [o] - field:0:required exception?
-		// [o] - field:0:optional exception.message
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
@@ -243,6 +241,8 @@ public final class schedule
 	  IDataUtil.put(cursor, "id", id);
 	  IDataUtil.put(cursor, "type", type);
 	  IDataUtil.put(cursor, "service", service);
+	  String packageName = getPackageName(service);
+	  if (packageName != null) IDataUtil.put(cursor, "package", packageName);
 	  if (description != null) IDataUtil.put(cursor, "description", description);
 	  IDataUtil.put(cursor, "target", target);
 	  IDataUtil.put(cursor, "user", user);
@@ -310,6 +310,17 @@ public final class schedule
 
 	  return output;
 	}
+
+	// returns the name of the package the given service is a member of
+	protected static String getPackageName(String service) {
+	  String packageName = null;
+	  try {
+	    com.wm.app.b2b.server.BaseService bs = com.wm.app.b2b.server.ns.Namespace.getService(com.wm.lang.ns.NSName.create(service));
+	    packageName = bs.getPackageName();
+	  } catch (Exception ex) {}
+	  return packageName;
+	}
+
 
 	// returns true if a scheduled task with the given id exists, false otherwise
 	public static boolean exists(String id) throws ServiceException {

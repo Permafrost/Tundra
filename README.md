@@ -5288,6 +5288,9 @@ scheduled tasks.
         * `service` is the fully-qualified name of the service executed by
           the schedule.
 
+        * `package` is the name of the package the scheduled `service` is a
+          member of.
+
         * `description` is an optional description of the scheduled task.
 
         * `target` identifies the server or servers the schedule executes
@@ -5438,6 +5441,9 @@ scheduled tasks.
 
         * `service` is the fully-qualified name of the service executed by
           the schedule.
+
+        * `package` is the name of the package the scheduled `service` is a
+          member of.
 
         * `description` is an optional description of the scheduled task.
 
