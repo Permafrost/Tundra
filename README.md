@@ -1789,15 +1789,21 @@ Services for manipulating com.wm.data.IData objects:
 
 * #### tundra.document:keys
 
-  Returns all the top-level keys in the given IData document.
+  Returns the top-level keys in the given IData document that match
+  the given regular expression pattern if specified, or all top-level
+  keys if no pattern is specified.
 
   * Inputs:
     * `$document` is an IData document from which all top-level
       keys are to be fetched.
+    * `$pattern` is an optional [regular expression pattern] that
+      is used to filter the list of keys returned. If not specified,
+      all keys are returned.
 
   * Outputs:
-    * `$keys` is the list of all top-level keys in the given IData
-      document.
+    * `$keys` is the list of the top-level keys in the given IData
+      document that match the given regular expression `$pattern` if
+      specified, or all top-level keys if no `$pattern` was specified.
 
 * #### tundra.document:last
 
