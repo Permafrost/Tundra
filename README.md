@@ -6078,6 +6078,19 @@ Services for manipulating java.lang.String objects:
   * Outputs:
     * `$string` is the given object converted to a string.
 
+* #### tundra.string:quote
+
+  Returns a [regular expression pattern] that can be used to match the
+  given string literally. Regular expression metacharacters or escape
+  sequences in the input sequence are given no special meaning.
+
+  * Inputs:
+    * `$string` is a string value to be converted to a [regular expression pattern].
+
+  * Outputs:
+    * `$pattern` is a [regular expression pattern] that can be used to match
+      the given `$string` literally.
+
 * #### tundra.string:replace
 
   Replaces all occurrences of the given [regular expression pattern]
