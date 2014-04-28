@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-11-11 09:57:57 EST
-// -----( ON-HOST: 172.16.189.193
+// -----( CREATED: 2014-04-28 10:55:04.297
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -41,26 +41,28 @@ public final class condition
 		// --- <<IS-START(evaluate)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:required $condition
+		// [i] field:0:optional $condition
 		// [i] record:0:optional $scope
 		// [o] field:0:required $result?
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  String condition = IDataUtil.getString(cursor, "$condition");
 		  IData scope = IDataUtil.getIData(cursor, "$scope");
-		
+
 		  IDataUtil.put(cursor, "$result?", "" + evaluate(condition, scope == null? pipeline : scope));
 		} finally {
 		  cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 	// --- <<IS-START-SHARED>> ---
 	public static boolean evaluate(String condition, IData scope) {
+	  if (condition == null || condition.trim().equals("")) return true;
+
 	  ANTLRInputStream input = new ANTLRInputStream(condition);
 	  ConditionLexer lexer = new RethrowLexer(input);
 	  CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -68,60 +70,60 @@ public final class condition
 	  parser.setErrorHandler(new BailErrorStrategy());
 	  parser.setBuildParseTree(true);
 	  ParseTree tree = parser.condition();
-	
+
 	  ParseTreeWalker walker = new ParseTreeWalker();
 	  ConditionEvaluator eval = new ConditionEvaluator(scope);
 	  walker.walk(eval, tree);
-	
+
 	  return eval.getValue(tree);
 	}
-	
+
 	public static class ConditionEvaluator extends ConditionBaseListener {
 	  ParseTreeProperty<Boolean> values = new ParseTreeProperty<Boolean>();
 	  IData scope;
-	
+
 	  public ConditionEvaluator(IData scope) {
 	    this.scope = scope;
 	  }
-	
-	  @Override public void exitCondition(ConditionParser.ConditionContext ctx) { 
+
+	  @Override public void exitCondition(ConditionParser.ConditionContext ctx) {
 	    setValue(ctx, getValue(ctx.expr()));
 	  }
-	
-	  @Override public void exitOr(ConditionParser.OrContext ctx) { 
+
+	  @Override public void exitOr(ConditionParser.OrContext ctx) {
 	    Boolean left = getValue(ctx.expr(0));
 	    Boolean right = getValue(ctx.expr(1));
-	    setValue(ctx, left || right);  
+	    setValue(ctx, left || right);
 	  }
-	
-	  @Override public void exitParens(ConditionParser.ParensContext ctx) { 
+
+	  @Override public void exitParens(ConditionParser.ParensContext ctx) {
 	    setValue(ctx, getValue(ctx.expr()));
 	  }
-	
-	  @Override public void exitAnd(ConditionParser.AndContext ctx) { 
+
+	  @Override public void exitAnd(ConditionParser.AndContext ctx) {
 	    Boolean left = getValue(ctx.expr(0));
 	    Boolean right = getValue(ctx.expr(1));
-	    setValue(ctx, left && right);  
+	    setValue(ctx, left && right);
 	  }
-	
-	  @Override public void exitNot(ConditionParser.NotContext ctx) { 
+
+	  @Override public void exitNot(ConditionParser.NotContext ctx) {
 	    Boolean expr = getValue(ctx.expr());
-	    setValue(ctx, !expr);  
+	    setValue(ctx, !expr);
 	  }
-	
-	  @Override public void exitInequalNull(ConditionParser.InequalNullContext ctx) { 
+
+	  @Override public void exitInequalNull(ConditionParser.InequalNullContext ctx) {
 	    Object left = getVariable(ctx.ID().getText());
 	    setValue(ctx, left != null);
 	  }
-	
-	  @Override public void exitInequalString(ConditionParser.InequalStringContext ctx) { 
+
+	  @Override public void exitInequalString(ConditionParser.InequalStringContext ctx) {
 	    setValue(ctx, !equalString(ctx.ID().getText(), ctx.STRING().getText()));
 	  }
-	
-	  @Override public void exitEqualRegex(ConditionParser.EqualRegexContext ctx) { 
+
+	  @Override public void exitEqualRegex(ConditionParser.EqualRegexContext ctx) {
 	    setValue(ctx, equalRegex(ctx.ID().getText(), ctx.REGEX().getText()));
 	  }
-	
+
 	  protected boolean equalRegex(String ID, String REGEX) {
 	    Object value = getVariable(ID);
 	    boolean result = false;
@@ -130,19 +132,19 @@ public final class condition
 	    }
 	    return result;
 	  }
-	
-	  @Override public void exitInequalNumber(ConditionParser.InequalNumberContext ctx) { 
+
+	  @Override public void exitInequalNumber(ConditionParser.InequalNumberContext ctx) {
 	    setValue(ctx, !equalNumber(ctx.ID().getText(), ctx.NUMBER().getText()));
 	  }
-	
-	  @Override public void exitEqualBoolean(ConditionParser.EqualBooleanContext ctx) { 
+
+	  @Override public void exitEqualBoolean(ConditionParser.EqualBooleanContext ctx) {
 	    setValue(ctx, equalBoolean(ctx.ID().getText(), ctx.BOOLEAN().getText()));
 	  }
-	
+
 	  protected boolean equalBoolean(String ID, String BOOLEAN) {
 	    Object left = getVariable(ID);
 	    Boolean right = new Boolean(BOOLEAN);
-	
+
 	    boolean result = left != null;
 	    if (result) {
 	      if (left instanceof Boolean) {
@@ -157,68 +159,68 @@ public final class condition
 	    }
 	    return result;
 	  }
-	
-	  @Override public void exitInequalRegex(ConditionParser.InequalRegexContext ctx) { 
+
+	  @Override public void exitInequalRegex(ConditionParser.InequalRegexContext ctx) {
 	    setValue(ctx, !equalRegex(ctx.ID().getText(), ctx.REGEX().getText()));
 	  }
-	
-	  @Override public void exitInequalID(ConditionParser.InequalIDContext ctx) { 
+
+	  @Override public void exitInequalID(ConditionParser.InequalIDContext ctx) {
 	    setValue(ctx, !equalID(ctx.ID(0).getText(), ctx.ID(1).getText()));
 	  }
-	
-	  @Override public void exitEqualID(ConditionParser.EqualIDContext ctx) { 
+
+	  @Override public void exitEqualID(ConditionParser.EqualIDContext ctx) {
 	    setValue(ctx, equalID(ctx.ID(0).getText(), ctx.ID(1).getText()));
 	  }
-	
+
 	  protected boolean equalID(String ID1, String ID2) {
 	    Object left = getVariable(ID1);
 	    Object right = getVariable(ID2);
 	    return (left == null && right == null) || (left != null && right != null && left.equals(right));
 	  }
-	
-	  @Override public void exitEqualNumber(ConditionParser.EqualNumberContext ctx) { 
+
+	  @Override public void exitEqualNumber(ConditionParser.EqualNumberContext ctx) {
 	    setValue(ctx, equalNumber(ctx.ID().getText(), ctx.NUMBER().getText()));
 	  }
-	
+
 	  protected boolean equalNumber(String ID, String NUMBER) {
 	    Object left = getVariable(ID);
 	    String right = NUMBER;
-	
+
 	    boolean result = left != null && tundra.decimal.validate(left.toString()) && tundra.decimal.validate(right);
-	    
+
 	    if (result) {
 	      java.math.BigDecimal x = new java.math.BigDecimal(left.toString());
 	      java.math.BigDecimal y = new java.math.BigDecimal(right);
 	      result = x.compareTo(y) == 0;
 	    }
-	
+
 	    return result;
 	  }
-	
-	  @Override public void exitInequalBoolean(ConditionParser.InequalBooleanContext ctx) { 
+
+	  @Override public void exitInequalBoolean(ConditionParser.InequalBooleanContext ctx) {
 	    setValue(ctx, !equalBoolean(ctx.ID().getText(), ctx.BOOLEAN().getText()));
 	  }
-	
-	  @Override public void exitEqualString(ConditionParser.EqualStringContext ctx) { 
+
+	  @Override public void exitEqualString(ConditionParser.EqualStringContext ctx) {
 	    setValue(ctx, equalString(ctx.ID().getText(), ctx.STRING().getText()));
 	  }
-	
+
 	  protected boolean equalString(String ID, String STRING) {
 	    Object left = getVariable(ID);
 	    String right = strip(STRING);
 	    return left != null && left.equals(right);
 	  }
-	
-	  @Override public void exitEqualNull(ConditionParser.EqualNullContext ctx) { 
+
+	  @Override public void exitEqualNull(ConditionParser.EqualNullContext ctx) {
 	    Object left = getVariable(ctx.ID().getText());
 	    setValue(ctx, left == null);
 	  }
-	
+
 	  // return the value of the variable with the given ID from the scope IData
 	  protected Object getVariable(String ID) {
 	    return tundra.support.document.get(scope, strip(ID));
 	  }
-	
+
 	  // remove first and last chars from string, ie. quotes
 	  protected String strip(String s) {
 	    if (s == null) return null;
@@ -226,91 +228,91 @@ public final class condition
 	    if (length > 1) s = s.substring(1, length - 1);
 	    return s;
 	  }
-	
-	  public void setValue(ParseTree node, Boolean value) { 
-	    values.put(node, value); 
-	  } 
-	  
-	  public Boolean getValue(ParseTree node) { 
-	    return values.get(node); 
+
+	  public void setValue(ParseTree node, Boolean value) {
+	    values.put(node, value);
+	  }
+
+	  public Boolean getValue(ParseTree node) {
+	    return values.get(node);
 	  }
 	}
-	
+
 	public static class RethrowStrategy extends org.antlr.v4.runtime.DefaultErrorStrategy {
 	  @Override public void recover(org.antlr.v4.runtime.Parser recognizer, org.antlr.v4.runtime.RecognitionException e) {
 	    throw new RuntimeException(e);
 	  }
-	
+
 	  @Override public void reportError(Parser recognizer, RecognitionException e) {
 	    throw new RuntimeException(e);
 	  }
-	
+
 	  @Override public org.antlr.v4.runtime.Token recoverInline(org.antlr.v4.runtime.Parser recognizer) throws org.antlr.v4.runtime.RecognitionException {
 	    throw new RuntimeException(new org.antlr.v4.runtime.InputMismatchException(recognizer));
 	  }
-	
+
 	  @Override public void sync(org.antlr.v4.runtime.Parser recognizer) { }
-	
+
 	  @Override public void reportUnwantedToken(@NotNull Parser recognizer) {
 	    throw new RuntimeException(new org.antlr.v4.runtime.InputMismatchException(recognizer));
 	  }
 	}
-	
+
 	public static class RethrowLexer extends ConditionLexer {
-	  public RethrowLexer(CharStream input) { 
-	    super(input); 
+	  public RethrowLexer(CharStream input) {
+	    super(input);
 	  }
 	  @Override public void recover(LexerNoViableAltException e) {
 	    throw new RuntimeException(e);
 	  }
 	}
-	
+
 	/**************************************************************/
-	
+
 	@SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 	public static class ConditionLexer extends Lexer {
 	  protected static final DFA[] _decisionToDFA;
 	  protected static final PredictionContextCache _sharedContextCache =
 	    new PredictionContextCache();
 	  public static final int
-	    T__1=1, T__0=2, ID=3, BOOLEAN=4, TRUE=5, FALSE=6, NULL=7, STRING=8, NUMBER=9, 
+	    T__1=1, T__0=2, ID=3, BOOLEAN=4, TRUE=5, FALSE=6, NULL=7, STRING=8, NUMBER=9,
 	    REGEX=10, NOT=11, EQUAL=12, INEQUAL=13, AND=14, OR=15, WS=16;
 	  public static String[] modeNames = {
 	    "DEFAULT_MODE"
 	  };
-	
+
 	  public static final String[] tokenNames = {
 	    "<INVALID>",
-	    "')'", "'('", "ID", "BOOLEAN", "TRUE", "FALSE", "NULL", "STRING", "NUMBER", 
+	    "')'", "'('", "ID", "BOOLEAN", "TRUE", "FALSE", "NULL", "STRING", "NUMBER",
 	    "REGEX", "NOT", "EQUAL", "INEQUAL", "AND", "OR", "WS"
 	  };
 	  public static final String[] ruleNames = {
-	    "T__1", "T__0", "ID", "BOOLEAN", "TRUE", "FALSE", "NULL", "STRING", "ESC", 
-	    "UNICODE", "HEX", "NUMBER", "INT", "EXP", "REGEX", "NOT", "EQUAL", "INEQUAL", 
+	    "T__1", "T__0", "ID", "BOOLEAN", "TRUE", "FALSE", "NULL", "STRING", "ESC",
+	    "UNICODE", "HEX", "NUMBER", "INT", "EXP", "REGEX", "NOT", "EQUAL", "INEQUAL",
 	    "AND", "OR", "WS"
 	  };
-	
-	
+
+
 	  public ConditionLexer(CharStream input) {
 	    super(input);
 	    _interp = new LexerATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	  }
-	
+
 	  @Override
 	  public String getGrammarFileName() { return "Condition.g4"; }
-	
+
 	  @Override
 	  public String[] getTokenNames() { return tokenNames; }
-	
+
 	  @Override
 	  public String[] getRuleNames() { return ruleNames; }
-	
+
 	  @Override
 	  public String[] getModeNames() { return modeNames; }
-	
+
 	  @Override
 	  public ATN getATN() { return _ATN; }
-	
+
 	  @Override
 	  public void action(RuleContext _localctx, int ruleIndex, int actionIndex) {
 	    switch (ruleIndex) {
@@ -322,7 +324,7 @@ public final class condition
 	    case 0: skip();  break;
 	    }
 	  }
-	
+
 	  public static final String _serializedATN =
 	    "\2\4\22\u00C8\b\1\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b"+
 	    "\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20"+
@@ -398,17 +400,17 @@ public final class condition
 	    _decisionToDFA = new DFA[_ATN.getNumberOfDecisions()];
 	  }
 	}
-	
+
 	@SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 	public static class ConditionParser extends Parser {
 	  protected static final DFA[] _decisionToDFA;
 	  protected static final PredictionContextCache _sharedContextCache =
 	    new PredictionContextCache();
 	  public static final int
-	    T__1=1, T__0=2, ID=3, BOOLEAN=4, TRUE=5, FALSE=6, NULL=7, STRING=8, NUMBER=9, 
+	    T__1=1, T__0=2, ID=3, BOOLEAN=4, TRUE=5, FALSE=6, NULL=7, STRING=8, NUMBER=9,
 	    REGEX=10, NOT=11, EQUAL=12, INEQUAL=13, AND=14, OR=15, WS=16;
 	  public static final String[] tokenNames = {
-	    "<INVALID>", "')'", "'('", "ID", "BOOLEAN", "TRUE", "FALSE", "NULL", "STRING", 
+	    "<INVALID>", "')'", "'('", "ID", "BOOLEAN", "TRUE", "FALSE", "NULL", "STRING",
 	    "NUMBER", "REGEX", "NOT", "EQUAL", "INEQUAL", "AND", "OR", "WS"
 	  };
 	  public static final int
@@ -416,19 +418,19 @@ public final class condition
 	  public static final String[] ruleNames = {
 	    "condition", "expr"
 	  };
-	
+
 	  @Override
 	  public String getGrammarFileName() { return "Condition.g4"; }
-	
+
 	  @Override
 	  public String[] getTokenNames() { return tokenNames; }
-	
+
 	  @Override
 	  public String[] getRuleNames() { return ruleNames; }
-	
+
 	  @Override
 	  public ATN getATN() { return _ATN; }
-	
+
 	  public ConditionParser(TokenStream input) {
 	    super(input);
 	    _interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
@@ -450,7 +452,7 @@ public final class condition
 	      if ( listener instanceof ConditionListener ) ((ConditionListener)listener).exitCondition(this);
 	    }
 	  }
-	
+
 	  public final ConditionContext condition() throws RecognitionException {
 	    ConditionContext _localctx = new ConditionContext(_ctx, getState());
 	    enterRule(_localctx, 0, RULE_condition);
@@ -470,7 +472,7 @@ public final class condition
 	    }
 	    return _localctx;
 	  }
-	
+
 	  public static class ExprContext extends ParserRuleContext {
 	    public int _p;
 	    public ExprContext(ParserRuleContext parent, int invokingState) { super(parent, invokingState); }
@@ -479,7 +481,7 @@ public final class condition
 	      this._p = _p;
 	    }
 	    @Override public int getRuleIndex() { return RULE_expr; }
-	   
+
 	    public ExprContext() { }
 	    public void copyFrom(ExprContext ctx) {
 	      super.copyFrom(ctx);
@@ -723,7 +725,7 @@ public final class condition
 	      if ( listener instanceof ConditionListener ) ((ConditionListener)listener).exitEqualNull(this);
 	    }
 	  }
-	
+
 	  public final ExprContext expr(int _p) throws RecognitionException {
 	    ParserRuleContext _parentctx = _ctx;
 	    int _parentState = getState();
@@ -742,12 +744,12 @@ public final class condition
 	        _localctx = new NotContext(_localctx);
 	        _ctx = _localctx;
 	        _prevctx = _localctx;
-	
+
 	        setState(7); match(NOT);
 	        setState(8); expr(16);
 	        }
 	        break;
-	
+
 	      case 2:
 	        {
 	        _localctx = new EqualIDContext(_localctx);
@@ -758,7 +760,7 @@ public final class condition
 	        setState(11); match(ID);
 	        }
 	        break;
-	
+
 	      case 3:
 	        {
 	        _localctx = new EqualBooleanContext(_localctx);
@@ -769,7 +771,7 @@ public final class condition
 	        setState(14); match(BOOLEAN);
 	        }
 	        break;
-	
+
 	      case 4:
 	        {
 	        _localctx = new EqualStringContext(_localctx);
@@ -780,7 +782,7 @@ public final class condition
 	        setState(17); match(STRING);
 	        }
 	        break;
-	
+
 	      case 5:
 	        {
 	        _localctx = new EqualNumberContext(_localctx);
@@ -791,7 +793,7 @@ public final class condition
 	        setState(20); match(NUMBER);
 	        }
 	        break;
-	
+
 	      case 6:
 	        {
 	        _localctx = new EqualRegexContext(_localctx);
@@ -802,7 +804,7 @@ public final class condition
 	        setState(23); match(REGEX);
 	        }
 	        break;
-	
+
 	      case 7:
 	        {
 	        _localctx = new EqualNullContext(_localctx);
@@ -813,7 +815,7 @@ public final class condition
 	        setState(26); match(NULL);
 	        }
 	        break;
-	
+
 	      case 8:
 	        {
 	        _localctx = new InequalIDContext(_localctx);
@@ -824,7 +826,7 @@ public final class condition
 	        setState(29); match(ID);
 	        }
 	        break;
-	
+
 	      case 9:
 	        {
 	        _localctx = new InequalBooleanContext(_localctx);
@@ -835,7 +837,7 @@ public final class condition
 	        setState(32); match(BOOLEAN);
 	        }
 	        break;
-	
+
 	      case 10:
 	        {
 	        _localctx = new InequalStringContext(_localctx);
@@ -846,7 +848,7 @@ public final class condition
 	        setState(35); match(STRING);
 	        }
 	        break;
-	
+
 	      case 11:
 	        {
 	        _localctx = new InequalNumberContext(_localctx);
@@ -857,7 +859,7 @@ public final class condition
 	        setState(38); match(NUMBER);
 	        }
 	        break;
-	
+
 	      case 12:
 	        {
 	        _localctx = new InequalRegexContext(_localctx);
@@ -868,7 +870,7 @@ public final class condition
 	        setState(41); match(REGEX);
 	        }
 	        break;
-	
+
 	      case 13:
 	        {
 	        _localctx = new InequalNullContext(_localctx);
@@ -879,7 +881,7 @@ public final class condition
 	        setState(44); match(NULL);
 	        }
 	        break;
-	
+
 	      case 14:
 	        {
 	        _localctx = new ParensContext(_localctx);
@@ -912,7 +914,7 @@ public final class condition
 	            setState(53); expr(4);
 	            }
 	            break;
-	
+
 	          case 2:
 	            {
 	            _localctx = new OrContext(new ExprContext(_parentctx, _parentState, _p));
@@ -924,7 +926,7 @@ public final class condition
 	            }
 	            break;
 	          }
-	          } 
+	          }
 	        }
 	        setState(61);
 	        _errHandler.sync(this);
@@ -942,7 +944,7 @@ public final class condition
 	    }
 	    return _localctx;
 	  }
-	
+
 	  public boolean sempred(RuleContext _localctx, int ruleIndex, int predIndex) {
 	    switch (ruleIndex) {
 	    case 1: return expr_sempred((ExprContext)_localctx, predIndex);
@@ -952,12 +954,12 @@ public final class condition
 	  private boolean expr_sempred(ExprContext _localctx, int predIndex) {
 	    switch (predIndex) {
 	    case 0: return 3 >= _localctx._p;
-	
+
 	    case 1: return 2 >= _localctx._p;
 	    }
 	    return true;
 	  }
-	
+
 	  public static final String _serializedATN =
 	    "\2\3\22A\4\2\t\2\4\3\t\3\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3"+
 	    "\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3"+
@@ -983,112 +985,112 @@ public final class condition
 	    _decisionToDFA = new DFA[_ATN.getNumberOfDecisions()];
 	  }
 	}
-	
+
 	public static interface ConditionListener extends ParseTreeListener {
 	  void enterInequalString(ConditionParser.InequalStringContext ctx);
 	  void exitInequalString(ConditionParser.InequalStringContext ctx);
-	
+
 	  void enterEqualRegex(ConditionParser.EqualRegexContext ctx);
 	  void exitEqualRegex(ConditionParser.EqualRegexContext ctx);
-	
+
 	  void enterCondition(ConditionParser.ConditionContext ctx);
 	  void exitCondition(ConditionParser.ConditionContext ctx);
-	
+
 	  void enterOr(ConditionParser.OrContext ctx);
 	  void exitOr(ConditionParser.OrContext ctx);
-	
+
 	  void enterInequalNull(ConditionParser.InequalNullContext ctx);
 	  void exitInequalNull(ConditionParser.InequalNullContext ctx);
-	
+
 	  void enterParens(ConditionParser.ParensContext ctx);
 	  void exitParens(ConditionParser.ParensContext ctx);
-	
+
 	  void enterInequalNumber(ConditionParser.InequalNumberContext ctx);
 	  void exitInequalNumber(ConditionParser.InequalNumberContext ctx);
-	
+
 	  void enterEqualBoolean(ConditionParser.EqualBooleanContext ctx);
 	  void exitEqualBoolean(ConditionParser.EqualBooleanContext ctx);
-	
+
 	  void enterAnd(ConditionParser.AndContext ctx);
 	  void exitAnd(ConditionParser.AndContext ctx);
-	
+
 	  void enterNot(ConditionParser.NotContext ctx);
 	  void exitNot(ConditionParser.NotContext ctx);
-	
+
 	  void enterInequalRegex(ConditionParser.InequalRegexContext ctx);
 	  void exitInequalRegex(ConditionParser.InequalRegexContext ctx);
-	
+
 	  void enterInequalID(ConditionParser.InequalIDContext ctx);
 	  void exitInequalID(ConditionParser.InequalIDContext ctx);
-	
+
 	  void enterEqualID(ConditionParser.EqualIDContext ctx);
 	  void exitEqualID(ConditionParser.EqualIDContext ctx);
-	
+
 	  void enterEqualNumber(ConditionParser.EqualNumberContext ctx);
 	  void exitEqualNumber(ConditionParser.EqualNumberContext ctx);
-	
+
 	  void enterInequalBoolean(ConditionParser.InequalBooleanContext ctx);
 	  void exitInequalBoolean(ConditionParser.InequalBooleanContext ctx);
-	
+
 	  void enterEqualString(ConditionParser.EqualStringContext ctx);
 	  void exitEqualString(ConditionParser.EqualStringContext ctx);
-	
+
 	  void enterEqualNull(ConditionParser.EqualNullContext ctx);
 	  void exitEqualNull(ConditionParser.EqualNullContext ctx);
 	}
-	
+
 	public static class ConditionBaseListener implements ConditionListener {
 	  @Override public void enterInequalString(ConditionParser.InequalStringContext ctx) { }
 	  @Override public void exitInequalString(ConditionParser.InequalStringContext ctx) { }
-	
+
 	  @Override public void enterEqualRegex(ConditionParser.EqualRegexContext ctx) { }
 	  @Override public void exitEqualRegex(ConditionParser.EqualRegexContext ctx) { }
-	
+
 	  @Override public void enterCondition(ConditionParser.ConditionContext ctx) { }
 	  @Override public void exitCondition(ConditionParser.ConditionContext ctx) { }
-	
+
 	  @Override public void enterOr(ConditionParser.OrContext ctx) { }
 	  @Override public void exitOr(ConditionParser.OrContext ctx) { }
-	
+
 	  @Override public void enterInequalNull(ConditionParser.InequalNullContext ctx) { }
 	  @Override public void exitInequalNull(ConditionParser.InequalNullContext ctx) { }
-	
+
 	  @Override public void enterParens(ConditionParser.ParensContext ctx) { }
 	  @Override public void exitParens(ConditionParser.ParensContext ctx) { }
-	
+
 	  @Override public void enterInequalNumber(ConditionParser.InequalNumberContext ctx) { }
 	  @Override public void exitInequalNumber(ConditionParser.InequalNumberContext ctx) { }
-	
+
 	  @Override public void enterEqualBoolean(ConditionParser.EqualBooleanContext ctx) { }
 	  @Override public void exitEqualBoolean(ConditionParser.EqualBooleanContext ctx) { }
-	
+
 	  @Override public void enterAnd(ConditionParser.AndContext ctx) { }
 	  @Override public void exitAnd(ConditionParser.AndContext ctx) { }
-	
+
 	  @Override public void enterNot(ConditionParser.NotContext ctx) { }
 	  @Override public void exitNot(ConditionParser.NotContext ctx) { }
-	
+
 	  @Override public void enterInequalRegex(ConditionParser.InequalRegexContext ctx) { }
 	  @Override public void exitInequalRegex(ConditionParser.InequalRegexContext ctx) { }
-	
+
 	  @Override public void enterInequalID(ConditionParser.InequalIDContext ctx) { }
 	  @Override public void exitInequalID(ConditionParser.InequalIDContext ctx) { }
-	
+
 	  @Override public void enterEqualID(ConditionParser.EqualIDContext ctx) { }
 	  @Override public void exitEqualID(ConditionParser.EqualIDContext ctx) { }
-	
+
 	  @Override public void enterEqualNumber(ConditionParser.EqualNumberContext ctx) { }
 	  @Override public void exitEqualNumber(ConditionParser.EqualNumberContext ctx) { }
-	
+
 	  @Override public void enterInequalBoolean(ConditionParser.InequalBooleanContext ctx) { }
 	  @Override public void exitInequalBoolean(ConditionParser.InequalBooleanContext ctx) { }
-	
+
 	  @Override public void enterEqualString(ConditionParser.EqualStringContext ctx) { }
 	  @Override public void exitEqualString(ConditionParser.EqualStringContext ctx) { }
-	
+
 	  @Override public void enterEqualNull(ConditionParser.EqualNullContext ctx) { }
 	  @Override public void exitEqualNull(ConditionParser.EqualNullContext ctx) { }
-	
+
 	  @Override public void enterEveryRule(ParserRuleContext ctx) { }
 	  @Override public void exitEveryRule(ParserRuleContext ctx) { }
 	  @Override public void visitTerminal(TerminalNode node) { }

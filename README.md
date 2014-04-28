@@ -533,11 +533,11 @@ Services for evaluating conditional statements.
       * `<key>` is a fully-qualified percent delimited IData document key,
         such as `%a/b/c[0]%`, and
       * `<value>` is a literal (double- or single-quoted) string, number,
-        boolean, (forward slash delimited) regular expression, or null.
+        boolean, (forward slash delimited) regular expression, or $null.
 
       Examples:
       * `%a/b/c[0]% == "xyz"`
-      * `%some/thing% != null`
+      * `%some/thing% != $null`
       * `%num% == /\d\d/`
       * `%num% == 10`
       * `%flag% == true`
@@ -549,6 +549,65 @@ Services for evaluating conditional statements.
       will be evaluated against the pipeline.
   * Outputs:
     * `$result?` is the boolean result of the evaluation.
+   If no $condition was
+      specified, true will be returned.
+
+  The [ANTLR4](http://antlr.org/) grammar used to generate the condition
+  parser is as follows:
+
+  ```ANTLR
+  grammar Condition;
+
+  condition: expr;
+
+  expr: NOT expr            # not
+      | ID EQUAL ID         # equalID
+      | ID EQUAL BOOLEAN    # equalBoolean
+      | ID EQUAL STRING     # equalString
+      | ID EQUAL NUMBER     # equalNumber
+      | ID EQUAL REGEX      # equalRegex
+      | ID EQUAL NULL       # equalNull
+      | ID INEQUAL ID       # inequalID
+      | ID INEQUAL BOOLEAN  # inequalBoolean
+      | ID INEQUAL STRING   # inequalString
+      | ID INEQUAL NUMBER   # inequalNumber
+      | ID INEQUAL REGEX    # inequalRegex
+      | ID INEQUAL NULL     # inequalNull
+      | expr AND expr       # and
+      | expr OR expr        # or
+      | '(' expr ')'        # parens
+      ;
+
+  ID : '%' (~[%])*? '%';
+
+  BOOLEAN: TRUE | FALSE;
+  TRUE: [tT][rR][uU][eE];
+  FALSE: [fF][aA][lL][sS][eE];
+  NULL: [$]?[nN][uU][lL][lL];
+  STRING: '"' (ESC | ~["\\])*? '"'
+        | '\'' (~['])*? '\''
+        ;
+  fragment ESC :   '\\' (["\\/bfnrt] | UNICODE) ;
+  fragment UNICODE : 'u' HEX HEX HEX HEX ;
+  fragment HEX : [0-9a-fA-F] ;
+
+  NUMBER: '-'? INT '.' INT EXP?   // 1.35, 1.35E-9, 0.3, -4.5
+        | '-'? INT EXP            // 1e10 -3e4
+        | '-'? INT                // -3, 45
+        ;
+  fragment INT :   '0' | [1-9] [0-9]*; // no leading zeros
+  fragment EXP :   [Ee] [+\-]? INT; // \- since - means "range" inside [...]
+
+  REGEX: '/' ('\\/' | ~[/])*? '/';
+
+  NOT: ('!'|[nN][oO][tT]);
+  EQUAL: ('='|'==');
+  INEQUAL: ('!='|'<>');
+  AND: ('&'|'&&'|[aA][nN][dD]);
+  OR: ('|'|'||'|[oO][rR]);
+
+  WS: [ \t\n\r]+ -> skip;
+  ```
 
 ### Content
 

@@ -7,7 +7,6 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
-      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -22,10 +21,10 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$condition</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <value name="contentType">1</value>
             <value name="internalType">reference</value>
@@ -48,7 +47,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$scope</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
@@ -58,14 +56,11 @@
           <value name="is_global">false</value>
           <array name="rec_fields" type="record" depth="1">
           </array>
-          <value name="modifiable">true</value>
         </record>
       </array>
-      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
-      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -80,7 +75,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$result?</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -100,7 +94,6 @@
           <value name="is_global">false</value>
         </record>
       </array>
-      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">Evaluates the given condition against the pipeline (or optional scope IData 
@@ -134,62 +127,63 @@ document).
     which $condition will be evaluated. If not specified, the $condition 
     will be evaluated against the pipeline.
 * Outputs:
-  * $result? is the boolean result of the evaluation.
+  * $result? is the boolean result of the evaluation. If no $condition was
+    specified, true will be returned.
 
 The [ANTLR4](http://antlr.org/) grammar used to generate the condition 
 parser is as follows:
 
-grammar Condition;
+    grammar Condition;
 
-condition: expr;
+    condition: expr;
 
-expr: NOT expr            # not
-    | ID EQUAL ID         # equalID
-    | ID EQUAL BOOLEAN    # equalBoolean
-    | ID EQUAL STRING     # equalString
-    | ID EQUAL NUMBER     # equalNumber
-    | ID EQUAL REGEX      # equalRegex
-    | ID EQUAL NULL       # equalNull
-    | ID INEQUAL ID       # inequalID
-    | ID INEQUAL BOOLEAN  # inequalBoolean
-    | ID INEQUAL STRING   # inequalString
-    | ID INEQUAL NUMBER   # inequalNumber
-    | ID INEQUAL REGEX    # inequalRegex
-    | ID INEQUAL NULL     # inequalNull
-    | expr AND expr       # and
-    | expr OR expr        # or
-    | '(' expr ')'        # parens
-    ;
+    expr: NOT expr            # not
+        | ID EQUAL ID         # equalID
+        | ID EQUAL BOOLEAN    # equalBoolean
+        | ID EQUAL STRING     # equalString
+        | ID EQUAL NUMBER     # equalNumber
+        | ID EQUAL REGEX      # equalRegex
+        | ID EQUAL NULL       # equalNull
+        | ID INEQUAL ID       # inequalID
+        | ID INEQUAL BOOLEAN  # inequalBoolean
+        | ID INEQUAL STRING   # inequalString
+        | ID INEQUAL NUMBER   # inequalNumber
+        | ID INEQUAL REGEX    # inequalRegex
+        | ID INEQUAL NULL     # inequalNull
+        | expr AND expr       # and
+        | expr OR expr        # or
+        | '(' expr ')'        # parens
+        ;
 
-ID : '%' (~[%])*? '%';
+    ID : '%' (~[%])*? '%';
 
-BOOLEAN: TRUE | FALSE;
-TRUE: [tT][rR][uU][eE];
-FALSE: [fF][aA][lL][sS][eE];
-NULL: [$]?[nN][uU][lL][lL];
-STRING: '"' (ESC | ~["\\])*? '"'
-      | '\'' (~['])*? '\''
-      ;
-fragment ESC :   '\\' (["\\/bfnrt] | UNICODE) ;
-fragment UNICODE : 'u' HEX HEX HEX HEX ;
-fragment HEX : [0-9a-fA-F] ;
+    BOOLEAN: TRUE | FALSE;
+    TRUE: [tT][rR][uU][eE];
+    FALSE: [fF][aA][lL][sS][eE];
+    NULL: [$]?[nN][uU][lL][lL];
+    STRING: '"' (ESC | ~["\\])*? '"'
+          | '\'' (~['])*? '\''
+          ;
+    fragment ESC :   '\\' (["\\/bfnrt] | UNICODE) ;
+    fragment UNICODE : 'u' HEX HEX HEX HEX ;
+    fragment HEX : [0-9a-fA-F] ;
 
-NUMBER: '-'? INT '.' INT EXP?   // 1.35, 1.35E-9, 0.3, -4.5
-      | '-'? INT EXP            // 1e10 -3e4
-      | '-'? INT                // -3, 45
-      ;
-fragment INT :   '0' | [1-9] [0-9]*; // no leading zeros
-fragment EXP :   [Ee] [+\-]? INT; // \- since - means "range" inside [...]
+    NUMBER: '-'? INT '.' INT EXP?   // 1.35, 1.35E-9, 0.3, -4.5
+          | '-'? INT EXP            // 1e10 -3e4
+          | '-'? INT                // -3, 45
+          ;
+    fragment INT :   '0' | [1-9] [0-9]*; // no leading zeros
+    fragment EXP :   [Ee] [+\-]? INT; // \- since - means "range" inside [...]
 
-REGEX: '/' ('\\/' | ~[/])*? '/';
+    REGEX: '/' ('\\/' | ~[/])*? '/';
 
-NOT: ('!'|[nN][oO][tT]);
-EQUAL: ('='|'==');
-INEQUAL: ('!='|'&amp;lt;&amp;gt;');
-AND: ('&amp;amp;'|'&amp;amp;&amp;amp;'|[aA][nN][dD]);
-OR: ('|'|'||'|[oO][rR]);
+    NOT: ('!'|[nN][oO][tT]);
+    EQUAL: ('='|'==');
+    INEQUAL: ('!='|'&lt;&gt;');
+    AND: ('&amp;'|'&amp;&amp;'|[aA][nN][dD]);
+    OR: ('|'|'||'|[oO][rR]);
 
-WS: [ \t\n\r]+ -&amp;gt; skip;&lt;/value&gt;</value>
+    WS: [ \t\n\r]+ -&gt; skip;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
@@ -206,16 +200,10 @@ WS: [ \t\n\r]+ -&amp;gt; skip;&lt;/value&gt;</value>
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
-  <null name="auditfields_input"/>
-  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
-  <value name="pipeline_option">1</value>
-  <null name="originURI"/>
-  <value name="modifiable">true</value>
-  <value name="is_public">false</value>
 </Values>
