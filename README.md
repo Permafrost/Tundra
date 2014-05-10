@@ -654,25 +654,29 @@ content.
   destination URI.
 
   Additional delivery protocols can be implemented by creating a service named
-  for the URI scheme in the folder `Tundra/tundra.support.content.deliver`.
+  for the URI scheme in the folder `Tundra/tundra.content.deliver`.
   Services in this folder should implement the
-  `Tundra/tundra.support.content.deliver.protocol:handler` specification.
+  `Tundra/tundra.schema.content.deliver:handler` specification.
 
   * Inputs:
     * `$content` is a string, byte array, or input stream containing data to
       be delivered to the `$destination` URI.
     * `$content.type` is an optional MIME media type describing the type
       content being delivered.
+
     * `$encoding` is an optional character set to use when `$content` is
       provided as a string to encode the text data upon delivery. Defaults to
       the Java virtual machine [default charset].
+
     * `$destination` is a URI identifying the location where the given
       `$content` should be delivered. Supports the following delivery
       protocols / URI schemes:
+
       * `file`: writes the given content to the file specified by the
         destination URI. The following additional options can be provided via
         the `$pipeline` document:
         * `$mode`: append / write
+
       * `http`: transmits the given content to the destination URI. The
         following additional options can be provided via the `$pipeline`
         document:
@@ -681,10 +685,13 @@ content.
         * `$authority/user`: the username to log on to the remote web server
         * `$authority/password`: the password to log on to the remote web
           server
+
       * `https`: refer to `http`
+
       * `mailto`: sends an email with the given content attached. An example
         mailto URI is as follows:
-        `mailto:bob@example.com?cc=jane@example.com&subject=Example&body=Example&attachment=message.xml`.
+
+            mailto:bob@example.com?cc=jane@example.com&subject=Example&body=Example&attachment=message.xml
 
         The following additional override options can be provided via the
         `$pipeline` document:
@@ -696,8 +703,10 @@ content.
           `smtp://user:password@host:port`), defaults to the SMTP server
            configured in the Integration Server setting
            `watt.server.smtpServer`.
+
     * `$pipeline` is an optional IData document for providing arbitrary
       variables to the delivery implementation service.
+
   * Outputs:
     * `$message` is an optional response message, useful for logging, that may
       be returned by specific delivery protocols.
@@ -705,6 +714,42 @@ content.
       (for example, the HTTP response body).
     * `$response.type` is an optional MIME media type describing the type of
       `$response` returned.
+
+* #### tundra.content.deliver:file
+
+  The file protocol handler for the `Tundra/tundra.content:deliver`
+  service, which delivers arbitrary content to a file URI
+  destination.
+
+  Implements the `Tundra/tundra.schema.content.deliver:handler`
+  specification.
+
+* #### tundra.content.deliver:http
+
+  The HTTP protocol handler for the `Tundra/tundra.content:deliver`
+  service, which delivers arbitrary content to a HTTP URI
+  destination.
+
+  Implements the `Tundra/tundra.schema.content.deliver:handler`
+  specification.
+
+* #### tundra.content.deliver:https
+
+  The HTTPS protocol handler for the `Tundra/tundra.content:deliver`
+  service, which delivers arbitrary content to a HTTPS URI
+  destination.
+
+  Implements the `Tundra/tundra.schema.content.deliver:handler`
+  specification.
+
+* #### tundra.content.deliver:mailto
+
+  The email protocol handler for the `Tundra/tundra.content:deliver`
+  service, which delivers arbitrary content to a mailto URI
+  destination.
+
+  Implements the `Tundra/tundra.schema.content.deliver:handler`
+  specification.
 
 * #### tundra.content:discard
 
@@ -5735,6 +5780,30 @@ scheduled tasks.
 ### Schema
 
 Document references and service specifications:
+
+* #### tundra.schema.content.deliver:handler
+
+  Content delivery protocol handling services used by tundra.content:deliver
+  must implement this specification.
+
+  * Inputs:
+    * `$content` is a string, byte array, or input stream containing data to be
+      delivered to the `$destination` URI.
+    * `$content.type` is an optional MIME media type describing the type content
+      being delivered.
+    * `$encoding` is an optional character set to use when `$content` is provided
+      as a string to encode the text data upon delivery. Defaults to the Java
+      virtual machine [default charset].
+    * `$destination` is a parsed URI identifying the location where the given
+      $content should be delivered.
+
+  * Outputs:
+    * `$message` is an optional response message, useful for logging, that may
+      be returned by specific delivery protocols.
+    * `$response` is an optional response content returned by the delivery (for
+      example, the HTTP response body).
+    * `$response.type` is an optional MIME media type describing the type of
+      `$response` returned.
 
 * #### tundra.schema.content.retrieve:handler
 
