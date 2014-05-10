@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-07-24 13:32:00.530
-// -----( ON-HOST: -
+// -----( CREATED: 2014-05-10 15:59:28 EST
+// -----( ON-HOST: 172.16.189.132
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -166,7 +166,7 @@ public final class uri
 	
 	  try {
 	    java.net.URI uri = new java.net.URI(input);
-		uri.normalize();
+	    uri.normalize();
 	    
 	    String scheme = uri.getScheme();
 	    // schemes are case-insensitive, according to RFC 2396
@@ -223,8 +223,7 @@ public final class uri
 	      }
 	
 	      String path = uri.getPath();
-	      if (path.startsWith("/")) path = path.substring(1, path.length());
-	      String[] paths = path.split("/");
+	      String[] paths = tundra.uri.path.parse(path);
 	      
 	      String file = null;
 	      if (!path.endsWith("/")) {
@@ -235,9 +234,9 @@ public final class uri
 	      if (paths != null && paths.length > 0) IDataUtil.put(oc, "path", paths);
 	      if (file != null && !file.equals("")) IDataUtil.put(oc, "file", file);
 	
-	      query = uri.getQuery();
+	      query = uri.getRawQuery();
 	    }
-	    IData queryDocument = tundra.uri.query.parse(query, false);
+	    IData queryDocument = tundra.uri.query.parse(query, true);
 	    if (queryDocument != null) IDataUtil.put(oc, "query", queryDocument);
 	
 	    String fragment = uri.getFragment();
@@ -362,6 +361,24 @@ public final class uri
 	  return output;
 	}
 	
+	// URL encodes a string, refer <http://docs.oracle.com/javase/6/docs/api/java/net/URLEncoder.html>
+	public static String[] encode(String[] input) throws ServiceException {
+	  return encode(input, DEFAULT_CHARACTER_ENCODING);
+	}
+	
+	// URL encodes a string, refer <http://docs.oracle.com/javase/6/docs/api/java/net/URLEncoder.html>
+	public static String[] encode(String[] input, String encoding) throws ServiceException {
+	  if (input == null) return null;
+	
+	  String[] output = new String[input.length];
+	  
+	  for (int i = 0; i < input.length; i++) {
+	    output[i] = encode(input[i], encoding);
+	  }
+	
+	  return output;
+	}
+	
 	// URL decodes a string, refer <http://docs.oracle.com/javase/6/docs/api/java/net/URLDecoder.html>
 	public static String decode(String input) throws ServiceException {
 	  return decode(input, DEFAULT_CHARACTER_ENCODING);
@@ -381,13 +398,84 @@ public final class uri
 	  return output;
 	}
 	
+	// URL decodes a string, refer <http://docs.oracle.com/javase/6/docs/api/java/net/URLDecoder.html>
+	public static String[] decode(String[] input) throws ServiceException {
+	  return decode(input, DEFAULT_CHARACTER_ENCODING);
+	}
+	
+	// URL decodes a string, refer <http://docs.oracle.com/javase/6/docs/api/java/net/URLDecoder.html>
+	public static String[] decode(String[] input, String encoding) throws ServiceException {
+	  if (input == null) return null;
+	
+	  String[] output = new String[input.length];
+	
+	  for (int i = 0; i < input.length; i++) {
+	    output[i] = decode(input[i], encoding);
+	  }
+	
+	  return output;
+	}
+	
+	public static class path {
+	  public static final java.util.regex.Pattern PATH_PATTERN = java.util.regex.Pattern.compile("/+");
+	
+	  // parses a URI path string, with support for variable substitution strings
+	  public static String[] parse(String input) throws ServiceException {
+	    if (input == null || input.equals("") || input.equals("/")) return null;
+	    if (input.startsWith("/")) input = input.substring(1, input.length());
+	    if (input.endsWith("/")) input = input.substring(0, input.length() - 1);
+	
+	    java.util.List<String> list = new java.util.ArrayList<String>();
+	    java.util.regex.Matcher substitutionMatcher = tundra.string.SUBSTITUTION_PATTERN.matcher(input);
+	
+	    int index = 0;
+	    while(substitutionMatcher.find()) {
+	      int start = substitutionMatcher.start();
+	      int end = substitutionMatcher.end();
+	
+	      if (index <= start) split(input.substring(index, start), list);
+	      append(substitutionMatcher.group(), list);
+	
+	      index = end;
+	    }
+	    if (index <= input.length()) split(input.substring(index), list);
+	
+	    return tundra.list.object.compact((String[])list.toArray(new String[0]));
+	  }
+	
+	  protected static void append(String item, java.util.List<String> list) {
+	    int i = list.size() - 1;
+	    if (i < 0) {
+	      list.add(item);
+	    } else {
+	      list.set(i, list.get(i) + item);
+	    }
+	  }
+	
+	  protected static void split(String input, java.util.List<String> list) {
+	    java.util.regex.Matcher matcher = PATH_PATTERN.matcher(input);
+	
+	    int index = 0;
+	    while(matcher.find()) {
+	      int start = matcher.start();
+	      int end = matcher.end();
+	
+	      if (index <= start) append(input.substring(index, start), list);
+	      list.add("");
+	
+	      index = end;
+	    }
+	    if (index <= input.length()) append(input.substring(index), list);
+	  }
+	}
+	
 	public static class query {
-	  // parses a query string using the Apache HTTP client utils
+	  // parses a query string
 	  public static IData parse(String input, boolean decode) throws ServiceException {
 	    return parse(input, null, decode);
 	  }
 	
-	  // parses a query string using the Apache HTTP client utils
+	  // parses a query string
 	  public static IData parse(String input, String encoding, boolean decode) throws ServiceException {
 	    if (input == null) return null;
 	    if (encoding == null) encoding = DEFAULT_CHARACTER_ENCODING;
