@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-12-09 16:13:14.003
-// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
+// -----( CREATED: 2014-02-15 10:35:45 EST
+// -----( ON-HOST: 172.16.189.172
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -324,8 +324,12 @@ public final class datetime
 	protected static final java.util.Map<String, String> constructNamedPatterns() {
 	  java.util.Map<String, String> map = new java.util.TreeMap<String, String>();
 	
+	  map.put("date", "yyyy-MM-dd");
 	  map.put("date.jdbc", "yyyy-MM-dd");
+	  map.put("date.xml", "yyyy-MM-dd");  
+	  map.put("time", "HH:mm:ss.SSS");
 	  map.put("time.jdbc", "HH:mm:ss");
+	  map.put("time.xml", "HH:mm:ss.SSS");
 	
 	  return map;
 	}
@@ -438,10 +442,6 @@ public final class datetime
 	      output = javax.xml.bind.DatatypeConverter.printDateTime(input);
 	    } else if (pattern.equals("datetime.jdbc")) {
 	      output = (new java.sql.Timestamp(input.getTimeInMillis())).toString();
-	    } else if (pattern.equals("date") || pattern.equals("date.xml")) {
-	      output = javax.xml.bind.DatatypeConverter.printDate(input);
-	    } else if (pattern.equals("time") || pattern.equals("time.xml"))    {
-	      output = javax.xml.bind.DatatypeConverter.printTime(input);
 	    } else if (pattern.equals("milliseconds")) {
 	      output = "" + input.getTimeInMillis();  
 	    } else {
