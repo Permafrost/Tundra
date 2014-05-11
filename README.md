@@ -1552,7 +1552,7 @@ File system services for working with directories or folders:
     * `$directory.source` is a relative or absolute path or file: [URI]
       to be renamed.
     * `$directory.target` is a relative or absolute path of file: [URI]
-      to rename $directory.source to.
+      to rename `$directory.source` to.
 
 ### Document
 
