@@ -1523,8 +1523,8 @@ File system services for working with directories or folders:
   Returns the canonical file: URI that represents the given directory.
 
   * Inputs:
-    * `$directory` is a relative or absolute path or file: [URI] to be
-      normalize.
+    * `$directory` is a relative or absolute path, or file: [URI], to be
+      normalized.
 
   * Outputs:
     * `$directory` is the equivalent canonical file: [URI] representing
