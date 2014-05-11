@@ -1593,7 +1593,7 @@ Services for manipulating com.wm.data.IData objects:
     * `$document` is an IData document whose keys are to be removed.
     * `$preserve` is list of keys which will not be removed from
       the given IData document. Keys can be simple or fully
-      qualified, such as a/b/c[0]/d.
+      qualified, such as `a/b/c[0]/d`.
 
   * Outputs:
     * `$document` is the given IData document with all keys removed,
@@ -1620,10 +1620,10 @@ Services for manipulating com.wm.data.IData objects:
     * `$document` is an IData document in which to copy the value
       associated with the source key to the target key.
     * `$key.source` is a key identifying the value to be copied,
-      and can be simple or fully qualified, such as a/b/c[0]/d.
+      and can be simple or fully qualified, such as `a/b/c[0]/d`.
     * `$key.target` is the key to which the source key value is
       copied, and can be simple or fully qualified, such as
-      a/b/c[0]/d.
+      `a/b/c[0]/d`.
 
   * Outputs:
     * `$document` is the given IData document where the value
@@ -1700,7 +1700,7 @@ Services for manipulating com.wm.data.IData objects:
     * `$document` is an IData document from which to remove the element
       identified by `$key`.
     * `$key` is a key identifying the element in `$document` to be removed,
-      and can be simple or fully qualified, such as a/b/c[0]/d.
+      and can be simple or fully qualified, such as `a/b/c[0]/d`.
 
   * Outputs:
     * `$document` is the given IData document where the element
@@ -1803,7 +1803,7 @@ Services for manipulating com.wm.data.IData objects:
       element.
     * `$key` is the key identifying the value in the given document
       to be returned, and can be simple or fully qualified, such
-      as a/b/c[0]/d.
+      as `a/b/c[0]/d`.
 
   * Outputs:
     * `$value` is the value associated with the given key in the
@@ -1945,7 +1945,7 @@ Services for manipulating com.wm.data.IData objects:
   * Inputs:
     * `$key` is a key identifying the value to be coverted to an document
       list (IData[]), and can be simple or fully qualified, such as
-      a/b/c[0]/d.
+      `a/b/c[0]/d`.
     * `$scope` is an optional IData document against which the given `$key`
       is resolved. If not specified, $key is resolved against the pipeline.
 
@@ -2048,12 +2048,12 @@ Services for manipulating com.wm.data.IData objects:
         "f": ["example 4", "example 5"]
       }
 
-  Keys using path-style notation, for example "a/b/c", are
+  Keys using path-style notation, for example `a/b/c`, are
   converted to nested IData documents with the final key
-  in the path, "c" in this example, assigned the value of
+  in the path, `c` in this example, assigned the value of
   the original key.
 
-  Keys using array- or list-style notation, for example "f[0]",
+  Keys using array- or list-style notation, for example `f[0]`,
   are converted to an array or list with the value of the
   original key assigned to the indexed item (the zeroth item in
   this example).
@@ -2087,7 +2087,7 @@ Services for manipulating com.wm.data.IData objects:
     * `$document` is an IData document in which to insert the given key
       value pair.
     * `$key` is the key to be inserted into the given IData document, and
-      can be simple or fully-qualified, such as a/b/c[0]/d. If the key
+      can be simple or fully-qualified, such as `a/b/c[0]/d`. If the key
       already exists, it's value will be overwritten with the given value.
     * `$value` is the value to be associated with the given key. If not
       specified, a null value will be inserted.
@@ -2104,9 +2104,9 @@ Services for manipulating com.wm.data.IData objects:
   * Inputs:
     * `$document` is an IData document in which to rename the given key.
     * `$key.source` is the key to be renamed, and can be simple or fully-
-      qualified, such as a/b/c[0]/d.
+      qualified, such as `a/b/c[0]/d`.
     * `$key.target` is the new name that source key will be renamed to,
-      and can be simple or fully-qualified, such as a/b/c[0]/d. If the
+      and can be simple or fully-qualified, such as `a/b/c[0]/d`. If the
       target key already exists, its value will be overwitten with the
       value that was associated with the source key.
 
@@ -2185,7 +2185,7 @@ Services for manipulating com.wm.data.IData objects:
 * #### tundra.document:substitute
 
   Attempts variable substitution on each string value in the given IData
-  document by replacing all occurrences of substrings matching "%key%" with
+  document by replacing all occurrences of substrings matching `%key%` with
   the associated (optionally scoped) value.
 
   Optionally replaces null or non-existent values with the given default
@@ -2202,7 +2202,7 @@ Services for manipulating com.wm.data.IData objects:
 
   * Outputs:
     * `$document` is the resulting IData document with all variable substitution
-      patterns in all values, such as "%key%", replaced with the value of the
+      patterns in all values, such as `%key%`, replaced with the value of the
       key (resolved against either `$pipeline`, if specified, or the pipeline
       itself).
 
