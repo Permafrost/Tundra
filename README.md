@@ -1532,7 +1532,7 @@ File system services for working with directories or folders:
 
 * #### tundra.directory:remove
 
-  Deletes the given directory,and optionally all child files and
+  Deletes the given directory, and optionally all child files and
   directories recursively if desired.
 
   * Inputs:
