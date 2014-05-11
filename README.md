@@ -1631,44 +1631,51 @@ Services for manipulating com.wm.data.IData objects:
 
 * #### tundra.document:deliver
 
-  Serializes the given IData document, and delivers it to the given destination URI.
+  Serializes the given IData document, and delivers it to the given
+  destination URI.
 
-  Additional delivery protocols can be implemented by creating a service named for
-  the URI scheme in the folder tundra.support.content.deliver. Services in this folder
-  should implement the tundra.support.content.deliver.protocol:handler specification.
+  Additional delivery protocols can be implemented by creating a service
+  named for the URI scheme in the folder `tundra.content.deliver`. Services
+  in this folder should implement the `tundra.schema.content.deliver:handler`
+  specification.
 
   * Inputs:
-    * `$document` is the IData document to be serialized and delivered to the given
-      destination URI.
+    * `$document` is the IData document to be serialized and delivered to the
+      given destination URI.
 
-    * `$encoding` is an optional character set used to encode the serialized document
-      data upon delivery. Defaults to the Java virtual machine [default charset].
+    * `$encoding` is an optional character set used to encode the serialized
+      document data upon delivery. Defaults to the Java virtual machine
+      [default charset].
 
-    * `$schema` is the fully-qualified name of the document reference (for XML) or
-      flat file schema (for flat files) used to serialize `$document`.
+    * `$schema` is the fully-qualified name of the document reference (for XML)
+      or flat file schema (for flat files) used to serialize `$document`.
 
-    * `$content.type` is an optional MIME media type describing the type content being
-      delivered.
+    * `$content.type` is an optional MIME media type describing the type
+      content being delivered.
 
-    * `$destination` is a URI identifying the location where the serialized document should
-      be delivered. Supports the following delivery protocols / URI schemes:
-      * file: writes the given content to the file specified by the destination URI. The
-        following additional options can be provided via the $pipeline document:
+    * `$destination` is a URI identifying the location where the serialized
+      document should be delivered. Supports the following delivery protocols
+      (URI schemes):
+
+      * `file`: writes the given content to the file specified by the
+        destination URI. The following additional options can be provided
+        via the `$pipeline` document:
         * `$mode`: append / write
 
-      * http: transmits the given content to the destination URI. The following additional
-        options can be provided via the $pipeline document:
+      * `http`: transmits the given content to the destination URI. The
+        following additional options can be provided via the `$pipeline`
+        document:
         * `$method`: get / put / post / delete / head / trace / options
         * `$headers/*`: additional HTTP headers as required
-        * `$authority/user`: the username to log on to the remote web server with
-        * `$authority/password`: the password to log on to the remote web server with
+        * `$authority/user`: the username to log on to the remote web server
+        * `$authority/password`: the password to log on to the remote web server
 
-      * https: refer to http
+      * `https`: refer to http
 
-      * mailto: sends an email with the given content attached. An example mailto URI is as
-        follows:
+      * `mailto`: sends an email with the given content attached. An example
+        mailto URI is as follows:
 
-        mailto:bob@example.com?cc=jane@example.com&subject=Example&body=Example&attachment=message.xml.
+            mailto:bob@example.com?cc=jane@example.com&subject=Example&body=Example&attachment=message.xml
 
         The following additional override options can be provided via the $pipeline document:
         * `$attachment`: the attached file's name
@@ -1676,21 +1683,20 @@ Services for manipulating com.wm.data.IData objects:
         * `$subject`: the subject line text
         * `$body`: the main text of the email
         * `$smtp`: an SMTP URI specifying the SMTP server to use (for example,
-          smtp://user:password@host:port), defaults to the SMTP server configured in the
-          Integration Server setting `watt.server.smtpServer`.
+          `smtp://user:password@host:port`), defaults to the SMTP server configured in the Integration Server setting `watt.server.smtpServer`.
 
-    * `$pipeline` is an optional IData document for providing arbitrary variables to the
-      delivery implementation service.
+    * `$pipeline` is an optional IData document for providing arbitrary
+      variables to the delivery implementation service.
 
   * Outputs:
-    * `$message` is an optional response message, useful for logging, that may be returned
-      by specific delivery protocols.
+    * `$message` is an optional response message, useful for logging, that may
+      be returned by specific delivery protocols.
 
-    * `$response` is an optional response content returned by the delivery (for example,
-      the HTTP response body).
+    * `$response` is an optional response content returned by the delivery
+      (for example, the HTTP response body).
 
-    * `$response.type` is an optional MIME media type describing the type of `$response`
-      returned.
+    * `$response.type` is an optional MIME media type describing the type of
+      `$response` returned.
 
 * #### tundra.document:drop
 
