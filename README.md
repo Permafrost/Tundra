@@ -139,12 +139,37 @@ Top-level services for the most common tasks.
 
 * #### tundra:test
 
-  Runs all *test*:should* services in the given package, returning the test
-  results (a test case passes if no exceptions are thrown).
+  Runs all `*test*:should*` services in the given package, returning the test
+  results, where a test case passes if no exceptions are thrown.
+
+  Refer to the [TundraTest] package for test case service examples.
+
+  This service is designed to either be invoked directly, or via a web
+  browser. When invoked via a browser, a basic HTML test report is displayed:
+
+      http://server:port/invoke/tundra/test?$package=TundraTest
 
   * Inputs:
-    * `$package` is the name of the package which contains the test cases to
-      be executed.
+    * `$package` is the name of the package which contains the test cases to be
+      executed.
+
+  * Outputs:
+    * `$result` is a document containing the test results from executing all the
+      `*test*:should*` services in the given `$package`.
+      * `package` is the name of package the test results relate to.
+      * `passed?` is a boolean indicating if all test cases executed passed.
+      * `counts` is a document containing the test result counts.
+        * `total` is the total number of test case services executed.
+        * `passed` is the number of test case services which passed (did not
+          throw an exception).
+        * `failed` is the number of test case services which failed (threw an
+          exception).
+      * `cases` is a list of the test case services which were executed.
+        * `description` is the fully-qualified name of the test case service.
+        * `passed?` is a boolean indicating if the test case service passed (did
+          not throw an exception).
+        * `message` is an optional description returned if the test case service
+          failed, which describes why the test case failed.
 
 ### Assertions
 
@@ -6752,6 +6777,7 @@ Copyright © 2012 Lachlan Dowding. See license.txt for further details.
 [SAX]: <http://en.wikipedia.org/wiki/Simple_API_for_XML>
 [set intersection]: <http://en.wikipedia.org/wiki/Intersection_(set_theory)>
 [try block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/try.html>
+[TundraTest]: <https://github.com/Permafrost/TundraTest>
 [URI]: <http://www.w3.org/Addressing/>
 [UUID]: <http://docs.oracle.com/javase/6/docs/api/java/util/UUID.html>
 [XML]: <http://www.w3.org/XML/>
