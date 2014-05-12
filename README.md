@@ -3326,6 +3326,35 @@ Services for manipulating document (com.wm.data.IData) lists:
     * `$equal?` is a boolean indicating if `$list.x` equals
       `$list.y`.
 
+* #### tundra.list.document:filter
+
+  Filters the given list to only include items where the
+  given condition evaluates to true.
+
+  * Inputs:
+    * `$list` is the list to be filtered.
+
+    * `$condition` is a `tundra.condition:evaluate` compatible
+      conditional statement used to filter the given list.
+
+      List items are represented in the evaluation scope by
+      a variable named `$item`.
+
+      For example, to filter a list to only include items
+      where surname and firstname keys have specific values,
+      use the following `$condition`:
+
+          %$item/surname% == "Smith" and %$item/firstname% == "John"
+
+    * `$scope` is an optional IData document containing the
+      variables against which `$condition` will be evaluated.
+      If not specified, the `$condition` will be evaluated
+      against the pipeline.
+
+  * Outputs:
+    * `$list` is the given list filtered to only include the
+      items where `$condition` evaluated to true.
+
 * #### tundra.list.document:get
 
   Returns the item stored at a given index in a list. A zero-
@@ -3921,6 +3950,34 @@ Services for manipulating java.lang.Object lists:
     * `$equal?` is a boolean indicating if `$list.x` equals
       `$list.y`.
 
+* #### tundra.list.object:filter
+
+  Filters the given list to only include items where the
+  given condition evaluates to true.
+
+  * Inputs:
+    * `$list` is the list to be filtered.
+
+    * `$condition` is a `tundra.condition:evaluate` compatible
+      conditional statement used to filter the given list.
+
+      List items are represented in the evaluation scope by
+      a variable named `$item`.
+
+      For example, to filter a list to only include items
+      equal to 1 or 2, use the following `$condition`:
+
+          %$item% == 1 or %$item% == 2
+
+    * `$scope` is an optional IData document containing the
+      variables against which `$condition` will be evaluated.
+      If not specified, the `$condition` will be evaluated
+      against the pipeline.
+
+  * Outputs:
+    * `$list` is the given list filtered to only include the
+      items where `$condition` evaluated to true.
+
 * #### tundra.list.object:get
 
   Returns the item stored at a given index in a list. A zero-
@@ -4389,6 +4446,35 @@ Services for manipulating string lists:
   * Outputs:
     * `$equal?` is a boolean indicating if `$list.x` equals
       `$list.y`.
+
+* #### tundra.list.string:filter
+
+  Filters the given list to only include items where the
+  given condition evaluates to true.
+
+  * Inputs:
+    * `$list` is the list to be filtered.
+
+    * `$condition` is a `tundra.condition:evaluate` compatible
+      conditional statement used to filter the given list.
+
+      List items are represented in the evaluation scope by
+      a variable named `$item`.
+
+      For example, to filter a list to only include items
+      equal to a regular expression pattern, use the following
+      `$condition`:
+
+          %$item% == /\d\d/
+
+    * `$scope` is an optional IData document containing the
+      variables against which `$condition` will be evaluated.
+      If not specified, the `$condition` will be evaluated
+      against the pipeline.
+
+  * Outputs:
+    * `$list` is the given list filtered to only include the
+      items where `$condition` evaluated to true.
 
 * #### tundra.list.string:get
 
