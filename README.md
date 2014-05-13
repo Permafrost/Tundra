@@ -547,92 +547,39 @@ Services for evaluating conditional statements.
 
   * Inputs:
     * `$condition` is the conditional statement to be evaluated. Conditional
-      statements have the following form:
+      statements have the same form as when they are used in a flow branch
+      step:
 
-          <condition> = <key> == <key>   [and|or <condition>]
-                      | <key> != <key>   [and|or <condition>]
-                      | <key> == <value> [and|or <condition>]
-                      | <key> != <value> [and|or <condition>]
+          condition = value comparison_op value [logical_op condition]
+                    | [!]value                  [logical_op condition]
 
       Where:
-      * `<key>` is a fully-qualified percent delimited IData document key,
-        such as `%a/b/c[0]%`, and
-      * `<value>` is a literal (double- or single-quoted) string, number,
-        boolean, (forward slash delimited) regular expression, or $null.
+      * `value` is a fully-qualified percent delimited IData document key,
+        such as `%a/b/c[0]%`, or a literal (double- or single-quoted) string,
+        number, (forward slash delimited) regular expression, or `$null`.
+      * `comparison_op` is one of the following comparison operators:
+        =, ==, !=, <>, >, >=, <, <=
+      * `logical_op` is one of the following logical operators:
+        and, &&, or, ||
 
       Examples:
       * `%a/b/c[0]% == "xyz"`
-      * `%some/thing% != $null`
       * `%num% == /\d\d/`
       * `%num% == 10`
-      * `%flag% == true`
+      * `%something% == $null`
       * `%total% == %count%`
-      * `%inString1% == "abc" and (%inString2% == "123" or %inString3% == "123")`
+      * `%inString1% == "abc" and (%inNum1% < 100 or %inNum2% > 1000)`
+
+      Refer to the Conditional Expressions section in the Integration Server
+      Developer User's Guide for further details.
 
     * `$scope` is an optional IData document containing the variables against
       which `$condition` will be evaluated. If not specified, the `$condition`
       will be evaluated against the pipeline.
+
   * Outputs:
-    * `$result?` is the boolean result of the evaluation.
-   If no $condition was
+    * `$result?` is the boolean result of the evaluation. If no `$condition` was
       specified, true will be returned.
-
-  The [ANTLR4](http://antlr.org/) grammar used to generate the condition
-  parser is as follows:
-
-  ```ANTLR
-  grammar Condition;
-
-  condition: expr;
-
-  expr: NOT expr            # not
-      | ID EQUAL ID         # equalID
-      | ID EQUAL BOOLEAN    # equalBoolean
-      | ID EQUAL STRING     # equalString
-      | ID EQUAL NUMBER     # equalNumber
-      | ID EQUAL REGEX      # equalRegex
-      | ID EQUAL NULL       # equalNull
-      | ID INEQUAL ID       # inequalID
-      | ID INEQUAL BOOLEAN  # inequalBoolean
-      | ID INEQUAL STRING   # inequalString
-      | ID INEQUAL NUMBER   # inequalNumber
-      | ID INEQUAL REGEX    # inequalRegex
-      | ID INEQUAL NULL     # inequalNull
-      | expr AND expr       # and
-      | expr OR expr        # or
-      | '(' expr ')'        # parens
-      ;
-
-  ID : '%' (~[%])*? '%';
-
-  BOOLEAN: TRUE | FALSE;
-  TRUE: [tT][rR][uU][eE];
-  FALSE: [fF][aA][lL][sS][eE];
-  NULL: [$]?[nN][uU][lL][lL];
-  STRING: '"' (ESC | ~["\\])*? '"'
-        | '\'' (~['])*? '\''
-        ;
-  fragment ESC :   '\\' (["\\/bfnrt] | UNICODE) ;
-  fragment UNICODE : 'u' HEX HEX HEX HEX ;
-  fragment HEX : [0-9a-fA-F] ;
-
-  NUMBER: '-'? INT '.' INT EXP?   // 1.35, 1.35E-9, 0.3, -4.5
-        | '-'? INT EXP            // 1e10 -3e4
-        | '-'? INT                // -3, 45
-        ;
-  fragment INT :   '0' | [1-9] [0-9]*; // no leading zeros
-  fragment EXP :   [Ee] [+\-]? INT; // \- since - means "range" inside [...]
-
-  REGEX: '/' ('\\/' | ~[/])*? '/';
-
-  NOT: ('!'|[nN][oO][tT]);
-  EQUAL: ('='|'==');
-  INEQUAL: ('!='|'<>');
-  AND: ('&'|'&&'|[aA][nN][dD]);
-  OR: ('|'|'||'|[oO][rR]);
-
-  WS: [ \t\n\r]+ -> skip;
-  ```
 
 ### Content
 
