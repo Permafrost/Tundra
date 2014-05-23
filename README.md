@@ -5072,8 +5072,15 @@ Services for manipulating java.lang.Object objects:
   array of a [primitive type], and its Java class name.
 
   * Inputs:
-    * `$object` is an optional object to be reflected on. If not specified,
-      this service does nothing and no outputs are returned.
+    * `$object` is an optional object to be reflected on. If neither input
+      is specified, this service does nothing and no outputs are returned.
+
+    * `$key` is an optional key identifying the value in the pipeline to
+      relect on, and can be simple or fully qualified, such as `a/b/c[0]/d`.
+      Use `$key` instead of `$object` when reflecting on an object that could
+      be a list/array, because mapping a list/array to `$object` will only
+      map the first item in the list. If neither input is specified, this
+      service does nothing and no outputs are returned.
 
   * Outputs:
     * `$class` is the Java class name of the given object.

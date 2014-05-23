@@ -28,6 +28,33 @@
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
         </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <null name="field_usereditable"/>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="field_name">$key</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">string</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
       </array>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
@@ -115,8 +142,15 @@
 array of a [primitive type], and its Java class name.
 
 * Inputs:
-  * $object is an optional object to be reflected on. If not specified,
-    this service does nothing and no outputs are returned.
+  * $object is an optional object to be reflected on. If neither input 
+    is specified, this service does nothing and no outputs are returned.
+
+  * $key is an optional key identifying the value in the pipeline to 
+    relect on, and can be simple or fully qualified, such as a/b/c[0]/d.
+    Use $key instead of $object when reflecting on an object that could 
+    be a list/array, because mapping a list/array to $object will only 
+    map the first item in the list. If neither input is specified, this 
+    service does nothing and no outputs are returned.
 
 * Outputs:
   * $class is the Java class name of the given object.

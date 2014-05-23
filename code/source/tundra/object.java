@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-07-09 11:41:38.017
-// -----( ON-HOST: -
+// -----( CREATED: 2014-05-23 10:59:43.732
+// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -34,8 +34,8 @@ public final class object
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:0:optional $object
-		// [i] field:0:optional $encoding
 		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
+		// [i] field:0:optional $encoding
 		// [o] object:0:optional $object
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -148,12 +148,16 @@ public final class object
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:0:optional $object
+		// [i] field:0:optional $key
 		// [o] field:0:optional $class
 		// [o] field:0:optional $array?
 		// [o] field:0:optional $primitive?
 		IDataCursor cursor = pipeline.getCursor();
 		try {
 		  Object object = IDataUtil.get(cursor, "$object");
+		  String key = IDataUtil.getString(cursor, "$key");
+		  if (object == null && key != null) object = tundra.support.document.get(pipeline, key);
+		
 		  if (object != null) {
 		    Class klass = object.getClass();
 		    IDataUtil.put(cursor, "$class", klass.getName());
