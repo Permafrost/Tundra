@@ -1,8 +1,8 @@
 package tundra.support;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-02-24 15:41:03 EST
-// -----( ON-HOST: 172.16.189.144
+// -----( CREATED: 2014-05-24 14:35:41 EST
+// -----( ON-HOST: 172.16.189.135
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -115,15 +115,29 @@ public final class document
 	
 	    if (keys.size() > 0) {
 	      if (key.hasIndex()) {
-	        IData[] array = IDataUtil.getIDataArray(cursor, key.toString());
-	        value = get(tundra.list.object.get(array, key.getIndex()), keys);
+	        value = IDataUtil.get(cursor, key.toString());
+	        if (value != null) {
+	          if (value instanceof IData[] || value instanceof com.wm.util.Table) {
+	            IData[] array = value instanceof IData[] ? (IData[])value : ((com.wm.util.Table)value).getValues();
+	            value = get(tundra.list.object.get(array, key.getIndex()), keys);
+	          } else {
+	            value = null;
+	          }
+	        }
 	      } else {
 	        value = get(IDataUtil.getIData(cursor, key.toString()), keys);
 	      }
 	    } else {
 	      if (key.hasIndex()) {
-	        Object[] array = IDataUtil.getObjectArray(cursor, key.toString());
-	        value = tundra.list.object.get(array, key.getIndex());
+	        value = IDataUtil.get(cursor, key.toString());
+	        if (value != null) {
+	          if (value instanceof Object[] || value instanceof com.wm.util.Table) {
+	            Object[] array = value instanceof Object[] ? (Object[])value : ((com.wm.util.Table)value).getValues();
+	            value = tundra.list.object.get(array, key.getIndex());
+	          } else {
+	            value = null;
+	          }
+	        }
 	      } else {
 	        value = IDataUtil.get(cursor, key.toString());
 	      }
