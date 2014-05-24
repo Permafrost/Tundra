@@ -1578,6 +1578,9 @@ Services for manipulating com.wm.data.IData objects:
   * Inputs:
     * `$document` is an IData document from which null values are
       to be removed.
+    * `$recurse?` is an optional boolean indicating if embedded
+      IData documents and IData[] document lists should also
+      be compacted. Defaults to false.
 
   * Outputs:
     * `$document` is the given IData document with all null values
