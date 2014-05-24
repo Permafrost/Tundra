@@ -3213,6 +3213,9 @@ Services for manipulating document (com.wm.data.IData) lists:
 
   * Inputs:
     * `$list` is a list to be compacted.
+    * `$recurse?` is an optional boolean indicating if embedded
+      IData documents and IData[] document lists should also
+      be compacted. Defaults to false.
 
   * Outputs:
     * `$list` is the given list with all null items removed.
