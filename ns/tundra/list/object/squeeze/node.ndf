@@ -22,48 +22,14 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$document</value>
-          <value name="field_type">record</value>
-          <value name="field_dim">0</value>
+          <value name="field_name">$list</value>
+          <value name="field_type">object</value>
+          <value name="field_dim">1</value>
           <value name="field_opt">true</value>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
-          <array name="rec_fields" type="record" depth="1">
-          </array>
-          <value name="modifiable">true</value>
-        </record>
-        <record javaclass="com.wm.util.Values">
-          <value name="node_type">record</value>
-          <value name="node_comment"></value>
-          <record name="node_hints" javaclass="com.wm.util.Values">
-            <value name="field_usereditable">false</value>
-            <value name="field_largerEditor">false</value>
-            <value name="field_password">false</value>
-          </record>
-          <value name="is_public">false</value>
-          <value name="field_name">$recurse?</value>
-          <value name="field_type">string</value>
-          <value name="field_dim">0</value>
-          <value name="field_opt">true</value>
-          <array name="field_options" type="value" depth="1">
-            <value>false</value>
-            <value>true</value>
-          </array>
-          <record name="field_content_type" javaclass="com.wm.util.Values">
-            <value name="contentType">1</value>
-            <value name="internalType">reference</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-            <array name="targetNames" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">boolean</value>
-              </record>
-            </array>
-          </record>
-          <value name="nillable">true</value>
-          <value name="form_qualified">false</value>
-          <value name="is_global">false</value>
+          <value name="is_soap_array_encoding_used">false</value>
         </record>
       </array>
       <value name="modifiable">true</value>
@@ -85,43 +51,36 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$document</value>
-          <value name="field_type">record</value>
-          <value name="field_dim">0</value>
+          <value name="field_name">$list</value>
+          <value name="field_type">object</value>
+          <value name="field_dim">1</value>
           <value name="field_opt">true</value>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
-          <array name="rec_fields" type="record" depth="1">
-          </array>
-          <value name="modifiable">true</value>
+          <value name="is_soap_array_encoding_used">false</value>
         </record>
       </array>
       <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">Trims all leading and trailing whitespace from all string values, 
-then converts empty strings, empty IData documents, and empty 
-lists to nulls, then compacts the IData document by removing 
-all null values.
+then converts empty strings to nulls, then compacts the list by 
+removing all null values.
 
 * Inputs:
-  * $document is an IData document to be squeezed.
-  * $recurse? is an optional boolean indicating if embedded
-    IData documents and IData[] document lists should also
-    be squeezed. Defaults to false.
+  * $list is an object list to be squeezed.
 
 * Outputs:
-  * $document is the resulting IData document with all string values 
-    trimmed of leading and trailing whitespace characters, and all 
-    empty string values, empty IData documents, empty lists, and null 
-    values removed.</value>
+  * $list is the resulting object list with all string values 
+    trimmed of leading and trailing whitespace characters, and 
+    all empty string values and null values removed.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
-  <value name="template">tundra_document_squeeze</value>
+  <value name="template">tundra_list_object_squeeze</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>

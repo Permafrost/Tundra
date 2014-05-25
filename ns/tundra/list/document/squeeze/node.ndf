@@ -22,13 +22,14 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$document</value>
+          <value name="field_name">$list</value>
           <value name="field_type">record</value>
-          <value name="field_dim">0</value>
+          <value name="field_dim">1</value>
           <value name="field_opt">true</value>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
+          <value name="is_soap_array_encoding_used">false</value>
           <array name="rec_fields" type="record" depth="1">
           </array>
           <value name="modifiable">true</value>
@@ -85,13 +86,14 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$document</value>
+          <value name="field_name">$list</value>
           <value name="field_type">record</value>
-          <value name="field_dim">0</value>
+          <value name="field_dim">1</value>
           <value name="field_opt">true</value>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
+          <value name="is_soap_array_encoding_used">false</value>
           <array name="rec_fields" type="record" depth="1">
           </array>
           <value name="modifiable">true</value>
@@ -101,27 +103,27 @@
     </record>
   </record>
   <value name="node_comment">Trims all leading and trailing whitespace from all string values, 
-then converts empty strings, empty IData documents, and empty 
-lists to nulls, then compacts the IData document by removing 
-all null values.
+then converts empty strings, empty IData documents, and empty lists 
+to nulls, then compacts the IData[] document list by removing all 
+null values.
 
 * Inputs:
-  * $document is an IData document to be squeezed.
+  * $list is an IData[] document list to be squeezed.
   * $recurse? is an optional boolean indicating if embedded
     IData documents and IData[] document lists should also
     be squeezed. Defaults to false.
 
 * Outputs:
-  * $document is the resulting IData document with all string values 
-    trimmed of leading and trailing whitespace characters, and all 
-    empty string values, empty IData documents, empty lists, and null 
-    values removed.</value>
+  * $list is the resulting IData[] document list with all string 
+    values trimmed of leading and trailing whitespace characters, and 
+    all empty string values, empty IData documents, empty lists, and 
+    null values removed.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
-  <value name="template">tundra_document_squeeze</value>
+  <value name="template">tundra_list_document_squeeze</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>

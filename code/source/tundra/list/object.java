@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-05-13 20:52:41 EST
-// -----( ON-HOST: 172.16.189.243
+// -----( CREATED: 2014-05-25 17:53:45 EST
+// -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -659,6 +659,30 @@ public final class object
 
 
 
+	public static final void squeeze (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(squeeze)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:1:optional $list
+		// [o] object:1:optional $list
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  Object[] list = IDataUtil.getObjectArray(cursor, "$list");
+		
+		  IDataUtil.put(cursor, "$list", squeeze(list));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void unique (IData pipeline)
         throws ServiceException
 	{
@@ -1178,6 +1202,31 @@ public final class object
 	  T[] copy = java.util.Arrays.copyOf(array, array.length);
 	  java.util.Arrays.sort(copy);
 	  return copy;
+	}
+	
+	// returns a new array with all string items trimmed, all
+	// empty string items removed, and all null items removed
+	public static <T> T[] squeeze(T[] array) {
+	  if (array == null || array.length == 0) return null;
+	
+	  java.util.List<T> list = new java.util.ArrayList<T>(array.length);
+	
+	  for (int i = 0; i < array.length; i++) {
+	    if (array[i] != null && array[i] instanceof String) {
+	      T item = (T)((String)array[i]).trim();
+	      if (item.equals("")) {
+	        array[i] = null;
+	      } else {
+	        array[i] = item;
+	      }
+	    }
+	    if (array[i] != null) list.add(array[i]);
+	  }
+	
+	  array = list.toArray(java.util.Arrays.copyOf(array, 0));
+	  if (array.length == 0) array = null;
+	  
+	  return array;
 	}
 	
 	// returns a new array with all duplicate elements removed

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="node_type">interface</value>
+  <value name="node_nsName">tundra.support.table.object</value>
+  <value name="is_public">false</value>
+  <value name="encodeutf8">true</value>
+  <value name="shared">Ly8gcmV0dXJucyBhIG5ldyB0YWJsZSB3aXRoIGFsbCBudWxsIGVsZW1lbnRzIHJlbW92ZWQKcHVi
+bGljIHN0YXRpYyA8VD4gVFtdW10gY29tcGFjdChUW11bXSB0YWJsZSkgewogIGlmICh0YWJsZSA9
+PSBudWxsKSByZXR1cm4gdGFibGU7CgogIGphdmEudXRpbC5MaXN0PFRbXT4gbGlzdCA9IG5ldyBq
+YXZhLnV0aWwuQXJyYXlMaXN0PFRbXT4odGFibGUubGVuZ3RoKTsKICAKICBmb3IgKGludCBpID0g
+MDsgaSA8IHRhYmxlLmxlbmd0aDsgaSsrKSB7CiAgICBUW10gcm93ID0gdHVuZHJhLmxpc3Qub2Jq
+ZWN0LmNvbXBhY3QodGFibGVbaV0pOwogICAgaWYgKHJvdyAhPSBudWxsKSBsaXN0LmFkZChyb3cp
+OwogIH0KCiAgcmV0dXJuIGxpc3QudG9BcnJheShqYXZhLnV0aWwuQXJyYXlzLmNvcHlPZih0YWJs
+ZSwgMCkpOwp9CgovLyByZXR1cm5zIGEgbmV3IHRhYmxlIHdpdGggYWxsIGVtcHR5IG9yIG51bGwg
+ZWxlbWVudHMgcmVtb3ZlZApwdWJsaWMgc3RhdGljIDxUPiBUW11bXSBzcXVlZXplKFRbXVtdIHRh
+YmxlKSB7CiAgaWYgKHRhYmxlID09IG51bGwgfHwgdGFibGUubGVuZ3RoID09IDApIHJldHVybiBu
+dWxsOwoKICBqYXZhLnV0aWwuTGlzdDxUW10+IGxpc3QgPSBuZXcgamF2YS51dGlsLkFycmF5TGlz
+dDxUW10+KHRhYmxlLmxlbmd0aCk7CiAgCiAgZm9yIChpbnQgaSA9IDA7IGkgPCB0YWJsZS5sZW5n
+dGg7IGkrKykgewogICAgVFtdIHJvdyA9IHR1bmRyYS5saXN0Lm9iamVjdC5zcXVlZXplKHRhYmxl
+W2ldKTsKICAgIGlmIChyb3cgIT0gbnVsbCkgbGlzdC5hZGQocm93KTsKICB9CgogIHRhYmxlID0g
+bGlzdC50b0FycmF5KGphdmEudXRpbC5BcnJheXMuY29weU9mKHRhYmxlLCAwKSk7CiAgaWYgKHRh
+YmxlLmxlbmd0aCA9PSAwKSB0YWJsZSA9IG51bGw7CgogIHJldHVybiB0YWJsZTsKfQ==</value>
+  <value name="extends"></value>
+  <array name="implements" type="value" depth="1">
+  </array>
+  <array name="imports" type="value" depth="1">
+  </array>
+</Values>

@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-05-24 13:33:02 EST
-// -----( ON-HOST: 172.16.189.135
+// -----( CREATED: 2014-05-25 17:47:35 EST
+// -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -391,13 +391,43 @@ public final class document
                 
 	}
 
+
+
+	public static final void squeeze (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(squeeze)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:1:optional $list
+		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [o] record:1:optional $list
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  IData[] list = IDataUtil.getIDataArray(cursor, "$list");
+		  boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
+		
+		  if (list != null) {
+		    list = squeeze(list, recurse);
+		    if (list == null) list = new IData[0];
+		    IDataUtil.put(cursor, "$list", list);
+		  }
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
 	// --- <<IS-START-SHARED>> ---
 	// returns a new array with all elements sorted
 	public static IData[] sort(IData[] array, String key) {
 	  return IDataUtil.sortIDataArrayByKey(array, key, IDataUtil.COMPARE_TYPE_COLLATION, false);
 	}
 	
-	// compacts an IData array by removing all null values from each IData, and all null IData objects from the list
+	// returns a new IData[] with all null values removed
 	public static IData[] compact(IData[] array, boolean recurse) {
 	  if (array == null || array.length == 0) return array;
 	
@@ -410,6 +440,27 @@ public final class document
 	  }
 	
 	  return tundra.list.object.compact(array);
+	}
+	
+	// returns a new IData[] with all empty and null items removed
+	public static IData[] squeeze(IData[] array, boolean recurse) {
+	  if (array == null || array.length == 0) return array;
+	
+	  // take a copy of the array, to make sure it's really an IData[] and not some subclass that won't
+	  // be able to store different IData implementations
+	  array = (IData[])java.util.Arrays.copyOf(array, array.length, (new IData[0]).getClass());
+	
+	  java.util.List<IData> list = new java.util.ArrayList<IData>(array.length);
+	
+	  for (int i = 0; i < array.length; i++) {
+	    if (array[i] != null) array[i] = tundra.document.squeeze(array[i], recurse);
+	    if (array[i] != null) list.add(array[i]);
+	  }
+	
+	  array = list.toArray(new IData[0]);
+	  if (array.length == 0) array = null;
+	
+	  return array;
 	}
 	// --- <<IS-END-SHARED>> ---
 }

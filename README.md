@@ -2149,8 +2149,8 @@ Services for manipulating com.wm.data.IData objects:
 * #### tundra.document:squeeze
 
   Trims all leading and trailing whitespace from all string values, then
-  converts empty strings to nulls, then compacts the IData document by
-  removing all null values.
+  converts empty strings, empty IData documents, and empty lists to nulls, 
+  then compacts the IData document by removing all null values.
 
   * Inputs:
     * `$document` is an IData document to be squeezed.
@@ -2161,7 +2161,8 @@ Services for manipulating com.wm.data.IData objects:
   * Outputs:
     * `$document` is the resulting IData document with all string values
       trimmed of leading and trailing whitespace characters, and all
-      empty string values and null values removed.
+      empty string values, empty IData documents, empty lists, and null 
+      values removed.
 
 * #### tundra.document:substitute
 
@@ -3632,6 +3633,25 @@ Services for manipulating document (com.wm.data.IData) lists:
   * Outputs:
     * `$list` is the sorted IData document list.
 
+* #### tundra.list.document:squeeze
+
+  Trims all leading and trailing whitespace from all string values, 
+  then converts empty strings, empty IData documents, and empty lists 
+  to nulls, then compacts the IData[] document list by removing all 
+  null values.
+
+  * Inputs:
+    * `$list` is an IData[] document list to be squeezed.
+    * `$recurse?` is an optional boolean indicating if embedded
+      IData documents and IData[] document lists should also
+      be squeezed. Defaults to false.
+
+  * Outputs:
+    * `$list` is the resulting IData[] document list with all string 
+      values trimmed of leading and trailing whitespace characters, and 
+      all empty string values, empty IData documents, empty lists, and 
+      null values removed.
+
 * #### tundra.list.document:substitute
 
   Attempts variable substitution on each string value in the given IData
@@ -4187,6 +4207,20 @@ Services for manipulating java.lang.Object lists:
 
   * Outputs:
     * `$list` is the sorted list.
+
+* #### tundra.list.object:squeeze
+
+  Trims all leading and trailing whitespace from all string values, 
+  then converts empty strings to nulls, then compacts the list by 
+  removing all null values.
+
+  * Inputs:
+    * `$list` is an object list to be squeezed.
+
+  * Outputs:
+    * `$list` is the resulting object list with all string values 
+      trimmed of leading and trailing whitespace characters, and 
+      all empty string values and null values removed.
 
 * #### tundra.list.object:unique
 

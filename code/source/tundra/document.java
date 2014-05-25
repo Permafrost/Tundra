@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-05-24 13:32:14 EST
-// -----( ON-HOST: 172.16.189.135
+// -----( CREATED: 2014-05-25 18:08:57 EST
+// -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -646,7 +646,12 @@ public final class document
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
-		  if (document != null) IDataUtil.put(cursor, "$document", squeeze(document, recurse));
+		
+		  if (document != null) {
+		    document = squeeze(document, recurse);
+		    if (document == null) document = IDataFactory.create();
+		    IDataUtil.put(cursor, "$document", document);
+		  }
 		} finally {
 		  cursor.destroy();
 		}
@@ -851,49 +856,38 @@ public final class document
 	        String string = (String)value;
 	        string = string.trim();
 	        if (string.equals("")) string = null;
-	
 	        value = string;
-	      } else if (value instanceof String[]) {
-	        String[] array = (String[])value;
-	        for (int i = 0; i < array.length; i++) {
-	          if (array[i] != null) {
-	            array[i] = array[i].trim();
-	            if (array[i].equals("")) array[i] = null;
-	          }
-	        }
-	
-	        value = array;
-	      } else if (value instanceof String[][]) {
-	        String[][] array = (String[][])value;
-	        for (int i = 0; i < array.length; i++) {
-	          for (int j = 0; j < array[i].length; j++) {
-	            if (array[i][j] != null) {
-	              array[i][j] = array[i][j].trim();
-	              if (array[i][j].equals("")) array[i][j] = null;
-	            }
-	          }
-	        }
-	
-	        value = array;
-	      } else if (recurse && value instanceof IData) {
-	        value = squeeze((IData)value, recurse);
-	      } else if (recurse && (value instanceof IData[] || value instanceof com.wm.util.Table)) {
+	      } else if (value instanceof IData[] || value instanceof com.wm.util.Table) {
 	        IData[] array = value instanceof IData[] ? (IData[])value : ((com.wm.util.Table)value).getValues();
-	        for (int i = 0; i < array.length; i++) {
-	          array[i] = squeeze(array[i], recurse);
+	        if (recurse) {
+	          value = tundra.list.document.squeeze(array, recurse);
+	        } else if (array.length == 0) {
+	          value = null;
 	        }
-	
-	        value = array;
+	      } else if (value instanceof IData) {
+	        if (recurse) {
+	          value = squeeze((IData)value, recurse);
+	        } else {
+	          IDataCursor vc = ((IData)value).getCursor();
+	          if (IDataUtil.size(vc) == 0) value = null;
+	          vc.destroy();
+	        }
+	      } else if (value instanceof Object[][]) {
+	        value = tundra.support.table.object.squeeze((Object[][])value);
+	      } else if (value instanceof Object[]) {
+	        value = tundra.list.object.squeeze((Object[])value);
 	      }
 	
-	      oc.insertAfter(key, value);
+	      if (value != null) oc.insertAfter(key, value);
 	    }
 	  }
+	
+	  if (IDataUtil.size(oc) == 0) output = null;
 	
 	  ic.destroy();
 	  oc.destroy();
 	
-	  return compact(output, recurse);
+	  return output;
 	}
 	
 	// returns the number of top-level {key, value} pairs in the given IData document
@@ -1108,16 +1102,9 @@ public final class document
 	            if (value instanceof IData) {
 	              value = compact((IData)value, recurse);
 	            } else if (value instanceof IData[] || value instanceof com.wm.util.Table) {
-	              IData[] array = value instanceof IData[] ? (IData[])value : ((com.wm.util.Table)value).getValues();
-	              value = tundra.list.document.compact(array, recurse);
-	            } else if (value instanceof String[][]) {
-	              String[][] array = (String[][])value;
-	              for (int i = 0; i < array.length; i++) {
-	                array[i] = tundra.list.object.compact(array[i]);
-	              }
-	              value = array;
-	            } else if (value instanceof String[]) {
-	              value = tundra.list.object.compact((String[])value);
+	              value = tundra.list.document.compact(value instanceof IData[] ? (IData[])value : ((com.wm.util.Table)value).getValues(), recurse);
+	            } else if (value instanceof Object[][]) {
+	              value = tundra.support.table.object.compact((Object[][])value);
 	            } else if (value instanceof Object[]) {
 	              value = tundra.list.object.compact((Object[])value);
 	            }
