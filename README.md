@@ -2149,7 +2149,7 @@ Services for manipulating com.wm.data.IData objects:
 * #### tundra.document:squeeze
 
   Trims all leading and trailing whitespace from all string values, then
-  converts empty strings, empty IData documents, and empty lists to nulls, 
+  converts empty strings, empty IData documents, and empty lists to nulls,
   then compacts the IData document by removing all null values.
 
   * Inputs:
@@ -2161,7 +2161,7 @@ Services for manipulating com.wm.data.IData objects:
   * Outputs:
     * `$document` is the resulting IData document with all string values
       trimmed of leading and trailing whitespace characters, and all
-      empty string values, empty IData documents, empty lists, and null 
+      empty string values, empty IData documents, empty lists, and null
       values removed.
 
 * #### tundra.document:substitute
@@ -3635,9 +3635,9 @@ Services for manipulating document (com.wm.data.IData) lists:
 
 * #### tundra.list.document:squeeze
 
-  Trims all leading and trailing whitespace from all string values, 
-  then converts empty strings, empty IData documents, and empty lists 
-  to nulls, then compacts the IData[] document list by removing all 
+  Trims all leading and trailing whitespace from all string values,
+  then converts empty strings, empty IData documents, and empty lists
+  to nulls, then compacts the IData[] document list by removing all
   null values.
 
   * Inputs:
@@ -3647,9 +3647,9 @@ Services for manipulating document (com.wm.data.IData) lists:
       be squeezed. Defaults to false.
 
   * Outputs:
-    * `$list` is the resulting IData[] document list with all string 
-      values trimmed of leading and trailing whitespace characters, and 
-      all empty string values, empty IData documents, empty lists, and 
+    * `$list` is the resulting IData[] document list with all string
+      values trimmed of leading and trailing whitespace characters, and
+      all empty string values, empty IData documents, empty lists, and
       null values removed.
 
 * #### tundra.list.document:substitute
@@ -4210,16 +4210,16 @@ Services for manipulating java.lang.Object lists:
 
 * #### tundra.list.object:squeeze
 
-  Trims all leading and trailing whitespace from all string values, 
-  then converts empty strings to nulls, then compacts the list by 
+  Trims all leading and trailing whitespace from all string values,
+  then converts empty strings to nulls, then compacts the list by
   removing all null values.
 
   * Inputs:
     * `$list` is an object list to be squeezed.
 
   * Outputs:
-    * `$list` is the resulting object list with all string values 
-      trimmed of leading and trailing whitespace characters, and 
+    * `$list` is the resulting object list with all string values
+      trimmed of leading and trailing whitespace characters, and
       all empty string values and null values removed.
 
 * #### tundra.list.object:unique
@@ -5972,6 +5972,39 @@ Document references and service specifications:
       `tundra.http.response:handle` service for a reference implementation.
 
 ### Service
+
+* #### tundra.service:benchmark
+
+  Benchmarks the performance of the given service by invoking it the given
+  number of times, and returning the average and standard deviation execution
+  durations.
+
+  * Inputs:
+    * `$service` is the fully-qualified name of the service to be benchmarked.
+
+    * `$pipeline` is an optional IData document which, if specified, contains
+      the input arguments for the invocation of `$service`; in other words, the
+      invocation is scoped to this IData document. If not specified, the
+      invocation is unscoped, and hence the service will operate directly
+      against the pipeline itself.
+
+    * `$count` is the number of times `$service` will be invoked, and must be
+      greater than or equal to 1. The more times `$service` is invoked, the
+      more reliable the resulting statistics will be (in other words, the
+      more samples the better).
+
+  * Outputs:
+    * `$duration.average` is the calculated mean or average duration of
+      execution of the given service with the given input pipeline formatted
+      as an [ISO8601] XML duration string.
+
+    * `$duration.stdev` is the calculated standard deviation duration of
+      execution of the given service with the given input pipeline formatted
+      as an [ISO8601] XML duration string.
+
+    * `$message` is a diagnostic message describing the execution statistics of
+      the benchmarked service, which can be used for logging the results of
+      the benchmark.
 
 * #### tundra.service:callstack
 
