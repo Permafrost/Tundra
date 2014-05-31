@@ -3248,32 +3248,50 @@ Services for working with arbitrary precision integers (uses [java.math.BigInteg
 
 * #### tundra.list.content:parse
 
-  Parses a list of XML and flat file content (specified as a list of
-  strings, bytes, or input streams) into an IData[] document list.
+  Parses a list of [XML], [JSON], and flat file content (specified as a list 
+  of strings, bytes, or input streams) into an IData[] document list.
 
   * Inputs:
-    * `$contents` is a list of strings, byte arrays, or input streams
-      containing content (structured/parseable data) to be parsed.
+    * `$contents` is a list of strings, byte arrays, or input streams containing 
+      content (structured/parseable data) to be parsed.
 
-    * `$schemas` is an optional list of fully-qualified document
-      references or flat file schemas (for XML or flat file content
-      respectively), where `$schemas[n]` is used to parse `$contents[n]`.
-      Use this input argument when `$contents` contains unlike formats
-      (for example, a mixture of flat file and xml formats).
+    * `$schemas` is an optional input list with the same number of items as 
+      `$contents`, where `$schemas[n]` is used to determine whether to parse 
+      `$contents[n]` as [XML], [JSON], Flat File, and can have the following 
+      values:
+      * For [XML] content, specify the fully-qualified name of the document 
+        reference that defines the [XML] format
+      * For [JSON] content specify the MIME media type "application/json"
+      * For Flat File content specify the fully-qualified name of the flat 
+        file schema that defines the Flat File format
 
-    * `$schema` is an optional fully-qualified document reference or
-      flat file schema (for XML or flat file content respectively),
-      used to parse all items in `$contents`. Use this input argument
-      when `$contents` contains like formats (for example, when all
-      items adhere to the exact same XML schema).
+      Defaults to parsing `$contents` as [XML], if neither `$schemas` or `$schema` 
+      are specified.
 
-    * `$encoding` is an optional character set to use when the
-      `$contents` is provided as a list of input streams or byte arrays.
-      Defaults to the Java virtual machine [default charset].
+      Use this input argument when `$contents` contains unlike formats (for 
+      example, a mixture of flat file and xml formats).
+
+    * `$schema` is an optional input which determines whether to parse all items
+      in `$contents` as [XML], [JSON], Flat File, and can have the following values:
+      * For [XML] content, specify the fully-qualified name of the document 
+        reference that defines the [XML] format
+      * For [JSON] content specify the MIME media type "application/json"
+      * For Flat File content specify the fully-qualified name of the flat 
+        file schema that defines the Flat File format
+        
+      Defaults to parsing `$contents` as [XML], if neither `$schemas` or `$schema` 
+      are specified.
+
+      Use this input argument when `$contents` contains like formats (for 
+      example, when all items adhere to the exact same XML schema)
+
+    * `$encoding` is an optional character set to use when the `$contents` is 
+      provided as a list of input streams or byte arrays. Defaults to the Java
+      virtual machine [default charset].
 
   * Outputs:
-    * `$documents` is an IData[] document list of the parsed `$contents`,
-      where `$documents[n]` is the parsed version of `$contents[n]`.
+    * `$documents` is an IData[] document list of the parsed `$contents`, where 
+      `$documents[n]` is the parsed version of `$contents[n]`.
 
 ### Datetime List
 
