@@ -3015,6 +3015,44 @@ Services for working with arbitrary precision integers (uses [java.math.BigInteg
     * `$valid?` is a boolean indicating if the given string is a valid
       integer.
 
+### JSON
+
+* #### tundra.json:emit
+
+  Serializes an IData document as a [JSON] formatted string, byte array, or
+  input stream.
+
+  * Inputs:
+    * `$document` is the IData document to be serialized as a [JSON] string,
+      byte array, or input stream.
+
+    * `$encoding` is an optional character set to use when encoding the
+      resulting text data to a byte array or input stream. Defaults to the
+      Java virtual machine [default charset].
+
+    * `$mode` is an optional choice of {stream, bytes, string} which specifies
+      the type of object `$content` is returned as. Defaults to stream.
+
+  * Outputs:
+    * `$content` is the resulting serialization of `$document` as [JSON] content.
+
+* #### tundra.json:parse
+
+  Parses [JSON] content specified as a string, byte array, or input stream
+  into an IData document.
+
+  * Inputs:
+    * `$content` is a string, byte array, or input stream containing [JSON]
+      content to be parsed.
+
+    * `$encoding` is an optional character set to use when $content is provided
+      as a byte array or input stream to decode the contained text data.
+      Defaults to the Java virtual machine [default charset].
+
+  * Outputs:
+    * `$document` is the resulting IData document representing the parsed
+      `$content`.
+
 ### Content List
 
 * #### tundra.list.content:emit
