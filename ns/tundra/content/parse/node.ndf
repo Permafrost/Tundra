@@ -136,8 +136,7 @@ array, or input stream into an IData document.
     content as [XML], [JSON], Flat File, and can have the following values:
     * For [XML] content, specify the fully-qualified name of the document 
       reference that defines the [XML] format
-    * For [JSON] content either specify the MIME media type value 
-      "application/json" or the value "json"
+    * For [JSON] content specify the MIME media type "application/json"
     * For Flat File content specify the fully-qualified name of the flat 
       file schema that defines the Flat File format
       
