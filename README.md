@@ -3232,22 +3232,47 @@ Services for working with arbitrary precision integers (uses [java.math.BigInteg
     * `$pipeline` is an optional IData document for specifying
       arbitrary input arguments to the invocation of `$service`.
 
-    * `$schemas.input` is an optional list of fully-qualified document
-      references or flat file schemas (for XML or flat file content
-      respectively), where `$schemas.input[n]` is used to parse the
-      `$contents[n]`. Use this input argument when `$contents` contains
-      unlike formats (for example, a mixture of flat file and xml
-      formats).
+    * `$schemas.input` is an optional input list with the same number of items 
+      as `$contents`, where `$schemas[n]` is used to determine whether to parse 
+      `$contents[n]` as [XML], [JSON], Flat File, and can have the following 
+      values:
+      * For [XML] content, specify the fully-qualified name of the document 
+        reference that defines the [XML] format
+      * For [JSON] content specify the MIME media type "application/json"
+      * For Flat File content specify the fully-qualified name of the flat 
+        file schema that defines the Flat File format
 
-    * `$schema.input` is an optional fully-qualified document reference
-      or flat file schema (for XML or flat file content respectively),
-      used to parse all items in `$contents`. Use this input argument
-      when `$contents` contains like formats (for example, when all
-      items adhere to the exact same XML schema).
+      Defaults to parsing `$contents` as [XML], if neither `$schemas.input` or 
+      `$schema.input` are specified.
 
-    * `$schema.output` is an optional fully-qualified document reference
-      or flat file schema (for XML or flat file content respectively),
-      used to serialize the joined IData document returned by `$service`.
+      Use this input argument when `$contents` contains unlike formats (for 
+      example, a mixture of flat file and xml formats).
+
+    * `$schema.input` is an optional input which determines whether to parse all 
+      items in `$contents` as [XML], [JSON], Flat File, and can have the 
+      following values:
+      * For [XML] content, specify the fully-qualified name of the document 
+        reference that defines the [XML] format
+      * For [JSON] content specify the MIME media type "application/json"
+      * For Flat File content specify the fully-qualified name of the flat 
+        file schema that defines the Flat File format
+        
+      Defaults to parsing `$contents` as [XML], if neither `$schemas.input` or 
+      `$schema.input` are specified.
+
+      Use this input argument when `$contents` contains like formats (for 
+      example, when all items adhere to the exact same XML schema).
+
+    * `$schema.output` is an optional input which determines whether to 
+      serialize the document returned by `$service` as [XML], [JSON], Flat File, 
+      and can have the following values:
+      * For [XML] content, specify the fully-qualified name of the document 
+        reference that defines the [XML] format
+      * For [JSON] content specify the MIME media type "application/json"
+      * For Flat File content specify the fully-qualified name of the flat 
+        file schema that defines the Flat File format
+        
+      Defaults to serializing as [XML].
 
     * `$service.input` is an optional name to use for the parsed IData[]
       document list for the input pipeline of the `$service` invocation.
