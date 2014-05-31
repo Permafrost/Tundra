@@ -3151,35 +3151,56 @@ Services for working with arbitrary precision integers (uses [java.math.BigInteg
 
 * #### tundra.list.content:emit
 
-  Converts an IData[] document list to a list of XML or flat file
+  Converts an IData[] document list to a list of [XML], [JSON], or Flat File 
   strings, bytes or input streams.
 
   * Inputs:
-    * `$documents` is a list of IData documents to be serialized
-      as a string, byte array, or input stream.
-    * `$schemas` is an optional list of fully-qualified document
-      references or flat file schemas (for XML or flat file content
-      respectively), with the same number of items as `$documents`,
-      where `$schemas[n]` is the schema used to serialize
-      `$documents[n]`. Use this input argument when `$documents`
-      contains unlike formats where different items in the list
-      are required to be serialized to different formats.
-    * `$schema` is an optional fully-qualified document reference or
-      flat file schema (for XML or flat file content respectively)
-      if all the items in the `$documents` list are to be serialized
-      to the exact same format.
-    * `$mode` is an optional choice of 'stream', 'bytes', or 'string'
-      which determines the type of object the documents are serialized
-      to. Defaults to 'stream'.
-    * `$encoding` is an optional character set to use when the $mode
-      selected is 'bytes' or 'stream'. Defaults to the Java virtual
-      machine [default charset].
+    * `$documents` is a list of IData documents to be serialized as a string, 
+      byte array, or input stream.
+
+    * `$schemas` is an optional input list with the same number of items as 
+      `$documents`, where `$schemas[n]` is used to determine whether to serialize 
+      `$contents[n]` as [XML], [JSON], Flat File, and can have the following 
+      values:
+      * For [XML] content, specify the fully-qualified name of the document 
+        reference that defines the [XML] format
+      * For [JSON] content specify the MIME media type "application/json"
+      * For Flat File content specify the fully-qualified name of the flat 
+        file schema that defines the Flat File format
+
+      Defaults to serializing `$documents` as [XML], if neither `$schemas` or 
+      `$schema` are specified.
+
+      Use this input argument when `$documents` contains unlike formats (for 
+      example, a mixture of Flat File and [XML] formats).
+
+    * `$schema` is an optional input which determines whether to serialize all
+      items in `$documents` as [XML], [JSON], Flat File, and can have the 
+      following values:
+      * For [XML] content, specify the fully-qualified name of the document 
+        reference that defines the [XML] format
+      * For [JSON] content specify the MIME media type "application/json"
+      * For Flat File content specify the fully-qualified name of the flat 
+        file schema that defines the Flat File format
+        
+      Defaults to serializing `$documents` as [XML], if neither `$schemas` or 
+      `$schema` are specified.
+
+      Use this input argument when `$documents` contains like formats (for 
+      example, when all items adhere to the exact same [XML] schema).
+
+    * `$mode` is an optional choice of 'stream', 'bytes', or 'string' which 
+      determines the type of object the documents are serialized to.
+
+    * `$encoding` is an optional character set to use when the `$mode` selected is 
+      'bytes' or 'stream'. Defaults to the Java virtual machine 
+      [default charset].
 
   * Outputs:
-    * `$contents` is a list of strings, byte arrays, or input streams
-      (depending on the `$mode` selected) where each item is the
-      serialized like-indexed document. In other words, the
-      `$contents[n]` item is the `$documents[n]` item serialized.
+    * `$contents` is a list of strings, byte arrays, or input streams (depending 
+      on the `$mode` selected) where each item is the serialized verison of the 
+      like-indexed document. In other words, `$contents[n]` is the serialized 
+      version of `$documents[n]`.
 
 * #### tundra.list.content:join
 

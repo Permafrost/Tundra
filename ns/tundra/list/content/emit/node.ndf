@@ -7,6 +7,7 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -20,6 +21,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$documents</value>
           <value name="field_type">record</value>
           <value name="field_dim">1</value>
@@ -30,6 +32,7 @@
           <value name="is_soap_array_encoding_used">false</value>
           <array name="rec_fields" type="record" depth="1">
           </array>
+          <value name="modifiable">true</value>
         </record>
         <record javaclass="com.wm.util.Values">
           <value name="node_type">record</value>
@@ -38,6 +41,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$schemas</value>
           <value name="field_type">string</value>
           <value name="field_dim">1</value>
@@ -66,6 +70,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$schema</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -93,6 +98,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$mode</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -164,6 +170,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$encoding</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -184,9 +191,11 @@
           <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -200,6 +209,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$contents</value>
           <value name="field_type">object</value>
           <value name="field_dim">1</value>
@@ -210,39 +220,63 @@
           <value name="is_soap_array_encoding_used">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Converts an IData[] document list to a list of XML or flat file 
+  <value name="node_comment">Converts an IData[] document list to a list of [XML], [JSON], or Flat File 
 strings, bytes or input streams.
 
 * Inputs:
-  * $documents is a list of IData documents to be serialized
-    as a string, byte array, or input stream.
-  * $schemas is an optional list of fully-qualified document 
-    references or flat file schemas (for XML or flat file content 
-    respectively), with the same number of items as $documents,
-    where $schemas[n] is the schema used to serialize 
-    $documents[n]. Use this input argument when $documents 
-    contains unlike formats where different items in the list
-    are required to be serialized to different formats.
-  * $schema is an optional fully-qualified document reference or 
-    flat file schema (for XML or flat file content respectively) 
-    if all the items in the $documents list are to be serialized 
-    to the exact same format.
-  * $mode is an optional choice of 'stream', 'bytes', or 'string'
-    which determines the type of object the documents are serialized
-    to.
-  * $encoding is an optional character set to use when the $mode
-    selected is 'bytes' or 'stream'. Defaults to the Java virtual 
-    machine [default charset].
+  * $documents is a list of IData documents to be serialized as a string, 
+    byte array, or input stream.
+
+  * $schemas is an optional input list with the same number of items as 
+    $documents, where $schemas[n] is used to determine whether to serialize 
+    $contents[n] as [XML], [JSON], Flat File, and can have the following 
+    values:
+    * For [XML] content, specify the fully-qualified name of the document 
+      reference that defines the [XML] format
+    * For [JSON] content specify the MIME media type "application/json"
+    * For Flat File content specify the fully-qualified name of the flat 
+      file schema that defines the Flat File format
+
+    Defaults to serializing $documents as [XML], if neither $schemas or 
+    $schema are specified.
+
+    Use this input argument when $documents contains unlike formats (for 
+    example, a mixture of Flat File and [XML] formats).
+
+  * $schema is an optional input which determines whether to serialize all
+    items in $documents as [XML], [JSON], Flat File, and can have the 
+    following values:
+    * For [XML] content, specify the fully-qualified name of the document 
+      reference that defines the [XML] format
+    * For [JSON] content specify the MIME media type "application/json"
+    * For Flat File content specify the fully-qualified name of the flat 
+      file schema that defines the Flat File format
+      
+    Defaults to serializing $documents as [XML], if neither $schemas or 
+    $schema are specified.
+
+    Use this input argument when $documents contains like formats (for 
+    example, when all items adhere to the exact same [XML] schema).
+
+  * $mode is an optional choice of 'stream', 'bytes', or 'string' which 
+    determines the type of object the documents are serialized to.
+
+  * $encoding is an optional character set to use when the $mode selected is 
+    'bytes' or 'stream'. Defaults to the Java virtual machine 
+    [default charset].
 
 * Outputs:
-  * $contents is a list of strings, byte arrays, or input streams 
-    (depending on the $mode selected) where each item is the
-    serialized verison of the like-indexed document. In other words,
-    $contents[n] is the serialized version of $documents[n].
+  * $contents is a list of strings, byte arrays, or input streams (depending 
+    on the $mode selected) where each item is the serialized verison of the 
+    like-indexed document. In other words, $contents[n] is the serialized 
+    version of $documents[n].
 
-[default charset]: &lt;http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()&gt;    </value>
+[default charset]: &lt;http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()&gt;
+[JSON]: &lt;http://www.json.org&gt;
+[XML]: &lt;http://www.w3.org/XML/&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
@@ -259,10 +293,16 @@ strings, bytes or input streams.
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
 </Values>
