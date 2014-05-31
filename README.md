@@ -736,36 +736,63 @@ content.
 
 * #### tundra.content:emit
 
-  Converts an IData document to an XML or flat file string, byte array, or
-  input stream.
+  Converts an IData document to an [XML], [JSON], or Flat File string, byte
+  array, or input stream.
 
   * Inputs:
     * `$document` is the IData document to be serialized as a string, byte
       array, or input stream.
+
     * `$encoding` is an optional character set to use when encoding the
       resulting text data to a byte array or input stream. Defaults to the
       Java virtual machine [default charset].
-    * `$schema` is the fully-qualified name of the document reference (for
-      XML) or flat file schema (for flat files) used to serialize `$document`.
+
+    * `$schema` is an optional input which determines whether to serialize the
+      document as [XML], [JSON], Flat File, and can have the following values:
+      * For [XML] content, specify the fully-qualified name of the document
+        reference that defines the [XML] format
+      * For [JSON] content either specify the MIME media type value
+        "application/json" or the value "json"
+      * For Flat File content specify the fully-qualified name of the flat
+        file schema that defines the Flat File format
+
+      Defaults to serializing `$content` as [XML], if no `$schema` is specified.
+
     * `$mode` is an optional choice of {stream, bytes, string} which specifies
       the type of object `$content` is returned as. Defaults to stream.
+
   * Outputs:
-    * `$content` is the resulting serialization of `$document` as XML or flat
-      file content.
+    * `$content` is the resulting serialization of `$document` as [XML], [JSON],
+      or flat file content.
+
+  [default charset]: <http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()>
+  [JSON]: <http://www.json.org>
+  [XML]: <http://www.w3.org/XML/>
 
 * #### tundra.content:parse
 
-  Parses XML and flat file content (specified as a string, byte array, or
-  input stream) into an IData document.
+  Parses [XML], [JSON], or Flat File content specified as a string, byte
+  array, or input stream into an IData document.
 
   * Inputs:
-    * `$content` is a string, byte array, or input stream containing XML or
-      flat file content to be parsed.
-    * `$encoding` is an optional character set to use when `$content` is
-      provided as a byte array or input stream to decode the contained text
-      data. Defaults to the Java virtual machine [default charset].
-    * `$schema` is the fully-qualified name of the document reference (for
-      XML) or flat file schema (for flat files) used to parse `$content`.
+    * `$content` is a string, byte array, or input stream containing [XML],
+      [JSON], or flat file content to be parsed.
+
+    * `$encoding` is an optional character set to use when `$content` is provided
+      as a byte array or input stream to decode the contained text data.
+      Defaults to the Java virtual machine [default charset].
+
+    * `$schema` is an optional input which determines whether to parse the
+      content as [XML], [JSON], Flat File, and can have the following values:
+      * For [XML] content, specify the fully-qualified name of the document
+        reference that defines the [XML] format
+      * For [JSON] content either specify the MIME media type value
+        "application/json" or the value "json"
+      * For Flat File content specify the fully-qualified name of the flat
+        file schema that defines the Flat File format
+
+      Defaults to parsing `$content` as [XML], if no `$schema` is specified.
+
   * Outputs:
     * `$document` is the resulting IData document representing the parsed
       `$content`.

@@ -121,24 +121,35 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Parses XML and flat file content (specified as a string, byte array, or input 
-stream) into an IData document.
+  <value name="node_comment">Parses [XML], [JSON], or Flat File content specified as a string, byte 
+array, or input stream into an IData document.
 
 * Inputs:
-  * $content is a string, byte array, or input stream containing XML or flat 
-    file content to be parsed.
+  * $content is a string, byte array, or input stream containing [XML], 
+    [JSON], or flat file content to be parsed.
 
-  * $encoding is an optional character set to use when $content is provided as 
-    a byte array or input stream to decode the contained text data. Defaults to 
-    the Java virtual machine [default charset][1].
+  * $encoding is an optional character set to use when $content is provided
+    as a byte array or input stream to decode the contained text data. 
+    Defaults to the Java virtual machine [default charset].
 
-  * $schema is the fully-qualified name of the document reference (for XML) or 
-    flat file schema (for flat files) used to parse $content.
+  * $schema is an optional input which determines whether to parse the 
+    content as [XML], [JSON], Flat File, and can have the following values:
+    * For [XML] content, specify the fully-qualified name of the document 
+      reference that defines the [XML] format
+    * For [JSON] content either specify the MIME media type value 
+      "application/json" or the value "json"
+    * For Flat File content specify the fully-qualified name of the flat 
+      file schema that defines the Flat File format
+      
+    Defaults to parsing $content as [XML], if no $schema is specified.
 
 * Outputs:
-  * $document is the resulting IData document representing the parsed $content.
+  * $document is the resulting IData document representing the parsed 
+    $content.
 
-[1]: &lt;http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()&gt;</value>
+[default charset]: &lt;http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()&gt;
+[JSON]: &lt;http://www.json.org&gt;
+[XML]: &lt;http://www.w3.org/XML/&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
