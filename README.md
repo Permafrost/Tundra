@@ -862,52 +862,81 @@ content.
 
 * #### tundra.content:split
 
-  One-to-many conversion of XML or flat file content to another format. Calls
-  the given splitting service, passing the parsed `$content` as an input, and
-  emitting the split list of `$contents` as output.
+  One-to-many conversion of [XML], [JSON], or Flat File content to another 
+  format. Calls the given splitting service, passing the parsed `$content` as an 
+  input, and emitting the split list of $contents as output.
 
   * Inputs:
-    * `$content` is a string, byte array, or input stream of XML or flat file
-      content to be split.
-    * `$service` is the fully-qualified name of the splitting service, which
-      accepts a single IData document and returns an IData document list,
-      called to split the parsed `$content`.
-    * `$pipeline` is an optional IData document containing arbitrary variables
-      to be included in the input pipeline of the invocation of `$service`.
-    * `$encoding.input` is an optional character set used to decode the text
-      data if `$content` is provided as a byte array or input stream. Defaults
-      to the Java virtual machine [default charset].
-    * `$encoding.output` is an optional character set used to encode the split
-      text datum if the specified `$mode.output` is a byte array or stream.
-      Defaults to the Java virtual machine [default charset].
-    * `$schema.input` is the fully-qualified name of the document reference
-      (for XML) or flat file schema (for flat files) used to parse `$content`.
-    * `$schema.output` is an optional fully-qualified name of the document
-      reference (for XML) or flat file schema (for flat files) used to emit or
-      serialize the resulting list of IData documents returned by `$service`
-      when all documents in the list are alike.
+    * `$content` is a string, byte array, or input stream of [XML], [JSON], or
+      Flat File content to be split.
 
-      Alternatively, it is perfectly permissible for the resulting list
-      returned by `$service` to contain unlike documents (documents whose
-      formats are different), and in this case `$service` is required to
-      return a string list `$schemas`, where each item in `$schemas` is the
-      fully-qualified document reference (for XML) or flat file schema (for
-      flat files) corresponding to the same indexed item in the returned
-      document list to be used to emit/serialize that item.
-    * `$service.input` is an optional variable name to use in the input
-      pipeline of the call to `$service` for the parsed `$content` IData
-      document. Defaults to `$document`.
-    * `$service.output` is an optional variable name used to extract the
-      output IData document list from the output pipeline of the call to
-      `$service`. Defaults to `$documents`.
-    * `$mode.output` is an optional choice of {stream, bytes, string} which
-      specifies the type of object each item in `$contents` is returned as.
+    * `$service` is the fully-qualified name of the splitting service, which 
+      accepts a single IData document and returns an IData document list, 
+      called to split the parsed `$content`.
+
+    * `$pipeline` is an optional IData document containing arbitrary variables 
+      to be included in the input pipeline of the invocation of `$service`.
+
+    * `$encoding.input` is an optional character set used to decode the text 
+      data if `$content` is provided as a byte array or input stream. Defaults 
+      to the Java virtual machine [default charset].
+
+    * `$encoding.output` is an optional character set used to encode the split
+      text datum if the specified `$mode.output` is a byte array or stream. 
+      Defaults to the Java virtual machine [default charset].
+
+    * `$schema.input` is an optional input which determines whether to parse the 
+      content as [XML], [JSON], Flat File, and can have the following values:
+      * For [XML] content, specify the fully-qualified name of the document 
+        reference that defines the [XML] format
+      * For [JSON] content specify the MIME media type "application/json"
+      * For Flat File content specify the fully-qualified name of the flat 
+        file schema that defines the Flat File format
+        
+      Defaults to parsing $content as [XML], if no `$schema.input` is 
+      specified.    
+
+    * `$schema.output` is an optional input which determines whether to 
+      serialize the resulting list of IData documents returned by `$service` 
+      when all documents in the list are alike as [XML], [JSON], Flat File, 
+      and can have the following values:
+      * For [XML] content, specify the fully-qualified name of the document 
+        reference that defines the [XML] format
+      * For [JSON] content specify the MIME media type "application/json"
+      * For Flat File content specify the fully-qualified name of the flat 
+        file schema that defines the Flat File format
+        
+      Alternatively, it is perfectly permissible for the resulting list 
+      returned by `$service` to contain unlike documents (documents whose 
+      formats are different), and in this case `$service` is required to return 
+      a string list `$schemas`, where each item in `$schemas` has a value 
+      appropriate (document reference for [XML], flat file schema for Flat 
+      Files, or the value "application/json" for [JSON]) for serializing the 
+      corresponding indexed item in the returned document list.
+
+      Defaults to serializing the returned documents as [XML], if no 
+      `$schema.output` is specified, and no `$schemas` list is returned by 
+      `$service`.
+
+    * `$service.input` is an optional variable name to use in the input pipeline 
+      of the call to `$service` for the parsed `$content` IData document. Defaults 
+      to $document.
+
+    * `$service.output` is an optional variable name used to extract the output 
+      IData document list from the output pipeline of the call to `$service`. 
+      Defaults to `$documents`.
+
+    * `$mode.output` is an optional choice of {stream, bytes, string} which 
+      specifies the type of object each item in `$contents` is returned as. 
       Defaults to stream.
+
   * Outputs:
-    * `$contents` is the resulting list of split XML or flat file content.
-    * `$schemas` is the list of fully-qualified document reference (for XML)
-      or flat file schema (for flat files) names, if the `$contents` list
-      contains unlike content formats.
+    * `$contents` is the resulting list of split [XML], [JSON], or Flat File
+      content.
+
+    * `$schemas` is the list of fully-qualified document references (for XML) or 
+      flat file schemas (for flat files), or the value "application/json" (for 
+      [JSON]), if the `$contents` list contains unlike formats.
 
 * #### tundra.content:translate
 
