@@ -940,38 +940,63 @@ content.
 
 * #### tundra.content:translate
 
-  One-to-one conversion of XML or flat file content to another format. Calls
-  the given translation service, passing the parsed content as an input, and
-  emitting the translated content as output.
+  One-to-one conversion of [XML], [JSON], or Flat File content to another 
+  format. Calls the given translation service, passing the parsed content as 
+  an input, and emitting the translated content as output.
 
   * Inputs:
-    * `$content` is a string, byte array or input stream containing XML or
-      flat file content to be translated to another format.
-    * `$service` is the fully-qualified name of the translation service, which
-      accepts a single IData document and returns a single IData document,
+    * `$content` is a string, byte array or input stream containing [XML], 
+      [JSON], or Flat File content to be translated to another format.
+
+    * `$service` is the fully-qualified name of the translation service, which 
+      accepts a single IData document and returns a single IData document, 
       called to translate the parsed `$content`.
-    * `$encoding.input` is an optional character set used to decode the text
-      data if `$content` is provided as a byte array or input stream. Defaults
+
+    * `$encoding.input` is an optional character set used to decode the text 
+      data if `$content` is provided as a byte array or input stream. Defaults 
       to the Java virtual machine [default charset].
-    * `$encoding.output` is an optional character set used to encode the
-      translated text data if the specified `$mode.output` is a byte array or
+
+    * `$encoding.output` is an optional character set used to encode the 
+      translated text data if the specified `$mode.output` is a byte array or 
       stream. Defaults to the Java virtual machine [default charset].
-    * `$schema.input` is the fully-qualified name of the document reference
-      (for XML) or flat file schema (for flat files) used to parse `$content`.
-    * `$schema.output` is the fully-qualified name of the document reference
-      (for XML) or flat file schema (for flat files) used to emit or serialize
-      the resulting IData document returned by `$service`.
-    * `$service.input` is an optional variable name to use in the input
-      pipeline of the call to `$service` for the parsed `$content` IData
-      document. Defaults to `$document`.
-    * `$service.output` is an optional variable name used to extract the
-      output IData document from the output pipeline of the call to
-      `$service`. Defaults to `$translation`.
-    * `$mode.output` is an optional choice of {stream, bytes, string} which
-      specifies the type of object `$translation` is returned as. Defaults to
+
+    * `$schema.input` is an optional input which determines whether to parse the 
+      content as [XML], [JSON], Flat File, and can have the following values:
+      * For [XML] content, specify the fully-qualified name of the document 
+        reference that defines the [XML] format
+      * For [JSON] content specify the MIME media type "application/json"
+      * For Flat File content specify the fully-qualified name of the flat 
+        file schema that defines the Flat File format
+        
+      Defaults to parsing `$content` as [XML], if no `$schema.input` is 
+      specified.    
+
+    * `$schema.output` is an optional input which determines whether to 
+      serialize the resulting IData document returned by `$service` as [XML], 
+      [JSON], Flat File, and can have the following values:
+      * For [XML] content, specify the fully-qualified name of the document 
+        reference that defines the [XML] format
+      * For [JSON] content specify the MIME media type "application/json"
+      * For Flat File content specify the fully-qualified name of the flat 
+        file schema that defines the Flat File format
+
+      Defaults to serializing the returned documents as [XML], if no 
+      `$schema.output` is specified.
+
+    * `$service.input` is an optional variable name to use in the input pipeline 
+      of the call to `$service` for the parsed `$content` IData document. Defaults 
+      to `$document`.
+
+    * `$service.output` is an optional variable name used to extract the output 
+      IData document from the output pipeline of the call to `$service`. 
+      Defaults to `$translation`.
+
+    * `$mode.output` is an optional choice of {stream, bytes, string} which 
+      specifies the type of object `$translation` is returned as. Defaults to 
       stream.
+
   * Outputs:
-    * `$translation` is the translated XML or flat file content returned as a
+    * `$translation` is the translated XML or flat file content returned as a 
       string, byte array or input stream (depending on the `$mode.output`
       chosen).
 
