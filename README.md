@@ -1716,8 +1716,15 @@ Services for manipulating com.wm.data.IData objects:
       document data upon delivery. Defaults to the Java virtual machine
       [default charset].
 
-    * `$schema` is the fully-qualified name of the document reference (for XML)
-      or flat file schema (for flat files) used to serialize `$document`.
+    * `$schema` is an optional input which determines whether to serialize the 
+      document as [XML], [JSON], Flat File, and can have the following values:
+      * For [XML] content, specify the fully-qualified name of the document 
+        reference that defines the [XML] format
+      * For [JSON] content specify the MIME media type "application/json"
+      * For Flat File content specify the fully-qualified name of the flat 
+        file schema that defines the Flat File format
+
+      Defaults to serializing `$content` as [XML], if no `$schema` is specified.
 
     * `$content.type` is an optional MIME media type describing the type
       content being delivered.
