@@ -588,37 +588,53 @@ content.
 
 * #### tundra.content:amend
 
-  Edits the given XML or flat file content with the list of {key, value} pairs
-  specified in `$amendments`.
+  Edits the given [XML], [JSON], or Flat File content with the list of {key,
+  value} pairs specified in `$amendments`.
 
   * Inputs:
-    * `$content` is a string, byte array, or input stream containing the XML
-      or flat file content to be amended.
+    * `$content` is a string, byte array, or input stream containing the [XML],
+      [JSON], or Flat File content to be amended.
+
     * `$amendments` is an IData document list containing all the edits to be
       made to the given `$content`.
-      * `key` is a fully-qualified (for example, `a/b/c[0]`) key identifying
-        the value in the parsed `$content` to be edited.
-      * `value` is the value to be assigned to the item identified by `key`,
-        and can include percent-delimited variable substitution strings which
-        will be substituted prior to being inserted into the parsed `$content`.
-      * `condition` is an optional `Tundra/tundra.condition:evaluate`
-        conditional statement, which is evaluated against the pipeline and
-        only if the condition evaluates to true will the associated amended
-        `value` be applied. If not specified, the amended `value` will always
-        be applied.
-    * `$schema` is the fully-qualified name of the document reference (for
-      XML) or flat file schema (for flat files) used to parse `$content`.
+      * `key` is a fully-qualified (for example, `a/b/c[0]`) key identifying the
+        value in the parsed `$content` to be edited.
+
+      * `value` is the value to be assigned to the item identified by key, and
+        can include percent-delimited variable substitution strings which will
+        be substituted prior to being inserted into the parsed `$content`.
+
+      * `condition` is an optional `Tundra/tundra.condition:evaluate` conditional
+        statement, which is evaluated against the pipeline and only if the
+        condition evaluates to true will the associated amended value be
+        applied. If not specified, the amended value will always be applied.
+
+    * `$schema` is an optional input which determines whether to deserialize and
+      serialize the content as [XML], [JSON], Flat File, and can have the
+      following values:
+      * For [XML] content, specify the fully-qualified name of the document
+        reference that defines the [XML] format
+      * For [JSON] content either specify the MIME media type value
+        "application/json" or the value "json"
+      * For Flat File content specify the fully-qualified name of the flat
+        file schema that defines the Flat File format
+
+      Defaults to deserializing and serializing `$content` as [XML], if no
+      `$schema` is specified.
+
     * `$encoding.input` is an optional character set used to decode the text
       data if `$content` is provided as a byte array or input stream. Defaults
       to the Java virtual machine [default charset].
-    * `$encoding.output` is an optional character set used to encode the
-      amended text data if `$mode.output` is a byte array or input stream.
-      Defaults to the Java virtual machine [default charset].
+
+    * `$encoding.output` is an optional character set used to encode the amended
+      text data if `$mode.output` is a byte array or input stream. Defaults to
+      the Java virtual machine [default charset].
+
     * `$mode.output` is an optional choice of {stream, bytes, string} which
-      specifies the type of object `$content` is returned as. Defaults to
-      stream.
+      specifies the type of object `$content` is returned as. Defaults to stream.
+
   * Outputs:
-    * `$content` is the resulting edited XML or flat file content.
+    * `$content` is the resulting edited [XML], [JSON], or Flat File content.
 
 * #### tundra.content:deliver
 
