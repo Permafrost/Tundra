@@ -6953,6 +6953,18 @@ Services for parsing and emitting Uniform Resource Identifier ([URI]) strings.
 
 ### XML
 
+* #### tundra.xml.mime.type:check
+
+  Returns true if the given MIME media type is recognized as a [XML] media 
+  type.
+
+  * Inputs:
+    * `$content.type` is the MIME media type to be checked.
+
+  * Outputs:
+    * `$xml?` is a boolean which when true indicates that the given 
+      `$content.type` is a recognized [XML] media type.
+
 * #### tundra.xml:validate
 
   Validates the given content as [XML], and optionally against an [XML]
