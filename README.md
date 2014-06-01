@@ -3137,6 +3137,17 @@ Services for working with arbitrary precision integers (uses [java.math.BigInteg
   * Outputs:
     * `$content` is the resulting serialization of `$document` as [JSON] content.
 
+* #### tundra.json.mime.type:check
+
+  Returns true if the given MIME media type is recognized as a [JSON] media type.
+
+  * Inputs:
+    * `$content.type` is the MIME media type to be checked.
+
+  * Outputs:
+    * `$json?` is a boolean which when true indicates that the given 
+      `$content.type` is a recognized [JSON] media type.
+
 * #### tundra.json:parse
 
   Parses [JSON] content specified as a string, byte array, or input stream
