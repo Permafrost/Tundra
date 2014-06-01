@@ -85,6 +85,90 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
+          <value name="field_name">$content.types.input</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">1</value>
+          <value name="field_opt">true</value>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">string</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+          <value name="is_soap_array_encoding_used">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">unknown</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <null name="field_usereditable"/>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$content.type.input</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">string</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">unknown</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <null name="field_usereditable"/>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$content.type.output</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">string</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
           <value name="field_name">$schemas.input</value>
           <value name="field_type">string</value>
           <value name="field_dim">1</value>
@@ -355,70 +439,85 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Many-to-one conversion of XML or flat file content to another 
-format.  
+  <value name="node_comment">Many-to-one conversion of XML or flat file content to another format.  
 
-Calls the given joining service, passing the parsed list of 
-contents as an input, and emitting the joined content as output.  
-The joining service must accept an IData[] document list, and 
-return a single IData document.
+Calls the given joining service, passing the parsed list of contents as an 
+input, and emitting the joined content as output. The joining service must 
+accept an IData[] document list, and return a single IData document.
 
 * Inputs:
-  * $contents is a list of strings, byte arrays, or input streams
-    containing content (structured/parseable data) to be joined
-    or aggregated together into one item of content.
+  * $contents is a list of strings, byte arrays, or input streams containing 
+    content (structured/parseable data) to be joined or aggregated together 
+    into one item of content.
 
-  * $service is the fully-qualified joining service name that is
-    called to join or aggregate the parsed contents. This service
-    must accept an IData[] document list, and return a single
-    IData document.
+  * $service is the fully-qualified joining service name that is called to 
+    join or aggregate the parsed contents. This service must accept an 
+    IData[] document list, and return a single IData document.
 
-  * $pipeline is an optional IData document for specifying 
-    arbitrary input arguments to the invocation of $service.
+  * $pipeline is an optional IData document for specifying arbitrary input 
+    arguments to the invocation of $service.
+
+  * $content.types.inputs is a list of MIME media types with the same number 
+    of items as $contents, where $content.types[n] describes the format of 
+    the $contents[n]. For [JSON] content, a recognized [JSON] MIME media 
+    type, such as "application/json", must be specified.
+
+    Use this input argument when $contents contains unlike formats (for 
+    example, a mixture of [XML] and [JSON] MIME types).
+
+  * $content.type.input is the MIME media type that describes the format of 
+    all items in $contents. For [JSON] content, a recognized [JSON] MIME 
+    media type, such as "application/json", must be specified.
+
+    Use this input argument when $contents contains like formats (for 
+    example, when all items adhere to the exact same [XML] MIME type).
+
+  * $content.type.output is the MIME media type that describes the format of 
+    the returned $content. For [JSON] content, a recognized [JSON] MIME 
+    media type, such as "application/json", must be specified.
+
+    Use this input argument when $contents contains like formats (for 
+    example, when all items adhere to the exact same [XML] MIME type).
 
   * $schemas.input is an optional input list with the same number of items 
-    as $contents, where $schemas[n] is used to determine whether to parse 
-    $contents[n] as [XML], [JSON], Flat File, and can have the following 
-    values:
+    as $contents, where $schemas[n] is used to parse $contents[n] as [XML] 
+    or Flat File, and can have the following values:
     * For [XML] content, specify the fully-qualified name of the document 
       reference that defines the [XML] format
-    * For [JSON] content specify the MIME media type "application/json"
     * For Flat File content specify the fully-qualified name of the flat 
       file schema that defines the Flat File format
 
-    Defaults to parsing $contents as [XML], if neither $schemas.input or 
-    $schema.input are specified.
+    Defaults to parsing $contents as [XML], if neither $content.types.input, 
+    $content.type.input, $schemas.input nor $schema.input are specified.
 
     Use this input argument when $contents contains unlike formats (for 
     example, a mixture of flat file and xml formats).
 
   * $schema.input is an optional input which determines whether to parse all 
-    items in $contents as [XML], [JSON], Flat File, and can have the 
-    following values:
+    items in $contents as [XML] or Flat File, and can have the following 
+    values:
     * For [XML] content, specify the fully-qualified name of the document 
       reference that defines the [XML] format
-    * For [JSON] content specify the MIME media type "application/json"
     * For Flat File content specify the fully-qualified name of the flat 
       file schema that defines the Flat File format
       
-    Defaults to parsing $contents as [XML], if neither $schemas.input or 
-    $schema.input are specified.
+    Defaults to parsing $contents as [XML], if neither $content.types.input, 
+    $content.type.input, $schemas.input nor $schema.input are specified.
 
     Use this input argument when $contents contains like formats (for 
     example, when all items adhere to the exact same XML schema).
 
   * $schema.output is an optional input which determines whether to 
-    serialize the document returned by $service as [XML], [JSON], Flat File, 
+    serialize the document returned by $service as [XML] or Flat File, 
     and can have the following values:
     * For [XML] content, specify the fully-qualified name of the document 
-      reference that defines the [XML] format
-    * For [JSON] content specify the MIME media type "application/json"
+      reference that defines the [XML] format.
     * For Flat File content specify the fully-qualified name of the flat 
-      file schema that defines the Flat File format
+      file schema that defines the Flat File format.
       
     Defaults to serializing as [XML].
 
-  * $service.input is an optional name to use for the parsed IData[]
+  * $service.input is an optional name to use for the parsed IData[] 
     document list for the input pipeline of the $service invocation.
     Defaults to $documents.
 

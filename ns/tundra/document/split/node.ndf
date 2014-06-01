@@ -7,6 +7,7 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -20,6 +21,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$document</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
@@ -29,6 +31,7 @@
           <value name="is_global">false</value>
           <array name="rec_fields" type="record" depth="1">
           </array>
+          <value name="modifiable">true</value>
         </record>
         <record javaclass="com.wm.util.Values">
           <value name="node_type">record</value>
@@ -38,6 +41,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$service</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -63,6 +67,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$pipeline</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
@@ -72,6 +77,7 @@
           <value name="is_global">false</value>
           <array name="rec_fields" type="record" depth="1">
           </array>
+          <value name="modifiable">true</value>
         </record>
         <record javaclass="com.wm.util.Values">
           <value name="node_type">record</value>
@@ -81,6 +87,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$service.input</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -108,6 +115,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$service.output</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -128,9 +136,11 @@
           <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -144,6 +154,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$documents</value>
           <value name="field_type">record</value>
           <value name="field_dim">1</value>
@@ -154,6 +165,7 @@
           <value name="is_soap_array_encoding_used">false</value>
           <array name="rec_fields" type="record" depth="1">
           </array>
+          <value name="modifiable">true</value>
         </record>
         <record javaclass="com.wm.util.Values">
           <value name="node_type">record</value>
@@ -162,6 +174,35 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$content.types</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">1</value>
+          <value name="field_opt">true</value>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">string</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+          <value name="is_soap_array_encoding_used">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
           <value name="field_name">$schemas</value>
           <value name="field_type">string</value>
           <value name="field_dim">1</value>
@@ -183,11 +224,12 @@
           <value name="is_soap_array_encoding_used">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">One-to-many conversion of an IData document to an IData[] document list.  Calls 
-the given splitting service, passing the document as an input, and returning the 
-split list of documents as output.
+  <value name="node_comment">One-to-many conversion of an IData document to an IData[] document list.  
+Calls the given splitting service, passing the document as an input, and 
+returning the split list of documents as output.
 
 * Inputs:
   * $document is an IData document to be processed by the given splitting
@@ -195,30 +237,36 @@ split list of documents as output.
 
   * $service is the fully-qualified name of the splitting service, which 
     accepts a single IData document and returns an IData document list, 
-    called to split $document. Also it is perfectly permissible for the 
-    resulting list returned by $service to contain unlike documents (documents 
-    whose formats are different), and in this case $service is required to 
-    return a string list $schemas, where each item in $schemas is the 
-    fully-qualified document reference (for XML) or flat file schema (for 
-    flat files) corresponding to the same indexed item in the returned document 
-    list to be used to emit/serialize that item.
+    called to split $document. 
 
-  * $pipeline is an optional IData document containing arbitrary variables to 
-    be included in the input pipeline of the invocation of $service.
+    It is permissible for the resulting list returned by $service to contain 
+    unlike documents (documents whose formats are different), and in this 
+    case $service is required to return two string lists:
+    * $content.types specifies a MIME media type per item in the returned 
+      list of documents.
+    * $schemas specifies the fully-qualified document reference (for XML) or 
+      flat file schema (for Flat Files) per item in the returned list of 
+      documents, which can be used to serialize that item.
 
-  * $service.input is an optional variable name to use in the input pipeline of the 
-    call to $service for the IData document. Defaults to $document.
+  * $pipeline is an optional IData document containing arbitrary variables 
+    to be included in the input pipeline of the invocation of $service.
 
-  * $service.output is an optional variable name used to extract the output IData 
-    document list from the output pipeline of the call to $service. Defaults to 
-    $documents.
+  * $service.input is an optional variable name to use in the input pipeline 
+    of the call to $service for the IData document. Defaults to $document.
+
+  * $service.output is an optional variable name used to extract the output 
+    IData document list from the output pipeline of the call to $service. 
+    Defaults to $documents.
 
 * Outputs:
   * $documents is the resulting list of IData documents.
 
-  * $schemas is the list of fully-qualified document reference (for XML) or flat 
-    file schema (for flat files) names, returned by $service for when the $documents
-    list contains unlike formats.</value>
+  * $content.types is the list of MIME media types if the $documents list 
+    contains unlike media types.
+
+  * $schemas is the list of fully-qualified document reference (for XML) or 
+    flat file schema (for flat files) names, returned by $service for when 
+    the $documents list contains unlike formats.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
@@ -235,10 +283,16 @@ split list of documents as output.
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
 </Values>

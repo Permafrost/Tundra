@@ -135,6 +135,34 @@
           <value name="modifiable">true</value>
         </record>
         <record javaclass="com.wm.util.Values">
+          <value name="node_type">unknown</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <null name="field_usereditable"/>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$content.type</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">string</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
@@ -321,17 +349,20 @@ value} pairs specified in $amendments.
       condition evaluates to true will the associated amended value be 
       applied. If not specified, the amended value will always be applied.
 
-  * $schema is an optional input which determines whether to deserialize and 
-    serialize the content as [XML], [JSON], Flat File, and can have the 
-    following values:
+  * $content.type is the MIME media type that describes the format of the 
+    content. For [JSON] content, a recognized [JSON] MIME media type, such 
+    as "application/json", must be specified.
+
+  * $schema is the fully-qualified name of the parsing schema to use when 
+    parsing and serializing the document to [XML] or Flat File content, and 
+    can have the following values:
     * For [XML] content, specify the fully-qualified name of the document 
-      reference that defines the [XML] format
-    * For [JSON] content specify the MIME media type "application/json"
+      reference that defines the [XML] format.
     * For Flat File content specify the fully-qualified name of the flat 
-      file schema that defines the Flat File format
-      
-    Defaults to deserializing and serializing $content as [XML], if no 
-    $schema is specified.
+      file schema that defines the Flat File format.
+
+    Defaults to parsing and serializing $content as [XML], if neither 
+    $content.type nor $schema are specified.
 
   * $encoding.input is an optional character set used to decode the text 
     data if $content is provided as a byte array or input stream. Defaults 

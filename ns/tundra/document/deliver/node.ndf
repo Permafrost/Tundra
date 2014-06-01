@@ -42,10 +42,9 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$encoding</value>
+          <value name="field_name">$destination</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
-          <value name="field_opt">true</value>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <value name="contentType">1</value>
             <value name="internalType">reference</value>
@@ -53,35 +52,7 @@
             <array name="targetNames" type="record" depth="1">
               <record javaclass="com.wm.util.Values">
                 <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">string</value>
-              </record>
-            </array>
-          </record>
-          <value name="nillable">true</value>
-          <value name="form_qualified">false</value>
-          <value name="is_global">false</value>
-        </record>
-        <record javaclass="com.wm.util.Values">
-          <value name="node_type">record</value>
-          <value name="node_comment"></value>
-          <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
-            <value name="field_largerEditor">false</value>
-            <value name="field_password">false</value>
-          </record>
-          <value name="is_public">false</value>
-          <value name="field_name">$schema</value>
-          <value name="field_type">string</value>
-          <value name="field_dim">0</value>
-          <value name="field_opt">true</value>
-          <record name="field_content_type" javaclass="com.wm.util.Values">
-            <value name="contentType">1</value>
-            <value name="internalType">reference</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-            <array name="targetNames" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">string</value>
+                <value name="ncName">anyURI</value>
               </record>
             </array>
           </record>
@@ -126,9 +97,10 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$destination</value>
+          <value name="field_name">$encoding</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <value name="contentType">1</value>
             <value name="internalType">reference</value>
@@ -136,7 +108,35 @@
             <array name="targetNames" type="record" depth="1">
               <record javaclass="com.wm.util.Values">
                 <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">anyURI</value>
+                <value name="ncName">string</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <null name="field_usereditable"/>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$schema</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">string</value>
               </record>
             </array>
           </record>
@@ -263,23 +263,6 @@ specification.
   * $document is the IData document to be serialized and delivered to the 
     given destination URI.
 
-  * $encoding is an optional character set used to encode the serialized 
-    document data upon delivery. Defaults to the Java virtual machine 
-    [default charset].
-
-  * $schema is an optional input which determines whether to serialize the 
-    document as [XML], [JSON], Flat File, and can have the following values:
-    * For [XML] content, specify the fully-qualified name of the document 
-      reference that defines the [XML] format
-    * For [JSON] content specify the MIME media type "application/json"
-    * For Flat File content specify the fully-qualified name of the flat 
-      file schema that defines the Flat File format
-
-    Defaults to serializing $content as [XML], if no $schema is specified.
-
-  * $content.type is an optional MIME media type describing the type content 
-    being delivered.
-
   * $destination is a URI identifying the location where the serialized 
     document should be delivered. Supports the following delivery protocols 
     (URI schemes):
@@ -289,7 +272,8 @@ specification.
       * $mode: append / write
 
     * http: transmits the given content to the destination URI. The 
-    following additional options can be provided via the $pipeline document:
+      following additional options can be provided via the $pipeline 
+      document:
       * $method: get / put / post / delete / head / trace / options
       * $headers/*: additional HTTP headers as required
       * $authority/user: the username to log on to the remote web server
@@ -311,6 +295,25 @@ specification.
       * $smtp: an SMTP URI specifying the SMTP server to use (for example, 
         smtp://user:password@host:port), defaults to the SMTP server 
         configured in the Integration Server setting watt.server.smtpServer
+
+  * $content.type is the MIME media type that describes the format of the 
+    content being delivered. For [JSON] content, a recognized [JSON] MIME 
+    media type, such as "application/json", must be specified.
+
+  * $schema is the fully-qualified name of the parsing schema to use when 
+    serializing the document to [XML] or Flat File content, and can have the 
+    following values:
+    * For [XML] content, specify the fully-qualified name of the document 
+      reference that defines the [XML] format.
+    * For Flat File content specify the fully-qualified name of the flat 
+      file schema that defines the Flat File format.
+
+    Defaults to serializing $content as [XML], if neither $content.type nor 
+    $schema are specified.
+
+  * $encoding is an optional character set used to encode the serialized 
+    document data upon delivery. Defaults to the Java virtual machine 
+    [default charset].
 
   * $pipeline is an optional IData document for providing arbitrary 
     variables to the delivery implementation service.
