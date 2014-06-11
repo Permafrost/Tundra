@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-06-12 08:06:18.676
+// -----( CREATED: 2014-06-12 08:13:39.182
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -179,12 +179,13 @@ public final class string
 		// --- <<IS-START(quote)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:required $string
-		// [o] field:0:required $pattern
+		// [i] field:0:optional $string
+		// [o] field:0:optional $pattern
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
-		  IDataUtil.put(cursor, "$pattern", quote(IDataUtil.getString(cursor, "$string")));
+		  String string = IDataUtil.getString(cursor, "$string");
+		  if (string != null) IDataUtil.put(cursor, "$pattern", quote(string));
 		} finally {
 		  cursor.destroy();
 		}
