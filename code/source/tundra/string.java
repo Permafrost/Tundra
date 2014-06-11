@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-06-11 15:34:17.364
+// -----( CREATED: 2014-06-12 08:06:18.676
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -469,6 +469,7 @@ public final class string
 
 	  // support reverse indexing
 	  if (index < 0) index += inputLength;
+	  if (index < 0) index = 0;
 
 	  if (index < inputLength) {
 	    if ((index + length) > inputLength) length = inputLength - index;
