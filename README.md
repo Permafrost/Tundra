@@ -609,19 +609,19 @@ content.
         condition evaluates to true will the associated amended value be
         applied. If not specified, the amended value will always be applied.
 
-    * `$content.type` is the MIME media type that describes the format of the 
-      content. For [JSON] content, a recognized [JSON] MIME media type, such 
+    * `$content.type` is the MIME media type that describes the format of the
+      content. For [JSON] content, a recognized [JSON] MIME media type, such
       as "application/json", must be specified.
 
-    * `$schema` is the fully-qualified name of the parsing schema to use when 
-      parsing and serializing the document to [XML] or Flat File content, and 
+    * `$schema` is the fully-qualified name of the parsing schema to use when
+      parsing and serializing the document to [XML] or Flat File content, and
       can have the following values:
-      * For [XML] content, specify the fully-qualified name of the document 
+      * For [XML] content, specify the fully-qualified name of the document
         reference that defines the [XML] format.
-      * For Flat File content specify the fully-qualified name of the flat 
+      * For Flat File content specify the fully-qualified name of the flat
         file schema that defines the Flat File format.
 
-      Defaults to parsing and serializing `$content` as [XML], if neither 
+      Defaults to parsing and serializing `$content` as [XML], if neither
       `$content.type` nor `$schema` are specified.
 
     * `$encoding.input` is an optional character set used to decode the text
@@ -688,19 +688,19 @@ content.
            configured in the Integration Server setting
            `watt.server.smtpServer`.
 
-    * `$content.type` is the MIME media type that describes the format of the 
-      content being delivered. For [JSON] content, a recognized [JSON] MIME 
+    * `$content.type` is the MIME media type that describes the format of the
+      content being delivered. For [JSON] content, a recognized [JSON] MIME
       media type, such as "application/json", must be specified.
 
-    * `$schema` is the fully-qualified name of the parsing schema to use when 
-      serializing the document to [XML] or Flat File content, and can have the 
+    * `$schema` is the fully-qualified name of the parsing schema to use when
+      serializing the document to [XML] or Flat File content, and can have the
       following values:
-      * For [XML] content, specify the fully-qualified name of the document 
+      * For [XML] content, specify the fully-qualified name of the document
         reference that defines the [XML] format.
-      * For Flat File content specify the fully-qualified name of the flat 
+      * For Flat File content specify the fully-qualified name of the flat
         file schema that defines the Flat File format.
 
-      Defaults to serializing `$content` as [XML], if neither `$content.type` nor 
+      Defaults to serializing `$content` as [XML], if neither `$content.type` nor
       `$schema` are specified.
 
     * `$encoding` is an optional character set to use when `$content` is
@@ -776,19 +776,19 @@ content.
     * `$document` is the IData document to be serialized as a string, byte
       array, or input stream.
 
-    * `$content.type` is the MIME media type that describes the format of the 
-      resulting serialized content. For [JSON] content, a recognized [JSON] 
+    * `$content.type` is the MIME media type that describes the format of the
+      resulting serialized content. For [JSON] content, a recognized [JSON]
       MIME media type, such as "application/json", must be specified.
 
-    * `$schema` is the fully-qualified name of the parsing schema to use when 
-      serializing the document to [XML] or Flat File content, and can have the 
+    * `$schema` is the fully-qualified name of the parsing schema to use when
+      serializing the document to [XML] or Flat File content, and can have the
       following values:
-      * For [XML] content, specify the fully-qualified name of the document 
+      * For [XML] content, specify the fully-qualified name of the document
         reference that defines the [XML] format.
-      * For Flat File content specify the fully-qualified name of the flat 
+      * For Flat File content specify the fully-qualified name of the flat
         file schema that defines the Flat File format.
 
-      Defaults to serializing `$content` as [XML], if neither `$content.type` nor 
+      Defaults to serializing `$content` as [XML], if neither `$content.type` nor
       `$schema` are specified.
 
     * `$encoding` is an optional character set to use when encoding the
@@ -815,19 +815,19 @@ content.
     * `$content` is a string, byte array, or input stream containing [XML],
       [JSON], or flat file content to be parsed.
 
-    * `$content.type` is the MIME media type that describes the format of the 
-      given `$content` data. For [JSON] content, a recognized [JSON] MIME media 
+    * `$content.type` is the MIME media type that describes the format of the
+      given `$content` data. For [JSON] content, a recognized [JSON] MIME media
       type, such as "application/json", must be specified.
 
-    * `$schema` is the fully-qualified name of the parsing schema to use when 
-      parsing `$content` to [XML] or Flat File content, and can have the 
+    * `$schema` is the fully-qualified name of the parsing schema to use when
+      parsing `$content` to [XML] or Flat File content, and can have the
       following values:
-      * For [XML] content, specify the fully-qualified name of the document 
+      * For [XML] content, specify the fully-qualified name of the document
         reference that defines the [XML] format.
-      * For Flat File content specify the fully-qualified name of the flat 
+      * For Flat File content specify the fully-qualified name of the flat
         file schema that defines the Flat File format.
 
-      Defaults to parsing `$content` as [XML], if neither `$content.type` nor 
+      Defaults to parsing `$content` as [XML], if neither `$content.type` nor
       `$schema` are specified.
 
     * `$encoding` is an optional character set to use when `$content` is provided
@@ -887,165 +887,165 @@ content.
 
 * #### tundra.content:split
 
-  One-to-many conversion of [XML], [JSON], or Flat File content to another 
-  format. Calls the given splitting service, passing the parsed `$content` as an 
+  One-to-many conversion of [XML], [JSON], or Flat File content to another
+  format. Calls the given splitting service, passing the parsed `$content` as an
   input, and emitting the split list of $contents as output.
 
   * Inputs:
     * `$content` is a string, byte array, or input stream of [XML], [JSON], or
       Flat File content to be split.
 
-    * `$service` is the fully-qualified name of the splitting service, which 
-      accepts a single IData document and returns an IData document list, 
+    * `$service` is the fully-qualified name of the splitting service, which
+      accepts a single IData document and returns an IData document list,
       called to split the parsed `$content`.
 
-    * `$pipeline` is an optional IData document containing arbitrary variables 
+    * `$pipeline` is an optional IData document containing arbitrary variables
       to be included in the input pipeline of the invocation of `$service`.
 
-    * `$content.type.input` is the MIME media type that describes the format of 
-      the given `$content`. For [JSON] content, a recognized [JSON] MIME media 
+    * `$content.type.input` is the MIME media type that describes the format of
+      the given `$content`. For [JSON] content, a recognized [JSON] MIME media
       type, such as "application/json", must be specified.
 
-    * `$content.type.output` is the MIME media type that describes the format of 
-      the resulting serialized split content. For [JSON] content, a recognized 
+    * `$content.type.output` is the MIME media type that describes the format of
+      the resulting serialized split content. For [JSON] content, a recognized
       [JSON] MIME media type, such as "application/json", must be
       specified.
 
-      Alternatively, it is permissible for the resulting list returned by 
-      `$service` to contain unlike documents (documents whose MIME types are 
-      different), and in this case `$service` is required to return a string 
-      list `$content.types`, where each item in `$content.types` has a value 
-      appropriate (for example, "application/json" for [JSON] content) for 
+      Alternatively, it is permissible for the resulting list returned by
+      `$service` to contain unlike documents (documents whose MIME types are
+      different), and in this case `$service` is required to return a string
+      list `$content.types`, where each item in `$content.types` has a value
+      appropriate (for example, "application/json" for [JSON] content) for
       serializing the corresponding indexed item in the returned document list.
 
-    * `$schema.input` is the fully-qualified name of the parsing schema to use 
-      when parsing `$content` to [XML] or Flat File content, and can have the 
+    * `$schema.input` is the fully-qualified name of the parsing schema to use
+      when parsing `$content` to [XML] or Flat File content, and can have the
       following values:
-      * For [XML] content, specify the fully-qualified name of the document 
+      * For [XML] content, specify the fully-qualified name of the document
         reference that defines the [XML] format.
-      * For Flat File content specify the fully-qualified name of the flat 
+      * For Flat File content specify the fully-qualified name of the flat
         file schema that defines the Flat File format.
 
       Defaults to parsing `$content` as [XML], if neither `$content.type.input`
       nor `$schema.input` are specified.
 
-    * `$schema.output` is the fully-qualified name of the parsing schema to use 
-      when serializing the split document to [XML] or Flat File content, 
+    * `$schema.output` is the fully-qualified name of the parsing schema to use
+      when serializing the split document to [XML] or Flat File content,
       and can have the following values:
-      * For [XML] content, specify the fully-qualified name of the document 
+      * For [XML] content, specify the fully-qualified name of the document
         reference that defines the [XML] format.
-      * For Flat File content specify the fully-qualified name of the flat 
+      * For Flat File content specify the fully-qualified name of the flat
         file schema that defines the Flat File format.
 
-      Alternatively, it is permissible for the resulting list returned by 
-      `$service` to contain unlike documents (documents whose formats are 
-      different), and in this case `$service` is required to return a string 
-      list `$schemas`, where each item in `$schemas` has a value appropriate 
-      (document reference for [XML], flat file schema for Flat Files) for 
+      Alternatively, it is permissible for the resulting list returned by
+      `$service` to contain unlike documents (documents whose formats are
+      different), and in this case `$service` is required to return a string
+      list `$schemas`, where each item in `$schemas` has a value appropriate
+      (document reference for [XML], flat file schema for Flat Files) for
       serializing the corresponding indexed item in the returned document list.
 
-      Defaults to serializing the returned documents as [XML], if neither 
+      Defaults to serializing the returned documents as [XML], if neither
       `$content.type.output` nor `$schema.output` are specified, and neither
       `$content.types` nor `$schemas` are returned by `$service`.
 
-    * `$service.input` is an optional variable name to use in the input pipeline 
-      of the call to `$service` for the parsed `$content` IData document. Defaults 
+    * `$service.input` is an optional variable name to use in the input pipeline
+      of the call to `$service` for the parsed `$content` IData document. Defaults
       to $document.
 
-    * `$service.output` is an optional variable name used to extract the output 
-      IData document list from the output pipeline of the call to `$service`. 
+    * `$service.output` is an optional variable name used to extract the output
+      IData document list from the output pipeline of the call to `$service`.
       Defaults to `$documents`.
 
-    * `$encoding.input` is an optional character set used to decode the text 
-      data if `$content` is provided as a byte array or input stream. Defaults 
+    * `$encoding.input` is an optional character set used to decode the text
+      data if `$content` is provided as a byte array or input stream. Defaults
       to the Java virtual machine [default charset].
 
     * `$encoding.output` is an optional character set used to encode the split
-      text datum if the specified `$mode.output` is a byte array or stream. 
+      text datum if the specified `$mode.output` is a byte array or stream.
       Defaults to the Java virtual machine [default charset].
 
-    * `$mode.output` is an optional choice of {stream, bytes, string} which 
-      specifies the type of object each item in `$contents` is returned as. 
+    * `$mode.output` is an optional choice of {stream, bytes, string} which
+      specifies the type of object each item in `$contents` is returned as.
       Defaults to stream.
 
   * Outputs:
     * `$contents` is the resulting list of split [XML], [JSON], or Flat File
       content.
 
-    * `$content.types` is the list of MIME media types if the `$contents` list 
+    * `$content.types` is the list of MIME media types if the `$contents` list
       contains unlike media types.
 
-    * `$schemas` is the list of fully-qualified document references (for XML) or 
-      flat file schemas (for flat files), if the `$contents` list contains unlike 
+    * `$schemas` is the list of fully-qualified document references (for XML) or
+      flat file schemas (for flat files), if the `$contents` list contains unlike
       formats.
 
 * #### tundra.content:translate
 
-  One-to-one conversion of [XML], [JSON], or Flat File content to another 
-  format. Calls the given translation service, passing the parsed content as 
+  One-to-one conversion of [XML], [JSON], or Flat File content to another
+  format. Calls the given translation service, passing the parsed content as
   an input, and emitting the translated content as output.
 
   * Inputs:
-    * `$content` is a string, byte array or input stream containing [XML], 
+    * `$content` is a string, byte array or input stream containing [XML],
       [JSON], or Flat File content to be translated to another format.
 
-    * `$service` is the fully-qualified name of the translation service, which 
-      accepts a single IData document and returns a single IData document, 
+    * `$service` is the fully-qualified name of the translation service, which
+      accepts a single IData document and returns a single IData document,
       called to translate the parsed `$content`.
 
-    * `$content.type.input` is the MIME media type that describes the format of 
-      the given `$content`. For [JSON] content, a recognized [JSON] MIME media 
+    * `$content.type.input` is the MIME media type that describes the format of
+      the given `$content`. For [JSON] content, a recognized [JSON] MIME media
       type, such as "application/json", must be specified.
 
-    * `$content.type.output` is the MIME media type that describes the format of 
-      the resulting serialized translated content. For [JSON] content, a 
+    * `$content.type.output` is the MIME media type that describes the format of
+      the resulting serialized translated content. For [JSON] content, a
       recognized [JSON] MIME media type, such as "application/json", must be
       specified.
 
-    * `$schema.input` is the fully-qualified name of the parsing schema to use 
-      when parsing `$content` to [XML] or Flat File content, and can have the 
+    * `$schema.input` is the fully-qualified name of the parsing schema to use
+      when parsing `$content` to [XML] or Flat File content, and can have the
       following values:
-      * For [XML] content, specify the fully-qualified name of the document 
+      * For [XML] content, specify the fully-qualified name of the document
         reference that defines the [XML] format.
-      * For Flat File content specify the fully-qualified name of the flat 
+      * For Flat File content specify the fully-qualified name of the flat
         file schema that defines the Flat File format.
 
       Defaults to parsing `$content` as [XML], if neither `$content.type.input`
       nor `$schema.input` are specified.
 
-    * `$schema.output` is the fully-qualified name of the parsing schema to use 
-      when serializing the translated document to [XML] or Flat File content, 
+    * `$schema.output` is the fully-qualified name of the parsing schema to use
+      when serializing the translated document to [XML] or Flat File content,
       and can have the following values:
-      * For [XML] content, specify the fully-qualified name of the document 
+      * For [XML] content, specify the fully-qualified name of the document
         reference that defines the [XML] format.
-      * For Flat File content specify the fully-qualified name of the flat 
+      * For Flat File content specify the fully-qualified name of the flat
         file schema that defines the Flat File format.
 
-      Defaults to serializing the translated document as [XML], if neither 
+      Defaults to serializing the translated document as [XML], if neither
       `$content.type.output` nor `$schema.output` are specified.
 
-    * `$service.input` is an optional variable name to use in the input pipeline 
-      of the call to `$service` for the parsed `$content` IData document. Defaults 
+    * `$service.input` is an optional variable name to use in the input pipeline
+      of the call to `$service` for the parsed `$content` IData document. Defaults
       to `$document`.
 
-    * `$service.output` is an optional variable name used to extract the output 
-      IData document from the output pipeline of the call to `$service`. 
+    * `$service.output` is an optional variable name used to extract the output
+      IData document from the output pipeline of the call to `$service`.
       Defaults to `$translation`.
 
-    * `$encoding.input` is an optional character set used to decode the text 
-      data if `$content` is provided as a byte array or input stream. Defaults 
+    * `$encoding.input` is an optional character set used to decode the text
+      data if `$content` is provided as a byte array or input stream. Defaults
       to the Java virtual machine [default charset].
 
-    * `$encoding.output` is an optional character set used to encode the 
-      translated text data if the specified `$mode.output` is a byte array or 
+    * `$encoding.output` is an optional character set used to encode the
+      translated text data if the specified `$mode.output` is a byte array or
       stream. Defaults to the Java virtual machine [default charset].
 
-    * `$mode.output` is an optional choice of {stream, bytes, string} which 
-      specifies the type of object `$translation` is returned as. Defaults to 
+    * `$mode.output` is an optional choice of {stream, bytes, string} which
+      specifies the type of object `$translation` is returned as. Defaults to
       stream.
 
   * Outputs:
-    * `$translation` is the translated XML or flat file content returned as a 
+    * `$translation` is the translated XML or flat file content returned as a
       string, byte array or input stream (depending on the `$mode.output`
       chosen).
 
@@ -1768,12 +1768,12 @@ Services for manipulating com.wm.data.IData objects:
       document data upon delivery. Defaults to the Java virtual machine
       [default charset].
 
-    * `$schema` is an optional input which determines whether to serialize the 
+    * `$schema` is an optional input which determines whether to serialize the
       document as [XML], [JSON], Flat File, and can have the following values:
-      * For [XML] content, specify the fully-qualified name of the document 
+      * For [XML] content, specify the fully-qualified name of the document
         reference that defines the [XML] format
       * For [JSON] content specify the MIME media type "application/json"
-      * For Flat File content specify the fully-qualified name of the flat 
+      * For Flat File content specify the fully-qualified name of the flat
         file schema that defines the Flat File format
 
       Defaults to serializing `$content` as [XML], if no `$schema` is specified.
@@ -2264,45 +2264,45 @@ Services for manipulating com.wm.data.IData objects:
 
 * #### tundra.document:split
 
-  One-to-many conversion of an IData document to an IData[] document list.  
-  Calls the given splitting service, passing the document as an input, and 
+  One-to-many conversion of an IData document to an IData[] document list.
+  Calls the given splitting service, passing the document as an input, and
   returning the split list of documents as output.
 
   * Inputs:
     * `$document` is an IData document to be processed by the given splitting
       service.
 
-    * `$service` is the fully-qualified name of the splitting service, which 
-      accepts a single IData document and returns an IData document list, 
-      called to split `$document`. 
+    * `$service` is the fully-qualified name of the splitting service, which
+      accepts a single IData document and returns an IData document list,
+      called to split `$document`.
 
-      It is permissible for the resulting list returned by `$service` to contain 
-      unlike documents (documents whose formats are different), and in this 
+      It is permissible for the resulting list returned by `$service` to contain
+      unlike documents (documents whose formats are different), and in this
       case `$service` is required to return two string lists:
-      * `$content.types` specifies a MIME media type per item in the returned 
+      * `$content.types` specifies a MIME media type per item in the returned
         list of documents.
-      * `$schemas` specifies the fully-qualified document reference (for XML) or 
-        flat file schema (for Flat Files) per item in the returned list of 
+      * `$schemas` specifies the fully-qualified document reference (for XML) or
+        flat file schema (for Flat Files) per item in the returned list of
         documents, which can be used to serialize that item.
 
-    * `$pipeline` is an optional IData document containing arbitrary variables 
+    * `$pipeline` is an optional IData document containing arbitrary variables
       to be included in the input pipeline of the invocation of `$service`.
 
-    * `$service.input` is an optional variable name to use in the input pipeline 
+    * `$service.input` is an optional variable name to use in the input pipeline
       of the call to `$service` for the IData document. Defaults to `$document`.
 
-    * `$service.output` is an optional variable name used to extract the output 
-      IData document list from the output pipeline of the call to `$service`. 
+    * `$service.output` is an optional variable name used to extract the output
+      IData document list from the output pipeline of the call to `$service`.
       Defaults to `$documents`.
 
   * Outputs:
     * `$documents` is the resulting list of IData documents.
 
-    * `$content.types` is the list of MIME media types if the `$documents` list 
+    * `$content.types` is the list of MIME media types if the `$documents` list
       contains unlike media types.
 
-    * `$schemas` is the list of fully-qualified document reference (for XML) or 
-      flat file schema (for flat files) names, returned by `$service` for when 
+    * `$schemas` is the list of fully-qualified document reference (for XML) or
+      flat file schema (for flat files) names, returned by `$service` for when
       the `$documents` list contains unlike formats.
 
 * #### tundra.document:squeeze
@@ -3203,7 +3203,7 @@ Services for working with arbitrary precision integers (uses [java.math.BigInteg
     * `$content.type` is the MIME media type to be checked.
 
   * Outputs:
-    * `$json?` is a boolean which when true indicates that the given 
+    * `$json?` is a boolean which when true indicates that the given
       `$content.type` is a recognized [JSON] media type.
 
 * #### tundra.json:parse
@@ -3227,67 +3227,67 @@ Services for working with arbitrary precision integers (uses [java.math.BigInteg
 
 * #### tundra.list.content:emit
 
-  Converts an IData[] document list to a list of [XML], [JSON], or Flat File 
+  Converts an IData[] document list to a list of [XML], [JSON], or Flat File
   strings, bytes or input streams.
 
   * Inputs:
-    * `$documents` is a list of IData documents to be serialized as a string, 
+    * `$documents` is a list of IData documents to be serialized as a string,
       byte array, or input stream.
 
-    * `$content.types` is a list of MIME media types with the same number of 
-      items as `$documents`, where `$content.types[n]` describes the format of the 
-      resulting serialized `$document[n]`. For [JSON] content, a recognized 
+    * `$content.types` is a list of MIME media types with the same number of
+      items as `$documents`, where `$content.types[n]` describes the format of the
+      resulting serialized `$document[n]`. For [JSON] content, a recognized
       [JSON] MIME media type, such as "application/json", must be specified.
 
-      Use this input argument when `$documents` contains unlike formats (for 
+      Use this input argument when `$documents` contains unlike formats (for
       example, a mixture of [XML] and [JSON] MIME types).
 
-    * `$content.type` is the MIME media type that describes the format of all 
-      items in the resulting list of serialized content. For [JSON] content, a 
-      recognized [JSON] MIME media type, such as "application/json", must be 
+    * `$content.type` is the MIME media type that describes the format of all
+      items in the resulting list of serialized content. For [JSON] content, a
+      recognized [JSON] MIME media type, such as "application/json", must be
       specified.
 
-      Use this input argument when `$documents` contains like formats (for 
+      Use this input argument when `$documents` contains like formats (for
       example, when all items adhere to the exact same [XML] MIME type).
 
-    * `$schemas` is an optional input list with the same number of items as 
-      `$documents`, where `$schemas[n]` is used to serialize `$contents[n]` as [XML] 
+    * `$schemas` is an optional input list with the same number of items as
+      `$documents`, where `$schemas[n]` is used to serialize `$contents[n]` as [XML]
       or Flat File, and can have the following values:
-      * For [XML] content, specify the fully-qualified name of the document 
+      * For [XML] content, specify the fully-qualified name of the document
         reference that defines the [XML] format
-      * For Flat File content specify the fully-qualified name of the flat 
+      * For Flat File content specify the fully-qualified name of the flat
         file schema that defines the Flat File format
 
-      Defaults to serializing `$documents` as [XML], if neither `$content.types`, 
+      Defaults to serializing `$documents` as [XML], if neither `$content.types`,
       `$content.type`, `$schemas` nor `$schema` are specified.
 
-      Use this input argument when `$documents` contains unlike formats (for 
+      Use this input argument when `$documents` contains unlike formats (for
       example, a mixture of Flat File and [XML] formats).
 
-    * `$schema` is an optional input used to serialize all items in `$documents` 
+    * `$schema` is an optional input used to serialize all items in `$documents`
       as [XML] or Flat File, and can have the following values:
-      * For [XML] content, specify the fully-qualified name of the document 
+      * For [XML] content, specify the fully-qualified name of the document
         reference that defines the [XML] format
-      * For Flat File content specify the fully-qualified name of the flat 
+      * For Flat File content specify the fully-qualified name of the flat
         file schema that defines the Flat File format
-        
-      Defaults to serializing `$documents` as [XML], if neither `$schemas` or 
+
+      Defaults to serializing `$documents` as [XML], if neither `$schemas` or
       `$schema` are specified.
 
-      Use this input argument when `$documents` contains like formats (for 
+      Use this input argument when `$documents` contains like formats (for
       example, when all items adhere to the exact same [XML] schema).
 
-    * `$mode` is an optional choice of 'stream', 'bytes', or 'string' which 
+    * `$mode` is an optional choice of 'stream', 'bytes', or 'string' which
       determines the type of object the documents are serialized to.
 
-    * `$encoding` is an optional character set to use when the `$mode` selected is 
-      'bytes' or 'stream'. Defaults to the Java virtual machine 
+    * `$encoding` is an optional character set to use when the `$mode` selected is
+      'bytes' or 'stream'. Defaults to the Java virtual machine
       [default charset].
 
   * Outputs:
-    * `$contents` is a list of strings, byte arrays, or input streams (depending 
-      on the `$mode` selected) where each item is the serialized verison of the 
-      like-indexed document. In other words, `$contents[n]` is the serialized 
+    * `$contents` is a list of strings, byte arrays, or input streams (depending
+      on the `$mode` selected) where each item is the serialized verison of the
+      like-indexed document. In other words, `$contents[n]` is the serialized
       version of `$documents[n]`.
 
 * #### tundra.list.content:join
@@ -3313,64 +3313,64 @@ Services for working with arbitrary precision integers (uses [java.math.BigInteg
     * `$pipeline` is an optional IData document for specifying
       arbitrary input arguments to the invocation of `$service`.
 
-    * `$content.types.inputs` is a list of MIME media types with the same number 
-      of items as `$contents`, where `$content.types[n]` describes the format of 
-      the `$contents[n]`. For [JSON] content, a recognized [JSON] MIME media 
+    * `$content.types.inputs` is a list of MIME media types with the same number
+      of items as `$contents`, where `$content.types[n]` describes the format of
+      the `$contents[n]`. For [JSON] content, a recognized [JSON] MIME media
       type, such as "application/json", must be specified.
 
-      Use this input argument when `$contents` contains unlike formats (for 
+      Use this input argument when `$contents` contains unlike formats (for
       example, a mixture of [XML] and [JSON] MIME types).
 
-    * `$content.type.input` is the MIME media type that describes the format of 
-      all items in `$contents`. For [JSON] content, a recognized [JSON] MIME 
+    * `$content.type.input` is the MIME media type that describes the format of
+      all items in `$contents`. For [JSON] content, a recognized [JSON] MIME
       media type, such as "application/json", must be specified.
 
-      Use this input argument when `$contents` contains like formats (for 
+      Use this input argument when `$contents` contains like formats (for
       example, when all items adhere to the exact same [XML] MIME type).
 
-    * `$content.type.output` is the MIME media type that describes the format of 
-      the returned `$content`. For [JSON] content, a recognized [JSON] MIME 
+    * `$content.type.output` is the MIME media type that describes the format of
+      the returned `$content`. For [JSON] content, a recognized [JSON] MIME
       media type, such as "application/json", must be specified.
 
-      Use this input argument when `$contents` contains like formats (for 
+      Use this input argument when `$contents` contains like formats (for
       example, when all items adhere to the exact same [XML] MIME type).
 
-    * `$schemas.input` is an optional input list with the same number of items 
-      as $contents, where `$schemas[n]` is used to parse `$contents[n]` as [XML] 
+    * `$schemas.input` is an optional input list with the same number of items
+      as $contents, where `$schemas[n]` is used to parse `$contents[n]` as [XML]
       or Flat File, and can have the following values:
-      * For [XML] content, specify the fully-qualified name of the document 
+      * For [XML] content, specify the fully-qualified name of the document
         reference that defines the [XML] format.
-      * For Flat File content specify the fully-qualified name of the flat 
+      * For Flat File content specify the fully-qualified name of the flat
         file schema that defines the Flat File format.
 
-      Defaults to parsing `$contents` as [XML], if neither `$content.types.input`, 
+      Defaults to parsing `$contents` as [XML], if neither `$content.types.input`,
       `$content.type.input`, `$schemas.input` nor `$schema.input` are specified.
 
-      Use this input argument when `$contents` contains unlike formats (for 
+      Use this input argument when `$contents` contains unlike formats (for
       example, a mixture of flat file and xml formats).
 
-    * `$schema.input` is an optional input which determines whether to parse all 
-      items in `$contents` as [XML] or Flat File, and can have the following 
+    * `$schema.input` is an optional input which determines whether to parse all
+      items in `$contents` as [XML] or Flat File, and can have the following
       values:
-      * For [XML] content, specify the fully-qualified name of the document 
+      * For [XML] content, specify the fully-qualified name of the document
         reference that defines the [XML] format
-      * For Flat File content specify the fully-qualified name of the flat 
+      * For Flat File content specify the fully-qualified name of the flat
         file schema that defines the Flat File format
-        
-      Defaults to parsing `$contents` as [XML], if neither `$content.types.input`, 
+
+      Defaults to parsing `$contents` as [XML], if neither `$content.types.input`,
       `$content.type.input`, `$schemas.input` nor `$schema.input` are specified.
 
-      Use this input argument when `$contents` contains like formats (for 
+      Use this input argument when `$contents` contains like formats (for
       example, when all items adhere to the exact same XML schema).
 
-    * `$schema.output` is an optional input which determines whether to 
-      serialize the document returned by `$serv as [XML] or Flat File, 
+    * `$schema.output` is an optional input which determines whether to
+      serialize the document returned by `$serv as [XML] or Flat File,
       and can have the following values:
-      * For [XML] content, specify the fully-qualified name of the document 
+      * For [XML] content, specify the fully-qualified name of the document
         reference that defines the [XML] format.
-      * For Flat File content specify the fully-qualified name of the flat 
+      * For Flat File content specify the fully-qualified name of the flat
         file schema that defines the Flat File format.
-        
+
       Defaults to serializing as [XML].
 
     * `$service.input` is an optional name to use for the parsed IData[]
@@ -3400,62 +3400,62 @@ Services for working with arbitrary precision integers (uses [java.math.BigInteg
 
 * #### tundra.list.content:parse
 
-  Parses a list of [XML], [JSON], and flat file content (specified as a list 
+  Parses a list of [XML], [JSON], and flat file content (specified as a list
   of strings, bytes, or input streams) into an IData[] document list.
 
   * Inputs:
-    * `$contents` is a list of strings, byte arrays, or input streams containing 
+    * `$contents` is a list of strings, byte arrays, or input streams containing
       content (structured/parseable data) to be parsed.
 
-    * `$content.types` is a list of MIME media types with the same number of 
-      items as `$contents`, where `$content.types[n]` describes the format of the 
-      resulting parsed `$content[n]`. For [JSON] content, a recognized 
+    * `$content.types` is a list of MIME media types with the same number of
+      items as `$contents`, where `$content.types[n]` describes the format of the
+      resulting parsed `$content[n]`. For [JSON] content, a recognized
       [JSON] MIME media type, such as "application/json", must be specified.
 
-      Use this input argument when `$contents` contains unlike formats (for 
+      Use this input argument when `$contents` contains unlike formats (for
       example, a mixture of [XML] and [JSON] MIME types).
 
-    * `$content.type` is the MIME media type that describes the format of all 
-      items in the resulting list of parsed content. For [JSON] content, a 
-      recognized [JSON] MIME media type, such as "application/json", must be 
+    * `$content.type` is the MIME media type that describes the format of all
+      items in the resulting list of parsed content. For [JSON] content, a
+      recognized [JSON] MIME media type, such as "application/json", must be
       specified.
 
-      Use this input argument when `$contents` contains like formats (for 
+      Use this input argument when `$contents` contains like formats (for
       example, when all items adhere to the exact same [XML] MIME type).
 
-    * `$schemas` is an optional input list with the same number of items as 
-      `$documents`, where `$schemas[n]` is used to parse `$contents[n]` as [XML] 
+    * `$schemas` is an optional input list with the same number of items as
+      `$documents`, where `$schemas[n]` is used to parse `$contents[n]` as [XML]
       or Flat File, and can have the following values:
-      * For [XML] content, specify the fully-qualified name of the document 
+      * For [XML] content, specify the fully-qualified name of the document
         reference that defines the [XML] format.
-      * For Flat File content specify the fully-qualified name of the flat 
+      * For Flat File content specify the fully-qualified name of the flat
         file schema that defines the Flat File format.
 
-      Defaults to parsing `$contents` as [XML], if neither `$content.types`, 
+      Defaults to parsing `$contents` as [XML], if neither `$content.types`,
       `$content.type`, `$schemas` nor `$schema` are specified.
 
-      Use this input argument when `$contents` contains unlike formats (for 
+      Use this input argument when `$contents` contains unlike formats (for
       example, a mixture of Flat File and [XML] formats).
 
     * `$schema` is an optional input used to parse all items in `$contents`
       as [XML] or Flat File, and can have the following values:
-      * For [XML] content, specify the fully-qualified name of the document 
+      * For [XML] content, specify the fully-qualified name of the document
         reference that defines the [XML] format.
-      * For Flat File content specify the fully-qualified name of the flat 
+      * For Flat File content specify the fully-qualified name of the flat
         file schema that defines the Flat File format.
-        
-      Defaults to parsing `$contents` as [XML], if neither `$content.types`, 
+
+      Defaults to parsing `$contents` as [XML], if neither `$content.types`,
       `$content.type`, `$schemas` nor `$schema` are specified.
 
-      Use this input argument when `$contents` contains like formats (for 
+      Use this input argument when `$contents` contains like formats (for
       example, when all items adhere to the exact same [XML] schema).
 
-    * `$encoding` is an optional character set to use when the `$contents` is 
+    * `$encoding` is an optional character set to use when the `$contents` is
       provided as a list of input streams or byte arrays. Defaults to the Java
       virtual machine [default charset].
 
   * Outputs:
-    * `$documents` is an IData[] document list of the parsed `$contents`, where 
+    * `$documents` is an IData[] document list of the parsed `$contents`, where
       `$documents[n]` is the parsed version of `$contents[n]`.
 
 ### Datetime List
@@ -6700,6 +6700,25 @@ Services for manipulating java.lang.String objects:
     * `$string` is the input string with all occurrences of the given
       [regular expression pattern] replaced with `$replacement`.
 
+* #### tundra.string:slice
+
+  Returns a new string which is a subset of the characters in
+  the given string.
+
+  * Inputs:
+    * `$string` is the string to be sliced.
+    * `$index` is an optional zero-based index from which to
+      take the slice. Supports forward and reverse indexing
+      (where, for example, an index of -1 is the last item
+      in the list, and an index of -2 is the second last item
+      in the list). If not specified, defaults to 0.
+    * `$length` is the number of characters to include in the
+      slice. If not specified, all remaining characters after
+      `$index` will be returned.
+
+  * Outputs:
+    * `$string` is the desired subset or slice of the given string.
+
 * #### tundra.string:split
 
   Splits the given string around matches of the given [regular expression pattern].
@@ -7056,14 +7075,14 @@ Services for parsing and emitting Uniform Resource Identifier ([URI]) strings.
 
 * #### tundra.xml.mime.type:check
 
-  Returns true if the given MIME media type is recognized as a [XML] media 
+  Returns true if the given MIME media type is recognized as a [XML] media
   type.
 
   * Inputs:
     * `$content.type` is the MIME media type to be checked.
 
   * Outputs:
-    * `$xml?` is a boolean which when true indicates that the given 
+    * `$xml?` is a boolean which when true indicates that the given
       `$content.type` is a recognized [XML] media type.
 
 * #### tundra.xml:validate

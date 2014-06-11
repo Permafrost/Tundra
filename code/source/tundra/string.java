@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-04-28 08:55:20.859
+// -----( CREATED: 2014-06-11 15:34:17.364
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -225,6 +225,34 @@ public final class string
 
 
 
+	public static final void slice (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(slice)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $string
+		// [i] field:0:optional $index
+		// [i] field:0:optional $length
+		// [o] field:0:optional $string
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		  String string = IDataUtil.getString(cursor, "$string");
+		  String index = IDataUtil.getString(cursor, "$index");
+		  String length = IDataUtil.getString(cursor, "$length");
+
+		  if (string != null) IDataUtil.put(cursor, "$string", slice(string, index, length));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
 	public static final void split (IData pipeline)
         throws ServiceException
 	{
@@ -424,6 +452,31 @@ public final class string
 	  int length = 0;
 	  if (input != null) length = input.length();
 	  return length;
+	}
+
+
+	// returns a substring starting at the given index for the given length
+	public static String slice(String input, String index, String length) {
+	  return slice(input, index == null ? 0 : Integer.parseInt(index), length == null ? (input == null ? 0 : input.length()) : Integer.parseInt(length));
+	}
+
+	// returns a substring starting at the given index for the given length
+	public static String slice(String input, int index, int length) {
+	  if (input == null || input.equals("")) return input;
+
+	  String output = "";
+	  int inputLength = input.length();
+
+	  // support reverse indexing
+	  if (index < 0) index += inputLength;
+
+	  if (index < inputLength) {
+	    if ((index + length) > inputLength) length = inputLength - index;
+
+	    output = input.substring(index, index + length);
+	  }
+
+	  return output;
 	}
 
 	// returns true if the given regular expression is found in the given string
