@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-05-28 11:03:44.117
+// -----( CREATED: 2014-06-11 16:05:34.466
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -509,8 +509,10 @@ public final class service
 	}
 
 	// invokes the given service a given number of times, and returns execution duration statistics
-	public static IncrementalNormalDistributionEstimator benchmark(String service, IData pipeline, int count) {
+	public static IncrementalNormalDistributionEstimator benchmark(String service, IData pipeline, int count) throws ServiceException {
 	  IncrementalNormalDistributionEstimator estimator = new IncrementalNormalDistributionEstimator("ms");
+
+	  validate(service, true);
 
 	  try {
 	    for (int i = 0; i < count; i++) {
