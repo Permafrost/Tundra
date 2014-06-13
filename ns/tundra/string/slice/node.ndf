@@ -170,7 +170,9 @@ Examples:
     left to right, and a negative length will slice from right to left.
 
     If not specified, a left to right slice containing all remaining 
-    characters after $index will be returned.
+    characters after $index will be returned when $index is positive,
+    or a right to left slice containing all remaining characters before
+    $index will be returned when $index is negative.
 
 * Outputs:
   * $string is the desired subset or slice of the given string.</value>

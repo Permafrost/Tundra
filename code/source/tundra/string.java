@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-06-13 19:59:11 EST
+// -----( CREATED: 2014-06-13 21:38:42 EST
 // -----( ON-HOST: 172.16.189.136
 
 import com.wm.data.*;
@@ -457,7 +457,9 @@ public final class string
 	
 	// returns a substring starting at the given index for the given length
 	public static String slice(String input, String index, String length) {
-	  return slice(input, index == null ? 0 : Integer.parseInt(index), length == null ? (input == null ? 0 : input.length()) : Integer.parseInt(length));
+	  int ix = index == null ? 0 : Integer.parseInt(index);
+	  int len = length == null ? (input == null ? 0 : (ix < 0 ? -input.length() : input.length())) : Integer.parseInt(length);
+	  return slice(input, ix, len);
 	}
 	
 	// returns a substring starting at the given index for the given length
