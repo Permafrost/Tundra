@@ -6702,19 +6702,35 @@ Services for manipulating java.lang.String objects:
 
 * #### tundra.string:slice
 
-  Returns a new string which is a subset of the characters in
-  the given string.
+  Returns a new string which is a subset of the characters in the given string.
+
+  Examples:
+
+      slice($string = "hamburger", $index =  0, $length =  3) == "ham"
+      slice($string = "hamburger", $index =  2, $length = -3) == "ham"
+      slice($string = "hamburger", $index = -7, $length = -3) == "ham"
+      slice($string = "hamburger", $index =  4, $length =  4) == "urge"
+      slice($string = "hamburger", $index =  7, $length = -4) == "urge"
+      slice($string = "hamburger", $index = -2, $length = -4) == "urge"
 
   * Inputs:
     * `$string` is the string to be sliced.
-    * `$index` is an optional zero-based index from which to
-      take the slice. Supports forward and reverse indexing
-      (where, for example, an index of -1 is the last item
-      in the list, and an index of -2 is the second last item
-      in the list). If not specified, defaults to 0.
-    * `$length` is the number of characters to include in the
-      slice. If not specified, all remaining characters after
-      `$index` will be returned.
+
+    * `$index` is an optional zero-based index from which to take the slice. 
+      Supports forward and reverse indexing where a positive index is a normal 
+      zero-based array index from left to right, and a negative index is a
+      reverse array index from right to left (for example, an index of -1 is 
+      the last item in the list, and an index of -2 is the second last item in 
+      the list). 
+
+      If not specified, defaults to 0.
+
+    * `$length` is the number of characters to include in the slice. Supports 
+      positive and negative lengths where a positive length will slice from 
+      left to right, and a negative length will slice from right to left.
+
+      If not specified, a left to right slice containing all remaining 
+      characters after `$index` will be returned.
 
   * Outputs:
     * `$string` is the desired subset or slice of the given string.
