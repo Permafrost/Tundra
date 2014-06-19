@@ -6716,20 +6716,20 @@ Services for manipulating java.lang.String objects:
   * Inputs:
     * `$string` is the string to be sliced.
 
-    * `$index` is an optional zero-based index from which to take the slice. 
-      Supports forward and reverse indexing where a positive index is a normal 
+    * `$index` is an optional zero-based index from which to take the slice.
+      Supports forward and reverse indexing where a positive index is a normal
       zero-based array index from left to right, and a negative index is a
-      reverse array index from right to left (for example, an index of -1 is 
-      the last item in the list, and an index of -2 is the second last item in 
-      the list). 
+      reverse array index from right to left (for example, an index of -1 is
+      the last item in the list, and an index of -2 is the second last item in
+      the list).
 
       If not specified, defaults to 0.
 
-    * `$length` is the number of characters to include in the slice. Supports 
-      positive and negative lengths where a positive length will slice from 
+    * `$length` is the number of characters to include in the slice. Supports
+      positive and negative lengths where a positive length will slice from
       left to right, and a negative length will slice from right to left.
 
-      If not specified, a left to right slice containing all remaining 
+      If not specified, a left to right slice containing all remaining
       characters after `$index` will be returned when `$index` is positive,
       or a right to left slice containing all remaining characters before
       `$index` will be returned when `$index` is negative.
@@ -6827,6 +6827,108 @@ Services for manipulating java.lang.String objects:
     * `$system` is a returned IData document containing the software version,
       environment settings, Java properties, well-known directory locations,
       and memory usage.
+
+### Thread
+
+* #### tundra.thread:current
+
+  Returns information about the currently executing thread.
+
+  * Outputs:
+    * `$thread` is an `IData` document containing information about the currently
+      executing thread.
+
+      * `id` is the unique identifier of the thread in the current execution
+        context.
+
+      * `name` is the human-readable name that was assigned to the thread when
+        it was created.
+
+      * `description` is the thread's built-in string representation of itself.
+
+      * `state` is the thread's current status, and can be one of the following
+        values:
+        * `NEW` - a thread that has not yet started is in this state.
+        * `RUNNABLE` - a thread executing in the Java virtual machine is in this
+          state.
+        * `BLOCKED` - a thread that is blocked waiting for a monitor lock is in
+          this state.
+        * `WAITING` - a thread that is waiting indefinitely for another thread
+          to perform a particular action is in this state.
+        * `TIMED_WAITING` - a thread that is waiting for another thread to
+          perform an action for up to a specified waiting time is in this
+          state.
+        * `TERMINATED` - a thread that has exited is in this state.
+
+      * `priority` is the thread's priority as an integer. Threads with higher
+        priority are executed in preference to threads with lower priority.
+
+      * `group` is the name of the thread group this thread belongs to.
+
+      * `alive?` is a boolean indicating if the thread is currently alive. A
+        thread is alive if it has been started and has not yet died.
+
+      * `interrupted?` is a boolean indicating if the thread has been
+        interrupted.
+
+      * `daemon?` is a boolean indicating if the thread is a daemon thread.
+        Daemon threads do not block the JVM from exiting even if they are
+        still running.
+
+      * `stack` is a document list describing the call stack associated with
+        this thread.
+
+      * `thread` is the actual `java.lang.Thread` object itself.
+
+* #### tundra.thread:list
+
+  Returns a list of all threads known in the current execution context.
+
+  * Outputs:
+    * `$threads` is an `IData[]` document list containing information about the
+      all threads known in the current execution context.
+
+      * `id` is the unique identifier of the thread in the current execution
+        context.
+
+      * `name` is the human-readable name that was assigned to the thread when
+        it was created.
+
+      * `description` is the thread's built-in string representation of itself.
+
+      * `state` is the thread's current status, and can be one of the following
+        values:
+        * `NEW` - a thread that has not yet started is in this state.
+        * `RUNNABLE` - a thread executing in the Java virtual machine is in this
+          state.
+        * `BLOCKED` - a thread that is blocked waiting for a monitor lock is in
+          this state.
+        * `WAITING` - a thread that is waiting indefinitely for another thread
+          to perform a particular action is in this state.
+        * `TIMED_WAITING` - a thread that is waiting for another thread to
+          perform an action for up to a specified waiting time is in this
+          state.
+        * `TERMINATED` - a thread that has exited is in this state.
+
+      * `priority` is the thread's priority as an integer. Threads with higher
+        priority are executed in preference to threads with lower priority.
+
+      * `group` is the name of the thread group this thread belongs to.
+
+      * `alive?` is a boolean indicating if the thread is currently alive. A
+        thread is alive if it has been started and has not yet died.
+
+      * `interrupted?` is a boolean indicating if the thread has been
+        interrupted.
+
+      * `daemon?` is a boolean indicating if the thread is a daemon thread.
+        Daemon threads do not block the JVM from exiting even if they are
+        still running.
+
+      * `stack` is a document list describing the call stack associated with
+        this thread.
+
+      * `thread` is the actual `java.lang.Thread` object itself.
 
 ### Time Zone
 
