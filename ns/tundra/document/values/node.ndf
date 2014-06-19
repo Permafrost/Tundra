@@ -50,6 +50,7 @@
           <value name="field_name">$values</value>
           <value name="field_type">object</value>
           <value name="field_dim">1</value>
+          <value name="field_opt">true</value>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <value name="contentType">1</value>
             <value name="internalType">reference</value>
@@ -61,7 +62,7 @@
               </record>
             </array>
           </record>
-          <value name="nillable">false</value>
+          <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
           <value name="is_soap_array_encoding_used">false</value>
@@ -89,8 +90,8 @@
   <value name="system_service">no</value>
   <value name="retry_max">0</value>
   <value name="retry_interval">0</value>
-  <value name="svc_in_validator_options">default</value>
-  <value name="svc_out_validator_options">default</value>
+  <value name="svc_in_validator_options">none</value>
+  <value name="svc_out_validator_options">none</value>
   <value name="auditoption">0</value>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
