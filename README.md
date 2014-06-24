@@ -6665,6 +6665,30 @@ Services for manipulating java.lang.String objects:
   * Outputs:
     * `$string` is the given object converted to a string.
 
+* #### tundra.string:pad
+
+  Pads the given string with the given character as many times as necessary to
+  reach the given length.
+
+  * Inputs:
+    * `$string` is the string to be padded to the given length. If
+      `$string.length >= |$length|`, `$string` is returned unmodified.
+
+    * `$length` is the minimum desired length for the returned string.
+
+      If specified as a positive integer, `$string` will be padded from the left
+      by prepending it with `(|$length|- $string.length)` characters.
+
+      If specified as a negative integer, $string will be padded from the
+      right by appending it with `(|$length|- $string.length)` characters.
+
+    * `$character` is the character to use when padding `$string`. If
+      `$character.length` > 1, only the first character in `$character` will be
+      used. Defaults to ' ' (space character), if not specified.
+
+  * Outputs:
+    * `$string` is the resulting padded string.
+
 * #### tundra.string:quote
 
   Returns a [regular expression pattern] that can be used to match the

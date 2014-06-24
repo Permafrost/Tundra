@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-06-13 21:38:42 EST
-// -----( ON-HOST: 172.16.189.136
+// -----( CREATED: 2014-06-24 15:01:50.133
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -36,7 +36,7 @@ public final class string
 		// [i] field:0:optional $string
 		// [o] field:0:required $length
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  IDataUtil.put(cursor, "$length", "" + length(IDataUtil.getString(cursor, "$string")));
 		} finally {
@@ -44,7 +44,7 @@ public final class string
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -58,7 +58,7 @@ public final class string
 		// [i] field:0:optional $string
 		// [o] field:1:optional $lines
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  String string = IDataUtil.getString(cursor, "$string");
 		  IDataUtil.put(cursor, "$lines", lines(string));
@@ -67,7 +67,7 @@ public final class string
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -84,7 +84,7 @@ public final class string
 		tundra.object.listify(pipeline, String.class);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -102,7 +102,7 @@ public final class string
 		// [i] - field:0:optional variant
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  String string = IDataUtil.getString(cursor, "$string");
 		  IData document = IDataUtil.getIData(cursor, "$locale");
@@ -114,7 +114,7 @@ public final class string
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -129,18 +129,18 @@ public final class string
 		// [i] field:0:optional $pattern
 		// [o] field:0:required $match?
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  String string = IDataUtil.getString(cursor, "$string");
 		  String pattern = IDataUtil.getString(cursor, "$pattern");
-		
+
 		  IDataUtil.put(cursor, "$match?", "" + match(string, pattern));
 		} finally {
 		  cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -155,11 +155,11 @@ public final class string
 		// [i] field:0:optional $encoding
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  Object object = IDataUtil.get(cursor, "$object");
 		  String encoding = IDataUtil.getString(cursor, "$encoding");
-		
+
 		  IDataUtil.put(cursor, "$string", normalize(object, encoding));
 		} catch(java.io.IOException ex) {
 		  tundra.exception.raise(ex);
@@ -168,7 +168,35 @@ public final class string
 		}
 		// --- <<IS-END>> ---
 
-                
+
+	}
+
+
+
+	public static final void pad (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(pad)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $string
+		// [i] field:0:optional $length
+		// [i] field:0:optional $character
+		// [o] field:0:optional $string
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		  String string = IDataUtil.getString(cursor, "$string");
+		  String length = IDataUtil.getString(cursor, "$length");
+		  String character = IDataUtil.getString(cursor, "$character");
+
+		  if (string != null) IDataUtil.put(cursor, "$string", pad(string, length, character));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
 	}
 
 
@@ -182,7 +210,7 @@ public final class string
 		// [i] field:0:optional $string
 		// [o] field:0:optional $pattern
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  String string = IDataUtil.getString(cursor, "$string");
 		  if (string != null) IDataUtil.put(cursor, "$pattern", quote(string));
@@ -191,7 +219,7 @@ public final class string
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -208,20 +236,20 @@ public final class string
 		// [i] field:0:optional $literal? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  String string = IDataUtil.getString(cursor, "$string");
 		  String pattern = IDataUtil.getString(cursor, "$pattern");
 		  String replacement = IDataUtil.getString(cursor, "$replacement");
 		  boolean literal = Boolean.parseBoolean(IDataUtil.getString(cursor, "$literal?"));
-		
+
 		  IDataUtil.put(cursor, "$string", replace(string, pattern, replacement, literal));
 		} finally {
 		  cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -237,19 +265,19 @@ public final class string
 		// [i] field:0:optional $length
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  String string = IDataUtil.getString(cursor, "$string");
 		  String index = IDataUtil.getString(cursor, "$index");
 		  String length = IDataUtil.getString(cursor, "$length");
-		
+
 		  if (string != null) IDataUtil.put(cursor, "$string", slice(string, index, length));
 		} finally {
 		  cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -264,7 +292,7 @@ public final class string
 		// [i] field:0:optional $pattern
 		// [o] field:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  String string = IDataUtil.getString(cursor, "$string");
 		  String pattern = IDataUtil.getString(cursor, "$pattern");
@@ -274,7 +302,7 @@ public final class string
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -288,7 +316,7 @@ public final class string
 		// [i] field:0:optional $string
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  String string = IDataUtil.getString(cursor, "$string");
 		  IDataUtil.put(cursor, "$string", squeeze(string));
@@ -297,7 +325,7 @@ public final class string
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -313,19 +341,19 @@ public final class string
 		// [i] field:0:optional $default
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  String string = IDataUtil.getString(cursor, "$string");
 		  String defaultValue = IDataUtil.getString(cursor, "$default");
 		  IData scope = IDataUtil.getIData(cursor, "$pipeline");
-		
+
 		  IDataUtil.put(cursor, "$string", substitute(string, scope == null ? pipeline : scope, defaultValue));
 		} finally {
 		  cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -339,7 +367,7 @@ public final class string
 		// [i] field:0:optional $string
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  IDataUtil.put(cursor, "$string", trim(IDataUtil.getString(cursor, "$string")));
 		} finally {
@@ -347,7 +375,7 @@ public final class string
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -365,7 +393,7 @@ public final class string
 		// [i] - field:0:optional variant
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  String string = IDataUtil.getString(cursor, "$string");
 		  IData document = IDataUtil.getIData(cursor, "$locale");
@@ -377,22 +405,22 @@ public final class string
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 	// --- <<IS-START-SHARED>> ---
 	// converts a byte array, input stream or string to a string
 	public static String normalize(Object object, String encoding) throws java.io.IOException {
 	  if (encoding == null) encoding = tundra.support.constant.DEFAULT_CHARACTER_ENCODING;
-	  
+
 	  String string = null;
-	  
+
 	  if (object != null) {
 	    if (object instanceof String) {
 	      string = (String)object;
 	    } else if (object instanceof byte[]) {
 	      string = new String((byte[])object, encoding);
-	    } else if (object instanceof java.io.InputStream) {      
+	    } else if (object instanceof java.io.InputStream) {
 	      java.io.Writer writer = new java.io.StringWriter();
 	      tundra.stream.copy(new java.io.InputStreamReader((java.io.InputStream)object, encoding), writer);
 	      string = writer.toString();
@@ -400,20 +428,20 @@ public final class string
 	      throw new IllegalArgumentException("object must be a string, byte[] or java.io.InputStream: " + object.getClass().getName());
 	    }
 	  }
-	
+
 	  return string;
 	}
-	
+
 	// converts a byte array, input stream or string to a string
 	public static String normalize(Object object) throws java.io.IOException {
 	  return normalize(object, tundra.support.constant.DEFAULT_CHARACTER_ENCODING);
 	}
-	
+
 	// returns a new java.util.Locale object for the given language, country and variant
 	public static java.util.Locale locale(String language, String country, String variant) {
 	  java.util.Locale locale = java.util.Locale.getDefault();
-	  
-	  if (language != null) { 
+
+	  if (language != null) {
 	    if (country == null) {
 	      locale = new java.util.Locale(language);
 	    } else if (variant == null) {
@@ -422,53 +450,53 @@ public final class string
 	      locale = new java.util.Locale(language, country, variant);
 	    }
 	  }
-	  
+
 	  return locale;
 	}
-	
+
 	// converts an IData locale object to a java.util.Locale object
 	public static java.util.Locale locale(IData document) {
 	  String language = null, country = null, variant = null;
-	  
+
 	  if (document != null) {
-	    IDataCursor cursor = document.getCursor();    
+	    IDataCursor cursor = document.getCursor();
 	    language = IDataUtil.getString(cursor, "language");
 	    country = IDataUtil.getString(cursor, "country");
 	    variant = IDataUtil.getString(cursor, "variant");
 	    cursor.destroy();
 	  }
-	  
+
 	  return locale(language, country, variant);
 	}
-	
+
 	// returns the given string with leading and trailing whitespace removed
 	public static String trim(String input) {
 	  String output = null;
 	  if (input != null) output = input.trim();
 	  return output;
 	}
-	
+
 	// returns the length (number of characters) of the string
 	public static int length(String input) {
 	  int length = 0;
 	  if (input != null) length = input.length();
 	  return length;
 	}
-	
+
 	// returns a substring starting at the given index for the given length
 	public static String slice(String input, String index, String length) {
 	  int ix = index == null ? 0 : Integer.parseInt(index);
 	  int len = length == null ? (input == null ? 0 : (ix < 0 ? -input.length() : input.length())) : Integer.parseInt(length);
 	  return slice(input, ix, len);
 	}
-	
+
 	// returns a substring starting at the given index for the given length
 	public static String slice(String input, int index, int length) {
 	  if (input == null || input.equals("")) return input;
-	
+
 	  String output = "";
 	  int inputLength = input.length(), endIndex = 0;
-	
+
 	  // support reverse length
 	  if (length < 0) {
 	    // support reverse indexing
@@ -481,27 +509,27 @@ public final class string
 	    index = endIndex + length;
 	  } else {
 	    // support reverse indexing
-	    if (index < 0) index += inputLength;  
+	    if (index < 0) index += inputLength;
 	    endIndex = index + length;
 	  }
-	
+
 	  if (index < inputLength && endIndex > 0) {
 	    if (index < 0) index = 0;
 	    if (endIndex > inputLength) endIndex = inputLength;
-	
+
 	    output = input.substring(index, endIndex);
 	  }
-	
+
 	  return output;
 	}
-	
+
 	// returns true if the given regular expression is found in the given string
 	public static boolean match(String input, String regex) {
 	  boolean match = false;
 	  if (input != null && regex != null) match = input.matches(regex);
 	  return match;
 	}
-	
+
 	// replaces all occurrences of the given regular expression in the given string with the given replacement
 	public static String replace(String input, String regex, String replacement, boolean literal) {
 	  String output = input;
@@ -513,7 +541,7 @@ public final class string
 	  }
 	  return output;
 	}
-	
+
 	// splits a string around each match of the given regular expression pattern
 	public static String[] split(String input, String regex) {
 	  String[] output = null;
@@ -523,38 +551,38 @@ public final class string
 	  }
 	  return output;
 	}
-	
+
 	// returns all the lines in the given string as an array
 	public static String[] lines(String input) {
 	  return split(input, "\n");
 	}
-	
+
 	// replaces runs of whitespace characters with a single space
 	public static String squeeze(String input) {
 	  return replace(input, "\\s+", " ", false);
 	}
-	
+
 	public static final java.util.regex.Pattern SUBSTITUTION_PATTERN = java.util.regex.Pattern.compile("%([^%]+)%");
-	
-	// performs variable substitution on the given string by replacing all occurrences of 
+
+	// performs variable substitution on the given string by replacing all occurrences of
 	// substrings matching "%key%" with the associated value from the given scope
 	public static String substitute(String input, IData scope) {
 	  return substitute(input, scope, null);
 	}
-	
-	// performs variable substitution on the given string by replacing all occurrences of 
+
+	// performs variable substitution on the given string by replacing all occurrences of
 	// substrings matching "%key%" with the associated value from the given scope; if
 	// the key has no value, the given defaultValue is used instead
 	public static String substitute(String input, IData scope, String defaultValue) {
 	  if (input == null || scope == null) return input;
-	
+
 	  java.util.regex.Matcher matcher = SUBSTITUTION_PATTERN.matcher(input);
 	  StringBuffer output = new StringBuffer();
-	
+
 	  while(matcher.find()) {
 	    String key = matcher.group(1);
 	    Object value = tundra.support.document.get(scope, key);
-	
+
 	    if (value != null && value instanceof String) {
 	      matcher.appendReplacement(output, matcher.quoteReplacement((String)value));
 	    } else if (defaultValue != null) {
@@ -563,15 +591,45 @@ public final class string
 	      matcher.appendReplacement(output, matcher.quoteReplacement(matcher.group(0)));
 	    }
 	  }
-	
+
 	  matcher.appendTail(output);
 	  return output.toString();
 	}
-	
+
 	// returns a literal regular expression pattern for the given string
 	public static String quote(String string) {
 	  if (string == null) return null;
 	  return java.util.regex.Pattern.quote(string);
+	}
+
+	// pads a string with the given character to the given length;
+	// if length < 0, pads from right to left
+	public static String pad(String input, String length, String character) {
+	  int len = length == null ? (input == null ? 0 : input.length()) : Integer.parseInt(length);
+	  char c = character == null ? ' ' : character.charAt(0);
+	  return pad(input, len, c);
+	}
+
+	// pads a string with the given character to the given length
+	// if length < 0, pads from right to left
+	public static String pad(String input, int length, char character) {
+	  boolean left = length >= 0;
+	  if (length < 0) length = length * -1;
+
+	  // TODO: if padding a null string, should we return length * character?
+	  if (input == null || input.length() >= length) return input;
+
+	  StringBuilder builder = new StringBuilder(length);
+
+	  if (!left) builder.append(input);
+
+	  for (int i = input.length(); i < length; i++) {
+	    builder.append(character);
+	  }
+
+	  if (left) builder.append(input);
+
+	  return builder.toString();
 	}
 	// --- <<IS-END-SHARED>> ---
 }
