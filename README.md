@@ -7250,6 +7250,56 @@ Services for parsing and emitting Uniform Resource Identifier ([URI]) strings.
     * `$exists?` is true if the XPath expression was found to exist in the
       given `$content`.
 
+### YAML
+
+* #### tundra.yaml:emit
+
+  Serializes an IData document as a [YAML] formatted string, byte array, or
+  input stream.
+
+  * Inputs:
+    * `$document` is the IData document to be serialized as a [YAML] string,
+      byte array, or input stream.
+
+    * `$encoding` is an optional character set to use when encoding the
+      resulting text data to a byte array or input stream. Defaults to the
+      Java virtual machine [default charset].
+
+    * `$mode` is an optional choice of {stream, bytes, string} which specifies
+      the type of object `$content` is returned as. Defaults to stream.
+
+  * Outputs:
+    * `$content` is the resulting serialization of `$document` as [YAML] content.
+
+* #### tundra.yaml.mime.type:check
+
+  Returns true if the given MIME media type is recognized as a [YAML] media
+  type.
+
+  * Inputs:
+    * `$content.type` is the MIME media type to be checked.
+
+  * Outputs:
+    * `$yaml?` is a boolean which when true indicates that the given
+      `$content.type` is a recognized [YAML] media type.
+
+* #### tundra.yaml:parse
+
+  Parses [YAML] content specified as a string, byte array, or input stream
+  into an IData document.
+
+  * Inputs:
+    * `$content` is a string, byte array, or input stream containing [YAML]
+      content to be parsed.
+
+    * `$encoding` is an optional character set to use when `$content` is provided
+      as a byte array or input stream to decode the contained text data.
+      Defaults to the Java virtual machine [default charset].
+
+  * Outputs:
+    * `$document` is the resulting IData document representing the parsed
+      `$content`.
+
 ### ZIP
 
 * #### tundra.zip:compress
@@ -7362,4 +7412,5 @@ Copyright © 2012 Lachlan Dowding. See license.txt for further details.
 [XML]: <http://www.w3.org/XML/>
 [XPath expression]: <http://www.w3.org/TR/xpath/>
 [XSD]: <http://www.w3.org/XML/Schema>
+[YAML]: <http://www.yaml.org>
 [zip]: <http://en.wikipedia.org/wiki/Zip_(file_format)>
