@@ -7,7 +7,6 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
-      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -21,7 +20,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$content</value>
           <value name="field_type">object</value>
           <value name="field_dim">0</value>
@@ -38,7 +36,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$content.type</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -66,7 +63,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$encoding</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -94,7 +90,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$schema</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -115,11 +110,9 @@
           <value name="is_global">false</value>
         </record>
       </array>
-      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
-      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -133,7 +126,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$document</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
@@ -143,22 +135,22 @@
           <value name="is_global">false</value>
           <array name="rec_fields" type="record" depth="1">
           </array>
-          <value name="modifiable">true</value>
         </record>
       </array>
-      <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Parses [XML], [JSON], or Flat File content specified as a string, byte 
-array, or input stream into an IData document.
+  <value name="node_comment">Parses [XML], [JSON], [YAML], or Flat File content specified as a string, 
+byte array, or input stream into an IData document.
 
 * Inputs:
   * $content is a string, byte array, or input stream containing [XML], 
-    [JSON], or flat file content to be parsed.
+    [JSON], [YAML], or flat file content to be parsed.
 
   * $content.type is the MIME media type that describes the format of the 
     given $content data. For [JSON] content, a recognized [JSON] MIME media 
-    type, such as "application/json", must be specified.
+    type, such as "application/json", must be specified. For [YAML] content,
+    a recognized [YAML] MIME media type, such as "application/yaml", must be 
+    specified.
 
   * $schema is the fully-qualified name of the parsing schema to use when 
     parsing $content to [XML] or Flat File content, and can have the 
@@ -181,7 +173,8 @@ array, or input stream into an IData document.
 
 [default charset]: &lt;http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()&gt;
 [JSON]: &lt;http://www.json.org&gt;
-[XML]: &lt;http://www.w3.org/XML/&gt;</value>
+[XML]: &lt;http://www.w3.org/XML/&gt;
+[YAML]: &lt;http://www.yaml.org&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
@@ -198,16 +191,10 @@ array, or input stream into an IData document.
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
-  <null name="auditfields_input"/>
-  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
-  <value name="pipeline_option">1</value>
-  <null name="originURI"/>
-  <value name="modifiable">true</value>
-  <value name="is_public">false</value>
 </Values>

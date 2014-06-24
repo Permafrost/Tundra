@@ -769,8 +769,8 @@ content.
 
 * #### tundra.content:emit
 
-  Converts an IData document to an [XML], [JSON], or Flat File string, byte
-  array, or input stream.
+  Serializes an IData document to an [XML], [JSON], [YAML], or Flat File
+  string, byte array, or input stream.
 
   * Inputs:
     * `$document` is the IData document to be serialized as a string, byte
@@ -778,7 +778,9 @@ content.
 
     * `$content.type` is the MIME media type that describes the format of the
       resulting serialized content. For [JSON] content, a recognized [JSON]
-      MIME media type, such as "application/json", must be specified.
+      MIME media type, such as "application/json", must be specified. For
+      [YAML] content, a recognized [YAML] MIME media type, such as
+      "application/yaml", must be specified.
 
     * `$schema` is the fully-qualified name of the parsing schema to use when
       serializing the document to [XML] or Flat File content, and can have the
@@ -800,24 +802,22 @@ content.
 
   * Outputs:
     * `$content` is the resulting serialization of `$document` as [XML], [JSON],
-      or flat file content.
-
-  [default charset]: <http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()>
-  [JSON]: <http://www.json.org>
-  [XML]: <http://www.w3.org/XML/>
+      [YAML], or flat file content.
 
 * #### tundra.content:parse
 
-  Parses [XML], [JSON], or Flat File content specified as a string, byte
-  array, or input stream into an IData document.
+  Parses [XML], [JSON], [YAML], or Flat File content specified as a string,
+  byte array, or input stream into an IData document.
 
   * Inputs:
     * `$content` is a string, byte array, or input stream containing [XML],
-      [JSON], or flat file content to be parsed.
+      [JSON], [YAML], or flat file content to be parsed.
 
     * `$content.type` is the MIME media type that describes the format of the
       given `$content` data. For [JSON] content, a recognized [JSON] MIME media
-      type, such as "application/json", must be specified.
+      type, such as "application/json", must be specified. For [YAML] content,
+      a recognized [YAML] MIME media type, such as "application/yaml", must be
+      specified.
 
     * `$schema` is the fully-qualified name of the parsing schema to use when
       parsing `$content` to [XML] or Flat File content, and can have the
