@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">parse</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogIE9iamVj
+dCBjb250ZW50ID0gSURhdGFVdGlsLmdldChjdXJzb3IsICIkY29udGVudCIpOwogIFN0cmluZyBl
+bmNvZGluZyA9IElEYXRhVXRpbC5nZXRTdHJpbmcoY3Vyc29yLCAiJGVuY29kaW5nIik7CgogIGlm
+IChjb250ZW50ICE9IG51bGwpIHsKICAgIElEYXRhW10gbGlzdCA9IHBhcnNlKHR1bmRyYS5zdHJl
+YW0ubm9ybWFsaXplKGNvbnRlbnQsIGVuY29kaW5nKSwgZW5jb2RpbmcpOwogICAgaWYgKGxpc3Qg
+IT0gbnVsbCkgSURhdGFVdGlsLnB1dChjdXJzb3IsICIkbGlzdCIsIGxpc3QpOwogIH0KfSBjYXRj
+aCAoamF2YS5pby5JT0V4Y2VwdGlvbiBleCkgewogIHR1bmRyYS5leGNlcHRpb24ucmFpc2UoZXgp
+Owp9IGZpbmFsbHkgewogIGN1cnNvci5kZXN0cm95KCk7Cn0=</value>
+</Values>

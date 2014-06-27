@@ -1049,6 +1049,44 @@ content.
       string, byte array or input stream (depending on the `$mode.output`
       chosen).
 
+### CSV
+
+* #### tundra.csv:emit
+
+  Serializes an IData[] document list as a [CSV] formatted string, byte array,
+  or input stream.
+
+  * Inputs:
+    * `$list` is the IData[] document list to be serialized as a [CSV] string,
+      byte array, or input stream.
+
+    * `$encoding` is an optional character set to use when encoding the
+      resulting text data to a byte array or input stream. Defaults to the
+      Java virtual machine [default charset].
+
+    * `$mode` is an optional choice of {stream, bytes, string} which specifies
+      the type of object `$content` is returned as. Defaults to stream.
+
+  * Outputs:
+    * `$content` is the resulting serialization of `$list` as [CSV] content.
+
+* #### tundra.csv:parse
+
+  Parses [CSV] content specified as a string, byte array, or input stream
+  into an IData[] document list.
+
+  * Inputs:
+    * `$content` is a string, byte array, or input stream containing [CSV]
+      content to be parsed.
+
+    * `$encoding` is an optional character set to use when `$content` is provided
+      as a byte array or input stream to decode the contained text data.
+      Defaults to the Java virtual machine [default charset].
+
+  * Outputs:
+    * `$list` is the resulting IData[] document list representing the parsed
+      `$content`.
+
 ### Datetime
 
 Services for manipulating date, time and datetime strings:
@@ -7390,6 +7428,7 @@ around.
 Copyright © 2012 Lachlan Dowding. See license.txt for further details.
 
 [catch block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/catch.html>
+[CSV]: <http://en.wikipedia.org/wiki/Comma-separated_values>
 [default charset]: <http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()>
 [default locale]: <http://docs.oracle.com/javase/6/docs/api/java/util/Locale.html#getDefault()>
 [event loop]: <http://en.wikipedia.org/wiki/Event_loop>
