@@ -1053,12 +1053,15 @@ content.
 
 * #### tundra.csv:emit
 
-  Serializes an IData[] document list as a [CSV] formatted string, byte array,
-  or input stream.
+  Serializes an IData document containing a list of records as a [CSV]
+  formatted string, byte array, or input stream.
 
   * Inputs:
-    * `$list` is the IData[] document list to be serialized as a [CSV] string,
-      byte array, or input stream.
+    * `$document` is the IData document containing a list of records to be
+      serialized as a [CSV] string, byte array, or input stream.
+
+    * `$delimiter` is the character to use to delimit fields in the resulting
+      serialization. Defaults to ',' (comma), if not specified.
 
     * `$encoding` is an optional character set to use when encoding the
       resulting text data to a byte array or input stream. Defaults to the
@@ -1068,24 +1071,28 @@ content.
       the type of object `$content` is returned as. Defaults to stream.
 
   * Outputs:
-    * `$content` is the resulting serialization of `$list` as [CSV] content.
+    * `$content` is the resulting serialization of the records in `$document` as
+      [CSV] content.
 
 * #### tundra.csv:parse
 
   Parses [CSV] content specified as a string, byte array, or input stream
-  into an IData[] document list.
+  into an IData document containing a list of records.
 
   * Inputs:
     * `$content` is a string, byte array, or input stream containing [CSV]
       content to be parsed.
+
+    * `$delimiter` is the character used to delimit fields in the given
+      `$content`. Defaults to ',' (comma), if not specified.
 
     * `$encoding` is an optional character set to use when `$content` is provided
       as a byte array or input stream to decode the contained text data.
       Defaults to the Java virtual machine [default charset].
 
   * Outputs:
-    * `$list` is the resulting IData[] document list representing the parsed
-      `$content`.
+    * `$document` is the resulting IData document containing a list of records
+      representing the parsed `$content`.
 
 ### Datetime
 
