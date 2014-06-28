@@ -1074,6 +1074,20 @@ content.
     * `$content` is the resulting serialization of the records in `$document` as
       [CSV] content.
 
+* #### tundra.csv.mime.type:check
+
+  Returns true if the given MIME media type is recognized as a [CSV] or [TSV]
+  media type.
+
+  * Inputs:
+    * `$content.type` is the MIME media type to be checked.
+
+  * Outputs:
+    * `$csv?` is a boolean which when true indicates that the given
+      `$content.type is a recognized [CSV] media type.
+    * `$tsv?` is a boolean which when true indicates that the given
+      `$content.type` is a recognized [TSV] media type.
+
 * #### tundra.csv:parse
 
   Parses [CSV] content specified as a string, byte array, or input stream
@@ -7495,6 +7509,7 @@ Copyright © 2012 Lachlan Dowding. See license.txt for further details.
 [SAX]: <http://en.wikipedia.org/wiki/Simple_API_for_XML>
 [set intersection]: <http://en.wikipedia.org/wiki/Intersection_(set_theory)>
 [try block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/try.html>
+[TSV]: <http://en.wikipedia.org/wiki/Tab-separated_values>
 [TundraTest]: <https://github.com/Permafrost/TundraTest>
 [URI]: <http://www.w3.org/Addressing/>
 [UUID]: <http://docs.oracle.com/javase/6/docs/api/java/util/UUID.html>
