@@ -769,18 +769,23 @@ content.
 
 * #### tundra.content:emit
 
-  Serializes an IData document to an [XML], [JSON], [YAML], or Flat File
-  string, byte array, or input stream.
+  Serializes an IData document to a [CSV], [JSON], [TSV], [XML], [YAML], or
+  Flat File string, byte array, or input stream.
 
   * Inputs:
     * `$document` is the IData document to be serialized as a string, byte
       array, or input stream.
 
     * `$content.type` is the MIME media type that describes the format of the
-      resulting serialized content. For [JSON] content, a recognized [JSON]
-      MIME media type, such as "application/json", must be specified. For
-      [YAML] content, a recognized [YAML] MIME media type, such as
-      "application/yaml", must be specified.
+      resulting serialized content:
+      * For [CSV] content, a recognized [CSV] MIME media type, such as
+        "text/csv", must be specified.
+      * For [JSON] content, a recognized [JSON] MIME media type, such as
+        "application/json", must be specified.
+      * For [TSV] content, a recognized [TSV] MIME media type, such as
+        "text/tab-separated-values", must be specified.
+      * For [YAML] content, a recognized [YAML] MIME media type, such as
+        "application/yaml", must be specified.
 
     * `$schema` is the fully-qualified name of the parsing schema to use when
       serializing the document to [XML] or Flat File content, and can have the
@@ -801,26 +806,31 @@ content.
       the type of object `$content` is returned as. Defaults to stream.
 
   * Outputs:
-    * `$content` is the resulting serialization of `$document` as [XML], [JSON],
-      [YAML], or flat file content.
+    * `$content` is the resulting serialization of `$document` as [CSV], [JSON],
+      [TSV], [XML], [YAML], or Flat File content.
 
 * #### tundra.content:parse
 
-  Parses [XML], [JSON], [YAML], or Flat File content specified as a string,
-  byte array, or input stream into an IData document.
+  Parses [CSV], [JSON], [TSV], [XML], [YAML], or Flat File content specified
+  as a string, byte array, or input stream into an IData document.
 
   * Inputs:
-    * `$content` is a string, byte array, or input stream containing [XML],
-      [JSON], [YAML], or flat file content to be parsed.
+    * `$content` is a string, byte array, or input stream containing [CSV],
+      [JSON], [TSV], [XML], [YAML], or Flat File content to be parsed.
 
     * `$content.type` is the MIME media type that describes the format of the
-      given `$content` data. For [JSON] content, a recognized [JSON] MIME media
-      type, such as "application/json", must be specified. For [YAML] content,
-      a recognized [YAML] MIME media type, such as "application/yaml", must be
-      specified.
+      given `$content` data:
+      * For [CSV] content, a recognized [CSV] MIME media type, such as
+        "text/csv", must be specified.
+      * For [JSON] content, a recognized [JSON] MIME media type, such as
+        "application/json", must be specified.
+      * For [TSV] content, a recognized [TSV] MIME media type, such as
+        "text/tab-separated-values", must be specified.
+      * For [YAML] content, a recognized [YAML] MIME media type, such as
+        "application/yaml", must be specified.
 
     * `$schema` is the fully-qualified name of the parsing schema to use when
-      parsing `$content` to [XML] or Flat File content, and can have the
+      parsing `$content` as [XML] or Flat File content, and can have the
       following values:
       * For [XML] content, specify the fully-qualified name of the document
         reference that defines the [XML] format.
