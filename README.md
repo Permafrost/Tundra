@@ -3848,6 +3848,25 @@ Services for manipulating document (com.wm.data.IData) lists:
     * `$list` is the given IData document list with all item's keys
       converted to upper case.
 
+* #### tundra.list.document:keys
+
+  Returns the union set of all top-level keys present in each IData
+  item in the given IData[] document list that match the given regular
+  expression pattern if specified, or all top-level keys if no pattern
+  is specified.
+
+  * Inputs:
+    * `$list` is an IData[] document list from which all top-level
+      keys are to be fetched.
+    * `$pattern` is an optional [regular expression pattern] that
+      is used to filter the list of keys returned. If not specified,
+      all keys are returned.
+
+  * Outputs:
+    * `$keys` is the union set of all top-level keys in the given IData[]
+      document list that match the given regular expression `$pattern` if
+      specified, or all top-level keys if no `$pattern` was specified.
+
 * #### tundra.list.document:length
 
   Returns the number of items in the given list.
