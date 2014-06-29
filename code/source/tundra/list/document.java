@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-06-28 12:06:04 EST
+// -----( CREATED: 2014-06-29 18:18:04 EST
 // -----( ON-HOST: 172.16.189.136
 
 import com.wm.data.*;
@@ -400,15 +400,28 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:1:optional $list
-		// [i] field:0:optional $key
+		// [i] field:1:optional $keys
+		// [i] field:0:optional $ascending? {&quot;true&quot;,&quot;false&quot;}
 		// [o] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  IData[] list = IDataUtil.getIDataArray(cursor, "$list");
+		  String[] keys = IDataUtil.getStringArray(cursor, "$keys");
+		  // silently support $key for backwards compatibility
 		  String key = IDataUtil.getString(cursor, "$key");
+		  String sAscending = IDataUtil.getString(cursor, "$ascending?");
 		
-		  if (list != null) IDataUtil.put(cursor, "$list", sort(list, key));
+		  boolean ascending = true;
+		  if (sAscending != null) ascending = tundra.bool.parse(sAscending);
+		
+		  if (list != null) {
+		    if (keys == null) {
+		      IDataUtil.put(cursor, "$list", sort(list, key, ascending));
+		    } else {
+		      IDataUtil.put(cursor, "$list", sort(list, keys, ascending));
+		    }
+		  }
 		} finally {
 		  cursor.destroy();
 		}
@@ -499,13 +512,39 @@ public final class document
 	  return keys.toArray(new String[0]);
 	}
 	
-	// returns a new array with all elements sorted
+	// returns a new array with all elements sorted in ascending order by
+	// the values associated with the given key
 	public static IData[] sort(IData[] array, String key) {
-	  if (array == null || key == null) return array;
+	  return sort(array, key, true);
+	}
 	
-	  array = IDataUtil.sortIDataArrayByKey(java.util.Arrays.copyOf(array, array.length), key, IDataUtil.COMPARE_TYPE_COLLATION, false);
+	// returns a new array with all elements sorted either in ascending or
+	// descending order by the values associated with the given key
+	public static IData[] sort(IData[] array, String key, boolean ascending) {
+	  String[] keys = null;
+	  if (key != null) {
+	    keys = new String[1];
+	    keys[0] = key;
+	  }
 	
-	  return array;
+	  return sort(array, keys, ascending);
+	}
+	
+	// returns a new array with all elements sorted in ascending order by the 
+	// values associated with the given keys
+	public static IData[] sort(IData[] array, String[] keys) {
+	  return sort(array, keys, true);
+	}
+	
+	// returns a new array with all elements sorted by the values associated with 
+	// the given keys
+	public static IData[] sort(IData[] array, String[] keys, boolean ascending) {
+	  if (array == null || keys == null || keys.length == 0) return array;
+	
+	  array = java.util.Arrays.copyOf(array, array.length);
+	  java.util.Arrays.sort(array, new IDataComparator(keys));
+	
+	  return ascending ? array : tundra.list.object.reverse(array);
 	}
 	
 	// returns a new IData[] with all empty and null items removed
@@ -527,6 +566,40 @@ public final class document
 	  if (array.length == 0) array = null;
 	
 	  return array;
+	}
+	
+	// compares two IData objects using the values associated with the given list
+	// of keys
+	public static class IDataComparator implements java.util.Comparator<IData> {
+	  protected String[] keys;
+	
+	  public IDataComparator(String[] keys) {
+	    this.keys = keys;
+	  }
+	
+	  public int compare(IData a, IData b) {
+	    int result = 0;
+	    for (String key : keys) {
+	      Object value_a = tundra.support.document.get(a, key);
+	      Object value_b = tundra.support.document.get(b, key);
+	
+	      if (value_a == null) {
+	        if (value_b != null) {
+	          result = -1;
+	          break;
+	        }
+	      } else if (value_b == null) {
+	        if (value_a != null) {
+	          result = 1;
+	          break;
+	        }
+	      } else if (value_a instanceof Comparable && value_b instanceof Comparable) {
+	        result = ((Comparable)value_a).compareTo((Comparable)value_b);
+	        if (result != 0) break;
+	      }
+	    }
+	    return result;
+	  }
 	}
 	// --- <<IS-END-SHARED>> ---
 }

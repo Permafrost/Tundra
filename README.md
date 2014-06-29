@@ -4026,15 +4026,19 @@ Services for manipulating document (com.wm.data.IData) lists:
 
 * #### tundra.list.document:sort
 
-  Returns a new list sorted according to the [natural ordering] of
-  the values associated with the given key in each item.
+  Returns a new IData[] document list sorted according to the [natural ordering]
+  of the values associated with the given keys in each list item.
 
   * Inputs:
-    * `$list` is the list of IData documents to be sorted.
-    * `$key` is the key in each IData document to sort the list by.
+    * `$list` is the IData[] document list to be sorted.
+    * `$keys` is a list of keys in order of precedence for which the associated
+      values will be used to sort the list.
+    * `$ascending?` is a boolean which when true will sort the list in ascending
+      order, and when false will sort the list in descending order. Defaults
+      to true, if not specified.
 
   * Outputs:
-    * `$list` is the sorted IData document list.
+    * `$list` is the sorted IData[] document list.
 
 * #### tundra.list.document:squeeze
 
