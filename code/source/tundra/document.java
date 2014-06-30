@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-07-01 09:22:25.957
+// -----( CREATED: 2014-07-01 09:30:54.221
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -780,7 +780,7 @@ public final class document
 	  java.util.regex.Pattern pattern = null;
 	  if (patternString != null) pattern = java.util.regex.Pattern.compile(patternString);
 
-	  java.util.Set<String> keys = new java.util.LinkedHashSet<String>();
+	  java.util.List<String> keys = new java.util.ArrayList<String>();
 	  if (input != null) {
 	    IDataCursor cursor = input.getCursor();
 	    while(cursor.next()) {
