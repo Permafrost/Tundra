@@ -2282,6 +2282,23 @@ Services for manipulating com.wm.data.IData objects:
   * Outputs:
     * `$document` is the resulting deserialized IData document.
 
+* #### tundra.document:pivot
+
+  Returns an IData[] document list of each key value pair in the given IData
+  document.
+
+  * Inputs:
+    * `$document` is an IData document to be pivoted.
+
+    * `$recurse?` is an optional boolean indicating if embedded IData documents
+      and IData[] document lists should also be pivoted. Note that a pivoted
+      IData[] document list is returned as a two dimensional IData array
+      (IData[][]). Defaults to false, if not specified.
+
+  * Outputs:
+    * `$pivot` is an IData[] document list where each item in the list
+      represents each key value pair present in the given `$document`.
+
 * #### tundra.document:put
 
   Sets the value associated with the given key in the given IData document.
