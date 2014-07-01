@@ -135,6 +135,7 @@ ordering] of the values associated with the given keys in each list item.
 
 * Inputs:
   * $list is the IData[] document list to be sorted.
+
   * $keys is a list of keys in order of precedence for which the associated 
     values will be used to sort the list.
 
