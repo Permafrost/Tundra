@@ -769,8 +769,8 @@ content.
 
 * #### tundra.content:emit
 
-  Serializes an IData document to a [CSV], [JSON], [TSV], [XML], [YAML], or
-  Flat File string, byte array, or input stream.
+  Serializes an IData document to a [CSV], [JSON], pipe separated values,
+  [TSV], [XML], [YAML], or Flat File string, byte array, or input stream.
 
   * Inputs:
     * `$document` is the IData document to be serialized as a string, byte
@@ -779,13 +779,19 @@ content.
     * `$content.type` is the MIME media type that describes the format of the
       resulting serialized content:
       * For [CSV] content, a recognized [CSV] MIME media type, such as
-        "text/csv", must be specified.
+        "text/csv", "text/comma-separated-values", or a type that includes a "+csv" suffix, must be specified.
       * For [JSON] content, a recognized [JSON] MIME media type, such as
-        "application/json", must be specified.
+        "application/json", or a type that includes a "+json" suffix, must be
+        specified.
+      * For pipe separated values content, a MIME media type "text/psv",
+        "text/pipe-separated-values", or a type that includes a "+psv" suffix,
+        must be specified.
       * For [TSV] content, a recognized [TSV] MIME media type, such as
-        "text/tab-separated-values", must be specified.
+        "text/tsv", "text/tab-separated-values", or a type that includes a
+        "+tsv" suffix, must be specified.
       * For [YAML] content, a recognized [YAML] MIME media type, such as
-        "application/yaml", must be specified.
+        "application/yaml", or a type that includes a "+yaml" suffix, must be
+        specified.
 
     * `$schema` is the fully-qualified name of the parsing schema to use when
       serializing the document to [XML] or Flat File content, and can have the
@@ -807,27 +813,35 @@ content.
 
   * Outputs:
     * `$content` is the resulting serialization of `$document` as [CSV], [JSON],
-      [TSV], [XML], [YAML], or Flat File content.
+      pipe separated values, [TSV], [XML], [YAML], or Flat File content.
 
 * #### tundra.content:parse
 
-  Parses [CSV], [JSON], [TSV], [XML], [YAML], or Flat File content specified
-  as a string, byte array, or input stream into an IData document.
+  Parses [CSV], [JSON], pipe separated values, [TSV], [XML], [YAML], or Flat
+  File content specified as a string, byte array, or input stream into an
+  IData document.
 
   * Inputs:
     * `$content` is a string, byte array, or input stream containing [CSV],
-      [JSON], [TSV], [XML], [YAML], or Flat File content to be parsed.
+      [JSON], pipe separated values, [TSV], [XML], [YAML], or Flat File
+      content to be parsed.
 
     * `$content.type` is the MIME media type that describes the format of the
       given `$content` data:
       * For [CSV] content, a recognized [CSV] MIME media type, such as
-        "text/csv", must be specified.
+        "text/csv", "text/comma-separated-values", or a type that includes a "+csv" suffix, must be specified.
       * For [JSON] content, a recognized [JSON] MIME media type, such as
-        "application/json", must be specified.
+        "application/json", or a type that includes a "+json" suffix, must be
+        specified.
+      * For pipe separated values content, a MIME media type "text/psv",
+        "text/pipe-separated-values", or a type that includes a "+psv" suffix,
+        must be specified.
       * For [TSV] content, a recognized [TSV] MIME media type, such as
-        "text/tab-separated-values", must be specified.
+        "text/tsv", "text/tab-separated-values", or a type that includes a
+        "+tsv" suffix, must be specified.
       * For [YAML] content, a recognized [YAML] MIME media type, such as
-        "application/yaml", must be specified.
+        "application/yaml", or a type that includes a "+yaml" suffix, must be
+        specified.
 
     * `$schema` is the fully-qualified name of the parsing schema to use when
       parsing `$content` as [XML] or Flat File content, and can have the
@@ -1086,15 +1100,17 @@ content.
 
 * #### tundra.csv.mime.type:check
 
-  Returns true if the given MIME media type is recognized as a [CSV] or [TSV]
-  media type.
+  Returns true if the given MIME media type is recognized as a comma, pipe,
+  or tab separated values media type.
 
   * Inputs:
     * `$content.type` is the MIME media type to be checked.
 
   * Outputs:
     * `$csv?` is a boolean which when true indicates that the given
-      `$content.type is a recognized [CSV] media type.
+      `$content.type` is a recognized [CSV] media type.
+    * `$psv?` is a boolean which when true indicates that the given
+      `$content.type` is a recognized pipe separated values media type.
     * `$tsv?` is a boolean which when true indicates that the given
       `$content.type` is a recognized [TSV] media type.
 
