@@ -6686,6 +6686,24 @@ Services for manipulating java.io.InputStream and java.io.OutputStream objects:
 
 Services for manipulating java.lang.String objects:
 
+* #### tundra.string:find
+
+  Returns whether the given [regular expression pattern] or literal
+  string is found anywhere in the given string.
+
+  * Inputs:
+    * `$string` is a string to be searched for the given pattern.
+    * `$pattern` is the [regular expression pattern] or literal string
+      to search for against the given string.
+    * `$literal?` is a boolean indicating if the `$pattern` string should
+      be treated as a literal string. If false, `$pattern` is treated
+      as a [regular expression pattern]. If true, `$pattern` is treated
+      as a literal string. Defaults to false, if not specified.
+
+  * Outputs:
+    * `$found?` is true if the given pattern is found anywhere in the
+      given string.
+
 * #### tundra.string:length
 
   Returns the number of characters in the given string.

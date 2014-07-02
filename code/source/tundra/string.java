@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-07-02 12:38:40.483
+// -----( CREATED: 2014-07-02 12:52:36.200
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -24,6 +24,34 @@ public final class string
 
 	// ---( server methods )---
 
+
+
+
+	public static final void find (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(find)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $string
+		// [i] field:0:optional $pattern
+		// [i] field:0:optional $literal? {&quot;false&quot;,&quot;true&quot;}
+		// [o] field:0:required $found?
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		  String string = IDataUtil.getString(cursor, "$string");
+		  String pattern = IDataUtil.getString(cursor, "$pattern");
+		  boolean literal = tundra.bool.parse(IDataUtil.getString(cursor, "$literal?"));
+
+		  IDataUtil.put(cursor, "$found?", "" + find(string, pattern, literal));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
 
 
 
@@ -523,6 +551,26 @@ public final class string
 	  }
 
 	  return output;
+	}
+
+	// returns true if the given regular expression pattern is found anywhere in the given string
+	public static boolean find(String input, String pattern) {
+	  return find(input, pattern, false);
+	}
+
+	// returns true if the given regular expression or literal pattern is found anywhere in the given string
+	public static boolean find(String input, String pattern, boolean literal) {
+	  boolean found = false;
+	  if (input != null && pattern != null) {
+	    if (literal) {
+	      found = input.indexOf(pattern) >= 0;
+	    } else {
+	      java.util.regex.Pattern regex = java.util.regex.Pattern.compile(pattern);
+	      java.util.regex.Matcher matcher = regex.matcher(input);
+	      found = matcher.find();
+	    }
+	  }
+	  return found;
 	}
 
 	// returns true if the given regular expression pattern matches the given string
