@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-06-24 15:01:50.133
+// -----( CREATED: 2014-07-02 12:38:40.483
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -127,14 +127,16 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
 		// [i] field:0:optional $pattern
+		// [i] field:0:optional $literal? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:required $match?
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
 		  String string = IDataUtil.getString(cursor, "$string");
 		  String pattern = IDataUtil.getString(cursor, "$pattern");
+		  boolean literal = tundra.bool.parse(IDataUtil.getString(cursor, "$literal?"));
 
-		  IDataUtil.put(cursor, "$match?", "" + match(string, pattern));
+		  IDataUtil.put(cursor, "$match?", "" + match(string, pattern, literal));
 		} finally {
 		  cursor.destroy();
 		}
@@ -523,10 +525,21 @@ public final class string
 	  return output;
 	}
 
-	// returns true if the given regular expression is found in the given string
-	public static boolean match(String input, String regex) {
+	// returns true if the given regular expression pattern matches the given string
+	public static boolean match(String input, String pattern) {
+	  return match(input, pattern, false);
+	}
+
+	// returns true if the given regular expression or literal pattern matches the given string
+	public static boolean match(String input, String pattern, boolean literal) {
 	  boolean match = false;
-	  if (input != null && regex != null) match = input.matches(regex);
+	  if (input != null && pattern != null) {
+	    if (literal) {
+	      match = input.equals(pattern);
+	    } else {
+	      match = input.matches(pattern);
+	    }
+	  }
 	  return match;
 	}
 

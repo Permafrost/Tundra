@@ -67,6 +67,37 @@
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
         </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_usereditable">false</value>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="field_name">$literal?</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <array name="field_options" type="value" depth="1">
+            <value>false</value>
+            <value>true</value>
+          </array>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">boolean</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
       </array>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
@@ -106,18 +137,20 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Returns whether the given [regular expression pattern] matches the 
-given string. 
+  <value name="node_comment">Returns whether the given [regular expression pattern] or literal
+string matches the given string. 
 
 * Inputs:
-  * $string is a string to be matched against the given regular
-    expression.
-  * $pattern is the [regular expression pattern] to match against
-    the given string.
+  * $string is a string to be matched against the given pattern.
+  * $pattern is the [regular expression pattern] or literal string
+    to match against the given string.
+  * $literal? is a boolean indicating if the $pattern string should 
+    be treated as a literal string. If false, $pattern is treated
+    as a [regular expression pattern]. If true, $pattern is treated
+    as a literal string. Defaults to false, if not specified.
 
 * Outputs:
-  * $match? is true if the given string matches the given
-    [regular expression pattern].
+  * $match? is true if the given string matches the given pattern.
 
 [regular expression pattern]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html&gt;</value>
   <value name="stateless">no</value>
@@ -131,8 +164,8 @@ given string.
   <value name="system_service">no</value>
   <value name="retry_max">0</value>
   <value name="retry_interval">0</value>
-  <value name="svc_in_validator_options">default</value>
-  <value name="svc_out_validator_options">default</value>
+  <value name="svc_in_validator_options">none</value>
+  <value name="svc_out_validator_options">none</value>
   <value name="auditoption">0</value>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>

@@ -6747,18 +6747,20 @@ Services for manipulating java.lang.String objects:
 
 * #### tundra.string:match
 
-  Returns whether the given [regular expression pattern] matches the
-  given string.
+  Returns whether the given [regular expression pattern] or literal
+  string matches the given string.
 
   * Inputs:
-    * `$string` is a string to be matched against the given regular
-      expression.
-    * `$pattern` is the [regular expression pattern] to match against
-      the given string.
+    * `$string` is a string to be matched against the given pattern.
+    * `$pattern` is the [regular expression pattern] or literal string
+      to match against the given string.
+    * `$literal?` is a boolean indicating if the `$pattern` string should
+      be treated as a literal string. If false, `$pattern` is treated
+      as a [regular expression pattern]. If true, `$pattern` is treated
+      as a literal string. Defaults to false, if not specified.
 
   * Outputs:
-    * `$match?` is true if the given string matches the given
-      [regular expression pattern].
+    * `$match?` is true if the given string matches the given pattern.
 
 * #### tundra.string:normalize
 
