@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-07-03 14:40:31.709
+// -----( CREATED: 2014-07-03 14:52:34.453
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -112,7 +112,7 @@ public final class csv
 
 	  java.io.Reader reader = new java.io.InputStreamReader(in, encoding);
 
-	  org.apache.commons.csv.CSVFormat format = org.apache.commons.csv.CSVFormat.DEFAULT.withHeader();
+	  org.apache.commons.csv.CSVFormat format = org.apache.commons.csv.CSVFormat.DEFAULT.withHeader().withNullString("");
 	  if (delimiter != null && delimiter.length() > 0) format = format.withDelimiter(delimiter.charAt(0));
 
 	  org.apache.commons.csv.CSVParser parser = format.parse(reader);
@@ -124,7 +124,10 @@ public final class csv
 	    IData document = IDataFactory.create();
 	    IDataCursor cursor = document.getCursor();
 	    for (String key : keys) {
-	      IDataUtil.put(cursor, key, record.get(key));
+	      if (record.isSet(key)) {
+	        String value = record.get(key);
+	        if (value != null) IDataUtil.put(cursor, key, value);
+	      }
 	    }
 	    cursor.destroy();
 	    output.add(document);
