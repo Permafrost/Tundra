@@ -1005,26 +1005,47 @@ content.
 
 * #### tundra.content:translate
 
-  One-to-one conversion of [XML], [JSON], or Flat File content to another
-  format. Calls the given translation service, passing the parsed content as
-  an input, and emitting the translated content as output.
+  One-to-one conversion of [CSV], [JSON], pipe separated values, [TSV], [XML],
+  [YAML], or Flat File content to another format. Calls the given translation
+  service, passing the parsed content as an input, and emitting or serializing
+  the translated content as output.
 
   * Inputs:
-    * `$content` is a string, byte array or input stream containing [XML],
-      [JSON], or Flat File content to be translated to another format.
+    * `$content` is a string, byte array, or input stream containing [CSV],
+      [JSON], pipe separated values, [TSV], [XML], [YAML], or Flat File
+      content to be translated to another format.
 
     * `$service` is the fully-qualified name of the translation service, which
       accepts a single IData document and returns a single IData document,
       called to translate the parsed `$content`.
 
     * `$content.type.input` is the MIME media type that describes the format of
-      the given `$content`. For [JSON] content, a recognized [JSON] MIME media
-      type, such as "application/json", must be specified.
+      the given `$content`:
+      * For [CSV] content, a recognized [CSV] MIME media type, such as
+        "text/csv", must be specified.
+      * For [JSON] content, a recognized [JSON] MIME media type, such as
+        "application/json", must be specified.
+      * For pipe separated values content, a MIME media type "text/psv",
+        "text/pipe-separated-values", or a type that includes a "+psv" suffix,
+        must be specified.
+      * For [TSV] content, a recognized [TSV] MIME media type, such as
+        "text/tab-separated-values", must be specified.
+      * For [YAML] content, a recognized [YAML] MIME media type, such as
+        "application/yaml", must be specified.
 
     * `$content.type.output` is the MIME media type that describes the format of
-      the resulting serialized translated content. For [JSON] content, a
-      recognized [JSON] MIME media type, such as "application/json", must be
-      specified.
+      the resulting serialized translated content:
+      * For [CSV] content, a recognized [CSV] MIME media type, such as
+        "text/csv", must be specified.
+      * For [JSON] content, a recognized [JSON] MIME media type, such as
+        "application/json", must be specified.
+      * For pipe separated values content, a MIME media type "text/psv",
+        "text/pipe-separated-values", or a type that includes a "+psv" suffix,
+        must be specified.
+      * For [TSV] content, a recognized [TSV] MIME media type, such as
+        "text/tab-separated-values", must be specified.
+      * For [YAML] content, a recognized [YAML] MIME media type, such as
+        "application/yaml", must be specified.
 
     * `$schema.input` is the fully-qualified name of the parsing schema to use
       when parsing `$content` to [XML] or Flat File content, and can have the
@@ -1050,7 +1071,7 @@ content.
 
     * `$service.input` is an optional variable name to use in the input pipeline
       of the call to `$service` for the parsed `$content` IData document. Defaults
-      to `$document`.
+      to $document.
 
     * `$service.output` is an optional variable name used to extract the output
       IData document from the output pipeline of the call to `$service`.
@@ -1069,9 +1090,8 @@ content.
       stream.
 
   * Outputs:
-    * `$translation` is the translated XML or flat file content returned as a
-      string, byte array or input stream (depending on the `$mode.output`
-      chosen).
+    * `$translation` is the translated content returned as a string, byte array
+      or input stream (depending on the `$mode.output` chosen).
 
 ### CSV
 
