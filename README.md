@@ -1083,6 +1083,8 @@ content.
   * Inputs:
     * `$document` is the IData document containing a list of records to be
       serialized as a [CSV] string, byte array, or input stream.
+      * `recordWithNoID` is the IData[] document list of records to be
+        serialized.
 
     * `$delimiter` is the character to use to delimit fields in the resulting
       serialization. Defaults to ',' (comma), if not specified.
@@ -1133,6 +1135,7 @@ content.
   * Outputs:
     * `$document` is the resulting IData document containing a list of records
       representing the parsed `$content`.
+    * `recordWithNoID` is the resulting IData[] document list of records.
 
 ### Datetime
 

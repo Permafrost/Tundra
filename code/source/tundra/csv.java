@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-06-28 13:30:42 EST
-// -----( ON-HOST: 172.16.189.136
+// -----( CREATED: 2014-07-03 14:40:31.709
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -34,24 +34,24 @@ public final class csv
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
-		// [i] - record:1:optional records
+		// [i] - record:1:optional recordWithNoID
 		// [i] field:0:optional $delimiter
 		// [i] field:0:optional $encoding
 		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  String delimiter = IDataUtil.getString(cursor, "$delimiter");
 		  String encoding = IDataUtil.getString(cursor, "$encoding");
 		  String mode = IDataUtil.getString(cursor, "$mode");
-		
+
 		  if (document != null) {
 		    IDataCursor dc = document.getCursor();
-		    IData[] list = IDataUtil.getIDataArray(dc, "records");
+		    IData[] list = IDataUtil.getIDataArray(dc, "recordWithNoID");
 		    dc.destroy();
-		
+
 		    if (list != null) IDataUtil.put(cursor, "$content", emit(list, delimiter, mode, encoding));
 		  }
 		} catch (java.io.IOException ex) {
@@ -61,7 +61,7 @@ public final class csv
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -76,20 +76,20 @@ public final class csv
 		// [i] field:0:optional $delimiter
 		// [i] field:0:optional $encoding
 		// [o] record:0:optional $document
-		// [o] - record:1:optional records
+		// [o] - record:1:optional recordWithNoID
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  Object content = IDataUtil.get(cursor, "$content");
 		  String delimiter = IDataUtil.getString(cursor, "$delimiter");
 		  String encoding = IDataUtil.getString(cursor, "$encoding");
-		
+
 		  if (content != null) {
 		    IData[] list = parse(tundra.stream.normalize(content, encoding), delimiter, encoding);
 		    if (list != null) {
 		      IData document = IDataFactory.create();
 		      IDataCursor dc = document.getCursor();
-		      IDataUtil.put(dc, "records", list);
+		      IDataUtil.put(dc, "recordWithNoID", list);
 		      dc.destroy();
 		      IDataUtil.put(cursor, "$document", document);
 		    }
@@ -101,7 +101,7 @@ public final class csv
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 	// --- <<IS-START-SHARED>> ---
@@ -109,17 +109,17 @@ public final class csv
 	public static IData[] parse(java.io.InputStream in, String delimiter, String encoding) throws java.io.IOException {
 	  if (in == null) return null;
 	  if (encoding == null) encoding = tundra.support.constant.DEFAULT_CHARACTER_ENCODING;
-	
+
 	  java.io.Reader reader = new java.io.InputStreamReader(in, encoding);
-	
+
 	  org.apache.commons.csv.CSVFormat format = org.apache.commons.csv.CSVFormat.DEFAULT.withHeader();
 	  if (delimiter != null && delimiter.length() > 0) format = format.withDelimiter(delimiter.charAt(0));
-	
+
 	  org.apache.commons.csv.CSVParser parser = format.parse(reader);
-	
+
 	  java.util.Set<String> keys = parser.getHeaderMap().keySet();
 	  java.util.List<IData> output = new java.util.ArrayList<IData>();
-	
+
 	  for (org.apache.commons.csv.CSVRecord record : parser) {
 	    IData document = IDataFactory.create();
 	    IDataCursor cursor = document.getCursor();
@@ -129,35 +129,35 @@ public final class csv
 	    cursor.destroy();
 	    output.add(document);
 	  }
-	
+
 	  return output.toArray(new IData[0]);
 	}
-	
+
 	// serializes an IData[] document list to a CSV representation
 	public static Object emit(IData[] input, String delimiter, String mode, String encoding) throws java.io.IOException {
 	  Object output = null;
-	
+
 	  StringBuilder builder = new StringBuilder();
 	  org.apache.commons.csv.CSVFormat format = org.apache.commons.csv.CSVFormat.DEFAULT.withHeader(tundra.list.document.keys(input));
 	  if (delimiter != null && delimiter.length() > 0) format = format.withDelimiter(delimiter.charAt(0));
-	 
+
 	  org.apache.commons.csv.CSVPrinter printer = new org.apache.commons.csv.CSVPrinter(builder, format);
-	
+
 	  if (input != null) {
 	    for (IData document : input) {
 	      if (document != null) printer.printRecord(tundra.document.valueset(document));
-	    }    
+	    }
 	  }
-	
+
 	  output = builder.toString();
-	
+
 	  if (mode == null || mode.equals("stream")) {
 	    output = tundra.stream.normalize(output, encoding);
 	  } else if (mode.equals("bytes")) {
 	    output = tundra.bytes.normalize(output, encoding);
 	  }
-	
-	  return output; 
+
+	  return output;
 	}
 	// --- <<IS-END-SHARED>> ---
 }
