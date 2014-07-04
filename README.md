@@ -5587,8 +5587,14 @@ Services for manipulating java.lang.Object objects:
       service does nothing and no outputs are returned.
 
   * Outputs:
+    * `$id` is the identity hash code of the given object, as calculated by
+      the [java.lang.System.identityHashCode()] method. The identity hash
+      code for the null reference is always zero.
+
     * `$class` is the Java class name of the given object.
+
     * `$array?` is a boolean indicating if the given object is an array.
+
     * `$primitive?` is a boolean indicating if the given object is a
       [primitive type], or an array of a [primitive type].
 
@@ -7574,6 +7580,7 @@ Copyright © 2012 Lachlan Dowding. See license.txt for further details.
 [java.io.InputStream]: <http://docs.oracle.com/javase/6/docs/api/java/io/InputStream.html>
 [java.io.OutputStream]: <http://docs.oracle.com/javase/6/docs/api/java/io/OutputStream.html>
 [java.lang.String]: <http://docs.oracle.com/javase/6/docs/api/java/lang/String.html>
+[java.lang.System.identityHashCode()]: <http://docs.oracle.com/javase/6/docs/api/java/lang/System.html#identityHashCode(java.lang.Object)>
 [java.math.BigDecimal]: <http://docs.oracle.com/javase/6/docs/api/java/math/BigDecimal.html>
 [java.math.BigInteger]: <http://docs.oracle.com/javase/6/docs/api/java/math/BigInteger.html>
 [java.net.URI]: <http://docs.oracle.com/javase/6/docs/api/java/net/URI.html>

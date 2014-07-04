@@ -73,6 +73,32 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="field_name">$id</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">string</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">false</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <null name="field_usereditable"/>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
           <value name="field_name">$class</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -153,11 +179,18 @@ array of a [primitive type], and its Java class name.
     service does nothing and no outputs are returned.
 
 * Outputs:
+  * $id is the identity hash code of the given object, as calculated by
+    the [java.lang.System.identityHashCode()] method. The identity hash
+    code for the null reference is always zero.
+
   * $class is the Java class name of the given object.
+
   * $array? is a boolean indicating if the given object is an array.
+
   * $primitive? is a boolean indicating if the given object is a 
     [primitive type], or an array of a [primitive type].
 
+[java.lang.System.identityHashCode()]: &lt;http://docs.oracle.com/javase/6/docs/api/java/lang/System.html#identityHashCode(java.lang.Object)&gt;
 [primitive type]: &lt;http://docs.oracle.com/javase/6/docs/api/java/lang/Class.html#isPrimitive()&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
