@@ -912,13 +912,14 @@ content.
 
 * #### tundra.content:split
 
-  One-to-many conversion of [XML], [JSON], or Flat File content to another
-  format. Calls the given splitting service, passing the parsed `$content` as an
-  input, and emitting the split list of $contents as output.
+  One-to-many conversion of [CSV], [JSON], pipe separated values, [TSV], [XML],
+  [YAML], or Flat File content to another format. Calls the given splitting
+  service, passing the parsed `$content` as an input, and emitting the split list
+  of `$contents` as output.
 
   * Inputs:
-    * `$content` is a string, byte array, or input stream of [XML], [JSON], or
-      Flat File content to be split.
+    * `$content` is a string, byte array, or input stream of [CSV], [JSON], pipe
+      separated values, [TSV], [XML], [YAML], or Flat File content to be split.
 
     * `$service` is the fully-qualified name of the splitting service, which
       accepts a single IData document and returns an IData document list,
@@ -928,13 +929,33 @@ content.
       to be included in the input pipeline of the invocation of `$service`.
 
     * `$content.type.input` is the MIME media type that describes the format of
-      the given `$content`. For [JSON] content, a recognized [JSON] MIME media
-      type, such as "application/json", must be specified.
+      the given `$content`:
+      * For [CSV] content, a recognized [CSV] MIME media type, such as
+        "text/csv", must be specified.
+      * For [JSON] content, a recognized [JSON] MIME media type, such as
+        "application/json", must be specified.
+      * For pipe separated values content, a MIME media type "text/psv",
+        "text/pipe-separated-values", or a type that includes a "+psv" suffix,
+        must be specified.
+      * For [TSV] content, a recognized [TSV] MIME media type, such as
+        "text/tab-separated-values", must be specified.
+      * For [YAML] content, a recognized [YAML] MIME media type, such as
+        "application/yaml", must be specified.
 
     * `$content.type.output` is the MIME media type that describes the format of
-      the resulting serialized split content. For [JSON] content, a recognized
-      [JSON] MIME media type, such as "application/json", must be
-      specified.
+      the resulting serialized split content, if all split content formats are
+      alike:
+      * For [CSV] content, a recognized [CSV] MIME media type, such as
+        "text/csv", must be specified.
+      * For [JSON] content, a recognized [JSON] MIME media type, such as
+        "application/json", must be specified.
+      * For pipe separated values content, a MIME media type "text/psv",
+        "text/pipe-separated-values", or a type that includes a "+psv" suffix,
+        must be specified.
+      * For [TSV] content, a recognized [TSV] MIME media type, such as
+        "text/tab-separated-values", must be specified.
+      * For [YAML] content, a recognized [YAML] MIME media type, such as
+        "application/yaml", must be specified.
 
       Alternatively, it is permissible for the resulting list returned by
       `$service` to contain unlike documents (documents whose MIME types are
@@ -951,7 +972,7 @@ content.
       * For Flat File content specify the fully-qualified name of the flat
         file schema that defines the Flat File format.
 
-      Defaults to parsing `$content` as [XML], if neither `$content.type.input`
+      Defaults to parsing `$content` as [XML], if neither $content.type.input
       nor `$schema.input` are specified.
 
     * `$schema.output` is the fully-qualified name of the parsing schema to use
@@ -979,7 +1000,7 @@ content.
 
     * `$service.output` is an optional variable name used to extract the output
       IData document list from the output pipeline of the call to `$service`.
-      Defaults to `$documents`.
+      Defaults to $documents.
 
     * `$encoding.input` is an optional character set used to decode the text
       data if `$content` is provided as a byte array or input stream. Defaults
@@ -994,8 +1015,8 @@ content.
       Defaults to stream.
 
   * Outputs:
-    * `$contents` is the resulting list of split [XML], [JSON], or Flat File
-      content.
+    * `$contents` is the resulting list of split content as a string, byte array,
+      or input stream depending on the `$mode.output` chosen.
 
     * `$content.types` is the list of MIME media types if the `$contents` list
       contains unlike media types.
