@@ -84,6 +84,34 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
+          <value name="field_name">$schema</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">string</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <null name="field_usereditable"/>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
           <value name="field_name">$destination</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -209,65 +237,122 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Delivers arbitrary content (string, bytes, or input stream) to the given destination 
-URI. Additional delivery protocols can be implemented by creating a service named for 
-the URI scheme in the folder tundra.content.deliver. Services in this folder should 
-implement the tundra.schema.content.deliver:handler specification.
+  <value name="node_comment">Delivers arbitrary content specified as a string, byte array, input stream, 
+or IData document to the given destination URI. 
+
+Additional delivery protocols can be implemented by creating a service named 
+for the URI scheme (with non-alphanumeric characters replaced with 
+underscores) in the folder tundra.content.deliver. Services in this folder 
+should implement the tundra.schema.content.deliver:handler specification.
 
 * Inputs:
-  * $content is a string, byte array, or input stream containing data to be delivered 
-    to the $destination URI.
+  * $content is a string, byte array, input stream, or IData document 
+    containing data to be delivered to the $destination URI.
 
-  * $content.type is an optional MIME media type describing the type content being 
-    delivered.
+    If $content is provided as an IData document, it will be serialized 
+    using an emitter determined in order of precedence by $schema and 
+    $content.type. If $schema is specified, the type of reference determines 
+    the emitter to use: a document reference will use the XML emitter, a 
+    flat file schema reference will use the Flat File emitter. If $schema is 
+    not specified, $content.type is used to determine the most appropriate 
+    emitter for the MIME media type in question. If neither $schema, nor
+    $content.type are specified, $content is serialized as XML by default.
 
-  * $encoding is an optional character set to use when $content is provided as a string 
-    to encode the text data upon delivery. Defaults to the Java virtual machine [default 
-    charset].
+    Emitter implementions are as follows:
+    * CSV: Tundra/tundra.csv:emit
+    * Flat File: WmFlatFile/pub.flatFile:convertToString
+    * JSON: Tundra/tundra.json:emit
+    * Pipe separated values: Tundra/tundra.csv:emit
+    * TSV: Tundra/tundra.csv:emit
+    * XML: WmPublic/pub.xml:documentToXMLString
+    * YAML: Tundra/tundra.yaml:emit
 
-  * $destination is a URI identifying the location where the given $content should be 
-    delivered. Supports the following delivery protocols / URI schemes:
-    * file: writes the given content to the file specified by the destination URI. The 
-      following additional options can be provided via the $pipeline document:
+  * $content.type is the MIME media type that describes the format of the 
+    given content: 
+    * For [CSV] content, a recognized [CSV] MIME media type, such as 
+      "text/csv", "text/comma-separated-values", or a type that includes a 
+      "+csv" suffix, must be specified.
+    * For [JSON] content, a recognized [JSON] MIME media type, such as 
+      "application/json", or a type that includes a "+json" suffix, must be 
+      specified.
+    * For pipe separated values content, a MIME media type "text/psv", 
+      "text/pipe-separated-values", or a type that includes a "+psv" suffix, 
+      must be specified.
+    * For [TSV] content, a recognized [TSV] MIME media type, such as 
+      "text/tsv", "text/tab-separated-values", or a type that includes a 
+      "+tsv" suffix, must be specified.
+    * For [YAML] content, a recognized [YAML] MIME media type, such as 
+      "application/yaml", or a type that includes a "+yaml" suffix, must be 
+      specified.
+
+  * $encoding is an optional character set to use when $content is provided 
+    as a string or IData document used to encode the text data upon 
+    delivery. Defaults to the Java virtual machine [default charset].
+
+  * $schema is the fully-qualified name of the parsing schema to use to
+    serialize $content (when provided as an IData document) to [XML] or 
+    Flat File content, and can have the following values:
+    * For [XML] content, specify the fully-qualified name of the document 
+      reference that defines the [XML] format.
+    * For Flat File content specify the fully-qualified name of the flat 
+      file schema that defines the Flat File format.
+
+    Defaults to serializing $content as [XML], if neither $content.type nor 
+    $schema are specified.
+
+  * $destination is a URI identifying the location where the given $content 
+    should be delivered. Supports the following delivery protocols / URI 
+    schemes:
+    * file: writes the given content to the file specified by the 
+      destination URI. The following additional options can be provided via 
+      the $pipeline document:
       * $mode: append / write
 
-    * http: transmits the given content to the destination URI. The following additional 
-      options can be provided via the $pipeline document:
+    * http: transmits the given content to the destination URI. The 
+      following additional options can be provided via the $pipeline 
+      document:
       * $method: get / put / post / delete / head / trace / options
       * $headers/*: additional HTTP headers as required
-      * $authority/user: the username to log on to the remote web server with
-      * $authority/password: the password to log on to the remote web server with
+      * $authority/user: the username used to log on to the remote web server
+      * $authority/password: the password used to log on to the remote web 
+        server 
 
     * https: refer to http
 
-    * mailto: sends an email with the given content attached. An example mailto URI is as 
-      follows: 
+    * mailto: sends an email with the given content attached. An example 
+      mailto URI is as follows: 
       
-      mailto:bob@example.com?cc=jane@example.com&amp;subject=Example&amp;body=Example&amp;attachment=message.xml. 
+          mailto:bob@example.com?cc=jane@example.com&amp;subject=Example&amp;body=Example&amp;attachment=message.xml
       
-      The following additional override options can be provided via the $pipeline document:
+      The following additional override options can be provided via the 
+      $pipeline document:
       * $attachment: the attached file's name
       * $from: email address to send the email from
       * $subject: the subject line text
       * $body: the main text of the email
       * $smtp: an SMTP URI specifying the SMTP server to use (for example, 
-        smtp://user:password@host:port), defaults to the SMTP server configured in the 
-        Integration Server setting watt.server.smtpServer.
+        smtp://user:password@host:port), defaults to the SMTP server 
+        configured in the Integration Server setting watt.server.smtpServer.
 
-  * $pipeline is an optional IData document for providing arbitrary variables to the 
-    delivery implementation service.
+  * $pipeline is an optional IData document for providing arbitrary 
+    variables to the delivery implementation service.
 
 * Outputs:
-  * $message is an optional response message, useful for logging, that may be returned 
-    by specific delivery protocols.
+  * $message is an optional response message, useful for logging, that may 
+    be returned by specific delivery protocols.
 
-  * $response is an optional response content returned by the delivery (for example, 
-    the HTTP response body).
+  * $response is an optional response content returned by the delivery (for 
+    example, the HTTP response body).
 
-  * $response.type is an optional MIME media type describing the type of $response 
-    returned.
+  * $response.type is an optional MIME media type describing the type of 
+    $response returned.
 
-[default charset]: &lt;http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()&gt;</value>
+[CSV]: &lt;http://en.wikipedia.org/wiki/Comma-separated_values&gt;
+[default charset]: &lt;http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()&gt;
+[JSON]: &lt;http://www.json.org&gt;
+[TSV]: &lt;http://en.wikipedia.org/wiki/Tab-separated_values&gt;
+[XML]: &lt;http://www.w3.org/XML/&gt;
+[YAML]: &lt;http://www.yaml.org&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

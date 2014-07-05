@@ -640,22 +640,72 @@ content.
 
 * #### tundra.content:deliver
 
-  Delivers arbitrary content (string, bytes, or input stream) to the given
-  destination URI.
+  Delivers arbitrary content specified as a string, byte array, input stream,
+  or IData document to the given destination URI.
 
   Additional delivery protocols can be implemented by creating a service named
-  for the URI scheme in the folder `Tundra/tundra.content.deliver`.
-  Services in this folder should implement the
-  `Tundra/tundra.schema.content.deliver:handler` specification.
+  for the URI scheme (with non-alphanumeric characters replaced with
+  underscores) in the folder tundra.content.deliver. Services in this folder
+  should implement the tundra.schema.content.deliver:handler specification.
 
   * Inputs:
-    * `$content` is a string, byte array, or input stream containing data to
-      be delivered to the `$destination` URI.
+    * `$content` is a string, byte array, input stream, or IData document
+      containing data to be delivered to the `$destination` URI.
 
-    * `$destination` is a URI identifying the location where the given
-      `$content` should be delivered. Supports the following delivery
-      protocols / URI schemes:
+      If `$content` is provided as an IData document, it will be serialized
+      using an emitter determined in order of precedence by `$schema` and
+      `$content.type`. If `$schema` is specified, the type of reference determines
+      the emitter to use: a document reference will use the XML emitter, a
+      flat file schema reference will use the Flat File emitter. If `$schema` is
+      not specified, `$content.type` is used to determine the most appropriate
+      emitter for the MIME media type in question. If neither `$schema`, nor
+      `$content.type` are specified, `$content` is serialized as XML by default.
 
+      Emitter implementions are as follows:
+      * CSV: `Tundra/tundra.csv:emit`
+      * Flat File: `WmFlatFile/pub.flatFile:convertToString`
+      * JSON: `Tundra/tundra.json:emit`
+      * Pipe separated values: `Tundra/tundra.csv:emit`
+      * TSV: `Tundra/tundra.csv:emit`
+      * XML: `WmPublic/pub.xml:documentToXMLString`
+      * YAML: `Tundra/tundra.yaml:emit`
+
+    * `$content.type` is the MIME media type that describes the format of the
+      given content:
+      * For [CSV] content, a recognized [CSV] MIME media type, such as
+        "text/csv", "text/comma-separated-values", or a type that includes a
+        "+csv" suffix, must be specified.
+      * For [JSON] content, a recognized [JSON] MIME media type, such as
+        "application/json", or a type that includes a "+json" suffix, must be
+        specified.
+      * For pipe separated values content, a MIME media type "text/psv",
+        "text/pipe-separated-values", or a type that includes a "+psv" suffix,
+        must be specified.
+      * For [TSV] content, a recognized [TSV] MIME media type, such as
+        "text/tsv", "text/tab-separated-values", or a type that includes a
+        "+tsv" suffix, must be specified.
+      * For [YAML] content, a recognized [YAML] MIME media type, such as
+        "application/yaml", or a type that includes a "+yaml" suffix, must be
+        specified.
+
+    * `$encoding` is an optional character set to use when `$content` is provided
+      as a string or IData document used to encode the text data upon
+      delivery. Defaults to the Java virtual machine [default charset].
+
+    * `$schema` is the fully-qualified name of the parsing schema to use to
+      serialize `$content` (when provided as an IData document) to [XML] or
+      Flat File content, and can have the following values:
+      * For [XML] content, specify the fully-qualified name of the document
+        reference that defines the [XML] format.
+      * For Flat File content specify the fully-qualified name of the flat
+        file schema that defines the Flat File format.
+
+      Defaults to serializing `$content` as [XML], if neither `$content.type` nor
+      `$schema` are specified.
+
+    * `$destination` is a URI identifying the location where the given `$content`
+      should be delivered. Supports the following delivery protocols / URI
+      schemes:
       * `file`: writes the given content to the file specified by the
         destination URI. The following additional options can be provided via
         the `$pipeline` document:
@@ -666,11 +716,11 @@ content.
         document:
         * `$method`: get / put / post / delete / head / trace / options
         * `$headers/*`: additional HTTP headers as required
-        * `$authority/user`: the username to log on to the remote web server
-        * `$authority/password`: the password to log on to the remote web
+        * `$authority/user`: the username used to log on to the remote web server
+        * `$authority/password`: the password used to log on to the remote web
           server
 
-      * `https`: refer to `http`
+      * `https`: refer to http
 
       * `mailto`: sends an email with the given content attached. An example
         mailto URI is as follows:
@@ -685,27 +735,7 @@ content.
         * `$body`: the main text of the email
         * `$smtp`: an SMTP URI specifying the SMTP server to use (for example,
           `smtp://user:password@host:port`), defaults to the SMTP server
-           configured in the Integration Server setting
-           `watt.server.smtpServer`.
-
-    * `$content.type` is the MIME media type that describes the format of the
-      content being delivered. For [JSON] content, a recognized [JSON] MIME
-      media type, such as "application/json", must be specified.
-
-    * `$schema` is the fully-qualified name of the parsing schema to use when
-      serializing the document to [XML] or Flat File content, and can have the
-      following values:
-      * For [XML] content, specify the fully-qualified name of the document
-        reference that defines the [XML] format.
-      * For Flat File content specify the fully-qualified name of the flat
-        file schema that defines the Flat File format.
-
-      Defaults to serializing `$content` as [XML], if neither `$content.type` nor
-      `$schema` are specified.
-
-    * `$encoding` is an optional character set to use when `$content` is
-      provided as a string to encode the text data upon delivery. Defaults to
-      the Java virtual machine [default charset].
+          configured in the Integration Server setting `watt.server.smtpServer`.
 
     * `$pipeline` is an optional IData document for providing arbitrary
       variables to the delivery implementation service.
@@ -714,8 +744,8 @@ content.
     * `$message` is an optional response message, useful for logging, that may
       be returned by specific delivery protocols.
 
-    * `$response` is an optional response content returned by the delivery
-      (for example, the HTTP response body).
+    * `$response` is an optional response content returned by the delivery (for
+      example, the HTTP response body).
 
     * `$response.type` is an optional MIME media type describing the type of
       `$response` returned.
