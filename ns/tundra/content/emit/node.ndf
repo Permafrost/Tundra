@@ -231,7 +231,8 @@
   * $content.type is the MIME media type that describes the format of the 
     resulting serialized content: 
     * For [CSV] content, a recognized [CSV] MIME media type, such as 
-      "text/csv", "text/comma-separated-values", or a type that includes a "+csv" suffix, must be specified.
+      "text/csv", "text/comma-separated-values", or a type that includes a 
+      "+csv" suffix, must be specified.
     * For [JSON] content, a recognized [JSON] MIME media type, such as 
       "application/json", or a type that includes a "+json" suffix, must be 
       specified.
