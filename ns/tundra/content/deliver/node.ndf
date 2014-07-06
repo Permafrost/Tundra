@@ -308,6 +308,29 @@ should implement the tundra.schema.content.deliver:handler specification.
       the $pipeline document:
       * $mode: append / write
 
+    * ftp: uploads the given content to the FTP server, directory and file 
+      specified by the destination URI. An example FTP URI is as follows:
+
+          ftp://aladdin:opensesame@example.com:21/path/file?append=true&amp;active=true&amp;ascii=true
+
+      The following additional options can be provided via the $pipeline 
+      document:
+      * $user is the username used to log in to the FTP server. Defaults to 
+        the username specified in the authority section of the URI, if not 
+        specified.
+      * $password is the password used to log in to the FTP server. Defaults 
+        to the password specified in the authority section of the URI, if 
+        not specified.
+      * $active is a boolean which when true indicates that the connection 
+        to the FTP server should be in active mode. Defaults to false 
+        (passive mode), if not specified.
+      * $append is a boolean which when true will append the given content 
+        to the file, rather than overwrite it, if the file already exists. 
+        Defaults to false (overwriting), if not specified.
+      * $ascii is a boolean which when true indicates that the file transfer 
+        should be made in ascii mode. Defaults to false (binary mode), if 
+        not specified.
+
     * http: transmits the given content to the destination URI. The 
       following additional options can be provided via the $pipeline 
       document:
