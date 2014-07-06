@@ -856,35 +856,27 @@
 
   <!-- nodes -->
 
-<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$pattern.input;1;0">
+<MAPCOPY NAME="Link" FROM="/$destination;2;0/query;2;0/timeout;1;0" TO="/$duration;1;0" CONDITION="%$destination/query/timeout%">
+</MAPCOPY>
+
+<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$duration;1;0">
   <DATA ENCODING="XMLValues" I18N="true">
 
 <Values version="2.0">
-  <value name="xml">xml</value>
+  <value name="xml">PT60S</value>
   <record name="type" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
     <value name="node_comment"></value>
     <record name="node_hints" javaclass="com.wm.util.Values">
-      <value name="field_usereditable">false</value>
+      <null name="field_usereditable"/>
       <value name="field_largerEditor">false</value>
       <value name="field_password">false</value>
     </record>
     <value name="is_public">false</value>
-    <value name="field_name">$pattern.input</value>
+    <value name="field_name">$duration</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
     <value name="field_opt">true</value>
-    <array name="field_options" type="value" depth="1">
-      <value>xml</value>
-      <value>milliseconds</value>
-      <value>seconds</value>
-      <value>minutes</value>
-      <value>hours</value>
-      <value>days</value>
-      <value>weeks</value>
-      <value>months</value>
-      <value>years</value>
-    </array>
     <record name="field_content_type" javaclass="com.wm.util.Values">
       <value name="contentType">1</value>
       <value name="internalType">reference</value>
@@ -950,27 +942,35 @@
 </DATA>
 </MAPSET>
 
-<MAPCOPY NAME="Link" FROM="/$destination;2;0/query;2;0/timeout;1;0" TO="/$duration;1;0" CONDITION="%$destination/query/timeout%">
-</MAPCOPY>
-
-<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$duration;1;0">
+<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$pattern.input;1;0">
   <DATA ENCODING="XMLValues" I18N="true">
 
 <Values version="2.0">
-  <value name="xml">PT60S</value>
+  <value name="xml">xml</value>
   <record name="type" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
     <value name="node_comment"></value>
     <record name="node_hints" javaclass="com.wm.util.Values">
-      <null name="field_usereditable"/>
+      <value name="field_usereditable">false</value>
       <value name="field_largerEditor">false</value>
       <value name="field_password">false</value>
     </record>
     <value name="is_public">false</value>
-    <value name="field_name">$duration</value>
+    <value name="field_name">$pattern.input</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
     <value name="field_opt">true</value>
+    <array name="field_options" type="value" depth="1">
+      <value>xml</value>
+      <value>milliseconds</value>
+      <value>seconds</value>
+      <value>minutes</value>
+      <value>hours</value>
+      <value>days</value>
+      <value>weeks</value>
+      <value>months</value>
+      <value>years</value>
+    </array>
     <record name="field_content_type" javaclass="com.wm.util.Values">
       <value name="contentType">1</value>
       <value name="internalType">reference</value>
@@ -4796,7 +4796,27 @@
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
         <value name="is_public">false</value>
+        <value name="field_name">transfertype</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$path</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">transfermode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -4959,7 +4979,27 @@
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
         <value name="is_public">false</value>
+        <value name="field_name">transfertype</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$path</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">transfermode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -5181,6 +5221,12 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="node_comment"></value>
+        <record name="node_hints" javaclass="com.wm.util.Values">
+          <null name="field_usereditable"/>
+          <value name="field_largerEditor">false</value>
+          <value name="field_password">false</value>
+        </record>
         <value name="is_public">false</value>
         <value name="field_name">timeout</value>
         <value name="field_type">string</value>
@@ -5638,6 +5684,52 @@
             <value name="form_qualified">false</value>
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="node_type">unknown</value>
+                <value name="is_public">false</value>
+                <value name="field_name">ascii</value>
+                <value name="field_type">string</value>
+                <value name="field_dim">0</value>
+                <value name="nillable">true</value>
+                <value name="form_qualified">false</value>
+                <value name="is_global">false</value>
+              </record>
+              <record javaclass="com.wm.util.Values">
+                <value name="node_type">unknown</value>
+                <value name="node_comment"></value>
+                <record name="node_hints" javaclass="com.wm.util.Values">
+                  <null name="field_usereditable"/>
+                  <value name="field_largerEditor">false</value>
+                  <value name="field_password">false</value>
+                </record>
+                <value name="is_public">false</value>
+                <value name="field_name">timeout</value>
+                <value name="field_type">string</value>
+                <value name="field_dim">0</value>
+                <value name="nillable">true</value>
+                <value name="form_qualified">false</value>
+                <value name="is_global">false</value>
+              </record>
+              <record javaclass="com.wm.util.Values">
+                <value name="node_type">unknown</value>
+                <value name="is_public">false</value>
+                <value name="field_name">active</value>
+                <value name="field_type">string</value>
+                <value name="field_dim">0</value>
+                <value name="nillable">true</value>
+                <value name="form_qualified">false</value>
+                <value name="is_global">false</value>
+              </record>
+              <record javaclass="com.wm.util.Values">
+                <value name="node_type">unknown</value>
+                <value name="is_public">false</value>
+                <value name="field_name">append</value>
+                <value name="field_type">string</value>
+                <value name="field_dim">0</value>
+                <value name="nillable">true</value>
+                <value name="form_qualified">false</value>
+                <value name="is_global">false</value>
+              </record>
             </array>
             <value name="modifiable">true</value>
           </record>
@@ -5674,16 +5766,12 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">$timeout</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
+        <value name="node_comment"></value>
+        <record name="node_hints" javaclass="com.wm.util.Values">
+          <null name="field_usereditable"/>
+          <value name="field_largerEditor">false</value>
+          <value name="field_password">false</value>
+        </record>
         <value name="is_public">false</value>
         <value name="field_name">transfertype</value>
         <value name="field_type">string</value>
@@ -5735,23 +5823,81 @@
 <MAPCOPY NAME="Link" FROM="/$encoding;1;0" TO="/encoding;1;0">
 </MAPCOPY>
 
-<MAPDELETE NAME="Dropper" FIELD="/$timeout;1;0">
-</MAPDELETE>
-
 <MAPDELETE NAME="Dropper" FIELD="/$encoding;1;0">
 </MAPDELETE>
 
 <MAPDELETE NAME="Dropper" FIELD="/$content.type;1;0">
 </MAPDELETE>
 
-<MAPCOPY NAME="Link" FROM="/$timeout;1;0" TO="/timeout;1;0">
-</MAPCOPY>
-
-<MAPCOPY NAME="Link" FROM="/$timeout;1;0" TO="/clientTimeout;1;0">
-</MAPCOPY>
-
 <MAPCOPY NAME="Link" FROM="/transfertype;1;0" TO="/transfertype;1;0">
 </MAPCOPY>
+
+<MAPSET NAME="Setter" OVERWRITE="false" VARIABLES="false" FIELD="/serverport;1;0">
+  <DATA ENCODING="XMLValues" I18N="true">
+
+<Values version="2.0">
+  <value name="xml">21</value>
+  <record name="type" javaclass="com.wm.util.Values">
+    <value name="node_type">unknown</value>
+    <value name="node_comment"></value>
+    <record name="node_hints" javaclass="com.wm.util.Values">
+      <null name="field_usereditable"/>
+      <value name="field_largerEditor">false</value>
+      <value name="field_password">false</value>
+    </record>
+    <value name="is_public">false</value>
+    <value name="field_name">serverport</value>
+    <value name="field_type">string</value>
+    <value name="field_dim">0</value>
+    <value name="nillable">true</value>
+    <value name="form_qualified">false</value>
+    <value name="is_global">false</value>
+  </record>
+</Values>
+</DATA>
+</MAPSET>
+
+<MAPSET NAME="Setter" OVERWRITE="false" VARIABLES="false" FIELD="/username;1;0">
+  <DATA ENCODING="XMLValues" I18N="true">
+
+<Values version="2.0">
+  <value name="xml">anonymous</value>
+  <record name="type" javaclass="com.wm.util.Values">
+    <value name="node_type">unknown</value>
+    <value name="node_comment"></value>
+    <record name="node_hints" javaclass="com.wm.util.Values">
+      <null name="field_usereditable"/>
+      <value name="field_largerEditor">false</value>
+      <value name="field_password">false</value>
+    </record>
+    <value name="is_public">false</value>
+    <value name="field_name">username</value>
+    <value name="field_type">string</value>
+    <value name="field_dim">0</value>
+    <value name="nillable">true</value>
+    <value name="form_qualified">false</value>
+    <value name="is_global">false</value>
+  </record>
+</Values>
+</DATA>
+</MAPSET>
+
+<MAPSET NAME="Setter" OVERWRITE="false" VARIABLES="false" FIELD="/password;1;0">
+  <DATA ENCODING="b64" I18N="true">Cgo8VmFsdWVzIHZlcnNpb249IjIuMCI+CiAgPHZhbHVlIG5hbWU9InhtbCI+Z3Vlc3Q8L3ZhbHVl
+PgogIDxyZWNvcmQgbmFtZT0idHlwZSIgamF2YWNsYXNzPSJjb20ud20udXRpbC5WYWx1ZXMiPgog
+ICAgPHZhbHVlIG5hbWU9Im5vZGVfdHlwZSI+cmVjb3JkPC92YWx1ZT4KICAgIDx2YWx1ZSBuYW1l
+PSJub2RlX2NvbW1lbnQiPjwvdmFsdWU+CiAgICA8cmVjb3JkIG5hbWU9Im5vZGVfaGludHMiIGph
+dmFjbGFzcz0iY29tLndtLnV0aWwuVmFsdWVzIj4KICAgICAgPG51bGwgbmFtZT0iZmllbGRfdXNl
+cmVkaXRhYmxlIi8+CiAgICAgIDx2YWx1ZSBuYW1lPSJmaWVsZF9sYXJnZXJFZGl0b3IiPmZhbHNl
+PC92YWx1ZT4KICAgICAgPHZhbHVlIG5hbWU9ImZpZWxkX3Bhc3N3b3JkIj50cnVlPC92YWx1ZT4K
+ICAgIDwvcmVjb3JkPgogICAgPHZhbHVlIG5hbWU9ImlzX3B1YmxpYyI+ZmFsc2U8L3ZhbHVlPgog
+ICAgPHZhbHVlIG5hbWU9ImZpZWxkX25hbWUiPnBhc3N3b3JkPC92YWx1ZT4KICAgIDx2YWx1ZSBu
+YW1lPSJmaWVsZF90eXBlIj5zdHJpbmc8L3ZhbHVlPgogICAgPHZhbHVlIG5hbWU9ImZpZWxkX2Rp
+bSI+MDwvdmFsdWU+CiAgICA8dmFsdWUgbmFtZT0iZmllbGRfb3B0Ij50cnVlPC92YWx1ZT4KICAg
+IDx2YWx1ZSBuYW1lPSJuaWxsYWJsZSI+dHJ1ZTwvdmFsdWU+CiAgICA8dmFsdWUgbmFtZT0iZm9y
+bV9xdWFsaWZpZWQiPmZhbHNlPC92YWx1ZT4KICAgIDx2YWx1ZSBuYW1lPSJpc19nbG9iYWwiPmZh
+bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
+</MAPSET>
 
 <MAPSET NAME="Setter" OVERWRITE="false" VARIABLES="false" FIELD="/newSession;1;0">
   <DATA ENCODING="XMLValues" I18N="true">
@@ -5783,72 +5929,8 @@
 </DATA>
 </MAPSET>
 
-<MAPSET NAME="Setter" OVERWRITE="false" VARIABLES="false" FIELD="/password;1;0">
-  <DATA ENCODING="b64" I18N="true">Cgo8VmFsdWVzIHZlcnNpb249IjIuMCI+CiAgPHZhbHVlIG5hbWU9InhtbCI+Z3Vlc3Q8L3ZhbHVl
-PgogIDxyZWNvcmQgbmFtZT0idHlwZSIgamF2YWNsYXNzPSJjb20ud20udXRpbC5WYWx1ZXMiPgog
-ICAgPHZhbHVlIG5hbWU9Im5vZGVfdHlwZSI+cmVjb3JkPC92YWx1ZT4KICAgIDx2YWx1ZSBuYW1l
-PSJub2RlX2NvbW1lbnQiPjwvdmFsdWU+CiAgICA8cmVjb3JkIG5hbWU9Im5vZGVfaGludHMiIGph
-dmFjbGFzcz0iY29tLndtLnV0aWwuVmFsdWVzIj4KICAgICAgPG51bGwgbmFtZT0iZmllbGRfdXNl
-cmVkaXRhYmxlIi8+CiAgICAgIDx2YWx1ZSBuYW1lPSJmaWVsZF9sYXJnZXJFZGl0b3IiPmZhbHNl
-PC92YWx1ZT4KICAgICAgPHZhbHVlIG5hbWU9ImZpZWxkX3Bhc3N3b3JkIj50cnVlPC92YWx1ZT4K
-ICAgIDwvcmVjb3JkPgogICAgPHZhbHVlIG5hbWU9ImlzX3B1YmxpYyI+ZmFsc2U8L3ZhbHVlPgog
-ICAgPHZhbHVlIG5hbWU9ImZpZWxkX25hbWUiPnBhc3N3b3JkPC92YWx1ZT4KICAgIDx2YWx1ZSBu
-YW1lPSJmaWVsZF90eXBlIj5zdHJpbmc8L3ZhbHVlPgogICAgPHZhbHVlIG5hbWU9ImZpZWxkX2Rp
-bSI+MDwvdmFsdWU+CiAgICA8dmFsdWUgbmFtZT0iZmllbGRfb3B0Ij50cnVlPC92YWx1ZT4KICAg
-IDx2YWx1ZSBuYW1lPSJuaWxsYWJsZSI+dHJ1ZTwvdmFsdWU+CiAgICA8dmFsdWUgbmFtZT0iZm9y
-bV9xdWFsaWZpZWQiPmZhbHNlPC92YWx1ZT4KICAgIDx2YWx1ZSBuYW1lPSJpc19nbG9iYWwiPmZh
-bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
-</MAPSET>
-
-<MAPSET NAME="Setter" OVERWRITE="false" VARIABLES="false" FIELD="/username;1;0">
-  <DATA ENCODING="XMLValues" I18N="true">
-
-<Values version="2.0">
-  <value name="xml">anonymous</value>
-  <record name="type" javaclass="com.wm.util.Values">
-    <value name="node_type">unknown</value>
-    <value name="node_comment"></value>
-    <record name="node_hints" javaclass="com.wm.util.Values">
-      <null name="field_usereditable"/>
-      <value name="field_largerEditor">false</value>
-      <value name="field_password">false</value>
-    </record>
-    <value name="is_public">false</value>
-    <value name="field_name">username</value>
-    <value name="field_type">string</value>
-    <value name="field_dim">0</value>
-    <value name="nillable">true</value>
-    <value name="form_qualified">false</value>
-    <value name="is_global">false</value>
-  </record>
-</Values>
-</DATA>
-</MAPSET>
-
-<MAPSET NAME="Setter" OVERWRITE="false" VARIABLES="false" FIELD="/serverport;1;0">
-  <DATA ENCODING="XMLValues" I18N="true">
-
-<Values version="2.0">
-  <value name="xml">21</value>
-  <record name="type" javaclass="com.wm.util.Values">
-    <value name="node_type">unknown</value>
-    <value name="node_comment"></value>
-    <record name="node_hints" javaclass="com.wm.util.Values">
-      <null name="field_usereditable"/>
-      <value name="field_largerEditor">false</value>
-      <value name="field_password">false</value>
-    </record>
-    <value name="is_public">false</value>
-    <value name="field_name">serverport</value>
-    <value name="field_type">string</value>
-    <value name="field_dim">0</value>
-    <value name="nillable">true</value>
-    <value name="form_qualified">false</value>
-    <value name="is_global">false</value>
-  </record>
-</Values>
-</DATA>
-</MAPSET>
+<MAPCOPY NAME="Link" FROM="/$destination;2;0/query;2;0/timeout;1;0" TO="/timeout;1;0">
+</MAPCOPY>
 </MAP>
 
 <MAP MODE="OUTPUT">

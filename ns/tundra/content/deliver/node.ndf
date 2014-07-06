@@ -330,6 +330,10 @@ should implement the tundra.schema.content.deliver:handler specification.
       * $ascii is a boolean which when true indicates that the file transfer 
         should be made in ascii mode. Defaults to false (binary mode), if 
         not specified.
+      * $timeout is an optional XML duration string which specifies how long 
+        the client waits for a response from the server before timing out 
+        and terminating the request with an error. Defaults to PT60S, if not 
+        specified.
 
     * http: transmits the given content to the destination URI. The 
       following additional options can be provided via the $pipeline 
