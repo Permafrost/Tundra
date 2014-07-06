@@ -7,7 +7,6 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
-      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -21,7 +20,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$document</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
@@ -31,7 +29,6 @@
           <value name="is_global">false</value>
           <array name="rec_fields" type="record" depth="1">
           </array>
-          <value name="modifiable">true</value>
         </record>
         <record javaclass="com.wm.util.Values">
           <value name="node_type">record</value>
@@ -41,7 +38,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$destination</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -68,7 +64,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$content.type</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -96,7 +91,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$encoding</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -124,7 +118,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$schema</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -151,7 +144,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$pipeline</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
@@ -161,14 +153,11 @@
           <value name="is_global">false</value>
           <array name="rec_fields" type="record" depth="1">
           </array>
-          <value name="modifiable">true</value>
         </record>
       </array>
-      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
-      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -183,7 +172,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$message</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -210,7 +198,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$response</value>
           <value name="field_type">object</value>
           <value name="field_dim">0</value>
@@ -227,7 +214,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$response.type</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -248,7 +234,6 @@
           <value name="is_global">false</value>
         </record>
       </array>
-      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">Serializes the given IData document, and delivers it to the given 
@@ -270,6 +255,33 @@ specification.
       destination URI. The following additional options can be provided via 
       the $pipeline document:
       * $mode: append / write
+
+    * ftp: uploads the given content to the FTP server, directory and file 
+      specified by the destination URI. An example FTP URI is as follows:
+
+          ftp://aladdin:opensesame@example.com:21/path/file?append=true&amp;active=true&amp;ascii=true
+
+      The following additional options can be provided via the $pipeline 
+      document:
+      * $user is the username used to log in to the FTP server. Defaults to 
+        the username specified in the authority section of the URI, if not 
+        specified.
+      * $password is the password used to log in to the FTP server. Defaults 
+        to the password specified in the authority section of the URI, if 
+        not specified.
+      * $active is a boolean which when true indicates that the connection 
+        to the FTP server should be in active mode. Defaults to false 
+        (passive mode), if not specified.
+      * $append is a boolean which when true will append the given content 
+        to the file, rather than overwrite it, if the file already exists. 
+        Defaults to false (overwriting), if not specified.
+      * $ascii is a boolean which when true indicates that the file transfer 
+        should be made in ascii mode. Defaults to false (binary mode), if 
+        not specified.
+      * $timeout is an optional XML duration string which specifies how long 
+        the client waits for a response from the server before timing out 
+        and terminating the request with an error. Defaults to PT60S, if not 
+        specified.
 
     * http: transmits the given content to the destination URI. The 
       following additional options can be provided via the $pipeline 
@@ -296,7 +308,38 @@ specification.
         smtp://user:password@host:port), defaults to the SMTP server 
         configured in the Integration Server setting watt.server.smtpServer
 
-  * $content.type is the MIME media type that describes the format of the 
+    * sap+idoc: sends an IDoc XML message to an SAP system. Both opaque 
+      and non-opaque URIs are allowed: opaque URIs are useful if the SAP 
+      Adapter alias contains characters not permitted in a normal domain 
+      name, such as underscores.
+
+      An example opaque sap+idoc URI is as follows, where sap_r3 is the 
+      SAP Adapter alias name, and the user and password are provided as 
+      query string parameters:
+
+          sap+idoc:sap_r3?user=aladdin&amp;password=opensesame&amp;client=200&amp;language=en&amp;queue=xyz
+
+      An example non-opaque sap+idoc URI is as follows, where sappr3 is the 
+      SAP Adapter alias name, and the user and password are provided in the 
+      authority section of the URI:
+
+          sap+idoc://aladdin:opensesame@sappr3?client=200&amp;languange=en&amp;queue=xyz
+
+      The following additional override options can be provided via the 
+      $pipeline document, and if specified will overrided the relevant 
+      parts of the destination URI:
+      * $user is the username used for the SAP session. Defaults to the 
+        SAP Adapter alias username, if not specified.
+      * $password is the password used for the SAP session. Defaults to 
+        the SAP Adapter alias password, if not specified.
+      * $client is the SAP client used for the SAP session. Defaults to 
+        the SAP Adapter alias client, if not specified.
+      * $language is the language used for the SAP session. Defaults to 
+        the SAP Adapter alias language, if not specified.
+      * $queue is the optional name of the SAP system inbound queue, 
+        required when using queued remote function calls (qRFC).
+
+  * $content.type is the MIME media type that describes the format of the 
     content being delivered. For [JSON] content, a recognized [JSON] MIME 
     media type, such as "application/json", must be specified.
 
@@ -345,16 +388,10 @@ specification.
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
-  <null name="auditfields_input"/>
-  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
-  <value name="pipeline_option">1</value>
-  <null name="originURI"/>
-  <value name="modifiable">true</value>
-  <value name="is_public">false</value>
 </Values>

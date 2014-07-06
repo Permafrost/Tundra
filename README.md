@@ -4,8 +4,7 @@ A package of useful services for webMethods Integration Server 7.1 and higher.
 
 ## Related
 
-See also [TundraTN](https://github.com/Permafrost/TundraTN), a package of useful services 
-for webMethods Trading Networks 7.1 and higher.
+See also [TundraTN](https://github.com/Permafrost/TundraTN), a package of useful services for webMethods Trading Networks 7.1 and higher.
 
 ## Dependencies
 
@@ -14,12 +13,6 @@ Tundra is dependent on the following packages:
 * WmFlatFile
 * WmPublic
 * WmRoot
-
-Tundra is optionally dependent on the following packages, which if present enable additional 
-features:
-
-* WmSAP - when the webMethods SAP Adapter is installed, Tundra supports SAP related features, 
-  such as sending IDocs to SAP via tundra.content:deliver.
 
 ## Installation
 
@@ -647,114 +640,37 @@ content.
 
 * #### tundra.content:deliver
 
-  Delivers arbitrary content specified as a string, byte array, input stream,
-  or IData document to the given destination URI.
+  Delivers arbitrary content (string, bytes, or input stream) to the given
+  destination URI.
 
   Additional delivery protocols can be implemented by creating a service named
-  for the URI scheme (with non-alphanumeric characters replaced with
-  underscores) in the folder tundra.content.deliver. Services in this folder
-  should implement the tundra.schema.content.deliver:handler specification.
+  for the URI scheme in the folder `Tundra/tundra.content.deliver`.
+  Services in this folder should implement the
+  `Tundra/tundra.schema.content.deliver:handler` specification.
 
   * Inputs:
-    * `$content` is a string, byte array, input stream, or IData document
-      containing data to be delivered to the `$destination` URI.
+    * `$content` is a string, byte array, or input stream containing data to
+      be delivered to the `$destination` URI.
 
-      If `$content` is provided as an IData document, it will be serialized
-      using an emitter determined in order of precedence by `$schema` and
-      `$content.type`. If `$schema` is specified, the type of reference determines
-      the emitter to use: a document reference will use the XML emitter, a
-      flat file schema reference will use the Flat File emitter. If `$schema` is
-      not specified, `$content.type` is used to determine the most appropriate
-      emitter for the MIME media type in question. If neither `$schema`, nor
-      `$content.type` are specified, `$content` is serialized as XML by default.
+    * `$destination` is a URI identifying the location where the given
+      `$content` should be delivered. Supports the following delivery
+      protocols / URI schemes:
 
-      Emitter implementions are as follows:
-      * CSV: `Tundra/tundra.csv:emit`
-      * Flat File: `WmFlatFile/pub.flatFile:convertToString`
-      * JSON: `Tundra/tundra.json:emit`
-      * Pipe separated values: `Tundra/tundra.csv:emit`
-      * TSV: `Tundra/tundra.csv:emit`
-      * XML: `WmPublic/pub.xml:documentToXMLString`
-      * YAML: `Tundra/tundra.yaml:emit`
-
-    * `$content.type` is the MIME media type that describes the format of the
-      given content:
-      * For [CSV] content, a recognized [CSV] MIME media type, such as
-        "text/csv", "text/comma-separated-values", or a type that includes a
-        "+csv" suffix, must be specified.
-      * For [JSON] content, a recognized [JSON] MIME media type, such as
-        "application/json", or a type that includes a "+json" suffix, must be
-        specified.
-      * For pipe separated values content, a MIME media type "text/psv",
-        "text/pipe-separated-values", or a type that includes a "+psv" suffix,
-        must be specified.
-      * For [TSV] content, a recognized [TSV] MIME media type, such as
-        "text/tsv", "text/tab-separated-values", or a type that includes a
-        "+tsv" suffix, must be specified.
-      * For [YAML] content, a recognized [YAML] MIME media type, such as
-        "application/yaml", or a type that includes a "+yaml" suffix, must be
-        specified.
-
-    * `$encoding` is an optional character set to use when `$content` is provided
-      as a string or IData document used to encode the text data upon
-      delivery. Defaults to the Java virtual machine [default charset].
-
-    * `$schema` is the fully-qualified name of the parsing schema to use to
-      serialize `$content` (when provided as an IData document) to [XML] or
-      Flat File content, and can have the following values:
-      * For [XML] content, specify the fully-qualified name of the document
-        reference that defines the [XML] format.
-      * For Flat File content specify the fully-qualified name of the flat
-        file schema that defines the Flat File format.
-
-      Defaults to serializing `$content` as [XML], if neither `$content.type` nor
-      `$schema` are specified.
-
-    * `$destination` is a URI identifying the location where the given `$content`
-      should be delivered. Supports the following delivery protocols / URI
-      schemes:
       * `file`: writes the given content to the file specified by the
         destination URI. The following additional options can be provided via
         the `$pipeline` document:
         * `$mode`: append / write
-
-      * `ftp`: uploads the given content to the FTP server, directory and file 
-        specified by the destination URI. An example FTP URI is as follows:
-
-            ftp://aladdin:opensesame@example.com:21/path/file?append=true&active=true&ascii=true
-
-        The following additional options can be provided via the `$pipeline` 
-        document:
-        * `$user` is the username used to log in to the FTP server. Defaults to 
-          the username specified in the authority section of the URI, if not 
-          specified.
-        * `$password` is the password used to log in to the FTP server. Defaults 
-          to the password specified in the authority section of the URI, if 
-          not specified.
-        * `$active` is a boolean which when true indicates that the connection 
-          to the FTP server should be in active mode. Defaults to false 
-          (passive mode), if not specified.
-        * `$append` is a boolean which when true will append the given content 
-          to the file, rather than overwrite it, if the file already exists. 
-          Defaults to false (overwriting), if not specified.
-        * `$ascii` is a boolean which when true indicates that the file transfer 
-          should be made in ascii mode. Defaults to false (binary mode), if 
-          not specified.
-        * `$timeout` is an optional XML duration string which specifies how long 
-          the client waits for a response from the server before timing out 
-          and terminating the request with an error. Defaults to PT60S, if not 
-          specified.
 
       * `http`: transmits the given content to the destination URI. The
         following additional options can be provided via the `$pipeline`
         document:
         * `$method`: get / put / post / delete / head / trace / options
         * `$headers/*`: additional HTTP headers as required
-        * `$authority/user`: the username used to log on to the remote web server
-        * `$authority/password`: the password used to log on to the remote web
+        * `$authority/user`: the username to log on to the remote web server
+        * `$authority/password`: the password to log on to the remote web
           server
 
-      * `https`: refer to http
+      * `https`: refer to `http`
 
       * `mailto`: sends an email with the given content attached. An example
         mailto URI is as follows:
@@ -769,38 +685,27 @@ content.
         * `$body`: the main text of the email
         * `$smtp`: an SMTP URI specifying the SMTP server to use (for example,
           `smtp://user:password@host:port`), defaults to the SMTP server
-          configured in the Integration Server setting `watt.server.smtpServer`.
+           configured in the Integration Server setting
+           `watt.server.smtpServer`.
 
-      * `sap+idoc`: sends an IDoc XML message to an SAP system. Both opaque 
-        and non-opaque URIs are allowed: opaque URIs are useful if the SAP 
-        Adapter alias contains characters not permitted in a normal domain 
-        name, such as underscores.
+    * `$content.type` is the MIME media type that describes the format of the
+      content being delivered. For [JSON] content, a recognized [JSON] MIME
+      media type, such as "application/json", must be specified.
 
-        An example opaque sap+idoc URI is as follows, where sap_r3 is the 
-        SAP Adapter alias name, and the user and password are provided as 
-        query string parameters:
+    * `$schema` is the fully-qualified name of the parsing schema to use when
+      serializing the document to [XML] or Flat File content, and can have the
+      following values:
+      * For [XML] content, specify the fully-qualified name of the document
+        reference that defines the [XML] format.
+      * For Flat File content specify the fully-qualified name of the flat
+        file schema that defines the Flat File format.
 
-            sap+idoc:sap_r3?user=aladdin&password=opensesame&client=200&language=en&queue=xyz
+      Defaults to serializing `$content` as [XML], if neither `$content.type` nor
+      `$schema` are specified.
 
-        An example non-opaque sap+idoc URI is as follows, where sappr3 is the 
-        SAP Adapter alias name, and the user and password are provided in the 
-        authority section of the URI:
-
-            sap+idoc://aladdin:opensesame@sappr3?client=200&languange=en&queue=xyz
-
-        The following additional override options can be provided via the 
-        `$pipeline` document, and if specified will overrided the relevant 
-        parts of the destination URI:
-        * `$user` is the username used for the SAP session. Defaults to the 
-          SAP Adapter alias username, if not specified.
-        * `$password` is the password used for the SAP session. Defaults to 
-          the SAP Adapter alias password, if not specified.
-        * `$client` is the SAP client used for the SAP session. Defaults to 
-          the SAP Adapter alias client, if not specified.
-        * `$language` is the language used for the SAP session. Defaults to 
-          the SAP Adapter alias language, if not specified.
-        * `$queue` is the optional name of the SAP system inbound queue, 
-          required when using queued remote function calls (qRFC).     
+    * `$encoding` is an optional character set to use when `$content` is
+      provided as a string to encode the text data upon delivery. Defaults to
+      the Java virtual machine [default charset].
 
     * `$pipeline` is an optional IData document for providing arbitrary
       variables to the delivery implementation service.
@@ -809,8 +714,8 @@ content.
     * `$message` is an optional response message, useful for logging, that may
       be returned by specific delivery protocols.
 
-    * `$response` is an optional response content returned by the delivery (for
-      example, the HTTP response body).
+    * `$response` is an optional response content returned by the delivery
+      (for example, the HTTP response body).
 
     * `$response.type` is an optional MIME media type describing the type of
       `$response` returned.
@@ -822,15 +727,6 @@ content.
   destination.
 
   Implements the `Tundra/tundra.schema.content.deliver:handler`
-  specification.
-
-* #### tundra.content.deliver:ftp
-
-  The FTP protocol handler for the `Tundra/tundra.content:deliver` 
-  service, which delivers arbitrary content to an FTP URI 
-  destination.
-
-  Implements the `Tundra/tundra.schema.content.deliver:handler` 
   specification.
 
 * #### tundra.content.deliver:http
@@ -859,13 +755,6 @@ content.
 
   Implements the `Tundra/tundra.schema.content.deliver:handler`
   specification.
-
-* #### tundra.content.deliver:sap_idoc
-
-  The SAP IDoc protocol handler for the `Tundra/tundra.content:deliver` 
-  service, which delivers IDoc XML content to a sap+idoc URI destination.
-
-  Implements the `Tundra/tundra.schema.content.deliver:handler` specification.
 
 * #### tundra.content:discard
 
@@ -1023,14 +912,13 @@ content.
 
 * #### tundra.content:split
 
-  One-to-many conversion of [CSV], [JSON], pipe separated values, [TSV], [XML],
-  [YAML], or Flat File content to another format. Calls the given splitting
-  service, passing the parsed `$content` as an input, and emitting the split list
-  of `$contents` as output.
+  One-to-many conversion of [XML], [JSON], or Flat File content to another
+  format. Calls the given splitting service, passing the parsed `$content` as an
+  input, and emitting the split list of $contents as output.
 
   * Inputs:
-    * `$content` is a string, byte array, or input stream of [CSV], [JSON], pipe
-      separated values, [TSV], [XML], [YAML], or Flat File content to be split.
+    * `$content` is a string, byte array, or input stream of [XML], [JSON], or
+      Flat File content to be split.
 
     * `$service` is the fully-qualified name of the splitting service, which
       accepts a single IData document and returns an IData document list,
@@ -1040,33 +928,13 @@ content.
       to be included in the input pipeline of the invocation of `$service`.
 
     * `$content.type.input` is the MIME media type that describes the format of
-      the given `$content`:
-      * For [CSV] content, a recognized [CSV] MIME media type, such as
-        "text/csv", must be specified.
-      * For [JSON] content, a recognized [JSON] MIME media type, such as
-        "application/json", must be specified.
-      * For pipe separated values content, a MIME media type "text/psv",
-        "text/pipe-separated-values", or a type that includes a "+psv" suffix,
-        must be specified.
-      * For [TSV] content, a recognized [TSV] MIME media type, such as
-        "text/tab-separated-values", must be specified.
-      * For [YAML] content, a recognized [YAML] MIME media type, such as
-        "application/yaml", must be specified.
+      the given `$content`. For [JSON] content, a recognized [JSON] MIME media
+      type, such as "application/json", must be specified.
 
     * `$content.type.output` is the MIME media type that describes the format of
-      the resulting serialized split content, if all split content formats are
-      alike:
-      * For [CSV] content, a recognized [CSV] MIME media type, such as
-        "text/csv", must be specified.
-      * For [JSON] content, a recognized [JSON] MIME media type, such as
-        "application/json", must be specified.
-      * For pipe separated values content, a MIME media type "text/psv",
-        "text/pipe-separated-values", or a type that includes a "+psv" suffix,
-        must be specified.
-      * For [TSV] content, a recognized [TSV] MIME media type, such as
-        "text/tab-separated-values", must be specified.
-      * For [YAML] content, a recognized [YAML] MIME media type, such as
-        "application/yaml", must be specified.
+      the resulting serialized split content. For [JSON] content, a recognized
+      [JSON] MIME media type, such as "application/json", must be
+      specified.
 
       Alternatively, it is permissible for the resulting list returned by
       `$service` to contain unlike documents (documents whose MIME types are
@@ -1083,7 +951,7 @@ content.
       * For Flat File content specify the fully-qualified name of the flat
         file schema that defines the Flat File format.
 
-      Defaults to parsing `$content` as [XML], if neither $content.type.input
+      Defaults to parsing `$content` as [XML], if neither `$content.type.input`
       nor `$schema.input` are specified.
 
     * `$schema.output` is the fully-qualified name of the parsing schema to use
@@ -1111,7 +979,7 @@ content.
 
     * `$service.output` is an optional variable name used to extract the output
       IData document list from the output pipeline of the call to `$service`.
-      Defaults to $documents.
+      Defaults to `$documents`.
 
     * `$encoding.input` is an optional character set used to decode the text
       data if `$content` is provided as a byte array or input stream. Defaults
@@ -1126,8 +994,8 @@ content.
       Defaults to stream.
 
   * Outputs:
-    * `$contents` is the resulting list of split content as a string, byte array,
-      or input stream depending on the `$mode.output` chosen.
+    * `$contents` is the resulting list of split [XML], [JSON], or Flat File
+      content.
 
     * `$content.types` is the list of MIME media types if the `$contents` list
       contains unlike media types.
@@ -2031,6 +1899,33 @@ Services for manipulating com.wm.data.IData objects:
         via the `$pipeline` document:
         * `$mode`: append / write
 
+      * `ftp`: uploads the given content to the FTP server, directory and file
+        specified by the destination URI. An example FTP URI is as follows:
+
+            ftp://aladdin:opensesame@example.com:21/path/file?append=true&active=true&ascii=true
+
+        The following additional options can be provided via the `$pipeline`
+        document:
+        * `$user` is the username used to log in to the FTP server. Defaults to
+          the username specified in the authority section of the URI, if not
+          specified.
+        * `$password` is the password used to log in to the FTP server. Defaults
+          to the password specified in the authority section of the URI, if
+          not specified.
+        * `$active` is a boolean which when true indicates that the connection
+          to the FTP server should be in active mode. Defaults to false
+          (passive mode), if not specified.
+        * `$append` is a boolean which when true will append the given content
+          to the file, rather than overwrite it, if the file already exists.
+          Defaults to false (overwriting), if not specified.
+        * `$ascii` is a boolean which when true indicates that the file transfer
+          should be made in ascii mode. Defaults to false (binary mode), if
+          not specified.
+        * `$timeout` is an optional XML duration string which specifies how long
+          the client waits for a response from the server before timing out
+          and terminating the request with an error. Defaults to PT60S, if not
+          specified.
+
       * `http`: transmits the given content to the destination URI. The
         following additional options can be provided via the `$pipeline`
         document:
@@ -2053,6 +1948,37 @@ Services for manipulating com.wm.data.IData objects:
         * `$body`: the main text of the email
         * `$smtp`: an SMTP URI specifying the SMTP server to use (for example,
           `smtp://user:password@host:port`), defaults to the SMTP server configured in the Integration Server setting `watt.server.smtpServer`.
+
+      * `sap+idoc`: sends an IDoc XML message to an SAP system. Both opaque
+        and non-opaque URIs are allowed: opaque URIs are useful if the SAP
+        Adapter alias contains characters not permitted in a normal domain
+        name, such as underscores.
+
+        An example opaque sap+idoc URI is as follows, where sap_r3 is the
+        SAP Adapter alias name, and the user and password are provided as
+        query string parameters:
+
+            sap+idoc:sap_r3?user=aladdin&password=opensesame&client=200&language=en&queue=xyz
+
+        An example non-opaque sap+idoc URI is as follows, where sappr3 is the
+        SAP Adapter alias name, and the user and password are provided in the
+        authority section of the URI:
+
+            sap+idoc://aladdin:opensesame@sappr3?client=200&languange=en&queue=xyz
+
+        The following additional override options can be provided via the
+        `$pipeline` document, and if specified will overrided the relevant
+        parts of the destination URI:
+        * `$user` is the username used for the SAP session. Defaults to the
+          SAP Adapter alias username, if not specified.
+        * `$password` is the password used for the SAP session. Defaults to
+          the SAP Adapter alias password, if not specified.
+        * `$client` is the SAP client used for the SAP session. Defaults to
+          the SAP Adapter alias client, if not specified.
+        * `$language` is the language used for the SAP session. Defaults to
+          the SAP Adapter alias language, if not specified.
+        * `$queue` is the optional name of the SAP system inbound queue,
+          required when using queued remote function calls (qRFC).
 
     * `$pipeline` is an optional IData document for providing arbitrary
       variables to the delivery implementation service.
