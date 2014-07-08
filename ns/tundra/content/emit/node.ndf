@@ -221,40 +221,54 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Serializes an IData document to a [CSV], [JSON], pipe separated values, 
-[TSV], [XML], [YAML], or Flat File string, byte array, or input stream.
+  <value name="node_comment">Emits (serializes) an IData document to a string, byte array, or input 
+stream.
+
+Emitter implementions for the supported content types are as follows:
+* [CSV]: Tundra/tundra.csv:emit
+* Flat File: WmFlatFile/pub.flatFile:convertToString
+* [JSON]: Tundra/tundra.json:emit
+* Pipe separated values: Tundra/tundra.csv:emit
+* [TSV]: Tundra/tundra.csv:emit
+* [XML]: WmPublic/pub.xml:documentToXMLString
+* [YAML]: Tundra/tundra.yaml:emit
 
 * Inputs:
   * $document is the IData document to be serialized as a string, byte 
     array, or input stream.
 
-  * $content.type is the MIME media type that describes the format of the 
-    resulting serialized content: 
-    * For [CSV] content, a recognized [CSV] MIME media type, such as 
-      "text/csv", "text/comma-separated-values", or a type that includes a 
-      "+csv" suffix, must be specified.
-    * For [JSON] content, a recognized [JSON] MIME media type, such as 
-      "application/json", or a type that includes a "+json" suffix, must be 
-      specified.
-    * For pipe separated values content, a MIME media type "text/psv", 
-      "text/pipe-separated-values", or a type that includes a "+psv" suffix, 
-      must be specified.
-    * For [TSV] content, a recognized [TSV] MIME media type, such as 
-      "text/tsv", "text/tab-separated-values", or a type that includes a 
-      "+tsv" suffix, must be specified.
-    * For [YAML] content, a recognized [YAML] MIME media type, such as 
-      "application/yaml", or a type that includes a "+yaml" suffix, must be 
-      specified.
+  * $content.type is the MIME media type that describes the format of the
+    resulting serialized $content:
+    * [CSV]: specify a recognized [CSV] MIME media type, such as "text/csv", 
+      "text/comma-separated-values", or a type that includes a "+csv" 
+      suffix.
+    * Flat File: optionally specify any MIME media type.
+    * [JSON]: specify a recognized [JSON] MIME media type, such as 
+      "application/json", or a type that includes a "+json" suffix.
+    * Pipe separated values: specify a MIME media type "text/psv",
+      "text/pipe-separated-values", or a type that includes a "+psv" suffix.
+    * [TSV]: specify a recognized [TSV] MIME media type, such as "text/tsv", 
+      "text/tab-separated-values", or a type that includes a "+tsv" suffix.
+    * [YAML]: specify a recognized [YAML] MIME media type, such as
+      "application/yaml", or a type that includes a "+yaml" suffix.
+    * [XML]: optionally specify a recognized [XML] MIME media type, such as 
+      "text/xml" or "application/xml", or a type that includes a "+xml" 
+      suffix.
 
-  * $schema is the fully-qualified name of the parsing schema to use when 
-    serializing the document to [XML] or Flat File content, and can have the 
+  * $schema is the fully-qualified name of the parsing schema to use when
+    serializing $document to [XML] or Flat File content, and can have the
     following values:
-    * For [XML] content, specify the fully-qualified name of the document 
-      reference that defines the [XML] format.
-    * For Flat File content specify the fully-qualified name of the flat 
-      file schema that defines the Flat File format.
+    * [CSV]: do not specify.
+    * Flat File: specify the fully-qualified name of the Integration Server 
+      Flat File Schema element that defines the Flat File format.
+    * [JSON]: do not specify.
+    * Pipe separated values: do not specify.
+    * [TSV]: do not specify.
+    * [YAML]: do not specify.
+    * [XML]: specify the fully-qualified name of the document reference that 
+      defines the [XML] format.
 
-    Defaults to serializing $content as [XML], if neither $content.type nor 
+    Defaults to serializing $document as [XML], if neither $content.type nor 
     $schema are specified.
 
   * $encoding is an optional character set to use when encoding the 
@@ -265,8 +279,7 @@
     the type of object $content is returned as. Defaults to stream.
 
 * Outputs:
-  * $content is the resulting serialization of $document as [CSV], [JSON], 
-    pipe separated values, [TSV], [XML], [YAML], or Flat File content.
+  * $content is the resulting serialization of $document.
 
 [CSV]: &lt;http://en.wikipedia.org/wiki/Comma-separated_values&gt;
 [default charset]: &lt;http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()&gt;
