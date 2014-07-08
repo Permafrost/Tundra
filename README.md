@@ -830,42 +830,54 @@ content.
 
 * #### tundra.content:parse
 
-  Parses [CSV], [JSON], pipe separated values, [TSV], [XML], [YAML], or Flat
-  File content specified as a string, byte array, or input stream into an
-  IData document.
+  Parses (deserializes) content specified as a string, byte array, or 
+  input stream into an IData document.
+
+  Parser implementions for the supported content types are as follows:
+  * [CSV]: `Tundra/tundra.csv:parse`
+  * Flat File: `WmFlatFile/pub.flatFile:convertToValues`
+  * [JSON]: `Tundra/tundra.json:parse`
+  * Pipe separated values: `Tundra/tundra.csv:parse`
+  * [TSV]: `Tundra/tundra.csv:parse`
+  * [XML]: `WmPublic/pub.xml:xmlStringToXMLNode`, `pub.xml:xmlNodeToDocument`
+  * [YAML]: `Tundra/tundra.yaml:parse`
 
   * Inputs:
-    * `$content` is a string, byte array, or input stream containing [CSV],
-      [JSON], pipe separated values, [TSV], [XML], [YAML], or Flat File
-      content to be parsed.
+    * `$content` is a string, byte array, or input stream containing content 
+      to be parsed.
 
     * `$content.type` is the MIME media type that describes the format of the
-      given `$content` data:
-      * For [CSV] content, a recognized [CSV] MIME media type, such as
-        "text/csv", "text/comma-separated-values", or a type that includes a
-        "+csv" suffix, must be specified.
-      * For [JSON] content, a recognized [JSON] MIME media type, such as
-        "application/json", or a type that includes a "+json" suffix, must be
-        specified.
-      * For pipe separated values content, a MIME media type "text/psv",
-        "text/pipe-separated-values", or a type that includes a "+psv" suffix,
-        must be specified.
-      * For [TSV] content, a recognized [TSV] MIME media type, such as
-        "text/tsv", "text/tab-separated-values", or a type that includes a
-        "+tsv" suffix, must be specified.
-      * For [YAML] content, a recognized [YAML] MIME media type, such as
-        "application/yaml", or a type that includes a "+yaml" suffix, must be
-        specified.
+      given `$content`:
+      * [CSV]: specify a recognized [CSV] MIME media type, such as "text/csv", 
+        "text/comma-separated-values", or a type that includes a "+csv" 
+        suffix.
+      * Flat File: optionally specify any MIME media type.
+      * [JSON]: specify a recognized [JSON] MIME media type, such as 
+        "application/json", or a type that includes a "+json" suffix.
+      * Pipe separated values: specify a MIME media type "text/psv",
+        "text/pipe-separated-values", or a type that includes a "+psv" suffix.
+      * [TSV]: specify a recognized [TSV] MIME media type, such as "text/tsv", 
+        "text/tab-separated-values", or a type that includes a "+tsv" suffix.
+      * [YAML]: specify a recognized [YAML] MIME media type, such as
+        "application/yaml", or a type that includes a "+yaml" suffix.
+      * [XML]: optionally specify a recognized [XML] MIME media type, such as 
+        "text/xml" or "application/xml", or a type that includes a "+xml" 
+        suffix.
 
     * `$schema` is the fully-qualified name of the parsing schema to use when
       parsing `$content` as [XML] or Flat File content, and can have the
       following values:
-      * For [XML] content, specify the fully-qualified name of the document
-        reference that defines the [XML] format.
-      * For Flat File content specify the fully-qualified name of the flat
-        file schema that defines the Flat File format.
+      * [CSV]: do not specify.
+      * Flat File: specify the fully-qualified name of the Integration Server 
+        Flat File Schema element that defines the Flat File format.
+      * [JSON]: do not specify.
+      * Pipe separated values: do not specify.
+      * [TSV]: do not specify.
+      * [YAML]: do not specify.
+      * [XML]: specify the fully-qualified name of the Integration Server 
+        document reference that defines the [XML] format.
 
-      Defaults to parsing `$content` as [XML], if neither `$content.type` nor
+      Defaults to parsing `$content` as [XML], if neither `$content.type` nor 
       `$schema` are specified.
 
     * `$encoding` is an optional character set to use when `$content` is provided
