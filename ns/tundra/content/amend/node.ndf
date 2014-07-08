@@ -328,12 +328,12 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Edits the given [XML], [JSON], or Flat File content with the list of {key, 
-value} pairs specified in $amendments.
+  <value name="node_comment">Edits the given content with the list of key value pairs specified in 
+$amendments.
 
 * Inputs:
-  * $content is a string, byte array, or input stream containing the [XML], 
-    [JSON], or Flat File content to be amended.
+  * $content is a string, byte array, or input stream containing the 
+    content to be amended.
 
   * $amendments is an IData document list containing all the edits to be 
     made to the given $content.
@@ -350,8 +350,22 @@ value} pairs specified in $amendments.
       applied. If not specified, the amended value will always be applied.
 
   * $content.type is the MIME media type that describes the format of the 
-    content. For [JSON] content, a recognized [JSON] MIME media type, such 
-    as "application/json", must be specified.
+    given content: 
+    * For [CSV] content, a recognized [CSV] MIME media type, such as 
+      "text/csv", "text/comma-separated-values", or a type that includes a 
+      "+csv" suffix, must be specified.
+    * For [JSON] content, a recognized [JSON] MIME media type, such as 
+      "application/json", or a type that includes a "+json" suffix, must be 
+      specified.
+    * For pipe separated values content, a MIME media type "text/psv", 
+      "text/pipe-separated-values", or a type that includes a "+psv" suffix, 
+      must be specified.
+    * For [TSV] content, a recognized [TSV] MIME media type, such as 
+      "text/tsv", "text/tab-separated-values", or a type that includes a 
+      "+tsv" suffix, must be specified.
+    * For [YAML] content, a recognized [YAML] MIME media type, such as 
+      "application/yaml", or a type that includes a "+yaml" suffix, must be 
+      specified.
 
   * $schema is the fully-qualified name of the parsing schema to use when 
     parsing and serializing the document to [XML] or Flat File content, and 
@@ -376,11 +390,14 @@ value} pairs specified in $amendments.
     specifies the type of object $content is returned as. Defaults to stream.
 
 * Outputs:
-  * $content is the resulting edited [XML], [JSON], or Flat File content.
+  * $content is the resulting edited content.
 
+[CSV]: &lt;http://en.wikipedia.org/wiki/Comma-separated_values&gt;
 [default charset]: &lt;http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()&gt;
 [JSON]: &lt;http://www.json.org&gt;
-[XML]: &lt;http://www.w3.org/XML/&gt;</value>
+[TSV]: &lt;http://en.wikipedia.org/wiki/Tab-separated_values&gt;
+[XML]: &lt;http://www.w3.org/XML/&gt;
+[YAML]: &lt;http://www.yaml.org&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
