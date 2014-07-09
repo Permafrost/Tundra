@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-02-15 10:35:45 EST
-// -----( ON-HOST: 172.16.189.172
+// -----( CREATED: 2014-07-09 15:08:56.461
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -335,27 +335,37 @@ public final class datetime
 	}
 	
 	// adds the given xml duration to the given xml datetime returning the result
-	public static String add(String datetime, String duration) {
+	public static String add(String datetime, String duration) throws ServiceException {
 	  return add(datetime, null, duration);
 	}
 	
 	// adds the given xml duration to the given xml datetime returning the result
-	public static String add(String datetime, String pattern, String duration) {
+	public static String add(String datetime, String pattern, String duration) throws ServiceException {
 	  return add(datetime, pattern, duration, null);
 	}
 	
 	// adds the given xml duration to the given xml datetime returning the result
-	public static String add(String datetime, String datetimePattern, String duration, String durationPattern) {
+	public static String add(String datetime, String datetimePattern, String duration, String durationPattern) throws ServiceException {
 	  return emit(add(parse(datetime, datetimePattern), tundra.duration.parse(duration, durationPattern)), datetimePattern);
 	}
 	
 	// adds the given xml duration to the given xml datetime returning the result
-	public static java.util.Calendar add(java.util.Calendar calendar, javax.xml.datatype.Duration duration) {
+	public static java.util.Calendar add(java.util.Calendar calendar, javax.xml.datatype.Duration duration) throws ServiceException {
 	  if (calendar == null || duration == null) return calendar;
-	  
-	  java.util.Calendar clone = (java.util.Calendar)calendar.clone();
-	  duration.addTo(clone);
-	  return clone;
+	
+	  try {
+	    java.util.GregorianCalendar gcal = new java.util.GregorianCalendar();
+	    gcal.setTime(calendar.getTime());
+	    gcal.setTimeZone(calendar.getTimeZone());
+	    javax.xml.datatype.XMLGregorianCalendar xcal = javax.xml.datatype.DatatypeFactory.newInstance().newXMLGregorianCalendar(gcal);
+	    xcal.add(duration);
+	
+	    calendar = xcal.toGregorianCalendar();
+	  } catch (javax.xml.datatype.DatatypeConfigurationException ex) {
+	    tundra.exception.raise(ex);
+	  }
+	
+	  return calendar;
 	}
 	
 	// compares two xml datetime strings
@@ -512,22 +522,22 @@ public final class datetime
 	}
 	
 	// subtracts the given xml duration from the given xml datetime returning the result
-	public static String subtract(String datetime, String duration) {
+	public static String subtract(String datetime, String duration) throws ServiceException {
 	  return subtract(datetime, null, duration);
 	}
 	
 	// subtracts the given xml duration from the given xml datetime returning the result
-	public static String subtract(String datetime, String datetimePattern, String duration) {
+	public static String subtract(String datetime, String datetimePattern, String duration) throws ServiceException {
 	  return subtract(datetime, datetimePattern, duration, null);
 	}
 	
 	// subtracts the given xml duration from the given xml datetime returning the result
-	public static String subtract(String datetime, String datetimePattern, String duration, String durationPattern) {
+	public static String subtract(String datetime, String datetimePattern, String duration, String durationPattern) throws ServiceException {
 	  return emit(subtract(parse(datetime, datetimePattern), tundra.duration.parse(duration, durationPattern)), datetimePattern);
 	}
 	
 	// subtracts the given duration from the given datetime returning the result
-	public static java.util.Calendar subtract(java.util.Calendar calendar, javax.xml.datatype.Duration duration) {
+	public static java.util.Calendar subtract(java.util.Calendar calendar, javax.xml.datatype.Duration duration) throws ServiceException {
 	  if (duration != null) duration = duration.negate();
 	  return add(calendar, duration);
 	}
