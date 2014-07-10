@@ -7,6 +7,7 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -21,6 +22,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$source</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -47,6 +49,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$service</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -73,6 +76,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$limit</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -93,9 +97,11 @@
           <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -103,36 +109,59 @@
       <value name="is_global">false</value>
       <array name="rec_fields" type="record" depth="1">
       </array>
+      <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Retrieves arbitrary content (XML, flat files, binary) from the given $source 
-URI, and calls the given content processing service to process it. 
+  <value name="node_comment">Retrieves arbitrary content from the given $source URI, and calls the given 
+content processing service to process it. 
 
-Additional retrieval protocols can be implemented by creating a service named 
-for the URI scheme in the folder tundra.content.retrieve.  Services in this 
-folder must implement the tundra.schema.content.retrieve:handler specification.
+Additional retrieval protocols can be implemented by creating a service 
+named for the URI scheme in the folder tundra.content.retrieve.  Services in 
+this folder must implement the tundra.schema.content.retrieve:handler
+specification.
 
 * Inputs:
   * $source is a URI identifying the location from which content is to be 
     retrieved. Supports the following retrieval protocols / URI schemes:
-    * file: processes each file matching the given $source URI with the given 
-      processing $service. The file component of the URI can include wildcards 
-      or globs (such as *.txt or *.j?r) for matching multiple files at once. 
-      For example, file:////server:port/directory/*.txt would process all *.txt 
-      files in the specified directory. To ensure each file processed is not 
-      locked or being written to by another process, the file is first moved to 
-      an archive directory prior to processing. The name of this directory can
-      be configured by adding a query string parameter called archive to the URI,
-      for example file:////server:port/directory/*.txt?archive=backup. In this 
-      example, files are first moved to a subdirectory named backup. If not
-      specified, the archive directory defaults to a subdirectory named archive.
+    * file: processes each file matching the given $source URI with the 
+      given processing $service. The file component of the URI can include 
+      wildcards or globs (such as *.txt or *.j?r) for matching multiple 
+      files at once. 
+      
+      For example:
 
-  * $service is the fully-qualified name of the content processing service, which 
-    implements the tundra.schema.content.retrieve:processor specification, invoked 
-    to process each item of content retrieved from the $source URI.
+          file:////server:port/directory/*.txt 
 
-  * $limit is an optional maximum number of content matches to be processed in a 
-    single execution. Defaults to 1000.</value>
+      Would process all *.txt files in the specified directory. 
+
+      To ensure each file processed is not locked or being written to by 
+      another process, the file is first moved to a working directory. The 
+      name of this directory can be configured by adding a query string 
+      parameter called working to the URI, for example:
+
+          file:////server:port/directory/*.txt?working=temp
+
+      In this example, files are first moved to a subdirectory named temp. 
+      If not specified, the working directory defaults to a subdirectory 
+      named working.
+
+      After successful processing, the file is then moved to an archive 
+      directory. The name of this directory can be configured by adding a 
+      query string parameter called archive to the URI, for example:
+
+          file:////server:port/directory/*.txt?archive=backup
+
+      In this example, files are moved to a subdirectory named backup after 
+      being successfully processed. If not specified, the archive directory 
+      defaults to a subdirectory named archive.
+
+  * $service is the fully-qualified name of the content processing service, 
+    which implements the tundra.schema.content.retrieve:processor 
+    specification, invoked to process each item of content retrieved from 
+    the $source URI.
+
+  * $limit is an optional maximum number of content matches to be processed 
+    in a single execution. Defaults to 1000, if not specified.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
@@ -149,10 +178,16 @@ folder must implement the tundra.schema.content.retrieve:handler specification.
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
 </Values>

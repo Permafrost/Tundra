@@ -591,7 +591,7 @@ content.
   Edits the given content with the list of key value pairs specified in `$amendments`.
 
   * Inputs:
-    * `$content` is a string, byte array, or input stream containing the content 
+    * `$content` is a string, byte array, or input stream containing the content
       to be amended.
 
     * `$amendments` is an IData document list containing all the edits to be
@@ -608,22 +608,22 @@ content.
         condition evaluates to true will the associated amended value be
         applied. If not specified, the amended value will always be applied.
 
-    * `$content.type` is the MIME media type that describes the format of the 
-      given content: 
-      * For [CSV] content, a recognized [CSV] MIME media type, such as 
-        "text/csv", "text/comma-separated-values", or a type that includes a 
+    * `$content.type` is the MIME media type that describes the format of the
+      given content:
+      * For [CSV] content, a recognized [CSV] MIME media type, such as
+        "text/csv", "text/comma-separated-values", or a type that includes a
         "+csv" suffix, must be specified.
-      * For [JSON] content, a recognized [JSON] MIME media type, such as 
-        "application/json", or a type that includes a "+json" suffix, must be 
+      * For [JSON] content, a recognized [JSON] MIME media type, such as
+        "application/json", or a type that includes a "+json" suffix, must be
         specified.
-      * For pipe separated values content, a MIME media type "text/psv", 
-        "text/pipe-separated-values", or a type that includes a "+psv" suffix, 
+      * For pipe separated values content, a MIME media type "text/psv",
+        "text/pipe-separated-values", or a type that includes a "+psv" suffix,
         must be specified.
-      * For [TSV] content, a recognized [TSV] MIME media type, such as 
-        "text/tsv", "text/tab-separated-values", or a type that includes a 
+      * For [TSV] content, a recognized [TSV] MIME media type, such as
+        "text/tsv", "text/tab-separated-values", or a type that includes a
         "+tsv" suffix, must be specified.
-      * For [YAML] content, a recognized [YAML] MIME media type, such as 
-        "application/yaml", or a type that includes a "+yaml" suffix, must be 
+      * For [YAML] content, a recognized [YAML] MIME media type, such as
+        "application/yaml", or a type that includes a "+yaml" suffix, must be
         specified.
 
     * `$schema` is the fully-qualified name of the parsing schema to use when
@@ -665,12 +665,12 @@ content.
     * `$content` is a string, byte array, or input stream containing data to
       be delivered to the `$destination` URI.
 
-      If `$content` is provided as an IData document, it will be serialized 
-      using an emitter determined in order of precedence by `$schema` and 
-      `$content.type`. If `$schema` is specified, the type of reference determines 
-      the emitter to use: a document reference will use the XML emitter, a 
-      flat file schema reference will use the Flat File emitter. If `$schema` is 
-      not specified, `$content.type` is used to determine the most appropriate 
+      If `$content` is provided as an IData document, it will be serialized
+      using an emitter determined in order of precedence by `$schema` and
+      `$content.type`. If `$schema` is specified, the type of reference determines
+      the emitter to use: a document reference will use the XML emitter, a
+      flat file schema reference will use the Flat File emitter. If `$schema` is
+      not specified, `$content.type` is used to determine the most appropriate
       emitter for the MIME media type in question. If neither `$schema`, nor
       `$content.type` are specified, `$content` is serialized as XML by default.
 
@@ -683,42 +683,42 @@ content.
       * [XML]: `WmPublic/pub.xml:documentToXMLString`
       * [YAML]: `Tundra/tundra.yaml:emit`
 
-    * $content.type is the MIME media type that describes the format of the 
-      given content: 
-      * [CSV]: specify a recognized [CSV] MIME media type, such as "text/csv", 
-        "text/comma-separated-values", or a type that includes a "+csv" 
+    * $content.type is the MIME media type that describes the format of the
+      given content:
+      * [CSV]: specify a recognized [CSV] MIME media type, such as "text/csv",
+        "text/comma-separated-values", or a type that includes a "+csv"
         suffix.
       * Flat File: optionally specify any MIME media type.
-      * [JSON]: specify a recognized [JSON] MIME media type, such as 
+      * [JSON]: specify a recognized [JSON] MIME media type, such as
         "application/json", or a type that includes a "+json" suffix.
       * Pipe separated values: specify a MIME media type "text/psv",
         "text/pipe-separated-values", or a type that includes a "+psv" suffix.
-      * [TSV]: specify a recognized [TSV] MIME media type, such as "text/tsv", 
+      * [TSV]: specify a recognized [TSV] MIME media type, such as "text/tsv",
         "text/tab-separated-values", or a type that includes a "+tsv" suffix.
       * [YAML]: specify a recognized [YAML] MIME media type, such as
         "application/yaml", or a type that includes a "+yaml" suffix.
-      * [XML]: optionally specify a recognized [XML] MIME media type, such as 
-        "text/xml" or "application/xml", or a type that includes a "+xml" 
+      * [XML]: optionally specify a recognized [XML] MIME media type, such as
+        "text/xml" or "application/xml", or a type that includes a "+xml"
         suffix.
 
     * `$schema` is the fully-qualified name of the parsing schema to use to
-      serialize `$content` (when provided as an IData document) to [XML] or 
+      serialize `$content` (when provided as an IData document) to [XML] or
       Flat File content, and can have the following values:
       * [CSV]: do not specify.
-      * Flat File: specify the fully-qualified name of the Integration Server 
+      * Flat File: specify the fully-qualified name of the Integration Server
         Flat File Schema element that defines the Flat File format.
       * [JSON]: do not specify.
       * Pipe separated values: do not specify.
       * [TSV]: do not specify.
       * [YAML]: do not specify.
-      * [XML]: specify the fully-qualified name of the document reference that 
+      * [XML]: specify the fully-qualified name of the document reference that
         defines the [XML] format.
 
-      Defaults to serializing `$content` as [XML], if neither `$content.type` nor 
+      Defaults to serializing `$content` as [XML], if neither `$content.type` nor
       `$schema` are specified.
 
-    * `$encoding` is an optional character set to use when `$content` is provided 
-      as a string or IData document used to encode the text data upon 
+    * `$encoding` is an optional character set to use when `$content` is provided
+      as a string or IData document used to encode the text data upon
       delivery. Defaults to the Java virtual machine [default charset].
 
     * `$destination` is a URI identifying the location where the given
@@ -730,31 +730,31 @@ content.
         the `$pipeline` document:
         * `$mode`: append / write
 
-      * `ftp`: uploads the given content to the FTP server, directory and file 
+      * `ftp`: uploads the given content to the FTP server, directory and file
         specified by the destination URI. An example FTP URI is as follows:
 
             ftp://aladdin:opensesame@example.com:21/path/file?append=true&active=true&ascii=true
 
-        The following additional options can be provided via the `$pipeline` 
+        The following additional options can be provided via the `$pipeline`
         document:
-        * `$user` is the username used to log in to the FTP server. Defaults to 
-          the username specified in the authority section of the URI, if not 
+        * `$user` is the username used to log in to the FTP server. Defaults to
+          the username specified in the authority section of the URI, if not
           specified.
-        * `$password` is the password used to log in to the FTP server. Defaults 
-          to the password specified in the authority section of the URI, if 
+        * `$password` is the password used to log in to the FTP server. Defaults
+          to the password specified in the authority section of the URI, if
           not specified.
-        * `$active` is a boolean which when true indicates that the connection 
-          to the FTP server should be in active mode. Defaults to false 
+        * `$active` is a boolean which when true indicates that the connection
+          to the FTP server should be in active mode. Defaults to false
           (passive mode), if not specified.
-        * `$append` is a boolean which when true will append the given content 
-          to the file, rather than overwrite it, if the file already exists. 
+        * `$append` is a boolean which when true will append the given content
+          to the file, rather than overwrite it, if the file already exists.
           Defaults to false (overwriting), if not specified.
-        * `$ascii` is a boolean which when true indicates that the file transfer 
-          should be made in ascii mode. Defaults to false (binary mode), if 
+        * `$ascii` is a boolean which when true indicates that the file transfer
+          should be made in ascii mode. Defaults to false (binary mode), if
           not specified.
-        * `$timeout` is an optional XML duration string which specifies how long 
-          the client waits for a response from the server before timing out 
-          and terminating the request with an error. Defaults to PT60S, if not 
+        * `$timeout` is an optional XML duration string which specifies how long
+          the client waits for a response from the server before timing out
+          and terminating the request with an error. Defaults to PT60S, if not
           specified.
 
       * `http`: transmits the given content to the destination URI. The
@@ -784,35 +784,35 @@ content.
            configured in the Integration Server setting
            `watt.server.smtpServer`.
 
-      * `sap+idoc`: sends an IDoc XML message to an SAP system. Both opaque 
-        and non-opaque URIs are allowed: opaque URIs are useful if the SAP 
-        Adapter alias contains characters not permitted in a normal domain 
+      * `sap+idoc`: sends an IDoc XML message to an SAP system. Both opaque
+        and non-opaque URIs are allowed: opaque URIs are useful if the SAP
+        Adapter alias contains characters not permitted in a normal domain
         name, such as underscores.
 
-        An example opaque sap+idoc URI is as follows, where sap_r3 is the 
-        SAP Adapter alias name, and the user and password are provided as 
+        An example opaque sap+idoc URI is as follows, where sap_r3 is the
+        SAP Adapter alias name, and the user and password are provided as
         query string parameters:
 
             sap+idoc:sap_r3?user=aladdin&password=opensesame&client=200&language=en&queue=xyz
 
-        An example non-opaque sap+idoc URI is as follows, where sappr3 is the 
-        SAP Adapter alias name, and the user and password are provided in the 
+        An example non-opaque sap+idoc URI is as follows, where sappr3 is the
+        SAP Adapter alias name, and the user and password are provided in the
         authority section of the URI:
 
             sap+idoc://aladdin:opensesame@sappr3?client=200&language=en&queue=xyz
 
-        The following additional override options can be provided via the 
-        `$pipeline` document, and if specified will overrided the relevant 
+        The following additional override options can be provided via the
+        `$pipeline` document, and if specified will overrided the relevant
         parts of the destination URI:
-        * `$user` is the username used for the SAP session. Defaults to the 
+        * `$user` is the username used for the SAP session. Defaults to the
           SAP Adapter alias username, if not specified.
-        * `$password` is the password used for the SAP session. Defaults to 
+        * `$password` is the password used for the SAP session. Defaults to
           the SAP Adapter alias password, if not specified.
-        * `$client` is the SAP client used for the SAP session. Defaults to 
+        * `$client` is the SAP client used for the SAP session. Defaults to
           the SAP Adapter alias client, if not specified.
-        * `$language` is the language used for the SAP session. Defaults to 
+        * `$language` is the language used for the SAP session. Defaults to
           the SAP Adapter alias language, if not specified.
-        * `$queue` is the optional name of the SAP system inbound queue, 
+        * `$queue` is the optional name of the SAP system inbound queue,
           required when using queued remote function calls (qRFC).
 
     * `$pipeline` is an optional IData document for providing arbitrary
@@ -877,7 +877,7 @@ content.
 
 * #### tundra.content:emit
 
-  Emits (serializes) an IData document to a string, byte array, or input 
+  Emits (serializes) an IData document to a string, byte array, or input
   stream.
 
   Emitter implementions for the supported content types are as follows:
@@ -890,45 +890,45 @@ content.
   * [YAML]: Tundra/tundra.yaml:emit
 
   * Inputs:
-    * `$document` is the IData document to be serialized as a string, byte 
+    * `$document` is the IData document to be serialized as a string, byte
       array, or input stream.
 
     * `$content.type` is the MIME media type that describes the format of the
       resulting serialized `$content`:
-      * [CSV]: specify a recognized [CSV] MIME media type, such as "text/csv", 
-        "text/comma-separated-values", or a type that includes a "+csv" 
+      * [CSV]: specify a recognized [CSV] MIME media type, such as "text/csv",
+        "text/comma-separated-values", or a type that includes a "+csv"
         suffix.
       * Flat File: optionally specify any MIME media type.
-      * [JSON]: specify a recognized [JSON] MIME media type, such as 
+      * [JSON]: specify a recognized [JSON] MIME media type, such as
         "application/json", or a type that includes a "+json" suffix.
       * Pipe separated values: specify a MIME media type "text/psv",
         "text/pipe-separated-values", or a type that includes a "+psv" suffix.
-      * [TSV]: specify a recognized [TSV] MIME media type, such as "text/tsv", 
+      * [TSV]: specify a recognized [TSV] MIME media type, such as "text/tsv",
         "text/tab-separated-values", or a type that includes a "+tsv" suffix.
       * [YAML]: specify a recognized [YAML] MIME media type, such as
         "application/yaml", or a type that includes a "+yaml" suffix.
-      * [XML]: optionally specify a recognized [XML] MIME media type, such as 
-        "text/xml" or "application/xml", or a type that includes a "+xml" 
+      * [XML]: optionally specify a recognized [XML] MIME media type, such as
+        "text/xml" or "application/xml", or a type that includes a "+xml"
         suffix.
 
     * `$schema` is the fully-qualified name of the parsing schema to use when
       serializing `$document` to [XML] or Flat File content, and can have the
       following values:
       * [CSV]: do not specify.
-      * Flat File: specify the fully-qualified name of the Integration Server 
+      * Flat File: specify the fully-qualified name of the Integration Server
         Flat File Schema element that defines the Flat File format.
       * [JSON]: do not specify.
       * Pipe separated values: do not specify.
       * [TSV]: do not specify.
       * [YAML]: do not specify.
-      * [XML]: specify the fully-qualified name of the document reference that 
+      * [XML]: specify the fully-qualified name of the document reference that
         defines the [XML] format.
 
-      Defaults to serializing `$document` as [XML], if neither `$content.type` nor 
+      Defaults to serializing `$document` as [XML], if neither `$content.type` nor
       `$schema` are specified.
 
-    * `$encoding` is an optional character set to use when encoding the 
-      resulting text data to a byte array or input stream. Defaults to the 
+    * `$encoding` is an optional character set to use when encoding the
+      resulting text data to a byte array or input stream. Defaults to the
       Java virtual machine [default charset].
 
     * `$mode` is an optional choice of {stream, bytes, string} which specifies
@@ -939,7 +939,7 @@ content.
 
 * #### tundra.content:parse
 
-  Parses (deserializes) content specified as a string, byte array, or 
+  Parses (deserializes) content specified as a string, byte array, or
   input stream into an IData document.
 
   Parser implementions for the supported content types are as follows:
@@ -952,41 +952,41 @@ content.
   * [YAML]: `Tundra/tundra.yaml:parse`
 
   * Inputs:
-    * `$content` is a string, byte array, or input stream containing content 
+    * `$content` is a string, byte array, or input stream containing content
       to be parsed.
 
     * `$content.type` is the MIME media type that describes the format of the
       given `$content`:
-      * [CSV]: specify a recognized [CSV] MIME media type, such as "text/csv", 
-        "text/comma-separated-values", or a type that includes a "+csv" 
+      * [CSV]: specify a recognized [CSV] MIME media type, such as "text/csv",
+        "text/comma-separated-values", or a type that includes a "+csv"
         suffix.
       * Flat File: optionally specify any MIME media type.
-      * [JSON]: specify a recognized [JSON] MIME media type, such as 
+      * [JSON]: specify a recognized [JSON] MIME media type, such as
         "application/json", or a type that includes a "+json" suffix.
       * Pipe separated values: specify a MIME media type "text/psv",
         "text/pipe-separated-values", or a type that includes a "+psv" suffix.
-      * [TSV]: specify a recognized [TSV] MIME media type, such as "text/tsv", 
+      * [TSV]: specify a recognized [TSV] MIME media type, such as "text/tsv",
         "text/tab-separated-values", or a type that includes a "+tsv" suffix.
       * [YAML]: specify a recognized [YAML] MIME media type, such as
         "application/yaml", or a type that includes a "+yaml" suffix.
-      * [XML]: optionally specify a recognized [XML] MIME media type, such as 
-        "text/xml" or "application/xml", or a type that includes a "+xml" 
+      * [XML]: optionally specify a recognized [XML] MIME media type, such as
+        "text/xml" or "application/xml", or a type that includes a "+xml"
         suffix.
 
     * `$schema` is the fully-qualified name of the parsing schema to use when
       parsing `$content` as [XML] or Flat File content, and can have the
       following values:
       * [CSV]: do not specify.
-      * Flat File: specify the fully-qualified name of the Integration Server 
+      * Flat File: specify the fully-qualified name of the Integration Server
         Flat File Schema element that defines the Flat File format.
       * [JSON]: do not specify.
       * Pipe separated values: do not specify.
       * [TSV]: do not specify.
       * [YAML]: do not specify.
-      * [XML]: specify the fully-qualified name of the Integration Server 
+      * [XML]: specify the fully-qualified name of the Integration Server
         document reference that defines the [XML] format.
 
-      Defaults to parsing `$content` as [XML], if neither `$content.type` nor 
+      Defaults to parsing `$content` as [XML], if neither `$content.type` nor
       `$schema` are specified.
 
     * `$encoding` is an optional character set to use when `$content` is provided
@@ -1006,33 +1006,56 @@ content.
 
 * #### tundra.content:retrieve
 
-  Retrieves arbitrary content (XML, flat files, binary) from the given
-  `$source` URI, and calls the given content processing service to process it.
+  Retrieves arbitrary content from the given `$source` URI, and calls the given
+  content processing service to process it.
 
   Additional retrieval protocols can be implemented by creating a service
-  named for the URI scheme in the folder `Tundra/tundra.content.retrieve`.
-  Services in this folder must implement the `Tundra/tundra.schema.content.retrieve:handler` specification.
+  named for the URI scheme in the folder `tundra.content.retrieve`.  Services in
+  this folder must implement the `tundra.schema.content.retrieve:handler`
+  specification.
 
   * Inputs:
     * `$source` is a URI identifying the location from which content is to be
       retrieved. Supports the following retrieval protocols / URI schemes:
-      * `file`: processes each file matching the given `$source` URI with the given
-        processing `$service`. The file component of the URI can include wildcards
-        or globs (such as `*.txt` or `*.j?r`) for matching multiple files at once.
-        For example, `file:////server:port/directory/*.txt` would process all `*.txt`
-        files in the specified directory. To ensure each file processed is not
-        locked or being written to by another process, the file is first moved to
-        an archive directory prior to processing. The name of this directory can
-        be configured by adding a query string parameter called archive to the URI,
-        for example `file:////server:port/directory/*.txt?archive=backup`. In this
-        example, files are first moved to a subdirectory named backup. If not
-        specified, the archive directory defaults to a subdirectory named archive.
-    * `$service` is the fully-qualified name of the content processing
-      service, which implements the `Tundra/tundra.schema.content.retrieve:processor`
+      * `file`: processes each file matching the given `$source` URI with the
+        given processing `$service`. The file component of the URI can include
+        wildcards or globs (such as `*.txt` or `*.j?r`) for matching multiple
+        files at once.
+
+        For example:
+
+            file:////server:port/directory/*.txt
+
+        Would process all `*.txt` files in the specified directory.
+
+        To ensure each file processed is not locked or being written to by
+        another process, the file is first moved to a working directory. The
+        name of this directory can be configured by adding a query string
+        parameter called working to the URI, for example:
+
+            file:////server:port/directory/*.txt?working=temp
+
+        In this example, files are first moved to a subdirectory named `temp`.
+        If not specified, the working directory defaults to a subdirectory
+        named `working`.
+
+        After successful processing, the file is then moved to an archive
+        directory. The name of this directory can be configured by adding a
+        query string parameter called archive to the URI, for example:
+
+            file:////server:port/directory/*.txt?archive=backup
+
+        In this example, files are moved to a subdirectory named `backup` after
+        being successfully processed. If not specified, the archive directory
+        defaults to a subdirectory named `archive`.
+
+    * `$service` is the fully-qualified name of the content processing service,
+      which implements the `tundra.schema.content.retrieve:processor`
       specification, invoked to process each item of content retrieved from
       the `$source` URI.
-    * `$limit` is an optional maximum number of content matches to be
-      processed in a single execution. Defaults to 1000.
+
+    * `$limit` is an optional maximum number of content matches to be processed
+      in a single execution. Defaults to 1000, if not specified.
 
 * #### tundra.content.retrieve:file
 
