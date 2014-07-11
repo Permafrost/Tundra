@@ -1022,11 +1022,10 @@ content.
         wildcards or globs (such as `*.txt` or `*.j?r`) for matching multiple
         files at once.
 
-        For example:
+        The following example would process all `*.txt` files in the specified
+        directory:
 
             file:////server:port/directory/*.txt
-
-        Would process all `*.txt` files in the specified directory.
 
         To ensure each file processed is not locked or being written to by
         another process, the file is first moved to a working directory. The
