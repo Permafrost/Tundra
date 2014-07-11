@@ -3294,6 +3294,20 @@ Services for compressing and decompressing data using the [gzip] format.
     * `$response` is an IData document containing the [HTTP] server response for
       the given request.
 
+* #### tundra.http.response:accept
+
+  A very accepting [HTTP] response handler: accepts any [HTTP response code],
+  normalizes the response header keys to lower case, and converts the response
+  body stream to bytes.
+
+  * Inputs:
+    * $response is the [HTTP] response to be processed by this service.
+
+  * Outputs:
+    * $response is the processed [HTTP] response, where the response header keys
+      are normalized to lower case, and the response body is returned as a byte[]
+      array.
+
 * #### tundra.http.response:handle
 
   Standard [HTTP] response handler: checks that the [HTTP response code] is < 400,
