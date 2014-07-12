@@ -1068,13 +1068,30 @@ content.
 
 * #### tundra.content:split
 
-  One-to-many conversion of [XML], [JSON], or Flat File content to another
-  format. Calls the given splitting service, passing the parsed `$content` as an
-  input, and emitting the split list of $contents as output.
+  One-to-many conversion of content in one format to another format. Calls the
+  given splitting service, passing the parsed `$content` as an input, and emitting
+  the split list of `$contents` as output.
+
+  Parser implementions for the supported content types are as follows:
+  * [CSV]: `Tundra/tundra.csv:parse`
+  * Flat File: `WmFlatFile/pub.flatFile:convertToValues`
+  * [JSON]: `Tundra/tundra.json:parse`
+  * Pipe separated values: `Tundra/tundra.csv:parse`
+  * [TSV]: `Tundra/tundra.csv:parse`
+  * [XML]: `WmPublic/pub.xml:xmlStringToXMLNode`, `pub.xml:xmlNodeToDocument`
+  * [YAML]: `Tundra/tundra.yaml:parse`
+
+  Emitter implementions for the supported content types are as follows:
+  * [CSV]: `Tundra/tundra.csv:emit`
+  * Flat File: `WmFlatFile/pub.flatFile:convertToString`
+  * [JSON]: `Tundra/tundra.json:emit`
+  * Pipe separated values: `Tundra/tundra.csv:emit`
+  * [TSV]: `Tundra/tundra.csv:emit`
+  * [XML]: `WmPublic/pub.xml:documentToXMLString`
+  * [YAML]: `Tundra/tundra.yaml:emit`
 
   * Inputs:
-    * `$content` is a string, byte array, or input stream of [XML], [JSON], or
-      Flat File content to be split.
+    * `$content` is a string, byte array, or input stream of content to be split.
 
     * `$service` is the fully-qualified name of the splitting service, which
       accepts a single IData document and returns an IData document list,
@@ -1084,13 +1101,41 @@ content.
       to be included in the input pipeline of the invocation of `$service`.
 
     * `$content.type.input` is the MIME media type that describes the format of
-      the given `$content`. For [JSON] content, a recognized [JSON] MIME media
-      type, such as "application/json", must be specified.
+      the given `$content`:
+      * [CSV]: specify a recognized [CSV] MIME media type, such as "text/csv",
+        "text/comma-separated-values", or a type that includes a "+csv"
+        suffix.
+      * Flat File: optionally specify any MIME media type.
+      * [JSON]: specify a recognized [JSON] MIME media type, such as
+        "application/json", or a type that includes a "+json" suffix.
+      * Pipe separated values: specify a MIME media type "text/psv",
+        "text/pipe-separated-values", or a type that includes a "+psv" suffix.
+      * [TSV]: specify a recognized [TSV] MIME media type, such as "text/tsv",
+        "text/tab-separated-values", or a type that includes a "+tsv" suffix.
+      * [YAML]: specify a recognized [YAML] MIME media type, such as
+        "application/yaml", or a type that includes a "+yaml" suffix.
+      * [XML]: optionally specify a recognized [XML] MIME media type, such as
+        "text/xml" or "application/xml", or a type that includes a "+xml"
+        suffix.
 
     * `$content.type.output` is the MIME media type that describes the format of
-      the resulting serialized split content. For [JSON] content, a recognized
-      [JSON] MIME media type, such as "application/json", must be
-      specified.
+      the resulting serialized split content, if all split content formats are
+      alike:
+      * [CSV]: specify a recognized [CSV] MIME media type, such as "text/csv",
+        "text/comma-separated-values", or a type that includes a "+csv"
+        suffix.
+      * Flat File: optionally specify any MIME media type.
+      * [JSON]: specify a recognized [JSON] MIME media type, such as
+        "application/json", or a type that includes a "+json" suffix.
+      * Pipe separated values: specify a MIME media type "text/psv",
+        "text/pipe-separated-values", or a type that includes a "+psv" suffix.
+      * [TSV]: specify a recognized [TSV] MIME media type, such as "text/tsv",
+        "text/tab-separated-values", or a type that includes a "+tsv" suffix.
+      * [YAML]: specify a recognized [YAML] MIME media type, such as
+        "application/yaml", or a type that includes a "+yaml" suffix.
+      * [XML]: optionally specify a recognized [XML] MIME media type, such as
+        "text/xml" or "application/xml", or a type that includes a "+xml"
+        suffix.
 
       Alternatively, it is permissible for the resulting list returned by
       `$service` to contain unlike documents (documents whose MIME types are
@@ -1100,23 +1145,33 @@ content.
       serializing the corresponding indexed item in the returned document list.
 
     * `$schema.input` is the fully-qualified name of the parsing schema to use
-      when parsing `$content` to [XML] or Flat File content, and can have the
+      when parsing `$content` as [XML] or Flat File content, and can have the
       following values:
-      * For [XML] content, specify the fully-qualified name of the document
-        reference that defines the [XML] format.
-      * For Flat File content specify the fully-qualified name of the flat
-        file schema that defines the Flat File format.
+      * [CSV]: do not specify.
+      * Flat File: specify the fully-qualified name of the Integration Server
+        Flat File Schema element that defines the Flat File format.
+      * [JSON]: do not specify.
+      * Pipe separated values: do not specify.
+      * [TSV]: do not specify.
+      * [YAML]: do not specify.
+      * [XML]: specify the fully-qualified name of the Integration Server
+        document reference that defines the [XML] format.
 
-      Defaults to parsing `$content` as [XML], if neither `$content.type.input`
-      nor `$schema.input` are specified.
+      Defaults to parsing `$content` as [XML], if neither `$content.type.input` nor
+      `$schema.input` are specified.
 
     * `$schema.output` is the fully-qualified name of the parsing schema to use
-      when serializing the split document to [XML] or Flat File content,
-      and can have the following values:
-      * For [XML] content, specify the fully-qualified name of the document
-        reference that defines the [XML] format.
-      * For Flat File content specify the fully-qualified name of the flat
-        file schema that defines the Flat File format.
+      when serializing the split documents to [XML] or Flat File content, and
+      can have the following values::
+      * [CSV]: do not specify.
+      * Flat File: specify the fully-qualified name of the Integration Server
+        Flat File Schema element that defines the Flat File format.
+      * [JSON]: do not specify.
+      * Pipe separated values: do not specify.
+      * [TSV]: do not specify.
+      * [YAML]: do not specify.
+      * [XML]: specify the fully-qualified name of the document reference that
+        defines the [XML] format.
 
       Alternatively, it is permissible for the resulting list returned by
       `$service` to contain unlike documents (documents whose formats are
@@ -1131,7 +1186,7 @@ content.
 
     * `$service.input` is an optional variable name to use in the input pipeline
       of the call to `$service` for the parsed `$content` IData document. Defaults
-      to $document.
+      to `$document`.
 
     * `$service.output` is an optional variable name used to extract the output
       IData document list from the output pipeline of the call to `$service`.
@@ -1145,20 +1200,20 @@ content.
       text datum if the specified `$mode.output` is a byte array or stream.
       Defaults to the Java virtual machine [default charset].
 
-    * `$mode.output` is an optional choice of {stream, bytes, string} which
+    * `$mode.output` is an optional choice of stream, bytes, or string which
       specifies the type of object each item in `$contents` is returned as.
       Defaults to stream.
 
   * Outputs:
-    * `$contents` is the resulting list of split [XML], [JSON], or Flat File
-      content.
+    * `$contents` is the resulting list of split content as a string, byte array,
+      or input stream, depending on the `$mode.output` chosen.
 
-    * `$content.types` is the list of MIME media types if the `$contents` list
-      contains unlike media types.
+    * `$content.types` is the optional list of MIME media types returned by
+      `$service` if the `$contents` list contains unlike media types.
 
-    * `$schemas` is the list of fully-qualified document references (for XML) or
-      flat file schemas (for flat files), if the `$contents` list contains unlike
-      formats.
+    * `$schemas` is the optional list of fully-qualified document references (for
+      XML) or flat file schemas (for flat files) returned by `$service` if the
+      `$contents` list contains unlike formats.
 
 * #### tundra.content:translate
 
