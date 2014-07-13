@@ -3678,8 +3678,17 @@ Services for working with arbitrary precision integers (uses [java.math.BigInteg
 
 * #### tundra.list.content:emit
 
-  Converts an IData[] document list to a list of [XML], [JSON], or Flat File
-  strings, bytes or input streams.
+  Emits (serializes) each item in the given IData[] document list to a string,
+  byte array, or input stream, resulting in a list of serialized content.
+
+  Emitter implementions for the supported content types are as follows:
+  * [CSV]: `Tundra/tundra.csv:emit`
+  * Flat File: `WmFlatFile/pub.flatFile:convertToString`
+  * [JSON]: `Tundra/tundra.json:emit`
+  * Pipe separated values: `Tundra/tundra.csv:emit`
+  * [TSV]: `Tundra/tundra.csv:emit`
+  * [XML]: `WmPublic/pub.xml:documentToXMLString`
+  * [YAML]: `Tundra/tundra.yaml:emit`
 
   * Inputs:
     * `$documents` is a list of IData documents to be serialized as a string,
@@ -3687,16 +3696,43 @@ Services for working with arbitrary precision integers (uses [java.math.BigInteg
 
     * `$content.types` is a list of MIME media types with the same number of
       items as `$documents`, where `$content.types[n]` describes the format of the
-      resulting serialized `$document[n]`. For [JSON] content, a recognized
-      [JSON] MIME media type, such as "application/json", must be specified.
+      resulting serialized `$document[n]`:
+      * [CSV]: specify a recognized [CSV] MIME media type, such as "text/csv",
+        "text/comma-separated-values", or a type that includes a "+csv"
+        suffix.
+      * Flat File: optionally specify any MIME media type.
+      * [JSON]: specify a recognized [JSON] MIME media type, such as
+        "application/json", or a type that includes a "+json" suffix.
+      * Pipe separated values: specify a MIME media type "text/psv",
+        "text/pipe-separated-values", or a type that includes a "+psv" suffix.
+      * [TSV]: specify a recognized [TSV] MIME media type, such as "text/tsv",
+        "text/tab-separated-values", or a type that includes a "+tsv" suffix.
+      * [YAML]: specify a recognized [YAML] MIME media type, such as
+        "application/yaml", or a type that includes a "+yaml" suffix.
+      * [XML]: optionally specify a recognized [XML] MIME media type, such as
+        "text/xml" or "application/xml", or a type that includes a "+xml"
+        suffix.
 
       Use this input argument when `$documents` contains unlike formats (for
       example, a mixture of [XML] and [JSON] MIME types).
 
     * `$content.type` is the MIME media type that describes the format of all
-      items in the resulting list of serialized content. For [JSON] content, a
-      recognized [JSON] MIME media type, such as "application/json", must be
-      specified.
+      items in the resulting list of serialized content:
+      * [CSV]: specify a recognized [CSV] MIME media type, such as "text/csv",
+        "text/comma-separated-values", or a type that includes a "+csv"
+        suffix.
+      * Flat File: optionally specify any MIME media type.
+      * [JSON]: specify a recognized [JSON] MIME media type, such as
+        "application/json", or a type that includes a "+json" suffix.
+      * Pipe separated values: specify a MIME media type "text/psv",
+        "text/pipe-separated-values", or a type that includes a "+psv" suffix.
+      * [TSV]: specify a recognized [TSV] MIME media type, such as "text/tsv",
+        "text/tab-separated-values", or a type that includes a "+tsv" suffix.
+      * [YAML]: specify a recognized [YAML] MIME media type, such as
+        "application/yaml", or a type that includes a "+yaml" suffix.
+      * [XML]: optionally specify a recognized [XML] MIME media type, such as
+        "text/xml" or "application/xml", or a type that includes a "+xml"
+        suffix.
 
       Use this input argument when `$documents` contains like formats (for
       example, when all items adhere to the exact same [XML] MIME type).
@@ -3704,10 +3740,15 @@ Services for working with arbitrary precision integers (uses [java.math.BigInteg
     * `$schemas` is an optional input list with the same number of items as
       `$documents`, where `$schemas[n]` is used to serialize `$contents[n]` as [XML]
       or Flat File, and can have the following values:
-      * For [XML] content, specify the fully-qualified name of the document
-        reference that defines the [XML] format
-      * For Flat File content specify the fully-qualified name of the flat
-        file schema that defines the Flat File format
+      * [CSV]: do not specify.
+      * Flat File: specify the fully-qualified name of the Integration Server
+        Flat File Schema element that defines the Flat File format.
+      * [JSON]: do not specify.
+      * Pipe separated values: do not specify.
+      * [TSV]: do not specify.
+      * [YAML]: do not specify.
+      * [XML]: specify the fully-qualified name of the document reference that
+        defines the [XML] format.
 
       Defaults to serializing `$documents` as [XML], if neither `$content.types`,
       `$content.type`, `$schemas` nor `$schema` are specified.
@@ -3715,12 +3756,18 @@ Services for working with arbitrary precision integers (uses [java.math.BigInteg
       Use this input argument when `$documents` contains unlike formats (for
       example, a mixture of Flat File and [XML] formats).
 
-    * `$schema` is an optional input used to serialize all items in `$documents`
-      as [XML] or Flat File, and can have the following values:
-      * For [XML] content, specify the fully-qualified name of the document
-        reference that defines the [XML] format
-      * For Flat File content specify the fully-qualified name of the flat
-        file schema that defines the Flat File format
+    * `$schema` is an optional input which determines whether to serialize all
+      items in `$documents` as [XML], [JSON], Flat File, and can have the
+      following values:
+      * [CSV]: do not specify.
+      * Flat File: specify the fully-qualified name of the Integration Server
+        Flat File Schema element that defines the Flat File format.
+      * [JSON]: do not specify.
+      * Pipe separated values: do not specify.
+      * [TSV]: do not specify.
+      * [YAML]: do not specify.
+      * [XML]: specify the fully-qualified name of the document reference that
+        defines the [XML] format.
 
       Defaults to serializing `$documents` as [XML], if neither `$schemas` or
       `$schema` are specified.
@@ -3728,16 +3775,15 @@ Services for working with arbitrary precision integers (uses [java.math.BigInteg
       Use this input argument when `$documents` contains like formats (for
       example, when all items adhere to the exact same [XML] schema).
 
-    * `$mode` is an optional choice of 'stream', 'bytes', or 'string' which
+    * `$encoding` is an optional character set to use when the `$mode` selected is
+      bytes or stream. Defaults to the Java virtual machine [default charset].
+
+    * `$mode` is an optional choice of stream, bytes, or string which
       determines the type of object the documents are serialized to.
 
-    * `$encoding` is an optional character set to use when the `$mode` selected is
-      'bytes' or 'stream'. Defaults to the Java virtual machine
-      [default charset].
-
   * Outputs:
-    * `$contents` is a list of strings, byte arrays, or input streams (depending
-      on the `$mode` selected) where each item is the serialized verison of the
+    * `$contents` is a list of strings, byte arrays, or input streams, depending
+      on the `$mode` selected, where each item is the serialized verison of the
       like-indexed document. In other words, `$contents[n]` is the serialized
       version of `$documents[n]`.
 
