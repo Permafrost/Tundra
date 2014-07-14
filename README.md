@@ -3897,8 +3897,17 @@ Services for working with arbitrary precision integers (uses [java.math.BigInteg
 
 * #### tundra.list.content:parse
 
-  Parses a list of [XML], [JSON], and flat file content (specified as a list
-  of strings, bytes, or input streams) into an IData[] document list.
+  Parses a list of content (specified as a list of strings, bytes, or input
+  streams) into an IData[] document list.
+
+  Parser implementions for the supported content types are as follows:
+  * [CSV]: `Tundra/tundra.csv:parse`
+  * Flat File: `WmFlatFile/pub.flatFile:convertToValues`
+  * [JSON]: `Tundra/tundra.json:parse`
+  * Pipe separated values: `Tundra/tundra.csv:parse`
+  * [TSV]: `Tundra/tundra.csv:parse`
+  * [XML]: `WmPublic/pub.xml:xmlStringToXMLNode`, `pub.xml:xmlNodeToDocument`
+  * [YAML]: `Tundra/tundra.yaml:parse`
 
   * Inputs:
     * `$contents` is a list of strings, byte arrays, or input streams containing
@@ -3906,16 +3915,43 @@ Services for working with arbitrary precision integers (uses [java.math.BigInteg
 
     * `$content.types` is a list of MIME media types with the same number of
       items as `$contents`, where `$content.types[n]` describes the format of the
-      resulting parsed `$content[n]`. For [JSON] content, a recognized
-      [JSON] MIME media type, such as "application/json", must be specified.
+      resulting parsed `$content[n]`:
+      * [CSV]: specify a recognized [CSV] MIME media type, such as "text/csv",
+        "text/comma-separated-values", or a type that includes a "+csv"
+        suffix.
+      * Flat File: optionally specify any MIME media type.
+      * [JSON]: specify a recognized [JSON] MIME media type, such as
+        "application/json", or a type that includes a "+json" suffix.
+      * Pipe separated values: specify a MIME media type "text/psv",
+        "text/pipe-separated-values", or a type that includes a "+psv" suffix.
+      * [TSV]: specify a recognized [TSV] MIME media type, such as "text/tsv",
+        "text/tab-separated-values", or a type that includes a "+tsv" suffix.
+      * [YAML]: specify a recognized [YAML] MIME media type, such as
+        "application/yaml", or a type that includes a "+yaml" suffix.
+      * [XML]: optionally specify a recognized [XML] MIME media type, such as
+        "text/xml" or "application/xml", or a type that includes a "+xml"
+        suffix.
 
       Use this input argument when `$contents` contains unlike formats (for
       example, a mixture of [XML] and [JSON] MIME types).
 
     * `$content.type` is the MIME media type that describes the format of all
-      items in the resulting list of parsed content. For [JSON] content, a
-      recognized [JSON] MIME media type, such as "application/json", must be
-      specified.
+      items in the resulting list of parsed content:
+      * [CSV]: specify a recognized [CSV] MIME media type, such as "text/csv",
+        "text/comma-separated-values", or a type that includes a "+csv"
+        suffix.
+      * Flat File: optionally specify any MIME media type.
+      * [JSON]: specify a recognized [JSON] MIME media type, such as
+        "application/json", or a type that includes a "+json" suffix.
+      * Pipe separated values: specify a MIME media type "text/psv",
+        "text/pipe-separated-values", or a type that includes a "+psv" suffix.
+      * [TSV]: specify a recognized [TSV] MIME media type, such as "text/tsv",
+        "text/tab-separated-values", or a type that includes a "+tsv" suffix.
+      * [YAML]: specify a recognized [YAML] MIME media type, such as
+        "application/yaml", or a type that includes a "+yaml" suffix.
+      * [XML]: optionally specify a recognized [XML] MIME media type, such as
+        "text/xml" or "application/xml", or a type that includes a "+xml"
+        suffix.
 
       Use this input argument when `$contents` contains like formats (for
       example, when all items adhere to the exact same [XML] MIME type).
@@ -3923,11 +3959,15 @@ Services for working with arbitrary precision integers (uses [java.math.BigInteg
     * `$schemas` is an optional input list with the same number of items as
       `$documents`, where `$schemas[n]` is used to parse `$contents[n]` as [XML]
       or Flat File, and can have the following values:
-      * For [XML] content, specify the fully-qualified name of the document
-        reference that defines the [XML] format.
-      * For Flat File content specify the fully-qualified name of the flat
-        file schema that defines the Flat File format.
-
+      * [CSV]: do not specify.
+      * Flat File: specify the fully-qualified name of the Integration Server
+        Flat File Schema element that defines the Flat File format.
+      * [JSON]: do not specify.
+      * Pipe separated values: do not specify.
+      * [TSV]: do not specify.
+      * [YAML]: do not specify.
+      * [XML]: specify the fully-qualified name of the Integration Server
+        document reference that defines the [XML] format.
       Defaults to parsing `$contents` as [XML], if neither `$content.types`,
       `$content.type`, `$schemas` nor `$schema` are specified.
 
@@ -3936,16 +3976,21 @@ Services for working with arbitrary precision integers (uses [java.math.BigInteg
 
     * `$schema` is an optional input used to parse all items in `$contents`
       as [XML] or Flat File, and can have the following values:
-      * For [XML] content, specify the fully-qualified name of the document
-        reference that defines the [XML] format.
-      * For Flat File content specify the fully-qualified name of the flat
-        file schema that defines the Flat File format.
-
-      Defaults to parsing `$contents` as [XML], if neither `$content.types`,
-      `$content.type`, `$schemas` nor `$schema` are specified.
+      * [CSV]: do not specify.
+      * Flat File: specify the fully-qualified name of the Integration Server
+        Flat File Schema element that defines the Flat File format.
+      * [JSON]: do not specify.
+      * Pipe separated values: do not specify.
+      * [TSV]: do not specify.
+      * [YAML]: do not specify.
+      * [XML]: specify the fully-qualified name of the Integration Server
+        document reference that defines the [XML] format.
 
       Use this input argument when `$contents` contains like formats (for
       example, when all items adhere to the exact same [XML] schema).
+
+      Defaults to parsing `$contents` as [XML], if neither `$content.types`,
+      `$content.type`, `$schemas` nor `$schema` are specified.
 
     * `$encoding` is an optional character set to use when the `$contents` is
       provided as a list of input streams or byte arrays. Defaults to the Java
