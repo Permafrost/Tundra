@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-01-10 12:52:16.055
+// -----( CREATED: 2014-07-22 15:23:18.600
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -105,10 +105,10 @@ public final class gzip
 	      out.write(buffer, 0, count);
 	    }
 	
+	    out.close();
 	    buffer = baos.toByteArray();
 	  } finally {
 	    if (in != null) in.close();
-	    if (out != null) out.close();
 	  }
 	
 	  return convert(buffer, mode);
@@ -132,10 +132,10 @@ public final class gzip
 	      out.write(buffer, 0, count);
 	    }
 	
+	    out.close();
 	    buffer = out.toByteArray();
 	  } finally {
 	    if (in != null) in.close();
-	    if (out != null) out.close();
 	  }
 	
 	  return tundra.object.convert(buffer, encoding, mode);
