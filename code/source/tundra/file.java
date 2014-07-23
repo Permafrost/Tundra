@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-12-10 11:01:31.755
-// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
+// -----( CREATED: 2014-07-23 21:09:05 EST
+// -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -271,6 +271,41 @@ public final class file
 		try {
 		  String file = IDataUtil.getString(cursor, "$file");
 		  IDataUtil.put(cursor, "$readable?", "" + readable(file));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void reflect (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(reflect)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $file
+		// [o] record:0:required $file.properties
+		// [o] - field:0:required exists?
+		// [o] - field:0:optional parent
+		// [o] - field:0:optional name
+		// [o] - field:0:optional base
+		// [o] - field:0:optional extension
+		// [o] - field:0:required type
+		// [o] - field:0:optional length
+		// [o] - field:0:optional modified
+		// [o] - field:0:optional executable?
+		// [o] - field:0:optional readable?
+		// [o] - field:0:optional writable?
+		// [o] - field:0:required uri
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String file = IDataUtil.getString(cursor, "$file");
+		  IDataUtil.put(cursor, "$file.properties", reflect(file));
 		} finally {
 		  cursor.destroy();
 		}
@@ -656,6 +691,95 @@ public final class file
 	// copies a source file to a target file
 	public static void copy(String source, String target, String mode) throws ServiceException {
 	  copy(tundra.support.file.construct(source), tundra.support.file.construct(target), mode);
+	}
+	
+	// returns only the name component of the given filename
+	public static String name(String filename) throws ServiceException {
+	  return name(tundra.support.file.construct(filename));
+	}
+	
+	// returns only the name component of the given filename
+	public static String name(java.io.File file) throws ServiceException {
+	  String name = file.getName();
+	  return file.equals("") ? null : name;
+	}
+	
+	// returns the base and extension parts of the name component of the given filename
+	public static String[] parts(String filename) throws ServiceException {
+	  return parts(tundra.support.file.construct(filename));
+	}
+	
+	// returns the base and extension parts of the name component of the given filename
+	public static String[] parts(java.io.File file) throws ServiceException {
+	  String[] parts = null;
+	  String name = name(file);
+	  if (name != null) parts = name.split("\\.(?=[^\\.]+$)");
+	  return parts;
+	}
+	
+	// returns only the parent directory containing the given filename
+	public static String parent(String filename) throws ServiceException {
+	  return parent(tundra.support.file.construct(filename));
+	}
+	
+	// returns only the parent directory containing the given filename
+	public static String parent(java.io.File file) throws ServiceException {
+	  return tundra.support.file.normalize(file.getParent());
+	}
+	
+	// returns the last modified datetime of the given file as an ISO8601 formatted datetime string
+	public static String modified(String filename) throws ServiceException {
+	  return modified(tundra.support.file.construct(filename));
+	}
+	
+	// returns the last modified datetime of the given file as an ISO8601 formatted datetime string
+	public static String modified(java.io.File file) throws ServiceException {
+	  return tundra.datetime.emit(new java.util.Date(file.lastModified()));
+	}
+	
+	// returns an IData document containing the properties of the given file
+	public static IData reflect(String filename) throws ServiceException {
+	  return reflect(tundra.support.file.construct(filename));
+	}
+	
+	// returns an IData document containing the properties of the given file
+	public static IData reflect(java.io.File file) throws ServiceException {
+	  IData output = IDataFactory.create();
+	  IDataCursor cursor = output.getCursor();
+	
+	  boolean isFile = file.isFile();
+	  boolean exists = exists(file);
+	
+	  IDataUtil.put(cursor, "exists?", "" + exists);
+	
+	  String parent = parent(file);
+	  if (parent != null) IDataUtil.put(cursor, "parent", parent);
+	
+	  String name = name(file);
+	  if (name != null) IDataUtil.put(cursor, "name", name(file));
+	
+	  String[] parts = parts(file);
+	  if (parts != null) {
+	    if (parts.length > 0) IDataUtil.put(cursor, "base", parts[0]);
+	    if (parts.length > 1) IDataUtil.put(cursor, "extension", parts[1]);
+	  }
+	
+	  if (isFile) IDataUtil.put(cursor, "type", type(file));
+	
+	  IDataUtil.put(cursor, "length", "" + length(file));
+	
+	  if (exists) {
+	    IDataUtil.put(cursor, "modified", modified(file));
+	    IDataUtil.put(cursor, "executable?", "" + executable(file));
+	    IDataUtil.put(cursor, "readable?", "" + readable(file));
+	    IDataUtil.put(cursor, "writable?", "" + writable(file));
+	  }
+	
+	  IDataUtil.put(cursor, "uri", tundra.support.file.normalize(file));
+	
+	  cursor.destroy();
+	
+	  return output;
 	}
 	// --- <<IS-END-SHARED>> ---
 }

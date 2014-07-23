@@ -3238,6 +3238,51 @@ File system services for working with files:
       has permission to read the given file. If the file does not
       exist, false is returned.
 
+* #### tundra.file:reflect
+
+  Returns useful details about the given file.
+
+  * Inputs:
+    * `$file` is the name of the file to return details about, specified as
+      either a relative or absolute file path or file: [URI].
+
+  * Outputs:
+    * `$file.properties` is an IData document containing the following details
+      about the given `$file`:
+      * `exists?` is a boolean flag indicating if the given file exists.
+
+      * `parent` is the canonical file: [URI] that represents the parent
+        directory that contains the given file.
+
+      * `name` is the name component not including the path of the given file.
+
+      * `base` is the name component not including the path or extension of the
+        given file.
+
+      * `extension` is the part of the name after the final period used to
+        determine the type of the given file.
+
+      * `type` is the [mime type] associated with the given file.
+
+      * `length` is the length or size in bytes of the given file. If the file
+        does not exist, zero is returned.
+
+      * `modified` is the last modified datetime of the given file.
+
+      * `executable?` is a boolean flag indicating if Integration Server has
+        permission to execute the given file. If the file does not exist,
+        false is returned.
+
+      * `readable?` is a boolean flag indicating if Integration Server has
+        permission to read the given file. If the file does not exist, false
+        is returned.
+
+      * `writable?` is a boolean flag indicating if Integration Server has
+        permission to write or append to the given file. If the file does not
+        exist, false is returned.
+
+      * `uri` is the canonical file: [URI] that represents the given file.
+
 * #### tundra.file:remove
 
   Deletes the given file, if it exists. This service does nothing if the
