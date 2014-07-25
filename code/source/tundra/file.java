@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-07-23 21:09:05 EST
+// -----( CREATED: 2014-07-25 15:51:37 EST
 // -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
@@ -294,7 +294,7 @@ public final class file
 		// [o] - field:0:optional name
 		// [o] - field:0:optional base
 		// [o] - field:0:optional extension
-		// [o] - field:0:required type
+		// [o] - field:0:optional type
 		// [o] - field:0:optional length
 		// [o] - field:0:optional modified
 		// [o] - field:0:optional executable?
@@ -766,9 +766,8 @@ public final class file
 	
 	  if (isFile) IDataUtil.put(cursor, "type", type(file));
 	
-	  IDataUtil.put(cursor, "length", "" + length(file));
-	
 	  if (exists) {
+	    IDataUtil.put(cursor, "length", "" + length(file));
 	    IDataUtil.put(cursor, "modified", modified(file));
 	    IDataUtil.put(cursor, "executable?", "" + executable(file));
 	    IDataUtil.put(cursor, "readable?", "" + readable(file));
