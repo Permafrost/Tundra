@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-07-25 17:38:13 EST
+// -----( CREATED: 2014-07-25 19:25:11 EST
 // -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
@@ -133,6 +133,8 @@ public final class timezone
 	}
 
 	// --- <<IS-START-SHARED>> ---
+	protected static java.util.SortedSet<String> zones = new java.util.TreeSet(java.util.Arrays.asList(java.util.TimeZone.getAvailableIDs()));
+	
 	// returns the time zone associated with the given ID in IData format
 	public static IData get(String id, String datetime) {
 	  return get(id, datetime, null);
@@ -145,7 +147,11 @@ public final class timezone
 	
 	// returns the time zone associated with the given ID in IData format
 	public static IData get(String id, java.util.Date instant) {
-	  return toIData(java.util.TimeZone.getTimeZone(id), instant);
+	  IData output = null;
+	  if (zones.contains(id)) {
+	    output = toIData(java.util.TimeZone.getTimeZone(id), instant);
+	  }
+	  return output;
 	}
 	
 	// returns the default time zone in IData format
