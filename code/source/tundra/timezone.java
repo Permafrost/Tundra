@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-07-25 15:58:15 EST
+// -----( CREATED: 2014-07-25 17:38:13 EST
 // -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
@@ -35,6 +35,7 @@ public final class timezone
 		// @sigtype java 3.5
 		// [i] field:0:required $id
 		// [i] field:0:optional $datetime
+		// [i] field:0:optional $datetime.pattern {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
 		// [o] record:0:optional $timezone
 		// [o] - field:0:required id
 		// [o] - field:0:required name
@@ -48,8 +49,9 @@ public final class timezone
 		try {
 		  String id = IDataUtil.getString(cursor, "$id");
 		  String datetime = IDataUtil.getString(cursor, "$datetime");
+		  String pattern = IDataUtil.getString(cursor, "$datetime.pattern");
 		
-		  IData timezone = get(id, datetime);
+		  IData timezone = get(id, datetime, pattern);
 		
 		  if (timezone != null) IDataUtil.put(cursor, "$timezone", timezone);
 		} finally {
@@ -69,6 +71,7 @@ public final class timezone
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $datetime
+		// [i] field:0:optional $datetime.pattern {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
 		// [o] record:1:optional $timezones
 		// [o] - field:0:required id
 		// [o] - field:0:required name
@@ -81,7 +84,9 @@ public final class timezone
 		
 		try {
 		  String datetime = IDataUtil.getString(cursor, "$datetime");
-		  IData[] timezones = list(datetime);
+		  String pattern = IDataUtil.getString(cursor, "$datetime.pattern");
+		
+		  IData[] timezones = list(datetime, pattern);
 		
 		  if (timezones != null) IDataUtil.put(cursor, "$timezones", timezones);
 		} finally {
@@ -101,6 +106,7 @@ public final class timezone
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $datetime
+		// [i] field:0:optional $datetime.pattern {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
 		// [o] record:0:optional $timezone
 		// [o] - field:0:required id
 		// [o] - field:0:required name
@@ -113,7 +119,10 @@ public final class timezone
 		
 		try {
 		  String datetime = IDataUtil.getString(cursor, "$datetime");
-		  IData timezone = self(datetime);
+		  String pattern = IDataUtil.getString(cursor, "$datetime.pattern");
+		
+		  IData timezone = self(datetime, pattern);
+		
 		  if (timezone != null) IDataUtil.put(cursor, "$timezone", timezone);
 		} finally {
 		  cursor.destroy();
@@ -126,7 +135,12 @@ public final class timezone
 	// --- <<IS-START-SHARED>> ---
 	// returns the time zone associated with the given ID in IData format
 	public static IData get(String id, String datetime) {
-	  return get(id, getInstant(datetime));
+	  return get(id, datetime, null);
+	}
+	
+	// returns the time zone associated with the given ID in IData format
+	public static IData get(String id, String datetime, String pattern) {
+	  return get(id, instant(datetime, pattern));
 	}
 	
 	// returns the time zone associated with the given ID in IData format
@@ -136,7 +150,12 @@ public final class timezone
 	
 	// returns the default time zone in IData format
 	public static IData self(String datetime) {
-	  return self(getInstant(datetime));
+	  return self(datetime, null);
+	}
+	
+	// returns the default time zone in IData format
+	public static IData self(String datetime, String pattern) {
+	  return self(instant(datetime, pattern));
 	}
 	
 	// returns the default time zone in IData format
@@ -146,7 +165,12 @@ public final class timezone
 	
 	// returns all known time zones in IData format
 	public static IData[] list(String datetime) {
-	  return list(getInstant(datetime));
+	  return list(datetime, null);
+	}
+	
+	// returns all known time zones in IData format
+	public static IData[] list(String datetime, String pattern) {
+	  return list(instant(datetime, pattern));
 	}
 	
 	// returns all known time zones in IData format
@@ -183,14 +207,24 @@ public final class timezone
 	  return doc;
 	}
 	
+	// returns current date
+	protected static java.util.Date instant() {
+	  return instant(null);
+	}
+	
 	// converts a datetime string to java.util.Date object, or returns current date if null
-	protected static java.util.Date getInstant(String datetime) {
+	protected static java.util.Date instant(String datetime) {
+	  return instant(datetime, null);
+	}
+	
+	// converts a datetime string to java.util.Date object, or returns current date if null
+	protected static java.util.Date instant(String datetime, String pattern) {
 	  java.util.Date instant = null;
 	
 	  if (datetime == null) {
 	    instant = new java.util.Date();
 	  } else {
-	    instant = tundra.datetime.parse(datetime).getTime();
+	    instant = tundra.datetime.parse(datetime, pattern).getTime();
 	  }
 	
 	  return instant;

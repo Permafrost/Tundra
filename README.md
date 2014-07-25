@@ -7738,6 +7738,9 @@ Returns the time zone associated with the given ID.
     Coordinated Time (UTC) offset and whether Daylight Savings
     Time (DST) is applicable. If not specified, defaults to
     the current datetime.
+  * `$datetime.pattern` is an optional datetime pattern that
+    `$datetime` conforms to, and will be used to parse the
+    datetime string. Defaults to an [ISO8601]/XML datetime.
 
 * Outputs:
   * `$timezone` is an IData document describing the time zone
@@ -7768,6 +7771,9 @@ Returns all time zones known to the Java Virtual Machine.
     Coordinated Time (UTC) offset and whether Daylight Savings
     Time (DST) is applicable. If not specified, defaults to
     the current datetime.
+  * `$datetime.pattern` is an optional datetime pattern that
+    `$datetime` conforms to, and will be used to parse the
+    datetime string. Defaults to an [ISO8601]/XML datetime.
 
 * Outputs:
   * `$timezones` is an IData document list of time zones known to
@@ -7798,6 +7804,9 @@ Returns the default time zone for this host.
     Coordinated Time (UTC) offset and whether Daylight Savings
     Time (DST) is applicable. If not specified, defaults to
     the current datetime.
+  * `$datetime.pattern` is an optional datetime pattern that
+    `$datetime` conforms to, and will be used to parse the
+    datetime string. Defaults to an [ISO8601]/XML datetime.
 
 * Outputs:
   * `$timezone` is an IData document describing the default time
