@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-07-25 12:05:38.283
+// -----( CREATED: 2014-07-25 12:15:14.396
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -222,6 +222,33 @@ public final class datetime
 		  datetime = format(datetime, inPattern, outPattern);
 
 		  if (datetime != null) IDataUtil.put(cursor, "$datetime", datetime);
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
+	public static final void later (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(later)>> ---
+		// @sigtype java 3.5
+		// [i] field:0:optional $datetime.pattern {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
+		// [i] field:0:optional $duration
+		// [i] field:0:optional $duration.pattern {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
+		// [o] field:0:optional $datetime
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		  String datetimePattern = IDataUtil.getString(cursor, "$datetime.pattern");
+		  String duration = IDataUtil.getString(cursor, "$duration");
+		  String durationPattern = IDataUtil.getString(cursor, "$duration.pattern");
+
+		  IDataUtil.put(cursor, "$datetime", later(datetimePattern, duration, durationPattern));
 		} finally {
 		  cursor.destroy();
 		}
@@ -587,6 +614,26 @@ public final class datetime
 	// returns the current datetime minus the given duration
 	public static java.util.Calendar earlier(javax.xml.datatype.Duration duration) throws ServiceException {
 	  return subtract(java.util.Calendar.getInstance(), duration);
+	}
+
+	// returns the current datetime plus the given XML duration
+	public static String later(String duration) throws ServiceException {
+	  return later(null, duration, null);
+	}
+
+	// returns the current datetime plus the given duration
+	public static String later(String duration, String durationPattern) throws ServiceException {
+	  return later(null, duration, durationPattern);
+	}
+
+	// returns the current datetime plus the given duration
+	public static String later(String datetimePattern, String duration, String durationPattern) throws ServiceException {
+	  return emit(later(tundra.duration.parse(duration, durationPattern)), datetimePattern);
+	}
+
+	// returns the current datetime plus the given duration
+	public static java.util.Calendar later(javax.xml.datatype.Duration duration) throws ServiceException {
+	  return add(java.util.Calendar.getInstance(), duration);
 	}
 	// --- <<IS-END-SHARED>> ---
 }

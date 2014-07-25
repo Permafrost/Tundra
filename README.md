@@ -1621,6 +1621,37 @@ Services for manipulating date, time and datetime strings:
     * `$datetime` is the datetime formatted as a string according to the given
       `$pattern.output`.
 
+* #### tundra.datetime:later
+
+  Adds a duration of time to the current datetime, formatted according
+  to the given patterns.
+
+  Supports a handful of well-known named datetime patterns:
+
+      Name           Pattern
+      -------------  --------------------------------------------
+      datetime       [ISO8601]/XML datetime
+      datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
+      date           [ISO8601]/XML date
+      date.jdbc      yyyy-mm-dd
+      time           [ISO8601]/XML time
+      time.jdbc      HH:mm:ss
+      milliseconds   Number of milliseconds since the Epoch,
+                     January 1, 1970 00:00:00.000 GMT (Gregorian)
+
+  Custom datetime patterns can be specified using [java.text.SimpleDateFormat]
+  compatible patterns.
+
+  * Inputs:
+    * `$datetime.pattern` is an optional datetime pattern that `$datetime`
+      is formatted as. Defaults to an [ISO8601]/XML datetime.
+    * `$duration` is the duration to be added to the current datetime.
+    * `$duration.pattern` is an optional duration pattern that `$duration`
+      conforms to. Defaults to an [ISO8601]/XML duration.
+
+  * Outputs:
+    * `$datetime` is the current datetime plus the given `$duration`.
+
 * #### tundra.datetime:now
 
   Returns the current datetime formatted according to the given pattern.
