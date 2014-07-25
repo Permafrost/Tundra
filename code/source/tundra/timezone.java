@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-07-25 19:25:11 EST
+// -----( CREATED: 2014-07-25 19:28:16 EST
 // -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
@@ -148,6 +148,9 @@ public final class timezone
 	// returns the time zone associated with the given ID in IData format
 	public static IData get(String id, java.util.Date instant) {
 	  IData output = null;
+	
+	  if (id.equals("Z")) id = "UTC";
+	  
 	  if (zones.contains(id)) {
 	    output = toIData(java.util.TimeZone.getTimeZone(id), instant);
 	  }
