@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-01-10 10:27:04.151
-// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
+// -----( CREATED: 2014-07-25 15:58:15 EST
+// -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -113,7 +113,7 @@ public final class timezone
 		
 		try {
 		  String datetime = IDataUtil.getString(cursor, "$datetime");
-		  IData timezone = getDefault(datetime);
+		  IData timezone = self(datetime);
 		  if (timezone != null) IDataUtil.put(cursor, "$timezone", timezone);
 		} finally {
 		  cursor.destroy();
@@ -135,12 +135,12 @@ public final class timezone
 	}
 	
 	// returns the default time zone in IData format
-	public static IData getDefault(String datetime) {
-	  return getDefault(getInstant(datetime));
+	public static IData self(String datetime) {
+	  return self(getInstant(datetime));
 	}
 	
 	// returns the default time zone in IData format
-	public static IData getDefault(java.util.Date instant) {
+	public static IData self(java.util.Date instant) {
 	  return toIData(java.util.TimeZone.getDefault(), instant);
 	}
 	
