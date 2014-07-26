@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-01-30 16:49:26.156
-// -----( ON-HOST: -
+// -----( CREATED: 2014-07-27 08:59:58 EST
+// -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -110,7 +110,9 @@ public final class duration
 		  String inPattern = IDataUtil.getString(cursor, "$pattern.input");
 		  String outPattern = IDataUtil.getString(cursor, "$pattern.output");
 		  
-		  IDataUtil.put(cursor, "$duration", format(duration, inPattern, outPattern, datetime));
+		  duration = format(duration, inPattern, outPattern, datetime);
+		
+		  if (duration != null) IDataUtil.put(cursor, "$duration", duration);
 		} finally {
 		  cursor.destroy();
 		}
@@ -137,7 +139,10 @@ public final class duration
 		  String duration = IDataUtil.getString(cursor, "$duration");
 		  String datetime = IDataUtil.getString(cursor, "$datetime");
 		  String factor = IDataUtil.getString(cursor, "$factor");
-		  IDataUtil.put(cursor, "$duration", multiply(duration, factor, datetime));
+		
+		  duration = multiply(duration, factor, datetime);
+		
+		  if (duration != null) IDataUtil.put(cursor, "$duration", duration);
 		} finally {
 		  cursor.destroy();
 		}
@@ -160,7 +165,8 @@ public final class duration
 		
 		try {
 		  String duration = IDataUtil.getString(cursor, "$duration");
-		  IDataUtil.put(cursor, "$duration", negate(duration));
+		  duration = negate(duration);
+		  if (duration != null) IDataUtil.put(cursor, "$duration", duration);
 		} finally {
 		  cursor.destroy();
 		}
