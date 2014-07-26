@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-07-26 19:14:37 EST
+// -----( CREATED: 2014-07-26 21:14:28 EST
 // -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
@@ -173,6 +173,38 @@ public final class directory
 		
 		try {
 		  IDataUtil.put(cursor, "$directory", tundra.support.file.normalize(IDataUtil.getString(cursor, "$directory")));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void purge (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(purge)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $directory
+		// [i] field:0:required $duration
+		// [i] field:0:optional $duration.pattern {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
+		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [o] field:0:required $count
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String directory = IDataUtil.getString(cursor, "$directory");
+		  String duration = IDataUtil.getString(cursor, "$duration");
+		  String pattern = IDataUtil.getString(cursor, "$duration.pattern");
+		  boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
+		
+		  long count = purge(directory, duration, pattern, recurse);
+		
+		  IDataUtil.put(cursor, "$count", "" + count);
 		} finally {
 		  cursor.destroy();
 		}
@@ -494,6 +526,39 @@ public final class directory
 	  cursor.destroy();
 	
 	  return output;
+	}
+	
+	// deletes all files in the given directory, and sub-directories if recurse
+	// is true, older than the given duration; returns the number of files deleted
+	public static long purge(String directory, String duration, String pattern, boolean recurse) throws ServiceException {
+	  return purge(tundra.support.file.construct(directory), tundra.duration.parse(duration, pattern), recurse);
+	}
+	
+	// deletes all files in the given directory, and sub-directories if recurse
+	// is true, older than the given duration; returns the number of files deleted
+	public static long purge(java.io.File directory, javax.xml.datatype.Duration duration, boolean recurse) throws ServiceException {
+	  return purge(directory, tundra.datetime.earlier(duration), recurse);
+	}
+	
+	// deletes all files in the given directory, and sub-directories if recurse
+	// is true, older than the given duration; returns the number of files deleted
+	public static long purge(java.io.File directory, java.util.Calendar age, boolean recurse) throws ServiceException {
+	  long count = 0;
+	
+	  for (String item : ls(directory)) {
+	    java.io.File child = tundra.support.file.construct(tundra.directory.join(directory, item));
+	    if (child.exists()) {
+	      if (child.isFile()) {
+	        java.util.Calendar modified = java.util.Calendar.getInstance();
+	        modified.setTime(new java.util.Date(child.lastModified()));
+	        if (modified.compareTo(age) <= 0 && child.delete()) count += 1;
+	      } else if (recurse && child.isDirectory()) {
+	        count += purge(child, age, recurse);
+	      }
+	    }
+	  }
+	
+	  return count;
 	}
 	// --- <<IS-END-SHARED>> ---
 }

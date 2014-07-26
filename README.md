@@ -2072,6 +2072,26 @@ File system services for working with directories or folders:
     * `$directory` is the equivalent canonical file: [URI] representing
       the directory.
 
+* #### tundra.directory:purge
+
+  Deletes all files older than the given duration, based on the last modified 
+  datetime, from the given directory, and optionally from all sub-directories.
+
+  * Inputs:
+    * `$directory` is the directory from which files will be deleted, specified 
+      as either a relative or absolute file path or file: [URI].
+    * `$duration` is the duration of time representing the age of files to be 
+      deleted. For example, a duration of P1D will delete all files that were 
+      last modified 24 hours ago or earlier.
+    * `$duration.pattern` is an optional pattern describing the type of duration 
+      specified by the `$duration` string. Defaults to an [ISO8601]/XML string.
+    * `$recurse?` is an optional boolean flag indicating if files in sub-
+      directories should also deleted. Defaults to false.
+
+  * Outputs:
+    * `$count` is the number of files deleted by this service that were older 
+      than the given `$duration`.
+
 * #### tundra.directory:reflect
 
   Returns useful details about the given directory.
