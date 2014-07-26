@@ -7,6 +7,7 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -21,6 +22,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$source</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -47,6 +49,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$service</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -73,6 +76,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$limit</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -93,9 +97,11 @@
           <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -103,6 +109,7 @@
       <value name="is_global">false</value>
       <array name="rec_fields" type="record" depth="1">
       </array>
+      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">Retrieves arbitrary content from the given $source URI, and calls the given 
@@ -147,6 +154,18 @@ specification.
       being successfully processed. If not specified, the archive directory 
       defaults to a subdirectory named archive.
 
+      Optionally, archived files older than a given age can be cleaned up 
+      automatically by the retrieve process by specifying a query string 
+      parameter called purge with an XML duration value representing the 
+      age an archived file must be before being purged, for example:
+
+          file:////server:port/directory/*.txt?purge=P14D
+
+      In this example, any files in the archive directory older than 14 days 
+      will be automatically deleted by the retrieve process. If the query 
+      string parameter purge is not specified, archived files will not be 
+      automatically cleaned up.
+
   * $service is the fully-qualified name of the content processing service, 
     which implements the tundra.schema.content.retrieve:processor 
     specification, invoked to process each item of content retrieved from 
@@ -170,10 +189,16 @@ specification.
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
 </Values>

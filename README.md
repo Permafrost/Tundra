@@ -1056,6 +1056,18 @@ content.
         being successfully processed. If not specified, the archive directory
         defaults to a subdirectory named `archive`.
 
+        Optionally, archived files older than a given age can be cleaned up 
+        automatically by the retrieve process by specifying a query string 
+        parameter called `purge` with an XML duration value representing the 
+        age an archived file must be before being purged, for example:
+
+            file:////server:port/directory/*.txt?purge=P14D
+
+        In this example, any files in the archive directory older than 14 days 
+        will be automatically deleted by the retrieve process. If the query 
+        string parameter `purge` is not specified, archived files will not be 
+        automatically cleaned up.
+
     * `$service` is the fully-qualified name of the content processing service,
       which implements the `tundra.schema.content.retrieve:processor`
       specification, invoked to process each item of content retrieved from
