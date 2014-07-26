@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-12-09 16:15:29.268
-// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
+// -----( CREATED: 2014-07-26 19:14:37 EST
+// -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -173,6 +173,34 @@ public final class directory
 		
 		try {
 		  IDataUtil.put(cursor, "$directory", tundra.support.file.normalize(IDataUtil.getString(cursor, "$directory")));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void reflect (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(reflect)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $directory
+		// [o] record:0:required $directory.properties
+		// [o] - field:0:required exists?
+		// [o] - field:0:optional parent
+		// [o] - field:0:optional name
+		// [o] - field:0:optional modified
+		// [o] - field:0:required uri
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String directory = IDataUtil.getString(cursor, "$directory");
+		  IDataUtil.put(cursor, "$directory.properties", reflect(directory));
 		} finally {
 		  cursor.destroy();
 		}
@@ -403,8 +431,69 @@ public final class directory
 	  return join(tundra.support.file.construct(parent), child);
 	}
 	
+	// creates a new path given a parent directory and child item
 	public static String join(java.io.File parent, String child) throws ServiceException {
 	  return tundra.support.file.normalize(new java.io.File(parent, child));
+	}
+	
+	// returns only the name component of the given directory
+	public static String name(String directory) throws ServiceException {
+	  return name(tundra.support.file.construct(directory));
+	}
+	
+	// returns only the name component of the given directory
+	public static String name(java.io.File directory) throws ServiceException {
+	  String name = directory.getName();
+	  return directory.equals("") ? null : name;
+	}
+	
+	// returns only the parent directory containing the given directory
+	public static String parent(String directory) throws ServiceException {
+	  return parent(tundra.support.file.construct(directory));
+	}
+	
+	// returns only the parent directory containing the given directory
+	public static String parent(java.io.File directory) throws ServiceException {
+	  return tundra.support.file.normalize(directory.getParent());
+	}
+	
+	// returns the last modified datetime of the given directory as an ISO8601 formatted datetime string
+	public static String modified(String directory) throws ServiceException {
+	  return modified(tundra.support.file.construct(directory));
+	}
+	
+	// returns the last modified datetime of the given directory as an ISO8601 formatted datetime string
+	public static String modified(java.io.File directory) throws ServiceException {
+	  return tundra.datetime.emit(new java.util.Date(directory.lastModified()));
+	}
+	
+	// returns an IData document containing the properties of the given directory
+	public static IData reflect(String directory) throws ServiceException {
+	  return reflect(tundra.support.file.construct(directory));
+	}
+	
+	// returns an IData document containing the properties of the given directory
+	public static IData reflect(java.io.File directory) throws ServiceException {
+	  IData output = IDataFactory.create();
+	  IDataCursor cursor = output.getCursor();
+	
+	  boolean exists = exists(directory);
+	
+	  IDataUtil.put(cursor, "exists?", "" + exists);
+	
+	  String parent = parent(directory);
+	  if (parent != null) IDataUtil.put(cursor, "parent", parent);
+	
+	  String name = name(directory);
+	  if (name != null) IDataUtil.put(cursor, "name", name(directory));
+	
+	  if (exists) IDataUtil.put(cursor, "modified", modified(directory));
+	
+	  IDataUtil.put(cursor, "uri", tundra.support.file.normalize(directory));
+	
+	  cursor.destroy();
+	
+	  return output;
 	}
 	// --- <<IS-END-SHARED>> ---
 }

@@ -2072,6 +2072,30 @@ File system services for working with directories or folders:
     * `$directory` is the equivalent canonical file: [URI] representing
       the directory.
 
+* #### tundra.directory:reflect
+
+  Returns useful details about the given directory.
+
+  * Inputs:
+    * `$directory` is the name of the directory to return details about, specified as 
+      either a relative or absolute file path or file: [URI].
+
+  * Outputs:
+    * `$directory.properties` is an IData document containing the following details 
+      about the given `$directory`:
+      * `exists?` is a boolean flag indicating if the given directory exists.
+
+      * `parent` is the canonical file: [URI] that represents the parent 
+        directory that contains the given directory.
+
+      * `name` is the name component not including the path of the given directory.
+
+      * `modified` is the last modified datetime of the given directory.
+
+      * `uri` is the canonical file: [URI] that represents the given directory.
+
+  [URI]: <http://www.w3.org/Addressing/>
+
 * #### tundra.directory:remove
 
   Deletes the given directory, and optionally all child files and
