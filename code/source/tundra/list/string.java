@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-05-13 08:51:48.528
+// -----( CREATED: 2014-07-30 16:34:49.353
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -305,6 +305,40 @@ public final class string
 
 
 
+	public static final void match (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(match)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:1:optional $list
+		// [i] field:0:optional $pattern
+		// [i] field:0:optional $literal? {&quot;false&quot;,&quot;true&quot;}
+		// [o] field:1:optional $matched
+		// [o] field:1:optional $unmatched
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		  String[] list = IDataUtil.getStringArray(cursor, "$list");
+		  String pattern = IDataUtil.getString(cursor, "$pattern");
+		  boolean literal = tundra.bool.parse(IDataUtil.getString(cursor, "$literal?"));
+
+		  String[][] output = match(list, pattern, literal);
+
+		  if (output != null && output.length > 1) {
+		    IDataUtil.put(cursor, "$matched", output[0]);
+		    IDataUtil.put(cursor, "$unmatched", output[1]);
+		  }
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
 	public static final void prepend (IData pipeline)
         throws ServiceException
 	{
@@ -502,6 +536,29 @@ public final class string
 	  for (int i = 0; i < input.length; i++) {
 	    output[i] = substitute(input[i], scope, defaultValue);
 	  }
+
+	  return output;
+	}
+
+	// returns the list of items that match and did not match the given regular expression
+	// pattern
+	public static String[][] match(String[] input, String pattern, boolean literal) {
+	  if (input == null) return null;
+
+	  java.util.List<String> matched = new java.util.ArrayList<String>(input.length);
+	  java.util.List<String> unmatched = new java.util.ArrayList<String>(input.length);
+
+	  for (int i = 0; i < input.length; i++) {
+	    if (tundra.string.match(input[i], pattern, literal)) {
+	      matched.add(input[i]);
+	    } else {
+	      unmatched.add(input[i]);
+	    }
+	  }
+
+	  String[][] output = new String[2][];
+	  output[0] = matched.toArray(new String[0]);
+	  output[1] = unmatched.toArray(new String[0]);
 
 	  return output;
 	}

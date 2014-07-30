@@ -1056,16 +1056,16 @@ content.
         being successfully processed. If not specified, the archive directory
         defaults to a subdirectory named `archive`.
 
-        Optionally, archived files older than a given age can be cleaned up 
-        automatically by the retrieve process by specifying a query string 
-        parameter called `purge` with an XML duration value representing the 
+        Optionally, archived files older than a given age can be cleaned up
+        automatically by the retrieve process by specifying a query string
+        parameter called `purge` with an XML duration value representing the
         age an archived file must be before being purged, for example:
 
             file:////server:port/directory/*.txt?purge=P14D
 
-        In this example, any files in the archive directory older than 14 days 
-        will be automatically deleted by the retrieve process. If the query 
-        string parameter `purge` is not specified, archived files will not be 
+        In this example, any files in the archive directory older than 14 days
+        will be automatically deleted by the retrieve process. If the query
+        string parameter `purge` is not specified, archived files will not be
         automatically cleaned up.
 
     * `$service` is the fully-qualified name of the content processing service,
@@ -2086,22 +2086,22 @@ File system services for working with directories or folders:
 
 * #### tundra.directory:purge
 
-  Deletes all files older than the given duration, based on the last modified 
+  Deletes all files older than the given duration, based on the last modified
   datetime, from the given directory, and optionally from all sub-directories.
 
   * Inputs:
-    * `$directory` is the directory from which files will be deleted, specified 
+    * `$directory` is the directory from which files will be deleted, specified
       as either a relative or absolute file path or file: [URI].
-    * `$duration` is the duration of time representing the age of files to be 
-      deleted. For example, a duration of P1D will delete all files that were 
+    * `$duration` is the duration of time representing the age of files to be
+      deleted. For example, a duration of P1D will delete all files that were
       last modified 24 hours ago or earlier.
-    * `$duration.pattern` is an optional pattern describing the type of duration 
+    * `$duration.pattern` is an optional pattern describing the type of duration
       specified by the `$duration` string. Defaults to an [ISO8601]/XML string.
     * `$recurse?` is an optional boolean flag indicating if files in sub-
       directories should also deleted. Defaults to false.
 
   * Outputs:
-    * `$count` is the number of files deleted by this service that were older 
+    * `$count` is the number of files deleted by this service that were older
       than the given `$duration`.
 
 * #### tundra.directory:reflect
@@ -2109,15 +2109,15 @@ File system services for working with directories or folders:
   Returns useful details about the given directory.
 
   * Inputs:
-    * `$directory` is the name of the directory to return details about, specified as 
+    * `$directory` is the name of the directory to return details about, specified as
       either a relative or absolute file path or file: [URI].
 
   * Outputs:
-    * `$directory.properties` is an IData document containing the following details 
+    * `$directory.properties` is an IData document containing the following details
       about the given `$directory`:
       * `exists?` is a boolean flag indicating if the given directory exists.
 
-      * `parent` is the canonical file: [URI] that represents the parent 
+      * `parent` is the canonical file: [URI] that represents the parent
         directory that contains the given directory.
 
       * `name` is the name component not including the path of the given directory.
@@ -5735,8 +5735,12 @@ Services for manipulating string lists:
   * Inputs:
     * `$list` is a list to be matched against the given regular
       expression.
-    * `$pattern` is the [regular expression pattern] to match against
-      the given list.
+    * `$pattern` is the [regular expression pattern] or literal string
+      to match against the given list.
+    * `$literal?` is a boolean indicating if the `$pattern` string should
+      be treated as a literal string. If false, `$pattern` is treated
+      as a [regular expression pattern]. If true, `$pattern` is treated
+      as a literal string. Defaults to false, if not specified.
 
   * Outputs:
     * `$matched` is the list of items which were found to match the given
