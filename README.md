@@ -730,8 +730,8 @@ content.
       delivery. Defaults to the Java virtual machine [default charset].
 
     * `$destination` is a URI identifying the location where the given
-      `$content` should be delivered. Supports the following delivery
-      protocols / URI schemes:
+      `$content` should be delivered. If not specified, no delivery will be
+      attempted. Supports the following delivery protocols / URI schemes:
 
       * `file`: writes the given content to the file specified by the
         destination URI. The following additional options can be provided via
