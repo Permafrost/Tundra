@@ -773,6 +773,10 @@ content.
         * `$authority/user`: the username to log on to the remote web server
         * `$authority/password`: the password to log on to the remote web
           server
+        * `$timeout` is an optional XML duration string which specifies how long
+          the client waits for a response from the server before timing out
+          and terminating the request with an error. Defaults to PT60S, if not
+          specified.          
 
       * `https`: refer to `http`
 
