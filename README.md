@@ -776,7 +776,7 @@ content.
         * `$timeout` is an optional XML duration string which specifies how long
           the client waits for a response from the server before timing out
           and terminating the request with an error. Defaults to PT60S, if not
-          specified.          
+          specified.
 
       * `https`: refer to `http`
 
@@ -7610,7 +7610,7 @@ Services for manipulating java.lang.String objects:
       that were separated with an occurence of the given
       [regular expression pattern].
 
-* #### tundra.string:split
+* #### tundra.string:squeeze
 
   Replaces runs of one or more whitespace characters (space, tab,
   carriage return, line feed) with a single space character.
