@@ -3744,6 +3744,23 @@ Services for working with arbitrary precision integers (uses [java.math.BigInteg
     * `$integer` is the given integer multiplied by minus
       one.
 
+* #### tundra.integer:parse
+
+  Returns an integer object by parsing the given string.
+
+  * Inputs:
+    * `$string` is a string of digits optionally preceded by a plus or minus
+      sign to be parsed.
+    * `$class` is an optional Java class name that determines the type of
+      object returned, a choice of either `java.math.BigInteger`,
+      `java.lang.Integer`, or `java.lang.Long`. Defaults to `java.math.BigInteger`,
+      if not specified.
+    * `$radix` is an optional [radix] used to interpret the digits in the given
+      `$string`. Defaults to 10 (decimal), if not specified.
+
+  * Outputs:
+    * `$object` is the resulting Java object representing the parsed integer.
+
 * #### tundra.integer:power
 
   Raises the given integer to the power of the given exponent (i^e).
@@ -8267,6 +8284,7 @@ Copyright © 2012 Lachlan Dowding. See license.txt for further details.
 [natural ordering]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Comparable.html>
 [Object.toString()]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html#toString()>
 [primitive type]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Class.html#isPrimitive()>
+[radix]: <http://en.wikipedia.org/wiki/Radix>
 [regular expression pattern]: <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html>
 [RFC 2045]: <http://www.ietf.org/rfc/rfc2045.txt>
 [RFC 2046]: <http://www.ietf.org/rfc/rfc2046.txt>

@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-12-11 13:34:57.959
-// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
+// -----( CREATED: 2014-08-02 13:07:53 EST
+// -----( ON-HOST: 172.16.189.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -263,6 +263,43 @@ public final class integer
 
 
 
+	public static final void parse (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(parse)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $string
+		// [i] field:0:optional $class {&quot;java.math.BigInteger&quot;,&quot;java.lang.Integer&quot;,&quot;java.lang.Long&quot;}
+		// [i] field:0:optional $radix
+		// [o] object:0:optional $object
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String s = IDataUtil.getString(cursor, "$string");
+		  String className = IDataUtil.getString(cursor, "$class");
+		  String radix = IDataUtil.getString(cursor, "$radix");
+		
+		  if (s != null) {
+		    java.math.BigInteger integer = parse(s, radix);
+		    if (className == null || className.equals("java.math.BigInteger")) {
+		      IDataUtil.put(cursor, "$object", integer);
+		    } else if (className.equals("java.lang.Integer")) {
+		      IDataUtil.put(cursor, "$object", integer.intValue());
+		    } else if (className.equals("java.lang.Long")) {
+		      IDataUtil.put(cursor, "$object", integer.longValue());
+		    }
+		  }
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void power (IData pipeline)
         throws ServiceException
 	{
@@ -365,10 +402,12 @@ public final class integer
 	}
 
 	// --- <<IS-START-SHARED>> ---
+	// returns the absolute value of the given integer string
 	public static String absolute(String s) {
 	  return emit(parse(s).abs());
 	}
 	
+	// returns the result of adding the given list of integer strings
 	public static String add(String ... s) {
 	  java.math.BigInteger result = java.math.BigInteger.ZERO;
 	  if (s != null) {
@@ -379,18 +418,22 @@ public final class integer
 	  return emit(result);
 	}
 	
+	// subtracts 1 from the given integer string
 	public static String decrement(String s) {
 	  return emit(parse(s).subtract(java.math.BigInteger.ONE));
 	}
 	
+	// returns the result of dividing x by y
 	public static String divide(String x, String y) {
 	  return emit(parse(x).divide(parse(y)));
 	}
 	
+	// adds 1 to the given integer string
 	public static String increment(String s) {
 	  return emit(parse(s).add(java.math.BigInteger.ONE));
 	}
 	
+	// returns the result of multiplying the given list of integer strings
 	public static String multiply(String ... s) {
 	  java.math.BigInteger result = java.math.BigInteger.ONE;
 	  if (s != null) {
@@ -401,23 +444,28 @@ public final class integer
 	  return emit(result);
 	}
 	
+	// returns the s * -1
 	public static String negate(String s) {
 	  return emit(parse(s).negate());
 	}
 	
+	// returns the value of i raised to the power of e
 	public static String power(String i, String e) {
 	  int exponent = Integer.parseInt(e);
 	  return emit(parse(i).pow(exponent));
 	}
 	
+	// returns the modulo remainder from dividing x by y
 	public static String remainder(String x, String y) {
 	  return emit(parse(x).remainder(parse(y)));
 	}
 	
+	// returns the resulting value of subtracting y from x
 	public static String subtract(String x, String y) {
 	  return emit(parse(x).subtract(parse(y)));
 	}
 	
+	// returns false or throws an exception if the given string cannot be parsed as an integer
 	public static boolean validate(String s, boolean raise) throws ServiceException {
 	  boolean valid = false;
 	  try {
@@ -431,21 +479,47 @@ public final class integer
 	  return valid;
 	}
 	
+	// returns true if the given string can be parsed as an integer
 	public static boolean validate(String s) throws ServiceException {
 	  return validate(s, false);
 	}
 	
+	// returns a string representation of the given BigInteger object
 	public static String emit(java.math.BigInteger i) {
-	  if (i == null) i = java.math.BigInteger.ZERO;
-	  return i.toString();
+	  return emit(i, null);
 	}
 	
+	// returns a string representation of the given BigInteger object
+	public static String emit(java.math.BigInteger i, String radix) {
+	  if (radix == null) radix = "10";
+	  return emit(i, Integer.parseInt(radix));
+	}
+	
+	// returns a string representation of the given BigInteger object
+	public static String emit(java.math.BigInteger i, int radix) {
+	  if (i == null) i = java.math.BigInteger.ZERO;
+	  return i.toString(radix);
+	}
+	
+	// returns a BigInteger object given an integer string
 	public static java.math.BigInteger parse(String s) {
+	  return parse(s, null);
+	}
+	
+	// returns a BigInteger object given an integer string
+	public static java.math.BigInteger parse(String s, String radix) {
+	  if (radix == null) radix = "10";
+	  return parse(s, Integer.parseInt(radix));
+	}
+	
+	// returns a BigInteger object given an integer string
+	public static java.math.BigInteger parse(String s, int radix) {
 	  java.math.BigInteger i = java.math.BigInteger.ZERO;
-	  if (s != null) i = new java.math.BigInteger(s);
+	  if (s != null) i = new java.math.BigInteger(s, radix);
 	  return i;
 	}
 	
+	// returns the minimum value from the given list of integer strings
 	public static String minimum(String ... s) {
 	  if (s == null) return null;
 	
@@ -462,6 +536,7 @@ public final class integer
 	  return emit(result);
 	}
 	
+	// returns the maximum value from the given list of integer strings
 	public static String maximum(String ... s) {
 	  if (s == null) return null;
 	
@@ -478,6 +553,7 @@ public final class integer
 	  return emit(result);
 	}
 	
+	// returns the average value for the given list of integer strings
 	public static String average(String ... s) {
 	  if (s == null) return null;
 	
