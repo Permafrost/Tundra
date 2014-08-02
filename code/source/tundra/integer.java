@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-08-02 13:07:53 EST
+// -----( CREATED: 2014-08-02 13:55:38 EST
 // -----( ON-HOST: 172.16.189.129
 
 import com.wm.data.*;
@@ -146,6 +146,32 @@ public final class integer
 
 
 
+	public static final void emit (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(emit)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:0:optional $object
+		// [i] field:0:optional $radix
+		// [o] field:0:optional $string
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  Object object = IDataUtil.get(cursor, "$object");
+		  String radix = IDataUtil.getString(cursor, "$radix");
+		
+		  if (object != null) IDataUtil.put(cursor, "$string", emit(object, radix));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void increment (IData pipeline)
         throws ServiceException
 	{
@@ -276,18 +302,18 @@ public final class integer
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  String s = IDataUtil.getString(cursor, "$string");
+		  String string = IDataUtil.getString(cursor, "$string");
 		  String className = IDataUtil.getString(cursor, "$class");
 		  String radix = IDataUtil.getString(cursor, "$radix");
 		
-		  if (s != null) {
-		    java.math.BigInteger integer = parse(s, radix);
+		  if (string != null) {
+		    java.math.BigInteger object = parse(string, radix);
 		    if (className == null || className.equals("java.math.BigInteger")) {
-		      IDataUtil.put(cursor, "$object", integer);
+		      IDataUtil.put(cursor, "$object", object);
 		    } else if (className.equals("java.lang.Integer")) {
-		      IDataUtil.put(cursor, "$object", integer.intValue());
+		      IDataUtil.put(cursor, "$object", object.intValue());
 		    } else if (className.equals("java.lang.Long")) {
-		      IDataUtil.put(cursor, "$object", integer.longValue());
+		      IDataUtil.put(cursor, "$object", object.longValue());
 		    }
 		  }
 		} finally {
@@ -487,6 +513,24 @@ public final class integer
 	// returns a string representation of the given BigInteger object
 	public static String emit(java.math.BigInteger i) {
 	  return emit(i, null);
+	}
+	
+	// returns a string representation of the given BigInteger object
+	public static String emit(Object object, String radix) {
+	  if (object == null) return null;
+	
+	  java.math.BigInteger integer = null;
+	  if (object instanceof java.lang.Integer) {
+	    integer = java.math.BigInteger.valueOf((java.lang.Integer)object);
+	  } else if (object instanceof java.lang.Long) {
+	    integer = java.math.BigInteger.valueOf((java.lang.Long)object);
+	  } else if (object instanceof java.math.BigInteger) {
+	    integer = (java.math.BigInteger)object;
+	  } else {
+	    throw new IllegalArgumentException("Object class " + object.getClass().getName() + " is not supported");
+	  }
+	
+	  return emit(integer, radix);
 	}
 	
 	// returns a string representation of the given BigInteger object
