@@ -2504,6 +2504,24 @@ Services for manipulating com.wm.data.IData objects:
     * $document is the given IData document with all keys
       converted to lower case.
 
+* #### tundra.document.key:normalize
+
+  Converts all keys in the given IData document to legal Java
+  identifiers by replacing all illegal characters with
+  underscore characters.
+
+  * Inputs:
+    * `$document` is an IData document whose keys are to be
+      converted to legal Java identifiers.
+    * `$recurse?` is an optional boolean indicating if embedded
+      IData documents and IData[] document lists should also
+      have their keys converted to legal Java identifiers.
+      Defaults to false.
+
+  * Outputs:
+    * `$document` is the given IData document with all keys
+      converted to to legal Java identifiers.
+
 * #### tundra.document.key:replace
 
   Replaces all occurrences of the given [regular expression pattern]
