@@ -309,7 +309,7 @@ should implement the tundra.schema.content.deliver:handler specification.
   * $destination is a URI identifying the location where the given $content 
     should be delivered. If not specified, no delivery will be attempted.
 
-    Supports the following delivery protocols / URI schemes:
+    Supports the following delivery protocols / URI schemes:
     * file: writes the given content to the file specified by the 
       destination URI. The following additional options can be provided via 
       the $pipeline document:
@@ -356,6 +356,26 @@ should implement the tundra.schema.content.deliver:handler specification.
         specified.
 
     * https: refer to http
+
+    * jms: sends the given content as a [JMS] [javax.jms.BytesMessage] to 
+      the specified [JMS] alias and queue or topic. The following additional 
+      settings can be specified:
+      * $headers/*: additional properties to be added to the [JMS] message 
+        header, which can be used for filtering by [JMS] subscribers.
+
+      The following example will deliver the given content as a [JMS] bytes 
+      message to the [JMS] alias DEFAULT_IS_JMS_CONNECTION, [JMS] topic 
+      JMS::Temporary::Topic, with a time to live of 1 day, and with the 
+      default priority of 4:
+
+          jms://DEFAULT_IS_JMS_CONNECTION?topic=JMS::Temporary::Topic&amp;lifetime=P1D
+
+      The following example will deliver the given content as a [JMS] bytes 
+      message to the [JMS] alias DEFAULT_IS_JMS_CONNECTION, [JMS] queue 
+      JMS::Temporary::Queue, with no expiry, and with the specified priority 
+      of 1: 
+
+          jms://DEFAULT_IS_JMS_CONNECTION?queue=JMS::Temporary::Queue&amp;priority=1
 
     * mailto: sends an email with the given content attached. An example 
       mailto URI is as follows: 
@@ -418,6 +438,8 @@ should implement the tundra.schema.content.deliver:handler specification.
 
 [CSV]: &lt;http://en.wikipedia.org/wiki/Comma-separated_values&gt;
 [default charset]: &lt;http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()&gt;
+[javax.jms.BytesMessage]: &lt;http://docs.oracle.com/javaee/1.4/api/javax/jms/BytesMessage.html&gt;
+[JMS]: &lt;http://en.wikipedia.org/wiki/Java_Message_Service&gt;
 [JSON]: &lt;http://www.json.org&gt;
 [TSV]: &lt;http://en.wikipedia.org/wiki/Tab-separated_values&gt;
 [XML]: &lt;http://www.w3.org/XML/&gt;

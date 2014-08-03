@@ -780,6 +780,26 @@ content.
 
       * `https`: refer to `http`
 
+      * `jms`: sends the given content as a [JMS] [javax.jms.BytesMessage] to
+        the specified [JMS] alias and queue or topic. The following additional
+        settings can be specified:
+        * $headers/*: additional properties to be added to the [JMS] message
+          header, which can be used for filtering by [JMS] subscribers.
+
+        The following example will deliver the given content as a [JMS] bytes
+        message to the JMS alias DEFAULT_IS_JMS_CONNECTION, [JMS] topic
+        JMS::Temporary::Topic, with a time to live of 1 day, and with the
+        default priority of 4:
+
+            jms://DEFAULT_IS_JMS_CONNECTION?topic=JMS::Temporary::Topic&lifetime=P1D
+
+        The following example will deliver the given content as a [JMS] bytes
+        message to the [JMS] alias DEFAULT_IS_JMS_CONNECTION, [JMS] queue
+        JMS::Temporary::Queue, with no expiry, and with the specified priority
+        of 1:
+
+            jms://DEFAULT_IS_JMS_CONNECTION?queue=JMS::Temporary::Queue&priority=1
+
       * `mailto`: sends an email with the given content attached. An example
         mailto URI is as follows:
 
@@ -2310,6 +2330,26 @@ Services for manipulating com.wm.data.IData objects:
         * `$authority/password`: the password to log on to the remote web server
 
       * `https`: refer to http
+
+      * `jms`: sends the given content as a [JMS] [javax.jms.BytesMessage] to
+        the specified [JMS] alias and queue or topic. The following additional
+        settings can be specified:
+        * $headers/*: additional properties to be added to the [JMS] message
+          header, which can be used for filtering by [JMS] subscribers.
+
+        The following example will deliver the given content as a [JMS] bytes
+        message to the JMS alias DEFAULT_IS_JMS_CONNECTION, [JMS] topic
+        JMS::Temporary::Topic, with a time to live of 1 day, and with the
+        default priority of 4:
+
+            jms://DEFAULT_IS_JMS_CONNECTION?topic=JMS::Temporary::Topic&lifetime=P1D
+
+        The following example will deliver the given content as a [JMS] bytes
+        message to the [JMS] alias DEFAULT_IS_JMS_CONNECTION, [JMS] queue
+        JMS::Temporary::Queue, with no expiry, and with the specified priority
+        of 1:
+
+            jms://DEFAULT_IS_JMS_CONNECTION?queue=JMS::Temporary::Queue&priority=1
 
       * `mailto`: sends an email with the given content attached. An example
         mailto URI is as follows:
@@ -8318,7 +8358,9 @@ Copyright © 2012 Lachlan Dowding. See license.txt for further details.
 [java.util.Date]: <http://docs.oracle.com/javase/6/docs/api/java/util/Date.html>
 [java.util.TimeZone]: <http://docs.oracle.com/javase/6/docs/api/java/util/TimeZone.html>
 [javax.activation.MimeType]: <http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html>
+[javax.jms.BytesMessage]: <http://docs.oracle.com/javaee/1.4/api/javax/jms/BytesMessage.html>
 [Java array class name]: <http://docs.oracle.com/javase/tutorial/reflect/special/arrayComponents.html>
+[JMS]: <http://en.wikipedia.org/wiki/Java_Message_Service>
 [JSON]: <http://www.json.org/>
 [Locale]: <http://docs.oracle.com/javase/6/docs/api/java/util/Locale.html>
 [map function]: <http://en.wikipedia.org/wiki/Map_(higher-order_function)>
