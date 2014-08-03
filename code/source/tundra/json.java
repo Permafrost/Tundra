@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-05-31 14:33:14 EST
-// -----( ON-HOST: 172.16.189.136
+// -----( CREATED: 2014-08-03 16:01:30 EST
+// -----( ON-HOST: 172.16.189.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -34,6 +34,7 @@ public final class json
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
+		// [i] - object:1:optional recordWithNoID
 		// [i] field:0:optional $encoding
 		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
 		// [o] object:0:optional $content
@@ -75,11 +76,15 @@ public final class json
 		  if (content != null) {
 		    Object output = parse(tundra.stream.normalize(content, encoding), encoding);
 		    if (output != null) {
-		      if (output instanceof IData) {
-		        IDataUtil.put(cursor, "$document", output);
-		      } else {
-		        tundra.exception.raise("Parsing JSON arrays is not supported by this service");
+		      if (!(output instanceof IData)) {
+		        // wrap in an outer IData document containing recordWithNoID item
+		        IData document = IDataFactory.create();
+		        IDataCursor dc = document.getCursor();
+		        IDataUtil.put(dc, "recordWithNoID", output);
+		        dc.destroy();
+		        output = document;
 		      }
+		      IDataUtil.put(cursor, "$document", output);
 		    }
 		  }
 		} catch (java.io.UnsupportedEncodingException ex) {
@@ -238,7 +243,17 @@ public final class json
 	public static Object emit(IData input, String mode, String encoding) throws java.io.IOException {
 	  java.io.StringWriter stringWriter = new java.io.StringWriter();
 	  javax.json.JsonWriter writer = javax.json.Json.createWriter(stringWriter);
-	  writer.write(toJsonObject(input));
+	
+	  IDataCursor cursor = input.getCursor();
+	  Object[] array = IDataUtil.getObjectArray(cursor, "recordWithNoID");
+	  cursor.destroy();
+	
+	  if (array != null) {
+	    writer.write(toJsonArray(array));
+	  } else {
+	    writer.write(toJsonObject(input));
+	  }
+	
 	  writer.close();
 	
 	  Object content = stringWriter.toString();
