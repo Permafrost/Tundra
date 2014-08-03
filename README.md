@@ -3628,6 +3628,18 @@ Services for compressing and decompressing data using the [gzip] format.
   * Outputs:
     * `$id` is the generated [UUID].
 
+* #### tundra.id:normalize
+
+  Converts the given string to a legal Java identifier by replacing illegal
+  characters with underscore characters.
+
+  * Inputs:
+    * `$string` is a string to be converted to a legal Java identifier.
+
+  * Outputs:
+    * `$string` is the given string with illegal characters replaced with
+      underscore characters.
+
 ### Integer
 
 Services for working with arbitrary precision integers (uses [java.math.BigInteger] as its implementation):
