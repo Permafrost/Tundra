@@ -1882,6 +1882,17 @@ Services for working with arbitrary precision decimals (uses [java.math.BigDecim
       and rounding to the given precision using the nominated
       [rounding algorithm].
 
+* #### tundra.decimal:emit
+
+  Returns an string representation of the given decimal object.
+
+  * Inputs:
+    * `$object` is either a `java.math.BigDecimal`, `java.lang.Float`, or
+      `java.lang.Double` object.
+
+  * Outputs:
+    * `$string` is the resulting string representation of the decimal.
+
 * #### tundra.decimal:maximum
 
   Returns the maximum value in the given list of decimals, optionally
@@ -1949,6 +1960,21 @@ Services for working with arbitrary precision decimals (uses [java.math.BigDecim
   * Outputs:
     * `$decimal` is the given decimal value multiplied
       by minus one.
+
+* #### tundra.decimal:parse
+
+  Returns an decimal object by parsing the given string.
+
+  * Inputs:
+    * `$string` is a string representation of a decimal number, formatted
+      according to [java.math.BigDecimal grammar].
+    * `$class` is an optional Java class name that determines the type of
+      object returned, a choice of either `java.math.BigDecimal`,
+      `java.lang.Float`, or `java.lang.Double`. Defaults to `java.math.BigDecimal`,
+      if not specified.
+
+  * Outputs:
+    * `$object` is the resulting Java object representing the parsed decimal.
 
 * #### tundra.decimal:power
 
@@ -8350,6 +8376,7 @@ Copyright © 2012 Lachlan Dowding. See license.txt for further details.
 [java.lang.String]: <http://docs.oracle.com/javase/6/docs/api/java/lang/String.html>
 [java.lang.System.identityHashCode()]: <http://docs.oracle.com/javase/6/docs/api/java/lang/System.html#identityHashCode(java.lang.Object)>
 [java.math.BigDecimal]: <http://docs.oracle.com/javase/6/docs/api/java/math/BigDecimal.html>
+[java.math.BigDecimal grammar]: <http://docs.oracle.com/javase/6/docs/api/java/math/BigDecimal.html#BigDecimal(java.lang.String)>
 [java.math.BigInteger]: <http://docs.oracle.com/javase/6/docs/api/java/math/BigInteger.html>
 [java.net.URI]: <http://docs.oracle.com/javase/6/docs/api/java/net/URI.html>
 [java.net.URLDecoder]: <http://docs.oracle.com/javase/6/docs/api/java/net/URLDecoder.html>
