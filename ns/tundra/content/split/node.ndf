@@ -533,7 +533,7 @@ Emitter implementions for the supported content types are as follows:
 
   * $schema.output is the fully-qualified name of the parsing schema to use
     when serializing the split documents to [XML] or Flat File content, and 
-    can have the following values::
+    can have the following values:
     * [CSV]: do not specify.
     * Flat File: specify the fully-qualified name of the Integration Server 
       Flat File Schema element that defines the Flat File format.

@@ -384,7 +384,7 @@ Emitter implementions for the supported content types are as follows:
 
 * Outputs:
   * $contents is a list of strings, byte arrays, or input streams, depending 
-    on the $mode selected, where each item is the serialized verison of the 
+    on the $mode selected, where each item is the serialized version of the 
     like-indexed document. In other words, $contents[n] is the serialized 
     version of $documents[n].
 
