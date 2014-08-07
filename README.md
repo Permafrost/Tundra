@@ -3664,7 +3664,8 @@ Services for working with arbitrary precision integers (uses
   Returns an string representation of the given integer object.
 
   * Inputs:
-    * `$object` is either a `java.math.BigInteger`, `java.lang.Integer`, or
+    * `$object` is either a `java.math.BigDecimal`, `java.math.BigInteger`,
+      `java.lang.Double`, `java.lang.Float`, `java.lang.Integer`, or
       `java.lang.Long` object.
     * `$radix` is an optional [radix] used when encoding the integer as a
       string. Defaults to 10 (decimal), if not specified.

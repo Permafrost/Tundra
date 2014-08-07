@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-08-02 13:55:38 EST
-// -----( ON-HOST: 172.16.189.129
+// -----( CREATED: 2014-08-07 19:40:52 EST
+// -----( ON-HOST: 172.16.189.141
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -520,12 +520,18 @@ public final class integer
 	  if (object == null) return null;
 	
 	  java.math.BigInteger integer = null;
-	  if (object instanceof java.lang.Integer) {
+	  if (object instanceof java.lang.Double) {
+	    integer = java.math.BigDecimal.valueOf((java.lang.Double)object).toBigInteger();
+	  } else if (object instanceof java.lang.Float) {
+	    integer = java.math.BigDecimal.valueOf((java.lang.Float)object).toBigInteger();
+	  } else if (object instanceof java.lang.Integer) {
 	    integer = java.math.BigInteger.valueOf((java.lang.Integer)object);
 	  } else if (object instanceof java.lang.Long) {
 	    integer = java.math.BigInteger.valueOf((java.lang.Long)object);
 	  } else if (object instanceof java.math.BigInteger) {
 	    integer = (java.math.BigInteger)object;
+	  } else if (object instanceof java.math.BigDecimal) {
+	    integer = ((java.math.BigDecimal)object).toBigInteger();  
 	  } else {
 	    throw new IllegalArgumentException("Object class " + object.getClass().getName() + " is not supported");
 	  }
