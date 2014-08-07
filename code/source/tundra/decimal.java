@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-08-04 17:02:26 EST
-// -----( ON-HOST: 172.16.189.132
+// -----( CREATED: 2014-08-07 19:29:45 EST
+// -----( ON-HOST: 172.16.189.141
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -531,6 +531,10 @@ public final class decimal
 	    decimal = java.math.BigDecimal.valueOf((java.lang.Float)object);
 	  } else if (object instanceof java.lang.Double) {
 	    decimal = java.math.BigDecimal.valueOf((java.lang.Double)object);
+	  } else if (object instanceof java.lang.Integer) {
+	    decimal = java.math.BigDecimal.valueOf((java.lang.Integer)object);
+	  } else if (object instanceof java.lang.Long) {
+	    decimal = java.math.BigDecimal.valueOf((java.lang.Long)object);
 	  } else if (object instanceof java.math.BigDecimal) {
 	    decimal = (java.math.BigDecimal)object;
 	  } else {

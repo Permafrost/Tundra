@@ -1865,8 +1865,9 @@ Services for working with arbitrary precision decimals (uses
   Returns an string representation of the given decimal object.
 
   * Inputs:
-    * `$object` is either a `java.math.BigDecimal`, `java.lang.Float`, or
-      `java.lang.Double` object.
+    * `$object` is either a `java.math.BigDecimal`, `java.math.BigInteger`,
+      `java.lang.Double`, `java.lang.Float`, `java.lang.Integer`, or
+      `java.lang.Long` object.
   * Outputs:
     * `$string` is the resulting string representation of the decimal.
 
@@ -5719,7 +5720,7 @@ Services for manipulating string lists:
       size.
     * `$length` is the desired new length of the list.
   * Outputs:
-    * `$list` is the String[] list resized to the desired `$length`; if the 
+    * `$list` is the String[] list resized to the desired `$length`; if the
       new length is less than the original length, the list is truncated from
       the end; if the new length is greater than the original length, the
       list is padded with `$item` (or null if not specified).
