@@ -57,8 +57,11 @@
           <value name="field_opt">true</value>
           <array name="field_options" type="value" depth="1">
             <value>java.math.BigDecimal</value>
-            <value>java.lang.Float</value>
+            <value>java.math.BigInteger</value>
             <value>java.lang.Double</value>
+            <value>java.lang.Float</value>
+            <value>java.lang.Integer</value>
+            <value>java.lang.Long</value>
           </array>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <value name="contentType">1</value>
@@ -114,7 +117,8 @@
     according to [java.math.BigDecimal grammar].
   * $class is an optional Java class name that determines the type of 
     object returned, a choice of either java.math.BigDecimal, 
-    java.lang.Float, or java.lang.Double. Defaults to java.math.BigDecimal, 
+    java.math.BigInteger, java.lang.Double, java.lang.Float, 
+    java.lang.Integer, or java.lang.Long. Defaults to java.math.BigDecimal, 
     if not specified.
 
 * Outputs:

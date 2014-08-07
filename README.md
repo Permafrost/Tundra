@@ -1944,8 +1944,9 @@ Services for working with arbitrary precision decimals (uses
       according to [java.math.BigDecimal grammar].
     * `$class` is an optional Java class name that determines the type of
       object returned, a choice of either `java.math.BigDecimal`,
-      `java.lang.Float`, or `java.lang.Double`. Defaults to
-      `java.math.BigDecimal`, if not specified.
+      `java.math.BigInteger`, `java.lang.Double`, `java.lang.Float`,
+      `java.lang.Integer`, or `java.lang.Long`. Defaults to `java.math.BigDecimal`,
+      if not specified.
   * Outputs:
     * `$object` is the resulting Java object representing the parsed decimal.
 

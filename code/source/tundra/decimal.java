@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-08-07 19:29:45 EST
+// -----( CREATED: 2014-08-07 19:33:16 EST
 // -----( ON-HOST: 172.16.189.141
 
 import com.wm.data.*;
@@ -279,7 +279,7 @@ public final class decimal
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
-		// [i] field:0:optional $class {&quot;java.math.BigDecimal&quot;,&quot;java.lang.Float&quot;,&quot;java.lang.Double&quot;}
+		// [i] field:0:optional $class {&quot;java.math.BigDecimal&quot;,&quot;java.math.BigInteger&quot;,&quot;java.lang.Double&quot;,&quot;java.lang.Float&quot;,&quot;java.lang.Integer&quot;,&quot;java.lang.Long&quot;}
 		// [o] object:0:optional $object
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -291,10 +291,16 @@ public final class decimal
 		    java.math.BigDecimal object = parse(string);
 		    if (className == null || className.equals("java.math.BigDecimal")) {
 		      IDataUtil.put(cursor, "$object", object);
-		    } else if (className.equals("java.lang.Float")) {
-		      IDataUtil.put(cursor, "$object", object.floatValue());
+		    } else if (className.equals("java.math.BigInteger")) {
+		      IDataUtil.put(cursor, "$object", object.toBigInteger());
 		    } else if (className.equals("java.lang.Double")) {
 		      IDataUtil.put(cursor, "$object", object.doubleValue());
+		    } else if (className.equals("java.lang.Float")) {
+		      IDataUtil.put(cursor, "$object", object.floatValue());
+		    } else if (className.equals("java.lang.Integer")) {
+		      IDataUtil.put(cursor, "$object", object.intValue());
+		    } else if (className.equals("java.lang.Long")) {
+		      IDataUtil.put(cursor, "$object", object.longValue());
 		    }
 		  }
 		} finally {
