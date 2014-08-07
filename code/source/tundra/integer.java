@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-08-07 19:40:52 EST
+// -----( CREATED: 2014-08-07 19:47:59 EST
 // -----( ON-HOST: 172.16.189.141
 
 import com.wm.data.*;
@@ -310,6 +310,12 @@ public final class integer
 		    java.math.BigInteger object = parse(string, radix);
 		    if (className == null || className.equals("java.math.BigInteger")) {
 		      IDataUtil.put(cursor, "$object", object);
+		    } else if (className.equals("java.math.BigDecimal")) {
+		      IDataUtil.put(cursor, "$object", new java.math.BigDecimal(object));
+		    } else if (className.equals("java.lang.Double")) {
+		      IDataUtil.put(cursor, "$object", new java.math.BigDecimal(object).doubleValue());
+		    } else if (className.equals("java.lang.Float")) {
+		      IDataUtil.put(cursor, "$object", new java.math.BigDecimal(object).floatValue());
 		    } else if (className.equals("java.lang.Integer")) {
 		      IDataUtil.put(cursor, "$object", object.intValue());
 		    } else if (className.equals("java.lang.Long")) {

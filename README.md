@@ -3733,8 +3733,9 @@ Services for working with arbitrary precision integers (uses
       sign to be parsed.
     * `$class` is an optional Java class name that determines the type of
       object returned, a choice of either `java.math.BigInteger`,
-      `java.lang.Integer`, or `java.lang.Long`. Defaults to
-      `java.math.BigInteger`, if not specified.
+      `java.math.BigDecimal`, `java.math.Double`, `java.math.Float`,
+      `java.lang.Integer`, or `java.lang.Long`. Defaults to `java.math.BigInteger`,
+      if not specified.
     * `$radix` is an optional [radix] used to interpret the digits in the
       given `$string`. Defaults to 10 (decimal), if not specified.
   * Outputs:
