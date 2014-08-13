@@ -5772,6 +5772,19 @@ Services for manipulating string lists:
     * `$list` is the resulting list with the item at the given
       index set to the given value.
 
+* #### tundra.list.string:quote
+
+  Returns a [regular expression pattern] that can be used to match any 
+  of the given strings literally.
+
+  * Inputs:
+    * `$list` is the list of strings to be converted to a [regular expression 
+      pattern].
+
+  * Outputs:
+    * `$pattern` is a [regular expression pattern] that can be used to match
+      the any of the given `$list` strings literally.
+
 * #### tundra.list.string:replace
 
   Replaces all occurrences of the given [regular expression pattern]
