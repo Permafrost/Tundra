@@ -1634,6 +1634,11 @@ Services for manipulating date, time and datetime strings:
     * `$pattern.input` is an optional datetime pattern that `$datetime`
       conforms to, that will be used to parse the datetime string. Defaults
       to an [ISO8601] XML datetime.
+    * `$patterns.input` is an optional list of datetime patterns that `$datetime`
+      might conform to, useful when the exact pattern is not known. A parse is
+      attempted for each pattern until the first successful parse, or until
+      all patterns have been tried in which case an unparseable datetime
+      exception will be thrown.
     * `$pattern.output` is an optional datetime pattern that will be used to
       format the resulting `$datetime` string. Defaults to an [ISO8601] XML
       datetime.
@@ -1727,9 +1732,9 @@ Services for manipulating date, time and datetime strings:
       [ISO8601] XML datetime.
     * `$patterns` is an optional list of datetime patterns that `$datetime` might
       conform to, useful when the exact pattern is not known. A parse is
-      attempted for each pattern in the order specified until the first
-      successful parse, or until all patterns have been tried in which case an
-      unparseable datetime exception will be thrown.
+      attempted for each pattern until the first successful parse, or until
+      all patterns have been tried in which case an unparseable datetime
+      exception will be thrown.
   * Outputs:
     * `$datetime.object` is a [java.util.Date] object representing the same
       instant in time as the given `$datetime` string.

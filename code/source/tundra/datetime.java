@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-08-13 16:17:32 EST
+// -----( CREATED: 2014-08-13 16:20:15 EST
 // -----( ON-HOST: 172.16.189.132
 
 import com.wm.data.*;
@@ -210,6 +210,7 @@ public final class datetime
 		// @sigtype java 3.5
 		// [i] field:0:optional $datetime
 		// [i] field:0:optional $pattern.input {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
+		// [i] field:1:optional $patterns.input
 		// [i] field:0:optional $pattern.output {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
 		// [o] field:0:optional $datetime
 		IDataCursor cursor = pipeline.getCursor();
@@ -217,11 +218,17 @@ public final class datetime
 		try {
 		  String datetime = IDataUtil.getString(cursor, "$datetime");
 		  String inPattern = IDataUtil.getString(cursor, "$pattern.input");
+		  String[] inPatterns = IDataUtil.getStringArray(cursor, "$patterns.input");
 		  String outPattern = IDataUtil.getString(cursor, "$pattern.output");
 		
-		  datetime = format(datetime, inPattern, outPattern);
-		
-		  if (datetime != null) IDataUtil.put(cursor, "$datetime", datetime);
+		  if (datetime != null) {
+		    if (inPatterns == null) {
+		      datetime = format(datetime, inPattern, outPattern);
+		    } else {
+		      datetime = format(datetime, inPatterns, outPattern);
+		    }
+		    IDataUtil.put(cursor, "$datetime", datetime);
+		  }
 		} finally {
 		  cursor.destroy();
 		}
@@ -529,9 +536,14 @@ public final class datetime
 	  return output;
 	}
 	
-	// formats a datetime string to the given pattern
+	// reformats a datetime string according to the given patterns
 	public static String format(String input, String inPattern, String outPattern) {
 	  return emit(parse(input, inPattern), outPattern);
+	}
+	
+	// reformats a datetime string according to the given patterns
+	public static String format(String input, String[] inPatterns, String outPattern) {
+	  return emit(parse(input, inPatterns), outPattern);
 	}
 	
 	// returns the current datetime as an xml datetime string
