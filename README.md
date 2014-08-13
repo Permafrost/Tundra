@@ -7592,7 +7592,9 @@ Services for manipulating java.lang.String objects:
 
   * Inputs:
     * `$id` is a [java.util.TimeZone] ID identifying the time
-      zone to be returned.
+      zone to be returned, or a `(+|-)HH:mm` timezone offset.
+      If a timezone offset is specified, the first timezone 
+      that matches the given offset is returned.
     * `$datetime` is an optional XML datetime string identifying
       the instant in time to be used to determine the Universal
       Coordinated Time (UTC) offset and whether Daylight Savings

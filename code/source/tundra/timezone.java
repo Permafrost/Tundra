@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-07-25 19:28:16 EST
-// -----( ON-HOST: 172.16.189.176
+// -----( CREATED: 2014-08-13 17:20:00 EST
+// -----( ON-HOST: 172.16.189.132
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -133,7 +133,8 @@ public final class timezone
 	}
 
 	// --- <<IS-START-SHARED>> ---
-	protected static java.util.SortedSet<String> zones = new java.util.TreeSet(java.util.Arrays.asList(java.util.TimeZone.getAvailableIDs()));
+	protected static java.util.SortedSet<String> ZONES = new java.util.TreeSet(java.util.Arrays.asList(java.util.TimeZone.getAvailableIDs()));
+	protected static java.util.regex.Pattern OFFSET_PATTERN = java.util.regex.Pattern.compile("([\\+-])?(\\d?\\d):(\\d\\d)");
 	
 	// returns the time zone associated with the given ID in IData format
 	public static IData get(String id, String datetime) {
@@ -149,9 +150,24 @@ public final class timezone
 	public static IData get(String id, java.util.Date instant) {
 	  IData output = null;
 	
-	  if (id.equals("Z")) id = "UTC";
+	  if (id.equals("Z")) {
+	    id = "UTC";
+	  } else {
+	    java.util.regex.Matcher matcher = OFFSET_PATTERN.matcher(id);
+	    if (matcher.matches()) {
+	      String sign = matcher.group(1);
+	      String hours = matcher.group(2);
+	      String minutes = matcher.group(3);
+	
+	      int offset = Integer.parseInt(hours) * 60 * 60 * 1000 + Integer.parseInt(minutes) * 60 * 1000;
+	      if (sign != null && sign.equals("-")) offset = offset * -1;
+	
+	      String[] candidates = java.util.TimeZone.getAvailableIDs(offset);
+	      if (candidates != null && candidates.length > 0) id = candidates[0]; // defaults to the first candidate timezone ID
+	    }
+	  }
 	  
-	  if (zones.contains(id)) {
+	  if (ZONES.contains(id)) {
 	    output = toIData(java.util.TimeZone.getTimeZone(id), instant);
 	  }
 	  return output;
