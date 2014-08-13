@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-07-01 09:30:54.221
-// -----( ON-HOST: -
+// -----( CREATED: 2014-08-13 17:38:14 EST
+// -----( ON-HOST: 172.16.189.132
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -40,18 +40,18 @@ public final class document
 		// [i] - field:0:optional condition
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  IData[] amendments = IDataUtil.getIDataArray(cursor, "$amendments");
-
+		
 		  if (document != null) IDataUtil.put(cursor, "$document", amend(document, amendments, pipeline));
 		} finally {
 		  cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -66,18 +66,18 @@ public final class document
 		// [i] field:1:optional $preserve
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  String[] keys = IDataUtil.getStringArray(cursor, "$preserve");
-
+		
 		  clear(document, keys);
 		} finally {
 		  cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -92,7 +92,7 @@ public final class document
 		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
@@ -102,7 +102,7 @@ public final class document
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -118,7 +118,7 @@ public final class document
 		// [i] field:0:required $key.target
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  String source = IDataUtil.getString(cursor, "$key.source");
@@ -129,7 +129,7 @@ public final class document
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -144,7 +144,7 @@ public final class document
 		// [i] field:0:optional $key
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  String key = IDataUtil.getString(cursor, "$key");
@@ -154,7 +154,7 @@ public final class document
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -169,7 +169,7 @@ public final class document
 		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
 		// [o] record:0:optional $duplicate
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
@@ -179,7 +179,7 @@ public final class document
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -198,7 +198,7 @@ public final class document
 		// [i] field:0:optional $value.class
 		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  String service = IDataUtil.getString(cursor, "$service");
@@ -208,7 +208,7 @@ public final class document
 		  String valueClass = IDataUtil.getString(cursor, "$value.class");
 		  boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
 		  boolean scoped = scope != null;
-
+		
 		  each(document, service, scoped ? scope: pipeline, keyInput, valueInput, valueClass == null? null : Class.forName(valueClass), recurse);
 		} catch (ClassNotFoundException ex) {
 		  tundra.exception.raise(ex);
@@ -217,7 +217,7 @@ public final class document
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -233,12 +233,12 @@ public final class document
 		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  String encoding = IDataUtil.getString(cursor, "$encoding");
 		  String mode = IDataUtil.getString(cursor, "$mode");
-
+		
 		  if (document != null) IDataUtil.put(cursor, "$content", emit(document, encoding, mode));
 		} catch(java.io.IOException ex) {
 		  tundra.exception.raise(ex);
@@ -247,7 +247,7 @@ public final class document
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -262,18 +262,18 @@ public final class document
 		// [i] record:0:optional $document.y
 		// [o] field:0:required $equal?
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  IData x = IDataUtil.getIData(cursor, "$document.x");
 		  IData y = IDataUtil.getIData(cursor, "$document.y");
-
+		
 		  IDataUtil.put(cursor, "$equal?", "" + equal(x, y));
 		} finally {
 		  cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -288,7 +288,7 @@ public final class document
 		// [o] field:0:optional $key
 		// [o] object:0:optional $value
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  if (document != null) {
@@ -306,7 +306,7 @@ public final class document
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -321,7 +321,7 @@ public final class document
 		// [i] field:0:optional $key
 		// [o] object:0:optional $value
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  String key = IDataUtil.getString(cursor, "$key");
@@ -331,7 +331,7 @@ public final class document
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -346,18 +346,18 @@ public final class document
 		// [i] field:0:optional $pattern
 		// [o] field:1:required $keys
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  String pattern = IDataUtil.getString(cursor, "$pattern");
-
+		
 		  IDataUtil.put(cursor, "$keys", keyset(document, pattern));
 		} finally {
 		  cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -372,7 +372,7 @@ public final class document
 		// [o] field:0:optional $key
 		// [o] object:0:optional $value
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  if (document != null) {
@@ -390,7 +390,7 @@ public final class document
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -404,7 +404,7 @@ public final class document
 		// [i] record:0:optional $document
 		// [o] field:0:required $length
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  IDataUtil.put(cursor, "$length", "" + size(document));
@@ -413,7 +413,7 @@ public final class document
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -430,7 +430,7 @@ public final class document
 		tundra.object.listify(pipeline, IData.class);
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -452,7 +452,7 @@ public final class document
 		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  String service = IDataUtil.getString(cursor, "$service");
@@ -464,7 +464,7 @@ public final class document
 		  String valueClass = IDataUtil.getString(cursor, "$value.class");
 		  boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
 		  boolean scoped = scope != null;
-
+		
 		  IDataUtil.put(cursor, "$document", map(document, service, scoped ? scope: pipeline, keyInput, keyOutput, valueInput, valueOutput, valueClass == null? null : Class.forName(valueClass), recurse));
 		} catch (ClassNotFoundException ex) {
 		  tundra.exception.raise(ex);
@@ -473,7 +473,7 @@ public final class document
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -487,7 +487,7 @@ public final class document
 		// [i] record:1:optional $documents
 		// [o] record:0:required $document
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  IData[] documents = IDataUtil.getIDataArray(cursor, "$documents");
 		  IDataUtil.put(cursor, "$document", merge(documents));
@@ -496,7 +496,7 @@ public final class document
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -510,7 +510,7 @@ public final class document
 		// [i] record:0:optional $document
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  IDataUtil.put(cursor, "$document", normalize(document, true));
@@ -519,7 +519,7 @@ public final class document
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -534,11 +534,11 @@ public final class document
 		// [i] field:0:optional $encoding
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  Object content = IDataUtil.get(cursor, "$content");
 		  String encoding = IDataUtil.getString(cursor, "$encoding");
-
+		
 		  if (content != null) IDataUtil.put(cursor, "$document", parse(content, encoding));
 		} catch(java.io.IOException ex) {
 		  tundra.exception.raise(ex);
@@ -547,7 +547,7 @@ public final class document
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -564,7 +564,7 @@ public final class document
 		// [o] - field:0:required key
 		// [o] - object:0:required value
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
@@ -574,7 +574,7 @@ public final class document
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -590,19 +590,19 @@ public final class document
 		// [i] object:0:optional $value
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  String key = IDataUtil.getString(cursor, "$key");
 		  Object value = IDataUtil.get(cursor, "$value");
-
+		
 		  IDataUtil.put(cursor, "$document", tundra.support.document.put(document, key, value));
 		} finally {
 		  cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -618,7 +618,7 @@ public final class document
 		// [i] field:0:required $key.target
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  String source = IDataUtil.getString(cursor, "$key.source");
@@ -629,7 +629,7 @@ public final class document
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -644,7 +644,7 @@ public final class document
 		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
@@ -654,7 +654,7 @@ public final class document
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -669,11 +669,11 @@ public final class document
 		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
-
+		
 		  if (document != null) {
 		    document = squeeze(document, recurse);
 		    if (document == null) document = IDataFactory.create();
@@ -684,7 +684,7 @@ public final class document
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -700,19 +700,19 @@ public final class document
 		// [i] field:0:optional $default
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  IData scope = IDataUtil.getIData(cursor, "$pipeline");
 		  String defaultValue = IDataUtil.getString(cursor, "$default");
-
+		
 		  IDataUtil.put(cursor, "$document", substitute(document, scope == null ? pipeline : scope, defaultValue, true));
 		} finally {
 		  cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -726,7 +726,7 @@ public final class document
 		// [i] record:0:optional $document
 		// [o] object:1:optional $values
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  if (document != null) IDataUtil.put(cursor, "$values", valueset(document));
@@ -735,7 +735,7 @@ public final class document
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 	// --- <<IS-START-SHARED>> ---
@@ -743,7 +743,7 @@ public final class document
 	// amendments IData
 	public static IData amend(IData document, IData[] amendments, IData scope) throws ServiceException {
 	  if (amendments == null) return document;
-
+	
 	  for (int i = 0; i < amendments.length; i++) {
 	    if (amendments[i] != null) {
 	      IDataCursor cursor = amendments[i].getCursor();
@@ -751,41 +751,41 @@ public final class document
 	      String value = IDataUtil.getString(cursor, "value");
 	      String condition = IDataUtil.getString(cursor, "condition");
 	      cursor.destroy();
-
+	
 	      key = tundra.string.substitute(key, scope);
 	      value = tundra.string.substitute(value, scope);
-
+	
 	      if ((condition == null) || tundra.condition.evaluate(condition, scope)) {
 	        document = tundra.support.document.put(document, key, value);
 	      }
 	    }
 	  }
-
+	
 	  return document;
 	}
-
+	
 	// returns whether two documents are equal
 	public static boolean equal(IData x, IData y) {
 	  return tundra.object.equal(x, y);
 	}
-
+	
 	// returns all the keys in the given document as a string list
 	public static String[] keyset(IData input) {
 	  return keyset(input, null);
 	}
-
+	
 	// returns the keys that match the given regular expression pattern
 	// in the given document as a string list
 	public static String[] keyset(IData input, String patternString) {
 	  java.util.regex.Pattern pattern = null;
 	  if (patternString != null) pattern = java.util.regex.Pattern.compile(patternString);
-
+	
 	  java.util.List<String> keys = new java.util.ArrayList<String>();
 	  if (input != null) {
 	    IDataCursor cursor = input.getCursor();
 	    while(cursor.next()) {
 	      String key = cursor.getKey();
-
+	
 	      if (pattern == null) {
 	        keys.add(key);
 	      } else {
@@ -797,12 +797,12 @@ public final class document
 	  }
 	  return (String[])keys.toArray(new String[0]);
 	}
-
+	
 	// returns all the values in the given document as a string list
 	public static Object[] valueset(IData input) {
 	  java.util.List values = new java.util.ArrayList();
 	  java.util.Set<Class<?>> classes = new java.util.LinkedHashSet<Class<?>>();
-
+	
 	  if (input != null) {
 	    IDataCursor cursor = input.getCursor();
 	    while(cursor.next()) {
@@ -812,13 +812,13 @@ public final class document
 	    }
 	    cursor.destroy();
 	  }
-
+	
 	  Class<?> nearestAncestor = tundra.support.object.nearestAncestor(classes);
 	  if (nearestAncestor == null) nearestAncestor = Object.class;
-
+	  
 	  return values.toArray((Object[])java.lang.reflect.Array.newInstance(nearestAncestor, 0));
 	}
-
+	
 	// merges multiple IData documents into a single document
 	public static IData merge(IData[] input) {
 	  IData output = IDataFactory.create();
@@ -829,30 +829,30 @@ public final class document
 	  }
 	  return output;
 	}
-
+	
 	// sorts the given IData document by its keys in natural ascending order
 	public static IData sort(IData input, boolean recurse) {
 	  if (input == null) return null;
-
+	
 	  String[] keys = keyset(input);
 	  java.util.Arrays.sort(keys);
-
+	
 	  IData output = IDataFactory.create();
 	  IDataCursor ic = input.getCursor();
 	  IDataCursor oc = output.getCursor();
-
+	
 	  for (int i = 0; i < keys.length; i++) {
 	    boolean result;
-
+	
 	    if (i > 0 && keys[i].equals(keys[i-1])) {
 	      result = ic.next(keys[i]);
 	    } else {
 	      result = ic.first(keys[i]);
 	    }
-
+	
 	    if (result) {
 	      Object value = ic.getValue();
-
+	
 	      if (value != null && recurse) {
 	        if (value instanceof IData) {
 	          value = sort((IData)value, recurse);
@@ -867,25 +867,25 @@ public final class document
 	      oc.insertAfter(keys[i], value);
 	    }
 	  }
-
+	
 	  ic.destroy();
 	  oc.destroy();
-
+	
 	  return output;
 	}
-
+	
 	// trims all string values, then converts empty strings to nulls, then compacts by removing all null values
 	public static IData squeeze(IData input, boolean recurse) {
 	  if (input == null) return null;
-
+	
 	  IData output = IDataFactory.create();
 	  IDataCursor ic = input.getCursor();
 	  IDataCursor oc = output.getCursor();
-
+	
 	  while(ic.next()) {
 	    String key = ic.getKey();
 	    Object value = ic.getValue();
-
+	
 	    if (value != null) {
 	      if (value instanceof String) {
 	        String string = (String)value;
@@ -912,19 +912,19 @@ public final class document
 	      } else if (value instanceof Object[]) {
 	        value = tundra.list.object.squeeze((Object[])value);
 	      }
-
+	
 	      if (value != null) oc.insertAfter(key, value);
 	    }
 	  }
-
+	
 	  if (IDataUtil.size(oc) == 0) output = null;
-
+	
 	  ic.destroy();
 	  oc.destroy();
-
+	
 	  return output;
 	}
-
+	
 	// returns the number of top-level {key, value} pairs in the given IData document
 	public static int size(IData input) {
 	  int size = 0;
@@ -935,7 +935,7 @@ public final class document
 	  }
 	  return size;
 	}
-
+	
 	// returns a clone of the given IData document
 	public static IData duplicate(IData input, boolean recurse) throws ServiceException {
 	  IData output = null;
@@ -955,25 +955,25 @@ public final class document
 	  }
 	  return output;
 	}
-
+	
 	// removes the value with the given key from the given IData document
 	public static IData drop(IData input, String key) {
 	  if (input != null && key != null) {
 	    IDataCursor cursor = input.getCursor();
 	    IDataUtil.remove(cursor, key);
 	    cursor.destroy();
-
+	
 	    if (tundra.support.document.Key.isFullyQualified(key)) drop(input, tundra.support.document.Key.parse(key));
 	  }
 	  return input;
 	}
-
+	
 	// removes the value with the given key from the given IData document
 	protected static IData drop(IData input, java.util.Queue<tundra.support.document.Key> keys) {
 	  if (input != null && keys != null && keys.size() > 0) {
 	    IDataCursor cursor = input.getCursor();
 	    tundra.support.document.Key key = keys.remove();
-
+	
 	    if (keys.size() > 0) {
 	      if (key.hasIndex()) {
 	        IData[] array = IDataUtil.getIDataArray(cursor, key.toString());
@@ -993,26 +993,26 @@ public final class document
 	  }
 	  return input;
 	}
-
+	
 	// visits each element in the given IData document, calls the given service to convert the element, and creates a new IData document with the resulting elements
 	public static IData map(IData input, String service, IData pipeline, String keyInput, String keyOutput, String valueInput, String valueOutput, Class valueClass, boolean recurse) throws ServiceException {
 	  IData output = null;
-
+	
 	  if (input != null && service != null) {
 	    IDataCursor ic = input.getCursor();
 	    output = IDataFactory.create();
 	    IDataCursor oc = output.getCursor();
-
+	
 	    if (keyInput == null) keyInput = "$key";
 	    if (keyOutput == null) keyOutput = keyInput;
 	    if (valueInput == null) valueInput = "$value";
 	    if (valueOutput == null) valueOutput = valueInput;
 	    if (pipeline == null) pipeline = IDataFactory.create();
-
+	
 	    try {
 	      while(ic.next()) {
 	        Tuple<Object> tuple = new Tuple<Object>(ic.getKey(), ic.getValue());
-
+	
 	        if (recurse && tuple.value != null) {
 	          if (tuple.value instanceof IData) {
 	            tuple.value = map((IData)tuple.value, service, pipeline, keyInput, keyOutput, valueInput, valueOutput, valueClass, recurse);
@@ -1052,9 +1052,12 @@ public final class document
 	              oary[i] = t.value;
 	            }
 	            tuple.value = oary;
+	          } else {
+	            tuple = map(tuple, service, pipeline, keyInput, keyOutput, valueInput, valueOutput, valueClass);
 	          }
+	        } else {
+	          tuple = map(tuple, service, pipeline, keyInput, keyOutput, valueInput, valueOutput, valueClass);
 	        }
-	        tuple = map(tuple, service, pipeline, keyInput, keyOutput, valueInput, valueOutput, valueClass);
 	        IDataUtil.put(oc, tuple.key, tuple.value);
 	      }
 	    } finally {
@@ -1064,20 +1067,20 @@ public final class document
 	  } else {
 	    output = duplicate(input, recurse);
 	  }
-
+	
 	  return output;
 	}
-
+	
 	// wrapper class for {key, value} tuples
-	protected static class Tuple<T> {
+	protected static class Tuple<T> { 
 	  public String key;
 	  public T value;
-	  public Tuple(String key, T value) {
-	    this.key = key;
-	    this.value = value;
+	  public Tuple(String key, T value) { 
+	    this.key = key; 
+	    this.value = value; 
 	  }
 	}
-
+	
 	// converts the given element by calling the given service, and returns the result
 	protected static <T> Tuple<T> map(Tuple<T> tuple, String service, IData pipeline, String keyInput, String keyOutput, String valueInput, String valueOutput, Class valueClass) throws ServiceException {
 	  if (tuple.value == null || valueClass == null || valueClass.isInstance(tuple.value)) {
@@ -1085,9 +1088,9 @@ public final class document
 	    IDataUtil.put(cursor, keyInput, tuple.key);
 	    IDataUtil.put(cursor, valueInput, tuple.value);
 	    cursor.destroy();
-
+	
 	    pipeline = tundra.service.invoke(service, pipeline);
-
+	
 	    // clean up the input pipeline
 	    cursor = pipeline.getCursor();
 	    tuple.key = IDataUtil.getString(cursor, keyOutput);
@@ -1097,41 +1100,41 @@ public final class document
 	    IDataUtil.remove(cursor, valueInput);
 	    if (!valueInput.equals(valueOutput)) IDataUtil.remove(cursor, valueOutput);
 	    cursor.destroy();
-	  }
+	  }  
 	  return tuple;
 	}
-
+	
 	// invokes the given service for each {key, value} pair in the given IData document
 	public static void each(IData input, String service, IData pipeline, String keyInput, String valueInput, Class valueClass, boolean recurse) throws ServiceException {
 	  map(input, service, pipeline, keyInput, null, valueInput, null, valueClass, recurse);
 	}
-
+	
 	// renames a key from source to target within the given IData document
 	public static IData rename(IData input, String source, String target) {
 	  if (!source.equals(target)) input = drop(copy(input, source, target), source);
 	  return input;
 	}
-
+	
 	// copies a value from source key to target key within the given IData document
 	public static IData copy(IData input, String source, String target) {
 	  if (source.equals(target)) return input;
 	  return tundra.support.document.put(input, target, tundra.support.document.get(input, source));
 	}
-
+	
 	// removes all null values from the given IData document
 	public static IData compact(IData input, boolean recurse) {
 	  IData output = null;
-
+	
 	  if (input != null) {
 	    output = IDataFactory.create();
 	    IDataCursor ic = input.getCursor();
 	    IDataCursor oc = output.getCursor();
-
+	
 	    try {
 	      while(ic.next()) {
 	        String key = ic.getKey();
 	        Object value = ic.getValue();
-
+	
 	        if (value != null) {
 	          if (recurse) {
 	            if (value instanceof IData) {
@@ -1145,7 +1148,7 @@ public final class document
 	            }
 	          }
 	        }
-
+	
 	        if (value != null) IDataUtil.put(oc, key, value);
 	      }
 	    } finally {
@@ -1153,23 +1156,23 @@ public final class document
 	      oc.destroy();
 	    }
 	  }
-
+	
 	  return output;
 	}
-
+	
 	// returns a new IData document, where all IDatas are implemented with the same class, and all
 	// fully qualified keys are replaced with a nested structure
 	public static IData normalize(IData input, boolean recurse) {
 	  if (input == null) return null;
-
+	
 	  IData output = IDataFactory.create();
 	  IDataCursor ic = input.getCursor();
-
+	
 	  try {
 	    while(ic.next()) {
 	      String key = ic.getKey();
 	      Object value = ic.getValue();
-
+	
 	      if (value != null) {
 	        if (value instanceof com.wm.util.coder.IDataCodable) {
 	          value = ((com.wm.util.coder.IDataCodable)value).getIData();
@@ -1192,53 +1195,53 @@ public final class document
 	  } finally {
 	    ic.destroy();
 	  }
-
+	
 	  return output;
 	}
-
+	
 	// normalizes an IData[], where all IDatas are implemented with the same class, and all
 	// fully qualified keys are replaced with a nested structure
 	protected static IData[] normalize(IData[] input, boolean recurse) {
 	  if (input == null) return null;
-
+	
 	  IData[] output = new IData[input.length];
 	  for (int i = 0; i < input.length; i++) {
 	    output[i] = normalize(input[i], recurse);
 	  }
-
+	
 	  return output;
 	}
-
-	// converts an IDataCodable[] to an IData[] and normalizes, where all IDatas are implemented
+	
+	// converts an IDataCodable[] to an IData[] and normalizes, where all IDatas are implemented 
 	// with the same class, and all fully qualified keys are replaced with a nested structure
 	protected static IData[] normalize(com.wm.util.coder.IDataCodable[] input, boolean recurse) {
 	  if (input == null) return null;
-
+	
 	  IData[] output = new IData[input.length];
 	  for (int i = 0; i < input.length; i++) {
 	    output[i] = normalize(input[i].getIData(), recurse);
 	  }
-
+	  
 	  return output;
 	}
-
-	// converts a ValuesCodable[] to an IData[] and normalizes, where all IDatas are implemented
+	
+	// converts a ValuesCodable[] to an IData[] and normalizes, where all IDatas are implemented 
 	// with the same class, and all fully qualified keys are replaced with a nested structure
 	protected static IData[] normalize(com.wm.util.coder.ValuesCodable[] input, boolean recurse) {
 	  if (input == null) return null;
-
+	
 	  IData[] output = new IData[input.length];
 	  for (int i = 0; i < input.length; i++) {
 	    output[i] = normalize(input[i].getValues(), recurse);
 	  }
-
+	  
 	  return output;
 	}
-
+	
 	// removes all keys except those specified from the given IData document
 	public static void clear(IData document, String[] keys) {
 	  if (document == null) return;
-
+	
 	  IData saved = null;
 	  if (keys != null) {
 	    saved = IDataFactory.create();
@@ -1247,70 +1250,70 @@ public final class document
 	      if (value != null) tundra.support.document.put(saved, keys[i], value);
 	    }
 	  }
-
+	
 	  IDataCursor cursor = document.getCursor();
 	  cursor.first();
 	  while(cursor.delete());
 	  cursor.destroy();
-
+	
 	  if (keys != null) IDataUtil.merge(saved, document);
 	}
-
+	
 	// converts an IData document to an IData[] document list with each
 	// item representing each key value tuple from the given document
 	public static IData[] pivot(IData input, boolean recurse) {
 	  if (input == null) return null;
-
+	
 	  IDataCursor cursor = input.getCursor();
 	  java.util.List<IData> pivot = new java.util.ArrayList<IData>();
-
+	
 	  while(cursor.next()) {
 	    String key = cursor.getKey();
 	    Object value = cursor.getValue();
-
+	
 	    if (recurse && value != null) {
 	      if (value instanceof IData) {
 	        value = pivot((IData)value, recurse);
 	      } else if (value instanceof IData[] || value instanceof com.wm.util.Table) {
 	        IData[] array = value instanceof IData[] ? (IData[])value : ((com.wm.util.Table)value).getValues();
-
+	
 	        java.util.List<IData[]> list= new java.util.ArrayList<IData[]>(array.length);
-
+	
 	        for (int i = 0; i < array.length; i++) {
 	          list.add(pivot(array[i], recurse));
 	        }
-
+	
 	        value = list.toArray(new IData[0][0]);
 	      }
 	    }
-
+	
 	    IData item = IDataFactory.create();
 	    IDataCursor ic = item.getCursor();
 	    IDataUtil.put(ic, "key", key);
 	    IDataUtil.put(ic, "value", value);
 	    ic.destroy();
-
+	
 	    pivot.add(item);
 	  }
-
+	
 	  return pivot.toArray(new IData[0]);
 	}
-
+	
 	// performs variable substitution on all elements of the given IData input document
 	public static IData substitute(IData input, IData scope, boolean recurse) {
 	  return substitute(input, scope, null, recurse);
 	}
-
+	
 	// performs variable substitution on all elements of the given IData input document
 	public static IData substitute(IData input, IData scope, String defaultValue, boolean recurse) {
 	  if (input == null) return null;
 	  if (scope == null) scope = input;
-
+	
 	  IData output = IDataFactory.create();
-
+	
 	  IDataCursor ic = input.getCursor();
 	  IDataCursor oc = output.getCursor();
-
+	
 	  try {
 	    while(ic.next()) {
 	      String key = ic.getKey();
@@ -1337,21 +1340,21 @@ public final class document
 	    ic.destroy();
 	    oc.destroy();
 	  }
-
+	
 	  return output;
 	}
-
+	
 	// parses an IData XML input stream to an IData object
 	public static IData parse(java.io.InputStream in) throws java.io.IOException {
 	  com.wm.util.coder.XMLCoderWrapper codec = new com.wm.util.coder.XMLCoderWrapper();
 	  return codec.decode(in);
 	}
-
+	
 	// parses an IData XML string, byte array or input stream to an IData object
 	public static IData parse(Object content, String encoding) throws java.io.IOException {
 	  return parse((java.io.InputStream)tundra.object.convert(content, encoding, "stream"));
 	}
-
+	
 	// emits an IData object as a an IData XML string, byte array or stream
 	public static Object emit(IData document, String encoding, String mode) throws java.io.IOException {
 	  com.wm.util.coder.IDataXMLCoder codec = null;
@@ -1360,10 +1363,10 @@ public final class document
 	  } else {
 	    codec = new com.wm.util.coder.IDataXMLCoder(encoding);
 	  }
-
+	
 	  java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream();
 	  codec.encode(out, document);
-
+	
 	  return tundra.object.convert(out.toByteArray(), encoding, mode);
 	}
 	// --- <<IS-END-SHARED>> ---

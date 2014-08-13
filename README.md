@@ -3043,6 +3043,20 @@ Services for manipulating com.wm.data.IData objects:
       the given [regular expression pattern] in each string value
       replaced with `$replacement`.
 
+* #### tundra.document.value:stringify
+
+  Converts all values in the given IData document to strings, except for the 
+  following classes, whose values will be recursively converted to strings: 
+  IData, IData[], String[], String[][], and Object[].
+
+  * Inputs:
+    * `$document` is an IData document whose values are to be converted to 
+      strings.
+
+  * Outputs:
+    * `$document` is the given IData document with all values converted to 
+      strings.
+
 * #### tundra.document.value:trim
 
   Removes leading and trailing whitespace from all string values in the
