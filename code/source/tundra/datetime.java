@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-08-13 16:20:15 EST
+// -----( CREATED: 2014-08-13 16:44:47 EST
 // -----( ON-HOST: 172.16.189.132
 
 import com.wm.data.*;
@@ -256,6 +256,32 @@ public final class datetime
 		  String durationPattern = IDataUtil.getString(cursor, "$duration.pattern");
 		
 		  IDataUtil.put(cursor, "$datetime", later(datetimePattern, duration, durationPattern));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void maximum (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(maximum)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:1:optional $datetimes
+		// [i] field:0:optional $pattern {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
+		// [o] field:0:optional $datetime
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String[] datetimes = IDataUtil.getStringArray(cursor, "$datetimes");
+		  String pattern = IDataUtil.getString(cursor, "$pattern");
+		
+		  if (datetimes != null) IDataUtil.put(cursor, "$datetime", maximum(datetimes, pattern));
 		} finally {
 		  cursor.destroy();
 		}
@@ -536,6 +562,18 @@ public final class datetime
 	  return output;
 	}
 	
+	// returns the given datetime formatted as a string adhering to the given pattern
+	public static String[] emit(java.util.Calendar[] inputs, String pattern) {
+	  String[] outputs = null;
+	  if (inputs != null) {
+	    outputs = new String[inputs.length];
+	    for (int i = 0; i < inputs.length; i++) {
+	      outputs[i] = emit(inputs[i], pattern);
+	    }
+	  }
+	  return outputs;
+	}
+	
 	// reformats a datetime string according to the given patterns
 	public static String format(String input, String inPattern, String outPattern) {
 	  return emit(parse(input, inPattern), outPattern);
@@ -544,6 +582,30 @@ public final class datetime
 	// reformats a datetime string according to the given patterns
 	public static String format(String input, String[] inPatterns, String outPattern) {
 	  return emit(parse(input, inPatterns), outPattern);
+	}
+	
+	// reformats a list datetime strings according to the given patterns
+	public static String[] format(String[] inputs, String inPattern, String outPattern) {
+	  String[] outputs = null;
+	  if (inputs != null) {
+	    outputs = new String[inputs.length];
+	    for (int i = 0; i < inputs.length; i++) {
+	      outputs[i] = tundra.datetime.format(inputs[i], inPattern, outPattern);
+	    }
+	  }
+	  return outputs;
+	}
+	
+	// reformats a list datetime strings according to the given patterns
+	public static String[] format(String[] inputs, String[] inPatterns, String outPattern) {
+	  String[] outputs = null;
+	  if (inputs != null) {
+	    outputs = new String[inputs.length];
+	    for (int i = 0; i < inputs.length; i++) {
+	      outputs[i] = tundra.datetime.format(inputs[i], inPatterns, outPattern);
+	    }
+	  }
+	  return outputs;
 	}
 	
 	// returns the current datetime as an xml datetime string
@@ -622,6 +684,30 @@ public final class datetime
 	  return output;
 	}
 	
+	// parses a list of datetime strings that adheres to the given pattern and returns a java.util.Date object
+	public static java.util.Calendar[] parse(String[] inputs, String pattern) throws IllegalArgumentException {
+	  java.util.Calendar[] outputs = null;
+	  if (inputs != null) {
+	    outputs = new java.util.Calendar[inputs.length];
+	    for (int i = 0; i < inputs.length; i++) {
+	      outputs[i] = parse(inputs[i], pattern);
+	    }
+	  }
+	  return outputs;
+	}
+	
+	// parses a list of datetime strings that adheres to the given patterns and returns a java.util.Date object
+	public static java.util.Calendar[] parse(String[] inputs, String[] patterns) throws IllegalArgumentException {
+	  java.util.Calendar[] outputs = null;
+	  if (inputs != null) {
+	    outputs = new java.util.Calendar[inputs.length];
+	    for (int i = 0; i < inputs.length; i++) {
+	      outputs[i] = parse(inputs[i], patterns);
+	    }
+	  }
+	  return outputs;
+	}
+	
 	// subtracts the given xml duration from the given xml datetime returning the result
 	public static String subtract(String datetime, String duration) throws ServiceException {
 	  return subtract(datetime, null, duration);
@@ -681,6 +767,13 @@ public final class datetime
 	// returns the current datetime plus the given duration
 	public static java.util.Calendar later(javax.xml.datatype.Duration duration) throws ServiceException {
 	  return add(java.util.Calendar.getInstance(), duration);
+	}
+	
+	// returns the largest datetime from the given list of datetime strings
+	public static String maximum(String[] datetimes, String pattern) {
+	  java.util.Calendar[] calendars = parse(datetimes, pattern);
+	  java.util.SortedSet<java.util.Calendar> set = new java.util.TreeSet<java.util.Calendar>(java.util.Arrays.asList(calendars));
+	  return emit(set.last(), pattern);
 	}
 	// --- <<IS-END-SHARED>> ---
 }

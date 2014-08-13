@@ -1676,6 +1676,35 @@ Services for manipulating date, time and datetime strings:
   * Outputs:
     * `$datetime` is the current datetime plus the given `$duration`.
 
+* #### tundra.datetime:maximum
+
+  Returns the largest datetime from the given list of datetime strings.
+
+  Supports a handful of well-known named datetime patterns:
+
+      Name           Pattern
+      -------------  --------------------------------------------
+      datetime       [ISO8601] XML datetime
+      datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
+      date           [ISO8601] XML date
+      date.jdbc      yyyy-mm-dd
+      time           [ISO8601] XML time
+      time.jdbc      HH:mm:ss
+      milliseconds   Number of milliseconds since the Epoch, 
+                     January 1, 1970 00:00:00.000 GMT (Gregorian)
+
+  Custom datetime patterns can be specified using [java.text.SimpleDateFormat] 
+  compatible patterns.
+
+  * Inputs:
+    * `$datetimes` is a list of datetime strings.
+    * `$pattern` is an optional datetime pattern that each string in the 
+      `$datetimes` list conforms to, and will be used to parse the datetime 
+      strings. Defaults to an [ISO8601] XML datetime.
+
+  * Outputs:
+    * `$datetime` is the largest datetime from the given `$datetimes` list.
+
 * #### tundra.datetime:now
 
   Returns the current datetime formatted according to the given pattern.
