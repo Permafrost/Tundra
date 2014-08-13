@@ -1690,16 +1690,16 @@ Services for manipulating date, time and datetime strings:
       date.jdbc      yyyy-mm-dd
       time           [ISO8601] XML time
       time.jdbc      HH:mm:ss
-      milliseconds   Number of milliseconds since the Epoch, 
+      milliseconds   Number of milliseconds since the Epoch,
                      January 1, 1970 00:00:00.000 GMT (Gregorian)
 
-  Custom datetime patterns can be specified using [java.text.SimpleDateFormat] 
+  Custom datetime patterns can be specified using [java.text.SimpleDateFormat]
   compatible patterns.
 
   * Inputs:
     * `$datetimes` is a list of datetime strings.
-    * `$pattern` is an optional datetime pattern that each string in the 
-      `$datetimes` list conforms to, and will be used to parse the datetime 
+    * `$pattern` is an optional datetime pattern that each string in the
+      `$datetimes` list conforms to, and will be used to parse the datetime
       strings. Defaults to an [ISO8601] XML datetime.
 
   * Outputs:
@@ -1719,16 +1719,16 @@ Services for manipulating date, time and datetime strings:
       date.jdbc      yyyy-mm-dd
       time           [ISO8601] XML time
       time.jdbc      HH:mm:ss
-      milliseconds   Number of milliseconds since the Epoch, 
+      milliseconds   Number of milliseconds since the Epoch,
                      January 1, 1970 00:00:00.000 GMT (Gregorian)
 
-  Custom datetime patterns can be specified using [java.text.SimpleDateFormat] 
+  Custom datetime patterns can be specified using [java.text.SimpleDateFormat]
   compatible patterns.
 
   * Inputs:
     * `$datetimes` is a list of datetime strings.
-    * `$pattern` is an optional datetime pattern that each string in the 
-      `$datetimes` list conforms to, and will be used to parse the datetime 
+    * `$pattern` is an optional datetime pattern that each string in the
+      `$datetimes` list conforms to, and will be used to parse the datetime
       strings. Defaults to an [ISO8601] XML datetime.
 
   * Outputs:
@@ -3045,16 +3045,16 @@ Services for manipulating com.wm.data.IData objects:
 
 * #### tundra.document.value:stringify
 
-  Converts all values in the given IData document to strings, except for the 
-  following classes, whose values will be recursively converted to strings: 
+  Converts all values in the given IData document to strings, except for the
+  following classes, whose values will be recursively converted to strings:
   IData, IData[], String[], String[][], and Object[].
 
   * Inputs:
-    * `$document` is an IData document whose values are to be converted to 
+    * `$document` is an IData document whose values are to be converted to
       strings.
 
   * Outputs:
-    * `$document` is the given IData document with all values converted to 
+    * `$document` is the given IData document with all values converted to
       strings.
 
 * #### tundra.document.value:trim
@@ -5358,21 +5358,20 @@ Services for manipulating java.lang.Object lists:
 
 * #### tundra.list.service:chain
 
-  Invokes each service in the given list sequentially, sharing
-  the pipeline across all invokes.
-
+  Invokes each service in the given list sequentially, sharing the pipeline
+  across all invokes.
 
   * Inputs:
-    * `$services` is a list of fully-qualified service names
-      identifying the services to be invoked sequentially.
-    * `$pipeline` is an optional scoped pipeline to use when
-      invoking the services. If not specified, the pipeline
-      itself is used.
+    * `$services` is a list of fully-qualified service names identifying the
+      services to be invoked sequentially.
+    * `$pipeline` is an optional scoped pipeline to use when invoking the
+      services. If not specified, the pipeline itself is used.
   * Outputs:
-    * `$pipeline` is the output pipeline of the invocations of
-      `$services`. This is only returned if `$pipeline` was specified
-      as an input. Otherwise, the outputs of these invocations are
-      merged directly with the pipeline itself.
+    * `$pipeline` is the output pipeline of the invocations of `$services`. This
+      is only returned if `$pipeline` was specified as an input. Otherwise, the
+      outputs of these invocations are merged directly with the pipeline
+      itself.
+    * `$duration` is the total execution duration for all services.
 
 * #### tundra.list.service:ensure
 
@@ -5774,11 +5773,11 @@ Services for manipulating string lists:
 
 * #### tundra.list.string:quote
 
-  Returns a [regular expression pattern] that can be used to match any 
+  Returns a [regular expression pattern] that can be used to match any
   of the given strings literally.
 
   * Inputs:
-    * `$list` is the list of strings to be converted to a [regular expression 
+    * `$list` is the list of strings to be converted to a [regular expression
       pattern].
 
   * Outputs:
@@ -7620,7 +7619,7 @@ Services for manipulating java.lang.String objects:
   * Inputs:
     * `$id` is a [java.util.TimeZone] ID identifying the time
       zone to be returned, or a `(+|-)HH:mm` timezone offset.
-      If a timezone offset is specified, the first timezone 
+      If a timezone offset is specified, the first timezone
       that matches the given offset is returned.
     * `$datetime` is an optional XML datetime string identifying
       the instant in time to be used to determine the Universal

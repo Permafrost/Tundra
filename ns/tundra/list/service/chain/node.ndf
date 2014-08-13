@@ -84,24 +84,49 @@
           <array name="rec_fields" type="record" depth="1">
           </array>
         </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <null name="field_usereditable"/>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="field_name">$duration</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">duration</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">false</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
       </array>
     </record>
   </record>
-  <value name="node_comment">Invokes each service in the given list sequentially, sharing 
-the pipeline across all invokes.
+  <value name="node_comment">Invokes each service in the given list sequentially, sharing the pipeline 
+across all invokes.
 
 * Inputs:
-  * $services is a list of fully-qualified service names 
-    identifying the services to be invoked sequentially.
-  * $pipeline is an optional scoped pipeline to use when
-    invoking the services. If not specified, the pipeline
-    itself is used.
-
+  * $services is a list of fully-qualified service names identifying the 
+    services to be invoked sequentially.
+  * $pipeline is an optional scoped pipeline to use when invoking the 
+    services. If not specified, the pipeline itself is used.
 * Outputs:
-  * $pipeline is the output pipeline of the invocations of
-    $services. This is only returned if $pipeline was specified 
-    as an input. Otherwise, the outputs of these invocations are 
-    merged directly with the pipeline itself.</value>
+  * $pipeline is the output pipeline of the invocations of $services. This 
+    is only returned if $pipeline was specified as an input. Otherwise, the 
+    outputs of these invocations are merged directly with the pipeline 
+    itself.
+  * $duration is the total execution duration for all services.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
