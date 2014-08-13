@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-11-22 14:29:20.741
-// -----( ON-HOST: -
+// -----( CREATED: 2014-08-13 15:32:44 EST
+// -----( ON-HOST: 172.16.189.132
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -63,7 +63,7 @@ public final class exception
 	
 	// throws a new ServiceException with the class and message from the given Throwables, which
 	// is useful because java services are hard-wired to only throw ServiceExceptions
-	public static void raise(java.util.List<Throwable> exceptions) throws ServiceException {
+	public static void raise(java.util.Collection<Throwable> exceptions) throws ServiceException {
 	  if (exceptions != null) raise(message((Throwable[])exceptions.toArray(new Throwable[0])));
 	}
 	
@@ -74,7 +74,7 @@ public final class exception
 	    if (exception instanceof ServiceException) {
 	      throw (ServiceException)exception;
 	    } else {
-	    raise(message(exception));
+	      raise(message(exception));
 	    }
 	  }
 	}
@@ -100,24 +100,34 @@ public final class exception
 	}
 	
 	// returns a list of exceptions as a string
+	public static String message(java.util.Collection<Throwable> exceptions) {
+	  return message((Throwable[])exceptions.toArray(new Throwable[0]));
+	}
+	
+	// returns a list of exceptions as a string
 	public static String message(Throwable[] exceptions) {
 	  StringBuilder msg = new StringBuilder();
 	  if (exceptions != null) {
-	    for (int i = 0; i < exceptions.length; i++) {
-	      if (exceptions[i] != null) {
-	        msg.append("[").append(i).append("]: ").append(message(exceptions[i]));
-	        if (i < exceptions.length - 1) msg.append("\n");
+	    if (exceptions.length == 1 && exceptions[0] != null) {
+	      msg.append(message(exceptions[0]));
+	    } else {
+	      for (int i = 0; i < exceptions.length; i++) {
+	        if (exceptions[i] != null) {
+	          msg.append("[").append(i).append("]: ").append(message(exceptions[i]));
+	          if (i < exceptions.length - 1) msg.append("\n");
+	        }
 	      }
 	    }
 	  }
 	  return msg.toString();
 	}
 	
-	public static IData[] stack(Throwable t) {
+	// returns the call stack associated with the given exception
+	public static IData[] stack(Throwable exception) {
 	  IData[] output = null;
 	
-	  if (t != null) {
-	    StackTraceElement[] stack = t.getStackTrace();
+	  if (exception != null) {
+	    StackTraceElement[] stack = exception.getStackTrace();
 	    output = new IData[stack.length];
 	
 	    for (int i = 0; i < stack.length; i++) {
