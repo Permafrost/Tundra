@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-08-13 16:44:47 EST
+// -----( CREATED: 2014-08-13 16:54:34 EST
 // -----( ON-HOST: 172.16.189.132
 
 import com.wm.data.*;
@@ -281,7 +281,33 @@ public final class datetime
 		  String[] datetimes = IDataUtil.getStringArray(cursor, "$datetimes");
 		  String pattern = IDataUtil.getString(cursor, "$pattern");
 		
-		  if (datetimes != null) IDataUtil.put(cursor, "$datetime", maximum(datetimes, pattern));
+		  if (datetimes != null && datetimes.length > 0) IDataUtil.put(cursor, "$datetime", maximum(datetimes, pattern));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void minimum (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(minimum)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:1:optional $datetimes
+		// [i] field:0:optional $pattern {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
+		// [o] field:0:optional $datetime
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String[] datetimes = IDataUtil.getStringArray(cursor, "$datetimes");
+		  String pattern = IDataUtil.getString(cursor, "$pattern");
+		
+		  if (datetimes != null && datetimes.length > 0) IDataUtil.put(cursor, "$datetime", minimum(datetimes, pattern));
 		} finally {
 		  cursor.destroy();
 		}
@@ -771,9 +797,20 @@ public final class datetime
 	
 	// returns the largest datetime from the given list of datetime strings
 	public static String maximum(String[] datetimes, String pattern) {
+	  if (datetimes == null || datetimes.length == 0) return null;
+	
 	  java.util.Calendar[] calendars = parse(datetimes, pattern);
 	  java.util.SortedSet<java.util.Calendar> set = new java.util.TreeSet<java.util.Calendar>(java.util.Arrays.asList(calendars));
 	  return emit(set.last(), pattern);
+	}
+	
+	// returns the smallest datetime from the given list of datetime strings
+	public static String minimum(String[] datetimes, String pattern) {
+	  if (datetimes == null || datetimes.length == 0) return null;
+	
+	  java.util.Calendar[] calendars = parse(datetimes, pattern);
+	  java.util.SortedSet<java.util.Calendar> set = new java.util.TreeSet<java.util.Calendar>(java.util.Arrays.asList(calendars));
+	  return emit(set.first(), pattern);
 	}
 	// --- <<IS-END-SHARED>> ---
 }
