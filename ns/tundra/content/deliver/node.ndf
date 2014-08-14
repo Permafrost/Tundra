@@ -59,6 +59,23 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="field_name">$namespace</value>
+          <value name="field_type">record</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+          <array name="rec_fields" type="record" depth="1">
+          </array>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
             <null name="field_usereditable"/>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
@@ -253,6 +270,10 @@ should implement the tundra.schema.content.deliver:handler specification.
     * [TSV]: Tundra/tundra.csv:emit
     * [XML]: WmPublic/pub.xml:documentToXMLString
     * [YAML]: Tundra/tundra.yaml:emit
+
+  * $namespace is a list of namespace prefixes and the URIs they map to,
+    used when emitting and IData document as [XML] content with elements 
+    in one or more namespaces.
 
   * $content.type is the MIME media type that describes the format of the 
     given content: 

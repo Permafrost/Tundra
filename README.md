@@ -652,6 +652,9 @@ content.
       * [XML]: optionally specify a recognized [XML] MIME media type, such as
         "text/xml" or "application/xml", or a type that includes a "+xml"
         suffix.
+    * `$namespace` is a list of namespace prefixes and the URIs they map to,
+      used when parsing and emitting [XML] content with elements in one or 
+      more namespaces.        
     * `$schema` is the fully-qualified name of the parsing schema to use when
       parsing `$content` as [XML] or Flat File content, and can have the
       following values:
@@ -730,6 +733,9 @@ content.
       * [XML]: optionally specify a recognized [XML] MIME media type, such as
         "text/xml" or "application/xml", or a type that includes a "+xml"
         suffix.
+    * `$namespace` is a list of namespace prefixes and the URIs they map to,
+      used when emitting and IData document as [XML] content with elements 
+      in one or more namespaces.        
     * `$schema` is the fully-qualified name of the parsing schema to use to
       serialize `$content` (when provided as an IData document) to [XML] or
       Flat File content, and can have the following values:
@@ -952,6 +958,9 @@ content.
       * [XML]: optionally specify a recognized [XML] MIME media type, such as
         "text/xml" or "application/xml", or a type that includes a "+xml"
         suffix.
+    * `$namespace` is a list of namespace prefixes and the URIs they map to,
+      used when emitting [XML] content with elements in one or more 
+      namespaces.        
     * `$schema` is the fully-qualified name of the parsing schema to use when
       serializing `$document` to [XML] or Flat File content, and can have the
       following values:
@@ -1012,6 +1021,9 @@ content.
       * [XML]: optionally specify a recognized [XML] MIME media type, such as
         "text/xml" or "application/xml", or a type that includes a "+xml"
         suffix.
+    * `$namespace` is a list of namespace prefixes and the URIs they map to,
+      used when parsing [XML] content with elements in one or more 
+      namespaces.        
     * `$schema` is the fully-qualified name of the parsing schema to use when
       parsing `$content` as [XML] or Flat File content, and can have the
       following values:
@@ -1193,6 +1205,19 @@ content.
       appropriate (for example, "application/json" for [JSON] content) for
       serializing the corresponding indexed item in the returned document
       list.
+    * `$namespace.input` is a list of namespace prefixes and the URIs they 
+      map to, used when parsing [XML] content with elements in one or more 
+      namespaces.
+    * `$namespace.output` is a list of namespace prefixes and the URIs they 
+      map to, used when emitting [XML] content with elements in one or more 
+      namespaces.
+
+      Alternatively, it is permissible for the resulting list returned by 
+      `$service` to contain unlike documents (documents whose MIME types are 
+      different), and in this case `$service` is required to return an IData 
+      document list `$namespaces`, where each item in `$namespaces` declares the
+      namespace prefixes and URIs appropriate for serializing the 
+      corresponding indexed item in the returned document list.      
     * `$schema.input` is the fully-qualified name of the parsing schema to
       use when parsing `$content` as [XML] or Flat File content, and can
       have the following values:
@@ -1324,6 +1349,12 @@ content.
       * [XML]: optionally specify a recognized [XML] MIME media type, such as
         "text/xml" or "application/xml", or a type that includes a "+xml"
         suffix.
+    * `$namespace.input` is a list of namespace prefixes and the URIs they 
+      map to, used when parsing [XML] content with elements in one or more 
+      namespaces.
+    * `$namespace.output` is a list of namespace prefixes and the URIs they 
+      map to, used when emitting [XML] content with elements in one or more 
+      namespaces.        
     * `$schema.input` is the fully-qualified name of the parsing schema to
       use when parsing `$content` as [XML] or Flat File content, and can
       have the following values:
@@ -3978,6 +4009,16 @@ Services for working with arbitrary precision integers (uses
 
       Use this input argument when `$documents` contains like formats (for
       example, when all items adhere to the exact same [XML] MIME type).
+    * `$namespaces` is a list of namespace prefixes and the URIs they map to,
+      used when emitting [XML] content with elements in one or more 
+      namespaces. Use this input argument when `$documents` contains unlike 
+      formats (for example, a mixture of [XML] formats that use different
+      namespaces).
+    * `$namespace` is a list of namespace prefixes and the URIs they map to,
+      used when emitting [XML] content with elements in one or more 
+      namespaces. Use this input argument when `$documents` contains like 
+      formats (for example, when all items adhere to the exact same [XML] 
+      MIME type using the same namespaces).      
     * `$schemas` is an optional input list with the same number of items as
       `$documents`, where `$schemas[n]` is used to serialize `$contents[n]`
       as [XML] or Flat File, and can have the following values:
@@ -4128,6 +4169,19 @@ Services for working with arbitrary precision integers (uses
 
       Use this input argument when `$contents` contains like formats (for
       example, when all items adhere to the exact same [XML] MIME type).
+    * `$namespaces.input` is a list of namespace prefixes and the URIs they map to,
+      used when parsing [XML] content with elements in one or more 
+      namespaces. Use this input argument when `$contents` contains unlike 
+      formats (for example, a mixture of [XML] formats that use different
+      namespaces).
+    * `$namespace.input` is a list of namespace prefixes and the URIs they map to,
+      used when parsing [XML] content with elements in one or more 
+      namespaces. Use this input argument when `$contents` contains like 
+      formats (for example, when all items adhere to the exact same [XML] 
+      MIME type using the same namespaces).
+    * `$namespace.output` is a list of namespace prefixes and the URIs they map to,
+      used when emitting [XML] content with elements in one or more 
+      namespaces.      
     * `$schemas.input` is an optional input list with the same number of
       items as `$contents`, where `$schemas[n]` is used to parse
       `$contents[n]` as [XML] or Flat File, and can have the following
@@ -4263,6 +4317,16 @@ Services for working with arbitrary precision integers (uses
 
       Use this input argument when `$contents` contains like formats (for
       example, when all items adhere to the exact same [XML] MIME type).
+    * `$namespaces` is a list of namespace prefixes and the URIs they map to,
+      used when parsing [XML] content with elements in one or more 
+      namespaces. Use this input argument when `$contents` contains unlike 
+      formats (for example, a mixture of [XML] formats that use different
+      namespaces).
+    * `$namespace` is a list of namespace prefixes and the URIs they map to,
+      used when parsing [XML] content with elements in one or more 
+      namespaces. Use this input argument when `$contents` contains like 
+      formats (for example, when all items adhere to the exact same [XML] 
+      MIME type using the same namespaces).      
     * `$schemas` is an optional input list with the same number of items as
       `$documents`, where `$schemas[n]` is used to parse `$contents[n]` as
       [XML] or Flat File, and can have the following values:
