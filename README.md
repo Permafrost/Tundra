@@ -7158,6 +7158,19 @@ Document references and service specifications:
 
   This service deliberately does nothing.
 
+* #### tundra.service:reflect
+
+  Returns information about the service with the given name.
+
+  * Inputs:
+    * `$service` is the name of the service to be reflected on.
+  * Outputs:
+    * `$service.properties`
+      * `name` is the name of the service.
+      * `type` is the type of service, such as flow or java.
+      * `package` is the name of the package the service exists in.
+      * `description` is the service comments.
+
 * #### tundra.service:respond
 
   Forces the specified response status and body to be returned by webMethods
