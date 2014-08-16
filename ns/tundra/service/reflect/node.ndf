@@ -180,7 +180,6 @@
               <value name="is_global">false</value>
             </record>
           </array>
-          <value name="rec_closed">true</value>
           <value name="modifiable">true</value>
         </record>
       </array>

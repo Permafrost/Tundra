@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-08-15 19:15:35 EST
-// -----( ON-HOST: 172.16.189.132
+// -----( CREATED: 2014-08-16 18:18:14 EST
+// -----( ON-HOST: 172.16.189.131
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -237,7 +237,8 @@ public final class service
 		
 		try {
 		  String service = IDataUtil.getString(cursor, "$service");
-		  if (service != null) IDataUtil.put(cursor, "$service.properties", reflect(service));
+		  IData properties = reflect(service);
+		  if (properties != null) IDataUtil.put(cursor, "$service.properties", properties);
 		} finally {
 		  cursor.destroy();
 		}
@@ -545,6 +546,7 @@ public final class service
 	  if (serviceName == null) return null;
 	
 	  com.wm.app.b2b.server.BaseService service = com.wm.app.b2b.server.ns.Namespace.getService(com.wm.lang.ns.NSName.create(serviceName));
+	  if (service == null) return null;
 	
 	  IData output = IDataFactory.create();
 	  IDataCursor cursor = output.getCursor();
