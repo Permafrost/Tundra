@@ -5774,23 +5774,29 @@ Services for manipulating string lists:
 
 * #### tundra.list.string:match
 
-  Returns the list of items which matched and the list of items which
-  did not match the given [regular expression pattern].
+  Returns the list of items which matched and the list of items which did
+  not match the given [regular expression pattern].
 
   * Inputs:
-    * `$list` is a list to be matched against the given regular
-      expression.
-    * `$pattern` is the [regular expression pattern] or literal string
-      to match against the given list.
-    * `$literal?` is a boolean indicating if the `$pattern` string should
-      be treated as a literal string. If false, `$pattern` is treated
-      as a [regular expression pattern]. If true, `$pattern` is treated
-      as a literal string. Defaults to false, if not specified.
+    * `$list` is a list to be matched against the given pattern.
+    * `$pattern` is the [regular expression pattern] or literal string to
+      match against the given list.
+    * `$literal?` is a boolean indicating if the `$pattern` string should be
+      treated as a literal string. If false, `$pattern` is treated as a
+      [regular expression pattern]. If true, $pattern is treated as a
+      literal string. Defaults to false, if not specified.
   * Outputs:
-    * `$matched` is the list of items which were found to match the given
-      [regular expression pattern].
-    * `$unmatched` is the list of items which were found to not match the
-      given [regular expression pattern].
+    * `$matched.all?` is a boolean flag which when true indicates that all
+      items in the given list matched the given pattern.
+    * `$matched.any?` is a boolean flag which when true indicates that at
+      least one item in the given list matched the given pattern.
+    * `$matched.none?` is a boolean flag which when true indicates that no
+      items in the given list matched the given pattern.
+    * `$matched` is the list of items which matched the given pattern.
+    * `$matched.length` is the number of items in the `$matched` list.
+    * `$unmatched` is the list of items which did not match the given
+       pattern.
+    * `$unmatched.length` is the number of items in the `$unmatched` list.
 
 * #### tundra.list.string:normalize
 
