@@ -653,8 +653,8 @@ content.
         "text/xml" or "application/xml", or a type that includes a "+xml"
         suffix.
     * `$namespace` is a list of namespace prefixes and the URIs they map to,
-      used when parsing and emitting [XML] content with elements in one or 
-      more namespaces.        
+      used when parsing and emitting [XML] content with elements in one or
+      more namespaces.
     * `$schema` is the fully-qualified name of the parsing schema to use when
       parsing `$content` as [XML] or Flat File content, and can have the
       following values:
@@ -734,8 +734,8 @@ content.
         "text/xml" or "application/xml", or a type that includes a "+xml"
         suffix.
     * `$namespace` is a list of namespace prefixes and the URIs they map to,
-      used when emitting and IData document as [XML] content with elements 
-      in one or more namespaces.        
+      used when emitting and IData document as [XML] content with elements
+      in one or more namespaces.
     * `$schema` is the fully-qualified name of the parsing schema to use to
       serialize `$content` (when provided as an IData document) to [XML] or
       Flat File content, and can have the following values:
@@ -959,8 +959,8 @@ content.
         "text/xml" or "application/xml", or a type that includes a "+xml"
         suffix.
     * `$namespace` is a list of namespace prefixes and the URIs they map to,
-      used when emitting [XML] content with elements in one or more 
-      namespaces.        
+      used when emitting [XML] content with elements in one or more
+      namespaces.
     * `$schema` is the fully-qualified name of the parsing schema to use when
       serializing `$document` to [XML] or Flat File content, and can have the
       following values:
@@ -1022,8 +1022,8 @@ content.
         "text/xml" or "application/xml", or a type that includes a "+xml"
         suffix.
     * `$namespace` is a list of namespace prefixes and the URIs they map to,
-      used when parsing [XML] content with elements in one or more 
-      namespaces.        
+      used when parsing [XML] content with elements in one or more
+      namespaces.
     * `$schema` is the fully-qualified name of the parsing schema to use when
       parsing `$content` as [XML] or Flat File content, and can have the
       following values:
@@ -1205,19 +1205,19 @@ content.
       appropriate (for example, "application/json" for [JSON] content) for
       serializing the corresponding indexed item in the returned document
       list.
-    * `$namespace.input` is a list of namespace prefixes and the URIs they 
-      map to, used when parsing [XML] content with elements in one or more 
+    * `$namespace.input` is a list of namespace prefixes and the URIs they
+      map to, used when parsing [XML] content with elements in one or more
       namespaces.
-    * `$namespace.output` is a list of namespace prefixes and the URIs they 
-      map to, used when emitting [XML] content with elements in one or more 
+    * `$namespace.output` is a list of namespace prefixes and the URIs they
+      map to, used when emitting [XML] content with elements in one or more
       namespaces.
 
-      Alternatively, it is permissible for the resulting list returned by 
-      `$service` to contain unlike documents (documents whose MIME types are 
-      different), and in this case `$service` is required to return an IData 
+      Alternatively, it is permissible for the resulting list returned by
+      `$service` to contain unlike documents (documents whose MIME types are
+      different), and in this case `$service` is required to return an IData
       document list `$namespaces`, where each item in `$namespaces` declares the
-      namespace prefixes and URIs appropriate for serializing the 
-      corresponding indexed item in the returned document list.      
+      namespace prefixes and URIs appropriate for serializing the
+      corresponding indexed item in the returned document list.
     * `$schema.input` is the fully-qualified name of the parsing schema to
       use when parsing `$content` as [XML] or Flat File content, and can
       have the following values:
@@ -1349,12 +1349,12 @@ content.
       * [XML]: optionally specify a recognized [XML] MIME media type, such as
         "text/xml" or "application/xml", or a type that includes a "+xml"
         suffix.
-    * `$namespace.input` is a list of namespace prefixes and the URIs they 
-      map to, used when parsing [XML] content with elements in one or more 
+    * `$namespace.input` is a list of namespace prefixes and the URIs they
+      map to, used when parsing [XML] content with elements in one or more
       namespaces.
-    * `$namespace.output` is a list of namespace prefixes and the URIs they 
-      map to, used when emitting [XML] content with elements in one or more 
-      namespaces.        
+    * `$namespace.output` is a list of namespace prefixes and the URIs they
+      map to, used when emitting [XML] content with elements in one or more
+      namespaces.
     * `$schema.input` is the fully-qualified name of the parsing schema to
       use when parsing `$content` as [XML] or Flat File content, and can
       have the following values:
@@ -4010,15 +4010,15 @@ Services for working with arbitrary precision integers (uses
       Use this input argument when `$documents` contains like formats (for
       example, when all items adhere to the exact same [XML] MIME type).
     * `$namespaces` is a list of namespace prefixes and the URIs they map to,
-      used when emitting [XML] content with elements in one or more 
-      namespaces. Use this input argument when `$documents` contains unlike 
+      used when emitting [XML] content with elements in one or more
+      namespaces. Use this input argument when `$documents` contains unlike
       formats (for example, a mixture of [XML] formats that use different
       namespaces).
     * `$namespace` is a list of namespace prefixes and the URIs they map to,
-      used when emitting [XML] content with elements in one or more 
-      namespaces. Use this input argument when `$documents` contains like 
-      formats (for example, when all items adhere to the exact same [XML] 
-      MIME type using the same namespaces).      
+      used when emitting [XML] content with elements in one or more
+      namespaces. Use this input argument when `$documents` contains like
+      formats (for example, when all items adhere to the exact same [XML]
+      MIME type using the same namespaces).
     * `$schemas` is an optional input list with the same number of items as
       `$documents`, where `$schemas[n]` is used to serialize `$contents[n]`
       as [XML] or Flat File, and can have the following values:
@@ -4170,18 +4170,18 @@ Services for working with arbitrary precision integers (uses
       Use this input argument when `$contents` contains like formats (for
       example, when all items adhere to the exact same [XML] MIME type).
     * `$namespaces.input` is a list of namespace prefixes and the URIs they map to,
-      used when parsing [XML] content with elements in one or more 
-      namespaces. Use this input argument when `$contents` contains unlike 
+      used when parsing [XML] content with elements in one or more
+      namespaces. Use this input argument when `$contents` contains unlike
       formats (for example, a mixture of [XML] formats that use different
       namespaces).
     * `$namespace.input` is a list of namespace prefixes and the URIs they map to,
-      used when parsing [XML] content with elements in one or more 
-      namespaces. Use this input argument when `$contents` contains like 
-      formats (for example, when all items adhere to the exact same [XML] 
+      used when parsing [XML] content with elements in one or more
+      namespaces. Use this input argument when `$contents` contains like
+      formats (for example, when all items adhere to the exact same [XML]
       MIME type using the same namespaces).
     * `$namespace.output` is a list of namespace prefixes and the URIs they map to,
-      used when emitting [XML] content with elements in one or more 
-      namespaces.      
+      used when emitting [XML] content with elements in one or more
+      namespaces.
     * `$schemas.input` is an optional input list with the same number of
       items as `$contents`, where `$schemas[n]` is used to parse
       `$contents[n]` as [XML] or Flat File, and can have the following
@@ -4318,15 +4318,15 @@ Services for working with arbitrary precision integers (uses
       Use this input argument when `$contents` contains like formats (for
       example, when all items adhere to the exact same [XML] MIME type).
     * `$namespaces` is a list of namespace prefixes and the URIs they map to,
-      used when parsing [XML] content with elements in one or more 
-      namespaces. Use this input argument when `$contents` contains unlike 
+      used when parsing [XML] content with elements in one or more
+      namespaces. Use this input argument when `$contents` contains unlike
       formats (for example, a mixture of [XML] formats that use different
       namespaces).
     * `$namespace` is a list of namespace prefixes and the URIs they map to,
-      used when parsing [XML] content with elements in one or more 
-      namespaces. Use this input argument when `$contents` contains like 
-      formats (for example, when all items adhere to the exact same [XML] 
-      MIME type using the same namespaces).      
+      used when parsing [XML] content with elements in one or more
+      namespaces. Use this input argument when `$contents` contains like
+      formats (for example, when all items adhere to the exact same [XML]
+      MIME type using the same namespaces).
     * `$schemas` is an optional input list with the same number of items as
       `$documents`, where `$schemas[n]` is used to parse `$contents[n]` as
       [XML] or Flat File, and can have the following values:
@@ -7325,6 +7325,68 @@ objects:
 
 Services for manipulating java.lang.String objects:
 
+* #### tundra.string:capture
+
+  Returns the associated [capturing groups] if the given [regular expression
+  pattern] is found anywhere in the given string.
+
+  Refer to the following excerpt from the [java.util.regex.Pattern]
+  documentation:
+
+  > Groups and capturing
+  >
+  > Capturing groups are numbered by counting their opening parentheses from
+  > left to right. In the expression `((A)(B(C)))`, for example, there are four
+  > such groups:
+  >
+  > 1. `((A)(B(C)))`
+  > 2. `(A)`
+  > 3. `(B(C))`
+  > 4. `(C)`
+  >
+  > Group zero always stands for the entire expression.
+  >
+  > Capturing groups are so named because, during a match, each subsequence of
+  > the input sequence that matches such a group is saved. The captured
+  > subsequence may be used later in the expression, via a back reference, and
+  > may also be retrieved from the matcher once the match operation is
+  > complete.
+  >
+  > The captured input associated with a group is always the subsequence that
+  > the group most recently matched. If a group is evaluated a second time
+  > because of quantification then its previously-captured value, if any, will
+  > be retained if the second evaluation fails. Matching the string "aba"
+  > against the expression `(a(b)?)+`, for example, leaves group two set to "b".
+  > All captured input is discarded at the beginning of each match.
+  >
+  > Groups beginning with `(?` are pure, non-capturing groups that do not
+  > capture text and do not count towards the group total.
+
+  * Inputs:
+    * `$string` is a string to be searched for the given pattern.
+    * `$pattern` is the [regular expression pattern] to search for against the
+      given string.
+
+  * Outputs:
+    * `$captures` is an IData[] document list where each item contains the
+      [capturing groups] associated with each time `$pattern` was found in
+      `$string`.
+      * `groups` is an IData[] document list where each item in the list
+        represents a single [capturing group]. Note that the first (zeroth)
+        item in the list always denotes the entire pattern.
+        * `captured?` is a boolean flag which when true indicates that this
+          [capturing group] was captured in the matched substring. This flag
+          will be false for optional [capturing groups] that are not found in
+          the matched substring.
+        * `index` is the zero-based start index of the captured substring for
+          this [capturing group], and is only specified when `$captured?` is
+          true.
+        * `length` is the number of captured characters in the captured
+          substring for this [capturing group], and is only specified when
+          `$captured?` is true.
+        * `content` is captured substring for this [capturing group], and is
+          only specified when `$captured?` is true.
+
 * #### tundra.string:find
 
   Returns whether the given [regular expression pattern] or literal
@@ -8127,6 +8189,8 @@ around.
 
 Copyright &copy; 2012 Lachlan Dowding. See license.txt for further details.
 
+[capturing group]: <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html#cg>
+[capturing groups]: <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html#cg>
 [catch block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/catch.html>
 [CSV]: <http://en.wikipedia.org/wiki/Comma-separated_values>
 [default charset]: <http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()>
@@ -8153,6 +8217,7 @@ Copyright &copy; 2012 Lachlan Dowding. See license.txt for further details.
 [java.text.SimpleDateFormat]: <http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html>
 [java.util.Date]: <http://docs.oracle.com/javase/6/docs/api/java/util/Date.html>
 [java.util.TimeZone]: <http://docs.oracle.com/javase/6/docs/api/java/util/TimeZone.html>
+[java.util.regex.Pattern]: <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html>
 [javax.activation.MimeType]: <http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html>
 [javax.jms.BytesMessage]: <http://docs.oracle.com/javaee/1.4/api/javax/jms/BytesMessage.html>
 [Java array class name]: <http://docs.oracle.com/javase/tutorial/reflect/special/arrayComponents.html>
