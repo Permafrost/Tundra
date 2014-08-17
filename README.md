@@ -5632,6 +5632,33 @@ Services for manipulating string lists:
     * `$list` is the given list filtered to only include the
       items where `$condition` evaluated to true.
 
+* #### tundra.list.string:find
+
+  Returns the list of items which included at least one occurrence of the
+  given [regular expression pattern] or literal string pattern, and the list
+  of items which did not include any occurrences of the pattern.
+
+  * Inputs:
+    * `$list` is a list to be searched for the given pattern.
+    * `$pattern` is the [regular expression pattern] or literal string to
+      search for against the given list.
+    * `$literal?` is a boolean indicating if the `$pattern` string should be
+      treated as a literal string. If false, `$pattern` is treated as a
+      [regular expression pattern]. If true, `$pattern` is treated as a literal string. Defaults to false, if not specified.
+
+  * Outputs:
+    * `$found.all?` is a boolean flag which when true indicates that all
+      items in the given list included the given pattern.
+    * `$found.any?` is a boolean flag which when true indicates that at least
+      one item in the given list included the given pattern.
+    * `$found.none?` is a boolean flag which when true indicates that no
+      items in the given list included the given pattern.
+    * `$found` is the list of items which included the given pattern.
+    * `$found.length` is the number of items in the $matched list.
+    * `$unfound` is the list of items which did not include the given
+      pattern.
+    * `$unfound.length` is the number of items in the $unmatched list.
+
 * #### tundra.list.string:get
 
   Returns the item stored at a given index in a list. A zero-
@@ -5775,7 +5802,7 @@ Services for manipulating string lists:
 * #### tundra.list.string:match
 
   Returns the list of items which matched and the list of items which did
-  not match the given [regular expression pattern].
+  not match the given [regular expression pattern] or literal string pattern.
 
   * Inputs:
     * `$list` is a list to be matched against the given pattern.

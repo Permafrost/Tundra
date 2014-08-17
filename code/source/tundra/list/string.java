@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-08-18 08:40:27.830
+// -----( CREATED: 2014-08-18 09:02:04.917
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -157,6 +157,60 @@ public final class string
 		// [i] record:0:optional $scope
 		// [o] field:1:optional $list
 		tundra.list.object.filter(pipeline);
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
+	public static final void find (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(find)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:1:optional $list
+		// [i] field:0:optional $pattern
+		// [i] field:0:optional $literal? {&quot;false&quot;,&quot;true&quot;}
+		// [o] field:0:required $found.all?
+		// [o] field:0:required $found.any?
+		// [o] field:0:required $found.none?
+		// [o] field:1:optional $found
+		// [o] field:0:required $found.length
+		// [o] field:1:optional $unfound
+		// [o] field:0:required $unfound.length
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		  String[] list = IDataUtil.getStringArray(cursor, "$list");
+		  String pattern = IDataUtil.getString(cursor, "$pattern");
+		  boolean literal = tundra.bool.parse(IDataUtil.getString(cursor, "$literal?"));
+
+		  String[][] output = find(list, pattern, literal);
+
+		  if (output != null && output.length > 1) {
+		    String[] found = output[0];
+		    String[] unfound = output[1];
+
+		    IDataUtil.put(cursor, "$found.all?", "" + (found.length == list.length));
+		    IDataUtil.put(cursor, "$found.any?", "" + (found.length > 0));
+		    IDataUtil.put(cursor, "$found.none?", "" + (found.length == 0));
+
+		    IDataUtil.put(cursor, "$found", output[0]);
+		    IDataUtil.put(cursor, "$found.length", "" + found.length);
+		    IDataUtil.put(cursor, "$unfound", output[1]);
+		    IDataUtil.put(cursor, "$unfound.length", "" + unfound.length);
+		  } else {
+		    IDataUtil.put(cursor, "$found.all?", "false");
+		    IDataUtil.put(cursor, "$found.any?", "false");
+		    IDataUtil.put(cursor, "$found.none?", "true");
+		    IDataUtil.put(cursor, "$found.length", "0");
+		    IDataUtil.put(cursor, "$unfound.length", "0");
+		  }
+		} finally {
+		  cursor.destroy();
+		}
 		// --- <<IS-END>> ---
 
 
@@ -583,8 +637,8 @@ public final class string
 	  return output;
 	}
 
-	// returns the list of items that match and did not match the given regular expression
-	// pattern
+	// returns the list of items that match and did not match the given regular
+	// expression or literal string pattern
 	public static String[][] match(String[] input, String pattern, boolean literal) {
 	  if (input == null) return null;
 
@@ -602,6 +656,29 @@ public final class string
 	  String[][] output = new String[2][];
 	  output[0] = matched.toArray(new String[0]);
 	  output[1] = unmatched.toArray(new String[0]);
+
+	  return output;
+	}
+
+	// returns the list of items that include and do not include the given regular
+	// expression or literal string pattern
+	public static String[][] find(String[] input, String pattern, boolean literal) {
+	  if (input == null) return null;
+
+	  java.util.List<String> found = new java.util.ArrayList<String>(input.length);
+	  java.util.List<String> unfound = new java.util.ArrayList<String>(input.length);
+
+	  for (int i = 0; i < input.length; i++) {
+	    if (tundra.string.find(input[i], pattern, literal)) {
+	      found.add(input[i]);
+	    } else {
+	      unfound.add(input[i]);
+	    }
+	  }
+
+	  String[][] output = new String[2][];
+	  output[0] = found.toArray(new String[0]);
+	  output[1] = unfound.toArray(new String[0]);
 
 	  return output;
 	}
