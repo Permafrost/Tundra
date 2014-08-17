@@ -7368,6 +7368,8 @@ Services for manipulating java.lang.String objects:
       given string.
 
   * Outputs:
+    * `$captured?` is a boolean which when true indicates that the [regular
+      expression pattern] was found at least once in the given `$string`.
     * `$captures` is an IData[] document list where each item contains the
       [capturing groups] associated with each time `$pattern` was found in
       `$string`.
@@ -7386,6 +7388,13 @@ Services for manipulating java.lang.String objects:
           `$captured?` is true.
         * `content` is captured substring for this [capturing group], and is
           only specified when `$captured?` is true.
+      * `groups.length` is the number of items in the `groups` IData[] document
+        list, which is equal to the number of [capturing groups] + 1 (where
+        the additional item is the entire pattern) present in the [regular
+        expression pattern].
+    * `$captures.length` is both the number of times the [regular expression
+      pattern] was found in the given `$string`, and the number of items in
+      the `$captures` IData[] document list.
 
 * #### tundra.string:find
 
