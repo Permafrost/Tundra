@@ -10,7 +10,7 @@ Networks] 7.1 and higher.
 
 ## Dependencies
 
-Tundra is compiled for Java 1.6, and is dependent on the following
+[Tundra] is compiled for Java 1.6, and is dependent on the following
 [webMethods Integration Server] packages:
 
 * WmFlatFile
@@ -38,6 +38,8 @@ To install with this method, first make sure that:
   cloning the repository).
 * The dependent packages listed above are installed and enabled on your
   Integration Server.
+* You have identified what version of [Tundra] you'd like to install by
+  referring to the available [releases].
 
 From your Integration Server installation:
 
@@ -45,19 +47,19 @@ From your Integration Server installation:
 $ cd ./packages/
 $ git clone https://github.com/Permafrost/Tundra.git
 $ cd ./Tundra/
-$ git checkout v<n.n.n> # where <n.n.n> is the desired version
+$ git checkout v<n.n.n> # where <n.n.n> is the required version
 ```
 
-Then activate and enable the Tundra package from the package management web
+Then activate and enable the [Tundra] package from the package management web
 page on your Integration Server web administration site.
 
 ### Using Zip
 
-1. Download a zip of the desired version of the package from
-   https://github.com/Permafrost/Tundra/releases.
+1. Download a pre-built zip of the desired version of the package from the
+   available [releases].
 2. Copy the `Tundra-vn.n.n.zip` file to your Integration Server's
    `./replicate/inbound/` directory.
-3. Install and activate the Tundra package release `Tundra-vn.n.n.zip` from
+3. Install and activate the [Tundra] package release `Tundra-vn.n.n.zip` from
    the package management web page on your Integration Server's web
    administration site.
 
@@ -79,7 +81,9 @@ To upgrade with this method, first make sure that:
   fetching updates from the repository).
 * The dependent packages listed above are installed and enabled on your
   Integration Server.
-* You originally installed Tundra using the git method described above.
+* You have identified what version of [Tundra] you'd like to upgrade to by
+  referring to the available [releases].
+* You originally installed [Tundra] using the git method described above.
 
 From your Integration Server installation:
 
@@ -89,39 +93,47 @@ $ git fetch
 $ git checkout v<n.n.n> # where <n.n.n> is the desired updated version
 ```
 
-Then reload the Tundra package from the package management web page on your
+Then reload the [Tundra] package from the package management web page on your
 Integration Server web administration site.
 
 ### Using Zip
 
-1. Download a zip of the desired updated version of the package from
-   https://github.com/Permafrost/Tundra/releases.
+1. Download a pre-built zip of the desired updated version of the package
+   from the available [releases].
 2. Copy the `Tundra-vn.n.n.zip` file to your Integration Server's
    `./replicate/inbound/` directory.
-3. Install and activate the updated Tundra package release
+3. Install and activate the updated [Tundra] package release
    `Tundra-vn.n.n.zip` from the package management web page on your
    Integration Server's web administration site.
 
 ## Conventions
 
 1. All input and output pipeline arguments are prefixed with '$' as a poor-
-   man's scoping mechanism (typical user-space variables will be unprefixed).
+   man's scoping mechanism, since typically user-space variables are
+   unprefixed.
 2. All boolean arguments are suffixed with a '?'.
 3. Single-word argument names are preferred. Where multiple words are
    necessary, words are separated with a '.'.
 4. Service namespace is kept flat. Namespace folders are usually nouns.
    Service names are usually verbs, indicating the action performed on the
    noun (parent folder).
-5. All private elements are kept in the tundra.support folder. All other
-   elements comprise the public API of the package. As the private elements
-   do not contribute to the public API, they are liable to change at any
-   time. Enter at your own risk.
-6. *Almost* all services are written in Java, and are *almost* always
+5. *Almost* all services are written in Java, and are *almost* always
    overloaded by a backing method in the shared source, which provides the
    actual implementation. This way, backing methods can be used by other
    backing methods directly, without needing to deal with the
    IData/IDataCursor/IDataUtil nastiness that a fronting Java service is
    usually required to deal with.
+6. Services declare all inputs and outputs, always explicitly marked as
+   optional or required, use constrained types where possible, and enable
+   input and output pipeline validation, which minimises developer surprise.
+7. Services often declare their inputs as optional, and either apply an
+   appropriate default value, or take no action and return no output
+   (whatever is more appropriate), to minimise the need for existence
+   checking in flow map steps.
+5. All private elements are kept in the `tundra.support` folder. All other
+   elements comprise the public API of the package. As the private elements
+   do not contribute to the public API, they are liable to change at any
+   time. **Enter at your own risk.**
 
 ## Tests
 
@@ -8274,6 +8286,7 @@ Copyright &copy; 2012 Lachlan Dowding. See license.txt for further details.
 [primitive type]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Class.html#isPrimitive()>
 [radix]: <http://en.wikipedia.org/wiki/Radix>
 [regular expression pattern]: <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html>
+[releases]: <https://github.com/Permafrost/Tundra/releases>
 [RFC 2045]: <http://www.ietf.org/rfc/rfc2045.txt>
 [RFC 2046]: <http://www.ietf.org/rfc/rfc2046.txt>
 [RFC 2396]: <http://www.ietf.org/rfc/rfc2396.txt>
