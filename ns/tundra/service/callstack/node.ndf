@@ -130,7 +130,7 @@
   <value name="retry_max">0</value>
   <value name="retry_interval">0</value>
   <value name="svc_in_validator_options">none</value>
-  <value name="svc_out_validator_options">none</value>
+  <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
