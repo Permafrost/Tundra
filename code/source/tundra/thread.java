@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-06-19 11:01:33.850
+// -----( CREATED: 2014-08-18 15:53:43.526
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -45,7 +45,7 @@ public final class thread
 		// [o] - field:0:required interrupted?
 		// [o] - record:1:optional stack
 		// [o] -- field:0:required description
-		// [o] -- field:0:required file
+		// [o] -- field:0:optional file
 		// [o] -- field:0:required class
 		// [o] -- field:0:required method
 		// [o] -- field:0:required line
@@ -83,10 +83,10 @@ public final class thread
 		// [o] - field:0:required interrupted?
 		// [o] - record:1:optional stack
 		// [o] -- field:0:required description
-		// [o] -- field:0:required file
+		// [o] -- field:0:optional file
 		// [o] -- field:0:required class
 		// [o] -- field:0:required method
-		// [o] -- field:0:required line
+		// [o] -- field:0:optional line
 		// [o] -- field:0:required native?
 		// [o] - object:0:required thread
 		IDataCursor cursor = pipeline.getCursor();
@@ -197,12 +197,20 @@ public final class thread
 
 	  IData output = IDataFactory.create();
 	  IDataCursor cursor = output.getCursor();
+
 	  IDataUtil.put(cursor, "description", input.toString());
-	  IDataUtil.put(cursor, "file", input.getFileName());
+
+	  String file = input.getFileName();
+	  if (file != null) IDataUtil.put(cursor, "file", file);
+
 	  IDataUtil.put(cursor, "class", input.getClassName());
 	  IDataUtil.put(cursor, "method", input.getMethodName());
-	  IDataUtil.put(cursor, "line", "" + input.getLineNumber());
+
+	  int line = input.getLineNumber();
+	  if (line >= 0) IDataUtil.put(cursor, "line", "" + line);
+
 	  IDataUtil.put(cursor, "native?", "" + input.isNativeMethod());
+
 	  cursor.destroy();
 
 	  return output;
