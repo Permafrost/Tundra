@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-08-13 17:20:00 EST
-// -----( ON-HOST: 172.16.189.132
+// -----( CREATED: 2014-08-18 16:55:40.441
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -45,21 +45,21 @@ public final class timezone
 		// [o] - field:0:required dst.active?
 		// [o] - field:0:required dst.offset
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  String id = IDataUtil.getString(cursor, "$id");
 		  String datetime = IDataUtil.getString(cursor, "$datetime");
 		  String pattern = IDataUtil.getString(cursor, "$datetime.pattern");
-		
+
 		  IData timezone = get(id, datetime, pattern);
-		
+
 		  if (timezone != null) IDataUtil.put(cursor, "$timezone", timezone);
 		} finally {
 		  cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -81,20 +81,20 @@ public final class timezone
 		// [o] - field:0:required dst.active?
 		// [o] - field:0:required dst.offset
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  String datetime = IDataUtil.getString(cursor, "$datetime");
 		  String pattern = IDataUtil.getString(cursor, "$datetime.pattern");
-		
+
 		  IData[] timezones = list(datetime, pattern);
-		
+
 		  if (timezones != null) IDataUtil.put(cursor, "$timezones", timezones);
 		} finally {
 		  cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -116,109 +116,140 @@ public final class timezone
 		// [o] - field:0:required dst.active?
 		// [o] - field:0:required dst.offset
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  String datetime = IDataUtil.getString(cursor, "$datetime");
 		  String pattern = IDataUtil.getString(cursor, "$datetime.pattern");
-		
+
 		  IData timezone = self(datetime, pattern);
-		
+
 		  if (timezone != null) IDataUtil.put(cursor, "$timezone", timezone);
 		} finally {
 		  cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 	// --- <<IS-START-SHARED>> ---
 	protected static java.util.SortedSet<String> ZONES = new java.util.TreeSet(java.util.Arrays.asList(java.util.TimeZone.getAvailableIDs()));
-	protected static java.util.regex.Pattern OFFSET_PATTERN = java.util.regex.Pattern.compile("([\\+-])?(\\d?\\d):(\\d\\d)");
-	
+	protected static java.util.regex.Pattern OFFSET_HHMM_PATTERN = java.util.regex.Pattern.compile("([\\+-])?(\\d?\\d):(\\d\\d)");
+	protected static java.util.regex.Pattern OFFSET_XML_PATTERN = java.util.regex.Pattern.compile("-?P(\\d+|T\\d+).+");
+	protected static java.util.regex.Pattern OFFSET_RAW_PATTERN = java.util.regex.Pattern.compile("[\\+-]?\\d+");
+
 	// returns the time zone associated with the given ID in IData format
 	public static IData get(String id, String datetime) {
 	  return get(id, datetime, null);
 	}
-	
+
 	// returns the time zone associated with the given ID in IData format
 	public static IData get(String id, String datetime, String pattern) {
 	  return get(id, instant(datetime, pattern));
 	}
-	
+
 	// returns the time zone associated with the given ID in IData format
 	public static IData get(String id, java.util.Date instant) {
 	  IData output = null;
-	
+
 	  if (id.equals("Z")) {
 	    id = "UTC";
 	  } else {
-	    java.util.regex.Matcher matcher = OFFSET_PATTERN.matcher(id);
+	    java.util.regex.Matcher matcher = OFFSET_HHMM_PATTERN.matcher(id);
 	    if (matcher.matches()) {
 	      String sign = matcher.group(1);
 	      String hours = matcher.group(2);
 	      String minutes = matcher.group(3);
-	
+
 	      int offset = Integer.parseInt(hours) * 60 * 60 * 1000 + Integer.parseInt(minutes) * 60 * 1000;
 	      if (sign != null && sign.equals("-")) offset = offset * -1;
-	
-	      String[] candidates = java.util.TimeZone.getAvailableIDs(offset);
-	      if (candidates != null && candidates.length > 0) id = candidates[0]; // defaults to the first candidate timezone ID
+
+	      String candidate = get(offset);
+	      if (candidate != null) id = candidate;
+	    } else {
+	      matcher = OFFSET_XML_PATTERN.matcher(id);
+	      if (matcher.matches()) {
+	        try {
+	          String candidate = get(Integer.parseInt(tundra.duration.format(id, "xml", "milliseconds")));
+	          if (candidate != null) id = candidate;
+	        } catch (NumberFormatException ex) {
+	          // ignore
+	        }
+	      } else {
+	        matcher = OFFSET_RAW_PATTERN.matcher(id);
+	        if (matcher.matches()) {
+	          // try parsing the id as a raw millisecond offset
+	          try {
+	            String candidate = get(Integer.parseInt(id));
+	            if (candidate != null) id = candidate;
+	          } catch (NumberFormatException ex) {
+	            // ignore
+	          }
+	        }
+	      }
 	    }
 	  }
-	  
+
 	  if (ZONES.contains(id)) {
 	    output = toIData(java.util.TimeZone.getTimeZone(id), instant);
 	  }
 	  return output;
 	}
-	
+
+	// returns the first matching timezone id for the given raw millisecond timezone offset
+	protected static String get(int offset) {
+	  String id = null;
+	  String[] candidates = java.util.TimeZone.getAvailableIDs(offset);
+	  if (candidates != null && candidates.length > 0) id = candidates[0]; // default to the first candidate timezone ID
+	  return id;
+	}
+
 	// returns the default time zone in IData format
 	public static IData self(String datetime) {
 	  return self(datetime, null);
 	}
-	
+
 	// returns the default time zone in IData format
 	public static IData self(String datetime, String pattern) {
 	  return self(instant(datetime, pattern));
 	}
-	
+
 	// returns the default time zone in IData format
 	public static IData self(java.util.Date instant) {
 	  return toIData(java.util.TimeZone.getDefault(), instant);
 	}
-	
+
 	// returns all known time zones in IData format
 	public static IData[] list(String datetime) {
 	  return list(datetime, null);
 	}
-	
+
 	// returns all known time zones in IData format
 	public static IData[] list(String datetime, String pattern) {
 	  return list(instant(datetime, pattern));
 	}
-	
+
 	// returns all known time zones in IData format
 	public static IData[] list(java.util.Date instant) {
 	  String[] id = java.util.TimeZone.getAvailableIDs();
 	  IData[] zones = new IData[id.length];
-	
+
 	  for (int i = 0; i < id.length; i++) {
 	    zones[i] = get(id[i], instant);
 	  }
-	
+
 	  return zones;
 	}
-	
+
 	// returns the given timezone in IData format
 	protected static IData toIData(java.util.TimeZone timezone, java.util.Date instant) {
 	  if (timezone == null) return null;
-	
+
 	  IData doc = IDataFactory.create();
 	  IDataCursor cursor = doc.getCursor();
-	
+
 	  boolean dstActive = timezone.inDaylightTime(instant);
-	
+
 	  IDataUtil.put(cursor, "id", timezone.getID());
 	  IDataUtil.put(cursor, "name", timezone.getDisplayName(dstActive, java.util.TimeZone.SHORT));
 	  IDataUtil.put(cursor, "description", timezone.getDisplayName(dstActive, java.util.TimeZone.LONG));
@@ -226,32 +257,32 @@ public final class timezone
 	  IDataUtil.put(cursor, "dst.used?", "" + timezone.useDaylightTime());
 	  IDataUtil.put(cursor, "dst.active?", "" + dstActive);
 	  IDataUtil.put(cursor, "dst.offset", tundra.duration.format("" + timezone.getDSTSavings(), "milliseconds", "xml"));
-	
+
 	  cursor.destroy();
-	
+
 	  return doc;
 	}
-	
+
 	// returns current date
 	protected static java.util.Date instant() {
 	  return instant(null);
 	}
-	
+
 	// converts a datetime string to java.util.Date object, or returns current date if null
 	protected static java.util.Date instant(String datetime) {
 	  return instant(datetime, null);
 	}
-	
+
 	// converts a datetime string to java.util.Date object, or returns current date if null
 	protected static java.util.Date instant(String datetime, String pattern) {
 	  java.util.Date instant = null;
-	
+
 	  if (datetime == null) {
 	    instant = new java.util.Date();
 	  } else {
 	    instant = tundra.datetime.parse(datetime, pattern).getTime();
 	  }
-	
+
 	  return instant;
 	}
 	// --- <<IS-END-SHARED>> ---
