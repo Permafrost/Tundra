@@ -316,9 +316,9 @@ of items which did not include any occurrences of the pattern.
   * $found.none? is a boolean flag which when true indicates that no items
     in the given list included the given pattern.
   * $found is the list of items which included the given pattern.
-  * $found.length is the number of items in the $matched list.
+  * $found.length is the number of items in the $found list.
   * $unfound is the list of items which did not include the given pattern.
-  * $unfound.length is the number of items in the $unmatched list.
+  * $unfound.length is the number of items in the $unfound list.
 
 [regular expression pattern]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html&gt;</value>
   <value name="stateless">no</value>

@@ -5666,10 +5666,10 @@ Services for manipulating string lists:
     * `$found.none?` is a boolean flag which when true indicates that no
       items in the given list included the given pattern.
     * `$found` is the list of items which included the given pattern.
-    * `$found.length` is the number of items in the $matched list.
+    * `$found.length` is the number of items in the `$found` list.
     * `$unfound` is the list of items which did not include the given
       pattern.
-    * `$unfound.length` is the number of items in the $unmatched list.
+    * `$unfound.length` is the number of items in the `$unfound` list.
 
 * #### tundra.list.string:get
 
