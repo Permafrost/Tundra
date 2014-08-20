@@ -168,12 +168,12 @@ Top-level services for the most common tasks.
   Runs all `*test*:should*` services in the given package, returning the test
   results, where a test case passes if no exceptions are thrown.
 
-  Refer to the [TundraTest] package for test case service examples.
+  Refer to the `Tundra/tundra.test` folder for test case service examples.
 
   This service is designed to either be invoked directly, or via a web
   browser. When invoked via a browser, a basic HTML test report is displayed:
 
-      http://server:port/invoke/tundra/test?$package=TundraTest
+      http://server:port/invoke/tundra/test?$package=Tundra
 
   * Inputs:
     * `$package` is the name of the package which contains the test cases to
@@ -8303,7 +8303,6 @@ Copyright &copy; 2012 Lachlan Dowding. See license.txt for further details.
 [try block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/try.html>
 [TSV]: <http://en.wikipedia.org/wiki/Tab-separated_values>
 [Tundra]: <https://github.com/Permafrost/Tundra>
-[TundraTest]: <https://github.com/Permafrost/TundraTest>
 [TundraTN]: <https://github.com/Permafrost/TundraTN>
 [URI]: <http://www.w3.org/Addressing/>
 [UUID]: <http://docs.oracle.com/javase/6/docs/api/java/util/UUID.html>

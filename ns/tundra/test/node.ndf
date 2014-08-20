@@ -317,12 +317,12 @@
   <value name="node_comment">Runs all *test*:should* services in the given package, returning the test 
 results, where a test case passes if no exceptions are thrown.
 
-Refer to the [TundraTest] package for test case service examples.
+Refer to the Tundra/tundra.test folder for test case service examples.
 
 This service is designed to either be invoked directly, or via a web 
 browser. When invoked via a browser, a basic HTML test report is displayed:
     
-    http://server:port/invoke/tundra/test?$package=TundraTest
+    http://server:port/invoke/tundra/test?$package=Tundra
 
 * Inputs:
   * $package is the name of the package which contains the test cases to be 
@@ -344,9 +344,7 @@ browser. When invoked via a browser, a basic HTML test report is displayed:
       * passed? is a boolean indicating if the test case service passed (did 
         not throw an exception).
       * message is an optional description returned if the test case service 
-        failed, which describes why the test case failed.
-
-[TundraTest]: &lt;https://github.com/Permafrost/TundraTest&gt;</value>
+        failed, which describes why the test case failed.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
