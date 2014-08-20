@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-08-07 19:33:16 EST
-// -----( ON-HOST: 172.16.189.141
+// -----( CREATED: 2014-08-20 16:07:18.595
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -33,13 +33,13 @@ public final class decimal
 		// --- <<IS-START(absolute)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:required $decimal
-		// [o] field:0:required $decimal
+		// [i] field:0:optional $decimal
+		// [o] field:0:optional $decimal
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String s = IDataUtil.getString(cursor, "$decimal");
-		  IDataUtil.put(cursor, "$decimal", absolute(s));
+		  if (s != null) IDataUtil.put(cursor, "$decimal", absolute(s));
 		} finally {
 		  cursor.destroy();
 		}
@@ -59,7 +59,7 @@ public final class decimal
 		// [i] field:1:optional $decimals
 		// [i] field:0:optional $precision
 		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
-		// [o] field:0:required $decimal
+		// [o] field:0:optional $decimal
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -67,7 +67,7 @@ public final class decimal
 		  String precision = IDataUtil.getString(cursor, "$precision");
 		  String rounding = IDataUtil.getString(cursor, "$rounding");
 		
-		  IDataUtil.put(cursor, "$decimal", add(list, precision, rounding));
+		  if (list != null && list.length > 0) IDataUtil.put(cursor, "$decimal", add(list, precision, rounding));
 		} finally {
 		  cursor.destroy();
 		}
@@ -114,11 +114,11 @@ public final class decimal
 		// --- <<IS-START(divide)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:required $decimal.x
-		// [i] field:0:required $decimal.y
+		// [i] field:0:optional $decimal.x
+		// [i] field:0:optional $decimal.y
 		// [i] field:0:optional $precision
 		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
-		// [o] field:0:required $decimal
+		// [o] field:0:optional $decimal
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -127,7 +127,7 @@ public final class decimal
 		  String precision = IDataUtil.getString(cursor, "$precision");
 		  String rounding = IDataUtil.getString(cursor, "$rounding");
 		
-		  IDataUtil.put(cursor, "$decimal", divide(x, y, precision, rounding));
+		  if (x != null && y != null) IDataUtil.put(cursor, "$decimal", divide(x, y, precision, rounding));
 		} finally {
 		  cursor.destroy();
 		}
@@ -227,10 +227,10 @@ public final class decimal
 		// --- <<IS-START(multiply)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:1:required $decimals
+		// [i] field:1:optional $decimals
 		// [i] field:0:optional $precision
 		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
-		// [o] field:0:required $decimal
+		// [o] field:0:optional $decimal
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -238,7 +238,7 @@ public final class decimal
 		  String precision = IDataUtil.getString(cursor, "$precision");
 		  String rounding = IDataUtil.getString(cursor, "$rounding");
 		
-		  IDataUtil.put(cursor, "$decimal", multiply(list, precision, rounding));
+		  if (list != null && list.length > 0) IDataUtil.put(cursor, "$decimal", multiply(list, precision, rounding));
 		} finally {
 		  cursor.destroy();
 		}
@@ -255,13 +255,13 @@ public final class decimal
 		// --- <<IS-START(negate)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:required $decimal
-		// [o] field:0:required $decimal
+		// [i] field:0:optional $decimal
+		// [o] field:0:optional $decimal
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String s = IDataUtil.getString(cursor, "$decimal");
-		  IDataUtil.put(cursor, "$decimal", negate(s));
+		  if (s != null) IDataUtil.put(cursor, "$decimal", negate(s));
 		} finally {
 		  cursor.destroy();
 		}
@@ -319,11 +319,11 @@ public final class decimal
 		// --- <<IS-START(power)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:required $decimal
-		// [i] field:0:required $exponent
+		// [i] field:0:optional $decimal
+		// [i] field:0:optional $exponent
 		// [i] field:0:optional $precision
 		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
-		// [o] field:0:required $decimal
+		// [o] field:0:optional $decimal
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -332,7 +332,7 @@ public final class decimal
 		  String precision = IDataUtil.getString(cursor, "$precision");
 		  String rounding = IDataUtil.getString(cursor, "$rounding");
 		
-		  IDataUtil.put(cursor, "$decimal", power(decimal, exponent, precision, rounding));
+		  if (decimal != null && exponent != null) IDataUtil.put(cursor, "$decimal", power(decimal, exponent, precision, rounding));
 		} finally {
 		  cursor.destroy();
 		}
@@ -349,10 +349,10 @@ public final class decimal
 		// --- <<IS-START(round)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:required $decimal
+		// [i] field:0:optional $decimal
 		// [i] field:0:optional $precision
 		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
-		// [o] field:0:required $decimal
+		// [o] field:0:optional $decimal
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -360,7 +360,7 @@ public final class decimal
 		  String precision = IDataUtil.getString(cursor, "$precision");  
 		  String rounding = IDataUtil.getString(cursor, "$rounding");
 		
-		  IDataUtil.put(cursor, "$decimal", round(decimal, precision, rounding));
+		  if (decimal != null) IDataUtil.put(cursor, "$decimal", round(decimal, precision, rounding));
 		} finally {
 		  cursor.destroy();
 		}
@@ -377,11 +377,11 @@ public final class decimal
 		// --- <<IS-START(subtract)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:required $decimal.x
+		// [i] field:0:optional $decimal.x
 		// [i] field:0:optional $decimal.y
 		// [i] field:0:optional $precision
 		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
-		// [o] field:0:required $decimal
+		// [o] field:0:optional $decimal
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -390,7 +390,7 @@ public final class decimal
 		  String precision = IDataUtil.getString(cursor, "$precision");
 		  String rounding = IDataUtil.getString(cursor, "$rounding");
 		
-		  IDataUtil.put(cursor, "$decimal", subtract(x, y, precision, rounding));
+		  if (x != null && y != null) IDataUtil.put(cursor, "$decimal", subtract(x, y, precision, rounding));
 		} finally {
 		  cursor.destroy();
 		}
