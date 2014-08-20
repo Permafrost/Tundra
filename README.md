@@ -1,6 +1,6 @@
 # Tundra ❄
 
-A package of useful services for [webMethods Integration Server] 7.1 and
+A package of cool services for [webMethods Integration Server] 7.1 and
 higher.
 
 ## Related
@@ -4804,8 +4804,8 @@ Services for manipulating document (com.wm.data.IData) lists:
     * `$list` is the IData[] list to be grown.
     * `$item` is an optional IData used to pad the list if increasing the
       size.
-    * `$length` is the desired new length of the list if specified as a 
-      positive integer, or the relative number of items to truncate from the 
+    * `$length` is the desired new length of the list if specified as a
+      positive integer, or the relative number of items to truncate from the
       list if specified as a negative integer.
   * Outputs:
     * `$list` is the IData[] list resized to the desired `$length`; if the
@@ -5353,8 +5353,8 @@ Services for manipulating java.lang.Object lists:
     * `$list` is the Object[] list to be grown.
     * `$item` is an optional Object used to pad the list if increasing the
       size.
-    * `$length` is the desired new length of the list if specified as a 
-      positive integer, or the relative number of items to truncate from the 
+    * `$length` is the desired new length of the list if specified as a
+      positive integer, or the relative number of items to truncate from the
       list if specified as a negative integer.
     * `$class` is an optional Java class name used to instantiate a new list
       if the provided `$list` is null.
@@ -5928,8 +5928,8 @@ Services for manipulating string lists:
     * `$list` is the String[] list to be grown.
     * `$item` is an optional String used to pad the list if increasing the
       size.
-    * `$length` is the desired new length of the list if specified as a 
-      positive integer, or the relative number of items to truncate from the 
+    * `$length` is the desired new length of the list if specified as a
+      positive integer, or the relative number of items to truncate from the
       list if specified as a negative integer.
   * Outputs:
     * `$list` is the String[] list resized to the desired `$length`; if the
