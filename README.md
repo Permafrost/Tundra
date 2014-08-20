@@ -137,14 +137,11 @@ Integration Server web administration site.
 
 ## Tests
 
-Most services in Tundra have unit tests, located in the [TundraTest]
-package. To run the test suite, first install the [TundraTest] package, and
-then either:
+Most services in Tundra have unit tests, located in the `Tundra/tundra.test`
+folder. To run the unit tests either:
 
-* Run the `Tundra/tundra:test($package = "TundraTest")` service directly, or
-* Visit <http://server:port/invoke/tundra/test?$package=TundraTest>.
-
-[TundraTest]: <https://github.com/Permafrost/TundraTest>
+* Run the `Tundra/tundra:test($package = "Tundra")` service directly, or
+* Visit the <http://server:port/invoke/tundra/test?$package=Tundra> web page.
 
 ## Services
 
