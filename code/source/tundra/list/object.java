@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-05-25 17:53:45 EST
-// -----( ON-HOST: 172.16.189.176
+// -----( CREATED: 2014-08-20 14:17:11.521
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -888,7 +888,8 @@ public final class object
 	
 	// resizes the given array to the desired length, and pads with the given item
 	public static <T> T[] resize(T[] array, int newLength, T item) {
-	  if (newLength < 0) throw new NegativeArraySizeException();
+	  if (newLength < 0) newLength = array.length + newLength;
+	  if (newLength < 0) newLength = 0;
 	
 	  int originalLength = array.length;
 	  if (newLength == originalLength) return array;
