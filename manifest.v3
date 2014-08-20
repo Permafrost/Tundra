@@ -15,7 +15,7 @@
     <value name="WmRoot">*.*</value>
   </record>
   <value name="listACL">Default</value>
-  <value name="description">A package of useful services for webMethods Integration Server 7.1 or higher</value>
+  <value name="description">A package of cool services for webMethods Integration Server 7.1 or higher &lt;https://github.com/Permafrost/Tundra&gt;</value>
   <value name="publisher">Lachlan Dowding &lt;lachlan@permafro.st&gt;</value>
   <value name="webappLoad">yes</value>
 </Values>
