@@ -2995,6 +2995,22 @@ Services for manipulating com.wm.data.IData objects:
       empty string values, empty IData documents, empty lists, and null
       values removed.
 
+* #### tundra.document:stringify
+
+  Converts all non-IData document and non-IData[] document list values in the
+  given IData document to strings.
+
+  * Inputs:
+    * `$document` is an IData document whose values are to be converted to
+      strings.
+    * `$recurse` is an optional boolean indicating if embedded IData documents
+      and IData[] document lists should also have their values converted to
+      strings. Defaults to `false`.
+
+  * Outputs:
+    * `$document` is the given IData document with all non-IData document and
+      non-IData[] document list values converted to strings.
+
 * #### tundra.document:substitute
 
   Attempts variable substitution on each string value in the given IData
@@ -3085,20 +3101,6 @@ Services for manipulating com.wm.data.IData objects:
     * `$document` is the given IData document with all occurrences of
       the given [regular expression pattern] in each string value
       replaced with `$replacement`.
-
-* #### tundra.document.value:stringify
-
-  Converts all values in the given IData document to strings, except for the
-  following classes, whose values will be recursively converted to strings:
-  IData, IData[], String[], String[][], and Object[].
-
-  * Inputs:
-    * `$document` is an IData document whose values are to be converted to
-      strings.
-
-  * Outputs:
-    * `$document` is the given IData document with all values converted to
-      strings.
 
 * #### tundra.document.value:trim
 

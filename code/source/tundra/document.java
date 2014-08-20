@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-08-13 17:38:14 EST
+// -----( CREATED: 2014-08-20 21:07:07 EST
 // -----( ON-HOST: 172.16.189.132
 
 import com.wm.data.*;
@@ -689,6 +689,31 @@ public final class document
 
 
 
+	public static final void stringify (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(stringify)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:0:optional $document
+		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [o] record:0:optional $document
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  IData document = IDataUtil.getIData(cursor, "$document");
+		  boolean recurse = tundra.bool.parse(IDataUtil.getString(cursor, "$recurse?"));
+		  IDataUtil.put(cursor, "$document", stringify(document, recurse));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void substitute (IData pipeline)
         throws ServiceException
 	{
@@ -925,6 +950,65 @@ public final class document
 	  return output;
 	}
 	
+	// converts all non-string values to strings, except for IData, IData[] and com.wm.util.Table objects
+	public static IData stringify(IData input, boolean recurse) {
+	  if (input == null) return null;
+	
+	  IData output = IDataFactory.create();
+	  IDataCursor ic = input.getCursor();
+	  IDataCursor oc = output.getCursor();
+	
+	  while(ic.next()) {
+	    String key = ic.getKey();
+	    Object value = ic.getValue();
+	
+	    if (value != null) {
+	      if (value instanceof String || value instanceof String[] || value instanceof String[][]) {
+	        // do nothing, already value is already a string
+	      } else if (value instanceof IData[] || value instanceof com.wm.util.Table) {
+	        IData[] array = value instanceof IData[] ? (IData[])value : ((com.wm.util.Table)value).getValues();
+	        if (recurse) {
+	          for (int i = 0; i < array.length; i++) {
+	            array[i] = stringify(array[i], recurse);
+	          }
+	        }
+	        value = array;
+	      } else if (value instanceof IData) {
+	        if (recurse) {
+	          value = stringify((IData)value, recurse);
+	        }
+	      } else if (value instanceof Object[][]) {
+	        Object[][] table = (Object[][])value;
+	        String[][] stringTable = new String[table.length][];
+	        for (int i = 0; i < table.length; i++) {
+	          if (table[i] != null) {
+	            stringTable[i] = new String[table[i].length];
+	            for (int j = 0; j < table[i].length; j++) {
+	              if (table[i][j] != null) stringTable[i][j] = table[i][j].toString();
+	            }            
+	          }
+	        }
+	        value = stringTable;
+	      } else if (value instanceof Object[]) {
+	        Object[] array = (Object[])value;
+	        String[] stringArray = new String[array.length];
+	        for (int i = 0; i < array.length; i++) {
+	          if (array[i] != null) stringArray[i] = array[i].toString();
+	        }
+	        value = stringArray;
+	      } else {
+	        value = value.toString();
+	      }
+	    }
+	    oc.insertAfter(key, value);
+	  }
+	
+	  ic.destroy();
+	  oc.destroy();
+	
+	  return output;
+	}
+	
 	// returns the number of top-level {key, value} pairs in the given IData document
 	public static int size(IData input) {
 	  int size = 0;
@@ -1052,12 +1136,9 @@ public final class document
 	              oary[i] = t.value;
 	            }
 	            tuple.value = oary;
-	          } else {
-	            tuple = map(tuple, service, pipeline, keyInput, keyOutput, valueInput, valueOutput, valueClass);
 	          }
-	        } else {
-	          tuple = map(tuple, service, pipeline, keyInput, keyOutput, valueInput, valueOutput, valueClass);
 	        }
+	        tuple = map(tuple, service, pipeline, keyInput, keyOutput, valueInput, valueOutput, valueClass);
 	        IDataUtil.put(oc, tuple.key, tuple.value);
 	      }
 	    } finally {
