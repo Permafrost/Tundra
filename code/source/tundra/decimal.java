@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-08-20 16:07:18.595
-// -----( ON-HOST: -
+// -----( CREATED: 2014-08-20 19:03:59 EST
+// -----( ON-HOST: 172.16.189.132
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -565,7 +565,7 @@ public final class decimal
 	
 	// returns the minimum value from the list of decimal strings
 	public static String minimum(String[] list, String precision, String rounding) {
-	  if (list == null) return null;
+	  if (list == null || list.length == 0) return null;
 	
 	  java.math.BigDecimal result = null;
 	
@@ -583,7 +583,7 @@ public final class decimal
 	
 	// returns the maximum value from the list of decimal strings
 	public static String maximum(String[] list, String precision, String rounding) {
-	  if (list == null) return null;
+	  if (list == null || list.length == 0) return null;
 	
 	  java.math.BigDecimal result = null;
 	
@@ -601,7 +601,7 @@ public final class decimal
 	
 	// returns the average value from the list of decimal strings
 	public static String average(String[] list, String precision, String rounding) {
-	  if (list == null) return null;
+	  if (list == null || list.length == 0) return null;
 	
 	  java.math.BigDecimal total = java.math.BigDecimal.ZERO;
 	
