@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-08-07 19:47:59 EST
-// -----( ON-HOST: 172.16.189.141
+// -----( CREATED: 2014-08-20 19:11:15 EST
+// -----( ON-HOST: 172.16.189.132
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -33,13 +33,13 @@ public final class integer
 		// --- <<IS-START(absolute)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:required $integer
-		// [o] field:0:required $integer
+		// [i] field:0:optional $integer
+		// [o] field:0:optional $integer
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String i = IDataUtil.getString(cursor, "$integer");
-		  IDataUtil.put(cursor, "$integer", absolute(i));
+		  if (i != null) IDataUtil.put(cursor, "$integer", absolute(i));
 		} finally {
 		  cursor.destroy();
 		}
@@ -57,12 +57,12 @@ public final class integer
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:1:optional $integers
-		// [o] field:0:required $integer
+		// [o] field:0:optional $integer
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String[] list = IDataUtil.getStringArray(cursor, "$integers");
-		  IDataUtil.put(cursor, "$integer", add(list));
+		  if (list != null && list.length > 0) IDataUtil.put(cursor, "$integer", add(list));
 		} finally {
 		  cursor.destroy();
 		}
@@ -126,16 +126,16 @@ public final class integer
 		// --- <<IS-START(divide)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:required $integer.x
-		// [i] field:0:required $integer.y
-		// [o] field:0:required $integer
+		// [i] field:0:optional $integer.x
+		// [i] field:0:optional $integer.y
+		// [o] field:0:optional $integer
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String x = IDataUtil.getString(cursor, "$integer.x");
 		  String y = IDataUtil.getString(cursor, "$integer.y");
 		
-		  IDataUtil.put(cursor, "$integer", divide(x, y));
+		  if (x != null && y != null) IDataUtil.put(cursor, "$integer", divide(x, y));
 		} finally {
 		  cursor.destroy();
 		}
@@ -249,13 +249,13 @@ public final class integer
 		// --- <<IS-START(multiply)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:1:required $integers
-		// [o] field:0:required $integer
+		// [i] field:1:optional $integers
+		// [o] field:0:optional $integer
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String[] list = IDataUtil.getStringArray(cursor, "$integers");
-		  IDataUtil.put(cursor, "$integer", multiply(list));
+		  if (list != null && list.length > 0) IDataUtil.put(cursor, "$integer", multiply(list));
 		} finally {
 		  cursor.destroy();
 		}
@@ -272,13 +272,13 @@ public final class integer
 		// --- <<IS-START(negate)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:required $integer
-		// [o] field:0:required $integer
+		// [i] field:0:optional $integer
+		// [o] field:0:optional $integer
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String i = IDataUtil.getString(cursor, "$integer");
-		  IDataUtil.put(cursor, "$integer", negate(i));
+		  if (i != null) IDataUtil.put(cursor, "$integer", negate(i));
 		} finally {
 		  cursor.destroy();
 		}
@@ -296,7 +296,7 @@ public final class integer
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
-		// [i] field:0:optional $class {&quot;java.math.BigInteger&quot;,&quot;java.lang.Integer&quot;,&quot;java.lang.Long&quot;}
+		// [i] field:0:optional $class {&quot;java.math.BigInteger&quot;,&quot;java.math.BigDecimal&quot;,&quot;java.lang.Double&quot;,&quot;java.lang.Float&quot;,&quot;java.lang.Integer&quot;,&quot;java.lang.Long&quot;}
 		// [i] field:0:optional $radix
 		// [o] object:0:optional $object
 		IDataCursor cursor = pipeline.getCursor();
@@ -338,16 +338,16 @@ public final class integer
 		// --- <<IS-START(power)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:required $integer
-		// [i] field:0:required $exponent
-		// [o] field:0:required $integer
+		// [i] field:0:optional $integer
+		// [i] field:0:optional $exponent
+		// [o] field:0:optional $integer
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String i = IDataUtil.getString(cursor, "$integer");
 		  String e = IDataUtil.getString(cursor, "$exponent");
 		
-		  IDataUtil.put(cursor, "$integer", power(i, e));
+		  if (i != null && e != null) IDataUtil.put(cursor, "$integer", power(i, e));
 		} finally {
 		  cursor.destroy();
 		}
@@ -364,16 +364,16 @@ public final class integer
 		// --- <<IS-START(remainder)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:required $integer.x
-		// [i] field:0:required $integer.y
-		// [o] field:0:required $integer
+		// [i] field:0:optional $integer.x
+		// [i] field:0:optional $integer.y
+		// [o] field:0:optional $integer
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String x = IDataUtil.getString(cursor, "$integer.x");
 		  String y = IDataUtil.getString(cursor, "$integer.y");
 		
-		  IDataUtil.put(cursor, "$integer", remainder(x, y));
+		  if (x != null && y != null) IDataUtil.put(cursor, "$integer", remainder(x, y));
 		} finally {
 		  cursor.destroy();
 		}
@@ -390,16 +390,16 @@ public final class integer
 		// --- <<IS-START(subtract)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:required $integer.x
+		// [i] field:0:optional $integer.x
 		// [i] field:0:optional $integer.y
-		// [o] field:0:required $integer
+		// [o] field:0:optional $integer
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String x = IDataUtil.getString(cursor, "$integer.x");
 		  String y = IDataUtil.getString(cursor, "$integer.y");
 		
-		  IDataUtil.put(cursor, "$integer", subtract(x, y));
+		  if (x != null && y != null) IDataUtil.put(cursor, "$integer", subtract(x, y));
 		} finally {
 		  cursor.destroy();
 		}
@@ -577,7 +577,7 @@ public final class integer
 	
 	// returns the minimum value from the given list of integer strings
 	public static String minimum(String ... s) {
-	  if (s == null) return null;
+	  if (s == null || s.length == 0) return null;
 	
 	  java.math.BigInteger result = null;
 	  for (int i = 0; i < s.length; i++) {
@@ -594,7 +594,7 @@ public final class integer
 	
 	// returns the maximum value from the given list of integer strings
 	public static String maximum(String ... s) {
-	  if (s == null) return null;
+	  if (s == null || s.length == 0) return null;
 	
 	  java.math.BigInteger result = null;
 	  for (int i = 0; i < s.length; i++) {
@@ -611,7 +611,7 @@ public final class integer
 	
 	// returns the average value for the given list of integer strings
 	public static String average(String ... s) {
-	  if (s == null) return null;
+	  if (s == null || s.length == 0) return null;
 	
 	  java.math.BigInteger total = java.math.BigInteger.ZERO;
 	  for (int i = 0; i < s.length; i++) {
