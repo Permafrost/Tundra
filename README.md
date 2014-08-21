@@ -8019,6 +8019,43 @@ strings.
   * Outputs:
     * `$string` is the URI-encoded input string.
 
+* #### tundra.uri:normalize
+
+  Normalizes a URI string.
+
+  Refer to the following excerpt from the [java.net.URI normalize] method for
+  a description of the normalization process:
+
+  > If this URI is opaque, or if its path is already in normal form, then this 
+  > URI is returned. Otherwise a new URI is constructed that is identical to 
+  > this URI except that its path is computed by normalizing this URI's path 
+  > in a manner consistent with RFC 2396, section 5.2, step 6, sub-steps c 
+  > through f; that is:
+  > 
+  > 1. All "." segments are removed.
+  > 
+  > 2. If a ".." segment is preceded by a non-".." segment then both of these 
+  >    segments are removed. This step is repeated until it is no longer 
+  >    applicable.
+  > 
+  > 3. If the path is relative, and if its first segment contains a colon 
+  >    character (':'), then a "." segment is prepended. This prevents a 
+  >    relative URI with a path such as "a:b/c/d" from later being re-parsed 
+  >    as an opaque URI with a scheme of "a" and a scheme-specific part of 
+  >    "b/c/d". (Deviation from RFC 2396.)
+  > 
+  > A normalized path will begin with one or more ".." segments if there were 
+  > insufficient non-".." segments preceding them to allow their removal. A 
+  > normalized path will begin with a "." segment if one was inserted by step 
+  > 3 above. Otherwise, a normalized path will not contain any "." or ".." 
+  > segments.
+
+  * Inputs:
+    * `$string` is the URI to be normalized.
+
+  * Outputs:
+    * `$string` is the given URI in normalized form.
+
 * #### tundra.uri:parse
 
   Parses a Uniform Resource Identifier ([URI]) string, according to
@@ -8273,6 +8310,7 @@ Copyright &copy; 2012 Lachlan Dowding. See license.txt for further details.
 [java.math.BigDecimal grammar]: <http://docs.oracle.com/javase/6/docs/api/java/math/BigDecimal.html#BigDecimal(java.lang.String)>
 [java.math.BigInteger]: <http://docs.oracle.com/javase/6/docs/api/java/math/BigInteger.html>
 [java.net.URI]: <http://docs.oracle.com/javase/6/docs/api/java/net/URI.html>
+[java.net.URI normalize]: <http://docs.oracle.com/javase/6/docs/api/java/net/URI.html#normalize()>
 [java.net.URLDecoder]: <http://docs.oracle.com/javase/6/docs/api/java/net/URLDecoder.html>
 [java.net.URLEncoder]: <http://docs.oracle.com/javase/6/docs/api/java/net/URLEncoder.html>
 [java.text.SimpleDateFormat]: <http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html>

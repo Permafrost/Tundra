@@ -40,33 +40,6 @@
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
         </record>
-        <record javaclass="com.wm.util.Values">
-          <value name="node_type">record</value>
-          <value name="node_comment"></value>
-          <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
-            <value name="field_largerEditor">false</value>
-            <value name="field_password">false</value>
-          </record>
-          <value name="field_name">$encoding</value>
-          <value name="field_type">string</value>
-          <value name="field_dim">0</value>
-          <value name="field_opt">true</value>
-          <record name="field_content_type" javaclass="com.wm.util.Values">
-            <value name="contentType">1</value>
-            <value name="internalType">reference</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-            <array name="targetNames" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">string</value>
-              </record>
-            </array>
-          </record>
-          <value name="nillable">true</value>
-          <value name="form_qualified">false</value>
-          <value name="is_global">false</value>
-        </record>
       </array>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
@@ -107,43 +80,47 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Decodes a URI-encoded (application/x-www-form-urlencoded) string, according
-to [RFC 2396].
+  <value name="node_comment">Normalizes a URI string.
 
-The following rules are applied in the conversion:
-- The alphanumeric characters "a" through "z", "A" through "Z" and "0" 
-  through "9" remain the same.
-- The special characters ".", "-", "*", and "_" remain the same.
-- The plus sign "+" is converted into a space character " " .
-- A sequence of the form "%xy" will be treated as representing a byte 
-  where xy is the two-digit hexadecimal representation of the 8 bits. Then, 
-  all substrings that contain one or more of these byte sequences 
-  consecutively will be replaced by the character(s) whose encoding would 
-  result in those consecutive bytes. The encoding scheme used to decode 
-  these characters may be specified, or if unspecified, the default 
-  encoding of the platform will be used.
+Refer to the following excerpt from the [java.net.URI normalize] method for
+a description of the normalization process:
 
-Implemented with the [java.net.URLDecoder] class.
+&gt; If this URI is opaque, or if its path is already in normal form, then this 
+&gt; URI is returned. Otherwise a new URI is constructed that is identical to 
+&gt; this URI except that its path is computed by normalizing this URI's path 
+&gt; in a manner consistent with RFC 2396, section 5.2, step 6, sub-steps c 
+&gt; through f; that is:
+&gt; 
+&gt; 1. All "." segments are removed.
+&gt; 
+&gt; 2. If a ".." segment is preceded by a non-".." segment then both of these 
+&gt;    segments are removed. This step is repeated until it is no longer 
+&gt;    applicable.
+&gt; 
+&gt; 3. If the path is relative, and if its first segment contains a colon 
+&gt;    character (':'), then a "." segment is prepended. This prevents a 
+&gt;    relative URI with a path such as "a:b/c/d" from later being re-parsed 
+&gt;    as an opaque URI with a scheme of "a" and a scheme-specific part of 
+&gt;    "b/c/d". (Deviation from RFC 2396.)
+&gt; 
+&gt; A normalized path will begin with one or more ".." segments if there were 
+&gt; insufficient non-".." segments preceding them to allow their removal. A 
+&gt; normalized path will begin with a "." segment if one was inserted by step 
+&gt; 3 above. Otherwise, a normalized path will not contain any "." or ".." 
+&gt; segments.
 
 * Inputs:
-  * $string is a string containing URI-encoded data to be decoded.
-  * $encoding is the character set used to determine what characters are 
-    represented by any consecutive sequences of the form "%xy". Defaults 
-    to the Java virtual machine [default charset].
+  * $string is the URI to be normalized.
 
 * Outputs:
-  * $string is the decoded input string.
+  * $string is the given URI in normalized form.
 
-[default charset]: &lt;http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()&gt;
-[java.net.URLDecoder]: &lt;http://docs.oracle.com/javase/6/docs/api/java/net/URLDecoder.html&gt;
-[RFC 2396]: &lt;http://www.ietf.org/rfc/rfc2396.txt&gt;</value>
+[java.net.URI normalize]: &lt;http://docs.oracle.com/javase/6/docs/api/java/net/URI.html#normalize()&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
-  <value name="template">tundra_uri_decode</value>
-  <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
   <value name="icontext_policy">$null</value>
