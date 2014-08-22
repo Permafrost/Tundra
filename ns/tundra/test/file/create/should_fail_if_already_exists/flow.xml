@@ -12,7 +12,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -21,7 +20,6 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$file</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -31,7 +29,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">reached</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -40,7 +37,6 @@
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -49,7 +45,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -57,7 +52,6 @@
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -68,10 +62,9 @@
   <DATA ENCODING="XMLValues" I18N="true">
 
 <Values version="2.0">
-  <value name="xml">./packages/TundraTest/test/file/create/example.txt</value>
+  <value name="xml">./packages/Tundra/test/file/create/example.txt</value>
   <record name="type" javaclass="com.wm.util.Values">
     <value name="node_type">unknown</value>
-    <value name="is_public">false</value>
     <value name="field_name">$file</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
@@ -90,7 +83,6 @@
   <value name="xml">false</value>
   <record name="type" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_name">reached</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
@@ -137,14 +129,13 @@
 </MAP>
 </INVOKE>
 
-<MAP TIMEOUT="" MODE="STANDALONE">
+<MAP MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -153,7 +144,6 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$file</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -163,7 +153,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">reached</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -172,7 +161,6 @@
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -181,7 +169,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -189,7 +176,6 @@
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -203,7 +189,6 @@
   <value name="xml">true</value>
   <record name="type" javaclass="com.wm.util.Values">
     <value name="node_type">unknown</value>
-    <value name="is_public">false</value>
     <value name="field_name">reached</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
@@ -252,14 +237,13 @@
 </INVOKE>
 </BRANCH>
 
-<MAP NAME="drop" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="drop" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -267,7 +251,6 @@
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -276,7 +259,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -285,7 +267,6 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$file</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -295,7 +276,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">reached</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -304,7 +284,6 @@
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
