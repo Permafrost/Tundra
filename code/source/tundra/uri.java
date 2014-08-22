@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-08-21 14:33:38.898
+// -----( CREATED: 2014-08-22 13:37:34.628
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -330,8 +330,12 @@ public final class uri
 	          if (portString != null) port = Integer.parseInt(portString);
 	
 	          String userinfo = IDataUtil.getString(sc, "user");
-	          String password = IDataUtil.getString(sc, "password");
-	          if (password != null) userinfo = userinfo + ":" + password;
+	          if (userinfo != null && !(userinfo.equals(""))) {
+	            String password = IDataUtil.getString(sc, "password");
+	            if (password != null && !(password.equals(""))) userinfo = userinfo + ":" + password;
+	          } else {
+	            userinfo = null; // ignore empty strings
+	          }
 	
 	          sc.destroy();
 	          uri = new java.net.URI(scheme, userinfo, host, port, path, null, null);  
@@ -344,7 +348,7 @@ public final class uri
 	    }
 	    output = uri.normalize().toASCIIString();
 	    if (query != null) output = output + "?" + query;
-	    if (fragment != null) output = output + "#" + tundra.uri.encode(fragment);
+	    if (fragment != null && !(fragment.equals(""))) output = output + "#" + tundra.uri.encode(fragment);
 	
 	    // support Windows UNC file URIs, and work-around java bug with 
 	    // file URIs where scheme is followed by ':/' rather than '://'
