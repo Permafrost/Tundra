@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-06-29 18:18:04 EST
-// -----( ON-HOST: 172.16.189.136
+// -----( CREATED: 2014-08-23 07:01:32 EST
+// -----( ON-HOST: 172.16.189.132
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -289,6 +289,32 @@ public final class document
 
 
 
+	public static final void pivot (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(pivot)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:1:optional $list
+		// [i] field:0:required $key
+		// [o] record:0:optional $document
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  IData[] list = IDataUtil.getIDataArray(cursor, "$list");
+		  String key = IDataUtil.getString(cursor, "$key");
+		
+		  if (list != null) IDataUtil.put(cursor, "$document", pivot(list, key));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void prepend (IData pipeline)
         throws ServiceException
 	{
@@ -510,6 +536,29 @@ public final class document
 	  }
 	
 	  return keys.toArray(new String[0]);
+	}
+	
+	// returns an IData document where the keys are the values associated with
+	// given pivot key from the given IData[] document list, and the values are
+	// the IData[] document list items associated with each pivot key
+	public static IData pivot(IData[] array, String pivotKey) {
+	  if (array == null || pivotKey == null) return null;
+	
+	  IData output = IDataFactory.create();
+	  IDataCursor oc = output.getCursor();
+	
+	  for (IData item : array) {
+	    if (item != null) {
+	      IDataCursor ic = item.getCursor();
+	      Object value = IDataUtil.get(ic, pivotKey);
+	      if (value != null) {
+	        String key = value.toString();
+	        if (IDataUtil.get(oc, key) == null) IDataUtil.put(oc, key, item);
+	      }
+	    }
+	  }
+	
+	  return output;
 	}
 	
 	// returns a new array with all elements sorted in ascending order by

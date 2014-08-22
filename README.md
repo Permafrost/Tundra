@@ -4764,6 +4764,53 @@ Services for manipulating document (com.wm.data.IData) lists:
     * `$list` is the newly constructed list containing the returned
       items from invoking `$service` for each input list item.
 
+* #### tundra.list.document:pivot
+
+  Returns a given `IData[]` document list pivoted on a given key.
+
+  For example, given an `IData[]` document list that includes the following two
+  items (represented in [JSON] form):
+
+      $list = [
+        { "name": "Bob",  "phone": "1234 5678" },
+        { "name": "Jane", "phone": "2345 6789" }
+      ]
+
+  A pivot on the key `name` would return the following `IData` document, where
+  each list item is now associated with that item's value of the pivot key:
+
+      $document = {
+        "Bob":  { "name": "Bob",  "phone": "1234 5678" },
+        "Jane": { "name": "Jane", "phone": "2345 6789" }
+      }
+
+  Alternatively, a pivot on the key `phone` would instead return the following
+  `IData` document:
+
+      $document = {
+        "1234 5678": { "name": "Bob",  "phone": "1234 5678" },
+        "2345 6789": { "name": "Jane", "phone": "2345 6789" }
+      }
+
+  Although the difference between the `IData[]` document list and `IData` document
+  representations appear subtle, a pivot of a `IData[]` document list on a
+  primary key returns an `IData` document that can be efficiently accessed by
+  key, rather than having to iterate over the list to find a specific item by
+  key.
+
+  * Inputs:
+    * `$list` is the `IData[]` document list to be pivoted.
+    * `$key` is the key to pivot on, with the following caveats:
+      * If the key doesn't exist in an item, that item is not included in the
+        resulting pivot.
+      * If the key is associated with a null value in an item, that item is
+        not included in the resulting pivot.
+      * If the key is associated with the same value in multiple items, only
+        the first item is included in the resulting pivot.
+  * Outputs:
+    * `$document` is the `IData` document pivoted representation of the given
+      `$list`.
+
 * #### tundra.list.document:prepend
 
   Prepends a single item to the front of a list, such that prepending
@@ -8026,28 +8073,28 @@ strings.
   Refer to the following excerpt from the [java.net.URI normalize] method for
   a description of the normalization process:
 
-  > If this URI is opaque, or if its path is already in normal form, then this 
-  > URI is returned. Otherwise a new URI is constructed that is identical to 
-  > this URI except that its path is computed by normalizing this URI's path 
-  > in a manner consistent with RFC 2396, section 5.2, step 6, sub-steps c 
+  > If this URI is opaque, or if its path is already in normal form, then this
+  > URI is returned. Otherwise a new URI is constructed that is identical to
+  > this URI except that its path is computed by normalizing this URI's path
+  > in a manner consistent with RFC 2396, section 5.2, step 6, sub-steps c
   > through f; that is:
-  > 
+  >
   > 1. All "." segments are removed.
-  > 
-  > 2. If a ".." segment is preceded by a non-".." segment then both of these 
-  >    segments are removed. This step is repeated until it is no longer 
+  >
+  > 2. If a ".." segment is preceded by a non-".." segment then both of these
+  >    segments are removed. This step is repeated until it is no longer
   >    applicable.
-  > 
-  > 3. If the path is relative, and if its first segment contains a colon 
-  >    character (':'), then a "." segment is prepended. This prevents a 
-  >    relative URI with a path such as "a:b/c/d" from later being re-parsed 
-  >    as an opaque URI with a scheme of "a" and a scheme-specific part of 
+  >
+  > 3. If the path is relative, and if its first segment contains a colon
+  >    character (':'), then a "." segment is prepended. This prevents a
+  >    relative URI with a path such as "a:b/c/d" from later being re-parsed
+  >    as an opaque URI with a scheme of "a" and a scheme-specific part of
   >    "b/c/d". (Deviation from RFC 2396.)
-  > 
-  > A normalized path will begin with one or more ".." segments if there were 
-  > insufficient non-".." segments preceding them to allow their removal. A 
-  > normalized path will begin with a "." segment if one was inserted by step 
-  > 3 above. Otherwise, a normalized path will not contain any "." or ".." 
+  >
+  > A normalized path will begin with one or more ".." segments if there were
+  > insufficient non-".." segments preceding them to allow their removal. A
+  > normalized path will begin with a "." segment if one was inserted by step
+  > 3 above. Otherwise, a normalized path will not contain any "." or ".."
   > segments.
 
   * Inputs:
