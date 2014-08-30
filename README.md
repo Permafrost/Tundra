@@ -5,7 +5,7 @@ higher.
 
 ## Related
 
-See also [TundraTN], a package of useful services for [webMethods Trading
+See also [TundraTN], a package of cool services for [webMethods Trading
 Networks] 7.1 and higher.
 
 ## Dependencies
