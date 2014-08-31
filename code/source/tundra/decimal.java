@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-08-20 19:03:59 EST
+// -----( CREATED: 2014-08-31 18:31:10 EST
 // -----( ON-HOST: 172.16.189.132
 
 import com.wm.data.*;
@@ -228,6 +228,7 @@ public final class decimal
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:1:optional $decimals
+		// [i] field:0:optional $decimal
 		// [i] field:0:optional $precision
 		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
 		// [o] field:0:optional $decimal
@@ -235,10 +236,11 @@ public final class decimal
 		
 		try {
 		  String[] list = IDataUtil.getStringArray(cursor, "$decimals");
+		  String decimal = IDataUtil.getString(cursor, "$decimal");
 		  String precision = IDataUtil.getString(cursor, "$precision");
 		  String rounding = IDataUtil.getString(cursor, "$rounding");
 		
-		  if (list != null && list.length > 0) IDataUtil.put(cursor, "$decimal", multiply(list, precision, rounding));
+		  if (list != null && list.length > 0) IDataUtil.put(cursor, "$decimal", multiply(list, decimal, precision, rounding));
 		} finally {
 		  cursor.destroy();
 		}
@@ -458,6 +460,23 @@ public final class decimal
 	    result = x.divide(y, Integer.parseInt(precision), java.math.RoundingMode.valueOf(rounding));
 	  }
 	  return result;
+	}
+	
+	// multiplies the given list of decimal strings
+	public static String multiply(String[] list, String decimal, String precision, String rounding) {
+	  java.math.BigDecimal result = java.math.BigDecimal.ONE;
+	
+	  if (list != null) {
+	    for (int i = 0; i < list.length; i++) {
+	      result = result.multiply(parse(list[i]));
+	    }
+	  }
+	
+	  if (decimal != null) {
+	    result = result.multiply(parse(decimal));
+	  }
+	
+	  return emit(round(result, precision, rounding));
 	}
 	
 	// multiplies the given list of decimal strings

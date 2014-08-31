@@ -2023,13 +2023,14 @@ Services for working with arbitrary precision decimals (uses
 
   * Inputs:
     * `$decimals` is a list of decimal values to multiply.
+    * `$decimal` is a single decimal value to multiply.
     * `$precision` is an optional number of decimal places to be
       preserved in the result.
     * `$rounding` is an optional choice of the [rounding algorithm]
       to use when rounding the result to the specified `$precision`.
       Defaults to the HALF_UP algorithm.
   * Outputs:
-    * `$decimal` is result of multiplying the given list of decimals
+    * `$decimal` is result of multiplying the given decimal values
       and rounding to the given precision using the nominated
       [rounding algorithm].
 
