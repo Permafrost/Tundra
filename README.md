@@ -6555,6 +6555,11 @@ Services for manipulating java.lang.Object objects:
     * `$key.target` is the new simple or fully qualified key that the
       source key will be renamed to.
 
+* #### tundra.pipeline:sort
+
+  Sorts the top-level elements in the pipeline by their keys in natural 
+  ascending order.
+
 * #### tundra.pipeline:substitute
 
   Attempts variable substitution on every string element in the

@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-09-02 15:06:50.751
+// -----( CREATED: 2014-09-01 12:26:05.978
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -360,6 +360,20 @@ public final class pipeline
 
 
 
+	public static final void sort (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(sort)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		sort(pipeline, false);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void substitute (IData pipeline)
         throws ServiceException
 	{
@@ -384,6 +398,13 @@ public final class pipeline
 	// merges the contents of the given document into the given pipeline
 	public static void merge(IData target, IData source) {
 	  if (target != null && source != null) IDataUtil.merge(source, target);
+	}
+	
+	// sorts the elements in the pipeline by its keys in natural ascending order
+	public static void sort(IData pipeline, boolean recurse) {
+	  IData sorted = tundra.document.sort(pipeline, recurse);
+	  tundra.document.clear(pipeline, null);
+	  IDataUtil.append(sorted, pipeline);
 	}
 	// --- <<IS-END-SHARED>> ---
 }
