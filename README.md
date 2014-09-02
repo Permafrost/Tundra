@@ -6557,7 +6557,7 @@ Services for manipulating java.lang.Object objects:
 
 * #### tundra.pipeline:sort
 
-  Sorts the top-level elements in the pipeline by their keys in natural 
+  Sorts the top-level elements in the pipeline by their keys in natural
   ascending order.
 
 * #### tundra.pipeline:substitute
@@ -7132,33 +7132,49 @@ Document references and service specifications:
 
 * #### tundra.service:benchmark
 
-  Benchmarks the performance of the given service by invoking it the given
-  number of times, and returning the average and standard deviation execution
-  durations.
+  Benchmarks the performance of the given service by invoking it the
+  given number of times, and returning the average and standard
+  deviation execution durations.
 
   * Inputs:
     * `$service` is the fully-qualified name of the service to be
       benchmarked.
-    * `$pipeline` is an optional IData document which, if specified, contains
-      the input arguments for the invocation of `$service`; in other words,
-      the invocation is scoped to this IData document. If not specified, the
-      invocation is unscoped, and hence the service will operate directly
-      against the pipeline itself.
-    * `$count` is the number of times `$service` will be invoked, and must be
-      greater than or equal to 1. The more times `$service` is invoked, the
-      more reliable the resulting statistics will be (in other words, the
-      more samples the better).
-
+    * `$pipeline` is an optional IData document which, if specified,
+      contains the input arguments for the invocation of `$service`; in
+      other words, the invocation is scoped to this IData document. If
+      not specified, the invocation is unscoped, and hence the service
+      will operate directly against the pipeline itself.
+    * `$count` is the number of times `$service` will be invoked, and must
+      be greater than or equal to 1. The more times `$service` is
+      invoked, the more reliable the resulting statistics will be (in
+      other words, the more samples the better).
   * Outputs:
     * `$duration.average` is the calculated mean or average duration of
-      execution of the given service with the given input pipeline formatted
-      as an [ISO8601] XML duration string.
-    * `$duration.stdev` is the calculated standard deviation duration of
-      execution of the given service with the given input pipeline formatted
-      as an [ISO8601] XML duration string.
-    * `$message` is a diagnostic message describing the execution statistics
-      of the benchmarked service, which can be used for logging the results
-      of the benchmark.
+      execution of the given service with the given input pipeline
+      formatted as an [ISO8601] XML duration string.
+    * `$duration.standard.deviation` is the calculated standard
+      deviation duration of execution of the given service with the
+      given input pipeline formatted as an [ISO8601] XML duration
+      string.
+    * `$duration.minimum` is the minimum duration of execution of the
+      given service with the given input pipeline formatted as an
+      [ISO8601] XML duration string.
+    * `$duration.maximum` is the maximum duration of execution of the
+      given service with the given input pipeline formatted as an
+      [ISO8601] XML duration string.
+    * `$message` is a diagnostic message describing the execution
+      statistics of the benchmarked service, which can be used for
+      logging the results of the benchmark:
+
+          tundra.service:sleep benchmark results: μ = 250.460 ms, σ = 1.711 ms, ∧ = 250.000 ms, ∨ = 277.000 ms, n = 100
+
+      Where:
+
+      * μ is the average
+      * σ is the standard deviation
+      * ∧ is the minimum
+      * ∨ is the maximum
+      * n is the sample count
 
 * #### tundra.service:callstack
 

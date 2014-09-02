@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-08-16 18:18:14 EST
-// -----( ON-HOST: 172.16.189.131
+// -----( CREATED: 2014-09-02 15:54:22 EST
+// -----( ON-HOST: 172.16.189.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -37,7 +37,9 @@ public final class service
 		// [i] record:0:optional $pipeline
 		// [i] field:0:required $count
 		// [o] field:0:required $duration.average
-		// [o] field:0:required $duration.stdev
+		// [o] field:0:required $duration.standard.deviation
+		// [o] field:0:required $duration.minimum
+		// [o] field:0:required $duration.maximum
 		// [o] field:0:required $message
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -49,7 +51,9 @@ public final class service
 		  IncrementalNormalDistributionEstimator estimator = benchmark(service, scope == null? pipeline : scope, count);
 		
 		  IDataUtil.put(cursor, "$duration.average", tundra.duration.format("" + estimator.mean(), "milliseconds", "xml"));
-		  IDataUtil.put(cursor, "$duration.stdev", tundra.duration.format("" + estimator.standardDeviation(), "milliseconds", "xml"));
+		  IDataUtil.put(cursor, "$duration.standard.deviation", tundra.duration.format("" + estimator.standardDeviation(), "milliseconds", "xml"));
+		  IDataUtil.put(cursor, "$duration.minimum", tundra.duration.format("" + estimator.minimum(), "milliseconds", "xml"));
+		  IDataUtil.put(cursor, "$duration.maximum", tundra.duration.format("" + estimator.maximum(), "milliseconds", "xml"));
 		  IDataUtil.put(cursor, "$message", service + " benchmark results: " + estimator.toString());
 		} finally {
 		  cursor.destroy();
@@ -588,7 +592,7 @@ public final class service
 	public static class IncrementalNormalDistributionEstimator {
 	
 	  protected long count;
-	  protected double mean, sq;
+	  protected double mean, sq, minimum, maximum;
 	  protected String unit = "";
 	
 	  /**
@@ -661,6 +665,8 @@ public final class service
 	    double next = mean + (sample - mean) / ++count;
 	    sq += (sample - mean) * (sample - next);
 	    mean = next;
+	    if (sample < minimum) minimum = sample;
+	    if (sample > maximum) maximum = sample;
 	
 	    return this;
 	  }
@@ -712,6 +718,24 @@ public final class service
 	  }
 	
 	  /**
+	   * Returns the minimum of the samples.
+	   *
+	   * @return The minimum of the samples.
+	   */
+	  public double minimum() {
+	    return minimum;
+	  }
+	
+	  /**
+	   * Returns the maximum of the samples.
+	   *
+	   * @return The maximum of the samples.
+	   */
+	  public double maximum() {
+	    return maximum;
+	  }
+	
+	  /**
 	   * Returns the maximum likelihood estimate of the variance of the samples.
 	   *
 	   * @return Maximum likelihood variance estimate.
@@ -748,6 +772,8 @@ public final class service
 	    count = 0;
 	    mean = 0.0;
 	    sq = 0.0;
+	    minimum = Double.POSITIVE_INFINITY;
+	    maximum = Double.NEGATIVE_INFINITY;
 	
 	    return this;
 	  }
@@ -760,7 +786,7 @@ public final class service
 	   */
 	  @Override
 	  public String toString() {
-	    return String.format("\u03BC = %.3f %s, \u03C3 = %.3f %s, n = %d", mean(), unit(), standardDeviation(), unit(), count());
+	    return String.format("\u03BC = %.3f %s, \u03C3 = %.3f %s, \u2227 = %.3f %s, \u2228 = %.3f %s, n = %d", mean(), unit(), standardDeviation(), unit(), minimum(), unit(), maximum(), unit(), count());
 	  }
 	}
 	// --- <<IS-END-SHARED>> ---
