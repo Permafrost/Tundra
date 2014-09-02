@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-09-02 16:12:36 EST
+// -----( CREATED: 2014-09-02 16:31:57 EST
 // -----( ON-HOST: 172.16.189.129
 
 import com.wm.data.*;
@@ -85,20 +85,6 @@ public final class service
 		} finally {
 		  cursor.destroy();
 		}
-		// --- <<IS-END>> ---
-
-                
-	}
-
-
-
-	public static final void current (IData pipeline)
-        throws ServiceException
-	{
-		// --- <<IS-START(current)>> ---
-		// @subtype unknown
-		// @sigtype java 3.5
-		// [o] field:0:required $service.current
 		// --- <<IS-END>> ---
 
                 
@@ -447,11 +433,13 @@ public final class service
 	  return (String[])services.toArray(new String[services.size()]);
 	}
 	
-	// returns the name of the current service
+	// returns the name of the current service, or null if invoked directly
 	public static String self() {
 	  String self = null;
-	  String[] callstack = callstack();
-	  if (callstack.length > 0) self = tundra.list.object.get(callstack, -1); // last element in list
+	  java.util.Stack stack = com.wm.app.b2b.server.InvokeState.getCurrentState().getCallStack();
+	  if (stack.size() > 1) {
+	    self = stack.get(stack.size() - 2).toString(); // this will return this service's caller
+	  }
 	  return self;
 	}
 	
