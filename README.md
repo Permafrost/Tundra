@@ -7169,7 +7169,6 @@ Document references and service specifications:
           tundra.service:sleep benchmark results: μ = 250.460 ms, σ = 1.711 ms, ∧ = 250.000 ms, ∨ = 277.000 ms, n = 100
 
       Where:
-
       * μ is the average
       * σ is the standard deviation
       * ∧ is the minimum
@@ -7196,7 +7195,7 @@ Document references and service specifications:
 
   Provides a try/catch/finally pattern for flow services.
 
-  * Inputs
+  * Inputs:
     * `$service` is the fully-qualified name of a service invoked
       in the [try block].
     * `$catch` is an optional fully-qualified name of a service
