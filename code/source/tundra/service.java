@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-09-02 15:54:22 EST
+// -----( CREATED: 2014-09-02 16:12:36 EST
 // -----( ON-HOST: 172.16.189.129
 
 import com.wm.data.*;
@@ -85,6 +85,20 @@ public final class service
 		} finally {
 		  cursor.destroy();
 		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void current (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(current)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [o] field:0:required $service.current
 		// --- <<IS-END>> ---
 
                 
@@ -296,7 +310,8 @@ public final class service
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  IDataUtil.put(cursor, "$self", self());
+		  String self = self();
+		  if (self != null) IDataUtil.put(cursor, "$self", self);
 		} finally {
 		  cursor.destroy();
 		}

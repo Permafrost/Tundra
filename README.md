@@ -7326,12 +7326,12 @@ Document references and service specifications:
 
 * #### tundra.service:self
 
-  Returns the name of the current service, or null if invoked
+  Returns the name of the current service, or nothing if invoked
   directly.
 
   * Outputs:
     * `$self` is the fully-qualified name of the current service
-      (the service which called this service), or null if invoked
+      (the service which called this service), or nothing if invoked
       directly.
 
 * #### tundra.service:sleep
