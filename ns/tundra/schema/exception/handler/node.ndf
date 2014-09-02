@@ -7,6 +7,7 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -20,6 +21,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$exception</value>
           <value name="field_type">object</value>
           <value name="field_dim">0</value>
@@ -35,6 +37,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$exception?</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -61,6 +64,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$exception.class</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -87,6 +91,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$exception.message</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -112,6 +117,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$exception.stack</value>
           <value name="field_type">record</value>
           <value name="field_dim">1</value>
@@ -128,6 +134,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">description</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -154,6 +161,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">file</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -180,6 +188,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">class</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -206,6 +215,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">method</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -232,6 +242,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">line</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -258,6 +269,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">native?</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -278,11 +290,14 @@
             </record>
           </array>
           <value name="rec_closed">true</value>
+          <value name="modifiable">true</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -290,12 +305,13 @@
       <value name="is_global">false</value>
       <array name="rec_fields" type="record" depth="1">
       </array>
+      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">Exception handling $catch services called by tundra.service:ensure can 
 implement this specification.
 
-* Inputs
+* Inputs:
   * $exception is the java.lang.Throwable object that was caught by this 
     handler to be handled.
   * $exception? is a Boolean flag indicating if an exception was thrown.
@@ -308,6 +324,7 @@ implement this specification.
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template">tundra_schema_exception_handler</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
   <value name="icontext_policy">$null</value>
@@ -317,10 +334,16 @@ implement this specification.
   <value name="svc_in_validator_options">none</value>
   <value name="svc_out_validator_options">none</value>
   <value name="auditoption">0</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
 </Values>

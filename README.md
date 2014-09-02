@@ -7104,7 +7104,7 @@ Document references and service specifications:
   Exception handling `$catch` services called by `tundra.service:ensure` can
   implement this specification.
 
-  * Inputs
+  * Inputs:
     * `$exception` is the [java.lang.Throwable] object that was caught by
       this handler to be handled.
     * `$exception?` is a boolean flag indicating if an exception was thrown.
