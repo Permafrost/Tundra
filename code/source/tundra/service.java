@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-09-02 16:31:57 EST
+// -----( CREATED: 2014-09-03 18:28:09 EST
 // -----( ON-HOST: 172.16.189.129
 
 import com.wm.data.*;
@@ -82,6 +82,31 @@ public final class service
 		  IDataUtil.put(cursor, "$callstack", stack);
 		  IDataUtil.put(cursor, "$callers", callers);
 		  IDataUtil.put(cursor, "$caller", stack.length > 0 ? stack[0] : "");
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void create (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(create)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String packageName = IDataUtil.getString(cursor, "$package");
+		  String serviceName = IDataUtil.getString(cursor, "$service");
+		
+		  create(packageName, serviceName);
+		} catch(com.wm.app.b2b.server.ServiceSetupException ex) {
+		  tundra.exception.raise(ex);
 		} finally {
 		  cursor.destroy();
 		}
@@ -354,6 +379,27 @@ public final class service
 	}
 
 	// --- <<IS-START-SHARED>> ---
+	
+	// creates a new service in the given package with the given name and the given type
+	public static void create(String packageName, String serviceName, String type, String subtype) throws com.wm.app.b2b.server.ServiceSetupException {
+	  com.wm.app.b2b.server.Package pack = com.wm.app.b2b.server.PackageManager.getPackage(packageName);
+	  if (pack == null) throw new IllegalArgumentException("package does not exist: " + packageName);
+	
+	  com.wm.lang.ns.NSName svcName = com.wm.lang.ns.NSName.create(serviceName);
+	  if (com.wm.app.b2b.server.ns.Namespace.current().nodeExists(svcName)) throw new IllegalArgumentException("node already exists: " + serviceName);
+	
+	  if (type == null) type = com.wm.lang.ns.NSServiceType.SVC_FLOW;
+	  if (subtype == null) subtype = com.wm.lang.ns.NSServiceType.SVCSUB_UNKNOWN;
+	  com.wm.lang.ns.NSServiceType serviceType = com.wm.lang.ns.NSServiceType.create(type, subtype);
+	
+	  com.wm.app.b2b.server.ServerAPI.registerService(packageName, svcName, true, serviceType, null, null, null);
+	}
+	
+	// creates a new flow service in the given package with the given name
+	public static void create(String packageName, String serviceName) throws com.wm.app.b2b.server.ServiceSetupException {
+	  create(packageName, serviceName, null, null);
+	}
+	
 	// sets the response headers and body for the current service invocation
 	public static void respond(int code, String message, IData headers, Object content, String contentType, String encoding) throws ServiceException {
 	  try {

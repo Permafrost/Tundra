@@ -7191,6 +7191,19 @@ Document references and service specifications:
       the name of the service which called the currently
       executing service.
 
+* #### tundra.service:create
+
+  Creates a new empty flow service with the given name in an existing
+  package.
+
+  * Inputs:
+    * `$package` is the name of the existing package in which to create
+      a new empty flow service. If the package does not exist, an
+      exception will be thrown.
+    * `$service` is the fully-qualified name of the service to be
+      created, such as `folder1.folder2:service3`. If an element with
+      the given name already exists, an exception will be thrown.
+
 * #### tundra.service:ensure
 
   Provides a try/catch/finally pattern for flow services.
