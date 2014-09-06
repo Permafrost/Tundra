@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-09-03 18:28:09 EST
-// -----( ON-HOST: 172.16.189.129
+// -----( CREATED: 2014-09-06 19:53:56 EST
+// -----( ON-HOST: 172.16.189.132
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -48,7 +48,7 @@ public final class service
 		  IData scope = IDataUtil.getIData(cursor, "$pipeline");
 		  int count = Integer.parseInt(IDataUtil.getString(cursor, "$count"));
 		
-		  IncrementalNormalDistributionEstimator estimator = benchmark(service, scope == null? pipeline : scope, count);
+		  tundra.support.statistics.IncrementalNormalDistributionEstimator estimator = benchmark(service, scope == null? pipeline : scope, count);
 		
 		  IDataUtil.put(cursor, "$duration.average", tundra.duration.format("" + estimator.mean(), "milliseconds", "xml"));
 		  IDataUtil.put(cursor, "$duration.standard.deviation", tundra.duration.format("" + estimator.standardDeviation(), "milliseconds", "xml"));
@@ -379,7 +379,6 @@ public final class service
 	}
 
 	// --- <<IS-START-SHARED>> ---
-	
 	// creates a new service in the given package with the given name and the given type
 	public static void create(String packageName, String serviceName, String type, String subtype) throws com.wm.app.b2b.server.ServiceSetupException {
 	  com.wm.app.b2b.server.Package pack = com.wm.app.b2b.server.PackageManager.getPackage(packageName);
@@ -617,8 +616,8 @@ public final class service
 	}
 	
 	// invokes the given service a given number of times, and returns execution duration statistics
-	public static IncrementalNormalDistributionEstimator benchmark(String service, IData pipeline, int count) throws ServiceException {
-	  IncrementalNormalDistributionEstimator estimator = new IncrementalNormalDistributionEstimator("ms");
+	public static tundra.support.statistics.IncrementalNormalDistributionEstimator benchmark(String service, IData pipeline, int count) throws ServiceException {
+	  tundra.support.statistics.IncrementalNormalDistributionEstimator estimator = new tundra.support.statistics.IncrementalNormalDistributionEstimator("ms");
 	
 	  validate(service, true);
 	
@@ -635,208 +634,6 @@ public final class service
 	  }
 	
 	  return estimator;
-	}
-	
-	// Class for incrementally calculating the mean and standard deviation
-	public static class IncrementalNormalDistributionEstimator {
-	
-	  protected long count;
-	  protected double mean, sq, minimum, maximum;
-	  protected String unit = "";
-	
-	  /**
-	   * Constructs a new estimator object.
-	   */
-	  public IncrementalNormalDistributionEstimator() {
-	    reset();
-	  }
-	
-	  /**
-	   * Constructs a new estimator object.
-	   * @param unit The unit of measurement related to the measured samples.
-	   */
-	  public IncrementalNormalDistributionEstimator(String unit) {
-	    this();
-	    this.unit = unit;
-	  }  
-	
-	  /**
-	   * Constructs a new estimator object seeded with the given samples.
-	   *
-	   * @param samples One or more initial samples to seed the estimator with.
-	   */
-	  public IncrementalNormalDistributionEstimator(double... samples) {
-	    this();
-	    append(samples);
-	  }
-	
-	  /**
-	   * Constructs a new estimator object seeded with the given samples.
-	   *
-	   * @param unit The unit of measurement related to the measured samples.
-	   * @param samples One or more initial samples to seed the estimator with.
-	   */
-	  public IncrementalNormalDistributionEstimator(String unit, double... samples) {
-	    this(unit);
-	    append(samples);
-	  }
-	
-	  /**
-	   * Constructs a new estimator object seeded with the given collection of
-	   * samples.
-	   *
-	   * @param samples An initial collection of samples to seed the estimator with.
-	   */
-	  public IncrementalNormalDistributionEstimator(java.util.Collection<Double> samples) {
-	    this();
-	    append(samples);
-	  }
-	
-	  /**
-	   * Constructs a new estimator object seeded with the given collection of
-	   * samples.
-	   *
-	   * @param unit The unit of measurement related to the measured samples.
-	   * @param samples An initial collection of samples to seed the estimator with.
-	   */
-	  public IncrementalNormalDistributionEstimator(String unit, java.util.Collection<Double> samples) {
-	    this(unit);
-	    append(samples);
-	  }
-	
-	  /**
-	   * Appends the given sample to the list of samples in the estimator.
-	   *
-	   * @param sample The sample to be added to the estimator.
-	   * @return The Estimator object itself, to support method chaining.
-	   */
-	  public final IncrementalNormalDistributionEstimator append(double sample) {
-	    double next = mean + (sample - mean) / ++count;
-	    sq += (sample - mean) * (sample - next);
-	    mean = next;
-	    if (sample < minimum) minimum = sample;
-	    if (sample > maximum) maximum = sample;
-	
-	    return this;
-	  }
-	
-	  /**
-	   * Adds one or more samples to the estimator.
-	   *
-	   * @param samples One or more samples to be added to the estimator.
-	   * @return The Estimator object itself, to support method chaining.
-	   */
-	  public final IncrementalNormalDistributionEstimator append(double... samples) {
-	    for (double sample : samples) {
-	      append(sample);
-	    }
-	
-	    return this;
-	  }
-	
-	  /**
-	   * Adds a collection of samples to the estimator.
-	   *
-	   * @param samples A collection of samples to be added to the estimator.
-	   * @return The Estimator object itself, to support method chaining.
-	   */
-	  public final IncrementalNormalDistributionEstimator append(java.util.Collection<Double> samples) {
-	    for (double sample : samples) {
-	      append(sample);
-	    }
-	
-	    return this;
-	  }
-	
-	  /**
-	   * Returns the number of samples seen by this estimator.
-	   *
-	   * @return The number of samples seen by this estimator.
-	   */
-	  public long count() {
-	    return count;
-	  }
-	
-	  /**
-	   * Returns the mean of the samples.
-	   *
-	   * @return The mean of the samples.
-	   */
-	  public double mean() {
-	    return mean;
-	  }
-	
-	  /**
-	   * Returns the minimum of the samples.
-	   *
-	   * @return The minimum of the samples.
-	   */
-	  public double minimum() {
-	    return minimum;
-	  }
-	
-	  /**
-	   * Returns the maximum of the samples.
-	   *
-	   * @return The maximum of the samples.
-	   */
-	  public double maximum() {
-	    return maximum;
-	  }
-	
-	  /**
-	   * Returns the maximum likelihood estimate of the variance of the samples.
-	   *
-	   * @return Maximum likelihood variance estimate.
-	   */
-	  public double variance() {
-	    return count > 1 && mean > 0 ? sq / mean : 0.0;
-	  }
-	
-	  /**
-	   * Returns the maximum likelihood estimate of the standard deviation of the
-	   * samples.
-	   *
-	   * @return Maximum likelihood standard deviation estimate.
-	   */
-	  public double standardDeviation() {
-	    return Math.sqrt(variance());
-	  }
-	
-	  /**
-	   * Returns the unit of measure related to the measured samples.
-	   *
-	   * @return Maximum likelihood standard deviation estimate.
-	   */
-	  public String unit() {
-	    return unit;
-	  }
-	
-	  /**
-	   * Resets the estimator back to zero samples.
-	   *
-	   * @return The Estimator object itself, to support method chaining.
-	   */
-	  public final IncrementalNormalDistributionEstimator reset() {
-	    count = 0;
-	    mean = 0.0;
-	    sq = 0.0;
-	    minimum = Double.POSITIVE_INFINITY;
-	    maximum = Double.NEGATIVE_INFINITY;
-	
-	    return this;
-	  }
-	
-	  /**
-	   * Returns a string-based representation of the mean, standard deviation and
-	   * number of samples for this estimator.
-	   *
-	   * @return String-based representation of this estimator.
-	   */
-	  @Override
-	  public String toString() {
-	    return String.format("\u03BC = %.3f %s, \u03C3 = %.3f %s, \u2227 = %.3f %s, \u2228 = %.3f %s, n = %d", mean(), unit(), standardDeviation(), unit(), minimum(), unit(), maximum(), unit(), count());
-	  }
 	}
 	// --- <<IS-END-SHARED>> ---
 }
