@@ -1,7 +1,7 @@
 package tundra.support.service;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-09-07 15:12:54 EST
+// -----( CREATED: 2014-09-07 18:08:20 EST
 // -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
@@ -49,6 +49,8 @@ public final class execution
 		// [o] --- object:0:required pipeline.length
 		// [o] --- field:0:required start
 		// [o] --- field:0:required duration
+		// [o] --- field:0:required session
+		// [o] --- field:0:required user
 		// [o] -- object:0:required callstack.length
 		// [o] - object:0:required invocations.current.length
 		IDataCursor cursor = pipeline.getCursor();
@@ -96,20 +98,23 @@ public final class execution
 	public static class ServiceExecution implements com.wm.util.coder.IDataCodable {
 	  private long startTime;
 	  private com.wm.app.b2b.server.BaseService service;
-	  protected IData pipeline;
+	  private IData pipeline;
+	  private String user, session;
 	
-	  public ServiceExecution(String service, IData pipeline) {
-	    this(com.wm.lang.ns.NSName.create(service), pipeline);
+	  public ServiceExecution(String service, IData pipeline, com.wm.app.b2b.server.InvokeState state) {
+	    this(com.wm.lang.ns.NSName.create(service), pipeline, state);
 	  }
 	
-	  public ServiceExecution(com.wm.lang.ns.NSName service, IData pipeline) {
-	    this(com.wm.app.b2b.server.ns.Namespace.getService(service), pipeline);
+	  public ServiceExecution(com.wm.lang.ns.NSName service, IData pipeline, com.wm.app.b2b.server.InvokeState state) {
+	    this(com.wm.app.b2b.server.ns.Namespace.getService(service), pipeline, state);
 	  }
 	
-	  public ServiceExecution(com.wm.app.b2b.server.BaseService service, IData pipeline) {
+	  public ServiceExecution(com.wm.app.b2b.server.BaseService service, IData pipeline, com.wm.app.b2b.server.InvokeState state) {
 	    this.service = service;
 	    this.pipeline = pipeline == null ? IDataFactory.create() : IDataUtil.clone(pipeline);
 	    this.startTime = System.currentTimeMillis();
+	    this.session = state.getSession().getSessionID();
+	    this.user = state.getUser().getName();
 	  }
 	
 	  // returns the name of the service being invoked
@@ -120,6 +125,16 @@ public final class execution
 	  // returns the name of the package in which the service being invoked resides
 	  public String getPackageName() {
 	    return service.getPackageName();
+	  }
+	
+	  // returns the name of the user invoking the service
+	  public String getUser() {
+	    return user;
+	  }
+	
+	  // returns the session name invoking the service
+	  public String getSession() {
+	    return session;
 	  }
 	
 	  // returns the pipeline associated with this invocation
@@ -151,6 +166,8 @@ public final class execution
 	    IDataUtil.put(cursor, "pipeline.length", getPipelineSize());
 	    IDataUtil.put(cursor, "start", tundra.datetime.format("" + startTime, "milliseconds", "datetime"));
 	    IDataUtil.put(cursor, "duration", tundra.duration.format("" + getDuration(), "milliseconds", "xml"));
+	    IDataUtil.put(cursor, "session", getSession());
+	    IDataUtil.put(cursor, "user", getUser());
 	    cursor.destroy();
 	
 	    return output;
@@ -166,11 +183,13 @@ public final class execution
 	public static class ServiceExecutionThread implements com.wm.util.coder.IDataCodable {
 	  private Thread thread = null;
 	  private java.util.Deque<ServiceExecution> stack = null;
+	  long startTime;
 	
 	  // creates a new ServiceExecutionThread
 	  public ServiceExecutionThread(Thread thread) {
 	    this.thread = thread;
 	    this.stack = new java.util.ArrayDeque<ServiceExecution>();
+	    this.startTime = System.currentTimeMillis();
 	  }
 	
 	  public void push(ServiceExecution invocation) {
@@ -181,6 +200,11 @@ public final class execution
 	    return stack.pop();
 	  }
 	
+	  // returns the invocation duration in milliseconds
+	  public long getDuration() {
+	    return System.currentTimeMillis() - startTime;
+	  }
+	
 	  // returns an IData representation of this invocation tree
 	  public IData getIData() {
 	    IData output = IDataFactory.create();
@@ -189,6 +213,9 @@ public final class execution
 	    IDataUtil.put(cursor, "thread.id", thread.getId());
 	    IDataUtil.put(cursor, "thread.name", thread.getName());
 	    IDataUtil.put(cursor, "thread.object", thread);
+	    IDataUtil.put(cursor, "thread.start", tundra.datetime.format("" + startTime, "milliseconds", "datetime"));
+	    IDataUtil.put(cursor, "thread.duration", tundra.duration.format("" + getDuration(), "milliseconds", "xml"));
+	
 	
 	    if (stack.size() > 0) {
 	      ServiceExecution[] list = stack.toArray(new ServiceExecution[0]);
@@ -232,27 +259,28 @@ public final class execution
 	
 	  // records each currently executing invocation
 	  public void process(java.util.Iterator chain, com.wm.app.b2b.server.BaseService service, IData pipeline, com.wm.app.b2b.server.invoke.ServiceStatus status) throws com.wm.util.ServerException {
-	    long id = Thread.currentThread().getId();
-	    ServiceExecutionThread thread = null;
+	    Thread currentThread = Thread.currentThread();
+	    long id = currentThread.getId();
+	    ServiceExecutionThread serviceThread = null;
 	
 	    try {
 	      totalInvocations++;
 	
 	      if (status.isTopService()) {
-	        thread = new ServiceExecutionThread(Thread.currentThread());
-	        currentThreads.put(id, thread);
+	        serviceThread = new ServiceExecutionThread(currentThread);
+	        currentThreads.put(id, serviceThread);
 	      } else {
-	        thread = currentThreads.get(id);
+	        serviceThread = currentThreads.get(id);
 	      }
-	      if (thread != null) thread.push(new ServiceExecution(service, pipeline));
+	      if (serviceThread != null) serviceThread.push(new ServiceExecution(service, pipeline, com.wm.app.b2b.server.InvokeState.getCurrentState()));
 	
 	      if (chain.hasNext()) ((com.wm.app.b2b.server.invoke.InvokeChainProcessor)chain.next()).process(chain, service, pipeline, status);
 	    } catch (com.wm.util.ServerException ex) {
 	      totalErrors++;
 	      throw ex;
 	    } finally {
-	      if (thread != null) {
-	        thread.pop(); // invocation finished, so remove from call stack
+	      if (serviceThread != null) {
+	        serviceThread.pop(); // invocation finished, so remove from call stack
 	        if (status.isTopService()) currentThreads.remove(id); // top-level invocation finished, so remove from currently executing threads
 	      }
 	    }
