@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-07-10 11:14:08.897
-// -----( ON-HOST: -
+// -----( CREATED: 2014-09-06 20:40:08 EST
+// -----( ON-HOST: 172.16.189.132
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -33,6 +33,27 @@ public final class system
 		// --- <<IS-START(reflect)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
+		// [o] record:0:required $system
+		// [o] - field:0:required version
+		// [o] - record:0:required environment
+		// [o] - record:0:required properties
+		// [o] - record:0:required directories
+		// [o] -- field:0:required root
+		// [o] -- field:0:required config
+		// [o] -- field:0:required datastore
+		// [o] -- field:0:required jobs
+		// [o] -- field:0:required lib
+		// [o] -- field:0:required logs
+		// [o] -- field:0:required packages
+		// [o] -- field:0:required recycle
+		// [o] -- field:0:required replicate
+		// [o] -- field:0:required replicate.inbound
+		// [o] -- field:0:required replicate.outbound
+		// [o] -- field:0:required replicate.salvage
+		// [o] - record:0:required memory
+		// [o] -- field:0:required used
+		// [o] -- field:0:required free
+		// [o] -- field:0:required total
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {

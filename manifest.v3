@@ -6,8 +6,13 @@
   <value name="version">0.0.15</value>
   <record name="startup_services" javaclass="com.wm.util.Values">
     <null name="tundra.support:access"/>
+    <null name="tundra.support.service.execution:startup"/>
+    <null name="tundra.support.service.execution.ui:startup"/>
   </record>
-  <null name="shutdown_services"/>
+  <record name="shutdown_services" javaclass="com.wm.util.Values">
+    <null name="tundra.support.service.execution.ui:shutdown"/>
+    <null name="tundra.support.service.execution:shutdown"/>
+  </record>
   <null name="replication_services"/>
   <record name="requires" javaclass="com.wm.util.Values">
     <value name="WmFlatFile">*.*</value>
