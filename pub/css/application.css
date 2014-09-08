@@ -1,0 +1,10 @@
+.table-fixed {
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+.table-fixed th {
+  width: 25%;
+}
+.table-fixed td {
+  width: 50%;
+}

@@ -1,8 +1,8 @@
 package tundra.support.service;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-09-07 18:08:20 EST
-// -----( ON-HOST: 172.16.189.176
+// -----( CREATED: 2014-09-08 09:11:20.369
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -42,6 +42,8 @@ public final class execution
 		// [o] -- object:0:required thread.id
 		// [o] -- field:0:required thread.name
 		// [o] -- object:0:required thread.object
+		// [o] -- field:0:required thread.start
+		// [o] -- field:0:required thread.duration
 		// [o] -- record:1:optional callstack
 		// [o] --- field:0:required service
 		// [o] --- field:0:required package
@@ -200,6 +202,10 @@ public final class execution
 	    return stack.pop();
 	  }
 	
+	  public int size() {
+	    return stack.size();
+	  }
+	
 	  // returns the invocation duration in milliseconds
 	  public long getDuration() {
 	    return System.currentTimeMillis() - startTime;
@@ -216,14 +222,11 @@ public final class execution
 	    IDataUtil.put(cursor, "thread.start", tundra.datetime.format("" + startTime, "milliseconds", "datetime"));
 	    IDataUtil.put(cursor, "thread.duration", tundra.duration.format("" + getDuration(), "milliseconds", "xml"));
 	
-	
-	    if (stack.size() > 0) {
-	      ServiceExecution[] list = stack.toArray(new ServiceExecution[0]);
-	      IData[] services = new IData[list.length];
-	      for(int i = 0; i < list.length; i++) services[i] = list[i].getIData();
-	      IDataUtil.put(cursor, "callstack", services);
-	      IDataUtil.put(cursor, "callstack.length", services.length);
-	    }
+	    ServiceExecution[] list = stack.toArray(new ServiceExecution[0]);
+	    IData[] services = new IData[list.length];
+	    for(int i = 0; i < list.length; i++) services[i] = list[i].getIData();
+	    IDataUtil.put(cursor, "callstack", services);
+	    IDataUtil.put(cursor, "callstack.length", services.length);
 	
 	    cursor.destroy();
 	
@@ -251,37 +254,44 @@ public final class execution
 	
 	  // returns the singleton instance of this class
 	  public static ServiceExecutionContext getInstance() {
-	    if (instance == null) {
-	      instance = new ServiceExecutionContext();
-	    }
+	    if (instance == null) instance = new ServiceExecutionContext();
 	    return instance;
 	  }
 	
 	  // records each currently executing invocation
 	  public void process(java.util.Iterator chain, com.wm.app.b2b.server.BaseService service, IData pipeline, com.wm.app.b2b.server.invoke.ServiceStatus status) throws com.wm.util.ServerException {
 	    Thread currentThread = Thread.currentThread();
-	    long id = currentThread.getId();
-	    ServiceExecutionThread serviceThread = null;
+	    Long id = currentThread.getId();
 	
 	    try {
-	      totalInvocations++;
+	      // register this call in a try/catch so that any failures do not stop service invocation
+	      try {
+	        ServiceExecutionThread serviceThread = currentThreads.get(id);
 	
-	      if (status.isTopService()) {
-	        serviceThread = new ServiceExecutionThread(currentThread);
-	        currentThreads.put(id, serviceThread);
-	      } else {
-	        serviceThread = currentThreads.get(id);
+	        if (serviceThread == null) {
+	          serviceThread = new ServiceExecutionThread(currentThread);
+	          currentThreads.put(id, serviceThread);
+	        }
+	        if (serviceThread != null) serviceThread.push(new ServiceExecution(service, pipeline, com.wm.app.b2b.server.InvokeState.getCurrentState()));
+	
+	        totalInvocations++;
+	      } catch (Throwable ex) { 
+	        // do nothing
 	      }
-	      if (serviceThread != null) serviceThread.push(new ServiceExecution(service, pipeline, com.wm.app.b2b.server.InvokeState.getCurrentState()));
 	
 	      if (chain.hasNext()) ((com.wm.app.b2b.server.invoke.InvokeChainProcessor)chain.next()).process(chain, service, pipeline, status);
 	    } catch (com.wm.util.ServerException ex) {
 	      totalErrors++;
 	      throw ex;
 	    } finally {
-	      if (serviceThread != null) {
-	        serviceThread.pop(); // invocation finished, so remove from call stack
-	        if (status.isTopService()) currentThreads.remove(id); // top-level invocation finished, so remove from currently executing threads
+	      try {
+	        ServiceExecutionThread serviceThread = currentThreads.get(id);
+	        if (serviceThread != null) {
+	          serviceThread.pop(); // invocation finished, so remove from call stack
+	          if (serviceThread.size() == 0) currentThreads.remove(id); // top-level invocation finished, so remove from currently executing threads
+	        }
+	      } catch(Throwable ex) {
+	        // do nothing
 	      }
 	    }
 	  }
@@ -297,8 +307,16 @@ public final class execution
 	    IDataUtil.put(cursor, "invocations.errored", totalErrors);
 	
 	    java.util.List<IData> threads = new java.util.ArrayList<IData>(currentThreads.size());
-	    java.util.Iterator<ServiceExecutionThread> iterator = currentThreads.values().iterator();
-	    while(iterator.hasNext()) threads.add(iterator.next().getIData());
+	    java.util.Iterator<Long> iterator = currentThreads.keySet().iterator();
+	    while(iterator.hasNext()) {
+	      Long key = iterator.next();
+	      ServiceExecutionThread thread = currentThreads.get(key);
+	      if (thread.size() > 0) {
+	        threads.add(thread.getIData());
+	      } else {
+	        currentThreads.remove(key); // remove threads with no items in the call stack
+	      }
+	    }
 	    IDataUtil.put(cursor, "invocations.current", (IData[])threads.toArray(new IData[0]));
 	    IDataUtil.put(cursor, "invocations.current.length", threads.size());           
 	
