@@ -1,8 +1,8 @@
 package tundra.support;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-02-24 15:40:15 EST
-// -----( ON-HOST: 172.16.189.144
+// -----( CREATED: 2014-09-09 22:33:07 EST
+// -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -40,7 +40,7 @@ public final class constant
 
 	// --- <<IS-START-SHARED>> ---
 	public static final String DEFAULT_CHARACTER_ENCODING = java.nio.charset.Charset.defaultCharset().name();
-	public static final int    DEFAULT_BUFFER_SIZE        = 4096;
+	public static final int    DEFAULT_BUFFER_SIZE        = 8192;
 	// --- <<IS-END-SHARED>> ---
 }
 
