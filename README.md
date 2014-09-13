@@ -137,7 +137,7 @@ Integration Server web administration site.
 
 ## Tests
 
-Most services in Tundra have unit tests, located in the `Tundra/tundra.test`
+Most services in Tundra have unit tests, located in the `Tundra/tundra.support.test`
 folder. To run the unit tests either:
 
 * Run the `Tundra/tundra:test($package = "Tundra")` service directly, or

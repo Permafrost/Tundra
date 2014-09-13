@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="node_type">interface</value>
+  <value name="node_nsName">tundra.support.test.directory.create</value>
+  <value name="is_public">false</value>
+</Values>
