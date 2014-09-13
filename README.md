@@ -7204,6 +7204,20 @@ Document references and service specifications:
       created, such as `folder1.folder2:service3`. If an element with
       the given name already exists, an exception will be thrown.
 
+* #### tundra.service:defer
+
+  Defers execution of the given service using a dedicated single thread. The
+  service is not executed immediately, and is instead queued to wait to be
+  executed until the defer thread becomes available.
+
+  * Inputs
+    * `$service` is the fully-qualified name of the service to be deferred.
+    * `$pipeline` is an optional IData document which, if specified, contains
+      the input arguments for the invocation of `$service`; in other words, the
+      invocation is scoped to this IData document. If not specified, the
+      invocation is unscoped, and hence the service will operate directly
+      against the pipeline itself.
+
 * #### tundra.service:ensure
 
   Provides a try/catch/finally pattern for flow services.

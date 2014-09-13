@@ -8,10 +8,12 @@
     <null name="tundra.support:access"/>
     <null name="tundra.support.service.execution:startup"/>
     <null name="tundra.support.service.execution.ui:startup"/>
+    <null name="tundra.support.service.defer:startup"/>
   </record>
   <record name="shutdown_services" javaclass="com.wm.util.Values">
-    <null name="tundra.support.service.execution.ui:shutdown"/>
     <null name="tundra.support.service.execution:shutdown"/>
+    <null name="tundra.support.service.execution.ui:shutdown"/>
+    <null name="tundra.support.service.defer:shutdown"/>
   </record>
   <null name="replication_services"/>
   <record name="requires" javaclass="com.wm.util.Values">

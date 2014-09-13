@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-09-06 19:53:56 EST
-// -----( ON-HOST: 172.16.189.132
+// -----( CREATED: 2014-09-13 13:41:04 EST
+// -----( ON-HOST: 172.16.189.131
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -107,6 +107,31 @@ public final class service
 		  create(packageName, serviceName);
 		} catch(com.wm.app.b2b.server.ServiceSetupException ex) {
 		  tundra.exception.raise(ex);
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void defer (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(defer)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $service
+		// [i] record:0:optional $pipeline
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String service = IDataUtil.getString(cursor, "$service");
+		  IData scope = IDataUtil.getIData(cursor, "$pipeline");
+		  
+		  defer(service, scope == null ? pipeline : scope);
 		} finally {
 		  cursor.destroy();
 		}
@@ -464,6 +489,11 @@ public final class service
 	  if (raise && !valid) throw new ServiceException("Service does not exist: " + service);
 	  
 	  return valid;
+	}
+	
+	// queues the service for execution on a defer thread pool
+	public static void defer(String service, IData pipeline) {
+	  tundra.support.service.defer.enqueue(service, pipeline);
 	}
 	
 	// returns the invocation call stack
