@@ -7541,6 +7541,31 @@ Services for manipulating java.lang.String objects:
       pattern] was found in the given `$string`, and the number of items in
       the `$captures` IData[] document list.
 
+* #### tundra.string:compare
+
+  Compares two strings indicating their lexicographical position
+  relative to one another.
+
+  Implemented using the java.lang.String [compareTo] and
+  [compareToIgnoreCase] methods.
+
+  * Inputs:
+    * `$string.x` is the datetime string to be compared to `$string.y`.
+    * `$string.y` is the datetime string to be compared to `$string.x`.
+    * `$case.insensitive?` is a boolean flag indicating if the string
+      comparison should ignore case differences. Defaults to false.
+
+  * Outputs:
+    * `$before?` is a boolean flag indicating if `$string.x` is less than
+      `$string.y`.
+    * `$equal?` is a boolean flag indicating if `$string.x` and `$string.y`
+      are equal.
+    * `$after?` is a boolean flag indicating if `$string.x` is greater
+      than `$string.y`.
+
+[compareTo]: <http://docs.oracle.com/javase/6/docs/api/java/lang/String.html#compareTo(java.lang.String)>
+[compareToIgnoreCase]: <http://docs.oracle.com/javase/6/docs/api/java/lang/String.html#compareToIgnoreCase(java.lang.String)>
+
 * #### tundra.string:find
 
   Returns whether the given [regular expression pattern] or literal
