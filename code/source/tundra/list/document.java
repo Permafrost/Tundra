@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-08-23 07:01:32 EST
-// -----( ON-HOST: 172.16.189.132
+// -----( CREATED: 2014-09-18 21:22:20 EST
+// -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -426,26 +426,34 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:1:optional $list
-		// [i] field:1:optional $keys
-		// [i] field:0:optional $ascending? {&quot;true&quot;,&quot;false&quot;}
+		// [i] record:1:optional $criteria
+		// [i] - field:0:required key
+		// [i] - field:0:optional type {&quot;string&quot;,&quot;integer&quot;,&quot;decimal&quot;,&quot;datetime&quot;,&quot;duration&quot;}
+		// [i] - field:0:optional pattern
+		// [i] - field:0:optional descending? {&quot;false&quot;,&quot;true&quot;}
 		// [o] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  IData[] list = IDataUtil.getIDataArray(cursor, "$list");
+		  IData[] criteria = IDataUtil.getIDataArray(cursor, "$criteria");
+		
+		  // silently support $key, $keys and $ascending? for backwards compatibility
 		  String[] keys = IDataUtil.getStringArray(cursor, "$keys");
-		  // silently support $key for backwards compatibility
 		  String key = IDataUtil.getString(cursor, "$key");
 		  String sAscending = IDataUtil.getString(cursor, "$ascending?");
-		
 		  boolean ascending = true;
 		  if (sAscending != null) ascending = tundra.bool.parse(sAscending);
 		
 		  if (list != null) {
-		    if (keys == null) {
-		      IDataUtil.put(cursor, "$list", sort(list, key, ascending));
+		    if (criteria == null) {
+		      if (keys == null) {
+		        IDataUtil.put(cursor, "$list", sort(list, key, ascending));
+		      } else {
+		        IDataUtil.put(cursor, "$list", sort(list, keys, ascending));
+		      }
 		    } else {
-		      IDataUtil.put(cursor, "$list", sort(list, keys, ascending));
+		      IDataUtil.put(cursor, "$list", sort(list, criteria));
 		    }
 		  }
 		} finally {
@@ -588,12 +596,29 @@ public final class document
 	// returns a new array with all elements sorted by the values associated with 
 	// the given keys
 	public static IData[] sort(IData[] array, String[] keys, boolean ascending) {
-	  if (array == null || keys == null || keys.length == 0) return array;
+	  if (array == null || array.length < 2 || keys == null || keys.length == 0) return array;
+	
+	  IData[] sortKeys = new IData[keys.length];
+	  for (int i = 0; i < keys.length; i++) {
+	    sortKeys[i] = IDataFactory.create();
+	    IDataCursor cursor = sortKeys[i].getCursor();
+	    IDataUtil.put(cursor, "key", keys[i]);
+	    IDataUtil.put(cursor, "descending?", "" + !ascending);
+	    cursor.destroy();
+	  }
+	
+	  return sort(array, sortKeys);
+	}
+	
+	// returns a new array with all elements sorted by the values associated with 
+	// the given keys
+	public static IData[] sort(IData[] array, IData[] criteria) {
+	  if (array == null || array.length < 2 || criteria == null || criteria.length == 0) return array;
 	
 	  array = java.util.Arrays.copyOf(array, array.length);
-	  java.util.Arrays.sort(array, new IDataComparator(keys));
+	  java.util.Arrays.sort(array, new IDataComparator(criteria));
 	
-	  return ascending ? array : tundra.list.object.reverse(array);
+	  return array;
 	}
 	
 	// returns a new IData[] with all empty and null items removed
@@ -620,31 +645,69 @@ public final class document
 	// compares two IData objects using the values associated with the given list
 	// of keys
 	public static class IDataComparator implements java.util.Comparator<IData> {
-	  protected String[] keys;
+	  protected IData[] criteria;
 	
-	  public IDataComparator(String[] keys) {
-	    this.keys = keys;
+	  public IDataComparator(IData[] criteria) {
+	    this.criteria = criteria;
+	  }
+	
+	  protected static int normalize(int result, boolean descending) {
+	    if (descending) {
+	      if (result < 0) {
+	        result = 1;
+	      } else if (result > 0) {
+	        result = -1;
+	      }
+	    }
+	    return result;
 	  }
 	
 	  public int compare(IData a, IData b) {
 	    int result = 0;
-	    for (String key : keys) {
+	    for (IData item : criteria) {
+	      IDataCursor cursor = item.getCursor();
+	      String key = IDataUtil.getString(cursor, "key");
+	      String type = IDataUtil.getString(cursor, "type");
+	      String pattern = IDataUtil.getString(cursor, "pattern");
+	      boolean descending = tundra.bool.parse(IDataUtil.getString(cursor, "descending?"));
+	      cursor.destroy();
+	
 	      Object value_a = tundra.support.document.get(a, key);
 	      Object value_b = tundra.support.document.get(b, key);
 	
 	      if (value_a == null) {
 	        if (value_b != null) {
-	          result = -1;
+	          result = normalize(-1, descending);
 	          break;
 	        }
 	      } else if (value_b == null) {
 	        if (value_a != null) {
-	          result = 1;
+	          result = normalize(1, descending);
 	          break;
 	        }
-	      } else if (value_a instanceof Comparable && value_b instanceof Comparable) {
-	        result = ((Comparable)value_a).compareTo((Comparable)value_b);
-	        if (result != 0) break;
+	      } else {
+	        if (type != null) {
+	          value_a = value_a.toString();
+	          value_b = value_b.toString();
+	          if (type.equals("integer")) {
+	            value_a = tundra.integer.parse((String)value_a);
+	            value_b = tundra.integer.parse((String)value_b);
+	          } else if (type.equals("decimal")) {
+	            value_a = tundra.decimal.parse((String)value_a);
+	            value_b = tundra.decimal.parse((String)value_b);
+	          } else if (type.equals("datetime")) {
+	            value_a = tundra.datetime.parse((String)value_a, pattern);
+	            value_b = tundra.datetime.parse((String)value_b, pattern);
+	          } else if (type.equals("duration")) {
+	            value_a = tundra.integer.parse(tundra.duration.format((String)value_a, pattern, "milliseconds"));
+	            value_b = tundra.integer.parse(tundra.duration.format((String)value_b, pattern, "milliseconds"));
+	          }
+	        }
+	
+	        if (value_a instanceof Comparable && value_b instanceof Comparable) {
+	          result = normalize(((Comparable)value_a).compareTo((Comparable)value_b), descending);
+	          if (result != 0) break;
+	        }
 	      }
 	    }
 	    return result;

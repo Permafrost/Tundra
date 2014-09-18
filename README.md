@@ -4899,19 +4899,38 @@ Services for manipulating document (com.wm.data.IData) lists:
 
 * #### tundra.list.document:sort
 
-  Returns a new IData[] document list sorted according to the
-  [natural ordering] of the values associated with the given keys in each
-  list item.
+  Returns a new `IData[]` document list sorted according to the [natural
+  ordering] of the values associated with the given keys in each list
+  item.
 
   * Inputs:
-    * `$list` is the IData[] document list to be sorted.
-    * `$keys` is a list of keys in order of precedence for which the
-      associated values will be used to sort the list.
-    * `$ascending?` is a boolean which when true will sort the list in
-      ascending order, and when false will sort the list in descending
-      order. Defaults to true, if not specified.
+    * `$list` is the `IData[]` document list to be sorted.
+
+    * `$criteria` is an `IData[]` document list containing list of sort
+      criteria in order of precedence, where the first item in the
+      list is the most significant criteria and the last item is the
+      least significant criteria:
+      * `key` is the fully-qualified key identifying the values in `$list`
+        on which to sort.
+      * `type` is an optional choice that defines type of comparison
+        performed between the values associated with the `key`:
+        * `string` will compare the values as strings.
+        * `integer` will compare the values as integers.
+        * `decimal` will compare the values as decimal numbers.
+        * `datetime` will compare the values as datetimes.
+        * `duration` will compare the values as durations of time.
+      * `pattern` is an optional pattern string used when the type of
+        comparison is either datetime (in which case a pattern
+        compatible with `Tundra/tundra.datetime:format` must be
+        specified), or duration (in which case a pattern compatible
+        with `Tundra/tundra.duration:format` must be specified).
+      * `descending?` is an optional boolean indicating if the values
+        associated with the `key` are to be sorted in descending
+        (largest to smallest) order. Defaults to false, if not
+        specified.
+
   * Outputs:
-    * `$list` is the sorted IData[] document list.
+    * `$list` is the sorted `IData[]` document list.
 
 * #### tundra.list.document:squeeze
 
