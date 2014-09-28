@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-08-13 16:54:34 EST
-// -----( ON-HOST: 172.16.189.132
+// -----( CREATED: 2014-09-28 21:15:24 EST
+// -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -158,6 +158,7 @@ public final class datetime
 		// [i] field:0:optional $datetime.pattern {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
 		// [i] field:0:optional $duration
 		// [i] field:0:optional $duration.pattern {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
+		// [i] field:0:optional $timezone
 		// [o] field:0:optional $datetime
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -165,8 +166,9 @@ public final class datetime
 		  String datetimePattern = IDataUtil.getString(cursor, "$datetime.pattern");
 		  String duration = IDataUtil.getString(cursor, "$duration");
 		  String durationPattern = IDataUtil.getString(cursor, "$duration.pattern");
+		  String timezone = IDataUtil.getString(cursor, "$timezone");
 		
-		  IDataUtil.put(cursor, "$datetime", earlier(datetimePattern, duration, durationPattern));
+		  IDataUtil.put(cursor, "$datetime", earlier(datetimePattern, duration, durationPattern, timezone));
 		} finally {
 		  cursor.destroy();
 		}
@@ -185,14 +187,16 @@ public final class datetime
 		// @sigtype java 3.5
 		// [i] object:0:optional $datetime.object
 		// [i] field:0:optional $pattern {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
+		// [i] field:0:optional $timezone
 		// [o] field:0:optional $datetime
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  java.util.Date datetime = (java.util.Date)IDataUtil.get(cursor, "$datetime.object");
 		  String pattern = IDataUtil.getString(cursor, "$pattern");
+		  String timezone = IDataUtil.getString(cursor, "$timezone");
 		
-		  if (datetime != null) IDataUtil.put(cursor, "$datetime", emit(datetime, pattern));
+		  if (datetime != null) IDataUtil.put(cursor, "$datetime", emit(datetime, pattern, timezone));
 		} finally {
 		  cursor.destroy();
 		}
@@ -212,6 +216,7 @@ public final class datetime
 		// [i] field:0:optional $pattern.input {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
 		// [i] field:1:optional $patterns.input
 		// [i] field:0:optional $pattern.output {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
+		// [i] field:0:optional $timezone.output
 		// [o] field:0:optional $datetime
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -220,12 +225,13 @@ public final class datetime
 		  String inPattern = IDataUtil.getString(cursor, "$pattern.input");
 		  String[] inPatterns = IDataUtil.getStringArray(cursor, "$patterns.input");
 		  String outPattern = IDataUtil.getString(cursor, "$pattern.output");
+		  String outTimeZone = IDataUtil.getString(cursor, "$timezone.output");
 		
 		  if (datetime != null) {
 		    if (inPatterns == null) {
-		      datetime = format(datetime, inPattern, outPattern);
+		      datetime = format(datetime, inPattern, outPattern, outTimeZone);
 		    } else {
-		      datetime = format(datetime, inPatterns, outPattern);
+		      datetime = format(datetime, inPatterns, outPattern, outTimeZone);
 		    }
 		    IDataUtil.put(cursor, "$datetime", datetime);
 		  }
@@ -247,6 +253,7 @@ public final class datetime
 		// [i] field:0:optional $datetime.pattern {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
 		// [i] field:0:optional $duration
 		// [i] field:0:optional $duration.pattern {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
+		// [i] field:0:optional $timezone
 		// [o] field:0:optional $datetime
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -254,8 +261,9 @@ public final class datetime
 		  String datetimePattern = IDataUtil.getString(cursor, "$datetime.pattern");
 		  String duration = IDataUtil.getString(cursor, "$duration");
 		  String durationPattern = IDataUtil.getString(cursor, "$duration.pattern");
+		  String timezone = IDataUtil.getString(cursor, "$timezone");
 		
-		  IDataUtil.put(cursor, "$datetime", later(datetimePattern, duration, durationPattern));
+		  IDataUtil.put(cursor, "$datetime", later(datetimePattern, duration, durationPattern, timezone));
 		} finally {
 		  cursor.destroy();
 		}
@@ -325,12 +333,14 @@ public final class datetime
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $pattern {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
+		// [i] field:0:optional $timezone
 		// [o] field:0:required $datetime
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String pattern = IDataUtil.getString(cursor, "$pattern");
-		  IDataUtil.put(cursor, "$datetime", now(pattern));
+		  String timezone = IDataUtil.getString(cursor, "$timezone");
+		  IDataUtil.put(cursor, "$datetime", now(pattern, timezone));
 		} finally {
 		  cursor.destroy();
 		}
@@ -552,12 +562,17 @@ public final class datetime
 	
 	// returns the given datetime as a string adhering to the given pattern
 	public static String emit(java.util.Date input, String pattern) {
+	  return emit(input, pattern, null);
+	}
+	
+	// returns the given datetime as a string adhering to the given pattern
+	public static String emit(java.util.Date input, String pattern, String timezone) {
 	  if (input == null) return null;
 	
 	  java.util.Calendar calendar = java.util.Calendar.getInstance();
 	  calendar.setTime(input);
 	
-	  return emit(calendar, pattern);
+	  return emit(calendar, pattern, timezone);
 	}
 	
 	// returns the given datetime as an xml datetime string
@@ -567,10 +582,17 @@ public final class datetime
 	
 	// returns the given datetime formatted as a string adhering to the given pattern
 	public static String emit(java.util.Calendar input, String pattern) {
+	  return emit(input, pattern, null);
+	}
+	
+	// returns the given datetime formatted as a string adhering to the given pattern
+	public static String emit(java.util.Calendar input, String pattern, String timezone) {
 	  if (pattern == null) pattern = DEFAULT_DATETIME_PATTERN;
 	  String output = null;
 	  
 	  if (input != null) {
+	    if (timezone != null) input = tundra.support.timezone.convert(input, timezone);
+	
 	    if (pattern.equals("datetime") || pattern.equals("datetime.xml")) {
 	      output = javax.xml.bind.DatatypeConverter.printDateTime(input);
 	    } else if (pattern.equals("datetime.jdbc")) {
@@ -590,11 +612,16 @@ public final class datetime
 	
 	// returns the given datetime formatted as a string adhering to the given pattern
 	public static String[] emit(java.util.Calendar[] inputs, String pattern) {
+	  return emit(inputs, pattern, null);
+	}
+	
+	// returns the given datetime formatted as a string adhering to the given pattern
+	public static String[] emit(java.util.Calendar[] inputs, String pattern, String timezone) {
 	  String[] outputs = null;
 	  if (inputs != null) {
 	    outputs = new String[inputs.length];
 	    for (int i = 0; i < inputs.length; i++) {
-	      outputs[i] = emit(inputs[i], pattern);
+	      outputs[i] = emit(inputs[i], pattern, timezone);
 	    }
 	  }
 	  return outputs;
@@ -602,21 +629,36 @@ public final class datetime
 	
 	// reformats a datetime string according to the given patterns
 	public static String format(String input, String inPattern, String outPattern) {
-	  return emit(parse(input, inPattern), outPattern);
+	  return format(input, inPattern, outPattern, null);
+	}
+	
+	// reformats a datetime string according to the given patterns
+	public static String format(String input, String inPattern, String outPattern, String outTimeZone) {
+	  return emit(parse(input, inPattern), outPattern, outTimeZone);
 	}
 	
 	// reformats a datetime string according to the given patterns
 	public static String format(String input, String[] inPatterns, String outPattern) {
-	  return emit(parse(input, inPatterns), outPattern);
+	  return format(input, inPatterns, outPattern, null);
+	}
+	
+	// reformats a datetime string according to the given patterns
+	public static String format(String input, String[] inPatterns, String outPattern, String outTimeZone) {
+	  return emit(parse(input, inPatterns), outPattern, outTimeZone);
 	}
 	
 	// reformats a list datetime strings according to the given patterns
 	public static String[] format(String[] inputs, String inPattern, String outPattern) {
+	  return format(inputs, inPattern, outPattern, null);
+	}
+	
+	// reformats a list datetime strings according to the given patterns
+	public static String[] format(String[] inputs, String inPattern, String outPattern, String outTimeZone) {
 	  String[] outputs = null;
 	  if (inputs != null) {
 	    outputs = new String[inputs.length];
 	    for (int i = 0; i < inputs.length; i++) {
-	      outputs[i] = tundra.datetime.format(inputs[i], inPattern, outPattern);
+	      outputs[i] = tundra.datetime.format(inputs[i], inPattern, outPattern, outTimeZone);
 	    }
 	  }
 	  return outputs;
@@ -624,11 +666,16 @@ public final class datetime
 	
 	// reformats a list datetime strings according to the given patterns
 	public static String[] format(String[] inputs, String[] inPatterns, String outPattern) {
+	  return format(inputs, inPatterns, outPattern, null);
+	}
+	
+	// reformats a list datetime strings according to the given patterns
+	public static String[] format(String[] inputs, String[] inPatterns, String outPattern, String outTimeZone) {
 	  String[] outputs = null;
 	  if (inputs != null) {
 	    outputs = new String[inputs.length];
 	    for (int i = 0; i < inputs.length; i++) {
-	      outputs[i] = tundra.datetime.format(inputs[i], inPatterns, outPattern);
+	      outputs[i] = tundra.datetime.format(inputs[i], inPatterns, outPattern, outTimeZone);
 	    }
 	  }
 	  return outputs;
@@ -641,7 +688,12 @@ public final class datetime
 	
 	// returns the current datetime as an datetime string formatted according to the given pattern
 	public static String now(String pattern) {
-	  return emit(java.util.Calendar.getInstance(), pattern);
+	  return now(pattern, null);
+	}
+	
+	// returns the current datetime as an datetime string formatted according to the given pattern
+	public static String now(String pattern, String timezone) {
+	  return emit(java.util.Calendar.getInstance(), pattern, timezone);
 	}
 	
 	// parses an xml datetime string and returns a java.util.Date object
@@ -767,7 +819,12 @@ public final class datetime
 	
 	// returns the current datetime minus the given duration
 	public static String earlier(String datetimePattern, String duration, String durationPattern) throws ServiceException {
-	  return emit(earlier(tundra.duration.parse(duration, durationPattern)), datetimePattern);
+	  return earlier(datetimePattern, duration, durationPattern, null);
+	}
+	
+	// returns the current datetime minus the given duration
+	public static String earlier(String datetimePattern, String duration, String durationPattern, String timezone) throws ServiceException {
+	  return emit(earlier(tundra.duration.parse(duration, durationPattern)), datetimePattern, timezone);
 	}
 	
 	// returns the current datetime minus the given duration
@@ -787,7 +844,12 @@ public final class datetime
 	
 	// returns the current datetime plus the given duration
 	public static String later(String datetimePattern, String duration, String durationPattern) throws ServiceException {
-	  return emit(later(tundra.duration.parse(duration, durationPattern)), datetimePattern);
+	  return later(datetimePattern, duration, durationPattern, null);
+	}
+	
+	// returns the current datetime plus the given duration
+	public static String later(String datetimePattern, String duration, String durationPattern, String timezone) throws ServiceException {
+	  return emit(later(tundra.duration.parse(duration, durationPattern)), datetimePattern, timezone);
 	}
 	
 	// returns the current datetime plus the given duration

@@ -1,7 +1,7 @@
 package tundra.support;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-09-28 20:12:00 EST
+// -----( CREATED: 2014-09-28 20:36:26 EST
 // -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
@@ -116,6 +116,23 @@ public final class timezone
 	  }
 	
 	  return zones;
+	}
+	
+	// converts the given calendar to the given time zone
+	public static java.util.Calendar convert(java.util.Calendar input, String zone) {
+	  java.util.TimeZone timezone = get(zone);
+	  if (timezone == null) throw new IllegalArgumentException("Unknown time zone specified: " + zone);
+	
+	  return convert(input, timezone);
+	}
+	
+	// converts the given calendar to the given time zone
+	public static java.util.Calendar convert(java.util.Calendar input, java.util.TimeZone zone) {
+	  if (input == null || zone == null) return input;
+	
+	  java.util.Calendar output = java.util.Calendar.getInstance(zone);
+	  output.setTimeInMillis(input.getTimeInMillis());
+	  return output;
 	}
 	// --- <<IS-END-SHARED>> ---
 }

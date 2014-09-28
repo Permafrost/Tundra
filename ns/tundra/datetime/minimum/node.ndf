@@ -129,11 +129,11 @@ Supports a handful of well-known named datetime patterns:
 
     Name           Pattern
     -------------  --------------------------------------------
-    datetime       [ISO8601] XML datetime
+    datetime       ISO8601 XML datetime
     datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-    date           [ISO8601] XML date
+    date           [ISO8601 XML date
     date.jdbc      yyyy-mm-dd
-    time           [ISO8601] XML time
+    time           ISO8601 XML time
     time.jdbc      HH:mm:ss
     milliseconds   Number of milliseconds since the Epoch, 
                    January 1, 1970 00:00:00.000 GMT (Gregorian)

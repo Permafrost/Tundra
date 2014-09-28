@@ -1483,11 +1483,11 @@ Services for manipulating date, time and datetime strings:
 
       Name           Pattern
       -------------  --------------------------------------------
-      datetime       [ISO8601] XML datetime
+      datetime       ISO8601 XML datetime
       datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-      date           [ISO8601] XML date
+      date           ISO8601 XML date
       date.jdbc      yyyy-mm-dd
-      time           [ISO8601] XML time
+      time           ISO8601 XML time
       time.jdbc      HH:mm:ss
       milliseconds   Number of milliseconds since the Epoch,
                      January 1, 1970 00:00:00.000 GMT (Gregorian)
@@ -1514,11 +1514,11 @@ Services for manipulating date, time and datetime strings:
 
       Name           Pattern
       -------------  --------------------------------------------
-      datetime       [ISO8601] XML datetime
+      datetime       ISO8601 XML datetime
       datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-      date           [ISO8601] XML date
+      date           ISO8601 XML date
       date.jdbc      yyyy-mm-dd
-      time           [ISO8601] XML time
+      time           ISO8601 XML time
       time.jdbc      HH:mm:ss
       milliseconds   Number of milliseconds since the Epoch,
                      January 1, 1970 00:00:00.000 GMT (Gregorian)
@@ -1559,11 +1559,11 @@ Services for manipulating date, time and datetime strings:
 
       Name           Pattern
       -------------  --------------------------------------------
-      datetime       [ISO8601] XML datetime
+      datetime       ISO8601 XML datetime
       datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-      date           [ISO8601] XML date
+      date           ISO8601 XML date
       date.jdbc      yyyy-mm-dd
-      time           [ISO8601] XML time
+      time           ISO8601 XML time
       time.jdbc      HH:mm:ss
       milliseconds   Number of milliseconds since the Epoch,
                      January 1, 1970 00:00:00.000 GMT (Gregorian)
@@ -1589,17 +1589,17 @@ Services for manipulating date, time and datetime strings:
 * #### tundra.datetime:earlier
 
   Subtracts a duration of time from the current datetime, formatted according
-  to the given patterns.
+  to the given pattern.
 
   Supports a handful of well-known named datetime patterns:
 
       Name           Pattern
       -------------  --------------------------------------------
-      datetime       [ISO8601] XML datetime
+      datetime       ISO8601 XML datetime
       datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-      date           [ISO8601] XML date
+      date           ISO8601 XML date
       date.jdbc      yyyy-mm-dd
-      time           [ISO8601] XML time
+      time           ISO8601 XML time
       time.jdbc      HH:mm:ss
       milliseconds   Number of milliseconds since the Epoch,
                      January 1, 1970 00:00:00.000 GMT (Gregorian)
@@ -1613,8 +1613,14 @@ Services for manipulating date, time and datetime strings:
     * `$duration` is the duration to be subtracted from the current datetime.
     * `$duration.pattern` is an optional duration pattern that `$duration`
       conforms to. Defaults to an [ISO8601] XML duration.
+    * `$timezone` is an optional [java.util.TimeZone] ID, or a 
+      (+|-)HH:mm time zone offset, or an XML duration string 
+      representing a time zone offset, or a raw millisecond time zone 
+      offset identifying the time zone the returned `$datetime` will be 
+      formatted with.
   * Outputs:
-    * `$datetime` is the current datetime minus the given `$duration`.
+    * `$datetime` is the current datetime minus the given `$duration` in the 
+      given `$timezone`.
 
 * #### tundra.datetime:emit
 
@@ -1625,11 +1631,11 @@ Services for manipulating date, time and datetime strings:
 
       Name           Pattern
       -------------  --------------------------------------------
-      datetime       [ISO8601] XML datetime
+      datetime       ISO8601 XML datetime
       datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-      date           [ISO8601] XML date
+      date           ISO8601 XML date
       date.jdbc      yyyy-mm-dd
-      time           [ISO8601] XML time
+      time           ISO8601 XML time
       time.jdbc      HH:mm:ss
       milliseconds   Number of milliseconds since the Epoch,
                      January 1, 1970 00:00:00.000 GMT (Gregorian)
@@ -1643,9 +1649,13 @@ Services for manipulating date, time and datetime strings:
     * `$pattern` is an optional datetime pattern that will be used to format
       the resulting `$datetime` string. Defaults to an [ISO8601] XML
       datetime.
+    * `$timezone` is an optional [java.util.TimeZone] ID, or a (+|-)HH:mm time 
+      zone offset, or an XML duration string representing a time zone 
+      offset, or a raw millisecond time zone offset identifying the 
+      time zone the given `$datetime.object` will be formatted with.
   * Outputs:
     * `$datetime` is the [java.util.Date] object formatted as a string
-      according to the given `$pattern`.
+      according to the given `$pattern` in the given `$timezone`.
 
 * #### tundra.datetime:format
 
@@ -1656,11 +1666,11 @@ Services for manipulating date, time and datetime strings:
 
       Name           Pattern
       -------------  --------------------------------------------
-      datetime       [ISO8601] XML datetime
+      datetime       ISO8601 XML datetime
       datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-      date           [ISO8601] XML date
+      date           ISO8601 XML date
       date.jdbc      yyyy-mm-dd
-      time           [ISO8601] XML time
+      time           ISO8601 XML time
       time.jdbc      HH:mm:ss
       milliseconds   Number of milliseconds since the Epoch,
                      January 1, 1970 00:00:00.000 GMT (Gregorian)
@@ -1682,24 +1692,28 @@ Services for manipulating date, time and datetime strings:
     * `$pattern.output` is an optional datetime pattern that will be used to
       format the resulting `$datetime` string. Defaults to an [ISO8601] XML
       datetime.
+    * `$timezone.output` is an optional [java.util.TimeZone] ID, or a (+|-)HH:mm 
+      time zone offset, or an XML duration string representing a time 
+      zone offset, or a raw millisecond time zone offset identifying 
+      the time zone the resulting `$datetime` will be formatted with.
   * Outputs:
     * `$datetime` is the datetime formatted as a string according to the
-      given `$pattern.output`.
+      given `$pattern.output` in the given `$timezone.output`.
 
 * #### tundra.datetime:later
 
   Adds a duration of time to the current datetime, formatted according
-  to the given patterns.
+  to the given pattern.
 
   Supports a handful of well-known named datetime patterns:
 
       Name           Pattern
       -------------  --------------------------------------------
-      datetime       [ISO8601] XML datetime
+      datetime       ISO8601 XML datetime
       datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-      date           [ISO8601] XML date
+      date           ISO8601 XML date
       date.jdbc      yyyy-mm-dd
-      time           [ISO8601] XML time
+      time           ISO8601 XML time
       time.jdbc      HH:mm:ss
       milliseconds   Number of milliseconds since the Epoch,
                      January 1, 1970 00:00:00.000 GMT (Gregorian)
@@ -1713,8 +1727,13 @@ Services for manipulating date, time and datetime strings:
     * `$duration` is the duration to be added to the current datetime.
     * `$duration.pattern` is an optional duration pattern that `$duration`
       conforms to. Defaults to an [ISO8601] XML duration.
+    * `$timezone` is a [java.util.TimeZone] ID, or a (+|-)HH:mm time 
+      zone offset, or an XML duration string representing a time zone 
+      offset, or a raw millisecond time zone offset identifying the 
+      time zone the returned `$datetime` will be formatted with.
   * Outputs:
-    * `$datetime` is the current datetime plus the given `$duration`.
+    * `$datetime` is the current datetime plus the given `$duration` in 
+      the given `$timezone`.
 
 * #### tundra.datetime:maximum
 
@@ -1724,11 +1743,11 @@ Services for manipulating date, time and datetime strings:
 
       Name           Pattern
       -------------  --------------------------------------------
-      datetime       [ISO8601] XML datetime
+      datetime       ISO8601 XML datetime
       datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-      date           [ISO8601] XML date
+      date           ISO8601 XML date
       date.jdbc      yyyy-mm-dd
-      time           [ISO8601] XML time
+      time           ISO8601 XML time
       time.jdbc      HH:mm:ss
       milliseconds   Number of milliseconds since the Epoch,
                      January 1, 1970 00:00:00.000 GMT (Gregorian)
@@ -1753,11 +1772,11 @@ Services for manipulating date, time and datetime strings:
 
       Name           Pattern
       -------------  --------------------------------------------
-      datetime       [ISO8601] XML datetime
+      datetime       ISO8601 XML datetime
       datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-      date           [ISO8601] XML date
+      date           ISO8601 XML date
       date.jdbc      yyyy-mm-dd
-      time           [ISO8601] XML time
+      time           ISO8601 XML time
       time.jdbc      HH:mm:ss
       milliseconds   Number of milliseconds since the Epoch,
                      January 1, 1970 00:00:00.000 GMT (Gregorian)
@@ -1782,11 +1801,11 @@ Services for manipulating date, time and datetime strings:
 
       Name           Pattern
       -------------  --------------------------------------------
-      datetime       [ISO8601] XML datetime
+      datetime       ISO8601 XML datetime
       datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-      date           [ISO8601] XML date
+      date           ISO8601 XML date
       date.jdbc      yyyy-mm-dd
-      time           [ISO8601] XML time
+      time           ISO8601 XML time
       time.jdbc      HH:mm:ss
       milliseconds   Number of milliseconds since the Epoch,
                      January 1, 1970 00:00:00.000 GMT (Gregorian)
@@ -1798,9 +1817,13 @@ Services for manipulating date, time and datetime strings:
     * `$pattern` is an optional datetime pattern that will be used to format
       the resulting `$datetime` string. Defaults to an [ISO8601] XML
       datetime.
+    * `$timezone` is a [java.util.TimeZone] ID, or a (+|-)HH:mm time 
+      zone offset, or an XML duration string representing a time zone 
+      offset, or a raw millisecond time zone offset identifying the 
+      time zone the returned current datetime will be formatted with.
   * Outputs:
     * `$datetime` is the current datetime formatted as a string according to
-      the given `$pattern`.
+      the given `$pattern` in the given `$timezone`.
 
 * #### tundra.datetime:parse
 
@@ -1811,11 +1834,11 @@ Services for manipulating date, time and datetime strings:
 
       Name           Pattern
       -------------  --------------------------------------------
-      datetime       [ISO8601] XML datetime
+      datetime       ISO8601 XML datetime
       datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-      date           [ISO8601] XML date
+      date           ISO8601 XML date
       date.jdbc      yyyy-mm-dd
-      time           [ISO8601] XML time
+      time           ISO8601 XML time
       time.jdbc      HH:mm:ss
       milliseconds   Number of milliseconds since the Epoch,
                      January 1, 1970 00:00:00.000 GMT (Gregorian)
@@ -1846,11 +1869,11 @@ Services for manipulating date, time and datetime strings:
 
       Name           Pattern
       -------------  --------------------------------------------
-      datetime       [ISO8601] XML datetime
+      datetime       ISO8601 XML datetime
       datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-      date           [ISO8601] XML date
+      date           ISO8601 XML date
       date.jdbc      yyyy-mm-dd
-      time           [ISO8601] XML time
+      time           ISO8601 XML time
       time.jdbc      HH:mm:ss
       milliseconds   Number of milliseconds since the Epoch,
                      January 1, 1970 00:00:00.000 GMT (Gregorian)
@@ -1876,11 +1899,11 @@ Services for manipulating date, time and datetime strings:
 
       Name           Pattern
       -------------  --------------------------------------------
-      datetime       [ISO8601] XML datetime
+      datetime       ISO8601 XML datetime
       datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-      date           [ISO8601] XML date
+      date           ISO8601 XML date
       date.jdbc      yyyy-mm-dd
-      time           [ISO8601] XML time
+      time           ISO8601 XML time
       time.jdbc      HH:mm:ss
       milliseconds   Number of milliseconds since the Epoch,
                      January 1, 1970 00:00:00.000 GMT (Gregorian)
