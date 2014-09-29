@@ -249,10 +249,11 @@ SimpleDateFormat] compatible patterns.
   * $pattern.output is an optional datetime pattern that will be 
     used to format the resulting $datetime string. Defaults to an 
     [ISO8601] XML datetime.
-  * $timezone.output is a [java.util.TimeZone] ID, or a (+|-)HH:mm 
-    time zone offset, or an XML duration string representing a time 
-    zone offset, or a raw millisecond time zone offset identifying 
-    the time zone the resulting $datetime will be formatted with.
+  * $timezone.output is an optional [java.util.TimeZone] ID, or a 
+    (+|-)HH:mm time zone offset, or an XML duration string 
+    representing a time zone offset, or a raw millisecond time zone 
+    offset identifying the time zone the resulting $datetime will be 
+    formatted with.
 
 * Outputs:
   * $datetime is the datetime formatted as a string according to the 

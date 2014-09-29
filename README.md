@@ -1727,7 +1727,7 @@ Services for manipulating date, time and datetime strings:
     * `$duration` is the duration to be added to the current datetime.
     * `$duration.pattern` is an optional duration pattern that `$duration`
       conforms to. Defaults to an [ISO8601] XML duration.
-    * `$timezone` is a [java.util.TimeZone] ID, or a (+|-)HH:mm time 
+    * `$timezone` is an optional [java.util.TimeZone] ID, or a (+|-)HH:mm time 
       zone offset, or an XML duration string representing a time zone 
       offset, or a raw millisecond time zone offset identifying the 
       time zone the returned `$datetime` will be formatted with.
@@ -1817,7 +1817,7 @@ Services for manipulating date, time and datetime strings:
     * `$pattern` is an optional datetime pattern that will be used to format
       the resulting `$datetime` string. Defaults to an [ISO8601] XML
       datetime.
-    * `$timezone` is a [java.util.TimeZone] ID, or a (+|-)HH:mm time 
+    * `$timezone` is an optional [java.util.TimeZone] ID, or a (+|-)HH:mm time 
       zone offset, or an XML duration string representing a time zone 
       offset, or a raw millisecond time zone offset identifying the 
       time zone the returned current datetime will be formatted with.
