@@ -1613,13 +1613,13 @@ Services for manipulating date, time and datetime strings:
     * `$duration` is the duration to be subtracted from the current datetime.
     * `$duration.pattern` is an optional duration pattern that `$duration`
       conforms to. Defaults to an [ISO8601] XML duration.
-    * `$timezone` is an optional [java.util.TimeZone] ID, or a 
-      (+|-)HH:mm time zone offset, or an XML duration string 
-      representing a time zone offset, or a raw millisecond time zone 
-      offset identifying the time zone the returned `$datetime` will be 
+    * `$timezone` is an optional [java.util.TimeZone] ID, or a
+      (+|-)HH:mm time zone offset, or an XML duration string
+      representing a time zone offset, or a raw millisecond time zone
+      offset identifying the time zone the returned `$datetime` will be
       formatted with.
   * Outputs:
-    * `$datetime` is the current datetime minus the given `$duration` in the 
+    * `$datetime` is the current datetime minus the given `$duration` in the
       given `$timezone`.
 
 * #### tundra.datetime:emit
@@ -1649,9 +1649,9 @@ Services for manipulating date, time and datetime strings:
     * `$pattern` is an optional datetime pattern that will be used to format
       the resulting `$datetime` string. Defaults to an [ISO8601] XML
       datetime.
-    * `$timezone` is an optional [java.util.TimeZone] ID, or a (+|-)HH:mm time 
-      zone offset, or an XML duration string representing a time zone 
-      offset, or a raw millisecond time zone offset identifying the 
+    * `$timezone` is an optional [java.util.TimeZone] ID, or a (+|-)HH:mm time
+      zone offset, or an XML duration string representing a time zone
+      offset, or a raw millisecond time zone offset identifying the
       time zone the given `$datetime.object` will be formatted with.
   * Outputs:
     * `$datetime` is the [java.util.Date] object formatted as a string
@@ -1692,9 +1692,9 @@ Services for manipulating date, time and datetime strings:
     * `$pattern.output` is an optional datetime pattern that will be used to
       format the resulting `$datetime` string. Defaults to an [ISO8601] XML
       datetime.
-    * `$timezone.output` is an optional [java.util.TimeZone] ID, or a (+|-)HH:mm 
-      time zone offset, or an XML duration string representing a time 
-      zone offset, or a raw millisecond time zone offset identifying 
+    * `$timezone.output` is an optional [java.util.TimeZone] ID, or a (+|-)HH:mm
+      time zone offset, or an XML duration string representing a time
+      zone offset, or a raw millisecond time zone offset identifying
       the time zone the resulting `$datetime` will be formatted with.
   * Outputs:
     * `$datetime` is the datetime formatted as a string according to the
@@ -1727,12 +1727,12 @@ Services for manipulating date, time and datetime strings:
     * `$duration` is the duration to be added to the current datetime.
     * `$duration.pattern` is an optional duration pattern that `$duration`
       conforms to. Defaults to an [ISO8601] XML duration.
-    * `$timezone` is an optional [java.util.TimeZone] ID, or a (+|-)HH:mm time 
-      zone offset, or an XML duration string representing a time zone 
-      offset, or a raw millisecond time zone offset identifying the 
+    * `$timezone` is an optional [java.util.TimeZone] ID, or a (+|-)HH:mm time
+      zone offset, or an XML duration string representing a time zone
+      offset, or a raw millisecond time zone offset identifying the
       time zone the returned `$datetime` will be formatted with.
   * Outputs:
-    * `$datetime` is the current datetime plus the given `$duration` in 
+    * `$datetime` is the current datetime plus the given `$duration` in
       the given `$timezone`.
 
 * #### tundra.datetime:maximum
@@ -1817,9 +1817,9 @@ Services for manipulating date, time and datetime strings:
     * `$pattern` is an optional datetime pattern that will be used to format
       the resulting `$datetime` string. Defaults to an [ISO8601] XML
       datetime.
-    * `$timezone` is an optional [java.util.TimeZone] ID, or a (+|-)HH:mm time 
-      zone offset, or an XML duration string representing a time zone 
-      offset, or a raw millisecond time zone offset identifying the 
+    * `$timezone` is an optional [java.util.TimeZone] ID, or a (+|-)HH:mm time
+      zone offset, or an XML duration string representing a time zone
+      offset, or a raw millisecond time zone offset identifying the
       time zone the returned current datetime will be formatted with.
   * Outputs:
     * `$datetime` is the current datetime formatted as a string according to
@@ -7977,12 +7977,12 @@ Services for manipulating java.lang.String objects:
   Returns the time zone associated with the given ID.
 
   * Inputs:
-    * `$id` is a [java.util.TimeZone] ID identifying the time
-      zone to be returned, or a `(+|-)HH:mm` timezone offset,
-      or an XML duration string representing a timezone offset,
-      or a raw millisecond timezone offset. If a timezone offset
-      is specified, the first timezone that matches the given
-      offset is returned.
+    * `$id` is a [java.util.TimeZone] ID identifying the time zone to be
+      returned, or a `(+|-)HH:mm` time zone offset, or an XML duration
+      string representing a time zone offset, or a raw millisecond
+      time zone offset, or `Z` for UTC, or `$default` for the default or
+      local host time zone. If a time zone offset is specified, the
+      first time zone that matches the given offset is returned.
     * `$datetime` is an optional XML datetime string identifying
       the instant in time to be used to determine the Universal
       Coordinated Time (UTC) offset and whether Daylight Savings
@@ -8044,7 +8044,7 @@ Services for manipulating java.lang.String objects:
 
 * #### tundra.timezone:self
 
-  Returns the default time zone for this host.
+  Returns the default or local time zone for this host.
 
   * Inputs:
     * `$datetime` is an optional XML datetime string identifying

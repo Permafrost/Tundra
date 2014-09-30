@@ -1,7 +1,7 @@
 package tundra.support;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-09-28 20:36:26 EST
+// -----( CREATED: 2014-09-30 19:08:28 EST
 // -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
@@ -48,48 +48,54 @@ public final class timezone
 	public static java.util.TimeZone get(String id) {
 	  if (id == null) return null;
 	
-	  if (id.equals("Z")) {
-	    id = "UTC";
+	  java.util.TimeZone timezone = null;
+	
+	  if (id.equals("$default")) {
+	    timezone = self();
 	  } else {
-	    java.util.regex.Matcher matcher = OFFSET_HHMM_PATTERN.matcher(id);
-	    if (matcher.matches()) {
-	      String sign = matcher.group(1);
-	      String hours = matcher.group(2);
-	      String minutes = matcher.group(3);
-	
-	      int offset = Integer.parseInt(hours) * 60 * 60 * 1000 + Integer.parseInt(minutes) * 60 * 1000;
-	      if (sign != null && sign.equals("-")) offset = offset * -1;
-	
-	      String candidate = get(offset);
-	      if (candidate != null) id = candidate;      
+	    if (id.equals("Z")) {
+	      id = "UTC";
 	    } else {
-	      matcher = OFFSET_XML_PATTERN.matcher(id);
+	      java.util.regex.Matcher matcher = OFFSET_HHMM_PATTERN.matcher(id);
 	      if (matcher.matches()) {
-	        try {
-	          String candidate = get(Integer.parseInt(tundra.duration.format(id, "xml", "milliseconds")));
-	          if (candidate != null) id = candidate;
-	        } catch (NumberFormatException ex) {
-	          // ignore
-	        }
+	        String sign = matcher.group(1);
+	        String hours = matcher.group(2);
+	        String minutes = matcher.group(3);
+	
+	        int offset = Integer.parseInt(hours) * 60 * 60 * 1000 + Integer.parseInt(minutes) * 60 * 1000;
+	        if (sign != null && sign.equals("-")) offset = offset * -1;
+	
+	        String candidate = get(offset);
+	        if (candidate != null) id = candidate;      
 	      } else {
-	        matcher = OFFSET_RAW_PATTERN.matcher(id);
+	        matcher = OFFSET_XML_PATTERN.matcher(id);
 	        if (matcher.matches()) {
-	          // try parsing the id as a raw millisecond offset
 	          try {
-	            String candidate = get(Integer.parseInt(id));
+	            String candidate = get(Integer.parseInt(tundra.duration.format(id, "xml", "milliseconds")));
 	            if (candidate != null) id = candidate;
 	          } catch (NumberFormatException ex) {
 	            // ignore
-	          }        
+	          }
+	        } else {
+	          matcher = OFFSET_RAW_PATTERN.matcher(id);
+	          if (matcher.matches()) {
+	            // try parsing the id as a raw millisecond offset
+	            try {
+	              String candidate = get(Integer.parseInt(id));
+	              if (candidate != null) id = candidate;
+	            } catch (NumberFormatException ex) {
+	              // ignore
+	            }        
+	          }
 	        }
 	      }
 	    }
+	    
+	    if (ZONES.contains(id)) {
+	      timezone = java.util.TimeZone.getTimeZone(id);
+	    }
 	  }
-	  
-	  java.util.TimeZone timezone = null;
-	  if (ZONES.contains(id)) {
-	    timezone = java.util.TimeZone.getTimeZone(id);
-	  }
+	
 	  return timezone;
 	}
 	
