@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-09-28 21:15:24 EST
+// -----( CREATED: 2014-09-30 19:00:03 EST
 // -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
@@ -457,6 +457,7 @@ public final class datetime
 	protected static final java.util.Map<String, String> constructNamedPatterns() {
 	  java.util.Map<String, String> map = new java.util.TreeMap<String, String>();
 	
+	  map.put("datetime.jdbc", "yyyy-MM-dd HH:mm:ss.SSS");
 	  map.put("date", "yyyy-MM-dd");
 	  map.put("date.jdbc", "yyyy-MM-dd");
 	  map.put("date.xml", "yyyy-MM-dd");  
@@ -595,13 +596,12 @@ public final class datetime
 	
 	    if (pattern.equals("datetime") || pattern.equals("datetime.xml")) {
 	      output = javax.xml.bind.DatatypeConverter.printDateTime(input);
-	    } else if (pattern.equals("datetime.jdbc")) {
-	      output = (new java.sql.Timestamp(input.getTimeInMillis())).toString();
 	    } else if (pattern.equals("milliseconds")) {
 	      output = "" + input.getTimeInMillis();  
 	    } else {
 	      if (namedPatterns.containsKey(pattern)) pattern = namedPatterns.get(pattern);
 	      java.text.DateFormat formatter = new java.text.SimpleDateFormat(pattern);
+	      formatter.setTimeZone(input.getTimeZone());
 	      formatter.setLenient(false);
 	      output = formatter.format(input.getTime());
 	    }
