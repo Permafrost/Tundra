@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-08-03 16:01:30 EST
-// -----( ON-HOST: 172.16.189.129
+// -----( CREATED: 2014-10-08 13:32:02.493
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -34,7 +34,6 @@ public final class json
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
-		// [i] - object:1:optional recordWithNoID
 		// [i] field:0:optional $encoding
 		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
 		// [o] object:0:optional $content
@@ -147,22 +146,25 @@ public final class json
 	      output = Boolean.FALSE;
 	    } else if (type == javax.json.JsonValue.ValueType.NUMBER) {
 	      output = fromJsonNumber((javax.json.JsonNumber)input);
+	    } else if (type == javax.json.JsonValue.ValueType.STRING) {
+	      output = fromJsonString((javax.json.JsonString)input);
 	    } else {
-	      output = input.toString();
+	      throw new IllegalArgumentException("Unexpected JSON value type: " + type.toString());
 	    }
 	  }
 	
 	  return output;
 	}
 	
-	protected static final java.math.BigInteger MIN_VALUE_INT = new java.math.BigInteger((new Integer(Integer.MIN_VALUE)).toString());
-	protected static final java.math.BigInteger MAX_VALUE_INT = new java.math.BigInteger((new Integer(Integer.MAX_VALUE)).toString());
 	protected static final java.math.BigInteger MIN_VALUE_LONG = new java.math.BigInteger((new Long(Long.MIN_VALUE)).toString());
 	protected static final java.math.BigInteger MAX_VALUE_LONG = new java.math.BigInteger((new Long(Long.MAX_VALUE)).toString());
-	protected static final java.math.BigDecimal MIN_VALUE_FLOAT = new java.math.BigDecimal(-Float.MAX_VALUE);
-	protected static final java.math.BigDecimal MAX_VALUE_FLOAT = new java.math.BigDecimal(Float.MAX_VALUE);
 	protected static final java.math.BigDecimal MIN_VALUE_DOUBLE = new java.math.BigDecimal(-Double.MAX_VALUE);
 	protected static final java.math.BigDecimal MAX_VALUE_DOUBLE = new java.math.BigDecimal(Double.MAX_VALUE);
+	
+	// converts a JSON string to an appropriate webMethods compatible representation
+	protected static Object fromJsonString(javax.json.JsonString input) {
+	  return input.getString();
+	}
 	
 	// converts a JSON number to an appropriate webMethods compatible represention
 	protected static Object fromJsonNumber(javax.json.JsonNumber input) {
@@ -171,19 +173,15 @@ public final class json
 	    java.math.BigInteger integer = input.bigIntegerValue();
 	    if (integer.compareTo(MIN_VALUE_LONG) < 0 || integer.compareTo(MAX_VALUE_LONG) > 0) {
 	      output = integer;
-	    } else if (integer.compareTo(MIN_VALUE_INT) < 0 || integer.compareTo(MAX_VALUE_INT) > 0) {
-	      output = integer.longValue();
 	    } else {
-	      output = integer.intValue();
+	      output = integer.longValue();
 	    }
 	  } else {
 	    java.math.BigDecimal decimal = input.bigDecimalValue();
 	    if (decimal.compareTo(MIN_VALUE_DOUBLE) < 0 || decimal.compareTo(MAX_VALUE_DOUBLE) > 0) {
 	      output = decimal;
-	    } else if (decimal.compareTo(MIN_VALUE_FLOAT) < 0 || decimal.compareTo(MAX_VALUE_FLOAT) > 0) {
-	      output = decimal.doubleValue();
 	    } else {
-	      output = decimal.floatValue();
+	      output = decimal.doubleValue();
 	    }    
 	  }
 	  return output;
