@@ -168,7 +168,8 @@ Top-level services for the most common tasks.
   Runs all `*test*:should*` services in the given package, returning the test
   results, where a test case passes if no exceptions are thrown.
 
-  Refer to the `Tundra/tundra.test` folder for test case service examples.
+  Refer to the `Tundra/tundra.support.test` folder for test case service
+  examples.
 
   This service is designed to either be invoked directly, or via a web
   browser. When invoked via a browser, a basic HTML test report is displayed:
