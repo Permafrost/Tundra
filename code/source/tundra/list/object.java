@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-08-20 14:17:11.521
-// -----( ON-HOST: -
+// -----( CREATED: 2014-10-12 11:59:02 EST
+// -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -232,6 +232,29 @@ public final class object
 		  IData scope = IDataUtil.getIData(cursor, "$scope");
 		
 		  IDataUtil.put(cursor, "$list", filter(list, condition, scope == null? pipeline : scope));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void first (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(first)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:1:optional $list
+		// [o] object:0:optional $item
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  Object[] list = IDataUtil.getObjectArray(cursor, "$list");
+		  if (list != null && list.length > 0) IDataUtil.put(cursor, "$item", first(list));
 		} finally {
 		  cursor.destroy();
 		}
@@ -877,6 +900,11 @@ public final class object
 	  }
 	  
 	  return item;
+	}
+	
+	// returns the first element from the given array
+	public static <T> T first(T[] array) {
+	  return get(array, 0);
 	}
 	
 	// resizes the given array (or instantiates a new array, if null) to the desired length, 
