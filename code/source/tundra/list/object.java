@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-10-12 11:59:02 EST
+// -----( CREATED: 2014-10-12 12:02:22 EST
 // -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
@@ -441,6 +441,29 @@ public final class object
 		  String separator = IDataUtil.getString(cursor, "$separator");
 		
 		  IDataUtil.put(cursor, "$result", join(list, separator));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void last (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(last)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:1:optional $list
+		// [o] object:0:optional $item
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  Object[] list = IDataUtil.getObjectArray(cursor, "$list");
+		  if (list != null && list.length > 0) IDataUtil.put(cursor, "$item", last(list));
 		} finally {
 		  cursor.destroy();
 		}
@@ -905,6 +928,11 @@ public final class object
 	// returns the first element from the given array
 	public static <T> T first(T[] array) {
 	  return get(array, 0);
+	}
+	
+	// returns the last element from the given array
+	public static <T> T last(T[] array) {
+	  return get(array, -1);
 	}
 	
 	// resizes the given array (or instantiates a new array, if null) to the desired length, 

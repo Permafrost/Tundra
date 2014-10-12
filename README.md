@@ -5266,6 +5266,15 @@ Services for manipulating java.lang.Object lists:
     * `$list` is the given list filtered to only include the
       items where `$condition` evaluated to true.
 
+* #### tundra.list.object:first
+
+  Returns the first item from the given list.
+
+  * Inputs:
+    * `$list` is a list to fetch the first item from.
+  * Outputs:
+    * `$item` is the first item in the given list.
+
 * #### tundra.list.object:get
 
   Returns the item stored at a given index in a list. A zero-
@@ -5373,6 +5382,15 @@ Services for manipulating java.lang.Object lists:
   * Outputs:
     * `$result` is a string containing each item in the given list, converted
       to a string and separated by the given `$separator`.
+
+* #### tundra.list.object:last
+
+  Returns the last item from the given list.
+
+  * Inputs:
+    * `$list` is a list to fetch the last item from.
+  * Outputs:
+    * `$item` is the last item in the given list.
 
 * #### tundra.list.object:length
 
