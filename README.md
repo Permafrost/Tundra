@@ -7576,6 +7576,17 @@ objects:
 
 Services for manipulating java.lang.String objects:
 
+* #### tundra.string:blankify
+
+  Returns an empty string if the given input string is null, otherwise
+  returns the given input string unchanged.
+
+  * Inputs:
+    * `$string` is an optional string input value.
+  * Outputs:
+    * `$string` is an empty string if the input `$string` was null,
+      otherwise `$string` is returned unchanged.
+
 * #### tundra.string:capture
 
   Returns the associated [capturing groups] if the given [regular expression
