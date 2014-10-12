@@ -5792,6 +5792,15 @@ Services for manipulating string lists:
       pattern.
     * `$unfound.length` is the number of items in the `$unfound` list.
 
+* #### tundra.list.string:first
+
+  Returns the first item from the given list.
+
+  * Inputs:
+    * `$list` is a list to fetch the first item from.
+  * Outputs:
+    * `$item` is the first item in the given list.
+
 * #### tundra.list.string:get
 
   Returns the item stored at a given index in a list. A zero-
