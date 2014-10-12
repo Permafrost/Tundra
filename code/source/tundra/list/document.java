@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-10-12 12:23:36 EST
+// -----( CREATED: 2014-10-12 12:26:52 EST
 // -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
@@ -262,6 +262,22 @@ public final class document
 		} finally {
 		  cursor.destroy();
 		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void last (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(last)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:1:optional $list
+		// [o] record:0:optional $item
+		tundra.list.object.last(pipeline);
 		// --- <<IS-END>> ---
 
                 

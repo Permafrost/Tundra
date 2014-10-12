@@ -4772,6 +4772,15 @@ Services for manipulating document (com.wm.data.IData) lists:
       document list that match the given regular expression `$pattern` if
       specified, or all top-level keys if no `$pattern` was specified.
 
+* #### tundra.list.document:last
+
+  Returns the last item from the given list.
+
+  * Inputs:
+    * $list is a list to fetch the last item from.
+  * Outputs:
+    * $item is the last item in the given list.
+
 * #### tundra.list.document:length
 
   Returns the number of items in the given list.
