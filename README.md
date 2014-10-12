@@ -4572,6 +4572,15 @@ Services for manipulating document (com.wm.data.IData) lists:
     * `$list` is the given list filtered to only include the
       items where `$condition` evaluated to true.
 
+* #### tundra.list.document:first
+
+  Returns the first item from the given list.
+
+  * Inputs:
+    * `$list` is a list to fetch the first item from.
+  * Outputs:
+    * `$item` is the first item in the given list.
+
 * #### tundra.list.document:get
 
   Returns the item stored at a given index in a list. A zero-
