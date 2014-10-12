@@ -5891,6 +5891,15 @@ Services for manipulating string lists:
     * `$result` is a string containing each item in the given list, converted
       to a string and separated by the given `$separator`.
 
+* #### tundra.list.string:last
+
+  Returns the last item from the given list.
+
+  * Inputs:
+    * `$list` is a list to fetch the last item from.
+  * Outputs:
+    * `$item` is the last item in the given list.
+
 * #### tundra.list.string:length
 
   Returns the number of items in the given list.
