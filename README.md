@@ -8291,6 +8291,33 @@ strings.
 
 ### XML
 
+* #### tundra.xml:canonicalize
+
+  Canonicalizes the given XML content using the given algorithm.
+  Implemented with the [Apache Santuario] XML Security library.
+
+  * Inputs:
+    * `$content` is the XML content to be canonicalized, specified as a
+      string, byte array, or input stream.
+    * `$encoding` is an optional character set to use when `$content` is
+      provided as a byte array or input stream to decode the contained
+      text data. Defaults to the Java virtual machine [default
+      charset].
+    * `$algorithm` determines the canonicalization algorithm used, and
+      is a choice of:
+      * [Canonical XML Version 1.0]
+      * [Canonical XML Version 1.0 With Comments]
+      * [Canonical XML Version 1.1]
+      * [Canonical XML Version 1.1 With Comments]
+      * [Exclusive Canonical XML Version 1.0]
+      * [Exclusive Canonical XML Version 1.0 With Comments]
+    * `$mode` is a choice of bytes, stream, or string, and determines
+      the type of object `$content.canonical` is returned as. Defaults
+      to stream.
+  * Outputs:
+    * `$content.canonical` is the given `$content` converted to canonical
+      form by the given `$algorithm`.
+
 * #### tundra.xml.mime.type:check
 
   Returns true if the given MIME media type is recognized as a [XML] media
@@ -8459,6 +8486,11 @@ around.
 
 Copyright &copy; 2012 Lachlan Dowding. See license.txt for further details.
 
+[Apache Santuario]: <http://santuario.apache.org/>
+[Canonical XML Version 1.0]: <http://www.w3.org/TR/2001/REC-xml-c14n-20010315>
+[Canonical XML Version 1.0 With Comments]: <http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments>
+[Canonical XML Version 1.1]: <http://www.w3.org/2006/12/xml-c14n11>
+[Canonical XML Version 1.1 With Comments]: <http://www.w3.org/2006/12/xml-c14n11#WithComments>
 [capturing group]: <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html#cg>
 [capturing groups]: <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html#cg>
 [catch block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/catch.html>
@@ -8466,6 +8498,8 @@ Copyright &copy; 2012 Lachlan Dowding. See license.txt for further details.
 [default charset]: <http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()>
 [default locale]: <http://docs.oracle.com/javase/6/docs/api/java/util/Locale.html#getDefault()>
 [event loop]: <http://en.wikipedia.org/wiki/Event_loop>
+[Exclusive Canonical XML Version 1.0]: <http://www.w3.org/2001/10/xml-exc-c14n#>
+[Exclusive Canonical XML Version 1.0 With Comments]: <http://www.w3.org/2001/10/xml-exc-c14n#WithComments>
 [finally block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/finally.html>
 [gzip]: <http://en.wikipedia.org/wiki/Gzip>
 [HTTP status code]: <http://en.wikipedia.org/wiki/List_of_HTTP_status_codes>

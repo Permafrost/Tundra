@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">canonicalize</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogIE9iamVj
+dCBjb250ZW50ID0gSURhdGFVdGlsLmdldChjdXJzb3IsICIkY29udGVudCIpOwogIFN0cmluZyBl
+bmNvZGluZyA9IElEYXRhVXRpbC5nZXRTdHJpbmcoY3Vyc29yLCAiJGVuY29kaW5nIik7CiAgU3Ry
+aW5nIGFsZ29yaXRobSA9IElEYXRhVXRpbC5nZXRTdHJpbmcoY3Vyc29yLCAiJGFsZ29yaXRobSIp
+OwogIFN0cmluZyBtb2RlID0gSURhdGFVdGlsLmdldFN0cmluZyhjdXJzb3IsICIkbW9kZSIpOwoK
+ICBpZiAoY29udGVudCAhPSBudWxsKSBJRGF0YVV0aWwucHV0KGN1cnNvciwgIiRjb250ZW50LmNh
+bm9uaWNhbCIsIGNhbm9uaWNhbGl6ZShjb250ZW50LCBlbmNvZGluZywgYWxnb3JpdGhtLCBtb2Rl
+KSk7Cn0gZmluYWxseSB7CiAgY3Vyc29yLmRlc3Ryb3koKTsKfQ==</value>
+</Values>

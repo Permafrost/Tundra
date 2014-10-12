@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-07-07 18:35:03 EST
-// -----( ON-HOST: 172.16.189.199
+// -----( CREATED: 2014-10-12 11:46:33 EST
+// -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -24,6 +24,36 @@ public final class xml
 
 	// ---( server methods )---
 
+
+
+
+	public static final void canonicalize (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(canonicalize)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:0:optional $content
+		// [i] field:0:optional $encoding
+		// [i] field:0:optional $algorithm {&quot;Canonical XML Version 1.0&quot;,&quot;Canonical XML Version 1.0 With Comments&quot;,&quot;Canonical XML Version 1.1&quot;,&quot;Canonical XML Version 1.1 With Comments&quot;,&quot;Exclusive Canonical XML Version 1.0&quot;,&quot;Exclusive Canonical XML Version 1.0 With Comments&quot;}
+		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
+		// [o] object:0:optional $content.canonical
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  Object content = IDataUtil.get(cursor, "$content");
+		  String encoding = IDataUtil.getString(cursor, "$encoding");
+		  String algorithm = IDataUtil.getString(cursor, "$algorithm");
+		  String mode = IDataUtil.getString(cursor, "$mode");
+		
+		  if (content != null) IDataUtil.put(cursor, "$content.canonical", canonicalize(content, encoding, algorithm, mode));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
 
 
 
@@ -162,6 +192,56 @@ public final class xml
 	    strings[i] = format(errors[i]);
 	  }
 	  return strings;
+	}
+	
+	protected static final java.util.Map<String, String> CANONICALIZATION_ALGORITHM_ALIASES = constructCanonicalizationAlgorithmAliases();
+	
+	protected static final java.util.Map<String, String> constructCanonicalizationAlgorithmAliases() {
+	  java.util.Map<String, String> map = new java.util.TreeMap<String, String>();
+	
+	  map.put("Canonical XML Version 1.0", "http://www.w3.org/TR/2001/REC-xml-c14n-20010315");
+	  map.put("Canonical XML Version 1.0 With Comments", "http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments");
+	  map.put("Inclusive Canonical XML Version 1.0", "http://www.w3.org/TR/2001/REC-xml-c14n-20010315");
+	  map.put("Inclusive Canonical XML Version 1.0 With Comments", "http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments");
+	  map.put("Exclusive Canonical XML Version 1.0", "http://www.w3.org/2001/10/xml-exc-c14n#");
+	  map.put("Exclusive Canonical XML Version 1.0 With Comments", "http://www.w3.org/2001/10/xml-exc-c14n#WithComments");
+	  map.put("Canonical XML Version 1.1", "http://www.w3.org/2006/12/xml-c14n11");
+	  map.put("Canonical XML Version 1.1 With Comments", "http://www.w3.org/2006/12/xml-c14n11#WithComments");
+	  map.put("Inclusive Canonical XML Version 1.1", "http://www.w3.org/2006/12/xml-c14n11");
+	  map.put("Inclusive Canonical XML Version 1.1 With Comments", "http://www.w3.org/2006/12/xml-c14n11#WithComments");
+	
+	  return map;
+	}
+	
+	protected static String getAlgorithm(String alias) {
+	  String algorithm = CANONICALIZATION_ALGORITHM_ALIASES.get(alias);
+	  if (algorithm == null) algorithm = alias;
+	  return algorithm;
+	}
+	
+	// canonicalizes the given XML content using the given algorithm
+	public static Object canonicalize(Object input, String encoding, String algorithm, String mode) throws ServiceException {
+	  Object output = null;
+	
+	  try {
+	    String inputString = tundra.string.normalize(input, encoding);
+	    byte[] inputBytes = tundra.bytes.normalize(input, org.apache.xml.security.c14n.Canonicalizer.ENCODING);
+	    org.apache.xml.security.Init.init();
+	    org.apache.xml.security.c14n.Canonicalizer canonicalizer = org.apache.xml.security.c14n.Canonicalizer.getInstance(getAlgorithm(algorithm));
+	    byte[] outputBytes = canonicalizer.canonicalize(inputBytes);
+	    String outputString = tundra.string.normalize(outputBytes, org.apache.xml.security.c14n.Canonicalizer.ENCODING);
+	    output = tundra.object.convert(outputString, encoding, mode);
+	  } catch(org.apache.xml.security.exceptions.XMLSecurityException ex) {
+	    tundra.exception.raise(ex);
+	  } catch(javax.xml.parsers.ParserConfigurationException ex) {
+	    tundra.exception.raise(ex);
+	  } catch(org.xml.sax.SAXException ex) {
+	    tundra.exception.raise(ex);
+	  } catch(java.io.IOException ex) {
+	    tundra.exception.raise(ex);
+	  }
+	
+	  return output;
 	}
 	// --- <<IS-END-SHARED>> ---
 }
