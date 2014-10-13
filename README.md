@@ -7829,7 +7829,8 @@ Services for manipulating java.lang.String objects:
     * `$pattern` is the [regular expression pattern] to match against
       the given string.
     * `$replacement` is the replacement string to be substituted in
-      the given string wherever the given pattern is found.
+      the given string wherever the given pattern is found. If not
+      specified, no replacement will occur.
     * `$literal?` is a boolean indicating if the replacement string
       should be treated as a literal string. If false, captured
       groups can be referred to with dollar-sign references, such
