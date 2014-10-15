@@ -1,8 +1,8 @@
 package tundra.support.service;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-09-13 15:00:36 EST
-// -----( ON-HOST: 172.16.189.131
+// -----( CREATED: 2014-10-15 09:06:36.148
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -39,44 +39,30 @@ public final class defer
                 
 	}
 
-
-
-	public static final void startup (IData pipeline)
-        throws ServiceException
-	{
-		// --- <<IS-START(startup)>> ---
-		// @subtype unknown
-		// @sigtype java 3.5
-		startup();
-		// --- <<IS-END>> ---
-
-                
-	}
-
 	// --- <<IS-START-SHARED>> ---
 	private static final long SHUTDOWN_TIMEOUT_MILLISECONDS = 5 * 60 * 1000;
 	private static java.util.concurrent.ExecutorService executor = null;
 	
-	// queues a service for execution on the defer thread pool
-	public static void enqueue(String service, IData pipeline) {
-	  executor.submit(new CallableService(service, com.wm.app.b2b.server.Service.getSession(), pipeline));
-	}
-	
 	// creates a new thread pool for executing deferred services
-	public static void startup() {
-	  executor = java.util.concurrent.Executors.newSingleThreadExecutor(new ServerThreadFactory(com.wm.app.b2b.server.InvokeState.getCurrentState()));
+	public static synchronized java.util.concurrent.ExecutorService getExecutor() {
+	  if (executor == null) executor = java.util.concurrent.Executors.newSingleThreadExecutor(new ServerThreadFactory(com.wm.app.b2b.server.InvokeState.getCurrentState()));
+	  return executor;
 	}
 	
 	// initiates a shutdown and waits for up to 5 minutes for all tasks to complete
 	public static void shutdown() {
 	  try {
-	    if (executor != null) {
-	      executor.shutdown();
-	      executor.awaitTermination(SHUTDOWN_TIMEOUT_MILLISECONDS, java.util.concurrent.TimeUnit.MILLISECONDS);
-	    }
+	    java.util.concurrent.ExecutorService executor = getExecutor();
+	    executor.shutdown();
+	    executor.awaitTermination(SHUTDOWN_TIMEOUT_MILLISECONDS, java.util.concurrent.TimeUnit.MILLISECONDS);
 	  } catch(java.lang.InterruptedException ex) {
 	    // ignore exception
 	  }
+	}
+	
+	// queues a service for execution on the defer thread pool
+	public static void enqueue(String service, IData pipeline) {
+	  getExecutor().submit(new CallableService(service, com.wm.app.b2b.server.Service.getSession(), pipeline));
 	}
 	
 	// wraps a call to an IS service with a standard java.util.concurrent.callable interface, so that it can
