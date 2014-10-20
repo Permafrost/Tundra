@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-08-20 21:07:07 EST
-// -----( ON-HOST: 172.16.189.132
+// -----( CREATED: 2014-10-20 20:24:35 EST
+// -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -703,7 +703,7 @@ public final class document
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  boolean recurse = tundra.bool.parse(IDataUtil.getString(cursor, "$recurse?"));
-		  IDataUtil.put(cursor, "$document", stringify(document, recurse));
+		  if (document != null) IDataUtil.put(cursor, "$document", stringify(document, recurse));
 		} finally {
 		  cursor.destroy();
 		}
