@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-08-31 18:31:10 EST
-// -----( ON-HOST: 172.16.189.132
+// -----( CREATED: 2014-10-20 20:04:12 EST
+// -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -57,6 +57,7 @@ public final class decimal
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:1:optional $decimals
+		// [i] field:0:optional $decimal
 		// [i] field:0:optional $precision
 		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
 		// [o] field:0:optional $decimal
@@ -64,10 +65,11 @@ public final class decimal
 		
 		try {
 		  String[] list = IDataUtil.getStringArray(cursor, "$decimals");
+		  String decimal = IDataUtil.getString(cursor, "$decimal");
 		  String precision = IDataUtil.getString(cursor, "$precision");
 		  String rounding = IDataUtil.getString(cursor, "$rounding");
 		
-		  if (list != null && list.length > 0) IDataUtil.put(cursor, "$decimal", add(list, precision, rounding));
+		  if (list != null && list.length > 0) IDataUtil.put(cursor, "$decimal", add(list, decimal, precision, rounding));
 		} finally {
 		  cursor.destroy();
 		}
@@ -433,7 +435,7 @@ public final class decimal
 	}
 	
 	// adds the given list of decimal strings together
-	public static String add(String[] list, String precision, String rounding) {
+	public static String add(String[] list, String decimal, String precision, String rounding) {
 	  java.math.BigDecimal result = java.math.BigDecimal.ZERO;
 	
 	  if (list != null) {
@@ -442,7 +444,16 @@ public final class decimal
 	    }
 	  }
 	
+	  if (decimal != null) {
+	    result = result.add(parse(decimal));
+	  }
+	
 	  return emit(round(result, precision, rounding));
+	}
+	
+	// adds the given list of decimal strings together
+	public static String add(String[] list, String precision, String rounding) {
+	  return add(list, null, precision, rounding);
 	}
 	
 	// divides x by y
@@ -481,15 +492,7 @@ public final class decimal
 	
 	// multiplies the given list of decimal strings
 	public static String multiply(String[] list, String precision, String rounding) {
-	  java.math.BigDecimal result = java.math.BigDecimal.ONE;
-	
-	  if (list != null) {
-	    for (int i = 0; i < list.length; i++) {
-	      result = result.multiply(parse(list[i]));
-	    }
-	  }
-	
-	  return emit(round(result, precision, rounding));
+	  return multiply(list, null, precision, rounding);
 	}
 	
 	// returns -1 * the given decimal string
