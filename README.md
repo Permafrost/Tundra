@@ -3869,10 +3869,11 @@ Services for working with arbitrary precision integers (uses
   Multiplies the given integers together, returning the result.
 
   * Inputs:
-    * `$integers` is a list of integers.
+    * `$integers` is a list of integer values to be multiplied.
+    * `$integer` is a single integer value to be multiplied.
   * Outputs:
-    * `$integer` is the result of multiplying every integer in
-      the given list together.
+    * `$integer` is the result of multiplying all given integer
+      values together.
 
 * #### tundra.integer:negate
 

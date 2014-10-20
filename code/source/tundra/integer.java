@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-10-20 20:10:10 EST
+// -----( CREATED: 2014-10-20 20:16:41 EST
 // -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
@@ -258,7 +258,9 @@ public final class integer
 		
 		try {
 		  String[] list = IDataUtil.getStringArray(cursor, "$integers");
-		  if (list != null && list.length > 0) IDataUtil.put(cursor, "$integer", multiply(list));
+		  String integer = IDataUtil.getString(cursor, "$integer");
+		
+		  if (list != null && list.length > 0) IDataUtil.put(cursor, "$integer", multiply(list, integer));
 		} finally {
 		  cursor.destroy();
 		}
@@ -480,12 +482,22 @@ public final class integer
 	
 	// returns the result of multiplying the given list of integer strings
 	public static String multiply(String ... s) {
+	  return multiply(s, null);
+	}
+	
+	// returns the result of multiplying the given list of integer strings
+	public static String multiply(String[] list, String integer) {
 	  java.math.BigInteger result = java.math.BigInteger.ONE;
-	  if (s != null) {
-	    for (int i = 0; i < s.length; i++) {
-	      if (s[i] != null) result = result.multiply(parse(s[i]));
+	  if (list != null) {
+	    for (int i = 0; i < list.length; i++) {
+	      if (list[i] != null) result = result.multiply(parse(list[i]));
 	    }
 	  }
+	
+	  if (integer != null) {
+	    result = result.multiply(parse(integer));
+	  }
+	
 	  return emit(result);
 	}
 	
