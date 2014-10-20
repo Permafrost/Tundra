@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-08-20 19:11:15 EST
-// -----( ON-HOST: 172.16.189.132
+// -----( CREATED: 2014-10-20 20:10:10 EST
+// -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -57,12 +57,15 @@ public final class integer
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:1:optional $integers
+		// [i] field:0:optional $integer
 		// [o] field:0:optional $integer
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String[] list = IDataUtil.getStringArray(cursor, "$integers");
-		  if (list != null && list.length > 0) IDataUtil.put(cursor, "$integer", add(list));
+		  String integer = IDataUtil.getString(cursor, "$integer");
+		
+		  if (list != null && list.length > 0) IDataUtil.put(cursor, "$integer", add(list, integer));
 		} finally {
 		  cursor.destroy();
 		}
@@ -441,12 +444,22 @@ public final class integer
 	
 	// returns the result of adding the given list of integer strings
 	public static String add(String ... s) {
+	  return add(s, null);
+	}
+	
+	// returns the result of adding the given list of integer strings
+	public static String add(String[] list, String integer) {
 	  java.math.BigInteger result = java.math.BigInteger.ZERO;
-	  if (s != null) {
-	    for (int i = 0; i < s.length; i++) {
-	      result = result.add(parse(s[i]));
+	  if (list != null) {
+	    for (int i = 0; i < list.length; i++) {
+	      result = result.add(parse(list[i]));
 	    }
 	  }
+	
+	  if (integer != null) {
+	    result = result.add(parse(integer));
+	  }
+	
 	  return emit(result);
 	}
 	

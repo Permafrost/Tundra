@@ -3783,7 +3783,8 @@ Services for working with arbitrary precision integers (uses
   Adds the given integers together, returning the result.
 
   * Inputs:
-    * `$integers` is a list of integers.
+    * `$integers` is a list of integer values to be added.
+    * `$integer` is a single integer value to be added.
   * Outputs:
     * `$integer` is the total sum of the given integers.
 
