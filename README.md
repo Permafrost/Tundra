@@ -2332,6 +2332,20 @@ Services for manipulating com.wm.data.IData objects:
   * Outputs:
     * `$document` is the resulting edited IData document.
 
+* #### tundra.document:blankify
+
+  Converts all null values in the given IData document to empty strings.
+
+  * Inputs:
+    * `$document` is an IData document whose null values are to be converted
+      to empty strings.
+    * `$recurse` is an optional boolean indicating if embedded IData documents
+      and IData[] document lists should also have their null values converted
+      to empty strings. Defaults to false.
+  * Outputs:
+    * `$document` is the given IData document with all null values converted to
+      empty strings.
+
 * #### tundra.document:clear
 
   Removes all elements from the given IData document, except for

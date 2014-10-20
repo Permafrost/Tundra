@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-10-20 20:24:35 EST
+// -----( CREATED: 2014-10-20 20:30:59 EST
 // -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
@@ -46,6 +46,31 @@ public final class document
 		  IData[] amendments = IDataUtil.getIDataArray(cursor, "$amendments");
 		
 		  if (document != null) IDataUtil.put(cursor, "$document", amend(document, amendments, pipeline));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void blankify (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(blankify)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:0:optional $document
+		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [o] record:0:optional $document
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  IData document = IDataUtil.getIData(cursor, "$document");
+		  boolean recurse = tundra.bool.parse(IDataUtil.getString(cursor, "$recurse?"));
+		  if (document != null) IDataUtil.put(cursor, "$document", blankify(document, recurse));
 		} finally {
 		  cursor.destroy();
 		}
@@ -998,6 +1023,40 @@ public final class document
 	        value = stringArray;
 	      } else {
 	        value = value.toString();
+	      }
+	    }
+	    oc.insertAfter(key, value);
+	  }
+	
+	  ic.destroy();
+	  oc.destroy();
+	
+	  return output;
+	}
+	
+	// converts all null values to empty strings
+	public static IData blankify(IData input, boolean recurse) {
+	  if (input == null) return null;
+	
+	  IData output = IDataFactory.create();
+	  IDataCursor ic = input.getCursor();
+	  IDataCursor oc = output.getCursor();
+	
+	  while(ic.next()) {
+	    String key = ic.getKey();
+	    Object value = ic.getValue();
+	
+	    if (value == null) {
+	      value = "";
+	    } else if (recurse) {
+	      if (value instanceof IData[] || value instanceof com.wm.util.Table) {
+	        IData[] array = value instanceof IData[] ? (IData[])value : ((com.wm.util.Table)value).getValues();
+	        for (int i = 0; i < array.length; i++) {
+	          array[i] = blankify(array[i], recurse);
+	        }
+	        value = array;
+	      } else if (value instanceof IData) {
+	        value = blankify((IData)value, recurse);
 	      }
 	    }
 	    oc.insertAfter(key, value);
