@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-09-06 20:40:08 EST
-// -----( ON-HOST: 172.16.189.132
+// -----( CREATED: 2014-10-22 12:05:02.649
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -92,7 +92,18 @@ public final class system
 	
 	// returns all java properties for currently JVM executing process
 	public static IData properties() {
-	  return mapToIData(System.getProperties());
+	  java.util.Properties properties = System.getProperties();
+	  String mailFrom = properties.getProperty("mail.from");
+	  if (mailFrom == null || mailFrom.equals("")) {
+	    String domain = "unknown";
+	    try {
+	      java.net.InetAddress address = java.net.InetAddress.getLocalHost();
+	      domain = address.getCanonicalHostName().toLowerCase();
+	    } catch (java.net.UnknownHostException ex) { }
+	    properties.setProperty("mail.from", "Integration-Server@" + domain);
+	  }
+	
+	  return mapToIData(properties);
 	}
 	
 	// returns locations of well-known Integration Server directories
