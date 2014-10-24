@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-10-24 12:42:36.365
+// -----( CREATED: 2014-10-24 16:23:34.265
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -84,6 +84,29 @@ public final class string
 		    IDataUtil.put(cursor, "$captured?", "false");
 		    IDataUtil.put(cursor, "$captures.length", "0");
 		  }
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void characters (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(characters)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $string
+		// [o] object:1:optional $characters
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String string = IDataUtil.getString(cursor, "$string");
+		  if (string != null) IDataUtil.put(cursor, "$characters", characters(string));
 		} finally {
 		  cursor.destroy();
 		}
@@ -544,6 +567,19 @@ public final class string
 	public static String blankify(String input) {
 	  if (input == null) input = "";
 	  return input;
+	}
+	
+	// returns the string as a list of characters 
+	public static Character[] characters(String input) {
+	  if (input == null) return null;
+	
+	  char[] chars = input.toCharArray();
+	  Character[] characters = new Character[chars.length];
+	  for (int i = 0; i < chars.length; i++) {
+	    characters[i] = chars[i];
+	  }
+	
+	  return characters;
 	}
 	
 	// converts a byte array, input stream or string to a string

@@ -7689,6 +7689,16 @@ Services for manipulating java.lang.String objects:
       pattern] was found in the given `$string`, and the number of items in
       the `$captures` IData[] document list.
 
+* #### tundra.string:characters
+
+  Returns the given string as a list of characters.
+
+  * Inputs:
+    * `$string` is a string to be split into characters.
+  * Outputs:
+    * `$characters` is a list of the characters in the 
+      given `$string`.
+
 * #### tundra.string:compare
 
   Compares two strings indicating their lexicographical position
