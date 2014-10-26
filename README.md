@@ -7618,6 +7618,21 @@ Services for manipulating java.lang.String objects:
     * `$string` is an empty string if the input `$string` was null,
       otherwise `$string` is returned unchanged.
 
+* #### tundra.string:capitalize
+
+  Capitalizes the first character in either the first word or
+  all words in the given string.
+
+  * Inputs:
+    * `$string` is the string to be capitalized.
+    * `$mode `is an optional choice that determines whether
+      all words or only the first word is capitalized:
+      * `all words`
+      * `first word`
+      Defaults to `all words`, if not specified.
+  * Outputs:
+    * `$string` is the given string capitalized.
+
 * #### tundra.string:capture
 
   Returns the associated [capturing groups] if the given [regular expression

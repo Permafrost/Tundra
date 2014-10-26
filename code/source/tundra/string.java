@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-10-24 16:23:34.265
-// -----( ON-HOST: -
+// -----( CREATED: 2014-10-26 10:36:56 EST
+// -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -40,6 +40,32 @@ public final class string
 		try {
 		  String input = IDataUtil.getString(cursor, "$string");
 		  IDataUtil.put(cursor, "$string", blankify(input));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void capitalize (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(capitalize)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $string
+		// [i] field:0:optional $mode {&quot;all words&quot;,&quot;first word&quot;}
+		// [o] field:0:optional $string
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String input = IDataUtil.getString(cursor, "$string");
+		  String mode = IDataUtil.getString(cursor, "$mode");
+		
+		  if (input != null) IDataUtil.put(cursor, "$string", capitalize(input, mode));
 		} finally {
 		  cursor.destroy();
 		}
@@ -567,6 +593,34 @@ public final class string
 	public static String blankify(String input) {
 	  if (input == null) input = "";
 	  return input;
+	}
+	
+	// capitalizes the first character in either the first word or all
+	// words in the given string
+	public static String capitalize(String input, String mode) {
+	  return capitalize(input, mode == null ? false : mode.equals("first word"));
+	}
+	
+	// capitalizes the first character in either the first word or all
+	// words in the given string
+	public static String capitalize(String input, boolean firstWordOnly) {
+	  if (input == null) return null;
+	
+	  char[] characters = input.toCharArray();
+	  boolean capitalize = true;
+	
+	  for (int i = 0; i < characters.length; i++) {
+	    char character = characters[i];
+	    if (Character.isWhitespace(character)) {
+	      capitalize = true;
+	    } else if (capitalize) {
+	      characters[i] = Character.toTitleCase(character);
+	      capitalize = false;
+	      if (firstWordOnly) break;
+	    }
+	  }
+	
+	  return new String(characters);
 	}
 	
 	// returns the string as a list of characters 
