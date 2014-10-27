@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-10-12 12:26:52 EST
-// -----( ON-HOST: 172.16.189.176
+// -----( CREATED: 2014-10-28 09:09:07.399
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -183,6 +183,34 @@ public final class document
 		// [i] field:0:optional $iteration
 		// [o] record:0:optional $item
 		tundra.list.object.get(pipeline);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void group (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(group)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:1:optional $list
+		// [i] field:1:optional $keys
+		// [o] record:1:optional $list.grouped
+		// [o] - record:0:required group
+		// [o] - record:1:required items
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  IData[] list = IDataUtil.getIDataArray(cursor, "$list");
+		  String[] keys = IDataUtil.getStringArray(cursor, "$keys");
+		
+		  if (list != null && list.length > 0) IDataUtil.put(cursor, "$list.grouped", group(list, keys));
+		} finally {
+		  cursor.destroy();
+		}
 		// --- <<IS-END>> ---
 
                 
@@ -743,6 +771,139 @@ public final class document
 	      }
 	    }
 	    return result;
+	  }
+	}
+	
+	// groups the given list by the given keys
+	public static IData[] group(IData[] list, String[] keys) {
+	  if (list == null || list.length == 0) return list;
+	
+	  if (keys == null || keys.length == 0) {
+	    IData[] result = new IData[1];
+	    result[0] = IDataFactory.create();
+	    IDataCursor cursor = result[0].getCursor();
+	    IDataUtil.put(cursor, "group", IDataFactory.create());
+	    IDataUtil.put(cursor, "items", list);
+	    cursor.destroy();
+	    return result;
+	  } else {
+	    java.util.Map<CompoundKey, java.util.List<IData>> groups = new java.util.TreeMap<CompoundKey, java.util.List<IData>>();
+	
+	    for (int i = 0; i < list.length; i++) {
+	      if (list[i] != null) {
+	        CompoundKey key = new CompoundKey(keys, list[i]);
+	        java.util.List<IData> array = groups.get(key);
+	        if (array == null) array = new java.util.LinkedList<IData>();
+	        array.add(list[i]);
+	        groups.put(key, array);
+	      }
+	    }
+	
+	    java.util.List<IData> result = new java.util.ArrayList<IData>(groups.size());
+	    java.util.Iterator<CompoundKey> iterator = groups.keySet().iterator();
+	
+	    while(iterator.hasNext()) {
+	      CompoundKey key = iterator.next();
+	      java.util.List<IData> items = groups.get(key);
+	
+	      IData group = IDataFactory.create();
+	      IDataCursor cursor = group.getCursor();
+	      IDataUtil.put(cursor, "group", key.getIData());
+	      IDataUtil.put(cursor, "items", (IData[])items.toArray(new IData[0]));
+	      cursor.destroy();
+	
+	      result.add(group);
+	    }
+	    return (IData[])result.toArray(new IData[0]);
+	  }
+	}
+	
+	public static class CompoundKey extends java.util.LinkedHashMap<String, Comparable> implements Comparable<CompoundKey>, com.wm.util.coder.IDataCodable {
+	  public CompoundKey() {
+	    super();
+	  }
+	
+	  public CompoundKey(int initialCapacity) {
+	    super(initialCapacity);
+	  }
+	
+	  public CompoundKey(int initialCapacity, float loadFactor) {
+	    super(initialCapacity, loadFactor);
+	  }
+	
+	  public CompoundKey(int initialCapacity, float loadFactor, boolean accessOrder) {
+	    super(initialCapacity, loadFactor, accessOrder);
+	  }
+	
+	  public CompoundKey(java.util.Map<? extends String,? extends Comparable> map) {
+	    super(map);
+	  }
+	
+	  public CompoundKey(String[] keys, IData document) {
+	    super(keys.length);
+	    
+	    // seed with key value pairs
+	    for (int i = 0; i < keys.length; i++) {
+	      Object value = tundra.support.document.get(document, keys[i]);
+	      if (value != null && value instanceof Comparable) this.put(keys[i], (Comparable)value);
+	    }    
+	  }
+	
+	  public int compareTo(CompoundKey other) {
+	    if (other == null) return 1;
+	
+	    int result = 0;
+	    
+	    java.util.Iterator<String> iterator = this.keySet().iterator();
+	
+	    while(iterator.hasNext()) {
+	      String key = iterator.next();
+	      Comparable thisValue = this.get(key);
+	      Comparable otherValue = other.get(key);
+	
+	      if (thisValue == null) {
+	        if (otherValue != null) result = -1;
+	      } else {
+	        result = thisValue.compareTo(otherValue);
+	      }
+	      if (result != 0) break;
+	    }
+	    return result;
+	  }
+	
+	  public boolean equals(Object other) {
+	    boolean result = false;
+	
+	    if (other != null && other instanceof CompoundKey) {
+	      result = this.compareTo((CompoundKey)other) == 0;
+	    }
+	    return result;
+	  }
+	
+	  public IData getIData() {
+	    IData output = IDataFactory.create();
+	    java.util.Iterator<String> iterator = this.keySet().iterator();
+	    while(iterator.hasNext()) {
+	      String key = iterator.next();
+	      Object value = this.get(key);
+	      tundra.support.document.put(output, key, value);
+	    }
+	    return output;
+	  }
+	
+	  public void setIData(IData input) {
+	    if (input == null) return;
+	
+	    this.clear();
+	
+	    IDataCursor cursor = input.getCursor();
+	    while(cursor.next()) {
+	      String key = cursor.getKey();
+	      Object value = cursor.getValue();
+	
+	      if (value != null && value instanceof Comparable) this.put(key, (Comparable)value);
+	    }
+	    cursor.destroy();
 	  }
 	}
 	// --- <<IS-END-SHARED>> ---

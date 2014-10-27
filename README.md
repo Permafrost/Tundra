@@ -4632,6 +4632,27 @@ Services for manipulating document (com.wm.data.IData) lists:
     * `$item` is the item stored at the given index in the given
       list.
 
+* #### tundra.list.document:group
+
+  Groups the given IData document list items by the given keys. This
+  service can be used to process an IData document list in a way similar 
+  to a [SQL GROUP BY] clause.
+
+  * Inputs:
+    * `$list` is an IData document list whose items are to be grouped.
+    * `$keys` is a String list containg the keys used to group like items
+      in `$list` together, and can be simple or fully qualified, such 
+      as `a/b/c[0]/d`.
+  * Outputs:
+    * `$list.grouped` is an IData document list containing one item per 
+      each unique set of grouping key value tuples associated with 
+      `$keys` from `$list`:
+      * `group` is an IData document containing the keys and values
+        that defined this group.
+      * `items` is an IData document list containing the all the items
+        from `$list` whose keys and values are equal to key value tuples
+        in the associated `group`.
+
 * #### tundra.list.document:grow
 
   Increases the size of the given list by the given count of items, padded
@@ -8684,6 +8705,7 @@ Copyright &copy; 2012 Lachlan Dowding. See license.txt for further details.
 [rounding algorithm]: <http://docs.oracle.com/javase/6/docs/api/java/math/RoundingMode.html>
 [SAX]: <http://en.wikipedia.org/wiki/Simple_API_for_XML>
 [set intersection]: <http://en.wikipedia.org/wiki/Intersection_(set_theory)>
+[SQL GROUP BY]: <http://en.wikipedia.org/wiki/SQL#Queries>
 [try block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/try.html>
 [TSV]: <http://en.wikipedia.org/wiki/Tab-separated_values>
 [Tundra]: <https://github.com/Permafrost/Tundra>
