@@ -4635,8 +4635,8 @@ Services for manipulating document (com.wm.data.IData) lists:
 * #### tundra.list.document:group
 
   Groups the given IData document list items by the given keys. This
-  service can be used to process an IData document list in a way similar 
-  to a [SQL GROUP BY] clause.
+  service can be used to process an IData document list in a way 
+  similar to a [SQL GROUP BY] clause.
 
   * Inputs:
     * `$list` is an IData document list whose items are to be grouped.
@@ -4649,9 +4649,9 @@ Services for manipulating document (com.wm.data.IData) lists:
       `$keys` from `$list`:
       * `group` is an IData document containing the keys and values
         that defined this group.
-      * `items` is an IData document list containing the all the items
-        from `$list` whose keys and values are equal to key value tuples
-        in the associated `group`.
+      * `items` is an IData document list containing all the items from
+        `$list` whose keys and values are equal to key value tuples in
+        the associated `group`.
 
 * #### tundra.list.document:grow
 
