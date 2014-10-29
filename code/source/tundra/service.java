@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-09-13 13:41:04 EST
-// -----( ON-HOST: 172.16.189.131
+// -----( CREATED: 2014-10-29 16:46:21.155
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -98,6 +98,8 @@ public final class service
 		// --- <<IS-START(create)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
+		// [i] field:0:required $package
+		// [i] field:0:required $service
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -608,6 +610,9 @@ public final class service
 	    IDataUtil.put(cursor, "$exception?", "true");
 	    IDataUtil.put(cursor, "$exception.class", t.getClass().getName());
 	    IDataUtil.put(cursor, "$exception.message", t.getMessage());
+	    IDataUtil.put(cursor, "$exception.service", service);
+	    com.wm.app.b2b.server.BaseService baseService = com.wm.app.b2b.server.ns.Namespace.getService(com.wm.lang.ns.NSName.create(service));
+	    if (baseService != null) IDataUtil.put(cursor, "$exception.package", baseService.getPackageName());
 	    IDataUtil.put(cursor, "$exception.stack", tundra.exception.stack(t));
 	    cursor.destroy();
 	
