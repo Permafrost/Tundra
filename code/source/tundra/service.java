@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-10-29 16:46:21.155
+// -----( CREATED: 2014-10-30 09:26:37.499
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -602,6 +602,7 @@ public final class service
 	
 	// provides a try/catch/finally pattern for flow services
 	public static IData ensure(String service, IData pipeline, String catchService, String finallyService) throws ServiceException {
+	
 	  try {
 	    pipeline = invoke.synchronous(service, pipeline);
 	  } catch (Throwable t) {
@@ -610,10 +611,25 @@ public final class service
 	    IDataUtil.put(cursor, "$exception?", "true");
 	    IDataUtil.put(cursor, "$exception.class", t.getClass().getName());
 	    IDataUtil.put(cursor, "$exception.message", t.getMessage());
-	    IDataUtil.put(cursor, "$exception.service", service);
-	    com.wm.app.b2b.server.BaseService baseService = com.wm.app.b2b.server.ns.Namespace.getService(com.wm.lang.ns.NSName.create(service));
-	    if (baseService != null) IDataUtil.put(cursor, "$exception.package", baseService.getPackageName());
+	
+	    com.wm.app.b2b.server.InvokeState invokeState = com.wm.app.b2b.server.InvokeState.getCurrentState();
+	    IData exceptionInfo = tundra.document.duplicate(invokeState.getErrorInfoFormatted(), true);
+	    IDataCursor ec = exceptionInfo.getCursor();
+	    String exceptionService = IDataUtil.getString(ec, "service");
+	    if (exceptionService != null) {
+	      IDataUtil.put(cursor, "$exception.service", exceptionService);
+	      com.wm.app.b2b.server.BaseService baseService = com.wm.app.b2b.server.ns.Namespace.getService(com.wm.lang.ns.NSName.create(exceptionService));
+	      if (baseService != null) {
+	        String packageName = baseService.getPackageName();
+	        IDataUtil.put(ec, "package", packageName);
+	        IDataUtil.put(cursor, "$exception.package", packageName);
+	      }
+	    }
+	    ec.destroy();
+	    IDataUtil.put(cursor, "$exception.info", exceptionInfo);
+	
 	    IDataUtil.put(cursor, "$exception.stack", tundra.exception.stack(t));
+	
 	    cursor.destroy();
 	
 	    if (catchService == null) {

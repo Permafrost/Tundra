@@ -7270,10 +7270,12 @@ Document references and service specifications:
       object.
     * `$exception.message` is the exception message describing the error
       that has occurred.
-    * `$exception.service` is the fully qualified name of the service that was 
-      invoked by `tundra.service:ensure` when the exception was thrown.
+    * `$exception.service` is the fully qualified name of the service that threw
+      the exception.
     * `$exception.package` is the package that `$exception.service` resides in, 
-      specified only if `$exception.service` exists.      
+      specified only if `$exception.service` exists.
+    * `$exception.info` is the exception information returned by 
+      `WmPublic/pub.flow:getLastError`.
     * `$exception.stack` is the Java call stack describing where the error
       occurred.
 
