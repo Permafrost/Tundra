@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-10-28 09:09:07.399
+// -----( CREATED: 2014-10-31 15:39:24.906
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -845,7 +845,11 @@ public final class document
 	    // seed with key value pairs
 	    for (int i = 0; i < keys.length; i++) {
 	      Object value = tundra.support.document.get(document, keys[i]);
-	      if (value != null && value instanceof Comparable) this.put(keys[i], (Comparable)value);
+	      if (value != null && value instanceof Comparable) {
+	        this.put(keys[i], (Comparable)value);
+	      } else {
+	        this.put(keys[i], null);
+	      }
 	    }    
 	  }
 	
@@ -864,7 +868,11 @@ public final class document
 	      if (thisValue == null) {
 	        if (otherValue != null) result = -1;
 	      } else {
-	        result = thisValue.compareTo(otherValue);
+	        if (otherValue == null) {
+	          result = 1;
+	        } else {
+	          result = thisValue.compareTo(otherValue);
+	        }
 	      }
 	      if (result != 0) break;
 	    }
