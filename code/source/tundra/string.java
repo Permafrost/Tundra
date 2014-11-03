@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-10-26 10:36:56 EST
-// -----( ON-HOST: 172.16.189.176
+// -----( CREATED: 2014-11-03 15:04:22.101
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -133,6 +133,34 @@ public final class string
 		try {
 		  String string = IDataUtil.getString(cursor, "$string");
 		  if (string != null) IDataUtil.put(cursor, "$characters", characters(string));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void coalesce (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(coalesce)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $string.x
+		// [i] field:0:optional $string.y
+		// [o] field:0:optional $string
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String x = IDataUtil.getString(cursor, "$string.x");
+		  String y = IDataUtil.getString(cursor, "$string.y");
+		
+		  String result = tundra.object.coalesce(x, y);
+		
+		  if (result != null) IDataUtil.put(cursor, "$string", result);
 		} finally {
 		  cursor.destroy();
 		}

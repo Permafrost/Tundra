@@ -6502,6 +6502,17 @@ Services for querying Integration Server namespace nodes:
 
 Services for manipulating java.lang.Object objects:
 
+* #### tundra.object:coalesce
+
+Returns the first object argument that is not null.
+
+* Inputs:
+  * $object.x is an optional object argument.
+  * $object.y is an optional object argument.
+* Outputs:
+  * $object is the first of the given arguments 
+    whose value is not null.
+
 * #### tundra.object:convert
 
   Converts a string, byte array, or input stream object to a string,
@@ -7813,6 +7824,17 @@ Services for manipulating java.lang.String objects:
   * Outputs:
     * `$characters` is a list of the characters in the 
       given `$string`.
+
+* #### tundra.string:coalesce
+
+  Returns the first string argument that is not null.
+
+  * Inputs:
+    * `$string.x` is an optional string argument.
+    * `$string.y` is an optional string argument.
+  * Outputs:
+    * `$string` is the first of the given arguments 
+      whose value is not null.
 
 * #### tundra.string:compare
 
