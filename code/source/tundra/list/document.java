@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-10-31 15:39:24.906
+// -----( CREATED: 2014-11-03 11:48:13.830
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -554,6 +554,38 @@ public final class document
                 
 	}
 
+
+
+	public static final void values (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(values)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:1:optional $list
+		// [i] field:0:optional $key
+		// [i] object:0:optional $default.object
+		// [i] field:0:optional $default.string
+		// [o] object:1:optional $values
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  IData[] list = IDataUtil.getIDataArray(cursor, "$list");
+		  String key = IDataUtil.getString(cursor, "$key");
+		  Object defaultObject = IDataUtil.get(cursor, "$default.object");
+		  if (defaultObject == null) defaultObject = IDataUtil.getString(cursor, "$default.string");
+		
+		  Object[] values = values(list, key, defaultObject);
+		
+		  if (values != null) IDataUtil.put(cursor, "$values", values);
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
 	// --- <<IS-START-SHARED>> ---
 	// returns a new IData[] with all null values removed
 	public static IData[] compact(IData[] array, boolean recurse) {
@@ -913,6 +945,25 @@ public final class document
 	    }
 	    cursor.destroy();
 	  }
+	}
+	
+	// returns the values associated with the given key from each item in the given IData[] document list
+	public static Object[] values(IData[] input, String key, Object defaultValue) {
+	  if (input == null || key == null) return null;
+	
+	  java.util.Set<Class<?>> classes = new java.util.LinkedHashSet<Class<?>>();
+	  java.util.List list = new java.util.ArrayList(input.length);
+	  
+	  for (int i = 0; i < input.length; i++) {
+	    Object value = tundra.support.document.get(input[i], key, defaultValue);
+	    if (value != null) classes.add(value.getClass());
+	    list.add(value);
+	  }
+	  
+	  Class<?> nearestAncestor = tundra.support.object.nearestAncestor(classes);
+	  if (nearestAncestor == null) nearestAncestor = Object.class;
+	  
+	  return list.toArray((Object[])java.lang.reflect.Array.newInstance(nearestAncestor, 0));
 	}
 	// --- <<IS-END-SHARED>> ---
 }

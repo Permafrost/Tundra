@@ -5192,6 +5192,29 @@ Services for manipulating document (com.wm.data.IData) lists:
     * `$list` is the given IData document list with all string values
       converted to upper case.
 
+* #### tundra.list.document:values
+
+  Returns a list of values associated with the given key from the 
+  respective item in the given `IData[]` document list.
+
+  * Inputs:
+    * `$list` is an `IData[]` document list.
+    * `$key` is the key for which the associated value from each item in 
+      the given `$list` will be returned, and can be simple or fully 
+      qualified key, such as `a/b/c[0]/d`.
+    * `$default.object` is an optional value to be returned when either
+      the given `$key` does not exist in an item or its associated value 
+      is null.
+    * `$default.string` is an optional string value, provided for 
+      convenience when hard-coding a default value, to be returned 
+      when either the given `$key` does not exist in an item or its 
+      associated value is null.
+  * Outputs:
+    * `$values` is the list of values associated with `$key` from the 
+      respective item in `$list`, or the given `$default.object` or 
+      `$default.string` if specified and the associated value for `$key` 
+      either did not exist or was null in the respective item.
+
 ### Duration List
 
 * #### tundra.list.duration:format
