@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-10-12 12:02:22 EST
-// -----( ON-HOST: 172.16.189.176
+// -----( CREATED: 2014-11-03 15:40:05.964
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -44,6 +44,34 @@ public final class object
 		  append(pipeline, className == null ? Object.class : Class.forName(className));
 		} catch (ClassNotFoundException ex) {
 		  tundra.exception.raise(ex);
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void coalesce (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(coalesce)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:1:optional $list
+		// [i] object:0:optional $item
+		// [o] object:0:optional $item
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  Object[] list = IDataUtil.getObjectArray(cursor, "$list");
+		  Object item = IDataUtil.get(cursor, "$item");
+		
+		  Object result = coalesce(list, item);
+		
+		  if (result != null) IDataUtil.put(cursor, "$item", result);
 		} finally {
 		  cursor.destroy();
 		}
@@ -771,6 +799,26 @@ public final class object
 	  } finally {
 	    cursor.destroy();
 	  }
+	}
+	
+	// returns the first non-null item from the given list, or defaultValue if all items are null
+	public static <T> T coalesce(T[] list, T defaultValue) { 
+	  T result = null;
+	
+	  if (list != null && list.length > 0) {  
+	    for (int i = 0; i < list.length; i++) {
+	      result = list[i];
+	      if (result != null) break;
+	    }
+	  }
+	  if (result == null) result = defaultValue;
+	
+	  return result;
+	}
+	
+	// returns the first non-null item from the given list
+	public static <T> T coalesce(T[] list) { 
+	  return coalesce(list, null);
 	}
 	
 	// returns a new array with all null elements removed

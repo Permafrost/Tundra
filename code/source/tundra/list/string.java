@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-10-12 12:19:32 EST
-// -----( ON-HOST: 172.16.189.176
+// -----( CREATED: 2014-11-03 15:39:17.293
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -37,6 +37,23 @@ public final class string
 		// [i] field:0:optional $item
 		// [o] field:1:required $list
 		tundra.list.object.append(pipeline, String.class);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void coalesce (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(coalesce)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:1:optional $list
+		// [i] field:0:optional $item
+		// [o] field:0:optional $item
+		tundra.list.object.coalesce(pipeline);
 		// --- <<IS-END>> ---
 
                 

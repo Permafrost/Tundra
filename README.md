@@ -5308,6 +5308,19 @@ Services for manipulating java.lang.Object lists:
     * `$list` is the resulting list with the given `$item` appended to the
       end.
 
+* #### tundra.list.object:coalesce
+
+  Returns the first object in the given list that is not null, or if 
+  all objects in the list are null, then the given item.
+
+  * Inputs:
+    * `$list` is an optional list of objects.
+    * `$item` is an optional object, included for convenience when using 
+      this service in a map step.
+  * Outputs:
+    * `$item` is the first object in the given `$list` that is not null, 
+      or the given input `$item` if it is not null.
+
 * #### tundra.list.object:compact
 
   Removes all null items from the given list, thereby shortening the
@@ -5805,6 +5818,19 @@ Services for manipulating string lists:
   * Outputs:
     * `$list` is the resulting list with the given `$item` appended to the
       end.
+
+* #### tundra.list.string:coalesce
+
+  Returns the first string in the given list that is not null, or if 
+  all strings in the list are null, then the given item.
+
+  * Inputs:
+    * `$list` is an optional list of string.
+    * `$item` is an optional string, included for convenience when using 
+      this service in a map step.
+  * Outputs:
+    * `$item` is the first string in the given `$list` that is not null, 
+      or the given input `$item` if it is not null.
 
 * #### tundra.list.string:compact
 
