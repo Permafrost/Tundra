@@ -136,7 +136,7 @@ respective item in the given IData[] document list.
   * $list is an IData[] document list.
   * $key is the key for which the associated value from each item in 
     the given $list will be returned, and can be simple or fully 
-    qualified key, such as a/b/c[0]/d.
+    qualified, such as a/b/c[0]/d.
   * $default.object is an optional value to be returned when either
     the given $key does not exist in an item or its associated value 
     is null.
