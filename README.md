@@ -3239,54 +3239,65 @@ Services for manipulating durations of time:
   Adds one duration (x) to another (y), returning (x + y).
 
   * Inputs:
-    * `$duration.x` is an [ISO8601] XML duration string to be
-      added to `$duration.y`.
-    * `$duration.y` is an [ISO8601] XML duration string to be
-      added to `$duration.x`.
+    * `$duration.x` is a duration string to be added to `$duration.y`.
+    * `$duration.y` is a duration string to be added to `$duration.x`.
+    * `$pattern.input` is an optional pattern describing the type of 
+      duration specified by the `$duration.x` and `$duration.y` strings. 
+      Defaults to an [ISO8601] XML string.
+    * `$pattern.output` is an optional desired pattern used to format 
+      the returned `$duration` string. Defaults to an [ISO8601] XML 
+      string.
+
   * Outputs:
-    * `$duration` is an [ISO8601] XML duration string equal to
-      (`$duration.x` + `$duration.y`).
+    * `$duration` is a duration string equal to (`$duration.x` + 
+      `$duration.y`).
 
 * #### tundra.duration:compare
 
-  Compares one duration (x) to another (y), returning if the first is less
-  than, equal to, greater than, or if the comparison is indeterminate.
+  Compares one duration (x) to another (y), returning if the first is 
+  less than, equal to, greater than, or if the comparison is 
+  indeterminate. 
 
-  Indeterminate comparisons occur when, for example, comparing 1 month with
-  30 days: as the result could change depending on the month in question, it
-  is therefore considered indeterminate.
+  Indeterminate comparisons occur when, for example, comparing 1 month 
+  with 30 days: as the result could change depending on the month in 
+  question, it is therefore considered indeterminate.
 
   * Inputs:
-    * `$duration.x` is an [ISO8601] XML duration string to be
-      compared to `$duration.y`.
-    * `$duration.y` is an [ISO8601] XML duration string to be
-      compared to `$duration.x`.
+    * `$duration.x` is a duration string to be compared to `$duration.y`.
+    * `$duration.y` is a duration string to be compared to `$duration.x`.
+    * `$pattern` is an optional pattern describing the type of duration 
+      specified by the `$duration.x` and `$duration.y` strings. Defaults 
+      to an [ISO8601] XML string.
   * Outputs:
-    * `$lesser?` is true if `$duration.x` is a smaller duration than
+    * `$lesser?` is true if `$duration.x` is a smaller duration than 
       `$duration.y`.
     * `$equal?` is true if `$duration.x` is equivalent to `$duration.y`.
     * `$greater?` is true if `$duration.x` is larger than `$duration.y`.
-    * `$indeterminate?` is true if `$duration.x` and `$duration.y` cannot be
+    * `$indeterminate?` is true if `$duration.x` and `$duration.y` cannot be 
       compared.
 
 * #### tundra.duration:format
 
   Formats the given duration string according to the desired pattern.
 
-  A start instant may be required when formatting fields with indeterminate
-  values, such as converting months to days (because the number of days in
-  a month varies).
+  A start instant may be required when formatting fields with 
+  indeterminate values, such as converting months to days (because the 
+  number of days in a month varies).
 
   * Inputs:
     * `$duration` is a duration string to be formatted.
-    * `$datetime` is an optional [ISO8601] XML datetime string used as a
-      starting instant to resolve indeterminate values (such as the number
-      of days in a month).
-    * `$pattern.input` is an optional pattern describing the type of duration
-      specified by the `$duration` string. Defaults to an [ISO8601] XML
-      string.
+    * `$pattern.input` is an optional pattern describing the type of 
+      duration specified by the `$duration` string. Defaults to an 
+      [ISO8601] XML string.
     * `$pattern.output` is an optional desired pattern used to format the
       `$duration` string. Defaults to an [ISO8601] XML string.
+    * `$datetime` is an optional datetime string used as a
+      starting instant to resolve indeterminate values (such as the 
+      number of days in a month).
+    * `$datetime.pattern` is an optional datetime pattern that `$datetime` 
+      conforms to, that will be used to parse the datetime string. 
+      Defaults to an [ISO8601] XML datetime.
+
   * Outputs:
     * `$duration` is the duration string formatted according to
       `$pattern.output`.
@@ -3295,40 +3306,60 @@ Services for manipulating durations of time:
 
   Multiplies the given duration by the given factor.
 
-  A start instant may be required when formatting fields with indeterminate
-  values, such as converting months to days (because the number of days in
-  a month varies).
+  A start instant may be required when formatting fields with 
+  indeterminate values, such as converting months to days (because the 
+  number of days in a month varies).
 
   * Inputs:
-    * `$duration` is an [ISO8601] XML duration string to be multiplied.
-    * `$datetime` is an optional [ISO8601] XML datetime string used as a
-      starting instant to resolve indeterminate values (such as the number
-      of days in a month).
-    * `$factor` is a signed decimal used to muliply the given `$duration`.
+    * `$duration` is an duration string to be multiplied.
+    * `$pattern.input` is an optional pattern describing the type of 
+      duration specified by the `$duration` string. Defaults to an 
+      [ISO8601] XML string.
+    * `$pattern.output` is an optional desired pattern used to format the
+      returned `$duration` string. Defaults to an [ISO8601] XML string.
+    * `$datetime` is an optional datetime string used as a starting 
+      instant to resolve indeterminate values (such as the number of 
+      days in a month).
+    * `$datetime.pattern` is an optional datetime pattern that `$datetime` 
+      conforms to, that will be used to parse the datetime string. 
+      Defaults to an [ISO8601] XML datetime.
+    * `$factor` is a signed decimal used to multiply the given `$duration`.
   * Outputs:
-    * `$duration` is the duration string multiplied by the given `$factor`.
+    * `$duration` is the duration string multiplied by the given `$factor` 
+      and formatted according to `$pattern.output`.
 
 * #### tundra.duration:negate
 
   Reverses the sign of the given duration.
 
   * Inputs:
-    * `$duration` is an [ISO8601] XML duration string to be multiplied.
+    * `$duration` is an duration string to be negated.
+    * `$pattern.input` is an optional pattern describing the type of 
+      duration specified by the `$duration` string. Defaults to an 
+      [ISO8601] XML string.
+    * `$pattern.output` is an optional desired pattern used to format the
+      returned `$duration` string. Defaults to an [ISO8601] XML string.
+
   * Outputs:
-    * `$duration` is the negated [ISO8601] XML duration string.
+    * `$duration` is the negated duration string, formatted according to 
+      `$pattern.output`.
 
 * #### tundra.duration:subtract
 
-  Subtracts one duration (x) to another (y), returning (x - y).
+  Subtracts one duration (x) from another (y), returning (x - y).
 
   * Inputs:
-    * `$duration.x` is an [ISO8601] XML duration string to subtract
-      `$duration.y` from.
-    * `$duration.y` is an [ISO8601] XML duration string to be
-      subtracted from `$duration.x`.
+    * `$duration.x` is a duration string to subtract `$duration.y` from.
+    * `$duration.y` is a duration string to be subtracted from 
+      `$duration.x`.
+    * `$pattern.input` is an optional pattern describing the type of 
+      duration specified by the `$duration.x` and `$duration.y` strings. 
+      Defaults to an [ISO8601] XML string.
+    * `$pattern.output` is an optional desired pattern used to format the
+      returned `$duration` string. Defaults to an [ISO8601] XML string.
   * Outputs:
-    * `$duration` is an [ISO8601] XML duration string equal to
-      (`$duration.x` - `$duration.y`).
+    * `$duration` is a duration string equal to (`$duration.x` - `$duration.y`), 
+      and formatted according to `$pattern.output`.
 
 ### Exception
 
@@ -5219,34 +5250,45 @@ Services for manipulating document (com.wm.data.IData) lists:
 
 * #### tundra.list.duration:format
 
-  Formats a list of duration strings according to the desired
-  pattern.
+  Formats a list of duration strings according to the desired 
+  pattern.  
 
-  A start instant may be required when formatting fields with
-  indeterminate values, such as converting months to days
+  A start instant may be required when formatting fields with 
+  indeterminate values, such as converting months to days 
   (because the number of days in a month varies).
 
   * Inputs:
     * `$list` is a list of duration strings to be reformatted.
-    * `$datetime` is an [ISO8601] XML datetime string used as a
-      start instant for resolving indeterminate durations (such
-      as the number of days in a month).
-    * `$pattern.input` is the duration pattern the given list of
+    * `$pattern.input` is the duration pattern the given `$list` of 
       duration strings adhere to.
-    * `$pattern.output` is the desired duration pattern the list
-      of duration strings will be reformatted according to.
+    * `$pattern.output` is the desired duration pattern the `$list` of 
+      duration strings will be reformatted according to.
+    * `$datetime` is an optional datetime string used as a start 
+      instant for resolving indeterminate durations (such as the 
+      number of days in a month).
+    * `$datetime.pattern` is an optional datetime pattern that `$datetime` 
+      conforms to, that will be used to parse the datetime string. 
+      Defaults to an [ISO8601] XML datetime.
+  * Outputs:
+    * `$list` is the given list of duration strings formatted according 
+      to `$pattern.output`.
 
 * #### tundra.list.duration:sum
 
-  Returns the sum of all the given durations, returning
+  Returns the sum of all the given durations, returning 
   (x1 + x2 + ... + xn).
 
   * Inputs:
-    * `$list` is a list of [ISO8601] XML duration strings to
-      be added together.
+    * `$list` is a list of [ISO8601] XML duration strings to be added 
+      together.
+    * `$pattern.input` is an optional pattern describing the type of 
+      duration strings in `$list`. Defaults to an [ISO8601] XML string.
+    * `$pattern.output` is an optional desired pattern used to format 
+      the returned `$duration` string. Defaults to an [ISO8601] XML 
+      string.
   * Outputs:
-    * `$duration` is the sum of the duration strings in the
-      given list in [ISO8601] XML format.
+    * `$duration` is the sum of the duration strings in the given list 
+      in [ISO8601] XML format.
 
 ### Object List
 

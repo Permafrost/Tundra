@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-12-11 08:53:50.725
-// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
+// -----( CREATED: 2014-11-03 13:23:34.522
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -34,19 +34,21 @@ public final class duration
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:1:optional $list
-		// [i] field:0:optional $datetime
 		// [i] field:0:optional $pattern.input {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
 		// [i] field:0:optional $pattern.output {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;}
+		// [i] field:0:optional $datetime
+		// [i] field:0:optional $datetime.pattern {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
 		// [o] field:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String[] list = IDataUtil.getStringArray(cursor, "$list");
-		  String datetime = IDataUtil.getString(cursor, "$datetime");
 		  String inPattern = IDataUtil.getString(cursor, "$pattern.input");
 		  String outPattern = IDataUtil.getString(cursor, "$pattern.output");
+		  String datetime = IDataUtil.getString(cursor, "$datetime");
+		  String datetimePattern = IDataUtil.getString(cursor, "$datetime.pattern");
 		  
-		  IDataUtil.put(cursor, "$list", format(list, inPattern, outPattern, datetime));
+		  IDataUtil.put(cursor, "$list", tundra.duration.format(list, inPattern, outPattern, datetime, datetimePattern));
 		} finally {
 		  cursor.destroy();
 		}
@@ -64,12 +66,17 @@ public final class duration
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:1:optional $list
+		// [i] field:0:optional $pattern.input {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
+		// [i] field:0:optional $pattern.output {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;}
 		// [o] field:0:required $duration
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String[] list = IDataUtil.getStringArray(cursor, "$list");
-		  IDataUtil.put(cursor, "$duration", sum(list));
+		  String inPattern = IDataUtil.getString(cursor, "$pattern.input");
+		  String outPattern = IDataUtil.getString(cursor, "$pattern.output");
+		
+		  IDataUtil.put(cursor, "$duration", tundra.duration.add(list, inPattern, outPattern));
 		} finally {
 		  cursor.destroy();
 		}
@@ -77,27 +84,5 @@ public final class duration
 
                 
 	}
-
-	// --- <<IS-START-SHARED>> ---
-	// formats a list of duration strings to the desired pattern
-	public static String[] format(String[] durations, String inPattern, String outPattern) {
-	  return tundra.duration.format(durations, inPattern, outPattern);
-	}
-	
-	// formats a list of duration strings to the desired pattern
-	public static String[] format(String[] durations, String inPattern, String outPattern, String datetime) {
-	  return tundra.duration.format(durations, inPattern, outPattern, datetime);
-	}
-	
-	// returns the sum of the given durations
-	public static String sum(String[] durations, String pattern) {
-	  return tundra.duration.add(durations, pattern);
-	}
-	
-	// returns the sum of the given durations
-	public static String sum(String[] durations) {
-	  return tundra.duration.add(durations);
-	}
-	// --- <<IS-END-SHARED>> ---
 }
 

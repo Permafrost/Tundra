@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-07-27 08:59:58 EST
-// -----( ON-HOST: 172.16.189.176
+// -----( CREATED: 2014-11-03 13:50:28.642
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -35,13 +35,18 @@ public final class duration
 		// @sigtype java 3.5
 		// [i] field:0:optional $duration.x
 		// [i] field:0:optional $duration.y
+		// [i] field:0:optional $pattern.input {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
+		// [i] field:0:optional $pattern.output {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
 		// [o] field:0:required $duration
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  String x = IDataUtil.getString(cursor, "$duration.x");
-		  String y = IDataUtil.getString(cursor, "$duration.y");
-		  IDataUtil.put(cursor, "$duration", add(x, y));
+		  String dx = IDataUtil.getString(cursor, "$duration.x");
+		  String dy = IDataUtil.getString(cursor, "$duration.y");
+		  String inPattern = IDataUtil.getString(cursor, "$pattern.input");
+		  String outPattern = IDataUtil.getString(cursor, "$pattern.output");
+		
+		  IDataUtil.put(cursor, "$duration", add(inPattern, outPattern, dx, dy));
 		} finally {
 		  cursor.destroy();
 		}
@@ -60,6 +65,7 @@ public final class duration
 		// @sigtype java 3.5
 		// [i] field:0:optional $duration.x
 		// [i] field:0:optional $duration.y
+		// [i] field:0:optional $pattern {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
 		// [o] field:0:required $lesser?
 		// [o] field:0:required $equal?
 		// [o] field:0:required $greater?
@@ -69,8 +75,9 @@ public final class duration
 		try {
 		  String x = IDataUtil.getString(cursor, "$duration.x");
 		  String y = IDataUtil.getString(cursor, "$duration.y");
+		  String pattern = IDataUtil.getString(cursor, "$pattern");
 		
-		  int comparison = compare(x, y);
+		  int comparison = compare(x, y, pattern);
 		
 		  boolean lesser        = comparison == javax.xml.datatype.DatatypeConstants.LESSER;
 		  boolean equal         = comparison == javax.xml.datatype.DatatypeConstants.EQUAL;
@@ -98,9 +105,10 @@ public final class duration
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $duration
-		// [i] field:0:optional $datetime
 		// [i] field:0:optional $pattern.input {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
 		// [i] field:0:optional $pattern.output {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;}
+		// [i] field:0:optional $datetime
+		// [i] field:0:optional $datetime.pattern {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
 		// [o] field:0:optional $duration
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -109,8 +117,9 @@ public final class duration
 		  String datetime = IDataUtil.getString(cursor, "$datetime");
 		  String inPattern = IDataUtil.getString(cursor, "$pattern.input");
 		  String outPattern = IDataUtil.getString(cursor, "$pattern.output");
-		  
-		  duration = format(duration, inPattern, outPattern, datetime);
+		  String datetimePattern = IDataUtil.getString(cursor, "$datetime.pattern");
+		
+		  duration = format(duration, inPattern, outPattern, datetime, datetimePattern);
 		
 		  if (duration != null) IDataUtil.put(cursor, "$duration", duration);
 		} finally {
@@ -130,17 +139,23 @@ public final class duration
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $duration
+		// [i] field:0:optional $pattern.input {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
+		// [i] field:0:optional $pattern.output {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
 		// [i] field:0:optional $datetime
+		// [i] field:0:optional $datetime.pattern {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
 		// [i] field:0:optional $factor
 		// [o] field:0:optional $duration
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String duration = IDataUtil.getString(cursor, "$duration");
+		  String inPattern = IDataUtil.getString(cursor, "$pattern.input");
+		  String outPattern = IDataUtil.getString(cursor, "$pattern.output");
 		  String datetime = IDataUtil.getString(cursor, "$datetime");
+		  String datetimePattern = IDataUtil.getString(cursor, "$datetime.pattern");
 		  String factor = IDataUtil.getString(cursor, "$factor");
 		
-		  duration = multiply(duration, factor, datetime);
+		  duration = multiply(duration, factor, datetime, inPattern, outPattern, datetimePattern);
 		
 		  if (duration != null) IDataUtil.put(cursor, "$duration", duration);
 		} finally {
@@ -160,12 +175,18 @@ public final class duration
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $duration
+		// [i] field:0:optional $pattern.input {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
+		// [i] field:0:optional $pattern.output {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
 		// [o] field:0:optional $duration
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String duration = IDataUtil.getString(cursor, "$duration");
-		  duration = negate(duration);
+		  String inPattern = IDataUtil.getString(cursor, "$pattern.input");
+		  String outPattern = IDataUtil.getString(cursor, "$pattern.output");
+		
+		  duration = negate(duration, inPattern, outPattern);
+		
 		  if (duration != null) IDataUtil.put(cursor, "$duration", duration);
 		} finally {
 		  cursor.destroy();
@@ -185,13 +206,20 @@ public final class duration
 		// @sigtype java 3.5
 		// [i] field:0:optional $duration.x
 		// [i] field:0:optional $duration.y
+		// [i] field:0:optional $pattern.input {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
+		// [i] field:0:optional $pattern.output {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
 		// [o] field:0:optional $duration
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String x = IDataUtil.getString(cursor, "$duration.x");
 		  String y = IDataUtil.getString(cursor, "$duration.y");
-		  IDataUtil.put(cursor, "$duration", subtract(x, y));
+		  String inPattern = IDataUtil.getString(cursor, "$pattern.input");
+		  String outPattern = IDataUtil.getString(cursor, "$pattern.output");
+		
+		  String result = subtract(x, y, inPattern, outPattern);
+		
+		  if (result != null) IDataUtil.put(cursor, "$duration", result);
 		} finally {
 		  cursor.destroy();
 		}
@@ -229,7 +257,12 @@ public final class duration
 	
 	// formats a duration string to the desired pattern
 	public static String format(String duration, String inPattern, String outPattern, String datetime) {
-	  return emit(parse(duration, inPattern), outPattern, datetime);
+	  return format(duration, inPattern, outPattern, datetime, null);
+	}
+	
+	// formats a duration string to the desired pattern
+	public static String format(String duration, String inPattern, String outPattern, String datetime, String datetimePattern) {
+	  return emit(parse(duration, inPattern), outPattern, datetime, datetimePattern);
 	}
 	
 	// formats a list of duration strings to the desired pattern
@@ -239,41 +272,61 @@ public final class duration
 	
 	// formats a list of duration strings to the desired pattern
 	public static String[] format(String[] durations, String inPattern, String outPattern, String datetime) {
+	  return format(durations, inPattern, outPattern, datetime, null);
+	}
+	
+	// formats a list of duration strings to the desired pattern
+	public static String[] format(String[] durations, String inPattern, String outPattern, String datetime, String datetimePattern) {
 	  String[] results = null;
 	  if (durations != null) {
 	    results = new String[durations.length];
 	
 	    for (int i = 0; i < durations.length; i++) {
-	      results[i] = tundra.duration.format(durations[i], inPattern, outPattern, datetime);
+	      results[i] = tundra.duration.format(durations[i], inPattern, outPattern, datetime, datetimePattern);
 	    }
 	  }
 	  return results;
 	}
 	
 	// returns the sum of the given durations
-	public static String add(String[] durations, String pattern) {
+	public static String add(String[] durations, String inPattern, String outPattern) {
 	  javax.xml.datatype.Duration dz = factory().newDuration(0);
 	  if (durations != null) {
 	    for (int i = 0; i < durations.length; i++) {
-	      javax.xml.datatype.Duration dx = parse(durations[i], pattern);
+	      javax.xml.datatype.Duration dx = parse(durations[i], inPattern);
 	      if (dx != null) dz = dz.add(dx);
 	    }
 	  }
-	  return emit(dz, pattern);
+	  return emit(dz, outPattern);
 	}
 	
 	// returns the sum of the given durations
-	public static String add(String ... durations) {
+	public static String add(String[] durations) {
 	  return add(durations, null);
+	}
+	
+	// returns the sum of the given durations
+	public static String add(String[] durations, String pattern) {
+	  return add(durations, pattern, pattern);
+	}
+	
+	// returns the sum of the given durations
+	public static String add(String inPattern, String outPattern, String ... durations) {
+	  return add(durations, inPattern, outPattern);
+	}
+	
+	// subtracts one duration from another returning (x - y)
+	public static String subtract(String x, String y, String inPattern, String outPattern) {
+	  javax.xml.datatype.Duration dx = x == null? factory().newDuration(0) : parse(x, inPattern);
+	  javax.xml.datatype.Duration dy = y == null? factory().newDuration(0) : parse(y, inPattern);
+	  javax.xml.datatype.Duration dz = dx.subtract(dy);
+	  return emit(dz, outPattern);
+	
 	}
 	
 	// subtracts one duration from another returning (x - y)
 	public static String subtract(String x, String y, String pattern) {
-	  javax.xml.datatype.Duration dx = x == null? factory().newDuration(0) : parse(x, pattern);
-	  javax.xml.datatype.Duration dy = y == null? factory().newDuration(0) : parse(y, pattern);
-	  javax.xml.datatype.Duration dz = dx.subtract(dy);
-	  return emit(dz, pattern);
-	
+	  return subtract(x, y, pattern, null);
 	}
 	
 	// subtracts one duration from another returning (x - y)
@@ -362,15 +415,20 @@ public final class duration
 	  return emit(input, pattern, null);
 	}
 	
+	// returns an xml formatted duration string
+	public static String emit(javax.xml.datatype.Duration input, String pattern, String datetime) {
+	  return emit(input, pattern, datetime, null);
+	}
+	
 	// returns a formatted duration string for the given period
-	private static String emit(javax.xml.datatype.Duration input, String pattern, String datetime) {
+	private static String emit(javax.xml.datatype.Duration input, String pattern, String datetime, String datetimePattern) {
 	  if (pattern == null) pattern = DEFAULT_DURATION_PATTERN;
 	  
 	  java.util.Date instant = null;
 	  if (datetime == null) {
 	    instant = new java.util.Date();
 	  } else {
-	    instant = javax.xml.bind.DatatypeConverter.parseDateTime(datetime).getTime();  
+	    instant = tundra.datetime.parse(datetime, datetimePattern).getTime();
 	  }
 	  
 	  String output = null;
@@ -399,28 +457,33 @@ public final class duration
 	}
 	
 	// computes a new duration by multiplying the given duration by the given factor
-	public static String multiply(String duration, String factor, String datetime, String pattern) {
+	public static String multiply(String duration, String factor, String datetime, String inPattern, String outPattern, String datetimePattern) {
 	  if (duration == null || factor == null) return duration;
 	
 	  java.util.Calendar instant = null;
 	  if (datetime == null) {
 	    instant = java.util.Calendar.getInstance();
 	  } else {
-	    instant = javax.xml.bind.DatatypeConverter.parseDateTime(datetime);
+	    instant = tundra.datetime.parse(datetime, datetimePattern);
 	  }
 	
-	  return emit(parse(duration, pattern).normalizeWith(instant).multiply(new java.math.BigDecimal(factor)), pattern);
+	  return emit(parse(duration, inPattern).normalizeWith(instant).multiply(new java.math.BigDecimal(factor)), outPattern);
 	}
 	
 	// computes a new duration by multiplying the given duration by the given factor
 	public static String multiply(String duration, String factor, String datetime) {
-	  return multiply(duration, factor, datetime, null);
+	  return multiply(duration, factor, datetime, null, null, null);
+	}
+	
+	// reverses the sign of the given duration
+	public static String negate(String duration, String inPattern, String outPattern) {
+	  if (duration == null) return null;
+	  return emit(parse(duration, inPattern).negate(), outPattern);
 	}
 	
 	// reverses the sign of the given duration
 	public static String negate(String duration, String pattern) {
-	  if (duration == null) return null;
-	  return emit(parse(duration, pattern).negate(), pattern);
+	  return negate(duration, pattern, null);
 	}
 	
 	// reverses the sign of the given duration
