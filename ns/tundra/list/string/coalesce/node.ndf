@@ -48,7 +48,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$item</value>
+          <value name="field_name">$default</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -62,6 +62,71 @@
                 <value name="ncName">string</value>
               </record>
             </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_usereditable">false</value>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="field_name">$mode</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <array name="field_options" type="value" depth="1">
+            <value>missing</value>
+            <value>null</value>
+          </array>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <array name="enumeration" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="primitiveType">0</value>
+                <value name="lexRep">missing</value>
+                <value name="isList">false</value>
+              </record>
+              <record javaclass="com.wm.util.Values">
+                <value name="primitiveType">0</value>
+                <value name="lexRep">null</value>
+                <value name="isList">false</value>
+              </record>
+            </array>
+            <value name="contentType">1</value>
+            <value name="internalType">instance</value>
+            <value name="ct_class">com.wm.lang.schema.datatypev2.WmString</value>
+            <value name="name">string_customized</value>
+            <array name="parent-ancestors" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">anySimpleType</value>
+              </record>
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">anyType</value>
+              </record>
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">string</value>
+              </record>
+            </array>
+            <record name="baseType" javaclass="com.wm.util.Values">
+              <record name="whiteSpace" javaclass="com.wm.util.Values">
+                <record name="FacetWSCValue" javaclass="com.wm.util.Values">
+                  <value name="cDecimalValue">3</value>
+                </record>
+                <value name="facetFixed">false</value>
+              </record>
+              <value name="contentType">1</value>
+              <value name="internalType">instance</value>
+              <value name="ct_class">com.wm.lang.schema.datatypev2.WmString</value>
+              <value name="dataTypeVersion">dtVersion2</value>
+            </record>
+            <value name="dataTypeVersion">dtVersion2</value>
           </record>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
@@ -108,15 +173,20 @@
     </record>
   </record>
   <value name="node_comment">Returns the first string in the given list that is not null, or if 
-all strings in the list are null, then the given item.
+all strings in the list are null then the given item.
 
 * Inputs:
-  * $list is an optional list of string.
-  * $item is an optional string, included for convenience when using 
-    this service in a map step.
+  * $list is an optional list of strings.
+  * $default is an optional string, included for convenience when using 
+    this service in a map step and providing a default value.
+  * $mode determines what is returned when all arguments are null:
+    * missing: $item is not returned when all arguments are null. 
+      This is the default, if $mode is not specified.
+    * null: $item is returned as null when all arguments are null.
 * Outputs:
   * $item is the first string in the given $list that is not null, 
-    or the given input $item if it is not null.</value>
+    or the given input $item if it is not null, or null if all 
+    other values were null and $mode is 'null'.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

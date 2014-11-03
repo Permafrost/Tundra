@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-11-03 15:40:05.964
+// -----( CREATED: 2014-11-04 08:30:58.034
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -61,17 +61,19 @@ public final class object
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:1:optional $list
-		// [i] object:0:optional $item
+		// [i] object:0:optional $default
+		// [i] field:0:optional $mode {&quot;missing&quot;,&quot;null&quot;}
 		// [o] object:0:optional $item
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  Object[] list = IDataUtil.getObjectArray(cursor, "$list");
-		  Object item = IDataUtil.get(cursor, "$item");
+		  Object defaultValue = IDataUtil.get(cursor, "$default");
+		  String mode = IDataUtil.getString(cursor, "$mode");
 		
-		  Object result = coalesce(list, item);
+		  Object result = coalesce(list, defaultValue);
 		
-		  if (result != null) IDataUtil.put(cursor, "$item", result);
+		  if (result != null || (mode != null && mode.equals("null"))) IDataUtil.put(cursor, "$item", result);
 		} finally {
 		  cursor.destroy();
 		}

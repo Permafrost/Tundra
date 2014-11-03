@@ -5315,11 +5315,16 @@ Services for manipulating java.lang.Object lists:
 
   * Inputs:
     * `$list` is an optional list of objects.
-    * `$item` is an optional object, included for convenience when using 
-      this service in a map step.
+    * `$default` is an optional object, included for convenience when using 
+      this service in a map step and providing a default value.
+    * `$mode` determines what is returned when all arguments are null:
+      * `missing`: `$item` is not returned when all arguments are null. 
+        This is the default, if `$mode` is not specified.
+      * `null`: `$item` is returned as null when all arguments are null.
   * Outputs:
     * `$item` is the first object in the given `$list` that is not null, 
-      or the given input `$item` if it is not null.
+      or the given input `$item` if it is not null, or null if all 
+      other values were null and `$mode` is 'null'.
 
 * #### tundra.list.object:compact
 
@@ -5822,15 +5827,20 @@ Services for manipulating string lists:
 * #### tundra.list.string:coalesce
 
   Returns the first string in the given list that is not null, or if 
-  all strings in the list are null, then the given item.
+  all strings in the list are null then the given item.
 
   * Inputs:
-    * `$list` is an optional list of string.
-    * `$item` is an optional string, included for convenience when using 
-      this service in a map step.
+    * `$list` is an optional list of strings.
+    * `$default` is an optional string, included for convenience when using 
+      this service in a map step and providing a default value.
+    * `$mode` determines what is returned when all arguments are null:
+      * `missing`: `$item` is not returned when all arguments are null. 
+        This is the default, if `$mode` is not specified.
+      * `null`: `$item` is returned as null when all arguments are null.
   * Outputs:
     * `$item` is the first string in the given `$list` that is not null, 
-      or the given input `$item` if it is not null.
+      or the given input `$item` if it is not null, or null if all 
+      other values were null and `$mode` is 'null'.
 
 * #### tundra.list.string:compact
 
@@ -6533,11 +6543,19 @@ Services for manipulating java.lang.Object objects:
 Returns the first object argument that is not null.
 
 * Inputs:
-  * $object.x is an optional object argument.
-  * $object.y is an optional object argument.
+  * `$object.x` is an optional object argument.
+  * `$object.y` is an optional object argument.
+  * `$mode` determines what is returned when all
+    arguments are null:
+    * `missing`: `$object` is not returned when all
+      arguments are null. This is the default, if
+      `$mode` is not specified.
+    * `null`: `$object` is returned as null when all
+      arguments are null.  
 * Outputs:
-  * $object is the first of the given arguments 
-    whose value is not null.
+  * `$object` is the first of the given arguments 
+    whose value is not null, or null if all 
+    arguments were null and `$mode` is 'null'.
 
 * #### tundra.object:convert
 
@@ -7858,9 +7876,17 @@ Services for manipulating java.lang.String objects:
   * Inputs:
     * `$string.x` is an optional string argument.
     * `$string.y` is an optional string argument.
+    * `$mode` determines what is returned when all
+      arguments are null:
+      * `missing`: `$string` is not returned when all
+        arguments are null. This is the default, if
+        `$mode` is not specified.
+      * `null`: `$string` is returned as null when all
+        arguments are null.
   * Outputs:
     * `$string` is the first of the given arguments 
-      whose value is not null.
+      whose value is not null, or null if all 
+      arguments were null and `$mode` is 'null'.
 
 * #### tundra.string:compare
 

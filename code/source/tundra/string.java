@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-11-03 15:04:22.101
+// -----( CREATED: 2014-11-04 08:28:02.505
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -151,16 +151,18 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:0:optional $string.x
 		// [i] field:0:optional $string.y
+		// [i] field:0:optional $mode {&quot;missing&quot;,&quot;null&quot;}
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String x = IDataUtil.getString(cursor, "$string.x");
 		  String y = IDataUtil.getString(cursor, "$string.y");
+		  String mode = IDataUtil.getString(cursor, "$mode");
 		
 		  String result = tundra.object.coalesce(x, y);
 		
-		  if (result != null) IDataUtil.put(cursor, "$string", result);
+		  if (result != null || (mode != null && mode.equals("null"))) IDataUtil.put(cursor, "$string", result);
 		} finally {
 		  cursor.destroy();
 		}
