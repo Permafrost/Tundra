@@ -137,10 +137,10 @@ document.
     be returned, and can be simple or fully qualified, such as 
     a/b/c[0]/d.
   * $default.object is an optional value to be returned when either
-    the given $key does not exist, or its associated value is null.
+    the given $key does not exist or its associated value is null.
   * $default.string is an optional string value, provided for 
     convenience when hard-coding a default value, to be returned 
-    when either the given $key does not exist, or its associated 
+    when either the given $key does not exist or its associated 
     value is null.
 
 * Outputs:
