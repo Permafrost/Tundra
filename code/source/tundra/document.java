@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-10-20 20:30:59 EST
-// -----( ON-HOST: 172.16.189.176
+// -----( CREATED: 2014-11-03 10:58:28.759
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -344,13 +344,20 @@ public final class document
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
 		// [i] field:0:optional $key
+		// [i] object:0:optional $default.object
+		// [i] field:0:optional $default.string
 		// [o] object:0:optional $value
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  String key = IDataUtil.getString(cursor, "$key");
-		  IDataUtil.put(cursor, "$value", tundra.support.document.get(document, key));
+		  Object defaultObject = IDataUtil.get(cursor, "$default.object");
+		  if (defaultObject == null) defaultObject = IDataUtil.getString(cursor, "$default.string");
+		
+		  Object value = tundra.support.document.get(document, key, defaultObject);
+		
+		  if (value != null) IDataUtil.put(cursor, "$value", value);
 		} finally {
 		  cursor.destroy();
 		}

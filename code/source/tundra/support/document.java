@@ -1,7 +1,7 @@
 package tundra.support;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-06-24 13:02:35.585
+// -----( CREATED: 2014-11-03 10:54:36.434
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -35,7 +35,7 @@ public final class document
 		// @sigtype java 3.5
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 	// --- <<IS-START-SHARED>> ---
@@ -43,11 +43,11 @@ public final class document
 	public static class Key {
 	  public static final String SEPARATOR = "/";
 	  public static final java.util.regex.Pattern INDEX_PATTERN = java.util.regex.Pattern.compile("\\[(-?\\d+?)\\]$");
-
+	
 	  protected boolean hasIndex = false;
 	  protected int index = 0;
 	  protected String key = null;
-
+	
 	  public Key(String key) {
 	    java.util.regex.Matcher matcher = INDEX_PATTERN.matcher(key);
 	    StringBuffer buffer = new StringBuffer();
@@ -59,60 +59,70 @@ public final class document
 	    matcher.appendTail(buffer);
 	    this.key = buffer.toString();
 	  }
-
+	
 	  public boolean hasIndex() {
 	    return hasIndex;
 	  }
-
+	
 	  public int getIndex() {
 	    return index;
 	  }
-
+	
 	  public String toString() {
 	    return key;
 	  }
-
+	
 	  public static java.util.Queue<Key> parse(String key) {
 	    String[] parts = key.split(SEPARATOR);
 	    java.util.Queue<Key> queue = new java.util.ArrayDeque<Key>(parts.length);
-
+	
 	    for (int i = 0; i < parts.length; i++) {
 	      queue.add(new Key(parts[i]));
 	    }
 	    return queue;
 	  }
-
+	
 	  public static boolean isFullyQualified(String key) {
 	    return key != null && (key.contains(SEPARATOR) || INDEX_PATTERN.matcher(key).find());
 	  }
 	}
-
-	// returns the value associated with the given key from the given IData document
-	public static Object get(IData input, String key) {
-	  Object value = null;
-	  if (input != null && key != null) {
-	    // try finding a value that matches the literal key
-	    IDataCursor cursor = input.getCursor();
-	    try {
-	      value = IDataUtil.get(cursor, key);
-	    } finally {
-	      cursor.destroy();
-	    }
-
-	    // if value wasn't found using the literal key, the key could be fully qualified
-	    if (value == null && Key.isFullyQualified(key)) value = get(input, Key.parse(key));
-	  }
+	
+	// returns the value associated with the given key from the given IData document, or
+	// if null returns the given defaultValue
+	public static Object get(IData input, String key, Object defaultValue) {
+	  Object value = get(input, key);
+	  if (value == null) value = defaultValue;
+	
 	  return value;
 	}
-
+	
+	// returns the value associated with the given key from the given IData document
+	public static Object get(IData input, String key) {
+	  if (input == null || key == null) return null;
+	
+	  Object value = null;
+	  // try finding a value that matches the literal key
+	  IDataCursor cursor = input.getCursor();
+	  try {
+	    value = IDataUtil.get(cursor, key);
+	  } finally {
+	    cursor.destroy();
+	  }
+	
+	  // if value wasn't found using the literal key, the key could be fully qualified
+	  if (value == null && Key.isFullyQualified(key)) value = get(input, Key.parse(key));
+	  
+	  return value;
+	}
+	
 	// gets a value from an IData document with a fully qualified key
 	protected static Object get(IData input, java.util.Queue<Key> keys) {
 	  Object value = null;
-
+	
 	  if (input != null && keys != null && keys.size() > 0) {
 	    IDataCursor cursor = input.getCursor();
 	    Key key = keys.remove();
-
+	
 	    if (keys.size() > 0) {
 	      if (key.hasIndex()) {
 	        value = IDataUtil.get(cursor, key.toString());
@@ -142,26 +152,26 @@ public final class document
 	        value = IDataUtil.get(cursor, key.toString());
 	      }
 	    }
-
+	
 	    cursor.destroy();
 	  }
-
+	
 	  return value;
 	}
-
+	
 	// sets the value associated with the given key in the given IData document
 	public static IData put(IData input, String key, Object value) {
 	  return put(input, key == null ? null : Key.parse(key), value);
 	}
-
+	
 	// sets the value associated with the given fully qualified key in the given IData document
 	protected static IData put(IData input, java.util.Queue<Key> keys, Object value) {
 	  if (keys != null && keys.size() > 0) {
 	    if (input == null) input = IDataFactory.create();
-
+	
 	    IDataCursor cursor = input.getCursor();
 	    Key key = keys.remove();
-
+	
 	    if (keys.size() > 0) {
 	      if (key.hasIndex()) {
 	        IData[] array = IDataUtil.getIDataArray(cursor, key.toString());
@@ -185,23 +195,23 @@ public final class document
 	    IDataUtil.put(cursor, key.toString(), value);
 	    cursor.destroy();
 	  }
-
+	
 	  return input;
 	}
-
+	
 	// converts a java.util.Map object to an IData object
 	public static IData toIData(java.util.Map<String, Object> input) {
 	  if (input == null) return null;
-
+	
 	  IData output = IDataFactory.create();
 	  IDataCursor cursor = output.getCursor();
-
+	
 	  java.util.Iterator<String> keys = input.keySet().iterator();
-
+	
 	  while(keys.hasNext()) {
 	    String key = keys.next();
 	    Object value = input.get(key);
-
+	
 	    if (value != null) {
 	      if (value instanceof java.util.Map) {
 	        value = toIData((java.util.Map)value);
@@ -209,40 +219,40 @@ public final class document
 	        value = toIDataArray((java.util.List)value);
 	      }
 	    }
-
+	
 	    IDataUtil.put(cursor, key, value);
 	  }
-
+	
 	  cursor.destroy();
-
+	
 	  return output;
 	}
-
+	
 	// converts a java.util.List object to an IData[] object
 	public static IData[] toIDataArray(java.util.List<java.util.Map<String, Object>> input) {
 	  if (input == null) return null;
-
+	
 	  int size = input.size();
 	  IData[] output = new IData[size];
-
+	
 	  for (int i = 0; i < size; i++) {
 	    output[i] = toIData(input.get(i));
 	  }
-
+	
 	  return output;
 	}
-
+	
 	// converts an IData object to a java.util.Map object
 	public static java.util.Map<String, Object> toMap(IData input) {
 	  if (input == null) return null;
-
+	
 	  IDataCursor cursor = input.getCursor();
 	  int size = IDataUtil.size(cursor);
 	  cursor.destroy();
 	  cursor = input.getCursor();
-
+	
 	  java.util.Map<String, Object> output = new java.util.LinkedHashMap<String, Object>(size);
-
+	
 	  while(cursor.next()) {
 	    String key = cursor.getKey();
 	    Object value = cursor.getValue();
@@ -255,22 +265,22 @@ public final class document
 	    }
 	    output.put(key, value);
 	  }
-
+	
 	  cursor.destroy();
-
+	  
 	  return output;
 	}
-
+	
 	// converts an IData[] object to a java.util.List object
 	public static java.util.List<java.util.Map<String, Object>> toList(IData[] input) {
 	  if (input == null) return null;
-
+	
 	  java.util.List<java.util.Map<String, Object>> output = new java.util.ArrayList<java.util.Map<String, Object>>(input.length);
-
+	
 	  for (int i = 0; i < input.length; i++) {
 	    output.add(toMap(input[i]));
 	  }
-
+	
 	  return output;
 	}
 	// --- <<IS-END-SHARED>> ---
