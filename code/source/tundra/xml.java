@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-10-12 11:46:33 EST
+// -----( CREATED: 2014-11-06 19:18:00 EST
 // -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
@@ -83,7 +83,7 @@ public final class xml
 		  boolean valid = content != null && (errors == null || errors.length == 0);
 		
 		  IDataUtil.put(cursor, "$valid?", "" + valid);
-		  if (!valid) IDataUtil.put(cursor, "$errors", errors);
+		  if (!valid && errors != null) IDataUtil.put(cursor, "$errors", errors);
 		} catch (java.io.UnsupportedEncodingException ex) {
 		  tundra.exception.raise(ex);
 		} finally {
