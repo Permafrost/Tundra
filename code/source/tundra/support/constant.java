@@ -1,8 +1,8 @@
 package tundra.support;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-11-06 19:38:04 EST
-// -----( ON-HOST: 172.16.189.176
+// -----( CREATED: 2014-11-07 09:06:25.812
+// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -33,12 +33,19 @@ public final class constant
 		// --- <<IS-START(list)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [o] field:0:required $encoding.default
+		// [o] record:0:required $tundra.constants
+		// [o] - field:0:required encoding.default
+		// [o] - object:0:required buffer.length.default
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  IDataUtil.put(cursor, "$encoding.default", DEFAULT_CHARACTER_ENCODING);
-		  IDataUtil.put(cursor, "$buffer.length.default", DEFAULT_BUFFER_SIZE);
+		  IData constants = IDataFactory.create();
+		  IDataCursor cc = constants.getCursor();
+		  IDataUtil.put(cc, "encoding.default", DEFAULT_CHARACTER_ENCODING);
+		  IDataUtil.put(cc, "buffer.length.default", DEFAULT_BUFFER_SIZE);
+		  cc.destroy();
+		
+		  IDataUtil.put(cursor, "$tundra.constants", constants);
 		} finally {
 		  cursor.destroy();
 		}
