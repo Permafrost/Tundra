@@ -7,6 +7,7 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -20,6 +21,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$content</value>
           <value name="field_type">object</value>
           <value name="field_dim">0</value>
@@ -36,6 +38,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$service</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -61,6 +64,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$pipeline</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
@@ -70,6 +74,7 @@
           <value name="is_global">false</value>
           <array name="rec_fields" type="record" depth="1">
           </array>
+          <value name="modifiable">true</value>
         </record>
         <record javaclass="com.wm.util.Values">
           <value name="node_type">unknown</value>
@@ -79,6 +84,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$content.type.input</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -106,6 +112,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$content.type.output</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -132,6 +139,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$namespace.input</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
@@ -141,6 +149,7 @@
           <value name="is_global">false</value>
           <array name="rec_fields" type="record" depth="1">
           </array>
+          <value name="modifiable">true</value>
         </record>
         <record javaclass="com.wm.util.Values">
           <value name="node_type">record</value>
@@ -149,6 +158,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$namespace.output</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
@@ -158,6 +168,7 @@
           <value name="is_global">false</value>
           <array name="rec_fields" type="record" depth="1">
           </array>
+          <value name="modifiable">true</value>
         </record>
         <record javaclass="com.wm.util.Values">
           <value name="node_type">record</value>
@@ -167,6 +178,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$schema.input</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -194,6 +206,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$schema.output</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -221,6 +234,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$service.input</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -248,6 +262,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$service.output</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -275,6 +290,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$encoding.input</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -291,6 +307,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$encoding.output</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -307,6 +324,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$mode.output</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -371,9 +389,11 @@
           <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -387,6 +407,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$contents</value>
           <value name="field_type">object</value>
           <value name="field_dim">1</value>
@@ -403,6 +424,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$content.types</value>
           <value name="field_type">string</value>
           <value name="field_dim">1</value>
@@ -430,6 +452,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$namespaces</value>
           <value name="field_type">record</value>
           <value name="field_dim">1</value>
@@ -440,6 +463,7 @@
           <value name="is_soap_array_encoding_used">false</value>
           <array name="rec_fields" type="record" depth="1">
           </array>
+          <value name="modifiable">true</value>
         </record>
         <record javaclass="com.wm.util.Values">
           <value name="node_type">record</value>
@@ -448,6 +472,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$schemas</value>
           <value name="field_type">string</value>
           <value name="field_dim">1</value>
@@ -469,6 +494,7 @@
           <value name="is_soap_array_encoding_used">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">One-to-many conversion of content in one format to another format. Calls the 
@@ -612,11 +638,11 @@ Emitter implementions for the supported content types are as follows:
 
   * $encoding.input is an optional character set used to decode the text 
     data if $content is provided as a byte array or input stream. Defaults 
-    to the Java virtual machine [default charset].
+    to [UTF-8].
 
   * $encoding.output is an optional character set used to encode the split
     text datum if the specified $mode.output is a byte array or stream. 
-    Defaults to the Java virtual machine [default charset].
+    Defaults to [UTF-8].
 
   * $mode.output is an optional choice of stream, bytes, or string which 
     specifies the type of object each item in $contents is returned as. 
@@ -634,9 +660,9 @@ Emitter implementions for the supported content types are as follows:
     $contents list contains unlike formats.
 
 [CSV]: &lt;http://en.wikipedia.org/wiki/Comma-separated_values&gt;
-[default charset]: &lt;http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()&gt;
 [JSON]: &lt;http://www.json.org&gt;
 [TSV]: &lt;http://en.wikipedia.org/wiki/Tab-separated_values&gt;
+[UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;
 [XML]: &lt;http://www.w3.org/XML/&gt;
 [YAML]: &lt;http://www.yaml.org&gt;</value>
   <value name="stateless">no</value>
@@ -655,10 +681,16 @@ Emitter implementions for the supported content types are as follows:
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
 </Values>

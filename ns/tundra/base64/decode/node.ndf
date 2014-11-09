@@ -162,26 +162,24 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">[Base64][1] decodes the given string, byte array, or input stream.
+  <value name="node_comment">[Base64] decodes the given string, byte array, or input stream.
 
 * Inputs:
-  * $base64 is either a base-64 encoded string, byte array, or input stream to 
-    be decoded.
-
-  * $encoding is the optional character set used to decode the text data when 
-    $base64 is provided as a byte array or input stream. Defaults to the Java
-    virtual machine [default charset][2]. Not used when $base64 is provided as a 
+  * $base64 is either a [Base64] encoded string, byte array, or 
+    input stream to be decoded.
+  * $encoding is the optional character set used to decode the text 
+    data when $base64 is provided as a byte array or input stream. 
+    Defaults to [UTF-8]. Not used when $base64 is provided as a 
     string.
-
-  * $mode is an optional choice of {stream, bytes, string} which determines the 
-    type of the output $content object. Defaults to stream.
-
+  * $mode is an optional choice of stream, bytes, or string which 
+    determines the type of the output $content object. Defaults to 
+    stream.
 * Outputs:
-  * $content is the base-64 decoded data as a string, byte array, or input stream 
-    (depending on the $mode chosen).
+  * $content is the [Base64] decoded data as a string, byte array, 
+    or input stream (depending on the $mode chosen).
 
-[1]: &lt;http://en.wikipedia.org/wiki/Base64&gt;
-[2]: &lt;http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()&gt;</value>
+[Base64]: &lt;http://en.wikipedia.org/wiki/Base64&gt;
+[UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

@@ -471,17 +471,16 @@ Services for encoding and decoding base64 strings.
   [Base64] decodes the given string, byte array, or input stream.
 
   * Inputs:
-    * `$base64` is either a base-64 encoded string, byte array, or input
+    * `$base64` is either a [Base64] encoded string, byte array, or input
       stream to be decoded.
     * `$encoding` is the optional character set used to decode the text data
       when `$base64` is provided as a byte array or input stream. Defaults to
-      the Java virtual machine [default charset]. Not used when `$base64` is
-      provided as a string.
-    * `$mode` is an optional choice of {stream, bytes, string} which
+      [UTF-8]. Not used when `$base64` is provided as a string.
+    * `$mode` is an optional choice of stream, bytes, or string which
       determines the type of the output `$content` object. Defaults to
       stream.
   * Outputs:
-    * `$content` is the base-64 decoded data as a string, byte array, or
+    * `$content` is the [Base64] decoded data as a string, byte array, or
       input stream (depending on the `$mode` chosen).
 
 * #### tundra.base64:encode
@@ -490,18 +489,15 @@ Services for encoding and decoding base64 strings.
 
   * Inputs:
     * `$content` is either a string, byte array, or input stream containing
-      data to be base-64 encoded.
+      data to be [Base64] encoded.
     * `$encoding` is the optional character set used to decode the text data
       when `$content` is provided as a byte array or input stream. Defaults
-      to the Java virtual machine [default charset]. Not used when `$base64`
-      is provided as a string.
-    * `$mode` is an optional choice of {stream, bytes, string} which
+      to [UTF-8]. Not used when `$base64` is provided as a string.
+    * `$mode` is an optional choice of stream, bytes, or string which
       determines the type of the output `$base64` object. Defaults to stream.
   * Outputs:
-    * `$base64` is the base-64 encoded data as a string, byte array, or input
+    * `$base64` is the [Base64] encoded data as a string, byte array, or input
       stream (depending on the `$mode` chosen).
-
-[Base64]: <http://en.wikipedia.org/wiki/Base64>
 
 ### Boolean
 
@@ -567,8 +563,7 @@ Services for manipulating byte arrays:
   * Inputs:
     * `$object` is the string, byte array or input stream to be normalized.
     * `$encoding` is the optional character set to use to encode `$object`
-      when it is a string. Defaults to the Java virtual machine
-      [default charset].
+      when it is a string. Defaults to [UTF-8].
   * Outputs:
     * `$bytes` is a byte array representation of the input `$object` data.
 
@@ -682,10 +677,10 @@ content.
       `$schema` are specified.
     * `$encoding.input` is an optional character set used to decode the text
       data if `$content` is provided as a byte array or input stream.
-      Defaults to the Java virtual machine [default charset].
+      Defaults to [UTF-8].
     * `$encoding.output` is an optional character set used to encode the
       amended text data if `$mode.output` is a byte array or input stream.
-      Defaults to the Java virtual machine [default charset].
+      Defaults to [UTF-8].
     * `$mode.output` is an optional choice of stream, bytes, or string which
       specifies the type of object `$content` is returned as. Defaults to
       stream.
@@ -763,7 +758,7 @@ content.
       nor `$schema` are specified.
     * `$encoding` is an optional character set to use when `$content` is
       provided as a string or IData document used to encode the text data
-      upon delivery. Defaults to the Java virtual machine [default charset].
+      upon delivery. Defaults to [UTF-8].
     * `$destination` is a URI identifying the location where the given
       `$content` should be delivered. If not specified, no delivery will be
       attempted. Supports the following delivery protocols / URI schemes:
@@ -987,8 +982,7 @@ content.
       Defaults to serializing `$document` as [XML], if neither
       `$content.type` nor `$schema` are specified.
     * `$encoding` is an optional character set to use when encoding the
-      resulting text data to a byte array or input stream. Defaults to the
-      Java virtual machine [default charset].
+      resulting text data to a byte array or input stream. Defaults to [UTF-8].
     * `$mode` is an optional choice of {stream, bytes, string} which
       specifies the type of object `$content` is returned as. Defaults to
       stream.
@@ -1051,7 +1045,7 @@ content.
       `$schema` are specified.
     * `$encoding` is an optional character set to use when `$content` is
       provided as a byte array or input stream to decode the contained text
-      data. Defaults to the Java virtual machine [default charset].
+      data. Defaults to [UTF-8].
   * Outputs:
     * `$document` is the resulting IData document representing the parsed
       `$content`.
@@ -1275,10 +1269,10 @@ content.
       `$service`. Defaults to `$documents`.
     * `$encoding.input` is an optional character set used to decode the text
       data if `$content` is provided as a byte array or input stream.
-      Defaults to the Java virtual machine [default charset].
+      Defaults to [UTF-8].
     * `$encoding.output` is an optional character set used to encode the
       split text datum if the specified `$mode.output` is a byte array or
-      stream. Defaults to the Java virtual machine [default charset].
+      stream. Defaults to [UTF-8].
     * `$mode.output` is an optional choice of stream, bytes, or string which
       specifies the type of object each item in `$contents` is returned as.
       Defaults to stream.
@@ -1403,10 +1397,10 @@ content.
       `$service`. Defaults to `$translation`.
     * `$encoding.input` is an optional character set used to decode the text
       data if `$content` is provided as a byte array or input stream.
-      Defaults to the Java virtual machine [default charset].
+      Defaults to [UTF-8].
     * `$encoding.output` is an optional character set used to encode the
       translated text data if the specified `$mode.output` is a byte array or
-      stream. Defaults to the Java virtual machine [default charset].
+      stream. Defaults to [UTF-8].
     * `$mode.output` is an optional choice of stream, bytes, or string which
       specifies the type of object `$translation` is returned as. Defaults to
       stream.
@@ -1429,8 +1423,7 @@ content.
     * `$delimiter` is the character to use to delimit fields in the resulting
       serialization. Defaults to ',' (comma), if not specified.
     * `$encoding` is an optional character set to use when encoding the
-      resulting text data to a byte array or input stream. Defaults to the
-      Java virtual machine [default charset].
+      resulting text data to a byte array or input stream. Defaults to [UTF-8].
     * `$mode` is an optional choice of {stream, bytes, string} which
       specifies the type of object `$content` is returned as. Defaults to
       stream.
@@ -1465,7 +1458,7 @@ content.
       `$content`. Defaults to ',' (comma), if not specified.
     * `$encoding` is an optional character set to use when `$content` is
       provided as a byte array or input stream to decode the contained text
-      data. Defaults to the Java virtual machine [default charset].
+      data. Defaults to [UTF-8].
   * Outputs:
     * `$document` is the resulting IData document containing a list of
       records representing the parsed `$content`.
@@ -2404,22 +2397,6 @@ Services for manipulating com.wm.data.IData objects:
   * Inputs:
     * `$document` is the IData document to be serialized and delivered to the
       given destination URI.
-    * `$encoding` is an optional character set used to encode the serialized
-      document data upon delivery. Defaults to the Java virtual machine
-      [default charset].
-    * `$schema` is an optional input which determines whether to serialize
-      the document as [XML], [JSON], Flat File, and can have the following
-      values:
-      * For [XML] content, specify the fully-qualified name of the document
-        reference that defines the [XML] format
-      * For [JSON] content specify the MIME media type "application/json"
-      * For Flat File content specify the fully-qualified name of the flat
-        file schema that defines the Flat File format
-
-      Defaults to serializing `$content` as [XML], if no `$schema` is
-      specified.
-    * `$content.type` is an optional MIME media type describing the type
-      content being delivered.
     * `$destination` is a URI identifying the location where the serialized
       document should be delivered. Supports the following delivery protocols
       (URI schemes):
@@ -2528,6 +2505,22 @@ Services for manipulating com.wm.data.IData objects:
           the SAP Adapter alias language, if not specified.
         * `$queue` is the optional name of the SAP system inbound queue,
           required when using queued remote function calls (qRFC).
+
+    * `$content.type` is an optional MIME media type describing the type
+      content being delivered.
+    * `$schema` is an optional input which determines whether to serialize
+      the document as [XML], [JSON], Flat File, and can have the following
+      values:
+      * For [XML] content, specify the fully-qualified name of the document
+        reference that defines the [XML] format.
+      * For [JSON] content specify the MIME media type "application/json".
+      * For Flat File content specify the fully-qualified name of the flat
+        file schema that defines the Flat File format.
+
+      Defaults to serializing `$content` as [XML], if no `$schema` is
+      specified.
+    * `$encoding` is an optional character set used to encode the serialized
+      document data upon delivery. Defaults to [UTF-8].
     * `$pipeline` is an optional IData document for providing arbitrary
       variables to the delivery implementation service.
   * Outputs:
@@ -2602,7 +2595,7 @@ Services for manipulating com.wm.data.IData objects:
     * `$document` is an IData document to be serialized.
     * `$encoding` is an optional character set used to encode the
       serialized document when returned as a byte array or input
-      stream. Defaults to the Java virtual machine [default charset].
+      stream. Defaults to [UTF-8].
     * `$mode` is an optional choice of 'stream', 'bytes', or
       'string', which determines the type of object returned by
       this service. Defaults to 'stream'.
@@ -2636,25 +2629,25 @@ Services for manipulating com.wm.data.IData objects:
 
 * #### tundra.document:get
 
-  Returns the value associated with the given key from the given IData 
+  Returns the value associated with the given key from the given IData
   document.
 
   * Inputs:
-    * `$document` is an IData document from which to fetch the first 
+    * `$document` is an IData document from which to fetch the first
       element.
-    * `$key` is the key identifying the value in the given document to 
-      be returned, and can be simple or fully qualified, such as 
+    * `$key` is the key identifying the value in the given document to
+      be returned, and can be simple or fully qualified, such as
       `a/b/c[0]/d`.
     * `$default.object` is an optional value to be returned when either
       the given `$key` does not exist or its associated value is null.
-    * `$default.string` is an optional string value, provided for 
-      convenience when hard-coding a default value, to be returned 
-      when either the given `$key` does not exist or its associated 
+    * `$default.string` is an optional string value, provided for
+      convenience when hard-coding a default value, to be returned
+      when either the given `$key` does not exist or its associated
       value is null.
   * Outputs:
-    * `$value` is the value associated with the given `$key` in the given 
-      IData document, or the given `$default.object` or `$default.string` 
-      if specified and the associated value for `$key` either does not 
+    * `$value` is the value associated with the given `$key` in the given
+      IData document, or the given `$default.object` or `$default.string`
+      if specified and the associated value for `$key` either does not
       exist or is null.
 
 * #### tundra.document.key:lowercase
@@ -2929,7 +2922,7 @@ Services for manipulating com.wm.data.IData objects:
       serialized IData document.
     * `$encoding` is an optional character set used to decode the
       `$content` when provided as a byte array or input stream. Defaults
-      to the Java virtual machine [default charset].
+      to [UTF-8].
   * Outputs:
     * `$document` is the resulting deserialized IData document.
 
@@ -3241,61 +3234,61 @@ Services for manipulating durations of time:
   * Inputs:
     * `$duration.x` is a duration string to be added to `$duration.y`.
     * `$duration.y` is a duration string to be added to `$duration.x`.
-    * `$pattern.input` is an optional pattern describing the type of 
-      duration specified by the `$duration.x` and `$duration.y` strings. 
+    * `$pattern.input` is an optional pattern describing the type of
+      duration specified by the `$duration.x` and `$duration.y` strings.
       Defaults to an [ISO8601] XML string.
-    * `$pattern.output` is an optional desired pattern used to format 
-      the returned `$duration` string. Defaults to an [ISO8601] XML 
+    * `$pattern.output` is an optional desired pattern used to format
+      the returned `$duration` string. Defaults to an [ISO8601] XML
       string.
 
   * Outputs:
-    * `$duration` is a duration string equal to (`$duration.x` + 
+    * `$duration` is a duration string equal to (`$duration.x` +
       `$duration.y`).
 
 * #### tundra.duration:compare
 
-  Compares one duration (x) to another (y), returning if the first is 
-  less than, equal to, greater than, or if the comparison is 
-  indeterminate. 
+  Compares one duration (x) to another (y), returning if the first is
+  less than, equal to, greater than, or if the comparison is
+  indeterminate.
 
-  Indeterminate comparisons occur when, for example, comparing 1 month 
-  with 30 days: as the result could change depending on the month in 
+  Indeterminate comparisons occur when, for example, comparing 1 month
+  with 30 days: as the result could change depending on the month in
   question, it is therefore considered indeterminate.
 
   * Inputs:
     * `$duration.x` is a duration string to be compared to `$duration.y`.
     * `$duration.y` is a duration string to be compared to `$duration.x`.
-    * `$pattern` is an optional pattern describing the type of duration 
-      specified by the `$duration.x` and `$duration.y` strings. Defaults 
+    * `$pattern` is an optional pattern describing the type of duration
+      specified by the `$duration.x` and `$duration.y` strings. Defaults
       to an [ISO8601] XML string.
   * Outputs:
-    * `$lesser?` is true if `$duration.x` is a smaller duration than 
+    * `$lesser?` is true if `$duration.x` is a smaller duration than
       `$duration.y`.
     * `$equal?` is true if `$duration.x` is equivalent to `$duration.y`.
     * `$greater?` is true if `$duration.x` is larger than `$duration.y`.
-    * `$indeterminate?` is true if `$duration.x` and `$duration.y` cannot be 
+    * `$indeterminate?` is true if `$duration.x` and `$duration.y` cannot be
       compared.
 
 * #### tundra.duration:format
 
   Formats the given duration string according to the desired pattern.
 
-  A start instant may be required when formatting fields with 
-  indeterminate values, such as converting months to days (because the 
+  A start instant may be required when formatting fields with
+  indeterminate values, such as converting months to days (because the
   number of days in a month varies).
 
   * Inputs:
     * `$duration` is a duration string to be formatted.
-    * `$pattern.input` is an optional pattern describing the type of 
-      duration specified by the `$duration` string. Defaults to an 
+    * `$pattern.input` is an optional pattern describing the type of
+      duration specified by the `$duration` string. Defaults to an
       [ISO8601] XML string.
     * `$pattern.output` is an optional desired pattern used to format the
       `$duration` string. Defaults to an [ISO8601] XML string.
     * `$datetime` is an optional datetime string used as a
-      starting instant to resolve indeterminate values (such as the 
+      starting instant to resolve indeterminate values (such as the
       number of days in a month).
-    * `$datetime.pattern` is an optional datetime pattern that `$datetime` 
-      conforms to, that will be used to parse the datetime string. 
+    * `$datetime.pattern` is an optional datetime pattern that `$datetime`
+      conforms to, that will be used to parse the datetime string.
       Defaults to an [ISO8601] XML datetime.
 
   * Outputs:
@@ -3306,26 +3299,26 @@ Services for manipulating durations of time:
 
   Multiplies the given duration by the given factor.
 
-  A start instant may be required when formatting fields with 
-  indeterminate values, such as converting months to days (because the 
+  A start instant may be required when formatting fields with
+  indeterminate values, such as converting months to days (because the
   number of days in a month varies).
 
   * Inputs:
     * `$duration` is an duration string to be multiplied.
-    * `$pattern.input` is an optional pattern describing the type of 
-      duration specified by the `$duration` string. Defaults to an 
+    * `$pattern.input` is an optional pattern describing the type of
+      duration specified by the `$duration` string. Defaults to an
       [ISO8601] XML string.
     * `$pattern.output` is an optional desired pattern used to format the
       returned `$duration` string. Defaults to an [ISO8601] XML string.
-    * `$datetime` is an optional datetime string used as a starting 
-      instant to resolve indeterminate values (such as the number of 
+    * `$datetime` is an optional datetime string used as a starting
+      instant to resolve indeterminate values (such as the number of
       days in a month).
-    * `$datetime.pattern` is an optional datetime pattern that `$datetime` 
-      conforms to, that will be used to parse the datetime string. 
+    * `$datetime.pattern` is an optional datetime pattern that `$datetime`
+      conforms to, that will be used to parse the datetime string.
       Defaults to an [ISO8601] XML datetime.
     * `$factor` is a signed decimal used to multiply the given `$duration`.
   * Outputs:
-    * `$duration` is the duration string multiplied by the given `$factor` 
+    * `$duration` is the duration string multiplied by the given `$factor`
       and formatted according to `$pattern.output`.
 
 * #### tundra.duration:negate
@@ -3334,14 +3327,14 @@ Services for manipulating durations of time:
 
   * Inputs:
     * `$duration` is an duration string to be negated.
-    * `$pattern.input` is an optional pattern describing the type of 
-      duration specified by the `$duration` string. Defaults to an 
+    * `$pattern.input` is an optional pattern describing the type of
+      duration specified by the `$duration` string. Defaults to an
       [ISO8601] XML string.
     * `$pattern.output` is an optional desired pattern used to format the
       returned `$duration` string. Defaults to an [ISO8601] XML string.
 
   * Outputs:
-    * `$duration` is the negated duration string, formatted according to 
+    * `$duration` is the negated duration string, formatted according to
       `$pattern.output`.
 
 * #### tundra.duration:subtract
@@ -3350,15 +3343,15 @@ Services for manipulating durations of time:
 
   * Inputs:
     * `$duration.x` is a duration string to subtract `$duration.y` from.
-    * `$duration.y` is a duration string to be subtracted from 
+    * `$duration.y` is a duration string to be subtracted from
       `$duration.x`.
-    * `$pattern.input` is an optional pattern describing the type of 
-      duration specified by the `$duration.x` and `$duration.y` strings. 
+    * `$pattern.input` is an optional pattern describing the type of
+      duration specified by the `$duration.x` and `$duration.y` strings.
       Defaults to an [ISO8601] XML string.
     * `$pattern.output` is an optional desired pattern used to format the
       returned `$duration` string. Defaults to an [ISO8601] XML string.
   * Outputs:
-    * `$duration` is a duration string equal to (`$duration.x` - `$duration.y`), 
+    * `$duration` is a duration string equal to (`$duration.x` - `$duration.y`),
       and formatted according to `$pattern.output`.
 
 ### Exception
@@ -3530,8 +3523,7 @@ File system services for working with files:
       'string' which determines how the file contents are
       returned. Defaults to 'stream'.
     * `$encoding` is an optional character set to use when reading
-      the file as a string. Defaults to the Java virtual machine
-      [default charset].
+      the file as a string. Defaults to [UTF-8].
   * Outputs:
     * `$content` is the file contents returned as either an input
       stream, byte array, or string depending on the `$mode`
@@ -3671,8 +3663,7 @@ File system services for working with files:
     * `$content` is a string, byte array, or input stream containing data
       to be written or appended to the given file.
     * `$encoding` is an optional character set to use when $content has
-      been provided as a string. Defaults to the Java virtual machine
-      [default charset].
+      been provided as a string. Defaults to [UTF-8].
   * Outputs:
     * `$file` is the name of the file that was written or appended to. If
       no input file name was specified, this is the name of the temporary
@@ -3690,8 +3681,7 @@ Services for compressing and decompressing data using the [gzip] format.
     * `$content` is the data to be compressed, specified as a string,
       byte array, or input stream.
     * `$encoding` is an optional character set used when `$content` is
-      specified as a string. Defaults to the Java virtual machine
-      [default charset].
+      specified as a string. Defaults to [UTF-8].
     * `$mode` is an optional choice of 'stream', 'bytes', or
       'string', which determines the type of object returned by
       this service. If the 'string' mode is chosen, the resulting
@@ -3708,7 +3698,7 @@ Services for compressing and decompressing data using the [gzip] format.
       specified as a base64-encoded string, byte array, or input stream.
     * `$encoding` is an optional character set used to decode the
       decompressed data when the chosen `$mode` is 'string'. Defaults to
-      the Java virtual machine [default charset].
+      the [UTF-8].
     * `$mode` is an optional choice of 'stream', 'bytes', or
       'string', which determines the type of object returned by
       this service. Defaults to 'stream'.
@@ -4010,8 +4000,7 @@ Services for working with arbitrary precision integers (uses
     * `$document` is the IData document to be serialized as a [JSON] string,
       byte array, or input stream.
     * `$encoding` is an optional character set to use when encoding the
-      resulting text data to a byte array or input stream. Defaults to the
-      Java virtual machine [default charset].
+      resulting text data to a byte array or input stream. Defaults to [UTF-8].
     * `$mode` is an optional choice of {stream, bytes, string} which
       specifies the type of object `$content` is returned as. Defaults to
       stream.
@@ -4040,7 +4029,7 @@ Services for working with arbitrary precision integers (uses
       content to be parsed.
     * `$encoding` is an optional character set to use when $content is
       provided as a byte array or input stream to decode the contained text
-      data. Defaults to the Java virtual machine [default charset].
+      data. Defaults to [UTF-8].
   * Outputs:
     * `$document` is the resulting IData document representing the parsed
       `$content`.
@@ -4158,8 +4147,7 @@ Services for working with arbitrary precision integers (uses
       Use this input argument when `$documents` contains like formats (for
       example, when all items adhere to the exact same [XML] schema).
     * `$encoding` is an optional character set to use when the `$mode`
-      selected is bytes or stream. Defaults to the Java virtual machine
-      [default charset].
+      selected is bytes or stream. Defaults to [UTF-8].
     * `$mode` is an optional choice of stream, bytes, or string which
       determines the type of object the documents are serialized to.
   * Outputs:
@@ -4344,10 +4332,9 @@ Services for working with arbitrary precision integers (uses
       `$document`.
     * `$encoding.input` is an optional character set to use when the
       `$contents` is provided as a list of input streams or byte arrays.
-      Defaults to the Java virtual machine [default charset].
+      Defaults to [UTF-8].
     * `$encoding.output` is an optional character set to use when the
-      `$mode.output` selected is bytes or stream. Defaults to the
-      Java virtual machine [default charset].
+      `$mode.output` selected is bytes or stream. Defaults to [UTF-8].
     * `$mode.output` is an optional choice of stream, bytes, or
       string, which determines the type of `$content` object returned.
       Defaults to stream.
@@ -4464,8 +4451,7 @@ Services for working with arbitrary precision integers (uses
       Defaults to parsing `$contents` as [XML], if neither `$content.types`,
       `$content.type`, `$schemas` nor `$schema` are specified.
     * `$encoding` is an optional character set to use when the `$contents` is
-      provided as a list of input streams or byte arrays. Defaults to the
-      Java virtual machine [default charset].
+      provided as a list of input streams or byte arrays. Defaults to [UTF-8].
   * Outputs:
     * `$documents` is an IData[] document list of the parsed `$contents`,
       where `$documents[n]` is the parsed version of `$contents[n]`.
@@ -4474,7 +4460,7 @@ Services for working with arbitrary precision integers (uses
 
 * #### tundra.list.datetime:format
 
-  Formats a list of datetime strings that conform to the input 
+  Formats a list of datetime strings that conform to the input
   pattern, according to the output pattern.
 
   Supports a handful of well-known named datetime patterns:
@@ -4487,7 +4473,7 @@ Services for working with arbitrary precision integers (uses
       date.jdbc      yyyy-mm-dd
       time           ISO8601 XML time
       time.jdbc      HH:mm:ss
-      milliseconds   Number of milliseconds since the Epoch, 
+      milliseconds   Number of milliseconds since the Epoch,
                      January 1, 1970 00:00:00.000 GMT (Gregorian)
 
   Custom datetime patterns can be specified using [java.text.
@@ -4495,26 +4481,26 @@ Services for working with arbitrary precision integers (uses
 
   * Inputs:
     * `$list` is a list of datetime strings to be formatted.
-    * `$pattern.input` is an optional datetime pattern that `$list` 
-      conforms to, that will be used to parse the datetime strings. 
+    * `$pattern.input` is an optional datetime pattern that `$list`
+      conforms to, that will be used to parse the datetime strings.
       Defaults to an [ISO8601] XML datetime.
-    * `$patterns.input` is an optional list of datetime patterns that 
-      `$list` might conform to, useful when the exact pattern is not 
-      known. A parse is attempted for each pattern until the first 
-      successful parse, or until all patterns have been tried in which 
+    * `$patterns.input` is an optional list of datetime patterns that
+      `$list` might conform to, useful when the exact pattern is not
+      known. A parse is attempted for each pattern until the first
+      successful parse, or until all patterns have been tried in which
       case an unparseable datetime exception will be thrown.
-    * `$pattern.output` is an optional datetime pattern that will be 
-      used to format the resulting `$list` strings. Defaults to an 
+    * `$pattern.output` is an optional datetime pattern that will be
+      used to format the resulting `$list` strings. Defaults to an
       [ISO8601] XML datetime.
-    * `$timezone.output` is an optional [java.util.TimeZone] ID, or a 
-      `(+|-)HH:mm` time zone offset, or an XML duration string 
-      representing a time zone offset, or a raw millisecond time zone 
-      offset, or `Z` for UTC, or `$default` for the default localhost time 
-      zone identifying the time zone the returned `$list` strings will 
+    * `$timezone.output` is an optional [java.util.TimeZone] ID, or a
+      `(+|-)HH:mm` time zone offset, or an XML duration string
+      representing a time zone offset, or a raw millisecond time zone
+      offset, or `Z` for UTC, or `$default` for the default localhost time
+      zone identifying the time zone the returned `$list` strings will
       be formatted with.
 
   * Outputs:
-    * `$list` is the resulting list of datetime strings formatted 
+    * `$list` is the resulting list of datetime strings formatted
       according to `$pattern.output` in the given `$timezone.output`.
 
 ### Document List
@@ -4674,17 +4660,17 @@ Services for manipulating document (com.wm.data.IData) lists:
 * #### tundra.list.document:group
 
   Groups the given IData document list items by the given keys. This
-  service can be used to process an IData document list in a way 
+  service can be used to process an IData document list in a way
   similar to a [SQL GROUP BY] clause.
 
   * Inputs:
     * `$list` is an IData document list whose items are to be grouped.
     * `$keys` is a String list containg the keys used to group like items
-      in `$list` together, and can be simple or fully qualified, such 
+      in `$list` together, and can be simple or fully qualified, such
       as `a/b/c[0]/d`.
   * Outputs:
-    * `$list.grouped` is an IData document list containing one item per 
-      each unique set of grouping key value tuples associated with 
+    * `$list.grouped` is an IData document list containing one item per
+      each unique set of grouping key value tuples associated with
       `$keys` from `$list`:
       * `group` is an IData document containing the keys and values
         that defined this group.
@@ -5225,69 +5211,69 @@ Services for manipulating document (com.wm.data.IData) lists:
 
 * #### tundra.list.document:values
 
-  Returns a list of values associated with the given key from the 
+  Returns a list of values associated with the given key from the
   respective item in the given `IData[]` document list.
 
   * Inputs:
     * `$list` is an `IData[]` document list.
-    * `$key` is the key for which the associated value from each item in 
-      the given `$list` will be returned, and can be simple or fully 
+    * `$key` is the key for which the associated value from each item in
+      the given `$list` will be returned, and can be simple or fully
       qualified, such as `a/b/c[0]/d`.
     * `$default.object` is an optional value to be returned when either
-      the given `$key` does not exist in an item or its associated value 
+      the given `$key` does not exist in an item or its associated value
       is null.
-    * `$default.string` is an optional string value, provided for 
-      convenience when hard-coding a default value, to be returned 
-      when either the given `$key` does not exist in an item or its 
+    * `$default.string` is an optional string value, provided for
+      convenience when hard-coding a default value, to be returned
+      when either the given `$key` does not exist in an item or its
       associated value is null.
   * Outputs:
-    * `$values` is the list of values associated with `$key` from the 
-      respective item in `$list`, or the given `$default.object` or 
-      `$default.string` if specified and the associated value for `$key` 
+    * `$values` is the list of values associated with `$key` from the
+      respective item in `$list`, or the given `$default.object` or
+      `$default.string` if specified and the associated value for `$key`
       either did not exist or was null in the respective item.
 
 ### Duration List
 
 * #### tundra.list.duration:format
 
-  Formats a list of duration strings according to the desired 
-  pattern.  
+  Formats a list of duration strings according to the desired
+  pattern.
 
-  A start instant may be required when formatting fields with 
-  indeterminate values, such as converting months to days 
+  A start instant may be required when formatting fields with
+  indeterminate values, such as converting months to days
   (because the number of days in a month varies).
 
   * Inputs:
     * `$list` is a list of duration strings to be reformatted.
-    * `$pattern.input` is the duration pattern the given `$list` of 
+    * `$pattern.input` is the duration pattern the given `$list` of
       duration strings adhere to.
-    * `$pattern.output` is the desired duration pattern the `$list` of 
+    * `$pattern.output` is the desired duration pattern the `$list` of
       duration strings will be reformatted according to.
-    * `$datetime` is an optional datetime string used as a start 
-      instant for resolving indeterminate durations (such as the 
+    * `$datetime` is an optional datetime string used as a start
+      instant for resolving indeterminate durations (such as the
       number of days in a month).
-    * `$datetime.pattern` is an optional datetime pattern that `$datetime` 
-      conforms to, that will be used to parse the datetime string. 
+    * `$datetime.pattern` is an optional datetime pattern that `$datetime`
+      conforms to, that will be used to parse the datetime string.
       Defaults to an [ISO8601] XML datetime.
   * Outputs:
-    * `$list` is the given list of duration strings formatted according 
+    * `$list` is the given list of duration strings formatted according
       to `$pattern.output`.
 
 * #### tundra.list.duration:sum
 
-  Returns the sum of all the given durations, returning 
+  Returns the sum of all the given durations, returning
   (x1 + x2 + ... + xn).
 
   * Inputs:
-    * `$list` is a list of [ISO8601] XML duration strings to be added 
+    * `$list` is a list of [ISO8601] XML duration strings to be added
       together.
-    * `$pattern.input` is an optional pattern describing the type of 
+    * `$pattern.input` is an optional pattern describing the type of
       duration strings in `$list`. Defaults to an [ISO8601] XML string.
-    * `$pattern.output` is an optional desired pattern used to format 
-      the returned `$duration` string. Defaults to an [ISO8601] XML 
+    * `$pattern.output` is an optional desired pattern used to format
+      the returned `$duration` string. Defaults to an [ISO8601] XML
       string.
   * Outputs:
-    * `$duration` is the sum of the duration strings in the given list 
+    * `$duration` is the sum of the duration strings in the given list
       in [ISO8601] XML format.
 
 ### Object List
@@ -5310,20 +5296,20 @@ Services for manipulating java.lang.Object lists:
 
 * #### tundra.list.object:coalesce
 
-  Returns the first object in the given list that is not null, or if 
+  Returns the first object in the given list that is not null, or if
   all objects in the list are null, then the given item.
 
   * Inputs:
     * `$list` is an optional list of objects.
-    * `$default` is an optional object, included for convenience when using 
+    * `$default` is an optional object, included for convenience when using
       this service in a map step and providing a default value.
     * `$mode` determines what is returned when all arguments are null:
-      * `missing`: `$item` is not returned when all arguments are null. 
+      * `missing`: `$item` is not returned when all arguments are null.
         This is the default, if `$mode` is not specified.
       * `null`: `$item` is returned as null when all arguments are null.
   * Outputs:
-    * `$item` is the first object in the given `$list` that is not null, 
-      or the given input `$item` if it is not null, or null if all 
+    * `$item` is the first object in the given `$list` that is not null,
+      or the given input `$item` if it is not null, or null if all
       other values were null and `$mode` is 'null'.
 
 * #### tundra.list.object:compact
@@ -5826,20 +5812,20 @@ Services for manipulating string lists:
 
 * #### tundra.list.string:coalesce
 
-  Returns the first string in the given list that is not null, or if 
+  Returns the first string in the given list that is not null, or if
   all strings in the list are null then the given item.
 
   * Inputs:
     * `$list` is an optional list of strings.
-    * `$default` is an optional string, included for convenience when using 
+    * `$default` is an optional string, included for convenience when using
       this service in a map step and providing a default value.
     * `$mode` determines what is returned when all arguments are null:
-      * `missing`: `$item` is not returned when all arguments are null. 
+      * `missing`: `$item` is not returned when all arguments are null.
         This is the default, if `$mode` is not specified.
       * `null`: `$item` is returned as null when all arguments are null.
   * Outputs:
-    * `$item` is the first string in the given `$list` that is not null, 
-      or the given input `$item` if it is not null, or null if all 
+    * `$item` is the first string in the given `$list` that is not null,
+      or the given input `$item` if it is not null, or null if all
       other values were null and `$mode` is 'null'.
 
 * #### tundra.list.string:compact
@@ -6164,8 +6150,7 @@ Services for manipulating string lists:
     * `$objects` is a list of strings, byte arrays, or input streams
       to be converted to a string.
     * `$encoding` is an optional character set to use when `$objects`
-      is a list of byte arrays or input streams. Defaults to the Java
-      virtual machine [default charset].
+      is a list of byte arrays or input streams. Defaults to [UTF-8].
   * Outputs:
     * `$strings` is the resulting list of strings.
 
@@ -6551,10 +6536,10 @@ Returns the first object argument that is not null.
       arguments are null. This is the default, if
       `$mode` is not specified.
     * `null`: `$object` is returned as null when all
-      arguments are null.  
+      arguments are null.
 * Outputs:
-  * `$object` is the first of the given arguments 
-    whose value is not null, or null if all 
+  * `$object` is the first of the given arguments
+    whose value is not null, or null if all
     arguments were null and `$mode` is 'null'.
 
 * #### tundra.object:convert
@@ -6569,8 +6554,7 @@ Returns the first object argument that is not null.
       'string', which determines the type of object returned by
       this service. Defaults to 'stream'.
     * `$encoding` is an optional character set to use when converting
-      from or to a string. Defaults to the Java virtual machine
-      [default charset].
+      from or to a string. Defaults to [UTF-8].
   * Outputs:
     * `$object` is the input object converted to be either a string,
       byte array, or input stream as determined by the selected
@@ -6709,8 +6693,7 @@ Returns the first object argument that is not null.
 
   * Inputs:
     * `$encoding` is an optional character set to use when $content is
-      returned as an input stream or byte array. Defaults to the Java
-      virtual machine [default charset].
+      returned as an input stream or byte array. Defaults to [UTF-8].
     * `$mode` is an optional choice of 'stream', 'bytes', or 'string',
       and determines the type of content object returned.
   * Outputs:
@@ -6817,8 +6800,7 @@ Returns the first object argument that is not null.
     * `$content` is a string, byte array, or input stream containing
       [IData XML] data to be parsed and merged into the pipeline.
     * `$encoding` is an optional character set to use when `$content` is
-      provided as a byte array or input stream. Defaults to the Java
-      virtual machine [default charset].
+      provided as a byte array or input stream. Defaults to [UTF-8].
 
 * #### tundra.pipeline:put
 
@@ -7345,7 +7327,7 @@ Document references and service specifications:
       content being delivered.
     * `$encoding` is an optional character set to use when `$content` is
       provided as a string to encode the text data upon delivery. Defaults
-      to the Java virtual machine [default charset].
+      to [UTF-8].
     * `$destination` is a parsed URI identifying the location where the given
       $content should be delivered.
   * Outputs:
@@ -7400,9 +7382,9 @@ Document references and service specifications:
       that has occurred.
     * `$exception.service` is the fully qualified name of the service that threw
       the exception.
-    * `$exception.package` is the package that `$exception.service` resides in, 
+    * `$exception.package` is the package that `$exception.service` resides in,
       specified only if `$exception.service` exists.
-    * `$exception.info` is the exception information returned by 
+    * `$exception.info` is the exception information returned by
       `WmPublic/pub.flow:getLastError`.
     * `$exception.stack` is the Java call stack describing where the error
       occurred.
@@ -7640,8 +7622,7 @@ Document references and service specifications:
       not specified, defaults to application/octet-stream (the mime type for
       arbitrary binary data).
     * `$encoding` is an optional character set used to encode $content when
-      specified as a string. Defaults to the Java virtual machine
-      [default charset].
+      specified as a string. Defaults to [UTF-8].
 
 * #### tundra.service:self
 
@@ -7751,8 +7732,8 @@ objects:
       [java.io.InputStream] object. If not specified, this service does
       nothing.
     * `$encoding` is the character set used to encode the character data
-      when `$object` is specified as a [java.lang.String]. Defaults to the
-      Java virtual machine [default charset].
+      when `$object` is specified as a [java.lang.String]. Defaults to
+      [UTF-8].
   * Outputs:
     * `$stream` is an optional [java.io.InputStream] object from which can
       be read the data represented by `$object`. If `$object` was not
@@ -7866,7 +7847,7 @@ Services for manipulating java.lang.String objects:
   * Inputs:
     * `$string` is a string to be split into characters.
   * Outputs:
-    * `$characters` is a list of the characters in the 
+    * `$characters` is a list of the characters in the
       given `$string`.
 
 * #### tundra.string:coalesce
@@ -7884,8 +7865,8 @@ Services for manipulating java.lang.String objects:
       * `null`: `$string` is returned as null when all
         arguments are null.
   * Outputs:
-    * `$string` is the first of the given arguments 
-      whose value is not null, or null if all 
+    * `$string` is the first of the given arguments
+      whose value is not null, or null if all
       arguments were null and `$mode` is 'null'.
 
 * #### tundra.string:compare
@@ -8009,8 +7990,7 @@ Services for manipulating java.lang.String objects:
     * `$object` is a string, byte array, or input stream to be
       converted to a string.
     * `$encoding` is an optional character set to use when `$object`
-      is a byte array or input stream. Defaults to the Java virtual
-      machine [default charset].
+      is a byte array or input stream. Defaults to [UTF-8].
   * Outputs:
     * `$string` is the given object converted to a string.
 
@@ -8183,31 +8163,31 @@ Services for manipulating java.lang.String objects:
 
 * #### tundra.system:reflect
 
-  Returns information about Integration Server, such as the software 
-  version, environment settings, Java properties, well-known directory 
+  Returns information about Integration Server, such as the software
+  version, environment settings, Java properties, well-known directory
   locations, and memory usage.
 
   * Outputs:
-    * `$system` is a returned IData document containing the software 
-      version, environment settings, Java properties, well-known 
+    * `$system` is a returned IData document containing the software
+      version, environment settings, Java properties, well-known
       directory locations, and memory usage.
-      * `version` is the Integration Server software version number for 
+      * `version` is the Integration Server software version number for
         the Integration Server on which this service is executed.
       * `environment` is an IData document containing all the environment
         variables defined on the system on which this service is executed.
-      * `properties` is an IData document containing all the Java 
-        configuration properties defined for the JVM process in which 
+      * `properties` is an IData document containing all the Java
+        configuration properties defined for the JVM process in which
         this service is executed.
       * `directories` is an IData document containing all the well-known
-        directory locations defined for the Integration Server on 
+        directory locations defined for the Integration Server on
         which this service is executed.
       * `memory` is an IData document containing the memory usage of the
         JVM process in which this service is executed:
-        * `used` is the number of bytes of memory allocated to the JVM 
+        * `used` is the number of bytes of memory allocated to the JVM
           heap that are in use.
-        * `free` is the number of bytes of memory allocated to the JVM 
+        * `free` is the number of bytes of memory allocated to the JVM
           heap that are not in use.
-        * `total` is the total number of bytes of memory allocated to 
+        * `total` is the total number of bytes of memory allocated to
           the JVM heap.
 
 ### Thread
@@ -8430,7 +8410,7 @@ strings.
     * `$string` is a string containing URI-encoded data to be decoded.
     * `$encoding` is the character set used to determine what characters are
       represented by any consecutive sequences of the form "%xy". Defaults
-      to the Java virtual machine [default charset].
+      to [UTF-8].
   * Outputs:
     * `$string` is the decoded input string.
 
@@ -8501,7 +8481,7 @@ strings.
   * Inputs:
     * `$string` is a string containing data to be URI-encoded.
     * `$encoding` is the character set used to obtain the bytes for unsafe
-      characters.. Defaults to the Java virtual machine [default charset].
+      characters. Defaults to [UTF-8].
   * Outputs:
     * `$string` is the URI-encoded input string.
 
@@ -8615,8 +8595,7 @@ strings.
       string, byte array, or input stream.
     * `$encoding` is an optional character set to use when `$content` is
       provided as a byte array or input stream to decode the contained
-      text data. Defaults to the Java virtual machine [default
-      charset].
+      text data. Defaults to [UTF-8].
     * `$algorithm` determines the canonicalization algorithm used, and
       is a choice of:
       * [Canonical XML Version 1.0]
@@ -8656,13 +8635,11 @@ strings.
     * `$content` is a string, byte array, or input stream potentially
       containing [XML] data.
     * `$content.encoding` is the character set used by `$content` if
-      provided as a byte array or input stream. Defaults to the Java virtual
-      machine [default charset].
+      provided as a byte array or input stream. Defaults to [UTF-8].
     * `$schema` is a string, byte array, or input stream containing [XSD]
       data.
     * `$schema.encoding` is the character set used by `$schema` if provided
-      as a byte array or input stream. Defaults to the Java virtual machine
-      [default charset].
+      as a byte array or input stream. Defaults to [UTF-8].
     * `$raise?` is an optional boolean flag, if true and `$content` is
       malformed or invalid an exception will be thrown. If false, no
       exception will be thrown. Defaults to false.
@@ -8683,8 +8660,7 @@ strings.
     * `$content` is a string, byte array, or input stream containing XML
       data.
     * `$encoding` is the character set used by `$content` if provided as a
-      byte array or input stream. Defaults to the Java virtual machine
-      [default charset].
+      byte array or input stream. Defaults to [UTF-8].
     * `$expression` is the [XPath expression] to be tested against
       `$content`.
   * Outputs:
@@ -8702,8 +8678,7 @@ strings.
     * `$document` is the IData document to be serialized as a [YAML] string,
       byte array, or input stream.
     * `$encoding` is an optional character set to use when encoding the
-      resulting text data to a byte array or input stream. Defaults to the
-      Java virtual machine [default charset].
+      resulting text data to a byte array or input stream. Defaults to [UTF-8].
     * `$mode` is an optional choice of stream, bytes, or string which
       specifies the type of object `$content` is returned as. Defaults to
       stream.
@@ -8732,7 +8707,7 @@ strings.
       content to be parsed.
     * `$encoding` is an optional character set to use when `$content` is
       provided as a byte array or input stream to decode the contained text
-      data. Defaults to the Java virtual machine [default charset].
+      data. Defaults to [UTF-8].
   * Outputs:
     * `$document` is the resulting IData document representing the parsed
       `$content`.
@@ -8751,8 +8726,7 @@ strings.
       * `content` is the data to be compressed, specified as either a
         string, byte array, or input stream.
       * `encoding` is an optional character set used when `content` is
-        specified as a string. Defaults to the Java virtual machine
-        [default charset].
+        specified as a string. Defaults to [UTF-8].
     * `$mode` is an optional choice of 'stream', 'bytes', or
       'string', which determines the type of object returned by
       this service. If the 'string' mode is chosen, the resulting
@@ -8769,7 +8743,7 @@ strings.
       specified as a base64-encoded string, byte array, or input stream.
     * `$encoding` is an optional character set used to decode the
       decompressed data when the chosen `$mode` is 'string'. Defaults to
-      the Java virtual machine [default charset].
+      [UTF-8].
     * `$mode` is an optional choice of 'stream', 'bytes', or 'string',
       which determines the type of content returned by this service.
       Defaults to 'stream'.
@@ -8801,6 +8775,7 @@ around.
 Copyright &copy; 2012 Lachlan Dowding. See license.txt for further details.
 
 [Apache Santuario]: <http://santuario.apache.org/>
+[Base64]: <http://en.wikipedia.org/wiki/Base64>
 [Canonical XML Version 1.0]: <http://www.w3.org/TR/2001/REC-xml-c14n-20010315>
 [Canonical XML Version 1.0 With Comments]: <http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments>
 [Canonical XML Version 1.1]: <http://www.w3.org/2006/12/xml-c14n11>
@@ -8864,6 +8839,7 @@ Copyright &copy; 2012 Lachlan Dowding. See license.txt for further details.
 [Tundra]: <https://github.com/Permafrost/Tundra>
 [TundraTN]: <https://github.com/Permafrost/TundraTN>
 [URI]: <http://www.w3.org/Addressing/>
+[UTF-8]: <http://en.wikipedia.org/wiki/UTF-8>
 [UUID]: <http://docs.oracle.com/javase/6/docs/api/java/util/UUID.html>
 [webMethods Integration Server]: <http://www.softwareag.com/corporate/products/wm/integration/products/ai/overview/default.asp>
 [webMethods Trading Networks]: <http://www.softwareag.com/corporate/products/wm/integration/products/b2b/overview/default.asp>

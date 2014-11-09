@@ -390,8 +390,7 @@ specification.
     $schema are specified.
 
   * $encoding is an optional character set used to encode the serialized 
-    document data upon delivery. Defaults to the Java virtual machine 
-    [default charset].
+    document data upon delivery. Defaults to [UTF-8].
 
   * $pipeline is an optional IData document for providing arbitrary 
     variables to the delivery implementation service.
@@ -406,7 +405,7 @@ specification.
   * $response.type is an optional MIME media type describing the type of 
     $response returned.
 
-[default charset]: &lt;http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()&gt;</value>
+[UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

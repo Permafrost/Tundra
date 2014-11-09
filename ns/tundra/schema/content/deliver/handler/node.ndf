@@ -525,8 +525,7 @@ must implement this specification.
   * $content.type is an optional MIME media type describing the type content 
     being delivered.
   * $encoding is an optional character set to use when $content is provided 
-    as a string to encode the text data upon delivery. Defaults to the Java 
-    virtual machine [default charset].
+    as a string to encode the text data upon delivery. Defaults to [UTF-8].
   * $destination is a parsed URI identifying the location where the given 
     $content should be delivered.
 
@@ -538,7 +537,7 @@ must implement this specification.
   * $response.type is an optional MIME media type describing the type of 
     $response returned.
 
-[default charset]: &lt;http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()&gt;</value>
+[UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

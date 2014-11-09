@@ -206,8 +206,7 @@ Implemented with the [Apache Santuario] XML Security library.
     string, byte array, or input stream.
   * $encoding is an optional character set to use when $content is 
     provided as a byte array or input stream to decode the contained 
-    text data. Defaults to the Java virtual machine [default 
-    charset].
+    text data. Defaults to [UTF-8].
   * $algorithm determines the canonicalization algorithm used, and 
     is a choice of:
     * [Canonical XML Version 1.0]
@@ -229,7 +228,8 @@ Implemented with the [Apache Santuario] XML Security library.
 [Canonical XML Version 1.1]: &lt;http://www.w3.org/2006/12/xml-c14n11&gt;
 [Canonical XML Version 1.1 With Comments]: &lt;http://www.w3.org/2006/12/xml-c14n11#WithComments&gt;
 [Exclusive Canonical XML Version 1.0]: &lt;http://www.w3.org/2001/10/xml-exc-c14n#&gt;
-[Exclusive Canonical XML Version 1.0 With Comments]: &lt;http://www.w3.org/2001/10/xml-exc-c14n#WithComments&gt;</value>
+[Exclusive Canonical XML Version 1.0 With Comments]: &lt;http://www.w3.org/2001/10/xml-exc-c14n#WithComments&gt;
+[UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
