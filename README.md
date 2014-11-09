@@ -7743,6 +7743,24 @@ objects:
 
 Services for manipulating java.lang.String objects:
 
+* #### tundra.string.base64:decode
+
+  [Base64] decodes the given string.
+
+  * Inputs:
+    * `$base64` is a [Base64] encoded string to be decoded.
+  * Outputs:
+    * `$string` is the [Base64] decoded data as a string.
+
+* #### tundra.string.base64:encode
+
+  [Base64] encodes the given string.
+
+  * Inputs:
+    * `$string` is a string containing data to be [Base64] encoded.
+  * Outputs:
+    * `$base64` is the [Base64] encoded data as a string.
+
 * #### tundra.string:blankify
 
   Returns an empty string if the given input string is null, otherwise
