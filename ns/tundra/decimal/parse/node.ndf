@@ -120,7 +120,6 @@
     java.math.BigInteger, java.lang.Double, java.lang.Float, 
     java.lang.Integer, or java.lang.Long. Defaults to java.math.BigDecimal, 
     if not specified.
-
 * Outputs:
   * $object is the resulting Java object representing the parsed decimal.
 

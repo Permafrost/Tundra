@@ -1952,7 +1952,20 @@ Services for working with arbitrary precision decimals (uses
       preserved in the result.
     * `$rounding` is an optional choice of the [rounding algorithm]
       to use when rounding the result to the specified `$precision`.
-      Defaults to the HALF_UP algorithm.
+      If not specifed, defaults to the `HALF_UP` algorithm.
+      * `HALF_UP` rounds towards "nearest neighbor" unless both
+        neighbors are equidistant, in which case rounds up.
+      * `CEILING` rounds towards positive infinity.
+      * `DOWN` rounds towards zero.
+      * `FLOOR` rounds towards negative infinity.
+      * `HALF_DOWN` rounds towards "nearest neighbor" unless both
+        neighbors are equidistant, in which case round down.
+      * `HALF_EVEN` rounds towards the "nearest neighbor" unless both
+        neighbors are equidistant, in which case, round towards the
+        even neighbor.
+      * `UNNECESSARY` asserts that the requested operation has an exact
+        result, and hence no rounding is necessary.
+      * `UP` rounds away from zero.
   * Outputs:
     * `$decimal` is the result of adding the given decimal values
       and rounding to the given precision using the nominated
@@ -1970,7 +1983,20 @@ Services for working with arbitrary precision decimals (uses
       preserved in the result.
     * `$rounding` is an optional choice of the [rounding algorithm]
       to use when rounding the result to the specified `$precision`.
-      Defaults to the HALF_UP algorithm.
+      If not specifed, defaults to the `HALF_UP` algorithm.
+      * `HALF_UP` rounds towards "nearest neighbor" unless both
+        neighbors are equidistant, in which case rounds up.
+      * `CEILING` rounds towards positive infinity.
+      * `DOWN` rounds towards zero.
+      * `FLOOR` rounds towards negative infinity.
+      * `HALF_DOWN` rounds towards "nearest neighbor" unless both
+        neighbors are equidistant, in which case round down.
+      * `HALF_EVEN` rounds towards the "nearest neighbor" unless both
+        neighbors are equidistant, in which case, round towards the
+        even neighbor.
+      * `UNNECESSARY` asserts that the requested operation has an exact
+        result, and hence no rounding is necessary.
+      * `UP` rounds away from zero.
   * Outputs:
     * `$decimal` is the result of averaging the given list of decimals
       and rounding to the given precision using the nominated
@@ -1988,8 +2014,21 @@ Services for working with arbitrary precision decimals (uses
     * `$precision` is an optional number of decimal places to be
       preserved in the result.
     * `$rounding` is an optional choice of the [rounding algorithm]
-      to use when rounding the result to the specified $precision.
-      Defaults to the HALF_UP algorithm.
+      to use when rounding the result to the specified `$precision`.
+      If not specifed, defaults to the `HALF_UP` algorithm.
+      * `HALF_UP` rounds towards "nearest neighbor" unless both
+        neighbors are equidistant, in which case rounds up.
+      * `CEILING` rounds towards positive infinity.
+      * `DOWN` rounds towards zero.
+      * `FLOOR` rounds towards negative infinity.
+      * `HALF_DOWN` rounds towards "nearest neighbor" unless both
+        neighbors are equidistant, in which case round down.
+      * `HALF_EVEN` rounds towards the "nearest neighbor" unless both
+        neighbors are equidistant, in which case, round towards the
+        even neighbor.
+      * `UNNECESSARY` asserts that the requested operation has an exact
+        result, and hence no rounding is necessary.
+      * `UP` rounds away from zero.
   * Outputs:
     * `$decimal` is the result of dividing `$decimal.x` by `$decimal.y`
       and rounding to the given precision using the nominated
@@ -2018,7 +2057,20 @@ Services for working with arbitrary precision decimals (uses
       preserved in the result.
     * `$rounding` is an optional choice of the [rounding algorithm]
       to use when rounding the result to the specified `$precision`.
-      Defaults to the HALF_UP algorithm.
+      If not specifed, defaults to the `HALF_UP` algorithm.
+      * `HALF_UP` rounds towards "nearest neighbor" unless both
+        neighbors are equidistant, in which case rounds up.
+      * `CEILING` rounds towards positive infinity.
+      * `DOWN` rounds towards zero.
+      * `FLOOR` rounds towards negative infinity.
+      * `HALF_DOWN` rounds towards "nearest neighbor" unless both
+        neighbors are equidistant, in which case round down.
+      * `HALF_EVEN` rounds towards the "nearest neighbor" unless both
+        neighbors are equidistant, in which case, round towards the
+        even neighbor.
+      * `UNNECESSARY` asserts that the requested operation has an exact
+        result, and hence no rounding is necessary.
+      * `UP` rounds away from zero.
   * Outputs:
     * `$decimal` is the largest value in the given list of decimals,
       rounded to the given precision using the nominated
@@ -2036,7 +2088,20 @@ Services for working with arbitrary precision decimals (uses
       preserved in the result.
     * `$rounding` is an optional choice of the [rounding algorithm]
       to use when rounding the result to the specified `$precision`.
-      Defaults to the HALF_UP algorithm.
+      If not specifed, defaults to the `HALF_UP` algorithm.
+      * `HALF_UP` rounds towards "nearest neighbor" unless both
+        neighbors are equidistant, in which case rounds up.
+      * `CEILING` rounds towards positive infinity.
+      * `DOWN` rounds towards zero.
+      * `FLOOR` rounds towards negative infinity.
+      * `HALF_DOWN` rounds towards "nearest neighbor" unless both
+        neighbors are equidistant, in which case round down.
+      * `HALF_EVEN` rounds towards the "nearest neighbor" unless both
+        neighbors are equidistant, in which case, round towards the
+        even neighbor.
+      * `UNNECESSARY` asserts that the requested operation has an exact
+        result, and hence no rounding is necessary.
+      * `UP` rounds away from zero.
   * Outputs:
     * `$decimal` is the smallest value in the given list of decimals,
       rounded to the given precision using the nominated
@@ -2055,7 +2120,20 @@ Services for working with arbitrary precision decimals (uses
       preserved in the result.
     * `$rounding` is an optional choice of the [rounding algorithm]
       to use when rounding the result to the specified `$precision`.
-      Defaults to the HALF_UP algorithm.
+      If not specifed, defaults to the `HALF_UP` algorithm.
+      * `HALF_UP` rounds towards "nearest neighbor" unless both
+        neighbors are equidistant, in which case rounds up.
+      * `CEILING` rounds towards positive infinity.
+      * `DOWN` rounds towards zero.
+      * `FLOOR` rounds towards negative infinity.
+      * `HALF_DOWN` rounds towards "nearest neighbor" unless both
+        neighbors are equidistant, in which case round down.
+      * `HALF_EVEN` rounds towards the "nearest neighbor" unless both
+        neighbors are equidistant, in which case, round towards the
+        even neighbor.
+      * `UNNECESSARY` asserts that the requested operation has an exact
+        result, and hence no rounding is necessary.
+      * `UP` rounds away from zero.
   * Outputs:
     * `$decimal` is result of multiplying the given decimal values
       and rounding to the given precision using the nominated
@@ -2099,7 +2177,20 @@ Services for working with arbitrary precision decimals (uses
       preserved in the result.
     * `$rounding` is an optional choice of the [rounding algorithm]
       to use when rounding the result to the specified `$precision`.
-      Defaults to the HALF_UP algorithm.
+      If not specifed, defaults to the `HALF_UP` algorithm.
+      * `HALF_UP` rounds towards "nearest neighbor" unless both
+        neighbors are equidistant, in which case rounds up.
+      * `CEILING` rounds towards positive infinity.
+      * `DOWN` rounds towards zero.
+      * `FLOOR` rounds towards negative infinity.
+      * `HALF_DOWN` rounds towards "nearest neighbor" unless both
+        neighbors are equidistant, in which case round down.
+      * `HALF_EVEN` rounds towards the "nearest neighbor" unless both
+        neighbors are equidistant, in which case, round towards the
+        even neighbor.
+      * `UNNECESSARY` asserts that the requested operation has an exact
+        result, and hence no rounding is necessary.
+      * `UP` rounds away from zero.
   * Outputs:
     * `$decimal` is result of raising the given decimal by the
       given exponent, and rounding to the given precision
@@ -2115,8 +2206,21 @@ Services for working with arbitrary precision decimals (uses
     * `$precision` is an optional number of decimal places to be
       preserved in the result.
     * `$rounding` is an optional choice of the [rounding algorithm]
-      to use when rounding the result to the specified $precision.
-      Defaults to the HALF_UP algorithm.
+      to use when rounding the result to the specified `$precision`.
+      If not specifed, defaults to the `HALF_UP` algorithm.
+      * `HALF_UP` rounds towards "nearest neighbor" unless both
+        neighbors are equidistant, in which case rounds up.
+      * `CEILING` rounds towards positive infinity.
+      * `DOWN` rounds towards zero.
+      * `FLOOR` rounds towards negative infinity.
+      * `HALF_DOWN` rounds towards "nearest neighbor" unless both
+        neighbors are equidistant, in which case round down.
+      * `HALF_EVEN` rounds towards the "nearest neighbor" unless both
+        neighbors are equidistant, in which case, round towards the
+        even neighbor.
+      * `UNNECESSARY` asserts that the requested operation has an exact
+        result, and hence no rounding is necessary.
+      * `UP` rounds away from zero.
   * Outputs:
     * `$decimal` is the given decimal value rounded to the given
       precision using the nominated [rounding algorithm].
@@ -2134,7 +2238,20 @@ Services for working with arbitrary precision decimals (uses
       preserved in the result.
     * `$rounding` is an optional choice of the [rounding algorithm]
       to use when rounding the result to the specified `$precision`.
-      Defaults to the HALF_UP algorithm.
+      If not specifed, defaults to the `HALF_UP` algorithm.
+      * `HALF_UP` rounds towards "nearest neighbor" unless both
+        neighbors are equidistant, in which case rounds up.
+      * `CEILING` rounds towards positive infinity.
+      * `DOWN` rounds towards zero.
+      * `FLOOR` rounds towards negative infinity.
+      * `HALF_DOWN` rounds towards "nearest neighbor" unless both
+        neighbors are equidistant, in which case round down.
+      * `HALF_EVEN` rounds towards the "nearest neighbor" unless both
+        neighbors are equidistant, in which case, round towards the
+        even neighbor.
+      * `UNNECESSARY` asserts that the requested operation has an exact
+        result, and hence no rounding is necessary.
+      * `UP` rounds away from zero.
   * Outputs:
     * `$decimal` is result of subtracting `$decimal.y` from `$decimal.x`
       and rounding to the given precision using the nominated

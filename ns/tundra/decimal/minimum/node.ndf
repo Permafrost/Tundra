@@ -230,8 +230,20 @@ given [rounding algorithm].
     preserved in the result.
   * $rounding is an optional choice of the [rounding algorithm] 
     to use when rounding the result to the specified $precision.
-    Defaults to the HALF_UP algorithm.
-
+    If not specifed, defaults to the HALF_UP algorithm.
+    * HALF_UP rounds towards "nearest neighbor" unless both 
+      neighbors are equidistant, in which case rounds up.
+    * CEILING rounds towards positive infinity.
+    * DOWN rounds towards zero.
+    * FLOOR rounds towards negative infinity.
+    * HALF_DOWN rounds towards "nearest neighbor" unless both 
+      neighbors are equidistant, in which case round down.
+    * HALF_EVEN rounds towards the "nearest neighbor" unless both
+      neighbors are equidistant, in which case, round towards the 
+      even neighbor.
+    * UNNECESSARY asserts that the requested operation has an exact
+      result, and hence no rounding is necessary.
+    * UP rounds away from zero.
 * Outputs:
   * $decimal is the smallest value in the given list of decimals,
     rounded to the given precision using the nominated
