@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-10-08 13:32:02.493
+// -----( CREATED: 2014-11-17 16:10:46.562
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -38,12 +38,12 @@ public final class json
 		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  String encoding = IDataUtil.getString(cursor, "$encoding");
 		  String mode = IDataUtil.getString(cursor, "$mode");
-		
+
 		  if (document != null) IDataUtil.put(cursor, "$content", emit(document, mode, encoding));
 		} catch (java.io.IOException ex) {
 		  tundra.exception.raise(ex);
@@ -52,7 +52,7 @@ public final class json
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -67,11 +67,11 @@ public final class json
 		// [i] field:0:optional $encoding
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  Object content = IDataUtil.get(cursor, "$content");
 		  String encoding = IDataUtil.getString(cursor, "$encoding");
-		
+
 		  if (content != null) {
 		    Object output = parse(tundra.stream.normalize(content, encoding), encoding);
 		    if (output != null) {
@@ -93,7 +93,7 @@ public final class json
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 	// --- <<IS-START-SHARED>> ---
@@ -101,39 +101,39 @@ public final class json
 	public static Object parse(java.io.InputStream in) {
 	  return parse(in, null);
 	}
-	
+
 	// parses JSON content to an appropriate webMethods compatible represention
 	public static Object parse(java.io.InputStream in, String encoding) {
 	  if (in == null) return null;
-	
+
 	  javax.json.JsonReader reader = getReader(in, encoding);
 	  javax.json.JsonStructure structure = reader.read();
 	  reader.close();
-	
+
 	  return fromJsonValue(structure);
 	}
-	
+
 	// returns a JSON reader that uses the specified encoding
 	protected static javax.json.JsonReader getReader(java.io.InputStream in, String encoding) {
 	  javax.json.JsonReaderFactory factory = javax.json.Json.createReaderFactory(null);
 	  javax.json.JsonReader reader = null;
-	
+
 	  if (encoding != null) {
 	    reader = factory.createReader(in, java.nio.charset.Charset.forName(encoding));
 	  } else {
 	    reader = factory.createReader(in);
 	  }
-	
+
 	  return reader;
 	}
-	
+
 	// converts an JSON value to an appropriate webMethods compatible represention
 	protected static Object fromJsonValue(javax.json.JsonValue input) {
 	  Object output = null;
-	
+
 	  if (input != null) {
 	    javax.json.JsonValue.ValueType type = input.getValueType();
-	
+
 	    if (type == javax.json.JsonValue.ValueType.OBJECT) {
 	      output = fromJsonObject((javax.json.JsonObject)input);
 	    } else if (type == javax.json.JsonValue.ValueType.ARRAY) {
@@ -152,75 +152,60 @@ public final class json
 	      throw new IllegalArgumentException("Unexpected JSON value type: " + type.toString());
 	    }
 	  }
-	
+
 	  return output;
 	}
-	
-	protected static final java.math.BigInteger MIN_VALUE_LONG = new java.math.BigInteger((new Long(Long.MIN_VALUE)).toString());
-	protected static final java.math.BigInteger MAX_VALUE_LONG = new java.math.BigInteger((new Long(Long.MAX_VALUE)).toString());
-	protected static final java.math.BigDecimal MIN_VALUE_DOUBLE = new java.math.BigDecimal(-Double.MAX_VALUE);
-	protected static final java.math.BigDecimal MAX_VALUE_DOUBLE = new java.math.BigDecimal(Double.MAX_VALUE);
-	
+
 	// converts a JSON string to an appropriate webMethods compatible representation
 	protected static Object fromJsonString(javax.json.JsonString input) {
 	  return input.getString();
 	}
-	
+
 	// converts a JSON number to an appropriate webMethods compatible represention
 	protected static Object fromJsonNumber(javax.json.JsonNumber input) {
 	  Object output = null;
 	  if (input.isIntegral()) {
-	    java.math.BigInteger integer = input.bigIntegerValue();
-	    if (integer.compareTo(MIN_VALUE_LONG) < 0 || integer.compareTo(MAX_VALUE_LONG) > 0) {
-	      output = integer;
-	    } else {
-	      output = integer.longValue();
-	    }
+	    output = input.longValue();
 	  } else {
-	    java.math.BigDecimal decimal = input.bigDecimalValue();
-	    if (decimal.compareTo(MIN_VALUE_DOUBLE) < 0 || decimal.compareTo(MAX_VALUE_DOUBLE) > 0) {
-	      output = decimal;
-	    } else {
-	      output = decimal.doubleValue();
-	    }    
+	    output = input.doubleValue();
 	  }
 	  return output;
 	}
-	
+
 	// converts a JSON object to an IData document
 	protected static IData fromJsonObject(javax.json.JsonObject input) {
 	  if (input == null) return null;
-	
+
 	  java.util.Iterator<String> iterator = input.keySet().iterator();
-	
+
 	  IData output = IDataFactory.create();
 	  IDataCursor cursor = output.getCursor();
-	
+
 	  while(iterator.hasNext()) {
 	    String key = iterator.next();
 	    javax.json.JsonValue value = input.get(key);
 	    IDataUtil.put(cursor, key, fromJsonValue(value));
 	  }
-	  
+
 	  cursor.destroy();
-	
+
 	  return output;
 	}
-	
+
 	// converts a JSON array to an Object array
 	protected static Object[] fromJsonArray(javax.json.JsonArray input) {
 	  if (input == null) return null;
-	
+
 	  java.util.List output = new java.util.ArrayList(input.size());
 	  java.util.Iterator<javax.json.JsonValue> iterator = input.iterator();
-	
+
 	  Class arrayClass = null;
-	
+
 	  while(iterator.hasNext()) {
 	    javax.json.JsonValue item = iterator.next();
 	    Object object = fromJsonValue(item);
 	    output.add(object);
-	
+
 	    if (object != null) {
 	      Class itemClass = object.getClass();
 	      if (arrayClass == null) {
@@ -231,55 +216,55 @@ public final class json
 	      }
 	    }
 	  }
-	
+
 	  if (arrayClass == null) arrayClass = Object.class;
-	
+
 	  return output.toArray((Object[])java.lang.reflect.Array.newInstance(arrayClass, 0));
 	}
-	
+
 	// serializes an IData document to a JSON representation
 	public static Object emit(IData input, String mode, String encoding) throws java.io.IOException {
 	  java.io.StringWriter stringWriter = new java.io.StringWriter();
 	  javax.json.JsonWriter writer = javax.json.Json.createWriter(stringWriter);
-	
+
 	  IDataCursor cursor = input.getCursor();
 	  Object[] array = IDataUtil.getObjectArray(cursor, "recordWithNoID");
 	  cursor.destroy();
-	
+
 	  if (array != null) {
 	    writer.write(toJsonArray(array));
 	  } else {
 	    writer.write(toJsonObject(input));
 	  }
-	
+
 	  writer.close();
-	
+
 	  Object content = stringWriter.toString();
-	
+
 	  if (mode == null || mode.equals("stream")) {
 	    content = tundra.stream.normalize(content, encoding);
 	  } else if (mode.equals("bytes")) {
 	    content = tundra.bytes.normalize(content, encoding);
 	  }
-	
+
 	  return content;
 	}
-	
+
 	// converts an IData document to a JSON object
 	protected static javax.json.JsonObject toJsonObject(IData input) {
 	  javax.json.JsonObjectBuilder builder = javax.json.Json.createObjectBuilder();
-	
+
 	  if (input != null) {
 	    IDataCursor cursor = input.getCursor();
-	
+
 	    while(cursor.next()) {
 	      String key = cursor.getKey();
 	      Object value = cursor.getValue();
-	
+
 	      if (value == null) {
 	        builder.addNull(key);
 	      } else if (value instanceof IData) {
-	        builder.add(key, toJsonObject((IData)value));   
+	        builder.add(key, toJsonObject((IData)value));
 	      } else if (value instanceof com.wm.util.Table) {
 	        value = ((com.wm.util.Table)value).getValues();
 	        builder.add(key, toJsonArray((IData[])value));
@@ -304,21 +289,21 @@ public final class json
 	      }
 	    }
 	  }
-	
+
 	  return builder.build();
 	}
-	
+
 	// converts an Object[] to a JSON array
 	protected static javax.json.JsonArray toJsonArray(Object[] input) {
 	  javax.json.JsonArrayBuilder builder = javax.json.Json.createArrayBuilder();
-	
+
 	  if (input != null) {
 	    for (int i = 0; i < input.length; i++) {
 	      Object value = input[i];
 	      if (value == null) {
 	        builder.addNull();
 	      } else if (value instanceof IData) {
-	        builder.add(toJsonObject((IData)value));   
+	        builder.add(toJsonObject((IData)value));
 	      } else if (value instanceof com.wm.util.Table) {
 	        value = ((com.wm.util.Table)value).getValues();
 	        builder.add(toJsonArray((IData[])value));
@@ -343,7 +328,7 @@ public final class json
 	      }
 	    }
 	  }
-	
+
 	  return builder.build();
 	}
 	// --- <<IS-END-SHARED>> ---
