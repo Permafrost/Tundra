@@ -5,14 +5,13 @@
 
   <!-- nodes -->
 
-<MAP NAME="init" MODE="STANDALONE">
+<MAP NAME="init" TIMEOUT="" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -21,7 +20,6 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
-        <value name="is_public">false</value>
         <value name="field_name">tundra.test:suite</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -31,7 +29,6 @@
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
-            <value name="is_public">false</value>
             <value name="field_name">$package</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -40,10 +37,8 @@
             <value name="is_global">false</value>
           </record>
         </array>
-        <value name="modifiable">true</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -52,7 +47,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -67,16 +61,25 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$package</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
+        <record name="field_content_type" javaclass="com.wm.util.Values">
+          <value name="contentType">1</value>
+          <value name="internalType">reference</value>
+          <value name="dataTypeVersion">dtVersion2</value>
+          <array name="targetNames" type="record" depth="1">
+            <record javaclass="com.wm.util.Values">
+              <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+              <value name="ncName">string</value>
+            </record>
+          </array>
+        </record>
         <value name="nillable">false</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -106,7 +109,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_name">packageInfoInput</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -116,7 +118,6 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">package</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -125,7 +126,6 @@
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -134,7 +134,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_name">tundra.test:suite</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -144,7 +143,6 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$package</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -153,7 +151,6 @@
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -170,7 +167,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_name">tundra.test:suite</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -180,7 +176,6 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">package</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -190,7 +185,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$package</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -200,7 +194,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">message</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -210,7 +203,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">services</value>
         <value name="field_type">string</value>
         <value name="field_dim">1</value>
@@ -222,7 +214,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">pkgkey</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -233,7 +224,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">pkgkeyexp</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -244,7 +234,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">keyExpired</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -255,7 +244,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">keyExpiresIn</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -266,7 +254,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">allSvcsMinusStarts</value>
         <value name="field_type">string</value>
         <value name="field_dim">1</value>
@@ -278,7 +265,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">allSvcsMinusShuts</value>
         <value name="field_type">string</value>
         <value name="field_dim">1</value>
@@ -290,7 +276,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">loadok</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -301,7 +286,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">loaderr</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -312,7 +296,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">loadwarning</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -323,7 +306,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">notLoaded</value>
         <value name="field_type">string</value>
         <value name="field_dim">1</value>
@@ -335,7 +317,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">loadedWithWarning</value>
         <value name="field_type">string</value>
         <value name="field_dim">1</value>
@@ -347,7 +328,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">startupServices</value>
         <value name="field_type">string</value>
         <value name="field_dim">1</value>
@@ -359,7 +339,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">shutdownServices</value>
         <value name="field_type">string</value>
         <value name="field_dim">1</value>
@@ -371,7 +350,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">replicationServices</value>
         <value name="field_type">string</value>
         <value name="field_dim">1</value>
@@ -383,7 +361,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">successors</value>
         <value name="field_type">string</value>
         <value name="field_dim">1</value>
@@ -395,7 +372,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">predecessors</value>
         <value name="field_type">string</value>
         <value name="field_dim">1</value>
@@ -407,7 +383,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">subscribers</value>
         <value name="field_type">string</value>
         <value name="field_dim">1</value>
@@ -419,7 +394,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">zipLastModified</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -430,7 +404,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">version</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -441,7 +414,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">build</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -452,7 +424,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">description</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -463,7 +434,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">listACL</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -473,7 +443,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">build</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -484,7 +453,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">patch_nums</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -495,7 +463,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">jvm_version</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -506,7 +473,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">publisher</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -517,7 +483,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">passed</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -527,7 +492,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">failed</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -536,7 +500,6 @@
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -545,7 +508,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_name">packageInfoOutput</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -555,7 +517,6 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">message</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -565,7 +526,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">services</value>
         <value name="field_type">string</value>
         <value name="field_dim">1</value>
@@ -577,7 +537,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">pkgkey</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -588,7 +547,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">pkgkeyexp</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -599,7 +557,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">keyExpired</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -610,7 +567,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">keyExpiresIn</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -621,7 +577,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">allSvcsMinusStarts</value>
         <value name="field_type">string</value>
         <value name="field_dim">1</value>
@@ -633,7 +588,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">allSvcsMinusShuts</value>
         <value name="field_type">string</value>
         <value name="field_dim">1</value>
@@ -645,7 +599,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">loadok</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -656,7 +609,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">loaderr</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -667,7 +619,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">loadwarning</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -678,7 +629,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">notLoaded</value>
         <value name="field_type">string</value>
         <value name="field_dim">1</value>
@@ -690,7 +640,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">loadedWithWarning</value>
         <value name="field_type">string</value>
         <value name="field_dim">1</value>
@@ -702,7 +651,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">startupServices</value>
         <value name="field_type">string</value>
         <value name="field_dim">1</value>
@@ -714,7 +662,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">shutdownServices</value>
         <value name="field_type">string</value>
         <value name="field_dim">1</value>
@@ -726,7 +673,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">replicationServices</value>
         <value name="field_type">string</value>
         <value name="field_dim">1</value>
@@ -738,7 +684,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">successors</value>
         <value name="field_type">string</value>
         <value name="field_dim">1</value>
@@ -750,7 +695,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">predecessors</value>
         <value name="field_type">string</value>
         <value name="field_dim">1</value>
@@ -762,7 +706,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">subscribers</value>
         <value name="field_type">string</value>
         <value name="field_dim">1</value>
@@ -774,7 +717,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">zipLastModified</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -785,7 +727,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">version</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -796,7 +737,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">build</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -807,7 +747,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">description</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -818,7 +757,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">listACL</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -828,7 +766,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">build</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -839,7 +776,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">patch_nums</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -850,7 +786,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">jvm_version</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -861,7 +796,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">publisher</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -871,7 +805,6 @@
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -969,7 +902,6 @@
   <value name="xml">0</value>
   <record name="type" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_name">failed</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
@@ -988,7 +920,6 @@
   <value name="xml">0</value>
   <record name="type" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_name">passed</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
@@ -1007,8 +938,8 @@
 
   <!-- nodes -->
 
-<INVOKE TIMEOUT="" SERVICE="pub.string:indexOf" VALIDATE-IN="$none" VALIDATE-OUT="$none">
-  <COMMENT>test</COMMENT>
+<INVOKE TIMEOUT="" SERVICE="tundra.string:match" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+  <COMMENT>((.*\.)|^)test.*:should.+</COMMENT>
 
   <!-- nodes -->
 
@@ -1018,593 +949,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
-    <value name="field_name">indexOfInput</value>
-    <value name="field_type">record</value>
-    <value name="field_dim">0</value>
-    <value name="nillable">true</value>
-    <value name="form_qualified">false</value>
-    <value name="is_global">false</value>
-    <array name="rec_fields" type="record" depth="1">
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">inString</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">subString</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">fromIndex</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="field_opt">true</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-    </array>
-    <value name="modifiable">true</value>
-  </record>
-</Values>
-</MAPTARGET>
-  <MAPSOURCE>
-
-<Values version="2.0">
-  <record name="xml" javaclass="com.wm.util.Values">
-    <value name="node_type">record</value>
-    <value name="is_public">false</value>
-    <value name="field_name">tundra.test:suite</value>
-    <value name="field_type">record</value>
-    <value name="field_dim">0</value>
-    <value name="nillable">true</value>
-    <value name="form_qualified">false</value>
-    <value name="is_global">false</value>
-    <array name="rec_fields" type="record" depth="1">
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">$package</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">services</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="field_opt">true</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">build</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="field_opt">true</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">passed</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">failed</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">$iteration</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-    </array>
-    <value name="modifiable">true</value>
-  </record>
-</Values>
-</MAPSOURCE>
-
-  <!-- nodes -->
-
-<MAPCOPY NAME="Link" FROM="/services;1;0" TO="/inString;1;0">
-</MAPCOPY>
-
-<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/subString;1;0">
-  <DATA ENCODING="XMLValues" I18N="true">
-
-<Values version="2.0">
-  <value name="xml">test</value>
-  <record name="type" javaclass="com.wm.util.Values">
-    <value name="node_type">unknown</value>
-    <value name="is_public">false</value>
-    <value name="field_name">subString</value>
-    <value name="field_type">string</value>
-    <value name="field_dim">0</value>
-    <value name="nillable">true</value>
-    <value name="form_qualified">false</value>
-    <value name="is_global">false</value>
-  </record>
-</Values>
-</DATA>
-</MAPSET>
-</MAP>
-
-<MAP MODE="OUTPUT">
-  <MAPTARGET>
-
-<Values version="2.0">
-  <record name="xml" javaclass="com.wm.util.Values">
-    <value name="node_type">record</value>
-    <value name="is_public">false</value>
-    <value name="field_name">tundra.test:suite</value>
-    <value name="field_type">record</value>
-    <value name="field_dim">0</value>
-    <value name="nillable">true</value>
-    <value name="form_qualified">false</value>
-    <value name="is_global">false</value>
-    <array name="rec_fields" type="record" depth="1">
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">inString</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">subString</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">$package</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">services</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="field_opt">true</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">build</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="field_opt">true</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">passed</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">failed</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">value</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-    </array>
-    <value name="modifiable">true</value>
-  </record>
-</Values>
-</MAPTARGET>
-  <MAPSOURCE>
-
-<Values version="2.0">
-  <record name="xml" javaclass="com.wm.util.Values">
-    <value name="node_type">record</value>
-    <value name="is_public">false</value>
-    <value name="field_name">indexOfOutput</value>
-    <value name="field_type">record</value>
-    <value name="field_dim">0</value>
-    <value name="nillable">true</value>
-    <value name="form_qualified">false</value>
-    <value name="is_global">false</value>
-    <array name="rec_fields" type="record" depth="1">
-    </array>
-    <value name="modifiable">true</value>
-  </record>
-</Values>
-</MAPSOURCE>
-
-  <!-- nodes -->
-
-<MAPDELETE NAME="Dropper" FIELD="/inString;1;0">
-</MAPDELETE>
-
-<MAPDELETE NAME="Dropper" FIELD="/subString;1;0">
-</MAPDELETE>
-</MAP>
-</INVOKE>
-
-<BRANCH TIMEOUT="" SWITCH="/value">
-  <COMMENT></COMMENT>
-
-  <!-- nodes -->
-
-<SEQUENCE NAME="-1" TIMEOUT="" EXIT-ON="FAILURE">
-  <COMMENT>do nothing: not a testing service</COMMENT>
-</SEQUENCE>
-
-<SEQUENCE NAME="$default" TIMEOUT="" EXIT-ON="FAILURE">
-  <COMMENT></COMMENT>
-
-  <!-- nodes -->
-
-<INVOKE TIMEOUT="" SERVICE="pub.string:indexOf" VALIDATE-IN="$none" VALIDATE-OUT="$none">
-  <COMMENT>:should</COMMENT>
-
-  <!-- nodes -->
-
-<MAP MODE="INPUT">
-  <MAPTARGET>
-
-<Values version="2.0">
-  <record name="xml" javaclass="com.wm.util.Values">
-    <value name="node_type">record</value>
-    <value name="is_public">false</value>
-    <value name="field_name">indexOfInput</value>
-    <value name="field_type">record</value>
-    <value name="field_dim">0</value>
-    <value name="nillable">true</value>
-    <value name="form_qualified">false</value>
-    <value name="is_global">false</value>
-    <array name="rec_fields" type="record" depth="1">
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">inString</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">subString</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">fromIndex</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="field_opt">true</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-    </array>
-    <value name="modifiable">true</value>
-  </record>
-</Values>
-</MAPTARGET>
-  <MAPSOURCE>
-
-<Values version="2.0">
-  <record name="xml" javaclass="com.wm.util.Values">
-    <value name="node_type">record</value>
-    <value name="is_public">false</value>
-    <value name="field_name">tundra.test:suite</value>
-    <value name="field_type">record</value>
-    <value name="field_dim">0</value>
-    <value name="nillable">true</value>
-    <value name="form_qualified">false</value>
-    <value name="is_global">false</value>
-    <array name="rec_fields" type="record" depth="1">
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">services</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="field_opt">true</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">build</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="field_opt">true</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">value</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">$iteration</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-    </array>
-    <value name="modifiable">true</value>
-  </record>
-</Values>
-</MAPSOURCE>
-
-  <!-- nodes -->
-
-<MAPCOPY NAME="Link" FROM="/services;1;0" TO="/inString;1;0">
-</MAPCOPY>
-
-<MAPCOPY NAME="Link" FROM="/value;1;0" TO="/fromIndex;1;0">
-</MAPCOPY>
-
-<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/subString;1;0">
-  <DATA ENCODING="XMLValues" I18N="true">
-
-<Values version="2.0">
-  <value name="xml">:should</value>
-  <record name="type" javaclass="com.wm.util.Values">
-    <value name="node_type">unknown</value>
-    <value name="is_public">false</value>
-    <value name="field_name">subString</value>
-    <value name="field_type">string</value>
-    <value name="field_dim">0</value>
-    <value name="nillable">true</value>
-    <value name="form_qualified">false</value>
-    <value name="is_global">false</value>
-  </record>
-</Values>
-</DATA>
-</MAPSET>
-</MAP>
-
-<MAP MODE="OUTPUT">
-  <MAPTARGET>
-
-<Values version="2.0">
-  <record name="xml" javaclass="com.wm.util.Values">
-    <value name="node_type">record</value>
-    <value name="is_public">false</value>
-    <value name="field_name">tundra.test:suite</value>
-    <value name="field_type">record</value>
-    <value name="field_dim">0</value>
-    <value name="nillable">true</value>
-    <value name="form_qualified">false</value>
-    <value name="is_global">false</value>
-    <array name="rec_fields" type="record" depth="1">
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">inString</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">subString</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">fromIndex</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">services</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="field_opt">true</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">build</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="field_opt">true</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">value</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-    </array>
-    <value name="modifiable">true</value>
-  </record>
-</Values>
-</MAPTARGET>
-  <MAPSOURCE>
-
-<Values version="2.0">
-  <record name="xml" javaclass="com.wm.util.Values">
-    <value name="node_type">record</value>
-    <value name="is_public">false</value>
-    <value name="field_name">indexOfOutput</value>
-    <value name="field_type">record</value>
-    <value name="field_dim">0</value>
-    <value name="nillable">true</value>
-    <value name="form_qualified">false</value>
-    <value name="is_global">false</value>
-    <array name="rec_fields" type="record" depth="1">
-    </array>
-    <value name="modifiable">true</value>
-  </record>
-</Values>
-</MAPSOURCE>
-
-  <!-- nodes -->
-
-<MAPDELETE NAME="Dropper" FIELD="/inString;1;0">
-</MAPDELETE>
-
-<MAPDELETE NAME="Dropper" FIELD="/subString;1;0">
-</MAPDELETE>
-
-<MAPDELETE NAME="Dropper" FIELD="/fromIndex;1;0">
-</MAPDELETE>
-</MAP>
-</INVOKE>
-
-<BRANCH TIMEOUT="" SWITCH="/value">
-  <COMMENT></COMMENT>
-
-  <!-- nodes -->
-
-<SEQUENCE NAME="-1" TIMEOUT="" EXIT-ON="FAILURE">
-  <COMMENT>do nothing: not a testing service</COMMENT>
-</SEQUENCE>
-
-<SEQUENCE NAME="$default" TIMEOUT="" EXIT-ON="FAILURE">
-  <COMMENT></COMMENT>
-
-  <!-- nodes -->
-
-<SEQUENCE TIMEOUT="" EXIT-ON="SUCCESS">
-  <COMMENT></COMMENT>
-
-  <!-- nodes -->
-
-<SEQUENCE NAME="try" TIMEOUT="" EXIT-ON="FAILURE">
-  <COMMENT></COMMENT>
-
-  <!-- nodes -->
-
-<INVOKE TIMEOUT="" SERVICE="tundra.service:invoke" VALIDATE-IN="$none" VALIDATE-OUT="$none">
-  <COMMENT></COMMENT>
-
-  <!-- nodes -->
-
-<MAP MODE="INPUT">
-  <MAPTARGET>
-
-<Values version="2.0">
-  <record name="xml" javaclass="com.wm.util.Values">
-    <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -1619,10 +963,10 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
-        <value name="field_name">$service</value>
+        <value name="field_name">$string</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
         <record name="field_content_type" javaclass="com.wm.util.Values">
           <value name="contentType">1</value>
           <value name="internalType">reference</value>
@@ -1634,7 +978,7 @@
             </record>
           </array>
         </record>
-        <value name="nillable">false</value>
+        <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
       </record>
@@ -1642,20 +986,28 @@
         <value name="node_type">record</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
+          <null name="field_usereditable"/>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
-        <value name="field_name">$pipeline</value>
-        <value name="field_type">record</value>
+        <value name="field_name">$pattern</value>
+        <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="field_opt">true</value>
+        <record name="field_content_type" javaclass="com.wm.util.Values">
+          <value name="contentType">1</value>
+          <value name="internalType">reference</value>
+          <value name="dataTypeVersion">dtVersion2</value>
+          <array name="targetNames" type="record" depth="1">
+            <record javaclass="com.wm.util.Values">
+              <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+              <value name="ncName">string</value>
+            </record>
+          </array>
+        </record>
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
-        <array name="rec_fields" type="record" depth="1">
-        </array>
-        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
@@ -1665,66 +1017,30 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
-        <value name="field_name">$mode</value>
+        <value name="field_name">$literal?</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="field_opt">true</value>
         <array name="field_options" type="value" depth="1">
-          <value>synchronous</value>
-          <value>asynchronous</value>
+          <value>false</value>
+          <value>true</value>
         </array>
         <record name="field_content_type" javaclass="com.wm.util.Values">
-          <array name="enumeration" type="record" depth="1">
-            <record javaclass="com.wm.util.Values">
-              <value name="primitiveType">0</value>
-              <value name="lexRep">synchronous</value>
-              <value name="isList">false</value>
-            </record>
-            <record javaclass="com.wm.util.Values">
-              <value name="primitiveType">0</value>
-              <value name="lexRep">asynchronous</value>
-              <value name="isList">false</value>
-            </record>
-          </array>
           <value name="contentType">1</value>
-          <value name="internalType">instance</value>
-          <value name="ct_class">com.wm.lang.schema.datatypev2.WmString</value>
-          <value name="name">string_customized</value>
-          <array name="parent-ancestors" type="record" depth="1">
+          <value name="internalType">reference</value>
+          <value name="dataTypeVersion">dtVersion2</value>
+          <array name="targetNames" type="record" depth="1">
             <record javaclass="com.wm.util.Values">
               <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-              <value name="ncName">anySimpleType</value>
-            </record>
-            <record javaclass="com.wm.util.Values">
-              <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-              <value name="ncName">anyType</value>
-            </record>
-            <record javaclass="com.wm.util.Values">
-              <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-              <value name="ncName">string</value>
+              <value name="ncName">boolean</value>
             </record>
           </array>
-          <record name="baseType" javaclass="com.wm.util.Values">
-            <record name="whiteSpace" javaclass="com.wm.util.Values">
-              <record name="FacetWSCValue" javaclass="com.wm.util.Values">
-                <value name="cDecimalValue">3</value>
-              </record>
-              <value name="facetFixed">false</value>
-            </record>
-            <value name="contentType">1</value>
-            <value name="internalType">instance</value>
-            <value name="ct_class">com.wm.lang.schema.datatypev2.WmString</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-          </record>
-          <value name="dataTypeVersion">dtVersion2</value>
         </record>
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -1733,7 +1049,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_name">tundra.test:suite</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -1743,7 +1058,6 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$package</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1753,7 +1067,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">services</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1764,7 +1077,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">build</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1775,7 +1087,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">passed</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1785,7 +1096,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">failed</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1795,7 +1105,436 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
+        <value name="field_name">$iteration</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+    </array>
+  </record>
+</Values>
+</MAPSOURCE>
+
+  <!-- nodes -->
+
+<MAPCOPY NAME="Link" FROM="/services;1;0" TO="/$string;1;0">
+</MAPCOPY>
+
+<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$literal?;1;0">
+  <DATA ENCODING="XMLValues" I18N="true">
+
+<Values version="2.0">
+  <value name="xml">false</value>
+  <record name="type" javaclass="com.wm.util.Values">
+    <value name="node_type">record</value>
+    <value name="node_comment"></value>
+    <record name="node_hints" javaclass="com.wm.util.Values">
+      <value name="field_usereditable">false</value>
+      <value name="field_largerEditor">false</value>
+      <value name="field_password">false</value>
+    </record>
+    <value name="field_name">$literal?</value>
+    <value name="field_type">string</value>
+    <value name="field_dim">0</value>
+    <value name="field_opt">true</value>
+    <array name="field_options" type="value" depth="1">
+      <value>false</value>
+      <value>true</value>
+    </array>
+    <record name="field_content_type" javaclass="com.wm.util.Values">
+      <value name="contentType">1</value>
+      <value name="internalType">reference</value>
+      <value name="dataTypeVersion">dtVersion2</value>
+      <array name="targetNames" type="record" depth="1">
+        <record javaclass="com.wm.util.Values">
+          <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+          <value name="ncName">boolean</value>
+        </record>
+      </array>
+    </record>
+    <value name="nillable">true</value>
+    <value name="form_qualified">false</value>
+    <value name="is_global">false</value>
+  </record>
+</Values>
+</DATA>
+</MAPSET>
+
+<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$pattern;1;0">
+  <DATA ENCODING="XMLValues" I18N="true">
+
+<Values version="2.0">
+  <value name="xml">((.*\.)|^)test.*:should.+</value>
+  <record name="type" javaclass="com.wm.util.Values">
+    <value name="node_type">record</value>
+    <value name="node_comment"></value>
+    <record name="node_hints" javaclass="com.wm.util.Values">
+      <null name="field_usereditable"/>
+      <value name="field_largerEditor">false</value>
+      <value name="field_password">false</value>
+    </record>
+    <value name="field_name">$pattern</value>
+    <value name="field_type">string</value>
+    <value name="field_dim">0</value>
+    <value name="field_opt">true</value>
+    <record name="field_content_type" javaclass="com.wm.util.Values">
+      <value name="contentType">1</value>
+      <value name="internalType">reference</value>
+      <value name="dataTypeVersion">dtVersion2</value>
+      <array name="targetNames" type="record" depth="1">
+        <record javaclass="com.wm.util.Values">
+          <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+          <value name="ncName">string</value>
+        </record>
+      </array>
+    </record>
+    <value name="nillable">true</value>
+    <value name="form_qualified">false</value>
+    <value name="is_global">false</value>
+  </record>
+</Values>
+</DATA>
+</MAPSET>
+</MAP>
+
+<MAP MODE="OUTPUT">
+  <MAPTARGET>
+
+<Values version="2.0">
+  <record name="xml" javaclass="com.wm.util.Values">
+    <value name="node_type">record</value>
+    <value name="field_name">tundra.test:suite</value>
+    <value name="field_type">record</value>
+    <value name="field_dim">0</value>
+    <value name="nillable">true</value>
+    <value name="form_qualified">false</value>
+    <value name="is_global">false</value>
+    <array name="rec_fields" type="record" depth="1">
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$string</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$pattern</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$literal?</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$package</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">services</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">build</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">passed</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">failed</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="node_comment"></value>
+        <record name="node_hints" javaclass="com.wm.util.Values">
+          <null name="field_usereditable"/>
+          <value name="field_largerEditor">false</value>
+          <value name="field_password">false</value>
+        </record>
+        <value name="field_name">$match?</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <record name="field_content_type" javaclass="com.wm.util.Values">
+          <value name="contentType">1</value>
+          <value name="internalType">reference</value>
+          <value name="dataTypeVersion">dtVersion2</value>
+          <array name="targetNames" type="record" depth="1">
+            <record javaclass="com.wm.util.Values">
+              <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+              <value name="ncName">boolean</value>
+            </record>
+          </array>
+        </record>
+        <value name="nillable">false</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+    </array>
+  </record>
+</Values>
+</MAPTARGET>
+  <MAPSOURCE>
+
+<Values version="2.0">
+  <record name="xml" javaclass="com.wm.util.Values">
+    <value name="node_type">record</value>
+    <value name="field_type">record</value>
+    <value name="field_dim">0</value>
+    <value name="nillable">true</value>
+    <value name="form_qualified">false</value>
+    <value name="is_global">false</value>
+    <array name="rec_fields" type="record" depth="1">
+    </array>
+  </record>
+</Values>
+</MAPSOURCE>
+
+  <!-- nodes -->
+
+<MAPDELETE NAME="Dropper" FIELD="/$string;1;0">
+</MAPDELETE>
+
+<MAPDELETE NAME="Dropper" FIELD="/$pattern;1;0">
+</MAPDELETE>
+
+<MAPDELETE NAME="Dropper" FIELD="/$literal?;1;0">
+</MAPDELETE>
+</MAP>
+</INVOKE>
+
+<BRANCH TIMEOUT="" SWITCH="/$match?">
+  <COMMENT></COMMENT>
+
+  <!-- nodes -->
+
+<SEQUENCE NAME="true" TIMEOUT="" EXIT-ON="FAILURE">
+  <COMMENT></COMMENT>
+
+  <!-- nodes -->
+
+<INVOKE TIMEOUT="" SERVICE="tundra.service:ensure" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+  <COMMENT></COMMENT>
+
+  <!-- nodes -->
+
+<MAP MODE="INPUT">
+  <MAPTARGET>
+
+<Values version="2.0">
+  <record name="xml" javaclass="com.wm.util.Values">
+    <value name="node_type">record</value>
+    <value name="field_type">record</value>
+    <value name="field_dim">0</value>
+    <value name="nillable">true</value>
+    <value name="form_qualified">false</value>
+    <value name="is_global">false</value>
+    <array name="rec_fields" type="record" depth="1">
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="node_comment"></value>
+        <record name="node_hints" javaclass="com.wm.util.Values">
+          <null name="field_usereditable"/>
+          <value name="field_largerEditor">false</value>
+          <value name="field_password">false</value>
+        </record>
+        <value name="field_name">$service</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
+        <record name="field_content_type" javaclass="com.wm.util.Values">
+          <value name="contentType">1</value>
+          <value name="internalType">reference</value>
+          <value name="dataTypeVersion">dtVersion2</value>
+          <array name="targetNames" type="record" depth="1">
+            <record javaclass="com.wm.util.Values">
+              <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+              <value name="ncName">string</value>
+            </record>
+          </array>
+        </record>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="node_comment"></value>
+        <record name="node_hints" javaclass="com.wm.util.Values">
+          <null name="field_usereditable"/>
+          <value name="field_largerEditor">false</value>
+          <value name="field_password">false</value>
+        </record>
+        <value name="field_name">$catch</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
+        <record name="field_content_type" javaclass="com.wm.util.Values">
+          <value name="contentType">1</value>
+          <value name="internalType">reference</value>
+          <value name="dataTypeVersion">dtVersion2</value>
+          <array name="targetNames" type="record" depth="1">
+            <record javaclass="com.wm.util.Values">
+              <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+              <value name="ncName">string</value>
+            </record>
+          </array>
+        </record>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="node_comment"></value>
+        <record name="node_hints" javaclass="com.wm.util.Values">
+          <null name="field_usereditable"/>
+          <value name="field_largerEditor">false</value>
+          <value name="field_password">false</value>
+        </record>
+        <value name="field_name">$finally</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
+        <record name="field_content_type" javaclass="com.wm.util.Values">
+          <value name="contentType">1</value>
+          <value name="internalType">reference</value>
+          <value name="dataTypeVersion">dtVersion2</value>
+          <array name="targetNames" type="record" depth="1">
+            <record javaclass="com.wm.util.Values">
+              <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+              <value name="ncName">string</value>
+            </record>
+          </array>
+        </record>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="node_comment"></value>
+        <record name="node_hints" javaclass="com.wm.util.Values">
+          <value name="field_largerEditor">false</value>
+          <value name="field_password">false</value>
+        </record>
+        <value name="field_name">$pipeline</value>
+        <value name="field_type">record</value>
+        <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+        <array name="rec_fields" type="record" depth="1">
+        </array>
+      </record>
+    </array>
+  </record>
+</Values>
+</MAPTARGET>
+  <MAPSOURCE>
+
+<Values version="2.0">
+  <record name="xml" javaclass="com.wm.util.Values">
+    <value name="node_type">record</value>
+    <value name="field_name">tundra.test:suite</value>
+    <value name="field_type">record</value>
+    <value name="field_dim">0</value>
+    <value name="nillable">true</value>
+    <value name="form_qualified">false</value>
+    <value name="is_global">false</value>
+    <array name="rec_fields" type="record" depth="1">
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$package</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">services</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">build</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">passed</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">failed</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
         <value name="field_name">value</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1805,7 +1544,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$iteration</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1814,7 +1552,6 @@
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -1823,6 +1560,42 @@
 
 <MAPCOPY NAME="Link" FROM="/services;1;0" TO="/$service;1;0">
 </MAPCOPY>
+
+<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$catch;1;0">
+  <DATA ENCODING="XMLValues" I18N="true">
+
+<Values version="2.0">
+  <value name="xml">tundra.service:nothing</value>
+  <record name="type" javaclass="com.wm.util.Values">
+    <value name="node_type">record</value>
+    <value name="node_comment"></value>
+    <record name="node_hints" javaclass="com.wm.util.Values">
+      <null name="field_usereditable"/>
+      <value name="field_largerEditor">false</value>
+      <value name="field_password">false</value>
+    </record>
+    <value name="field_name">$catch</value>
+    <value name="field_type">string</value>
+    <value name="field_dim">0</value>
+    <value name="field_opt">true</value>
+    <record name="field_content_type" javaclass="com.wm.util.Values">
+      <value name="contentType">1</value>
+      <value name="internalType">reference</value>
+      <value name="dataTypeVersion">dtVersion2</value>
+      <array name="targetNames" type="record" depth="1">
+        <record javaclass="com.wm.util.Values">
+          <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+          <value name="ncName">string</value>
+        </record>
+      </array>
+    </record>
+    <value name="nillable">true</value>
+    <value name="form_qualified">false</value>
+    <value name="is_global">false</value>
+  </record>
+</Values>
+</DATA>
+</MAPSET>
 
 <MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$pipeline;2;0">
   <DATA ENCODING="XMLValues" I18N="true">
@@ -1837,7 +1610,6 @@
       <value name="field_largerEditor">false</value>
       <value name="field_password">false</value>
     </record>
-    <value name="is_public">false</value>
     <value name="field_name">$pipeline</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -1847,7 +1619,6 @@
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </DATA>
@@ -1860,7 +1631,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_name">tundra.test:suite</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -1870,7 +1640,6 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$service</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1879,22 +1648,8 @@
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">record</value>
-        <value name="is_public">false</value>
-        <value name="field_name">$pipeline</value>
-        <value name="field_type">record</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-        <array name="rec_fields" type="record" depth="1">
-        </array>
-        <value name="modifiable">true</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">$package</value>
+        <value name="field_name">$catch</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -1903,7 +1658,26 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
+        <value name="field_name">$package</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="field_name">$pipeline</value>
+        <value name="field_type">record</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+        <array name="rec_fields" type="record" depth="1">
+        </array>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
         <value name="field_name">services</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1914,7 +1688,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">build</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1925,7 +1698,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">passed</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1935,7 +1707,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">failed</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1945,7 +1716,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">value</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1955,50 +1725,23 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
-        <value name="node_comment"></value>
-        <record name="node_hints" javaclass="com.wm.util.Values">
-          <value name="field_largerEditor">false</value>
-          <value name="field_password">false</value>
-        </record>
-        <value name="is_public">false</value>
-        <value name="field_name">$thread</value>
-        <value name="field_type">object</value>
+        <value name="field_name">$exception?</value>
+        <value name="field_type">string</value>
         <value name="field_dim">0</value>
-        <value name="field_opt">true</value>
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
-        <value name="node_comment"></value>
-        <record name="node_hints" javaclass="com.wm.util.Values">
-          <null name="field_usereditable"/>
-          <value name="field_largerEditor">false</value>
-          <value name="field_password">false</value>
-        </record>
-        <value name="is_public">false</value>
-        <value name="field_name">$duration</value>
+        <value name="field_name">$exception.message</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
-        <value name="field_opt">true</value>
-        <record name="field_content_type" javaclass="com.wm.util.Values">
-          <value name="contentType">1</value>
-          <value name="internalType">reference</value>
-          <value name="dataTypeVersion">dtVersion2</value>
-          <array name="targetNames" type="record" depth="1">
-            <record javaclass="com.wm.util.Values">
-              <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-              <value name="ncName">duration</value>
-            </record>
-          </array>
-        </record>
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -2007,7 +1750,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -2021,7 +1763,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$pipeline</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -2030,55 +1771,27 @@
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
+          <record javaclass="com.wm.util.Values">
+            <value name="node_type">record</value>
+            <value name="field_name">$exception?</value>
+            <value name="field_type">string</value>
+            <value name="field_dim">0</value>
+            <value name="nillable">true</value>
+            <value name="form_qualified">false</value>
+            <value name="is_global">false</value>
+          </record>
+          <record javaclass="com.wm.util.Values">
+            <value name="node_type">record</value>
+            <value name="field_name">$exception.message</value>
+            <value name="field_type">string</value>
+            <value name="field_dim">0</value>
+            <value name="nillable">true</value>
+            <value name="form_qualified">false</value>
+            <value name="is_global">false</value>
+          </record>
         </array>
-        <value name="modifiable">true</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">record</value>
-        <value name="node_comment"></value>
-        <record name="node_hints" javaclass="com.wm.util.Values">
-          <value name="field_largerEditor">false</value>
-          <value name="field_password">false</value>
-        </record>
-        <value name="is_public">false</value>
-        <value name="field_name">$thread</value>
-        <value name="field_type">object</value>
-        <value name="field_dim">0</value>
-        <value name="field_opt">true</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">record</value>
-        <value name="node_comment"></value>
-        <record name="node_hints" javaclass="com.wm.util.Values">
-          <null name="field_usereditable"/>
-          <value name="field_largerEditor">false</value>
-          <value name="field_password">false</value>
-        </record>
-        <value name="is_public">false</value>
-        <value name="field_name">$duration</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="field_opt">true</value>
-        <record name="field_content_type" javaclass="com.wm.util.Values">
-          <value name="contentType">1</value>
-          <value name="internalType">reference</value>
-          <value name="dataTypeVersion">dtVersion2</value>
-          <array name="targetNames" type="record" depth="1">
-            <record javaclass="com.wm.util.Values">
-              <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-              <value name="ncName">duration</value>
-            </record>
-          </array>
-        </record>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -2091,22 +1804,29 @@
 <MAPDELETE NAME="Dropper" FIELD="/$service;1;0">
 </MAPDELETE>
 
-<MAPDELETE NAME="Dropper" FIELD="/$thread;3;0">
+<MAPDELETE NAME="Dropper" FIELD="/$catch;1;0">
 </MAPDELETE>
 
-<MAPDELETE NAME="Dropper" FIELD="/$duration;1;0">
-</MAPDELETE>
+<MAPCOPY NAME="Link" FROM="/$pipeline;2;0/$exception?;1;0" TO="/$exception?;1;0">
+</MAPCOPY>
+
+<MAPCOPY NAME="Link" FROM="/$pipeline;2;0/$exception.message;1;0" TO="/$exception.message;1;0">
+</MAPCOPY>
 </MAP>
 </INVOKE>
 
-<MAP MODE="STANDALONE">
+<BRANCH TIMEOUT="" SWITCH="/$exception?">
+  <COMMENT></COMMENT>
+
+  <!-- nodes -->
+
+<MAP NAME="true" TIMEOUT="" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_name">tundra.test:suite</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -2116,557 +1836,6 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">services</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="field_opt">true</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">build</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="field_opt">true</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">value</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">record</value>
-        <value name="is_public">false</value>
-        <value name="field_name">$item</value>
-        <value name="field_type">record</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-        <array name="rec_fields" type="record" depth="1">
-          <record javaclass="com.wm.util.Values">
-            <value name="node_type">unknown</value>
-            <value name="is_public">false</value>
-            <value name="field_name">description</value>
-            <value name="field_type">string</value>
-            <value name="field_dim">0</value>
-            <value name="nillable">true</value>
-            <value name="form_qualified">false</value>
-            <value name="is_global">false</value>
-          </record>
-          <record javaclass="com.wm.util.Values">
-            <value name="node_type">unknown</value>
-            <value name="is_public">false</value>
-            <value name="field_name">passed?</value>
-            <value name="field_type">string</value>
-            <value name="field_dim">0</value>
-            <value name="nillable">true</value>
-            <value name="form_qualified">false</value>
-            <value name="is_global">false</value>
-          </record>
-        </array>
-        <value name="modifiable">true</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">record</value>
-        <value name="is_public">false</value>
-        <value name="field_name">passed</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-    </array>
-    <value name="modifiable">true</value>
-  </record>
-</Values>
-</MAPTARGET>
-  <MAPSOURCE>
-
-<Values version="2.0">
-  <record name="xml" javaclass="com.wm.util.Values">
-    <value name="node_type">record</value>
-    <value name="is_public">false</value>
-    <value name="field_name">tundra.test:suite</value>
-    <value name="field_type">record</value>
-    <value name="field_dim">0</value>
-    <value name="nillable">true</value>
-    <value name="form_qualified">false</value>
-    <value name="is_global">false</value>
-    <array name="rec_fields" type="record" depth="1">
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">services</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="field_opt">true</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">build</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="field_opt">true</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">value</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">$iteration</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">record</value>
-        <value name="is_public">false</value>
-        <value name="field_name">passed</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-    </array>
-    <value name="modifiable">true</value>
-  </record>
-</Values>
-</MAPSOURCE>
-
-  <!-- nodes -->
-
-<MAPCOPY NAME="Link" FROM="/services;1;0" TO="/$item;2;0/description;1;0">
-</MAPCOPY>
-
-<MAPINVOKE SERVICE="pub.math:addInts" VALIDATE-IN="$none" VALIDATE-OUT="$none" INVOKE-ORDER="0">
-
-  <!-- nodes -->
-
-<MAP MODE="INVOKEINPUT">
-
-  <!-- nodes -->
-
-<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/num2;1;0">
-  <DATA ENCODING="XMLValues" I18N="true">
-
-<Values version="2.0">
-  <value name="xml">1</value>
-  <record name="type" javaclass="com.wm.util.Values">
-    <value name="node_type">unknown</value>
-    <value name="is_public">false</value>
-    <value name="field_name">num2</value>
-    <value name="field_type">string</value>
-    <value name="field_dim">0</value>
-    <value name="nillable">true</value>
-    <value name="form_qualified">false</value>
-    <value name="is_global">false</value>
-  </record>
-</Values>
-</DATA>
-</MAPSET>
-
-<MAPCOPY NAME="Link" FROM="/passed;1;0" TO="/num1;1;0">
-</MAPCOPY>
-</MAP>
-
-<MAP MODE="INVOKEOUTPUT">
-
-  <!-- nodes -->
-
-<MAPCOPY NAME="Link" FROM="/value;1;0" TO="/passed;1;0">
-</MAPCOPY>
-</MAP>
-</MAPINVOKE>
-
-<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$item;2;0/passed?;1;0">
-  <DATA ENCODING="XMLValues" I18N="true">
-
-<Values version="2.0">
-  <value name="xml">true</value>
-  <record name="type" javaclass="com.wm.util.Values">
-    <value name="node_type">unknown</value>
-    <value name="is_public">false</value>
-    <value name="field_name">passed?</value>
-    <value name="field_type">string</value>
-    <value name="field_dim">0</value>
-    <value name="nillable">true</value>
-    <value name="form_qualified">false</value>
-    <value name="is_global">false</value>
-  </record>
-</Values>
-</DATA>
-</MAPSET>
-</MAP>
-</SEQUENCE>
-
-<SEQUENCE NAME="catch" TIMEOUT="" EXIT-ON="FAILURE">
-  <COMMENT></COMMENT>
-
-  <!-- nodes -->
-
-<INVOKE TIMEOUT="" SERVICE="pub.flow:getLastError" VALIDATE-IN="$none" VALIDATE-OUT="$none">
-  <COMMENT></COMMENT>
-
-  <!-- nodes -->
-
-<MAP MODE="INPUT">
-</MAP>
-
-<MAP MODE="OUTPUT">
-</MAP>
-</INVOKE>
-
-<MAP MODE="STANDALONE">
-  <COMMENT></COMMENT>
-  <MAPTARGET>
-
-<Values version="2.0">
-  <record name="xml" javaclass="com.wm.util.Values">
-    <value name="node_type">record</value>
-    <value name="is_public">false</value>
-    <value name="field_name">tundra.test:suite</value>
-    <value name="field_type">record</value>
-    <value name="field_dim">0</value>
-    <value name="nillable">true</value>
-    <value name="form_qualified">false</value>
-    <value name="is_global">false</value>
-    <array name="rec_fields" type="record" depth="1">
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">services</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="field_opt">true</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">build</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="field_opt">true</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">passed</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">record</value>
-        <value name="is_public">false</value>
-        <value name="field_name">$item</value>
-        <value name="field_type">record</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-        <array name="rec_fields" type="record" depth="1">
-          <record javaclass="com.wm.util.Values">
-            <value name="node_type">unknown</value>
-            <value name="is_public">false</value>
-            <value name="field_name">description</value>
-            <value name="field_type">string</value>
-            <value name="field_dim">0</value>
-            <value name="nillable">true</value>
-            <value name="form_qualified">false</value>
-            <value name="is_global">false</value>
-          </record>
-          <record javaclass="com.wm.util.Values">
-            <value name="node_type">unknown</value>
-            <value name="is_public">false</value>
-            <value name="field_name">passed?</value>
-            <value name="field_type">string</value>
-            <value name="field_dim">0</value>
-            <value name="nillable">true</value>
-            <value name="form_qualified">false</value>
-            <value name="is_global">false</value>
-          </record>
-          <record javaclass="com.wm.util.Values">
-            <value name="node_type">unknown</value>
-            <value name="is_public">false</value>
-            <value name="field_name">message</value>
-            <value name="field_type">string</value>
-            <value name="field_dim">0</value>
-            <value name="nillable">true</value>
-            <value name="form_qualified">false</value>
-            <value name="is_global">false</value>
-          </record>
-        </array>
-        <value name="modifiable">true</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">failed</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">value</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-    </array>
-    <value name="modifiable">true</value>
-  </record>
-</Values>
-</MAPTARGET>
-  <MAPSOURCE>
-
-<Values version="2.0">
-  <record name="xml" javaclass="com.wm.util.Values">
-    <value name="node_type">record</value>
-    <value name="is_public">false</value>
-    <value name="field_name">tundra.test:suite</value>
-    <value name="field_type">record</value>
-    <value name="field_dim">0</value>
-    <value name="nillable">true</value>
-    <value name="form_qualified">false</value>
-    <value name="is_global">false</value>
-    <array name="rec_fields" type="record" depth="1">
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">services</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="field_opt">true</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">build</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="field_opt">true</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">passed</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">record</value>
-        <value name="is_public">false</value>
-        <value name="field_name">$item</value>
-        <value name="field_type">record</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-        <array name="rec_fields" type="record" depth="1">
-        </array>
-        <value name="modifiable">true</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">failed</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">value</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">record</value>
-        <value name="is_public">false</value>
-        <value name="field_name">lastError</value>
-        <value name="field_type">recref</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-        <value name="modifiable">true</value>
-        <value name="rec_ref">pub.event:exceptionInfo</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">$iteration</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-    </array>
-    <value name="modifiable">true</value>
-  </record>
-</Values>
-</MAPSOURCE>
-
-  <!-- nodes -->
-
-<MAPCOPY NAME="Link" FROM="/lastError;4;0;pub.event:exceptionInfo/error;1;0" TO="/$item;2;0/message;1;0">
-</MAPCOPY>
-
-<MAPDELETE NAME="Dropper" FIELD="/lastError;4;0;pub.event:exceptionInfo">
-</MAPDELETE>
-
-<MAPCOPY NAME="Link" FROM="/services;1;0" TO="/$item;2;0/description;1;0">
-</MAPCOPY>
-
-<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$item;2;0/passed?;1;0">
-  <DATA ENCODING="XMLValues" I18N="true">
-
-<Values version="2.0">
-  <value name="xml">false</value>
-  <record name="type" javaclass="com.wm.util.Values">
-    <value name="node_type">unknown</value>
-    <value name="is_public">false</value>
-    <value name="field_name">passed?</value>
-    <value name="field_type">string</value>
-    <value name="field_dim">0</value>
-    <value name="nillable">true</value>
-    <value name="form_qualified">false</value>
-    <value name="is_global">false</value>
-  </record>
-</Values>
-</DATA>
-</MAPSET>
-
-<MAPINVOKE SERVICE="pub.math:addInts" VALIDATE-IN="$none" VALIDATE-OUT="$none" INVOKE-ORDER="0">
-
-  <!-- nodes -->
-
-<MAP MODE="INVOKEINPUT">
-
-  <!-- nodes -->
-
-<MAPCOPY NAME="Link" FROM="/failed;1;0" TO="/num1;1;0">
-</MAPCOPY>
-
-<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/num2;1;0">
-  <DATA ENCODING="XMLValues" I18N="true">
-
-<Values version="2.0">
-  <value name="xml">1</value>
-  <record name="type" javaclass="com.wm.util.Values">
-    <value name="node_type">unknown</value>
-    <value name="is_public">false</value>
-    <value name="field_name">num2</value>
-    <value name="field_type">string</value>
-    <value name="field_dim">0</value>
-    <value name="nillable">true</value>
-    <value name="form_qualified">false</value>
-    <value name="is_global">false</value>
-  </record>
-</Values>
-</DATA>
-</MAPSET>
-</MAP>
-
-<MAP MODE="INVOKEOUTPUT">
-
-  <!-- nodes -->
-
-<MAPCOPY NAME="Link" FROM="/value;1;0" TO="/failed;1;0">
-</MAPCOPY>
-</MAP>
-</MAPINVOKE>
-</MAP>
-</SEQUENCE>
-</SEQUENCE>
-
-<INVOKE TIMEOUT="" SERVICE="tundra.list.document:append" VALIDATE-IN="$none" VALIDATE-OUT="$none">
-  <COMMENT></COMMENT>
-
-  <!-- nodes -->
-
-<MAP MODE="INPUT">
-</MAP>
-
-<MAP MODE="OUTPUT">
-  <MAPTARGET>
-
-<Values version="2.0">
-  <record name="xml" javaclass="com.wm.util.Values">
-    <value name="node_type">record</value>
-    <value name="is_public">false</value>
-    <value name="field_name">tundra.test:suite</value>
-    <value name="field_type">record</value>
-    <value name="field_dim">0</value>
-    <value name="nillable">true</value>
-    <value name="form_qualified">false</value>
-    <value name="is_global">false</value>
-    <array name="rec_fields" type="record" depth="1">
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$package</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2676,7 +1845,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">services</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2687,7 +1855,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">build</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2698,7 +1865,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
-        <value name="is_public">false</value>
         <value name="field_name">$item</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -2708,7 +1874,6 @@
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
-            <value name="is_public">false</value>
             <value name="field_name">description</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2718,7 +1883,6 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
-            <value name="is_public">false</value>
             <value name="field_name">passed?</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2728,7 +1892,6 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
-            <value name="is_public">false</value>
             <value name="field_name">message</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2737,11 +1900,9 @@
             <value name="is_global">false</value>
           </record>
         </array>
-        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">passed</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2751,7 +1912,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">failed</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2761,7 +1921,691 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
+        <value name="field_name">value</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$exception?</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$exception.message</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+    </array>
+  </record>
+</Values>
+</MAPTARGET>
+  <MAPSOURCE>
+
+<Values version="2.0">
+  <record name="xml" javaclass="com.wm.util.Values">
+    <value name="node_type">record</value>
+    <value name="field_name">tundra.test:suite</value>
+    <value name="field_type">record</value>
+    <value name="field_dim">0</value>
+    <value name="nillable">true</value>
+    <value name="form_qualified">false</value>
+    <value name="is_global">false</value>
+    <array name="rec_fields" type="record" depth="1">
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$package</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">services</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">build</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">passed</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">failed</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">value</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$exception?</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$exception.message</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$iteration</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+    </array>
+  </record>
+</Values>
+</MAPSOURCE>
+
+  <!-- nodes -->
+
+<MAPCOPY NAME="Link" FROM="/services;1;0" TO="/$item;2;0/description;1;0">
+</MAPCOPY>
+
+<MAPCOPY NAME="Link" FROM="/$exception.message;1;0" TO="/$item;2;0/message;1;0">
+</MAPCOPY>
+
+<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$item;2;0/passed?;1;0">
+  <DATA ENCODING="XMLValues" I18N="true">
+
+<Values version="2.0">
+  <value name="xml">false</value>
+  <record name="type" javaclass="com.wm.util.Values">
+    <value name="node_type">unknown</value>
+    <value name="field_name">passed?</value>
+    <value name="field_type">string</value>
+    <value name="field_dim">0</value>
+    <value name="nillable">true</value>
+    <value name="form_qualified">false</value>
+    <value name="is_global">false</value>
+  </record>
+</Values>
+</DATA>
+</MAPSET>
+
+<MAPINVOKE SERVICE="tundra.integer:increment" VALIDATE-IN="$none" VALIDATE-OUT="$none" INVOKE-ORDER="0">
+
+  <!-- nodes -->
+
+<MAP MODE="INVOKEINPUT">
+
+  <!-- nodes -->
+
+<MAPCOPY NAME="Link" FROM="/failed;1;0" TO="/$integer;1;0">
+</MAPCOPY>
+</MAP>
+
+<MAP MODE="INVOKEOUTPUT">
+
+  <!-- nodes -->
+
+<MAPCOPY NAME="Link" FROM="/$integer;1;0" TO="/failed;1;0">
+</MAPCOPY>
+</MAP>
+</MAPINVOKE>
+</MAP>
+
+<MAP NAME="$default" TIMEOUT="" MODE="STANDALONE">
+  <COMMENT></COMMENT>
+  <MAPTARGET>
+
+<Values version="2.0">
+  <record name="xml" javaclass="com.wm.util.Values">
+    <value name="node_type">record</value>
+    <value name="field_name">tundra.test:suite</value>
+    <value name="field_type">record</value>
+    <value name="field_dim">0</value>
+    <value name="nillable">true</value>
+    <value name="form_qualified">false</value>
+    <value name="is_global">false</value>
+    <array name="rec_fields" type="record" depth="1">
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$package</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">services</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">build</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="field_name">$item</value>
+        <value name="field_type">record</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+        <array name="rec_fields" type="record" depth="1">
+          <record javaclass="com.wm.util.Values">
+            <value name="node_type">unknown</value>
+            <value name="field_name">description</value>
+            <value name="field_type">string</value>
+            <value name="field_dim">0</value>
+            <value name="nillable">true</value>
+            <value name="form_qualified">false</value>
+            <value name="is_global">false</value>
+          </record>
+          <record javaclass="com.wm.util.Values">
+            <value name="node_type">unknown</value>
+            <value name="field_name">passed?</value>
+            <value name="field_type">string</value>
+            <value name="field_dim">0</value>
+            <value name="nillable">true</value>
+            <value name="form_qualified">false</value>
+            <value name="is_global">false</value>
+          </record>
+        </array>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">passed</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">failed</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">value</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$exception?</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$exception.message</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+    </array>
+  </record>
+</Values>
+</MAPTARGET>
+  <MAPSOURCE>
+
+<Values version="2.0">
+  <record name="xml" javaclass="com.wm.util.Values">
+    <value name="node_type">record</value>
+    <value name="field_name">tundra.test:suite</value>
+    <value name="field_type">record</value>
+    <value name="field_dim">0</value>
+    <value name="nillable">true</value>
+    <value name="form_qualified">false</value>
+    <value name="is_global">false</value>
+    <array name="rec_fields" type="record" depth="1">
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$package</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">services</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">build</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">passed</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">failed</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">value</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$exception?</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$exception.message</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$iteration</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+    </array>
+  </record>
+</Values>
+</MAPSOURCE>
+
+  <!-- nodes -->
+
+<MAPCOPY NAME="Link" FROM="/services;1;0" TO="/$item;2;0/description;1;0">
+</MAPCOPY>
+
+<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$item;2;0/passed?;1;0">
+  <DATA ENCODING="XMLValues" I18N="true">
+
+<Values version="2.0">
+  <value name="xml">true</value>
+  <record name="type" javaclass="com.wm.util.Values">
+    <value name="node_type">unknown</value>
+    <value name="field_name">passed?</value>
+    <value name="field_type">string</value>
+    <value name="field_dim">0</value>
+    <value name="nillable">true</value>
+    <value name="form_qualified">false</value>
+    <value name="is_global">false</value>
+  </record>
+</Values>
+</DATA>
+</MAPSET>
+
+<MAPINVOKE SERVICE="tundra.integer:increment" VALIDATE-IN="$none" VALIDATE-OUT="$none" INVOKE-ORDER="0">
+
+  <!-- nodes -->
+
+<MAP MODE="INVOKEINPUT">
+
+  <!-- nodes -->
+
+<MAPCOPY NAME="Link" FROM="/passed;1;0" TO="/$integer;1;0">
+</MAPCOPY>
+</MAP>
+
+<MAP MODE="INVOKEOUTPUT">
+
+  <!-- nodes -->
+
+<MAPCOPY NAME="Link" FROM="/$integer;1;0" TO="/passed;1;0">
+</MAPCOPY>
+</MAP>
+</MAPINVOKE>
+</MAP>
+</BRANCH>
+
+<INVOKE TIMEOUT="" SERVICE="tundra.list.document:append" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+  <COMMENT></COMMENT>
+
+  <!-- nodes -->
+
+<MAP MODE="INPUT">
+  <MAPTARGET>
+
+<Values version="2.0">
+  <record name="xml" javaclass="com.wm.util.Values">
+    <value name="node_type">record</value>
+    <value name="field_type">record</value>
+    <value name="field_dim">0</value>
+    <value name="nillable">true</value>
+    <value name="form_qualified">false</value>
+    <value name="is_global">false</value>
+    <array name="rec_fields" type="record" depth="1">
+    </array>
+  </record>
+</Values>
+</MAPTARGET>
+  <MAPSOURCE>
+
+<Values version="2.0">
+  <record name="xml" javaclass="com.wm.util.Values">
+    <value name="node_type">record</value>
+    <value name="field_name">tundra.test:suite</value>
+    <value name="field_type">record</value>
+    <value name="field_dim">0</value>
+    <value name="nillable">true</value>
+    <value name="form_qualified">false</value>
+    <value name="is_global">false</value>
+    <array name="rec_fields" type="record" depth="1">
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$package</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">services</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">build</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="field_name">$item</value>
+        <value name="field_type">record</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+        <array name="rec_fields" type="record" depth="1">
+        </array>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">passed</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">failed</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">value</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$exception?</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$exception.message</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$iteration</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+    </array>
+  </record>
+</Values>
+</MAPSOURCE>
+
+  <!-- nodes -->
+
+<MAPDELETE NAME="Dropper" FIELD="/$exception.message;1;0">
+</MAPDELETE>
+
+<MAPDELETE NAME="Dropper" FIELD="/$exception?;1;0">
+</MAPDELETE>
+</MAP>
+
+<MAP MODE="OUTPUT">
+  <MAPTARGET>
+
+<Values version="2.0">
+  <record name="xml" javaclass="com.wm.util.Values">
+    <value name="node_type">record</value>
+    <value name="field_name">tundra.test:suite</value>
+    <value name="field_type">record</value>
+    <value name="field_dim">0</value>
+    <value name="nillable">true</value>
+    <value name="form_qualified">false</value>
+    <value name="is_global">false</value>
+    <array name="rec_fields" type="record" depth="1">
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$package</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">services</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">build</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="field_name">$item</value>
+        <value name="field_type">record</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+        <array name="rec_fields" type="record" depth="1">
+          <record javaclass="com.wm.util.Values">
+            <value name="node_type">unknown</value>
+            <value name="field_name">description</value>
+            <value name="field_type">string</value>
+            <value name="field_dim">0</value>
+            <value name="nillable">true</value>
+            <value name="form_qualified">false</value>
+            <value name="is_global">false</value>
+          </record>
+          <record javaclass="com.wm.util.Values">
+            <value name="node_type">unknown</value>
+            <value name="field_name">passed?</value>
+            <value name="field_type">string</value>
+            <value name="field_dim">0</value>
+            <value name="nillable">true</value>
+            <value name="form_qualified">false</value>
+            <value name="is_global">false</value>
+          </record>
+          <record javaclass="com.wm.util.Values">
+            <value name="node_type">unknown</value>
+            <value name="field_name">message</value>
+            <value name="field_type">string</value>
+            <value name="field_dim">0</value>
+            <value name="nillable">true</value>
+            <value name="form_qualified">false</value>
+            <value name="is_global">false</value>
+          </record>
+        </array>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">passed</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">failed</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
         <value name="field_name">value</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2776,21 +2620,17 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$list</value>
         <value name="field_type">record</value>
         <value name="field_dim">1</value>
-        <value name="field_opt">true</value>
-        <value name="nillable">true</value>
+        <value name="nillable">false</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
         <value name="is_soap_array_encoding_used">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
-        <value name="modifiable">true</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -2799,7 +2639,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -2807,7 +2646,6 @@
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -2821,32 +2659,13 @@
 </SEQUENCE>
 </BRANCH>
 
-<MAP NAME="drop" MODE="STANDALONE">
+<MAP NAME="drop" TIMEOUT="" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
-    <value name="field_name">tundra.test:suite</value>
-    <value name="field_type">record</value>
-    <value name="field_dim">0</value>
-    <value name="nillable">true</value>
-    <value name="form_qualified">false</value>
-    <value name="is_global">false</value>
-    <array name="rec_fields" type="record" depth="1">
-    </array>
-    <value name="modifiable">true</value>
-  </record>
-</Values>
-</MAPTARGET>
-  <MAPSOURCE>
-
-<Values version="2.0">
-  <record name="xml" javaclass="com.wm.util.Values">
-    <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_name">tundra.test:suite</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -2856,30 +2675,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">services</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="field_opt">true</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">build</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="field_opt">true</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">value</value>
+        <value name="field_name">$string</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -2887,81 +2683,25 @@
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">record</value>
-        <value name="node_comment"></value>
-        <record name="node_hints" javaclass="com.wm.util.Values">
-          <value name="field_largerEditor">false</value>
-          <value name="field_password">false</value>
-        </record>
-        <value name="is_public">false</value>
-        <value name="field_name">$list</value>
-        <value name="field_type">object</value>
-        <value name="field_dim">1</value>
-        <value name="nillable">false</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-        <value name="is_soap_array_encoding_used">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">$iteration</value>
+        <value name="field_name">$pattern</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
       </record>
-    </array>
-    <value name="modifiable">true</value>
-  </record>
-</Values>
-</MAPSOURCE>
-
-  <!-- nodes -->
-
-<MAPDELETE NAME="Dropper" FIELD="/value;1;0">
-</MAPDELETE>
-</MAP>
-</SEQUENCE>
-</BRANCH>
-
-<MAP NAME="drop" MODE="STANDALONE">
-  <COMMENT></COMMENT>
-  <MAPTARGET>
-
-<Values version="2.0">
-  <record name="xml" javaclass="com.wm.util.Values">
-    <value name="node_type">record</value>
-    <value name="is_public">false</value>
-    <value name="field_name">tundra.test:suite</value>
-    <value name="field_type">record</value>
-    <value name="field_dim">0</value>
-    <value name="nillable">true</value>
-    <value name="form_qualified">false</value>
-    <value name="is_global">false</value>
-    <array name="rec_fields" type="record" depth="1">
-    </array>
-    <value name="modifiable">true</value>
-  </record>
-</Values>
-</MAPTARGET>
-  <MAPSOURCE>
-
-<Values version="2.0">
-  <record name="xml" javaclass="com.wm.util.Values">
-    <value name="node_type">record</value>
-    <value name="is_public">false</value>
-    <value name="field_name">tundra.test:suite</value>
-    <value name="field_type">record</value>
-    <value name="field_dim">0</value>
-    <value name="nillable">true</value>
-    <value name="form_qualified">false</value>
-    <value name="is_global">false</value>
-    <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
+        <value name="field_name">$literal?</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
         <value name="field_name">$package</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2971,7 +2711,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">services</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2982,17 +2721,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">value</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">build</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3003,7 +2731,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">passed</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3013,7 +2740,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">failed</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3025,22 +2751,189 @@
         <value name="node_type">record</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
+          <null name="field_usereditable"/>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
+        <value name="field_name">$match?</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <record name="field_content_type" javaclass="com.wm.util.Values">
+          <value name="contentType">1</value>
+          <value name="internalType">reference</value>
+          <value name="dataTypeVersion">dtVersion2</value>
+          <array name="targetNames" type="record" depth="1">
+            <record javaclass="com.wm.util.Values">
+              <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+              <value name="ncName">boolean</value>
+            </record>
+          </array>
+        </record>
+        <value name="nillable">false</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="node_comment"></value>
+        <record name="node_hints" javaclass="com.wm.util.Values">
+          <value name="field_largerEditor">false</value>
+          <value name="field_password">false</value>
+        </record>
         <value name="field_name">$list</value>
-        <value name="field_type">object</value>
+        <value name="field_type">record</value>
         <value name="field_dim">1</value>
+        <value name="nillable">false</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+        <value name="is_soap_array_encoding_used">false</value>
+        <array name="rec_fields" type="record" depth="1">
+        </array>
+      </record>
+    </array>
+  </record>
+</Values>
+</MAPTARGET>
+  <MAPSOURCE>
+
+<Values version="2.0">
+  <record name="xml" javaclass="com.wm.util.Values">
+    <value name="node_type">record</value>
+    <value name="field_name">tundra.test:suite</value>
+    <value name="field_type">record</value>
+    <value name="field_dim">0</value>
+    <value name="nillable">true</value>
+    <value name="form_qualified">false</value>
+    <value name="is_global">false</value>
+    <array name="rec_fields" type="record" depth="1">
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$string</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$pattern</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$literal?</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$package</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">services</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
         <value name="field_opt">true</value>
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
-        <value name="is_soap_array_encoding_used">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
+        <value name="field_name">build</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">passed</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">failed</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">value</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="node_comment"></value>
+        <record name="node_hints" javaclass="com.wm.util.Values">
+          <null name="field_usereditable"/>
+          <value name="field_largerEditor">false</value>
+          <value name="field_password">false</value>
+        </record>
+        <value name="field_name">$match?</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <record name="field_content_type" javaclass="com.wm.util.Values">
+          <value name="contentType">1</value>
+          <value name="internalType">reference</value>
+          <value name="dataTypeVersion">dtVersion2</value>
+          <array name="targetNames" type="record" depth="1">
+            <record javaclass="com.wm.util.Values">
+              <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+              <value name="ncName">boolean</value>
+            </record>
+          </array>
+        </record>
+        <value name="nillable">false</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="node_comment"></value>
+        <record name="node_hints" javaclass="com.wm.util.Values">
+          <value name="field_largerEditor">false</value>
+          <value name="field_password">false</value>
+        </record>
+        <value name="field_name">$list</value>
+        <value name="field_type">record</value>
+        <value name="field_dim">1</value>
+        <value name="nillable">false</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+        <value name="is_soap_array_encoding_used">false</value>
+        <array name="rec_fields" type="record" depth="1">
+        </array>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
         <value name="field_name">$iteration</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3049,14 +2942,13 @@
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
 
   <!-- nodes -->
 
-<MAPDELETE NAME="Dropper" FIELD="/value;1;0">
+<MAPDELETE NAME="Dropper" FIELD="/$match?;1;0">
 </MAPDELETE>
 </MAP>
 </LOOP>
@@ -3081,7 +2973,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -3090,7 +2981,6 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
-        <value name="is_public">false</value>
         <value name="field_name">$result</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -3100,7 +2990,6 @@
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
-            <value name="is_public">false</value>
             <value name="field_name">counts</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -3110,7 +2999,6 @@
             <array name="rec_fields" type="record" depth="1">
               <record javaclass="com.wm.util.Values">
                 <value name="node_type">unknown</value>
-                <value name="is_public">false</value>
                 <value name="field_name">total</value>
                 <value name="field_type">string</value>
                 <value name="field_dim">0</value>
@@ -3120,7 +3008,6 @@
               </record>
               <record javaclass="com.wm.util.Values">
                 <value name="node_type">unknown</value>
-                <value name="is_public">false</value>
                 <value name="field_name">passed</value>
                 <value name="field_type">string</value>
                 <value name="field_dim">0</value>
@@ -3130,7 +3017,6 @@
               </record>
               <record javaclass="com.wm.util.Values">
                 <value name="node_type">unknown</value>
-                <value name="is_public">false</value>
                 <value name="field_name">failed</value>
                 <value name="field_type">string</value>
                 <value name="field_dim">0</value>
@@ -3139,11 +3025,9 @@
                 <value name="is_global">false</value>
               </record>
             </array>
-            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
-            <value name="is_public">false</value>
             <value name="field_name">package</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -3153,7 +3037,6 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
-            <value name="is_public">false</value>
             <value name="field_name">cases</value>
             <value name="field_type">record</value>
             <value name="field_dim">1</value>
@@ -3163,13 +3046,10 @@
             <value name="is_soap_array_encoding_used">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
-            <value name="modifiable">true</value>
           </record>
         </array>
-        <value name="modifiable">true</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -3178,7 +3058,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -3187,7 +3066,6 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
-        <value name="is_public">false</value>
         <value name="field_name">tundra.test:suite</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -3197,7 +3075,6 @@
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
-            <value name="is_public">false</value>
             <value name="field_name">$package</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -3207,7 +3084,6 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
-            <value name="is_public">false</value>
             <value name="field_name">services</value>
             <value name="field_type">string</value>
             <value name="field_dim">1</value>
@@ -3219,7 +3095,6 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
-            <value name="is_public">false</value>
             <value name="field_name">build</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -3230,7 +3105,6 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
-            <value name="is_public">false</value>
             <value name="field_name">passed</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -3240,7 +3114,6 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
-            <value name="is_public">false</value>
             <value name="field_name">failed</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -3255,7 +3128,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">$list</value>
             <value name="field_type">object</value>
             <value name="field_dim">1</value>
@@ -3272,7 +3144,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">$length</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -3292,10 +3163,8 @@
             <value name="is_global">false</value>
           </record>
         </array>
-        <value name="modifiable">true</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -3333,7 +3202,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -3342,7 +3210,6 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
-        <value name="is_public">false</value>
         <value name="field_name">$result</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -3352,7 +3219,6 @@
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
-            <value name="is_public">false</value>
             <value name="field_name">counts</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -3361,11 +3227,9 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
-            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
-            <value name="is_public">false</value>
             <value name="field_name">package</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -3375,7 +3239,6 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
-            <value name="is_public">false</value>
             <value name="field_name">cases</value>
             <value name="field_type">record</value>
             <value name="field_dim">1</value>
@@ -3385,11 +3248,9 @@
             <value name="is_soap_array_encoding_used">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
-            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
-            <value name="is_public">false</value>
             <value name="field_name">passed?</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -3398,10 +3259,8 @@
             <value name="is_global">false</value>
           </record>
         </array>
-        <value name="modifiable">true</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -3410,7 +3269,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -3418,7 +3276,6 @@
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -3438,7 +3295,6 @@
       <value name="field_largerEditor">false</value>
       <value name="field_password">false</value>
     </record>
-    <value name="is_public">false</value>
     <value name="field_name">passed?</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
@@ -3469,7 +3325,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -3478,7 +3333,6 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
-        <value name="is_public">false</value>
         <value name="field_name">$result</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -3488,7 +3342,6 @@
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
-            <value name="is_public">false</value>
             <value name="field_name">counts</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -3497,11 +3350,9 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
-            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
-            <value name="is_public">false</value>
             <value name="field_name">package</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -3511,7 +3362,6 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
-            <value name="is_public">false</value>
             <value name="field_name">cases</value>
             <value name="field_type">record</value>
             <value name="field_dim">1</value>
@@ -3521,11 +3371,9 @@
             <value name="is_soap_array_encoding_used">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
-            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
-            <value name="is_public">false</value>
             <value name="field_name">passed?</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -3534,11 +3382,9 @@
             <value name="is_global">false</value>
           </record>
         </array>
-        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
-        <value name="is_public">false</value>
         <value name="field_name">$results</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -3547,10 +3393,8 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
-        <value name="modifiable">true</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -3559,7 +3403,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -3567,7 +3410,6 @@
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -3581,7 +3423,6 @@
   <value name="xml">false</value>
   <record name="type" javaclass="com.wm.util.Values">
     <value name="node_type">unknown</value>
-    <value name="is_public">false</value>
     <value name="field_name">passed?</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
@@ -3611,7 +3452,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_name">setResponseCodeInput</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -3621,7 +3461,6 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">responseCode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3673,7 +3512,6 @@
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -3682,7 +3520,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -3690,7 +3527,6 @@
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -3704,7 +3540,6 @@
   <value name="xml">500</value>
   <record name="type" javaclass="com.wm.util.Values">
     <value name="node_type">unknown</value>
-    <value name="is_public">false</value>
     <value name="field_name">responseCode</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
@@ -3766,7 +3601,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -3775,7 +3609,6 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">responseCode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3785,7 +3618,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
-        <value name="is_public">false</value>
         <value name="field_name">$result</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -3794,10 +3626,8 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
-        <value name="modifiable">true</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -3806,7 +3636,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -3814,7 +3643,6 @@
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
