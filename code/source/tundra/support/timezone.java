@@ -1,7 +1,7 @@
 package tundra.support;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-09-30 19:08:28 EST
+// -----( CREATED: 2014-11-21 21:57:04 EST
 // -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
@@ -50,7 +50,7 @@ public final class timezone
 	
 	  java.util.TimeZone timezone = null;
 	
-	  if (id.equals("$default")) {
+	  if (id.equals("$default") || id.equalsIgnoreCase("local") || id.equalsIgnoreCase("self")) {
 	    timezone = self();
 	  } else {
 	    if (id.equals("Z")) {
@@ -138,6 +138,33 @@ public final class timezone
 	
 	  java.util.Calendar output = java.util.Calendar.getInstance(zone);
 	  output.setTimeInMillis(input.getTimeInMillis());
+	  return output;
+	}
+	
+	// replaces the time zone on the given calendar with the given time zone
+	public static java.util.Calendar replace(java.util.Calendar input, String zone) {
+	  java.util.TimeZone timezone = get(zone);
+	  if (timezone == null) throw new IllegalArgumentException("Unknown time zone specified: " + zone);
+	
+	  return replace(input, timezone);
+	}
+	
+	// replaces the time zone on the given calendar with the given time zone
+	public static java.util.Calendar replace(java.util.Calendar input, java.util.TimeZone zone) {
+	  if (input == null || zone == null) return input;
+	
+	  long instant = input.getTimeInMillis();
+	  java.util.TimeZone currentZone = input.getTimeZone();
+	  int currentOffset = currentZone.getOffset(instant);
+	  int desiredOffset = zone.getOffset(instant);
+	
+	  // reset instant to UTC time then force it to input timezone
+	  instant = instant + currentOffset - desiredOffset;
+	
+	  // convert to output zone
+	  java.util.Calendar output = java.util.Calendar.getInstance(zone);
+	  output.setTimeInMillis(instant);
+	
 	  return output;
 	}
 	// --- <<IS-END-SHARED>> ---

@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-10-23 14:29:51.575
-// -----( ON-HOST: -
+// -----( CREATED: 2014-11-21 22:27:14 EST
+// -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -34,9 +34,10 @@ public final class datetime
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:1:optional $list
-		// [i] field:0:optional $pattern.input {&quot;datetime&quot;,&quot;date&quot;,&quot;time&quot;,&quot;milliseconds&quot;}
+		// [i] field:0:optional $pattern.input {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
 		// [i] field:1:optional $patterns.input
-		// [i] field:0:optional $pattern.output {&quot;datetime&quot;,&quot;date&quot;,&quot;time&quot;,&quot;milliseconds&quot;}
+		// [i] field:0:optional $pattern.output {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
+		// [i] field:0:optional $timezone.input
 		// [i] field:0:optional $timezone.output
 		// [o] field:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
@@ -46,13 +47,14 @@ public final class datetime
 		  String inPattern = IDataUtil.getString(cursor, "$pattern.input");
 		  String[] inPatterns = IDataUtil.getStringArray(cursor, "$patterns.input");
 		  String outPattern = IDataUtil.getString(cursor, "$pattern.output");
+		  String inTimeZone = IDataUtil.getString(cursor, "$timezone.input");
 		  String outTimeZone = IDataUtil.getString(cursor, "$timezone.output");
 		
 		  if (list != null && list.length > 0) {
 		    if (inPatterns == null) {
-		      IDataUtil.put(cursor, "$list", format(list, inPattern, outPattern, outTimeZone));
+		      IDataUtil.put(cursor, "$list", format(list, inPattern, inTimeZone, outPattern, outTimeZone));
 		    } else {
-		      IDataUtil.put(cursor, "$list", format(list, inPatterns, outPattern, outTimeZone));
+		      IDataUtil.put(cursor, "$list", format(list, inPatterns, inTimeZone, outPattern, outTimeZone));
 		    }
 		  }
 		} finally {
@@ -65,24 +67,24 @@ public final class datetime
 
 	// --- <<IS-START-SHARED>> ---
 	// formats a list datetime strings to the given pattern
-	public static String[] format(String[] inputs, String inPattern, String outPattern, String outTimeZone) {
+	public static String[] format(String[] inputs, String inPattern, String inTimeZone, String outPattern, String outTimeZone) {
 	  String[] outputs = null;
 	  if (inputs != null) {
 	    outputs = new String[inputs.length];
 	    for (int i = 0; i < inputs.length; i++) {
-	      outputs[i] = tundra.datetime.format(inputs[i], inPattern, outPattern, outTimeZone);
+	      outputs[i] = tundra.datetime.format(inputs[i], inPattern, inTimeZone, outPattern, outTimeZone);
 	    }
 	  }
 	  return outputs;
 	}
 	
 	// formats a list datetime strings to the given pattern
-	public static String[] format(String[] inputs, String[] inPatterns, String outPattern, String outTimeZone) {
+	public static String[] format(String[] inputs, String[] inPatterns, String inTimeZone, String outPattern, String outTimeZone) {
 	  String[] outputs = null;
 	  if (inputs != null) {
 	    outputs = new String[inputs.length];
 	    for (int i = 0; i < inputs.length; i++) {
-	      outputs[i] = tundra.datetime.format(inputs[i], inPatterns, outPattern, outTimeZone);
+	      outputs[i] = tundra.datetime.format(inputs[i], inPatterns, inTimeZone, outPattern, outTimeZone);
 	    }
 	  }
 	  return outputs;

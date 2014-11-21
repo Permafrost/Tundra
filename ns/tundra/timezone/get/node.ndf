@@ -337,7 +337,7 @@
   * $id is a [java.util.TimeZone] ID identifying the time zone to be 
     returned, or a (+|-)HH:mm time zone offset, or an XML duration 
     string representing a time zone offset, or a raw millisecond 
-    time zone offset, or Z for UTC, or $default for the default or 
+    time zone offset, or `Z` for UTC, or `local` for the default or 
     local host time zone. If a time zone offset is specified, the 
     first time zone that matches the given offset is returned.
   * $datetime is an optional XML datetime string identifying the 

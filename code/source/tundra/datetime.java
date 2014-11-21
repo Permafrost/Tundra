@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-09-30 19:00:03 EST
+// -----( CREATED: 2014-11-21 22:06:17 EST
 // -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
@@ -216,6 +216,7 @@ public final class datetime
 		// [i] field:0:optional $pattern.input {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
 		// [i] field:1:optional $patterns.input
 		// [i] field:0:optional $pattern.output {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
+		// [i] field:0:optional $timezone.input
 		// [i] field:0:optional $timezone.output
 		// [o] field:0:optional $datetime
 		IDataCursor cursor = pipeline.getCursor();
@@ -225,13 +226,14 @@ public final class datetime
 		  String inPattern = IDataUtil.getString(cursor, "$pattern.input");
 		  String[] inPatterns = IDataUtil.getStringArray(cursor, "$patterns.input");
 		  String outPattern = IDataUtil.getString(cursor, "$pattern.output");
+		  String inTimeZone = IDataUtil.getString(cursor, "$timezone.input");
 		  String outTimeZone = IDataUtil.getString(cursor, "$timezone.output");
 		
 		  if (datetime != null) {
 		    if (inPatterns == null) {
-		      datetime = format(datetime, inPattern, outPattern, outTimeZone);
+		      datetime = format(datetime, inPattern, inTimeZone, outPattern, outTimeZone);
 		    } else {
-		      datetime = format(datetime, inPatterns, outPattern, outTimeZone);
+		      datetime = format(datetime, inPatterns, inTimeZone, outPattern, outTimeZone);
 		    }
 		    IDataUtil.put(cursor, "$datetime", datetime);
 		  }
@@ -360,6 +362,7 @@ public final class datetime
 		// [i] field:0:optional $datetime
 		// [i] field:0:optional $pattern {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
 		// [i] field:1:optional $patterns
+		// [i] field:0:optional $timezone
 		// [o] object:0:optional $datetime.object
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -367,13 +370,14 @@ public final class datetime
 		  String datetime = IDataUtil.getString(cursor, "$datetime");
 		  String pattern = IDataUtil.getString(cursor, "$pattern");
 		  String[] patterns = IDataUtil.getStringArray(cursor, "$patterns");
+		  String timezone = IDataUtil.getString(cursor, "$timezone");
 		
 		  if (datetime != null) {
 		    java.util.Calendar calendar = null;
 		    if (patterns == null) {
-		      calendar = parse(datetime, pattern);
+		      calendar = parse(datetime, pattern, timezone);
 		    } else {
-		      calendar = parse(datetime, patterns);
+		      calendar = parse(datetime, patterns, timezone);
 		    }
 		    IDataUtil.put(cursor, "$datetime.object", calendar.getTime());
 		  }
@@ -629,36 +633,36 @@ public final class datetime
 	
 	// reformats a datetime string according to the given patterns
 	public static String format(String input, String inPattern, String outPattern) {
-	  return format(input, inPattern, outPattern, null);
+	  return format(input, inPattern, null, outPattern, null);
 	}
 	
 	// reformats a datetime string according to the given patterns
-	public static String format(String input, String inPattern, String outPattern, String outTimeZone) {
-	  return emit(parse(input, inPattern), outPattern, outTimeZone);
+	public static String format(String input, String inPattern, String inTimeZone, String outPattern, String outTimeZone) {
+	  return emit(parse(input, inPattern, inTimeZone), outPattern, outTimeZone);
 	}
 	
 	// reformats a datetime string according to the given patterns
 	public static String format(String input, String[] inPatterns, String outPattern) {
-	  return format(input, inPatterns, outPattern, null);
+	  return format(input, inPatterns, null, outPattern, null);
 	}
 	
 	// reformats a datetime string according to the given patterns
-	public static String format(String input, String[] inPatterns, String outPattern, String outTimeZone) {
-	  return emit(parse(input, inPatterns), outPattern, outTimeZone);
+	public static String format(String input, String[] inPatterns, String inTimeZone, String outPattern, String outTimeZone) {
+	  return emit(parse(input, inPatterns, inTimeZone), outPattern, outTimeZone);
 	}
 	
 	// reformats a list datetime strings according to the given patterns
 	public static String[] format(String[] inputs, String inPattern, String outPattern) {
-	  return format(inputs, inPattern, outPattern, null);
+	  return format(inputs, inPattern, null, outPattern, null);
 	}
 	
 	// reformats a list datetime strings according to the given patterns
-	public static String[] format(String[] inputs, String inPattern, String outPattern, String outTimeZone) {
+	public static String[] format(String[] inputs, String inPattern, String inTimeZone, String outPattern, String outTimeZone) {
 	  String[] outputs = null;
 	  if (inputs != null) {
 	    outputs = new String[inputs.length];
 	    for (int i = 0; i < inputs.length; i++) {
-	      outputs[i] = tundra.datetime.format(inputs[i], inPattern, outPattern, outTimeZone);
+	      outputs[i] = tundra.datetime.format(inputs[i], inPattern, inTimeZone, outPattern, outTimeZone);
 	    }
 	  }
 	  return outputs;
@@ -666,16 +670,16 @@ public final class datetime
 	
 	// reformats a list datetime strings according to the given patterns
 	public static String[] format(String[] inputs, String[] inPatterns, String outPattern) {
-	  return format(inputs, inPatterns, outPattern, null);
+	  return format(inputs, inPatterns, null, outPattern, null);
 	}
 	
 	// reformats a list datetime strings according to the given patterns
-	public static String[] format(String[] inputs, String[] inPatterns, String outPattern, String outTimeZone) {
+	public static String[] format(String[] inputs, String[] inPatterns, String inTimeZone, String outPattern, String outTimeZone) {
 	  String[] outputs = null;
 	  if (inputs != null) {
 	    outputs = new String[inputs.length];
 	    for (int i = 0; i < inputs.length; i++) {
-	      outputs[i] = tundra.datetime.format(inputs[i], inPatterns, outPattern, outTimeZone);
+	      outputs[i] = tundra.datetime.format(inputs[i], inPatterns, inTimeZone, outPattern, outTimeZone);
 	    }
 	  }
 	  return outputs;
@@ -703,6 +707,11 @@ public final class datetime
 	
 	// parses a datetime string that adheres to the given pattern and returns a java.util.Date object
 	public static java.util.Calendar parse(String input, String pattern) throws IllegalArgumentException {
+	  return parse(input, pattern, (String)null);
+	}
+	
+	// parses a datetime string that adheres to the given pattern and returns a java.util.Date object
+	public static java.util.Calendar parse(String input, String pattern, String timezone) throws IllegalArgumentException {
 	  if (pattern == null) pattern = DEFAULT_DATETIME_PATTERN;
 	  
 	  java.util.Calendar output = null;
@@ -729,6 +738,8 @@ public final class datetime
 	        output = java.util.Calendar.getInstance();
 	        output.setTime(formatter.parse(input));
 	      }
+	
+	      if (timezone != null) output = tundra.support.timezone.replace(output, timezone);
 	    } catch (Exception ex) {
 	      throw new IllegalArgumentException("Unparseable datetime: '" + input + "' does not conform to pattern '" + pattern + "'");
 	    }
@@ -738,7 +749,12 @@ public final class datetime
 	}
 	
 	// parses a datetime string that adheres to the given pattern and returns a java.util.Date object
-	public static java.util.Calendar parse(String input, String... patterns) throws IllegalArgumentException {  
+	public static java.util.Calendar parse(String input, String[] patterns) throws IllegalArgumentException {  
+	  return parse(input, patterns, (String)null);
+	}
+	
+	// parses a datetime string that adheres to the given pattern and returns a java.util.Date object
+	public static java.util.Calendar parse(String input, String[] patterns, String timezone) throws IllegalArgumentException {  
 	  java.util.Calendar output = null;
 	
 	  if (patterns == null) patterns = new String[1];
@@ -749,7 +765,7 @@ public final class datetime
 	    boolean parsed = false;
 	    for (String pattern : patterns) {
 	      try {
-	        output = parse(input, pattern);
+	        output = parse(input, pattern, timezone);
 	        parsed = true;
 	        break;
 	      } catch (Exception ex) {
@@ -764,11 +780,16 @@ public final class datetime
 	
 	// parses a list of datetime strings that adheres to the given pattern and returns a java.util.Date object
 	public static java.util.Calendar[] parse(String[] inputs, String pattern) throws IllegalArgumentException {
+	  return parse(inputs, pattern, (String)null);
+	}
+	
+	// parses a list of datetime strings that adheres to the given pattern and returns a java.util.Date object
+	public static java.util.Calendar[] parse(String[] inputs, String pattern, String timezone) throws IllegalArgumentException {
 	  java.util.Calendar[] outputs = null;
 	  if (inputs != null) {
 	    outputs = new java.util.Calendar[inputs.length];
 	    for (int i = 0; i < inputs.length; i++) {
-	      outputs[i] = parse(inputs[i], pattern);
+	      outputs[i] = parse(inputs[i], pattern, timezone);
 	    }
 	  }
 	  return outputs;
@@ -776,11 +797,16 @@ public final class datetime
 	
 	// parses a list of datetime strings that adheres to the given patterns and returns a java.util.Date object
 	public static java.util.Calendar[] parse(String[] inputs, String[] patterns) throws IllegalArgumentException {
+	  return parse(inputs, patterns, (String)null);
+	}
+	
+	// parses a list of datetime strings that adheres to the given patterns and returns a java.util.Date object
+	public static java.util.Calendar[] parse(String[] inputs, String[] patterns, String timezone) throws IllegalArgumentException {
 	  java.util.Calendar[] outputs = null;
 	  if (inputs != null) {
 	    outputs = new java.util.Calendar[inputs.length];
 	    for (int i = 0; i < inputs.length; i++) {
-	      outputs[i] = parse(inputs[i], patterns);
+	      outputs[i] = parse(inputs[i], patterns, timezone);
 	    }
 	  }
 	  return outputs;

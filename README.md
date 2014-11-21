@@ -274,30 +274,30 @@ services.
 
 * #### tundra.assertion.exception:raised
 
-  Throws an assertion error if the given service, when invoked, does 
+  Throws an assertion error if the given service, when invoked, does
   not throw an exception matching the given criteria.
 
   * Inputs:
-    * `$service` is the fully-qualified name of the service to be 
+    * `$service` is the fully-qualified name of the service to be
       invoked that is expected to throw an exception.
-    * `$pipeline` is an optional IData document which, if specified, 
-      contains the input arguments for the invocation of `$service`; in 
-      other words, the invocation is scoped to this IData document. If 
-      not specified, the invocation is unscoped, and hence the service 
+    * `$pipeline` is an optional IData document which, if specified,
+      contains the input arguments for the invocation of `$service`; in
+      other words, the invocation is scoped to this IData document. If
+      not specified, the invocation is unscoped, and hence the service
       will operate directly against the pipeline itself.
-    * `$exception` is an IData document containing optional criteria 
+    * `$exception` is an IData document containing optional criteria
       which a thrown exception will be expected meet.
-      * `class` is the name of a Java class that the thrown exception 
+      * `class` is the name of a Java class that the thrown exception
         must be an instance of.
       * `message`
-        * `pattern` is a [regular expression pattern] or literal string 
+        * `pattern` is a [regular expression pattern] or literal string
           that must match the thrown exception's message.
-        * `literal?` is a boolean indicating if the `pattern` string 
-          should be treated as a literal string. If false, `pattern` is 
-          treated as a [regular expression pattern]. If true, `pattern` 
-          is treated as a literal string. Defaults to false, if not 
+        * `literal?` is a boolean indicating if the `pattern` string
+          should be treated as a literal string. If false, `pattern` is
+          treated as a [regular expression pattern]. If true, `pattern`
+          is treated as a literal string. Defaults to false, if not
           specified.
-    * `$message` is an optional custom message to be used as the 
+    * `$message` is an optional custom message to be used as the
       asertion error message if the assertion fails.
 
 * #### tundra.assertion.list.document:equal
@@ -1638,7 +1638,7 @@ Services for manipulating date, time and datetime strings:
     * `$timezone` is an optional [java.util.TimeZone] ID, or a
       `(+|-)HH:mm` time zone offset, or an XML duration string
       representing a time zone offset, or a raw millisecond time zone
-      offset, or `Z` for UTC, or `$default` for the default localhost time
+      offset, or `Z` for UTC, or `local` for the default localhost time
       zone identifying the time zone the returned `$datetime` will be
       formatted with.
   * Outputs:
@@ -1675,7 +1675,7 @@ Services for manipulating date, time and datetime strings:
     * `$timezone` is an optional [java.util.TimeZone] ID, or a
       `(+|-)HH:mm` time zone offset, or an XML duration string
       representing a time zone offset, or a raw millisecond time zone
-      offset, or `Z` for UTC, or `$default` for the default localhost time
+      offset, or `Z` for UTC, or `local` for the default localhost time
       zone identifying the time zone the returned `$datetime` will be
       formatted with.
   * Outputs:
@@ -1717,12 +1717,19 @@ Services for manipulating date, time and datetime strings:
     * `$pattern.output` is an optional datetime pattern that will be used to
       format the resulting `$datetime` string. Defaults to an [ISO8601] XML
       datetime.
+    * `$timezone.input` is an optional [java.util.TimeZone] ID, or a
+      `(+|-)HH:mm` time zone offset, or an XML duration string
+      representing a time zone offset, or a raw millisecond time zone
+      offset, or `Z` for UTC, or `local` for the default localhost
+      time zone identifying the time zone the input `$datetime` will
+      be parsed with. If specified, this time zone will override any
+      zone specified in the `$datetime` string itself.
     * `$timezone.output` is an optional [java.util.TimeZone] ID, or a
       `(+|-)HH:mm` time zone offset, or an XML duration string
       representing a time zone offset, or a raw millisecond time zone
-      offset, or `Z` for UTC, or `$default` for the default localhost time
-      zone identifying the time zone the returned `$datetime` will be
-      formatted with.
+      offset, or `Z` for UTC, or `local` for the default localhost
+      time zone identifying the time zone the returned `$datetime` will
+      be formatted with.
   * Outputs:
     * `$datetime` is the datetime formatted as a string according to the
       given `$pattern.output` in the given `$timezone.output`.
@@ -1757,7 +1764,7 @@ Services for manipulating date, time and datetime strings:
     * `$timezone` is an optional [java.util.TimeZone] ID, or a
       `(+|-)HH:mm` time zone offset, or an XML duration string
       representing a time zone offset, or a raw millisecond time zone
-      offset, or `Z` for UTC, or `$default` for the default localhost time
+      offset, or `Z` for UTC, or `local` for the default localhost time
       zone identifying the time zone the returned `$datetime` will be
       formatted with.
   * Outputs:
@@ -1849,7 +1856,7 @@ Services for manipulating date, time and datetime strings:
     * `$timezone` is an optional [java.util.TimeZone] ID, or a
       `(+|-)HH:mm` time zone offset, or an XML duration string
       representing a time zone offset, or a raw millisecond time zone
-      offset, or `Z` for UTC, or `$default` for the default localhost time
+      offset, or `Z` for UTC, or `local` for the default localhost time
       zone identifying the time zone the returned `$datetime` will be
       formatted with.
   * Outputs:
@@ -1887,6 +1894,13 @@ Services for manipulating date, time and datetime strings:
       attempted for each pattern until the first successful parse, or until
       all patterns have been tried in which case an unparseable datetime
       exception will be thrown.
+    * `$timezone.input` is an optional [java.util.TimeZone] ID, or a
+      `(+|-)HH:mm` time zone offset, or an XML duration string
+      representing a time zone offset, or a raw millisecond time zone
+      offset, or `Z` for UTC, or `local` for the default localhost
+      time zone identifying the time zone the input `$datetime` will
+      be parsed with. If specified, this time zone will override any
+      zone specified in the `$datetime` string itself.
   * Outputs:
     * `$datetime.object` is a [java.util.Date] object representing the same
       instant in time as the given `$datetime` string.
@@ -4637,13 +4651,19 @@ Services for working with arbitrary precision integers (uses
     * `$pattern.output` is an optional datetime pattern that will be
       used to format the resulting `$list` strings. Defaults to an
       [ISO8601] XML datetime.
+    * `$timezone.input` is an optional [java.util.TimeZone] ID, or a
+      `(+|-)HH:mm` time zone offset, or an XML duration string
+      representing a time zone offset, or a raw millisecond time zone
+      offset, or `Z` for UTC, or `local` for the default localhost
+      time zone identifying the time zone the input `$list` strings
+      will be parsed with. If specified, this time zone will override
+      any zone specified in the `$list` strings themselves.
     * `$timezone.output` is an optional [java.util.TimeZone] ID, or a
       `(+|-)HH:mm` time zone offset, or an XML duration string
       representing a time zone offset, or a raw millisecond time zone
-      offset, or `Z` for UTC, or `$default` for the default localhost time
-      zone identifying the time zone the returned `$list` strings will
-      be formatted with.
-
+      offset, or `Z` for UTC, or `local` for the default localhost
+      time zone identifying the time zone the returned $list strings
+      will be formatted with.
   * Outputs:
     * `$list` is the resulting list of datetime strings formatted
       according to `$pattern.output` in the given `$timezone.output`.
@@ -8447,9 +8467,10 @@ Services for manipulating java.lang.String objects:
     * `$id` is a [java.util.TimeZone] ID identifying the time
       zone to be returned, or a `(+|-)HH:mm` timezone offset,
       or an XML duration string representing a timezone offset,
-      or a raw millisecond timezone offset. If a timezone offset
-      is specified, the first timezone that matches the given
-      offset is returned.
+      or a raw millisecond timezone offset, or `Z` for UTC, or
+      `local` for the default localhost time zone. If a timezone
+      offset is specified, the first timezone that matches the
+      given offset is returned.
     * `$datetime` is an optional XML datetime string identifying
       the instant in time to be used to determine the Universal
       Coordinated Time (UTC) offset and whether Daylight Savings
