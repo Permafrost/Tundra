@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">normalize</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogIE9iamVj
+dFtdIG9iamVjdHMgPSBJRGF0YVV0aWwuZ2V0T2JqZWN0QXJyYXkoY3Vyc29yLCAiJG9iamVjdHMi
+KTsKICBTdHJpbmcgZW5jb2RpbmcgPSBJRGF0YVV0aWwuZ2V0U3RyaW5nKGN1cnNvciwgIiRlbmNv
+ZGluZyIpOwoKICBTdHJpbmdbXSBzdHJpbmdzID0gbm9ybWFsaXplKG9iamVjdHMsIGVuY29kaW5n
+KTsKCiAgaWYgKHN0cmluZ3MgIT0gbnVsbCkgSURhdGFVdGlsLnB1dChjdXJzb3IsICIkc3RyaW5n
+cyIsIHN0cmluZ3MpOwp9IGNhdGNoKGphdmEuaW8uSU9FeGNlcHRpb24gZXgpIHsKICB0dW5kcmEu
+ZXhjZXB0aW9uLnJhaXNlKGV4KTsKfSBmaW5hbGx5IHsKICBjdXJzb3IuZGVzdHJveSgpOwp9</value>
+</Values>

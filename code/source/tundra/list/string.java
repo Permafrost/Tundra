@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-11-03 15:39:17.293
+// -----( CREATED: 2014-11-25 09:26:33.429
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -51,7 +51,8 @@ public final class string
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:1:optional $list
-		// [i] field:0:optional $item
+		// [i] field:0:optional $default
+		// [i] field:0:optional $mode {&quot;missing&quot;,&quot;null&quot;}
 		// [o] field:0:optional $item
 		tundra.list.object.coalesce(pipeline);
 		// --- <<IS-END>> ---
@@ -462,6 +463,36 @@ public final class string
 
 
 
+	public static final void normalize (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(normalize)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:1:optional $objects
+		// [i] field:0:optional $encoding
+		// [o] field:1:optional $strings
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  Object[] objects = IDataUtil.getObjectArray(cursor, "$objects");
+		  String encoding = IDataUtil.getString(cursor, "$encoding");
+		
+		  String[] strings = normalize(objects, encoding);
+		
+		  if (strings != null) IDataUtil.put(cursor, "$strings", strings);
+		} catch(java.io.IOException ex) {
+		  tundra.exception.raise(ex);
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void prepend (IData pipeline)
         throws ServiceException
 	{
@@ -648,6 +679,19 @@ public final class string
 	}
 
 	// --- <<IS-START-SHARED>> ---
+	// converts a list of byte arrays, input streams or strings to a string list
+	public static String[] normalize(Object[] input, String encoding) throws java.io.IOException {
+	  if (input == null) return null;
+	
+	  String[] output = new String[input.length];
+	
+	  for (int i = 0; i < input.length; i++) {
+	    output[i] = tundra.string.normalize(input[i], encoding);
+	  }
+	
+	  return output;
+	}
+	
 	// performs variable substitution on each string in the given list by replacing all occurrences of 
 	// substrings matching "%key%" with the associated value from the given scope
 	public static String[] substitute(String[] input, IData scope) {
