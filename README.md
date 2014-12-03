@@ -3913,6 +3913,16 @@ Services for compressing and decompressing data using the [gzip] format.
       keys are normalized to lower case, and the response body is returned
       as a byte[] array.
 
+* #### tundra.http.response:status
+
+  Returns the standard message associated with the given [HTTP status code].
+
+  Inputs:
+    * `$code` is the [HTTP status code] to return the associated message for.
+
+  Outputs:
+    * `$message` is the standard message associated with the given code.
+
 ### ID
 
 * #### tundra.id:generate
@@ -8975,8 +8985,8 @@ Copyright &copy; 2012 Lachlan Dowding. See license.txt for further details.
 [Exclusive Canonical XML Version 1.0 With Comments]: <http://www.w3.org/2001/10/xml-exc-c14n#WithComments>
 [finally block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/finally.html>
 [gzip]: <http://en.wikipedia.org/wiki/Gzip>
-[HTTP status code]: <http://en.wikipedia.org/wiki/List_of_HTTP_status_codes>
 [HTTP response code]: <http://httpstatus.es/>
+[HTTP status code]: <http://www.iana.org/assignments/http-status-codes/http-status-codes.txt>
 [HTTP]: <http://tools.ietf.org/search/rfc2616>
 [IData XML]: <http://documentation.softwareag.com/webmethods/wmsuites/wmsuite8-2_sp2/Integration_Server/8-2-SP1_Integration_Server_Java_API_Reference/com/wm/util/coder/IDataXMLCoder.html>
 [ISO8601]: <http://en.wikipedia.org/wiki/ISO_8601>
