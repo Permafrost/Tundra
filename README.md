@@ -3923,6 +3923,176 @@ Services for compressing and decompressing data using the [gzip] format.
   Outputs:
     * `$message` is the standard message associated with the given code.
 
+* #### tundra.http.route:clear
+
+  Removes all configured custom HTTP routes from the Integration
+  Server HTTP request dispatcher. Once this service is invoked,
+  no custom HTTP routes will be in effect.
+
+  Custom HTTP routes specify an [HTTP request method] and [URI
+  template] which, if matched by an Integration Server HTTP request,
+  will invoke an associated service (in the same way as the built-in
+  `/invoke` URIs work), and can be used to abstract the API used by HTTP
+  clients from the implementation (unlike `/invoke` URIs, which leak the
+  implementing service in the URI's path).
+
+  Custom HTTP routes can either be configured in a server-specific
+  configuration file, or a package-specific configuration file.
+
+  To register a server-specific custom HTTP route, create or edit the
+  `<IntegrationServer>/config/http-routes.cnf` file, using the
+  `<IntegrationServer>/package/Tundra/config/http-routes.example.cnf`
+  file as a template.
+
+  To register a package-specific custom HTTP route, create or edit the
+  `<IntegrationServer>/packages/<PackageName>/config/http-routes.cnf`
+  file, using the
+  `<IntegrationServer>/package/Tundra/config/http-routes.example.cnf`
+  file as a template.
+
+  Note that server-specific HTTP routes take precedence over package-specific
+  routes, and package-specific routes are loaded in lexical package name
+  order. Routing instructions inside each configuration file must be
+  specified in order of precedence, and all HTTP routes are aggregated into
+  a single routing table in Integration Server, and therefore care must be
+  taken so that routes specified across the various configuration files do
+  not override each other.
+
+  Changes to these HTTP route configuration files do not take effect
+  until `Tundra/tundra.http.route:refresh` is invoked, either manually
+  or by reloading the Tundra package.
+
+* #### tundra.http.route:list
+
+  Returns a list of all the custom HTTP routes currently in effect.
+
+  Custom HTTP routes specify an [HTTP request method] and [URI
+  template] which, if matched by an Integration Server HTTP request,
+  will invoke an associated service (in the same way as the built-in
+  `/invoke` URIs work), and can be used to abstract the API used by HTTP
+  clients from the implementation (unlike `/invoke` URIs, which leak the
+  implementing service in the URI's path).
+
+  Custom HTTP routes can either be configured in a server-specific
+  configuration file, or a package-specific configuration file.
+
+  To register a server-specific custom HTTP route, create or edit the
+  `<IntegrationServer>/config/http-routes.cnf` file, using the
+  `<IntegrationServer>/package/Tundra/config/http-routes.example.cnf`
+  file as a template.
+
+  To register a package-specific custom HTTP route, create or edit the
+  `<IntegrationServer>/packages/<PackageName>/config/http-routes.cnf`
+  file, using the
+  `<IntegrationServer>/package/Tundra/config/http-routes.example.cnf`
+  file as a template.
+
+  Note that server-specific HTTP routes take precedence over package-specific
+  routes, and package-specific routes are loaded in lexical package name
+  order. Routing instructions inside each configuration file must be
+  specified in order of precedence, and all HTTP routes are aggregated into
+  a single routing table in Integration Server, and therefore care must be
+  taken so that routes specified across the various configuration files do
+  not override each other.
+
+  Changes to these HTTP route configuration files do not take effect
+  until `Tundra/tundra.http.route:refresh` is invoked, either manually
+  or by reloading the Tundra package.
+
+  * Outputs:
+    * `$routes` is an `IData[]` document list containing all the directives
+      which have been registered with the Integration Server HTTP
+      request dispatcher, and the associated custom routing
+      instructions.
+      * `directive` is the first directory or folder in a URI path, and
+        is used by the Integration Server HTTP request dispatcher for
+        dispatching requests to the appropriate handler. Note that
+        there are a number of built-in directives in Integration
+        Server, which are prohibited from being overridden by custom
+        routes:
+        * `invoke`
+        * `soap`
+        * `web`
+        * `wm-message`
+        * `ws`
+      * `routes` is an `IData[]` document list of the custom HTTP routing
+        instructions associated with this directive in order of
+        precedence.
+        * `method` is the HTTP request method used to match this HTTP
+          routing instruction to incoming HTTP requests, and is one of:
+          * `get`
+          * `put`
+          * `post`
+          * `head`
+          * `connect`
+          * `options`
+          * `delete`
+          * `trace`
+        * `uri` is the [URI template] used to match this HTTP
+          routing instruction to incoming HTTP requests. Parameters
+          specified in the template will be captured against the
+          incoming HTTP request URI, and added to the input pipeline
+          of the resulting `service` invocation. For example:
+
+              /messages/{client}/{type}
+
+          Will add the variables `client` and `type` to the input pipeline
+          of the resulting `service` invocation, with their values
+          derived from the matched request URI. A request URI equal to:
+
+              /messages/abc/def
+
+          will set the input pipeline variables as follows:
+
+              client = "abc"
+              type   = "def"
+
+        * `service` is the fully-qualified name of the service that
+          is invoked when an incoming HTTP request matches the
+          associated `method` and `uri`.
+        * `description` is an optional description of the the HTTP
+          routing instruction.
+        * `source` is the HTTP route file name from which this routing
+          instruction was configured.
+
+* #### tundra.http.route:refresh
+
+  Reloads all configured custom HTTP routes from the server- and
+  package-specific configuration files.
+
+  Custom HTTP routes specify an [HTTP request method] and [URI
+  template] which, if matched by an Integration Server HTTP request,
+  will invoke an associated service (in the same way as the built-in
+  `/invoke` URIs work), and can be used to abstract the API used by HTTP
+  clients from the implementation (unlike `/invoke` URIs, which leak the
+  implementing service in the URI's path).
+
+  Custom HTTP routes can either be configured in a server-specific
+  configuration file, or a package-specific configuration file.
+
+  To register a server-specific custom HTTP route, create or edit the
+  `<IntegrationServer>/config/http-routes.cnf` file, using the
+  `<IntegrationServer>/package/Tundra/config/http-routes.example.cnf`
+  file as a template.
+
+  To register a package-specific custom HTTP route, create or edit the
+  `<IntegrationServer>/packages/<PackageName>/config/http-routes.cnf`
+  file, using the
+  `<IntegrationServer>/package/Tundra/config/http-routes.example.cnf`
+  file as a template.
+
+  Note that server-specific HTTP routes take precedence over package-specific
+  routes, and package-specific routes are loaded in lexical package name
+  order. Routing instructions inside each configuration file must be
+  specified in order of precedence, and all HTTP routes are aggregated into
+  a single routing table in Integration Server, and therefore care must be
+  taken so that routes specified across the various configuration files do
+  not override each other.
+
+  Changes to these HTTP route configuration files do not take effect
+  until `Tundra/tundra.http.route:refresh` is invoked, either manually
+  or by reloading the Tundra package.
+
 ### ID
 
 * #### tundra.id:generate
@@ -8985,6 +9155,7 @@ Copyright &copy; 2012 Lachlan Dowding. See license.txt for further details.
 [Exclusive Canonical XML Version 1.0 With Comments]: <http://www.w3.org/2001/10/xml-exc-c14n#WithComments>
 [finally block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/finally.html>
 [gzip]: <http://en.wikipedia.org/wiki/Gzip>
+[HTTP request method]: <http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html>
 [HTTP response code]: <http://httpstatus.es/>
 [HTTP status code]: <http://www.iana.org/assignments/http-status-codes/http-status-codes.txt>
 [HTTP]: <http://tools.ietf.org/search/rfc2616>
@@ -9033,6 +9204,7 @@ Copyright &copy; 2012 Lachlan Dowding. See license.txt for further details.
 [Tundra]: <https://github.com/Permafrost/Tundra>
 [TundraTN]: <https://github.com/Permafrost/TundraTN>
 [URI]: <http://www.w3.org/Addressing/>
+[URI template]: <https://tools.ietf.org/html/rfc6570>
 [UTF-8]: <http://en.wikipedia.org/wiki/UTF-8>
 [UUID]: <http://docs.oracle.com/javase/6/docs/api/java/util/UUID.html>
 [webMethods Integration Server]: <http://www.softwareag.com/corporate/products/wm/integration/products/ai/overview/default.asp>

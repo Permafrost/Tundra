@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="svc_type">java</value>
+  <value name="svc_subtype">unknown</value>
+  <value name="svc_sigtype">java 3.5</value>
+  <record name="svc_sig" javaclass="com.wm.util.Values">
+    <record name="sig_in" javaclass="com.wm.util.Values">
+      <value name="node_type">record</value>
+      <value name="field_type">record</value>
+      <value name="field_dim">0</value>
+      <value name="nillable">true</value>
+      <value name="form_qualified">false</value>
+      <value name="is_global">false</value>
+      <array name="rec_fields" type="record" depth="1">
+      </array>
+    </record>
+    <record name="sig_out" javaclass="com.wm.util.Values">
+      <value name="node_type">record</value>
+      <value name="field_type">record</value>
+      <value name="field_dim">0</value>
+      <value name="nillable">true</value>
+      <value name="form_qualified">false</value>
+      <value name="is_global">false</value>
+      <array name="rec_fields" type="record" depth="1">
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="field_name">$routes</value>
+          <value name="field_type">record</value>
+          <value name="field_dim">1</value>
+          <value name="nillable">false</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+          <value name="is_soap_array_encoding_used">false</value>
+          <array name="rec_fields" type="record" depth="1">
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">unknown</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <null name="field_usereditable"/>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="field_name">directive</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">string</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">false</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">record</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="field_name">routes</value>
+              <value name="field_type">record</value>
+              <value name="field_dim">1</value>
+              <value name="nillable">false</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+              <value name="is_soap_array_encoding_used">false</value>
+              <array name="rec_fields" type="record" depth="1">
+                <record javaclass="com.wm.util.Values">
+                  <value name="node_type">unknown</value>
+                  <value name="node_comment"></value>
+                  <record name="node_hints" javaclass="com.wm.util.Values">
+                    <null name="field_usereditable"/>
+                    <value name="field_largerEditor">false</value>
+                    <value name="field_password">false</value>
+                  </record>
+                  <value name="field_name">method</value>
+                  <value name="field_type">string</value>
+                  <value name="field_dim">0</value>
+                  <record name="field_content_type" javaclass="com.wm.util.Values">
+                    <array name="enumeration" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="primitiveType">0</value>
+                        <value name="lexRep">get</value>
+                        <value name="isList">false</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="primitiveType">0</value>
+                        <value name="lexRep">put</value>
+                        <value name="isList">false</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="primitiveType">0</value>
+                        <value name="lexRep">post</value>
+                        <value name="isList">false</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="primitiveType">0</value>
+                        <value name="lexRep">head</value>
+                        <value name="isList">false</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="primitiveType">0</value>
+                        <value name="lexRep">connect</value>
+                        <value name="isList">false</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="primitiveType">0</value>
+                        <value name="lexRep">options</value>
+                        <value name="isList">false</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="primitiveType">0</value>
+                        <value name="lexRep">delete</value>
+                        <value name="isList">false</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="primitiveType">0</value>
+                        <value name="lexRep">trace</value>
+                        <value name="isList">false</value>
+                      </record>
+                    </array>
+                    <value name="contentType">1</value>
+                    <value name="internalType">instance</value>
+                    <value name="ct_class">com.wm.lang.schema.datatypev2.WmString</value>
+                    <value name="name">string_customized</value>
+                    <array name="parent-ancestors" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anySimpleType</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anyType</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">string</value>
+                      </record>
+                    </array>
+                    <record name="baseType" javaclass="com.wm.util.Values">
+                      <record name="whiteSpace" javaclass="com.wm.util.Values">
+                        <record name="FacetWSCValue" javaclass="com.wm.util.Values">
+                          <value name="cDecimalValue">3</value>
+                        </record>
+                        <value name="facetFixed">false</value>
+                      </record>
+                      <value name="contentType">1</value>
+                      <value name="internalType">instance</value>
+                      <value name="ct_class">com.wm.lang.schema.datatypev2.WmString</value>
+                      <value name="dataTypeVersion">dtVersion2</value>
+                    </record>
+                    <value name="dataTypeVersion">dtVersion2</value>
+                  </record>
+                  <value name="nillable">false</value>
+                  <value name="form_qualified">false</value>
+                  <value name="is_global">false</value>
+                </record>
+                <record javaclass="com.wm.util.Values">
+                  <value name="node_type">unknown</value>
+                  <value name="node_comment"></value>
+                  <record name="node_hints" javaclass="com.wm.util.Values">
+                    <null name="field_usereditable"/>
+                    <value name="field_largerEditor">false</value>
+                    <value name="field_password">false</value>
+                  </record>
+                  <value name="field_name">uri</value>
+                  <value name="field_type">string</value>
+                  <value name="field_dim">0</value>
+                  <record name="field_content_type" javaclass="com.wm.util.Values">
+                    <value name="contentType">1</value>
+                    <value name="internalType">reference</value>
+                    <value name="dataTypeVersion">dtVersion2</value>
+                    <array name="targetNames" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">string</value>
+                      </record>
+                    </array>
+                  </record>
+                  <value name="nillable">false</value>
+                  <value name="form_qualified">false</value>
+                  <value name="is_global">false</value>
+                </record>
+                <record javaclass="com.wm.util.Values">
+                  <value name="node_type">unknown</value>
+                  <value name="node_comment"></value>
+                  <record name="node_hints" javaclass="com.wm.util.Values">
+                    <null name="field_usereditable"/>
+                    <value name="field_largerEditor">false</value>
+                    <value name="field_password">false</value>
+                  </record>
+                  <value name="field_name">service</value>
+                  <value name="field_type">string</value>
+                  <value name="field_dim">0</value>
+                  <record name="field_content_type" javaclass="com.wm.util.Values">
+                    <value name="contentType">1</value>
+                    <value name="internalType">reference</value>
+                    <value name="dataTypeVersion">dtVersion2</value>
+                    <array name="targetNames" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">string</value>
+                      </record>
+                    </array>
+                  </record>
+                  <value name="nillable">false</value>
+                  <value name="form_qualified">false</value>
+                  <value name="is_global">false</value>
+                </record>
+                <record javaclass="com.wm.util.Values">
+                  <value name="node_type">unknown</value>
+                  <value name="node_comment"></value>
+                  <record name="node_hints" javaclass="com.wm.util.Values">
+                    <null name="field_usereditable"/>
+                    <value name="field_largerEditor">false</value>
+                    <value name="field_password">false</value>
+                  </record>
+                  <value name="field_name">description</value>
+                  <value name="field_type">string</value>
+                  <value name="field_dim">0</value>
+                  <value name="field_opt">true</value>
+                  <record name="field_content_type" javaclass="com.wm.util.Values">
+                    <value name="contentType">1</value>
+                    <value name="internalType">reference</value>
+                    <value name="dataTypeVersion">dtVersion2</value>
+                    <array name="targetNames" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">string</value>
+                      </record>
+                    </array>
+                  </record>
+                  <value name="nillable">true</value>
+                  <value name="form_qualified">false</value>
+                  <value name="is_global">false</value>
+                </record>
+                <record javaclass="com.wm.util.Values">
+                  <value name="node_type">unknown</value>
+                  <value name="node_comment"></value>
+                  <record name="node_hints" javaclass="com.wm.util.Values">
+                    <null name="field_usereditable"/>
+                    <value name="field_largerEditor">false</value>
+                    <value name="field_password">false</value>
+                  </record>
+                  <value name="field_name">source</value>
+                  <value name="field_type">string</value>
+                  <value name="field_dim">0</value>
+                  <value name="field_opt">true</value>
+                  <record name="field_content_type" javaclass="com.wm.util.Values">
+                    <value name="contentType">1</value>
+                    <value name="internalType">reference</value>
+                    <value name="dataTypeVersion">dtVersion2</value>
+                    <array name="targetNames" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">string</value>
+                      </record>
+                    </array>
+                  </record>
+                  <value name="nillable">true</value>
+                  <value name="form_qualified">false</value>
+                  <value name="is_global">false</value>
+                </record>
+              </array>
+              <value name="rec_closed">true</value>
+            </record>
+          </array>
+          <value name="rec_closed">true</value>
+        </record>
+      </array>
+    </record>
+  </record>
+  <value name="node_comment">Returns a list of all the custom HTTP routes currently in effect.
+
+Custom HTTP routes specify an [HTTP request method] and [URI 
+template] which, if matched by an Integration Server HTTP request, 
+will invoke an associated service (in the same way as the built-in 
+/invoke URIs work), and can be used to abstract the API used by HTTP 
+clients from the implementation (unlike /invoke URIs, which leak the 
+implementing service in the URI's path).
+
+Custom HTTP routes can either be configured in a server-specific 
+configuration file, or a package-specific configuration file.
+
+To register a server-specific custom HTTP route, create or edit the
+&lt;IntegrationServer&gt;/config/http-routes.cnf file, using the 
+&lt;IntegrationServer&gt;/package/Tundra/config/http-routes.example.cnf 
+file as a template.
+
+To register a package-specific custom HTTP route, create or edit the 
+&lt;IntegrationServer&gt;/packages/&lt;PackageName&gt;/config/http-routes.cnf 
+file, using the 
+&lt;IntegrationServer&gt;/package/Tundra/config/http-routes.example.cnf 
+file as a template.
+
+Note that server-specific HTTP routes take precedence over package-
+specific routes, and package-specific routes are loaded in lexical 
+package name order. Routing instructions inside each configuration 
+file must be specified in order of precedence, and all routes are 
+aggregated into a single routing table in Integration Server, and 
+therefore care must be taken so that routes specified across the 
+various configuration files do not override each other.
+
+Changes to these HTTP route configuration files do not take effect 
+until Tundra/tundra.http.route:refresh is invoked, either manually 
+or by reloading the Tundra package.
+
+* Outputs:
+  * $routes is an IData[] document list containing all the directives
+    which have been registered with the Integration Server HTTP 
+    request dispatcher, and the associated custom routing 
+    instructions.
+    * directive is the first directory or folder in a URI path, and 
+      is used by the Integration Server HTTP request dispatcher for 
+      dispatching requests to the appropriate handler. Note that 
+      there are a number of built-in directives in Integration 
+      Server, which are prohibited from being overridden by custom 
+      routes:
+      * invoke
+      * soap
+      * web
+      * wm-message
+      * ws
+    * routes is an IData[] document list of the custom HTTP routing 
+      instructions associated with this directive in order of 
+      precedence.
+      * method is the HTTP request method used to match this HTTP 
+        routing instruction to incoming HTTP requests, and is one of:
+        * get
+        * put
+        * post
+        * head
+        * connect
+        * options
+        * delete
+        * trace
+      * uri is the [URI template] used to match this HTTP 
+        routing instruction to incoming HTTP requests. Parameters 
+        specified in the template will be captured against the 
+        incoming HTTP request URI, and added to the input pipeline 
+        of the resulting service invocation. For example:
+
+            /messages/{client}/{type}
+
+        Will add the variables client and type to the input pipeline 
+        of the resulting service invocation, with their values 
+        derived from the matched request URI. A request URI equal to:
+
+            /messages/abc/def
+
+        will set the input pipeline variables as follows:
+
+            client = "abc"
+            type   = "def"
+
+      * service is the fully-qualified name of the service that 
+        is invoked when an incoming HTTP request matches the 
+        associated method and uri.
+      * description is an optional description of the the HTTP
+        routing instruction.
+      * source is the HTTP route file name from which this routing 
+        instruction was configured.
+
+[HTTP request method]: &lt;http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html&gt;
+[URI template]: &lt;https://tools.ietf.org/html/rfc6570&gt;</value>
+  <value name="stateless">no</value>
+  <value name="caching">no</value>
+  <value name="prefetch">no</value>
+  <value name="cache_ttl">15</value>
+  <value name="prefetch_level">1</value>
+  <value name="audit_level">off</value>
+  <value name="check_internal_acls">no</value>
+  <value name="icontext_policy">$null</value>
+  <value name="system_service">no</value>
+  <value name="retry_max">0</value>
+  <value name="retry_interval">0</value>
+  <value name="svc_in_validator_options">none</value>
+  <value name="svc_out_validator_options">default</value>
+  <value name="auditoption">0</value>
+  <record name="auditsettings" javaclass="com.wm.util.Values">
+    <value name="document_data">0</value>
+    <value name="startExecution">false</value>
+    <value name="stopExecution">false</value>
+    <value name="onError">true</value>
+  </record>
+</Values>

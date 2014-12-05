@@ -6,9 +6,11 @@
   <value name="version">0.0.18</value>
   <record name="startup_services" javaclass="com.wm.util.Values">
     <null name="tundra.support:access"/>
+    <null name="tundra.http.route:refresh"/>
   </record>
   <record name="shutdown_services" javaclass="com.wm.util.Values">
     <null name="tundra.support.service.defer:shutdown"/>
+    <null name="tundra.http.route:clear"/>
   </record>
   <null name="replication_services"/>
   <record name="requires" javaclass="com.wm.util.Values">

@@ -1,0 +1,9 @@
+HTTP Route Table
+
+Method     URI Template                                         Service                        Description
+---------- ---------------------------------------------------- ------------------------------ --------------------------------------------------
+get        /test/{$package}                                     tundra:test                    This is an example HTTP route which provides a clean request URI for the Tundra/tundra:test service
+post       /message/discard                                     tundra.content:discard         This is an example HTTP route which provides a clean request URI for the Tundra/tundra.content:discard service
+post       /message/discard/{id}                                tundra.content:discard         This is an example HTTP route which provides a clean request URI for the Tundra/tundra.content:discard service
+post       /message/reject                                      tundra.content:reject          This is an example HTTP route which provides a clean request URI for the Tundra/tundra.content:reject service
+post       /message/reject/{id}                                 tundra.content:reject          This is an example HTTP route which provides a clean request URI for the Tundra/tundra.content:reject service
