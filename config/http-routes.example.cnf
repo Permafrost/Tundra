@@ -1,9 +1,25 @@
-HTTP Route Table
+Example HTTP Route Table
+
+Each route is specified on separate lines, and only lines that start
+with a valid HTTP method (get, put, post, head, connect, options,
+delete, or trace), then followed by a relative [URI template] (where
+the first directory or folder in the URI path is not a {variable}
+declaration, since the first directory defines the Integration Server
+HTTP dispatcher directive the route is registered under), then
+followed by a fully-qualified service name, and then an optional
+description are interpreted as routes. All other lines are ignored.
+
+[URI template]: <https://tools.ietf.org/html/rfc6570>
 
 Method     URI Template                                         Service                        Description
 ---------- ---------------------------------------------------- ------------------------------ --------------------------------------------------
-get        /test/{$package}                                     tundra:test                    This is an example HTTP route which provides a clean request URI for the Tundra/tundra:test service
-post       /message/discard                                     tundra.content:discard         This is an example HTTP route which provides a clean request URI for the Tundra/tundra.content:discard service
-post       /message/discard/{id}                                tundra.content:discard         This is an example HTTP route which provides a clean request URI for the Tundra/tundra.content:discard service
-post       /message/reject                                      tundra.content:reject          This is an example HTTP route which provides a clean request URI for the Tundra/tundra.content:reject service
-post       /message/reject/{id}                                 tundra.content:reject          This is an example HTTP route which provides a clean request URI for the Tundra/tundra.content:reject service
+# Package-testing routes
+get        /test/{$package}                                     tundra:test                    Invokes tundra:test service with `$package` as an input variable
+
+# Message-handling routes
+post       /message/discard                                     tundra.content:discard         Invokes tundra.content:discard
+post       /message/discard/{id}                                tundra.content:discard         Invokes tundra.content:discard with `id` as an input variable
+post       /message/reject                                      tundra.content:reject          Invokes tundra.content:reject
+
+# Commented-out routes
+#get       /foo/bar                                             tundra.pipeline:log            This route is commented out and will be ignored

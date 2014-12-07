@@ -1,0 +1,67 @@
+body {
+  padding: 4px;
+  color: black;
+  background: #ffffff;
+  font-size: 11px;
+  font-family: "Tahoma", "Verdana", "Arial", "Geneva", "Times", "Helvetica";
+}
+.table {
+  margin-bottom: 0;
+}
+.table>thead>tr>th {
+  background-color: #DCCDC6;
+}
+.container-fluid {
+  padding:0;
+}
+.table-striped>tbody>tr:nth-child(odd)>td,
+.table-striped>tbody>tr:nth-child(odd)>th {
+  background-color: #f0f0e0;
+}
+.table-striped>tbody>tr:nth-child(even)>td,
+.table-striped>tbody>tr:nth-child(even)>th {
+  background-color: #e0e0c0;
+}
+.table caption {
+  border: 2px solid white;
+  background-color: black;
+  font-weight: bold;
+  color: white;
+  letter-spacing: 2px;
+  text-align: left;
+  padding: 2px 5px;
+}
+.table>thead>tr>th,
+.table>tbody>tr>th,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>tbody>tr>td,
+.table>tfoot>tr>td {
+  padding: 5px;
+  border: 2px solid white;
+}
+.table>tfoot>tr>td,
+.table>tfoot>tr>th {
+  background: #E7EBEF;
+  vertical-align: middle;
+}
+.table>colgroup+thead>tr:first-child>th,
+.table>thead:first-child>tr:first-child>th,
+.table>colgroup+thead>tr:first-child>td,
+.table>thead:first-child>tr:first-child>td {
+  border-top: 2px solid white;
+}
+button {
+  background-color: #D8D8D8;
+  color: black;
+}
+.alert {
+  margin: 2px;
+  border-width: 2px;
+  padding: 5px;
+}
+.alert-dismissable .close,
+.alert-dismissible .close {
+  top: -5px;
+  right: -2px;
+}

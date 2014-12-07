@@ -4,6 +4,7 @@
   <value name="name">list</value>
   <value name="encodeutf8">true</value>
   <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogIElEYXRh
-VXRpbC5wdXQoY3Vyc29yLCAiJHJvdXRlcyIsIGhhbmRsZXIubGlzdCgpKTsKfSBmaW5hbGx5IHsK
-ICBjdXJzb3IuZGVzdHJveSgpOwp9</value>
+W10gbGlzdCA9IGhhbmRsZXIubGlzdCgpOwogIElEYXRhVXRpbC5wdXQoY3Vyc29yLCAiJHJvdXRl
+cyIsbGlzdCk7CiAgSURhdGFVdGlsLnB1dChjdXJzb3IsICIkcm91dGVzLmxlbmd0aCIsICIiICsg
+bGlzdC5sZW5ndGgpOwp9IGZpbmFsbHkgewogIGN1cnNvci5kZXN0cm95KCk7Cn0=</value>
 </Values>

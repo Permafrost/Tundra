@@ -7,8 +7,10 @@
   <record name="startup_services" javaclass="com.wm.util.Values">
     <null name="tundra.support:access"/>
     <null name="tundra.http.route:refresh"/>
+    <null name="tundra.support.menu:add"/>
   </record>
   <record name="shutdown_services" javaclass="com.wm.util.Values">
+    <null name="tundra.support.menu:remove"/>
     <null name="tundra.support.service.defer:shutdown"/>
     <null name="tundra.http.route:clear"/>
   </record>

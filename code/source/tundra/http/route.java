@@ -1,8 +1,8 @@
 package tundra.http;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-12-05 14:55:02.211
-// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
+// -----( CREATED: 2014-12-07 17:21:26 EST
+// -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -55,10 +55,14 @@ public final class route
 		// [o] -- field:0:required service
 		// [o] -- field:0:optional description
 		// [o] -- field:0:optional source
+		// [o] - field:0:required routes.length
+		// [o] field:0:required $routes.length
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  IDataUtil.put(cursor, "$routes", handler.list());
+		  IData[] list = handler.list();
+		  IDataUtil.put(cursor, "$routes",list);
+		  IDataUtil.put(cursor, "$routes.length", "" + list.length);
 		} finally {
 		  cursor.destroy();
 		}
@@ -282,7 +286,11 @@ public final class route
 	      IData item = IDataFactory.create();
 	      IDataCursor cursor = item.getCursor();
 	      IDataUtil.put(cursor, "directive", directive);
-	      IDataUtil.put(cursor, "routes", get(directive).list());
+	      IData[] list = get(directive).list();
+	      if (list != null) {
+	        IDataUtil.put(cursor, "routes", list);
+	        IDataUtil.put(cursor, "routes.length", "" + list.length);
+	      }
 	      cursor.destroy();
 	
 	      output.add(item);

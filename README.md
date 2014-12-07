@@ -4054,6 +4054,8 @@ Services for compressing and decompressing data using the [gzip] format.
           routing instruction.
         * `source` is the HTTP route file name from which this routing
           instruction was configured.
+      * `routes.length` is the number of routes associated with this
+        directive.
 
 * #### tundra.http.route:refresh
 
