@@ -1,4 +1,6 @@
 $(document).ready(function() {
+  jQuery("table").addClass("table").addClass("table-striped");
+
   var ie = window.ActiveXObject || "ActiveXObject" in window;
   if (ie) {
     // fix modal popups so that they display in IE

@@ -109,26 +109,7 @@
                                <tr>
                                   <th>Pipeline</th>
                                   <td>
-                                    %ifvar pipeline.length equals('0')%
-                                    &mdash;
-                                    %else%
-                                    <table class="table table-striped">
-                                      <thead>
-                                        <tr>
-                                          <th>Key</th>
-                                          <th>Value</th>
-                                        </tr>
-                                      </thead>
-                                      <tbody>
-                                        %loop pipeline -struct%
-                                        <tr>
-                                          <th width="50">%value $key encode(xml)%</th>
-                                          <td>%value encode(xml)%</td>
-                                        </tr>
-                                        %endloop%
-                                      </tbody>
-                                    </table>
-                                    %endif%
+                                    %value pipeline.html encode(none)%
                                   </td>
                                 </tr>
                               </tbody>

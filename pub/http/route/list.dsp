@@ -86,7 +86,7 @@
                     by reloading the Tundra package, or by clicking the Refresh button
                     on this page.</p>
                   </td>
-                  <td>&mdash;</td>
+                  <td>&ndash;</td>
                 </tr>
               %else%
                 %loop $routes -$index%
@@ -100,7 +100,7 @@
                     %ifvar description -notempty%
                       %value description encode(xml)%
                     %else%
-                      &mdash;
+                      &ndash;
                     %endif%
                     </td>
                     <td>%value source encode(xml)%</td>
