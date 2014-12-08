@@ -5669,6 +5669,24 @@ Services for manipulating document (com.wm.data.IData) lists:
     * $list is the given string list with [HTML entities] decoded
       in each item in the list.
 
+* #### tundra.list.html:emit
+
+  Serializes an IData document as an [HTML] fragment suitable for embedding in
+  an HTML page, formatted as a string, byte array, or input stream.
+
+  IData documents, IData[] document lists, Object[] object lists, and Object[][]
+  object tables are all serialized as clean [HTML] table elements.
+
+  * Inputs:
+    * `$document` is the IData document to be serialized as an [HTML] string, 
+      byte array, or input stream.
+    * `$encoding` is an optional character set to use when encoding the 
+      resulting text data to a byte array or input stream. Defaults to [UTF-8].
+    * `$mode` is an optional choice of {stream, bytes, string} which specifies 
+      the type of object `$content` is returned as. Defaults to stream.
+  * Outputs:
+    * `$content` is the resulting serialization of `$document` as [HTML] content.
+
 * #### tundra.list.html:encode
 
   HTML encodes the given string list.
@@ -9219,6 +9237,7 @@ Copyright &copy; 2012 Lachlan Dowding. See license.txt for further details.
 [Exclusive Canonical XML Version 1.0 With Comments]: <http://www.w3.org/2001/10/xml-exc-c14n#WithComments>
 [finally block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/finally.html>
 [gzip]: <http://en.wikipedia.org/wiki/Gzip>
+[HTML]: <http://en.wikipedia.org/wiki/HTML>
 [HTML entities]: <http://www.w3.org/TR/html4/sgml/entities.html>
 [HTML entity]: <http://www.w3.org/TR/html4/sgml/entities.html>
 [HTTP request method]: <http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html>
