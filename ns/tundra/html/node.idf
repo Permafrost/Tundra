@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="node_type">interface</value>
+  <value name="node_nsName">tundra.html</value>
+  <value name="encodeutf8">true</value>
+  <value name="shared">Ly8gaHRtbCBkZWNvZGVzIHRoZSBnaXZlbiBzdHJpbmcKcHVibGljIHN0YXRpYyBTdHJpbmcgZGVj
+b2RlKFN0cmluZyBpbnB1dCkgewogIGlmIChpbnB1dCA9PSBudWxsKSByZXR1cm4gbnVsbDsKICBy
+ZXR1cm4gb3JnLnNwcmluZ2ZyYW1ld29yay53ZWIudXRpbC5IdG1sVXRpbHMuaHRtbFVuZXNjYXBl
+KGlucHV0KTsKfQoKLy8gaHRtbCBlbmNvZGVzIHRoZSBnaXZlbiBzdHJpbmcKcHVibGljIHN0YXRp
+YyBTdHJpbmcgZW5jb2RlKFN0cmluZyBpbnB1dCkgewogIGlmIChpbnB1dCA9PSBudWxsKSByZXR1
+cm4gbnVsbDsKICByZXR1cm4gb3JnLnNwcmluZ2ZyYW1ld29yay53ZWIudXRpbC5IdG1sVXRpbHMu
+aHRtbEVzY2FwZShpbnB1dCk7Cn0=</value>
+  <value name="extends"></value>
+  <array name="implements" type="value" depth="1">
+  </array>
+  <array name="imports" type="value" depth="1">
+  </array>
+</Values>

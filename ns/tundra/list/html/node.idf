@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="node_type">interface</value>
+  <value name="node_nsName">tundra.list.html</value>
+  <value name="encodeutf8">true</value>
+  <value name="shared">Ly8gaHRtbCBkZWNvZGVzIHRoZSBnaXZlbiBzdHJpbmcKcHVibGljIHN0YXRpYyBTdHJpbmdbXSBk
+ZWNvZGUoU3RyaW5nW10gaW5wdXQpIHsKICBpZiAoaW5wdXQgPT0gbnVsbCkgcmV0dXJuIG51bGw7
+CgogIFN0cmluZ1tdIG91dHB1dCA9IG5ldyBTdHJpbmdbaW5wdXQubGVuZ3RoXTsKICBmb3IgKGlu
+dCBpID0gMDsgaSA8IGlucHV0Lmxlbmd0aDsgaSsrKSB7CiAgICBvdXRwdXRbaV0gPSB0dW5kcmEu
+aHRtbC5kZWNvZGUoaW5wdXRbaV0pOwogIH0KICByZXR1cm4gb3V0cHV0Owp9CgovLyBodG1sIGVu
+Y29kZXMgdGhlIGdpdmVuIHN0cmluZwpwdWJsaWMgc3RhdGljIFN0cmluZ1tdIGVuY29kZShTdHJp
+bmdbXSBpbnB1dCkgewogIGlmIChpbnB1dCA9PSBudWxsKSByZXR1cm4gbnVsbDsKCiAgU3RyaW5n
+W10gb3V0cHV0ID0gbmV3IFN0cmluZ1tpbnB1dC5sZW5ndGhdOwogIGZvciAoaW50IGkgPSAwOyBp
+IDwgaW5wdXQubGVuZ3RoOyBpKyspIHsKICAgIG91dHB1dFtpXSA9IHR1bmRyYS5odG1sLmVuY29k
+ZShpbnB1dFtpXSk7CiAgfQogIHJldHVybiBvdXRwdXQ7Cn0=</value>
+  <value name="extends"></value>
+  <array name="implements" type="value" depth="1">
+  </array>
+  <array name="imports" type="value" depth="1">
+  </array>
+</Values>

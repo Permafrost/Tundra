@@ -3864,6 +3864,36 @@ Services for compressing and decompressing data using the [gzip] format.
   * Outputs:
     * `$content` is the resulting decompressed data.
 
+### HTML
+
+* #### tundra.html:decode
+
+  HTML decodes the given string.
+
+  [HTML entities], such as &lt; and &gt;, are decoded to the 
+  appropriate character representation, such as < and >.
+
+  * Inputs:
+    * $string is an optional string to be HTML decoded.
+
+  * Outputs:
+    * $string is the given string with [HTML entities] decoded.
+
+* #### tundra.html:encode
+
+  HTML encodes the given string.
+
+  Reserved characters in HTML, such as < and >, are encoded to the 
+  appropriate [HTML entity], such as &lt; and &gt;, to ensure the HTML 
+  is rendered correctly by web browsers and other HTML rendering 
+  software.
+
+  * Inputs:
+    * $string is an optional string to be HTML encoded.
+
+  * Outputs:
+    * $string is the given string with special characters HTML encoded.
+
 ### HTTP
 
 * #### tundra.http:client
@@ -5622,6 +5652,38 @@ Services for manipulating document (com.wm.data.IData) lists:
   * Outputs:
     * `$duration` is the sum of the duration strings in the given list
       in [ISO8601] XML format.
+
+### HTML List
+
+* #### tundra.list.html:decode
+
+  HTML decodes the given string list.
+
+  [HTML entities], such as &lt; and &gt;, are decoded to the 
+  appropriate character representation, such as < and >.
+
+  * Inputs:
+    * $list is an optional string list to be HTML decoded.
+
+  * Outputs:
+    * $list is the given string list with [HTML entities] decoded
+      in each item in the list.
+
+* #### tundra.list.html:encode
+
+  HTML encodes the given string list.
+
+  Reserved characters in HTML, such as < and >, are encoded to the 
+  appropriate [HTML entity], such as &lt; and &gt;, to ensure the HTML 
+  is rendered correctly by web browsers and other HTML rendering 
+  software.
+
+  * Inputs:
+    * $list is an optional string list to be HTML encoded.
+
+  * Outputs:
+    * $list is the given string list with special characters HTML 
+      encoded in each item in the list.
 
 ### Object List
 
@@ -9157,6 +9219,8 @@ Copyright &copy; 2012 Lachlan Dowding. See license.txt for further details.
 [Exclusive Canonical XML Version 1.0 With Comments]: <http://www.w3.org/2001/10/xml-exc-c14n#WithComments>
 [finally block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/finally.html>
 [gzip]: <http://en.wikipedia.org/wiki/Gzip>
+[HTML entities]: <http://www.w3.org/TR/html4/sgml/entities.html>
+[HTML entity]: <http://www.w3.org/TR/html4/sgml/entities.html>
 [HTTP request method]: <http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html>
 [HTTP response code]: <http://httpstatus.es/>
 [HTTP status code]: <http://www.iana.org/assignments/http-status-codes/http-status-codes.txt>
