@@ -22,6 +22,12 @@ body {
 .table-striped>tbody>tr:nth-child(even)>th {
   background-color: #e0e0c0;
 }
+.table-striped>tbody>tr:nth-child(odd)>td[rowspan],
+.table-striped>tbody>tr:nth-child(odd)>th[rowspan], 
+.table-striped>tbody>tr:nth-child(even)>td[rowspan], 
+.table-striped>tbody>tr:nth-child(even)>td[rowspan] {
+  background-color: #f0f0e0;
+}
 .table caption {
   border: 2px solid white;
   background-color: black;
@@ -39,6 +45,9 @@ body {
 .table>tfoot>tr>td {
   padding: 5px;
   border: 2px solid white;
+}
+.table-striped>tbody>tr.rowspan:not(:first-child)>td {
+  border-top: 8px solid white !important;
 }
 .table>tfoot>tr>td,
 .table>tfoot>tr>th {
@@ -64,4 +73,8 @@ button {
 .alert-dismissible .close {
   top: -5px;
   right: -2px;
+}
+table table,
+.table .table {
+  width: auto;
 }

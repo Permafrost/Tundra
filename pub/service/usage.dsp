@@ -43,38 +43,40 @@
           %endswitch%
           %invoke tundra.support.service.usage.ui:get%
           <div class="table-responsive">
-            <table class="table table-striped" width="100%">
+            <table class="table table-striped">
               <caption>Services Currently Executing (%value $context/invocations.current.length encode(xml)%)</caption>
               <thead>
                 <tr>
-                  <th colspan="2">Thread</th>
-                  <th colspan="5">Call Stack</th>
+                  <th colspan="2" width="24%">Thread</th>
+                  <th colspan="6" width="80%">Call Stack</th>
                 </tr>
                 <tr>
                   <th>#</th>
                   <th>Name</th>
                   <th>Package</th>
                   <th>Service</th>
+                  <th>User</th>
                   <th>Start Time</th>
                   <th>Duration</th>
-                  <th>&hellip;</th>
+                  <th><img src="../assets/icons/page_white.png" alt="Pipeline..."></th>
                 </tr>
               </thead>
               %ifvar $context/monitoring.started? equals('true')%
               <tbody>
               %loop $context/invocations.current%
-                <tr>
+                <tr class="rowspan">
                   <td rowspan="%value callstack.length encode(xml)%">%value thread.id encode(xml)%</td>
                   <td rowspan="%value callstack.length encode(xml)%">%value thread.name encode(xml)%</td>
                   %loop callstack -$index%
-
                   <td>%value package encode(xml)%</td>
-                  <td>
-                    %value service encode(xml)%
-                  </td>
+                  <td>%value service encode(xml)%</td>
+                  <td>%value user encode(xml)%</td>
                   <td>%value start encode(xml)%</td>
                   <td>%value duration encode(xml)%</td>
-                  <td width="15">
+                  <td width="1%">
+                    %ifvar pipeline.length equals('0')%
+                    &empty;
+                    %else%
                     <a href="#" data-toggle="modal" data-target="#properties-%value ../thread.id encode(xml)%-%value $index encode(xml)%">
                       <img src="../assets/icons/page_white_magnify.png">
                     </a>
@@ -84,40 +86,15 @@
                         <div class="modal-content">
                           <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Execution Properties</h4>
+                            <h4 class="modal-title">Pipeline</h4>
                           </div>
                           <div class="modal-body">
-                            <table class="table table-striped">
-                              <thead>
-                                <tr>
-                                  <th>Property</th>
-                                  <th>Value</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <th>Service</th>
-                                  <td>%value service encode(xml)%</td>
-                                <tr>
-                                  <th>Session</th>
-                                  <td>%value session encode(xml)%</td>
-                                </tr>
-                                <tr>
-                                  <th>User</th>
-                                  <td>%value user encode(xml)%</td>
-                                </tr>
-                               <tr>
-                                  <th>Pipeline</th>
-                                  <td>
-                                    %value pipeline.html encode(none)%
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
+                            %value pipeline.html encode(none)%
                           </div>
                         </div>
                       </div>
                     </div>
+                    %endif%
                   </td>
                   %loopsep '</tr><tr>'%
                   %endloop%
@@ -127,7 +104,7 @@
               %endif%
               <tfoot>
                 <tr>
-                  <td colspan="7">
+                  <td colspan="8">
                     <form role="form" class="form-inline" method="post">
                       %ifvar $context/monitoring.started? equals('true')%
                         <div class="form-group">
