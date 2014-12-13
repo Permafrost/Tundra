@@ -3870,7 +3870,7 @@ Services for compressing and decompressing data using the [gzip] format.
 
   HTML decodes the given string.
 
-  [HTML entities], such as &lt; and &gt;, are decoded to the 
+  [HTML entities], such as &lt; and &gt;, are decoded to the
   appropriate character representation, such as < and >.
 
   * Inputs:
@@ -3883,9 +3883,9 @@ Services for compressing and decompressing data using the [gzip] format.
 
   HTML encodes the given string.
 
-  Reserved characters in HTML, such as < and >, are encoded to the 
-  appropriate [HTML entity], such as &lt; and &gt;, to ensure the HTML 
-  is rendered correctly by web browsers and other HTML rendering 
+  Reserved characters in HTML, such as < and >, are encoded to the
+  appropriate [HTML entity], such as &lt; and &gt;, to ensure the HTML
+  is rendered correctly by web browsers and other HTML rendering
   software.
 
   * Inputs:
@@ -3959,75 +3959,9 @@ Services for compressing and decompressing data using the [gzip] format.
   Server HTTP request dispatcher. Once this service is invoked,
   no custom HTTP routes will be in effect.
 
-  Custom HTTP routes specify an [HTTP request method] and [URI
-  template] which, if matched by an Integration Server HTTP request,
-  will invoke an associated service (in the same way as the built-in
-  `/invoke` URIs work), and can be used to abstract the API used by HTTP
-  clients from the implementation (unlike `/invoke` URIs, which leak the
-  implementing service in the URI's path).
-
-  Custom HTTP routes can either be configured in a server-specific
-  configuration file, or a package-specific configuration file.
-
-  To register a server-specific custom HTTP route, create or edit the
-  `<IntegrationServer>/config/http-routes.cnf` file, using the
-  `<IntegrationServer>/package/Tundra/config/http-routes.example.cnf`
-  file as a template.
-
-  To register a package-specific custom HTTP route, create or edit the
-  `<IntegrationServer>/packages/<PackageName>/config/http-routes.cnf`
-  file, using the
-  `<IntegrationServer>/package/Tundra/config/http-routes.example.cnf`
-  file as a template.
-
-  Note that server-specific HTTP routes take precedence over package-specific
-  routes, and package-specific routes are loaded in lexical package name
-  order. Routing instructions inside each configuration file must be
-  specified in order of precedence, and all HTTP routes are aggregated into
-  a single routing table in Integration Server, and therefore care must be
-  taken so that routes specified across the various configuration files do
-  not override each other.
-
-  Changes to these HTTP route configuration files do not take effect
-  until `Tundra/tundra.http.route:refresh` is invoked, either manually
-  or by reloading the Tundra package.
-
 * #### tundra.http.route:list
 
   Returns a list of all the custom HTTP routes currently in effect.
-
-  Custom HTTP routes specify an [HTTP request method] and [URI
-  template] which, if matched by an Integration Server HTTP request,
-  will invoke an associated service (in the same way as the built-in
-  `/invoke` URIs work), and can be used to abstract the API used by HTTP
-  clients from the implementation (unlike `/invoke` URIs, which leak the
-  implementing service in the URI's path).
-
-  Custom HTTP routes can either be configured in a server-specific
-  configuration file, or a package-specific configuration file.
-
-  To register a server-specific custom HTTP route, create or edit the
-  `<IntegrationServer>/config/http-routes.cnf` file, using the
-  `<IntegrationServer>/package/Tundra/config/http-routes.example.cnf`
-  file as a template.
-
-  To register a package-specific custom HTTP route, create or edit the
-  `<IntegrationServer>/packages/<PackageName>/config/http-routes.cnf`
-  file, using the
-  `<IntegrationServer>/package/Tundra/config/http-routes.example.cnf`
-  file as a template.
-
-  Note that server-specific HTTP routes take precedence over package-specific
-  routes, and package-specific routes are loaded in lexical package name
-  order. Routing instructions inside each configuration file must be
-  specified in order of precedence, and all HTTP routes are aggregated into
-  a single routing table in Integration Server, and therefore care must be
-  taken so that routes specified across the various configuration files do
-  not override each other.
-
-  Changes to these HTTP route configuration files do not take effect
-  until `Tundra/tundra.http.route:refresh` is invoked, either manually
-  or by reloading the Tundra package.
 
   * Outputs:
     * `$routes` is an `IData[]` document list containing all the directives
@@ -4048,7 +3982,7 @@ Services for compressing and decompressing data using the [gzip] format.
       * `routes` is an `IData[]` document list of the custom HTTP routing
         instructions associated with this directive in order of
         precedence.
-        * `method` is the HTTP request method used to match this HTTP
+        * `method` is the [HTTP request method] used to match this HTTP
           routing instruction to incoming HTTP requests, and is one of:
           * `get`
           * `put`
@@ -4070,12 +4004,12 @@ Services for compressing and decompressing data using the [gzip] format.
           of the resulting `service` invocation, with their values
           derived from the matched request URI. A request URI equal to:
 
-              /messages/abc/def
+              /messages/foo/bar
 
           will set the input pipeline variables as follows:
 
-              client = "abc"
-              type   = "def"
+              client = "foo"
+              type   = "bar"
 
         * `service` is the fully-qualified name of the service that
           is invoked when an incoming HTTP request matches the
@@ -4086,6 +4020,8 @@ Services for compressing and decompressing data using the [gzip] format.
           instruction was configured.
       * `routes.length` is the number of routes associated with this
         directive.
+    * `$routes.length` is the number of directives registered with the
+      Integration Server HTTP dispatcher for custom HTTP routing.
 
 * #### tundra.http.route:refresh
 
@@ -4104,13 +4040,13 @@ Services for compressing and decompressing data using the [gzip] format.
 
   To register a server-specific custom HTTP route, create or edit the
   `<IntegrationServer>/config/http-routes.cnf` file, using the
-  `<IntegrationServer>/package/Tundra/config/http-routes.example.cnf`
+  `<IntegrationServer>/packages/Tundra/config/http-routes.example.cnf`
   file as a template.
 
   To register a package-specific custom HTTP route, create or edit the
   `<IntegrationServer>/packages/<PackageName>/config/http-routes.cnf`
   file, using the
-  `<IntegrationServer>/package/Tundra/config/http-routes.example.cnf`
+  `<IntegrationServer>/packages/Tundra/config/http-routes.example.cnf`
   file as a template.
 
   Note that server-specific HTTP routes take precedence over package-specific
@@ -4122,8 +4058,8 @@ Services for compressing and decompressing data using the [gzip] format.
   not override each other.
 
   Changes to these HTTP route configuration files do not take effect
-  until `Tundra/tundra.http.route:refresh` is invoked, either manually
-  or by reloading the Tundra package.
+  until this service is invoked, either manually or by reloading the
+  Tundra package.
 
 ### ID
 
@@ -5659,7 +5595,7 @@ Services for manipulating document (com.wm.data.IData) lists:
 
   HTML decodes the given string list.
 
-  [HTML entities], such as &lt; and &gt;, are decoded to the 
+  [HTML entities], such as &lt; and &gt;, are decoded to the
   appropriate character representation, such as < and >.
 
   * Inputs:
@@ -5678,11 +5614,11 @@ Services for manipulating document (com.wm.data.IData) lists:
   object tables are all serialized as clean [HTML] table elements.
 
   * Inputs:
-    * `$document` is the IData document to be serialized as an [HTML] string, 
+    * `$document` is the IData document to be serialized as an [HTML] string,
       byte array, or input stream.
-    * `$encoding` is an optional character set to use when encoding the 
+    * `$encoding` is an optional character set to use when encoding the
       resulting text data to a byte array or input stream. Defaults to [UTF-8].
-    * `$mode` is an optional choice of {stream, bytes, string} which specifies 
+    * `$mode` is an optional choice of {stream, bytes, string} which specifies
       the type of object `$content` is returned as. Defaults to stream.
   * Outputs:
     * `$content` is the resulting serialization of `$document` as [HTML] content.
@@ -5691,16 +5627,16 @@ Services for manipulating document (com.wm.data.IData) lists:
 
   HTML encodes the given string list.
 
-  Reserved characters in HTML, such as < and >, are encoded to the 
-  appropriate [HTML entity], such as &lt; and &gt;, to ensure the HTML 
-  is rendered correctly by web browsers and other HTML rendering 
+  Reserved characters in HTML, such as < and >, are encoded to the
+  appropriate [HTML entity], such as &lt; and &gt;, to ensure the HTML
+  is rendered correctly by web browsers and other HTML rendering
   software.
 
   * Inputs:
     * $list is an optional string list to be HTML encoded.
 
   * Outputs:
-    * $list is the given string list with special characters HTML 
+    * $list is the given string list with special characters HTML
       encoded in each item in the list.
 
 ### Object List

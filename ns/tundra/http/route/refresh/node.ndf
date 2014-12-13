@@ -19,13 +19,13 @@ configuration file, or a package-specific configuration file.
 
 To register a server-specific custom HTTP route, create or edit the
 &lt;IntegrationServer&gt;/config/http-routes.cnf file, using the 
-&lt;IntegrationServer&gt;/package/Tundra/config/http-routes.example.cnf 
+&lt;IntegrationServer&gt;/packages/Tundra/config/http-routes.example.cnf 
 file as a template.
 
 To register a package-specific custom HTTP route, create or edit the 
 &lt;IntegrationServer&gt;/packages/&lt;PackageName&gt;/config/http-routes.cnf 
 file, using the 
-&lt;IntegrationServer&gt;/package/Tundra/config/http-routes.example.cnf 
+&lt;IntegrationServer&gt;/packages/Tundra/config/http-routes.example.cnf 
 file as a template.
 
 Note that server-specific HTTP routes take precedence over package-
@@ -37,8 +37,8 @@ therefore care must be taken so that routes specified across the
 various configuration files do not override each other.
 
 Changes to these HTTP route configuration files do not take effect 
-until Tundra/tundra.http.route:refresh is invoked, either manually 
-or by reloading the Tundra package.
+until this service is invoked, either manually or by reloading the 
+Tundra package.
 
 [HTTP request method]: &lt;http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html&gt;
 [URI template]: &lt;https://tools.ietf.org/html/rfc6570&gt;</value>
@@ -47,6 +47,8 @@ or by reloading the Tundra package.
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template">tundra_http_route_refresh</value>
+  <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
   <value name="icontext_policy">$null</value>
@@ -56,10 +58,16 @@ or by reloading the Tundra package.
   <value name="svc_in_validator_options">none</value>
   <value name="svc_out_validator_options">none</value>
   <value name="auditoption">0</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
 </Values>
