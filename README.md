@@ -617,9 +617,19 @@ Services for evaluating conditional statements.
         such as `%a/b/c[0]%`, or a literal (double- or single-quoted) string,
         number, (forward slash delimited) regular expression, or `$null`.
       * `comparison_op` is one of the following comparison operators:
-        =, ==, !=, <>, >, >=, <, <=
+        * `=`
+        * `==`
+        * `!=`
+        * `<>`
+        * `>`
+        * `>=`
+        * `<`
+        * `<=`
       * `logical_op` is one of the following logical operators:
-        and, &&, or, ||
+        * `and`
+        * `&&`
+        * `or`
+        * `||`
 
       Examples:
       * `%a/b/c[0]% == "xyz"`

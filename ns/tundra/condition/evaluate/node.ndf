@@ -120,9 +120,19 @@ document).
       such as %a/b/c[0]%, or a literal (double- or single-quoted) string, 
       number, (forward slash delimited) regular expression, or $null.
     * comparison_op is one of the following comparison operators: 
-      =, ==, !=, &lt;&gt;, &gt;, &gt;=, &lt;, &lt;=
+      * =
+      * ==
+      * !=
+      * &lt;&gt;
+      * &gt;
+      * &gt;=
+      * &lt;
+      * &lt;=
     * logical_op is one of the following logical operators: 
-      and, &amp;&amp;, or, || 
+      * and
+      * &amp;&amp;
+      * or
+      * ||
 
     Examples:
     * %a/b/c[0]% == "xyz"
