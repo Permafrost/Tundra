@@ -6,12 +6,15 @@ delete, or trace), then followed by a relative [URI template] (where
 the first directory or folder in the URI path is not a {variable}
 declaration, since the first directory defines the Integration Server
 HTTP dispatcher directive the route is registered under), then
-followed by a fully-qualified service name, and then an optional
-description are interpreted as routes. All other lines are ignored.
+followed by either a fully-qualified service name for a service
+invocation action or a URL for a DSP page or static asset in the pub
+directory of a package to front end that asset with a pretty URL,
+and then an optional description are interpreted as routes.
+All other lines are ignored.
 
 [URI template]: <https://tools.ietf.org/html/rfc6570>
 
-Method     URI Template                                         Service                        Description
+Method     URI Template                                         Target                         Description
 ---------- ---------------------------------------------------- ------------------------------ --------------------------------------------------
 # Package-testing routes
 get        /test/{$package}                                     tundra:test                    Invokes tundra:test service with `$package` as an input variable
@@ -20,6 +23,9 @@ get        /test/{$package}                                     tundra:test     
 post       /message/discard                                     tundra.content:discard         Invokes tundra.content:discard
 post       /message/discard/{id}                                tundra.content:discard         Invokes tundra.content:discard with `id` as an input variable
 post       /message/reject                                      tundra.content:reject          Invokes tundra.content:reject
+
+# Pretty URLs for DSP pages
+get        /tundra/http/routes                                  /Tundra/http/routes/list.dsp   Provides a pretty URL in front of a DSP page
 
 # Commented-out routes
 #get       /foo/bar                                             tundra.pipeline:log            This route is commented out and will be ignored

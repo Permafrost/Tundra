@@ -1,7 +1,7 @@
 package tundra.http;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-12-07 17:21:26 EST
+// -----( CREATED: 2014-12-17 06:50:16 EST
 // -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
@@ -52,7 +52,7 @@ public final class route
 		// [o] - record:1:required routes
 		// [o] -- field:0:required method
 		// [o] -- field:0:required uri
-		// [o] -- field:0:required service
+		// [o] -- field:0:required target
 		// [o] -- field:0:optional description
 		// [o] -- field:0:optional source
 		// [o] - field:0:required routes.length
@@ -90,7 +90,8 @@ public final class route
 	
 	// Custom HTTP handler to allow arbitrary HTTP request routing
 	public static class Handler implements com.wm.app.b2b.server.HTTPHandler {
-	  protected com.wm.app.b2b.server.HTTPInvokeHandler handler = new com.wm.app.b2b.server.HTTPInvokeHandler();
+	  protected com.wm.app.b2b.server.HTTPInvokeHandler invokeHandler = new com.wm.app.b2b.server.HTTPInvokeHandler();
+	  protected com.wm.app.b2b.server.HTTPDocHandler defaultHandler = new com.wm.app.b2b.server.HTTPDocHandler();
 	  protected volatile RouteTable routes = new RouteTable();
 	
 	  // handle an HTTP request
@@ -113,7 +114,16 @@ public final class route
 	        state.setHttpRequestUrlQuery(tundra.uri.query.emit(parameters, true));
 	      } catch(ServiceException ex) {}
 	
-	      result = handler._process(state, contentHandler, matchResult.getRoute().getService());
+	      Route route = matchResult.getRoute();
+	
+	      if (route.isInvoke()) {
+	        result = invokeHandler._process(state, contentHandler, matchResult.getRoute().getService());
+	      } else {
+	        String target = route.getTarget();
+	        if (target.startsWith("/")) target = target.substring(1, target.length());
+	        state.setHttpRequestUrl(target);
+	        result = defaultHandler.process(state);
+	      }
 	    } else {
 	      // return forbidden error
 	      int code = 403;
@@ -185,9 +195,9 @@ public final class route
 	
 	// represents a table of routing instructions, ordered by HTTP dispatch directive
 	public static class RouteTable extends java.util.TreeMap<String, RouteList> {
-	  protected static java.util.regex.Pattern routePattern = java.util.regex.Pattern.compile("(?i)(?m)^[ \\t]*(get|put|post|head|connect|options|delete|trace)[ \\t]+(\\/?([^{}\\s\\/]+)(\\/\\S+)?)[ \\t]+(\\S+)([ \\t]+(.*)[ \\t]*)?$");
-	  protected static String configurationFileName = "http-routes.cnf";
-	  protected static java.util.Set<String> prohibitedDirectives = new java.util.TreeSet<String>();
+	  protected final static java.util.regex.Pattern routePattern = java.util.regex.Pattern.compile("(?i)(?m)^[ \\t]*(get|put|post|head|connect|options|delete|trace)[ \\t]+(\\/?([^{}\\s\\/]+)(\\/\\S+)?)[ \\t]+(\\S+)([ \\t]+(.*)[ \\t]*)?$");
+	  protected final static String configurationFileName = "http-routes.cnf";
+	  protected final static java.util.Set<String> prohibitedDirectives = new java.util.TreeSet<String>();
 	
 	  static {
 	    // set up prohibited directives so we don't break built-in IS functionality
@@ -244,11 +254,11 @@ public final class route
 	        while (matcher.find()) {
 	          String method = matcher.group(1);
 	          String uri = matcher.group(2);
-	          String service = matcher.group(5);
+	          String target = matcher.group(5);
 	          String description = matcher.group(7);
 	          if (description != null && description.equals("")) description = null;
 	          try {
-	            table.put(new Route(method, uri, service, description, source));
+	            table.put(new Route(method, uri, target, description, source));
 	          } catch(Exception ex) {}
 	        }
 	      }
@@ -357,25 +367,28 @@ public final class route
 	
 	// An individual routing instruction which maps an HTTP method and URI template to an implementation service
 	public static class Route implements com.wm.util.coder.IDataCodable {
+	  protected static final java.util.regex.Pattern SERVICE_PATTERN = java.util.regex.Pattern.compile("^(([^\\s\\.\\/:]+)(\\.[^\\s\\.\\/:]+)*)(:([^\\s\\.\\/:]+))$");
 	  protected Method method;
 	  protected org.springframework.web.util.UriTemplate uri;
+	  protected boolean isInvoke;
 	  protected com.wm.lang.ns.NSName service;
+	  protected String target;
 	  protected String description;
 	  protected java.io.File source;
 	
 	  // construct a new routing instruction
-	  public Route(Method method, String uri, String service, String description, java.io.File source) {
-	    initialize(method, uri, service, description, source);
+	  public Route(Method method, String uri, String target, String description, java.io.File source) {
+	    initialize(method, uri, target, description, source);
 	  }
 	
 	  // construct a new routing instruction
-	  public Route(String method, String uri, String service, String description, java.io.File source) {
-	    initialize(method, uri, service, description, source);
+	  public Route(String method, String uri, String target, String description, java.io.File source) {
+	    initialize(method, uri, target, description, source);
 	  }
 	
 	  // construct a new routing instruction
-	  public Route(int method, String uri, String service, String description, java.io.File source) {
-	    initialize(method, uri, service, description, source);
+	  public Route(int method, String uri, String target, String description, java.io.File source) {
+	    initialize(method, uri, target, description, source);
 	  }
 	
 	  // construct a new routing instruction from the given IData document
@@ -391,6 +404,21 @@ public final class route
 	  // returns the URI template this routing instruction matches
 	  public org.springframework.web.util.UriTemplate getURI() {
 	    return uri;
+	  }
+	
+	  // returns the target which is executed for this routing instruction
+	  public String getTarget() {
+	    return target;
+	  }
+	
+	  // returns true if the target is a service invocation
+	  public boolean isInvoke() {
+	    return isInvoke;
+	  }
+	
+	  // returns true if the target is a document
+	  public boolean isDocument() {
+	    return !isInvoke;
 	  }
 	
 	  // returns the service which is invoked for this routing instruction
@@ -475,7 +503,7 @@ public final class route
 	    IDataCursor cursor = output.getCursor();
 	    IDataUtil.put(cursor, "method", method.name().toLowerCase());
 	    IDataUtil.put(cursor, "uri", uri.toString());
-	    IDataUtil.put(cursor, "service", service.toString());
+	    IDataUtil.put(cursor, "target", target);
 	    if (description != null) IDataUtil.put(cursor, "description", description);
 	    if (source != null) {
 	      try {
@@ -496,39 +524,47 @@ public final class route
 	    IDataCursor cursor = input.getCursor();
 	    String method = IDataUtil.getString(cursor, "method");
 	    String uri = IDataUtil.getString(cursor, "uri");
-	    String service = IDataUtil.getString(cursor, "service");
+	    String target = IDataUtil.getString(cursor, "target");
 	    String description = IDataUtil.getString(cursor, "description");
 	    String source = IDataUtil.getString(cursor, "source");
 	    cursor.destroy();
 	
-	    initialize(method, uri, service, description, source);
+	    initialize(method, uri, target, description, source);
 	  }
 	
 	  // construct a new routing instruction
-	  protected void initialize(int method, String uri, String service, String description, java.io.File source) {
-	    initialize(Method.valueOf(method), uri, service, description, source);
+	  protected void initialize(int method, String uri, String target, String description, java.io.File source) {
+	    initialize(Method.valueOf(method), uri, target, description, source);
 	  }
 	
 	  // construct a new routing instruction
-	  protected void initialize(String method, String uri, String service, String description, String source) {
-	    initialize(Method.valueOf(method.toUpperCase()), uri, service, description, new java.io.File(source));
+	  protected void initialize(String method, String uri, String target, String description, String source) {
+	    initialize(Method.valueOf(method.toUpperCase()), uri, target, description, new java.io.File(source));
 	  }
 	
 	  // construct a new routing instruction
-	  protected void initialize(String method, String uri, String service, String description, java.io.File source) {
-	    initialize(Method.valueOf(method.toUpperCase()), uri, service, description, source);
+	  protected void initialize(String method, String uri, String target, String description, java.io.File source) {
+	    initialize(Method.valueOf(method.toUpperCase()), uri, target, description, source);
 	  }
 	
 	  // construct a new routing instruction
-	  protected void initialize(Method method, String uri, String service, String description, java.io.File source) {
-	    initialize(method, new org.springframework.web.util.UriTemplate(uri), com.wm.lang.ns.NSName.create(service), description, source);
+	  protected void initialize(Method method, String uri, String target, String description, java.io.File source) {
+	    initialize(method, new org.springframework.web.util.UriTemplate(uri), target, description, source);
 	  }
 	
 	  // construct a new routing instruction
-	  protected void initialize(Method method, org.springframework.web.util.UriTemplate uri, com.wm.lang.ns.NSName service, String description, java.io.File source) {
+	  protected void initialize(Method method, org.springframework.web.util.UriTemplate uri, String target, String description, java.io.File source) {
 	    this.method = method;
 	    this.uri = uri;
-	    this.service = service;
+	    this.target = target;
+	
+	    java.util.regex.Matcher matcher = SERVICE_PATTERN.matcher(target);
+	    isInvoke = matcher.matches();
+	
+	    if (isInvoke) {
+	      service = com.wm.lang.ns.NSName.create(target);
+	    }
+	
 	    this.description = description;
 	    this.source = source;
 	  }
@@ -539,7 +575,7 @@ public final class route
 	    if (obj != null) {
 	      if (obj.getClass() == this.getClass()) {
 	        Route other = (Route)obj;
-	        result = this.getMethod() == other.getMethod() && this.getURI().toString().equals(other.getURI().toString()) && this.getService().toString().equals(other.getService().toString());
+	        result = this.getMethod() == other.getMethod() && this.getURI().toString().equals(other.getURI().toString()) && this.getTarget().equals(other.getTarget());
 	      }
 	    }
 	    return result;

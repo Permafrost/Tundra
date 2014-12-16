@@ -4021,9 +4021,10 @@ Services for compressing and decompressing data using the [gzip] format.
               client = "foo"
               type   = "bar"
 
-        * `service` is the fully-qualified name of the service that
-          is invoked when an incoming HTTP request matches the
-          associated `method` and `uri`.
+        * `target` is either the fully-qualified name of a service that
+          is invoked, or a URL for a DSP page or static asset in the
+          pub directory of a package that will be returned, when an
+          incoming HTTP request matches the associated `method` and `uri`.
         * `description` is an optional description of the the HTTP
           routing instruction.
         * `source` is the HTTP route file name from which this routing
@@ -4040,10 +4041,12 @@ Services for compressing and decompressing data using the [gzip] format.
 
   Custom HTTP routes specify an [HTTP request method] and [URI
   template] which, if matched by an Integration Server HTTP request,
-  will invoke an associated service (in the same way as the built-in
-  `/invoke` URIs work), and can be used to abstract the API used by HTTP
-  clients from the implementation (unlike `/invoke` URIs, which leak the
-  implementing service in the URI's path).
+  will return the associated target (either by invoking the target if
+  it is a service in the same way as the built-in `/invoke` URIs work,
+  or by returning a DSP page or static asset if the target is not a
+  service), and can be used to abstract the API used by HTTP clients
+  from the implementation (unlike `/invoke` URIs or package DSP pages
+  URIs, which leak the implementation in the URI's path).
 
   Custom HTTP routes can either be configured in a server-specific
   configuration file, or a package-specific configuration file.

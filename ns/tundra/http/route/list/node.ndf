@@ -212,7 +212,7 @@
                     <value name="field_password">false</value>
                   </record>
                   <value name="is_public">false</value>
-                  <value name="field_name">service</value>
+                  <value name="field_name">target</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
                   <record name="field_content_type" javaclass="com.wm.util.Values">
@@ -402,9 +402,10 @@
             client = "foo"
             type   = "bar"
 
-      * service is the fully-qualified name of the service that 
-        is invoked when an incoming HTTP request matches the 
-        associated method and uri.
+      * target is either the fully-qualified name of a service that 
+        is invoked, or a URL for a DSP page or static asset in the 
+        pub directory of a package that will be returned, when an
+        incoming HTTP request matches the associated method and uri.
       * description is an optional description of the the HTTP
         routing instruction.
       * source is the HTTP route file name from which this routing 

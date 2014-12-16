@@ -9,7 +9,7 @@
     <link href="../../assets/css/application.css" rel="stylesheet">
     <script src="../../assets/js/jquery.min.js"></script>
     <script src="../../assets/js/bootstrap.min.js"></script>
-    <script src="../../assets/js/application.js"></script>    
+    <script src="../../assets/js/application.js"></script>
   </head>
   <body>
     <div class="container-fluid">
@@ -37,7 +37,7 @@
                   <th>Directive</th>
                   <th>HTTP Method</th>
                   <th>URI Template</th>
-                  <th>Service</th>
+                  <th>Target</th>
                   <th>Description</th>
                   <th>Source</th>
                 </tr>
@@ -54,10 +54,12 @@
 
                     <p>Custom HTTP routes specify an <a href="<http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html">HTTP request method</a> and <a href="https://tools.ietf.org/html/rfc6570">URI
                     template</a> which, if matched by an Integration Server HTTP request,
-                    will invoke an associated service (in the same way as the built-in
-                    <code>/invoke</code> URIs work), and can be used to abstract the API used by HTTP
-                    clients from the implementation (unlike <code>/invoke</code> URIs, which leak the
-                    implementing service in the URI's path).</p>
+                    will return the associated target (either by invoking the target if
+                    it is a service in the same way as the built-in <code>/invoke</code> URIs work,
+                    or by returning a DSP page or static asset if the target is not a
+                    service), and can be used to abstract the API used by HTTP clients
+                    from the implementation (unlike <code>/invoke</code> URIs or package DSP pages
+                    URIs, which leak the implementing service in the URI's path).</p>
 
                     <p>Custom HTTP routes can either be configured in a server-specific
                     configuration file, or a package-specific configuration file.</p>
@@ -95,7 +97,7 @@
                     %loop routes -$index%
                     <td>%value method encode(xml)%</td>
                     <td>%value uri encode(xml)%</td>
-                    <td>%value service encode(xml)%</td>
+                    <td>%value target encode(xml)%</td>
                     <td>
                     %ifvar description -notempty%
                       %value description encode(xml)%
