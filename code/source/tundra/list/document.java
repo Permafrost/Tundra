@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-11-03 11:48:13.830
-// -----( ON-HOST: -
+// -----( CREATED: 2014-12-17 07:06:00 EST
+// -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -649,8 +649,7 @@ public final class document
 	
 	  for (IData item : array) {
 	    if (item != null) {
-	      IDataCursor ic = item.getCursor();
-	      Object value = IDataUtil.get(ic, pivotKey);
+	      Object value = tundra.support.document.get(item, pivotKey);
 	      if (value != null) {
 	        String key = value.toString();
 	        if (IDataUtil.get(oc, key) == null) IDataUtil.put(oc, key, item);
