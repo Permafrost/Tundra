@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-12-17 07:06:00 EST
-// -----( ON-HOST: 172.16.189.176
+// -----( CREATED: 2014-12-17 10:07:37.058
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -656,6 +656,8 @@ public final class document
 	      }
 	    }
 	  }
+	
+	  oc.destroy();
 	
 	  return output;
 	}
