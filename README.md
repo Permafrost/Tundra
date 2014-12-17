@@ -5221,50 +5221,65 @@ Services for manipulating document (com.wm.data.IData) lists:
 
 * #### tundra.list.document:pivot
 
-  Returns a given `IData[]` document list pivoted on a given key.
+  Returns a given `IData[]` document list pivoted on a given list of
+  keys.
 
-  For example, given an `IData[]` document list that includes the following two
-  items (represented in [JSON] form):
+  For example, given an `IData[]` document list that includes the
+  following two items (represented in [JSON] form):
 
       $list = [
-        { "name": "Bob",  "phone": "1234 5678" },
-        { "name": "Jane", "phone": "2345 6789" }
+        { "id": "1", name": "Bob",  "phone": "1234 5678" },
+        { "id": "2", name": "Jane", "phone": "2345 6789" }
       ]
 
-  A pivot on the key `name` would return the following `IData` document, where
-  each list item is now associated with that item's value of the pivot key:
+  A pivot on the key `name` would return the following `IData` document,
+  where each list item is now associated with the value associated
+  with the pivot key:
 
       $document = {
-        "Bob":  { "name": "Bob",  "phone": "1234 5678" },
-        "Jane": { "name": "Jane", "phone": "2345 6789" }
+        "Bob":  { "id": "1", "name": "Bob",  "phone": "1234 5678" },
+        "Jane": { "id": "2", "name": "Jane", "phone": "2345 6789" }
       }
 
-  Alternatively, a pivot on the key `phone` would instead return the following
-  `IData` document:
+  Alternatively, a pivot on the key `phone` would instead return the
+  following `IData` document:
 
       $document = {
-        "1234 5678": { "name": "Bob",  "phone": "1234 5678" },
-        "2345 6789": { "name": "Jane", "phone": "2345 6789" }
+        "1234 5678": { "id": "1", "name": "Bob",  "phone": "1234 5678" },
+        "2345 6789": { "id": "2", "name": "Jane", "phone": "2345 6789" }
       }
 
-  Although the difference between the `IData[]` document list and `IData` document
-  representations appear subtle, a pivot of a `IData[]` document list on a
-  primary key returns an `IData` document that can be efficiently accessed by
-  key, rather than having to iterate over the list to find a specific item by
-  key.
+  Lastly, a pivot on both the keys `id` and `name` would construct a
+  compound key using the values associated with each key from each item,
+  delimited by default with the character `:`, as follows:
+
+      $document = {
+        "1:Bob":  { "id": "1", "name": "Bob",  "phone": "1234 5678" },
+        "2:Jane": { "id": "2", "name": "Jane", "phone": "2345 6789" }
+      }
+
+  Although the difference between the `IData[]` document list and IData
+  document representations appear subtle, a pivot of a `IData[]`
+  document list on a primary key returns an `IData` document that can be
+  efficiently accessed by key, rather than having to iterate over the
+  list to find a specific item by key.
 
   * Inputs:
     * `$list` is the `IData[]` document list to be pivoted.
-    * `$key` is the key to pivot on, with the following caveats:
-      * If the key doesn't exist in an item, that item is not included in the
-        resulting pivot.
-      * If the key is associated with a null value in an item, that item is
-        not included in the resulting pivot.
-      * If the key is associated with the same value in multiple items, only
-        the first item is included in the resulting pivot.
+    * `$keys` is the list of keys to pivot on, with the following
+      caveats:
+      * If a key doesn't exist in an item, that item is not included
+        in the resulting pivot.
+      * If a key is associated with a null value in an item, that item
+        is not included in the resulting pivot.
+      * If a key is associated with the same value in multiple items,
+        only the first item is included in the resulting pivot.
+    * `$delimiter` is an optional character to use for separating the
+      values that form a compound key, when multiple pivot keys are
+      specified.
   * Outputs:
-    * `$document` is the `IData` document pivoted representation of the given
-      `$list`.
+    * `$document` is the IData document pivoted representation of the
+      given `$list`.
 
 * #### tundra.list.document:prepend
 

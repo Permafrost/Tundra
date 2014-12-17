@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-12-17 10:07:37.058
-// -----( ON-HOST: -
+// -----( CREATED: 2014-12-17 19:38:45 EST
+// -----( ON-HOST: 172.16.189.176
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -356,15 +356,24 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:1:optional $list
-		// [i] field:0:required $key
+		// [i] field:1:optional $keys
+		// [i] field:0:optional $delimiter
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  IData[] list = IDataUtil.getIDataArray(cursor, "$list");
+		  String[] keys = IDataUtil.getStringArray(cursor, "$keys");
 		  String key = IDataUtil.getString(cursor, "$key");
+		  String delimiter = IDataUtil.getString(cursor, "$delimiter");
 		
-		  if (list != null) IDataUtil.put(cursor, "$document", pivot(list, key));
+		  if (list != null) {
+		    if (keys != null) {
+		      IDataUtil.put(cursor, "$document", pivot(list, delimiter, keys));
+		    } else {
+		      IDataUtil.put(cursor, "$document", pivot(list, delimiter, key));
+		    }
+		  }
 		} finally {
 		  cursor.destroy();
 		}
@@ -642,18 +651,34 @@ public final class document
 	// given pivot key from the given IData[] document list, and the values are
 	// the IData[] document list items associated with each pivot key
 	public static IData pivot(IData[] array, String pivotKey) {
-	  if (array == null || pivotKey == null) return null;
+	  return pivot(array, null, pivotKey);
+	}
+	
+	// returns an IData document where the keys are the values associated with
+	// given pivot key from the given IData[] document list, and the values are
+	// the IData[] document list items associated with each pivot key
+	public static IData pivot(IData[] array, String delimiter, String ... pivotKeys) {
+	  if (array == null || pivotKeys == null || pivotKeys.length == 0) return null;
+	  if (delimiter == null) delimiter = ":";
 	
 	  IData output = IDataFactory.create();
 	  IDataCursor oc = output.getCursor();
 	
+	  outer:
 	  for (IData item : array) {
 	    if (item != null) {
-	      Object value = tundra.support.document.get(item, pivotKey);
-	      if (value != null) {
-	        String key = value.toString();
-	        if (IDataUtil.get(oc, key) == null) IDataUtil.put(oc, key, item);
+	      StringBuilder buffer = new StringBuilder();
+	      for (int i = 0; i < pivotKeys.length; i++) {
+	        Object value = tundra.support.document.get(item, pivotKeys[i]);
+	        if (value == null) {
+	          continue outer;
+	        } else {
+	          buffer.append(value.toString());
+	        }
+	        if (i < (pivotKeys.length - 1)) buffer.append(delimiter);
 	      }
+	      String key = buffer.toString();
+	      if (IDataUtil.get(oc, key) == null) IDataUtil.put(oc, key, item);
 	    }
 	  }
 	
