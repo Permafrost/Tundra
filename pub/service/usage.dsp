@@ -89,7 +89,7 @@
                             <h4 class="modal-title">Pipeline</h4>
                           </div>
                           <div class="modal-body">
-                            %value pipeline.html encode(none)%
+                            %value none pipeline.html encode(none)%
                           </div>
                         </div>
                       </div>
