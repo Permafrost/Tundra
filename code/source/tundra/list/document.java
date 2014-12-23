@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-12-17 19:38:45 EST
-// -----( ON-HOST: 172.16.189.176
+// -----( CREATED: 2014-12-23 22:11:11 EST
+// -----( ON-HOST: 172.16.167.128
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -51,7 +51,7 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:1:optional $list
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -419,6 +419,24 @@ public final class document
 
 
 
+	public static final void reject (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(reject)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:1:optional $list
+		// [i] field:0:optional $condition
+		// [i] record:0:optional $scope
+		// [o] record:1:optional $list
+		tundra.list.object.reject(pipeline);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void resize (IData pipeline)
         throws ServiceException
 	{
@@ -497,9 +515,9 @@ public final class document
 		// [i] record:1:optional $list
 		// [i] record:1:optional $criteria
 		// [i] - field:0:required key
-		// [i] - field:0:optional type {&quot;string&quot;,&quot;integer&quot;,&quot;decimal&quot;,&quot;datetime&quot;,&quot;duration&quot;}
+		// [i] - field:0:optional type {"string","integer","decimal","datetime","duration"}
 		// [i] - field:0:optional pattern
-		// [i] - field:0:optional descending? {&quot;false&quot;,&quot;true&quot;}
+		// [i] - field:0:optional descending? {"false","true"}
 		// [o] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -542,7 +560,7 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:1:optional $list
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 		

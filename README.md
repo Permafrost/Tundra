@@ -5310,6 +5310,35 @@ Services for manipulating document (com.wm.data.IData) lists:
     * `$list` is the resulting list with the item at the given
       index set to the given value.
 
+
+* #### tundra.list.document:reject
+
+  Filters the given list to not include items where the
+  given condition evaluates to true.
+
+  * Inputs:
+    * `$list` is the list to be filtered.
+
+    * `$condition` is a `tundra.condition:evaluate` compatible
+      conditional statement used to filter the given list.
+
+      List items are represented in the evaluation scope by
+      a variable named `$item`.
+
+      For example, to filter a list to not include items
+      where surname and firstname keys have specific values,
+      use the following `$condition`:
+
+          %$item/surname% == "Smith" and %$item/firstname% == "John"
+
+    * `$scope` is an optional IData document containing the
+      variables against which `$condition` will be evaluated.
+      If not specified, the `$condition` will be evaluated
+      against the pipeline.
+  * Outputs:
+    * `$list` is the given list filtered to not include the
+      items where `$condition` evaluated to true.
+
 * #### tundra.list.document:resize
 
   Resizes the given list to the given length, truncated from the end when the
@@ -5998,6 +6027,32 @@ Services for manipulating java.lang.Object lists:
     * `$list` is the resulting list with the item at the given
       index set to the given value.
 
+* #### tundra.list.object:reject
+
+  Filters the given list to not include items where the
+  given condition evaluates to true.
+
+  * Inputs:
+    * `$list` is the list to be filtered.
+    * `$condition` is a `tundra.condition:evaluate` compatible
+      conditional statement used to filter the given list.
+
+      List items are represented in the evaluation scope by
+      a variable named `$item`.
+
+      For example, to filter a list to not include items
+      equal to 1 or 2, use the following `$condition`:
+
+          %$item% == 1 or %$item% == 2
+
+    * `$scope` is an optional IData document containing the
+      variables against which `$condition` will be evaluated.
+      If not specified, the `$condition` will be evaluated
+      against the pipeline.
+  * Outputs:
+    * `$list` is the given list filtered to not include the
+      items where `$condition` evaluated to true.
+
 * #### tundra.list.object:resize
 
   Resizes the given list to the given length, truncated from the end when the
@@ -6586,6 +6641,33 @@ Services for manipulating string lists:
   * Outputs:
     * `$pattern` is a [regular expression pattern] that can be used to match
       the any of the given `$list` strings literally.
+
+* #### tundra.list.string:reject
+
+  Filters the given list to not include items where the
+  given condition evaluates to true.
+
+  * Inputs:
+    * `$list` is the list to be filtered.
+    * `$condition` is a `tundra.condition:evaluate` compatible
+      conditional statement used to filter the given list.
+
+      List items are represented in the evaluation scope by
+      a variable named `$item`.
+
+      For example, to filter a list to not include items
+      equal to a regular expression pattern, use the following
+      `$condition`:
+
+          %$item% == /\d\d/
+
+    * `$scope` is an optional IData document containing the
+      variables against which `$condition` will be evaluated.
+      If not specified, the `$condition` will be evaluated
+      against the pipeline.
+  * Outputs:
+    * `$list` is the given list filtered to not include the
+      items where `$condition` evaluated to true.
 
 * #### tundra.list.string:replace
 

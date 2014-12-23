@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-11-04 08:30:58.034
-// -----( ON-HOST: -
+// -----( CREATED: 2014-12-23 21:58:02 EST
+// -----( ON-HOST: 172.16.167.128
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -62,7 +62,7 @@ public final class object
 		// @sigtype java 3.5
 		// [i] object:1:optional $list
 		// [i] object:0:optional $default
-		// [i] field:0:optional $mode {&quot;missing&quot;,&quot;null&quot;}
+		// [i] field:0:optional $mode {"missing","null"}
 		// [o] object:0:optional $item
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -603,6 +603,34 @@ public final class object
 
 
 
+	public static final void reject (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(reject)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:1:optional $list
+		// [i] field:0:optional $condition
+		// [i] record:0:optional $scope
+		// [o] object:1:optional $list
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  Object[] list = IDataUtil.getObjectArray(cursor, "$list");
+		  String condition = IDataUtil.getString(cursor, "$condition");
+		  IData scope = IDataUtil.getIData(cursor, "$scope");
+		
+		  IDataUtil.put(cursor, "$list", reject(list, condition, scope == null? pipeline : scope));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void resize (IData pipeline)
         throws ServiceException
 	{
@@ -906,8 +934,8 @@ public final class object
 	  return result;
 	}
 	
-	// filters the given array by evaluating the conditional statement against the 
-	// given pipeline and each item in the array
+	// filters the given list to only include items where the 
+	// given condition evaluates to true
 	public static <T> T[] filter(T[] array, String condition, IData pipeline) throws ServiceException {
 	  if (array == null || array.length == 0 || condition == null || condition.equals("")) return array;
 	  if (pipeline == null) pipeline = IDataFactory.create();
@@ -1272,6 +1300,27 @@ public final class object
 	  } finally {
 	    cursor.destroy();
 	  }
+	}
+	
+	// filters the given list to not include items where the 
+	// given condition evaluates to true
+	public static <T> T[] reject(T[] array, String condition, IData pipeline) throws ServiceException {
+	  if (array == null || array.length == 0 || condition == null || condition.equals("")) return array;
+	  if (pipeline == null) pipeline = IDataFactory.create();
+	
+	  java.util.ArrayList<T> list = new java.util.ArrayList<T>(array.length);
+	
+	  for (int i = 0; i < array.length; i++) {
+	    IDataCursor cursor = pipeline.getCursor();
+	    IDataUtil.put(cursor, "$item", array[i]);
+	
+	    if (!tundra.condition.evaluate(condition, pipeline)) list.add(array[i]);
+	    
+	    IDataUtil.remove(cursor, "$item");
+	    cursor.destroy();
+	  }
+	
+	  return list.toArray(java.util.Arrays.copyOf(array, 0));  
 	}
 	
 	// returns a new array with all elements from the given array but in reverse order
