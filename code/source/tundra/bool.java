@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-01-01 19:17:54 EST
+// -----( CREATED: 2015-01-01 19:30:32 EST
 // -----( ON-HOST: 172.16.167.128
 
 import com.wm.data.*;
@@ -34,8 +34,8 @@ public final class bool
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:0:optional $boolean
-		// [i] field:0:required $value.true
-		// [i] field:0:required $value.false
+		// [i] field:0:optional $value.true
+		// [i] field:0:optional $value.false
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -44,7 +44,7 @@ public final class bool
 		  String trueValue = IDataUtil.getString(cursor, "$value.true");
 		  String falseValue = IDataUtil.getString(cursor, "$value.false");
 		
-		  if (bool != null) IDataUtil.put(cursor, "$string", emit(bool, trueValue, falseValue));
+		  if (bool	 != null) IDataUtil.put(cursor, "$string", emit(bool, trueValue, falseValue));
 		} finally {
 		  cursor.destroy();
 		}
@@ -176,7 +176,7 @@ public final class bool
 	
 	// returns a boolean value as the appropriate trueValue or falseValue string
 	public static String emit(boolean b, String trueValue, String falseValue) {
-	  return b ? trueValue : falseValue;
+	  return b ? (trueValue == null ? emit(b) : trueValue) : (falseValue == null ? emit(b) : falseValue);
 	}
 	
 	// returns a boolean value in its canonical string form: "true" or "false"

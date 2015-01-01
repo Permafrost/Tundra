@@ -42,6 +42,7 @@
           <value name="field_name">$value.true</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <value name="contentType">1</value>
             <value name="internalType">reference</value>
@@ -53,7 +54,7 @@
               </record>
             </array>
           </record>
-          <value name="nillable">false</value>
+          <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
         </record>
@@ -69,6 +70,7 @@
           <value name="field_name">$value.false</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <value name="contentType">1</value>
             <value name="internalType">reference</value>
@@ -80,7 +82,7 @@
               </record>
             </array>
           </record>
-          <value name="nillable">false</value>
+          <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
         </record>
@@ -134,8 +136,10 @@ string values specified for true and false.
 * Inputs:
   * $boolean is the value to be converted, and can be either a string
     parseable as a boolean value, or a java.lang.Boolean object.
-  * $value.true is the value returned if $boolean is true.
-  * $value.false is the value returned if $boolean is false.
+  * $value.true is an optional string value returned if $boolean is 
+    true. Defaults to "true".
+  * $value.false is an optional string value returned if $boolean is 
+    false. Defaults to "false".
 * Outputs:
   * $string is the converted boolean value.</value>
   <value name="stateless">no</value>

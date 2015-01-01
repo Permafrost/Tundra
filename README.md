@@ -539,8 +539,10 @@ Services for manipulating boolean values.
   * Inputs:
     * `$boolean` is the value to be converted, and can be either a string
       parseable as a boolean value, or a `java.lang.Boolean` object.
-    * `$value.true` is the value returned if `$boolean` is true.
-    * `$value.false` is the value returned if `$boolean` is false.
+    * `$value.true` is an optional string value returned if `$boolean` is
+      true. Defaults to "true".
+    * `$value.false` is an optional string value returned if `$boolean` is
+      false. Defaults to "false".
   * Outputs:
     * `$string` is the converted boolean value.
 
