@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-01-01 19:01:32 EST
+// -----( CREATED: 2015-01-01 19:17:54 EST
 // -----( ON-HOST: 172.16.167.128
 
 import com.wm.data.*;
@@ -33,18 +33,18 @@ public final class bool
 		// --- <<IS-START(emit)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional $boolean
+		// [i] object:0:optional $boolean
 		// [i] field:0:required $value.true
 		// [i] field:0:required $value.false
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  String s = IDataUtil.getString(cursor, "$boolean");
-		  String t = IDataUtil.getString(cursor, "$value.true");
-		  String f = IDataUtil.getString(cursor, "$value.false");
+		  Object bool = IDataUtil.get(cursor, "$boolean");
+		  String trueValue = IDataUtil.getString(cursor, "$value.true");
+		  String falseValue = IDataUtil.getString(cursor, "$value.false");
 		
-		  if (s != null) IDataUtil.put(cursor, "$string", emit(s, t, f));
+		  if (bool != null) IDataUtil.put(cursor, "$string", emit(bool, trueValue, falseValue));
 		} finally {
 		  cursor.destroy();
 		}
@@ -139,22 +139,39 @@ public final class bool
 	// parses a string that can contain "true" (ignoring case) or "1" to 
 	// represent true, and "false" (ignoring case) or "0" to represent
 	// false
-	public static boolean parse(String s) {
-	  if (s != null) {
-	    // handle xs:boolean strings which can contain 0 or 1
-	    if (s.equals("0")) {
-	      s = "false";
-	    } else if (s.equals("1")) {
-	      s = "true";
+	public static boolean parse(Object input) {
+	  boolean result = false;
+	
+	  if (input != null) {
+	    if (input instanceof java.lang.Boolean) {
+	      result = ((java.lang.Boolean)input).booleanValue();
+	    } else {
+	      result = (parse(input.toString()));
 	    }
 	  }
-	  return Boolean.parseBoolean(s);
+	  return result;
 	}
 	
-	// parses the given string s as a boolean, then returns the boolean value
+	// parses a string that can contain "true" (ignoring case) or "1" to 
+	// represent true, and "false" (ignoring case) or "0" to represent
+	// false
+	public static boolean parse(String input) {
+	  if (input != null) {
+	    // handle xs:boolean strings which can contain 0 or 1
+	    if (input.equals("0")) {
+	      input = "false";
+	    } else if (input.equals("1")) {
+	      input = "true";
+	    }
+	  }
+	  return Boolean.parseBoolean(input);
+	}
+	
+	
+	// parses the given input object as a boolean, then returns the boolean value
 	// as the appropriate trueValue or falseValue string
-	public static String emit(String s, String trueValue, String falseValue) {
-	  return emit(parse(s), trueValue, falseValue);
+	public static String emit(Object input, String trueValue, String falseValue) {
+	  return emit(parse(input), trueValue, falseValue);
 	}
 	
 	// returns a boolean value as the appropriate trueValue or falseValue string

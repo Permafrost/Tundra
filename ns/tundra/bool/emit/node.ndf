@@ -18,26 +18,14 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
           <value name="field_name">$boolean</value>
-          <value name="field_type">string</value>
+          <value name="field_type">object</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
-          <record name="field_content_type" javaclass="com.wm.util.Values">
-            <value name="contentType">1</value>
-            <value name="internalType">reference</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-            <array name="targetNames" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">boolean</value>
-              </record>
-            </array>
-          </record>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
@@ -140,14 +128,14 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Converts the given $boolean value to a string using the appropriate string 
-values specified for true and false.
+  <value name="node_comment">Converts the given $boolean value to a string using the appropriate 
+string values specified for true and false.
 
 * Inputs:
-  * $boolean is the value to be converted.
+  * $boolean is the value to be converted, and can be either a string
+    parseable as a boolean value, or a java.lang.Boolean object.
   * $value.true is the value returned if $boolean is true.
   * $value.false is the value returned if $boolean is false.
-
 * Outputs:
   * $string is the converted boolean value.</value>
   <value name="stateless">no</value>
@@ -155,7 +143,6 @@ values specified for true and false.
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
-  <value name="template">tundra_bool_emit</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
