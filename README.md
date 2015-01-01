@@ -571,6 +571,16 @@ Services for manipulating boolean values.
     * `$boolean` is the normalized input value, guaranteed to be either the
       string "true" or "false".
 
+* #### tundra.bool:parse
+
+  Parses the given string as a boolean value.
+
+  * Inputs:
+    * `$string` is an optional string to be parsed.
+  * Outputs:
+    * `$boolean` is the resulting `java.lang.Boolean` object from parsing
+      the given `$string`.
+
 ### Bytes
 
 Services for manipulating byte arrays:

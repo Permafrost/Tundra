@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-08-19 10:33:05.678
-// -----( ON-HOST: -
+// -----( CREATED: 2015-01-01 19:01:32 EST
+// -----( ON-HOST: 172.16.167.128
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -93,6 +93,29 @@ public final class bool
 		  String s = IDataUtil.getString(cursor, "$boolean");
 		  String d = IDataUtil.getString(cursor, "$default");
 		  IDataUtil.put(cursor, "$boolean", normalize(s, d));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void parse (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(parse)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $string
+		// [o] object:0:optional $boolean
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String input = IDataUtil.getString(cursor, "$string");
+		  if (input != null) IDataUtil.put(cursor, "$boolean", parse(input));
 		} finally {
 		  cursor.destroy();
 		}
