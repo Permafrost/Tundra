@@ -1487,20 +1487,20 @@ content.
 * #### tundra.csv:parse
 
   Parses [CSV] content specified as a string, byte array, or input stream
-  into an IData document containing a list of records.
+  into an `IData` document containing a list of records.
 
   * Inputs:
     * `$content` is a string, byte array, or input stream containing [CSV]
       content to be parsed.
     * `$delimiter` is the character used to delimit fields in the given
-      `$content`. Defaults to ',' (comma), if not specified.
+      `$content`. Defaults to `,` (comma), if not specified.
     * `$encoding` is an optional character set to use when `$content` is
       provided as a byte array or input stream to decode the contained text
       data. Defaults to [UTF-8].
   * Outputs:
-    * `$document` is the resulting IData document containing a list of
+    * `$document` is the resulting `IData` document containing a list of
       records representing the parsed `$content`.
-    * `recordWithNoID` is the resulting IData[] document list of records.
+      * `recordWithNoID` is the resulting `IData[]` document list of records.
 
 ### Datetime
 
