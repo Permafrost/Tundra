@@ -7188,7 +7188,7 @@ Services for manipulating java.lang.Object objects:
 
   * Inputs:
     * `$key` identifies the key value pair to be dropped, and
-      can be simple or fully qualified, such as a/b/c[0]/d.
+      can be simple or fully qualified, such as `a/b/c[0]/d`.
 
 * #### tundra.pipeline:emit
 
