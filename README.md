@@ -7219,7 +7219,7 @@ Services for manipulating java.lang.Object objects:
 
   * Inputs:
     * `$key` identifies the value to be retrieved from the pipeline,
-      and can be simple or fully qualified, such as a/b/c[0]/d.
+      and can be simple or fully qualified, such as `a/b/c[0]/d`.
   * Outputs:
     * `$value` is the value associated with the given `$key`.
 
