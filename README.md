@@ -8287,7 +8287,7 @@ Services for manipulating java.lang.String objects:
       all words or only the first word is capitalized:
       * `all words`
       * `first word`
-      
+
       Defaults to `all words`, if not specified.
   * Outputs:
     * `$string` is the given string capitalized.
@@ -8337,10 +8337,10 @@ Services for manipulating java.lang.String objects:
   * Outputs:
     * `$captured?` is a boolean which when true indicates that the [regular
       expression pattern] was found at least once in the given `$string`.
-    * `$captures` is an IData[] document list where each item contains the
+    * `$captures` is an `IData[]` document list where each item contains the
       [capturing groups] associated with each time `$pattern` was found in
       `$string`.
-      * `groups` is an IData[] document list where each item in the list
+      * `groups` is an `IData[]` document list where each item in the list
         represents a single [capturing group]. Note that the first (zeroth)
         item in the list always denotes the entire pattern.
         * `captured?` is a boolean flag which when true indicates that this
@@ -8361,7 +8361,7 @@ Services for manipulating java.lang.String objects:
         expression pattern].
     * `$captures.length` is both the number of times the [regular expression
       pattern] was found in the given `$string`, and the number of items in
-      the `$captures` IData[] document list.
+      the `$captures` `IData[]` document list.
 
 * #### tundra.string:characters
 
