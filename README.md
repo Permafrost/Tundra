@@ -8591,13 +8591,10 @@ Services for manipulating java.lang.String objects:
       normal zero-based array index from left to right, and a negative index
       is a reverse array index from right to left (for example, an index of
       -1 is the last item in the list, and an index of -2 is the second last
-      item in the list).
-
-      If not specified, defaults to 0.
+      item in the list). If not specified, defaults to 0.
     * `$length` is the number of characters to include in the slice. Supports
       positive and negative lengths where a positive length will slice from
       left to right, and a negative length will slice from right to left.
-
       If not specified, a left to right slice containing all remaining
       characters after `$index` will be returned when `$index` is positive,
       or a right to left slice containing all remaining characters before
