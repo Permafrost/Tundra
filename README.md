@@ -8970,10 +8970,10 @@ strings.
   Implemented with the [java.net.URI] class.
 
   * Inputs:
-    * `$uri` is an IData document containing the constituent parts to
-      construct a new URI string with.
+    * `$uri` is an `IData` document containing the constituent parts to
+      construct a new [URI] string with.
   * Outputs:
-    * `$string` is the resulting URI input string.
+    * `$string` is the resulting [URI] input string.
 
 * #### tundra.uri:encode
 
