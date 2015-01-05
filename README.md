@@ -5212,9 +5212,9 @@ Services for manipulating document (com.wm.data.IData) lists:
   Returns the last item from the given list.
 
   * Inputs:
-    * $list is a list to fetch the last item from.
+    * `$list` is a list to fetch the last item from.
   * Outputs:
-    * $item is the last item in the given list.
+    * `$item` is the last item in the given list.
 
 * #### tundra.list.document:length
 
