@@ -8524,11 +8524,9 @@ Services for manipulating java.lang.String objects:
   * Inputs:
     * `$string` is the string to be padded to the given length. If
       `$string.length >= |$length|`, `$string` is returned unmodified.
-    * `$length` is the minimum desired length for the returned string.
-
-      If specified as a positive integer, `$string` will be padded from the
+    * `$length` is the minimum desired length for the returned string. If 
+      specified as a positive integer, `$string` will be padded from the
       left by prepending it with `(|$length|- $string.length)` characters.
-
       If specified as a negative integer, $string will be padded from the
       right by appending it with `(|$length|- $string.length)` characters.
     * `$character` is the character to use when padding `$string`. If
