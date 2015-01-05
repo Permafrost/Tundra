@@ -5342,7 +5342,6 @@ Services for manipulating document (com.wm.data.IData) lists:
     * `$list` is the resulting list with the item at the given
       index set to the given value.
 
-
 * #### tundra.list.document:reject
 
   Filters the given list to not include items where the
@@ -5350,7 +5349,6 @@ Services for manipulating document (com.wm.data.IData) lists:
 
   * Inputs:
     * `$list` is the list to be filtered.
-
     * `$condition` is a `tundra.condition:evaluate` compatible
       conditional statement used to filter the given list.
 
