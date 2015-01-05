@@ -8405,7 +8405,6 @@ Services for manipulating java.lang.String objects:
     * `$string.y` is the datetime string to be compared to `$string.x`.
     * `$case.insensitive?` is a boolean flag indicating if the string
       comparison should ignore case differences. Defaults to false.
-
   * Outputs:
     * `$before?` is a boolean flag indicating if `$string.x` is less than
       `$string.y`.
