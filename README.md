@@ -8287,6 +8287,7 @@ Services for manipulating java.lang.String objects:
       all words or only the first word is capitalized:
       * `all words`
       * `first word`
+      
       Defaults to `all words`, if not specified.
   * Outputs:
     * `$string` is the given string capitalized.
