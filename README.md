@@ -3993,7 +3993,6 @@ Services for compressing and decompressing data using the [gzip] format.
 
   Inputs:
     * `$code` is the [HTTP status code] to return the associated message for.
-
   Outputs:
     * `$message` is the standard message associated with the given code.
 
