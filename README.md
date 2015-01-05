@@ -7196,9 +7196,9 @@ Services for manipulating java.lang.Object objects:
   byte array, or input stream.
 
   * Inputs:
-    * `$encoding` is an optional character set to use when $content is
+    * `$encoding` is an optional character set to use when `$content` is
       returned as an input stream or byte array. Defaults to [UTF-8].
-    * `$mode` is an optional choice of 'stream', 'bytes', or 'string',
+    * `$mode` is an optional choice of stream, bytes, or string,
       and determines the type of content object returned.
   * Outputs:
     * `$content` is an input stream, byte array, or string (depending on
