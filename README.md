@@ -7091,11 +7091,11 @@ Services for manipulating java.lang.Object objects:
 * #### tundra.object:listify
 
   Converts the value identified by the given key to a new list of type
-  Object[], containing the original value as its single item, unless
+  `Object[]`, containing the original value as its single item, unless
   the original value is already list in which it remains unmodified.
 
   * Inputs:
-    * `$key` is a simple or fully-qualified (such as a/b/c[0]/d) key
+    * `$key` is a simple or fully-qualified (such as `a/b/c[0]/d`) key
       identifying the value to be converted to a list.
     * `$scope` is an optional IData document that, if specified, is used
       to resolve the given $key against. If not specified, `$key` is
