@@ -7311,8 +7311,8 @@ Services for manipulating java.lang.Object objects:
   Sets the value associated with the given key in the pipeline.
 
   * Inputs:
-    * `$key` is a simple or fully qualified key (a/b/c[0]/d) to
-      associate with the given $value.
+    * `$key` is a simple or fully qualified key (`a/b/c[0]/d`) to
+      associate with the given `$value`.
     * `$value` is the value to be associated with the given `$key`.
 
 * #### tundra.pipeline:rename
