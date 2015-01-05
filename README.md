@@ -4888,7 +4888,7 @@ Services for manipulating document (com.wm.data.IData) lists:
       each item.
     * `$preserve` is list of keys which will not be removed from
       the given IData document list. Keys can be simple or fully
-      qualified, such as a/b/c[0]/d.
+      qualified, such as `a/b/c[0]/d`.
   * Outputs:
     * `$list` is the given IData document list with all keys removed
       from each item, except for those specified in `$preserve`.
