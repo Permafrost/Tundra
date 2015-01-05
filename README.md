@@ -4966,7 +4966,6 @@ Services for manipulating document (com.wm.data.IData) lists:
 
   * Inputs:
     * `$list` is the list to be filtered.
-
     * `$condition` is a `tundra.condition:evaluate` compatible
       conditional statement used to filter the given list.
 
