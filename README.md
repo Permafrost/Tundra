@@ -3898,7 +3898,6 @@ Services for compressing and decompressing data using the [gzip] format.
 
   * Inputs:
     * `$string` is an optional string to be [HTML] decoded.
-
   * Outputs:
     * `$string` is the given string with [HTML entities] decoded.
 
@@ -3936,7 +3935,6 @@ Services for compressing and decompressing data using the [gzip] format.
 
   * Inputs:
     * `$string` is an optional string to be [HTML] encoded.
-
   * Outputs:
     * `$string` is the given string with special characters [HTML] encoded.
 
@@ -5693,7 +5691,6 @@ Services for manipulating document (com.wm.data.IData) lists:
 
   * Inputs:
     * `$list` is an optional string list to be [HTML] decoded.
-
   * Outputs:
     * `$list` is the given string list with [HTML entities] decoded
       in each item in the list.
@@ -5732,7 +5729,6 @@ Services for manipulating document (com.wm.data.IData) lists:
 
   * Inputs:
     * `$list` is an optional string list to be [HTML] encoded.
-
   * Outputs:
     * `$list` is the given string list with special characters [HTML]
       encoded in each item in the list.
