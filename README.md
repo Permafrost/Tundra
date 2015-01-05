@@ -9035,10 +9035,10 @@ strings.
   > segments.
 
   * Inputs:
-    * `$string` is the URI to be normalized.
+    * `$string` is the [URI] to be normalized.
 
   * Outputs:
-    * `$string` is the given URI in normalized form.
+    * `$string` is the given [URI] in normalized form.
 
 * #### tundra.uri:parse
 
