@@ -7322,7 +7322,7 @@ Services for manipulating java.lang.Object objects:
   key will no longer exist in the pipeline.
 
   * Inputs:
-    * `$key.source` is a simple or fully qualified key (a/b/c[0]/d)
+    * `$key.source` is a simple or fully qualified key (`a/b/c[0]/d`)
       to be renamed to the given target key.
     * `$key.target` is the new simple or fully qualified key that the
       source key will be renamed to.
