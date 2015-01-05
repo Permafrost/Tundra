@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-12-08 14:57:50.895
+// -----( CREATED: 2015-01-05 15:17:35.974
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -168,8 +168,9 @@ public final class html
 	      } else if (recurse) {
 	        if (value instanceof IData) {
 	          buffer.append(emit((IData)value, recurse));
-	        } else if (value instanceof IData[]) {
-	          buffer.append(emit((IData[])value, recurse));
+	        } else if (value instanceof IData[] || value instanceof com.wm.util.Table) {
+	          IData[] array = value instanceof IData[] ? (IData[])value : ((com.wm.util.Table)value).getValues();
+	          buffer.append(emit((IData[])array, recurse));
 	        } else if (value instanceof Object[][]) {
 	          buffer.append(emit((Object[][])value));
 	        } else if (value instanceof Object[]) {
@@ -229,8 +230,9 @@ public final class html
 	        } else if (recurse) {
 	          if (value instanceof IData) {
 	            buffer.append(emit((IData)value, recurse));
-	          } else if (value instanceof IData[]) {
-	            buffer.append(emit((IData[])value, recurse));
+	          } else if (value instanceof IData[] || value instanceof com.wm.util.Table) {
+	            IData[] array = value instanceof IData[] ? (IData[])value : ((com.wm.util.Table)value).getValues();
+	            buffer.append(emit((IData[])array, recurse));
 	          } else if (value instanceof Object[][]) {
 	            buffer.append(emit((Object[][])value));
 	          } else if (value instanceof Object[]) {
@@ -280,6 +282,7 @@ public final class html
 	  return buffer.toString();
 	}
 	
+	// converts an Object[] object list to HTML
 	protected static String emit(Object[] input) {
 	  StringBuilder buffer = new StringBuilder();
 	

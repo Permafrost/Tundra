@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-12-08 12:50:29.431
+// -----( CREATED: 2015-01-05 14:54:53.503
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -40,6 +40,36 @@ public final class html
 		try {
 		  String[] list = IDataUtil.getStringArray(cursor, "$list");
 		  if (list != null) IDataUtil.put(cursor, "$list", decode(list));
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void emit (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(emit)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:1:optional $list
+		// [i] field:0:optional $encoding
+		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
+		// [o] object:0:optional $content
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  IData[] list = IDataUtil.getIDataArray(cursor, "$list");
+		  String encoding = IDataUtil.getString(cursor, "$encoding");
+		  String mode = IDataUtil.getString(cursor, "$mode");
+		
+		  IDataUtil.put(cursor, "$content", emit(list, mode, encoding));
+		} catch (java.io.IOException ex) {
+		  tundra.exception.raise(ex);
 		} finally {
 		  cursor.destroy();
 		}
@@ -92,6 +122,19 @@ public final class html
 	    output[i] = tundra.html.encode(input[i]);
 	  }
 	  return output;
+	}
+	
+	// converts an IData[] document list to HTML
+	public static Object emit(IData[] input, String mode, String encoding) throws java.io.IOException {
+	  Object content = tundra.html.emit(input, true);
+	
+	  if (mode == null || mode.equals("stream")) {
+	    content = tundra.stream.normalize(content, encoding);
+	  } else if (mode.equals("bytes")) {
+	    content = tundra.bytes.normalize(content, encoding);
+	  }
+	
+	  return content;
 	}
 	// --- <<IS-END-SHARED>> ---
 }

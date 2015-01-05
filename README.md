@@ -3891,31 +3891,54 @@ Services for compressing and decompressing data using the [gzip] format.
 
 * #### tundra.html:decode
 
-  HTML decodes the given string.
+  [HTML] decodes the given string.
 
-  [HTML entities], such as &lt; and &gt;, are decoded to the
-  appropriate character representation, such as < and >.
+  [HTML entities], such as `&lt;` and `&gt;`, are decoded to the
+  appropriate character representation, such as `<` and `>`.
 
   * Inputs:
-    * $string is an optional string to be HTML decoded.
+    * `$string` is an optional string to be [HTML] decoded.
 
   * Outputs:
-    * $string is the given string with [HTML entities] decoded.
+    * `$string` is the given string with [HTML entities] decoded.
+
+* #### tundra.html:emit
+
+  Serializes an `IData` document as an [HTML] fragment suitable for 
+  embedding in an [HTML] page, formatted as a string, byte array, 
+  or input stream.
+
+  Child elements that are IData documents, IData[] document lists, 
+  Object[] object lists, or Object[][] object tables are recursively 
+  serialized to clean [HTML] table elements.
+
+  * Inputs:
+    * `$document` is the `IData` document to be serialized as an [HTML] 
+      string, byte array, or input stream.
+    * `$encoding` is an optional character set to use when encoding the 
+      resulting text data to a byte array or input stream. Defaults to 
+      [UTF-8].
+    * `$mode` is an optional choice of stream, bytes, or string, which 
+      specifies the type of object `$content` is returned as. Defaults 
+      to stream.
+  * Outputs:
+    * `$content` is the resulting serialization of `$document` as [HTML] 
+      content.
 
 * #### tundra.html:encode
 
   HTML encodes the given string.
 
-  Reserved characters in HTML, such as < and >, are encoded to the
-  appropriate [HTML entity], such as &lt; and &gt;, to ensure the HTML
-  is rendered correctly by web browsers and other HTML rendering
+  Reserved characters in [HTML], such as `<` and `>`, are encoded to the
+  appropriate [HTML entity], such as `&lt;` and `&gt;`, to ensure the [HTML]
+  is rendered correctly by web browsers and other [HTML] rendering
   software.
 
   * Inputs:
-    * $string is an optional string to be HTML encoded.
+    * `$string` is an optional string to be [HTML] encoded.
 
   * Outputs:
-    * $string is the given string with special characters HTML encoded.
+    * `$string` is the given string with special characters [HTML] encoded.
 
 ### HTTP
 
@@ -5663,50 +5686,55 @@ Services for manipulating document (com.wm.data.IData) lists:
 
 * #### tundra.list.html:decode
 
-  HTML decodes the given string list.
+  [HTML] decodes the given string list.
 
-  [HTML entities], such as &lt; and &gt;, are decoded to the
-  appropriate character representation, such as < and >.
+  [HTML entities], such as `&lt;` and `&gt;`, are decoded to the
+  appropriate character representation, such as `<` and `>`.
 
   * Inputs:
-    * $list is an optional string list to be HTML decoded.
+    * `$list` is an optional string list to be [HTML] decoded.
 
   * Outputs:
-    * $list is the given string list with [HTML entities] decoded
+    * `$list` is the given string list with [HTML entities] decoded
       in each item in the list.
 
 * #### tundra.list.html:emit
 
-  Serializes an IData document as an [HTML] fragment suitable for embedding in
-  an HTML page, formatted as a string, byte array, or input stream.
+  Serializes an `IData[]` document list as an [HTML] fragment suitable 
+  for embedding in an [HTML] page, formatted as a string, byte array, 
+  or input stream.
 
-  IData documents, IData[] document lists, Object[] object lists, and Object[][]
-  object tables are all serialized as clean [HTML] table elements.
+  Child elements that are `IData` documents, `IData[]` document lists, 
+  `Object[]` object lists, or `Object[][]` object tables are recursively 
+  serialized to clean [HTML] table elements.
 
   * Inputs:
-    * `$document` is the IData document to be serialized as an [HTML] string,
-      byte array, or input stream.
-    * `$encoding` is an optional character set to use when encoding the
-      resulting text data to a byte array or input stream. Defaults to [UTF-8].
-    * `$mode` is an optional choice of {stream, bytes, string} which specifies
-      the type of object `$content` is returned as. Defaults to stream.
+    * `$list` is the `IData[]` document list to be serialized as an [HTML] 
+      string, byte array, or input stream.
+    * `$encoding` is an optional character set to use when encoding the 
+      resulting text data to a byte array or input stream. Defaults to 
+      [UTF-8].
+    * `$mode` is an optional choice of stream, bytes, or string, which 
+      specifies the type of object `$content` is returned as. Defaults 
+      to stream.
   * Outputs:
-    * `$content` is the resulting serialization of `$document` as [HTML] content.
+    * `$content` is the resulting serialization of `$list` as [HTML] 
+      content.
 
 * #### tundra.list.html:encode
 
-  HTML encodes the given string list.
+  [HTML] encodes the given string list.
 
-  Reserved characters in HTML, such as < and >, are encoded to the
-  appropriate [HTML entity], such as &lt; and &gt;, to ensure the HTML
-  is rendered correctly by web browsers and other HTML rendering
+  Reserved characters in [HTML], such as `<` and `>`, are encoded to the
+  appropriate [HTML entity], such as `&lt;` and `&gt;`, to ensure the [HTML]
+  is rendered correctly by web browsers and other [HTML] rendering
   software.
 
   * Inputs:
-    * $list is an optional string list to be HTML encoded.
+    * `$list` is an optional string list to be [HTML] encoded.
 
   * Outputs:
-    * $list is the given string list with special characters HTML
+    * `$list` is the given string list with special characters [HTML]
       encoded in each item in the list.
 
 ### Object List
