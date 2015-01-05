@@ -9089,7 +9089,7 @@ strings.
   * Inputs:
     * `$string` is the a [URI] string to be parsed.
   * Outputs:
-    * `$uri` is an IData document containing the constituent parts of the
+    * `$uri` is an `IData` document containing the constituent parts of the
       parsed [URI] string.
 
 ### User
