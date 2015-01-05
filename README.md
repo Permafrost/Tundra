@@ -8456,19 +8456,19 @@ Services for manipulating java.lang.String objects:
 * #### tundra.string:listify
 
   Converts the string value identified by the given key to a new list
-  of type String[], containing the original value as its single item,
+  of type `String[]`, containing the original value as its single item,
   unless the original value is already list in which case it remains
   unmodified.
 
   * Inputs:
-    * `$key` is a simple or fully-qualified (such as a/b/c[0]/d) key
+    * `$key` is a simple or fully-qualified (such as `a/b/c[0]/d`) key
       identifying the string value to be converted to a list.
     * `$scope` is an optional IData document that, if specified, is used
-      to resolve the given $key against. If not specified, `$key` is
+      to resolve the given `$key` against. If not specified, `$key` is
       resolved against the pipeline.
   * Outputs:
     * `$scope` is returned if an input `$scope` was provided, where the value
-      identified by $key within it has been converted to a list. If
+      identified by `$key` within it has been converted to a list. If
       no input `$scope` was specified, the value identified by `$key` in the
       pipeline is instead converted to a list. If `$key` does not identify
       any value, this service does nothing.
