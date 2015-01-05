@@ -7167,7 +7167,7 @@ Services for manipulating java.lang.Object objects:
 
   * Inputs:
     * `$preserve` is a list of keys (simple or fully qualified,
-      such as a/b/c[0]/d) to not be dropped from the pipeline.
+      such as `a/b/c[0]/d`) to not be dropped from the pipeline.
       All other keys not in this list will be dropped.
 
 * #### tundra.pipeline:copy
@@ -7177,9 +7177,9 @@ Services for manipulating java.lang.Object objects:
 
   * Inputs:
     * `$key.source` identifies the value to be copied, and can be
-      simple or fully qualified, such as a/b/c[0]/d.
+      simple or fully qualified, such as `a/b/c[0]/d`.
     * `$key.target` is the key to copy the source value to, and
-      can be simple or fully qualified, such as a/b/c[0]/d.
+      can be simple or fully qualified, such as `a/b/c[0]/d`.
 
 * #### tundra.pipeline:drop
 
