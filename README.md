@@ -5433,7 +5433,6 @@ Services for manipulating document (com.wm.data.IData) lists:
 
   * Inputs:
     * `$list` is the `IData[]` document list to be sorted.
-
     * `$criteria` is an `IData[]` document list containing list of sort
       criteria in order of precedence, where the first item in the
       list is the most significant criteria and the last item is the
@@ -5456,7 +5455,6 @@ Services for manipulating document (com.wm.data.IData) lists:
         associated with the `key` are to be sorted in descending
         (largest to smallest) order. Defaults to false, if not
         specified.
-
   * Outputs:
     * `$list` is the sorted `IData[]` document list.
 
