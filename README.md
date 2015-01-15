@@ -844,6 +844,7 @@ content.
           long the client waits for a response from the server before timing
           out and terminating the request with an error. Defaults to PT60S,
           if not specified.
+      * `ftps`: refer to `ftp`
       * `http`: transmits the given content to the destination URI. The
         following additional options can be provided via the `$pipeline`
         document:
@@ -3903,25 +3904,25 @@ Services for compressing and decompressing data using the [gzip] format.
 
 * #### tundra.html:emit
 
-  Serializes an `IData` document as an [HTML] fragment suitable for 
-  embedding in an [HTML] page, formatted as a string, byte array, 
+  Serializes an `IData` document as an [HTML] fragment suitable for
+  embedding in an [HTML] page, formatted as a string, byte array,
   or input stream.
 
-  Child elements that are IData documents, IData[] document lists, 
-  Object[] object lists, or Object[][] object tables are recursively 
+  Child elements that are IData documents, IData[] document lists,
+  Object[] object lists, or Object[][] object tables are recursively
   serialized to clean [HTML] table elements.
 
   * Inputs:
-    * `$document` is the `IData` document to be serialized as an [HTML] 
+    * `$document` is the `IData` document to be serialized as an [HTML]
       string, byte array, or input stream.
-    * `$encoding` is an optional character set to use when encoding the 
-      resulting text data to a byte array or input stream. Defaults to 
+    * `$encoding` is an optional character set to use when encoding the
+      resulting text data to a byte array or input stream. Defaults to
       [UTF-8].
-    * `$mode` is an optional choice of stream, bytes, or string, which 
-      specifies the type of object `$content` is returned as. Defaults 
+    * `$mode` is an optional choice of stream, bytes, or string, which
+      specifies the type of object `$content` is returned as. Defaults
       to stream.
   * Outputs:
-    * `$content` is the resulting serialization of `$document` as [HTML] 
+    * `$content` is the resulting serialization of `$document` as [HTML]
       content.
 
 * #### tundra.html:encode
@@ -5691,25 +5692,25 @@ Services for manipulating document (com.wm.data.IData) lists:
 
 * #### tundra.list.html:emit
 
-  Serializes an `IData[]` document list as an [HTML] fragment suitable 
-  for embedding in an [HTML] page, formatted as a string, byte array, 
+  Serializes an `IData[]` document list as an [HTML] fragment suitable
+  for embedding in an [HTML] page, formatted as a string, byte array,
   or input stream.
 
-  Child elements that are `IData` documents, `IData[]` document lists, 
-  `Object[]` object lists, or `Object[][]` object tables are recursively 
+  Child elements that are `IData` documents, `IData[]` document lists,
+  `Object[]` object lists, or `Object[][]` object tables are recursively
   serialized to clean [HTML] table elements.
 
   * Inputs:
-    * `$list` is the `IData[]` document list to be serialized as an [HTML] 
+    * `$list` is the `IData[]` document list to be serialized as an [HTML]
       string, byte array, or input stream.
-    * `$encoding` is an optional character set to use when encoding the 
-      resulting text data to a byte array or input stream. Defaults to 
+    * `$encoding` is an optional character set to use when encoding the
+      resulting text data to a byte array or input stream. Defaults to
       [UTF-8].
-    * `$mode` is an optional choice of stream, bytes, or string, which 
-      specifies the type of object `$content` is returned as. Defaults 
+    * `$mode` is an optional choice of stream, bytes, or string, which
+      specifies the type of object `$content` is returned as. Defaults
       to stream.
   * Outputs:
-    * `$content` is the resulting serialization of `$list` as [HTML] 
+    * `$content` is the resulting serialization of `$list` as [HTML]
       content.
 
 * #### tundra.list.html:encode
@@ -8524,7 +8525,7 @@ Services for manipulating java.lang.String objects:
   * Inputs:
     * `$string` is the string to be padded to the given length. If
       `$string.length >= |$length|`, `$string` is returned unmodified.
-    * `$length` is the minimum desired length for the returned string. If 
+    * `$length` is the minimum desired length for the returned string. If
       specified as a positive integer, `$string` will be padded from the
       left by prepending it with `(|$length|- $string.length)` characters.
       If specified as a negative integer, $string will be padded from the
