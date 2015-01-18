@@ -7941,18 +7941,22 @@ Document references and service specifications:
     * `$duration.maximum` is the maximum duration of execution of the
       given service with the given input pipeline formatted as an
       [ISO8601] XML duration string.
+    * `$duration.total` is the total duration of all executions of the
+      given service with the given input pipeline formatted as an
+      [ISO8601] XML duration string.
     * `$message` is a diagnostic message describing the execution
       statistics of the benchmarked service, which can be used for
       logging the results of the benchmark:
 
-          tundra.service:sleep benchmark results: μ = 250.460 ms, σ = 1.711 ms, ∧ = 250.000 ms, ∨ = 277.000 ms, n = 100
+          tundra.service:sleep benchmark results: μ = 250.460 ms, σ = 1.711 ms, ∧ = 250.000 ms, ∨ = 277.000 ms, ∑ = 25046.000 ms, n = 100
 
       Where:
-      * μ is the average
-      * σ is the standard deviation
-      * ∧ is the minimum
-      * ∨ is the maximum
-      * n is the sample count
+      * `μ` is the average duration
+      * `σ` is the standard deviation
+      * `∧` is the minimum duration
+      * `∨` is the maximum duration
+      * `∑` is the total duration
+      * `n` is the sample count
 
 * #### tundra.service:callstack
 

@@ -216,6 +216,33 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
+          <value name="field_name">$duration.total</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">duration</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <null name="field_usereditable"/>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
           <value name="field_name">$message</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -275,18 +302,23 @@ deviation execution durations.
     given service with the given input pipeline formatted as an 
     [ISO8601] XML duration string.
 
+  * $duration.total is the total duration of all executions of the 
+    given service with the given input pipeline formatted as an 
+    [ISO8601] XML duration string.
+    
   * $message is a diagnostic message describing the execution 
     statistics of the benchmarked service, which can be used for 
     logging the results of the benchmark:
 
-        tundra.service:sleep benchmark results: μ = 250.460 ms, σ = 1.711 ms, ∧ = 250.000 ms, ∨ = 277.000 ms, n = 100
+        tundra.service:sleep benchmark results: μ = 250.460 ms, σ = 1.711 ms, ∧ = 250.000 ms, ∨ = 277.000 ms, ∑ = 25046.000 ms, n = 100
 
     Where:
     
-    * μ is the average
+    * μ is the average duration
     * σ is the standard deviation
-    * ∧ is the minimum
-    * ∨ is the maximum
+    * ∧ is the minimum duration
+    * ∨ is the maximum duration
+    * ∑ is the total duration
     * n is the sample count
 
 [ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;</value>
@@ -295,7 +327,6 @@ deviation execution durations.
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
-  <value name="template">tundra_service_benchmark</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>

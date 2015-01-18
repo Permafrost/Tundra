@@ -1,8 +1,8 @@
 package tundra.support;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-09-06 19:52:48 EST
-// -----( ON-HOST: 172.16.189.132
+// -----( CREATED: 2015-01-18 12:45:49 EST
+// -----( ON-HOST: 172.16.167.128
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -43,7 +43,7 @@ public final class statistics
 	public static class IncrementalNormalDistributionEstimator {
 	
 	  protected long count;
-	  protected double mean, sq, minimum, maximum;
+	  protected double total, mean, sq, minimum, maximum;
 	  protected String unit = "";
 	
 	  /**
@@ -113,6 +113,7 @@ public final class statistics
 	   * @return The Estimator object itself, to support method chaining.
 	   */
 	  public final IncrementalNormalDistributionEstimator append(double sample) {
+	    total += sample;
 	    double next = mean + (sample - mean) / ++count;
 	    sq += (sample - mean) * (sample - next);
 	    mean = next;
@@ -157,6 +158,15 @@ public final class statistics
 	   */
 	  public long count() {
 	    return count;
+	  }
+	
+	  /**
+	   * Returns the total of all samples seen by this estimator.
+	   *
+	   * @return The total of all samples seen by this estimator.
+	   */
+	  public double total() {
+	    return total;
 	  }
 	
 	  /**
@@ -221,6 +231,7 @@ public final class statistics
 	   */
 	  public final IncrementalNormalDistributionEstimator reset() {
 	    count = 0;
+	    total = 0.0;
 	    mean = 0.0;
 	    sq = 0.0;
 	    minimum = Double.POSITIVE_INFINITY;
@@ -237,7 +248,7 @@ public final class statistics
 	   */
 	  @Override
 	  public String toString() {
-	    return String.format("\u03BC = %.3f %s, \u03C3 = %.3f %s, \u2227 = %.3f %s, \u2228 = %.3f %s, n = %d", mean(), unit(), standardDeviation(), unit(), minimum(), unit(), maximum(), unit(), count());
+	    return String.format("\u03BC = %.3f %s, \u03C3 = %.3f %s, \u22C0 = %.3f %s, \u22C1 = %.3f %s, \u2211 = %.3f %s, n = %d", mean(), unit(), standardDeviation(), unit(), minimum(), unit(), maximum(), unit(), total(), unit(), count());
 	  }
 	}
 	// --- <<IS-END-SHARED>> ---
