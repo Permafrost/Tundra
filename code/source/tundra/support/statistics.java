@@ -1,8 +1,8 @@
 package tundra.support;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-01-18 12:45:49 EST
-// -----( ON-HOST: 172.16.167.128
+// -----( CREATED: 2015-01-20 08:29:19.249
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -35,24 +35,24 @@ public final class statistics
 		// @sigtype java 3.5
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 	// --- <<IS-START-SHARED>> ---
 	// Class for incrementally calculating the mean and standard deviation
 	public static class IncrementalNormalDistributionEstimator {
-	
+
 	  protected long count;
 	  protected double total, mean, sq, minimum, maximum;
 	  protected String unit = "";
-	
+
 	  /**
 	   * Constructs a new estimator object.
 	   */
 	  public IncrementalNormalDistributionEstimator() {
 	    reset();
 	  }
-	
+
 	  /**
 	   * Constructs a new estimator object.
 	   * @param unit The unit of measurement related to the measured samples.
@@ -60,8 +60,8 @@ public final class statistics
 	  public IncrementalNormalDistributionEstimator(String unit) {
 	    this();
 	    this.unit = unit;
-	  }  
-	
+	  }
+
 	  /**
 	   * Constructs a new estimator object seeded with the given samples.
 	   *
@@ -71,7 +71,7 @@ public final class statistics
 	    this();
 	    append(samples);
 	  }
-	
+
 	  /**
 	   * Constructs a new estimator object seeded with the given samples.
 	   *
@@ -82,7 +82,7 @@ public final class statistics
 	    this(unit);
 	    append(samples);
 	  }
-	
+
 	  /**
 	   * Constructs a new estimator object seeded with the given collection of
 	   * samples.
@@ -93,7 +93,7 @@ public final class statistics
 	    this();
 	    append(samples);
 	  }
-	
+
 	  /**
 	   * Constructs a new estimator object seeded with the given collection of
 	   * samples.
@@ -105,7 +105,7 @@ public final class statistics
 	    this(unit);
 	    append(samples);
 	  }
-	
+
 	  /**
 	   * Appends the given sample to the list of samples in the estimator.
 	   *
@@ -119,10 +119,10 @@ public final class statistics
 	    mean = next;
 	    if (sample < minimum) minimum = sample;
 	    if (sample > maximum) maximum = sample;
-	
+
 	    return this;
 	  }
-	
+
 	  /**
 	   * Adds one or more samples to the estimator.
 	   *
@@ -133,10 +133,10 @@ public final class statistics
 	    for (double sample : samples) {
 	      append(sample);
 	    }
-	
+
 	    return this;
 	  }
-	
+
 	  /**
 	   * Adds a collection of samples to the estimator.
 	   *
@@ -147,10 +147,10 @@ public final class statistics
 	    for (double sample : samples) {
 	      append(sample);
 	    }
-	
+
 	    return this;
 	  }
-	
+
 	  /**
 	   * Returns the number of samples seen by this estimator.
 	   *
@@ -159,7 +159,7 @@ public final class statistics
 	  public long count() {
 	    return count;
 	  }
-	
+
 	  /**
 	   * Returns the total of all samples seen by this estimator.
 	   *
@@ -168,7 +168,7 @@ public final class statistics
 	  public double total() {
 	    return total;
 	  }
-	
+
 	  /**
 	   * Returns the mean of the samples.
 	   *
@@ -177,7 +177,7 @@ public final class statistics
 	  public double mean() {
 	    return mean;
 	  }
-	
+
 	  /**
 	   * Returns the minimum of the samples.
 	   *
@@ -186,7 +186,7 @@ public final class statistics
 	  public double minimum() {
 	    return minimum;
 	  }
-	
+
 	  /**
 	   * Returns the maximum of the samples.
 	   *
@@ -195,7 +195,7 @@ public final class statistics
 	  public double maximum() {
 	    return maximum;
 	  }
-	
+
 	  /**
 	   * Returns the maximum likelihood estimate of the variance of the samples.
 	   *
@@ -204,7 +204,7 @@ public final class statistics
 	  public double variance() {
 	    return count > 1 && mean > 0 ? sq / mean : 0.0;
 	  }
-	
+
 	  /**
 	   * Returns the maximum likelihood estimate of the standard deviation of the
 	   * samples.
@@ -214,7 +214,7 @@ public final class statistics
 	  public double standardDeviation() {
 	    return Math.sqrt(variance());
 	  }
-	
+
 	  /**
 	   * Returns the unit of measure related to the measured samples.
 	   *
@@ -223,7 +223,7 @@ public final class statistics
 	  public String unit() {
 	    return unit;
 	  }
-	
+
 	  /**
 	   * Resets the estimator back to zero samples.
 	   *
@@ -236,10 +236,10 @@ public final class statistics
 	    sq = 0.0;
 	    minimum = Double.POSITIVE_INFINITY;
 	    maximum = Double.NEGATIVE_INFINITY;
-	
+
 	    return this;
 	  }
-	
+
 	  /**
 	   * Returns a string-based representation of the mean, standard deviation and
 	   * number of samples for this estimator.
@@ -248,7 +248,7 @@ public final class statistics
 	   */
 	  @Override
 	  public String toString() {
-	    return String.format("\u03BC = %.3f %s, \u03C3 = %.3f %s, \u22C0 = %.3f %s, \u22C1 = %.3f %s, \u2211 = %.3f %s, n = %d", mean(), unit(), standardDeviation(), unit(), minimum(), unit(), maximum(), unit(), total(), unit(), count());
+	    return String.format("average = %.3f %s, standard deviation = %.3f %s, minimum = %.3f %s, maximum = %.3f %s, total = %.3f %s, sample count = %d", mean(), unit(), standardDeviation(), unit(), minimum(), unit(), maximum(), unit(), total(), unit(), count());
 	  }
 	}
 	// --- <<IS-END-SHARED>> ---

@@ -7948,15 +7948,7 @@ Document references and service specifications:
       statistics of the benchmarked service, which can be used for
       logging the results of the benchmark:
 
-          tundra.service:sleep benchmark results: μ = 250.460 ms, σ = 1.711 ms, ∧ = 250.000 ms, ∨ = 277.000 ms, ∑ = 25046.000 ms, n = 100
-
-      Where:
-      * `μ` is the average duration
-      * `σ` is the standard deviation
-      * `∧` is the minimum duration
-      * `∨` is the maximum duration
-      * `∑` is the total duration
-      * `n` is the sample count
+          tundra.service:sleep benchmark results: average = 250.460 ms, standard deviation = 1.711 ms, minimum = 250.000 ms, maximum = 277.000 ms, total = 25046.000 ms, sample count = 100
 
 * #### tundra.service:callstack
 

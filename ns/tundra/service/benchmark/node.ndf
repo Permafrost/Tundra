@@ -7,7 +7,6 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
-      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -22,7 +21,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$service</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -48,7 +46,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$pipeline</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
@@ -58,7 +55,6 @@
           <value name="is_global">false</value>
           <array name="rec_fields" type="record" depth="1">
           </array>
-          <value name="modifiable">true</value>
         </record>
         <record javaclass="com.wm.util.Values">
           <value name="node_type">record</value>
@@ -68,7 +64,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$count</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -88,11 +83,9 @@
           <value name="is_global">false</value>
         </record>
       </array>
-      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
-      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -107,7 +100,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$duration.average</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -134,7 +126,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$duration.standard.deviation</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -161,7 +152,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$duration.minimum</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -188,7 +178,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$duration.maximum</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -215,7 +204,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$duration.total</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -242,7 +230,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$message</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -262,7 +249,6 @@
           <value name="is_global">false</value>
         </record>
       </array>
-      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">Benchmarks the performance of the given service by invoking it the 
@@ -310,16 +296,7 @@ deviation execution durations.
     statistics of the benchmarked service, which can be used for 
     logging the results of the benchmark:
 
-        tundra.service:sleep benchmark results: μ = 250.460 ms, σ = 1.711 ms, ∧ = 250.000 ms, ∨ = 277.000 ms, ∑ = 25046.000 ms, n = 100
-
-    Where:
-    
-    * μ is the average duration
-    * σ is the standard deviation
-    * ∧ is the minimum duration
-    * ∨ is the maximum duration
-    * ∑ is the total duration
-    * n is the sample count
+        tundra.service:sleep benchmark results: average = 250.460 ms, standard deviation = 1.711 ms, minimum = 250.000 ms, maximum = 277.000 ms, total = 25046.000 ms, sample count = 100
 
 [ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;</value>
   <value name="stateless">no</value>
@@ -337,16 +314,10 @@ deviation execution durations.
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
-  <null name="auditfields_input"/>
-  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
-  <value name="pipeline_option">1</value>
-  <null name="originURI"/>
-  <value name="modifiable">true</value>
-  <value name="is_public">false</value>
 </Values>
