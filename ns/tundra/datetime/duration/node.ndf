@@ -7,7 +7,6 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
-      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -22,7 +21,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$datetime.start</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -50,7 +48,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$datetime.end</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -78,7 +75,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$datetime.pattern</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -115,7 +111,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$duration.pattern</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -147,11 +142,9 @@
           <value name="is_global">false</value>
         </record>
       </array>
-      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
-      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -166,7 +159,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$duration</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -187,7 +179,6 @@
           <value name="is_global">false</value>
         </record>
       </array>
-      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">Returns the duration between two datetimes.
@@ -198,7 +189,7 @@ Supports a handful of well-known named datetime patterns:
     -------------  --------------------------------------------
     datetime       ISO8601 XML datetime
     datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-    date           [ISO8601 XML date
+    date           ISO8601 XML date
     date.jdbc      yyyy-mm-dd
     time           ISO8601 XML time
     time.jdbc      HH:mm:ss
@@ -214,9 +205,9 @@ compatible patterns.
   * $datetime.end is the datetime string representing the ending instant for 
     calculating the duration of time.
   * $datetime.pattern is an optional datetime pattern that $datetime.start 
-    and $datetime.end conform to. Defaults to an [ISO8601]/XML datetime.
+    and $datetime.end conform to. Defaults to an [ISO8601] XML datetime.
   * $duration.pattern is an optional duration pattern that the output $duration
-    will be formatted as. Defaults to an [ISO8601]/XML duration.
+    will be formatted as. Defaults to an [ISO8601] XML duration.
 
 * Outputs:
   * $duration is the duration of time between $datetime.start and $datetime.end,
@@ -240,16 +231,10 @@ compatible patterns.
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
-  <null name="auditfields_input"/>
-  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
-  <value name="pipeline_option">1</value>
-  <null name="originURI"/>
-  <value name="modifiable">true</value>
-  <value name="is_public">false</value>
 </Values>

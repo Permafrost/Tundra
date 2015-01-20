@@ -110,11 +110,11 @@
   <value name="node_comment">Concatenates individual date and time strings into a single datetime string.
 
 * Inputs:
-  * $date is an [ISO8601]/XML date string.
-  * $time is an [ISO8601]/XML time string.
+  * $date is an [ISO8601] XML date string.
+  * $time is an [ISO8601] XML time string.
 
 * Outputs:
-  * $datetime is an [ISO8601]/XML datetime string that concatenates the inputs.
+  * $datetime is an [ISO8601] XML datetime string that concatenates the inputs.
 
 [ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;</value>
   <value name="stateless">no</value>

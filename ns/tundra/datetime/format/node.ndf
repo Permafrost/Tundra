@@ -7,7 +7,6 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
-      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -22,7 +21,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$datetime</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -50,7 +48,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$pattern.input</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -86,7 +83,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$patterns.input</value>
           <value name="field_type">string</value>
           <value name="field_dim">1</value>
@@ -115,7 +111,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$pattern.output</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -152,7 +147,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$timezone.input</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -180,7 +174,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$timezone.output</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -201,11 +194,9 @@
           <value name="is_global">false</value>
         </record>
       </array>
-      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
-      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -220,7 +211,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$datetime</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -241,7 +231,6 @@
           <value name="is_global">false</value>
         </record>
       </array>
-      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">Formats a datetime string that conforms to the input pattern, 
@@ -253,7 +242,7 @@ Supports a handful of well-known named datetime patterns:
     -------------  --------------------------------------------
     datetime       ISO8601 XML datetime
     datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-    date           [ISO8601 XML date
+    date           ISO8601 XML date
     date.jdbc      yyyy-mm-dd
     time           ISO8601 XML time
     time.jdbc      HH:mm:ss
@@ -314,16 +303,10 @@ SimpleDateFormat] compatible patterns.
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
-  <null name="auditfields_input"/>
-  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
-  <value name="pipeline_option">1</value>
-  <null name="originURI"/>
-  <value name="modifiable">true</value>
-  <value name="is_public">false</value>
 </Values>
