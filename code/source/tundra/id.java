@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-08-03 13:44:55 EST
-// -----( ON-HOST: 172.16.189.129
+// -----( CREATED: 2015-03-07 14:40:41 EST
+// -----( ON-HOST: WIN-34RAS9HJLBT
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -33,11 +33,13 @@ public final class id
 		// --- <<IS-START(generate)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
+		// [i] field:0:optional $mode {"string","base64"}
 		// [o] field:0:required $id
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  IDataUtil.put(cursor, "$id", "" + java.util.UUID.randomUUID());
+		  String mode = IDataUtil.getString(cursor, "$mode");
+		  IDataUtil.put(cursor, "$id", generate(mode));
 		} finally {
 		  cursor.destroy();
 		}
@@ -70,6 +72,29 @@ public final class id
 	}
 
 	// --- <<IS-START-SHARED>> ---
+	// returns a UUID as a string
+	public static String generate(String mode) {
+	  java.util.UUID uuid = java.util.UUID.randomUUID();
+	  String id = null;
+	
+	  if (mode == null || mode.equals("string")) {
+	    id = uuid.toString();
+	  } else {
+	    long mostSignificantBits = uuid.getMostSignificantBits();
+	    long leastSignificantBits = uuid.getLeastSignificantBits();
+	    byte[] bytes = new byte[16];
+	
+	    for (int i = 0; i < 8; i++) {
+	      bytes[i] = (byte)(mostSignificantBits >>> 8 * (7 - i));
+	    }
+	    for (int i = 8; i < 16; i++) {
+	      bytes[i] = (byte)(leastSignificantBits >>> 8 * (7 - i));
+	    }
+	    id = tundra.base64.encode(bytes);
+	  }
+	  return id;
+	}
+	
 	// converts the given identifier name to a legal java identifier
 	public static String normalize(String input) {
 	  if (input == null) return null;

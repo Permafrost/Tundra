@@ -4146,6 +4146,12 @@ Services for compressing and decompressing data using the [gzip] format.
   see the Internet-Draft UUIDs and GUIDs or the standards body
   definition at ISO/IEC 11578:1996.
 
+  * Inputs:
+    * `$mode` is an optional choice which determines how the [UUID] is
+      converted to a string:
+      * `string` returns the [UUID] in the string representation as per
+        [RFC 4122], and is the default.
+      * `base64` returns the [UUID] as a [Base64] encoded string.
   * Outputs:
     * `$id` is the generated [UUID].
 
@@ -9349,6 +9355,7 @@ Copyright &copy; 2012 Lachlan Dowding. See license.txt for further details.
 [RFC 2045]: <http://www.ietf.org/rfc/rfc2045.txt>
 [RFC 2046]: <http://www.ietf.org/rfc/rfc2046.txt>
 [RFC 2396]: <http://www.ietf.org/rfc/rfc2396.txt>
+[RFC 4122]: <http://www.ietf.org/rfc/rfc4122.txt>
 [rounding algorithm]: <http://docs.oracle.com/javase/6/docs/api/java/math/RoundingMode.html>
 [SAX]: <http://en.wikipedia.org/wiki/Simple_API_for_XML>
 [set intersection]: <http://en.wikipedia.org/wiki/Intersection_(set_theory)>
