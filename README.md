@@ -7458,6 +7458,11 @@ scheduled tasks.
           not specified, the schedule will execute every minute.
       * `pipeline` is an optional IData document containing the input
         arguments used as the input pipeline when executing the service.
+    * `$singleton?` is an optional boolean which when true indicates that
+      only one scheduled task should ever exist for this service, and
+      therefore any existing scheduled tasks for this service will be
+      first removed prior to creating a new scheduled task. Defaults
+      to false.
   * Outputs:
     * `$id` uniquely identifies the resulting scheduled task.
 
