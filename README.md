@@ -5267,8 +5267,8 @@ Services for manipulating document (com.wm.data.IData) lists:
   following two items (represented in [JSON] form):
 
       $list = [
-        { "id": "1", name": "Bob",  "phone": "1234 5678" },
-        { "id": "2", name": "Jane", "phone": "2345 6789" }
+        { "id": "1", "name": "Bob",  "phone": "1234 5678" },
+        { "id": "2", "name": "Jane", "phone": "2345 6789" }
       ]
 
   A pivot on the key `name` would return the following `IData` document,
@@ -5280,24 +5280,35 @@ Services for manipulating document (com.wm.data.IData) lists:
         "Jane": { "id": "2", "name": "Jane", "phone": "2345 6789" }
       }
 
-  Alternatively, a pivot on the key `phone` would instead return the
-  following `IData` document:
+  A pivot on the key `phone` would return the following `IData` document:
 
       $document = {
         "1234 5678": { "id": "1", "name": "Bob",  "phone": "1234 5678" },
         "2345 6789": { "id": "2", "name": "Jane", "phone": "2345 6789" }
       }
 
-  Lastly, a pivot on both the keys `id` and `name` would construct a
-  compound key using the values associated with each key from each item,
-  delimited by default with the character `:`, as follows:
+  A pivot on both the keys `id` and `name` would return the following
+  `IData` document (note that the pivot keys are nested):
 
       $document = {
-        "1:Bob":  { "id": "1", "name": "Bob",  "phone": "1234 5678" },
-        "2:Jane": { "id": "2", "name": "Jane", "phone": "2345 6789" }
+        "1": {
+          "Bob":  { "id":"1", "name":"Bob",  "phone":"1234 5678" }
+        },
+        "2": {
+          "Jane": { "id":"2", "name":"Jane", "phone":"2345 6789" }
+        }
       }
 
-  Although the difference between the `IData[]` document list and IData
+  Alternatively, a pivot on both the keys `id` and `name` with a delimiter
+  of `-` would construct a compound key using the values associated with
+  each key from each item joined with the given delimiter, as follows:
+
+      $document = {
+        "1-Bob":  { "id":"1", "name":"Bob",  "phone":"1234 5678" },
+        "2-Jane": { "id":"2", "name":"Jane", "phone":"2345 6789" }
+      }
+
+  Although the difference between the `IData[]` document list and `IData`
   document representations appear subtle, a pivot of a `IData[]`
   document list on a primary key returns an `IData` document that can be
   efficiently accessed by key, rather than having to iterate over the
@@ -5315,9 +5326,11 @@ Services for manipulating document (com.wm.data.IData) lists:
         only the first item is included in the resulting pivot.
     * `$delimiter` is an optional character to use for separating the
       values that form a compound key, when multiple pivot keys are
-      specified.
+      specified. If not specified, the pivot keys will be nested in
+      the returned `IData` document. The delimiter `/` is reserved,
+      and will also result in the pivot keys being nested.
   * Outputs:
-    * `$document` is the IData document pivoted representation of the
+    * `$document` is the `IData` document pivoted representation of the
       given `$list`.
 
 * #### tundra.list.document:prepend
