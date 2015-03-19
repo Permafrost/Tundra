@@ -3,7 +3,7 @@
 <Values version="2.0">
   <value name="enabled">yes</value>
   <value name="system_package">no</value>
-  <value name="version">0.0.18</value>
+  <value name="version">0.0.19</value>
   <record name="startup_services" javaclass="com.wm.util.Values">
     <null name="tundra.support:access"/>
     <null name="tundra.http.route:refresh"/>
