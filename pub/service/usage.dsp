@@ -9,7 +9,7 @@
     <link href="../assets/css/application.css" rel="stylesheet">
     <script src="../assets/js/jquery.min.js"></script>
     <script src="../assets/js/bootstrap.min.js"></script>
-    <script src="../assets/js/application.js"></script>    
+    <script src="../assets/js/application.js"></script>
   </head>
   <body>
     <div class="container-fluid">
@@ -44,7 +44,7 @@
           %invoke tundra.support.service.usage.ui:get%
           <div class="table-responsive">
             <table class="table table-striped">
-              <caption>Services Currently Executing (%value $context/invocations.current.length encode(xml)%)</caption>
+              <caption>Services Currently Executing (%value $context/invocations.current.length encode(xml)%) at %value $context/monitoring.datetime encode(xml)%</caption>
               <thead>
                 <tr>
                   <th colspan="2" width="24%">Thread</th>
@@ -115,13 +115,13 @@
                           Service usage monitoring is currently enabled; to disable click the Stop Monitoring button.
                         </div>
                       %else%
-                        <div class="form-group">                      
+                        <div class="form-group">
                           <button type="submit" style="width:100px">Start Monitoring</button>
                           <input type="hidden" name="action" value="start">
                         </div>
                         <div class="form-group">
                           Service usage monitoring is currently disabled; to enable click the Start Monitoring button.
-                        </div>                        
+                        </div>
                       %endif%
                     </form>
                   </td>
