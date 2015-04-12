@@ -9311,7 +9311,7 @@ around.
 
 ## Copyright
 
-Copyright &copy; 2012 Lachlan Dowding. See license.txt for further details.
+Copyright &copy; 2012 Lachlan Dowding. See the [LICENSE] file for further details.
 
 [Apache Santuario]: <http://santuario.apache.org/>
 [Base64]: <http://en.wikipedia.org/wiki/Base64>
@@ -9360,6 +9360,7 @@ Copyright &copy; 2012 Lachlan Dowding. See license.txt for further details.
 [Java array class name]: <http://docs.oracle.com/javase/tutorial/reflect/special/arrayComponents.html>
 [JMS]: <http://en.wikipedia.org/wiki/Java_Message_Service>
 [JSON]: <http://www.json.org/>
+[LICENSE]: <https://github.com/Permafrost/Tundra/blob/master/LICENSE>
 [Locale]: <http://docs.oracle.com/javase/6/docs/api/java/util/Locale.html>
 [map function]: <http://en.wikipedia.org/wiki/Map_(higher-order_function)>
 [mime type]: <http://en.wikipedia.org/wiki/Internet_media_type>
