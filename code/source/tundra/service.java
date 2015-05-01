@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-05-01 18:38:33 EST
+// -----( CREATED: 2015-05-01 18:48:43 EST
 // -----( ON-HOST: 172.16.167.128
 
 import com.wm.data.*;
@@ -10,6 +10,7 @@ import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import permafrost.tundra.lang.BooleanHelper;
+import permafrost.tundra.math.NormalDistributionEstimator;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class service
@@ -41,7 +42,6 @@ public final class service
 		// [o] field:0:required $duration.standard.deviation
 		// [o] field:0:required $duration.minimum
 		// [o] field:0:required $duration.maximum
-		// [o] field:0:required $duration.total
 		// [o] field:0:required $message
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -50,13 +50,12 @@ public final class service
 		  IData scope = IDataUtil.getIData(cursor, "$pipeline");
 		  int count = Integer.parseInt(IDataUtil.getString(cursor, "$count"));
 		
-		  tundra.support.statistics.IncrementalNormalDistributionEstimator estimator = benchmark(service, scope == null? pipeline : scope, count);
+		  NormalDistributionEstimator estimator = benchmark(service, scope == null? pipeline : scope, count);
 		
-		  IDataUtil.put(cursor, "$duration.average", tundra.duration.format("" + estimator.mean(), "milliseconds", "xml"));
-		  IDataUtil.put(cursor, "$duration.standard.deviation", tundra.duration.format("" + estimator.standardDeviation(), "milliseconds", "xml"));
-		  IDataUtil.put(cursor, "$duration.minimum", tundra.duration.format("" + estimator.minimum(), "milliseconds", "xml"));
-		  IDataUtil.put(cursor, "$duration.maximum", tundra.duration.format("" + estimator.maximum(), "milliseconds", "xml"));
-		  IDataUtil.put(cursor, "$duration.total", tundra.duration.format("" + estimator.total(), "milliseconds", "xml"));
+		  IDataUtil.put(cursor, "$duration.average", tundra.duration.format("" + estimator.getMean(), "milliseconds", "xml"));
+		  IDataUtil.put(cursor, "$duration.standard.deviation", tundra.duration.format("" + estimator.getStandardDeviation(), "milliseconds", "xml"));
+		  IDataUtil.put(cursor, "$duration.minimum", tundra.duration.format("" + estimator.getMinimum(), "milliseconds", "xml"));
+		  IDataUtil.put(cursor, "$duration.maximum", tundra.duration.format("" + estimator.getMaximum(), "milliseconds", "xml"));
 		  IDataUtil.put(cursor, "$message", service + " benchmark results: " + estimator.toString());
 		} finally {
 		  cursor.destroy();
@@ -670,8 +669,8 @@ public final class service
 	}
 	
 	// invokes the given service a given number of times, and returns execution duration statistics
-	public static tundra.support.statistics.IncrementalNormalDistributionEstimator benchmark(String service, IData pipeline, int count) throws ServiceException {
-	  tundra.support.statistics.IncrementalNormalDistributionEstimator estimator = new tundra.support.statistics.IncrementalNormalDistributionEstimator("ms");
+	public static NormalDistributionEstimator benchmark(String service, IData pipeline, int count) throws ServiceException {
+	  NormalDistributionEstimator estimator = new NormalDistributionEstimator("ms");
 	
 	  validate(service, true);
 	
@@ -681,7 +680,7 @@ public final class service
 	      tundra.service.invoke.synchronous(service, pipeline);
 	      long end = System.currentTimeMillis();
 	
-	      estimator.append(end - start);
+	      estimator.add(end - start);
 	    }
 	  } catch (ServiceException ex) {
 	    // ignore exceptions
