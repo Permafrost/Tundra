@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-04-30 09:34:55 EST
-// -----( ON-HOST: PC62XKG2S.internal.qr.com.au
+// -----( CREATED: 2015-05-01 18:34:10 EST
+// -----( ON-HOST: 172.16.167.128
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -62,6 +62,7 @@ public final class html
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
+		// [i] - record:1:optional recordWithNoID
 		// [i] field:0:optional $encoding
 		// [i] field:0:optional $mode {"stream","bytes","string"}
 		// [o] object:0:optional $content

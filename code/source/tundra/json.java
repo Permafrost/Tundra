@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-04-30 10:37:23 EST
-// -----( ON-HOST: PC62XKG2S.internal.qr.com.au
+// -----( CREATED: 2015-05-01 18:35:06 EST
+// -----( ON-HOST: 172.16.167.128
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -39,7 +39,7 @@ public final class json
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
-		// [i] - record:1:optional recordWithNoID
+		// [i] - object:1:optional recordWithNoID
 		// [i] field:0:optional $encoding
 		// [i] field:0:optional $mode {"stream","bytes","string"}
 		// [o] object:0:optional $content
@@ -72,6 +72,7 @@ public final class json
 		// [i] object:0:optional $content
 		// [i] field:0:optional $encoding
 		// [o] record:0:optional $document
+		// [o] - object:1:optional recordWithNoID
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
