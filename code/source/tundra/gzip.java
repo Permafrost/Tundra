@@ -1,14 +1,19 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-07-22 15:23:18.600
-// -----( ON-HOST: -
+// -----( CREATED: 2015-04-28 10:33:17 EST
+// -----( ON-HOST: PC62XKG2S.internal.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import java.io.IOException;
+import permafrost.tundra.io.StreamHelper;
+import permafrost.tundra.lang.ExceptionHelper;
+import permafrost.tundra.lang.ObjectHelper;
+import permafrost.tundra.zip.GzipHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class gzip
@@ -35,18 +40,20 @@ public final class gzip
 		// @sigtype java 3.5
 		// [i] object:0:optional $content
 		// [i] field:0:optional $encoding
-		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
+		// [i] field:0:optional $mode {"stream","bytes","string","base64"}
 		// [o] object:0:optional $content.gzip
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  Object content = IDataUtil.get(cursor, "$content");
-		  String encoding = IDataUtil.getString(cursor, "$encoding");
+		  Object input = IDataUtil.get(cursor, "$content");
+		  String charset = IDataUtil.getString(cursor, "$encoding");
 		  String mode = IDataUtil.getString(cursor, "$mode");
-		
-		  if (content != null) IDataUtil.put(cursor, "$content.gzip", compress(content, encoding, mode));
-		} catch(java.io.IOException ex) {
-		  tundra.exception.raise(ex);
+		  
+		  Object output = ObjectHelper.convert(GzipHelper.compress(StreamHelper.normalize(input, charset)), charset, mode);
+		  
+		  if (output != null) IDataUtil.put(cursor, "$content.gzip", output);
+		} catch(IOException ex) {
+		  ExceptionHelper.raise(ex);
 		} finally {
 		  cursor.destroy();
 		}
@@ -65,18 +72,20 @@ public final class gzip
 		// @sigtype java 3.5
 		// [i] object:0:optional $content.gzip
 		// [i] field:0:optional $encoding
-		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
+		// [i] field:0:optional $mode {"stream","bytes","string","base64"}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  Object gzip = IDataUtil.get(cursor, "$content.gzip");
-		  String encoding = IDataUtil.getString(cursor, "$encoding");
+		  Object input = IDataUtil.get(cursor, "$content.gzip");
+		  String charset = IDataUtil.getString(cursor, "$encoding");
 		  String mode = IDataUtil.getString(cursor, "$mode");
+		  
+		  Object output = ObjectHelper.convert(GzipHelper.decompress(StreamHelper.normalize(input, charset)), charset, mode);
 		
-		  if (gzip != null) IDataUtil.put(cursor, "$content", decompress(gzip, encoding, mode));
-		} catch(java.io.IOException ex) {
-		  tundra.exception.raise(ex);
+		  if (output != null) IDataUtil.put(cursor, "$content", output);
+		} catch(IOException ex) {
+		  ExceptionHelper.raise(ex);
 		} finally {
 		  cursor.destroy();
 		}
@@ -84,76 +93,5 @@ public final class gzip
 
                 
 	}
-
-	// --- <<IS-START-SHARED>> ---
-	// GZIP compresses a string, byte array, or input stream
-	public static Object compress(Object content, String encoding, String mode) throws java.io.IOException {
-	  if (content == null) return null;
-	
-	  byte[] buffer = new byte[tundra.support.constant.DEFAULT_BUFFER_SIZE];
-	  java.io.InputStream in = null;
-	  java.util.zip.GZIPOutputStream out = null;
-	
-	  try {
-	    java.io.ByteArrayOutputStream baos = new java.io.ByteArrayOutputStream();
-	    
-	    in = tundra.stream.normalize(content, encoding);
-	    out = new java.util.zip.GZIPOutputStream(baos);
-	
-	    int count;
-	    while ((count = in.read(buffer)) > 0) {
-	      out.write(buffer, 0, count);
-	    }
-	
-	    out.close();
-	    buffer = baos.toByteArray();
-	  } finally {
-	    if (in != null) in.close();
-	  }
-	
-	  return convert(buffer, mode);
-	}
-	
-	// GZIP decompresses a string, byte array, or input stream
-	public static Object decompress(Object gzip, String encoding, String mode) throws java.io.IOException {
-	  if (gzip == null) return null;
-	
-	  byte[] buffer = new byte[tundra.support.constant.DEFAULT_BUFFER_SIZE];
-	  java.util.zip.GZIPInputStream in = null;
-	  java.io.ByteArrayOutputStream out = null;
-	
-	  try {
-	    if (gzip instanceof String) gzip = tundra.base64.decode((String)gzip);
-	    in = new java.util.zip.GZIPInputStream(tundra.stream.normalize(gzip));
-	    out = new java.io.ByteArrayOutputStream();
-	  
-	    int count;
-	    while((count = in.read(buffer)) > 0) {
-	      out.write(buffer, 0, count);
-	    }
-	
-	    out.close();
-	    buffer = out.toByteArray();
-	  } finally {
-	    if (in != null) in.close();
-	  }
-	
-	  return tundra.object.convert(buffer, encoding, mode);
-	}
-	
-	// converts a byte array to either an input stream, byte array, or string
-	protected static Object convert(byte[] bytes, String mode) {
-	  Object result = null;
-	  if (mode == null || mode.equals("stream")) {
-	    result = new java.io.ByteArrayInputStream(bytes);
-	  } else if (mode.equals("bytes")) {
-	    result = bytes;
-	  } else if (mode.equals("string")) {
-	    result = tundra.base64.encode(bytes);
-	  }
-	
-	  return result;
-	}
-	// --- <<IS-END-SHARED>> ---
 }
 

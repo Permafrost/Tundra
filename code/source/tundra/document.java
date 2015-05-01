@@ -1,14 +1,16 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-11-03 10:58:28.759
-// -----( ON-HOST: -
+// -----( CREATED: 2015-05-01 13:14:10 EST
+// -----( ON-HOST: PC62XKG2S.internal.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.flow.ConditionEvaluator;
+import permafrost.tundra.lang.BooleanHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class document
@@ -63,13 +65,13 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
-		  boolean recurse = tundra.bool.parse(IDataUtil.getString(cursor, "$recurse?"));
+		  boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
 		  if (document != null) IDataUtil.put(cursor, "$document", blankify(document, recurse));
 		} finally {
 		  cursor.destroy();
@@ -114,17 +116,18 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
-		  boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
+		  boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
 		  IDataUtil.put(cursor, "$document", compact(document, recurse));
 		} finally {
 		  cursor.destroy();
 		}
+		
 		// --- <<IS-END>> ---
 
                 
@@ -191,13 +194,13 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] record:0:optional $duplicate
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
-		  boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
+		  boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
 		  if (document != null) IDataUtil.put(cursor, "$duplicate", duplicate(document, recurse));
 		} finally {
 		  cursor.destroy();
@@ -221,7 +224,7 @@ public final class document
 		// [i] field:0:optional $key.input
 		// [i] field:0:optional $value.input
 		// [i] field:0:optional $value.class
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -231,7 +234,7 @@ public final class document
 		  String keyInput = IDataUtil.getString(cursor, "$key.input");
 		  String valueInput = IDataUtil.getString(cursor, "$value.input");
 		  String valueClass = IDataUtil.getString(cursor, "$value.class");
-		  boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
+		  boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
 		  boolean scoped = scope != null;
 		
 		  each(document, service, scoped ? scope: pipeline, keyInput, valueInput, valueClass == null? null : Class.forName(valueClass), recurse);
@@ -255,7 +258,7 @@ public final class document
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
 		// [i] field:0:optional $encoding
-		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
+		// [i] field:0:optional $mode {"stream","bytes","string"}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -481,7 +484,7 @@ public final class document
 		// [i] field:0:optional $value.input
 		// [i] field:0:optional $value.output
 		// [i] field:0:optional $value.class
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -494,7 +497,7 @@ public final class document
 		  String valueInput = IDataUtil.getString(cursor, "$value.input");
 		  String valueOutput = IDataUtil.getString(cursor, "$value.output");
 		  String valueClass = IDataUtil.getString(cursor, "$value.class");
-		  boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
+		  boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
 		  boolean scoped = scope != null;
 		
 		  IDataUtil.put(cursor, "$document", map(document, service, scoped ? scope: pipeline, keyInput, keyOutput, valueInput, valueOutput, valueClass == null? null : Class.forName(valueClass), recurse));
@@ -591,7 +594,7 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] record:1:optional $pivot
 		// [o] - field:0:required key
 		// [o] - object:0:required value
@@ -599,7 +602,7 @@ public final class document
 		
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
-		  boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
+		  boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
 		  if (document != null) IDataUtil.put(cursor, "$pivot", pivot(document, recurse));
 		} finally {
 		  cursor.destroy();
@@ -673,13 +676,13 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
-		  boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
+		  boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
 		  if (document != null) IDataUtil.put(cursor, "$document", sort(document, recurse));
 		} finally {
 		  cursor.destroy();
@@ -698,13 +701,13 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
-		  boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
+		  boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
 		
 		  if (document != null) {
 		    document = squeeze(document, recurse);
@@ -728,13 +731,13 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
-		  boolean recurse = tundra.bool.parse(IDataUtil.getString(cursor, "$recurse?"));
+		  boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
 		  if (document != null) IDataUtil.put(cursor, "$document", stringify(document, recurse));
 		} finally {
 		  cursor.destroy();
@@ -812,7 +815,7 @@ public final class document
 	      key = tundra.string.substitute(key, scope);
 	      value = tundra.string.substitute(value, scope);
 	
-	      if ((condition == null) || tundra.condition.evaluate(condition, scope)) {
+	      if ((condition == null) || ConditionEvaluator.evaluate(condition, scope)) {
 	        document = tundra.support.document.put(document, key, value);
 	      }
 	    }

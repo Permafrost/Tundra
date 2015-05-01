@@ -1,14 +1,15 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-12-23 21:58:02 EST
-// -----( ON-HOST: 172.16.167.128
+// -----( CREATED: 2015-05-01 13:15:30 EST
+// -----( ON-HOST: PC62XKG2S.internal.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.flow.ConditionEvaluator;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class object
@@ -946,7 +947,7 @@ public final class object
 	    IDataCursor cursor = pipeline.getCursor();
 	    IDataUtil.put(cursor, "$item", array[i]);
 	
-	    if (tundra.condition.evaluate(condition, pipeline)) list.add(array[i]);
+	    if (ConditionEvaluator.evaluate(condition, pipeline)) list.add(array[i]);
 	    
 	    IDataUtil.remove(cursor, "$item");
 	    cursor.destroy();
@@ -1314,7 +1315,7 @@ public final class object
 	    IDataCursor cursor = pipeline.getCursor();
 	    IDataUtil.put(cursor, "$item", array[i]);
 	
-	    if (!tundra.condition.evaluate(condition, pipeline)) list.add(array[i]);
+	    if (!ConditionEvaluator.evaluate(condition, pipeline)) list.add(array[i]);
 	    
 	    IDataUtil.remove(cursor, "$item");
 	    cursor.destroy();

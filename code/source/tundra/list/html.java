@@ -1,14 +1,19 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-01-05 14:54:53.503
-// -----( ON-HOST: -
+// -----( CREATED: 2015-04-30 10:18:27 EST
+// -----( ON-HOST: PC62XKG2S.internal.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import java.io.IOException;
+import permafrost.tundra.data.IDataHTMLParser;
+import permafrost.tundra.html.HTMLHelper;
+import permafrost.tundra.lang.ExceptionHelper;
+import permafrost.tundra.lang.ObjectHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class html
@@ -43,6 +48,8 @@ public final class html
 		} finally {
 		  cursor.destroy();
 		}
+		
+		
 		// --- <<IS-END>> ---
 
                 
@@ -58,20 +65,20 @@ public final class html
 		// @sigtype java 3.5
 		// [i] record:1:optional $list
 		// [i] field:0:optional $encoding
-		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
+		// [i] field:0:optional $mode {"stream","bytes","string"}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  IData[] list = IDataUtil.getIDataArray(cursor, "$list");
-		  String encoding = IDataUtil.getString(cursor, "$encoding");
-		  String mode = IDataUtil.getString(cursor, "$mode");
+		    IData[] list = IDataUtil.getIDataArray(cursor, "$list");
+		    String encoding = IDataUtil.getString(cursor, "$encoding");
+		    String mode = IDataUtil.getString(cursor, "$mode");
 		
-		  IDataUtil.put(cursor, "$content", emit(list, mode, encoding));
+		    IDataUtil.put(cursor, "$content", emit(list, mode, encoding));
 		} catch (java.io.IOException ex) {
-		  tundra.exception.raise(ex);
+		    ExceptionHelper.raise(ex);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
@@ -108,7 +115,7 @@ public final class html
 	
 	  String[] output = new String[input.length];
 	  for (int i = 0; i < input.length; i++) {
-	    output[i] = tundra.html.decode(input[i]);
+	    output[i] = HTMLHelper.decode(input[i]);
 	  }
 	  return output;
 	}
@@ -119,22 +126,19 @@ public final class html
 	
 	  String[] output = new String[input.length];
 	  for (int i = 0; i < input.length; i++) {
-	    output[i] = tundra.html.encode(input[i]);
+	    output[i] = HTMLHelper.encode(input[i]);
 	  }
 	  return output;
 	}
 	
 	// converts an IData[] document list to HTML
-	public static Object emit(IData[] input, String mode, String encoding) throws java.io.IOException {
-	  Object content = tundra.html.emit(input, true);
-	
-	  if (mode == null || mode.equals("stream")) {
-	    content = tundra.stream.normalize(content, encoding);
-	  } else if (mode.equals("bytes")) {
-	    content = tundra.bytes.normalize(content, encoding);
-	  }
-	
-	  return content;
+	public static Object emit(IData[] input, String mode, String encoding) throws IOException {
+	    IData document = IDataFactory.create();
+	    IDataCursor cursor = document.getCursor();
+	    IDataUtil.put(cursor,  "recordWithNoID", input);
+	    cursor.destroy();
+	  
+	    return ObjectHelper.convert(IDataHTMLParser.getInstance().emit(document, encoding), encoding, mode);
 	}
 	// --- <<IS-END-SHARED>> ---
 }

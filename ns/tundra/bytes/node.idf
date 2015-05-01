@@ -3,28 +3,13 @@
 <Values version="2.0">
   <value name="node_type">interface</value>
   <value name="node_nsName">tundra.bytes</value>
-  <value name="shared">Ly8gY29udmVydHMgYSBzdHJpbmcsIGJ5dGVzIG9yIGlucHV0IHN0cmVhbSB0byBieXRlcwpwdWJs
-aWMgc3RhdGljIGJ5dGVbXSBub3JtYWxpemUoT2JqZWN0IG9iamVjdCwgU3RyaW5nIGVuY29kaW5n
-KSB0aHJvd3MgamF2YS5pby5JT0V4Y2VwdGlvbiB7CiAgaWYgKGVuY29kaW5nID09IG51bGwpIGVu
-Y29kaW5nID0gdHVuZHJhLnN1cHBvcnQuY29uc3RhbnQuREVGQVVMVF9DSEFSQUNURVJfRU5DT0RJ
-Tkc7CiAgCiAgYnl0ZVtdIGJ5dGVzID0gbnVsbDsKICAKICBpZiAob2JqZWN0ICE9IG51bGwpIHsK
-ICAgIGlmIChvYmplY3QgaW5zdGFuY2VvZiBieXRlW10pIHsKICAgICAgYnl0ZXMgPSAoYnl0ZVtd
-KW9iamVjdDsKICAgIH0gZWxzZSBpZiAob2JqZWN0IGluc3RhbmNlb2YgU3RyaW5nKSB7CiAgICAg
-IGJ5dGVzID0gKChTdHJpbmcpb2JqZWN0KS5nZXRCeXRlcyhlbmNvZGluZyk7CiAgICB9IGVsc2Ug
-aWYgKG9iamVjdCBpbnN0YW5jZW9mIGphdmEuaW8uSW5wdXRTdHJlYW0pIHsKICAgICAgamF2YS5p
-by5CeXRlQXJyYXlPdXRwdXRTdHJlYW0gb3V0ID0gbmV3IGphdmEuaW8uQnl0ZUFycmF5T3V0cHV0
-U3RyZWFtKCk7CiAgICAgIHR1bmRyYS5zdHJlYW0uY29weSgoamF2YS5pby5JbnB1dFN0cmVhbSlv
-YmplY3QsIG91dCk7CiAgICAgIGJ5dGVzID0gb3V0LnRvQnl0ZUFycmF5KCk7CiAgICB9IGVsc2Ug
-ewogICAgICB0aHJvdyBuZXcgSWxsZWdhbEFyZ3VtZW50RXhjZXB0aW9uKCJvYmplY3QgbXVzdCBi
-ZSBhIHN0cmluZywgYnl0ZVtdIG9yIGphdmEuaW8uSW5wdXRTdHJlYW06ICIgKyBvYmplY3QuZ2V0
-Q2xhc3MoKS5nZXROYW1lKCkpOwogICAgfQogIH0KCiAgcmV0dXJuIGJ5dGVzOwp9CgovLyByZXR1
-cm5zIHRoZSBsZW5ndGggb2YgdGhlIGdpdmVuIGJ5dGUgYXJyYXkKcHVibGljIHN0YXRpYyBpbnQg
-bGVuZ3RoKGJ5dGVbXSBieXRlcykgewogIGludCBsZW4gPSAwOwogIGlmIChieXRlcyAhPSBudWxs
-KSBsZW4gPSBieXRlcy5sZW5ndGg7CiAgcmV0dXJuIGxlbjsKfQ==</value>
+  <value name="shared"></value>
   <value name="encodeutf8">true</value>
   <value name="extends"></value>
   <array name="implements" type="value" depth="1">
   </array>
   <array name="imports" type="value" depth="1">
+    <value>permafrost.tundra.lang.BytesHelper</value>
+    <value>permafrost.tundra.lang.ExceptionHelper</value>
   </array>
 </Values>

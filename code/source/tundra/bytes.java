@@ -1,14 +1,16 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-11-23 09:56:39.508
-// -----( ON-HOST: -
+// -----( CREATED: 2015-04-29 13:39:32 EST
+// -----( ON-HOST: PC62XKG2S.internal.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.lang.BytesHelper;
+import permafrost.tundra.lang.ExceptionHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class bytes
@@ -38,10 +40,14 @@ public final class bytes
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  byte[] bytes = (byte[])IDataUtil.get(cursor, "$bytes");
-		  IDataUtil.put(cursor, "$length", "" + length(bytes));
+		    byte[] bytes = (byte[])IDataUtil.get(cursor, "$bytes");
+		
+		    int length = 0;
+		    if (bytes != null) length = bytes.length;
+		
+		    IDataUtil.put(cursor, "$length", "" + length);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
@@ -62,50 +68,20 @@ public final class bytes
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  Object object = IDataUtil.get(cursor, "$object");
-		  String encoding = IDataUtil.getString(cursor, "$encoding");
+		    Object object = IDataUtil.get(cursor, "$object");
+		    String charset = IDataUtil.getString(cursor, "$encoding");
 		
-		  IDataUtil.put(cursor, "$bytes", normalize(object, encoding));
+		    IDataUtil.put(cursor, "$bytes", BytesHelper.normalize(object, charset));
 		} catch(java.io.IOException ex) {
-		  tundra.exception.raise(ex);
+		    ExceptionHelper.raise(ex);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
+		
+		
 		// --- <<IS-END>> ---
 
                 
 	}
-
-	// --- <<IS-START-SHARED>> ---
-	// converts a string, bytes or input stream to bytes
-	public static byte[] normalize(Object object, String encoding) throws java.io.IOException {
-	  if (encoding == null) encoding = tundra.support.constant.DEFAULT_CHARACTER_ENCODING;
-	  
-	  byte[] bytes = null;
-	  
-	  if (object != null) {
-	    if (object instanceof byte[]) {
-	      bytes = (byte[])object;
-	    } else if (object instanceof String) {
-	      bytes = ((String)object).getBytes(encoding);
-	    } else if (object instanceof java.io.InputStream) {
-	      java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream();
-	      tundra.stream.copy((java.io.InputStream)object, out);
-	      bytes = out.toByteArray();
-	    } else {
-	      throw new IllegalArgumentException("object must be a string, byte[] or java.io.InputStream: " + object.getClass().getName());
-	    }
-	  }
-	
-	  return bytes;
-	}
-	
-	// returns the length of the given byte array
-	public static int length(byte[] bytes) {
-	  int len = 0;
-	  if (bytes != null) len = bytes.length;
-	  return len;
-	}
-	// --- <<IS-END-SHARED>> ---
 }
 

@@ -54,16 +54,15 @@ bnVsbCAmJiBrbGFzcyAhPSBudWxsICYmIGtsYXNzLmlzSW5zdGFuY2Uob2JqZWN0KTsKfQoKLy8g
 Y29udmVydHMgYSBzdHJpbmcsIGJ5dGUgYXJyYXkgb3Igc3RyZWFtIHRvIGEgc3RyaW5nLCBieXRl
 IGFycmF5IG9yIHN0cmVhbQpwdWJsaWMgc3RhdGljIE9iamVjdCBjb252ZXJ0KE9iamVjdCBvYmpl
 Y3QsIFN0cmluZyBlbmNvZGluZywgU3RyaW5nIG1vZGUpIHRocm93cyBqYXZhLmlvLklPRXhjZXB0
-aW9uIHsKICBpZiAobW9kZSA9PSAgbnVsbCkgbW9kZSA9ICJzdHJlYW0iOwoKICBpZiAobW9kZS5l
-cXVhbHMoImJ5dGVzIikpIHsKICAgIG9iamVjdCA9IHR1bmRyYS5ieXRlcy5ub3JtYWxpemUob2Jq
-ZWN0LCBlbmNvZGluZyk7CiAgfSBlbHNlIGlmIChtb2RlLmVxdWFscygic3RyaW5nIikpIHsKICAg
-IG9iamVjdCA9IHR1bmRyYS5zdHJpbmcubm9ybWFsaXplKG9iamVjdCwgZW5jb2RpbmcpOwogIH0g
-ZWxzZSB7CiAgICBvYmplY3QgPSB0dW5kcmEuc3RyZWFtLm5vcm1hbGl6ZShvYmplY3QsIGVuY29k
-aW5nKTsKICB9CgogIHJldHVybiBvYmplY3Q7Cn0=</value>
+aW9uIHsKICAgIHJldHVybiBPYmplY3RIZWxwZXIuY29udmVydChvYmplY3QsIGVuY29kaW5nLCBt
+b2RlKTsKfQ==</value>
   <value name="encodeutf8">true</value>
   <value name="extends"></value>
   <array name="implements" type="value" depth="1">
   </array>
   <array name="imports" type="value" depth="1">
+    <value>java.io.IOException</value>
+    <value>permafrost.tundra.lang.ExceptionHelper</value>
+    <value>permafrost.tundra.lang.ObjectHelper</value>
   </array>
 </Values>

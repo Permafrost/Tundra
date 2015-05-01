@@ -1,14 +1,17 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-11-04 08:27:53.099
-// -----( ON-HOST: -
+// -----( CREATED: 2015-04-30 09:02:00 EST
+// -----( ON-HOST: PC62XKG2S.internal.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import java.io.IOException;
+import permafrost.tundra.lang.ExceptionHelper;
+import permafrost.tundra.lang.ObjectHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class object
@@ -35,7 +38,7 @@ public final class object
 		// @sigtype java 3.5
 		// [i] object:0:optional $object.x
 		// [i] object:0:optional $object.y
-		// [i] field:0:optional $mode {&quot;missing&quot;,&quot;null&quot;}
+		// [i] field:0:optional $mode {"missing","null"}
 		// [o] object:0:optional $object
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -64,22 +67,26 @@ public final class object
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:0:optional $object
-		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
+		// [i] field:0:optional $mode {"stream","bytes","string"}
 		// [i] field:0:optional $encoding
 		// [o] object:0:optional $object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  Object object = IDataUtil.get(cursor, "$object");
-		  String encoding = IDataUtil.getString(cursor, "$encoding");
+		  String charset = IDataUtil.getString(cursor, "$encoding");
 		  String mode = IDataUtil.getString(cursor, "$mode");
 		
-		  IDataUtil.put(cursor, "$object", convert(object, encoding, mode));
-		} catch(java.io.IOException ex) {
-		  tundra.exception.raise(ex);
+		  IDataUtil.put(cursor, "$object", ObjectHelper.convert(object, charset, mode));
+		} catch(IOException ex) {
+		  ExceptionHelper.raise(ex);
 		} finally {
 		  cursor.destroy();
 		}
+		
+		
+		
+		
 		// --- <<IS-END>> ---
 
                 
@@ -317,17 +324,7 @@ public final class object
 	
 	// converts a string, byte array or stream to a string, byte array or stream
 	public static Object convert(Object object, String encoding, String mode) throws java.io.IOException {
-	  if (mode ==  null) mode = "stream";
-	
-	  if (mode.equals("bytes")) {
-	    object = tundra.bytes.normalize(object, encoding);
-	  } else if (mode.equals("string")) {
-	    object = tundra.string.normalize(object, encoding);
-	  } else {
-	    object = tundra.stream.normalize(object, encoding);
-	  }
-	
-	  return object;
+	    return ObjectHelper.convert(object, encoding, mode);
 	}
 	// --- <<IS-END-SHARED>> ---
 }

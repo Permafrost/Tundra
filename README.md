@@ -546,6 +546,24 @@ Services for manipulating boolean values.
   * Outputs:
     * `$string` is the converted boolean value.
 
+* #### tundra.bool:format
+
+  Formats the given boolean string using the appropriate
+  boolean value specified for true and false.
+
+  * Inputs:
+    * `$string` is the string value to be formatted.
+    * `$value.true.input` is an optional string value used to determine
+      if `$string` represents a boolean value of `true`.
+    * `$value.false.input` is an optional string value used to determine
+      if `$string` represents a boolean value of `false`.
+    * `$value.true.output` is an optional string value returned if
+      `$string` represents the boolean value `true`. Defaults to "true".
+    * `$value.false.output` is an optional string value returned if
+      `$string` represents the boolean value `false`. Defaults to "false".
+  * Outputs:
+    * `$string` is the reformatted boolean string.
+
 * #### tundra.bool:negate
 
   Returns the negated canonical string form for the given `$boolean` string:
@@ -2349,7 +2367,7 @@ File system services for working with directories or folders:
       or file: [URI]; all directories on this path will be created.
     * `$raise?` is an optional boolean flag indicating if an exception
       should be thrown if the directory already exists. Defaults to
-      true.
+      false.
 
 * #### tundra.directory:exists
 

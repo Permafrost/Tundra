@@ -1,14 +1,15 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-05-13 20:46:39 EST
-// -----( ON-HOST: 172.16.189.243
+// -----( CREATED: 2015-04-29 13:38:45 EST
+// -----( ON-HOST: PC62XKG2S.internal.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.flow.ConditionEvaluator;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class condition
@@ -39,63 +40,17 @@ public final class condition
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  String condition = IDataUtil.getString(cursor, "$condition");
-		  IData scope = IDataUtil.getIData(cursor, "$scope");
+		    String condition = IDataUtil.getString(cursor, "$condition");
+		    IData scope = IDataUtil.getIData(cursor, "$scope");
 		
-		  IDataUtil.put(cursor, "$result?", "" + evaluate(condition, scope == null? pipeline : scope));
+		    IDataUtil.put(cursor, "$result?", "" + ConditionEvaluator.evaluate(condition, scope == null? pipeline : scope));
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
+		
 		// --- <<IS-END>> ---
 
                 
 	}
-
-	// --- <<IS-START-SHARED>> ---
-	// regular expressions to detect backwards-compatibility mode to support the previous ANTLR-based implementation of 
-	// the evaluate function, which allowed use of the key words: null, true and false
-	protected static final java.util.regex.Pattern nullPattern = java.util.regex.Pattern.compile("((=|==|!=|<>|>|>=|<|<=)\\s*null(\\s|$))|((^|\\s)null\\s*(=|==|!=|<>|>|>=|<|<=))");
-	protected static final java.util.regex.Pattern truePattern = java.util.regex.Pattern.compile("((=|==|!=|<>|>|>=|<|<=)\\s*true(\\s|$))|((^|\\s)true\\s*(=|==|!=|<>|>|>=|<|<=))");
-	protected static final java.util.regex.Pattern falsePattern = java.util.regex.Pattern.compile("((=|==|!=|<>|>|>=|<|<=)\\s*false(\\s|$))|((^|\\s)false\\s*(=|==|!=|<>|>|>=|<|<=))");
-	
-	// evaluates the given conditional statement against the given scope
-	public static boolean evaluate(String condition, IData scope) throws ServiceException {
-	  boolean result = true;
-	
-	  if (condition != null) {
-	    java.util.regex.Matcher nullMatcher = nullPattern.matcher(condition);
-	    java.util.regex.Matcher trueMatcher = truePattern.matcher(condition);
-	    java.util.regex.Matcher falseMatcher = falsePattern.matcher(condition);
-	
-	    boolean nullFound = nullMatcher.find();
-	    boolean trueFound = trueMatcher.find();
-	    boolean falseFound = falseMatcher.find();
-	
-	    boolean backwardsCompatibilityRequired = nullFound || trueFound || falseFound;
-	
-	    if (scope == null) {
-	      scope = IDataFactory.create();
-	    } else {
-	      if (backwardsCompatibilityRequired) scope = IDataUtil.clone(scope);
-	    }
-	    
-	    if (backwardsCompatibilityRequired) {
-	      IDataCursor cursor = scope.getCursor();
-	      if (nullFound) IDataUtil.put(cursor, "null", null);
-	      if (trueFound) IDataUtil.put(cursor, "true", "true");
-	      if (falseFound) IDataUtil.put(cursor, "false", "false");
-	      cursor.destroy();
-	    }
-	
-	    try {
-	      result = com.wm.lang.flow.ExpressionEvaluator.evalToBoolean(condition, scope);
-	    } catch (com.wm.lang.flow.MalformedExpressionException ex) {
-	      tundra.exception.raise(ex);   
-	    } 
-	  }
-	
-	  return result;
-	}
-	// --- <<IS-END-SHARED>> ---
 }
 

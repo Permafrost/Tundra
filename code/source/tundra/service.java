@@ -1,14 +1,15 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-01-18 12:41:27 EST
-// -----( ON-HOST: 172.16.167.128
+// -----( CREATED: 2015-04-30 13:32:30 EST
+// -----( ON-HOST: PC62XKG2S.internal.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.lang.BooleanHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class service
@@ -40,6 +41,7 @@ public final class service
 		// [o] field:0:required $duration.standard.deviation
 		// [o] field:0:required $duration.minimum
 		// [o] field:0:required $duration.maximum
+		// [o] field:0:required $duration.total
 		// [o] field:0:required $message
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -395,11 +397,11 @@ public final class service
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  String service = IDataUtil.getString(cursor, "$service");
-		  boolean raise = tundra.bool.parse(IDataUtil.getString(cursor, "$raise?"));
-		  IDataUtil.put(cursor, "$valid?", "" + validate(service, raise));
+		    String service = IDataUtil.getString(cursor, "$service");
+		    boolean raise = BooleanHelper.parse(IDataUtil.getString(cursor, "$raise?"));
+		    IDataUtil.put(cursor, "$valid?", "" + validate(service, raise));
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
@@ -465,7 +467,7 @@ public final class service
 	    }
 	
 	    if (content == null) content = "";
-	    byte[] body = tundra.bytes.normalize(content, encoding);
+	    byte[] body = permafrost.tundra.lang.BytesHelper.normalize(content, encoding);
 	    com.wm.app.b2b.server.Service.setResponse(body);
 	  } catch (java.io.IOException ex) {
 	    tundra.exception.raise(ex);

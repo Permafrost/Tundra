@@ -4,32 +4,15 @@
   <value name="node_type">interface</value>
   <value name="node_nsName">tundra.base64</value>
   <value name="encodeutf8">true</value>
-  <value name="shared">Ly8gZW5jb2RlcyBhIHN0cmluZywgYnl0ZSBhcnJheSBvciBzdHJlYW0gYXMgYSBiYXNlLTY0IHN0
-cmVhbSwgYnl0ZSBhcnJheSBvciBzdHJpbmcKcHVibGljIHN0YXRpYyBPYmplY3QgZW5jb2RlKE9i
-amVjdCBpbnB1dCwgU3RyaW5nIGVuY29kaW5nLCBTdHJpbmcgbW9kZSkgdGhyb3dzIGphdmEuaW8u
-SU9FeGNlcHRpb24gewogIHJldHVybiB0dW5kcmEub2JqZWN0LmNvbnZlcnQoZW5jb2RlKGlucHV0
-LCBlbmNvZGluZyksIGVuY29kaW5nLCBtb2RlKTsKfQoKLy8gZW5jb2RlcyBhIHN0cmluZywgYnl0
-ZSBhcnJheSBvciBpbnB1dCBzdHJlYW0gYXMgYSBiYXNlLTY0IHN0cmluZwpwdWJsaWMgc3RhdGlj
-IFN0cmluZyBlbmNvZGUoT2JqZWN0IGlucHV0LCBTdHJpbmcgZW5jb2RpbmcpIHRocm93cyBqYXZh
-LmlvLklPRXhjZXB0aW9uIHsKICByZXR1cm4gZW5jb2RlKHR1bmRyYS5ieXRlcy5ub3JtYWxpemUo
-aW5wdXQsIGVuY29kaW5nKSk7ICAKfQoKLy8gZW5jb2RlcyBhIGJ5dGUgYXJyYXkgYXMgYSBiYXNl
-LTY0IHN0cmluZwpwdWJsaWMgc3RhdGljIFN0cmluZyBlbmNvZGUoYnl0ZVtdIGlucHV0KSB7CiAg
-aWYgKGlucHV0ID09IG51bGwpIHJldHVybiBudWxsOwogIHJldHVybiBqYXZheC54bWwuYmluZC5E
-YXRhdHlwZUNvbnZlcnRlci5wcmludEJhc2U2NEJpbmFyeShpbnB1dCk7Cn0KCi8vIGRlY29kZXMg
-YSBiYXNlLTY0IHN0cmluZyB0byBhIHN0cmVhbSwgYnl0ZSBhcnJheSwgb3Igc3RyaW5nCnB1Ymxp
-YyBzdGF0aWMgT2JqZWN0IGRlY29kZShPYmplY3QgaW5wdXQsIFN0cmluZyBlbmNvZGluZywgU3Ry
-aW5nIG1vZGUpIHRocm93cyBqYXZhLmlvLklPRXhjZXB0aW9uIHsKICByZXR1cm4gdHVuZHJhLm9i
-amVjdC5jb252ZXJ0KGRlY29kZShpbnB1dCwgZW5jb2RpbmcpLCBlbmNvZGluZywgbW9kZSk7Cn0K
-Ci8vIGRlY29kZXMgYSBiYXNlLTY0IHN0cmluZyB0byBhIGJ5dGUgYXJyYXkKcHVibGljIHN0YXRp
-YyBieXRlW10gZGVjb2RlKE9iamVjdCBpbnB1dCwgU3RyaW5nIGVuY29kaW5nKSB0aHJvd3MgamF2
-YS5pby5JT0V4Y2VwdGlvbiB7CiAgcmV0dXJuIGRlY29kZSh0dW5kcmEuc3RyaW5nLm5vcm1hbGl6
-ZShpbnB1dCwgZW5jb2RpbmcpKTsgIAp9CgovLyBkZWNvZGVzIGEgYmFzZS02NCBzdHJpbmcgdG8g
-YSBieXRlIGFycmF5CnB1YmxpYyBzdGF0aWMgYnl0ZVtdIGRlY29kZShTdHJpbmcgaW5wdXQpIHsK
-ICBpZiAoaW5wdXQgPT0gbnVsbCkgcmV0dXJuIG51bGw7CiAgcmV0dXJuIGphdmF4LnhtbC5iaW5k
-LkRhdGF0eXBlQ29udmVydGVyLnBhcnNlQmFzZTY0QmluYXJ5KGlucHV0KTsKfQ==</value>
+  <value name="shared"></value>
   <value name="extends"></value>
   <array name="implements" type="value" depth="1">
   </array>
   <array name="imports" type="value" depth="1">
+    <value>java.io.IOException</value>
+    <value>permafrost.tundra.lang.BytesHelper</value>
+    <value>permafrost.tundra.lang.ExceptionHelper</value>
+    <value>permafrost.tundra.lang.ObjectHelper</value>
+    <value>permafrost.tundra.lang.StringHelper</value>
   </array>
 </Values>

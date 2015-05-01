@@ -1,14 +1,15 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-12-23 22:09:23 EST
-// -----( ON-HOST: 172.16.167.128
+// -----( CREATED: 2015-04-29 09:20:06 EST
+// -----( ON-HOST: PC62XKG2S.internal.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.lang.BooleanHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class string
@@ -203,7 +204,7 @@ public final class string
 		try {
 		  String[] list = IDataUtil.getStringArray(cursor, "$list");
 		  String pattern = IDataUtil.getString(cursor, "$pattern");
-		  boolean literal = tundra.bool.parse(IDataUtil.getString(cursor, "$literal?"));
+		  boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$literal?"));
 		
 		  String[][] output = find(list, pattern, literal);
 		
@@ -430,7 +431,7 @@ public final class string
 		try {
 		  String[] list = IDataUtil.getStringArray(cursor, "$list");
 		  String pattern = IDataUtil.getString(cursor, "$pattern");
-		  boolean literal = tundra.bool.parse(IDataUtil.getString(cursor, "$literal?"));
+		  boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$literal?"));
 		
 		  String[][] output = match(list, pattern, literal);
 		

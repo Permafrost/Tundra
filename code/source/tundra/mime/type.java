@@ -1,14 +1,15 @@
 package tundra.mime;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-12-10 12:43:51.419
-// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
+// -----( CREATED: 2015-04-29 08:51:18 EST
+// -----( ON-HOST: PC62XKG2S.internal.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.lang.BooleanHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class type
@@ -142,17 +143,17 @@ public final class type
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
-		// [i] field:0:optional $raise? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $raise? {"false","true"}
 		// [o] field:0:required $valid?
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  String string = IDataUtil.getString(cursor, "$string");
-		  boolean raise = tundra.bool.parse(IDataUtil.getString(cursor, "$raise?"));
+		    String string = IDataUtil.getString(cursor, "$string");
+		    boolean raise = BooleanHelper.parse(IDataUtil.getString(cursor, "$raise?"));
 		
-		  IDataUtil.put(cursor, "$valid?", "" + validate(string, raise));
+		    IDataUtil.put(cursor, "$valid?", "" + validate(string, raise));
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 

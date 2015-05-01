@@ -1,14 +1,15 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-10-20 20:16:41 EST
-// -----( ON-HOST: 172.16.189.176
+// -----( CREATED: 2015-04-29 08:48:09 EST
+// -----( ON-HOST: PC62XKG2S.internal.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.lang.BooleanHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class integer
@@ -253,6 +254,7 @@ public final class integer
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:1:optional $integers
+		// [i] field:0:optional $integer
 		// [o] field:0:optional $integer
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -301,7 +303,7 @@ public final class integer
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
-		// [i] field:0:optional $class {&quot;java.math.BigInteger&quot;,&quot;java.math.BigDecimal&quot;,&quot;java.lang.Double&quot;,&quot;java.lang.Float&quot;,&quot;java.lang.Integer&quot;,&quot;java.lang.Long&quot;}
+		// [i] field:0:optional $class {"java.math.BigInteger","java.math.BigDecimal","java.lang.Double","java.lang.Float","java.lang.Integer","java.lang.Long"}
 		// [i] field:0:optional $radix
 		// [o] object:0:optional $object
 		IDataCursor cursor = pipeline.getCursor();
@@ -422,17 +424,17 @@ public final class integer
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $integer
-		// [i] field:0:optional $raise? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $raise? {"false","true"}
 		// [o] field:0:required $valid?
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String i = IDataUtil.getString(cursor, "$integer");
-		  boolean raise = tundra.bool.parse(IDataUtil.getString(cursor, "$raise?"));
-		  IDataUtil.put(cursor, "$valid?", "" + validate(i, raise));
+		  IDataUtil.put(cursor, "$valid?", "" + validate(i, BooleanHelper.parse(IDataUtil.getString(cursor, "$raise?"))));
 		} finally {
 		  cursor.destroy();
 		}
+		
 		// --- <<IS-END>> ---
 
                 

@@ -118,5 +118,6 @@ aXQodG90YWwuZGl2aWRlKHBhcnNlKCIiICsgcy5sZW5ndGgpKSk7Cn0=</value>
   <array name="implements" type="value" depth="1">
   </array>
   <array name="imports" type="value" depth="1">
+    <value>permafrost.tundra.lang.BooleanHelper</value>
   </array>
 </Values>

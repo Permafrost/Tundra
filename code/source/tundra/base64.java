@@ -1,14 +1,19 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-11-22 15:13:55.617
-// -----( ON-HOST: -
+// -----( CREATED: 2015-04-29 08:06:58 EST
+// -----( ON-HOST: PC62XKG2S.internal.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import java.io.IOException;
+import permafrost.tundra.lang.BytesHelper;
+import permafrost.tundra.lang.ExceptionHelper;
+import permafrost.tundra.lang.ObjectHelper;
+import permafrost.tundra.lang.StringHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class base64
@@ -35,20 +40,22 @@ public final class base64
 		// @sigtype java 3.5
 		// [i] object:0:optional $base64
 		// [i] field:0:optional $encoding
-		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
+		// [i] field:0:optional $mode {"stream","bytes","string"}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  Object input = IDataUtil.get(cursor, "$base64");
-		  String encoding = IDataUtil.getString(cursor, "$encoding");
-		  String mode = IDataUtil.getString(cursor, "$mode");
+		    Object input = IDataUtil.get(cursor, "$base64");
+		    String charset = IDataUtil.getString(cursor, "$encoding");
+		    String mode = IDataUtil.getString(cursor, "$mode");
 		
-		  IDataUtil.put(cursor, "$content", decode(input, encoding, mode));
-		} catch(java.io.IOException ex) {
-		  tundra.exception.raise(ex);
+		    Object output = ObjectHelper.convert(BytesHelper.base64Decode(StringHelper.normalize(input, charset)), charset, mode);
+		
+		    if (output != null) IDataUtil.put(cursor, "$content", output);
+		} catch(IOException ex) {
+		    ExceptionHelper.raise(ex);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
@@ -65,58 +72,28 @@ public final class base64
 		// @sigtype java 3.5
 		// [i] object:0:optional $content
 		// [i] field:0:optional $encoding
-		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
+		// [i] field:0:optional $mode {"stream","bytes","string"}
 		// [o] object:0:optional $base64
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  Object content = IDataUtil.get(cursor, "$content");
-		  String encoding = IDataUtil.getString(cursor, "$encoding");
-		  String mode = IDataUtil.getString(cursor, "$mode");
+		    Object input = IDataUtil.get(cursor, "$content");
+		    String charset = IDataUtil.getString(cursor, "$encoding");
+		    String mode = IDataUtil.getString(cursor, "$mode");
 		
-		  IDataUtil.put(cursor, "$base64", encode(content, encoding, mode));
-		} catch(java.io.IOException ex) {
-		  tundra.exception.raise(ex);
+		    Object output = ObjectHelper.convert(BytesHelper.base64Encode(BytesHelper.normalize(input, charset)), charset, mode);
+		
+		    if (output != null) IDataUtil.put(cursor, "$base64", output);
+		} catch(IOException ex) {
+		    ExceptionHelper.raise(ex);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
+		
+		
 		// --- <<IS-END>> ---
 
                 
 	}
-
-	// --- <<IS-START-SHARED>> ---
-	// encodes a string, byte array or stream as a base-64 stream, byte array or string
-	public static Object encode(Object input, String encoding, String mode) throws java.io.IOException {
-	  return tundra.object.convert(encode(input, encoding), encoding, mode);
-	}
-	
-	// encodes a string, byte array or input stream as a base-64 string
-	public static String encode(Object input, String encoding) throws java.io.IOException {
-	  return encode(tundra.bytes.normalize(input, encoding));  
-	}
-	
-	// encodes a byte array as a base-64 string
-	public static String encode(byte[] input) {
-	  if (input == null) return null;
-	  return javax.xml.bind.DatatypeConverter.printBase64Binary(input);
-	}
-	
-	// decodes a base-64 string to a stream, byte array, or string
-	public static Object decode(Object input, String encoding, String mode) throws java.io.IOException {
-	  return tundra.object.convert(decode(input, encoding), encoding, mode);
-	}
-	
-	// decodes a base-64 string to a byte array
-	public static byte[] decode(Object input, String encoding) throws java.io.IOException {
-	  return decode(tundra.string.normalize(input, encoding));  
-	}
-	
-	// decodes a base-64 string to a byte array
-	public static byte[] decode(String input) {
-	  if (input == null) return null;
-	  return javax.xml.bind.DatatypeConverter.parseBase64Binary(input);
-	}
-	// --- <<IS-END-SHARED>> ---
 }
 

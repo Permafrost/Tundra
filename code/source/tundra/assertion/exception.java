@@ -1,14 +1,15 @@
 package tundra.assertion;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-11-19 12:36:10.188
-// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
+// -----( CREATED: 2015-04-29 08:39:02 EST
+// -----( ON-HOST: PC62XKG2S.internal.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.lang.BooleanHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class exception
@@ -39,7 +40,7 @@ public final class exception
 		// [i] - field:0:optional class
 		// [i] - record:0:optional message
 		// [i] -- field:0:optional pattern
-		// [i] -- field:0:optional literal? {&quot;false&quot;,&quot;true&quot;}
+		// [i] -- field:0:optional literal? {"false","true"}
 		// [i] field:0:optional $message
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -74,7 +75,7 @@ public final class exception
 	    if (messageCriteria != null) {
 	      IDataCursor mc = messageCriteria.getCursor();
 	      exceptionMessagePattern = IDataUtil.getString(mc, "pattern");
-	      exceptionMessagePatternLiteral = tundra.bool.parse(IDataUtil.getString(mc, "literal?"));
+	      exceptionMessagePatternLiteral = BooleanHelper.parse(IDataUtil.getString(mc, "literal?"));
 	      mc.destroy();
 	    }
 	  }

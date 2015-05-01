@@ -1,14 +1,15 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-05-13 20:52:33 EST
-// -----( ON-HOST: 172.16.189.243
+// -----( CREATED: 2015-05-01 13:12:20 EST
+// -----( ON-HOST: PC62XKG2S.internal.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.flow.ConditionEvaluator;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class schedule
@@ -59,7 +60,7 @@ public final class schedule
 		// [i] field:0:optional $id
 		// [o] record:0:optional $schedule
 		// [o] - field:0:required id
-		// [o] - field:0:required type {&quot;complex&quot;,&quot;once&quot;,&quot;repeat&quot;}
+		// [o] - field:0:required type {"complex","once","repeat"}
 		// [o] - field:0:required service
 		// [o] - field:0:optional package
 		// [o] - field:0:optional description
@@ -107,7 +108,7 @@ public final class schedule
 		// [i] field:0:optional $filter
 		// [o] record:1:optional $schedules
 		// [o] - field:0:required id
-		// [o] - field:0:required type {&quot;complex&quot;,&quot;once&quot;,&quot;repeat&quot;}
+		// [o] - field:0:required type {"complex","once","repeat"}
 		// [o] - field:0:required service
 		// [o] - field:0:optional package
 		// [o] - field:0:optional description
@@ -350,7 +351,7 @@ public final class schedule
 	      IDataUtil.put(cursor, "$schedule", task);
 	      cursor.destroy();
 	
-	      if (tundra.condition.evaluate(filter, scope)) {
+	      if (ConditionEvaluator.evaluate(filter, scope)) {
 	        tasks.add(task);
 	      }
 	    }

@@ -1,14 +1,15 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-11-04 08:28:02.505
-// -----( ON-HOST: -
+// -----( CREATED: 2015-04-29 08:26:11 EST
+// -----( ON-HOST: PC62XKG2S.internal.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.lang.BooleanHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class string
@@ -57,7 +58,7 @@ public final class string
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
-		// [i] field:0:optional $mode {&quot;all words&quot;,&quot;first word&quot;}
+		// [i] field:0:optional $mode {"all words","first word"}
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -98,7 +99,7 @@ public final class string
 		try {
 		  String string = IDataUtil.getString(cursor, "$string");
 		  String pattern = IDataUtil.getString(cursor, "$pattern");
-		  boolean literal = tundra.bool.parse(IDataUtil.getString(cursor, "$literal?"));
+		  boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$literal?"));
 		
 		  IData[] captures = capture(string, pattern);
 		
@@ -151,7 +152,7 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:0:optional $string.x
 		// [i] field:0:optional $string.y
-		// [i] field:0:optional $mode {&quot;missing&quot;,&quot;null&quot;}
+		// [i] field:0:optional $mode {"missing","null"}
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -181,7 +182,7 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:0:optional $string.x
 		// [i] field:0:optional $string.y
-		// [i] field:0:optional $case.insensitive? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $case.insensitive? {"false","true"}
 		// [o] field:0:required $before?
 		// [o] field:0:required $equal?
 		// [o] field:0:required $after?
@@ -190,7 +191,7 @@ public final class string
 		try {
 		  String x = IDataUtil.getString(cursor, "$string.x");
 		  String y = IDataUtil.getString(cursor, "$string.y");
-		  boolean caseInsensitive = tundra.bool.parse(IDataUtil.getString(cursor, "$case.insensitive?"));
+		  boolean caseInsensitive = BooleanHelper.parse(IDataUtil.getString(cursor, "$case.insensitive?"));
 		
 		  int comparison = compare(x, y, caseInsensitive);
 		
@@ -215,14 +216,14 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
 		// [i] field:0:optional $pattern
-		// [i] field:0:optional $literal? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $literal? {"false","true"}
 		// [o] field:0:required $found?
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String string = IDataUtil.getString(cursor, "$string");
 		  String pattern = IDataUtil.getString(cursor, "$pattern");
-		  boolean literal = tundra.bool.parse(IDataUtil.getString(cursor, "$literal?"));
+		  boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$literal?"));
 		
 		  IDataUtil.put(cursor, "$found?", "" + find(string, pattern, literal));
 		} finally {
@@ -335,14 +336,14 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
 		// [i] field:0:optional $pattern
-		// [i] field:0:optional $literal? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $literal? {"false","true"}
 		// [o] field:0:required $match?
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		  String string = IDataUtil.getString(cursor, "$string");
 		  String pattern = IDataUtil.getString(cursor, "$pattern");
-		  boolean literal = tundra.bool.parse(IDataUtil.getString(cursor, "$literal?"));
+		  boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$literal?"));
 		
 		  IDataUtil.put(cursor, "$match?", "" + match(string, pattern, literal));
 		} finally {
@@ -443,7 +444,7 @@ public final class string
 		// [i] field:0:optional $string
 		// [i] field:0:optional $pattern
 		// [i] field:0:optional $replacement
-		// [i] field:0:optional $literal? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $literal? {"false","true"}
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -451,7 +452,7 @@ public final class string
 		  String string = IDataUtil.getString(cursor, "$string");
 		  String pattern = IDataUtil.getString(cursor, "$pattern");
 		  String replacement = IDataUtil.getString(cursor, "$replacement");
-		  boolean literal = Boolean.parseBoolean(IDataUtil.getString(cursor, "$literal?"));
+		  boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$literal?"));
 		
 		  IDataUtil.put(cursor, "$string", replace(string, pattern, replacement, literal));
 		} finally {
@@ -973,6 +974,7 @@ public final class string
 	
 	  return builder.toString();
 	}
+		
 	// --- <<IS-END-SHARED>> ---
 }
 

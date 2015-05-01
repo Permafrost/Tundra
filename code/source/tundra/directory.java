@@ -1,14 +1,15 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-07-26 21:14:28 EST
-// -----( ON-HOST: 172.16.189.176
+// -----( CREATED: 2015-04-29 08:50:12 EST
+// -----( ON-HOST: PC62XKG2S.internal.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.lang.BooleanHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class directory
@@ -34,17 +35,15 @@ public final class directory
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $directory
-		// [i] field:0:optional $raise? {&quot;true&quot;,&quot;false&quot;}
+		// [i] field:0:optional $raise? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
-		boolean raise = true;
 		
 		try {
-		  String dir = IDataUtil.getString(cursor, "$directory");
-		  String raiseString = IDataUtil.getString(cursor, "$raise?");
-		  if (raiseString != null) raise = tundra.bool.parse(raiseString);
-		  create(dir, raise);
+		    String dir = IDataUtil.getString(cursor, "$directory");
+		    boolean raise = BooleanHelper.parse(IDataUtil.getString(cursor, "$raise?"));
+		    create(dir, raise);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
@@ -110,8 +109,8 @@ public final class directory
 		// @sigtype java 3.5
 		// [i] field:0:required $directory
 		// [i] field:0:optional $pattern
-		// [i] field:0:optional $mode {&quot;regex&quot;,&quot;wildcard&quot;}
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $mode {"regex","wildcard"}
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] field:1:required $directories
 		// [o] field:1:required $files
 		IDataCursor cursor = pipeline.getCursor();
@@ -191,8 +190,8 @@ public final class directory
 		// @sigtype java 3.5
 		// [i] field:0:required $directory
 		// [i] field:0:required $duration
-		// [i] field:0:optional $duration.pattern {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $duration.pattern {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] field:0:required $count
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -250,7 +249,7 @@ public final class directory
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $directory
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {

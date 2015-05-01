@@ -1,14 +1,15 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-03-07 14:40:41 EST
-// -----( ON-HOST: WIN-34RAS9HJLBT
+// -----( CREATED: 2015-04-28 10:07:48 EST
+// -----( ON-HOST: PC62XKG2S.internal.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.lang.IdentityHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class id
@@ -38,8 +39,7 @@ public final class id
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  String mode = IDataUtil.getString(cursor, "$mode");
-		  IDataUtil.put(cursor, "$id", generate(mode));
+		  IDataUtil.put(cursor, "$id", IdentityHelper.generate(IDataUtil.getString(cursor, "$mode")));
 		} finally {
 		  cursor.destroy();
 		}
@@ -61,8 +61,9 @@ public final class id
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  String string = IDataUtil.getString(cursor, "$string");
-		  if (string != null) IDataUtil.put(cursor, "$string", normalize(string));
+		  String input = IDataUtil.getString(cursor, "$string");
+		  String output = IdentityHelper.normalize(input);
+		  if (output != null) IDataUtil.put(cursor, "$string", output);
 		} finally {
 		  cursor.destroy();
 		}
@@ -70,48 +71,5 @@ public final class id
 
                 
 	}
-
-	// --- <<IS-START-SHARED>> ---
-	// returns a UUID as a string
-	public static String generate(String mode) {
-	  java.util.UUID uuid = java.util.UUID.randomUUID();
-	  String id = null;
-	
-	  if (mode == null || mode.equals("string")) {
-	    id = uuid.toString();
-	  } else {
-	    long mostSignificantBits = uuid.getMostSignificantBits();
-	    long leastSignificantBits = uuid.getLeastSignificantBits();
-	    byte[] bytes = new byte[16];
-	
-	    for (int i = 0; i < 8; i++) {
-	      bytes[i] = (byte)(mostSignificantBits >>> 8 * (7 - i));
-	    }
-	    for (int i = 8; i < 16; i++) {
-	      bytes[i] = (byte)(leastSignificantBits >>> 8 * (7 - i));
-	    }
-	    id = tundra.base64.encode(bytes);
-	  }
-	  return id;
-	}
-	
-	// converts the given identifier name to a legal java identifier
-	public static String normalize(String input) {
-	  if (input == null) return null;
-	
-	  char[] characters = input.toCharArray();
-	  StringBuilder output = new StringBuilder();
-	
-	  for (int i = 0; i < characters.length; i++) {
-	    char character = characters[i];
-	    if ((i == 0 && !Character.isJavaIdentifierStart(character))||(i > 0 && !Character.isJavaIdentifierPart(character))) {
-	      character = '_';
-	    }
-	    output.append(character);
-	  }
-	
-	  return output.toString();
-	}
-	// --- <<IS-END-SHARED>> ---
 }
 
