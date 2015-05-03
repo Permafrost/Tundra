@@ -577,8 +577,8 @@ ghi</value>
 
 <Values version="2.0">
   <array name="xml" type="value" depth="1">
-    <value>abc </value>
-    <value>def </value>
+    <value>abc</value>
+    <value>def</value>
     <value>ghi</value>
   </array>
   <record name="type" javaclass="com.wm.util.Values">

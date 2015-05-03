@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-05-01 18:36:53 EST
+// -----( CREATED: 2015-05-03 17:20:51 EST
 // -----( ON-HOST: 172.16.167.128
 
 import com.wm.data.*;
@@ -9,7 +9,9 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.flow.VariableSubstitutor;
 import permafrost.tundra.lang.BooleanHelper;
+import permafrost.tundra.lang.StringHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class string
@@ -479,7 +481,7 @@ public final class string
 		  Object[] objects = IDataUtil.getObjectArray(cursor, "$objects");
 		  String encoding = IDataUtil.getString(cursor, "$encoding");
 		
-		  String[] strings = normalize(objects, encoding);
+		  String[] strings = StringHelper.normalize(objects, encoding);
 		
 		  if (strings != null) IDataUtil.put(cursor, "$strings", strings);
 		} catch(java.io.IOException ex) {
@@ -541,7 +543,7 @@ public final class string
 		
 		try {
 		  String[] list = IDataUtil.getStringArray(cursor, "$list");
-		  if (list != null) IDataUtil.put(cursor, "$pattern", quote(list));
+		  if (list != null) IDataUtil.put(cursor, "$pattern", StringHelper.quote(list));
 		} finally {
 		  cursor.destroy();
 		}
@@ -672,7 +674,7 @@ public final class string
 		  IData scope = IDataUtil.getIData(cursor, "$pipeline");
 		  String defaultValue = IDataUtil.getString(cursor, "$default");
 		
-		  IDataUtil.put(cursor, "$list", substitute(list, scope == null ? pipeline : scope, defaultValue));
+		  IDataUtil.put(cursor, "$list", VariableSubstitutor.substitute(list, defaultValue, scope == null ? pipeline : scope));
 		} finally {
 		  cursor.destroy();
 		}
@@ -698,57 +700,6 @@ public final class string
 	}
 
 	// --- <<IS-START-SHARED>> ---
-	// converts a list of byte arrays, input streams or strings to a string list
-	public static String[] normalize(Object[] input, String encoding) throws java.io.IOException {
-	  if (input == null) return null;
-	
-	  String[] output = new String[input.length];
-	
-	  for (int i = 0; i < input.length; i++) {
-	    output[i] = tundra.string.normalize(input[i], encoding);
-	  }
-	
-	  return output;
-	}
-	
-	// performs variable substitution on each string in the given list by replacing all occurrences of 
-	// substrings matching "%key%" with the associated value from the given scope
-	public static String[] substitute(String[] input, IData scope) {
-	  return substitute(input, scope, null);
-	}
-	
-	// performs variable substitution on each string in the given list by replacing all occurrences of 
-	// substrings matching "%key%" with the associated value from the given scope
-	public static String[] substitute(String[] input, IData scope, String defaultValue) {
-	  if (input == null || scope == null) return input;
-	
-	  String[] output = new String[input.length];
-	  for (int i = 0; i < input.length; i++) {
-	    output[i] = tundra.string.substitute(input[i], scope, defaultValue);
-	  }
-	
-	  return output;
-	}
-	
-	// performs variable substitution on each string in the given table by replacing all occurrences of 
-	// substrings matching "%key%" with the associated value from the given scope
-	public static String[][] substitute(String[][] input, IData scope) {
-	  return substitute(input, scope, null);
-	}
-	
-	// performs variable substitution on each string in the given table by replacing all occurrences of 
-	// substrings matching "%key%" with the associated value from the given scope
-	public static String[][] substitute(String[][] input, IData scope, String defaultValue) {
-	  if (input == null || scope == null) return input;
-	
-	  String[][] output = new String[input.length][];
-	  for (int i = 0; i < input.length; i++) {
-	    output[i] = substitute(input[i], scope, defaultValue);
-	  }
-	
-	  return output;
-	}
-	
 	// returns the list of items that match and did not match the given regular 
 	// expression or literal string pattern
 	public static String[][] match(String[] input, String pattern, boolean literal) {
@@ -758,7 +709,7 @@ public final class string
 	  java.util.List<String> unmatched = new java.util.ArrayList<String>(input.length);
 	
 	  for (int i = 0; i < input.length; i++) {
-	    if (tundra.string.match(input[i], pattern, literal)) {
+	    if (StringHelper.match(input[i], pattern, literal)) {
 	      matched.add(input[i]);
 	    } else {
 	      unmatched.add(input[i]);
@@ -781,7 +732,7 @@ public final class string
 	  java.util.List<String> unfound = new java.util.ArrayList<String>(input.length);
 	
 	  for (int i = 0; i < input.length; i++) {
-	    if (tundra.string.find(input[i], pattern, literal)) {
+	    if (StringHelper.find(input[i], pattern, literal)) {
 	      found.add(input[i]);
 	    } else {
 	      unfound.add(input[i]);
@@ -793,23 +744,6 @@ public final class string
 	  output[1] = unfound.toArray(new String[0]);
 	
 	  return output;
-	}
-	
-	// returns a regular expression pattern that matches any of the values in the given
-	// string list
-	public static String quote(String[] input) {
-	  if (input == null) return null;
-	
-	  int last = input.length - 1;
-	  StringBuilder builder = new StringBuilder();
-	  for (int i = 0; i < input.length; i++) {
-	    if (i == 0) builder.append("(");
-	    builder.append(tundra.string.quote(input[i]));
-	    if (i < last) builder.append("|");
-	    if (i == last) builder.append(")");
-	  }
-	
-	  return builder.toString();
 	}
 	// --- <<IS-END-SHARED>> ---
 }

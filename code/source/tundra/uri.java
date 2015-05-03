@@ -1,14 +1,15 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-08-22 13:37:34.628
-// -----( ON-HOST: -
+// -----( CREATED: 2015-05-03 17:12:55 EST
+// -----( ON-HOST: 172.16.167.128
 
 import com.wm.data.*;
 import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.flow.VariableSubstitutor;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class uri
@@ -453,7 +454,7 @@ public final class uri
 	    if (input.endsWith("/")) input = input.substring(0, input.length() - 1);
 	
 	    java.util.List<String> list = new java.util.ArrayList<String>();
-	    java.util.regex.Matcher substitutionMatcher = tundra.string.SUBSTITUTION_PATTERN.matcher(input);
+	    java.util.regex.Matcher substitutionMatcher = VariableSubstitutor.matcher(input);
 	
 	    int index = 0;
 	    while(substitutionMatcher.find()) {

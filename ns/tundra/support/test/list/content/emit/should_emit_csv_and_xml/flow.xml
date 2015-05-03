@@ -1519,8 +1519,8 @@
 
 <Values version="2.0">
   <array name="xml" type="value" depth="1">
-    <value>Alice,1234 5678,alice@example.com </value>
-    <value>Bob,9876 5432,bob@example.com </value>
+    <value>Alice,1234 5678,alice@example.com</value>
+    <value>Bob,9876 5432,bob@example.com</value>
     <value>&lt;?xml version="1.0"?&gt; &lt;person&gt; &lt;name&gt;John&lt;/name&gt; &lt;phone&gt;1324 5768&lt;/phone&gt; &lt;email&gt;john@example.com&lt;/email&gt; &lt;/person&gt;</value>
     <value>&lt;?xml version="1.0"?&gt; &lt;person&gt; &lt;name&gt;Jane&lt;/name&gt; &lt;phone&gt;9786 5342&lt;/phone&gt; &lt;email&gt;jane@example.com&lt;/email&gt; &lt;/person&gt;</value>
   </array>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">substitute</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogIElEYXRh
+W10gbGlzdCA9IElEYXRhVXRpbC5nZXRJRGF0YUFycmF5KGN1cnNvciwgIiRsaXN0Iik7CiAgSURh
+dGEgc2NvcGUgPSBJRGF0YVV0aWwuZ2V0SURhdGEoY3Vyc29yLCAiJHBpcGVsaW5lIik7CiAgU3Ry
+aW5nIGRlZmF1bHRWYWx1ZSA9IElEYXRhVXRpbC5nZXRTdHJpbmcoY3Vyc29yLCAiJGRlZmF1bHQi
+KTsKCiAgaWYgKGxpc3QgIT0gbnVsbCkgSURhdGFVdGlsLnB1dChjdXJzb3IsICIkbGlzdCIsIElE
+YXRhSGVscGVyLnN1YnN0aXR1dGUobGlzdCwgZGVmYXVsdFZhbHVlLCBzY29wZSA9PSBudWxsID8g
+cGlwZWxpbmUgOiBzY29wZSwgdHJ1ZSkpOyAKfSBmaW5hbGx5IHsKICBjdXJzb3IuZGVzdHJveSgp
+Owp9Cgo=</value>
+</Values>

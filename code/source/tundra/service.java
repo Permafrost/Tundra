@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-05-01 18:48:43 EST
+// -----( CREATED: 2015-05-03 17:06:17 EST
 // -----( ON-HOST: 172.16.167.128
 
 import com.wm.data.*;
@@ -9,7 +9,10 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.lang.BooleanHelper;
+import permafrost.tundra.lang.ExceptionHelper;
+import permafrost.tundra.lang.StringHelper;
 import permafrost.tundra.math.NormalDistributionEstimator;
 // --- <<IS-END-IMPORTS>> ---
 
@@ -435,7 +438,7 @@ public final class service
 	
 	    if (response == null) { 
 	      // not invoked via HTTP, so throw an exception instead for HTTP statuses >= 400
-	      if (code >= 400) tundra.exception.raise(tundra.string.normalize(content, encoding));
+	      if (code >= 400) ExceptionHelper.raise(StringHelper.normalize(content, encoding));
 	    } else {
 	      if (message == null) message = tundra.http.response.status(code);
 	      response.setResponse(code, message);
@@ -469,9 +472,9 @@ public final class service
 	    byte[] body = permafrost.tundra.lang.BytesHelper.normalize(content, encoding);
 	    com.wm.app.b2b.server.Service.setResponse(body);
 	  } catch (java.io.IOException ex) {
-	    tundra.exception.raise(ex);
+	    ExceptionHelper.raise(ex);
 	  } catch (javax.activation.MimeTypeParseException ex) {
-	    tundra.exception.raise(ex);
+	    ExceptionHelper.raise(ex);
 	  }
 	}
 	
@@ -564,7 +567,7 @@ public final class service
 	    try {
 	      scope = com.wm.app.b2b.server.Service.doInvoke(name, scope);
 	    } catch (Exception ex) {
-	      tundra.exception.raise(ex);
+	      ExceptionHelper.raise(ex);
 	    }
 	
 	    IDataUtil.merge(scope, pipeline);
@@ -581,7 +584,7 @@ public final class service
 	    try {
 	      pipeline = thread.getIData();
 	    } catch (Exception ex) {
-	      tundra.exception.raise(ex);
+	      ExceptionHelper.raise(ex);
 	    }
 	  }
 	  
@@ -598,7 +601,7 @@ public final class service
 	  try {
 	    Thread.sleep(milliseconds);
 	  } catch(InterruptedException ex) {
-	    tundra.exception.raise(ex);
+	    ExceptionHelper.raise(ex);
 	  }
 	}
 	
@@ -615,7 +618,7 @@ public final class service
 	    IDataUtil.put(cursor, "$exception.message", t.getMessage());
 	
 	    com.wm.app.b2b.server.InvokeState invokeState = com.wm.app.b2b.server.InvokeState.getCurrentState();
-	    IData exceptionInfo = tundra.document.duplicate(invokeState.getErrorInfoFormatted(), true);
+	    IData exceptionInfo = IDataHelper.duplicate(invokeState.getErrorInfoFormatted(), true);
 	    IDataCursor ec = exceptionInfo.getCursor();
 	    String exceptionService = IDataUtil.getString(ec, "service");
 	    if (exceptionService != null) {
@@ -635,7 +638,7 @@ public final class service
 	    cursor.destroy();
 	
 	    if (catchService == null) {
-	      tundra.exception.raise(t);
+	      ExceptionHelper.raise(t);
 	    } else {
 	      pipeline = invoke(catchService, pipeline);
 	    }

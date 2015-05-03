@@ -1364,7 +1364,7 @@
   <DATA ENCODING="XMLValues" I18N="true">
 
 <Values version="2.0">
-  <value name="xml">John Doe,1234 5678,john.doe@example.com Jane Doe,9876 5432,jane.doe@example.com </value>
+  <value name="xml">John Doe,1234 5678,john.doe@example.com Jane Doe,9876 5432,jane.doe@example.com</value>
   <record name="type" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
     <value name="node_comment"></value>

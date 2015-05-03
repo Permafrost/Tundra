@@ -1,7 +1,7 @@
 package tundra.assertion;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-05-01 18:30:01 EST
+// -----( CREATED: 2015-05-03 17:10:47 EST
 // -----( ON-HOST: 172.16.167.128
 
 import com.wm.data.*;
@@ -10,6 +10,7 @@ import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import permafrost.tundra.lang.BooleanHelper;
+import permafrost.tundra.lang.StringHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class exception
@@ -94,7 +95,7 @@ public final class exception
 	  } finally {
 	    boolean assertionFailed = (exception == null) || 
 	                              (exceptionClassName != null && !instance(exception, exceptionClassName)) || 
-	                              (exceptionMessagePattern != null && !tundra.string.match(exception.getMessage(), exceptionMessagePattern, exceptionMessagePatternLiteral));
+	                              (exceptionMessagePattern != null && !StringHelper.match(exception.getMessage(), exceptionMessagePattern, exceptionMessagePatternLiteral));
 	
 	    if (assertionFailed) throw new AssertionError(getMessage(exception, assertionMessage, exceptionClassName, exceptionMessagePattern, exceptionMessagePatternLiteral));
 	  }

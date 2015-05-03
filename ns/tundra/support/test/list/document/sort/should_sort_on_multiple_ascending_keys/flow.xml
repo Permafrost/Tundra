@@ -134,6 +134,20 @@
       <value name="datetime">01-01-2014</value>
       <value name="duration">PT1S</value>
     </record>
+    <record javaclass="com.wm.util.Values">
+      <value name="string">b</value>
+      <value name="integer">1</value>
+      <value name="decimal">1.2</value>
+      <value name="datetime">02-03-2015</value>
+      <value name="duration">P1M</value>
+    </record>
+    <record javaclass="com.wm.util.Values">
+      <value name="string">b</value>
+      <value name="integer">2</value>
+      <value name="decimal">2.3</value>
+      <value name="datetime">01-03-2015</value>
+      <value name="duration">PT1S</value>
+    </record>
   </array>
   <record name="type" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
@@ -394,7 +408,7 @@
   <DATA ENCODING="XMLValues" I18N="true">
 
 <Values version="2.0">
-  <value name="xml">-1</value>
+  <value name="xml">1</value>
   <record name="type" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
     <value name="node_comment"></value>
@@ -647,7 +661,7 @@
                 </record>
               </array>
             </record>
-            <value name="nillable">true</value>
+            <value name="nillable">false</value>
             <value name="form_qualified">false</value>
             <value name="is_global">false</value>
           </record>
@@ -879,19 +893,6 @@
         </array>
         <value name="modifiable">true</value>
       </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">record</value>
-        <value name="is_public">false</value>
-        <value name="field_name">$expected</value>
-        <value name="field_type">record</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-        <array name="rec_fields" type="record" depth="1">
-        </array>
-        <value name="modifiable">true</value>
-      </record>
     </array>
     <value name="modifiable">true</value>
   </record>
@@ -909,13 +910,14 @@
 <Values version="2.0">
   <array name="xml" type="record" depth="1">
     <record javaclass="com.wm.util.Values">
-      <value name="key">string</value>
-      <value name="type">string</value>
+      <value name="key">datetime</value>
+      <value name="type">datetime</value>
+      <value name="pattern">dd-MM-yyyy</value>
       <value name="descending?">false</value>
     </record>
     <record javaclass="com.wm.util.Values">
-      <value name="key">integer</value>
-      <value name="type">integer</value>
+      <value name="key">string</value>
+      <value name="type">string</value>
       <value name="descending?">false</value>
     </record>
   </array>
@@ -959,7 +961,7 @@
             </record>
           </array>
         </record>
-        <value name="nillable">true</value>
+        <value name="nillable">false</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
       </record>
@@ -1144,11 +1146,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
-        <value name="node_comment"></value>
-        <record name="node_hints" javaclass="com.wm.util.Values">
-          <value name="field_largerEditor">false</value>
-          <value name="field_password">false</value>
-        </record>
         <value name="is_public">false</value>
         <value name="field_name">$criteria</value>
         <value name="field_type">record</value>
@@ -1181,6 +1178,16 @@
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
             <value name="is_public">false</value>
+            <value name="field_name">pattern</value>
+            <value name="field_type">string</value>
+            <value name="field_dim">0</value>
+            <value name="nillable">true</value>
+            <value name="form_qualified">false</value>
+            <value name="is_global">false</value>
+          </record>
+          <record javaclass="com.wm.util.Values">
+            <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">descending?</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1193,11 +1200,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
-        <value name="node_comment"></value>
-        <record name="node_hints" javaclass="com.wm.util.Values">
-          <value name="field_largerEditor">false</value>
-          <value name="field_password">false</value>
-        </record>
         <value name="is_public">false</value>
         <value name="field_name">$list.input</value>
         <value name="field_type">record</value>
@@ -1257,19 +1259,6 @@
             <value name="form_qualified">false</value>
             <value name="is_global">false</value>
           </record>
-        </array>
-        <value name="modifiable">true</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">record</value>
-        <value name="is_public">false</value>
-        <value name="field_name">$expected</value>
-        <value name="field_type">record</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-        <array name="rec_fields" type="record" depth="1">
         </array>
         <value name="modifiable">true</value>
       </record>
@@ -1503,20 +1492,6 @@
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
         <value name="is_public">false</value>
-        <value name="field_name">$criteria</value>
-        <value name="field_type">record</value>
-        <value name="field_dim">1</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-        <value name="is_soap_array_encoding_used">false</value>
-        <array name="rec_fields" type="record" depth="1">
-        </array>
-        <value name="modifiable">true</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">record</value>
-        <value name="is_public">false</value>
         <value name="field_name">$expected</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -1663,7 +1638,7 @@
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
         <value name="is_public">false</value>
-        <value name="field_name">$criteria</value>
+        <value name="field_name">$list</value>
         <value name="field_type">record</value>
         <value name="field_dim">1</value>
         <value name="nillable">true</value>

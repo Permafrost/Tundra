@@ -1,14 +1,20 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-11-10 17:32:28 EST
-// -----( ON-HOST: 172.16.189.131
+// -----( CREATED: 2015-05-03 17:00:22 EST
+// -----( ON-HOST: 172.16.167.128
 
 import com.wm.data.*;
 import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import java.io.IOException;
+import permafrost.tundra.data.IDataHelper;
+import permafrost.tundra.data.IDataXMLParser;
+import permafrost.tundra.io.StreamHelper;
+import permafrost.tundra.lang.ExceptionHelper;
+import permafrost.tundra.lang.ObjectHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class pipeline
@@ -37,7 +43,7 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  IDataUtil.put(cursor, "$pipeline", IDataUtil.clone(pipeline));
+		  IDataUtil.put(cursor, "$pipeline", IDataHelper.duplicate(pipeline, false));
 		} finally {
 		  cursor.destroy();
 		}
@@ -59,7 +65,7 @@ public final class pipeline
 		
 		try {
 		  String[] keys = IDataUtil.getStringArray(cursor, "$preserve");
-		  tundra.document.clear(pipeline, keys);
+		  IDataHelper.clear(pipeline, keys);
 		} finally {
 		  cursor.destroy();
 		}
@@ -83,7 +89,7 @@ public final class pipeline
 		try {
 		  String source = IDataUtil.getString(cursor, "$key.source");
 		  String target = IDataUtil.getString(cursor, "$key.target");
-		  tundra.document.copy(pipeline, source, target);
+		  IDataHelper.copy(pipeline, source, target);
 		} finally {
 		  cursor.destroy();
 		}
@@ -105,7 +111,7 @@ public final class pipeline
 		
 		try {
 		  String key = IDataUtil.getString(cursor, "$key");
-		  tundra.document.drop(pipeline, key);
+		  IDataHelper.drop(pipeline, key);
 		} finally {
 		  cursor.destroy();
 		}
@@ -123,7 +129,7 @@ public final class pipeline
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $encoding
-		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
+		// [i] field:0:optional $mode {"stream","bytes","string"}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -133,9 +139,9 @@ public final class pipeline
 		  IDataUtil.remove(cursor, "$encoding");
 		  IDataUtil.remove(cursor, "$mode");
 		
-		  IDataUtil.put(cursor, "$content", tundra.document.emit(pipeline, encoding, mode));
-		} catch(java.io.IOException ex) {
-		  tundra.exception.raise(ex);
+		  IDataUtil.put(cursor, "$content", ObjectHelper.convert(IDataXMLParser.getInstance().emit(pipeline, encoding), encoding, mode));
+		} catch(IOException ex) {
+		  ExceptionHelper.raise(ex);
 		} finally {
 		  cursor.destroy();
 		}
@@ -184,7 +190,7 @@ public final class pipeline
 		
 		try {
 		  String key = IDataUtil.getString(cursor, "$key");
-		  IDataUtil.put(cursor, "$value", tundra.support.document.get(pipeline, key));
+		  IDataUtil.put(cursor, "$value", IDataHelper.get(pipeline, key));
 		} finally {
 		  cursor.destroy();
 		}
@@ -231,7 +237,7 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  IDataUtil.put(cursor, "$length", "" + tundra.document.size(pipeline));
+		  IDataUtil.put(cursor, "$length", "" + IDataHelper.size(pipeline));
 		} finally {
 		  cursor.destroy();
 		}
@@ -272,9 +278,9 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  IData dup = tundra.document.normalize(pipeline, true);
-		  tundra.document.clear(pipeline);
-		  IDataUtil.merge(dup, pipeline);
+		  IData copy = IDataHelper.normalize(pipeline);
+		  IDataHelper.clear(pipeline);
+		  merge(pipeline, copy);
 		} finally {
 		  cursor.destroy();
 		}
@@ -299,9 +305,9 @@ public final class pipeline
 		  Object content = IDataUtil.get(cursor, "$content");
 		  String encoding = IDataUtil.getString(cursor, "$encoding");
 		
-		  IDataUtil.merge(tundra.document.parse(content, encoding), pipeline);
-		} catch(java.io.IOException ex) {
-		  tundra.exception.raise(ex);
+		  merge(pipeline, IDataXMLParser.getInstance().parse(StreamHelper.normalize(content, encoding)));
+		} catch(IOException ex) {
+		  ExceptionHelper.raise(ex);
 		} finally {
 		  cursor.destroy();
 		}
@@ -325,7 +331,7 @@ public final class pipeline
 		try {
 		  String key = IDataUtil.getString(cursor, "$key");
 		  Object value = IDataUtil.get(cursor, "$value");
-		  tundra.support.document.put(pipeline, key, value);
+		  IDataHelper.put(pipeline, key, value);
 		} finally {
 		  cursor.destroy();
 		}
@@ -349,7 +355,7 @@ public final class pipeline
 		try {
 		  String source = IDataUtil.getString(cursor, "$key.source");
 		  String target = IDataUtil.getString(cursor, "$key.target");
-		  tundra.document.rename(pipeline, source, target);
+		  IDataHelper.rename(pipeline, source, target);
 		} finally {
 		  cursor.destroy();
 		}
@@ -383,9 +389,9 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  IData dup = tundra.document.substitute(pipeline, pipeline, true);
-		  tundra.document.clear(pipeline, null);
-		  IDataUtil.merge(dup, pipeline);
+		  IData copy = IDataHelper.substitute(pipeline, pipeline, true);
+		  IDataHelper.clear(pipeline);
+		  merge(pipeline, copy);
 		} finally {
 		  cursor.destroy();
 		}
@@ -402,8 +408,8 @@ public final class pipeline
 	
 	// sorts the elements in the pipeline by its keys in natural ascending order
 	public static void sort(IData pipeline, boolean recurse) {
-	  IData sorted = tundra.document.sort(pipeline, recurse);
-	  tundra.document.clear(pipeline, null);
+	  IData sorted = IDataHelper.sort(pipeline, recurse);
+	  IDataHelper.clear(pipeline, null);
 	  IDataUtil.append(sorted, pipeline);
 	}
 	// --- <<IS-END-SHARED>> ---

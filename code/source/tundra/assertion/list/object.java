@@ -1,14 +1,16 @@
 package tundra.assertion.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-06-22 14:07:44 EST
-// -----( ON-HOST: 172.16.70.129
+// -----( CREATED: 2015-05-03 17:51:03 EST
+// -----( ON-HOST: 172.16.167.128
 
 import com.wm.data.*;
 import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.lang.ArrayHelper;
+import permafrost.tundra.lang.ObjectHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class object
@@ -159,11 +161,11 @@ public final class object
 	// --- <<IS-START-SHARED>> ---
 	// asserts that two documents are equal
 	public static void equal(Object[] expected, Object[] actual, String message) {
-	  if (!tundra.list.object.equal(expected, actual)) {
+	  if (!ArrayHelper.equal(expected, actual)) {
 	    if (message == null) {
-	      message = java.text.MessageFormat.format("Assertion failed: expected '{'{0}'}' is not equal to actual '{'{1}'}'", expected, actual);
+	      message = java.text.MessageFormat.format("Assertion failed: expected '{'{0}'}' is not equal to actual '{'{1}'}'", ObjectHelper.stringify(expected), ObjectHelper.stringify(actual));
 	    } else {
-	      message = java.text.MessageFormat.format("Assertion failed: {0} (expected '{'{1}'}' is not equal to actual '{'{2}'}')", message, expected, actual);
+	      message = java.text.MessageFormat.format("Assertion failed: {0} (expected '{'{1}'}' is not equal to actual '{'{2}'}')", message, ObjectHelper.stringify(expected), ObjectHelper.stringify(actual));
 	    }
 	    throw new AssertionError(message);
 	  }
@@ -171,11 +173,11 @@ public final class object
 	
 	// asserts that two documents are not equal 
 	public static void unequal(Object[] expected, Object[] actual, String message) {
-	  if (tundra.list.object.equal(expected, actual)) {
+	  if (ArrayHelper.equal(expected, actual)) {
 	    if (message == null) {
-	      message = java.text.MessageFormat.format("Assertion failed: expected '{'{0}'}' is equal to actual '{'{1}'}'", expected, actual);
+	      message = java.text.MessageFormat.format("Assertion failed: expected '{'{0}'}' is equal to actual '{'{1}'}'", ObjectHelper.stringify(expected), ObjectHelper.stringify(actual));
 	    } else {
-	      message = java.text.MessageFormat.format("Assertion failed: {0} (expected '{'{1}'}' is equal to actual '{'{2}'}')", message, expected, actual);
+	      message = java.text.MessageFormat.format("Assertion failed: {0} (expected '{'{1}'}' is equal to actual '{'{2}'}')", message, ObjectHelper.stringify(expected), ObjectHelper.stringify(actual));
 	    }
 	    throw new AssertionError(message);
 	  }

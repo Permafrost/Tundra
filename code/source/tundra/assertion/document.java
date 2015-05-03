@@ -1,14 +1,15 @@
 package tundra.assertion;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-06-22 13:30:58 EST
-// -----( ON-HOST: 172.16.70.129
+// -----( CREATED: 2015-05-03 16:07:13 EST
+// -----( ON-HOST: 172.16.167.128
 
 import com.wm.data.*;
 import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.lang.ObjectHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class document
@@ -82,7 +83,7 @@ public final class document
 	// --- <<IS-START-SHARED>> ---
 	// asserts that two documents are equal
 	public static void equal(IData expected, IData actual, String message) {
-	  if (!tundra.document.equal(expected, actual)) {
+	  if (!ObjectHelper.equal(expected, actual)) {
 	    if (message == null) {
 	      message = java.text.MessageFormat.format("Assertion failed: expected '{'{0}'}' is not equal to actual '{'{1}'}'", expected, actual);
 	    } else {
@@ -94,7 +95,7 @@ public final class document
 	
 	// asserts that two documents are not equal 
 	public static void unequal(IData expected, IData actual, String message) {
-	  if (tundra.document.equal(expected, actual)) {
+	  if (ObjectHelper.equal(expected, actual)) {
 	    if (message == null) {
 	      message = java.text.MessageFormat.format("Assertion failed: expected '{'{0}'}' is equal to actual '{'{1}'}'", expected, actual);
 	    } else {

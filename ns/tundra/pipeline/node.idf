@@ -10,12 +10,18 @@ c291cmNlKSB7CiAgaWYgKHRhcmdldCAhPSBudWxsICYmIHNvdXJjZSAhPSBudWxsKSBJRGF0YVV0
 aWwubWVyZ2Uoc291cmNlLCB0YXJnZXQpOwp9CgovLyBzb3J0cyB0aGUgZWxlbWVudHMgaW4gdGhl
 IHBpcGVsaW5lIGJ5IGl0cyBrZXlzIGluIG5hdHVyYWwgYXNjZW5kaW5nIG9yZGVyCnB1YmxpYyBz
 dGF0aWMgdm9pZCBzb3J0KElEYXRhIHBpcGVsaW5lLCBib29sZWFuIHJlY3Vyc2UpIHsKICBJRGF0
-YSBzb3J0ZWQgPSB0dW5kcmEuZG9jdW1lbnQuc29ydChwaXBlbGluZSwgcmVjdXJzZSk7CiAgdHVu
-ZHJhLmRvY3VtZW50LmNsZWFyKHBpcGVsaW5lLCBudWxsKTsKICBJRGF0YVV0aWwuYXBwZW5kKHNv
-cnRlZCwgcGlwZWxpbmUpOwp9</value>
+YSBzb3J0ZWQgPSBJRGF0YUhlbHBlci5zb3J0KHBpcGVsaW5lLCByZWN1cnNlKTsKICBJRGF0YUhl
+bHBlci5jbGVhcihwaXBlbGluZSwgbnVsbCk7CiAgSURhdGFVdGlsLmFwcGVuZChzb3J0ZWQsIHBp
+cGVsaW5lKTsKfQ==</value>
   <value name="extends"></value>
   <array name="implements" type="value" depth="1">
   </array>
   <array name="imports" type="value" depth="1">
+    <value>java.io.IOException</value>
+    <value>permafrost.tundra.data.IDataHelper</value>
+    <value>permafrost.tundra.data.IDataXMLParser</value>
+    <value>permafrost.tundra.io.StreamHelper</value>
+    <value>permafrost.tundra.lang.ExceptionHelper</value>
+    <value>permafrost.tundra.lang.ObjectHelper</value>
   </array>
 </Values>

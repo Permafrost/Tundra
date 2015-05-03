@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-05-01 18:37:41 EST
+// -----( CREATED: 2015-05-03 17:09:19 EST
 // -----( ON-HOST: 172.16.167.128
 
 import com.wm.data.*;
@@ -10,6 +10,7 @@ import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import java.io.IOException;
+import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.lang.ObjectHelper;
 // --- <<IS-END-IMPORTS>> ---
@@ -194,7 +195,7 @@ public final class object
 		try {
 		  Object object = IDataUtil.get(cursor, "$object");
 		  String key = IDataUtil.getString(cursor, "$key");
-		  if (object == null && key != null) object = tundra.support.document.get(pipeline, key);
+		  if (object == null && key != null) object = IDataHelper.get(pipeline, key);
 		
 		  IDataUtil.put(cursor, "$id", "" + System.identityHashCode(object));
 		  if (object != null) {
@@ -225,7 +226,7 @@ public final class object
 		
 		try {
 		  Object object = IDataUtil.get(cursor, "$object");
-		  if (object != null) IDataUtil.put(cursor, "$string", object.toString());
+		  if (object != null) IDataUtil.put(cursor, "$string", ObjectHelper.stringify(object));
 		} finally {
 		  cursor.destroy();
 		}
@@ -260,7 +261,7 @@ public final class object
 	// converts the value identified by key in the given scope document to a new
 	// list containing the original value, unless the value is already a list
 	public static <T> IData listify(IData scope, String key, Class<T> klass) {
-	  return tundra.support.document.put(scope, key, listify(tundra.support.document.get(scope, key), klass));
+	  return IDataHelper.put(scope, key, listify(IDataHelper.get(scope, key), klass));
 	}
 	
 	// converts the value identified by $key in the given $scope document (or

@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-05-01 18:38:04 EST
+// -----( CREATED: 2015-05-03 17:01:28 EST
 // -----( ON-HOST: 172.16.167.128
 
 import com.wm.data.*;
@@ -9,6 +9,7 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.flow.ConditionEvaluator;
 // --- <<IS-END-IMPORTS>> ---
 
@@ -283,7 +284,7 @@ public final class schedule
 	  }  
 	
 	  if (info != null) IDataUtil.put(cursor, type, info);
-	  if (inputs != null && tundra.document.size(inputs) > 0) IDataUtil.put(cursor, "pipeline", inputs);
+	  if (inputs != null && IDataHelper.size(inputs) > 0) IDataUtil.put(cursor, "pipeline", inputs);
 	
 	  String stateString = null;
 	  switch(state) {

@@ -8643,18 +8643,21 @@ Services for manipulating java.lang.String objects:
 
 * #### tundra.string:split
 
-  Splits the given string around matches of the given
+  Splits the given string around matches of the given literal pattern or
   [regular expression pattern].
 
   * Inputs:
-    * `$string` is a string to be split into tokens using the given
+    * $string is a string to be split into tokens using the given
       pattern as the token separator.
-    * `$pattern` is the [regular expression pattern] to match against
-      the given string.
+    * $pattern is the literal or [regular expression pattern] to match
+      against
+   the given string.
+    * $literal? is a boolean indicating if the pattern should be
+      treated as a literal string or a [regular expression pattern].
+      Defaults to false.
   * Outputs:
-    * `$list` is the list of tokens that were found in the input string
-      that were separated with an occurence of the given
-      [regular expression pattern].
+    * $list is the list of tokens that were found in the input string
+      that were separated with an occurence of the given pattern.
 
 * #### tundra.string:squeeze
 
