@@ -4,6 +4,32 @@
   <value name="svc_type">java</value>
   <value name="svc_subtype">unknown</value>
   <value name="svc_sigtype">java 3.5</value>
+  <record name="svc_sig" javaclass="com.wm.util.Values">
+    <record name="sig_in" javaclass="com.wm.util.Values">
+      <value name="node_type">record</value>
+      <value name="is_public">false</value>
+      <value name="field_type">record</value>
+      <value name="field_dim">0</value>
+      <value name="nillable">true</value>
+      <value name="form_qualified">false</value>
+      <value name="is_global">false</value>
+      <array name="rec_fields" type="record" depth="1">
+      </array>
+      <value name="modifiable">true</value>
+    </record>
+    <record name="sig_out" javaclass="com.wm.util.Values">
+      <value name="node_type">record</value>
+      <value name="is_public">false</value>
+      <value name="field_type">record</value>
+      <value name="field_dim">0</value>
+      <value name="nillable">true</value>
+      <value name="form_qualified">false</value>
+      <value name="is_global">false</value>
+      <array name="rec_fields" type="record" depth="1">
+      </array>
+      <value name="modifiable">true</value>
+    </record>
+  </record>
   <value name="node_comment">Removes all configured custom HTTP routes from the Integration
 Server HTTP request dispatcher. Once this service is invoked,
 no custom HTTP routes will be in effect.</value>
@@ -12,11 +38,11 @@ no custom HTTP routes will be in effect.</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
-  <value name="template">tundra_http_route_clear</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
   <value name="icontext_policy">$null</value>
+  <value name="svcInvkURLAlias"></value>
   <value name="system_service">no</value>
   <value name="retry_max">0</value>
   <value name="retry_interval">0</value>
