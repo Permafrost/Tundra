@@ -44,15 +44,20 @@
               </thead>
               <tbody>
               %ifvar $routes.length equals('0')%
-                <tr>
+                <tr class="example">
                   <td>example</td>
                   <td>get</td>
                   <td>/example/{foo}/{bar}</td>
                   <td>example.foo.bar:get</td>
                   <td>
-                    <p>This is an <strong>example custom HTTP route</strong> which would invoke the <code>example.foo.bar:get</code> service for any HTTP GET request where the request URI matches the template <code>/example/{foo}/{bar}</code>, where <code>{foo}</code> and <code>{bar}</code> are variables that can match any valid URI path segment.</p>
+                    <p>This is an <strong>example custom HTTP route</strong> which would invoke
+                    the <code>example.foo.bar:get</code> service for any HTTP GET request where
+                    the request URI matches the template <code>/example/{foo}/{bar}</code>, where
+                    <code>{foo}</code> and <code>{bar}</code> are variables that can match any
+                    valid URI path segment.</p>
 
-                    <p>Custom HTTP routes specify an <a href="<http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html">HTTP request method</a> and <a href="https://tools.ietf.org/html/rfc6570">URI
+                    <p>Custom HTTP routes specify an <a href="<http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html">
+                    HTTP request method</a> and <a href="https://tools.ietf.org/html/rfc6570">URI
                     template</a> which, if matched by an Integration Server HTTP request,
                     will return the associated target (either by invoking the target if
                     it is a service in the same way as the built-in <code>/invoke</code> URIs work,
@@ -66,13 +71,13 @@
 
                     <p>To register a server-specific custom HTTP route, create or edit the
                     <code>&lt;IntegrationServer&gt;/config/http-routes.cnf</code> file, using the
-                    <code>&lt;IntegrationServer&gt;/package/Tundra/config/http-routes.example.cnf</code>
+                    <code>&lt;IntegrationServer&gt;/packages/Tundra/config/http-routes.example.cnf</code>
                     file as a template.</p>
 
                     <p>To register a package-specific custom HTTP route, create or edit the
                     <code>&lt;IntegrationServer&gt;/packages/&lt;PackageName&gt;/config/http-routes.cnf</code>
                     file, using the
-                    <code>&lt;IntegrationServer&gt;/package/Tundra/config/http-routes.example.cnf</code>
+                    <code>&lt;IntegrationServer&gt;/packages/Tundra/config/http-routes.example.cnf</code>
                     file as a template.</p>
 
                     <p>Note that server-specific HTTP routes take precedence over package-
