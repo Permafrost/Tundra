@@ -5,13 +5,11 @@
   <value name="node_nsName">tundra.user</value>
   <value name="is_public">false</value>
   <value name="encodeutf8">true</value>
-  <value name="shared">Ly8gcmV0dXJucyB0aGUgSW50ZWdyYXRpb24gU2VydmVyIHVzZXIgZm9yIHRoZSBjdXJyZW50IHNl
-c3Npb24KcHVibGljIHN0YXRpYyBTdHJpbmcgY3VycmVudCgpIHsKICByZXR1cm4gY29tLndtLmFw
-cC5iMmIuc2VydmVyLlNlcnZpY2UuZ2V0U2Vzc2lvbigpLmdldFVzZXIoKS5nZXROYW1lKCk7Cn0=
-</value>
+  <value name="shared"></value>
   <value name="extends"></value>
   <array name="implements" type="value" depth="1">
   </array>
   <array name="imports" type="value" depth="1">
+    <value>permafrost.tundra.server.SessionHelper</value>
   </array>
 </Values>

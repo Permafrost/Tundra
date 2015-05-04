@@ -1,14 +1,15 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-07-07 19:04:00 EST
-// -----( ON-HOST: 172.16.189.199
+// -----( CREATED: 2015-05-04 14:12:19 AEST
+// -----( ON-HOST: PC62XKG2S.internal.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.server.SessionHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class user
@@ -37,20 +38,13 @@ public final class user
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  IDataUtil.put(cursor, "$user", current());
+		    IDataUtil.put(cursor, "$user", SessionHelper.getCurrentUserName());
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
                 
 	}
-
-	// --- <<IS-START-SHARED>> ---
-	// returns the Integration Server user for the current session
-	public static String current() {
-	  return com.wm.app.b2b.server.Service.getSession().getUser().getName();
-	}
-	// --- <<IS-END-SHARED>> ---
 }
 
