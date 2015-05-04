@@ -3,9 +3,9 @@
 <Values version="2.0">
   <value name="name">remove</value>
   <value name="encodeutf8">true</value>
-  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogIFN0cmlu
-ZyBrZXkgPSBJRGF0YVV0aWwuZ2V0U3RyaW5nKGN1cnNvciwgIiRrZXkiKTsKICBPYmplY3QgdmFs
-dWUgPSByZW1vdmUoa2V5KTsKCiAgaWYgKHZhbHVlICE9IG51bGwpIElEYXRhVXRpbC5wdXQoY3Vy
-c29yLCAiJHZhbHVlIiwgdmFsdWUpOwp9IGZpbmFsbHkgewogIGN1cnNvci5kZXN0cm95KCk7Cn0=
-</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7DQoNCnRyeSB7DQogICAg
+U3RyaW5nIGtleSA9IElEYXRhVXRpbC5nZXRTdHJpbmcoY3Vyc29yLCAiJGtleSIpOw0KICAgIE9i
+amVjdCB2YWx1ZSA9IFNlc3Npb25IZWxwZXIucmVtb3ZlKGtleSk7DQoNCiAgICBpZiAodmFsdWUg
+IT0gbnVsbCkgSURhdGFVdGlsLnB1dChjdXJzb3IsICIkdmFsdWUiLCB2YWx1ZSk7DQp9IGZpbmFs
+bHkgew0KICAgIGN1cnNvci5kZXN0cm95KCk7DQp9</value>
 </Values>

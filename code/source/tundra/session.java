@@ -1,14 +1,15 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-12-09 10:27:46.317
-// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
+// -----( CREATED: 2015-05-04 14:19:14 AEST
+// -----( ON-HOST: PC62XKG2S.internal.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.server.SessionHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class session
@@ -45,9 +46,9 @@ public final class session
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  IDataUtil.put(cursor, "$session", get());
+		    IDataUtil.put(cursor, "$session", SessionHelper.getCurrentSessionAsIData());
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
@@ -67,12 +68,12 @@ public final class session
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  String key = IDataUtil.getString(cursor, "$key");
-		  Object value = IDataUtil.get(cursor, "$value");
+		    String key = IDataUtil.getString(cursor, "$key");
+		    Object value = IDataUtil.get(cursor, "$value");
 		
-		  put(key, value);
+		    SessionHelper.put(key, value);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
@@ -92,51 +93,16 @@ public final class session
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  String key = IDataUtil.getString(cursor, "$key");
-		  Object value = remove(key);
+		    String key = IDataUtil.getString(cursor, "$key");
+		    Object value = SessionHelper.remove(key);
 		
-		  if (value != null) IDataUtil.put(cursor, "$value", value);
+		    if (value != null) IDataUtil.put(cursor, "$value", value);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
                 
 	}
-
-	// --- <<IS-START-SHARED>> ---
-	// returns the current session as an IData document
-	public static IData get() {
-	  com.wm.app.b2b.server.Session session = com.wm.app.b2b.server.Service.getSession();
-	
-	  IData document = IDataFactory.create();
-	  IDataCursor cursor = document.getCursor();
-	  IDataUtil.put(cursor, "id", session.getSessionID());
-	  IDataUtil.put(cursor, "name", session.getName());
-	  java.util.Calendar birth = java.util.Calendar.getInstance();
-	  birth.setTime(session.getStart());
-	  IDataUtil.put(cursor, "birth", tundra.datetime.emit(birth));
-	  IDataUtil.put(cursor, "age", tundra.duration.format("" + session.getAge(), "milliseconds", "xml"));
-	  IDataUtil.put(cursor, "timeout", tundra.duration.format("" + session.getTimeout(), "milliseconds", "xml"));
-	  IDataUtil.put(cursor, "user", session.getUser().getName());
-	  IDataUtil.put(cursor, "invocations", "" + session.getCalls());
-	  IDataUtil.put(cursor, "state", session);
-	  cursor.destroy();
-	
-	  return document;
-	}
-	
-	// stores the given key value pair in current session state
-	public static void put(String key, Object value) {
-	  if (key == null) return;
-	  com.wm.app.b2b.server.Service.getSession().put(key, value);
-	}
-	
-	// removes the given key value pair from current session state
-	public static Object remove(String key) {
-	  if (key == null) return null;
-	  return com.wm.app.b2b.server.Service.getSession().remove(key);
-	}
-	// --- <<IS-END-SHARED>> ---
 }
 
