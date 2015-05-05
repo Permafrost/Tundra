@@ -3602,7 +3602,10 @@ File system services for working with files:
   * Inputs:
     * `$file` is the name of the file to be created, specified as either a
       relative or absolute file path or file: [URI]. If the file already
-      exists, an exception will be thrown.
+      exists, an exception will be thrown. If not specified, a new
+      empty temporary file will be created.
+  * Outputs:
+    * `$file` is the name of the file which was created.
 
 * #### tundra.file:executable
 
@@ -8258,12 +8261,14 @@ objects:
   given output stream, then closes the streams.
 
   * Inputs:
-    * `$input` is an optional [java.io.InputStream] object containing data
-      to be written to `$output`. If not specified, this service does
-      nothing.
+    * `$input` is an optional String, byte[], or [java.io.InputStream] object
+      containing data to be written to `$output`. If not specified, this
+      service does nothing.
     * `$output` is an optional [java.io.OutputStream] object where data read
       from `$input` is to be written. If not specified, this service does
       nothing.
+    * `$close?` is an optional boolean indicating whether the streams should be
+      closed after the copy is complete. Defaults to `true`.
 
 * #### tundra.stream:normalize
 

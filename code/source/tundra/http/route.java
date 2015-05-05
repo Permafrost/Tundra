@@ -1,7 +1,7 @@
 package tundra.http;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-05-05 08:05:51 AEST
+// -----( CREATED: 2015-05-05 13:20:24 AEST
 // -----( ON-HOST: PC62XKG2S.internal.qr.com.au
 
 import com.wm.data.*;
@@ -34,7 +34,7 @@ public final class route
 		// --- <<IS-START(clear)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		HTTPRouter.INSTANCE.clear();
+		HTTPRouter.getInstance().clear();
 		// --- <<IS-END>> ---
 
                 
@@ -61,7 +61,7 @@ public final class route
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData[] list = HTTPRouter.INSTANCE.getRoutes().toIDataArray();
+		    IData[] list = HTTPRouter.getInstance().getRoutes().toIDataArray();
 		    IDataUtil.put(cursor, "$routes",list);
 		    IDataUtil.put(cursor, "$routes.length", "" + list.length);
 		} finally {
@@ -80,7 +80,7 @@ public final class route
 		// --- <<IS-START(refresh)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		HTTPRouter.INSTANCE.refresh();
+		HTTPRouter.getInstance().refresh();
 		// --- <<IS-END>> ---
 
                 
