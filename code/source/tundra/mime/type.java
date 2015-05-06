@@ -1,7 +1,7 @@
 package tundra.mime;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-05-01 18:37:14 EST
+// -----( CREATED: 2015-05-06 20:47:56 EST
 // -----( ON-HOST: 172.16.167.128
 
 import com.wm.data.*;
@@ -9,7 +9,10 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import javax.activation.MimeTypeParseException;
 import permafrost.tundra.lang.BooleanHelper;
+import permafrost.tundra.lang.ExceptionHelper;
+import permafrost.tundra.mime.MIMETypeHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class type
@@ -42,12 +45,12 @@ public final class type
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  IData type = IDataUtil.getIData(cursor, "$type");
-		  if (type != null) IDataUtil.put(cursor, "$string", emit(type, true));
-		} catch(javax.activation.MimeTypeParseException ex) {
-		  tundra.exception.raise(ex);
+		    IData type = IDataUtil.getIData(cursor, "$type");
+		    if (type != null) IDataUtil.put(cursor, "$string", MIMETypeHelper.emit(type));
+		} catch(MimeTypeParseException ex) {
+		    ExceptionHelper.raise(ex);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
@@ -68,13 +71,13 @@ public final class type
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  String string1 = IDataUtil.getString(cursor, "$string.x");
-		  String string2 = IDataUtil.getString(cursor, "$string.y");
-		  IDataUtil.put(cursor, "$equal?", "" + equal(string1, string2));
-		} catch(javax.activation.MimeTypeParseException ex) {
-		  tundra.exception.raise(ex);
+		    String string1 = IDataUtil.getString(cursor, "$string.x");
+		    String string2 = IDataUtil.getString(cursor, "$string.y");
+		    IDataUtil.put(cursor, "$equal?", "" + MIMETypeHelper.equal(string1, string2));
+		} catch(MimeTypeParseException ex) {
+		    ExceptionHelper.raise(ex);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
@@ -94,12 +97,12 @@ public final class type
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  String string = IDataUtil.getString(cursor, "$string");
-		  if (string != null) IDataUtil.put(cursor, "$string", normalize(string));
-		} catch(javax.activation.MimeTypeParseException ex) {
-		  tundra.exception.raise(ex);
+		    String string = IDataUtil.getString(cursor, "$string");
+		    if (string != null) IDataUtil.put(cursor, "$string", MIMETypeHelper.normalize(string));
+		} catch(MimeTypeParseException ex) {
+		    ExceptionHelper.raise(ex);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
@@ -122,12 +125,12 @@ public final class type
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  String string = IDataUtil.getString(cursor, "$string");
-		  if (string != null) IDataUtil.put(cursor, "$type", parse(string));
-		} catch(javax.activation.MimeTypeParseException ex) {
-		  tundra.exception.raise(ex);
+		    String string = IDataUtil.getString(cursor, "$string");
+		    if (string != null) IDataUtil.put(cursor, "$type", MIMETypeHelper.parse(string));
+		} catch(MimeTypeParseException ex) {
+		    ExceptionHelper.raise(ex);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
@@ -151,7 +154,7 @@ public final class type
 		    String string = IDataUtil.getString(cursor, "$string");
 		    boolean raise = BooleanHelper.parse(IDataUtil.getString(cursor, "$raise?"));
 		
-		    IDataUtil.put(cursor, "$valid?", "" + validate(string, raise));
+		    IDataUtil.put(cursor, "$valid?", "" + MIMETypeHelper.validate(string, raise));
 		} finally {
 		    cursor.destroy();
 		}
@@ -159,100 +162,5 @@ public final class type
 
                 
 	}
-
-	// --- <<IS-START-SHARED>> ---
-	// returns an IData representation of the given mime type string
-	public static IData parse(String string) throws javax.activation.MimeTypeParseException {
-	  if (string == null) return null;
-	
-	  javax.activation.MimeType type = new javax.activation.MimeType(string);
-	
-	  IData output = IDataFactory.create();
-	  IDataCursor cursor = output.getCursor();
-	  IDataUtil.put(cursor, "type", type.getPrimaryType());
-	  IDataUtil.put(cursor, "subtype", type.getSubType());
-	
-	  javax.activation.MimeTypeParameterList list = type.getParameters();
-	  if (list.size() > 0) {
-	    IData parameters = IDataFactory.create();
-	    IDataCursor pc = parameters.getCursor();
-	    java.util.Enumeration names = list.getNames();
-	    while(names.hasMoreElements()) {
-	      String name = (String)names.nextElement();
-	      String value = list.get(name);
-	      IDataUtil.put(pc, name, value);
-	    }
-	    pc.destroy();
-	    IDataUtil.put(cursor, "parameters", parameters);
-	  }
-	  cursor.destroy();
-	
-	  return output;
-	}
-	
-	// returns a mime type string comprised of the components specified in the
-	// IData document
-	public static String emit(IData idata, boolean ignoreThisParameter) throws javax.activation.MimeTypeParseException {
-	  if (idata == null) return null;
-	
-	  javax.activation.MimeType type = new javax.activation.MimeType();
-	  
-	  IDataCursor cursor = idata.getCursor();
-	  type.setPrimaryType(IDataUtil.getString(cursor, "type"));
-	  type.setSubType(IDataUtil.getString(cursor, "subtype"));
-	
-	  IData parameters = IDataUtil.getIData(cursor, "parameters");
-	
-	  if (parameters != null) {
-	    IDataCursor pc = parameters.getCursor();
-	    while (pc.next()) {
-	      String key = pc.getKey();
-	      String value = (String)pc.getValue();
-	      type.setParameter(key, value);
-	    }
-	    pc.destroy();
-	  }
-	
-	  return type.toString();
-	}
-	
-	
-	// normalizes a mime type by removing extraneous whitespace characters, and listing 
-	// parameters in alphabetical order.
-	public static String normalize(String string) throws javax.activation.MimeTypeParseException {
-	  return emit(parse(string), true);
-	}
-	
-	// returns true if the given mime type strings are considered equivalent
-	// because their types and subtypes match (parameters are not considered
-	// in the comparison)
-	public static boolean equal(String s1, String s2) throws javax.activation.MimeTypeParseException {
-	  if (s1 == null || s2 == null) return false;
-	
-	  javax.activation.MimeType t1 = new javax.activation.MimeType(s1);
-	  javax.activation.MimeType t2 = new javax.activation.MimeType(s2);
-	
-	  return t1.match(t2);
-	}
-	
-	// returns true if the given string is a valid mime type
-	public static boolean validate(String string, boolean raise) throws ServiceException {
-	  boolean valid = false;
-	  if (string != null) {
-	    try {
-	      javax.activation.MimeType type = new javax.activation.MimeType(string);
-	      valid = true;
-	    } catch (javax.activation.MimeTypeParseException ex) {
-	      if (raise) tundra.exception.raise(ex);
-	    }
-	  }
-	  return valid;
-	}
-	
-	// returns true if the given string is a valid mime type
-	public static boolean validate(String string) throws ServiceException {
-	  return validate(string, false);
-	}
-	// --- <<IS-END-SHARED>> ---
 }
 
