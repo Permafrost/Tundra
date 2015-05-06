@@ -50,8 +50,7 @@ $ cd ./Tundra/
 $ git checkout v<n.n.n> # where <n.n.n> is the required version
 ```
 
-Then activate and enable the [Tundra] package from the package management web
-page on your Integration Server web administration site.
+Then restart Integration Server to complete the installation.
 
 ### Using Zip
 
@@ -62,6 +61,7 @@ page on your Integration Server web administration site.
 3. Install and activate the [Tundra] package release `Tundra-vn.n.n.zip` from
    the package management web page on your Integration Server's web
    administration site.
+4. Restart Integration Server to complete the installation.
 
 ## Upgrading
 
@@ -93,8 +93,7 @@ $ git fetch
 $ git checkout v<n.n.n> # where <n.n.n> is the desired updated version
 ```
 
-Then reload the [Tundra] package from the package management web page on your
-Integration Server web administration site.
+Then restart Integration Server to complete the upgrade.
 
 ### Using Zip
 
@@ -105,6 +104,7 @@ Integration Server web administration site.
 3. Install and activate the updated [Tundra] package release
    `Tundra-vn.n.n.zip` from the package management web page on your
    Integration Server's web administration site.
+4. Restart Integration Server to complete the installation.
 
 ## Conventions
 
