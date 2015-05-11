@@ -7497,6 +7497,10 @@ scheduled tasks.
       therefore any existing scheduled tasks for this service will be
       first removed prior to creating a new scheduled task. Defaults
       to false.
+    * `$enabled?` is an optional boolean which when `true` indicates that
+      the scheduled task should be created in an active state, and
+      when `false` indicates that the scheduled task should be created
+      in a suspended state. Defaults to `true`.
   * Outputs:
     * `$id` uniquely identifies the resulting scheduled task.
 
