@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2013-07-11 13:49:48.434
+// -----( CREATED: 2015-05-12 10:14:40 AEST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -9,6 +9,10 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import com.wm.lang.ns.NSType;
+import java.util.SortedSet;
+import permafrost.tundra.lang.BooleanHelper;
+import permafrost.tundra.server.NodeHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class node
@@ -35,21 +39,21 @@ public final class node
 		// @sigtype java 3.5
 		// [i] field:0:optional $node
 		// [i] record:1:optional $permissions
-		// [i] - field:0:required type {&quot;list&quot;,&quot;read&quot;,&quot;write&quot;,&quot;execute&quot;}
+		// [i] - field:0:required type {"list","read","write","execute"}
 		// [i] - field:0:optional acl
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
-		  String node = IDataUtil.getString(cursor, "$node");
-		  IData[] permissions = IDataUtil.getIDataArray(cursor, "$permissions");
-		
-		  access(node, permissions);
+		    String node = IDataUtil.getString(cursor, "$node");
+		    IData[] permissions = IDataUtil.getIDataArray(cursor, "$permissions");
+
+		    NodeHelper.setPermissions(node, permissions);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -63,16 +67,16 @@ public final class node
 		// [i] field:0:optional $node
 		// [o] field:0:required $exists?
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
-		  String node = IDataUtil.getString(cursor, "$node");
-		  IDataUtil.put(cursor, "$exists?", "" + exists(node));
+		    String node = IDataUtil.getString(cursor, "$node");
+		    IDataUtil.put(cursor, "$exists?", "" + NodeHelper.exists(node));
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -85,23 +89,26 @@ public final class node
 		// @sigtype java 3.5
 		// [i] field:0:optional $interface
 		// [i] field:0:optional $pattern
-		// [i] field:0:optional $type {&quot;service&quot;,&quot;record&quot;,&quot;interface&quot;,&quot;Flat File Schema&quot;}
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $type {"service","record","interface","Flat File Schema"}
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] field:1:required $nodes
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
-		  String parent = IDataUtil.getString(cursor, "$interface");
-		  String pattern = IDataUtil.getString(cursor, "$pattern");
-		  String type = IDataUtil.getString(cursor, "$type");
-		  boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
-		  IDataUtil.put(cursor, "$nodes", list(parent, pattern, type, recurse));
+		    String parent = IDataUtil.getString(cursor, "$interface");
+		    String pattern = IDataUtil.getString(cursor, "$pattern");
+		    String type = IDataUtil.getString(cursor, "$type");
+		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
+
+		    SortedSet<String> set = NodeHelper.list(parent, pattern, type, recurse);
+
+		    if (set != null) IDataUtil.put(cursor, "$nodes", set.toArray(new String[set.size()]));
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -115,108 +122,17 @@ public final class node
 		// [i] field:0:optional $node
 		// [o] field:0:optional $type
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
-		  String node = IDataUtil.getString(cursor, "$node");
-		  IDataUtil.put(cursor, "$type", type(node));
+		    String node = IDataUtil.getString(cursor, "$node");
+		    NSType type = NodeHelper.getNodeType(node);
+		    if (type != null) IDataUtil.put(cursor, "$type", type.toString());
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
-	}
 
-	// --- <<IS-START-SHARED>> ---
-	// returns the type of the given node
-	public static String type(String node) {
-	  return node == null? null : type(com.wm.app.b2b.server.ns.Namespace.current().getNode(com.wm.lang.ns.NSName.create(node)));
 	}
-	
-	// returns the type of the given node
-	public static String type(com.wm.lang.ns.NSNode node) {
-	  return node == null? null : node.getNodeTypeObj().toString();
-	}
-	
-	// returns true if the given namespace node exists
-	public static boolean exists(String name) {
-	  return name != null && com.wm.app.b2b.server.ns.Namespace.current().nodeExists(com.wm.lang.ns.NSName.create(name));
-	}
-	
-	// returns a list of all the leaf nodes defined under the given parent node on this server
-	public static String[] list(String parent, String pattern, String type, boolean recurse) {
-	  com.wm.lang.ns.NSNode node = null;
-	
-	  if (parent == null) {
-	    node = com.wm.app.b2b.server.ns.Namespace.current().getRootNode();
-	  } else {
-	    node = com.wm.app.b2b.server.ns.Namespace.current().getNode(com.wm.lang.ns.NSName.create(parent));
-	  }
-	
-	  java.util.SortedSet<String> listing = null;
-	  if (node instanceof com.wm.lang.ns.NSInterface) {
-	    listing = list((com.wm.lang.ns.NSInterface)node, pattern, type, recurse);
-	  } else {
-	    listing = new java.util.TreeSet<String>();
-	  }
-	
-	  return listing.toArray(new String[0]);
-	}
-	
-	// returns a list of all the child leaf nodes defined under the given parent node on this server
-	public static java.util.SortedSet<String> list(com.wm.lang.ns.NSInterface parent, String pattern, String type, boolean recurse) {
-	  java.util.SortedSet<String> children = new java.util.TreeSet<String>();
-	
-	  if (parent != null) {
-	    com.wm.lang.ns.NSNode[] nodes = parent.getNodes();
-	
-	    for (int i = 0; i < nodes.length; i++) {
-	      if (nodes[i] instanceof com.wm.lang.ns.NSInterface && recurse) {
-	        java.util.SortedSet<String> grandchildren = list((com.wm.lang.ns.NSInterface)nodes[i], pattern, type, recurse);
-	        children.addAll(grandchildren);
-	      }
-	
-	      String name = nodes[i].getNSName().toString();
-	      boolean include = (pattern == null || java.util.regex.Pattern.matches(pattern, name)) && 
-	                        (type == null || type.equals(nodes[i].getNodeTypeObj().toString()));
-	      
-	      if (include) children.add(name);
-	    }
-	  }
-	
-	  return children;
-	}
-	
-	// grants the specified permissions on the given node
-	public static void access(String node, IData[] permissions) {
-	  if (node == null || permissions == null) return;
-	
-	  for (int i = 0; i < permissions.length; i++) {
-	    if (permissions[i] != null) {
-	      IDataCursor cursor = permissions[i].getCursor();
-	      String type = IDataUtil.getString(cursor, "type");
-	      String acl = IDataUtil.getString(cursor, "acl");
-	      access(node, type, acl);
-	    }
-	  }
-	}
-	
-	// grants the specified permission on the given node
-	public static void access(String node, String permission, String acl) {
-	  if (node == null || permission == null) return;
-	
-	  if (permission.equalsIgnoreCase("list")) {
-	    com.wm.app.b2b.server.ACLManager.setBrowseAclGroup(node, acl);
-	  } else if (permission.equalsIgnoreCase("read")) {
-	    com.wm.app.b2b.server.ACLManager.setReadAclGroup(node, acl);
-	  } else if (permission.equalsIgnoreCase("write")) {
-	    com.wm.app.b2b.server.ACLManager.setWriteAclGroup(node, acl);
-	  } else if (permission.equalsIgnoreCase("execute")) {
-	    com.wm.app.b2b.server.ACLManager.setAclGroup(node, acl);
-	  } else {
-	    throw new IllegalArgumentException("Permission type not supported: " + permission);
-	  }
-	}
-	// --- <<IS-END-SHARED>> ---
 }
 
