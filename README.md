@@ -7064,6 +7064,52 @@ Services for querying Integration Server namespace nodes:
     * `$type` is the type of node that `$node` is, such as interface,
       or service.
 
+### Packages
+
+* #### tundra.packages:reflect
+
+  Returns information about the package with the given name.
+
+  * Inputs:
+    * `package` is the name of the package to be reflected on.
+  * Outputs:
+    * `$packages.properties`
+      * `name` is the name of the package.
+      * `version` is the version of the package as per its manifest.
+      * `enabled?` is a boolean indicating if the package is enabled.
+      * `system?` is a boolean indicating if the package is considered
+        a system package.
+      * `package.dependencies` is a list of all the packages this
+        package is dependent on as per its manifest:
+        * `package` is the name of the dependent package.
+        * `version` is the version of the dependent package.
+      * `package.dependencies.length` is the number of items in the
+        `package.dependencies` list.
+      * `services.startup` is a list of all the registered startup
+        services in the package.
+      * `services.startup.length` is the number of items in the
+        `services.startup` list.
+      * `services.shutdown` is a list of all the registered shutdown
+        services in the package.
+      * `services.shutdown.length` is the number of items in the
+        `services.shutdown` list.
+      * `services.replication` is a list of all the registered
+        replication services in the package.
+      * `services.replication.length` is the number of items in the
+        `services.replication` list.
+      * `services.loaded` is a list of all the loaded services in the
+        package.
+      * `services.loaded.length` is the number of items in the
+        `services.loaded` list.
+      * `directories` provides the location of all the well-known
+        directories for the package:
+        * `root` is the package's root directory.
+        * `ns` is the package's namespace directory.
+        * `pub` is the package's public HTML directory.
+        * `template` is the package's service template directory.
+        * `web` is the package's Java web application directory.
+        * `config` is the package's configuration directory.
+
 ### Object
 
 Services for manipulating java.lang.Object objects:
