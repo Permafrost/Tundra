@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-05-13 17:06:27 AEST
-// -----( ON-HOST: -
+// -----( CREATED: 2015-05-13 20:47:43 EST
+// -----( ON-HOST: 172.16.167.128
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -34,23 +34,24 @@ public final class packages
 		// --- <<IS-START(reflect)>> ---
 		// @sigtype java 3.5
 		// [i] field:0:optional $package
-		// [o] record:0:required $package.properties
+		// [o] record:0:optional $package.properties
 		// [o] - field:0:required name
 		// [o] - field:0:required version
 		// [o] - field:0:required enabled?
 		// [o] - field:0:required system?
-		// [o] - record:1:required package.dependencies
+		// [o] - record:1:required dependencies
 		// [o] -- field:0:required package
 		// [o] -- field:0:required version
-		// [o] - field:0:required package.dependencies.length
-		// [o] - field:1:required services.startup
-		// [o] - field:0:required services.startup.length
-		// [o] - field:1:required services.shutdown
-		// [o] - field:0:required services.shutdown.length
-		// [o] - field:1:required services.replication
-		// [o] - field:0:required services.replication.length
-		// [o] - field:1:required services.loaded
-		// [o] - field:0:required services.loaded.length
+		// [o] - field:0:required dependencies.length
+		// [o] - record:0:required services
+		// [o] -- field:1:required startup
+		// [o] -- field:0:required startup.length
+		// [o] -- field:1:required shutdown
+		// [o] -- field:0:required shutdown.length
+		// [o] -- field:1:required replication
+		// [o] -- field:0:required replication.length
+		// [o] -- field:1:required loaded
+		// [o] -- field:0:required loaded.length
 		// [o] - record:0:required directories
 		// [o] -- field:0:required root
 		// [o] -- field:0:required ns
@@ -59,18 +60,18 @@ public final class packages
 		// [o] -- field:0:required web
 		// [o] -- field:0:required config
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String packageName = IDataUtil.getString(cursor, "$package");
-
-			IData properties = PackageHelper.getPackageAsIData(packageName);
-			if (properties != null) IDataUtil.put(cursor, "$package.properties", properties);
+		
+		    IData properties = PackageHelper.getPackageAsIData(packageName);
+		    if (properties != null) IDataUtil.put(cursor, "$package.properties", properties);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 
