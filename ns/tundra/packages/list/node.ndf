@@ -18,16 +18,18 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <value name="field_usereditable">true</value>
+            <value name="field_usereditable">false</value>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$package</value>
+          <value name="field_name">$enabled?</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
           <array name="field_options" type="value" depth="1">
+            <value>false</value>
+            <value>true</value>
           </array>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <value name="contentType">1</value>
@@ -36,7 +38,7 @@
             <array name="targetNames" type="record" depth="1">
               <record javaclass="com.wm.util.Values">
                 <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">string</value>
+                <value name="ncName">boolean</value>
               </record>
             </array>
           </record>
@@ -64,13 +66,13 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$package.properties</value>
+          <value name="field_name">$packages</value>
           <value name="field_type">record</value>
-          <value name="field_dim">0</value>
-          <value name="field_opt">true</value>
-          <value name="nillable">true</value>
+          <value name="field_dim">1</value>
+          <value name="nillable">false</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
+          <value name="is_soap_array_encoding_used">false</value>
           <array name="rec_fields" type="record" depth="1">
             <record javaclass="com.wm.util.Values">
               <value name="node_type">unknown</value>
@@ -734,17 +736,49 @@
           </array>
           <value name="modifiable">true</value>
         </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">unknown</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_usereditable">true</value>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$packages.length</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <array name="field_options" type="value" depth="1">
+          </array>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">nonNegativeInteger</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">false</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
       </array>
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns information about the package with the given name.
+  <value name="node_comment">Returns a list of either all known packages or only those enabled on 
+this Integration Server.
 
 * Inputs:
-  * $package is the name of the package to be reflected on.
+  * $enabled? is an optional boolean indicating whether to return
+    only packages which are enabled on this Integration Server.
+    Defaults to false.
 * Outputs:
-  * $packages.properties contains the reflected properties of the 
-    package.
+  * $packages is the list of either all known packages or only those 
+    enabled on this Integration Server:
     * name is the name of the package.
     * version is the version of the package as per its manifest.
     * enabled? is a boolean indicating if the package is enabled.
@@ -777,7 +811,8 @@
       * pub is the package's public HTML directory.
       * template is the package's service template directory.
       * web is the package's Java web application directory.
-      * config is the package's configuration directory.</value>
+      * config is the package's configuration directory.
+  * $packages.length is the number of items in the $packages list.</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
@@ -787,6 +822,7 @@
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
   <value name="icontext_policy">$null</value>
+  <value name="svcInvkURLAlias"></value>
   <value name="system_service">no</value>
   <value name="retry_max">0</value>
   <value name="retry_interval">0</value>

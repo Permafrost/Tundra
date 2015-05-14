@@ -7066,15 +7066,27 @@ Services for querying Integration Server namespace nodes:
 
 ### Packages
 
-* #### tundra.packages:reflect
+* #### tundra.packages:exist
+
+  Returns true if a package with the given name exists on this
+  Integration Server.
+
+  * Inputs:
+    * `$name` is the name of the package to check existence of.
+  * Outputs:
+    * `$exists?` is a boolean indicating whether a package with
+      the given name exists on this Integration Server.
+
+* #### tundra.packages:get
 
   Returns information about the package with the given name.
 
   * Inputs:
-    * `$package` is the name of the package to be reflected on.
+    * `$name` is the name of the package to return information
+      about.
   * Outputs:
-    * `$packages.properties` contains the reflected properties of the
-      package.
+    * `$package` contains the following information about the package
+      with the given name if it exists:
       * `name` is the name of the package.
       * `version` is the version of the package as per its manifest.
       * `enabled?` is a boolean indicating if the package is enabled.
@@ -7108,6 +7120,55 @@ Services for querying Integration Server namespace nodes:
         * `template` is the package's service template directory.
         * `web` is the package's Java web application directory.
         * `config` is the package's configuration directory.
+    * `$exists?` is a boolean indicating whether a package with
+      the given name exists on this Integration Server.
+
+* #### tundra.packages:list
+
+  Returns a list of either all known packages or only those enabled on
+  this Integration Server.
+
+  * Inputs:
+    * `$enabled?` is an optional boolean indicating whether to return
+      only packages which are enabled on this Integration Server.
+      Defaults to `false`.
+  * Outputs:
+    * `$packages` is the list of either all known packages or only those
+      enabled on this Integration Server:
+      * `name` is the name of the package.
+      * `version` is the version of the package as per its manifest.
+      * `enabled?` is a boolean indicating if the package is enabled.
+      * `system?` is a boolean indicating if the package is considered
+        a system package.
+      * `dependencies` is a list of all the packages this package is
+        dependent on as per its manifest:
+        * `package` is the name of the dependent package.
+        * `version` is the version of the dependent package.
+      * `dependencies.length` is the number of items in the
+        `dependencies` list.
+      * `services` lists all the different type of services in the
+        package:
+        * `startup` is a list of all the registered startup services in
+          the package.
+        * `startup.length` is the number of items in the `startup` list.
+        * `shutdown` is a list of all the registered shutdown services
+          in the package.
+        * `shutdown.length` is the number of items in the `shutdown` list.
+        * `replication` is a list of all the registered replication
+          services in the package.
+        * `replication.length` is the number of items in the `replication`
+          list.
+        * `loaded` is a list of all the loaded services in the package.
+        * `loaded.length` is the number of items in the `loaded` list.
+      * `directories` provides the location of all the well-known
+        directories for the package:
+        * `root` is the package's root directory.
+        * `ns` is the package's namespace directory.
+        * `pub` is the package's public HTML directory.
+        * `template` is the package's service template directory.
+        * `web` is the package's Java web application directory.
+        * `config` is the package's configuration directory.
+    * `$packages.length` is the number of items in the `$packages` list.
 
 ### Object
 
