@@ -1698,16 +1698,15 @@ the given patterns.
 
 Supports a handful of well-known named datetime patterns:
 
-    Name           Pattern
-    -------------  --------------------------------------------
-    datetime       ISO8601 XML datetime
-    datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-    date           ISO8601 XML date
-    date.jdbc      yyyy-mm-dd
-    time           ISO8601 XML time
-    time.jdbc      HH:mm:ss
-    milliseconds   Number of milliseconds since the Epoch,
-                   January 1, 1970 00:00:00.000 GMT (Gregorian)
+Pattern Name  | Description
+------------- | --------------------------------------------
+datetime      | ISO8601 XML datetime
+datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
+date          | ISO8601 XML date
+date.jdbc     | yyyy-mm-dd
+time          | ISO8601 XML time
+time.jdbc     | HH:mm:ss
+milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using
 [java.text.SimpleDateFormat] compatible patterns.
@@ -1734,16 +1733,15 @@ indicating their position in time relative to one another.
 
 Supports a handful of well-known named datetime patterns:
 
-    Name           Pattern
-    -------------  --------------------------------------------
-    datetime       ISO8601 XML datetime
-    datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-    date           ISO8601 XML date
-    date.jdbc      yyyy-mm-dd
-    time           ISO8601 XML time
-    time.jdbc      HH:mm:ss
-    milliseconds   Number of milliseconds since the Epoch,
-                   January 1, 1970 00:00:00.000 GMT (Gregorian)
+Pattern Name  | Description
+------------- | --------------------------------------------
+datetime      | ISO8601 XML datetime
+datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
+date          | ISO8601 XML date
+date.jdbc     | yyyy-mm-dd
+time          | ISO8601 XML time
+time.jdbc     | HH:mm:ss
+milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using
 [java.text.SimpleDateFormat] compatible patterns.
@@ -1789,16 +1787,15 @@ Returns the duration between two datetimes.
 
 Supports a handful of well-known named datetime patterns:
 
-    Name           Pattern
-    -------------  --------------------------------------------
-    datetime       ISO8601 XML datetime
-    datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-    date           ISO8601 XML date
-    date.jdbc      yyyy-mm-dd
-    time           ISO8601 XML time
-    time.jdbc      HH:mm:ss
-    milliseconds   Number of milliseconds since the Epoch,
-                   January 1, 1970 00:00:00.000 GMT (Gregorian)
+Pattern Name  | Description
+------------- | --------------------------------------------
+datetime      | ISO8601 XML datetime
+datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
+date          | ISO8601 XML date
+date.jdbc     | yyyy-mm-dd
+time          | ISO8601 XML time
+time.jdbc     | HH:mm:ss
+milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using
 [java.text.SimpleDateFormat] compatible patterns.
@@ -1830,16 +1827,15 @@ to the given pattern.
 
 Supports a handful of well-known named datetime patterns:
 
-    Name           Pattern
-    -------------  --------------------------------------------
-    datetime       ISO8601 XML datetime
-    datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-    date           ISO8601 XML date
-    date.jdbc      yyyy-mm-dd
-    time           ISO8601 XML time
-    time.jdbc      HH:mm:ss
-    milliseconds   Number of milliseconds since the Epoch,
-                   January 1, 1970 00:00:00.000 GMT (Gregorian)
+Pattern Name  | Description
+------------- | --------------------------------------------
+datetime      | ISO8601 XML datetime
+datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
+date          | ISO8601 XML date
+date.jdbc     | yyyy-mm-dd
+time          | ISO8601 XML time
+time.jdbc     | HH:mm:ss
+milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using
 [java.text.SimpleDateFormat] compatible patterns.
@@ -1872,16 +1868,15 @@ to the given datetime pattern.
 
 Supports a handful of well-known named datetime patterns:
 
-    Name           Pattern
-    -------------  --------------------------------------------
-    datetime       ISO8601 XML datetime
-    datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-    date           ISO8601 XML date
-    date.jdbc      yyyy-mm-dd
-    time           ISO8601 XML time
-    time.jdbc      HH:mm:ss
-    milliseconds   Number of milliseconds since the Epoch,
-                   January 1, 1970 00:00:00.000 GMT (Gregorian)
+Pattern Name  | Description
+------------- | --------------------------------------------
+datetime      | ISO8601 XML datetime
+datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
+date          | ISO8601 XML date
+date.jdbc     | yyyy-mm-dd
+time          | ISO8601 XML time
+time.jdbc     | HH:mm:ss
+milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using
 [java.text.SimpleDateFormat] compatible patterns.
@@ -1914,16 +1909,15 @@ the output pattern.
 
 Supports a handful of well-known named datetime patterns:
 
-    Name           Pattern
-    -------------  --------------------------------------------
-    datetime       ISO8601 XML datetime
-    datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-    date           ISO8601 XML date
-    date.jdbc      yyyy-mm-dd
-    time           ISO8601 XML time
-    time.jdbc      HH:mm:ss
-    milliseconds   Number of milliseconds since the Epoch,
-                   January 1, 1970 00:00:00.000 GMT (Gregorian)
+Pattern Name  | Description
+------------- | --------------------------------------------
+datetime      | ISO8601 XML datetime
+datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
+date          | ISO8601 XML date
+date.jdbc     | yyyy-mm-dd
+time          | ISO8601 XML time
+time.jdbc     | HH:mm:ss
+milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using
 [java.text.SimpleDateFormat] compatible patterns.
@@ -1971,16 +1965,15 @@ to the given pattern.
 
 Supports a handful of well-known named datetime patterns:
 
-    Name           Pattern
-    -------------  --------------------------------------------
-    datetime       ISO8601 XML datetime
-    datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-    date           ISO8601 XML date
-    date.jdbc      yyyy-mm-dd
-    time           ISO8601 XML time
-    time.jdbc      HH:mm:ss
-    milliseconds   Number of milliseconds since the Epoch,
-                   January 1, 1970 00:00:00.000 GMT (Gregorian)
+Pattern Name  | Description
+------------- | --------------------------------------------
+datetime      | ISO8601 XML datetime
+datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
+date          | ISO8601 XML date
+date.jdbc     | yyyy-mm-dd
+time          | ISO8601 XML time
+time.jdbc     | HH:mm:ss
+milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using
 [java.text.SimpleDateFormat] compatible patterns.
@@ -2012,16 +2005,15 @@ Returns the largest datetime from the given list of datetime strings.
 
 Supports a handful of well-known named datetime patterns:
 
-    Name           Pattern
-    -------------  --------------------------------------------
-    datetime       ISO8601 XML datetime
-    datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-    date           ISO8601 XML date
-    date.jdbc      yyyy-mm-dd
-    time           ISO8601 XML time
-    time.jdbc      HH:mm:ss
-    milliseconds   Number of milliseconds since the Epoch,
-                   January 1, 1970 00:00:00.000 GMT (Gregorian)
+Pattern Name  | Description
+------------- | --------------------------------------------
+datetime      | ISO8601 XML datetime
+datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
+date          | ISO8601 XML date
+date.jdbc     | yyyy-mm-dd
+time          | ISO8601 XML time
+time.jdbc     | HH:mm:ss
+milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using [java.text.SimpleDateFormat]
 compatible patterns.
@@ -2046,16 +2038,15 @@ Returns the smallest datetime from the given list of datetime strings.
 
 Supports a handful of well-known named datetime patterns:
 
-    Name           Pattern
-    -------------  --------------------------------------------
-    datetime       ISO8601 XML datetime
-    datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-    date           ISO8601 XML date
-    date.jdbc      yyyy-mm-dd
-    time           ISO8601 XML time
-    time.jdbc      HH:mm:ss
-    milliseconds   Number of milliseconds since the Epoch,
-                   January 1, 1970 00:00:00.000 GMT (Gregorian)
+Pattern Name  | Description
+------------- | --------------------------------------------
+datetime      | ISO8601 XML datetime
+datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
+date          | ISO8601 XML date
+date.jdbc     | yyyy-mm-dd
+time          | ISO8601 XML time
+time.jdbc     | HH:mm:ss
+milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using [java.text.SimpleDateFormat]
 compatible patterns.
@@ -2080,16 +2071,15 @@ Returns the current datetime formatted according to the given pattern.
 
 Supports a handful of well-known named datetime patterns:
 
-    Name           Pattern
-    -------------  --------------------------------------------
-    datetime       ISO8601 XML datetime
-    datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-    date           ISO8601 XML date
-    date.jdbc      yyyy-mm-dd
-    time           ISO8601 XML time
-    time.jdbc      HH:mm:ss
-    milliseconds   Number of milliseconds since the Epoch,
-                   January 1, 1970 00:00:00.000 GMT (Gregorian)
+Pattern Name  | Description
+------------- | --------------------------------------------
+datetime      | ISO8601 XML datetime
+datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
+date          | ISO8601 XML date
+date.jdbc     | yyyy-mm-dd
+time          | ISO8601 XML time
+time.jdbc     | HH:mm:ss
+milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using
 [java.text.SimpleDateFormat] compatible patterns.
@@ -2120,16 +2110,15 @@ returns the resulting [java.util.Date] object.
 
 Supports a handful of well-known named datetime patterns:
 
-    Name           Pattern
-    -------------  --------------------------------------------
-    datetime       ISO8601 XML datetime
-    datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-    date           ISO8601 XML date
-    date.jdbc      yyyy-mm-dd
-    time           ISO8601 XML time
-    time.jdbc      HH:mm:ss
-    milliseconds   Number of milliseconds since the Epoch,
-                   January 1, 1970 00:00:00.000 GMT (Gregorian)
+Pattern Name  | Description
+------------- | --------------------------------------------
+datetime      | ISO8601 XML datetime
+datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
+date          | ISO8601 XML date
+date.jdbc     | yyyy-mm-dd
+time          | ISO8601 XML time
+time.jdbc     | HH:mm:ss
+milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using
 [java.text.SimpleDateFormat] compatible patterns.
@@ -2167,16 +2156,15 @@ to the given patterns.
 
 Supports a handful of well-known named datetime patterns:
 
-    Name           Pattern
-    -------------  --------------------------------------------
-    datetime       ISO8601 XML datetime
-    datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-    date           ISO8601 XML date
-    date.jdbc      yyyy-mm-dd
-    time           ISO8601 XML time
-    time.jdbc      HH:mm:ss
-    milliseconds   Number of milliseconds since the Epoch,
-                   January 1, 1970 00:00:00.000 GMT (Gregorian)
+Pattern Name  | Description
+------------- | --------------------------------------------
+datetime      | ISO8601 XML datetime
+datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
+date          | ISO8601 XML date
+date.jdbc     | yyyy-mm-dd
+time          | ISO8601 XML time
+time.jdbc     | HH:mm:ss
+milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using
 [java.text.SimpleDateFormat] compatible patterns.
@@ -2202,16 +2190,15 @@ Returns true if the given datetime string conforms to the given pattern.
 
 Supports a handful of well-known named datetime patterns:
 
-    Name           Pattern
-    -------------  --------------------------------------------
-    datetime       ISO8601 XML datetime
-    datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-    date           ISO8601 XML date
-    date.jdbc      yyyy-mm-dd
-    time           ISO8601 XML time
-    time.jdbc      HH:mm:ss
-    milliseconds   Number of milliseconds since the Epoch,
-                   January 1, 1970 00:00:00.000 GMT (Gregorian)
+Pattern Name  | Description
+------------- | --------------------------------------------
+datetime      | ISO8601 XML datetime
+datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
+date          | ISO8601 XML date
+date.jdbc     | yyyy-mm-dd
+time          | ISO8601 XML time
+time.jdbc     | HH:mm:ss
+milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using
 [java.text.SimpleDateFormat] compatible patterns.
@@ -5627,16 +5614,15 @@ pattern, according to the output pattern.
 
 Supports a handful of well-known named datetime patterns:
 
-    Name           Pattern
-    -------------  --------------------------------------------
-    datetime       ISO8601 XML datetime
-    datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-    date           [ISO8601 XML date
-    date.jdbc      yyyy-mm-dd
-    time           ISO8601 XML time
-    time.jdbc      HH:mm:ss
-    milliseconds   Number of milliseconds since the Epoch,
-                   January 1, 1970 00:00:00.000 GMT (Gregorian)
+Pattern Name  | Description
+------------- | --------------------------------------------
+datetime      | ISO8601 XML datetime
+datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
+date          | ISO8601 XML date
+date.jdbc     | yyyy-mm-dd
+time          | ISO8601 XML time
+time.jdbc     | HH:mm:ss
+milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using [java.text.
 SimpleDateFormat] compatible patterns.
