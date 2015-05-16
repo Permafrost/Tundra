@@ -8740,7 +8740,7 @@ specified in the preserve list.
 ### tundra.pipeline:copy
 
 Copies the value associated with the source key to the target
-key in the given IData document.
+key in the pipeline.
 
 #### Inputs:
 
