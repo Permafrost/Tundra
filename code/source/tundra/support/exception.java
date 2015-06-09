@@ -2,7 +2,7 @@ package tundra.support;
 
 // -----( IS Java Code Template v1.2
 // -----( CREATED: 2012-06-30 15:08:52.897
-// -----( ON-HOST: 172.16.70.129
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -36,18 +36,18 @@ public final class exception
 		// [i] field:0:optional $message
 		// [o] object:0:required $exception
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  String message = IDataUtil.getString(cursor, "$message");
 		  if (message == null) message = "";
-		
+
 		  IDataUtil.put(cursor, "$exception", new Exception(message));
 		} finally {
 		  cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 

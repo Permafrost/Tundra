@@ -2,7 +2,7 @@ package tundra.list;
 
 // -----( IS Java Code Template v1.2
 // -----( CREATED: 2014-11-21 22:27:14 EST
-// -----( ON-HOST: 172.16.189.176
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -41,7 +41,7 @@ public final class datetime
 		// [i] field:0:optional $timezone.output
 		// [o] field:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  String[] list = IDataUtil.getStringArray(cursor, "$list");
 		  String inPattern = IDataUtil.getString(cursor, "$pattern.input");
@@ -49,7 +49,7 @@ public final class datetime
 		  String outPattern = IDataUtil.getString(cursor, "$pattern.output");
 		  String inTimeZone = IDataUtil.getString(cursor, "$timezone.input");
 		  String outTimeZone = IDataUtil.getString(cursor, "$timezone.output");
-		
+
 		  if (list != null && list.length > 0) {
 		    if (inPatterns == null) {
 		      IDataUtil.put(cursor, "$list", format(list, inPattern, inTimeZone, outPattern, outTimeZone));
@@ -62,7 +62,7 @@ public final class datetime
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 	// --- <<IS-START-SHARED>> ---
@@ -77,7 +77,7 @@ public final class datetime
 	  }
 	  return outputs;
 	}
-	
+
 	// formats a list datetime strings to the given pattern
 	public static String[] format(String[] inputs, String[] inPatterns, String inTimeZone, String outPattern, String outTimeZone) {
 	  String[] outputs = null;

@@ -2,7 +2,7 @@ package tundra.support.test.document;
 
 // -----( IS Java Code Template v1.2
 // -----( CREATED: 2014-09-13 11:15:28 EST
-// -----( ON-HOST: 172.16.189.176
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -36,7 +36,7 @@ public final class sort
 		// [o] record:0:required $document
 		// [o] record:0:required $expected
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  IData document = IDataFactory.create();
 		  IDataCursor dc = document.getCursor();
@@ -45,7 +45,7 @@ public final class sort
 		  dc.insertAfter("z", "3");
 		  dc.destroy();
 		  IDataUtil.put(cursor, "$document", document);
-		
+
 		  IData expected = IDataFactory.create();
 		  IDataCursor ec = expected.getCursor();
 		  ec.insertAfter("a", "2");
@@ -58,7 +58,7 @@ public final class sort
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 

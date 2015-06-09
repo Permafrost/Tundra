@@ -2,7 +2,7 @@ package tundra.support;
 
 // -----( IS Java Code Template v1.2
 // -----( CREATED: 2014-11-07 09:06:25.812
-// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -37,21 +37,21 @@ public final class constant
 		// [o] - field:0:required encoding.default
 		// [o] - object:0:required buffer.length.default
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  IData constants = IDataFactory.create();
 		  IDataCursor cc = constants.getCursor();
 		  IDataUtil.put(cc, "encoding.default", DEFAULT_CHARACTER_ENCODING);
 		  IDataUtil.put(cc, "buffer.length.default", DEFAULT_BUFFER_SIZE);
 		  cc.destroy();
-		
+
 		  IDataUtil.put(cursor, "$tundra.constants", constants);
 		} finally {
 		  cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 	// --- <<IS-START-SHARED>> ---

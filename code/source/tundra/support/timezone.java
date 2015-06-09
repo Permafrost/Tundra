@@ -2,7 +2,7 @@ package tundra.support;
 
 // -----( IS Java Code Template v1.2
 // -----( CREATED: 2014-11-21 21:57:04 EST
-// -----( ON-HOST: 172.16.189.176
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -35,7 +35,7 @@ public final class timezone
 		// @sigtype java 3.5
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 	// --- <<IS-START-SHARED>> ---
@@ -43,13 +43,13 @@ public final class timezone
 	protected static java.util.regex.Pattern OFFSET_HHMM_PATTERN = java.util.regex.Pattern.compile("([\\+-])?(\\d?\\d):(\\d\\d)");
 	protected static java.util.regex.Pattern OFFSET_XML_PATTERN = java.util.regex.Pattern.compile("-?P(\\d+|T\\d+).+");
 	protected static java.util.regex.Pattern OFFSET_RAW_PATTERN = java.util.regex.Pattern.compile("[\\+-]?\\d+");
-	
+
 	// returns the time zone associated with the given ID
 	public static java.util.TimeZone get(String id) {
 	  if (id == null) return null;
-	
+
 	  java.util.TimeZone timezone = null;
-	
+
 	  if (id.equals("$default") || id.equalsIgnoreCase("local") || id.equalsIgnoreCase("self")) {
 	    timezone = self();
 	  } else {
@@ -61,12 +61,12 @@ public final class timezone
 	        String sign = matcher.group(1);
 	        String hours = matcher.group(2);
 	        String minutes = matcher.group(3);
-	
+
 	        int offset = Integer.parseInt(hours) * 60 * 60 * 1000 + Integer.parseInt(minutes) * 60 * 1000;
 	        if (sign != null && sign.equals("-")) offset = offset * -1;
-	
+
 	        String candidate = get(offset);
-	        if (candidate != null) id = candidate;      
+	        if (candidate != null) id = candidate;
 	      } else {
 	        matcher = OFFSET_XML_PATTERN.matcher(id);
 	        if (matcher.matches()) {
@@ -85,86 +85,86 @@ public final class timezone
 	              if (candidate != null) id = candidate;
 	            } catch (NumberFormatException ex) {
 	              // ignore
-	            }        
+	            }
 	          }
 	        }
 	      }
 	    }
-	    
+
 	    if (ZONES.contains(id)) {
 	      timezone = java.util.TimeZone.getTimeZone(id);
 	    }
 	  }
-	
+
 	  return timezone;
 	}
-	
-	// returns the first matching timezone id for the given raw millisecond timezone offset 
+
+	// returns the first matching timezone id for the given raw millisecond timezone offset
 	protected static String get(int offset) {
 	  String id = null;
 	  String[] candidates = java.util.TimeZone.getAvailableIDs(offset);
-	  if (candidates != null && candidates.length > 0) id = candidates[0]; // default to the first candidate timezone ID        
+	  if (candidates != null && candidates.length > 0) id = candidates[0]; // default to the first candidate timezone ID
 	  return id;
 	}
-	
+
 	// returns the default time zone
 	public static java.util.TimeZone self() {
 	  return java.util.TimeZone.getDefault();
 	}
-	
+
 	// returns all known time zones
 	public static java.util.TimeZone[] list() {
 	  String[] id = java.util.TimeZone.getAvailableIDs();
 	  java.util.TimeZone[] zones = new java.util.TimeZone[id.length];
-	
+
 	  for (int i = 0; i < id.length; i++) {
 	    zones[i] = get(id[i]);
 	  }
-	
+
 	  return zones;
 	}
-	
+
 	// converts the given calendar to the given time zone
 	public static java.util.Calendar convert(java.util.Calendar input, String zone) {
 	  java.util.TimeZone timezone = get(zone);
 	  if (timezone == null) throw new IllegalArgumentException("Unknown time zone specified: " + zone);
-	
+
 	  return convert(input, timezone);
 	}
-	
+
 	// converts the given calendar to the given time zone
 	public static java.util.Calendar convert(java.util.Calendar input, java.util.TimeZone zone) {
 	  if (input == null || zone == null) return input;
-	
+
 	  java.util.Calendar output = java.util.Calendar.getInstance(zone);
 	  output.setTimeInMillis(input.getTimeInMillis());
 	  return output;
 	}
-	
+
 	// replaces the time zone on the given calendar with the given time zone
 	public static java.util.Calendar replace(java.util.Calendar input, String zone) {
 	  java.util.TimeZone timezone = get(zone);
 	  if (timezone == null) throw new IllegalArgumentException("Unknown time zone specified: " + zone);
-	
+
 	  return replace(input, timezone);
 	}
-	
+
 	// replaces the time zone on the given calendar with the given time zone
 	public static java.util.Calendar replace(java.util.Calendar input, java.util.TimeZone zone) {
 	  if (input == null || zone == null) return input;
-	
+
 	  long instant = input.getTimeInMillis();
 	  java.util.TimeZone currentZone = input.getTimeZone();
 	  int currentOffset = currentZone.getOffset(instant);
 	  int desiredOffset = zone.getOffset(instant);
-	
+
 	  // reset instant to UTC time then force it to input timezone
 	  instant = instant + currentOffset - desiredOffset;
-	
+
 	  // convert to output zone
 	  java.util.Calendar output = java.util.Calendar.getInstance(zone);
 	  output.setTimeInMillis(instant);
-	
+
 	  return output;
 	}
 	// --- <<IS-END-SHARED>> ---

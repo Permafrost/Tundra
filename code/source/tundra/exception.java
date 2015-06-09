@@ -2,7 +2,7 @@ package tundra;
 
 // -----( IS Java Code Template v1.2
 // -----( CREATED: 2014-08-13 15:32:44 EST
-// -----( ON-HOST: 172.16.189.132
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -36,22 +36,22 @@ public final class exception
 		// [i] field:0:optional $message
 		// [i] object:0:optional $exception
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  String message = IDataUtil.getString(cursor, "$message");
 		  Throwable exception = (Throwable)IDataUtil.get(cursor, "$exception");
-		
+
 		  if (exception != null) {
 		    raise(exception);
 		  } else {
 		    raise(message);
-		  } 
+		  }
 		} finally {
 		  cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 	// --- <<IS-START-SHARED>> ---
@@ -60,13 +60,13 @@ public final class exception
 	public static void raise(Throwable[] exceptions) throws ServiceException {
 	  if (exceptions != null) raise(message(exceptions));
 	}
-	
+
 	// throws a new ServiceException with the class and message from the given Throwables, which
 	// is useful because java services are hard-wired to only throw ServiceExceptions
 	public static void raise(java.util.Collection<Throwable> exceptions) throws ServiceException {
 	  if (exceptions != null) raise(message((Throwable[])exceptions.toArray(new Throwable[0])));
 	}
-	
+
 	// throws a new ServiceException with the class and message from the given Throwable, which
 	// is useful because java services are hard-wired to only throw ServiceExceptions
 	public static void raise(Throwable exception) throws ServiceException {
@@ -78,16 +78,16 @@ public final class exception
 	    }
 	  }
 	}
-	
+
 	// throws a new ServiceException with the given message
 	public static void raise(String message) throws ServiceException {
 	  throw new ServiceException(message == null ? "" : message);
 	}
-	
+
 	// returns an exception as a string
 	public static String message(Throwable exception) {
 	  String message = "";
-	
+
 	  if (exception != null) {
 	    if (exception instanceof ServiceException) {
 	      message = exception.getMessage();
@@ -95,15 +95,15 @@ public final class exception
 	      message = exception.getClass().getName() + ": " + exception.getMessage();
 	    }
 	  }
-	
+
 	  return message;
 	}
-	
+
 	// returns a list of exceptions as a string
 	public static String message(java.util.Collection<Throwable> exceptions) {
 	  return message((Throwable[])exceptions.toArray(new Throwable[0]));
 	}
-	
+
 	// returns a list of exceptions as a string
 	public static String message(Throwable[] exceptions) {
 	  StringBuilder msg = new StringBuilder();
@@ -121,15 +121,15 @@ public final class exception
 	  }
 	  return msg.toString();
 	}
-	
+
 	// returns the call stack associated with the given exception
 	public static IData[] stack(Throwable exception) {
 	  IData[] output = null;
-	
+
 	  if (exception != null) {
 	    StackTraceElement[] stack = exception.getStackTrace();
 	    output = new IData[stack.length];
-	
+
 	    for (int i = 0; i < stack.length; i++) {
 	      output[i] = IDataFactory.create();
 	      IDataCursor cursor = output[i].getCursor();
@@ -142,7 +142,7 @@ public final class exception
 	      cursor.destroy();
 	    }
 	  }
-	
+
 	  return output;
 	}
 	// --- <<IS-END-SHARED>> ---

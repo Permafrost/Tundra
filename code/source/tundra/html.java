@@ -2,7 +2,7 @@ package tundra;
 
 // -----( IS Java Code Template v1.2
 // -----( CREATED: 2015-05-01 18:34:10 EST
-// -----( ON-HOST: 172.16.167.128
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -41,7 +41,7 @@ public final class html
 		// [i] field:0:optional $string
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  String string = IDataUtil.getString(cursor, "$string");
 		  if (string != null) IDataUtil.put(cursor, "$string", HTMLHelper.decode(string));
@@ -50,7 +50,7 @@ public final class html
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -67,23 +67,23 @@ public final class html
 		// [i] field:0:optional $mode {"stream","bytes","string"}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  IData document = IDataUtil.getIData(cursor, "$document");
 		  String charset = IDataUtil.getString(cursor, "$encoding");
 		  String mode = IDataUtil.getString(cursor, "$mode");
-		
+
 		  IDataUtil.put(cursor, "$content", ObjectHelper.convert(IDataHTMLParser.getInstance().emit(document, charset), charset, mode));
 		} catch (IOException ex) {
 		  ExceptionHelper.raise(ex);
 		} finally {
 		  cursor.destroy();
 		}
-		
-		
+
+
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -97,7 +97,7 @@ public final class html
 		// [i] field:0:optional $string
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  String string = IDataUtil.getString(cursor, "$string");
 		  if (string != null) IDataUtil.put(cursor, "$string", HTMLHelper.encode(string));
@@ -106,7 +106,7 @@ public final class html
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 

@@ -2,7 +2,7 @@ package tundra;
 
 // -----( IS Java Code Template v1.2
 // -----( CREATED: 2015-05-01 18:41:08 EST
-// -----( ON-HOST: 172.16.167.128
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -43,14 +43,14 @@ public final class base64
 		// [i] field:0:optional $mode {"stream","bytes","string"}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Object input = IDataUtil.get(cursor, "$base64");
 		    String charset = IDataUtil.getString(cursor, "$encoding");
 		    String mode = IDataUtil.getString(cursor, "$mode");
-		
+
 		    Object output = ObjectHelper.convert(BytesHelper.base64Decode(StringHelper.normalize(input, charset)), charset, mode);
-		
+
 		    if (output != null) IDataUtil.put(cursor, "$content", output);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -59,7 +59,7 @@ public final class base64
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -75,25 +75,25 @@ public final class base64
 		// [i] field:0:optional $mode {"stream","bytes","string"}
 		// [o] object:0:optional $base64
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Object input = IDataUtil.get(cursor, "$content");
 		    String charset = IDataUtil.getString(cursor, "$encoding");
 		    String mode = IDataUtil.getString(cursor, "$mode");
-		
+
 		    Object output = ObjectHelper.convert(BytesHelper.base64Encode(BytesHelper.normalize(input, charset)), charset, mode);
-		
+
 		    if (output != null) IDataUtil.put(cursor, "$base64", output);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
 		    cursor.destroy();
 		}
-		
-		
+
+
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 

@@ -2,7 +2,7 @@ package tundra.assertion;
 
 // -----( IS Java Code Template v1.2
 // -----( CREATED: 2012-05-12 17:08:34 EST
-// -----( ON-HOST: 172.16.70.129
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -43,7 +43,7 @@ public final class step
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 	// --- <<IS-START-SHARED>> ---

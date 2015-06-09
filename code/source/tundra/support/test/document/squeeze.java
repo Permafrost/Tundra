@@ -2,7 +2,7 @@ package tundra.support.test.document;
 
 // -----( IS Java Code Template v1.2
 // -----( CREATED: 2014-09-13 11:15:35 EST
-// -----( ON-HOST: 172.16.189.176
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -36,7 +36,7 @@ public final class squeeze
 		// [o] record:0:required $document
 		// [o] record:0:required $expected
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  IData document = IDataFactory.create();
 		  IDataCursor dc = document.getCursor();
@@ -48,7 +48,7 @@ public final class squeeze
 		  dc.insertAfter("f", null);
 		  dc.destroy();
 		  IDataUtil.put(cursor, "$document", document);
-		
+
 		  IData expected = IDataFactory.create();
 		  IDataCursor ec = expected.getCursor();
 		  ec.insertAfter("a", "test");
@@ -61,7 +61,7 @@ public final class squeeze
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 

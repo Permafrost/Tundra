@@ -2,7 +2,7 @@ package tundra.assertion.list;
 
 // -----( IS Java Code Template v1.2
 // -----( CREATED: 2012-06-22 14:08:09 EST
-// -----( ON-HOST: 172.16.70.129
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -39,7 +39,7 @@ public final class document
 		tundra.assertion.list.object.equal(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -56,7 +56,7 @@ public final class document
 		tundra.assertion.list.object.unequal(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 	// --- <<IS-START-SHARED>> ---
@@ -71,8 +71,8 @@ public final class document
 	    throw new AssertionError(message);
 	  }
 	}
-	
-	// asserts that two documents are not equal 
+
+	// asserts that two documents are not equal
 	public static void unequal(IData[] expected, IData[] actual, String message) {
 	  if (tundra.list.object.equal(expected, actual)) {
 	    if (message == null) {

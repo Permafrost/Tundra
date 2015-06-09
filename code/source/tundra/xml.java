@@ -2,7 +2,7 @@ package tundra;
 
 // -----( IS Java Code Template v1.2
 // -----( CREATED: 2015-05-01 18:39:19 EST
-// -----( ON-HOST: 172.16.167.128
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -46,23 +46,23 @@ public final class xml
 		// [i] field:0:optional $mode {"stream","bytes","string"}
 		// [o] object:0:optional $content.canonical
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Object content = IDataUtil.get(cursor, "$content");
 		    String encoding = IDataUtil.getString(cursor, "$encoding");
 		    String algorithm = IDataUtil.getString(cursor, "$algorithm");
 		    String mode = IDataUtil.getString(cursor, "$mode");
-		
+
 		    if (content != null) IDataUtil.put(cursor, "$content.canonical", ObjectHelper.convert(XMLHelper.canonicalize(BytesHelper.normalize(content, encoding), encoding, algorithm), mode));
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
 		    cursor.destroy();
 		}
-		
+
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -81,17 +81,17 @@ public final class xml
 		// [o] field:0:required $valid?
 		// [o] field:1:optional $errors
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Object content = IDataUtil.get(cursor, "$content");
 		    String contentEncoding = IDataUtil.getString(cursor, "$content.encoding");
 		    Object schema = IDataUtil.get(cursor, "$schema");
 		    String schemaEncoding = IDataUtil.getString(cursor, "$schema.encoding");
 		    boolean raise = BooleanHelper.parse(IDataUtil.getString(cursor, "$raise?"));
-		
+
 		    String[] errors = XMLHelper.validate(StreamHelper.normalize(content, contentEncoding), StreamHelper.normalize(schema, schemaEncoding), raise);
 		    boolean valid = content != null && (errors == null || errors.length == 0);
-		
+
 		    IDataUtil.put(cursor, "$valid?", "" + valid);
 		    if (!valid && errors != null) IDataUtil.put(cursor, "$errors", errors);
 		} finally {
@@ -99,7 +99,7 @@ public final class xml
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 

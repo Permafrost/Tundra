@@ -2,7 +2,7 @@ package tundra;
 
 // -----( IS Java Code Template v1.2
 // -----( CREATED: 2015-05-05 14:55:23 AEST
-// -----( ON-HOST: PC62XKG2S.internal.qr.com.au
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -56,7 +56,7 @@ public final class system
 		// [o] -- field:0:required free
 		// [o] -- field:0:required total
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  IDataUtil.put(cursor, "$system", SystemHelper.getIntegrationServerProperties());
 		} finally {
@@ -64,7 +64,7 @@ public final class system
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 

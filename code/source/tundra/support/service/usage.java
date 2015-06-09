@@ -2,7 +2,7 @@ package tundra.support.service;
 
 // -----( IS Java Code Template v1.2
 // -----( CREATED: 2014-12-07 19:44:03 EST
-// -----( ON-HOST: 172.16.189.176
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -57,7 +57,7 @@ public final class usage
 		// [o] -- object:0:required callstack.length
 		// [o] - object:0:required invocations.current.length
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  IDataUtil.put(cursor, "$context", ServiceExecutionContext.getInstance().getIData());
 		} finally {
@@ -65,7 +65,7 @@ public final class usage
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -79,7 +79,7 @@ public final class usage
 		ServiceExecutionContext.getInstance().start();
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -93,7 +93,7 @@ public final class usage
 		ServiceExecutionContext.getInstance().stop();
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 	// --- <<IS-START-SHARED>> ---
@@ -103,15 +103,15 @@ public final class usage
 	  private com.wm.app.b2b.server.BaseService service;
 	  private IData pipeline;
 	  private String user, session;
-	
+
 	  public ServiceExecution(String service, IData pipeline, com.wm.app.b2b.server.InvokeState state) {
 	    this(com.wm.lang.ns.NSName.create(service), pipeline, state);
 	  }
-	
+
 	  public ServiceExecution(com.wm.lang.ns.NSName service, IData pipeline, com.wm.app.b2b.server.InvokeState state) {
 	    this(com.wm.app.b2b.server.ns.Namespace.getService(service), pipeline, state);
 	  }
-	
+
 	  public ServiceExecution(com.wm.app.b2b.server.BaseService service, IData pipeline, com.wm.app.b2b.server.InvokeState state) {
 	    this.service = service;
 	    this.pipeline = pipeline == null ? IDataFactory.create() : IDataUtil.clone(pipeline);
@@ -119,32 +119,32 @@ public final class usage
 	    this.session = state.getSession().getSessionID();
 	    this.user = state.getUser().getName();
 	  }
-	
+
 	  // returns the name of the service being invoked
 	  public String getServiceName() {
 	    return service.getNSName().getFullName();
 	  }
-	
+
 	  // returns the name of the package in which the service being invoked resides
 	  public String getPackageName() {
 	    return service.getPackageName();
 	  }
-	
+
 	  // returns the name of the user invoking the service
 	  public String getUser() {
 	    return user;
 	  }
-	
+
 	  // returns the session name invoking the service
 	  public String getSession() {
 	    return session;
 	  }
-	
+
 	  // returns the pipeline associated with this invocation
 	  public IData getPipeline() {
 	    return pipeline;
 	  }
-	
+
 	  // returns the pipeline associated with this invocation
 	  public int getPipelineSize() {
 	    IDataCursor cursor = pipeline.getCursor();
@@ -152,17 +152,17 @@ public final class usage
 	    cursor.destroy();
 	    return size;
 	  }
-	
+
 	  // returns the invocation duration in milliseconds
 	  public long getDuration() {
 	    return System.currentTimeMillis() - startTime;
 	  }
-	
+
 	  // returns an IData representation of this object
 	  public IData getIData() {
 	    IData output = IDataFactory.create();
 	    IDataCursor cursor = output.getCursor();
-	
+
 	    IDataUtil.put(cursor, "service", getServiceName());
 	    IDataUtil.put(cursor, "package", getPackageName());
 	    IDataUtil.put(cursor, "pipeline", getPipeline());
@@ -172,74 +172,74 @@ public final class usage
 	    IDataUtil.put(cursor, "session", getSession());
 	    IDataUtil.put(cursor, "user", getUser());
 	    cursor.destroy();
-	
+
 	    return output;
 	  }
-	
+
 	  // sets values from the given IData - not implemented
 	  public void setIData(IData input) {
 	    throw new UnsupportedOperationException("setIData not implemented");
 	  }
 	}
-	
+
 	// represents a single currently executing invocation call stack
 	public static class ServiceExecutionThread implements com.wm.util.coder.IDataCodable {
 	  private Thread thread = null;
 	  private java.util.Deque<ServiceExecution> stack = null;
 	  long startTime;
-	
+
 	  // creates a new ServiceExecutionThread
 	  public ServiceExecutionThread(Thread thread) {
 	    this.thread = thread;
 	    this.stack = new java.util.ArrayDeque<ServiceExecution>();
 	    this.startTime = System.currentTimeMillis();
 	  }
-	
+
 	  public void push(ServiceExecution invocation) {
 	    stack.push(invocation);
 	  }
-	
+
 	  public ServiceExecution pop() {
 	    return stack.pop();
 	  }
-	
+
 	  public int size() {
 	    return stack.size();
 	  }
-	
+
 	  // returns the invocation duration in milliseconds
 	  public long getDuration() {
 	    return System.currentTimeMillis() - startTime;
 	  }
-	
+
 	  // returns an IData representation of this invocation tree
 	  public IData getIData() {
 	    IData output = IDataFactory.create();
 	    IDataCursor cursor = output.getCursor();
-	
+
 	    IDataUtil.put(cursor, "thread.id", thread.getId());
 	    IDataUtil.put(cursor, "thread.name", thread.getName());
 	    IDataUtil.put(cursor, "thread.object", thread);
 	    IDataUtil.put(cursor, "thread.start", tundra.datetime.format("" + startTime, "milliseconds", "datetime"));
 	    IDataUtil.put(cursor, "thread.duration", tundra.duration.format("" + getDuration(), "milliseconds", "xml"));
-	
+
 	    ServiceExecution[] list = stack.toArray(new ServiceExecution[0]);
 	    IData[] services = new IData[list.length];
 	    for(int i = 0; i < list.length; i++) services[i] = list[i].getIData();
 	    IDataUtil.put(cursor, "callstack", services);
 	    IDataUtil.put(cursor, "callstack.length", services.length);
-	
+
 	    cursor.destroy();
-	
+
 	    return output;
 	  }
-	
+
 	  // sets values from the given IData - not implemented
 	  public void setIData(IData input) {
 	    throw new UnsupportedOperationException("setIData not implemented");
 	  }
 	}
-	
+
 	public final static class ServiceExecutionContext implements com.wm.app.b2b.server.invoke.InvokeChainProcessor, com.wm.util.coder.IDataCodable {
 	  private static ServiceExecutionContext instance = null;
 	  private long startTime = 0;
@@ -247,38 +247,38 @@ public final class usage
 	  private java.util.concurrent.atomic.AtomicLong totalErrors = new java.util.concurrent.atomic.AtomicLong(0);
 	  private boolean started = false;
 	  private java.util.Map<Long, ServiceExecutionThread> currentThreads = new java.util.concurrent.ConcurrentHashMap<Long, ServiceExecutionThread>();
-	
+
 	  // creates a new ServiceExecutionContext object
 	  private ServiceExecutionContext() {
 	  }
-	
+
 	  // returns the singleton instance of this class
 	  public static ServiceExecutionContext getInstance() {
 	    if (instance == null) instance = new ServiceExecutionContext();
 	    return instance;
 	  }
-	
+
 	  // records each currently executing invocation
 	  public void process(java.util.Iterator chain, com.wm.app.b2b.server.BaseService service, IData pipeline, com.wm.app.b2b.server.invoke.ServiceStatus status) throws com.wm.util.ServerException {
 	    Thread currentThread = Thread.currentThread();
 	    Long id = currentThread.getId();
-	
+
 	    try {
 	      // register this call in a try/catch so that any failures do not stop service invocation
 	      try {
 	        ServiceExecutionThread serviceThread = currentThreads.get(id);
-	
+
 	        if (serviceThread == null) {
 	          serviceThread = new ServiceExecutionThread(currentThread);
 	          currentThreads.put(id, serviceThread);
 	        }
 	        if (serviceThread != null) serviceThread.push(new ServiceExecution(service, pipeline, com.wm.app.b2b.server.InvokeState.getCurrentState()));
-	
+
 	        totalInvocations.incrementAndGet();
-	      } catch (Throwable ex) { 
+	      } catch (Throwable ex) {
 	        // do nothing
 	      }
-	
+
 	      if (chain.hasNext()) ((com.wm.app.b2b.server.invoke.InvokeChainProcessor)chain.next()).process(chain, service, pipeline, status);
 	    } catch (com.wm.util.ServerException ex) {
 	      totalErrors.incrementAndGet();
@@ -295,12 +295,12 @@ public final class usage
 	      }
 	    }
 	  }
-	
+
 	  // returns the current invocation context of the server as an IData[] document list
 	  public IData getIData() {
 	    IData output = IDataFactory.create();
 	    IDataCursor cursor = output.getCursor();
-	
+
 	    IDataUtil.put(cursor, "monitoring.started?", "" + started);
 	    if (started) {
 	      IDataUtil.put(cursor, "monitoring.start", tundra.datetime.format("" + startTime, "milliseconds", "datetime"));
@@ -308,7 +308,7 @@ public final class usage
 	    }
 	    IDataUtil.put(cursor, "invocations.started", totalInvocations.longValue());
 	    IDataUtil.put(cursor, "invocations.errored", totalErrors.longValue());
-	
+
 	    java.util.List<IData> threads = new java.util.ArrayList<IData>(currentThreads.size());
 	    java.util.Iterator<Long> iterator = currentThreads.keySet().iterator();
 	    while(iterator.hasNext()) {
@@ -321,23 +321,23 @@ public final class usage
 	      }
 	    }
 	    IDataUtil.put(cursor, "invocations.current", (IData[])threads.toArray(new IData[0]));
-	    IDataUtil.put(cursor, "invocations.current.length", threads.size());           
-	
+	    IDataUtil.put(cursor, "invocations.current.length", threads.size());
+
 	    cursor.destroy();
-	
+
 	    return output;
 	  }
-	
+
 	  // sets values from the given IData - not implemented
 	  public void setIData(IData input) {
 	    throw new UnsupportedOperationException("setIData not implemented");
 	  }
-	
+
 	  // returns the duration in milliseconds this context object has been monitoring the execution state
 	  public long getDuration() {
 	    return System.currentTimeMillis() - startTime;
 	  }
-	
+
 	  // registers this processor with the invocation manager
 	  public void start() {
 	    synchronized(this) {
@@ -349,7 +349,7 @@ public final class usage
 	      }
 	    }
 	  }
-	
+
 	  // deregisters this processor with the invocation manager
 	  public void stop() {
 	    synchronized(this) {

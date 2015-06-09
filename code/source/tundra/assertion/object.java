@@ -2,7 +2,7 @@ package tundra.assertion;
 
 // -----( IS Java Code Template v1.2
 // -----( CREATED: 2012-05-12 17:07:42 EST
-// -----( ON-HOST: 172.16.70.129
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -37,19 +37,19 @@ public final class object
 		// [i] object:0:optional $actual
 		// [i] field:0:optional $message
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  Object expected = IDataUtil.get(cursor, "$expected");
 		  Object actual = IDataUtil.get(cursor, "$actual");
 		  String message = IDataUtil.getString(cursor, "$message");
-		
+
 		  equal(expected, actual, message);
 		} finally {
 		  cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -63,18 +63,18 @@ public final class object
 		// [i] object:0:optional $object
 		// [i] field:0:optional $message
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  Object object = IDataUtil.get(cursor, "$object");
 		  String message = IDataUtil.getString(cursor, "$message");
-		  
+
 		  exist(object, message);
 		} finally {
 		  cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -89,19 +89,19 @@ public final class object
 		// [i] field:0:required $class
 		// [i] field:0:optional $message
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  Object object = IDataUtil.get(cursor, "$object");
 		  String className = IDataUtil.getString(cursor, "$class");
 		  String message = IDataUtil.getString(cursor, "$message");
-		
+
 		  instance(object, className, message);
 		} finally {
 		  cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -115,18 +115,18 @@ public final class object
 		// [i] object:0:optional $object
 		// [i] field:0:optional $message
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  Object object = IDataUtil.get(cursor, "$object");
 		  String message = IDataUtil.getString(cursor, "$message");
-		
+
 		  nothing(object, message);
 		} finally {
 		  cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -141,19 +141,19 @@ public final class object
 		// [i] object:0:optional $actual
 		// [i] field:0:optional $message
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  Object expected = IDataUtil.get(cursor, "$expected");
 		  Object actual = IDataUtil.get(cursor, "$actual");
 		  String message = IDataUtil.getString(cursor, "$message");
-		
+
 		  unequal(expected, actual, message);
 		} finally {
 		  cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 	// --- <<IS-START-SHARED>> ---
@@ -168,8 +168,8 @@ public final class object
 	    throw new AssertionError(message);
 	  }
 	}
-	
-	// asserts that two objects are not equal 
+
+	// asserts that two objects are not equal
 	public static void unequal(Object expected, Object actual, String message) {
 	  if ((expected == null && actual == null) || (expected != null && actual != null && expected.equals(actual))) {
 	    if (message == null) {
@@ -180,7 +180,7 @@ public final class object
 	    throw new AssertionError(message);
 	  }
 	}
-	
+
 	// asserts that the given object is an instance of the given class
 	public static void instance(Object object, String className, String message) {
 	  if (message == null) {
@@ -188,7 +188,7 @@ public final class object
 	  } else {
 	    message = java.text.MessageFormat.format("Assertion failed: {0} (object '{'{1}'}' is not an instance of class '{'{2}'}')", message, object, className);
 	  }
-	
+
 	  try {
 	    Class klass = Class.forName(className);
 	    if (!klass.isInstance(object)) {
@@ -198,7 +198,7 @@ public final class object
 	    throw new AssertionError(message);
 	  }
 	}
-	
+
 	// asserts that the given object is null
 	public static void nothing(Object object, String message) {
 	  if (object != null) {
@@ -210,7 +210,7 @@ public final class object
 	    throw new AssertionError(message);
 	  }
 	}
-	
+
 	// asserts that the given object is not null
 	public static void exist(Object object, String message) {
 	  if (object == null) {
@@ -218,7 +218,7 @@ public final class object
 	      message = java.text.MessageFormat.format("Assertion failed: object is null '{'{0}'}'", object);
 	    } else {
 	      message = java.text.MessageFormat.format("Assertion failed: {0} (object is null '{'{1}'}')", message, object);
-	    }  
+	    }
 	    throw new AssertionError(message);
 	  }
 	}

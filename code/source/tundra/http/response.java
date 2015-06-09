@@ -2,7 +2,7 @@ package tundra.http;
 
 // -----( IS Java Code Template v1.2
 // -----( CREATED: 2015-05-05 07:55:44 AEST
-// -----( ON-HOST: PC62XKG2S.internal.qr.com.au
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -37,7 +37,7 @@ public final class response
 		// [i] field:0:required $code
 		// [o] field:0:required $message
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    int code = Integer.parseInt(IDataUtil.getString(cursor, "$code"));
 		    IDataUtil.put(cursor, "$message", HTTPHelper.getResponseStatusMessage(code));
@@ -46,7 +46,7 @@ public final class response
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 

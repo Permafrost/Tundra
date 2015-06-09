@@ -2,7 +2,7 @@ package tundra;
 
 // -----( IS Java Code Template v1.2
 // -----( CREATED: 2015-05-04 20:22:48 EST
-// -----( ON-HOST: 172.16.167.128
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -44,7 +44,7 @@ public final class session
 		// [o] - field:0:required invocations
 		// [o] - record:0:required state
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IDataUtil.put(cursor, "$session", SessionHelper.getCurrentSessionAsIData());
 		} finally {
@@ -52,7 +52,7 @@ public final class session
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -66,18 +66,18 @@ public final class session
 		// [i] field:0:optional $key
 		// [i] object:0:optional $value
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String key = IDataUtil.getString(cursor, "$key");
 		    Object value = IDataUtil.get(cursor, "$value");
-		
+
 		    SessionHelper.put(key, value);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -91,18 +91,18 @@ public final class session
 		// [i] field:0:optional $key
 		// [o] object:0:optional $value
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String key = IDataUtil.getString(cursor, "$key");
 		    Object value = SessionHelper.remove(key);
-		
+
 		    if (value != null) IDataUtil.put(cursor, "$value", value);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 

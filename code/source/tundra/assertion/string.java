@@ -2,7 +2,7 @@ package tundra.assertion;
 
 // -----( IS Java Code Template v1.2
 // -----( CREATED: 2012-05-02 20:45:11 EST
-// -----( ON-HOST: 172.16.70.129
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -39,7 +39,7 @@ public final class string
 		tundra.assertion.object.equal(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -56,7 +56,7 @@ public final class string
 		tundra.assertion.object.unequal(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 

@@ -2,7 +2,7 @@ package tundra.list;
 
 // -----( IS Java Code Template v1.2
 // -----( CREATED: 2015-05-03 17:20:51 EST
-// -----( ON-HOST: 172.16.167.128
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -42,7 +42,7 @@ public final class string
 		tundra.list.object.append(pipeline, String.class);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -60,7 +60,7 @@ public final class string
 		tundra.list.object.coalesce(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -76,7 +76,7 @@ public final class string
 		tundra.list.object.compact(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -93,7 +93,7 @@ public final class string
 		tundra.list.object.concatenate(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -110,7 +110,7 @@ public final class string
 		tundra.list.object.difference(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -127,7 +127,7 @@ public final class string
 		tundra.list.object.drop(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -145,7 +145,7 @@ public final class string
 		tundra.list.object.each(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -162,7 +162,7 @@ public final class string
 		tundra.list.object.equal(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -180,7 +180,7 @@ public final class string
 		tundra.list.object.filter(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -202,22 +202,22 @@ public final class string
 		// [o] field:1:optional $unfound
 		// [o] field:0:required $unfound.length
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  String[] list = IDataUtil.getStringArray(cursor, "$list");
 		  String pattern = IDataUtil.getString(cursor, "$pattern");
 		  boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$literal?"));
-		
+
 		  String[][] output = find(list, pattern, literal);
-		
+
 		  if (output != null && output.length > 1) {
 		    String[] found = output[0];
 		    String[] unfound = output[1];
-		
+
 		    IDataUtil.put(cursor, "$found.all?", "" + (found.length == list.length));
 		    IDataUtil.put(cursor, "$found.any?", "" + (found.length > 0));
 		    IDataUtil.put(cursor, "$found.none?", "" + (found.length == 0));
-		
+
 		    IDataUtil.put(cursor, "$found", output[0]);
 		    IDataUtil.put(cursor, "$found.length", "" + found.length);
 		    IDataUtil.put(cursor, "$unfound", output[1]);
@@ -234,7 +234,7 @@ public final class string
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -250,7 +250,7 @@ public final class string
 		tundra.list.object.first(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -268,7 +268,7 @@ public final class string
 		tundra.list.object.get(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -286,7 +286,7 @@ public final class string
 		tundra.list.object.grow(pipeline, String.class);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -303,7 +303,7 @@ public final class string
 		tundra.list.object.include(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -321,7 +321,7 @@ public final class string
 		tundra.list.object.insert(pipeline, String.class);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -338,7 +338,7 @@ public final class string
 		tundra.list.object.intersection(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -355,7 +355,7 @@ public final class string
 		tundra.list.object.join(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -371,7 +371,7 @@ public final class string
 		tundra.list.object.last(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -387,7 +387,7 @@ public final class string
 		tundra.list.object.length(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -407,7 +407,7 @@ public final class string
 		tundra.list.object.map(pipeline, String.class);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -429,22 +429,22 @@ public final class string
 		// [o] field:1:optional $unmatched
 		// [o] field:0:required $unmatched.length
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  String[] list = IDataUtil.getStringArray(cursor, "$list");
 		  String pattern = IDataUtil.getString(cursor, "$pattern");
 		  boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$literal?"));
-		
+
 		  String[][] output = match(list, pattern, literal);
-		
+
 		  if (output != null && output.length > 1) {
 		    String[] matched = output[0];
 		    String[] unmatched = output[1];
-		
+
 		    IDataUtil.put(cursor, "$matched.all?", "" + (matched.length == list.length));
 		    IDataUtil.put(cursor, "$matched.any?", "" + (matched.length > 0));
 		    IDataUtil.put(cursor, "$matched.none?", "" + (matched.length == 0));
-		
+
 		    IDataUtil.put(cursor, "$matched", output[0]);
 		    IDataUtil.put(cursor, "$matched.length", "" + matched.length);
 		    IDataUtil.put(cursor, "$unmatched", output[1]);
@@ -461,7 +461,7 @@ public final class string
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -476,13 +476,13 @@ public final class string
 		// [i] field:0:optional $encoding
 		// [o] field:1:optional $strings
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  Object[] objects = IDataUtil.getObjectArray(cursor, "$objects");
 		  String encoding = IDataUtil.getString(cursor, "$encoding");
-		
+
 		  String[] strings = StringHelper.normalize(objects, encoding);
-		
+
 		  if (strings != null) IDataUtil.put(cursor, "$strings", strings);
 		} catch(java.io.IOException ex) {
 		  tundra.exception.raise(ex);
@@ -491,7 +491,7 @@ public final class string
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -508,7 +508,7 @@ public final class string
 		tundra.list.object.prepend(pipeline, String.class);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -526,7 +526,7 @@ public final class string
 		tundra.list.object.put(pipeline, String.class);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -540,7 +540,7 @@ public final class string
 		// [i] field:1:optional $list
 		// [o] field:0:optional $pattern
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  String[] list = IDataUtil.getStringArray(cursor, "$list");
 		  if (list != null) IDataUtil.put(cursor, "$pattern", StringHelper.quote(list));
@@ -549,7 +549,7 @@ public final class string
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -567,7 +567,7 @@ public final class string
 		tundra.list.object.reject(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -585,7 +585,7 @@ public final class string
 		tundra.list.object.resize(pipeline, String.class);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -601,7 +601,7 @@ public final class string
 		tundra.list.object.reverse(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -618,7 +618,7 @@ public final class string
 		tundra.list.object.shrink(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -636,7 +636,7 @@ public final class string
 		tundra.list.object.slice(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -652,7 +652,7 @@ public final class string
 		tundra.list.object.sort(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -668,19 +668,19 @@ public final class string
 		// [i] field:0:optional $default
 		// [o] field:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  String[] list = IDataUtil.getStringArray(cursor, "$list");
 		  IData scope = IDataUtil.getIData(cursor, "$pipeline");
 		  String defaultValue = IDataUtil.getString(cursor, "$default");
-		
+
 		  IDataUtil.put(cursor, "$list", VariableSubstitutor.substitute(list, defaultValue, scope == null ? pipeline : scope));
 		} finally {
 		  cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -696,18 +696,18 @@ public final class string
 		tundra.list.object.unique(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 	// --- <<IS-START-SHARED>> ---
-	// returns the list of items that match and did not match the given regular 
+	// returns the list of items that match and did not match the given regular
 	// expression or literal string pattern
 	public static String[][] match(String[] input, String pattern, boolean literal) {
 	  if (input == null) return null;
-	
+
 	  java.util.List<String> matched = new java.util.ArrayList<String>(input.length);
 	  java.util.List<String> unmatched = new java.util.ArrayList<String>(input.length);
-	
+
 	  for (int i = 0; i < input.length; i++) {
 	    if (StringHelper.match(input[i], pattern, literal)) {
 	      matched.add(input[i]);
@@ -715,22 +715,22 @@ public final class string
 	      unmatched.add(input[i]);
 	    }
 	  }
-	
+
 	  String[][] output = new String[2][];
 	  output[0] = matched.toArray(new String[0]);
 	  output[1] = unmatched.toArray(new String[0]);
-	
+
 	  return output;
 	}
-	
-	// returns the list of items that include and do not include the given regular 
+
+	// returns the list of items that include and do not include the given regular
 	// expression or literal string pattern
 	public static String[][] find(String[] input, String pattern, boolean literal) {
 	  if (input == null) return null;
-	
+
 	  java.util.List<String> found = new java.util.ArrayList<String>(input.length);
 	  java.util.List<String> unfound = new java.util.ArrayList<String>(input.length);
-	
+
 	  for (int i = 0; i < input.length; i++) {
 	    if (StringHelper.find(input[i], pattern, literal)) {
 	      found.add(input[i]);
@@ -738,11 +738,11 @@ public final class string
 	      unfound.add(input[i]);
 	    }
 	  }
-	
+
 	  String[][] output = new String[2][];
 	  output[0] = found.toArray(new String[0]);
 	  output[1] = unfound.toArray(new String[0]);
-	
+
 	  return output;
 	}
 	// --- <<IS-END-SHARED>> ---

@@ -2,7 +2,7 @@ package tundra;
 
 // -----( IS Java Code Template v1.2
 // -----( CREATED: 2015-05-01 18:33:55 EST
-// -----( ON-HOST: 172.16.167.128
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -43,14 +43,14 @@ public final class gzip
 		// [i] field:0:optional $mode {"stream","bytes","string","base64"}
 		// [o] object:0:optional $content.gzip
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  Object input = IDataUtil.get(cursor, "$content");
 		  String charset = IDataUtil.getString(cursor, "$encoding");
 		  String mode = IDataUtil.getString(cursor, "$mode");
-		  
+
 		  Object output = ObjectHelper.convert(GzipHelper.compress(StreamHelper.normalize(input, charset)), charset, mode);
-		  
+
 		  if (output != null) IDataUtil.put(cursor, "$content.gzip", output);
 		} catch(IOException ex) {
 		  ExceptionHelper.raise(ex);
@@ -59,7 +59,7 @@ public final class gzip
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -75,14 +75,14 @@ public final class gzip
 		// [i] field:0:optional $mode {"stream","bytes","string","base64"}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		  Object input = IDataUtil.get(cursor, "$content.gzip");
 		  String charset = IDataUtil.getString(cursor, "$encoding");
 		  String mode = IDataUtil.getString(cursor, "$mode");
-		  
+
 		  Object output = ObjectHelper.convert(GzipHelper.decompress(StreamHelper.normalize(input, charset)), charset, mode);
-		
+
 		  if (output != null) IDataUtil.put(cursor, "$content", output);
 		} catch(IOException ex) {
 		  ExceptionHelper.raise(ex);
@@ -91,7 +91,7 @@ public final class gzip
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 
