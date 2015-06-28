@@ -41,25 +41,6 @@
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
         </record>
-        <record javaclass="com.wm.util.Values">
-          <value name="node_type">record</value>
-          <value name="node_comment"></value>
-          <record name="node_hints" javaclass="com.wm.util.Values">
-            <value name="field_largerEditor">false</value>
-            <value name="field_password">false</value>
-          </record>
-          <value name="is_public">false</value>
-          <value name="field_name">$scope</value>
-          <value name="field_type">record</value>
-          <value name="field_dim">0</value>
-          <value name="field_opt">true</value>
-          <value name="nillable">true</value>
-          <value name="form_qualified">false</value>
-          <value name="is_global">false</value>
-          <array name="rec_fields" type="record" depth="1">
-          </array>
-          <value name="modifiable">true</value>
-        </record>
       </array>
       <value name="modifiable">true</value>
     </record>
@@ -72,25 +53,6 @@
       <value name="form_qualified">false</value>
       <value name="is_global">false</value>
       <array name="rec_fields" type="record" depth="1">
-        <record javaclass="com.wm.util.Values">
-          <value name="node_type">record</value>
-          <value name="node_comment"></value>
-          <record name="node_hints" javaclass="com.wm.util.Values">
-            <value name="field_largerEditor">false</value>
-            <value name="field_password">false</value>
-          </record>
-          <value name="is_public">false</value>
-          <value name="field_name">$scope</value>
-          <value name="field_type">record</value>
-          <value name="field_dim">0</value>
-          <value name="field_opt">true</value>
-          <value name="nillable">true</value>
-          <value name="form_qualified">false</value>
-          <value name="is_global">false</value>
-          <array name="rec_fields" type="record" depth="1">
-          </array>
-          <value name="modifiable">true</value>
-        </record>
       </array>
       <value name="modifiable">true</value>
     </record>
@@ -102,17 +64,7 @@ unmodified.
 
 * Inputs:
   * $key is a simple or fully-qualified (such as a/b/c[0]/d) key 
-    identifying the value to be converted to a list.
-  * $scope is an optional IData document that, if specified, is used
-    to resolve the given $key against. If not specified, $key is
-    resolved against the pipeline.
-
-* Outputs:
-  * $scope is returned if an input $scope was provided, where the value
-    identified by $key within it has been converted to a list. If
-    no input $scope was specified, the value identified by $key in the
-    pipeline is instead converted to a list. If $key does not identify
-    any value, this service does nothing.</value>
+    identifying the value to be converted to a list.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
@@ -126,7 +78,7 @@ unmodified.
   <value name="retry_max">0</value>
   <value name="retry_interval">0</value>
   <value name="svc_in_validator_options">default</value>
-  <value name="svc_out_validator_options">default</value>
+  <value name="svc_out_validator_options">none</value>
   <value name="auditoption">0</value>
   <null name="auditfields_input"/>
   <null name="auditfields_output"/>

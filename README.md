@@ -3403,26 +3403,26 @@ IData document.
 
 ### tundra.document:listify
 
-Converts the IData value identified by `$key` in the given `$scope` IData
-document (or the pipeline, if not specified) to a new list of type
-IData[] containing the original value as its single item, unless the
-original value was already a list.
+Converts the value or values identified by the given key to a new
+list containing the original value or values as its items, unless
+the original value is already a list in which case it remains
+unmodified.
 
 #### Inputs:
 
-* `$key` is a key identifying the value to be coverted to an document
-  list (IData[]), and can be simple or fully qualified, such as
-  `a/b/c[0]/d`.
-* `$scope` is an optional IData document against which the given `$key`
-  is resolved. If not specified, $key is resolved against the pipeline.
+* `$key` is a simple or fully-qualified (such as `a/b/c[0]/d`) key
+  identifying the value to be converted to a list.
+* `$scope` is an optional `IData` document that, if specified, is used
+  to resolve the given `$key` against. If not specified, `$key` is
+  resolved against the pipeline.
 
 #### Outputs:
 
-* `$scope` is an optional IData document in which the value associated
-  with `$key` has been converted to a document list (IData[]). If no
-  `$scope` was provided as input, this output will not exist. Instead
-  the `$key` is resolved against the pipeline, and the associated
-  value in the pipeline is converted to a document list (IData[]).
+* `$scope` is returned if an input `$scope` was provided, where the value
+  identified by `$key` within it has been converted to a list. If
+  no input `$scope` was specified, the value identified by `$key` in the
+  pipeline is instead converted to a list. If `$key` does not identify
+  any value, this service does nothing.
 
 ---
 
@@ -8633,21 +8633,22 @@ Returns true if the given object is an instance of the given class.
 
 ### tundra.object:listify
 
-Converts the value identified by the given key to a new list of type
-`Object[]`, containing the original value as its single item, unless
-the original value is already list in which it remains unmodified.
+Converts the value or values identified by the given key to a new
+list containing the original value or values as its items, unless
+the original value is already a list in which case it remains
+unmodified.
 
 #### Inputs:
 
 * `$key` is a simple or fully-qualified (such as `a/b/c[0]/d`) key
   identifying the value to be converted to a list.
-* `$scope` is an optional IData document that, if specified, is used
-  to resolve the given $key against. If not specified, `$key` is
+* `$scope` is an optional `IData` document that, if specified, is used
+  to resolve the given `$key` against. If not specified, `$key` is
   resolved against the pipeline.
 
 #### Outputs:
 
-* `$scope` is returned if an input $scope was provide, where the value
+* `$scope` is returned if an input `$scope` was provided, where the value
   identified by `$key` within it has been converted to a list. If
   no input `$scope` was specified, the value identified by `$key` in the
   pipeline is instead converted to a list. If `$key` does not identify
@@ -8831,6 +8832,20 @@ Returns the number of top-level elements in the pipeline.
 
 * `$length` is the number of top-level elements in the
   pipeline.
+
+---
+
+### tundra.pipeline:listify
+
+Converts the value or values identified by the given key to a new
+list containing the original value or values as its items, unless
+the original value is already a list in which case it remains
+unmodified.
+
+#### Inputs:
+
+* `$key` is a simple or fully-qualified (such as `a/b/c[0]/d`) key
+  identifying the value to be converted to a list.
 
 ---
 

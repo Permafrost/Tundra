@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-05-03 17:00:22 EST
-// -----( ON-HOST: -
+// -----( CREATED: 2015-06-28 20:56:30 EST
+// -----( ON-HOST: WIN-34RAS9HJLBT
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -41,7 +41,7 @@ public final class pipeline
 		// @sigtype java 3.5
 		// [o] record:0:required $pipeline
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  IDataUtil.put(cursor, "$pipeline", IDataHelper.duplicate(pipeline, false));
 		} finally {
@@ -49,7 +49,7 @@ public final class pipeline
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -62,7 +62,7 @@ public final class pipeline
 		// @sigtype java 3.5
 		// [i] field:1:optional $preserve
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  String[] keys = IDataUtil.getStringArray(cursor, "$preserve");
 		  IDataHelper.clear(pipeline, keys);
@@ -71,7 +71,7 @@ public final class pipeline
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -85,7 +85,7 @@ public final class pipeline
 		// [i] field:0:required $key.source
 		// [i] field:0:required $key.target
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  String source = IDataUtil.getString(cursor, "$key.source");
 		  String target = IDataUtil.getString(cursor, "$key.target");
@@ -95,7 +95,7 @@ public final class pipeline
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -108,7 +108,7 @@ public final class pipeline
 		// @sigtype java 3.5
 		// [i] field:0:optional $key
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  String key = IDataUtil.getString(cursor, "$key");
 		  IDataHelper.drop(pipeline, key);
@@ -117,7 +117,7 @@ public final class pipeline
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -132,13 +132,13 @@ public final class pipeline
 		// [i] field:0:optional $mode {"stream","bytes","string"}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  String encoding = IDataUtil.getString(cursor, "$encoding");
 		  String mode = IDataUtil.getString(cursor, "$mode");
 		  IDataUtil.remove(cursor, "$encoding");
 		  IDataUtil.remove(cursor, "$mode");
-
+		
 		  IDataUtil.put(cursor, "$content", ObjectHelper.convert(IDataXMLParser.getInstance().emit(pipeline, encoding), encoding, mode));
 		} catch(IOException ex) {
 		  ExceptionHelper.raise(ex);
@@ -147,7 +147,7 @@ public final class pipeline
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -173,7 +173,7 @@ public final class pipeline
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -187,7 +187,7 @@ public final class pipeline
 		// [i] field:0:optional $key
 		// [o] object:0:optional $value
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  String key = IDataUtil.getString(cursor, "$key");
 		  IDataUtil.put(cursor, "$value", IDataHelper.get(pipeline, key));
@@ -196,7 +196,7 @@ public final class pipeline
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -222,7 +222,7 @@ public final class pipeline
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -235,7 +235,7 @@ public final class pipeline
 		// @sigtype java 3.5
 		// [o] field:0:required $length
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  IDataUtil.put(cursor, "$length", "" + IDataHelper.size(pipeline));
 		} finally {
@@ -243,7 +243,29 @@ public final class pipeline
 		}
 		// --- <<IS-END>> ---
 
+                
+	}
 
+
+
+	public static final void listify (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(listify)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $key
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		  String key = IDataUtil.getString(cursor, "$key");
+		  IDataHelper.arrayify(pipeline, key);
+		} finally {
+		  cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
 	}
 
 
@@ -256,7 +278,7 @@ public final class pipeline
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  merge(pipeline, IDataUtil.getIData(cursor, "$document"));
 		} finally {
@@ -264,7 +286,7 @@ public final class pipeline
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -276,7 +298,7 @@ public final class pipeline
 		// @subtype unknown
 		// @sigtype java 3.5
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  IData copy = IDataHelper.normalize(pipeline);
 		  IDataHelper.clear(pipeline);
@@ -286,7 +308,7 @@ public final class pipeline
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -300,11 +322,11 @@ public final class pipeline
 		// [i] object:0:optional $content
 		// [i] field:0:optional $encoding
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  Object content = IDataUtil.get(cursor, "$content");
 		  String encoding = IDataUtil.getString(cursor, "$encoding");
-
+		
 		  merge(pipeline, IDataXMLParser.getInstance().parse(StreamHelper.normalize(content, encoding)));
 		} catch(IOException ex) {
 		  ExceptionHelper.raise(ex);
@@ -313,7 +335,7 @@ public final class pipeline
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -327,7 +349,7 @@ public final class pipeline
 		// [i] field:0:optional $key
 		// [i] object:0:optional $value
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  String key = IDataUtil.getString(cursor, "$key");
 		  Object value = IDataUtil.get(cursor, "$value");
@@ -337,7 +359,7 @@ public final class pipeline
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -351,7 +373,7 @@ public final class pipeline
 		// [i] field:0:required $key.source
 		// [i] field:0:required $key.target
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  String source = IDataUtil.getString(cursor, "$key.source");
 		  String target = IDataUtil.getString(cursor, "$key.target");
@@ -361,7 +383,7 @@ public final class pipeline
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -375,7 +397,7 @@ public final class pipeline
 		sort(pipeline, false);
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -387,7 +409,7 @@ public final class pipeline
 		// @subtype unknown
 		// @sigtype java 3.5
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  IData copy = IDataHelper.substitute(pipeline, pipeline, true);
 		  IDataHelper.clear(pipeline);
@@ -397,7 +419,7 @@ public final class pipeline
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 	// --- <<IS-START-SHARED>> ---
@@ -405,7 +427,7 @@ public final class pipeline
 	public static void merge(IData target, IData source) {
 	  if (target != null && source != null) IDataUtil.merge(source, target);
 	}
-
+	
 	// sorts the elements in the pipeline by its keys in natural ascending order
 	public static void sort(IData pipeline, boolean recurse) {
 	  IData sorted = IDataHelper.sort(pipeline, recurse);

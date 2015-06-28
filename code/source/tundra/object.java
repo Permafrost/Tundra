@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-05-03 17:09:19 EST
-// -----( ON-HOST: -
+// -----( CREATED: 2015-06-28 20:54:49 EST
+// -----( ON-HOST: WIN-34RAS9HJLBT
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -42,21 +42,21 @@ public final class object
 		// [i] field:0:optional $mode {"missing","null"}
 		// [o] object:0:optional $object
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  Object x = IDataUtil.get(cursor, "$object.x");
 		  Object y = IDataUtil.get(cursor, "$object.y");
 		  String mode = IDataUtil.getString(cursor, "$mode");
-
+		
 		  Object result = tundra.object.coalesce(x, y);
-
+		
 		  if (result != null || (mode != null && mode.equals("null"))) IDataUtil.put(cursor, "$object", result);
 		} finally {
 		  cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -72,25 +72,25 @@ public final class object
 		// [i] field:0:optional $encoding
 		// [o] object:0:optional $object
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  Object object = IDataUtil.get(cursor, "$object");
 		  String charset = IDataUtil.getString(cursor, "$encoding");
 		  String mode = IDataUtil.getString(cursor, "$mode");
-
+		
 		  IDataUtil.put(cursor, "$object", ObjectHelper.convert(object, charset, mode));
 		} catch(IOException ex) {
 		  ExceptionHelper.raise(ex);
 		} finally {
 		  cursor.destroy();
 		}
-
-
-
-
+		
+		
+		
+		
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -105,18 +105,18 @@ public final class object
 		// [i] object:0:optional $object.y
 		// [o] field:0:required $equal?
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  Object x = IDataUtil.get(cursor, "$object.x");
 		  Object y = IDataUtil.get(cursor, "$object.y");
-
+		
 		  IDataUtil.put(cursor, "$equal?", "" + equal(x, y));
 		} finally {
 		  cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -140,7 +140,7 @@ public final class object
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -154,10 +154,10 @@ public final class object
 		// [i] field:0:required $key
 		// [i] record:0:optional $scope
 		// [o] record:0:optional $scope
-		listify(pipeline, Object.class);
+		tundra.document.listify(pipeline);
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -174,7 +174,7 @@ public final class object
 		cursor.destroy();
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -196,7 +196,7 @@ public final class object
 		  Object object = IDataUtil.get(cursor, "$object");
 		  String key = IDataUtil.getString(cursor, "$key");
 		  if (object == null && key != null) object = IDataHelper.get(pipeline, key);
-
+		
 		  IDataUtil.put(cursor, "$id", "" + System.identityHashCode(object));
 		  if (object != null) {
 		    Class klass = object.getClass();
@@ -209,7 +209,7 @@ public final class object
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -223,7 +223,7 @@ public final class object
 		// [i] object:0:optional $object
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		  Object object = IDataUtil.get(cursor, "$object");
 		  if (object != null) IDataUtil.put(cursor, "$string", ObjectHelper.stringify(object));
@@ -232,57 +232,15 @@ public final class object
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 	// --- <<IS-START-SHARED>> ---
 	// returns the first non-null item from the given list
-	public static <T> T coalesce(T x, T y) {
+	public static <T> T coalesce(T x, T y) { 
 	  return x != null ? x : y;
 	}
-
-	// returns a new list containing item, or item itself if it is
-	// already a list
-	public static <T> T[] listify(Object item, Class<T> klass) {
-	  T[] list;
-
-	  if (item == null) {
-	    list = (T[])java.lang.reflect.Array.newInstance(klass, 0);
-	  } else if (item.getClass().isArray()) {
-	    list = (T[])item;
-	  } else {
-	    list = (T[])java.lang.reflect.Array.newInstance(klass, 1);
-	    list[0] = (T)item;
-	  }
-
-	  return list;
-	}
-
-	// converts the value identified by key in the given scope document to a new
-	// list containing the original value, unless the value is already a list
-	public static <T> IData listify(IData scope, String key, Class<T> klass) {
-	  return IDataHelper.put(scope, key, listify(IDataHelper.get(scope, key), klass));
-	}
-
-	// converts the value identified by $key in the given $scope document (or
-	// pipeline if not specified) to a new list containing the original value,
-	// unless the value is already a list
-	public static <T> void listify(IData pipeline, Class<T> klass) {
-	  IDataCursor cursor = pipeline.getCursor();
-
-	  try {
-	    String key = IDataUtil.getString(cursor, "$key");
-	    IData scope = IDataUtil.getIData(cursor, "$scope");
-	    boolean scoped = scope != null;
-
-	    scope = listify(scoped? scope : pipeline, key, klass);
-
-	    if (scoped) IDataUtil.put(cursor, "$scope", scope);
-	  } finally {
-	    cursor.destroy();
-	  }
-	}
-
+	
 	// returns true if the two objects are equal
 	public static boolean equal(Object x, Object y) {
 	  boolean result = true;
@@ -295,18 +253,18 @@ public final class object
 	  } else {
 	    result = (x == null && y == null);
 	  }
-
+	
 	  return result;
 	}
-
+	
 	// is the given object a primitive or an array of primitives?
 	public static boolean primitive(Object object) {
 	  if (object == null) return false;
-
+	
 	  Class klass = object.getClass();
 	  return klass.isPrimitive() || (klass.isArray() && !(object instanceof Object[]));
 	}
-
+	
 	// returns true if the given object is an instance of the given class
 	public static boolean instance(Object object, String className) throws ServiceException {
 	  boolean instance = false;
@@ -317,12 +275,12 @@ public final class object
 	  }
 	  return instance;
 	}
-
+	
 	// returns true if the given object is an instance of the given class
 	public static boolean instance(Object object, Class klass) {
 	  return object != null && klass != null && klass.isInstance(object);
 	}
-
+	
 	// converts a string, byte array or stream to a string, byte array or stream
 	public static Object convert(Object object, String encoding, String mode) throws java.io.IOException {
 	    return ObjectHelper.convert(object, encoding, mode);
