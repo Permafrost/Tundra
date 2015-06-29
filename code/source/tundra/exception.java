@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-08-13 15:32:44 EST
+// -----( CREATED: 2015-06-29 09:43:54.005
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -39,10 +39,10 @@ public final class exception
 
 		try {
 		  String message = IDataUtil.getString(cursor, "$message");
-		  Throwable exception = (Throwable)IDataUtil.get(cursor, "$exception");
+		  Object exception = IDataUtil.get(cursor, "$exception");
 
-		  if (exception != null) {
-		    raise(exception);
+		  if (exception instanceof Throwable) {
+		    raise((Throwable)exception);
 		  } else {
 		    raise(message);
 		  }
