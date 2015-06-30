@@ -3,12 +3,5 @@
 <Values version="2.0">
   <value name="name">localhost</value>
   <value name="encodeutf8">true</value>
-  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogIGphdmEu
-bmV0LkluZXRBZGRyZXNzIGFkZHJlc3MgPSBqYXZhLm5ldC5JbmV0QWRkcmVzcy5nZXRMb2NhbEhv
-c3QoKTsKICBJRGF0YVV0aWwucHV0KGN1cnNvciwgIiRkb21haW4iLCBhZGRyZXNzLmdldENhbm9u
-aWNhbEhvc3ROYW1lKCkudG9Mb3dlckNhc2UoKSk7CiAgSURhdGFVdGlsLnB1dChjdXJzb3IsICIk
-aG9zdCIsIGFkZHJlc3MuZ2V0SG9zdE5hbWUoKS50b0xvd2VyQ2FzZSgpKTsKICBJRGF0YVV0aWwu
-cHV0KGN1cnNvciwgIiRpcCIsIGFkZHJlc3MuZ2V0SG9zdEFkZHJlc3MoKS50b0xvd2VyQ2FzZSgp
-KTsKfSBjYXRjaCAoamF2YS5uZXQuVW5rbm93bkhvc3RFeGNlcHRpb24gZXgpIHsKICB0dW5kcmEu
-ZXhjZXB0aW9uLnJhaXNlKGV4KTsKfSBmaW5hbGx5IHsKICBjdXJzb3IuZGVzdHJveSgpOwp9</value>
+  <value name="body">SURhdGFVdGlsLm1lcmdlKE5hbWVIZWxwZXIubG9jYWxob3N0KCksIHBpcGVsaW5lKTs=</value>
 </Values>

@@ -1,14 +1,15 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-11-19 10:29:17.529
-// -----( ON-HOST: -
+// -----( CREATED: 2015-06-30 20:18:25 EST
+// -----( ON-HOST: WIN-34RAS9HJLBT
 
 import com.wm.data.*;
 import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.server.NameHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class dns
@@ -33,22 +34,10 @@ public final class dns
 		// --- <<IS-START(localhost)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:required $name
 		// [o] field:0:required $domain
 		// [o] field:0:required $host
 		// [o] field:0:required $ip
-		IDataCursor cursor = pipeline.getCursor();
-		
-		try {
-		  java.net.InetAddress address = java.net.InetAddress.getLocalHost();
-		  IDataUtil.put(cursor, "$domain", address.getCanonicalHostName().toLowerCase());
-		  IDataUtil.put(cursor, "$host", address.getHostName().toLowerCase());
-		  IDataUtil.put(cursor, "$ip", address.getHostAddress().toLowerCase());
-		} catch (java.net.UnknownHostException ex) {
-		  tundra.exception.raise(ex);
-		} finally {
-		  cursor.destroy();
-		}
+		IDataUtil.merge(NameHelper.localhost(), pipeline);
 		// --- <<IS-END>> ---
 
                 
@@ -62,19 +51,14 @@ public final class dns
 		// --- <<IS-START(resolve)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
+		// [i] field:0:required $name
 		// [o] field:0:required $domain
 		// [o] field:0:required $host
 		// [o] field:0:required $ip
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  String name = IDataUtil.getString(cursor, "$name");
-		  java.net.InetAddress address = java.net.InetAddress.getByName(name);
-		  IDataUtil.put(cursor, "$domain", address.getCanonicalHostName().toLowerCase());
-		  IDataUtil.put(cursor, "$host", address.getHostName().toLowerCase());
-		  IDataUtil.put(cursor, "$ip", address.getHostAddress().toLowerCase());
-		} catch (java.net.UnknownHostException ex) {
-		  tundra.exception.raise(ex);
+		  IDataUtil.merge(NameHelper.resolve(IDataUtil.getString(cursor, "$name")), pipeline);
 		} finally {
 		  cursor.destroy();
 		}
