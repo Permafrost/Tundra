@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-06-30 12:47:29.272
-// -----( ON-HOST: -
+// -----( CREATED: 2015-07-04 20:47:27 AEST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -38,23 +38,18 @@ public final class condition
 		// [i] record:0:optional $scope
 		// [o] field:0:required $result?
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String condition = IDataUtil.getString(cursor, "$condition");
 		    IData scope = IDataUtil.getIData(cursor, "$scope");
-
-		    if (condition == null) {
-		        IDataUtil.put(cursor, "$result?", "true");
-		    } else {
-		        IDataUtil.put(cursor, "$result?", "" + ConditionEvaluator.evaluate(condition, scope == null? pipeline : scope));
-		    }
+		    
+		    IDataUtil.put(cursor, "$result?", "" + ConditionEvaluator.evaluate(condition, scope == null? pipeline : scope));
 		} finally {
 		    cursor.destroy();
 		}
-
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 
