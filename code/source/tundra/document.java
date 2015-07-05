@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-06-28 20:53:59 EST
-// -----( ON-HOST: WIN-34RAS9HJLBT
+// -----( CREATED: 2015-07-05 11:55:52 AEST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -471,15 +471,21 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  String key = IDataUtil.getString(cursor, "$key");
-		  IData scope = IDataUtil.getIData(cursor, "$scope");
-		  boolean scoped = scope != null;
-		  
-		  scope = IDataHelper.arrayify(scoped? scope : pipeline, key);
+		    String key = IDataUtil.getString(cursor, "$key");
+		    IData scope = IDataUtil.getIData(cursor, "$scope");
+		    boolean scoped = scope != null;
 		
-		  if (scoped) IDataUtil.put(cursor, "$scope", scope);
+		    if (scoped) {
+		        scope = IDataHelper.duplicate(scope);
+		    } else {
+		        scope = pipeline;
+		    }
+		
+		    scope = IDataHelper.arrayify(scope, key);
+		
+		    if (scoped) IDataUtil.put(cursor, "$scope", scope);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
