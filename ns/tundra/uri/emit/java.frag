@@ -3,8 +3,10 @@
 <Values version="2.0">
   <value name="name">emit</value>
   <value name="encodeutf8">true</value>
-  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogIElEYXRh
-IHVyaSA9IElEYXRhVXRpbC5nZXRJRGF0YShjdXJzb3IsICIkdXJpIik7CiAgaWYgKHVyaSAhPSBu
-dWxsKSBJRGF0YVV0aWwucHV0KGN1cnNvciwgIiRzdHJpbmciLCBlbWl0KHVyaSwgdHJ1ZSkpOwp9
-IGZpbmFsbHkgewogIGN1cnNvci5kZXN0cm95KCk7Cn0=</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7DQoNCnRyeSB7DQogICAg
+SURhdGEgdXJpID0gSURhdGFVdGlsLmdldElEYXRhKGN1cnNvciwgIiR1cmkiKTsNCiAgICBpZiAo
+dXJpICE9IG51bGwpIElEYXRhVXRpbC5wdXQoY3Vyc29yLCAiJHN0cmluZyIsIFVSSUhlbHBlci5l
+bWl0KHVyaSkpOw0KfSBjYXRjaChVUklTeW50YXhFeGNlcHRpb24gZXgpIHsNCglFeGNlcHRpb25I
+ZWxwZXIucmFpc2UoZXgpOw0KfSBmaW5hbGx5IHsNCiAgICBjdXJzb3IuZGVzdHJveSgpOw0KfQ==
+</value>
 </Values>
