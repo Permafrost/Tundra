@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-05-01 18:34:24 EST
-// -----( ON-HOST: -
+// -----( CREATED: 2015-07-09 08:27:46 AEST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -37,15 +37,15 @@ public final class id
 		// [i] field:0:optional $mode {"string","base64"}
 		// [o] field:0:required $id
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		  IDataUtil.put(cursor, "$id", IdentityHelper.generate(IDataUtil.getString(cursor, "$mode")));
+		    IDataUtil.put(cursor, "$id", IdentityHelper.generate(IDataUtil.getString(cursor, "$mode")));
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -59,17 +59,17 @@ public final class id
 		// [i] field:0:optional $string
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		  String input = IDataUtil.getString(cursor, "$string");
-		  String output = IdentityHelper.normalize(input);
-		  if (output != null) IDataUtil.put(cursor, "$string", output);
+		    String input = IDataUtil.getString(cursor, "$string");
+		    String output = IdentityHelper.normalize(input);
+		    if (output != null) IDataUtil.put(cursor, "$string", output);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 
