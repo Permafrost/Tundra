@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-05-01 18:31:24 EST
-// -----( ON-HOST: -
+// -----( CREATED: 2015-07-08 21:16:35 AEST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -45,13 +45,13 @@ public final class csv
 		// [i] field:0:optional $mode {"stream","bytes","string"}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IData document = IDataUtil.getIData(cursor, "$document");
 		    String delimiter = IDataUtil.getString(cursor, "$delimiter");
 		    String charset = IDataUtil.getString(cursor, "$encoding");
 		    String mode = IDataUtil.getString(cursor, "$mode");
-
+		
 		    if (document != null) {
 		        IDataUtil.put(cursor, "$content", ObjectHelper.convert(new IDataCSVParser(delimiter).emit(document, charset), mode));
 		    }
@@ -62,7 +62,7 @@ public final class csv
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -79,12 +79,12 @@ public final class csv
 		// [o] record:0:optional $document
 		// [o] - record:1:optional recordWithNoID
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    Object content = IDataUtil.get(cursor, "$content");
 		    String delimiter = IDataUtil.getString(cursor, "$delimiter");
 		    String charset = IDataUtil.getString(cursor, "$encoding");
-
+		
 		    if (content != null) {
 		        IDataUtil.put(cursor, "$document", new IDataCSVParser(delimiter).parse(StreamHelper.normalize(content, charset)));
 		    }
@@ -93,10 +93,9 @@ public final class csv
 		} finally {
 		    cursor.destroy();
 		}
-
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 
