@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-05-04 20:21:24 EST
-// -----( ON-HOST: -
+// -----( CREATED: 2015-07-09 08:31:44 AEST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -44,16 +44,16 @@ public final class xpath
 		// [i] - field:0:optional default
 		// [o] field:0:required $exists?
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    Object content = IDataUtil.get(cursor, "$content");
 		    String encoding = IDataUtil.getString(cursor, "$encoding");
 		    String expression = IDataUtil.getString(cursor, "$expression");
 		    IData namespace = IDataUtil.getIData(cursor, "$namespace");
 		    boolean result = false;
-
+		
 		    if (content != null) result = XPathHelper.exists(StreamHelper.normalize(content, encoding), expression, namespace);
-
+		
 		    IDataUtil.put(cursor, "$exists?", "" + result);
 		} catch (IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -62,7 +62,7 @@ public final class xpath
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 
