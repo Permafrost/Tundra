@@ -1,8 +1,8 @@
 package tundra.assertion.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-05-03 17:51:03 EST
-// -----( ON-HOST: -
+// -----( CREATED: 2015-07-08 20:58:18 AEST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -39,19 +39,19 @@ public final class object
 		// [i] object:1:required $actual
 		// [i] field:0:optional $message
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		  Object[] expected = IDataUtil.getObjectArray(cursor, "$expected");
-		  Object[] actual = IDataUtil.getObjectArray(cursor, "$actual");
-		  String message = IDataUtil.getString(cursor, "$message");
-
-		  equal(expected, actual, message);
+		    Object[] expected = IDataUtil.getObjectArray(cursor, "$expected");
+		    Object[] actual = IDataUtil.getObjectArray(cursor, "$actual");
+		    String message = IDataUtil.getString(cursor, "$message");
+		
+		    equal(expected, actual, message);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -65,18 +65,18 @@ public final class object
 		// [i] object:1:optional $list
 		// [i] field:0:optional $message
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		  Object object = IDataUtil.get(cursor, "$list");
-		  String message = IDataUtil.getString(cursor, "$message");
-
-		  tundra.assertion.object.exist(object, message);
+		    Object object = IDataUtil.get(cursor, "$list");
+		    String message = IDataUtil.getString(cursor, "$message");
+		
+		    tundra.assertion.object.exist(object, message);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -91,19 +91,19 @@ public final class object
 		// [i] field:0:required $class
 		// [i] field:0:optional $message
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		  Object object = IDataUtil.get(cursor, "$list");
-		  String className = IDataUtil.getString(cursor, "$class");
-		  String message = IDataUtil.getString(cursor, "$message");
-
-		  tundra.assertion.object.instance(object, className, message);
+		    Object object = IDataUtil.get(cursor, "$list");
+		    String className = IDataUtil.getString(cursor, "$class");
+		    String message = IDataUtil.getString(cursor, "$message");
+		
+		    tundra.assertion.object.instance(object, className, message);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -117,18 +117,18 @@ public final class object
 		// [i] object:1:optional $list
 		// [i] field:0:optional $message
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		  Object object = IDataUtil.get(cursor, "$list");
-		  String message = IDataUtil.getString(cursor, "$message");
-
-		  tundra.assertion.object.nothing(object, message);
+		    Object object = IDataUtil.get(cursor, "$list");
+		    String message = IDataUtil.getString(cursor, "$message");
+		
+		    tundra.assertion.object.nothing(object, message);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -143,44 +143,44 @@ public final class object
 		// [i] object:1:required $actual
 		// [i] field:0:optional $message
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		  Object[] expected = IDataUtil.getObjectArray(cursor, "$expected");
-		  Object[] actual = IDataUtil.getObjectArray(cursor, "$actual");
-		  String message = IDataUtil.getString(cursor, "$message");
-
-		  unequal(expected, actual, message);
+		    Object[] expected = IDataUtil.getObjectArray(cursor, "$expected");
+		    Object[] actual = IDataUtil.getObjectArray(cursor, "$actual");
+		    String message = IDataUtil.getString(cursor, "$message");
+		
+		    unequal(expected, actual, message);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 	// --- <<IS-START-SHARED>> ---
 	// asserts that two documents are equal
 	public static void equal(Object[] expected, Object[] actual, String message) {
-	  if (!ArrayHelper.equal(expected, actual)) {
-	    if (message == null) {
-	      message = java.text.MessageFormat.format("Assertion failed: expected '{'{0}'}' is not equal to actual '{'{1}'}'", ObjectHelper.stringify(expected), ObjectHelper.stringify(actual));
-	    } else {
-	      message = java.text.MessageFormat.format("Assertion failed: {0} (expected '{'{1}'}' is not equal to actual '{'{2}'}')", message, ObjectHelper.stringify(expected), ObjectHelper.stringify(actual));
+	    if (!ArrayHelper.equal(expected, actual)) {
+	        if (message == null) {
+	            message = java.text.MessageFormat.format("Assertion failed: expected '{'{0}'}' is not equal to actual '{'{1}'}'", ObjectHelper.stringify(expected), ObjectHelper.stringify(actual));
+	        } else {
+	            message = java.text.MessageFormat.format("Assertion failed: {0} (expected '{'{1}'}' is not equal to actual '{'{2}'}')", message, ObjectHelper.stringify(expected), ObjectHelper.stringify(actual));
+	        }
+	        throw new AssertionError(message);
 	    }
-	    throw new AssertionError(message);
-	  }
 	}
-
-	// asserts that two documents are not equal
+	
+	// asserts that two documents are not equal 
 	public static void unequal(Object[] expected, Object[] actual, String message) {
-	  if (ArrayHelper.equal(expected, actual)) {
-	    if (message == null) {
-	      message = java.text.MessageFormat.format("Assertion failed: expected '{'{0}'}' is equal to actual '{'{1}'}'", ObjectHelper.stringify(expected), ObjectHelper.stringify(actual));
-	    } else {
-	      message = java.text.MessageFormat.format("Assertion failed: {0} (expected '{'{1}'}' is equal to actual '{'{2}'}')", message, ObjectHelper.stringify(expected), ObjectHelper.stringify(actual));
+	    if (ArrayHelper.equal(expected, actual)) {
+	        if (message == null) {
+	            message = java.text.MessageFormat.format("Assertion failed: expected '{'{0}'}' is equal to actual '{'{1}'}'", ObjectHelper.stringify(expected), ObjectHelper.stringify(actual));
+	        } else {
+	            message = java.text.MessageFormat.format("Assertion failed: {0} (expected '{'{1}'}' is equal to actual '{'{2}'}')", message, ObjectHelper.stringify(expected), ObjectHelper.stringify(actual));
+	        }
+	        throw new AssertionError(message);
 	    }
-	    throw new AssertionError(message);
-	  }
 	}
 	// --- <<IS-END-SHARED>> ---
 }
