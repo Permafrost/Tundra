@@ -10249,16 +10249,16 @@ Returns all the lines in the given string as a list.
 
 ### tundra.string:listify
 
-Converts the string value identified by the given key to a new list
-of type `String[]`, containing the original value as its single item,
-unless the original value is already list in which case it remains
+Converts the value or values identified by the given key to a new
+list containing the original value or values as its items, unless
+the original value is already a list in which case it remains
 unmodified.
 
 #### Inputs:
 
 * `$key` is a simple or fully-qualified (such as `a/b/c[0]/d`) key
-  identifying the string value to be converted to a list.
-* `$scope` is an optional IData document that, if specified, is used
+  identifying the value to be converted to a list.
+* `$scope` is an optional `IData` document that, if specified, is used
   to resolve the given `$key` against. If not specified, `$key` is
   resolved against the pipeline.
 
