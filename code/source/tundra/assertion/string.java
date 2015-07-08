@@ -1,8 +1,8 @@
 package tundra.assertion;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-05-02 20:45:11 EST
-// -----( ON-HOST: -
+// -----( CREATED: 2015-07-08 21:05:37 AEST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -33,13 +33,13 @@ public final class string
 		// --- <<IS-START(equal)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional _expected
-		// [i] field:0:optional _actual
-		// [i] field:0:optional _message
+		// [i] field:0:required $expected
+		// [i] field:0:required $actual
+		// [i] field:0:optional $message
 		tundra.assertion.object.equal(pipeline);
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -50,13 +50,13 @@ public final class string
 		// --- <<IS-START(unequal)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional _expected
-		// [i] field:0:optional _actual
-		// [i] field:0:optional _message
+		// [i] field:0:required $expected
+		// [i] field:0:required $actual
+		// [i] field:0:optional $message
 		tundra.assertion.object.unequal(pipeline);
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 
