@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-05-01 18:30:38 EST
-// -----( ON-HOST: -
+// -----( CREATED: 2015-07-08 21:13:14 AEST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -38,20 +38,20 @@ public final class bytes
 		// [i] object:0:optional $bytes
 		// [o] field:0:required $length
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    byte[] bytes = (byte[])IDataUtil.get(cursor, "$bytes");
-
+		
 		    int length = 0;
 		    if (bytes != null) length = bytes.length;
-
+		
 		    IDataUtil.put(cursor, "$length", "" + length);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -66,22 +66,20 @@ public final class bytes
 		// [i] field:0:optional $encoding
 		// [o] object:0:optional $bytes
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    Object object = IDataUtil.get(cursor, "$object");
 		    String charset = IDataUtil.getString(cursor, "$encoding");
-
+		
 		    IDataUtil.put(cursor, "$bytes", BytesHelper.normalize(object, charset));
 		} catch(java.io.IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
 		    cursor.destroy();
 		}
-
-
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 
