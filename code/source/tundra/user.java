@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-05-04 20:21:51 EST
-// -----( ON-HOST: -
+// -----( CREATED: 2015-07-09 08:33:48 AEST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -36,7 +36,7 @@ public final class user
 		// @sigtype java 3.5
 		// [o] field:0:optional $user
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IDataUtil.put(cursor, "$user", SessionHelper.getCurrentUserName());
 		} finally {
@@ -44,7 +44,7 @@ public final class user
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 
