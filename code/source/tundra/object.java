@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-06-28 20:54:49 EST
-// -----( ON-HOST: WIN-34RAS9HJLBT
+// -----( CREATED: 2015-07-08 21:21:56 AEST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -44,15 +44,15 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  Object x = IDataUtil.get(cursor, "$object.x");
-		  Object y = IDataUtil.get(cursor, "$object.y");
-		  String mode = IDataUtil.getString(cursor, "$mode");
+		    Object x = IDataUtil.get(cursor, "$object.x");
+		    Object y = IDataUtil.get(cursor, "$object.y");
+		    String mode = IDataUtil.getString(cursor, "$mode");
 		
-		  Object result = tundra.object.coalesce(x, y);
+		    Object result = tundra.object.coalesce(x, y);
 		
-		  if (result != null || (mode != null && mode.equals("null"))) IDataUtil.put(cursor, "$object", result);
+		    if (result != null || (mode != null && mode.equals("null"))) IDataUtil.put(cursor, "$object", result);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
@@ -74,20 +74,16 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  Object object = IDataUtil.get(cursor, "$object");
-		  String charset = IDataUtil.getString(cursor, "$encoding");
-		  String mode = IDataUtil.getString(cursor, "$mode");
+		    Object object = IDataUtil.get(cursor, "$object");
+		    String charset = IDataUtil.getString(cursor, "$encoding");
+		    String mode = IDataUtil.getString(cursor, "$mode");
 		
-		  IDataUtil.put(cursor, "$object", ObjectHelper.convert(object, charset, mode));
+		    IDataUtil.put(cursor, "$object", ObjectHelper.convert(object, charset, mode));
 		} catch(IOException ex) {
-		  ExceptionHelper.raise(ex);
+		    ExceptionHelper.raise(ex);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
-		
-		
-		
-		
 		// --- <<IS-END>> ---
 
                 
@@ -107,12 +103,12 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  Object x = IDataUtil.get(cursor, "$object.x");
-		  Object y = IDataUtil.get(cursor, "$object.y");
+		    Object x = IDataUtil.get(cursor, "$object.x");
+		    Object y = IDataUtil.get(cursor, "$object.y");
 		
-		  IDataUtil.put(cursor, "$equal?", "" + equal(x, y));
+		    IDataUtil.put(cursor, "$equal?", "" + equal(x, y));
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
@@ -132,11 +128,11 @@ public final class object
 		// [o] field:0:required $instance?
 		IDataCursor cursor = pipeline.getCursor();
 		try {
-		  Object object = IDataUtil.get(cursor, "$object");
-		  String klass = IDataUtil.getString(cursor, "$class");
-		  IDataUtil.put(cursor, "$instance?", "" + (object != null && klass != null && instance(object, klass)));
+		    Object object = IDataUtil.get(cursor, "$object");
+		    String klass = IDataUtil.getString(cursor, "$class");
+		    IDataUtil.put(cursor, "$instance?", "" + (object != null && klass != null && instance(object, klass)));
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
@@ -193,19 +189,19 @@ public final class object
 		// [o] field:0:optional $primitive?
 		IDataCursor cursor = pipeline.getCursor();
 		try {
-		  Object object = IDataUtil.get(cursor, "$object");
-		  String key = IDataUtil.getString(cursor, "$key");
-		  if (object == null && key != null) object = IDataHelper.get(pipeline, key);
+		    Object object = IDataUtil.get(cursor, "$object");
+		    String key = IDataUtil.getString(cursor, "$key");
+		    if (object == null && key != null) object = IDataHelper.get(pipeline, key);
 		
-		  IDataUtil.put(cursor, "$id", "" + System.identityHashCode(object));
-		  if (object != null) {
-		    Class klass = object.getClass();
-		    IDataUtil.put(cursor, "$class", klass.getName());
-		    IDataUtil.put(cursor, "$array?", "" + klass.isArray());
-		    IDataUtil.put(cursor, "$primitive?", "" + primitive(object));
-		  }
+		    IDataUtil.put(cursor, "$id", "" + System.identityHashCode(object));
+		    if (object != null) {
+		        Class klass = object.getClass();
+		        IDataUtil.put(cursor, "$class", klass.getName());
+		        IDataUtil.put(cursor, "$array?", "" + klass.isArray());
+		        IDataUtil.put(cursor, "$primitive?", "" + primitive(object));
+		    }
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
@@ -225,10 +221,10 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  Object object = IDataUtil.get(cursor, "$object");
-		  if (object != null) IDataUtil.put(cursor, "$string", ObjectHelper.stringify(object));
+		    Object object = IDataUtil.get(cursor, "$object");
+		    if (object != null) IDataUtil.put(cursor, "$string", ObjectHelper.stringify(object));
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
@@ -237,48 +233,48 @@ public final class object
 
 	// --- <<IS-START-SHARED>> ---
 	// returns the first non-null item from the given list
-	public static <T> T coalesce(T x, T y) { 
-	  return x != null ? x : y;
+	public static <T> T coalesce(T x, T y) {
+	    return x != null ? x : y;
 	}
 	
 	// returns true if the two objects are equal
 	public static boolean equal(Object x, Object y) {
-	  boolean result = true;
-	  if (x != null && y != null) {
-	    if (x instanceof IData && y instanceof IData) {
-	      result = IDataUtil.equals((IData)x, (IData)y);
+	    boolean result = true;
+	    if (x != null && y != null) {
+	        if (x instanceof IData && y instanceof IData) {
+	            result = IDataUtil.equals((IData)x, (IData)y);
+	        } else {
+	            result = x.equals(y);
+	        }
 	    } else {
-	      result = x.equals(y);
+	        result = (x == null && y == null);
 	    }
-	  } else {
-	    result = (x == null && y == null);
-	  }
 	
-	  return result;
+	    return result;
 	}
 	
 	// is the given object a primitive or an array of primitives?
 	public static boolean primitive(Object object) {
-	  if (object == null) return false;
+	    if (object == null) return false;
 	
-	  Class klass = object.getClass();
-	  return klass.isPrimitive() || (klass.isArray() && !(object instanceof Object[]));
+	    Class klass = object.getClass();
+	    return klass.isPrimitive() || (klass.isArray() && !(object instanceof Object[]));
 	}
 	
 	// returns true if the given object is an instance of the given class
 	public static boolean instance(Object object, String className) throws ServiceException {
-	  boolean instance = false;
-	  try {
-	    instance = className != null && instance(object, Class.forName(className));
-	  } catch(ClassNotFoundException ex) {
-	    tundra.exception.raise(ex);
-	  }
-	  return instance;
+	    boolean instance = false;
+	    try {
+	        instance = className != null && instance(object, Class.forName(className));
+	    } catch(ClassNotFoundException ex) {
+	        tundra.exception.raise(ex);
+	    }
+	    return instance;
 	}
 	
 	// returns true if the given object is an instance of the given class
 	public static boolean instance(Object object, Class klass) {
-	  return object != null && klass != null && klass.isInstance(object);
+	    return object != null && klass != null && klass.isInstance(object);
 	}
 	
 	// converts a string, byte array or stream to a string, byte array or stream
