@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-05-01 18:34:10 EST
-// -----( ON-HOST: -
+// -----( CREATED: 2015-07-09 08:26:44 AEST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -41,16 +41,16 @@ public final class html
 		// [i] field:0:optional $string
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		  String string = IDataUtil.getString(cursor, "$string");
-		  if (string != null) IDataUtil.put(cursor, "$string", HTMLHelper.decode(string));
+		    String string = IDataUtil.getString(cursor, "$string");
+		    if (string != null) IDataUtil.put(cursor, "$string", HTMLHelper.decode(string));
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -67,23 +67,21 @@ public final class html
 		// [i] field:0:optional $mode {"stream","bytes","string"}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		  IData document = IDataUtil.getIData(cursor, "$document");
-		  String charset = IDataUtil.getString(cursor, "$encoding");
-		  String mode = IDataUtil.getString(cursor, "$mode");
-
-		  IDataUtil.put(cursor, "$content", ObjectHelper.convert(IDataHTMLParser.getInstance().emit(document, charset), charset, mode));
+		    IData document = IDataUtil.getIData(cursor, "$document");
+		    String charset = IDataUtil.getString(cursor, "$encoding");
+		    String mode = IDataUtil.getString(cursor, "$mode");
+		
+		    IDataUtil.put(cursor, "$content", ObjectHelper.convert(IDataHTMLParser.getInstance().emit(document, charset), charset, mode));
 		} catch (IOException ex) {
-		  ExceptionHelper.raise(ex);
+		    ExceptionHelper.raise(ex);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
-
-
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -97,16 +95,16 @@ public final class html
 		// [i] field:0:optional $string
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		  String string = IDataUtil.getString(cursor, "$string");
-		  if (string != null) IDataUtil.put(cursor, "$string", HTMLHelper.encode(string));
+		    String string = IDataUtil.getString(cursor, "$string");
+		    if (string != null) IDataUtil.put(cursor, "$string", HTMLHelper.encode(string));
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 
