@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-06-29 08:51:54.985
-// -----( ON-HOST: -
+// -----( CREATED: 2015-07-08 14:03:46 AEST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -45,9 +45,9 @@ public final class directory
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $directory
-		// [i] field:0:optional $raise? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $raise? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String directory = IDataUtil.getString(cursor, "$directory");
 		    boolean raise = BooleanHelper.parse(IDataUtil.getString(cursor, "$raise?"));
@@ -59,7 +59,7 @@ public final class directory
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -73,7 +73,7 @@ public final class directory
 		// [i] field:0:required $directory
 		// [o] field:0:required $exists?
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String directory = IDataUtil.getString(cursor, "$directory");
 		    IDataUtil.put(cursor, "$exists?", "" + DirectoryHelper.exists(directory));
@@ -82,7 +82,7 @@ public final class directory
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -97,18 +97,18 @@ public final class directory
 		// [i] field:0:required $child
 		// [o] field:0:required $uri
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String parent = IDataUtil.getString(cursor, "$parent");
 		    String child = IDataUtil.getString(cursor, "$child");
-
+		
 		    IDataUtil.put(cursor, "$uri", DirectoryHelper.join(parent, child));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -121,20 +121,20 @@ public final class directory
 		// @sigtype java 3.5
 		// [i] field:0:required $directory
 		// [i] field:0:optional $pattern
-		// [i] field:0:optional $mode {&quot;regular expression&quot;,&quot;wildcard&quot;}
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $mode {"regular expression","wildcard"}
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] field:1:required $directories
 		// [o] field:0:required $directories.length
 		// [o] field:1:required $files
 		// [o] field:0:required $files.length
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String directory = IDataUtil.getString(cursor, "$directory");
 		    String pattern = IDataUtil.getString(cursor, "$pattern");
 		    String mode = IDataUtil.getString(cursor, "$mode");
 		    boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
-
+		
 		    DirectoryLister lister;
 		    if (pattern != null) {
 		        FilenameFilter filter = null;
@@ -147,11 +147,11 @@ public final class directory
 		    } else {
 		        lister = new DirectoryLister(directory, recurse);
 		    }
-
+		
 		    DirectoryListing listing = lister.list();
 		    String[] directories = listing.listDirectoriesAsStringArray();
 		    String[] files = listing.listFilesAsStringArray();
-
+		    	
 		    IDataUtil.put(cursor, "$directories", directories);
 		    IDataUtil.put(cursor, "$directories.length", "" + directories.length);
 		    IDataUtil.put(cursor, "$files", files);
@@ -163,7 +163,7 @@ public final class directory
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -177,7 +177,7 @@ public final class directory
 		// [i] field:0:required $directory
 		// [o] field:1:required $list
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String directory = IDataUtil.getString(cursor, "$directory");
 		    IDataUtil.put(cursor, "$list", DirectoryHelper.list(directory));
@@ -188,7 +188,7 @@ public final class directory
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -202,7 +202,7 @@ public final class directory
 		// [i] field:0:required $directory
 		// [o] field:0:required $directory
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IDataUtil.put(cursor, "$directory", FileHelper.normalize(IDataUtil.getString(cursor, "$directory")));
 		} finally {
@@ -210,7 +210,7 @@ public final class directory
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -223,19 +223,19 @@ public final class directory
 		// @sigtype java 3.5
 		// [i] field:0:required $directory
 		// [i] field:0:required $duration
-		// [i] field:0:optional $duration.pattern {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $duration.pattern {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] field:0:required $count
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String directory = IDataUtil.getString(cursor, "$directory");
 		    String duration = IDataUtil.getString(cursor, "$duration");
 		    String pattern = IDataUtil.getString(cursor, "$duration.pattern");
 		    boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
-
+		
 		    long count = DirectoryHelper.purge(directory, DurationHelper.parse(duration, pattern), recurse);
-
+		
 		    IDataUtil.put(cursor, "$count", "" + count);
 		} catch(IOException ex) {
 			ExceptionHelper.raise(ex);
@@ -244,7 +244,7 @@ public final class directory
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -263,7 +263,7 @@ public final class directory
 		// [o] - field:0:optional modified
 		// [o] - field:0:required uri
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String directory = IDataUtil.getString(cursor, "$directory");
 		    IDataUtil.put(cursor, "$directory.properties", FileHelper.getPropertiesAsIData(directory));
@@ -272,7 +272,7 @@ public final class directory
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -284,9 +284,9 @@ public final class directory
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $directory
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String directory = IDataUtil.getString(cursor, "$directory");
 		    boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
@@ -298,7 +298,7 @@ public final class directory
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -312,7 +312,7 @@ public final class directory
 		// [i] field:0:required $directory.source
 		// [i] field:0:required $directory.target
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String source = IDataUtil.getString(cursor, "$directory.source");
 		    String target = IDataUtil.getString(cursor, "$directory.target");
@@ -324,7 +324,7 @@ public final class directory
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 
