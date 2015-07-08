@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-05-01 18:39:45 EST
-// -----( ON-HOST: -
+// -----( CREATED: 2015-07-09 08:29:53 AEST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -46,22 +46,22 @@ public final class zip
 		// [i] field:0:optional $mode {"stream","bytes","string","base64"}
 		// [o] object:0:optional $contents.zip
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		  IData[] contents = IDataUtil.getIDataArray(cursor, "$contents");
-		  String mode = IDataUtil.getString(cursor, "$mode");
-
-		  Object output = ObjectHelper.convert(ZipHelper.compress(ZipEntryWithData.valueOf(contents)), mode);
-
-		  if (output != null) IDataUtil.put(cursor, "$contents.zip", output);
+		    IData[] contents = IDataUtil.getIDataArray(cursor, "$contents");
+		    String mode = IDataUtil.getString(cursor, "$mode");
+		
+		    Object output = ObjectHelper.convert(ZipHelper.compress(ZipEntryWithData.valueOf(contents)), mode);
+		
+		    if (output != null) IDataUtil.put(cursor, "$contents.zip", output);
 		} catch(java.io.IOException ex) {
-		  ExceptionHelper.raise(ex);
+		    ExceptionHelper.raise(ex);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -79,23 +79,23 @@ public final class zip
 		// [o] - field:0:required name
 		// [o] - object:0:required content
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		  Object input = IDataUtil.get(cursor, "$contents.zip");
-		  String charset = IDataUtil.getString(cursor, "$encoding");
-		  String mode = IDataUtil.getString(cursor, "$mode");
-
-		  ZipEntryWithData[] entries = ZipHelper.decompress(StreamHelper.normalize(input, charset));
-
-		  if (entries != null) IDataUtil.put(cursor, "$contents", ZipEntryWithData.toIDataArray(entries, charset, mode));
+		    Object input = IDataUtil.get(cursor, "$contents.zip");
+		    String charset = IDataUtil.getString(cursor, "$encoding");
+		    String mode = IDataUtil.getString(cursor, "$mode");
+		
+		    ZipEntryWithData[] entries = ZipHelper.decompress(StreamHelper.normalize(input, charset));
+		
+		    if (entries != null) IDataUtil.put(cursor, "$contents", ZipEntryWithData.toIDataArray(entries, charset, mode));
 		} catch(IOException ex) {
-		  ExceptionHelper.raise(ex);
+		    ExceptionHelper.raise(ex);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 
