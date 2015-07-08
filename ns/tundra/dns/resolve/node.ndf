@@ -18,7 +18,7 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
+            <value name="field_usereditable">true</value>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
@@ -26,6 +26,8 @@
           <value name="field_name">$name</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
+          <array name="field_options" type="value" depth="1">
+          </array>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <value name="contentType">1</value>
             <value name="internalType">reference</value>
@@ -57,7 +59,7 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
+            <value name="field_usereditable">true</value>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
@@ -65,6 +67,8 @@
           <value name="field_name">$domain</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
+          <array name="field_options" type="value" depth="1">
+          </array>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <value name="contentType">1</value>
             <value name="internalType">reference</value>
@@ -84,7 +88,7 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
+            <value name="field_usereditable">true</value>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
@@ -92,6 +96,8 @@
           <value name="field_name">$host</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
+          <array name="field_options" type="value" depth="1">
+          </array>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <value name="contentType">1</value>
             <value name="internalType">reference</value>
@@ -111,7 +117,7 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
+            <value name="field_usereditable">true</value>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
@@ -119,6 +125,8 @@
           <value name="field_name">$ip</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
+          <array name="field_options" type="value" depth="1">
+          </array>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <value name="contentType">1</value>
             <value name="internalType">reference</value>
@@ -161,6 +169,7 @@ fully-qualifed domain name, host name, and IP address, if found.
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
   <value name="icontext_policy">$null</value>
+  <value name="svcInvkURLAlias"></value>
   <value name="system_service">no</value>
   <value name="retry_max">0</value>
   <value name="retry_interval">0</value>

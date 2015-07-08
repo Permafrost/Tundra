@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-08 14:02:57 AEST
+// -----( CREATED: 2015-07-08 21:26:23 AEST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -58,9 +58,9 @@ public final class dns
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  IDataUtil.merge(NameHelper.resolve(IDataUtil.getString(cursor, "$name")), pipeline);
+		    IDataUtil.merge(NameHelper.resolve(IDataUtil.getString(cursor, "$name")), pipeline);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
