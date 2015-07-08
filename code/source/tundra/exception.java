@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-08 14:03:36 AEST
+// -----( CREATED: 2015-07-08 21:29:41 AEST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -38,16 +38,16 @@ public final class exception
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  String message = IDataUtil.getString(cursor, "$message");
-		  Object exception = IDataUtil.get(cursor, "$exception");
+		    String message = IDataUtil.getString(cursor, "$message");
+		    Object exception = IDataUtil.get(cursor, "$exception");
 		
-		  if (exception instanceof Throwable) {
-		    raise((Throwable)exception);
-		  } else {
-		    raise(message);
-		  } 
+		    if (exception instanceof Throwable) {
+		        raise((Throwable)exception);
+		    } else {
+		        raise(message);
+		    }
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
@@ -58,92 +58,92 @@ public final class exception
 	// throws a new ServiceException with the class and message from the given Throwables, which
 	// is useful because java services are hard-wired to only throw ServiceExceptions
 	public static void raise(Throwable[] exceptions) throws ServiceException {
-	  if (exceptions != null) raise(message(exceptions));
+	    if (exceptions != null) raise(message(exceptions));
 	}
 	
 	// throws a new ServiceException with the class and message from the given Throwables, which
 	// is useful because java services are hard-wired to only throw ServiceExceptions
 	public static void raise(java.util.Collection<Throwable> exceptions) throws ServiceException {
-	  if (exceptions != null) raise(message((Throwable[])exceptions.toArray(new Throwable[0])));
+	    if (exceptions != null) raise(message((Throwable[])exceptions.toArray(new Throwable[0])));
 	}
 	
 	// throws a new ServiceException with the class and message from the given Throwable, which
 	// is useful because java services are hard-wired to only throw ServiceExceptions
 	public static void raise(Throwable exception) throws ServiceException {
-	  if (exception != null) {
-	    if (exception instanceof ServiceException) {
-	      throw (ServiceException)exception;
-	    } else {
-	      raise(message(exception));
+	    if (exception != null) {
+	        if (exception instanceof ServiceException) {
+	            throw (ServiceException)exception;
+	        } else {
+	            raise(message(exception));
+	        }
 	    }
-	  }
 	}
 	
 	// throws a new ServiceException with the given message
 	public static void raise(String message) throws ServiceException {
-	  throw new ServiceException(message == null ? "" : message);
+	    throw new ServiceException(message == null ? "" : message);
 	}
 	
 	// returns an exception as a string
 	public static String message(Throwable exception) {
-	  String message = "";
+	    String message = "";
 	
-	  if (exception != null) {
-	    if (exception instanceof ServiceException) {
-	      message = exception.getMessage();
-	    } else {
-	      message = exception.getClass().getName() + ": " + exception.getMessage();
+	    if (exception != null) {
+	        if (exception instanceof ServiceException) {
+	            message = exception.getMessage();
+	        } else {
+	            message = exception.getClass().getName() + ": " + exception.getMessage();
+	        }
 	    }
-	  }
 	
-	  return message;
+	    return message;
 	}
 	
 	// returns a list of exceptions as a string
 	public static String message(java.util.Collection<Throwable> exceptions) {
-	  return message((Throwable[])exceptions.toArray(new Throwable[0]));
+	    return message((Throwable[])exceptions.toArray(new Throwable[0]));
 	}
 	
 	// returns a list of exceptions as a string
 	public static String message(Throwable[] exceptions) {
-	  StringBuilder msg = new StringBuilder();
-	  if (exceptions != null) {
-	    if (exceptions.length == 1 && exceptions[0] != null) {
-	      msg.append(message(exceptions[0]));
-	    } else {
-	      for (int i = 0; i < exceptions.length; i++) {
-	        if (exceptions[i] != null) {
-	          msg.append("[").append(i).append("]: ").append(message(exceptions[i]));
-	          if (i < exceptions.length - 1) msg.append("\n");
+	    StringBuilder msg = new StringBuilder();
+	    if (exceptions != null) {
+	        if (exceptions.length == 1 && exceptions[0] != null) {
+	            msg.append(message(exceptions[0]));
+	        } else {
+	            for (int i = 0; i < exceptions.length; i++) {
+	                if (exceptions[i] != null) {
+	                    msg.append("[").append(i).append("]: ").append(message(exceptions[i]));
+	                    if (i < exceptions.length - 1) msg.append("\n");
+	                }
+	            }
 	        }
-	      }
 	    }
-	  }
-	  return msg.toString();
+	    return msg.toString();
 	}
 	
 	// returns the call stack associated with the given exception
 	public static IData[] stack(Throwable exception) {
-	  IData[] output = null;
+	    IData[] output = null;
 	
-	  if (exception != null) {
-	    StackTraceElement[] stack = exception.getStackTrace();
-	    output = new IData[stack.length];
+	    if (exception != null) {
+	        StackTraceElement[] stack = exception.getStackTrace();
+	        output = new IData[stack.length];
 	
-	    for (int i = 0; i < stack.length; i++) {
-	      output[i] = IDataFactory.create();
-	      IDataCursor cursor = output[i].getCursor();
-	      IDataUtil.put(cursor, "description", stack[i].toString());
-	      IDataUtil.put(cursor, "file", stack[i].getFileName());
-	      IDataUtil.put(cursor, "class", stack[i].getClassName());
-	      IDataUtil.put(cursor, "method", stack[i].getMethodName());
-	      IDataUtil.put(cursor, "line", "" + stack[i].getLineNumber());
-	      IDataUtil.put(cursor, "native?", "" + stack[i].isNativeMethod());
-	      cursor.destroy();
+	        for (int i = 0; i < stack.length; i++) {
+	            output[i] = IDataFactory.create();
+	            IDataCursor cursor = output[i].getCursor();
+	            IDataUtil.put(cursor, "description", stack[i].toString());
+	            IDataUtil.put(cursor, "file", stack[i].getFileName());
+	            IDataUtil.put(cursor, "class", stack[i].getClassName());
+	            IDataUtil.put(cursor, "method", stack[i].getMethodName());
+	            IDataUtil.put(cursor, "line", "" + stack[i].getLineNumber());
+	            IDataUtil.put(cursor, "native?", "" + stack[i].isNativeMethod());
+	            cursor.destroy();
+	        }
 	    }
-	  }
 	
-	  return output;
+	    return output;
 	}
 	// --- <<IS-END-SHARED>> ---
 }
