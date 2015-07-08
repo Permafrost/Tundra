@@ -1,8 +1,8 @@
 package tundra.assertion.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-07-05 15:33:47.049
-// -----( ON-HOST: -
+// -----( CREATED: 2015-07-08 20:59:52 AEST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -39,7 +39,7 @@ public final class string
 		tundra.assertion.list.object.equal(pipeline);
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -56,7 +56,7 @@ public final class string
 		tundra.assertion.list.object.unequal(pipeline);
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 
