@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-05-01 18:35:06 EST
-// -----( ON-HOST: -
+// -----( CREATED: 2015-07-09 08:28:50 AEST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -44,12 +44,12 @@ public final class json
 		// [i] field:0:optional $mode {"stream","bytes","string"}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IData document = IDataUtil.getIData(cursor, "$document");
 		    String charset = IDataUtil.getString(cursor, "$encoding");
 		    String mode = IDataUtil.getString(cursor, "$mode");
-
+		
 		    if (document != null) IDataUtil.put(cursor, "$content", ObjectHelper.convert(IDataJSONParser.getInstance().emit(document, charset), charset, mode));
 		} catch (IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -58,7 +58,7 @@ public final class json
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -74,11 +74,11 @@ public final class json
 		// [o] record:0:optional $document
 		// [o] - object:1:optional recordWithNoID
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    Object content = IDataUtil.get(cursor, "$content");
 		    String charset = IDataUtil.getString(cursor, "$encoding");
-
+		
 		    if (content != null) {
 		        IDataUtil.put(cursor, "$document", IDataJSONParser.getInstance().parse(StreamHelper.normalize(content, charset), charset));
 		    }
@@ -89,7 +89,7 @@ public final class json
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 
