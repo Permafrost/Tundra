@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-08 14:03:21 AEST
+// -----( CREATED: 2015-07-08 21:14:37 AEST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -42,7 +42,7 @@ public final class condition
 		try {
 		    String condition = IDataUtil.getString(cursor, "$condition");
 		    IData scope = IDataUtil.getIData(cursor, "$scope");
-		    
+		
 		    IDataUtil.put(cursor, "$result?", "" + ConditionEvaluator.evaluate(condition, scope == null? pipeline : scope));
 		} finally {
 		    cursor.destroy();
