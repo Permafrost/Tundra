@@ -1,8 +1,8 @@
 package tundra.assertion;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2012-05-12 17:08:34 EST
-// -----( ON-HOST: -
+// -----( CREATED: 2015-07-08 21:04:09 AEST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -36,25 +36,25 @@ public final class step
 		// [i] field:0:optional $message
 		IDataCursor cursor = pipeline.getCursor();
 		try {
-		  String message  = IDataUtil.getString(cursor, "$message");
-		  unreached(message);
+		    String message  = IDataUtil.getString(cursor, "$message");
+		    unreached(message);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 	// --- <<IS-START-SHARED>> ---
 	// asserts that two objects are equal
 	public static void unreached(String message) {
-	  if (message == null) {
-	    message = "Assertion failed: step reached";
-	  } else {
-	    message = java.text.MessageFormat.format("Assertion failed: {0} (step reached)", message);
-	  }
-	  throw new AssertionError(message);
+	    if (message == null) {
+	        message = "Assertion failed: step reached";
+	    } else {
+	        message = java.text.MessageFormat.format("Assertion failed: {0} (step reached)", message);
+	    }
+	    throw new AssertionError(message);
 	}
 	// --- <<IS-END-SHARED>> ---
 }

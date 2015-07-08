@@ -5,11 +5,11 @@
   <value name="node_nsName">tundra.assertion.step</value>
   <value name="encodeutf8">true</value>
   <value name="shared">Ly8gYXNzZXJ0cyB0aGF0IHR3byBvYmplY3RzIGFyZSBlcXVhbApwdWJsaWMgc3RhdGljIHZvaWQg
-dW5yZWFjaGVkKFN0cmluZyBtZXNzYWdlKSB7CiAgaWYgKG1lc3NhZ2UgPT0gbnVsbCkgewogICAg
-bWVzc2FnZSA9ICJBc3NlcnRpb24gZmFpbGVkOiBzdGVwIHJlYWNoZWQiOwogIH0gZWxzZSB7CiAg
-ICBtZXNzYWdlID0gamF2YS50ZXh0Lk1lc3NhZ2VGb3JtYXQuZm9ybWF0KCJBc3NlcnRpb24gZmFp
-bGVkOiB7MH0gKHN0ZXAgcmVhY2hlZCkiLCBtZXNzYWdlKTsKICB9CiAgdGhyb3cgbmV3IEFzc2Vy
-dGlvbkVycm9yKG1lc3NhZ2UpOwp9</value>
+dW5yZWFjaGVkKFN0cmluZyBtZXNzYWdlKSB7CiAgICBpZiAobWVzc2FnZSA9PSBudWxsKSB7CiAg
+ICAgICAgbWVzc2FnZSA9ICJBc3NlcnRpb24gZmFpbGVkOiBzdGVwIHJlYWNoZWQiOwogICAgfSBl
+bHNlIHsKICAgICAgICBtZXNzYWdlID0gamF2YS50ZXh0Lk1lc3NhZ2VGb3JtYXQuZm9ybWF0KCJB
+c3NlcnRpb24gZmFpbGVkOiB7MH0gKHN0ZXAgcmVhY2hlZCkiLCBtZXNzYWdlKTsKICAgIH0KICAg
+IHRocm93IG5ldyBBc3NlcnRpb25FcnJvcihtZXNzYWdlKTsKfQ==</value>
   <value name="extends"></value>
   <array name="implements" type="value" depth="1">
   </array>
