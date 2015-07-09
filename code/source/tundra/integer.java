@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-05-01 18:34:41 EST
-// -----( ON-HOST: -
+// -----( CREATED: 2015-07-09 14:43:56 AEST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -37,16 +37,16 @@ public final class integer
 		// [i] field:0:optional $integer
 		// [o] field:0:optional $integer
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		  String i = IDataUtil.getString(cursor, "$integer");
-		  if (i != null) IDataUtil.put(cursor, "$integer", absolute(i));
+		    String i = IDataUtil.getString(cursor, "$integer");
+		    if (i != null) IDataUtil.put(cursor, "$integer", absolute(i));
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -61,18 +61,18 @@ public final class integer
 		// [i] field:0:optional $integer
 		// [o] field:0:optional $integer
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		  String[] list = IDataUtil.getStringArray(cursor, "$integers");
-		  String integer = IDataUtil.getString(cursor, "$integer");
-
-		  if (list != null && list.length > 0) IDataUtil.put(cursor, "$integer", add(list, integer));
+		    String[] list = IDataUtil.getStringArray(cursor, "$integers");
+		    String integer = IDataUtil.getString(cursor, "$integer");
+		
+		    if (list != null && list.length > 0) IDataUtil.put(cursor, "$integer", add(list, integer));
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -86,17 +86,17 @@ public final class integer
 		// [i] field:1:optional $integers
 		// [o] field:0:optional $integer
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		  String[] list = IDataUtil.getStringArray(cursor, "$integers");
-		  String i = average(list);
-		  if (i != null) IDataUtil.put(cursor, "$integer", i);
+		    String[] list = IDataUtil.getStringArray(cursor, "$integers");
+		    String i = average(list);
+		    if (i != null) IDataUtil.put(cursor, "$integer", i);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -110,16 +110,16 @@ public final class integer
 		// [i] field:0:optional $integer
 		// [o] field:0:required $integer
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		  String i = IDataUtil.getString(cursor, "$integer");
-		  IDataUtil.put(cursor, "$integer", decrement(i));
+		    String i = IDataUtil.getString(cursor, "$integer");
+		    IDataUtil.put(cursor, "$integer", decrement(i));
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -134,18 +134,18 @@ public final class integer
 		// [i] field:0:optional $integer.y
 		// [o] field:0:optional $integer
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		  String x = IDataUtil.getString(cursor, "$integer.x");
-		  String y = IDataUtil.getString(cursor, "$integer.y");
-
-		  if (x != null && y != null) IDataUtil.put(cursor, "$integer", divide(x, y));
+		    String x = IDataUtil.getString(cursor, "$integer.x");
+		    String y = IDataUtil.getString(cursor, "$integer.y");
+		
+		    if (x != null && y != null) IDataUtil.put(cursor, "$integer", divide(x, y));
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -160,18 +160,18 @@ public final class integer
 		// [i] field:0:optional $radix
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		  Object object = IDataUtil.get(cursor, "$object");
-		  String radix = IDataUtil.getString(cursor, "$radix");
-
-		  if (object != null) IDataUtil.put(cursor, "$string", emit(object, radix));
+		    Object object = IDataUtil.get(cursor, "$object");
+		    String radix = IDataUtil.getString(cursor, "$radix");
+		
+		    if (object != null) IDataUtil.put(cursor, "$string", emit(object, radix));
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -185,16 +185,16 @@ public final class integer
 		// [i] field:0:optional $integer
 		// [o] field:0:required $integer
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		  String i = IDataUtil.getString(cursor, "$integer");
-		  IDataUtil.put(cursor, "$integer", increment(i));
+		    String i = IDataUtil.getString(cursor, "$integer");
+		    IDataUtil.put(cursor, "$integer", increment(i));
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -208,17 +208,17 @@ public final class integer
 		// [i] field:1:optional $integers
 		// [o] field:0:optional $integer
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		  String[] list = IDataUtil.getStringArray(cursor, "$integers");
-		  String i = maximum(list);
-		  if (i != null) IDataUtil.put(cursor, "$integer", i);
+		    String[] list = IDataUtil.getStringArray(cursor, "$integers");
+		    String i = maximum(list);
+		    if (i != null) IDataUtil.put(cursor, "$integer", i);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -232,17 +232,17 @@ public final class integer
 		// [i] field:1:optional $integers
 		// [o] field:0:optional $integer
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		  String[] list = IDataUtil.getStringArray(cursor, "$integers");
-		  String i = minimum(list);
-		  if (i != null) IDataUtil.put(cursor, "$integer", i);
+		    String[] list = IDataUtil.getStringArray(cursor, "$integers");
+		    String i = minimum(list);
+		    if (i != null) IDataUtil.put(cursor, "$integer", i);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -257,18 +257,18 @@ public final class integer
 		// [i] field:0:optional $integer
 		// [o] field:0:optional $integer
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		  String[] list = IDataUtil.getStringArray(cursor, "$integers");
-		  String integer = IDataUtil.getString(cursor, "$integer");
-
-		  if (list != null && list.length > 0) IDataUtil.put(cursor, "$integer", multiply(list, integer));
+		    String[] list = IDataUtil.getStringArray(cursor, "$integers");
+		    String integer = IDataUtil.getString(cursor, "$integer");
+		
+		    if (list != null && list.length > 0) IDataUtil.put(cursor, "$integer", multiply(list, integer));
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -282,16 +282,16 @@ public final class integer
 		// [i] field:0:optional $integer
 		// [o] field:0:optional $integer
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		  String i = IDataUtil.getString(cursor, "$integer");
-		  if (i != null) IDataUtil.put(cursor, "$integer", negate(i));
+		    String i = IDataUtil.getString(cursor, "$integer");
+		    if (i != null) IDataUtil.put(cursor, "$integer", negate(i));
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -307,34 +307,34 @@ public final class integer
 		// [i] field:0:optional $radix
 		// [o] object:0:optional $object
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		  String string = IDataUtil.getString(cursor, "$string");
-		  String className = IDataUtil.getString(cursor, "$class");
-		  String radix = IDataUtil.getString(cursor, "$radix");
-
-		  if (string != null) {
-		    java.math.BigInteger object = parse(string, radix);
-		    if (className == null || className.equals("java.math.BigInteger")) {
-		      IDataUtil.put(cursor, "$object", object);
-		    } else if (className.equals("java.math.BigDecimal")) {
-		      IDataUtil.put(cursor, "$object", new java.math.BigDecimal(object));
-		    } else if (className.equals("java.lang.Double")) {
-		      IDataUtil.put(cursor, "$object", new java.math.BigDecimal(object).doubleValue());
-		    } else if (className.equals("java.lang.Float")) {
-		      IDataUtil.put(cursor, "$object", new java.math.BigDecimal(object).floatValue());
-		    } else if (className.equals("java.lang.Integer")) {
-		      IDataUtil.put(cursor, "$object", object.intValue());
-		    } else if (className.equals("java.lang.Long")) {
-		      IDataUtil.put(cursor, "$object", object.longValue());
+		    String string = IDataUtil.getString(cursor, "$string");
+		    String className = IDataUtil.getString(cursor, "$class");
+		    String radix = IDataUtil.getString(cursor, "$radix");
+		
+		    if (string != null) {
+		        java.math.BigInteger object = parse(string, radix);
+		        if (className == null || className.equals("java.math.BigInteger")) {
+		            IDataUtil.put(cursor, "$object", object);
+		        } else if (className.equals("java.math.BigDecimal")) {
+		            IDataUtil.put(cursor, "$object", new java.math.BigDecimal(object));
+		        } else if (className.equals("java.lang.Double")) {
+		            IDataUtil.put(cursor, "$object", new java.math.BigDecimal(object).doubleValue());
+		        } else if (className.equals("java.lang.Float")) {
+		            IDataUtil.put(cursor, "$object", new java.math.BigDecimal(object).floatValue());
+		        } else if (className.equals("java.lang.Integer")) {
+		            IDataUtil.put(cursor, "$object", object.intValue());
+		        } else if (className.equals("java.lang.Long")) {
+		            IDataUtil.put(cursor, "$object", object.longValue());
+		        }
 		    }
-		  }
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -349,18 +349,18 @@ public final class integer
 		// [i] field:0:optional $exponent
 		// [o] field:0:optional $integer
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		  String i = IDataUtil.getString(cursor, "$integer");
-		  String e = IDataUtil.getString(cursor, "$exponent");
-
-		  if (i != null && e != null) IDataUtil.put(cursor, "$integer", power(i, e));
+		    String i = IDataUtil.getString(cursor, "$integer");
+		    String e = IDataUtil.getString(cursor, "$exponent");
+		
+		    if (i != null && e != null) IDataUtil.put(cursor, "$integer", power(i, e));
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -375,18 +375,18 @@ public final class integer
 		// [i] field:0:optional $integer.y
 		// [o] field:0:optional $integer
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		  String x = IDataUtil.getString(cursor, "$integer.x");
-		  String y = IDataUtil.getString(cursor, "$integer.y");
-
-		  if (x != null && y != null) IDataUtil.put(cursor, "$integer", remainder(x, y));
+		    String x = IDataUtil.getString(cursor, "$integer.x");
+		    String y = IDataUtil.getString(cursor, "$integer.y");
+		
+		    if (x != null && y != null) IDataUtil.put(cursor, "$integer", remainder(x, y));
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -401,18 +401,18 @@ public final class integer
 		// [i] field:0:optional $integer.y
 		// [o] field:0:optional $integer
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		  String x = IDataUtil.getString(cursor, "$integer.x");
-		  String y = IDataUtil.getString(cursor, "$integer.y");
-
-		  if (x != null && y != null) IDataUtil.put(cursor, "$integer", subtract(x, y));
+		    String x = IDataUtil.getString(cursor, "$integer.x");
+		    String y = IDataUtil.getString(cursor, "$integer.y");
+		
+		    if (x != null && y != null) IDataUtil.put(cursor, "$integer", subtract(x, y));
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -427,225 +427,224 @@ public final class integer
 		// [i] field:0:optional $raise? {"false","true"}
 		// [o] field:0:required $valid?
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		  String i = IDataUtil.getString(cursor, "$integer");
-		  IDataUtil.put(cursor, "$valid?", "" + validate(i, BooleanHelper.parse(IDataUtil.getString(cursor, "$raise?"))));
+		    String i = IDataUtil.getString(cursor, "$integer");
+		    IDataUtil.put(cursor, "$valid?", "" + validate(i, BooleanHelper.parse(IDataUtil.getString(cursor, "$raise?"))));
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
-
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 	// --- <<IS-START-SHARED>> ---
 	// returns the absolute value of the given integer string
 	public static String absolute(String s) {
-	  return emit(parse(s).abs());
+	    return emit(parse(s).abs());
 	}
-
+	
 	// returns the result of adding the given list of integer strings
 	public static String add(String ... s) {
-	  return add(s, null);
+	    return add(s, null);
 	}
-
+	
 	// returns the result of adding the given list of integer strings
 	public static String add(String[] list, String integer) {
-	  java.math.BigInteger result = java.math.BigInteger.ZERO;
-	  if (list != null) {
-	    for (int i = 0; i < list.length; i++) {
-	      result = result.add(parse(list[i]));
+	    java.math.BigInteger result = java.math.BigInteger.ZERO;
+	    if (list != null) {
+	        for (int i = 0; i < list.length; i++) {
+	            result = result.add(parse(list[i]));
+	        }
 	    }
-	  }
-
-	  if (integer != null) {
-	    result = result.add(parse(integer));
-	  }
-
-	  return emit(result);
+	
+	    if (integer != null) {
+	        result = result.add(parse(integer));
+	    }
+	
+	    return emit(result);
 	}
-
+	
 	// subtracts 1 from the given integer string
 	public static String decrement(String s) {
-	  return emit(parse(s).subtract(java.math.BigInteger.ONE));
+	    return emit(parse(s).subtract(java.math.BigInteger.ONE));
 	}
-
+	
 	// returns the result of dividing x by y
 	public static String divide(String x, String y) {
-	  return emit(parse(x).divide(parse(y)));
+	    return emit(parse(x).divide(parse(y)));
 	}
-
+	
 	// adds 1 to the given integer string
 	public static String increment(String s) {
-	  return emit(parse(s).add(java.math.BigInteger.ONE));
+	    return emit(parse(s).add(java.math.BigInteger.ONE));
 	}
-
+	
 	// returns the result of multiplying the given list of integer strings
 	public static String multiply(String ... s) {
-	  return multiply(s, null);
+	    return multiply(s, null);
 	}
-
+	
 	// returns the result of multiplying the given list of integer strings
 	public static String multiply(String[] list, String integer) {
-	  java.math.BigInteger result = java.math.BigInteger.ONE;
-	  if (list != null) {
-	    for (int i = 0; i < list.length; i++) {
-	      if (list[i] != null) result = result.multiply(parse(list[i]));
+	    java.math.BigInteger result = java.math.BigInteger.ONE;
+	    if (list != null) {
+	        for (int i = 0; i < list.length; i++) {
+	            if (list[i] != null) result = result.multiply(parse(list[i]));
+	        }
 	    }
-	  }
-
-	  if (integer != null) {
-	    result = result.multiply(parse(integer));
-	  }
-
-	  return emit(result);
+	
+	    if (integer != null) {
+	        result = result.multiply(parse(integer));
+	    }
+	
+	    return emit(result);
 	}
-
+	
 	// returns the s * -1
 	public static String negate(String s) {
-	  return emit(parse(s).negate());
+	    return emit(parse(s).negate());
 	}
-
+	
 	// returns the value of i raised to the power of e
 	public static String power(String i, String e) {
-	  int exponent = Integer.parseInt(e);
-	  return emit(parse(i).pow(exponent));
+	    int exponent = Integer.parseInt(e);
+	    return emit(parse(i).pow(exponent));
 	}
-
+	
 	// returns the modulo remainder from dividing x by y
 	public static String remainder(String x, String y) {
-	  return emit(parse(x).remainder(parse(y)));
+	    return emit(parse(x).remainder(parse(y)));
 	}
-
+	
 	// returns the resulting value of subtracting y from x
 	public static String subtract(String x, String y) {
-	  return emit(parse(x).subtract(parse(y)));
+	    return emit(parse(x).subtract(parse(y)));
 	}
-
+	
 	// returns false or throws an exception if the given string cannot be parsed as an integer
 	public static boolean validate(String s, boolean raise) throws ServiceException {
-	  boolean valid = false;
-	  try {
-	    if (s != null) {
-	      parse(s);
-	      valid = true;
+	    boolean valid = false;
+	    try {
+	        if (s != null) {
+	            parse(s);
+	            valid = true;
+	        }
+	    } catch(NumberFormatException ex) {
+	        if (raise) tundra.exception.raise(ex);
 	    }
-	  } catch(NumberFormatException ex) {
-	    if (raise) tundra.exception.raise(ex);
-	  }
-	  return valid;
+	    return valid;
 	}
-
+	
 	// returns true if the given string can be parsed as an integer
 	public static boolean validate(String s) throws ServiceException {
-	  return validate(s, false);
+	    return validate(s, false);
 	}
-
+	
 	// returns a string representation of the given BigInteger object
 	public static String emit(java.math.BigInteger i) {
-	  return emit(i, null);
+	    return emit(i, null);
 	}
-
+	
 	// returns a string representation of the given BigInteger object
 	public static String emit(Object object, String radix) {
-	  if (object == null) return null;
-
-	  java.math.BigInteger integer = null;
-	  if (object instanceof java.lang.Double) {
-	    integer = java.math.BigDecimal.valueOf((java.lang.Double)object).toBigInteger();
-	  } else if (object instanceof java.lang.Float) {
-	    integer = java.math.BigDecimal.valueOf((java.lang.Float)object).toBigInteger();
-	  } else if (object instanceof java.lang.Integer) {
-	    integer = java.math.BigInteger.valueOf((java.lang.Integer)object);
-	  } else if (object instanceof java.lang.Long) {
-	    integer = java.math.BigInteger.valueOf((java.lang.Long)object);
-	  } else if (object instanceof java.math.BigInteger) {
-	    integer = (java.math.BigInteger)object;
-	  } else if (object instanceof java.math.BigDecimal) {
-	    integer = ((java.math.BigDecimal)object).toBigInteger();
-	  } else {
-	    throw new IllegalArgumentException("Object class " + object.getClass().getName() + " is not supported");
-	  }
-
-	  return emit(integer, radix);
+	    if (object == null) return null;
+	
+	    java.math.BigInteger integer = null;
+	    if (object instanceof java.lang.Double) {
+	        integer = java.math.BigDecimal.valueOf((java.lang.Double)object).toBigInteger();
+	    } else if (object instanceof java.lang.Float) {
+	        integer = java.math.BigDecimal.valueOf((java.lang.Float)object).toBigInteger();
+	    } else if (object instanceof java.lang.Integer) {
+	        integer = java.math.BigInteger.valueOf((java.lang.Integer)object);
+	    } else if (object instanceof java.lang.Long) {
+	        integer = java.math.BigInteger.valueOf((java.lang.Long)object);
+	    } else if (object instanceof java.math.BigInteger) {
+	        integer = (java.math.BigInteger)object;
+	    } else if (object instanceof java.math.BigDecimal) {
+	        integer = ((java.math.BigDecimal)object).toBigInteger();
+	    } else {
+	        throw new IllegalArgumentException("Object class " + object.getClass().getName() + " is not supported");
+	    }
+	
+	    return emit(integer, radix);
 	}
-
+	
 	// returns a string representation of the given BigInteger object
 	public static String emit(java.math.BigInteger i, String radix) {
-	  if (radix == null) radix = "10";
-	  return emit(i, Integer.parseInt(radix));
+	    if (radix == null) radix = "10";
+	    return emit(i, Integer.parseInt(radix));
 	}
-
+	
 	// returns a string representation of the given BigInteger object
 	public static String emit(java.math.BigInteger i, int radix) {
-	  if (i == null) i = java.math.BigInteger.ZERO;
-	  return i.toString(radix);
+	    if (i == null) i = java.math.BigInteger.ZERO;
+	    return i.toString(radix);
 	}
-
+	
 	// returns a BigInteger object given an integer string
 	public static java.math.BigInteger parse(String s) {
-	  return parse(s, null);
+	    return parse(s, null);
 	}
-
+	
 	// returns a BigInteger object given an integer string
 	public static java.math.BigInteger parse(String s, String radix) {
-	  if (radix == null) radix = "10";
-	  return parse(s, Integer.parseInt(radix));
+	    if (radix == null) radix = "10";
+	    return parse(s, Integer.parseInt(radix));
 	}
-
+	
 	// returns a BigInteger object given an integer string
 	public static java.math.BigInteger parse(String s, int radix) {
-	  java.math.BigInteger i = java.math.BigInteger.ZERO;
-	  if (s != null) i = new java.math.BigInteger(s, radix);
-	  return i;
+	    java.math.BigInteger i = java.math.BigInteger.ZERO;
+	    if (s != null) i = new java.math.BigInteger(s, radix);
+	    return i;
 	}
-
+	
 	// returns the minimum value from the given list of integer strings
 	public static String minimum(String ... s) {
-	  if (s == null || s.length == 0) return null;
-
-	  java.math.BigInteger result = null;
-	  for (int i = 0; i < s.length; i++) {
-	    java.math.BigInteger n = parse(s[i]);
-	    if (result == null) {
-	      result = n;
-	    } else {
-	      result = result.min(n);
+	    if (s == null || s.length == 0) return null;
+	
+	    java.math.BigInteger result = null;
+	    for (int i = 0; i < s.length; i++) {
+	        java.math.BigInteger n = parse(s[i]);
+	        if (result == null) {
+	            result = n;
+	        } else {
+	            result = result.min(n);
+	        }
 	    }
-	  }
-
-	  return emit(result);
+	
+	    return emit(result);
 	}
-
+	
 	// returns the maximum value from the given list of integer strings
 	public static String maximum(String ... s) {
-	  if (s == null || s.length == 0) return null;
-
-	  java.math.BigInteger result = null;
-	  for (int i = 0; i < s.length; i++) {
-	    java.math.BigInteger n = parse(s[i]);
-	    if (result == null) {
-	      result = n;
-	    } else {
-	      result = result.max(n);
+	    if (s == null || s.length == 0) return null;
+	
+	    java.math.BigInteger result = null;
+	    for (int i = 0; i < s.length; i++) {
+	        java.math.BigInteger n = parse(s[i]);
+	        if (result == null) {
+	            result = n;
+	        } else {
+	            result = result.max(n);
+	        }
 	    }
-	  }
-
-	  return emit(result);
+	
+	    return emit(result);
 	}
-
+	
 	// returns the average value for the given list of integer strings
 	public static String average(String ... s) {
-	  if (s == null || s.length == 0) return null;
-
-	  java.math.BigInteger total = java.math.BigInteger.ZERO;
-	  for (int i = 0; i < s.length; i++) {
-	    total = total.add(parse(s[i]));
-	  }
-
-	  return emit(total.divide(parse("" + s.length)));
+	    if (s == null || s.length == 0) return null;
+	
+	    java.math.BigInteger total = java.math.BigInteger.ZERO;
+	    for (int i = 0; i < s.length; i++) {
+	        total = total.add(parse(s[i]));
+	    }
+	
+	    return emit(total.divide(parse("" + s.length)));
 	}
 	// --- <<IS-END-SHARED>> ---
 }

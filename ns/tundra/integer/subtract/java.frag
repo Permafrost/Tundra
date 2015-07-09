@@ -3,9 +3,10 @@
 <Values version="2.0">
   <value name="name">subtract</value>
   <value name="encodeutf8">true</value>
-  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogIFN0cmlu
-ZyB4ID0gSURhdGFVdGlsLmdldFN0cmluZyhjdXJzb3IsICIkaW50ZWdlci54Iik7CiAgU3RyaW5n
-IHkgPSBJRGF0YVV0aWwuZ2V0U3RyaW5nKGN1cnNvciwgIiRpbnRlZ2VyLnkiKTsKCiAgaWYgKHgg
-IT0gbnVsbCAmJiB5ICE9IG51bGwpIElEYXRhVXRpbC5wdXQoY3Vyc29yLCAiJGludGVnZXIiLCBz
-dWJ0cmFjdCh4LCB5KSk7Cn0gZmluYWxseSB7CiAgY3Vyc29yLmRlc3Ryb3koKTsKfQ==</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7DQoNCnRyeSB7DQogICAg
+U3RyaW5nIHggPSBJRGF0YVV0aWwuZ2V0U3RyaW5nKGN1cnNvciwgIiRpbnRlZ2VyLngiKTsNCiAg
+ICBTdHJpbmcgeSA9IElEYXRhVXRpbC5nZXRTdHJpbmcoY3Vyc29yLCAiJGludGVnZXIueSIpOw0K
+DQogICAgaWYgKHggIT0gbnVsbCAmJiB5ICE9IG51bGwpIElEYXRhVXRpbC5wdXQoY3Vyc29yLCAi
+JGludGVnZXIiLCBzdWJ0cmFjdCh4LCB5KSk7DQp9IGZpbmFsbHkgew0KICAgIGN1cnNvci5kZXN0
+cm95KCk7DQp9</value>
 </Values>
