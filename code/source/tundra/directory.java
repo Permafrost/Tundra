@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-08 14:03:46 AEST
+// -----( CREATED: 2015-07-09 14:21:58 AEST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -238,7 +238,7 @@ public final class directory
 		
 		    IDataUtil.put(cursor, "$count", "" + count);
 		} catch(IOException ex) {
-			ExceptionHelper.raise(ex);
+		    ExceptionHelper.raise(ex);
 		} finally {
 		    cursor.destroy();
 		}
@@ -318,7 +318,7 @@ public final class directory
 		    String target = IDataUtil.getString(cursor, "$directory.target");
 		    DirectoryHelper.rename(source, target);
 		} catch(IOException ex) {
-			ExceptionHelper.raise(ex);
+		    ExceptionHelper.raise(ex);
 		} finally {
 		    cursor.destroy();
 		}
