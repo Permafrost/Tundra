@@ -3,9 +3,9 @@
 <Values version="2.0">
   <value name="name">defer</value>
   <value name="encodeutf8">true</value>
-  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogIFN0cmlu
-ZyBzZXJ2aWNlID0gSURhdGFVdGlsLmdldFN0cmluZyhjdXJzb3IsICIkc2VydmljZSIpOwogIElE
-YXRhIHNjb3BlID0gSURhdGFVdGlsLmdldElEYXRhKGN1cnNvciwgIiRwaXBlbGluZSIpOwogIAog
-IGRlZmVyKHNlcnZpY2UsIHNjb3BlID09IG51bGwgPyBwaXBlbGluZSA6IHNjb3BlKTsKfSBmaW5h
-bGx5IHsKICBjdXJzb3IuZGVzdHJveSgpOwp9</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7DQoNCnRyeSB7DQogICAg
+U3RyaW5nIHNlcnZpY2UgPSBJRGF0YVV0aWwuZ2V0U3RyaW5nKGN1cnNvciwgIiRzZXJ2aWNlIik7
+DQogICAgSURhdGEgc2NvcGUgPSBJRGF0YVV0aWwuZ2V0SURhdGEoY3Vyc29yLCAiJHBpcGVsaW5l
+Iik7DQoNCiAgICBkZWZlcihzZXJ2aWNlLCBzY29wZSA9PSBudWxsID8gcGlwZWxpbmUgOiBzY29w
+ZSk7DQp9IGZpbmFsbHkgew0KICAgIGN1cnNvci5kZXN0cm95KCk7DQp9</value>
 </Values>
