@@ -201,5 +201,7 @@ bm9yZSBleGNlcHRpb25zCiAgfQoKICByZXR1cm4gZXN0aW1hdG9yOwp9</value>
     <value>permafrost.tundra.math.NormalDistributionEstimator</value>
     <value>permafrost.tundra.net.http.HTTPHelper</value>
     <value>permafrost.tundra.server.NodeHelper</value>
+    <value>permafrost.tundra.time.DurationHelper</value>
+    <value>permafrost.tundra.time.DurationPattern</value>
   </array>
 </Values>
