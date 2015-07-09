@@ -1,8 +1,8 @@
 package tundra.support.test.document;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-09-13 11:15:35 EST
-// -----( ON-HOST: -
+// -----( CREATED: 2015-07-09 14:06:53 AEST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -36,32 +36,32 @@ public final class squeeze
 		// [o] record:0:required $document
 		// [o] record:0:required $expected
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		  IData document = IDataFactory.create();
-		  IDataCursor dc = document.getCursor();
-		  dc.insertAfter("a", "test   ");
-		  dc.insertAfter("b", "   test   ");
-		  dc.insertAfter("c", "   test");
-		  dc.insertAfter("d", "   ");
-		  dc.insertAfter("e", "");
-		  dc.insertAfter("f", null);
-		  dc.destroy();
-		  IDataUtil.put(cursor, "$document", document);
-
-		  IData expected = IDataFactory.create();
-		  IDataCursor ec = expected.getCursor();
-		  ec.insertAfter("a", "test");
-		  ec.insertAfter("b", "test");
-		  ec.insertAfter("c", "test");
-		  ec.destroy();
-		  IDataUtil.put(cursor, "$expected", expected);
+		    IData document = IDataFactory.create();
+		    IDataCursor dc = document.getCursor();
+		    dc.insertAfter("a", "test   ");
+		    dc.insertAfter("b", "   test   ");
+		    dc.insertAfter("c", "   test");
+		    dc.insertAfter("d", "   ");
+		    dc.insertAfter("e", "");
+		    dc.insertAfter("f", null);
+		    dc.destroy();
+		    IDataUtil.put(cursor, "$document", document);
+		
+		    IData expected = IDataFactory.create();
+		    IDataCursor ec = expected.getCursor();
+		    ec.insertAfter("a", "test");
+		    ec.insertAfter("b", "test");
+		    ec.insertAfter("c", "test");
+		    ec.destroy();
+		    IDataUtil.put(cursor, "$expected", expected);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 
