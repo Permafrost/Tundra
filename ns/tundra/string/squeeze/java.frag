@@ -3,9 +3,9 @@
 <Values version="2.0">
   <value name="name">squeeze</value>
   <value name="encodeutf8">true</value>
-  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogIFN0cmlu
-ZyBzdHJpbmcgPSBTdHJpbmdIZWxwZXIuc3F1ZWV6ZShJRGF0YVV0aWwuZ2V0U3RyaW5nKGN1cnNv
-ciwgIiRzdHJpbmciKSk7CiAgaWYgKHN0cmluZyAhPSBudWxsKSBJRGF0YVV0aWwucHV0KGN1cnNv
-ciwgIiRzdHJpbmciLCBzdHJpbmcpOwp9IGZpbmFsbHkgewogIGN1cnNvci5kZXN0cm95KCk7Cn0=
-</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7DQoNCnRyeSB7DQogICAg
+U3RyaW5nIHN0cmluZyA9IFN0cmluZ0hlbHBlci5zcXVlZXplKElEYXRhVXRpbC5nZXRTdHJpbmco
+Y3Vyc29yLCAiJHN0cmluZyIpKTsNCiAgICBpZiAoc3RyaW5nICE9IG51bGwpIElEYXRhVXRpbC5w
+dXQoY3Vyc29yLCAiJHN0cmluZyIsIHN0cmluZyk7DQp9IGZpbmFsbHkgew0KICAgIGN1cnNvci5k
+ZXN0cm95KCk7DQp9</value>
 </Values>
