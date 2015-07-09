@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2014-11-03 13:23:34.522
-// -----( ON-HOST: -
+// -----( CREATED: 2015-07-09 14:53:56 AEST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -34,23 +34,23 @@ public final class duration
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:1:optional $list
-		// [i] field:0:optional $pattern.input {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
-		// [i] field:0:optional $pattern.output {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;}
+		// [i] field:0:optional $pattern.input {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
+		// [i] field:0:optional $pattern.output {"xml","milliseconds","seconds","minutes","hours","days","weeks"}
 		// [i] field:0:optional $datetime
-		// [i] field:0:optional $datetime.pattern {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
+		// [i] field:0:optional $datetime.pattern {"datetime","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
 		// [o] field:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  String[] list = IDataUtil.getStringArray(cursor, "$list");
-		  String inPattern = IDataUtil.getString(cursor, "$pattern.input");
-		  String outPattern = IDataUtil.getString(cursor, "$pattern.output");
-		  String datetime = IDataUtil.getString(cursor, "$datetime");
-		  String datetimePattern = IDataUtil.getString(cursor, "$datetime.pattern");
-		  
-		  IDataUtil.put(cursor, "$list", tundra.duration.format(list, inPattern, outPattern, datetime, datetimePattern));
+		    String[] list = IDataUtil.getStringArray(cursor, "$list");
+		    String inPattern = IDataUtil.getString(cursor, "$pattern.input");
+		    String outPattern = IDataUtil.getString(cursor, "$pattern.output");
+		    String datetime = IDataUtil.getString(cursor, "$datetime");
+		    String datetimePattern = IDataUtil.getString(cursor, "$datetime.pattern");
+		
+		    IDataUtil.put(cursor, "$list", tundra.duration.format(list, inPattern, outPattern, datetime, datetimePattern));
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
@@ -66,19 +66,19 @@ public final class duration
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:1:optional $list
-		// [i] field:0:optional $pattern.input {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
-		// [i] field:0:optional $pattern.output {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;}
+		// [i] field:0:optional $pattern.input {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
+		// [i] field:0:optional $pattern.output {"xml","milliseconds","seconds","minutes","hours","days","weeks"}
 		// [o] field:0:required $duration
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  String[] list = IDataUtil.getStringArray(cursor, "$list");
-		  String inPattern = IDataUtil.getString(cursor, "$pattern.input");
-		  String outPattern = IDataUtil.getString(cursor, "$pattern.output");
+		    String[] list = IDataUtil.getStringArray(cursor, "$list");
+		    String inPattern = IDataUtil.getString(cursor, "$pattern.input");
+		    String outPattern = IDataUtil.getString(cursor, "$pattern.output");
 		
-		  IDataUtil.put(cursor, "$duration", tundra.duration.add(list, inPattern, outPattern));
+		    IDataUtil.put(cursor, "$duration", tundra.duration.add(list, inPattern, outPattern));
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
