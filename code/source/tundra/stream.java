@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-05-05 08:51:15 AEST
-// -----( ON-HOST: -
+// -----( CREATED: 2015-07-09 11:09:48 AEST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -40,16 +40,16 @@ public final class stream
 		// @sigtype java 3.5
 		// [i] object:0:optional $stream
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		  Object stream = IDataUtil.get(cursor, "$stream");
-		  if (stream instanceof Closeable) StreamHelper.close((Closeable)stream);
+		    Object stream = IDataUtil.get(cursor, "$stream");
+		    if (stream instanceof Closeable) StreamHelper.close((Closeable)stream);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -64,7 +64,7 @@ public final class stream
 		// [i] object:0:optional $output
 		// [i] field:0:optional $close? {"true","false"}
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    Object input = IDataUtil.get(cursor, "$input");
 		    Object output = IDataUtil.get(cursor, "$output");
@@ -77,7 +77,7 @@ public final class stream
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -92,18 +92,18 @@ public final class stream
 		// [i] field:0:optional $encoding
 		// [o] object:0:optional $stream
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    Object object = IDataUtil.get(cursor, "$object");
 		    String encoding = IDataUtil.getString(cursor, "$encoding");
-
+		
 		    IDataUtil.put(cursor, "$stream", StreamHelper.normalize(object, encoding));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 

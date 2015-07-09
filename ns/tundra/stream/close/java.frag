@@ -3,8 +3,8 @@
 <Values version="2.0">
   <value name="name">close</value>
   <value name="encodeutf8">true</value>
-  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7DQoNCnRyeSB7DQogIE9i
-amVjdCBzdHJlYW0gPSBJRGF0YVV0aWwuZ2V0KGN1cnNvciwgIiRzdHJlYW0iKTsNCiAgaWYgKHN0
-cmVhbSBpbnN0YW5jZW9mIENsb3NlYWJsZSkgU3RyZWFtSGVscGVyLmNsb3NlKChDbG9zZWFibGUp
-c3RyZWFtKTsNCn0gZmluYWxseSB7DQogIGN1cnNvci5kZXN0cm95KCk7DQp9</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7DQoNCnRyeSB7DQogICAg
+T2JqZWN0IHN0cmVhbSA9IElEYXRhVXRpbC5nZXQoY3Vyc29yLCAiJHN0cmVhbSIpOw0KICAgIGlm
+IChzdHJlYW0gaW5zdGFuY2VvZiBDbG9zZWFibGUpIFN0cmVhbUhlbHBlci5jbG9zZSgoQ2xvc2Vh
+YmxlKXN0cmVhbSk7DQp9IGZpbmFsbHkgew0KICAgIGN1cnNvci5kZXN0cm95KCk7DQp9</value>
 </Values>
