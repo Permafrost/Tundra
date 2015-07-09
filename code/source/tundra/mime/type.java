@@ -1,8 +1,8 @@
 package tundra.mime;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-05-06 20:47:56 EST
-// -----( ON-HOST: -
+// -----( CREATED: 2015-07-09 11:28:22 AEST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -43,7 +43,7 @@ public final class type
 		// [i] - record:0:optional parameters
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IData type = IDataUtil.getIData(cursor, "$type");
 		    if (type != null) IDataUtil.put(cursor, "$string", MIMETypeHelper.emit(type));
@@ -54,7 +54,7 @@ public final class type
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -69,7 +69,7 @@ public final class type
 		// [i] field:0:optional $string.y
 		// [o] field:0:required $equal?
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String string1 = IDataUtil.getString(cursor, "$string.x");
 		    String string2 = IDataUtil.getString(cursor, "$string.y");
@@ -81,7 +81,7 @@ public final class type
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -95,7 +95,7 @@ public final class type
 		// [i] field:0:optional $string
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String string = IDataUtil.getString(cursor, "$string");
 		    if (string != null) IDataUtil.put(cursor, "$string", MIMETypeHelper.normalize(string));
@@ -106,7 +106,7 @@ public final class type
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -123,7 +123,7 @@ public final class type
 		// [o] - field:0:required subtype
 		// [o] - record:0:optional parameters
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String string = IDataUtil.getString(cursor, "$string");
 		    if (string != null) IDataUtil.put(cursor, "$type", MIMETypeHelper.parse(string));
@@ -134,7 +134,7 @@ public final class type
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -149,18 +149,18 @@ public final class type
 		// [i] field:0:optional $raise? {"false","true"}
 		// [o] field:0:required $valid?
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String string = IDataUtil.getString(cursor, "$string");
 		    boolean raise = BooleanHelper.parse(IDataUtil.getString(cursor, "$raise?"));
-
+		
 		    IDataUtil.put(cursor, "$valid?", "" + MIMETypeHelper.validate(string, raise));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 
