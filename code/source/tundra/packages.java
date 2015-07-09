@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-05-14 09:55:57 AEST
-// -----( ON-HOST: -
+// -----( CREATED: 2015-07-09 10:59:56 AEST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -37,7 +37,7 @@ public final class packages
 		// [i] field:0:optional $name
 		// [o] field:0:required $exists?
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String packageName = IDataUtil.getString(cursor, "$name");
 		    IDataUtil.put(cursor, "$exists?", BooleanHelper.emit(PackageHelper.exists(packageName)));
@@ -46,7 +46,7 @@ public final class packages
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -84,7 +84,7 @@ public final class packages
 		// [o] -- field:0:required config
 		// [o] field:0:required $exists?
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String packageName = IDataUtil.getString(cursor, "$name");
 		    IData document = PackageHelper.getPackageAsIData(packageName);
@@ -96,7 +96,7 @@ public final class packages
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -134,7 +134,7 @@ public final class packages
 		// [o] -- field:0:required config
 		// [o] field:0:required $packages.length
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    boolean enabledOnly = BooleanHelper.parse(IDataUtil.getString(cursor, "$enabled?"));
 		    IData[] list = PackageHelper.listAsIDataArray(enabledOnly);
@@ -145,7 +145,7 @@ public final class packages
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 
