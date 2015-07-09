@@ -3,10 +3,10 @@
 <Values version="2.0">
   <value name="name">resize</value>
   <value name="encodeutf8">true</value>
-  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogIFN0cmlu
-ZyBjbGFzc05hbWUgPSBJRGF0YVV0aWwuZ2V0U3RyaW5nKGN1cnNvciwgIiRjbGFzcyIpOwogIHJl
-c2l6ZShwaXBlbGluZSwgY2xhc3NOYW1lID09IG51bGwgPyBPYmplY3QuY2xhc3MgOiBDbGFzcy5m
-b3JOYW1lKGNsYXNzTmFtZSkpOwp9IGNhdGNoIChDbGFzc05vdEZvdW5kRXhjZXB0aW9uIGV4KSB7
-CiAgdHVuZHJhLmV4Y2VwdGlvbi5yYWlzZShleCk7Cn0gZmluYWxseSB7CiAgY3Vyc29yLmRlc3Ry
-b3koKTsKfQ==</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7DQoNCnRyeSB7DQogICAg
+U3RyaW5nIGNsYXNzTmFtZSA9IElEYXRhVXRpbC5nZXRTdHJpbmcoY3Vyc29yLCAiJGNsYXNzIik7
+DQogICAgcmVzaXplKHBpcGVsaW5lLCBjbGFzc05hbWUgPT0gbnVsbCA/IE9iamVjdC5jbGFzcyA6
+IENsYXNzLmZvck5hbWUoY2xhc3NOYW1lKSk7DQp9IGNhdGNoIChDbGFzc05vdEZvdW5kRXhjZXB0
+aW9uIGV4KSB7DQogICAgRXhjZXB0aW9uSGVscGVyLnJhaXNlKGV4KTsNCn0gZmluYWxseSB7DQog
+ICAgY3Vyc29yLmRlc3Ryb3koKTsNCn0=</value>
 </Values>
