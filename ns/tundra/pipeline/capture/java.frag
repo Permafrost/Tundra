@@ -3,7 +3,8 @@
 <Values version="2.0">
   <value name="name">capture</value>
   <value name="encodeutf8">true</value>
-  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogIElEYXRh
-VXRpbC5wdXQoY3Vyc29yLCAiJHBpcGVsaW5lIiwgSURhdGFIZWxwZXIuZHVwbGljYXRlKHBpcGVs
-aW5lLCBmYWxzZSkpOwp9IGZpbmFsbHkgewogIGN1cnNvci5kZXN0cm95KCk7Cn0=</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7DQoNCnRyeSB7DQogICAg
+SURhdGFVdGlsLnB1dChjdXJzb3IsICIkcGlwZWxpbmUiLCBJRGF0YUhlbHBlci5kdXBsaWNhdGUo
+cGlwZWxpbmUsIGZhbHNlKSk7DQp9IGZpbmFsbHkgew0KICAgIGN1cnNvci5kZXN0cm95KCk7DQp9
+</value>
 </Values>

@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-06-28 20:56:30 EST
-// -----( ON-HOST: WIN-34RAS9HJLBT
+// -----( CREATED: 2015-07-09 13:57:45 AEST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -43,9 +43,9 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  IDataUtil.put(cursor, "$pipeline", IDataHelper.duplicate(pipeline, false));
+		    IDataUtil.put(cursor, "$pipeline", IDataHelper.duplicate(pipeline, false));
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
@@ -64,10 +64,10 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  String[] keys = IDataUtil.getStringArray(cursor, "$preserve");
-		  IDataHelper.clear(pipeline, keys);
+		    String[] keys = IDataUtil.getStringArray(cursor, "$preserve");
+		    IDataHelper.clear(pipeline, keys);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
@@ -87,11 +87,11 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  String source = IDataUtil.getString(cursor, "$key.source");
-		  String target = IDataUtil.getString(cursor, "$key.target");
-		  IDataHelper.copy(pipeline, source, target);
+		    String source = IDataUtil.getString(cursor, "$key.source");
+		    String target = IDataUtil.getString(cursor, "$key.target");
+		    IDataHelper.copy(pipeline, source, target);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
@@ -110,10 +110,10 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  String key = IDataUtil.getString(cursor, "$key");
-		  IDataHelper.drop(pipeline, key);
+		    String key = IDataUtil.getString(cursor, "$key");
+		    IDataHelper.drop(pipeline, key);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
@@ -134,16 +134,16 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  String encoding = IDataUtil.getString(cursor, "$encoding");
-		  String mode = IDataUtil.getString(cursor, "$mode");
-		  IDataUtil.remove(cursor, "$encoding");
-		  IDataUtil.remove(cursor, "$mode");
+		    String encoding = IDataUtil.getString(cursor, "$encoding");
+		    String mode = IDataUtil.getString(cursor, "$mode");
+		    IDataUtil.remove(cursor, "$encoding");
+		    IDataUtil.remove(cursor, "$mode");
 		
-		  IDataUtil.put(cursor, "$content", ObjectHelper.convert(IDataXMLParser.getInstance().emit(pipeline, encoding), encoding, mode));
+		    IDataUtil.put(cursor, "$content", ObjectHelper.convert(IDataXMLParser.getInstance().emit(pipeline, encoding), encoding, mode));
 		} catch(IOException ex) {
-		  ExceptionHelper.raise(ex);
+		    ExceptionHelper.raise(ex);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
@@ -162,14 +162,14 @@ public final class pipeline
 		// [o] object:0:optional $value
 		IDataCursor cursor = pipeline.getCursor();
 		try {
-		  if (cursor.first()) {
-		    String key = cursor.getKey();
-		    Object value = cursor.getValue();
-		    IDataUtil.put(cursor, "$key", key);
-		    IDataUtil.put(cursor, "$value", value);
-		  }
+		    if (cursor.first()) {
+		        String key = cursor.getKey();
+		        Object value = cursor.getValue();
+		        IDataUtil.put(cursor, "$key", key);
+		        IDataUtil.put(cursor, "$value", value);
+		    }
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
@@ -189,10 +189,10 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  String key = IDataUtil.getString(cursor, "$key");
-		  IDataUtil.put(cursor, "$value", IDataHelper.get(pipeline, key));
+		    String key = IDataUtil.getString(cursor, "$key");
+		    IDataUtil.put(cursor, "$value", IDataHelper.get(pipeline, key));
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
@@ -211,14 +211,14 @@ public final class pipeline
 		// [o] object:0:optional $value
 		IDataCursor cursor = pipeline.getCursor();
 		try {
-		  if (cursor.last()) {
-		    String key = cursor.getKey();
-		    Object value = cursor.getValue();
-		    IDataUtil.put(cursor, "$key", key);
-		    IDataUtil.put(cursor, "$value", value);
-		  }
+		    if (cursor.last()) {
+		        String key = cursor.getKey();
+		        Object value = cursor.getValue();
+		        IDataUtil.put(cursor, "$key", key);
+		        IDataUtil.put(cursor, "$value", value);
+		    }
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
@@ -237,9 +237,9 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  IDataUtil.put(cursor, "$length", "" + IDataHelper.size(pipeline));
+		    IDataUtil.put(cursor, "$length", "" + IDataHelper.size(pipeline));
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
@@ -258,10 +258,10 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  String key = IDataUtil.getString(cursor, "$key");
-		  IDataHelper.arrayify(pipeline, key);
+		    String key = IDataUtil.getString(cursor, "$key");
+		    IDataHelper.arrayify(pipeline, key);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
@@ -280,9 +280,9 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  merge(pipeline, IDataUtil.getIData(cursor, "$document"));
+		    merge(pipeline, IDataUtil.getIData(cursor, "$document"));
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
@@ -300,11 +300,11 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  IData copy = IDataHelper.normalize(pipeline);
-		  IDataHelper.clear(pipeline);
-		  merge(pipeline, copy);
+		    IData copy = IDataHelper.normalize(pipeline);
+		    IDataHelper.clear(pipeline);
+		    merge(pipeline, copy);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
@@ -324,14 +324,14 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  Object content = IDataUtil.get(cursor, "$content");
-		  String encoding = IDataUtil.getString(cursor, "$encoding");
+		    Object content = IDataUtil.get(cursor, "$content");
+		    String encoding = IDataUtil.getString(cursor, "$encoding");
 		
-		  merge(pipeline, IDataXMLParser.getInstance().parse(StreamHelper.normalize(content, encoding)));
+		    merge(pipeline, IDataXMLParser.getInstance().parse(StreamHelper.normalize(content, encoding)));
 		} catch(IOException ex) {
-		  ExceptionHelper.raise(ex);
+		    ExceptionHelper.raise(ex);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
@@ -351,11 +351,11 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  String key = IDataUtil.getString(cursor, "$key");
-		  Object value = IDataUtil.get(cursor, "$value");
-		  IDataHelper.put(pipeline, key, value);
+		    String key = IDataUtil.getString(cursor, "$key");
+		    Object value = IDataUtil.get(cursor, "$value");
+		    IDataHelper.put(pipeline, key, value);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
@@ -375,11 +375,11 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  String source = IDataUtil.getString(cursor, "$key.source");
-		  String target = IDataUtil.getString(cursor, "$key.target");
-		  IDataHelper.rename(pipeline, source, target);
+		    String source = IDataUtil.getString(cursor, "$key.source");
+		    String target = IDataUtil.getString(cursor, "$key.target");
+		    IDataHelper.rename(pipeline, source, target);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
@@ -411,11 +411,11 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		  IData copy = IDataHelper.substitute(pipeline, pipeline, true);
-		  IDataHelper.clear(pipeline);
-		  merge(pipeline, copy);
+		    IData copy = IDataHelper.substitute(pipeline, pipeline, true);
+		    IDataHelper.clear(pipeline);
+		    merge(pipeline, copy);
 		} finally {
-		  cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
@@ -425,14 +425,14 @@ public final class pipeline
 	// --- <<IS-START-SHARED>> ---
 	// merges the contents of the given document into the given pipeline
 	public static void merge(IData target, IData source) {
-	  if (target != null && source != null) IDataUtil.merge(source, target);
+	    if (target != null && source != null) IDataUtil.merge(source, target);
 	}
 	
 	// sorts the elements in the pipeline by its keys in natural ascending order
 	public static void sort(IData pipeline, boolean recurse) {
-	  IData sorted = IDataHelper.sort(pipeline, recurse);
-	  IDataHelper.clear(pipeline, null);
-	  IDataUtil.append(sorted, pipeline);
+	    IData sorted = IDataHelper.sort(pipeline, recurse);
+	    IDataHelper.clear(pipeline, null);
+	    IDataUtil.append(sorted, pipeline);
 	}
 	// --- <<IS-END-SHARED>> ---
 }

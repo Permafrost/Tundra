@@ -3,9 +3,9 @@
 <Values version="2.0">
   <value name="name">put</value>
   <value name="encodeutf8">true</value>
-  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogIFN0cmlu
-ZyBrZXkgPSBJRGF0YVV0aWwuZ2V0U3RyaW5nKGN1cnNvciwgIiRrZXkiKTsKICBPYmplY3QgdmFs
-dWUgPSBJRGF0YVV0aWwuZ2V0KGN1cnNvciwgIiR2YWx1ZSIpOwogIElEYXRhSGVscGVyLnB1dChw
-aXBlbGluZSwga2V5LCB2YWx1ZSk7Cn0gZmluYWxseSB7CiAgY3Vyc29yLmRlc3Ryb3koKTsKfQ==
-</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7DQoNCnRyeSB7DQogICAg
+U3RyaW5nIGtleSA9IElEYXRhVXRpbC5nZXRTdHJpbmcoY3Vyc29yLCAiJGtleSIpOw0KICAgIE9i
+amVjdCB2YWx1ZSA9IElEYXRhVXRpbC5nZXQoY3Vyc29yLCAiJHZhbHVlIik7DQogICAgSURhdGFI
+ZWxwZXIucHV0KHBpcGVsaW5lLCBrZXksIHZhbHVlKTsNCn0gZmluYWxseSB7DQogICAgY3Vyc29y
+LmRlc3Ryb3koKTsNCn0=</value>
 </Values>
