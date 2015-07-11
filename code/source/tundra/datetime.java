@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-09 14:15:45 AEST
+// -----( CREATED: 2015-07-11 14:47:48 AEST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -10,6 +10,7 @@ import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import permafrost.tundra.lang.BooleanHelper;
+import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.time.DateTimeHelper;
 // --- <<IS-END-IMPORTS>> ---
 
@@ -451,7 +452,7 @@ public final class datetime
 		    // attempt to parse the datetime string, if no exception is thrown then the string is valid
 		    parse(datetime, pattern);
 		} catch (IllegalArgumentException ex) {
-		    if (raise) tundra.exception.raise(ex);
+		    if (raise) ExceptionHelper.raise(ex);
 		    valid = false;
 		} finally {
 		    IDataUtil.put(cursor, "$valid?", "" + valid);
@@ -509,7 +510,7 @@ public final class datetime
 	
 	        calendar = xcal.toGregorianCalendar();
 	    } catch (javax.xml.datatype.DatatypeConfigurationException ex) {
-	        tundra.exception.raise(ex);
+	        ExceptionHelper.raise(ex);
 	    }
 	
 	    return calendar;
@@ -781,7 +782,7 @@ public final class datetime
 	                exceptions.add(ex);
 	            }
 	        }
-	        if (!parsed) throw new IllegalArgumentException(tundra.exception.message(exceptions));
+	        if (!parsed) throw new IllegalArgumentException(ExceptionHelper.getMessage(exceptions));
 	    }
 	
 	    return output;

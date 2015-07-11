@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-09 13:52:20 AEST
+// -----( CREATED: 2015-07-11 14:57:17 AEST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -637,7 +637,7 @@ public final class service
 	        ec.destroy();
 	        IDataUtil.put(cursor, "$exception.info", exceptionInfo);
 	
-	        IDataUtil.put(cursor, "$exception.stack", tundra.exception.stack(t));
+	        IDataUtil.put(cursor, "$exception.stack", ExceptionHelper.getStackTrace(t));
 	
 	        cursor.destroy();
 	

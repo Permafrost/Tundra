@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-08 21:21:56 AEST
+// -----( CREATED: 2015-07-11 14:51:54 AEST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -267,7 +267,7 @@ public final class object
 	    try {
 	        instance = className != null && instance(object, Class.forName(className));
 	    } catch(ClassNotFoundException ex) {
-	        tundra.exception.raise(ex);
+	        ExceptionHelper.raise(ex);
 	    }
 	    return instance;
 	}

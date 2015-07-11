@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-09 14:20:06 AEST
+// -----( CREATED: 2015-07-11 14:49:14 AEST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -10,6 +10,7 @@ import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import permafrost.tundra.lang.BooleanHelper;
+import permafrost.tundra.lang.ExceptionHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class decimal
@@ -535,7 +536,7 @@ public final class decimal
 	            valid = true;
 	        }
 	    } catch(NumberFormatException ex) {
-	        if (raise) tundra.exception.raise(ex);
+	        if (raise) ExceptionHelper.raise(ex);
 	    }
 	    return valid;
 	}

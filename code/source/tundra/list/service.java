@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-09 15:01:20 AEST
+// -----( CREATED: 2015-07-11 15:00:11 AEST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -9,6 +9,7 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.time.DurationHelper;
 import permafrost.tundra.time.DurationPattern;
 // --- <<IS-END-IMPORTS>> ---
@@ -170,11 +171,11 @@ public final class service
 	        IDataUtil.put(cursor, "$exception?", "true");
 	        IDataUtil.put(cursor, "$exception.class", t.getClass().getName());
 	        IDataUtil.put(cursor, "$exception.message", t.getMessage());
-	        IDataUtil.put(cursor, "$exception.stack", tundra.exception.stack(t));
+	        IDataUtil.put(cursor, "$exception.stack", ExceptionHelper.getStackTrace(t));
 	        cursor.destroy();
 	
 	        if (catchService == null) {
-	            tundra.exception.raise(t);
+	            ExceptionHelper.raise(t);
 	        } else {
 	            pipeline = tundra.service.invoke(catchService, pipeline);
 	        }
@@ -224,7 +225,7 @@ public final class service
 	                }
 	            }
 	
-	            if (hasError) tundra.exception.raise(errors);
+	            if (hasError) ExceptionHelper.raise(errors);
 	        }
 	
 	        return invocations;
@@ -290,7 +291,7 @@ public final class service
 	                }
 	            }
 	
-	            if (hasError) tundra.exception.raise(errors);
+	            if (hasError) ExceptionHelper.raise(errors);
 	        }
 	
 	        return invocations;
@@ -315,7 +316,7 @@ public final class service
 	            }
 	        }
 	
-	        if (hasError) tundra.exception.raise(errors);
+	        if (hasError) ExceptionHelper.raise(errors);
 	    }
 	
 	    return pipelines;

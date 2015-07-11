@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-09 10:48:27 AEST
+// -----( CREATED: 2015-07-11 14:54:13 AEST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -11,6 +11,7 @@ import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.flow.ConditionEvaluator;
+import permafrost.tundra.lang.ExceptionHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class schedule
@@ -301,7 +302,7 @@ public final class schedule
 	            stateString = "cancelled";
 	            break;
 	        default:
-	            tundra.exception.raise("Scheduled task '" + id + "' has unsupported status: " + state);
+	            ExceptionHelper.raise("Scheduled task '" + id + "' has unsupported status: " + state);
 	            break;
 	    }
 	    IDataUtil.put(cursor, "status", stateString);
