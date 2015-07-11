@@ -1,7 +1,7 @@
 package tundra.support;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-09 14:01:03 AEST
+// -----( CREATED: 2015-07-11 15:08:11 AEST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -9,6 +9,8 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.io.StreamHelper;
+import permafrost.tundra.lang.CharsetHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class constant
@@ -41,8 +43,8 @@ public final class constant
 		try {
 		    IData constants = IDataFactory.create();
 		    IDataCursor cc = constants.getCursor();
-		    IDataUtil.put(cc, "encoding.default", DEFAULT_CHARACTER_ENCODING);
-		    IDataUtil.put(cc, "buffer.length.default", DEFAULT_BUFFER_SIZE);
+		    IDataUtil.put(cc, "encoding.default", CharsetHelper.DEFAULT_CHARSET_NAME);
+		    IDataUtil.put(cc, "buffer.length.default", StreamHelper.DEFAULT_BUFFER_SIZE);
 		    cc.destroy();
 		
 		    IDataUtil.put(cursor, "$tundra.constants", constants);
@@ -53,10 +55,5 @@ public final class constant
 
                 
 	}
-
-	// --- <<IS-START-SHARED>> ---
-	public static final String DEFAULT_CHARACTER_ENCODING = java.nio.charset.Charset.forName("UTF-8").name();
-	public static final int    DEFAULT_BUFFER_SIZE        = 8192;
-	// --- <<IS-END-SHARED>> ---
 }
 

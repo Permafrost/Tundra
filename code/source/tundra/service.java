@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-11 14:57:17 AEST
+// -----( CREATED: 2015-07-11 15:05:54 AEST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -11,6 +11,7 @@ import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.lang.BooleanHelper;
+import permafrost.tundra.lang.CharsetHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.lang.StringHelper;
 import permafrost.tundra.math.NormalDistributionEstimator;
@@ -448,7 +449,7 @@ public final class service
 	            response.setResponse(code, message);
 	
 	            if (contentType == null) contentType = "application/octet-stream";
-	            if (encoding == null) encoding = tundra.support.constant.DEFAULT_CHARACTER_ENCODING;
+	            if (encoding == null) encoding = CharsetHelper.DEFAULT_CHARSET_NAME;
 	
 	            javax.activation.MimeType mimeType = new javax.activation.MimeType(contentType);
 	            mimeType.setParameter("charset", encoding);
