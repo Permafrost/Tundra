@@ -17,6 +17,12 @@ Networks] 7.1 and higher.
 * WmPublic
 * WmRoot
 
+[Tundra] is also dependent on the [Tundra.java] project, which provides the
+underlying implementation for the majority of services, and is included in
+the [Tundra] package as a [JAR] library in the following location:
+
+* `./code/jars/static/Tundra.jar`
+
 ## Installation
 
 You have two choices for installing [Tundra]:
@@ -11255,6 +11261,7 @@ Copyright &copy; 2012 Lachlan Dowding. See the [LICENSE] file for further detail
 [HTTP]: <http://tools.ietf.org/search/rfc2616>
 [IData XML]: <http://documentation.softwareag.com/webmethods/wmsuites/wmsuite8-2_sp2/Integration_Server/8-2-SP1_Integration_Server_Java_API_Reference/com/wm/util/coder/IDataXMLCoder.html>
 [ISO8601]: <http://en.wikipedia.org/wiki/ISO_8601>
+[JAR]: <http://en.wikipedia.org/wiki/JAR_(file_format)>
 [java.io.ByteArrayInputStream]: <http://docs.oracle.com/javase/6/docs/api/java/io/ByteArrayInputStream.html>
 [java.io.InputStream]: <http://docs.oracle.com/javase/6/docs/api/java/io/InputStream.html>
 [java.io.OutputStream]: <http://docs.oracle.com/javase/6/docs/api/java/io/OutputStream.html>
@@ -11299,6 +11306,7 @@ Copyright &copy; 2012 Lachlan Dowding. See the [LICENSE] file for further detail
 [TSV]: <http://en.wikipedia.org/wiki/Tab-separated_values>
 [Tundra]: <https://github.com/Permafrost/Tundra>
 [TundraTN]: <https://github.com/Permafrost/TundraTN>
+[Tundra.java]: <https://github.com/Permafrost/Tundra.java>
 [URI]: <http://www.w3.org/Addressing/>
 [URI template]: <https://tools.ietf.org/html/rfc6570>
 [UTF-8]: <http://en.wikipedia.org/wiki/UTF-8>
