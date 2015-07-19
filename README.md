@@ -13,16 +13,22 @@ Networks] 7.1 and higher.
 [Tundra] is compiled for Java 1.6, and is dependent on the following
 [webMethods Integration Server] packages:
 
-* WmFlatFile
-* WmPublic
-* WmRoot
+* `WmFlatFile`
+* `WmPublic`
+* `WmRoot`
+
+[Tundra] is also dependent on the [Tundra.java] project, which provides the
+underlying implementation for the majority of services, and is included in
+the [Tundra] package as a [JAR] library in the following location:
+
+* `./code/jars/static/Tundra.jar`
 
 ## Installation
 
 You have two choices for installing [Tundra]:
 
-* git
-* zip
+* `git`
+* `zip`
 
 If you are comfortable using git, I recommend this method as you can then
 easily switch between package versions using git checkout and download new
@@ -108,29 +114,23 @@ Then restart Integration Server to complete the upgrade.
 
 ## Conventions
 
-1. All input and output pipeline arguments are prefixed with '$' as a poor-
+1. All input and output pipeline arguments are prefixed with `$` as a poor-
    man's scoping mechanism, since typically user-space variables are
    unprefixed.
-2. All boolean arguments are suffixed with a '?'.
+2. All boolean arguments are suffixed with a `?`.
 3. Single-word argument names are preferred. Where multiple words are
-   necessary, words are separated with a '.'.
+   necessary, words are separated with a `.`.
 4. Service namespace is kept flat. Namespace folders are usually nouns.
    Service names are usually verbs, indicating the action performed on the
    noun (parent folder).
-5. *Almost* all services are written in Java, and are *almost* always
-   overloaded by a backing method in the shared source, which provides the
-   actual implementation. This way, backing methods can be used by other
-   backing methods directly, without needing to deal with the
-   IData/IDataCursor/IDataUtil nastiness that a fronting Java service is
-   usually required to deal with.
-6. Services declare all inputs and outputs, always explicitly marked as
+5. Services declare all inputs and outputs, always explicitly marked as
    optional or required, use constrained types where possible, and enable
    input and output pipeline validation, which minimises developer surprise.
-7. Services often declare their inputs as optional, and either apply an
+6. Services often declare their inputs as optional, and either apply an
    appropriate default value, or take no action and return no output
    (whatever is more appropriate), to minimise the need for existence
    checking in flow map steps.
-8. All private elements are kept in the `tundra.support` folder. All other
+7. All private elements are kept in the `tundra.support` folder. All other
    elements comprise the public API of the package. As the private elements
    do not contribute to the public API, they are liable to change at any
    time. **Enter at your own risk.**
@@ -11255,6 +11255,7 @@ Copyright &copy; 2012 Lachlan Dowding. See the [LICENSE] file for further detail
 [HTTP]: <http://tools.ietf.org/search/rfc2616>
 [IData XML]: <http://documentation.softwareag.com/webmethods/wmsuites/wmsuite8-2_sp2/Integration_Server/8-2-SP1_Integration_Server_Java_API_Reference/com/wm/util/coder/IDataXMLCoder.html>
 [ISO8601]: <http://en.wikipedia.org/wiki/ISO_8601>
+[JAR]: <http://en.wikipedia.org/wiki/JAR_(file_format)>
 [java.io.ByteArrayInputStream]: <http://docs.oracle.com/javase/6/docs/api/java/io/ByteArrayInputStream.html>
 [java.io.InputStream]: <http://docs.oracle.com/javase/6/docs/api/java/io/InputStream.html>
 [java.io.OutputStream]: <http://docs.oracle.com/javase/6/docs/api/java/io/OutputStream.html>
@@ -11299,6 +11300,7 @@ Copyright &copy; 2012 Lachlan Dowding. See the [LICENSE] file for further detail
 [TSV]: <http://en.wikipedia.org/wiki/Tab-separated_values>
 [Tundra]: <https://github.com/Permafrost/Tundra>
 [TundraTN]: <https://github.com/Permafrost/TundraTN>
+[Tundra.java]: <https://github.com/Permafrost/Tundra.java>
 [URI]: <http://www.w3.org/Addressing/>
 [URI template]: <https://tools.ietf.org/html/rfc6570>
 [UTF-8]: <http://en.wikipedia.org/wiki/UTF-8>
