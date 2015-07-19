@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-11 15:05:54 AEST
+// -----( CREATED: 2015-07-19 19:01:14 AEST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -381,7 +381,7 @@ public final class service
 		
 		try {
 		    String duration = IDataUtil.getString(cursor, "$duration");
-		    sleep(duration);
+		    if (duration != null) sleep(duration);
 		} finally {
 		    cursor.destroy();
 		}
@@ -598,7 +598,7 @@ public final class service
 	
 	// sleeps the current thread for the given duration
 	public static void sleep(String duration) throws ServiceException {
-	    sleep(tundra.duration.parse(duration).getTimeInMillis(new java.util.Date()));
+	    sleep(DurationHelper.parse(duration).getTimeInMillis(new java.util.Date()));
 	}
 	
 	// sleeps the current thread for the given duration

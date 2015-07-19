@@ -39,7 +39,7 @@
               </record>
             </array>
           </record>
-          <value name="nillable">true</value>
+          <value name="nillable">false</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
         </record>

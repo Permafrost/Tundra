@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-09 14:53:56 AEST
+// -----( CREATED: 2015-07-19 19:12:50 AEST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -9,6 +9,7 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.time.DurationHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class duration
@@ -47,8 +48,10 @@ public final class duration
 		    String outPattern = IDataUtil.getString(cursor, "$pattern.output");
 		    String datetime = IDataUtil.getString(cursor, "$datetime");
 		    String datetimePattern = IDataUtil.getString(cursor, "$datetime.pattern");
+		    
+		    String[] output = DurationHelper.format(list, inPattern, outPattern, datetime, datetimePattern);
 		
-		    IDataUtil.put(cursor, "$list", tundra.duration.format(list, inPattern, outPattern, datetime, datetimePattern));
+		    if (output != null) IDataUtil.put(cursor, "$list", output);
 		} finally {
 		    cursor.destroy();
 		}
@@ -76,7 +79,7 @@ public final class duration
 		    String inPattern = IDataUtil.getString(cursor, "$pattern.input");
 		    String outPattern = IDataUtil.getString(cursor, "$pattern.output");
 		
-		    IDataUtil.put(cursor, "$duration", tundra.duration.add(list, inPattern, outPattern));
+		    IDataUtil.put(cursor, "$duration", DurationHelper.emit(DurationHelper.add(DurationHelper.parse(list, inPattern)), outPattern));
 		} finally {
 		    cursor.destroy();
 		}

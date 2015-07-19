@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-11 14:47:48 AEST
+// -----( CREATED: 2015-07-19 17:31:37 AEST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -12,6 +12,7 @@ import com.wm.app.b2b.server.ServiceException;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.time.DateTimeHelper;
+import permafrost.tundra.time.DurationHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class datetime
@@ -494,7 +495,7 @@ public final class datetime
 	
 	// adds the given xml duration to the given xml datetime returning the result
 	public static String add(String datetime, String datetimePattern, String duration, String durationPattern) throws ServiceException {
-	    return emit(add(parse(datetime, datetimePattern), tundra.duration.parse(duration, durationPattern)), datetimePattern);
+	    return emit(add(parse(datetime, datetimePattern), DurationHelper.parse(duration, durationPattern)), datetimePattern);
 	}
 	
 	// adds the given xml duration to the given xml datetime returning the result
@@ -561,13 +562,13 @@ public final class datetime
 	
 	// returns the xml duration between two given xml datetimes
 	public static String duration(String start, String end, String datetimePattern, String durationPattern) {
-	    return tundra.duration.emit(duration(parse(start, datetimePattern), parse(end, datetimePattern)), durationPattern);
+	    return DurationHelper.emit(duration(parse(start, datetimePattern), parse(end, datetimePattern)), durationPattern);
 	}
 	
 	// returns the xml duration between two given xml datetimes
 	public static javax.xml.datatype.Duration duration(java.util.Calendar start, java.util.Calendar end) {
 	    if (start == null || end == null) return null;
-	    return tundra.duration.parse("" + (end.getTimeInMillis() - start.getTimeInMillis()), "milliseconds");
+	    return DurationHelper.parse(end.getTimeInMillis() - start.getTimeInMillis());
 	}
 	
 	// returns the given datetime as an xml datetime string
@@ -834,7 +835,7 @@ public final class datetime
 	
 	// subtracts the given xml duration from the given xml datetime returning the result
 	public static String subtract(String datetime, String datetimePattern, String duration, String durationPattern) throws ServiceException {
-	    return emit(subtract(parse(datetime, datetimePattern), tundra.duration.parse(duration, durationPattern)), datetimePattern);
+	    return emit(subtract(parse(datetime, datetimePattern), DurationHelper.parse(duration, durationPattern)), datetimePattern);
 	}
 	
 	// subtracts the given duration from the given datetime returning the result
@@ -860,7 +861,7 @@ public final class datetime
 	
 	// returns the current datetime minus the given duration
 	public static String earlier(String datetimePattern, String duration, String durationPattern, String timezone) throws ServiceException {
-	    return emit(earlier(tundra.duration.parse(duration, durationPattern)), datetimePattern, timezone);
+	    return emit(earlier(DurationHelper.parse(duration, durationPattern)), datetimePattern, timezone);
 	}
 	
 	// returns the current datetime minus the given duration
@@ -885,7 +886,7 @@ public final class datetime
 	
 	// returns the current datetime plus the given duration
 	public static String later(String datetimePattern, String duration, String durationPattern, String timezone) throws ServiceException {
-	    return emit(later(tundra.duration.parse(duration, durationPattern)), datetimePattern, timezone);
+	    return emit(later(DurationHelper.parse(duration, durationPattern)), datetimePattern, timezone);
 	}
 	
 	// returns the current datetime plus the given duration

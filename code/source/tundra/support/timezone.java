@@ -1,7 +1,7 @@
 package tundra.support;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-09 14:03:48 AEST
+// -----( CREATED: 2015-07-19 18:57:50 AEST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -9,6 +9,8 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.time.DurationHelper;
+import permafrost.tundra.time.DurationPattern;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class timezone
@@ -72,7 +74,7 @@ public final class timezone
 	                matcher = OFFSET_XML_PATTERN.matcher(id);
 	                if (matcher.matches()) {
 	                    try {
-	                        String candidate = get(Integer.parseInt(tundra.duration.format(id, "xml", "milliseconds")));
+	                        String candidate = get(Integer.parseInt(DurationHelper.format(id, DurationPattern.XML, DurationPattern.MILLISECONDS)));
 	                        if (candidate != null) id = candidate;
 	                    } catch (NumberFormatException ex) {
 	                        // ignore

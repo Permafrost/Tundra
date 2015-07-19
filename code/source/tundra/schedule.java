@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-11 14:54:13 AEST
+// -----( CREATED: 2015-07-19 19:05:47 AEST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -12,6 +12,8 @@ import com.wm.app.b2b.server.ServiceException;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.flow.ConditionEvaluator;
 import permafrost.tundra.lang.ExceptionHelper;
+import permafrost.tundra.time.DurationHelper;
+import permafrost.tundra.time.DurationPattern;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class schedule
@@ -195,7 +197,7 @@ public final class schedule
 	        info = IDataFactory.create();
 	        ic = info.getCursor();
 	
-	        IDataUtil.put(ic, "interval", tundra.duration.format(intervalSeconds, "seconds", "xml"));
+	        IDataUtil.put(ic, "interval", DurationHelper.format(intervalSeconds, DurationPattern.SECONDS, DurationPattern.XML));
 	
 	        ic.destroy();
 	    } else if (type.equals("complex")) {
@@ -268,7 +270,7 @@ public final class schedule
 	        IData late = IDataFactory.create();
 	        IDataCursor lc = late.getCursor();
 	
-	        IDataUtil.put(lc, "duration", "" + tundra.duration.format(lateness, "minutes", "xml"));
+	        IDataUtil.put(lc, "duration", DurationHelper.format(lateness, DurationPattern.MINUTES, DurationPattern.XML));
 	
 	        if (latenessAction.equals("0") || latenessAction.equalsIgnoreCase("run immediately")) {
 	            latenessAction = "run immediately";

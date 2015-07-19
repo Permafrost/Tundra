@@ -1,7 +1,7 @@
 package tundra.support.service;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-09 14:03:09 AEST
+// -----( CREATED: 2015-07-19 18:55:24 AEST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -9,6 +9,8 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.time.DurationHelper;
+import permafrost.tundra.time.DurationPattern;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class usage
@@ -168,7 +170,7 @@ public final class usage
 	        IDataUtil.put(cursor, "pipeline", getPipeline());
 	        IDataUtil.put(cursor, "pipeline.length", getPipelineSize());
 	        IDataUtil.put(cursor, "start", tundra.datetime.format("" + startTime, "milliseconds", "datetime"));
-	        IDataUtil.put(cursor, "duration", tundra.duration.format("" + getDuration(), "milliseconds", "xml"));
+	        IDataUtil.put(cursor, "duration", DurationHelper.format(getDuration(), DurationPattern.XML));
 	        IDataUtil.put(cursor, "session", getSession());
 	        IDataUtil.put(cursor, "user", getUser());
 	        cursor.destroy();
@@ -221,7 +223,7 @@ public final class usage
 	        IDataUtil.put(cursor, "thread.name", thread.getName());
 	        IDataUtil.put(cursor, "thread.object", thread);
 	        IDataUtil.put(cursor, "thread.start", tundra.datetime.format("" + startTime, "milliseconds", "datetime"));
-	        IDataUtil.put(cursor, "thread.duration", tundra.duration.format("" + getDuration(), "milliseconds", "xml"));
+	        IDataUtil.put(cursor, "thread.duration", DurationHelper.format(getDuration(), DurationPattern.XML));
 	
 	        ServiceExecution[] list = stack.toArray(new ServiceExecution[0]);
 	        IData[] services = new IData[list.length];
@@ -304,7 +306,7 @@ public final class usage
 	        IDataUtil.put(cursor, "monitoring.started?", "" + started);
 	        if (started) {
 	            IDataUtil.put(cursor, "monitoring.start", tundra.datetime.format("" + startTime, "milliseconds", "datetime"));
-	            IDataUtil.put(cursor, "monitoring.duration", tundra.duration.format("" + getDuration(), "milliseconds", "xml"));
+	            IDataUtil.put(cursor, "monitoring.duration", DurationHelper.format(getDuration(), DurationPattern.XML));
 	        }
 	        IDataUtil.put(cursor, "invocations.started", totalInvocations.longValue());
 	        IDataUtil.put(cursor, "invocations.errored", totalErrors.longValue());
