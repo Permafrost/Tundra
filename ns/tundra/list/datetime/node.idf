@@ -4,26 +4,11 @@
   <value name="node_type">interface</value>
   <value name="node_nsName">tundra.list.datetime</value>
   <value name="encodeutf8">true</value>
-  <value name="shared">Ly8gZm9ybWF0cyBhIGxpc3QgZGF0ZXRpbWUgc3RyaW5ncyB0byB0aGUgZ2l2ZW4gcGF0dGVybgpw
-dWJsaWMgc3RhdGljIFN0cmluZ1tdIGZvcm1hdChTdHJpbmdbXSBpbnB1dHMsIFN0cmluZyBpblBh
-dHRlcm4sIFN0cmluZyBpblRpbWVab25lLCBTdHJpbmcgb3V0UGF0dGVybiwgU3RyaW5nIG91dFRp
-bWVab25lKSB7CiAgICBTdHJpbmdbXSBvdXRwdXRzID0gbnVsbDsKICAgIGlmIChpbnB1dHMgIT0g
-bnVsbCkgewogICAgICAgIG91dHB1dHMgPSBuZXcgU3RyaW5nW2lucHV0cy5sZW5ndGhdOwogICAg
-ICAgIGZvciAoaW50IGkgPSAwOyBpIDwgaW5wdXRzLmxlbmd0aDsgaSsrKSB7CiAgICAgICAgICAg
-IG91dHB1dHNbaV0gPSB0dW5kcmEuZGF0ZXRpbWUuZm9ybWF0KGlucHV0c1tpXSwgaW5QYXR0ZXJu
-LCBpblRpbWVab25lLCBvdXRQYXR0ZXJuLCBvdXRUaW1lWm9uZSk7CiAgICAgICAgfQogICAgfQog
-ICAgcmV0dXJuIG91dHB1dHM7Cn0KCi8vIGZvcm1hdHMgYSBsaXN0IGRhdGV0aW1lIHN0cmluZ3Mg
-dG8gdGhlIGdpdmVuIHBhdHRlcm4KcHVibGljIHN0YXRpYyBTdHJpbmdbXSBmb3JtYXQoU3RyaW5n
-W10gaW5wdXRzLCBTdHJpbmdbXSBpblBhdHRlcm5zLCBTdHJpbmcgaW5UaW1lWm9uZSwgU3RyaW5n
-IG91dFBhdHRlcm4sIFN0cmluZyBvdXRUaW1lWm9uZSkgewogICAgU3RyaW5nW10gb3V0cHV0cyA9
-IG51bGw7CiAgICBpZiAoaW5wdXRzICE9IG51bGwpIHsKICAgICAgICBvdXRwdXRzID0gbmV3IFN0
-cmluZ1tpbnB1dHMubGVuZ3RoXTsKICAgICAgICBmb3IgKGludCBpID0gMDsgaSA8IGlucHV0cy5s
-ZW5ndGg7IGkrKykgewogICAgICAgICAgICBvdXRwdXRzW2ldID0gdHVuZHJhLmRhdGV0aW1lLmZv
-cm1hdChpbnB1dHNbaV0sIGluUGF0dGVybnMsIGluVGltZVpvbmUsIG91dFBhdHRlcm4sIG91dFRp
-bWVab25lKTsKICAgICAgICB9CiAgICB9CiAgICByZXR1cm4gb3V0cHV0czsKfQ==</value>
+  <value name="shared"></value>
   <value name="extends"></value>
   <array name="implements" type="value" depth="1">
   </array>
   <array name="imports" type="value" depth="1">
+    <value>permafrost.tundra.time.DateTimeHelper</value>
   </array>
 </Values>

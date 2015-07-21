@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-09 14:52:48 AEST
+// -----( CREATED: 2015-07-21 15:28:14 AEST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -9,6 +9,7 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.time.DateTimeHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class datetime
@@ -52,9 +53,9 @@ public final class datetime
 		
 		    if (list != null && list.length > 0) {
 		        if (inPatterns == null) {
-		            IDataUtil.put(cursor, "$list", format(list, inPattern, inTimeZone, outPattern, outTimeZone));
+		            IDataUtil.put(cursor, "$list", DateTimeHelper.format(list, inPattern, inTimeZone, outPattern, outTimeZone));
 		        } else {
-		            IDataUtil.put(cursor, "$list", format(list, inPatterns, inTimeZone, outPattern, outTimeZone));
+		            IDataUtil.put(cursor, "$list", DateTimeHelper.format(list, inPatterns, inTimeZone, outPattern, outTimeZone));
 		        }
 		    }
 		} finally {
@@ -64,31 +65,5 @@ public final class datetime
 
                 
 	}
-
-	// --- <<IS-START-SHARED>> ---
-	// formats a list datetime strings to the given pattern
-	public static String[] format(String[] inputs, String inPattern, String inTimeZone, String outPattern, String outTimeZone) {
-	    String[] outputs = null;
-	    if (inputs != null) {
-	        outputs = new String[inputs.length];
-	        for (int i = 0; i < inputs.length; i++) {
-	            outputs[i] = tundra.datetime.format(inputs[i], inPattern, inTimeZone, outPattern, outTimeZone);
-	        }
-	    }
-	    return outputs;
-	}
-	
-	// formats a list datetime strings to the given pattern
-	public static String[] format(String[] inputs, String[] inPatterns, String inTimeZone, String outPattern, String outTimeZone) {
-	    String[] outputs = null;
-	    if (inputs != null) {
-	        outputs = new String[inputs.length];
-	        for (int i = 0; i < inputs.length; i++) {
-	            outputs[i] = tundra.datetime.format(inputs[i], inPatterns, inTimeZone, outPattern, outTimeZone);
-	        }
-	    }
-	    return outputs;
-	}
-	// --- <<IS-END-SHARED>> ---
 }
 

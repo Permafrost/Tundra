@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-19 19:05:47 AEST
+// -----( CREATED: 2015-07-21 15:29:41 AEST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -12,6 +12,7 @@ import com.wm.app.b2b.server.ServiceException;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.flow.ConditionEvaluator;
 import permafrost.tundra.lang.ExceptionHelper;
+import permafrost.tundra.time.DateTimeHelper;
 import permafrost.tundra.time.DurationHelper;
 import permafrost.tundra.time.DurationPattern;
 // --- <<IS-END-IMPORTS>> ---
@@ -255,12 +256,12 @@ public final class schedule
 	    String pattern = "yyyy/MM/dd HH:mm:ss";
 	
 	    if (startDate != null && startTime != null) {
-	        startDateTime = tundra.datetime.format(startDate + " " + startTime, pattern, "datetime");
+	        startDateTime = DateTimeHelper.format(startDate + " " + startTime, pattern, "datetime");
 	        IDataUtil.put(cursor, "start", startDateTime);
 	    }
 	
 	    if (endDate != null && endTime != null) {
-	        endDateTime = tundra.datetime.format(endDate + " " + endTime, pattern, "datetime");
+	        endDateTime = DateTimeHelper.format(endDate + " " + endTime, pattern, "datetime");
 	        IDataUtil.put(cursor, "end", endDateTime);
 	    }
 	
@@ -309,7 +310,7 @@ public final class schedule
 	    }
 	    IDataUtil.put(cursor, "status", stateString);
 	
-	    if (next > 0) IDataUtil.put(cursor, "next", tundra.datetime.format("" + next, "milliseconds", "datetime"));
+	    if (next > 0) IDataUtil.put(cursor, "next", DateTimeHelper.format("" + next, "milliseconds", "datetime"));
 	
 	    cursor.destroy();
 	

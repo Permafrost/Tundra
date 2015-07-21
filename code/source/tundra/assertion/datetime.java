@@ -1,7 +1,7 @@
 package tundra.assertion;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-08 14:12:25 AEST
+// -----( CREATED: 2015-07-21 15:24:16 AEST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -9,6 +9,7 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.time.DateTimeHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class datetime
@@ -86,12 +87,12 @@ public final class datetime
 	// --- <<IS-START-SHARED>> ---
 	// asserts that two datetime strings formatted according to the given pattern are equal
 	public static void equal(String expected, String actual, String pattern, String message) {
-	    tundra.assertion.object.equal(tundra.datetime.parse(expected, pattern), tundra.datetime.parse(actual, pattern), message);
+	    tundra.assertion.object.equal(DateTimeHelper.parse(expected, pattern), DateTimeHelper.parse(actual, pattern), message);
 	}
 	
 	// asserts that two datetime strings formatted according to the given pattern are not equal
 	public static void unequal(String expected, String actual, String pattern, String message) {
-	    tundra.assertion.object.unequal(tundra.datetime.parse(expected, pattern), tundra.datetime.parse(actual, pattern), message);
+	    tundra.assertion.object.unequal(DateTimeHelper.parse(expected, pattern), DateTimeHelper.parse(actual, pattern), message);
 	}
 	// --- <<IS-END-SHARED>> ---
 }
