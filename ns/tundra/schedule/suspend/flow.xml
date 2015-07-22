@@ -12,6 +12,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -20,7 +21,21 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
+        <value name="is_public">false</value>
         <value name="field_name">tundra.schedule:remove</value>
+        <value name="field_type">record</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+        <array name="rec_fields" type="record" depth="1">
+        </array>
+        <value name="modifiable">true</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="is_public">false</value>
+        <value name="field_name">tundra.schedule:suspend</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -29,6 +44,7 @@
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$id</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -38,6 +54,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$filter</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -45,9 +62,72 @@
             <value name="form_qualified">false</value>
             <value name="is_global">false</value>
           </record>
+          <record javaclass="com.wm.util.Values">
+            <value name="node_type">record</value>
+            <value name="node_comment"></value>
+            <record name="node_hints" javaclass="com.wm.util.Values">
+              <value name="field_usereditable">true</value>
+              <value name="field_largerEditor">false</value>
+              <value name="field_password">false</value>
+            </record>
+            <value name="is_public">false</value>
+            <value name="field_name">$service</value>
+            <value name="field_type">string</value>
+            <value name="field_dim">0</value>
+            <value name="field_opt">true</value>
+            <array name="field_options" type="value" depth="1">
+            </array>
+            <record name="field_content_type" javaclass="com.wm.util.Values">
+              <value name="contentType">1</value>
+              <value name="internalType">reference</value>
+              <value name="dataTypeVersion">dtVersion2</value>
+              <array name="targetNames" type="record" depth="1">
+                <record javaclass="com.wm.util.Values">
+                  <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                  <value name="ncName">string</value>
+                </record>
+              </array>
+            </record>
+            <value name="nillable">true</value>
+            <value name="form_qualified">false</value>
+            <value name="is_global">false</value>
+          </record>
         </array>
+        <value name="rec_closed">true</value>
+        <value name="modifiable">true</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="node_comment"></value>
+        <record name="node_hints" javaclass="com.wm.util.Values">
+          <value name="field_usereditable">true</value>
+          <value name="field_largerEditor">false</value>
+          <value name="field_password">false</value>
+        </record>
+        <value name="is_public">false</value>
+        <value name="field_name">$service</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
+        <array name="field_options" type="value" depth="1">
+        </array>
+        <record name="field_content_type" javaclass="com.wm.util.Values">
+          <value name="contentType">1</value>
+          <value name="internalType">reference</value>
+          <value name="dataTypeVersion">dtVersion2</value>
+          <array name="targetNames" type="record" depth="1">
+            <record javaclass="com.wm.util.Values">
+              <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+              <value name="ncName">string</value>
+            </record>
+          </array>
+        </record>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -56,6 +136,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -70,6 +151,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$id</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -97,6 +179,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$filter</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -116,17 +199,48 @@
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
       </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="node_comment"></value>
+        <record name="node_hints" javaclass="com.wm.util.Values">
+          <value name="field_usereditable">true</value>
+          <value name="field_largerEditor">false</value>
+          <value name="field_password">false</value>
+        </record>
+        <value name="is_public">false</value>
+        <value name="field_name">$service</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
+        <array name="field_options" type="value" depth="1">
+        </array>
+        <record name="field_content_type" javaclass="com.wm.util.Values">
+          <value name="contentType">1</value>
+          <value name="internalType">reference</value>
+          <value name="dataTypeVersion">dtVersion2</value>
+          <array name="targetNames" type="record" depth="1">
+            <record javaclass="com.wm.util.Values">
+              <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+              <value name="ncName">string</value>
+            </record>
+          </array>
+        </record>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
 
   <!-- nodes -->
 
-<MAPCOPY NAME="Link" FROM="/$id;1;0" TO="/tundra.schedule:remove;2;0/$id;1;0">
+<MAPCOPY NAME="Link" FROM="/$id;1;0" TO="/tundra.schedule:suspend;2;0/$id;1;0">
 </MAPCOPY>
 
-<MAPCOPY NAME="Link" FROM="/$filter;1;0" TO="/tundra.schedule:remove;2;0/$filter;1;0">
+<MAPCOPY NAME="Link" FROM="/$filter;1;0" TO="/tundra.schedule:suspend;2;0/$filter;1;0">
 </MAPCOPY>
 
 <MAPDELETE NAME="Dropper" FIELD="/$id;1;0">
@@ -134,9 +248,15 @@
 
 <MAPDELETE NAME="Dropper" FIELD="/$filter;1;0">
 </MAPDELETE>
+
+<MAPCOPY FROM="/$service;1;0" TO="/tundra.schedule:suspend;2;0/$service;1;0">
+</MAPCOPY>
+
+<MAPDELETE FIELD="/$service;1;0">
+</MAPDELETE>
 </MAP>
 
-<SEQUENCE NAME="scope" SCOPE="tundra.schedule:remove" TIMEOUT="" EXIT-ON="FAILURE">
+<SEQUENCE NAME="scope" SCOPE="tundra.schedule:suspend" TIMEOUT="" EXIT-ON="FAILURE">
   <COMMENT></COMMENT>
 
   <!-- nodes -->
@@ -157,6 +277,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_name">suspendTaskInput</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -166,6 +287,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">taskID</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -174,6 +296,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -182,7 +305,8 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="field_name">tundra.schedule:remove</value>
+    <value name="is_public">false</value>
+    <value name="field_name">tundra.schedule:suspend</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -191,6 +315,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$id</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -200,6 +325,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$filter</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -207,7 +333,18 @@
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
       </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">$service</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -224,7 +361,8 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="field_name">tundra.schedule:remove</value>
+    <value name="is_public">false</value>
+    <value name="field_name">tundra.schedule:suspend</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -233,6 +371,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">taskID</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -242,6 +381,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$id</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -251,6 +391,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$filter</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -260,6 +401,17 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">$service</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">taskSuspended</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -268,6 +420,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -276,6 +429,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_name">suspendTaskOutput</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -285,6 +439,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">taskSuspended</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -293,6 +448,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -307,12 +463,12 @@
 </MAP>
 </INVOKE>
 
-<BRANCH NAME="$null" TIMEOUT="" SWITCH="/$filter">
+<BRANCH NAME="$null" TIMEOUT="" LABELEXPRESSIONS="true">
   <COMMENT></COMMENT>
 
   <!-- nodes -->
 
-<SEQUENCE NAME="$default" TIMEOUT="" EXIT-ON="FAILURE">
+<SEQUENCE NAME="%$filter% != $null or %$service% != $null" TIMEOUT="" EXIT-ON="FAILURE">
   <COMMENT></COMMENT>
 
   <!-- nodes -->
@@ -345,6 +501,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_name">suspendTaskInput</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -354,6 +511,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">taskID</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -362,6 +520,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -370,6 +529,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_name">tundra.schedule:remove</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -379,6 +539,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$id</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -388,6 +549,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$filter</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -402,6 +564,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$schedules</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -418,6 +581,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">id</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -444,6 +608,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">type</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -514,6 +679,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">service</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -540,6 +706,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">description</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -567,6 +734,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">target</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -593,6 +761,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">user</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -619,6 +788,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">start</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -646,6 +816,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">end</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -673,6 +844,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">overlap?</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -698,6 +870,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">lateness</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -707,6 +880,7 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
+            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
@@ -715,6 +889,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">repeat</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -724,6 +899,7 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
+            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
@@ -732,6 +908,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">complex</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -741,6 +918,7 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
+            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
@@ -749,6 +927,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">pipeline</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -758,6 +937,7 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
+            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
@@ -767,6 +947,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">status</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -837,6 +1018,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">next</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -864,6 +1046,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">exception?</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -890,6 +1073,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">exception.message</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -910,9 +1094,11 @@
             <value name="is_global">false</value>
           </record>
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$iteration</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -921,6 +1107,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -937,6 +1124,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_name">tundra.schedule:remove</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -946,6 +1134,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">taskID</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -955,6 +1144,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$id</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -964,6 +1154,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$filter</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -978,6 +1169,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$schedules</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -987,9 +1179,11 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">taskSuspended</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -998,6 +1192,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -1006,6 +1201,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_name">suspendTaskOutput</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -1015,6 +1211,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">taskSuspended</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1023,6 +1220,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -1038,13 +1236,14 @@
 </INVOKE>
 </LOOP>
 
-<MAP NAME="drop" MODE="STANDALONE">
+<MAP NAME="drop" TIMEOUT="" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -1052,6 +1251,7 @@
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -1060,6 +1260,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -1074,6 +1275,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$id</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1101,6 +1303,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$filter</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1127,6 +1330,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$schedules</value>
         <value name="field_type">record</value>
         <value name="field_dim">1</value>
@@ -1144,6 +1348,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">id</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1170,6 +1375,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">type</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1240,6 +1446,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">service</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1266,6 +1473,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">description</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1293,6 +1501,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">target</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1319,6 +1528,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">user</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1345,6 +1555,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">start</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1372,6 +1583,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">end</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1399,6 +1611,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">overlap?</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1424,6 +1637,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">lateness</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -1433,6 +1647,7 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
+            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
@@ -1441,6 +1656,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">repeat</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -1450,6 +1666,7 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
+            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
@@ -1458,6 +1675,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">complex</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -1467,6 +1685,7 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
+            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
@@ -1475,6 +1694,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">pipeline</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -1484,6 +1704,7 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
+            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
@@ -1493,6 +1714,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">status</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1563,6 +1785,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">next</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1590,6 +1813,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">exception?</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1616,6 +1840,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">exception.message</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1636,8 +1861,10 @@
             <value name="is_global">false</value>
           </record>
         </array>
+        <value name="modifiable">true</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -1648,20 +1875,17 @@
 </MAPDELETE>
 </MAP>
 </SEQUENCE>
-
-<SEQUENCE NAME="$null" TIMEOUT="" EXIT-ON="FAILURE">
-  <COMMENT>do nothing</COMMENT>
-</SEQUENCE>
 </BRANCH>
 </BRANCH>
 
-<MAP NAME="drop" MODE="STANDALONE">
+<MAP NAME="drop" TIMEOUT="" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -1669,6 +1893,7 @@
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -1677,6 +1902,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -1691,6 +1917,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$id</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1718,6 +1945,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$filter</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1738,6 +1966,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -1749,31 +1978,20 @@
 
 <MAPDELETE NAME="Dropper" FIELD="/$filter;1;0">
 </MAPDELETE>
+
+<MAPDELETE FIELD="/$service;1;0">
+</MAPDELETE>
 </MAP>
 </SEQUENCE>
 
-<MAP NAME="drop" MODE="STANDALONE">
+<MAP NAME="drop" TIMEOUT="" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="field_type">record</value>
-    <value name="field_dim">0</value>
-    <value name="nillable">true</value>
-    <value name="form_qualified">false</value>
-    <value name="is_global">false</value>
-    <array name="rec_fields" type="record" depth="1">
-    </array>
-  </record>
-</Values>
-</MAPTARGET>
-  <MAPSOURCE>
-
-<Values version="2.0">
-  <record name="xml" javaclass="com.wm.util.Values">
-    <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -1782,23 +2000,116 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
-        <value name="field_name">tundra.schedule:remove</value>
+        <value name="is_public">false</value>
+        <value name="field_name">tundra.schedule:suspend</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
+          <record javaclass="com.wm.util.Values">
+            <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
+            <value name="field_name">$id</value>
+            <value name="field_type">string</value>
+            <value name="field_dim">0</value>
+            <value name="nillable">true</value>
+            <value name="form_qualified">false</value>
+            <value name="is_global">false</value>
+          </record>
+          <record javaclass="com.wm.util.Values">
+            <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
+            <value name="field_name">$filter</value>
+            <value name="field_type">string</value>
+            <value name="field_dim">0</value>
+            <value name="nillable">true</value>
+            <value name="form_qualified">false</value>
+            <value name="is_global">false</value>
+          </record>
+          <record javaclass="com.wm.util.Values">
+            <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
+            <value name="field_name">$service</value>
+            <value name="field_type">string</value>
+            <value name="field_dim">0</value>
+            <value name="nillable">true</value>
+            <value name="form_qualified">false</value>
+            <value name="is_global">false</value>
+          </record>
         </array>
+        <value name="modifiable">true</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
+  </record>
+</Values>
+</MAPTARGET>
+  <MAPSOURCE>
+
+<Values version="2.0">
+  <record name="xml" javaclass="com.wm.util.Values">
+    <value name="node_type">record</value>
+    <value name="is_public">false</value>
+    <value name="field_type">record</value>
+    <value name="field_dim">0</value>
+    <value name="nillable">true</value>
+    <value name="form_qualified">false</value>
+    <value name="is_global">false</value>
+    <array name="rec_fields" type="record" depth="1">
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="is_public">false</value>
+        <value name="field_name">tundra.schedule:suspend</value>
+        <value name="field_type">record</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+        <array name="rec_fields" type="record" depth="1">
+          <record javaclass="com.wm.util.Values">
+            <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
+            <value name="field_name">$id</value>
+            <value name="field_type">string</value>
+            <value name="field_dim">0</value>
+            <value name="nillable">true</value>
+            <value name="form_qualified">false</value>
+            <value name="is_global">false</value>
+          </record>
+          <record javaclass="com.wm.util.Values">
+            <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
+            <value name="field_name">$filter</value>
+            <value name="field_type">string</value>
+            <value name="field_dim">0</value>
+            <value name="nillable">true</value>
+            <value name="form_qualified">false</value>
+            <value name="is_global">false</value>
+          </record>
+          <record javaclass="com.wm.util.Values">
+            <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
+            <value name="field_name">$service</value>
+            <value name="field_type">string</value>
+            <value name="field_dim">0</value>
+            <value name="nillable">true</value>
+            <value name="form_qualified">false</value>
+            <value name="is_global">false</value>
+          </record>
+        </array>
+        <value name="modifiable">true</value>
+      </record>
+    </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
 
   <!-- nodes -->
 
-<MAPDELETE NAME="Dropper" FIELD="/tundra.schedule:remove;2;0">
+<MAPDELETE FIELD="/tundra.schedule:suspend;2;0">
 </MAPDELETE>
 </MAP>
 </FLOW>

@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-21 15:29:41 AEST
+// -----( CREATED: 2015-07-22 15:30:47 AEST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -111,6 +111,7 @@ public final class schedule
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $filter
+		// [i] field:0:optional $service
 		// [o] record:1:optional $schedules
 		// [o] - field:0:required id
 		// [o] - field:0:required type {"complex","once","repeat"}
@@ -140,7 +141,10 @@ public final class schedule
 		
 		try {
 		    String filter = IDataUtil.getString(cursor, "$filter");
-		    IData[] schedules = list(filter, pipeline);
+		    String service = IDataUtil.getString(cursor, "$service");
+		
+		    IData[] schedules = list(service, filter, pipeline);
+		
 		    if (schedules != null && schedules.length > 0) IDataUtil.put(cursor, "$schedules", schedules);
 		} finally {
 		    cursor.destroy();
@@ -327,7 +331,6 @@ public final class schedule
 	    return packageName;
 	}
 	
-	
 	// returns true if a scheduled task with the given id exists, false otherwise
 	public static boolean exists(String id) throws ServiceException {
 	    if (id == null) return false;
@@ -339,6 +342,11 @@ public final class schedule
 	
 	// returns all scheduled tasks matching the given filter condition
 	public static IData[] list(String filter, IData pipeline) throws ServiceException {
+	    return list(null, filter, pipeline);
+	}
+	
+	// returns all scheduled tasks matching the given service and filter condition
+	public static IData[] list(String service, String filter, IData pipeline) throws ServiceException {
 	    if (pipeline == null) pipeline = IDataFactory.create();
 	
 	    String[] ids = listIDs();
@@ -348,21 +356,29 @@ public final class schedule
 	    for (int i = 0; i < ids.length; i++) {
 	        IData task = get(ids[i]);
 	
-	        if (filter == null ) {
-	            tasks.add(task);
-	        } else {
+	        boolean matched = true;
+	
+	        if (service != null) {
+	            IDataCursor cursor = task.getCursor();
+	            String taskService = IDataUtil.getString(cursor, "service");
+	            cursor.destroy();
+	    
+	            matched = matched && service.equals(taskService);
+	        }
+	
+	        if (filter != null) {
 	            IData scope = IDataUtil.clone(pipeline);
 	            IDataCursor cursor = scope.getCursor();
 	            IDataUtil.put(cursor, "$schedule", task);
 	            cursor.destroy();
 	
-	            if (ConditionEvaluator.evaluate(filter, scope)) {
-	                tasks.add(task);
-	            }
+	            matched = matched && ConditionEvaluator.evaluate(filter, scope);
 	        }
+	
+	        if (matched) tasks.add(task);
 	    }
 	
-	    return tasks.toArray(new IData[0]);
+	    return tasks.toArray(new IData[tasks.size()]);
 	}
 	
 	// returns all scheduled task IDs

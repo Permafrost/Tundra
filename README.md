@@ -9247,6 +9247,9 @@ condition, or every task if no `$filter` is specified.
 
   Refer to the `tundra.condition:evaluate` service documentation for the
   format of conditional statements.
+* `$service` is an optional fully-qualified service name which, if specified,
+  will filter the returned list to only be scheduled tasks that execute this
+  service.
 
 #### Outputs:
 
@@ -9382,7 +9385,9 @@ should be specified.
 
   Refer to the `tundra.condition:evaluate` service documentation for the
   format of conditional statements.
-
+* `$service` is an optional fully-qualified service name which, if specified,
+  will filter the scheduled tasks to be removed to only those that execute
+  this service.
 ---
 
 ### tundra.schedule:resume
@@ -9429,6 +9434,9 @@ specified.
 
   Refer to the `tundra.condition:evaluate` service documentation for the
   format of conditional statements.
+* `$service` is an optional fully-qualified service name which, if specified,
+  will filter the scheduled tasks to be resumed to only those that execute
+  this service.
 
 ---
 
@@ -9476,6 +9484,9 @@ specified.
 
   Refer to the `tundra.condition:evaluate` service documentation for the
   format of conditional statements.
+* `$service` is an optional fully-qualified service name which, if specified,
+  will filter the scheduled tasks to be suspended to only those that execute
+  this service.
 
 ---
 
