@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-09 15:26:38 AEST
+// -----( CREATED: 2015-07-23 16:07:37 AEST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -600,6 +600,28 @@ public final class document
 		    String defaultValue = IDataUtil.getString(cursor, "$default");
 		
 		    if (list != null) IDataUtil.put(cursor, "$list", IDataHelper.substitute(list, defaultValue, scope == null ? pipeline : scope, true));
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void unique (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(unique)>> ---
+		// @sigtype java 3.5
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    IData[] list = IDataUtil.getIDataArray(cursor, "$list");
+		    String[] keys = IDataUtil.getStringArray(cursor, "$keys");
+		
+		    if (list != null) IDataUtil.put(cursor, "$list", IDataHelper.unique(list, keys));
 		} finally {
 		    cursor.destroy();
 		}

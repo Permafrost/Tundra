@@ -6507,6 +6507,28 @@ translated documents returned by the translation service as output.
 
 ---
 
+### tundra.list.document:unique
+
+Returns an `IData[]` document list that only contains the first
+of every occurrence of an `IData` document whose values associated
+with the given keys are unique.
+
+#### Inputs:
+
+* `$list` is an `IData[]` document list to process.
+* `$keys` is a `String[]` containg the keys used to determine
+  uniqueness of an `IData` document, and can be simple or fully
+  qualified, such as `a/b/c[0]/d`. If not specified, all keys
+  will be used to determine uniqueness.
+
+#### Outputs:
+
+* `$list` is the resulting `IData[]` document list that only contains
+  the first occurrence of each `IData` document whose values
+  associated with the given keys are unique in the list.
+
+---
+
 ### tundra.list.document.value:lowercase
 
 Converts all item's string values in the given IData document
