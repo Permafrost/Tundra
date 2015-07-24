@@ -182,7 +182,6 @@ browser. When invoked via a browser, a basic HTML test report is displayed:
 * `$package` is the name of the package which contains the test cases to
   be executed.
 
-
 #### Outputs:
 
 * `$result` is a document containing the test results from executing all
@@ -2020,7 +2019,6 @@ compatible patterns.
   `$datetimes` list conforms to, and will be used to parse the datetime
   strings. Defaults to an [ISO8601] XML datetime.
 
-
 #### Outputs:
 
 * `$datetime` is the largest datetime from the given `$datetimes` list.
@@ -2052,7 +2050,6 @@ compatible patterns.
 * `$pattern` is an optional datetime pattern that each string in the
   `$datetimes` list conforms to, and will be used to parse the datetime
   strings. Defaults to an [ISO8601] XML datetime.
-
 
 #### Outputs:
 
@@ -3720,7 +3717,6 @@ given IData document to strings.
   and IData[] document lists should also have their values converted to
   strings. Defaults to `false`.
 
-
 #### Outputs:
 
 * `$document` is the given IData document with all non-IData document and
@@ -3903,7 +3899,6 @@ Returns all the top-level values in the given IData document.
 Returns the fully-qualifed domain name, host name, and IP address for
 the local host.
 
-
 #### Outputs:
 
 * `$domain` is the fully-qualified domain name of the local host.
@@ -3945,7 +3940,6 @@ Adds one duration (x) to another (y), returning (x + y).
 * `$pattern.output` is an optional desired pattern used to format
   the returned `$duration` string. Defaults to an [ISO8601] XML
   string.
-
 
 #### Outputs:
 
@@ -4006,7 +4000,6 @@ number of days in a month varies).
   conforms to, that will be used to parse the datetime string.
   Defaults to an [ISO8601] XML datetime.
 
-
 #### Outputs:
 
 * `$duration` is the duration string formatted according to
@@ -4057,7 +4050,6 @@ Reverses the sign of the given duration.
   [ISO8601] XML string.
 * `$pattern.output` is an optional desired pattern used to format the
   returned `$duration` string. Defaults to an [ISO8601] XML string.
-
 
 #### Outputs:
 
@@ -4671,7 +4663,6 @@ no custom HTTP routes will be in effect.
 ### tundra.http.route:list
 
 Returns a list of all the custom HTTP routes currently in effect.
-
 
 #### Outputs:
 
@@ -7663,7 +7654,6 @@ of items which did not include any occurrences of the pattern.
   treated as a literal string. If false, `$pattern` is treated as a
   [regular expression pattern]. If true, `$pattern` is treated as a literal string. Defaults to false, if not specified.
 
-
 #### Outputs:
 
 * `$found.all?` is a boolean flag which when true indicates that all
@@ -7990,7 +7980,6 @@ of the given strings literally.
 
 * `$list` is the list of strings to be converted to a [regular expression
   pattern].
-
 
 #### Outputs:
 
@@ -8673,7 +8662,6 @@ unmodified.
 
 Returns null.
 
-
 #### Outputs:
 
 * `$nothing` is returned with a null value.
@@ -8730,7 +8718,6 @@ Converts the given object to its string representation by calling
 Clones the pipeline and returns it.  This is useful if you want
 to use the pipeline itself as a document, which you can then pass
 as input when calling a service for example.
-
 
 #### Outputs:
 
@@ -8800,7 +8787,6 @@ byte array, or input stream.
 
 Returns the first key value pair from the pipeline.
 
-
 #### Outputs:
 
 * `$key` is the first key in the pipeline.
@@ -8828,7 +8814,6 @@ pipeline, or null if it doesn't exist.
 
 Returns the last key value pair from the pipeline.
 
-
 #### Outputs:
 
 * `$key` is the last key in the pipeline.
@@ -8839,7 +8824,6 @@ Returns the last key value pair from the pipeline.
 ### tundra.pipeline:length
 
 Returns the number of top-level elements in the pipeline.
-
 
 #### Outputs:
 
@@ -9661,7 +9645,6 @@ deviation execution durations.
 
 Returns the current call stack.
 
-
 #### Outputs:
 
 * `$callstack` is a list of fully-qualified service names
@@ -9746,7 +9729,6 @@ Provides a try/catch/finally pattern for flow services.
 
 Returns true if the calling service is the initiating top-level
 service for this thread.
-
 
 #### Outputs:
 
@@ -9873,7 +9855,6 @@ of the invoking transport.
 Returns the name of the current service, or nothing if invoked
 directly.
 
-
 #### Outputs:
 
 * `$self` is the fully-qualified name of the current service
@@ -9918,7 +9899,6 @@ a service.
 
 Returns information about the current session, including values stored in
 session state.
-
 
 #### Outputs:
 
@@ -10564,7 +10544,6 @@ Returns information about Integration Server, such as the software
 version, environment settings, Java properties, well-known directory
 locations, and memory usage.
 
-
 #### Outputs:
 
 * `$system` is a returned `IData` document containing the software
@@ -10594,7 +10573,6 @@ locations, and memory usage.
 ### tundra.thread:current
 
 Returns information about the currently executing thread.
-
 
 #### Outputs:
 
@@ -10639,7 +10617,6 @@ Returns information about the currently executing thread.
 ### tundra.thread:list
 
 Returns a list of all threads known in the current execution context.
-
 
 #### Outputs:
 
