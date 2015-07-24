@@ -5606,8 +5606,8 @@ time          | ISO8601 XML time
 time.jdbc     | HH:mm:ss
 milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
-Custom datetime patterns can be specified using [java.text.
-SimpleDateFormat] compatible patterns.
+Custom datetime patterns can be specified using
+[java.text.SimpleDateFormat] compatible patterns.
 
 #### Inputs:
 
