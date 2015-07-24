@@ -384,14 +384,11 @@ class.
 * `$list` is the java.lang.Object list to be tested as an instance of the
   specified class.
 * `$class` is the Java array class name the given list is asserted to be
-  an instance of. Note that Java array class names are [different and
-  distinct][jacn] to normal Java object class names. For example, an
-  array of java.lang.String objects has the class name
-  `[Ljava.lang.String;`.
+  an instance of. Note that [Java array class names] are different and
+  distinct to normal Java object class names. For example, an array of
+  `java.lang.String` objects has the class name `[Ljava.lang.String;`.
 * `$message` is an optional custom message to be used as the assertion
   error message if the assertion fails.
-
-[jacn]: <http://docs.oracle.com/javase/tutorial/reflect/special/arrayComponents.html>
 
 ---
 
@@ -1109,8 +1106,6 @@ which is useful for successfully receiving messages that do not need to be
 saved or processed.
 
 This service is intended to be invoked by clients via HTTP or FTP.
-
-[/dev/null]: <http://en.wikipedia.org/wiki//dev/null>
 
 ---
 
@@ -3934,8 +3929,6 @@ fully-qualifed domain name, host name, and IP address, if found.
 * `$host` is the host name associated with the given name.
 * `$ip` is the IP address associated with the given name.
 
-[DNS]: <http://en.wikipedia.org/wiki/Domain_Name_System>
-
 ---
 
 ### tundra.duration:add
@@ -4107,8 +4100,6 @@ Throws the given exception, or a new exception with the given message.
   the exception object.
 * `$exception` is an optional existing [java.lang.Throwable] object to be
   thrown. If specified, `$message` is not used.
-
-[java.lang.Throwable]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Throwable.html>
 
 ---
 
@@ -10223,9 +10214,6 @@ Implemented using the java.lang.String [compareTo] and
 * `$after?` is a boolean flag indicating if `$string.x` is greater
   than `$string.y`.
 
-[compareTo]: <http://docs.oracle.com/javase/6/docs/api/java/lang/String.html#compareTo(java.lang.String)>
-[compareToIgnoreCase]: <http://docs.oracle.com/javase/6/docs/api/java/lang/String.html#compareToIgnoreCase(java.lang.String)>
-
 ---
 
 ### tundra.string:find
@@ -11271,9 +11259,12 @@ Copyright &copy; 2012 Lachlan Dowding. See the [LICENSE] file for further detail
 [capturing group]: <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html#cg>
 [capturing groups]: <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html#cg>
 [catch block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/catch.html>
+[compareTo]: <http://docs.oracle.com/javase/6/docs/api/java/lang/String.html#compareTo(java.lang.String)>
+[compareToIgnoreCase]: <http://docs.oracle.com/javase/6/docs/api/java/lang/String.html#compareToIgnoreCase(java.lang.String)>
 [CSV]: <http://en.wikipedia.org/wiki/Comma-separated_values>
 [default charset]: <http://docs.oracle.com/javase/6/docs/api/java/nio/charset/Charset.html#defaultCharset()>
 [default locale]: <http://docs.oracle.com/javase/6/docs/api/java/util/Locale.html#getDefault()>
+[DNS]: <http://en.wikipedia.org/wiki/Domain_Name_System>
 [event loop]: <http://en.wikipedia.org/wiki/Event_loop>
 [Exclusive Canonical XML Version 1.0]: <http://www.w3.org/2001/10/xml-exc-c14n#>
 [Exclusive Canonical XML Version 1.0 With Comments]: <http://www.w3.org/2001/10/xml-exc-c14n#WithComments>
@@ -11294,6 +11285,7 @@ Copyright &copy; 2012 Lachlan Dowding. See the [LICENSE] file for further detail
 [java.io.OutputStream]: <http://docs.oracle.com/javase/6/docs/api/java/io/OutputStream.html>
 [java.lang.String]: <http://docs.oracle.com/javase/6/docs/api/java/lang/String.html>
 [java.lang.System.identityHashCode()]: <http://docs.oracle.com/javase/6/docs/api/java/lang/System.html#identityHashCode(java.lang.Object)>
+[java.lang.Throwable]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Throwable.html>
 [java.math.BigDecimal]: <http://docs.oracle.com/javase/6/docs/api/java/math/BigDecimal.html>
 [java.math.BigDecimal grammar]: <http://docs.oracle.com/javase/6/docs/api/java/math/BigDecimal.html#BigDecimal(java.lang.String)>
 [java.math.BigInteger]: <http://docs.oracle.com/javase/6/docs/api/java/math/BigInteger.html>
@@ -11308,6 +11300,7 @@ Copyright &copy; 2012 Lachlan Dowding. See the [LICENSE] file for further detail
 [javax.activation.MimeType]: <http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html>
 [javax.jms.BytesMessage]: <http://docs.oracle.com/javaee/1.4/api/javax/jms/BytesMessage.html>
 [Java array class name]: <http://docs.oracle.com/javase/tutorial/reflect/special/arrayComponents.html>
+[Java array class names]: <http://docs.oracle.com/javase/tutorial/reflect/special/arrayComponents.html>
 [JMS]: <http://en.wikipedia.org/wiki/Java_Message_Service>
 [JSON]: <http://www.json.org/>
 [LICENSE]: <https://github.com/Permafrost/Tundra/blob/master/LICENSE>
@@ -11345,3 +11338,4 @@ Copyright &copy; 2012 Lachlan Dowding. See the [LICENSE] file for further detail
 [XSD]: <http://www.w3.org/XML/Schema>
 [YAML]: <http://www.yaml.org>
 [zip]: <http://en.wikipedia.org/wiki/Zip_(file_format)>
+[/dev/null]: <http://en.wikipedia.org/wiki//dev/null>
