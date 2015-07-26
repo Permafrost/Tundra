@@ -8433,7 +8433,7 @@ interface, service, or record.
 
 ---
 
-### tundra.packages:exist
+### tundra.packages:exists
 
 Returns true if a package with the given name exists on this
 Integration Server.
