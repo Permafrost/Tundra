@@ -91,17 +91,17 @@
   </record>
   <value name="node_comment">### tundra.schedule:exists
 
-Returns true if a scheduled task with the given `$id` exists in
+Returns true if a scheduled task with the given $id exists in
 the task scheduler on this Integration Server.
 
 #### Inputs:
 
-* `$id` is an optional string identifier.
+* $id is an optional string identifier.
 
 #### Outputs:
 
-* `$exists?` is a boolean indicating if a scheduled task
-  identified by the given `$id` exists in the task scheduler
+* $exists? is a boolean indicating if a scheduled task
+  identified by the given $id exists in the task scheduler
   of this Integration Server.
 
 </value>

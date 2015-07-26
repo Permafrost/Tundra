@@ -243,26 +243,26 @@ not throw an exception matching the given criteria.
 
 #### Inputs:
 
-* `$service` is the fully-qualified name of the service to be
+* $service is the fully-qualified name of the service to be
   invoked that is expected to throw an exception.
-* `$pipeline` is an optional IData document which, if specified,
-  contains the input arguments for the invocation of `$service`; in
+* $pipeline is an optional IData document which, if specified,
+  contains the input arguments for the invocation of $service; in
   other words, the invocation is scoped to this IData document. If
   not specified, the invocation is unscoped, and hence the service
   will operate directly against the pipeline itself.
-* `$exception` is an IData document containing optional criteria
+* $exception is an IData document containing optional criteria
   which a thrown exception will be expected meet.
-  * `class` is the name of a Java class that the thrown exception
+  * class is the name of a Java class that the thrown exception
     must be an instance of.
-  * `message`
-    * `pattern` is a [regular expression pattern] or literal string
+  * message
+    * pattern is a [regular expression pattern] or literal string
       that must match the thrown exception's message.
-    * `literal?` is a boolean indicating if the `pattern` string
-      should be treated as a literal string. If false, `pattern` is
-      treated as a [regular expression pattern]. If true, `pattern`
+    * literal? is a boolean indicating if the pattern string
+      should be treated as a literal string. If false, pattern is
+      treated as a [regular expression pattern]. If true, pattern
       is treated as a literal string. Defaults to false, if not
       specified.
-* `$message` is an optional custom message to be used as the
+* $message is an optional custom message to be used as the
   asertion error message if the assertion fails.
 
 [regular expression pattern]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html&gt;</value>

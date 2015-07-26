@@ -1029,48 +1029,48 @@
   </record>
   <value name="node_comment">### tundra.schedule:get
 
-Returns the details of the scheduled task identified by the given `$id`,
-or nothing if no task with that `$id` exists.
+Returns the details of the scheduled task identified by the given $id,
+or nothing if no task with that $id exists.
 
 #### Inputs:
 
-* `$id` is an optional string identifier.
+* $id is an optional string identifier.
 
 #### Outputs:
 
-* `$schedule` is an IData document containing the details of the
-  scheduled task identified by the given `$id`, if it exists.
-  * `id` is the identifying string for this scheduled task.
-  * `type` is the type of schedule, a choice of one of the following:
-    * `once` is a schedule that executes one time only at the specified
+* $schedule is an IData document containing the details of the
+  scheduled task identified by the given $id, if it exists.
+  * id is the identifying string for this scheduled task.
+  * type is the type of schedule, a choice of one of the following:
+    * once is a schedule that executes one time only at the specified
       start datetime.
-    * `repeat` is a schedule that executes periodically at the specified
-      `repeat/interval` of time.
-    * `complex` is a schedule that executes periodically on the given
+    * repeat is a schedule that executes periodically at the specified
+      repeat/interval of time.
+    * complex is a schedule that executes periodically on the given
       minutes, hours, week days, days of month, and months of the year.
-  * `service` is the fully-qualified name of the service executed by
+  * service is the fully-qualified name of the service executed by
     the schedule.
-  * `package` is the name of the package the scheduled `service` is a
+  * package is the name of the package the scheduled service is a
     member of.
-  * `description` is an optional description of the scheduled task.
-  * `target` identifies the server or servers the schedule executes
-    the service on, provided either as a specific `hostname:port`, or
+  * description is an optional description of the scheduled task.
+  * target identifies the server or servers the schedule executes
+    the service on, provided either as a specific hostname:port, or
     one of the following values:
-    * `$any` executes the task on any server in the cluster. This
+    * $any executes the task on any server in the cluster. This
       option ensures the service is only executed once at any one
       time, but can be executed by any server in the cluster.
-    * `$all` executes the task on all servers in the cluster. This
+    * $all executes the task on all servers in the cluster. This
       option executes the service on every cluster node at the
       same time to perform, for example, clean up or house keeping
       on every server.
-  * `user` is the user account under which the service is executed.
-  * `start` is the optional datetime from which the scheduled task
-    is in effect or active. For `once` only tasks, this is the
+  * user is the user account under which the service is executed.
+  * start is the optional datetime from which the scheduled task
+    is in effect or active. For once only tasks, this is the
     datetime the service will be executed once and only once.
-  * `end` is the optional datetime after which the scheduled task
+  * end is the optional datetime after which the scheduled task
     is no longer be in effect (expires). If not specified, the
     schedule never expires.
-  * `overlap?` is an boolean determining how to handle when one
+  * overlap? is an boolean determining how to handle when one
     execution of the scheduled task overlaps the next scheduled
     execution, for example when the execution duration exceeds the
     schedule interval.
@@ -1086,47 +1086,47 @@ or nothing if no task with that `$id` exists.
     schedule, any scheduled times that occur while the previous
     schedule is executing are skipped, and the service will execute
     at the next uncontested scheduled time.
-  * `lateness` is an optional IData document containing arguments for
+  * lateness is an optional IData document containing arguments for
     how to determine when, and then handle if, a schedule is late.
-    * `duration` is the duration of time which when lapsed passed the
+    * duration is the duration of time which when lapsed passed the
       scheduled time determines that the task is considered late.
-    * `action` determines what happens to the task when its determined
+    * action determines what happens to the task when its determined
       to be late, and is a choice of one of the following:
-      * `run immediately`
-      * `skip and run at next scheduled interval`
-      * `suspend`
-  * `repeat` is an optional IData document containing arguments only
-    applicable when the schedule type is `repeat`.
-    * `interval` is the duration of time that determines how often
+      * run immediately
+      * skip and run at next scheduled interval
+      * suspend
+  * repeat is an optional IData document containing arguments only
+    applicable when the schedule type is repeat.
+    * interval is the duration of time that determines how often
       the scheduled task will execute.
-  * `complex` is an optional IData document containing arguments only
-    applicable when the schedule type is `complex`.
-    * `months` is an optional list of months of the year, provided as
+  * complex is an optional IData document containing arguments only
+    applicable when the schedule type is complex.
+    * months is an optional list of months of the year, provided as
       an integer between 1 (January) and 12 (December), the schedule
       executes in. If not specified, the schedule executes in all
       months of the year.
-    * `days` is an optional list of days of the month, provided as an
+    * days is an optional list of days of the month, provided as an
       integer between 1 and 31, the schedule executes on. If not
       specified, the schedule executes on all days in the month.
-    * `weekdays` is an optional list of days of the week, provided as
+    * weekdays is an optional list of days of the week, provided as
       an integer between 1 (Sunday) and 7 (Saturday), the schedule
       executes on. If not specified, the schedule executes on all
       days of the week.
-    * `hours` is an optional list of hours of the day, provided as an
+    * hours is an optional list of hours of the day, provided as an
       integer between 0 and 23, the schedule executes on. If not
       specified, the schedule executes every hour.
-    * `minutes` is an optional list of minutes of the hour, provided as
+    * minutes is an optional list of minutes of the hour, provided as
       an integer between 0 and 59, the schedule executes on. If
       not specified, the schedule executes every minute.
-  * `pipeline` is an optional IData document containing the input
+  * pipeline is an optional IData document containing the input
     arguments used as the input pipeline when executing the service.
-  * `status` is the current status of the scheduled task, and is a choice
+  * status is the current status of the scheduled task, and is a choice
     of one of the following:
-    * `cancelled`
-    * `running`
-    * `suspended`
-    * `waiting`
-  * `next` is the datetime of the next scheduled execution of the
+    * cancelled
+    * running
+    * suspended
+    * waiting
+  * next is the datetime of the next scheduled execution of the
     service, if applicable.
 
 </value>

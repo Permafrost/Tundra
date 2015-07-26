@@ -126,11 +126,11 @@
 
 #### Inputs:
 
-* `$base64` is a [Base64] encoded string to be decoded.
+* $base64 is a [Base64] encoded string to be decoded.
 
 #### Outputs:
 
-* `$string` is the [Base64] decoded data as a string.
+* $string is the [Base64] decoded data as a string.
 
 [Base64]: &lt;http://en.wikipedia.org/wiki/Base64&gt;</value>
   <value name="stateless">no</value>

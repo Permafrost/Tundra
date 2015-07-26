@@ -163,12 +163,12 @@ Implemented with the [javax.activation.MimeType] class.
 
 #### Inputs:
 
-* `$type` is an optional [mime type] data structure of the
+* $type is an optional [mime type] data structure of the
   constituent parts that make a [mime type].
 
 #### Outputs:
 
-* `$string` is resulting [mime type] in its canonical string
+* $string is resulting [mime type] in its canonical string
   representation.
 
 [MIME]: &lt;http://en.wikipedia.org/wiki/MIME&gt;

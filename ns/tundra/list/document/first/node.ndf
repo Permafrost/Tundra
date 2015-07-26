@@ -75,11 +75,11 @@ Returns the first item from the given list.
 
 #### Inputs:
 
-* `$list` is a list to fetch the first item from.
+* $list is a list to fetch the first item from.
 
 #### Outputs:
 
-* `$item` is the first item in the given list.
+* $item is the first item in the given list.
 
 </value>
   <value name="stateless">no</value>

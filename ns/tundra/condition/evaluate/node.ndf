@@ -115,7 +115,7 @@ document).
 
 #### Inputs:
 
-* `$condition` is the conditional statement to be evaluated. Conditional
+* $condition is the conditional statement to be evaluated. Conditional
   statements have the same form as when they are used in a flow branch
   step:
 
@@ -123,41 +123,41 @@ document).
                 | [!]value                  [logical_op condition]
 
   Where:
-  * `value` is a fully-qualified percent delimited IData document key,
-    such as `%a/b/c[0]%`, or a literal (double- or single-quoted) string,
-    number, (forward slash delimited) regular expression, or `$null`.
-  * `comparison_op` is one of the following comparison operators:
-    * `=`
-    * `==`
-    * `!=`
-    * `&lt;&gt;`
-    * `&gt;`
-    * `&gt;=`
-    * `&lt;`
-    * `&lt;=`
-  * `logical_op` is one of the following logical operators:
-    * `and`
-    * `&amp;&amp;`
-    * `or`
-    * `||`
+  * value is a fully-qualified percent delimited IData document key,
+    such as %a/b/c[0]%, or a literal (double- or single-quoted) string,
+    number, (forward slash delimited) regular expression, or $null.
+  * comparison_op is one of the following comparison operators:
+    * =
+    * ==
+    * !=
+    * &lt;&gt;
+    * &gt;
+    * &gt;=
+    * &lt;
+    * &lt;=
+  * logical_op is one of the following logical operators:
+    * and
+    * &amp;&amp;
+    * or
+    * ||
 
   Examples:
-  * `%a/b/c[0]% == "xyz"`
-  * `%num% == /\d\d/`
-  * `%num% == 10`
-  * `%something% == $null`
-  * `%total% == %count%`
-  * `%inString1% == "abc" and (%inNum1% &lt; 100 or %inNum2% &gt; 1000)`
+  * %a/b/c[0]% == "xyz"
+  * %num% == /\d\d/
+  * %num% == 10
+  * %something% == $null
+  * %total% == %count%
+  * %inString1% == "abc" and (%inNum1% &lt; 100 or %inNum2% &gt; 1000)
 
   Refer to the Conditional Expressions section in the Integration Server
   Developer User's Guide for further details.
-* `$scope` is an optional IData document containing the variables against
-  which `$condition` will be evaluated. If not specified, the
-  `$condition` will be evaluated against the pipeline.
+* $scope is an optional IData document containing the variables against
+  which $condition will be evaluated. If not specified, the
+  $condition will be evaluated against the pipeline.
 
 #### Outputs:
 
-* `$result?` is the boolean result of the evaluation. If no `$condition`
+* $result? is the boolean result of the evaluation. If no $condition
   was specified, true will be returned.
 
 </value>

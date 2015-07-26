@@ -69,11 +69,11 @@ reverse order.
 
 #### Inputs:
 
-* `$list` is the list to be reversed.
+* $list is the list to be reversed.
 
 #### Outputs:
 
-* `$list` is the given list with item ordering reversed.
+* $list is the given list with item ordering reversed.
 
 </value>
   <value name="stateless">no</value>

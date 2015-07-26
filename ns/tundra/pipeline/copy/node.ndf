@@ -95,10 +95,10 @@ key in the pipeline.
 
 #### Inputs:
 
-* `$key.source` identifies the value to be copied, and can be
-  simple or fully qualified, such as `a/b/c[0]/d`.
-* `$key.target` is the key to copy the source value to, and
-  can be simple or fully qualified, such as `a/b/c[0]/d`.
+* $key.source identifies the value to be copied, and can be
+  simple or fully qualified, such as a/b/c[0]/d.
+* $key.target is the key to copy the source value to, and
+  can be simple or fully qualified, such as a/b/c[0]/d.
 
 </value>
   <value name="stateless">no</value>

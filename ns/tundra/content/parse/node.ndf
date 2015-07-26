@@ -174,20 +174,20 @@ Parses (deserializes) content specified as a string, byte array, or
 input stream into an IData document.
 
 Parser implementions for the supported content types are as follows:
-* [CSV]: `Tundra/tundra.csv:parse`
-* Flat File: `WmFlatFile/pub.flatFile:convertToValues`
-* [JSON]: `Tundra/tundra.json:parse`
-* Pipe separated values: `Tundra/tundra.csv:parse`
-* [TSV]: `Tundra/tundra.csv:parse`
-* [XML]: `WmPublic/pub.xml:xmlStringToXMLNode`, `pub.xml:xmlNodeToDocument`
-* [YAML]: `Tundra/tundra.yaml:parse`
+* [CSV]: Tundra/tundra.csv:parse
+* Flat File: WmFlatFile/pub.flatFile:convertToValues
+* [JSON]: Tundra/tundra.json:parse
+* Pipe separated values: Tundra/tundra.csv:parse
+* [TSV]: Tundra/tundra.csv:parse
+* [XML]: WmPublic/pub.xml:xmlStringToXMLNode, pub.xml:xmlNodeToDocument
+* [YAML]: Tundra/tundra.yaml:parse
 
 #### Inputs:
 
-* `$content` is a string, byte array, or input stream containing content
+* $content is a string, byte array, or input stream containing content
   to be parsed.
-* `$content.type` is the MIME media type that describes the format of the
-  given `$content`:
+* $content.type is the MIME media type that describes the format of the
+  given $content:
   * [CSV]: specify a recognized [CSV] MIME media type, such as
     "text/csv", "text/comma-separated-values", or a type that includes a
     "+csv" suffix.
@@ -205,11 +205,11 @@ Parser implementions for the supported content types are as follows:
   * [XML]: optionally specify a recognized [XML] MIME media type, such as
     "text/xml" or "application/xml", or a type that includes a "+xml"
     suffix.
-* `$namespace` is a list of namespace prefixes and the URIs they map to,
+* $namespace is a list of namespace prefixes and the URIs they map to,
   used when parsing [XML] content with elements in one or more
   namespaces.
-* `$schema` is the fully-qualified name of the parsing schema to use when
-  parsing `$content` as [XML] or Flat File content, and can have the
+* $schema is the fully-qualified name of the parsing schema to use when
+  parsing $content as [XML] or Flat File content, and can have the
   following values:
   * [CSV]: do not specify.
   * Flat File: specify the fully-qualified name of the Integration Server
@@ -221,16 +221,16 @@ Parser implementions for the supported content types are as follows:
   * [XML]: specify the fully-qualified name of the Integration Server
     document reference that defines the [XML] format.
 
-  Defaults to parsing `$content` as [XML], if neither `$content.type` nor
-  `$schema` are specified.
-* `$encoding` is an optional character set to use when `$content` is
+  Defaults to parsing $content as [XML], if neither $content.type nor
+  $schema are specified.
+* $encoding is an optional character set to use when $content is
   provided as a byte array or input stream to decode the contained text
   data. Defaults to [UTF-8].
 
 #### Outputs:
 
-* `$document` is the resulting IData document representing the parsed
-  `$content`.
+* $document is the resulting IData document representing the parsed
+  $content.
 
 [CSV]: &lt;http://en.wikipedia.org/wiki/Comma-separated_values&gt;
 [JSON]: &lt;http://www.json.org/&gt;

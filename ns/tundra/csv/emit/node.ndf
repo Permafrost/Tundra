@@ -214,21 +214,21 @@ formatted string, byte array, or input stream.
 
 #### Inputs:
 
-* `$document` is the IData document containing a list of records to be
+* $document is the IData document containing a list of records to be
   serialized as a [CSV] string, byte array, or input stream.
-  * `recordWithNoID` is the IData[] document list of records to be
+  * recordWithNoID is the IData[] document list of records to be
     serialized.
-* `$delimiter` is the character to use to delimit fields in the resulting
+* $delimiter is the character to use to delimit fields in the resulting
   serialization. Defaults to ',' (comma), if not specified.
-* `$encoding` is an optional character set to use when encoding the
+* $encoding is an optional character set to use when encoding the
   resulting text data to a byte array or input stream. Defaults to [UTF-8].
-* `$mode` is an optional choice of {stream, bytes, string} which
-  specifies the type of object `$content` is returned as. Defaults to
+* $mode is an optional choice of {stream, bytes, string} which
+  specifies the type of object $content is returned as. Defaults to
   stream.
 
 #### Outputs:
 
-* `$content` is the resulting serialization of the records in `$document`
+* $content is the resulting serialization of the records in $document
   as [CSV] content.
 
 [CSV]: &lt;http://en.wikipedia.org/wiki/Comma-separated_values&gt;

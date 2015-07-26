@@ -184,27 +184,27 @@ replacement string.
 
 #### Inputs:
 
-* `$list` is an IData document list to have all occurrences of the
+* $list is an IData document list to have all occurrences of the
   given [regular expression pattern] in each item's keys replaced.
-* `$pattern` is the [regular expression pattern] to match against
+* $pattern is the [regular expression pattern] to match against
   each key.
-* `$replacement` is the replacement string to be substituted in
+* $replacement is the replacement string to be substituted in
   each key wherever the given pattern is found.
-* `$literal?` is a boolean indicating if the replacement string
+* $literal? is a boolean indicating if the replacement string
   should be treated as a literal string. If false, captured
   groups can be referred to with dollar-sign references, such
   as $1, and other special characters may need to be escaped.
   Defaults to false.
-* `$recurse?` is an optional boolean indicating if embedded
+* $recurse? is an optional boolean indicating if embedded
   IData documents and IData document lists should also
   have occurrences of the pattern in their string values
   replaced. Defaults to false.
 
 #### Outputs:
 
-* `$list` is the given IData document list with all occurrences of
+* $list is the given IData document list with all occurrences of
   the given [regular expression pattern] in each item's keys replaced
-  with `$replacement`.
+  with $replacement.
 
 [regular expression pattern]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html&gt;</value>
   <value name="stateless">no</value>

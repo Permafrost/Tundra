@@ -67,8 +67,8 @@ the pipeline.
 
 #### Inputs:
 
-* `$key` identifies the key value pair to be dropped, and
-  can be simple or fully qualified, such as `a/b/c[0]/d`.
+* $key identifies the key value pair to be dropped, and
+  can be simple or fully qualified, such as a/b/c[0]/d.
 
 </value>
   <value name="stateless">no</value>

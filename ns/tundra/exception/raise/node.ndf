@@ -82,12 +82,12 @@ Throws the given exception, or a new exception with the given message.
 
 #### Inputs:
 
-* `$message` is an optional error message to use when constructing the
-  new `com.wm.app.b2b.server.ServiceException` exception object to be
+* $message is an optional error message to use when constructing the
+  new com.wm.app.b2b.server.ServiceException exception object to be
   thrown. If not specified, an empty message will be used to construct
   the exception object.
-* `$exception` is an optional existing [java.lang.Throwable] object to be
-  thrown. If specified, `$message` is not used.
+* $exception is an optional existing [java.lang.Throwable] object to be
+  thrown. If specified, $message is not used.
 
 [java.lang.Throwable]: &lt;http://docs.oracle.com/javase/6/docs/api/java/lang/Throwable.html&gt;</value>
   <value name="stateless">no</value>

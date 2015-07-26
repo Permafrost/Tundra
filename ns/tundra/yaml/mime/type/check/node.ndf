@@ -86,12 +86,12 @@ type.
 
 #### Inputs:
 
-* `$content.type` is the MIME media type to be checked.
+* $content.type is the MIME media type to be checked.
 
 #### Outputs:
 
-* `$yaml?` is a boolean which when true indicates that the given
-  `$content.type` is a recognized [YAML] media type.
+* $yaml? is a boolean which when true indicates that the given
+  $content.type is a recognized [YAML] media type.
 
 [YAML]: &lt;http://www.yaml.org&gt;</value>
   <value name="stateless">no</value>

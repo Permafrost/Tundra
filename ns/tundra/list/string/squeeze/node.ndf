@@ -88,12 +88,12 @@ the given list of strings.
 
 #### Inputs:
 
-* `$list` is a list of strings to squeeze extraneous whitespace
+* $list is a list of strings to squeeze extraneous whitespace
   from.
 
 #### Outputs:
 
-* `$list` is the input list of strings with extraneous whitespace
+* $list is the input list of strings with extraneous whitespace
   characters removed and replaced with a single space character.
 
 </value>

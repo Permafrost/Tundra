@@ -101,14 +101,14 @@ Returns the last key value pair from the given IData document.
 
 #### Inputs:
 
-* `$document` is an IData document from which to fetch the last
+* $document is an IData document from which to fetch the last
   element.
 
 #### Outputs:
 
-* `$key` is the key of the last element in the given IData
+* $key is the key of the last element in the given IData
   document.
-* `$value` is the value of the last element in the given IData
+* $value is the value of the last element in the given IData
   document.
 
 </value>

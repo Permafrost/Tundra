@@ -71,11 +71,11 @@ removed, such that no two items are equal.
 
 #### Inputs:
 
-* `$list` is the list to process.
+* $list is the list to process.
 
 #### Outputs:
 
-* `$list` is the resulting list with all duplicate items
+* $list is the resulting list with all duplicate items
   removed.
 
 </value>

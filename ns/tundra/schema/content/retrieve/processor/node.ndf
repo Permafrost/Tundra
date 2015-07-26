@@ -96,15 +96,15 @@
   </record>
   <value name="node_comment">### tundra.schema.content.retrieve:processor
 
-Content processing services used by `tundra.content:retrieve` must
+Content processing services used by tundra.content:retrieve must
 implement this specification.
 
 #### Inputs:
 
-* `$content` is the content to be processed, specified as a
+* $content is the content to be processed, specified as a
   [java.io.InputStream].
-* `$content.type` is the mime media type of the content to be processed.
-* `$content.name` is the name associated with the content, such as a
+* $content.type is the mime media type of the content to be processed.
+* $content.name is the name associated with the content, such as a
   file name.
 
 [java.io.InputStream]: &lt;http://docs.oracle.com/javase/6/docs/api/java/io/InputStream.html&gt;</value>

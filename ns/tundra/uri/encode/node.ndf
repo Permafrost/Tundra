@@ -143,13 +143,13 @@ Implemented with the [java.net.URLEncoder] class.
 
 #### Inputs:
 
-* `$string` is a string containing data to be URI-encoded.
-* `$encoding` is the character set used to obtain the bytes for unsafe
+* $string is a string containing data to be URI-encoded.
+* $encoding is the character set used to obtain the bytes for unsafe
   characters. Defaults to [UTF-8].
 
 #### Outputs:
 
-* `$string` is the URI-encoded input string.
+* $string is the URI-encoded input string.
 
 [RFC 2396]: &lt;http://www.ietf.org/rfc/rfc2396.txt&gt;
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;

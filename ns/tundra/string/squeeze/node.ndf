@@ -97,11 +97,11 @@ carriage return, line feed) with a single space character.
 
 #### Inputs:
 
-* `$string` is a string to squeeze extraneous whitespace from.
+* $string is a string to squeeze extraneous whitespace from.
 
 #### Outputs:
 
-* `$string` is the input string with extraneous whitespace
+* $string is the input string with extraneous whitespace
   characters removed and replaced with a single space
   character.
 

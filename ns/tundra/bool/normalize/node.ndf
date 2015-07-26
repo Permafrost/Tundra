@@ -124,20 +124,20 @@
 Returns the canonical string form for the given $boolean string: either
 "true" or "false".
 
-If `$boolean` is null and `$default` is not null, then `$default`'s boolean
+If $boolean is null and $default is not null, then $default's boolean
 value will be returned.
 
-If `$boolean` is null and `$default` is null, then "false" will be
+If $boolean is null and $default is null, then "false" will be
 returned.
 
 #### Inputs:
 
-* `$boolean` is the value to be normalized.
-* `$default` is the value to use if `$boolean` is null.
+* $boolean is the value to be normalized.
+* $default is the value to use if $boolean is null.
 
 #### Outputs:
 
-* `$boolean` is the normalized input value, guaranteed to be either the
+* $boolean is the normalized input value, guaranteed to be either the
   string "true" or "false".
 
 </value>

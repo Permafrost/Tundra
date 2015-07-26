@@ -82,8 +82,8 @@ Throws an assertion error if the given object is null.
 
 #### Inputs:
 
-* `$object` is the object expected to not be null.
-* `$message` is an optional custom message to be used as the assertion
+* $object is the object expected to not be null.
+* $message is an optional custom message to be used as the assertion
   error message if the assertion fails.
 
 </value>

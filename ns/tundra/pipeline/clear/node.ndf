@@ -65,8 +65,8 @@ specified in the preserve list.
 
 #### Inputs:
 
-* `$preserve` is a list of keys (simple or fully qualified,
-  such as `a/b/c[0]/d`) to not be dropped from the pipeline.
+* $preserve is a list of keys (simple or fully qualified,
+  such as a/b/c[0]/d) to not be dropped from the pipeline.
   All other keys not in this list will be dropped.
 
 </value>

@@ -94,11 +94,11 @@ Returns all the lines in the given string as a list.
 
 #### Inputs:
 
-* `$string` is an optional string to split into lines.
+* $string is an optional string to split into lines.
 
 #### Outputs:
 
-* `$lines` is a string list containing each line from
+* $lines is a string list containing each line from
   the given string.
 
 </value>

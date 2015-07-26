@@ -111,11 +111,11 @@ given class.
 
 #### Inputs:
 
-* `$object` is the object to be tested as an instance of the specified
+* $object is the object to be tested as an instance of the specified
   class.
-* `$class` is the Java class name the given object is asserted to be an
+* $class is the Java class name the given object is asserted to be an
   instance of.
-* `$message` is an optional custom message to be used as the assertion
+* $message is an optional custom message to be used as the assertion
   error message if the assertion fails.
 
 </value>

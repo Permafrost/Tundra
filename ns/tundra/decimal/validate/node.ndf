@@ -127,14 +127,14 @@ Returns true if the given string can be parsed as a decimal.
 
 #### Inputs:
 
-* `$decimal` is a string to be validated as a decimal.
-* `$raise?` is an optional boolean indicating if an exception
+* $decimal is a string to be validated as a decimal.
+* $raise? is an optional boolean indicating if an exception
   should be thrown if the given string is not a valid
   decimal. Defaults to false.
 
 #### Outputs:
 
-* `$valid?` is a boolean indicating if the given string is
+* $valid? is a boolean indicating if the given string is
   a valid decimal number.
 
 </value>

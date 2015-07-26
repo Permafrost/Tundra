@@ -13,11 +13,11 @@ response body stream to bytes.
 
 #### Inputs:
 
-* `$response` is the [HTTP] response to be processed by this service.
+* $response is the [HTTP] response to be processed by this service.
 
 #### Outputs:
 
-* `$response` is the processed [HTTP] response, where the response header
+* $response is the processed [HTTP] response, where the response header
   keys are normalized to lower case, and the response body is returned
   as a byte[] array.
 

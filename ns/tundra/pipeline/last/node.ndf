@@ -82,8 +82,8 @@ Returns the last key value pair from the pipeline.
 
 #### Outputs:
 
-* `$key` is the last key in the pipeline.
-* `$value` is the last key's associated value.
+* $key is the last key in the pipeline.
+* $value is the last key's associated value.
 
 </value>
   <value name="stateless">no</value>

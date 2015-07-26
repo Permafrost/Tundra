@@ -146,18 +146,18 @@ default value.
 
 #### Inputs:
 
-* `$list` is a list of strings to perform variable substitution on.
-* `$pipeline` is an optional IData document used to scope the
+* $list is a list of strings to perform variable substitution on.
+* $pipeline is an optional IData document used to scope the
   variable substitution. If not specified, the substitution
   is unscoped (resolved against the pipeline itself).
-* `$default` is an optional default value to substitute in place
+* $default is an optional default value to substitute in place
   of null or missing values.
 
 #### Outputs:
 
-* `$list` is the input list of strings with variable substitution
+* $list is the input list of strings with variable substitution
   patterns, such as "%key%", replaced with the value of the key
-  (resolved against either `$pipeline`, if specified, or the pipeline
+  (resolved against either $pipeline, if specified, or the pipeline
   itself).
 
 </value>

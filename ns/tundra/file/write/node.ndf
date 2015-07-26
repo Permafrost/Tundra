@@ -211,21 +211,21 @@ If no file is specified, a new temporary file is created automatically.
 
 #### Inputs:
 
-* `$file` is the optional name of the file to which the given content
+* $file is the optional name of the file to which the given content
   is to be written or appended, specified as either a relative or
   absolute file path or file: [URI]. If not specified, a new temporary
   file will be created automatically.
-* `$mode` is an optional choice of 'write' or 'append', which determines
+* $mode is an optional choice of 'write' or 'append', which determines
   whether the file will be overwritten or appended to respectively.
   Defaults to 'append', since this is the safer option.
-* `$content` is a string, byte array, or input stream containing data
+* $content is a string, byte array, or input stream containing data
   to be written or appended to the given file.
-* `$encoding` is an optional character set to use when $content has
+* $encoding is an optional character set to use when $content has
   been provided as a string. Defaults to [UTF-8].
 
 #### Outputs:
 
-* `$file` is the name of the file that was written or appended to. If
+* $file is the name of the file that was written or appended to. If
   no input file name was specified, this is the name of the temporary
   file that was created automatically.
 

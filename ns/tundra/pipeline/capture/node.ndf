@@ -56,7 +56,7 @@ as input when calling a service for example.
 
 #### Outputs:
 
-* `$pipeline` is the captured pipeline as an IData document.
+* $pipeline is the captured pipeline as an IData document.
 
 </value>
   <value name="stateless">no</value>

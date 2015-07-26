@@ -106,14 +106,14 @@ Sorts the given IData document by its keys in natural ascending order.
 
 #### Inputs:
 
-* `$document` is an IData document to be sorted.
-* `$recurse` is an optional boolean indicating if embedded
+* $document is an IData document to be sorted.
+* $recurse is an optional boolean indicating if embedded
   IData documents and IData[] document lists should also
   be sorted. Defaults to false.
 
 #### Outputs:
 
-* `$document` is the resulting IData document, where the elements have
+* $document is the resulting IData document, where the elements have
   been sorted by their keys into natural ascending order.
 
 </value>

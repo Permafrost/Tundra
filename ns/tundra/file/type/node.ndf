@@ -100,14 +100,14 @@ defaults to the [mime type] for arbitrary binary data:
 
 #### Inputs:
 
-* `$file` is the name of the file whose mime type is to be determined,
+* $file is the name of the file whose mime type is to be determined,
   specified as either a relative or absolute file path or file: [URI].
   The file is not required to exist, since the mime type is determined
   purely from the file name itself.
 
 #### Outputs:
 
-* `$type` is the [mime type] of the given file.
+* $type is the [mime type] of the given file.
 
 [URI]: &lt;http://www.w3.org/Addressing/&gt;
 [mime type]: &lt;http://en.wikipedia.org/wiki/Internet_media_type&gt;</value>

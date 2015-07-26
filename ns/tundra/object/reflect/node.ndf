@@ -191,23 +191,23 @@ array of a [primitive type], and its Java class name.
 
 #### Inputs:
 
-* `$object` is an optional object to be reflected on. If neither input
+* $object is an optional object to be reflected on. If neither input
   is specified, this service does nothing and no outputs are returned.
-* `$key` is an optional key identifying the value in the pipeline to
-  relect on, and can be simple or fully qualified, such as `a/b/c[0]/d`.
-  Use `$key` instead of `$object` when reflecting on an object that could
-  be a list/array, because mapping a list/array to `$object` will only
+* $key is an optional key identifying the value in the pipeline to
+  relect on, and can be simple or fully qualified, such as a/b/c[0]/d.
+  Use $key instead of $object when reflecting on an object that could
+  be a list/array, because mapping a list/array to $object will only
   map the first item in the list. If neither input is specified, this
   service does nothing and no outputs are returned.
 
 #### Outputs:
 
-* `$id` is the identity hash code of the given object, as calculated by
+* $id is the identity hash code of the given object, as calculated by
   the [java.lang.System.identityHashCode()] method. The identity hash
   code for the null reference is always zero.
-* `$class` is the Java class name of the given object.
-* `$array?` is a boolean indicating if the given object is an array.
-* `$primitive?` is a boolean indicating if the given object is a
+* $class is the Java class name of the given object.
+* $array? is a boolean indicating if the given object is an array.
+* $primitive? is a boolean indicating if the given object is a
   [primitive type], or an array of a [primitive type].
 
 [java.lang.System.identityHashCode()]: &lt;http://docs.oracle.com/javase/6/docs/api/java/lang/System.html#identityHashCode(java.lang.Object)&gt;

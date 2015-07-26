@@ -95,11 +95,11 @@ package.
 
 #### Inputs:
 
-* `$package` is the name of the existing package in which to create
+* $package is the name of the existing package in which to create
   a new empty flow service. If the package does not exist, an
   exception will be thrown.
-* `$service` is the fully-qualified name of the service to be
-  created, such as `folder1.folder2:service3`. If an element with
+* $service is the fully-qualified name of the service to be
+  created, such as folder1.folder2:service3. If an element with
   the given name already exists, an exception will be thrown.
 
 </value>

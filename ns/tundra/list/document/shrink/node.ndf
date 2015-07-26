@@ -104,12 +104,12 @@ from the end.
 
 #### Inputs:
 
-* `$list` is the IData[] list to be shrunk.
-* `$count` is the number of items to truncate from the end of the list.
+* $list is the IData[] list to be shrunk.
+* $count is the number of items to truncate from the end of the list.
 
 #### Outputs:
 
-* `$list` is the IData[] list shrunk from the end of the list by the
+* $list is the IData[] list shrunk from the end of the list by the
   desired item count by truncating items from the end of the list. If
   the list is smaller than the count, an empty list is returned.
 

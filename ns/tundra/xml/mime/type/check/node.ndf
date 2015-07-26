@@ -86,12 +86,12 @@ type.
 
 #### Inputs:
 
-* `$content.type` is the MIME media type to be checked.
+* $content.type is the MIME media type to be checked.
 
 #### Outputs:
 
-* `$xml?` is a boolean which when true indicates that the given
-  `$content.type` is a recognized [XML] media type.
+* $xml? is a boolean which when true indicates that the given
+  $content.type is a recognized [XML] media type.
 
 [XML]: &lt;http://www.w3.org/XML/&gt;</value>
   <value name="stateless">no</value>

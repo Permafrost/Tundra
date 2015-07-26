@@ -198,19 +198,19 @@ list to upper case.
 
 #### Inputs:
 
-* `$list` is an IData document list whose item's string values
+* $list is an IData document list whose item's string values
   are to be converted to upper case.
-* `$locale` optionally identifies the case transformation rules
+* $locale optionally identifies the case transformation rules
   to be used for a given [Locale]. If not specified, the
   [default locale] is used.
-* `$recurse?` is an optional boolean indicating if embedded
+* $recurse? is an optional boolean indicating if embedded
   IData documents and IData document lists should also
   have their string values converted to upper case. Defaults to
   false.
 
 #### Outputs:
 
-* `$list` is the given IData document list with all string values
+* $list is the given IData document list with all string values
   converted to upper case.
 
 [Locale]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/Locale.html&gt;

@@ -123,11 +123,11 @@ a description of the normalization process:
 
 #### Inputs:
 
-* `$string` is the [URI] to be normalized.
+* $string is the [URI] to be normalized.
 
 #### Outputs:
 
-* `$string` is the given [URI] in normalized form.
+* $string is the given [URI] in normalized form.
 
 [URI]: &lt;http://www.w3.org/Addressing/&gt;
 [java.net.URI normalize]: &lt;http://docs.oracle.com/javase/6/docs/api/java/net/URI.html#normalize()&gt;</value>

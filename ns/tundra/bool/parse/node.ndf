@@ -143,12 +143,12 @@ Parses the given string as a boolean value.
 
 #### Inputs:
 
-* `$string` is an optional string to be parsed.
+* $string is an optional string to be parsed.
 
 #### Outputs:
 
-* `$boolean` is the resulting `java.lang.Boolean` object from parsing
-  the given `$string`.
+* $boolean is the resulting java.lang.Boolean object from parsing
+  the given $string.
 
 </value>
   <value name="stateless">no</value>

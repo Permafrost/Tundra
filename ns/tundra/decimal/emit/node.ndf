@@ -82,13 +82,13 @@ Returns an string representation of the given decimal object.
 
 #### Inputs:
 
-* `$object` is either a `java.math.BigDecimal`, `java.math.BigInteger`,
-  `java.lang.Double`, `java.lang.Float`, `java.lang.Integer`, or
-  `java.lang.Long` object.
+* $object is either a java.math.BigDecimal, java.math.BigInteger,
+  java.lang.Double, java.lang.Float, java.lang.Integer, or
+  java.lang.Long object.
 
 #### Outputs:
 
-* `$string` is the resulting string representation of the decimal.
+* $string is the resulting string representation of the decimal.
 
 </value>
   <value name="stateless">no</value>

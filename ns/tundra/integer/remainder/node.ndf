@@ -126,12 +126,12 @@ Returns the remainder from dividing the given integer x by y.
 
 #### Inputs:
 
-* `$integer.x` is the numerator to be divided by `$integer.y`.
-* `$integer.y` is the denominator to divide `$integer.x` by.
+* $integer.x is the numerator to be divided by $integer.y.
+* $integer.y is the denominator to divide $integer.x by.
 
 #### Outputs:
 
-* `$integer` is the remainder from dividing `$integer.x` by `$integer.y`.
+* $integer is the remainder from dividing $integer.x by $integer.y.
 
 </value>
   <value name="stateless">no</value>

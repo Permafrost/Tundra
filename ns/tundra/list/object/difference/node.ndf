@@ -83,18 +83,18 @@
   </record>
   <value name="node_comment">### tundra.list.object:difference
 
-Returns a list of only the items in `$list.x` that are not also
-present in `$list.y`.
+Returns a list of only the items in $list.x that are not also
+present in $list.y.
 
 #### Inputs:
 
-* `$list.x` is a list to be checked for differences against `$list.y`.
-* `$list.y` is a list to be checked against `$list.x` for differnces.
+* $list.x is a list to be checked for differences against $list.y.
+* $list.y is a list to be checked against $list.x for differnces.
 
 #### Outputs:
 
-* `$list` is a new list containing only the items in `$list.x` that
-  are not also present in `$list.y`.
+* $list is a new list containing only the items in $list.x that
+  are not also present in $list.y.
 
 </value>
   <value name="stateless">no</value>

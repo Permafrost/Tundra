@@ -155,15 +155,15 @@ byte array, or input stream.
 
 #### Inputs:
 
-* `$encoding` is an optional character set to use when `$content` is
+* $encoding is an optional character set to use when $content is
   returned as an input stream or byte array. Defaults to [UTF-8].
-* `$mode` is an optional choice of stream, bytes, or string,
+* $mode is an optional choice of stream, bytes, or string,
   and determines the type of content object returned.
 
 #### Outputs:
 
-* `$content` is an input stream, byte array, or string (depending on
-  the `$mode` selected) representing the encoded pipeline data.
+* $content is an input stream, byte array, or string (depending on
+  the $mode selected) representing the encoded pipeline data.
 
 [IData XML]: &lt;http://documentation.softwareag.com/webmethods/wmsuites/wmsuite8-2_sp2/Integration_Server/8-2-SP1_Integration_Server_Java_API_Reference/com/wm/util/coder/IDataXMLCoder.html&gt;
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;</value>

@@ -203,19 +203,19 @@ Adds one duration (x) to another (y), returning (x + y).
 
 #### Inputs:
 
-* `$duration.x` is a duration string to be added to `$duration.y`.
-* `$duration.y` is a duration string to be added to `$duration.x`.
-* `$pattern.input` is an optional pattern describing the type of
-  duration specified by the `$duration.x` and `$duration.y` strings.
+* $duration.x is a duration string to be added to $duration.y.
+* $duration.y is a duration string to be added to $duration.x.
+* $pattern.input is an optional pattern describing the type of
+  duration specified by the $duration.x and $duration.y strings.
   Defaults to an [ISO8601] XML string.
-* `$pattern.output` is an optional desired pattern used to format
-  the returned `$duration` string. Defaults to an [ISO8601] XML
+* $pattern.output is an optional desired pattern used to format
+  the returned $duration string. Defaults to an [ISO8601] XML
   string.
 
 #### Outputs:
 
-* `$duration` is a duration string equal to (`$duration.x` +
-  `$duration.y`).
+* $duration is a duration string equal to ($duration.x +
+  $duration.y).
 
 [ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;</value>
   <value name="stateless">no</value>

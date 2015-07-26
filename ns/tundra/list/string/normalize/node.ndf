@@ -112,14 +112,14 @@ list of strings.
 
 #### Inputs:
 
-* `$objects` is a list of strings, byte arrays, or input streams
+* $objects is a list of strings, byte arrays, or input streams
   to be converted to a string.
-* `$encoding` is an optional character set to use when `$objects`
+* $encoding is an optional character set to use when $objects
   is a list of byte arrays or input streams. Defaults to [UTF-8].
 
 #### Outputs:
 
-* `$strings` is the resulting list of strings.
+* $strings is the resulting list of strings.
 
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;</value>
   <value name="stateless">no</value>

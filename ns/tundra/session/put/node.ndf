@@ -82,10 +82,10 @@ Stores the given key value pair in current session state.
 
 #### Inputs:
 
-* `$key` is the optional key name to use to identify the value
+* $key is the optional key name to use to identify the value
   to be stored in session state. If not specified, this
   service does nothing.
-* `$value` is the optional value to be stored in session state.
+* $value is the optional value to be stored in session state.
 
 </value>
   <value name="stateless">no</value>

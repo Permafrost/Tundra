@@ -86,12 +86,12 @@ Returns a new list containing all the items in the given lists.
 
 #### Inputs:
 
-* `$list.x` is the first list to be concatenated.
-* `$list.y` is the second list to be concatenated.
+* $list.x is the first list to be concatenated.
+* $list.y is the second list to be concatenated.
 
 #### Outputs:
 
-* `$list` is a new list containing all the items from the given
+* $list is a new list containing all the items from the given
   input lists.
 
 </value>

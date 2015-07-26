@@ -100,15 +100,15 @@ in the given IData document list.
 
 #### Inputs:
 
-* `$list` is an IData document list whose item's keys are to
+* $list is an IData document list whose item's keys are to
   be trimmed of leading and trailing whitespace characters.
-* `$recurse?` is an optional boolean indicating if embedded
+* $recurse? is an optional boolean indicating if embedded
   IData documents and IData document lists should also
   have their keys trimmed. Defaults to false.
 
 #### Outputs:
 
-* `$list` is the given IData document list with all item's
+* $list is the given IData document list with all item's
   keys trimmed of leading and trailing whitespace characters
   removed.
 

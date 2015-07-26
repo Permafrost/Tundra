@@ -98,10 +98,10 @@ Throws an assertion error if the expected and actual lists are not equal.
 
 #### Inputs:
 
-* `$expected` is the expected java.lang.Object list.
-* `$actual` is the actual java.lang.Object list. If this list is not
+* $expected is the expected java.lang.Object list.
+* $actual is the actual java.lang.Object list. If this list is not
   equal to the expected list, an assertion error will be thrown.
-* `$message` is an optional custom message to be used as the assertion
+* $message is an optional custom message to be used as the assertion
   error message if the assertion fails.
 
 </value>

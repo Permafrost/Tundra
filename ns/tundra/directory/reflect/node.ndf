@@ -232,20 +232,20 @@ Returns useful details about the given directory.
 
 #### Inputs:
 
-* `$directory` is the name of the directory to return details about,
+* $directory is the name of the directory to return details about,
   specified as either a relative or absolute file path or file: [URI].
 
 #### Outputs:
 
-* `$directory.properties` is an IData document containing the following
-  details about the given `$directory`:
-  * `exists?` is a boolean flag indicating if the given directory exists.
-  * `parent` is the canonical file: [URI] that represents the parent
+* $directory.properties is an IData document containing the following
+  details about the given $directory:
+  * exists? is a boolean flag indicating if the given directory exists.
+  * parent is the canonical file: [URI] that represents the parent
     directory that contains the given directory.
-  * `name` is the name component not including the path of the given
+  * name is the name component not including the path of the given
     directory.
-  * `modified` is the last modified datetime of the given directory.
-  * `uri` is the canonical file: [URI] that represents the given
+  * modified is the last modified datetime of the given directory.
+  * uri is the canonical file: [URI] that represents the given
     directory.
 
 [URI]: &lt;http://www.w3.org/Addressing/&gt;</value>

@@ -85,11 +85,11 @@ Returns the number of items in the given list.
 
 #### Inputs:
 
-* `$list` is a list to count the number of items in.
+* $list is a list to count the number of items in.
 
 #### Outputs:
 
-* `$length` is the number of items in the given list.
+* $length is the number of items in the given list.
 
 </value>
   <value name="stateless">no</value>

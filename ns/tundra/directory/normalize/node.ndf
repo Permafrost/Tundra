@@ -94,12 +94,12 @@ Returns the canonical file: URI that represents the given directory.
 
 #### Inputs:
 
-* `$directory` is a relative or absolute path, or file: [URI], to be
+* $directory is a relative or absolute path, or file: [URI], to be
   normalized.
 
 #### Outputs:
 
-* `$directory` is the equivalent canonical file: [URI] representing
+* $directory is the equivalent canonical file: [URI] representing
   the directory.
 
 [URI]: &lt;http://www.w3.org/Addressing/&gt;</value>

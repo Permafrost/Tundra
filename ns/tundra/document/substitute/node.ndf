@@ -120,7 +120,7 @@
   <value name="node_comment">### tundra.document:substitute
 
 Attempts variable substitution on each string value in the given IData
-document by replacing all occurrences of substrings matching `%key%` with
+document by replacing all occurrences of substrings matching %key% with
 the associated (optionally scoped) value.
 
 Optionally replaces null or non-existent values with the given default
@@ -128,19 +128,19 @@ value.
 
 #### Inputs:
 
-* `$document` is an IData document to perform variable substitution on.
-* `$pipeline` is an optional scope used to resolve key references. If
+* $document is an IData document to perform variable substitution on.
+* $pipeline is an optional scope used to resolve key references. If
   not specified, keys are resolved against the pipeline itself.
-* `$default` is an optional default value to substitute in place of keys
+* $default is an optional default value to substitute in place of keys
   that resolve to null or missing values. If not specified, no
   substitution will be made for keys that resolve to null or missing
   values.
 
 #### Outputs:
 
-* `$document` is the resulting IData document with all variable
-  substitution patterns in all values, such as `%key%`, replaced with
-  the value of the key (resolved against either `$pipeline`, if
+* $document is the resulting IData document with all variable
+  substitution patterns in all values, such as %key%, replaced with
+  the value of the key (resolved against either $pipeline, if
   specified, or the pipeline itself).
 
 </value>

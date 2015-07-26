@@ -436,11 +436,11 @@ Provides an [HTTP] client for issuing requests against [HTTP] servers.
 
 #### Inputs:
 
-* `$request` is an IData document containing the parameters required for
+* $request is an IData document containing the parameters required for
   making an [HTTP] request to an [HTTP] server.
-* `$service` is an optional custom [HTTP] response handler service, which
-  implements the `tundra.schema.http.response:handler` specification, and
-  can be specified when the standard `tundra.http.response:handle`
+* $service is an optional custom [HTTP] response handler service, which
+  implements the tundra.schema.http.response:handler specification, and
+  can be specified when the standard tundra.http.response:handle
   service does not suffice. The standard handler does the following:
   * checks the [HTTP response code] is &lt; 400, and throws an exception
     when it is not
@@ -449,7 +449,7 @@ Provides an [HTTP] client for issuing requests against [HTTP] servers.
 
 #### Outputs:
 
-* `$response` is an IData document containing the [HTTP] server response
+* $response is an IData document containing the [HTTP] server response
   for the given request.
 
 [HTTP response code]: &lt;http://httpstatus.es/&gt;

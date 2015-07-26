@@ -53,7 +53,7 @@ system resources.
 
 #### Inputs:
 
-* `$stream` is an optional [java.io.InputStream] or
+* $stream is an optional [java.io.InputStream] or
   [java.io.OutputStream] object to be closed. If specified, the stream
   is closed and any associated system resources are released. If not
   specified, this service does nothing.

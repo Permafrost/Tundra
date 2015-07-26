@@ -87,11 +87,11 @@ the given list's items.
 
 #### Inputs:
 
-* `$list` is the list to be sorted.
+* $list is the list to be sorted.
 
 #### Outputs:
 
-* `$list` is the sorted list.
+* $list is the sorted list.
 
 [natural ordering]: &lt;http://docs.oracle.com/javase/6/docs/api/java/lang/Comparable.html&gt;</value>
   <value name="stateless">no</value>

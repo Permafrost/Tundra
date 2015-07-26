@@ -127,14 +127,14 @@ Returns true if the given string can be parsed as an integer.
 
 #### Inputs:
 
-* `$integer` is a string to be validated as an integer.
-* `$raise?` is an optional boolean indicating whether an exception
+* $integer is a string to be validated as an integer.
+* $raise? is an optional boolean indicating whether an exception
   should be thrown if the given integer is invalid. Defaults to
   false.
 
 #### Outputs:
 
-* `$valid?` is a boolean indicating if the given string is a valid
+* $valid? is a boolean indicating if the given string is a valid
   integer.
 
 </value>

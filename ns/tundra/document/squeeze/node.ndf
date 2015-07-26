@@ -108,14 +108,14 @@ then compacts the IData document by removing all null values.
 
 #### Inputs:
 
-* `$document` is an IData document to be squeezed.
-* `$recurse?` is an optional boolean indicating if embedded
+* $document is an IData document to be squeezed.
+* $recurse? is an optional boolean indicating if embedded
   IData documents and IData[] document lists should also
-  be squeezed. Defaults to `false`.
+  be squeezed. Defaults to false.
 
 #### Outputs:
 
-* `$document` is the resulting IData document with all string values
+* $document is the resulting IData document with all string values
   trimmed of leading and trailing whitespace characters, and all
   empty string values, empty IData documents, empty lists, and null
   values removed.

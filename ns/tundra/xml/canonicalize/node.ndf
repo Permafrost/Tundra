@@ -207,12 +207,12 @@ Implemented with the [Apache Santuario] XML Security library.
 
 #### Inputs:
 
-* `$content` is the XML content to be canonicalized, specified as a
+* $content is the XML content to be canonicalized, specified as a
   string, byte array, or input stream.
-* `$encoding` is an optional character set to use when `$content` is
+* $encoding is an optional character set to use when $content is
   provided as a byte array or input stream to decode the contained
   text data. Defaults to [UTF-8].
-* `$algorithm` determines the canonicalization algorithm used, and
+* $algorithm determines the canonicalization algorithm used, and
   is a choice of:
   * [Canonical XML Version 1.0]
   * [Canonical XML Version 1.0 With Comments]
@@ -220,14 +220,14 @@ Implemented with the [Apache Santuario] XML Security library.
   * [Canonical XML Version 1.1 With Comments]
   * [Exclusive Canonical XML Version 1.0]
   * [Exclusive Canonical XML Version 1.0 With Comments]
-* `$mode` is a choice of bytes, stream, or string, and determines
-  the type of object `$content.canonical` is returned as. Defaults
+* $mode is a choice of bytes, stream, or string, and determines
+  the type of object $content.canonical is returned as. Defaults
   to stream.
 
 #### Outputs:
 
-* `$content.canonical` is the given `$content` converted to canonical
-  form by the given `$algorithm`.
+* $content.canonical is the given $content converted to canonical
+  form by the given $algorithm.
 
 [Apache Santuario]: &lt;http://santuario.apache.org/&gt;
 [Canonical XML Version 1.0 With Comments]: &lt;http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments&gt;

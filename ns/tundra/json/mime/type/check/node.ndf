@@ -86,12 +86,12 @@ type.
 
 #### Inputs:
 
-* `$content.type` is the MIME media type to be checked.
+* $content.type is the MIME media type to be checked.
 
 #### Outputs:
 
-* `$json?` is a boolean which when true indicates that the given
-  `$content.type` is a recognized [JSON] media type.
+* $json? is a boolean which when true indicates that the given
+  $content.type is a recognized [JSON] media type.
 
 [JSON]: &lt;http://www.json.org/&gt;</value>
   <value name="stateless">no</value>

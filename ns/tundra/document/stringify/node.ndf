@@ -107,15 +107,15 @@ given IData document to strings.
 
 #### Inputs:
 
-* `$document` is an IData document whose values are to be converted to
+* $document is an IData document whose values are to be converted to
   strings.
-* `$recurse` is an optional boolean indicating if embedded IData documents
+* $recurse is an optional boolean indicating if embedded IData documents
   and IData[] document lists should also have their values converted to
-  strings. Defaults to `false`.
+  strings. Defaults to false.
 
 #### Outputs:
 
-* `$document` is the given IData document with all non-IData document and
+* $document is the given IData document with all non-IData document and
   non-IData[] document list values converted to strings.
 
 </value>

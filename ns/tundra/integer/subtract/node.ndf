@@ -126,12 +126,12 @@ Subtracts the given integer y from x, returning the result.
 
 #### Inputs:
 
-* `$integer.x` is an integer value to subtract `$integer.y` from.
-* `$integer.y` is an integer value to subtract from `$integer.x`.
+* $integer.x is an integer value to subtract $integer.y from.
+* $integer.y is an integer value to subtract from $integer.x.
 
 #### Outputs:
 
-* `$integer` is the result of subtracting `$integer.y` from `$integer.x`.
+* $integer is the result of subtracting $integer.y from $integer.x.
 
 </value>
   <value name="stateless">no</value>

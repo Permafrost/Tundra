@@ -83,9 +83,9 @@ or input stream and merges it into the pipeline.
 
 #### Inputs:
 
-* `$content` is a string, byte array, or input stream containing
+* $content is a string, byte array, or input stream containing
   [IData XML] data to be parsed and merged into the pipeline.
-* `$encoding` is an optional character set to use when `$content` is
+* $encoding is an optional character set to use when $content is
   provided as a byte array or input stream. Defaults to [UTF-8].
 
 [IData XML]: &lt;http://documentation.softwareag.com/webmethods/wmsuites/wmsuite8-2_sp2/Integration_Server/8-2-SP1_Integration_Server_Java_API_Reference/com/wm/util/coder/IDataXMLCoder.html&gt;

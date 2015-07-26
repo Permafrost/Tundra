@@ -72,12 +72,12 @@ Returns all the top-level values in the given IData document.
 
 #### Inputs:
 
-* `$document` is an IData document from which all top-level
+* $document is an IData document from which all top-level
   values are to be fetched.
 
 #### Outputs:
 
-* `$values` is the list of all top-level values in the given IData
+* $values is the list of all top-level values in the given IData
   document.
 
 </value>

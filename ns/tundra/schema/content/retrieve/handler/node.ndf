@@ -445,21 +445,21 @@
   <value name="node_comment">### tundra.schema.content.retrieve:handler
 
 Content retrieval protocol handling services used by
-`tundra.content:retrieve` must implement this specification.
+tundra.content:retrieve must implement this specification.
 
 #### Inputs:
 
-* `$source` is the source URI identifying the location and names of the
+* $source is the source URI identifying the location and names of the
   content to be retrieved.
-* `$service` is the content processing service that is called for each
-  item of content retrieved from `$source`. This service is required to
-  implement the `tundra.schema.content.retrieve:processor` specification.
-* `$limit` is an optional maximum number of content items to be
-  retrieved from `$source` per retrieval.
+* $service is the content processing service that is called for each
+  item of content retrieved from $source. This service is required to
+  implement the tundra.schema.content.retrieve:processor specification.
+* $limit is an optional maximum number of content items to be
+  retrieved from $source per retrieval.
 
 #### Outputs:
 
-* `$message` is an optional diagnostic message describing the results of
+* $message is an optional diagnostic message describing the results of
   the retrieval.
 
 </value>

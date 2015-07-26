@@ -170,18 +170,18 @@
 
 #### Inputs:
 
-* `$content` is either a string, byte array, or input stream containing
+* $content is either a string, byte array, or input stream containing
   data to be [Base64] encoded.
-* `$encoding` is the optional character set used to decode the text data
-  when `$content` is provided as a byte array or input stream. Defaults
-  to [UTF-8]. Not used when `$base64` is provided as a string.
-* `$mode` is an optional choice of stream, bytes, or string which
-  determines the type of the output `$base64` object. Defaults to stream.
+* $encoding is the optional character set used to decode the text data
+  when $content is provided as a byte array or input stream. Defaults
+  to [UTF-8]. Not used when $base64 is provided as a string.
+* $mode is an optional choice of stream, bytes, or string which
+  determines the type of the output $base64 object. Defaults to stream.
 
 #### Outputs:
 
-* `$base64` is the [Base64] encoded data as a string, byte array, or input
-  stream (depending on the `$mode` chosen).
+* $base64 is the [Base64] encoded data as a string, byte array, or input
+  stream (depending on the $mode chosen).
 
 [Base64]: &lt;http://en.wikipedia.org/wiki/Base64&gt;
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;</value>

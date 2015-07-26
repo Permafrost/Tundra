@@ -170,17 +170,17 @@ Returns the sum of all the given durations, returning
 
 #### Inputs:
 
-* `$list` is a list of [ISO8601] XML duration strings to be added
+* $list is a list of [ISO8601] XML duration strings to be added
   together.
-* `$pattern.input` is an optional pattern describing the type of
-  duration strings in `$list`. Defaults to an [ISO8601] XML string.
-* `$pattern.output` is an optional desired pattern used to format
-  the returned `$duration` string. Defaults to an [ISO8601] XML
+* $pattern.input is an optional pattern describing the type of
+  duration strings in $list. Defaults to an [ISO8601] XML string.
+* $pattern.output is an optional desired pattern used to format
+  the returned $duration string. Defaults to an [ISO8601] XML
   string.
 
 #### Outputs:
 
-* `$duration` is the sum of the duration strings in the given list
+* $duration is the sum of the duration strings in the given list
   in [ISO8601] XML format.
 
 [ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;</value>

@@ -141,15 +141,15 @@ given list.
 
 #### Inputs:
 
-* `$list` is the list to be sliced.
-* `$index` is the zero-based start index from which to
+* $list is the list to be sliced.
+* $index is the zero-based start index from which to
   take the slice.
-* `$length` is the number of items to include in the
+* $length is the number of items to include in the
   slice.
 
 #### Outputs:
 
-* `$list` is the desired subset or slice of the given list.
+* $list is the desired subset or slice of the given list.
 
 </value>
   <value name="stateless">no</value>

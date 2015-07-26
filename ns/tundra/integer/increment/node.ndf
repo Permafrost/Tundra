@@ -97,11 +97,11 @@ both initialize and increment a counter variable.
 
 #### Inputs:
 
-* `$integer` is the integer to be incremented by one.
+* $integer is the integer to be incremented by one.
 
 #### Outputs:
 
-* `$integer` is the given integer plus one, or one if no
+* $integer is the given integer plus one, or one if no
   input integer was specified.
 
 </value>

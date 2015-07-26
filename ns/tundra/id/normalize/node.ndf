@@ -97,11 +97,11 @@ characters with underscore characters.
 
 #### Inputs:
 
-* `$string` is a string to be converted to a legal Java identifier.
+* $string is a string to be converted to a legal Java identifier.
 
 #### Outputs:
 
-* `$string` is the given string with illegal characters replaced with
+* $string is the given string with illegal characters replaced with
   underscore characters.
 
 </value>

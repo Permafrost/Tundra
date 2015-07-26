@@ -146,17 +146,17 @@ with the given item (or null if not specified).
 
 #### Inputs:
 
-* `$list` is the Object[] list to be grown.
-* `$item` is an optional Object used to pad the newly grown section of
+* $list is the Object[] list to be grown.
+* $item is an optional Object used to pad the newly grown section of
   the list with.
-* `$count` is the number of new items to add to the list.
-* `$class` is an optional Java class name used to instantiate a new list
-  if the provided `$list` is null.
+* $count is the number of new items to add to the list.
+* $class is an optional Java class name used to instantiate a new list
+  if the provided $list is null.
 
 #### Outputs:
 
-* `$list` is the Object[] list grown by the desired `$count` of items,
-  with the original items preserved and the new items padded with `$item`
+* $list is the Object[] list grown by the desired $count of items,
+  with the original items preserved and the new items padded with $item
   (or null if not specified).
 
 </value>

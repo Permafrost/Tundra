@@ -217,21 +217,21 @@ Custom datetime patterns can be specified using
 
 #### Inputs:
 
-* `$datetime.start` is the datetime string representing the starting
+* $datetime.start is the datetime string representing the starting
   instant for calculating the duration of time.
-* `$datetime.end` is the datetime string representing the ending instant
+* $datetime.end is the datetime string representing the ending instant
   for calculating the duration of time.
-* `$datetime.pattern` is an optional datetime pattern that
-  `$datetime.start` and `$datetime.end` conform to. Defaults to an
+* $datetime.pattern is an optional datetime pattern that
+  $datetime.start and $datetime.end conform to. Defaults to an
   [ISO8601] XML datetime.
-* `$duration.pattern` is an optional duration pattern that the output
-  `$duration` will be formatted as. Defaults to an [ISO8601] XML
+* $duration.pattern is an optional duration pattern that the output
+  $duration will be formatted as. Defaults to an [ISO8601] XML
   duration.
 
 #### Outputs:
 
-* `$duration` is the duration of time between `$datetime.start` and
-  `$datetime.end`, formatted according to the given `$duration.pattern`.
+* $duration is the duration of time between $datetime.start and
+  $datetime.end, formatted according to the given $duration.pattern.
 
 [ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;
 [java.text.SimpleDateFormat]: &lt;http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html&gt;</value>

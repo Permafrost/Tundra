@@ -56,7 +56,7 @@ pipeline.
 
 #### Inputs:
 
-* `$document` is an IData document whose top-level elements
+* $document is an IData document whose top-level elements
   are to be copied directly into the pipeline.
 
 </value>

@@ -72,11 +72,11 @@ removing all null values.
 
 #### Inputs:
 
-* `$list` is an object list to be squeezed.
+* $list is an object list to be squeezed.
 
 #### Outputs:
 
-* `$list` is the resulting object list with all string values
+* $list is the resulting object list with all string values
   trimmed of leading and trailing whitespace characters, and
   all empty string values and null values removed.
 

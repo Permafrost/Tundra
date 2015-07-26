@@ -94,13 +94,13 @@ Returns true if Integration Server can read the given file.
 
 #### Inputs:
 
-* `$file` is the name of the file to test if Integration Server has
+* $file is the name of the file to test if Integration Server has
   read permissions, specified as either a relative or absolute
   file path or file: [URI].
 
 #### Outputs:
 
-* `$readable?` is a boolean flag indicating if Integration Server
+* $readable? is a boolean flag indicating if Integration Server
   has permission to read the given file. If the file does not
   exist, false is returned.
 

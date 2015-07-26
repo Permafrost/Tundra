@@ -71,11 +71,11 @@ length of the list.
 
 #### Inputs:
 
-* `$list` is a list to be compacted.
+* $list is a list to be compacted.
 
 #### Outputs:
 
-* `$list` is the given list with all null items removed.
+* $list is the given list with all null items removed.
 
 </value>
   <value name="stateless">no</value>

@@ -71,13 +71,13 @@ Waits for the given service thread to finish before returning the
 service output pipeline.
 
 * Inputs
-* `$thread` is a service thread object returned by
-  `Tundra/tundra.service:invoke` when a service is invoked
+* $thread is a service thread object returned by
+  Tundra/tundra.service:invoke when a service is invoked
   asynchronously.
 
 #### Outputs:
 
-* `$pipeline` is the output pipeline returned by the service
+* $pipeline is the output pipeline returned by the service
   thread.
 
 </value>

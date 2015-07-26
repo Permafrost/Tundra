@@ -73,13 +73,13 @@ Waits for each service thread in the given list to finish before
 returning each output pipeline.
 
 * Inputs
-* `$threads` is a list of service thread objects returned by
-  `Tundra/tundra.list.service:invoke` when operating in the
+* $threads is a list of service thread objects returned by
+  Tundra/tundra.list.service:invoke when operating in the
   asynchronous invocation mode.
 
 #### Outputs:
 
-* `$pipelines` is a list of all the output pipelines returned
+* $pipelines is a list of all the output pipelines returned
   by the service threads.
 
 </value>

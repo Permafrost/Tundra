@@ -139,10 +139,10 @@ index in the given list.
 
 #### Inputs:
 
-* `$list` is a list to check whether the given `$item` exists
+* $list is a list to check whether the given $item exists
   in.
-* `$item` is the item to be checked against the given `$list`.
-* `$index` is the index at which to insert the item. List
+* $item is the item to be checked against the given $list.
+* $index is the index at which to insert the item. List
   indexing is zero-based. Supports both forward and
   reverse indexing (where, for example, an index of -1
   is the last item in the list, and an index of -2 is the
@@ -150,7 +150,7 @@ index in the given list.
 
 #### Outputs:
 
-* `$list` is the resulting list with the item inserted at the
+* $list is the resulting list with the item inserted at the
   desired index.
 
 </value>

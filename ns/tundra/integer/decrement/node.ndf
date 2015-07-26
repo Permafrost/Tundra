@@ -97,11 +97,11 @@ in a loop to both initialize and decrement a counter variable.
 
 #### Inputs:
 
-* `$integer` is the integer to be decremented by one.
+* $integer is the integer to be decremented by one.
 
 #### Outputs:
 
-* `$integer` is the given integer minus one, or minus one,
+* $integer is the given integer minus one, or minus one,
   if no input integer was specified.
 
 </value>

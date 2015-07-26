@@ -97,7 +97,7 @@ interface, service, or record.
 
 #### Inputs:
 
-* `$node` is the Integration Server namespace node to check
+* $node is the Integration Server namespace node to check
   existence of, provided as a normal namespace identifer:
 
       folder(.folder)*(:object)
@@ -108,7 +108,7 @@ interface, service, or record.
 
 #### Outputs:
 
-* `$type` is the type of node that `$node` is, such as interface,
+* $type is the type of node that $node is, such as interface,
   or service.
 
 </value>

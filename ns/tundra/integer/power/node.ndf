@@ -126,12 +126,12 @@ Raises the given integer to the power of the given exponent (i^e).
 
 #### Inputs:
 
-* `$integer` is an integer value.
-* `$exponent` is the exponent to raise the integer by.
+* $integer is an integer value.
+* $exponent is the exponent to raise the integer by.
 
 #### Outputs:
 
-* `$integer` is the result of raising the given integer by
+* $integer is the result of raising the given integer by
   the given exponent (i^e).
 
 </value>

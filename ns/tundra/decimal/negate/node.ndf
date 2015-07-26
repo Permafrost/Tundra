@@ -96,11 +96,11 @@ Returns the negative value of the given decimal (-x).
 
 #### Inputs:
 
-* `$decimal` is a decimal value.
+* $decimal is a decimal value.
 
 #### Outputs:
 
-* `$decimal` is the given decimal value multiplied
+* $decimal is the given decimal value multiplied
   by minus one.
 
 </value>

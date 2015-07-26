@@ -124,9 +124,9 @@ the local host.
 
 #### Outputs:
 
-* `$domain` is the fully-qualified domain name of the local host.
-* `$host` is the local host name.
-* `$ip` is the local IP address.
+* $domain is the fully-qualified domain name of the local host.
+* $host is the local host name.
+* $ip is the local IP address.
 
 </value>
   <value name="stateless">no</value>

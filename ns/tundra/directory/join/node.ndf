@@ -124,12 +124,12 @@ or file name.
 
 #### Inputs:
 
-* `$parent` is a string specifying a relative or absolute parent path.
-* `$child` is a string specifying a relative child path or file name.
+* $parent is a string specifying a relative or absolute parent path.
+* $child is a string specifying a relative child path or file name.
 
 #### Outputs:
 
-* `$uri` is a file: [URI] representing the path `$parent`/`$child`.
+* $uri is a file: [URI] representing the path $parent/$child.
 
 [URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
   <value name="stateless">no</value>

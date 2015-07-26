@@ -190,7 +190,7 @@ the given regular expression pattern, and node type.
 
 #### Inputs:
 
-* `$interface` is the Integration Server namespace folder to check
+* $interface is the Integration Server namespace folder to check
   existence of, provided as a normal namespace interface node:
 
       folder(.folder)*
@@ -198,19 +198,19 @@ the given regular expression pattern, and node type.
   Where brackets indicate optional components of the namespace
   identifer, and '*' indicates 0 or more occurrences of a
   component.
-* `$pattern` is an optional regular expression pattern used to
+* $pattern is an optional regular expression pattern used to
   filter the returned list of nodes (only nodes whose name
   matches the given pattern are returned).
-* `$type` is an optional node type used to filter the returned
+* $type is an optional node type used to filter the returned
   list of nodes (only nodes whose type matches are returned).
-* `$recurse?` is an optional boolean flag indicating whether to
+* $recurse? is an optional boolean flag indicating whether to
   recursively list all items in all child folders/interfaces.
   Defaults to false.
 
 #### Outputs:
 
-* `$nodes` is the list of (optionally filtered) child nodes that
-  exist as items within the given `$interface`.
+* $nodes is the list of (optionally filtered) child nodes that
+  exist as items within the given $interface.
 
 </value>
   <value name="stateless">no</value>

@@ -252,21 +252,21 @@ Parses a list of content (specified as a list of strings, bytes, or input
 streams) into an IData[] document list.
 
 Parser implementions for the supported content types are as follows:
-* [CSV]: `Tundra/tundra.csv:parse`
-* Flat File: `WmFlatFile/pub.flatFile:convertToValues`
-* [JSON]: `Tundra/tundra.json:parse`
-* Pipe separated values: `Tundra/tundra.csv:parse`
-* [TSV]: `Tundra/tundra.csv:parse`
-* [XML]: `WmPublic/pub.xml:xmlStringToXMLNode`, `pub.xml:xmlNodeToDocument`
-* [YAML]: `Tundra/tundra.yaml:parse`
+* [CSV]: Tundra/tundra.csv:parse
+* Flat File: WmFlatFile/pub.flatFile:convertToValues
+* [JSON]: Tundra/tundra.json:parse
+* Pipe separated values: Tundra/tundra.csv:parse
+* [TSV]: Tundra/tundra.csv:parse
+* [XML]: WmPublic/pub.xml:xmlStringToXMLNode, pub.xml:xmlNodeToDocument
+* [YAML]: Tundra/tundra.yaml:parse
 
 #### Inputs:
 
-* `$contents` is a list of strings, byte arrays, or input streams
+* $contents is a list of strings, byte arrays, or input streams
   containing content (structured/parseable data) to be parsed.
-* `$content.types` is a list of MIME media types with the same number of
-  items as `$contents`, where `$content.types[n]` describes the format
-  of the resulting parsed `$content[n]`:
+* $content.types is a list of MIME media types with the same number of
+  items as $contents, where $content.types[n] describes the format
+  of the resulting parsed $content[n]:
   * [CSV]: specify a recognized [CSV] MIME media type, such as
     "text/csv", "text/comma-separated-values", or a type that includes a
     "+csv" suffix.
@@ -285,9 +285,9 @@ Parser implementions for the supported content types are as follows:
     "text/xml" or "application/xml", or a type that includes a "+xml"
     suffix.
 
-  Use this input argument when `$contents` contains unlike formats (for
+  Use this input argument when $contents contains unlike formats (for
   example, a mixture of [XML] and [JSON] MIME types).
-* `$content.type` is the MIME media type that describes the format of all
+* $content.type is the MIME media type that describes the format of all
   items in the resulting list of parsed content:
   * [CSV]: specify a recognized [CSV] MIME media type, such as
     "text/csv", "text/comma-separated-values", or a type that includes a
@@ -307,20 +307,20 @@ Parser implementions for the supported content types are as follows:
     "text/xml" or "application/xml", or a type that includes a "+xml"
     suffix.
 
-  Use this input argument when `$contents` contains like formats (for
+  Use this input argument when $contents contains like formats (for
   example, when all items adhere to the exact same [XML] MIME type).
-* `$namespaces` is a list of namespace prefixes and the URIs they map to,
+* $namespaces is a list of namespace prefixes and the URIs they map to,
   used when parsing [XML] content with elements in one or more
-  namespaces. Use this input argument when `$contents` contains unlike
+  namespaces. Use this input argument when $contents contains unlike
   formats (for example, a mixture of [XML] formats that use different
   namespaces).
-* `$namespace` is a list of namespace prefixes and the URIs they map to,
+* $namespace is a list of namespace prefixes and the URIs they map to,
   used when parsing [XML] content with elements in one or more
-  namespaces. Use this input argument when `$contents` contains like
+  namespaces. Use this input argument when $contents contains like
   formats (for example, when all items adhere to the exact same [XML]
   MIME type using the same namespaces).
-* `$schemas` is an optional input list with the same number of items as
-  `$documents`, where `$schemas[n]` is used to parse `$contents[n]` as
+* $schemas is an optional input list with the same number of items as
+  $documents, where $schemas[n] is used to parse $contents[n] as
   [XML] or Flat File, and can have the following values:
   * [CSV]: do not specify.
   * Flat File: specify the fully-qualified name of the Integration Server
@@ -332,12 +332,12 @@ Parser implementions for the supported content types are as follows:
   * [XML]: specify the fully-qualified name of the Integration Server
     document reference that defines the [XML] format.
 
-  Defaults to parsing `$contents` as [XML], if neither `$content.types`,
-  `$content.type`, `$schemas` nor `$schema` are specified.
+  Defaults to parsing $contents as [XML], if neither $content.types,
+  $content.type, $schemas nor $schema are specified.
 
-  Use this input argument when `$contents` contains unlike formats (for
+  Use this input argument when $contents contains unlike formats (for
   example, a mixture of Flat File and [XML] formats).
-* `$schema` is an optional input used to parse all items in `$contents`
+* $schema is an optional input used to parse all items in $contents
   as [XML] or Flat File, and can have the following values:
   * [CSV]: do not specify.
   * Flat File: specify the fully-qualified name of the Integration Server
@@ -349,18 +349,18 @@ Parser implementions for the supported content types are as follows:
   * [XML]: specify the fully-qualified name of the Integration Server
     document reference that defines the [XML] format.
 
-  Use this input argument when `$contents` contains like formats (for
+  Use this input argument when $contents contains like formats (for
   example, when all items adhere to the exact same [XML] schema).
 
-  Defaults to parsing `$contents` as [XML], if neither `$content.types`,
-  `$content.type`, `$schemas` nor `$schema` are specified.
-* `$encoding` is an optional character set to use when the `$contents` is
+  Defaults to parsing $contents as [XML], if neither $content.types,
+  $content.type, $schemas nor $schema are specified.
+* $encoding is an optional character set to use when the $contents is
   provided as a list of input streams or byte arrays. Defaults to [UTF-8].
 
 #### Outputs:
 
-* `$documents` is an IData[] document list of the parsed `$contents`,
-  where `$documents[n]` is the parsed version of `$contents[n]`.
+* $documents is an IData[] document list of the parsed $contents,
+  where $documents[n] is the parsed version of $contents[n].
 
 ### Datetime List
 

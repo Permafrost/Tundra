@@ -73,12 +73,12 @@ Returns the given string as a list of characters.
 
 #### Inputs:
 
-* `$string` is a string to be split into characters.
+* $string is a string to be split into characters.
 
 #### Outputs:
 
-* `$characters` is a list of the characters in the
-  given `$string`.
+* $characters is a list of the characters in the
+  given $string.
 
 </value>
   <value name="stateless">no</value>

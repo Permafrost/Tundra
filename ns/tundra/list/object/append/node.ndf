@@ -116,14 +116,14 @@ to a list containing n items results in a new list of n + 1 items.
 
 #### Inputs:
 
-* `$list` is a list to append an item to.
-* `$item` is an item to be appended to the given list.
-* `$class` is an optional Java class name that the list and item
+* $list is a list to append an item to.
+* $item is an item to be appended to the given list.
+* $class is an optional Java class name that the list and item
   to be appended are required to be instances of.
 
 #### Outputs:
 
-* `$list` is the resulting list with the given `$item` appended to the
+* $list is the resulting list with the given $item appended to the
   end.
 
 </value>

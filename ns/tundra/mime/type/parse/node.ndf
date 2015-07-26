@@ -162,11 +162,11 @@ Implemented with the [javax.activation.MimeType] class.
 
 #### Inputs:
 
-* `$string` is an optional [mime type] string to be parsed.
+* $string is an optional [mime type] string to be parsed.
 
 #### Outputs:
 
-* `$type` is an IData data structure representing the constituent
+* $type is an IData data structure representing the constituent
   parts of a [mime type] string.
 
 [MIME]: &lt;http://en.wikipedia.org/wiki/MIME&gt;

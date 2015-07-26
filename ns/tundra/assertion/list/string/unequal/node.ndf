@@ -121,10 +121,10 @@ equal.
 
 #### Inputs:
 
-* `$expected` is the expected string list.
-* `$actual` is the actual string list. If this list is equal to the
+* $expected is the expected string list.
+* $actual is the actual string list. If this list is equal to the
   expected list, an assertion error will be thrown.
-* `$message` is an optional custom message to be used as the assertion
+* $message is an optional custom message to be used as the assertion
   error message if the assertion fails.
 
 </value>

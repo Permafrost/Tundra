@@ -312,35 +312,35 @@ Returns the default time zone for this host.
 
 #### Inputs:
 
-* `$datetime` is an optional XML datetime string identifying
+* $datetime is an optional XML datetime string identifying
   the instant in time to be used to determine the Universal
   Coordinated Time (UTC) offset and whether Daylight Savings
   Time (DST) is applicable. If not specified, defaults to
   the current datetime.
-* `$datetime.pattern` is an optional datetime pattern that
-  `$datetime` conforms to, and will be used to parse the
+* $datetime.pattern is an optional datetime pattern that
+  $datetime conforms to, and will be used to parse the
   datetime string. Defaults to an [ISO8601] XML datetime.
 
 #### Outputs:
 
-* `$timezone` is an IData document describing the default time
+* $timezone is an IData document describing the default time
   zone.
-  * `id` is the [java.util.TimeZone] ID associated with the
+  * id is the [java.util.TimeZone] ID associated with the
     default time zone.
-  * `name` is a short name associated with the default time
+  * name is a short name associated with the default time
     zone.
-  * `description` is a long name associated with the default
+  * description is a long name associated with the default
     time zone.
-  * `utc.offset` is the historically correct XML duration added
+  * utc.offset is the historically correct XML duration added
     to UTC time to get local time in the default time zone for
-    the given `$datetime` instant. If daylight savings time is in
-    effect for the given `$datetime` instant, then this value was
+    the given $datetime instant. If daylight savings time is in
+    effect for the given $datetime instant, then this value was
     adjusted to include the daylight savings offset.
-  * `dst.used?` is a boolean indicating if daylight savings
+  * dst.used? is a boolean indicating if daylight savings
     time is used by this time zone.
-  * `dst.active?` is a boolean indicating if daylight savings
-    time is in effect for the given `$datetime` instant.
-  * `dst.offset` is the XML duration added to the UTC offset
+  * dst.active? is a boolean indicating if daylight savings
+    time is in effect for the given $datetime instant.
+  * dst.offset is the XML duration added to the UTC offset
     when daylight savings time is in effect.
 
 [ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;

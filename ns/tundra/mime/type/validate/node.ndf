@@ -131,14 +131,14 @@ Implemented with the [javax.activation.MimeType] class.
 
 #### Inputs:
 
-* `$string` is an optional [mime type] string to be validated.
-* `$raise?` is an optional boolean indicating whether to throw an
+* $string is an optional [mime type] string to be validated.
+* $raise? is an optional boolean indicating whether to throw an
   exception if the given string is not a valid [mime type] string.
   Defaults to false.
 
 #### Outputs:
 
-* `$valid?` is a boolean indicating if the given string is a valid
+* $valid? is a boolean indicating if the given string is a valid
   [mime type] string.
 
 [MIME]: &lt;http://en.wikipedia.org/wiki/MIME&gt;

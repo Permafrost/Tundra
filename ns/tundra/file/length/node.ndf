@@ -94,13 +94,13 @@ Returns the length of the given file in bytes.
 
 #### Inputs:
 
-* `$file` is the name of the file whose length is to be
+* $file is the name of the file whose length is to be
   checked, specified as either a relative or absolute
   file path or file: [URI].
 
 #### Outputs:
 
-* `$length` is the length or size in bytes of the given
+* $length is the length or size in bytes of the given
   file. If the file does not exist, zero is returned.
 
 [URI]: &lt;http://www.w3.org/Addressing/&gt;</value>

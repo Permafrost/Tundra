@@ -176,18 +176,18 @@ Decompresses the given content using the [gzip] file compression format.
 
 #### Inputs:
 
-* `$content.gzip` is the [gzip] compressed data to be decompressed,
+* $content.gzip is the [gzip] compressed data to be decompressed,
   specified as a base64-encoded string, byte array, or input stream.
-* `$encoding` is an optional character set used to decode the
-  decompressed data when the chosen `$mode` is 'string'. Defaults to
+* $encoding is an optional character set used to decode the
+  decompressed data when the chosen $mode is 'string'. Defaults to
   the [UTF-8].
-* `$mode` is an optional choice of 'stream', 'bytes', or
+* $mode is an optional choice of 'stream', 'bytes', or
   'string', which determines the type of object returned by
   this service. Defaults to 'stream'.
 
 #### Outputs:
 
-* `$content` is the resulting decompressed data.
+* $content is the resulting decompressed data.
 
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;
 [gzip]: &lt;http://en.wikipedia.org/wiki/Gzip&gt;</value>

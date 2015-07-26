@@ -200,24 +200,24 @@ documents when parsing from an input stream.
 
 #### Inputs:
 
-* `$content` is a string, byte array, or input stream potentially
+* $content is a string, byte array, or input stream potentially
   containing [XML] data.
-* `$content.encoding` is the character set used by `$content` if
+* $content.encoding is the character set used by $content if
   provided as a byte array or input stream. Defaults to [UTF-8].
-* `$schema` is a string, byte array, or input stream containing [XSD]
+* $schema is a string, byte array, or input stream containing [XSD]
   data.
-* `$schema.encoding` is the character set used by `$schema` if provided
+* $schema.encoding is the character set used by $schema if provided
   as a byte array or input stream. Defaults to [UTF-8].
-* `$raise?` is an optional boolean flag, if true and `$content` is
+* $raise? is an optional boolean flag, if true and $content is
   malformed or invalid an exception will be thrown. If false, no
   exception will be thrown. Defaults to false.
 
 #### Outputs:
 
-* `$valid?` is true if the given `$content` is well-formed [XML] and, if
-  a `$schema` was specified, valid when compared to the given `$schema`.
-* `$errors` is an optional list of the errors detected by the parser in
-  the given `$content`, provided when `$valid?` is false.
+* $valid? is true if the given $content is well-formed [XML] and, if
+  a $schema was specified, valid when compared to the given $schema.
+* $errors is an optional list of the errors detected by the parser in
+  the given $content, provided when $valid? is false.
 
 [SAX]: &lt;http://en.wikipedia.org/wiki/Simple_API_for_XML&gt;
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;

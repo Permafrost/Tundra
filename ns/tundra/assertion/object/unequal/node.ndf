@@ -96,10 +96,10 @@ Throws an assertion error if the expected and actual objects are equal.
 
 #### Inputs:
 
-* `$expected` is the expected object.
-* `$actual` is the actual object. If this object is equal to the expected
+* $expected is the expected object.
+* $actual is the actual object. If this object is equal to the expected
   object, an assertion error will be thrown.
-* `$message` is an optional custom message to be used as the assertion
+* $message is an optional custom message to be used as the assertion
   error message if the assertion fails.
 
 </value>

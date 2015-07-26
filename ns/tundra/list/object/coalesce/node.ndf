@@ -152,19 +152,19 @@ all objects in the list are null, then the given item.
 
 #### Inputs:
 
-* `$list` is an optional list of objects.
-* `$default` is an optional object, included for convenience when using
+* $list is an optional list of objects.
+* $default is an optional object, included for convenience when using
   this service in a map step and providing a default value.
-* `$mode` determines what is returned when all arguments are null:
-  * `missing`: `$item` is not returned when all arguments are null.
-    This is the default, if `$mode` is not specified.
-  * `null`: `$item` is returned as null when all arguments are null.
+* $mode determines what is returned when all arguments are null:
+  * missing: $item is not returned when all arguments are null.
+    This is the default, if $mode is not specified.
+  * null: $item is returned as null when all arguments are null.
 
 #### Outputs:
 
-* `$item` is the first object in the given `$list` that is not null,
-  or the given input `$item` if it is not null, or null if all
-  other values were null and `$mode` is 'null'.
+* $item is the first object in the given $list that is not null,
+  or the given input $item if it is not null, or null if all
+  other values were null and $mode is 'null'.
 
 </value>
   <value name="stateless">no</value>

@@ -273,19 +273,19 @@ Custom datetime patterns can be specified using
 
 #### Inputs:
 
-* `$datetime.x` is the datetime string to be compared to $datetime.y.
-* `$datetime.y` is the datetime string to be compared to $datetime.x.
-* `$pattern` is an optional datetime pattern that `$datetime.x` and
-  `$datetime.y` conform to. Defaults to an [ISO8601] XML datetime.
+* $datetime.x is the datetime string to be compared to $datetime.y.
+* $datetime.y is the datetime string to be compared to $datetime.x.
+* $pattern is an optional datetime pattern that $datetime.x and
+  $datetime.y conform to. Defaults to an [ISO8601] XML datetime.
 
 #### Outputs:
 
-* `$before?` is a boolean flag indicating if `$datetime.x` is an earlier
-  instant in time than `$datetime.y`.
-* `$equal?` is a boolean flag indicating if `$datetime.x` and
-  `$datetime.y` represent the same instant in time.
-* `$after?` is a boolean flag indicating if `$datetime.x` is a later
-  instant in time than `$datetime.y`.
+* $before? is a boolean flag indicating if $datetime.x is an earlier
+  instant in time than $datetime.y.
+* $equal? is a boolean flag indicating if $datetime.x and
+  $datetime.y represent the same instant in time.
+* $after? is a boolean flag indicating if $datetime.x is a later
+  instant in time than $datetime.y.
 
 [ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;
 [java.text.SimpleDateFormat]: &lt;http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html&gt;</value>

@@ -66,7 +66,7 @@ Throws an assertion error if this service is executed.
 
 #### Inputs:
 
-* `$message` is an optional custom message to be used as the assertion
+* $message is an optional custom message to be used as the assertion
   error message if the assertion fails.
 
 </value>

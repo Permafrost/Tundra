@@ -199,14 +199,14 @@ Returns the given string in lower case.
 
 #### Inputs:
 
-* `$string` is a string to be converted to lower case.
-* `$locale` optionally identifies the case transformation rules
+* $string is a string to be converted to lower case.
+* $locale optionally identifies the case transformation rules
   to be used for a given [Locale]. If not specified, the
   [default locale] is used.
 
 #### Outputs:
 
-* `$string` is a lower case version of the input string, where
+* $string is a lower case version of the input string, where
   all characters have been converted to their lower case
   equivalent according to the transformation rules of the given
   [Locale].

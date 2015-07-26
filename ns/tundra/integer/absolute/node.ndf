@@ -96,11 +96,11 @@ Returns the absolute value of the given integer.
 
 #### Inputs:
 
-* `$integer` is a signed integer.
+* $integer is a signed integer.
 
 #### Outputs:
 
-* `$integer` is the absolute (unsigned) value of the given
+* $integer is the absolute (unsigned) value of the given
   integer.
 
 </value>

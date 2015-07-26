@@ -131,28 +131,28 @@ given condition evaluates to true.
 
 #### Inputs:
 
-* `$list` is the list to be filtered.
-* `$condition` is a `tundra.condition:evaluate` compatible
+* $list is the list to be filtered.
+* $condition is a tundra.condition:evaluate compatible
   conditional statement used to filter the given list.
 
   List items are represented in the evaluation scope by
-  a variable named `$item`.
+  a variable named $item.
 
   For example, to filter a list to only include items
   equal to a regular expression pattern, use the following
-  `$condition`:
+  $condition:
 
       %$item% == /\d\d/
 
-* `$scope` is an optional IData document containing the
-  variables against which `$condition` will be evaluated.
-  If not specified, the `$condition` will be evaluated
+* $scope is an optional IData document containing the
+  variables against which $condition will be evaluated.
+  If not specified, the $condition will be evaluated
   against the pipeline.
 
 #### Outputs:
 
-* `$list` is the given list filtered to only include the
-  items where `$condition` evaluated to true.
+* $list is the given list filtered to only include the
+  items where $condition evaluated to true.
 
 </value>
   <value name="stateless">no</value>

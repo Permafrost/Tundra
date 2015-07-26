@@ -96,11 +96,11 @@ Returns the absolute value of the given decimal.
 
 #### Inputs:
 
-* `$decimal` is a signed decimal value.
+* $decimal is a signed decimal value.
 
 #### Outputs:
 
-* `$decimal` is the given decimal value unsigned.
+* $decimal is the given decimal value unsigned.
 
 </value>
   <value name="stateless">no</value>

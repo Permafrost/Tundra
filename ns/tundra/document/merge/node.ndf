@@ -82,12 +82,12 @@ sourced document.
 
 #### Inputs:
 
-* `$documents` is a document list (IData[]) containing IData documents
+* $documents is a document list (IData[]) containing IData documents
   to be merged into a single IData document.
 
 #### Outputs:
 
-* `$document` is the merged IData document, containing all keys from all
+* $document is the merged IData document, containing all keys from all
   documents in the given document list and the latest (in terms of list
   index) values associated with those keys.
 

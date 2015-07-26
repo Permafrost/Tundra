@@ -114,12 +114,12 @@ items.
 
 #### Inputs:
 
-* `$list` is a list to be prepended to.
-* `$item` is the item to prepend to the given list.
+* $list is a list to be prepended to.
+* $item is the item to prepend to the given list.
 
 #### Outputs:
 
-* `$list` is the resulting list with the given `$item` prepended to the
+* $list is the resulting list with the given $item prepended to the
   start.
 
 </value>

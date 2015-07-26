@@ -187,18 +187,18 @@ constrained environments.
 
 #### Inputs:
 
-* `$file` is the name of the file to be read, specified as
+* $file is the name of the file to be read, specified as
   either a relative or absolute file path or file: [URI].
-* `$mode` is an optional choice of 'stream', 'bytes', or
+* $mode is an optional choice of 'stream', 'bytes', or
   'string' which determines how the file contents are
   returned. Defaults to 'stream'.
-* `$encoding` is an optional character set to use when reading
+* $encoding is an optional character set to use when reading
   the file as a string. Defaults to [UTF-8].
 
 #### Outputs:
 
-* `$content` is the file contents returned as either an input
-  stream, byte array, or string depending on the `$mode`
+* $content is the file contents returned as either an input
+  stream, byte array, or string depending on the $mode
   selected. Note that even when returned as an input stream,
   the entire file has been read into memory. This mode is
   provided as a convenience only, and since the file contents

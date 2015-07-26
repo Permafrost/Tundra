@@ -65,7 +65,7 @@ Returns the number of top-level elements in the pipeline.
 
 #### Outputs:
 
-* `$length` is the number of top-level elements in the
+* $length is the number of top-level elements in the
   pipeline.
 
 </value>

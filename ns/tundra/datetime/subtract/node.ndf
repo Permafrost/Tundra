@@ -218,16 +218,16 @@ Custom datetime patterns can be specified using
 
 #### Inputs:
 
-* `$datetime` is the datetime string to subtract the duration from.
-* `$datetime.pattern` is an optional datetime pattern that `$datetime`
+* $datetime is the datetime string to subtract the duration from.
+* $datetime.pattern is an optional datetime pattern that $datetime
   conforms to. Defaults to an [ISO8601] XML datetime.
-* `$duration` is the duration to be subtracted from `$datetime`.
-* `$duration.pattern` is an optional duration pattern that `$duration`
+* $duration is the duration to be subtracted from $datetime.
+* $duration.pattern is an optional duration pattern that $duration
   conforms to. Defaults to an [ISO8601] XML duration.
 
 #### Outputs:
 
-* `$datetime` is the resulting datetime with the subtracted duration.
+* $datetime is the resulting datetime with the subtracted duration.
 
 [ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;
 [java.text.SimpleDateFormat]: &lt;http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html&gt;</value>

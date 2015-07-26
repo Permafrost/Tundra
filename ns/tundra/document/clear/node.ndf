@@ -103,15 +103,15 @@ any keys specified in the preserve list.
 
 #### Inputs:
 
-* `$document` is an IData document whose keys are to be removed.
-* `$preserve` is list of keys which will not be removed from
+* $document is an IData document whose keys are to be removed.
+* $preserve is list of keys which will not be removed from
   the given IData document. Keys can be simple or fully
-  qualified, such as `a/b/c[0]/d`.
+  qualified, such as a/b/c[0]/d.
 
 #### Outputs:
 
-* `$document` is the given IData document with all keys removed,
-  except for those specified in `$preserve`.
+* $document is the given IData document with all keys removed,
+  except for those specified in $preserve.
 
 </value>
   <value name="stateless">no</value>

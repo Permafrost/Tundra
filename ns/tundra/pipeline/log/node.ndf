@@ -68,7 +68,7 @@ Writes the current pipeline to the server log.
 
 #### Inputs:
 
-* `$level` is the logging level used when writing the
+* $level is the logging level used when writing the
   pipeline contents to the server log.
 
 </value>

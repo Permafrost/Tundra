@@ -112,14 +112,14 @@ Converts a string, bytes or input stream to a string.
 
 #### Inputs:
 
-* `$object` is a string, byte array, or input stream to be
+* $object is a string, byte array, or input stream to be
   converted to a string.
-* `$encoding` is an optional character set to use when `$object`
+* $encoding is an optional character set to use when $object
   is a byte array or input stream. Defaults to [UTF-8].
 
 #### Outputs:
 
-* `$string` is the given object converted to a string.
+* $string is the given object converted to a string.
 
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;</value>
   <value name="stateless">no</value>

@@ -67,7 +67,7 @@ directly.
 
 #### Outputs:
 
-* `$self` is the fully-qualified name of the current service
+* $self is the fully-qualified name of the current service
   (the service which called this service), or nothing if invoked
   directly.
 

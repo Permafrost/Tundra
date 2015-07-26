@@ -176,18 +176,18 @@ Compresses the given content using the [gzip] file compression format.
 
 #### Inputs:
 
-* `$content` is the data to be compressed, specified as a string,
+* $content is the data to be compressed, specified as a string,
   byte array, or input stream.
-* `$encoding` is an optional character set used when `$content` is
+* $encoding is an optional character set used when $content is
   specified as a string. Defaults to [UTF-8].
-* `$mode` is an optional choice of 'stream', 'bytes', or
+* $mode is an optional choice of 'stream', 'bytes', or
   'string', which determines the type of object returned by
   this service. If the 'string' mode is chosen, the resulting
   gzipped data is base64-encoded. Defaults to 'stream'.
 
 #### Outputs:
 
-* `$content.gzip` is the resulting compressed data in [gzip] format.
+* $content.gzip is the resulting compressed data in [gzip] format.
 
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;
 [gzip]: &lt;http://en.wikipedia.org/wiki/Gzip&gt;</value>

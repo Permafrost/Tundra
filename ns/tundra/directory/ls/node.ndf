@@ -94,12 +94,12 @@ directory contains hundreds of thousands or more files.
 
 #### Inputs:
 
-* `$directory` is a relative or absolute path or file: [URI] to be
+* $directory is a relative or absolute path or file: [URI] to be
   listed.
 
 #### Outputs:
 
-* `$list` is a raw list of the names of all items in the directory.
+* $list is a raw list of the names of all items in the directory.
 
 [URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
   <value name="stateless">no</value>

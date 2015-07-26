@@ -163,15 +163,15 @@ definition at ISO/IEC 11578:1996.
 
 #### Inputs:
 
-* `$mode` is an optional choice which determines how the [UUID] is
+* $mode is an optional choice which determines how the [UUID] is
   converted to a string:
-  * `string` returns the [UUID] in the string representation as per
+  * string returns the [UUID] in the string representation as per
     [RFC 4122], and is the default.
-  * `base64` returns the [UUID] as a [Base64] encoded string.
+  * base64 returns the [UUID] as a [Base64] encoded string.
 
 #### Outputs:
 
-* `$id` is the generated [UUID].
+* $id is the generated [UUID].
 
 [Base64]: &lt;http://en.wikipedia.org/wiki/Base64&gt;
 [RFC 4122]: &lt;http://www.ietf.org/rfc/rfc4122.txt&gt;

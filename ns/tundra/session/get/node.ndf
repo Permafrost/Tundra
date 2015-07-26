@@ -263,7 +263,7 @@ session state.
 
 #### Outputs:
 
-* `$session` is an IData document containing information about the
+* $session is an IData document containing information about the
   current session.
 
 </value>

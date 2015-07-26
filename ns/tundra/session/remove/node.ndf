@@ -82,14 +82,14 @@ Removes the given key value pair from current session state.
 
 #### Inputs:
 
-* `$key` is the optional key name to use to identify the key
+* $key is the optional key name to use to identify the key
   value pair to be removed from session state. If not specified,
   this service does nothing, otherwise the key value pair is
   removed from session state.
 
 #### Outputs:
 
-* `$value` was the value associated with the removed `$key`.
+* $value was the value associated with the removed $key.
 
 </value>
   <value name="stateless">no</value>

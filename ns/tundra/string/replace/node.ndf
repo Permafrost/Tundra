@@ -189,14 +189,14 @@ in the given string, with the replacement string.
 
 #### Inputs:
 
-* `$string` is a string to have all occurrences of the given
+* $string is a string to have all occurrences of the given
   [regular expression pattern] replaced.
-* `$pattern` is the [regular expression pattern] to match against
+* $pattern is the [regular expression pattern] to match against
   the given string.
-* `$replacement` is the replacement string to be substituted in
+* $replacement is the replacement string to be substituted in
   the given string wherever the given pattern is found. If not
   specified, no replacement will occur.
-* `$literal?` is a boolean indicating if the replacement string
+* $literal? is a boolean indicating if the replacement string
   should be treated as a literal string. If false, captured
   groups can be referred to with dollar-sign references, such
   as $1, and other special characters may need to be escaped.
@@ -204,8 +204,8 @@ in the given string, with the replacement string.
 
 #### Outputs:
 
-* `$string` is the input string with all occurrences of the given
-  [regular expression pattern] replaced with `$replacement`.
+* $string is the input string with all occurrences of the given
+  [regular expression pattern] replaced with $replacement.
 
 [regular expression pattern]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html&gt;</value>
   <value name="stateless">no</value>

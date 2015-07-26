@@ -184,14 +184,14 @@ Converts all strings in the given list to lower case.
 
 #### Inputs:
 
-* `$list` is a list of strings to be converted to lower case.
-* `$locale` optionally identifies the case transformation rules
+* $list is a list of strings to be converted to lower case.
+* $locale optionally identifies the case transformation rules
   to be used for a given [Locale]. If not specified, the
   [default locale] is used.
 
 #### Outputs:
 
-* `$list` is the resulting list of lower case strings, where
+* $list is the resulting list of lower case strings, where
   all characters have been converted to their lower case
   equivalent according to the transformation rules of the given
   [Locale].

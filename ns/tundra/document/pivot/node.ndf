@@ -139,16 +139,16 @@ document.
 
 #### Inputs:
 
-* `$document` is an IData document to be pivoted.
-* `$recurse?` is an optional boolean indicating if embedded IData
+* $document is an IData document to be pivoted.
+* $recurse? is an optional boolean indicating if embedded IData
   documents and IData[] document lists should also be pivoted. Note that
   a pivoted IData[] document list is returned as a two dimensional IData
   array (IData[][]). Defaults to false, if not specified.
 
 #### Outputs:
 
-* `$pivot` is an IData[] document list where each item in the list
-  represents each key value pair present in the given `$document`.
+* $pivot is an IData[] document list where each item in the list
+  represents each key value pair present in the given $document.
 
 </value>
   <value name="stateless">no</value>

@@ -95,11 +95,11 @@ Returns the number of characters in the given string.
 
 #### Inputs:
 
-* `$string` is an optional string to return the length of.
+* $string is an optional string to return the length of.
 
 #### Outputs:
 
-* `$length` is the number of characters in the given string,
+* $length is the number of characters in the given string,
   or zero if no string was specified.
 
 </value>

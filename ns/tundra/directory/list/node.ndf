@@ -313,22 +313,22 @@ selected mode.
 
 #### Inputs:
 
-* `$directory` is a relative or absolute path or file: [URI] to be
+* $directory is a relative or absolute path or file: [URI] to be
   listed.
-* `$pattern` is either an optional regular expression pattern, or
-  wildcard file glob pattern (depending on the `$mode` selected), used
+* $pattern is either an optional regular expression pattern, or
+  wildcard file glob pattern (depending on the $mode selected), used
   to filter the resulting directory listing.
-* `$mode` is an optional choice if either 'regex' or 'wildcard', which
-  determines the type of `$pattern` specified. Defaults to 'regex'.
-* `$recurse?` is an optional boolean flag indicating if subdirectories
+* $mode is an optional choice if either 'regex' or 'wildcard', which
+  determines the type of $pattern specified. Defaults to 'regex'.
+* $recurse? is an optional boolean flag indicating if subdirectories
   should also be listed recursively. Defaults to false.
 
 #### Outputs:
 
-* `$directories` is a list of all subdirectories, optionally filtered
-  to only those items whose name match the given `$pattern`.
-* `$files` is a list of all files in the given `$directory`, optionally
-  filtered to only those items whose name match the given `$pattern`.
+* $directories is a list of all subdirectories, optionally filtered
+  to only those items whose name match the given $pattern.
+* $files is a list of all files in the given $directory, optionally
+  filtered to only those items whose name match the given $pattern.
 
 [URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
   <value name="stateless">no</value>

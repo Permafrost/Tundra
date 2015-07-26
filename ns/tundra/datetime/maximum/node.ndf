@@ -146,14 +146,14 @@ compatible patterns.
 
 #### Inputs:
 
-* `$datetimes` is a list of datetime strings.
-* `$pattern` is an optional datetime pattern that each string in the
-  `$datetimes` list conforms to, and will be used to parse the datetime
+* $datetimes is a list of datetime strings.
+* $pattern is an optional datetime pattern that each string in the
+  $datetimes list conforms to, and will be used to parse the datetime
   strings. Defaults to an [ISO8601] XML datetime.
 
 #### Outputs:
 
-* `$datetime` is the largest datetime from the given `$datetimes` list.
+* $datetime is the largest datetime from the given $datetimes list.
 
 [ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;
 [java.text.SimpleDateFormat]: &lt;http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html&gt;</value>

@@ -506,36 +506,36 @@ input, and emitting the joined content as output. The joining service must
 accept an IData[] document list, and return a single IData document.
 
 Parser implementions for the supported content types are as follows:
-* [CSV]: `Tundra/tundra.csv:parse`
-* Flat File: `WmFlatFile/pub.flatFile:convertToValues`
-* [JSON]: `Tundra/tundra.json:parse`
-* Pipe separated values: `Tundra/tundra.csv:parse`
-* [TSV]: `Tundra/tundra.csv:parse`
-* [XML]: `WmPublic/pub.xml:xmlStringToXMLNode`, `pub.xml:xmlNodeToDocument`
-* [YAML]: `Tundra/tundra.yaml:parse`
+* [CSV]: Tundra/tundra.csv:parse
+* Flat File: WmFlatFile/pub.flatFile:convertToValues
+* [JSON]: Tundra/tundra.json:parse
+* Pipe separated values: Tundra/tundra.csv:parse
+* [TSV]: Tundra/tundra.csv:parse
+* [XML]: WmPublic/pub.xml:xmlStringToXMLNode, pub.xml:xmlNodeToDocument
+* [YAML]: Tundra/tundra.yaml:parse
 
 Emitter implementions for the supported content types are as follows:
-* [CSV]: `Tundra/tundra.csv:emit`
-* Flat File: `WmFlatFile/pub.flatFile:convertToString`
-* [JSON]: `Tundra/tundra.json:emit`
-* Pipe separated values: `Tundra/tundra.csv:emit`
-* [TSV]: `Tundra/tundra.csv:emit`
-* [XML]: `WmPublic/pub.xml:documentToXMLString`
-* [YAML]: `Tundra/tundra.yaml:emit`
+* [CSV]: Tundra/tundra.csv:emit
+* Flat File: WmFlatFile/pub.flatFile:convertToString
+* [JSON]: Tundra/tundra.json:emit
+* Pipe separated values: Tundra/tundra.csv:emit
+* [TSV]: Tundra/tundra.csv:emit
+* [XML]: WmPublic/pub.xml:documentToXMLString
+* [YAML]: Tundra/tundra.yaml:emit
 
 #### Inputs:
 
-* `$contents` is a list of strings, byte arrays, or input streams
+* $contents is a list of strings, byte arrays, or input streams
   containing content (structured/parseable data) to be joined or
   aggregated together into one item of content.
-* `$service` is the fully-qualified joining service name that is called
+* $service is the fully-qualified joining service name that is called
   to join or aggregate the parsed contents. This service must accept an
   IData[] document list, and return a single IData document.
-* `$pipeline` is an optional IData document for specifying arbitrary
+* $pipeline is an optional IData document for specifying arbitrary
   input arguments to the invocation of $service.
-* `$content.types.input` is a list of MIME media types with the same
-  number of items as `$contents`, where `$content.types[n]` describes
-  the format of the `$contents[n]`:
+* $content.types.input is a list of MIME media types with the same
+  number of items as $contents, where $content.types[n] describes
+  the format of the $contents[n]:
   * [CSV]: specify a recognized [CSV] MIME media type, such as
     "text/csv", "text/comma-separated-values", or a type that includes a
     "+csv" suffix.
@@ -554,10 +554,10 @@ Emitter implementions for the supported content types are as follows:
     "text/xml" or "application/xml", or a type that includes a "+xml"
     suffix.
 
-  Use this input argument when `$contents` contains unlike formats (for
+  Use this input argument when $contents contains unlike formats (for
   example, a mixture of [XML] and [JSON] MIME types).
-* `$content.type.input` is the MIME media type that describes the format
-  of all items in `$contents`:
+* $content.type.input is the MIME media type that describes the format
+  of all items in $contents:
   * [CSV]: specify a recognized [CSV] MIME media type, such as
     "text/csv", "text/comma-separated-values", or a type that includes a
     "+csv" suffix.
@@ -576,10 +576,10 @@ Emitter implementions for the supported content types are as follows:
     "text/xml" or "application/xml", or a type that includes a "+xml"
     suffix.
 
-  Use this input argument when `$contents` contains like formats (for
+  Use this input argument when $contents contains like formats (for
   example, when all items adhere to the exact same [XML] MIME type).
-* `$content.type.output` is the MIME media type that describes the
-  format of the returned `$content`:
+* $content.type.output is the MIME media type that describes the
+  format of the returned $content:
   * [CSV]: specify a recognized [CSV] MIME media type, such as
     "text/csv", "text/comma-separated-values", or a type that includes a
     "+csv" suffix.
@@ -598,24 +598,24 @@ Emitter implementions for the supported content types are as follows:
     "text/xml" or "application/xml", or a type that includes a "+xml"
     suffix.
 
-  Use this input argument when `$contents` contains like formats (for
+  Use this input argument when $contents contains like formats (for
   example, when all items adhere to the exact same [XML] MIME type).
-* `$namespaces.input` is a list of namespace prefixes and the URIs they map to,
+* $namespaces.input is a list of namespace prefixes and the URIs they map to,
   used when parsing [XML] content with elements in one or more
-  namespaces. Use this input argument when `$contents` contains unlike
+  namespaces. Use this input argument when $contents contains unlike
   formats (for example, a mixture of [XML] formats that use different
   namespaces).
-* `$namespace.input` is a list of namespace prefixes and the URIs they map to,
+* $namespace.input is a list of namespace prefixes and the URIs they map to,
   used when parsing [XML] content with elements in one or more
-  namespaces. Use this input argument when `$contents` contains like
+  namespaces. Use this input argument when $contents contains like
   formats (for example, when all items adhere to the exact same [XML]
   MIME type using the same namespaces).
-* `$namespace.output` is a list of namespace prefixes and the URIs they map to,
+* $namespace.output is a list of namespace prefixes and the URIs they map to,
   used when emitting [XML] content with elements in one or more
   namespaces.
-* `$schemas.input` is an optional input list with the same number of
-  items as `$contents`, where `$schemas[n]` is used to parse
-  `$contents[n]` as [XML] or Flat File, and can have the following
+* $schemas.input is an optional input list with the same number of
+  items as $contents, where $schemas[n] is used to parse
+  $contents[n] as [XML] or Flat File, and can have the following
   values:
   * [CSV]: do not specify.
   * Flat File: specify the fully-qualified name of the Integration Server
@@ -627,14 +627,14 @@ Emitter implementions for the supported content types are as follows:
   * [XML]: specify the fully-qualified name of the Integration Server
     document reference that defines the [XML] format.
 
-  Use this input argument when `$contents` contains unlike formats (for
+  Use this input argument when $contents contains unlike formats (for
   example, a mixture of flat file and xml formats).
 
-  Defaults to parsing `$contents` as [XML], if neither
-  `$content.types.input`, `$content.type.input`, `$schemas.input` nor
-  `$schema.input` are specified.
-* `$schema.input` is an optional input which determines whether to parse
-  all items in `$contents` as [XML] or Flat File, and can have the
+  Defaults to parsing $contents as [XML], if neither
+  $content.types.input, $content.type.input, $schemas.input nor
+  $schema.input are specified.
+* $schema.input is an optional input which determines whether to parse
+  all items in $contents as [XML] or Flat File, and can have the
   following values:
   * [CSV]: do not specify.
   * Flat File: specify the fully-qualified name of the Integration Server
@@ -646,14 +646,14 @@ Emitter implementions for the supported content types are as follows:
   * [XML]: specify the fully-qualified name of the Integration Server
     document reference that defines the [XML] format.
 
-  Use this input argument when `$contents` contains like formats (for
+  Use this input argument when $contents contains like formats (for
   example, when all items adhere to the exact same XML schema).
 
-  Defaults to parsing `$contents` as [XML], if neither
-  `$content.types.input`, `$content.type.input`, `$schemas.input` nor
-  `$schema.input` are specified.
-* `$schema.output` is an optional input which determines whether to
-  serialize the document returned by `$service` as [XML] or Flat File,
+  Defaults to parsing $contents as [XML], if neither
+  $content.types.input, $content.type.input, $schemas.input nor
+  $schema.input are specified.
+* $schema.output is an optional input which determines whether to
+  serialize the document returned by $service as [XML] or Flat File,
   and can have the following values:
   * [CSV]: do not specify.
   * Flat File: specify the fully-qualified name of the Integration Server
@@ -666,25 +666,25 @@ Emitter implementions for the supported content types are as follows:
     document reference that defines the [XML] format.
 
   Defaults to serializing as [XML].
-* `$service.input` is an optional name to use for the parsed IData[]
-  document list for the input pipeline of the `$service` invocation.
-  Defaults to `$documents`.
-* `$service.output` is an optional name to use for the output IData
-  parameter returned by the `$service` invocation. Defaults to
-  `$document`.
-* `$encoding.input` is an optional character set to use when the
-  `$contents` is provided as a list of input streams or byte arrays.
+* $service.input is an optional name to use for the parsed IData[]
+  document list for the input pipeline of the $service invocation.
+  Defaults to $documents.
+* $service.output is an optional name to use for the output IData
+  parameter returned by the $service invocation. Defaults to
+  $document.
+* $encoding.input is an optional character set to use when the
+  $contents is provided as a list of input streams or byte arrays.
   Defaults to [UTF-8].
-* `$encoding.output` is an optional character set to use when the
-  `$mode.output` selected is bytes or stream. Defaults to [UTF-8].
-* `$mode.output` is an optional choice of stream, bytes, or
-  string, which determines the type of `$content` object returned.
+* $encoding.output is an optional character set to use when the
+  $mode.output selected is bytes or stream. Defaults to [UTF-8].
+* $mode.output is an optional choice of stream, bytes, or
+  string, which determines the type of $content object returned.
   Defaults to stream.
 
 #### Outputs:
 
-* `$content` is a string, byte array, or input stream, depending on
-  the `$mode.output` selected, of the serialized IData document
+* $content is a string, byte array, or input stream, depending on
+  the $mode.output selected, of the serialized IData document
   returned by ``$service.
 
 [CSV]: &lt;http://en.wikipedia.org/wiki/Comma-separated_values&gt;

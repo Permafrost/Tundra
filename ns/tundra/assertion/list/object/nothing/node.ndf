@@ -83,8 +83,8 @@ Throws an assertion error if the given list is not null.
 
 #### Inputs:
 
-* `$list` is the java.lang.Object list expected to be null.
-* `$message` is an optional custom message to be used as the assertion
+* $list is the java.lang.Object list expected to be null.
+* $message is an optional custom message to be used as the assertion
   error message if the assertion fails.
 
 </value>

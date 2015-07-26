@@ -102,15 +102,15 @@ stack.
 
 #### Inputs:
 
-* `$message` is the message to be written to the server log.
-* `$level` is the logging level of the message:
-  * `Fatal`
-  * `Error`
-  * `Warn`
-  * `Info`
-  * `Debug`
-  * `Trace`
-  * `Off`
+* $message is the message to be written to the server log.
+* $level is the logging level of the message:
+  * Fatal
+  * Error
+  * Warn
+  * Info
+  * Debug
+  * Trace
+  * Off
 
 </value>
   <value name="stateless">no</value>

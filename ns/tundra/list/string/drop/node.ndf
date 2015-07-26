@@ -112,8 +112,8 @@ Removes the item stored at a given index in the given list.
 
 #### Inputs:
 
-* `$list` is a list to remove the item from.
-* `$index` is an integer identifying which item to be removed from
+* $list is a list to remove the item from.
+* $index is an integer identifying which item to be removed from
   the given list. List indexing is zero-based. Supports both
   forward and reverse indexing (where, for example, an index of
   -1 is the last item in the list, and an index of -2 is the
@@ -121,7 +121,7 @@ Removes the item stored at a given index in the given list.
 
 #### Outputs:
 
-* `$list` is the given list with the item identified by the given
+* $list is the given list with the item identified by the given
   index removed.
 
 </value>

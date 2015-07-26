@@ -95,7 +95,7 @@ Returns true if the given namepace node exists.
 
 #### Inputs:
 
-* `$node` is the Integration Server namespace node to check
+* $node is the Integration Server namespace node to check
   existence of, provided as a normal namespace identifer:
 
       folder(.folder)*(:object)
@@ -106,7 +106,7 @@ Returns true if the given namepace node exists.
 
 #### Outputs:
 
-* `$exists?` is a boolean flag indicating if the given node
+* $exists? is a boolean flag indicating if the given node
   exists on this Integration Server.
 
 </value>

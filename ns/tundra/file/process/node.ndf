@@ -243,28 +243,28 @@ of whether an exception is encountered by the service.
 
 #### Inputs:
 
-* `$file` is the name of the file to be processed, specified
+* $file is the name of the file to be processed, specified
   as either a relative or absolute file path or file: [URI].
-* `$mode` is an optional choice of 'read', 'write', or
+* $mode is an optional choice of 'read', 'write', or
   'append' which determines whether the file is opened for
   reading, writing, or appending. Defaults to 'read'.
-* `$service` is the fully-qualified name of the service which
+* $service is the fully-qualified name of the service which
   will be called to process the opened file.
-* `$pipeline` is an optional IData document for specifying
-  arbitrary input parameters to the call to `$service`. If
-  provided, the call to `$service` is scoped with this IData,
+* $pipeline is an optional IData document for specifying
+  arbitrary input parameters to the call to $service. If
+  provided, the call to $service is scoped with this IData,
   and will not have access to the global pipeline.
-* `$service.input` is an optional input parameter name used
+* $service.input is an optional input parameter name used
   when adding the opened file stream to the input pipeline
-  of the call tor `$service`. Defaults to '$stream'.
+  of the call tor $service. Defaults to '$stream'.
 
 #### Outputs:
 
-* `$pipeline` is an optional IData document representing the
-  output pipeline of the call to `$service`. This will only
-  be returned if an input `$pipeline` was provided. If no
-  input `$pipeline` was provided, any outputs from the call
-  to `$service` will be merged directly into the global
+* $pipeline is an optional IData document representing the
+  output pipeline of the call to $service. This will only
+  be returned if an input $pipeline was provided. If no
+  input $pipeline was provided, any outputs from the call
+  to $service will be merged directly into the global
   pipeline.
 
 [URI]: &lt;http://www.w3.org/Addressing/&gt;</value>

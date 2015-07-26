@@ -66,7 +66,7 @@ Returns the current Integration Server user used to invoke this service.
 
 #### Outputs:
 
-* `$user` is the currently logged on user name that invoked this service.
+* $user is the currently logged on user name that invoked this service.
 
 </value>
   <value name="stateless">no</value>

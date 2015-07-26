@@ -107,24 +107,24 @@
   </record>
   <value name="node_comment">### tundra.content:retrieve
 
-Retrieves arbitrary content from the given `$source` URI, and calls the
+Retrieves arbitrary content from the given $source URI, and calls the
 given content processing service to process it.
 
 Additional retrieval protocols can be implemented by creating a service
-named for the URI scheme in the folder `tundra.content.retrieve`.
+named for the URI scheme in the folder tundra.content.retrieve.
 Services in this folder must implement the
-`tundra.schema.content.retrieve:handler` specification.
+tundra.schema.content.retrieve:handler specification.
 
 #### Inputs:
 
-* `$source` is a URI identifying the location from which content is to be
+* $source is a URI identifying the location from which content is to be
   retrieved. Supports the following retrieval protocols / URI schemes:
-  * `file`: processes each file matching the given `$source` URI with the
-    given processing `$service`. The file component of the URI can
-    include wildcards or globs (such as `*.txt` or `*.j?r`) for matching
+  * file: processes each file matching the given $source URI with the
+    given processing $service. The file component of the URI can
+    include wildcards or globs (such as *.txt or *.j?r) for matching
     multiple files at once.
 
-    The following example would process all `*.txt` files in the
+    The following example would process all *.txt files in the
     specified directory:
 
         file:////server:port/directory/*.txt
@@ -137,8 +137,8 @@ Services in this folder must implement the
         file:////server:port/directory/*.txt?working=temp
 
     In this example, files are first moved to a subdirectory named
-    `temp`. If not specified, the working directory defaults to a
-    subdirectory named `working`.
+    temp. If not specified, the working directory defaults to a
+    subdirectory named working.
 
     After successful processing, the file is then moved to an archive
     directory. The name of this directory can be configured by adding a
@@ -146,26 +146,26 @@ Services in this folder must implement the
 
         file:////server:port/directory/*.txt?archive=backup
 
-    In this example, files are moved to a subdirectory named `backup`
+    In this example, files are moved to a subdirectory named backup
     after being successfully processed. If not specified, the archive
-    directory defaults to a subdirectory named `archive`.
+    directory defaults to a subdirectory named archive.
 
     Optionally, archived files older than a given age can be cleaned up
     automatically by the retrieve process by specifying a query string
-    parameter called `purge` with an XML duration value representing the
+    parameter called purge with an XML duration value representing the
     age an archived file must be before being purged, for example:
 
         file:////server:port/directory/*.txt?purge=P14D
 
     In this example, any files in the archive directory older than 14
     days will be automatically deleted by the retrieve process. If the
-    query string parameter `purge` is not specified, archived files will
+    query string parameter purge is not specified, archived files will
     not be automatically cleaned up.
-* `$service` is the fully-qualified name of the content processing
+* $service is the fully-qualified name of the content processing
   service, which implements the
-  `tundra.schema.content.retrieve:processor` specification, invoked to
-  process each item of content retrieved from the `$source` URI.
-* `$limit` is an optional maximum number of content matches to be
+  tundra.schema.content.retrieve:processor specification, invoked to
+  process each item of content retrieved from the $source URI.
+* $limit is an optional maximum number of content matches to be
   processed in a single execution. Defaults to 1000, if not specified.
 
 </value>

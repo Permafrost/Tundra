@@ -128,14 +128,14 @@ a service.
 
 #### Inputs:
 
-* `$service` is the name to be validated.
-* `$raise?` is a boolean flag indicating if an exception should
+* $service is the name to be validated.
+* $raise? is a boolean flag indicating if an exception should
   be thrown if the given service is not valid. Defaults to
   false.
 
 #### Outputs:
 
-* `$valid?` is a boolean flag indicating if the given service
+* $valid? is a boolean flag indicating if the given service
   exists and is actually a service on this Integration Server.
 
 </value>

@@ -218,22 +218,22 @@ Custom datetime patterns can be specified using
 
 #### Inputs:
 
-* `$datetime.pattern` is an optional datetime pattern that `$datetime`
+* $datetime.pattern is an optional datetime pattern that $datetime
   is formatted as. Defaults to an [ISO8601] XML datetime.
-* `$duration` is the duration to be subtracted from the current datetime.
-* `$duration.pattern` is an optional duration pattern that `$duration`
+* $duration is the duration to be subtracted from the current datetime.
+* $duration.pattern is an optional duration pattern that $duration
   conforms to. Defaults to an [ISO8601] XML duration.
-* `$timezone` is an optional [java.util.TimeZone] ID, or a
-  `(+|-)HH:mm` time zone offset, or an XML duration string
+* $timezone is an optional [java.util.TimeZone] ID, or a
+  (+|-)HH:mm time zone offset, or an XML duration string
   representing a time zone offset, or a raw millisecond time zone
-  offset, or `Z` for UTC, or `local` for the default localhost time
-  zone identifying the time zone the returned `$datetime` will be
+  offset, or Z for UTC, or local for the default localhost time
+  zone identifying the time zone the returned $datetime will be
   formatted with.
 
 #### Outputs:
 
-* `$datetime` is the current datetime minus the given `$duration` in the
-  given `$timezone`.
+* $datetime is the current datetime minus the given $duration in the
+  given $timezone.
 
 [ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;
 [java.text.SimpleDateFormat]: &lt;http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html&gt;

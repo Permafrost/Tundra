@@ -178,17 +178,17 @@ Custom datetime patterns can be specified using
 
 #### Inputs:
 
-* `$datetime` is the datetime string to be validated.
-* `$pattern` is an optional datetime pattern that `$datetime` is
+* $datetime is the datetime string to be validated.
+* $pattern is an optional datetime pattern that $datetime is
   required to conform to. Defaults to an [ISO8601] XML datetime.
-* `$raise?` is an optional boolean flag indicating if an exception
-  should be thrown if `$datetime` is found not to conform to `$pattern`.
+* $raise? is an optional boolean flag indicating if an exception
+  should be thrown if $datetime is found not to conform to $pattern.
   Defaults to false.
 
 #### Outputs:
 
-* `$valid?` is a boolean flag indicating the given `$datetime` conforms
-  to, and can be parsed by, the given `$pattern`.
+* $valid? is a boolean flag indicating the given $datetime conforms
+  to, and can be parsed by, the given $pattern.
 
 [ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;
 [java.text.SimpleDateFormat]: &lt;http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html&gt;</value>

@@ -147,21 +147,21 @@ specified) when the length is increased.
 
 #### Inputs:
 
-* `$list` is the Object[] list to be grown.
-* `$item` is an optional Object used to pad the list if increasing the
+* $list is the Object[] list to be grown.
+* $item is an optional Object used to pad the list if increasing the
   size.
-* `$length` is the desired new length of the list if specified as a
+* $length is the desired new length of the list if specified as a
   positive integer, or the relative number of items to truncate from the
   list if specified as a negative integer.
-* `$class` is an optional Java class name used to instantiate a new list
-  if the provided `$list` is null.
+* $class is an optional Java class name used to instantiate a new list
+  if the provided $list is null.
 
 #### Outputs:
 
-* `$list` is the Object[] list resized to the desired `$length`; if the
+* $list is the Object[] list resized to the desired $length; if the
   new length is less than the original length, the list is truncated from
   the end; if the new length is greater than the original length, the
-  list is padded with `$item` (or null if not specified).
+  list is padded with $item (or null if not specified).
 
 </value>
   <value name="stateless">no</value>

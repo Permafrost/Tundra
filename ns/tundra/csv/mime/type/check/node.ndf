@@ -138,16 +138,16 @@ or tab separated values media type.
 
 #### Inputs:
 
-* `$content.type` is the MIME media type to be checked.
+* $content.type is the MIME media type to be checked.
 
 #### Outputs:
 
-* `$csv?` is a boolean which when true indicates that the given
-  `$content.type` is a recognized [CSV] media type.
-* `$psv?` is a boolean which when true indicates that the given
-  `$content.type` is a recognized pipe separated values media type.
-* `$tsv?` is a boolean which when true indicates that the given
-  `$content.type` is a recognized [TSV] media type.
+* $csv? is a boolean which when true indicates that the given
+  $content.type is a recognized [CSV] media type.
+* $psv? is a boolean which when true indicates that the given
+  $content.type is a recognized pipe separated values media type.
+* $tsv? is a boolean which when true indicates that the given
+  $content.type is a recognized [TSV] media type.
 
 [CSV]: &lt;http://en.wikipedia.org/wiki/Comma-separated_values&gt;
 [TSV]: &lt;http://en.wikipedia.org/wiki/Tab-separated_values&gt;</value>

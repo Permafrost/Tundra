@@ -98,14 +98,14 @@ Returns true if the given item is found in the given list.
 
 #### Inputs:
 
-* `$list` is a list to check whether the given $item exists
+* $list is a list to check whether the given $item exists
   in.
-* `$item` is the item to be checked against the given $list.
+* $item is the item to be checked against the given $list.
 
 #### Outputs:
 
-* `$include?` is a boolean indicating the the given `$item`
-  exists as an item in the given `$list`.
+* $include? is a boolean indicating the the given $item
+  exists as an item in the given $list.
 
 </value>
   <value name="stateless">no</value>

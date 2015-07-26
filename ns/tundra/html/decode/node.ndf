@@ -94,16 +94,16 @@
 
 [HTML] decodes the given string.
 
-[HTML entities], such as `&amp;lt;` and `&amp;gt;`, are decoded to the
-appropriate character representation, such as `&lt;` and `&gt;`.
+[HTML entities], such as &amp;lt; and &amp;gt;, are decoded to the
+appropriate character representation, such as &lt; and &gt;.
 
 #### Inputs:
 
-* `$string` is an optional string to be [HTML] decoded.
+* $string is an optional string to be [HTML] decoded.
 
 #### Outputs:
 
-* `$string` is the given string with [HTML entities] decoded.
+* $string is the given string with [HTML entities] decoded.
 
 [HTML entities]: &lt;http://www.w3.org/TR/html4/sgml/entities.html&gt;
 [HTML]: &lt;http://en.wikipedia.org/wiki/HTML&gt;</value>

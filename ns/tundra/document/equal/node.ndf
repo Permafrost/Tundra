@@ -104,12 +104,12 @@ of keys and values).
 
 #### Inputs:
 
-* `$document.x` is an IData document to be compared to `$document.y`.
-* `$document.y` is an IData document to be compared to `$document.x`.
+* $document.x is an IData document to be compared to $document.y.
+* $document.y is an IData document to be compared to $document.x.
 
 #### Outputs:
 
-* `$equal?` is a boolean indicating if the given documents contain
+* $equal? is a boolean indicating if the given documents contain
   the same set of keys and values.
 
 </value>

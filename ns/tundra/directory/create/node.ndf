@@ -97,9 +97,9 @@ Creates a new directory.
 
 #### Inputs:
 
-* `$directory` is a string specifying a relative or absolute path
+* $directory is a string specifying a relative or absolute path
   or file: [URI]; all directories on this path will be created.
-* `$raise?` is an optional boolean flag indicating if an exception
+* $raise? is an optional boolean flag indicating if an exception
   should be thrown if the directory already exists. Defaults to
   false.
 

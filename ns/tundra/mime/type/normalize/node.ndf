@@ -99,11 +99,11 @@ Implemented with the [javax.activation.MimeType] class.
 
 #### Inputs:
 
-* `$string` is an optional [mime type] string to be normalized.
+* $string is an optional [mime type] string to be normalized.
 
 #### Outputs:
 
-* `$string` is the normalized [mime type] string.
+* $string is the normalized [mime type] string.
 
 [javax.activation.MimeType]: &lt;http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html&gt;
 [mime type]: &lt;http://en.wikipedia.org/wiki/Internet_media_type&gt;</value>

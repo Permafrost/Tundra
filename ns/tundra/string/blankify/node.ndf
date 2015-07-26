@@ -96,12 +96,12 @@ returns the given input string unchanged.
 
 #### Inputs:
 
-* `$string` is an optional string input value.
+* $string is an optional string input value.
 
 #### Outputs:
 
-* `$string` is an empty string if the input `$string` was null,
-  otherwise `$string` is returned unchanged.
+* $string is an empty string if the input $string was null,
+  otherwise $string is returned unchanged.
 
 </value>
   <value name="stateless">no</value>

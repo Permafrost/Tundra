@@ -66,7 +66,7 @@ service for this thread.
 
 #### Outputs:
 
-* `$initiator?` is a boolean indicating if the calling service
+* $initiator? is a boolean indicating if the calling service
   is the top-level service that initiated this thread.
 
 </value>

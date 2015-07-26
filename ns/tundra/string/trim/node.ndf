@@ -96,12 +96,12 @@ Removes leading and trailing whitespace from the given string.
 
 #### Inputs:
 
-* `$string` is a string to be trimmed of leading and trailing
+* $string is a string to be trimmed of leading and trailing
   whitespace characters.
 
 #### Outputs:
 
-* `$string` is the input string with leading and trailing whitespace
+* $string is the input string with leading and trailing whitespace
   characters removed.
 
 </value>

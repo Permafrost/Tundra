@@ -67,7 +67,7 @@ file does not exist (no exception is thrown).
 
 #### Inputs:
 
-* `$file` is the name of the file to be deleted, specified as either a
+* $file is the name of the file to be deleted, specified as either a
   relative or absolute file path or file: [URI]. If the file does not
   exists, this service does nothing.
 

@@ -82,11 +82,11 @@ Returns the length of the given byte array.
 
 #### Inputs:
 
-* `$bytes` must be a byte array.
+* $bytes must be a byte array.
 
 #### Outputs:
 
-* `$length` is the length of the given byte array.
+* $length is the length of the given byte array.
 
 </value>
   <value name="stateless">no</value>

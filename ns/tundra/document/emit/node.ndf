@@ -174,17 +174,17 @@ byte array, or input stream.
 
 #### Inputs:
 
-* `$document` is an IData document to be serialized.
-* `$encoding` is an optional character set used to encode the
+* $document is an IData document to be serialized.
+* $encoding is an optional character set used to encode the
   serialized document when returned as a byte array or input
   stream. Defaults to [UTF-8].
-* `$mode` is an optional choice of 'stream', 'bytes', or
+* $mode is an optional choice of 'stream', 'bytes', or
   'string', which determines the type of object returned by
   this service. Defaults to 'stream'.
 
 #### Outputs:
 
-* `$content` is the resulting serialized document.
+* $content is the resulting serialized document.
 
 [IData XML]: &lt;http://documentation.softwareag.com/webmethods/wmsuites/wmsuite8-2_sp2/Integration_Server/8-2-SP1_Integration_Server_Java_API_Reference/com/wm/util/coder/IDataXMLCoder.html&gt;
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;</value>

@@ -96,11 +96,11 @@ Integration Server.
 
 #### Inputs:
 
-* `$name` is the name of the package to check existence of.
+* $name is the name of the package to check existence of.
 
 #### Outputs:
 
-* `$exists?` is a boolean indicating whether a package with
+* $exists? is a boolean indicating whether a package with
   the given name exists on this Integration Server.
 
 </value>

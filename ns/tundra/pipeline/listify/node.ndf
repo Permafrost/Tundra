@@ -68,7 +68,7 @@ unmodified.
 
 #### Inputs:
 
-* `$key` is a simple or fully-qualified (such as `a/b/c[0]/d`) key
+* $key is a simple or fully-qualified (such as a/b/c[0]/d) key
   identifying the value to be converted to a list.
 
 </value>

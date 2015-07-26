@@ -82,8 +82,8 @@ Returns the first key value pair from the pipeline.
 
 #### Outputs:
 
-* `$key` is the first key in the pipeline.
-* `$value` is the first key's associated value.
+* $key is the first key in the pipeline.
+* $value is the first key's associated value.
 
 </value>
   <value name="stateless">no</value>

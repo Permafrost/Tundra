@@ -257,19 +257,19 @@ question, it is therefore considered indeterminate.
 
 #### Inputs:
 
-* `$duration.x` is a duration string to be compared to `$duration.y`.
-* `$duration.y` is a duration string to be compared to `$duration.x`.
-* `$pattern` is an optional pattern describing the type of duration
-  specified by the `$duration.x` and `$duration.y` strings. Defaults
+* $duration.x is a duration string to be compared to $duration.y.
+* $duration.y is a duration string to be compared to $duration.x.
+* $pattern is an optional pattern describing the type of duration
+  specified by the $duration.x and $duration.y strings. Defaults
   to an [ISO8601] XML string.
 
 #### Outputs:
 
-* `$lesser?` is true if `$duration.x` is a smaller duration than
-  `$duration.y`.
-* `$equal?` is true if `$duration.x` is equivalent to `$duration.y`.
-* `$greater?` is true if `$duration.x` is larger than `$duration.y`.
-* `$indeterminate?` is true if `$duration.x` and `$duration.y` cannot be
+* $lesser? is true if $duration.x is a smaller duration than
+  $duration.y.
+* $equal? is true if $duration.x is equivalent to $duration.y.
+* $greater? is true if $duration.x is larger than $duration.y.
+* $indeterminate? is true if $duration.x and $duration.y cannot be
   compared.
 
 [ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;</value>

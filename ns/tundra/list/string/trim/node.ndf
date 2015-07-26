@@ -87,12 +87,12 @@ given list.
 
 #### Inputs:
 
-* `$list` is a list of strings to be trimmed of leading and trailing
+* $list is a list of strings to be trimmed of leading and trailing
   whitespace characters.
 
 #### Outputs:
 
-* `$list` is the input list of strings with leading and trailing
+* $list is the input list of strings with leading and trailing
   whitespace characters removed.
 
 </value>

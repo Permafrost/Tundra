@@ -98,9 +98,9 @@ directories recursively if desired.
 
 #### Inputs:
 
-* `$directory` is a relative or absolute path or file: [URI] to be
+* $directory is a relative or absolute path or file: [URI] to be
   deleted.
-* `$recurse?` is a boolean flag indicating that all child files and
+* $recurse? is a boolean flag indicating that all child files and
   directories should be recursively deleted also. If false, and
   the directory is not empty, an exception will be thrown. Defaults
   to false.

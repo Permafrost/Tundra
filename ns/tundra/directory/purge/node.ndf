@@ -196,21 +196,21 @@ directories.
 
 #### Inputs:
 
-* `$directory` is the directory from which files will be deleted,
+* $directory is the directory from which files will be deleted,
   specified as either a relative or absolute file path or file: [URI].
-* `$duration` is the duration of time representing the age of files to be
+* $duration is the duration of time representing the age of files to be
   deleted. For example, a duration of P1D will delete all files that were
   last modified 24 hours ago or earlier.
-* `$duration.pattern` is an optional pattern describing the type of
-  duration specified by the `$duration` string. Defaults to an [ISO8601]
+* $duration.pattern is an optional pattern describing the type of
+  duration specified by the $duration string. Defaults to an [ISO8601]
   XML string.
-* `$recurse?` is an optional boolean flag indicating if files in sub-
+* $recurse? is an optional boolean flag indicating if files in sub-
   directories should also deleted. Defaults to false.
 
 #### Outputs:
 
-* `$count` is the number of files deleted by this service that were older
-  than the given `$duration`.
+* $count is the number of files deleted by this service that were older
+  than the given $duration.
 
 [ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;
 [URI]: &lt;http://www.w3.org/Addressing/&gt;</value>

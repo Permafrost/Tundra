@@ -94,11 +94,11 @@ Returns the average value of the given list of integers.
 
 #### Inputs:
 
-* `$integers` is a list of integers.
+* $integers is a list of integers.
 
 #### Outputs:
 
-* `$integer` is the average value of the given integers.
+* $integer is the average value of the given integers.
 
 </value>
   <value name="stateless">no</value>

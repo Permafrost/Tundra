@@ -107,8 +107,8 @@ document.
 
 #### Inputs:
 
-* `$document` is an IData document to be cloned.
-* `$recurse?` is an optional boolean indicating if embedded
+* $document is an IData document to be cloned.
+* $recurse? is an optional boolean indicating if embedded
   IData documents and IData[] document lists should also
   be cloned. If not cloned, the resulting IData document
   will reference the same IData and IData[] objects as
@@ -116,7 +116,7 @@ document.
 
 #### Outputs:
 
-* `$duplicate` is the cloned input IData document.
+* $duplicate is the cloned input IData document.
 
 </value>
   <value name="stateless">no</value>

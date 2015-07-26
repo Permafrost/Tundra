@@ -7,11 +7,11 @@
   <value name="svc_spec">tundra.schema.content.deliver:handler</value>
   <value name="node_comment">### tundra.content.deliver:file
 
-The file protocol handler for the `Tundra/tundra.content:deliver`
+The file protocol handler for the Tundra/tundra.content:deliver
 service, which delivers arbitrary content to a file URI
 destination.
 
-Implements the `Tundra/tundra.schema.content.deliver:handler`
+Implements the Tundra/tundra.schema.content.deliver:handler
 specification.
 
 </value>

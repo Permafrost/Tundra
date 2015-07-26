@@ -7,12 +7,12 @@
   <value name="svc_spec">tundra.schema.content.retrieve:handler</value>
   <value name="node_comment">### tundra.content.retrieve:file
 
-The file protocol handler for the `Tundra/tundra.content:retrieve`
+The file protocol handler for the Tundra/tundra.content:retrieve
 service, which retrieves file content for files matching the given
-`$source` URI and calls the given `$service` content processing service
+$source URI and calls the given $service content processing service
 to process each file.
 
-Implements the `Tundra/tundra.schema.content.retrieve:handler`
+Implements the Tundra/tundra.schema.content.retrieve:handler
 specification.
 
 </value>

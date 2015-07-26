@@ -85,11 +85,11 @@ IData document.
 
 #### Inputs:
 
-* `$document` is an IData document.
+* $document is an IData document.
 
 #### Outputs:
 
-* `$length` is the number of top-level keys in the given IData
+* $length is the number of top-level keys in the given IData
   document.
 
 </value>

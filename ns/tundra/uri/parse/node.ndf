@@ -517,11 +517,11 @@ Implemented with the [java.net.URI] class.
 
 #### Inputs:
 
-* `$string` is the a [URI] string to be parsed.
+* $string is the a [URI] string to be parsed.
 
 #### Outputs:
 
-* `$uri` is an `IData` document containing the constituent parts of the
+* $uri is an IData document containing the constituent parts of the
   parsed [URI] string.
 
 [RFC 2396]: &lt;http://www.ietf.org/rfc/rfc2396.txt&gt;

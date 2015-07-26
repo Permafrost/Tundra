@@ -46,7 +46,7 @@ Returns null.
 
 #### Outputs:
 
-* `$nothing` is returned with a null value.
+* $nothing is returned with a null value.
 
 </value>
   <value name="stateless">no</value>

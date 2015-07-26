@@ -130,19 +130,19 @@ value.
 
 #### Inputs:
 
-* `$list` is an IData document list to perform variable substitution on.
-* `$pipeline` is an optional scope used to resolve key references. If
+* $list is an IData document list to perform variable substitution on.
+* $pipeline is an optional scope used to resolve key references. If
   not specified, keys are resolved against the pipeline itself.
-* `$default` is an optional default value to substitute in place of keys
+* $default is an optional default value to substitute in place of keys
   that resolve to null or missing values. If not specified, no
   substitution will be made for keys that resolve to null or missing
   values.
 
 #### Outputs:
 
-* `$list` is the resulting IData document list with all variable
+* $list is the resulting IData document list with all variable
   substitution patterns in all item's values, such as "%key%", replaced
-  with the value of the key (resolved against either `$pipeline`, if
+  with the value of the key (resolved against either $pipeline, if
   specified, or the pipeline itself).
 
 </value>

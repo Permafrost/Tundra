@@ -87,19 +87,19 @@ Converts a string, bytes or input stream to an input stream.
 
 #### Inputs:
 
-* `$object` is an optional [java.lang.String], byte[], or
+* $object is an optional [java.lang.String], byte[], or
   [java.io.InputStream] object to be converted to a
   [java.io.InputStream] object. If not specified, this service does
   nothing.
-* `$encoding` is the character set used to encode the character data
-  when `$object` is specified as a [java.lang.String]. Defaults to
+* $encoding is the character set used to encode the character data
+  when $object is specified as a [java.lang.String]. Defaults to
   [UTF-8].
 
 #### Outputs:
 
-* `$stream` is an optional [java.io.InputStream] object from which can
-  be read the data represented by `$object`. If `$object` was not
-  specified, no `$stream` is returned.
+* $stream is an optional [java.io.InputStream] object from which can
+  be read the data represented by $object. If $object was not
+  specified, no $stream is returned.
 
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;
 [java.io.InputStream]: &lt;http://docs.oracle.com/javase/6/docs/api/java/io/InputStream.html&gt;

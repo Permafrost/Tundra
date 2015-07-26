@@ -96,11 +96,11 @@ Returns the negative value of the given integer (-x).
 
 #### Inputs:
 
-* `$integer` is an integer to be negated.
+* $integer is an integer to be negated.
 
 #### Outputs:
 
-* `$integer` is the given integer multiplied by minus
+* $integer is the given integer multiplied by minus
   one.
 
 </value>

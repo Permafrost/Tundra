@@ -38,24 +38,24 @@ package-specific configuration files.
 Custom HTTP routes specify an [HTTP request method] and [URI
 template] which, if matched by an Integration Server HTTP request,
 will return the associated target (either by invoking the target if
-it is a service in the same way as the built-in `/invoke` URIs work,
+it is a service in the same way as the built-in /invoke URIs work,
 or by returning a DSP page or static asset if the target is not a
 service), and can be used to abstract the API used by HTTP clients
-from the implementation (unlike `/invoke` URIs or package DSP pages
+from the implementation (unlike /invoke URIs or package DSP pages
 URIs, which leak the implementation in the URI's path).
 
 Custom HTTP routes can either be configured in a server-specific
 configuration file, or a package-specific configuration file.
 
 To register a server-specific custom HTTP route, create or edit the
-`&lt;IntegrationServer&gt;/config/http-routes.cnf` file, using the
-`&lt;IntegrationServer&gt;/packages/Tundra/config/http-routes.example.cnf`
+&lt;IntegrationServer&gt;/config/http-routes.cnf file, using the
+&lt;IntegrationServer&gt;/packages/Tundra/config/http-routes.example.cnf
 file as a template.
 
 To register a package-specific custom HTTP route, create or edit the
-`&lt;IntegrationServer&gt;/packages/&lt;PackageName&gt;/config/http-routes.cnf`
+&lt;IntegrationServer&gt;/packages/&lt;PackageName&gt;/config/http-routes.cnf
 file, using the
-`&lt;IntegrationServer&gt;/packages/Tundra/config/http-routes.example.cnf`
+&lt;IntegrationServer&gt;/packages/Tundra/config/http-routes.example.cnf
 file as a template.
 
 Note that server-specific HTTP routes take precedence over package-specific

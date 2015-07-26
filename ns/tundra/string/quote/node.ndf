@@ -98,13 +98,13 @@ sequences in the input sequence are given no special meaning.
 
 #### Inputs:
 
-* `$string` is a string value to be converted to a
+* $string is a string value to be converted to a
   [regular expression pattern].
 
 #### Outputs:
 
-* `$pattern` is a [regular expression pattern] that can be used to match
-  the given `$string` literally.
+* $pattern is a [regular expression pattern] that can be used to match
+  the given $string literally.
 
 [regular expression pattern]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html&gt;</value>
   <value name="stateless">no</value>

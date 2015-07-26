@@ -143,14 +143,14 @@ Implemented with the [java.net.URLDecoder] class.
 
 #### Inputs:
 
-* `$string` is a string containing URI-encoded data to be decoded.
-* `$encoding` is the character set used to determine what characters are
+* $string is a string containing URI-encoded data to be decoded.
+* $encoding is the character set used to determine what characters are
   represented by any consecutive sequences of the form "%xy". Defaults
   to [UTF-8].
 
 #### Outputs:
 
-* `$string` is the decoded input string.
+* $string is the decoded input string.
 
 [RFC 2396]: &lt;http://www.ietf.org/rfc/rfc2396.txt&gt;
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;

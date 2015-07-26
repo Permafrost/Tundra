@@ -105,11 +105,11 @@ equal.
 
 #### Inputs:
 
-* `$expected` is the expected IData document list.
-* `$actual` is the actual IData document list. If this document list is
+* $expected is the expected IData document list.
+* $actual is the actual IData document list. If this document list is
   not equal to the expected document list, an assertion error will be
   thrown.
-* `$message` is an optional custom message to be used as the assertion
+* $message is an optional custom message to be used as the assertion
   error message if the assertion fails.
 
 </value>

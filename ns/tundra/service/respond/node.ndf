@@ -197,26 +197,26 @@ of the invoking transport.
 
 #### Inputs:
 
-* `$code` is the [HTTP status code] for the returned response. For
+* $code is the [HTTP status code] for the returned response. For
   example, a 200 status code indicates the request was successful.
   For transports other than HTTP, a status code &gt;= 400 will result
   in an exception being thrown. This is the appropriate response,
   as it will result in the correct action for those transports
   occurring (a SOAP fault for a SOAP invocation, a file transfer
   failure for an FTP invocation, etc).
-* `$message` is an optional message to be associated with the given
+* $message is an optional message to be associated with the given
   status code. If not specified, the standard status message for
   the code will be used. This is only applicable to HTTP transports.
-* `$headers` is an optional IData document containing HTTP header
+* $headers is an optional IData document containing HTTP header
   keys and values to be added to the response. This is only applicable
   to HTTP transports.
-* `$content` is an optional string, byte array, or input stream
+* $content is an optional string, byte array, or input stream
   containing the response body to be returned. If not specified,
   defaults to an empty string.
-* `$content.type` is the mime type of the given response body content. If
+* $content.type is the mime type of the given response body content. If
   not specified, defaults to application/octet-stream (the mime type for
   arbitrary binary data).
-* `$encoding` is an optional character set used to encode $content when
+* $encoding is an optional character set used to encode $content when
   specified as a string. Defaults to [UTF-8].
 
 [HTTP status code]: &lt;http://www.iana.org/assignments/http-status-codes/http-status-codes.txt&gt;

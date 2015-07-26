@@ -102,10 +102,10 @@ Throws an assertion error if the expected and actual documents are equal.
 
 #### Inputs:
 
-* `$expected` is the expected IData document.
-* `$actual` is the actual IData document. If this document is equal to
+* $expected is the expected IData document.
+* $actual is the actual IData document. If this document is equal to
   the expected document, an assertion error will be thrown.
-* `$message` is an optional custom message to be used as the assertion
+* $message is an optional custom message to be used as the assertion
   error message if the assertion fails.
 
 </value>

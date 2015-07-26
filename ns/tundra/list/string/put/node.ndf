@@ -138,9 +138,9 @@ Sets the value of the item at the given index in the given list.
 
 #### Inputs:
 
-* `$list` is a list in which to set the given value.
-* `$item` is the item to be set in the given list.
-* `$index` is an optional zero-based index identifying
+* $list is a list in which to set the given value.
+* $item is the item to be set in the given list.
+* $index is an optional zero-based index identifying
   the item to be set. Supports forward and reverse
   indexing (where, for example, an index of -1 is the
   last item in the list, and an index of -2 is the
@@ -148,7 +148,7 @@ Sets the value of the item at the given index in the given list.
 
 #### Outputs:
 
-* `$list` is the resulting list with the item at the given
+* $list is the resulting list with the item at the given
   index set to the given value.
 
 </value>

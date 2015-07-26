@@ -117,14 +117,14 @@ items.
 
 #### Inputs:
 
-* `$list` is a list to be prepended to.
-* `$item` is the item to prepend to the given list.
-* `$class` is an optional Java class name that the list and item
+* $list is a list to be prepended to.
+* $item is the item to prepend to the given list.
+* $class is an optional Java class name that the list and item
   to be prepended are required to be instances of.
 
 #### Outputs:
 
-* `$list` is the resulting list with the given `$item` prepended to the
+* $list is the resulting list with the given $item prepended to the
   start.
 
 </value>

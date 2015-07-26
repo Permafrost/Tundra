@@ -67,7 +67,7 @@ precision and accuracy of system timers and schedulers.
 
 #### Inputs:
 
-* `$duration` is an [ISO8601] XML duration for which the
+* $duration is an [ISO8601] XML duration for which the
   current thread should sleep.
 
 [ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;</value>

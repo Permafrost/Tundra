@@ -118,17 +118,17 @@ Returns an decimal object by parsing the given string.
 
 #### Inputs:
 
-* `$string` is a string representation of a decimal number, formatted
+* $string is a string representation of a decimal number, formatted
   according to [java.math.BigDecimal grammar].
-* `$class` is an optional Java class name that determines the type of
-  object returned, a choice of either `java.math.BigDecimal`,
-  `java.math.BigInteger`, `java.lang.Double`, `java.lang.Float`,
-  `java.lang.Integer`, or `java.lang.Long`. Defaults to `java.math.BigDecimal`,
+* $class is an optional Java class name that determines the type of
+  object returned, a choice of either java.math.BigDecimal,
+  java.math.BigInteger, java.lang.Double, java.lang.Float,
+  java.lang.Integer, or java.lang.Long. Defaults to java.math.BigDecimal,
   if not specified.
 
 #### Outputs:
 
-* `$object` is the resulting Java object representing the parsed decimal.
+* $object is the resulting Java object representing the parsed decimal.
 
 [java.math.BigDecimal grammar]: &lt;http://docs.oracle.com/javase/6/docs/api/java/math/BigDecimal.html#BigDecimal(java.lang.String)&gt;</value>
   <value name="stateless">no</value>

@@ -95,13 +95,13 @@ file.
 
 #### Inputs:
 
-* `$file` is the file name to be normalized to the canonical
+* $file is the file name to be normalized to the canonical
   file: [URI], specified as either a relative or absolute
   file path or file: [URI].
 
 #### Outputs:
 
-* `$file` is the canonical file: [URI] that represents the
+* $file is the canonical file: [URI] that represents the
   given file.
 
 [URI]: &lt;http://www.w3.org/Addressing/&gt;</value>

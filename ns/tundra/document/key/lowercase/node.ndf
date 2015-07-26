@@ -195,19 +195,19 @@ Converts all keys in the given IData document to lower case.
 
 #### Inputs:
 
-* `$document` is an IData document whose keys are to be
+* $document is an IData document whose keys are to be
   converted to lower case.
-* `$locale` optionally identifies the case transformation rules
+* $locale optionally identifies the case transformation rules
   to be used for a given [Locale]. If not specified, the
   [default locale] is used.
-* `$recurse?` is an optional boolean indicating if embedded
+* $recurse? is an optional boolean indicating if embedded
   IData documents and IData[] document lists should also
   have their keys converted to lower case. Defaults to
   false.
 
 #### Outputs:
 
-* `$document` is the given IData document with all keys
+* $document is the given IData document with all keys
   converted to lower case.
 
 [Locale]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/Locale.html&gt;

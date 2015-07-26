@@ -55,7 +55,7 @@ new file if it doesn't already exist.
 
 #### Inputs:
 
-* `$file` is the name of the file to be touched, specified as either a
+* $file is the name of the file to be touched, specified as either a
   relative or absolute file path or file: [URI]. If the file does not
   exist, it will be created. If the file does exist, its modification
   time will be updated to current time.

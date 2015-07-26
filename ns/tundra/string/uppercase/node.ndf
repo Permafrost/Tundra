@@ -199,14 +199,14 @@ Returns the given string in upper case.
 
 #### Inputs:
 
-* `$string` is a string to be converted to upper case.
-* `$locale` optionally identifies the case transformation rules
+* $string is a string to be converted to upper case.
+* $locale optionally identifies the case transformation rules
   to be used for a given [Locale]. If not specified, the
   [default locale] is used.
 
 #### Outputs:
 
-* `$string` is an upper case version of the input string, where
+* $string is an upper case version of the input string, where
   all characters have been converted to their upper case
   equivalent according to the transformation rules of the given
   [Locale].

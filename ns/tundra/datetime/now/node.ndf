@@ -147,20 +147,20 @@ Custom datetime patterns can be specified using
 
 #### Inputs:
 
-* `$pattern` is an optional datetime pattern that will be used to format
-  the resulting `$datetime` string. Defaults to an [ISO8601] XML
+* $pattern is an optional datetime pattern that will be used to format
+  the resulting $datetime string. Defaults to an [ISO8601] XML
   datetime.
-* `$timezone` is an optional [java.util.TimeZone] ID, or a
-  `(+|-)HH:mm` time zone offset, or an XML duration string
+* $timezone is an optional [java.util.TimeZone] ID, or a
+  (+|-)HH:mm time zone offset, or an XML duration string
   representing a time zone offset, or a raw millisecond time zone
-  offset, or `Z` for UTC, or `local` for the default localhost time
-  zone identifying the time zone the returned `$datetime` will be
+  offset, or Z for UTC, or local for the default localhost time
+  zone identifying the time zone the returned $datetime will be
   formatted with.
 
 #### Outputs:
 
-* `$datetime` is the current datetime formatted as a string according to
-  the given `$pattern` in the given `$timezone`.
+* $datetime is the current datetime formatted as a string according to
+  the given $pattern in the given $timezone.
 
 [ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;
 [java.text.SimpleDateFormat]: &lt;http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html&gt;
