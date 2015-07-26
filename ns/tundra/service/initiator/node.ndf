@@ -59,12 +59,17 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns true if the calling service is the initiating top-level
+  <value name="node_comment">### tundra.service:initiator
+
+Returns true if the calling service is the initiating top-level
 service for this thread.
 
-* Outputs:
-  * $initiator? is a boolean indicating if the calling service
-    is the top-level service that initiated this thread.</value>
+#### Outputs:
+
+* `$initiator?` is a boolean indicating if the calling service
+  is the top-level service that initiated this thread.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

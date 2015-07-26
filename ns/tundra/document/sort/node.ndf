@@ -100,17 +100,23 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Sorts the given IData document by its keys in natural ascending order.
+  <value name="node_comment">### tundra.document:sort
 
-* Inputs:
-  * $document is an IData document to be sorted.
-  * $recurse is an optional boolean indicating if embedded
-    IData documents and IData[] document lists should also
-    be sorted. Defaults to false.
+Sorts the given IData document by its keys in natural ascending order.
 
-* Outputs:
-  * $document is the resulting IData document, where the elements have
-    been sorted by their keys into natural ascending order.</value>
+#### Inputs:
+
+* `$document` is an IData document to be sorted.
+* `$recurse` is an optional boolean indicating if embedded
+  IData documents and IData[] document lists should also
+  be sorted. Defaults to false.
+
+#### Outputs:
+
+* `$document` is the resulting IData document, where the elements have
+  been sorted by their keys into natural ascending order.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

@@ -138,24 +138,30 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns a new list with the given item inserted at the desired 
-index in the given list.  
+  <value name="node_comment">### tundra.list.object:insert
 
-* Inputs:
-  * $list is a list to check whether the given $item exists
-    in.
-  * $item is the item to be checked against the given $list.
-  * $index is the index at which to insert the item. List 
-    indexing is zero-based. Supports both forward and 
-    reverse indexing (where, for example, an index of -1 
-    is the last item in the list, and an index of -2 is the 
-    second last item in the list).
-  * $class is an optional Java class name that the list and 
-    item to be inserted are required to be instances of.
+Returns a new list with the given item inserted at the desired
+index in the given list.
 
-* Outputs:
-  * $list is the resulting list with the item inserted at the
-    desired index.</value>
+#### Inputs:
+
+* `$list` is a list to check whether the given `$item` exists
+  in.
+* `$item` is the item to be checked against the given `$list`.
+* `$index` is the index at which to insert the item. List
+  indexing is zero-based. Supports both forward and
+  reverse indexing (where, for example, an index of -1
+  is the last item in the list, and an index of -2 is the
+  second last item in the list).
+* `$class` is an optional Java class name that the list and
+  item to be inserted are required to be instances of.
+
+#### Outputs:
+
+* `$list` is the resulting list with the item inserted at the
+  desired index.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

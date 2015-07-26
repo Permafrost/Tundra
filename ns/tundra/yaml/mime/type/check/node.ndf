@@ -79,15 +79,19 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Returns true if the given MIME media type is recognized as a [YAML] media 
+  <value name="node_comment">### tundra.yaml.mime.type:check
+
+Returns true if the given MIME media type is recognized as a [YAML] media
 type.
 
-* Inputs:
-  * $content.type is the MIME media type to be checked.
+#### Inputs:
 
-* Outputs:
-  * $yaml? is a boolean which when true indicates that the given 
-    $content.type is a recognized [YAML] media type.
+* `$content.type` is the MIME media type to be checked.
+
+#### Outputs:
+
+* `$yaml?` is a boolean which when true indicates that the given
+  `$content.type` is a recognized [YAML] media type.
 
 [YAML]: &lt;http://www.yaml.org&gt;</value>
   <value name="stateless">no</value>

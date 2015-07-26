@@ -109,18 +109,24 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Appends a single item to the end of a list, such that appending an item 
+  <value name="node_comment">### tundra.list.object:append
+
+Appends a single item to the end of a list, such that appending an item
 to a list containing n items results in a new list of n + 1 items.
 
-* Inputs:
-  * $list is a list to append an item to.
-  * $item is an item to be appended to the given list.
-  * $class is an optional Java class name that the list and item
-    to be appended are required to be instances of.
+#### Inputs:
 
-* Outputs:
-  * $list is the resulting list with the given $item appended to the
-    end.</value>
+* `$list` is a list to append an item to.
+* `$item` is an item to be appended to the given list.
+* `$class` is an optional Java class name that the list and item
+  to be appended are required to be instances of.
+
+#### Outputs:
+
+* `$list` is the resulting list with the given `$item` appended to the
+  end.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

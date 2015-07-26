@@ -107,17 +107,21 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns true if the given list is an instance of the given class.
+  <value name="node_comment">### tundra.list.object:instance
 
-* Inputs:
-  * $list is a list to check whether it is an instance of
-    the given Java class.
-  * $class is the [Java array class name] used to check the list
-    against. 
+Returns true if the given list is an instance of the given class.
 
-* Outputs:
-  * $instance? is a boolean indicating if the given list is an
-    instance of the given class.
+#### Inputs:
+
+* `$list` is a list to check whether it is an instance of
+  the given Java class.
+* `$class` is the [Java array class name] used to check the list
+  against.
+
+#### Outputs:
+
+* `$instance?` is a boolean indicating if the given list is an
+  instance of the given class.
 
 [Java array class name]: &lt;http://docs.oracle.com/javase/tutorial/reflect/special/arrayComponents.html&gt;</value>
   <value name="stateless">no</value>

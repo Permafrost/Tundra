@@ -102,17 +102,23 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Removes all null items from the given list, thereby shortening the 
+  <value name="node_comment">### tundra.list.document:compact
+
+Removes all null items from the given list, thereby shortening the
 length of the list.
 
-* Inputs:
-  * $list is a list to be compacted.
-  * $recurse? is an optional boolean indicating if embedded
-    IData documents and IData[] document lists should also
-    be compacted. Defaults to false.
+#### Inputs:
 
-* Outputs:
-  * $list is the given list with all null items removed.</value>
+* `$list` is a list to be compacted.
+* `$recurse?` is an optional boolean indicating if embedded
+  IData documents and IData[] document lists should also
+  be compacted. Defaults to false.
+
+#### Outputs:
+
+* `$list` is the given list with all null items removed.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

@@ -202,31 +202,35 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Writes or appends the content, provided as a string, byte array or input 
+  <value name="node_comment">### tundra.file:write
+
+Writes or appends the content, provided as a string, byte array or input
 stream, to the given file.
 
 If no file is specified, a new temporary file is created automatically.
 
-* Inputs:
-  * $file is the optional name of the file to which the given content
-    is to be written or appended, specified as either a relative or 
-    absolute file path or file: [URI]. If not specified, a new temporary
-    file will be created automatically.
-  * $mode is an optional choice of 'write' or 'append', which determines
-    whether the file will be overwritten or appended to respectively.
-    Defaults to 'append', since this is the safer option.
-  * $content is a string, byte array, or input stream containing data
-    to be written or appended to the given file.
-  * $encoding is an optional character set to use when $content has
-    been provided as a string. Defaults to [UTF-8].
+#### Inputs:
 
-* Outputs:
-  * $file is the name of the file that was written or appended to. If
-    no input file name was specified, this is the name of the temporary
-    file that was created automatically.
+* `$file` is the optional name of the file to which the given content
+  is to be written or appended, specified as either a relative or
+  absolute file path or file: [URI]. If not specified, a new temporary
+  file will be created automatically.
+* `$mode` is an optional choice of 'write' or 'append', which determines
+  whether the file will be overwritten or appended to respectively.
+  Defaults to 'append', since this is the safer option.
+* `$content` is a string, byte array, or input stream containing data
+  to be written or appended to the given file.
+* `$encoding` is an optional character set to use when $content has
+  been provided as a string. Defaults to [UTF-8].
 
-[UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;
-[URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
+#### Outputs:
+
+* `$file` is the name of the file that was written or appended to. If
+  no input file name was specified, this is the name of the temporary
+  file that was created automatically.
+
+[URI]: &lt;http://www.w3.org/Addressing/&gt;
+[UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

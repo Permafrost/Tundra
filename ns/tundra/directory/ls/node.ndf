@@ -86,16 +86,20 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns a raw directory listing with no additional processing: useful for 
-when performance takes priority over ease of use; for example, when the 
+  <value name="node_comment">### tundra.directory:ls
+
+Returns a raw directory listing with no additional processing: useful for
+when performance takes priority over ease of use; for example, when the
 directory contains hundreds of thousands or more files.
 
-* Inputs:
-  * $directory is a relative or absolute path or file: [URI] to be
-    listed.
+#### Inputs:
 
-* Outputs:
-  * $list is a raw list of the names of all items in the directory.
+* `$directory` is a relative or absolute path or file: [URI] to be
+  listed.
+
+#### Outputs:
+
+* `$list` is a raw list of the names of all items in the directory.
 
 [URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
   <value name="stateless">no</value>

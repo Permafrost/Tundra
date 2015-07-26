@@ -90,41 +90,46 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Normalizes a URI string.
+  <value name="node_comment">### tundra.uri:normalize
+
+Normalizes a URI string.
 
 Refer to the following excerpt from the [java.net.URI normalize] method for
 a description of the normalization process:
 
-&gt; If this URI is opaque, or if its path is already in normal form, then this 
-&gt; URI is returned. Otherwise a new URI is constructed that is identical to 
-&gt; this URI except that its path is computed by normalizing this URI's path 
-&gt; in a manner consistent with RFC 2396, section 5.2, step 6, sub-steps c 
+&gt; If this URI is opaque, or if its path is already in normal form, then this
+&gt; URI is returned. Otherwise a new URI is constructed that is identical to
+&gt; this URI except that its path is computed by normalizing this URI's path
+&gt; in a manner consistent with RFC 2396, section 5.2, step 6, sub-steps c
 &gt; through f; that is:
-&gt; 
+&gt;
 &gt; 1. All "." segments are removed.
-&gt; 
-&gt; 2. If a ".." segment is preceded by a non-".." segment then both of these 
-&gt;    segments are removed. This step is repeated until it is no longer 
+&gt;
+&gt; 2. If a ".." segment is preceded by a non-".." segment then both of these
+&gt;    segments are removed. This step is repeated until it is no longer
 &gt;    applicable.
-&gt; 
-&gt; 3. If the path is relative, and if its first segment contains a colon 
-&gt;    character (':'), then a "." segment is prepended. This prevents a 
-&gt;    relative URI with a path such as "a:b/c/d" from later being re-parsed 
-&gt;    as an opaque URI with a scheme of "a" and a scheme-specific part of 
+&gt;
+&gt; 3. If the path is relative, and if its first segment contains a colon
+&gt;    character (':'), then a "." segment is prepended. This prevents a
+&gt;    relative URI with a path such as "a:b/c/d" from later being re-parsed
+&gt;    as an opaque URI with a scheme of "a" and a scheme-specific part of
 &gt;    "b/c/d". (Deviation from RFC 2396.)
-&gt; 
-&gt; A normalized path will begin with one or more ".." segments if there were 
-&gt; insufficient non-".." segments preceding them to allow their removal. A 
-&gt; normalized path will begin with a "." segment if one was inserted by step 
-&gt; 3 above. Otherwise, a normalized path will not contain any "." or ".." 
+&gt;
+&gt; A normalized path will begin with one or more ".." segments if there were
+&gt; insufficient non-".." segments preceding them to allow their removal. A
+&gt; normalized path will begin with a "." segment if one was inserted by step
+&gt; 3 above. Otherwise, a normalized path will not contain any "." or ".."
 &gt; segments.
 
-* Inputs:
-  * $string is the URI to be normalized.
+#### Inputs:
 
-* Outputs:
-  * $string is the given URI in normalized form.
+* `$string` is the [URI] to be normalized.
 
+#### Outputs:
+
+* `$string` is the given [URI] in normalized form.
+
+[URI]: &lt;http://www.w3.org/Addressing/&gt;
 [java.net.URI normalize]: &lt;http://docs.oracle.com/javase/6/docs/api/java/net/URI.html#normalize()&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>

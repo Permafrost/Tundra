@@ -158,36 +158,40 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Provides a try/catch/finally pattern for flow services. 
+  <value name="node_comment">### tundra.service:ensure
 
-* Inputs:
-  * $service is the fully-qualified name of a service invoked 
-    in the [try block].
-  * $catch is an optional fully-qualified name of a service
-    invoked in the [catch block]. This service should
-    implement the Tundra/tundra.schema.exception:handler
-    specification. If no $catch service is specified, the
-    exception will be rethrown.
-  * $finally is an optional fully-qualified name of a service
-    invoked in the [finally block] (always invoked regardless
-    of whether an exception is thrown by $service or not).
-  * $pipeline is an optional IData document containing input
-    arguments for the invocation of $service. If specified,
-    the invocations of $service, $catch, and $finally are 
-    scoped to this document. If not specified, the invocations
-    are not scoped, and hence these services operate directly
-    against the pipeline itself.
+Provides a try/catch/finally pattern for flow services.
 
-* Outputs:
-  * $pipeline is the output pipeline of the invocations of
-    $service, $catch, and $finally. This is only returned if
-    $pipeline was specified as an input. Otherwise, the outputs
-    of these invocations are merged directly with the pipeline
-    itself.
+#### Inputs:
 
-[try block]: &lt;http://docs.oracle.com/javase/tutorial/essential/exceptions/try.html&gt;
+* `$service` is the fully-qualified name of a service invoked
+  in the [try block].
+* `$catch` is an optional fully-qualified name of a service
+  invoked in the [catch block]. This service should
+  implement the `Tundra/tundra.schema.exception:handler`
+  specification. If no `$catch` service is specified, the
+  exception will be rethrown.
+* `$finally` is an optional fully-qualified name of a service
+  invoked in the [finally block] (always invoked regardless
+  of whether an exception is thrown by `$service` or not).
+* `$pipeline` is an optional IData document which, if specified,
+  contains the input arguments for the invocations of `$service`,
+  `$catch`, and `$finally`; in other words, the calls to these
+  services are scoped to this IData document. If not specified,
+  the invocations are not scoped, and hence these services
+  operate directly against the pipeline itself.
+
+#### Outputs:
+
+* `$pipeline` is the output pipeline of the invocations of
+  `$service`, `$catch`, and `$finally`. This is only returned if
+  `$pipeline` was specified as an input. Otherwise, the outputs
+  of these invocations are merged directly with the pipeline
+  itself.
+
 [catch block]: &lt;http://docs.oracle.com/javase/tutorial/essential/exceptions/catch.html&gt;
-[finally block]: &lt;http://docs.oracle.com/javase/tutorial/essential/exceptions/finally.html&gt;</value>
+[finally block]: &lt;http://docs.oracle.com/javase/tutorial/essential/exceptions/finally.html&gt;
+[try block]: &lt;http://docs.oracle.com/javase/tutorial/essential/exceptions/try.html&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

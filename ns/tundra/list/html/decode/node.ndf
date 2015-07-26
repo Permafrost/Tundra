@@ -86,19 +86,24 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">HTML decodes the given string list.
+  <value name="node_comment">### tundra.list.html:decode
 
-[HTML entities], such as &amp;lt; and &amp;gt;, are decoded to the 
-appropriate character representation, such as &lt; and &gt;.
+[HTML] decodes the given string list.
 
-* Inputs:
-  * $list is an optional string list to be HTML decoded.
+[HTML entities], such as `&amp;lt;` and `&amp;gt;`, are decoded to the
+appropriate character representation, such as `&lt;` and `&gt;`.
 
-* Outputs:
-  * $list is the given string list with [HTML entities] decoded
-    in each item in the list.
+#### Inputs:
 
-[HTML entities]: &lt;http://www.w3.org/TR/html4/sgml/entities.html&gt;</value>
+* `$list` is an optional string list to be [HTML] decoded.
+
+#### Outputs:
+
+* `$list` is the given string list with [HTML entities] decoded
+  in each item in the list.
+
+[HTML entities]: &lt;http://www.w3.org/TR/html4/sgml/entities.html&gt;
+[HTML]: &lt;http://en.wikipedia.org/wiki/HTML&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

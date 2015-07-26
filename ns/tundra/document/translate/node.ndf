@@ -157,29 +157,32 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">One-to-one conversion of one IData document to another IData document. Calls 
-the given translation service, passing the document as an input, and returning
-the translated document as output.
+  <value name="node_comment">### tundra.document:translate
 
-* Inputs:
-  * $document is an IData document to be translated.
+One-to-one conversion of one IData document to another IData document.
+Calls the given translation service, passing the document as an input, and
+returning the translated document as output.
 
-  * $service is the fully-qualified name of the translation service, which accepts 
-    a single IData document and returns a single IData document, called to translate 
-    the given $document.
+#### Inputs:
 
-  * $pipeline is an optional IData document for providing arbitrary variables to the 
-    invocation of $service.
+* `$document` is an IData document to be translated.
+* `$service` is the fully-qualified name of the translation service,
+  which accepts a single IData document and returns a single IData
+  document, called to translate the given `$document`.
+* `$pipeline` is an optional IData document for providing arbitrary
+  variables to the invocation of $service.
+* `$service.input` is an optional variable name to use in the input
+  pipeline of the call to `$service` for the given IData document.
+  Defaults to `$document`.
+* `$service.output` is an optional variable name used to extract the
+  output IData document from the output pipeline of the call to
+  `$service`. Defaults to `$translation`.
 
-  * $service.input is an optional variable name to use in the input pipeline of the 
-    call to $service for the given IData document. Defaults to $document.
+#### Outputs:
 
-  * $service.output is an optional variable name used to extract the output IData 
-    document from the output pipeline of the call to $service. Defaults to 
-    $translation.
+* `$translation` is the translated IData document.
 
-* Outputs:
-  * $translation is the translated IData document.</value>
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

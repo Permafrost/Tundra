@@ -120,43 +120,48 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Deletes (or cancels) either the scheduled task identified by the given $id, or 
-every scheduled task that satisfies the given $filter condition.
+  <value name="node_comment">### tundra.schedule:remove
 
-The $id and $filter input arguments are mutually exclusive: only one should 
-be specified.
+Deletes (or cancels) either the scheduled task identified by the given
+`$id`, or every scheduled task that satisfies the given `$filter`
+condition.
 
-* Inputs:
-  * $id is an optional string identifier which identifies the schedule
-    task to be deleted.
+The `$id` and `$filter` input arguments are mutually exclusive: only one
+should be specified.
 
-  * $filter is an optional tundra.condition:evaluate conditional statement.
-    All scheduled tasks which satisfy the given filter condition will be
-    deleted. The conditional statement is evaluated against the pipeline, 
-    which includes the task being evaluated as an IData document named 
-    $schedule with the same structure as returned by tundra.schedule:get.
+#### Inputs:
 
-    Examples of some filter strings are as follows:
+* `$id` is an optional string identifier which identifies the schedule
+  task to be deleted.
+* `$filter` is an optional `tundra.condition:evaluate` conditional
+  statement. All scheduled tasks which satisfy the given filter
+  condition will be deleted. The conditional statement is evaluated
+  against the pipeline, which includes the task being evaluated as an
+  IData document named `$schedule` with the same structure as returned
+  by `tundra.schedule:get`.
 
-    1. Delete all complex scheduled tasks:
-    
-       %$schedule/type% == "complex"
+  Examples of some filter strings are as follows:
 
-    2. Delete all scheduled tasks that execute pub.string:concat:
+  1. Delete all complex scheduled tasks:
 
-       %$schedule/service% == "pub.string:concat"
+     `%$schedule/type% == "complex"`
 
-    3. Delete only the scheduled tasks that are suspended for a service 
-       whose name is stored in the pipeline variable svc:
+  2. Delete all scheduled tasks that execute `pub.string:concat`:
 
-       %$schedule/status% == "suspended" and %$schedule/service% == %svc%
+     `%$schedule/service% == "pub.string:concat"`
 
-    Refer to the tundra.condition:evaluate service documentation for the
-    format of conditional statements.
+  3. Delete only the scheduled tasks that are suspended for a service
+     whose name is stored in the pipeline variable `svc`:
 
-  * $service is an optional fully-qualified service name which, if specified, 
-    will filter the scheduled tasks to be removed to only those that execute 
-    this service.</value>
+     `%$schedule/status% == "suspended" and %$schedule/service% == %svc%`
+
+  Refer to the `tundra.condition:evaluate` service documentation for the
+  format of conditional statements.
+* `$service` is an optional fully-qualified service name which, if specified,
+  will filter the scheduled tasks to be removed to only those that execute
+  this service.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

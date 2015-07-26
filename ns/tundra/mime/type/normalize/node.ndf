@@ -90,16 +90,20 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Normalizes a mime type by removing extraneous whitespace characters, 
+  <value name="node_comment">### tundra.mime.type:normalize
+
+Normalizes a mime type by removing extraneous whitespace characters,
 and listing parameters in alphabetical order.
 
 Implemented with the [javax.activation.MimeType] class.
 
-* Inputs:
-  * $string is an optional [mime type] string to be normalized.
+#### Inputs:
 
-* Outputs:
-  * $string is the normalized [mime type] string.
+* `$string` is an optional [mime type] string to be normalized.
+
+#### Outputs:
+
+* `$string` is the normalized [mime type] string.
 
 [javax.activation.MimeType]: &lt;http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html&gt;
 [mime type]: &lt;http://en.wikipedia.org/wiki/Internet_media_type&gt;</value>

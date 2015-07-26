@@ -168,70 +168,72 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Parses (deserializes) content specified as a string, byte array, or 
+  <value name="node_comment">### tundra.content:parse
+
+Parses (deserializes) content specified as a string, byte array, or
 input stream into an IData document.
 
 Parser implementions for the supported content types are as follows:
-* [CSV]: Tundra/tundra.csv:parse
-* Flat File: WmFlatFile/pub.flatFile:convertToValues
-* [JSON]: Tundra/tundra.json:parse
-* Pipe separated values: Tundra/tundra.csv:parse
-* [TSV]: Tundra/tundra.csv:parse
-* [XML]: WmPublic/pub.xml:xmlStringToXMLNode, pub.xml:xmlNodeToDocument
-* [YAML]: Tundra/tundra.yaml:parse
+* [CSV]: `Tundra/tundra.csv:parse`
+* Flat File: `WmFlatFile/pub.flatFile:convertToValues`
+* [JSON]: `Tundra/tundra.json:parse`
+* Pipe separated values: `Tundra/tundra.csv:parse`
+* [TSV]: `Tundra/tundra.csv:parse`
+* [XML]: `WmPublic/pub.xml:xmlStringToXMLNode`, `pub.xml:xmlNodeToDocument`
+* [YAML]: `Tundra/tundra.yaml:parse`
 
-* Inputs:
-  * $content is a string, byte array, or input stream containing content 
-    to be parsed.
+#### Inputs:
 
-  * $content.type is the MIME media type that describes the format of the
-    given $content:
-    * [CSV]: specify a recognized [CSV] MIME media type, such as "text/csv", 
-      "text/comma-separated-values", or a type that includes a "+csv" 
-      suffix.
-    * Flat File: optionally specify any MIME media type.
-    * [JSON]: specify a recognized [JSON] MIME media type, such as 
-      "application/json", or a type that includes a "+json" suffix.
-    * Pipe separated values: specify a MIME media type "text/psv",
-      "text/pipe-separated-values", or a type that includes a "+psv" suffix.
-    * [TSV]: specify a recognized [TSV] MIME media type, such as "text/tsv", 
-      "text/tab-separated-values", or a type that includes a "+tsv" suffix.
-    * [YAML]: specify a recognized [YAML] MIME media type, such as
-      "application/yaml", or a type that includes a "+yaml" suffix.
-    * [XML]: optionally specify a recognized [XML] MIME media type, such as 
-      "text/xml" or "application/xml", or a type that includes a "+xml" 
-      suffix.
+* `$content` is a string, byte array, or input stream containing content
+  to be parsed.
+* `$content.type` is the MIME media type that describes the format of the
+  given `$content`:
+  * [CSV]: specify a recognized [CSV] MIME media type, such as
+    "text/csv", "text/comma-separated-values", or a type that includes a
+    "+csv" suffix.
+  * Flat File: optionally specify any MIME media type.
+  * [JSON]: specify a recognized [JSON] MIME media type, such as
+    "application/json", or a type that includes a "+json" suffix.
+  * Pipe separated values: specify a MIME media type "text/psv",
+    "text/pipe-separated-values", or a type that includes a "+psv"
+    suffix.
+  * [TSV]: specify a recognized [TSV] MIME media type, such as
+    "text/tsv", "text/tab-separated-values", or a type that includes a
+    "+tsv" suffix.
+  * [YAML]: specify a recognized [YAML] MIME media type, such as
+    "application/yaml", or a type that includes a "+yaml" suffix.
+  * [XML]: optionally specify a recognized [XML] MIME media type, such as
+    "text/xml" or "application/xml", or a type that includes a "+xml"
+    suffix.
+* `$namespace` is a list of namespace prefixes and the URIs they map to,
+  used when parsing [XML] content with elements in one or more
+  namespaces.
+* `$schema` is the fully-qualified name of the parsing schema to use when
+  parsing `$content` as [XML] or Flat File content, and can have the
+  following values:
+  * [CSV]: do not specify.
+  * Flat File: specify the fully-qualified name of the Integration Server
+    Flat File Schema element that defines the Flat File format.
+  * [JSON]: do not specify.
+  * Pipe separated values: do not specify.
+  * [TSV]: do not specify.
+  * [YAML]: do not specify.
+  * [XML]: specify the fully-qualified name of the Integration Server
+    document reference that defines the [XML] format.
 
-  * $namespace is a list of namespace prefixes and the URIs they map to,
-    used when parsing [XML] content with elements in one or more 
-    namespaces.
+  Defaults to parsing `$content` as [XML], if neither `$content.type` nor
+  `$schema` are specified.
+* `$encoding` is an optional character set to use when `$content` is
+  provided as a byte array or input stream to decode the contained text
+  data. Defaults to [UTF-8].
 
-  * $schema is the fully-qualified name of the parsing schema to use when
-    parsing $content as [XML] or Flat File content, and can have the
-    following values:
-    * [CSV]: do not specify.
-    * Flat File: specify the fully-qualified name of the Integration Server 
-      Flat File Schema element that defines the Flat File format.
-    * [JSON]: do not specify.
-    * Pipe separated values: do not specify.
-    * [TSV]: do not specify.
-    * [YAML]: do not specify.
-    * [XML]: specify the fully-qualified name of the Integration Server 
-      document reference that defines the [XML] format.
+#### Outputs:
 
-    Defaults to parsing $content as [XML], if neither $content.type nor 
-    $schema are specified.
-
-  * $encoding is an optional character set to use when $content is provided
-    as a byte array or input stream to decode the contained text data.
-    Defaults to [UTF-8].
-
-* Outputs:
-  * $document is the resulting IData document representing the parsed
-    $content.
+* `$document` is the resulting IData document representing the parsed
+  `$content`.
 
 [CSV]: &lt;http://en.wikipedia.org/wiki/Comma-separated_values&gt;
-[JSON]: &lt;http://www.json.org&gt;
+[JSON]: &lt;http://www.json.org/&gt;
 [TSV]: &lt;http://en.wikipedia.org/wiki/Tab-separated_values&gt;
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;
 [XML]: &lt;http://www.w3.org/XML/&gt;

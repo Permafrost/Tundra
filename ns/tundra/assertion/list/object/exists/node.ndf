@@ -77,13 +77,17 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Throws an assertion error if the given list is null.
+  <value name="node_comment">### tundra.assertion.list.object:exists
 
-* Inputs:
-  * $list is the java.lang.Object list to assert existence of.
+Throws an assertion error if the given list is null.
 
-  * $message is an optional custom message to be used as the assertion error 
-    message if the assertion fails.</value>
+#### Inputs:
+
+* `$list` is the java.lang.Object list to assert existence of.
+* `$message` is an optional custom message to be used as the assertion
+  error message if the assertion fails.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

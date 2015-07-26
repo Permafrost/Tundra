@@ -90,12 +90,19 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns the absolute value of the given decimal.
+  <value name="node_comment">### tundra.decimal:absolute
 
-* Inputs:
-  * $decimal is a signed decimal value.
-* Outputs:
-  * $decimal is the given decimal value unsigned.</value>
+Returns the absolute value of the given decimal.
+
+#### Inputs:
+
+* `$decimal` is a signed decimal value.
+
+#### Outputs:
+
+* `$decimal` is the given decimal value unsigned.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

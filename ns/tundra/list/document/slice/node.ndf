@@ -116,18 +116,24 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Returns a new list which is a subset of the items in the 
+  <value name="node_comment">### tundra.list.document:slice
+
+Returns a new list which is a subset of the items in the
 given list.
 
-* Inputs:
-  * $list is the list to be sliced.
-  * $index is the zero-based start index from which to
-    take the slice.
-  * $length is the number of items to include in the 
-    slice.
+#### Inputs:
 
-* Outputs:
-  * $list is the desired subset or slice of the given list.</value>
+* `$list` is the list to be sliced.
+* `$index` is the zero-based start index from which to
+  take the slice.
+* `$length` is the number of items to include in the
+  slice.
+
+#### Outputs:
+
+* `$list` is the desired subset or slice of the given list.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

@@ -76,12 +76,17 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Sets the value associated with the given key in the pipeline. 
+  <value name="node_comment">### tundra.pipeline:put
 
-* Inputs:
-  * $key is a simple or fully qualified key (a/b/c[0]/d) to 
-    associate with the given $value.
-  * $value is the value to be associated with the given $key.</value>
+Sets the value associated with the given key in the pipeline.
+
+#### Inputs:
+
+* `$key` is a simple or fully qualified key (`a/b/c[0]/d`) to
+  associate with the given `$value`.
+* `$value` is the value to be associated with the given `$key`.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

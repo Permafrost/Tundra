@@ -168,26 +168,31 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Serializes an IData[] document list as an [HTML] fragment suitable 
-for embedding in an [HTML] page, formatted as a string, byte array, 
+  <value name="node_comment">### tundra.list.html:emit
+
+Serializes an `IData[]` document list as an [HTML] fragment suitable
+for embedding in an [HTML] page, formatted as a string, byte array,
 or input stream.
 
-Child elements that are IData documents, IData[] document lists, 
-Object[] object lists, or Object[][] object tables are recursively 
+Child elements that are `IData` documents, `IData[]` document lists,
+`Object[]` object lists, or `Object[][]` object tables are recursively
 serialized to clean [HTML] table elements.
 
-* Inputs:
-  * $list is the IData[] document list to be serialized as an [HTML] 
-    string, byte array, or input stream.
-  * $encoding is an optional character set to use when encoding the 
-    resulting text data to a byte array or input stream. Defaults to 
-    [UTF-8].
-  * $mode is an optional choice of stream, bytes, or string, which 
-    specifies the type of object $content is returned as. Defaults 
-    to stream.
-* Outputs:
-  * $content is the resulting serialization of $list as [HTML] 
-    content.
+#### Inputs:
+
+* `$list` is the `IData[]` document list to be serialized as an [HTML]
+  string, byte array, or input stream.
+* `$encoding` is an optional character set to use when encoding the
+  resulting text data to a byte array or input stream. Defaults to
+  [UTF-8].
+* `$mode` is an optional choice of stream, bytes, or string, which
+  specifies the type of object `$content` is returned as. Defaults
+  to stream.
+
+#### Outputs:
+
+* `$content` is the resulting serialization of `$list` as [HTML]
+  content.
 
 [HTML]: &lt;http://en.wikipedia.org/wiki/HTML&gt;
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;</value>

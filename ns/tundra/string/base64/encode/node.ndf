@@ -120,14 +120,17 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">[Base64] encodes the given string.
+  <value name="node_comment">### tundra.string.base64:encode
 
-* Inputs:
-  * $string is a string containing data to be [Base64] encoded.
-  * $encoding is the optional character set used to encode the text 
-    as binary data. Defaults to [UTF-8]. 
-* Outputs:
-  * $base64 is the [Base64] encoded data as a string.
+[Base64] encodes the given string.
+
+#### Inputs:
+
+* `$string` is a string containing data to be [Base64] encoded.
+
+#### Outputs:
+
+* `$base64` is the [Base64] encoded data as a string.
 
 [Base64]: &lt;http://en.wikipedia.org/wiki/Base64&gt;</value>
   <value name="stateless">no</value>

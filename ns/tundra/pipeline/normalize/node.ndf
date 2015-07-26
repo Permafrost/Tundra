@@ -30,7 +30,9 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Iterates over each element in the pipeline, deconstructing 
+  <value name="node_comment">### tundra.pipeline:normalize
+
+Iterates over each element in the pipeline, deconstructing
 all fully qualified keys into their constituent parts.
 
 For example, if a pipeline contains the following key value
@@ -57,13 +59,13 @@ This is normalized to the following:
       "f": ["example 4", "example 5"]
     }
 
-Keys using path-style notation, for example "a/b/c", are 
+Keys using path-style notation, for example "a/b/c", are
 converted to nested IData documents with the final key
 in the path, "c" in this example, assigned the value of
 the original key.
 
-Keys using array- or list-style notation, for example "f[0]", 
-are converted to an array or list with the value of the 
+Keys using array- or list-style notation, for example "f[0]",
+are converted to an array or list with the value of the
 original key assigned to the indexed item (the zeroth item in
 this example).
 

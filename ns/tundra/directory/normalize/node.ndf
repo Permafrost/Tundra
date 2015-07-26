@@ -88,15 +88,19 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns the canonical file: URI that represents the given directory.
+  <value name="node_comment">### tundra.directory:normalize
 
-* Inputs:
-  * $directory is a relative or absolute path, or file: [URI], to be
-    normalized.
+Returns the canonical file: URI that represents the given directory.
 
-* Outputs:
-  * $directory is the equivalent canonical file: [URI] representing 
-    the directory.
+#### Inputs:
+
+* `$directory` is a relative or absolute path, or file: [URI], to be
+  normalized.
+
+#### Outputs:
+
+* `$directory` is the equivalent canonical file: [URI] representing
+  the directory.
 
 [URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
   <value name="stateless">no</value>

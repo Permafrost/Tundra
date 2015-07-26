@@ -90,14 +90,20 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns the negative value of the given integer (-x).
+  <value name="node_comment">### tundra.integer:negate
 
-* Inputs:
-  * $integer is an integer to be negated.
+Returns the negative value of the given integer (-x).
 
-* Outputs:
-  * $integer is the given integer multiplied by minus
-    one.</value>
+#### Inputs:
+
+* `$integer` is an integer to be negated.
+
+#### Outputs:
+
+* `$integer` is the given integer multiplied by minus
+  one.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

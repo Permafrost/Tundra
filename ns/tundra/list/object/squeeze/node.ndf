@@ -64,17 +64,23 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Trims all leading and trailing whitespace from all string values, 
-then converts empty strings to nulls, then compacts the list by 
+  <value name="node_comment">### tundra.list.object:squeeze
+
+Trims all leading and trailing whitespace from all string values,
+then converts empty strings to nulls, then compacts the list by
 removing all null values.
 
-* Inputs:
-  * $list is an object list to be squeezed.
+#### Inputs:
 
-* Outputs:
-  * $list is the resulting object list with all string values 
-    trimmed of leading and trailing whitespace characters, and 
-    all empty string values and null values removed.</value>
+* `$list` is an object list to be squeezed.
+
+#### Outputs:
+
+* `$list` is the resulting object list with all string values
+  trimmed of leading and trailing whitespace characters, and
+  all empty string values and null values removed.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

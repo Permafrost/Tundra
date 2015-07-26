@@ -921,147 +921,128 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Schedules a service for execution once or periodically.
+  <value name="node_comment">### tundra.schedule:create
 
-The resulting scheduled task ID is added to the input pipeline 
-of the scheduled service as a variable named $schedule.id,
+Schedules a service for execution once or periodically.
+
+The resulting scheduled task ID is added to the input pipeline
+of the scheduled service as a variable named `$schedule.id`,
 enabling the service itself to query its owning scheduled task.
 This can be useful if, for example, the service implements an
 [event loop] and should exit that loop if its owning schedule
 is paused or cancelled.
 
-* Inputs:
-  * $schedule is an IData document representing the task to be
-    scheduled.
+#### Inputs:
 
-    * type describes the type of schedule to be created, and is
-      a choice of the following:
-      * once will schedule the service to execute one time only
-        at the given start datetime.
-      * repeat will schedule the service to execute periodically
-        at the given repeat/interval of time.
-      * complex will schedule the service to execute periodically
-        on the given minutes, hours, week days, days of month, and
-        months of the year.
+* `$schedule` is an IData document representing the task to be
+  scheduled.
+  * `type` describes the type of schedule to be created, and is
+    a choice of the following:
+    * `once` will schedule the service to execute one time only
+      at the given `start` datetime.
+    * `repeat` will schedule the service to execute periodically
+      at the given `repeat/interval` of time.
+    * `complex` will schedule the service to execute periodically
+      on the given minutes, hours, week days, days of month, and
+      months of the year.
+  * `service` is the fully-qualified name of the service to be
+    scheduled for execution.
+  * `description` is an optional description of the scheduled task.
+  * `target` optionally identifies the server or servers to execute
+    the service on. Either specify a specific `hostname:port` to
+    execute the service on, or one of the following values:
+    * `$any` executes the task on any server in the cluster. Choose
+      this option to ensure the service is only executed once at
+      any one time, but can be executed by any server in the cluster.
+    * `$all` execute the task on all servers in the cluster. Choose
+      this option when the service needs to be executed on every
+      cluster node at the same time to perform, for example, clean
+      up or house keeping on every server.
 
-    * service is the fully-qualified name of the service to be
-      scheduled for execution.
+    If not specified, will default to `$any` if the server is a
+    member of a cluster, otherwise will default to execution on
+    the server creating the scheduled task.
+  * `user` is the optional user account under which the service will
+    be executed. If not specified, the service will execute under
+    the `Default` user account context.
+  * `start` is the optional datetime from which the scheduled task
+    will be in effect or active. If not specified, defaults to the
+    current datetime. For `once` only tasks, this is the datetime
+    the service will be executed once and only once.
+  * `end` is the optional datetime after which the scheduled task
+    will no longer be in effect (expires). If not specified, the
+    schedule will never expire. Not applicable for `once` scheduled
+    tasks.
+  * `overlap?` is an optional boolean determining how to handle when
+    one execution of the scheduled task overlaps the next scheduled
+    execution, for example when the execution duration exceeds the
+    schedule interval.
 
-    * description is an optional description of the scheduled task.
+    When true, the next scheduled execution of the service will
+    execute as per the schedule, even if the previous schedule is
+    still executing, which can result in multiple concurrent
+    executions of the service.
 
-    * target optionally identifies the server or servers to execute
-      the service on. Either specify a specific hostname:port to
-      execute the service on, or one of the following values:
+    When false, the schedule will never be executed concurrently.
+    For a repeat schedule, the next scheduled time is calculated
+    from the end of execution of the previous schedule. For a complex
+    schedule, any scheduled times that occur while the previous
+    schedule is executing are skipped, and the service will execute
+    at the next uncontested scheduled time.
+  * `lateness` is an optional IData document containing arguments for
+    how to determine when, and then handle if, a schedule is late.
+    * `duration` is an optional duration of time which when lapsed
+      passed the scheduled time determines that the task is considered
+      late. If not specified, defaults to 0 seconds (in other words a
+      task is considered late if it doesn't execute exactly at its
+      scheduled time).
+    * `action` is an optional choice which determines what happens to
+      the task when its determined to be late:
+      * `run immediately`
+      * `skip and run at next scheduled interval`
+      * `suspend`
 
-      * $any executes the task on any server in the cluster. Choose
-        this option to ensure the service is only executed once at
-        any one time, but can be executed by any server in the cluster.
+      If not specified, defaults to `run immediately`.
+  * `repeat` is an optional IData document containing arguments only
+    applicable when the schedule type is `repeat`.
+    * `interval` is an optional duration of time determining how often
+      the scheduled task will execute. If not specified, defaults to
+      60 seconds.
+  * `complex` is an optional IData document containing arguments only
+    applicable when the schedule type is `complex`.
+    * `months` is an optional list of months of the year, provided as
+      an integer between 1 (January) and 12 (December), the schedule
+      should execute in. If not specified, the schedule will execute
+      in all months of the year.
+    * `days` is an optional list of days of the month, provided as an
+      integer between 1 and 31, the schedule should execute on. If
+      not specified, the schedule will execute on all days in the
+      month.
+    * `weekdays` is an optional list of days of the week, provided as
+      an integer between 1 (Sunday) and 7 (Saturday), the schedule
+      should execute on. If not specified, the schedule will execute
+      on all days of the week.
+    * `hours` is an optional list of hours of the day, provided as an
+      integer between 0 and 23, the schedule should execute on. If
+      not specified, the schedule will execute every hour.
+    * `minutes` is an optional list of minutes of the hour, provided as
+      an integer between 0 and 59, the schedule should execute on. If
+      not specified, the schedule will execute every minute.
+  * `pipeline` is an optional IData document containing the input
+    arguments used as the input pipeline when executing the service.
+* `$singleton?` is an optional boolean which when true indicates that
+  only one scheduled task should ever exist for this service, and
+  therefore any existing scheduled tasks for this service will be
+  first removed prior to creating a new scheduled task. Defaults
+  to false.
+* `$enabled?` is an optional boolean which when `true` indicates that
+  the scheduled task should be created in an active state, and
+  when `false` indicates that the scheduled task should be created
+  in a suspended state. Defaults to `true`.
 
-      * $all execute the task on all servers in the cluster. Choose
-        this option when the service needs to be executed on every
-        cluster node at the same time to perform, for example, clean
-        up or house keeping on every server.
+#### Outputs:
 
-      If not specified, will default to $any if the server is a
-      member of a cluster, otherwise will default to execution on
-      the server creating the scheduled task.
-
-    * user is the optional user account under which the service will
-      be executed. If not specified, the service will execute under
-      the Default user account context.
-
-    * start is the optional datetime from which the scheduled task
-      will be in effect or active. If not specified, defaults to the
-      current datetime. For once only tasks, this is the datetime
-      the service will be executed once and only once.
-
-    * end is the optional datetime after which the scheduled task
-      will no longer be in effect (expires). If not specified, the
-      schedule will never expire. Not applicable for once scheduled
-      tasks.
-
-    * overlap? is an optional boolean determining how to handle when
-      one execution of the scheduled task overlaps the next scheduled
-      execution, for example when the execution duration exceeds the
-      schedule interval.
-
-      When true, the next scheduled execution of the service will
-      execute as per the schedule, even if the previous schedule is
-      still executing, which can result in multiple concurrent
-      executions of the service.
-
-      When false, the schedule will never be executed concurrently.
-      For a repeat schedule, the next scheduled time is calculated
-      from the end of execution of the previous schedule. For a complex
-      schedule, any scheduled times that occur while the previous
-      schedule is executing are skipped, and the service will execute
-      at the next uncontested scheduled time.
-
-    * lateness is an optional IData document containing arguments for
-      how to determine when, and then handle if, a schedule is late.
-
-      * duration is an optional duration of time which when lapsed
-        passed the scheduled time determines that the task is considered
-        late. If not specified, defaults to 0 seconds (in other words a
-        task is considered late if it doesn't execute exactly at its
-        scheduled time).
-
-      * action is an optional choice which determines what happens to
-        the task when its determined to be late:
-        * run immediately
-        * skip and run at next scheduled interval
-        * suspend
-        If not specified, defaults to run immediately.
-
-    * repeat is an optional IData document containing arguments only
-      applicable when the schedule type is repeat.
-
-      * interval is an optional duration of time determining how often
-        the scheduled task will execute. If not specified, defaults to
-        60 seconds.
-
-    * complex is an optional IData document containing arguments only
-      applicable when the schedule type is complex.
-
-      * months is an optional list of months of the year, provided as
-        an integer between 1 (January) and 12 (December), the schedule
-        should execute in. If not specified, the schedule will execute
-        in all months of the year.
-
-      * days is an optional list of days of the month, provided as an
-        integer between 1 and 31, the schedule should execute on. If
-        not specified, the schedule will execute on all days in the
-        month.
-
-      * weekdays is an optional list of days of the week, provided as
-        an integer between 1 (Sunday) and 7 (Saturday), the schedule
-        should execute on. If not specified, the schedule will execute
-        on all days of the week.
-
-      * hours is an optional list of hours of the day, provided as an
-        integer between 0 and 23, the schedule should execute on. If
-        not specified, the schedule will execute every hour.
-
-      * minutes is an optional list of minutes of the hour, provided as
-        an integer between 0 and 59, the schedule should execute on. If
-        not specified, the schedule will execute every minute.
-
-    * pipeline is an optional IData document containing the input
-      arguments used as the input pipeline when executing the service.
-
-  * $singleton? is an optional boolean which when true indicates that
-    only one scheduled task should ever exist for this service, and 
-    therefore any existing scheduled tasks for this service will be 
-    first removed prior to creating a new scheduled task. Defaults
-    to false.
-
-  * $enabled? is an optional boolean which when true indicates that 
-    the scheduled task should be created in an active state, and 
-    when false indicates that the scheduled task should be created 
-    in a suspended state. Defaults to true.
-
-* Outputs:
-  * $id uniquely identifies the resulting scheduled task.
+* `$id` uniquely identifies the resulting scheduled task.
 
 [event loop]: &lt;http://en.wikipedia.org/wiki/Event_loop&gt;</value>
   <value name="stateless">no</value>

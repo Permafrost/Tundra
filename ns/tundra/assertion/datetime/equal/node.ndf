@@ -155,31 +155,32 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Throws an assertion error if the expected and actual datetimes are not equal.
+  <value name="node_comment">### tundra.assertion.datetime:equal
 
-* Inputs:
-  * $expected is the expected datetime string value.
+Throws an assertion error if the expected and actual datetimes are not
+equal.
 
-  * $actual is the actual datetime string value. If this value is not equal to 
-    the expected value, an assertion error will be thrown.
+#### Inputs:
 
-  * $pattern is an optional datetime string pattern the above values conform to, 
-    which defaults to an ISO8601/XML datetime pattern. Can either be a 
-    [java.text.SimpleDateFormat][1] pattern, or one of the following handful of 
-    well-known named patterns:
-    * datetime       - ISO8601/XML datetime
-    * datetime.jdbc  - yyyy-MM-dd HH:mm:ss.SSS
-    * date           - ISO8601/XML date
-    * date.jdbc      - yyyy-MM-dd
-    * time           - ISO8601/XML time
-    * time.jdbc      - HH:mm:ss
-    * milliseconds   - The number of milliseconds since the Epoch, 
+* `$expected` is the expected datetime string value.
+* `$actual` is the actual datetime string value. If this value is not
+  equal to the expected value, an assertion error will be thrown.
+* `$pattern` is an optional datetime string pattern the above values
+  conform to, which defaults to an ISO8601/XML datetime pattern. Can
+  either be a [java.text.SimpleDateFormat] pattern, or one of the
+  following handful of well-known named patterns:
+  * `datetime`       - ISO8601/XML datetime
+  * `datetime.jdbc`  - yyyy-MM-dd HH:mm:ss.SSS
+  * `date`           - ISO8601/XML date
+  * `date.jdbc`      - yyyy-MM-dd
+  * `time`           - ISO8601/XML time
+  * `time.jdbc`      - HH:mm:ss
+  * `milliseconds`   - The number of milliseconds since the Epoch,
                        January 1, 1970 00:00:00.000 GMT (Gregorian)
+* `$message` is an optional custom message to be used as the assertion
+  error message if the assertion fails.
 
-  * $message is an optional custom message to be used as the assertion error 
-    message if the assertion fails.
-
-[1]: &lt;http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html&gt;</value>
+[java.text.SimpleDateFormat]: &lt;http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

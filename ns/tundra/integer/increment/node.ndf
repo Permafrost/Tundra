@@ -89,16 +89,22 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Increments the given integer by one. Returns one if no integer 
-was specified, so that this service can be used in a loop to 
+  <value name="node_comment">### tundra.integer:increment
+
+Increments the given integer by one. Returns one if no integer
+was specified, so that this service can be used in a loop to
 both initialize and increment a counter variable.
 
-* Inputs:
-  * $integer is the integer to be incremented by one.
+#### Inputs:
 
-* Outputs:
-  * $integer is the given integer plus one, or one if no
-    input integer was specified.</value>
+* `$integer` is the integer to be incremented by one.
+
+#### Outputs:
+
+* `$integer` is the given integer plus one, or one if no
+  input integer was specified.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

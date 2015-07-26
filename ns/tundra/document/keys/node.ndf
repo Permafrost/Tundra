@@ -106,21 +106,25 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns the top-level keys in the given IData document that match
+  <value name="node_comment">### tundra.document:keys
+
+Returns the top-level keys in the given IData document that match
 the given regular expression pattern if specified, or all top-level
 keys if no pattern is specified.
 
-* Inputs:
-  * $document is an IData document from which all top-level
-    keys are to be fetched.
-  * $pattern is an optional [regular expression pattern] that
-    is used to filter the list of keys returned. If not specified,
-    all keys are returned.
+#### Inputs:
 
-* Outputs:
-  * $keys is the list of the top-level keys in the given IData
-    document that match the given regular expression $pattern if
-    specified, or all top-level keys if no $pattern was specified.
+* `$document` is an IData document from which all top-level
+  keys are to be fetched.
+* `$pattern` is an optional [regular expression pattern] that
+  is used to filter the list of keys returned. If not specified,
+  all keys are returned.
+
+#### Outputs:
+
+* `$keys` is the list of the top-level keys in the given IData
+  document that match the given regular expression `$pattern` if
+  specified, or all top-level keys if no `$pattern` was specified.
 
 [regular expression pattern]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html&gt;</value>
   <value name="stateless">no</value>

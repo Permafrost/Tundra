@@ -86,21 +86,26 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">HTML encodes the given string list.
+  <value name="node_comment">### tundra.list.html:encode
 
-Reserved characters in HTML, such as &lt; and &gt;, are encoded to the 
-appropriate [HTML entity], such as &amp;lt; and &amp;gt;, to ensure the HTML 
-is rendered correctly by web browsers and other HTML rendering 
+[HTML] encodes the given string list.
+
+Reserved characters in [HTML], such as `&lt;` and `&gt;`, are encoded to the
+appropriate [HTML entity], such as `&amp;lt;` and `&amp;gt;`, to ensure the [HTML]
+is rendered correctly by web browsers and other [HTML] rendering
 software.
 
-* Inputs:
-  * $list is an optional string list to be HTML encoded.
+#### Inputs:
 
-* Outputs:
-  * $list is the given string list with special characters HTML 
-    encoded in each item in the list.
+* `$list` is an optional string list to be [HTML] encoded.
 
-[HTML entity]: &lt;http://www.w3.org/TR/html4/sgml/entities.html&gt;</value>
+#### Outputs:
+
+* `$list` is the given string list with special characters [HTML]
+  encoded in each item in the list.
+
+[HTML entity]: &lt;http://www.w3.org/TR/html4/sgml/entities.html&gt;
+[HTML]: &lt;http://en.wikipedia.org/wiki/HTML&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

@@ -178,19 +178,23 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Converts all strings in the given list to lower case.
+  <value name="node_comment">### tundra.list.string:lowercase
 
-* Inputs:
-  * $list is a list of strings to be converted to lower case.
-  * $locale optionally identifies the case transformation rules 
-    to be used for a given [Locale]. If not specified, the 
-    [default locale] is used.
+Converts all strings in the given list to lower case.
 
-* Outputs:
-  * $list is the resulting list of lower case strings, where
-    all characters have been converted to their lower case
-    equivalent according to the transformation rules of the given
-    [Locale].
+#### Inputs:
+
+* `$list` is a list of strings to be converted to lower case.
+* `$locale` optionally identifies the case transformation rules
+  to be used for a given [Locale]. If not specified, the
+  [default locale] is used.
+
+#### Outputs:
+
+* `$list` is the resulting list of lower case strings, where
+  all characters have been converted to their lower case
+  equivalent according to the transformation rules of the given
+  [Locale].
 
 [Locale]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/Locale.html&gt;
 [default locale]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/Locale.html#getDefault()&gt;</value>

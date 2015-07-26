@@ -88,13 +88,17 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns the standard message associated with the given [HTTP status code].
+  <value name="node_comment">### tundra.http.response:status
 
-Inputs:
-  * $code is the [HTTP status code] to return the associated message for.
+Returns the standard message associated with the given [HTTP status code].
 
-Outputs:
-  * $message is the standard message associated with the given code.
+#### Inputs:
+
+* `$code` is the [HTTP status code] to return the associated message for.
+
+#### Outputs:
+
+* `$message` is the standard message associated with the given code.
 
 [HTTP status code]: &lt;http://www.iana.org/assignments/http-status-codes/http-status-codes.txt&gt;</value>
   <value name="stateless">no</value>

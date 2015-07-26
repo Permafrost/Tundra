@@ -119,17 +119,21 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns true if the given [mime type] strings are considered equal.
+  <value name="node_comment">### tundra.mime.type:equal
 
-* Inputs:
-  * $string.x is an optional [mime type] string to be compared
-    with $string.y.
-  * $string.y is an optional [mime type] string to be compared
-    with $string.x.
+Returns true if the given [mime type] strings are considered equal.
 
-* Outputs:
-  * $equal? is true if the given [mime type] strings are considered
-    equal (their base and sub types both match).
+#### Inputs:
+
+* `$string.x` is an optional [mime type] string to be compared
+  with `$string.y`.
+* `$string.y` is an optional [mime type] string to be compared
+  with `$string.x`.
+
+#### Outputs:
+
+* `$equal?` is true if the given [mime type] strings are considered
+  equal (their base and sub types both match).
 
 [mime type]: &lt;http://en.wikipedia.org/wiki/Internet_media_type&gt;</value>
   <value name="stateless">no</value>

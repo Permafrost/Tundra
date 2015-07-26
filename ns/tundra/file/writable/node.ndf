@@ -88,17 +88,21 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns true if Integration Server can write to the given file.
+  <value name="node_comment">### tundra.file:writable
 
-* Inputs:
-  * $file is the name of the file to test if Integration Server has
-    write permissions, specified as either a relative or absolute 
-    file path or file: [URI].
+Returns true if Integration Server can write to the given file.
 
-* Outputs:
-  * $writable? is a boolean flag indicating if Integration Server
-    has permission to write or append to the given file. If the 
-    file does not exist, false is returned.
+#### Inputs:
+
+* `$file` is the name of the file to test if Integration Server has
+  write permissions, specified as either a relative or absolute
+  file path or file: [URI].
+
+#### Outputs:
+
+* `$writable?` is a boolean flag indicating if Integration Server
+  has permission to write or append to the given file. If the
+  file does not exist, false is returned.
 
 [URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
   <value name="stateless">no</value>

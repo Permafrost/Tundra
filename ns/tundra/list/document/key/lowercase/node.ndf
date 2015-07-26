@@ -191,23 +191,27 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Converts all keys in each item in the given IData document list to 
+  <value name="node_comment">### tundra.list.document.key:lowercase
+
+Converts all keys in each item in the given IData document list to
 lower case.
 
-* Inputs:
-  * $list is an IData document list whose item's keys are to be
-    converted to lower case.
-  * $locale optionally identifies the case transformation rules 
-    to be used for a given [Locale]. If not specified, the 
-    [default locale] is used.
-  * $recurse? is an optional boolean indicating if embedded
-    IData documents and IData document lists should also
-    have their keys converted to lower case. Defaults to 
-    false.
+#### Inputs:
 
-* Outputs:
-  * $list is the given IData document list with all item's keys 
-    converted to lower case.
+* `$list` is an IData document list whose item's keys are to be
+  converted to lower case.
+* `$locale` optionally identifies the case transformation rules
+  to be used for a given [Locale]. If not specified, the
+  [default locale] is used.
+* `$recurse?` is an optional boolean indicating if embedded
+  IData documents and IData document lists should also
+  have their keys converted to lower case. Defaults to
+  false.
+
+#### Outputs:
+
+* `$list` is the given IData document list with all item's keys
+  converted to lower case.
 
 [Locale]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/Locale.html&gt;
 [default locale]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/Locale.html#getDefault()&gt;</value>

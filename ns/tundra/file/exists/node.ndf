@@ -88,14 +88,18 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns true if the given file exists.
+  <value name="node_comment">### tundra.file:exists
 
-* Inputs:
-  * $file is the name of the file to test existence of, specified as 
-    either a relative or absolute file path or file: [URI].
+Returns true if the given file exists.
 
-* Outputs:
-  * $exists? is a boolean flag indicating if the given file exists.
+#### Inputs:
+
+* `$file` is the name of the file to test existence of, specified as
+  either a relative or absolute file path or file: [URI].
+
+#### Outputs:
+
+* `$exists?` is a boolean flag indicating if the given file exists.
 
 [URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
   <value name="stateless">no</value>

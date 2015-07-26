@@ -58,13 +58,18 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Removes all elements from the pipeline, except for any keys 
+  <value name="node_comment">### tundra.pipeline:clear
+
+Removes all elements from the pipeline, except for any keys
 specified in the preserve list.
 
-* Inputs:
-  * $preserve is a list of keys (simple or fully qualified, 
-    such as a/b/c[0]/d) to not be dropped from the pipeline. 
-    All other keys not in this list will be dropped.</value>
+#### Inputs:
+
+* `$preserve` is a list of keys (simple or fully qualified,
+  such as `a/b/c[0]/d`) to not be dropped from the pipeline.
+  All other keys not in this list will be dropped.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

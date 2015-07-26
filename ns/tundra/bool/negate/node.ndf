@@ -90,14 +90,20 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns the negated canonical string form for the given $boolean string: 
+  <value name="node_comment">### tundra.bool:negate
+
+Returns the negated canonical string form for the given `$boolean` string:
 either "true" or "false".
 
-* Inputs:
-  * $boolean is the value to be negated.
+#### Inputs:
 
-* Outputs:
-  * $boolean is the negated input value.</value>
+* `$boolean` is the value to be negated.
+
+#### Outputs:
+
+* `$boolean` is the negated input value.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

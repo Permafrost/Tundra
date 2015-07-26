@@ -118,15 +118,21 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Multiplies the given integers together, returning the result.
+  <value name="node_comment">### tundra.integer:multiply
 
-* Inputs:
-  * $integers is a list of integer values to be multiplied.
-  * $integer is a single integer value to be multiplied.
+Multiplies the given integers together, returning the result.
 
-* Outputs:
-  * $integer is the result of multiplying all given integer
-    values together.</value>
+#### Inputs:
+
+* `$integers` is a list of integer values to be multiplied.
+* `$integer` is a single integer value to be multiplied.
+
+#### Outputs:
+
+* `$integer` is the result of multiplying all given integer
+  values together.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

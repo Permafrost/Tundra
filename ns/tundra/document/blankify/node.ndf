@@ -100,18 +100,24 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Converts all null values in the given IData document to empty strings.
+  <value name="node_comment">### tundra.document:blankify
 
-* Inputs:
-  * $document is an IData document whose null values are to be converted 
-    to empty strings.
-  * $recurse is an optional boolean indicating if embedded IData documents 
-    and IData[] document lists should also have their null values converted 
-    to empty strings. Defaults to false.
+Converts all null values in the given IData document to empty strings.
 
-* Outputs:
-  * $document is the given IData document with all null values converted to 
-    empty strings.</value>
+#### Inputs:
+
+* `$document` is an IData document whose null values are to be converted
+  to empty strings.
+* `$recurse` is an optional boolean indicating if embedded IData documents
+  and IData[] document lists should also have their null values converted
+  to empty strings. Defaults to false.
+
+#### Outputs:
+
+* `$document` is the given IData document with all null values converted to
+  empty strings.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

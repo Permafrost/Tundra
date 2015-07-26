@@ -212,46 +212,48 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">One-to-many conversion of an IData document to an IData[] document list.  
-Calls the given splitting service, passing the document as an input, and 
+  <value name="node_comment">### tundra.document:split
+
+One-to-many conversion of an IData document to an IData[] document list.
+Calls the given splitting service, passing the document as an input, and
 returning the split list of documents as output.
 
-* Inputs:
-  * $document is an IData document to be processed by the given splitting
-    service.
+#### Inputs:
 
-  * $service is the fully-qualified name of the splitting service, which 
-    accepts a single IData document and returns an IData document list, 
-    called to split $document. 
+* `$document` is an IData document to be processed by the given splitting
+  service.
+* `$service` is the fully-qualified name of the splitting service, which
+  accepts a single IData document and returns an IData document list,
+  called to split `$document`.
 
-    It is permissible for the resulting list returned by $service to contain 
-    unlike documents (documents whose formats are different), and in this 
-    case $service is required to return two string lists:
-    * $content.types specifies a MIME media type per item in the returned 
-      list of documents.
-    * $schemas specifies the fully-qualified document reference (for XML) or 
-      flat file schema (for Flat Files) per item in the returned list of 
-      documents, which can be used to serialize that item.
+  It is permissible for the resulting list returned by `$service` to
+  contain unlike documents (documents whose formats are different), and
+  in this case `$service` is required to return two string lists:
+  * `$content.types` specifies a MIME media type per item in the returned
+    list of documents.
+  * `$schemas` specifies the fully-qualified document reference (for
+    XML) or flat file schema (for Flat Files) per item in the returned
+    list of documents, which can be used to serialize that item.
+* `$pipeline` is an optional IData document containing arbitrary
+  variables to be included in the input pipeline of the invocation of
+  `$service`.
+* `$service.input` is an optional variable name to use in the input
+  pipeline of the call to `$service` for the IData document. Defaults to
+  `$document`.
+* `$service.output` is an optional variable name used to extract the
+  output IData document list from the output pipeline of the call to
+  `$service`. Defaults to `$documents`.
 
-  * $pipeline is an optional IData document containing arbitrary variables 
-    to be included in the input pipeline of the invocation of $service.
+#### Outputs:
 
-  * $service.input is an optional variable name to use in the input pipeline 
-    of the call to $service for the IData document. Defaults to $document.
+* `$documents` is the resulting list of IData documents.
+* `$content.types` is the list of MIME media types if the `$documents`
+  list contains unlike media types.
+* `$schemas` is the list of fully-qualified document reference (for XML)
+  or flat file schema (for flat files) names, returned by `$service` for
+  when the `$documents` list contains unlike formats.
 
-  * $service.output is an optional variable name used to extract the output 
-    IData document list from the output pipeline of the call to $service. 
-    Defaults to $documents.
-
-* Outputs:
-  * $documents is the resulting list of IData documents.
-
-  * $content.types is the list of MIME media types if the $documents list 
-    contains unlike media types.
-
-  * $schemas is the list of fully-qualified document reference (for XML) or 
-    flat file schema (for flat files) names, returned by $service for when 
-    the $documents list contains unlike formats.</value>
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

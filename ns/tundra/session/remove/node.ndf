@@ -76,16 +76,22 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Removes the given key value pair from current session state.
+  <value name="node_comment">### tundra.session:remove
 
-* Inputs:
-  * $key is the optional key name to use to identify the key 
-    value pair to be removed from session state. If not specified, 
-    this service does nothing, otherwise the key value pair is
-    removed from session state.
+Removes the given key value pair from current session state.
 
-* Outputs:
-  * $value is the value associated with the removed $key.</value>
+#### Inputs:
+
+* `$key` is the optional key name to use to identify the key
+  value pair to be removed from session state. If not specified,
+  this service does nothing, otherwise the key value pair is
+  removed from session state.
+
+#### Outputs:
+
+* `$value` was the value associated with the removed `$key`.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

@@ -76,11 +76,16 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns the first key value pair from the pipeline.
+  <value name="node_comment">### tundra.pipeline:first
 
-* Outputs:
-  * $key is the first key in the pipeline.
-  * $value is the first key's associated value.</value>
+Returns the first key value pair from the pipeline.
+
+#### Outputs:
+
+* `$key` is the first key in the pipeline.
+* `$value` is the first key's associated value.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

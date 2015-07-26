@@ -93,15 +93,19 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Converts a string, byte array or input stream to a byte array.
+  <value name="node_comment">### tundra.bytes:normalize
 
-* Inputs:
-  * $object is the string, byte array or input stream to be 
-    normalized.
-  * $encoding is the optional character set to use to encode $object 
-    when it is a string. Defaults to [UTF-8].
-* Outputs:
-  * $bytes is a byte array representation of the input $object data.
+Converts a string, byte array or input stream to a byte array.
+
+#### Inputs:
+
+* `$object` is the string, byte array or input stream to be normalized.
+* `$encoding` is the optional character set to use to encode `$object`
+  when it is a string. Defaults to [UTF-8].
+
+#### Outputs:
+
+* `$bytes` is a byte array representation of the input `$object` data.
 
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;</value>
   <value name="stateless">no</value>

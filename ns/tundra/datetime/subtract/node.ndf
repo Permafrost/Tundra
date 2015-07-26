@@ -196,35 +196,38 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Subtracts a duration of time from the given datetime, formatted according to 
-the given patterns.
+  <value name="node_comment">### tundra.datetime:subtract
+
+Subtracts a duration of time from the given datetime, formatted according
+to the given patterns.
 
 Supports a handful of well-known named datetime patterns:
 
-    Name           Pattern
-    -------------  --------------------------------------------
-    datetime       ISO8601 XML datetime
-    datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-    date           ISO8601 XML date
-    date.jdbc      yyyy-mm-dd
-    time           ISO8601 XML time
-    time.jdbc      HH:mm:ss
-    milliseconds   Number of milliseconds since the Epoch, 
-                   January 1, 1970 00:00:00.000 GMT (Gregorian)
+Pattern Name  | Description
+------------- | --------------------------------------------
+datetime      | ISO8601 XML datetime
+datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
+date          | ISO8601 XML date
+date.jdbc     | yyyy-mm-dd
+time          | ISO8601 XML time
+time.jdbc     | HH:mm:ss
+milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
-Custom datetime patterns can be specified using [java.text.SimpleDateFormat] 
-compatible patterns.
+Custom datetime patterns can be specified using
+[java.text.SimpleDateFormat] compatible patterns.
 
-* Inputs:
-  * $datetime is the datetime string to subtract the duration from.
-  * $datetime.pattern is an optional datetime pattern that $datetime 
-    conforms to. Defaults to an [ISO8601] XML datetime.
-  * $duration is the duration to be subtracted from $datetime.
-  * $duration.pattern is an optional duration pattern that $duration 
-    conforms to. Defaults to an [ISO8601] XML duration.
+#### Inputs:
 
-* Outputs:
-  * $datetime is the resulting datetime with the subtracted duration.
+* `$datetime` is the datetime string to subtract the duration from.
+* `$datetime.pattern` is an optional datetime pattern that `$datetime`
+  conforms to. Defaults to an [ISO8601] XML datetime.
+* `$duration` is the duration to be subtracted from `$datetime`.
+* `$duration.pattern` is an optional duration pattern that `$duration`
+  conforms to. Defaults to an [ISO8601] XML duration.
+
+#### Outputs:
+
+* `$datetime` is the resulting datetime with the subtracted duration.
 
 [ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;
 [java.text.SimpleDateFormat]: &lt;http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html&gt;</value>

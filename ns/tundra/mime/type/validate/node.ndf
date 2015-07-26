@@ -121,27 +121,31 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns true if the given string can be parsed as a valid Multipurpose 
-Internet Mail Extension ([MIME]) type, according to [RFC 2045] and 
+  <value name="node_comment">### tundra.mime.type:validate
+
+Returns true if the given string can be parsed as a valid Multipurpose
+Internet Mail Extension ([MIME]) type, according to [RFC 2045] and
 [RFC 2046].
 
 Implemented with the [javax.activation.MimeType] class.
 
-* Inputs:
-  * $string is an optional [mime type] string to be validated.
-  * $raise? is an optional boolean indicating whether to throw an
-    exception if the given string is not a valid [mime type] string.
-    Defaults to false.
+#### Inputs:
 
-* Outputs:
-  * $valid? is a boolean indicating if the given string is a valid
-    [mime type] string.
+* `$string` is an optional [mime type] string to be validated.
+* `$raise?` is an optional boolean indicating whether to throw an
+  exception if the given string is not a valid [mime type] string.
+  Defaults to false.
 
-[javax.activation.MimeType]: &lt;http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html&gt;
+#### Outputs:
+
+* `$valid?` is a boolean indicating if the given string is a valid
+  [mime type] string.
+
 [MIME]: &lt;http://en.wikipedia.org/wiki/MIME&gt;
-[mime type]: &lt;http://en.wikipedia.org/wiki/Internet_media_type&gt;
 [RFC 2045]: &lt;http://www.ietf.org/rfc/rfc2045.txt&gt;
-[RFC 2046]: &lt;http://www.ietf.org/rfc/rfc2046.txt&gt;</value>
+[RFC 2046]: &lt;http://www.ietf.org/rfc/rfc2046.txt&gt;
+[javax.activation.MimeType]: &lt;http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html&gt;
+[mime type]: &lt;http://en.wikipedia.org/wiki/Internet_media_type&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

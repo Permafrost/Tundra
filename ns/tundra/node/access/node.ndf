@@ -186,27 +186,32 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Grants the specified permissions on the given namespace node.
+  <value name="node_comment">### tundra.node:access
 
-* Inputs:
-  * $node is the Integration Server namespace node to grant
-    permissions on, provided as a normal namespace identifer:
+Grants the specified permissions on the given namespace node.
 
-        folder(.folder)*(:object)
+#### Inputs:
 
-    Where brackets indicate optional components of the namespace
-    identifer, '*' indicates 0 or more occurrences of a
-    component, '.' and ':' are literal characters.
-  * $permissions is the list of permissions to be granted on
-    the given $node.
-    * type identifies the type of permission to be granted, one of:
-      * list allows members of the given ACL to see the child items 
-        in the given node
-      * read allows members of the given ACL to view the given node
-      * write allows members of the given ACL to change the given node
-      * execute allows members of the given ACL to execute the given node
-    * acl is the name of the ACL object to be granted permission on
-      this namespace node.</value>
+* `$node` is the Integration Server namespace node to grant
+  permissions on, provided as a normal namespace identifer:
+
+      folder(.folder)*(:object)
+
+  Where brackets indicate optional components of the namespace
+  identifer, '*' indicates 0 or more occurrences of a
+  component, '.' and ':' are literal characters.
+* `$permissions` is the list of permissions to be granted on
+  the given `$node`.
+  * `type` identifies the type of permission to be granted, one of:
+    * `list` allows members of the given ACL to see the child items
+      in the given node
+    * `read` allows members of the given ACL to view the given node
+    * `write` allows members of the given ACL to change the given node
+    * `execute` allows members of the given ACL to execute the given node
+  * `acl` is the name of the ACL object to be granted permission on
+    this namespace node.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

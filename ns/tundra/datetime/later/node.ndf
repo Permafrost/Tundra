@@ -196,41 +196,44 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Adds a duration of time to the current datetime, formatted according 
+  <value name="node_comment">### tundra.datetime:later
+
+Adds a duration of time to the current datetime, formatted according
 to the given pattern.
 
 Supports a handful of well-known named datetime patterns:
 
-    Name           Pattern
-    -------------  --------------------------------------------
-    datetime       ISO8601 XML datetime
-    datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-    date           ISO8601 XML date
-    date.jdbc      yyyy-mm-dd
-    time           ISO8601 XML time
-    time.jdbc      HH:mm:ss
-    milliseconds   Number of milliseconds since the Epoch, 
-                   January 1, 1970 00:00:00.000 GMT (Gregorian)
+Pattern Name  | Description
+------------- | --------------------------------------------
+datetime      | ISO8601 XML datetime
+datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
+date          | ISO8601 XML date
+date.jdbc     | yyyy-mm-dd
+time          | ISO8601 XML time
+time.jdbc     | HH:mm:ss
+milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
-Custom datetime patterns can be specified using [java.text.
-SimpleDateFormat] compatible patterns.
+Custom datetime patterns can be specified using
+[java.text.SimpleDateFormat] compatible patterns.
 
-* Inputs:
-  * $datetime.pattern is an optional datetime pattern that $datetime 
-    is formatted as. Defaults to an [ISO8601] XML datetime.
-  * $duration is the duration to be added to the current datetime.
-  * $duration.pattern is an optional duration pattern that $duration 
-    conforms to. Defaults to an [ISO8601] XML duration.
-  * $timezone is an optional [java.util.TimeZone] ID, or a 
-    (+|-)HH:mm time zone offset, or an XML duration string 
-    representing a time zone offset, or a raw millisecond time zone 
-    offset, or `Z` for UTC, or `local` for the default localhost time 
-    zone identifying the time zone the returned $datetime will be 
-    formatted with.
+#### Inputs:
 
-* Outputs:
-  * $datetime is the current datetime plus the given $duration in 
-    the given $timezone.
+* `$datetime.pattern` is an optional datetime pattern that `$datetime`
+  is formatted as. Defaults to an [ISO8601] XML datetime.
+* `$duration` is the duration to be added to the current datetime.
+* `$duration.pattern` is an optional duration pattern that `$duration`
+  conforms to. Defaults to an [ISO8601] XML duration.
+* `$timezone` is an optional [java.util.TimeZone] ID, or a
+  `(+|-)HH:mm` time zone offset, or an XML duration string
+  representing a time zone offset, or a raw millisecond time zone
+  offset, or `Z` for UTC, or `local` for the default localhost time
+  zone identifying the time zone the returned `$datetime` will be
+  formatted with.
+
+#### Outputs:
+
+* `$datetime` is the current datetime plus the given `$duration` in
+  the given `$timezone`.
 
 [ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;
 [java.text.SimpleDateFormat]: &lt;http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html&gt;

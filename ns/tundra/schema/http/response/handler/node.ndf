@@ -310,16 +310,21 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Specifies the required inputs and outputs for an [HTTP] response handling service
-called by tundra.http:client.
+  <value name="node_comment">### tundra.schema.http.response:handler
 
-* Inputs:
-  * $response is the [HTTP] response to be processed by this service.
+Specifies the required inputs and outputs for an [HTTP] response handling
+service called by `tundra.http:client`.
 
-* Outputs:
-  * $response is the processed [HTTP] response. How the response is processed is
-    at the discretion of the implementing service. Refer to the standard 
-    tundra.http.response:handle service for a reference implementation.
+#### Inputs:
+
+* `$response` is the [HTTP] response to be processed by this service.
+
+#### Outputs:
+
+* `$response` is the processed [HTTP] response. How the response is
+  processed is at the discretion of the implementing service. Refer to
+  the standard `tundra.http.response:handle` service for a reference
+  implementation.
 
 [HTTP]: &lt;http://tools.ietf.org/search/rfc2616&gt;</value>
   <value name="stateless">no</value>

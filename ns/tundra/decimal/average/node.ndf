@@ -224,34 +224,39 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns the average value of the given list of decimals, optionally 
-rounded to the given precision (number of decimal places) using the 
+  <value name="node_comment">### tundra.decimal:average
+
+Returns the average value of the given list of decimals, optionally
+rounded to the given precision (number of decimal places) using the
 given [rounding algorithm].
 
-* Inputs:
-  * $decimals is a list of decimal values to average.
-  * $precision is an optional number of decimal places to be 
-    preserved in the result.
-  * $rounding is an optional choice of the [rounding algorithm] 
-    to use when rounding the result to the specified $precision.
-    If not specifed, defaults to the HALF_UP algorithm.
-    * HALF_UP rounds towards "nearest neighbor" unless both 
-      neighbors are equidistant, in which case rounds up.
-    * CEILING rounds towards positive infinity.
-    * DOWN rounds towards zero.
-    * FLOOR rounds towards negative infinity.
-    * HALF_DOWN rounds towards "nearest neighbor" unless both 
-      neighbors are equidistant, in which case round down.
-    * HALF_EVEN rounds towards the "nearest neighbor" unless both
-      neighbors are equidistant, in which case, round towards the 
-      even neighbor.
-    * UNNECESSARY asserts that the requested operation has an exact
-      result, and hence no rounding is necessary.
-    * UP rounds away from zero.
-* Outputs:
-  * $decimal is the result of averaging the given list of decimals
-    and rounding to the given precision using the nominated
-    [rounding algorithm].
+#### Inputs:
+
+* `$decimals` is a list of decimal values to average.
+* `$precision` is an optional number of decimal places to be
+  preserved in the result.
+* `$rounding` is an optional choice of the [rounding algorithm]
+  to use when rounding the result to the specified `$precision`.
+  If not specifed, defaults to the `HALF_UP` algorithm.
+  * `HALF_UP` rounds towards "nearest neighbor" unless both
+    neighbors are equidistant, in which case rounds up.
+  * `CEILING` rounds towards positive infinity.
+  * `DOWN` rounds towards zero.
+  * `FLOOR` rounds towards negative infinity.
+  * `HALF_DOWN` rounds towards "nearest neighbor" unless both
+    neighbors are equidistant, in which case round down.
+  * `HALF_EVEN` rounds towards the "nearest neighbor" unless both
+    neighbors are equidistant, in which case, round towards the
+    even neighbor.
+  * `UNNECESSARY` asserts that the requested operation has an exact
+    result, and hence no rounding is necessary.
+  * `UP` rounds away from zero.
+
+#### Outputs:
+
+* `$decimal` is the result of averaging the given list of decimals
+  and rounding to the given precision using the nominated
+  [rounding algorithm].
 
 [rounding algorithm]: &lt;http://docs.oracle.com/javase/6/docs/api/java/math/RoundingMode.html&gt;</value>
   <value name="stateless">no</value>

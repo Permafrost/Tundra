@@ -153,25 +153,29 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Emits a Multipurpose Internet Mail Extension ([MIME]) type, 
-according to [RFC 2045] and [RFC 2046], given its constituent 
+  <value name="node_comment">### tundra.mime.type:emit
+
+Emits a Multipurpose Internet Mail Extension ([MIME]) type,
+according to [RFC 2045] and [RFC 2046], given its constituent
 parts.
 
 Implemented with the [javax.activation.MimeType] class.
 
-* Inputs:
-  * $type is an optional [mime type] data structure of the
-    constituent parts that make a [mime type].
+#### Inputs:
 
-* Outputs:
-  * $string is resulting [mime type] in its canonical string
-    representation.
+* `$type` is an optional [mime type] data structure of the
+  constituent parts that make a [mime type].
 
-[javax.activation.MimeType]: &lt;http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html&gt;
+#### Outputs:
+
+* `$string` is resulting [mime type] in its canonical string
+  representation.
+
 [MIME]: &lt;http://en.wikipedia.org/wiki/MIME&gt;
-[mime type]: &lt;http://en.wikipedia.org/wiki/Internet_media_type&gt;
 [RFC 2045]: &lt;http://www.ietf.org/rfc/rfc2045.txt&gt;
-[RFC 2046]: &lt;http://www.ietf.org/rfc/rfc2046.txt&gt;</value>
+[RFC 2046]: &lt;http://www.ietf.org/rfc/rfc2046.txt&gt;
+[javax.activation.MimeType]: &lt;http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html&gt;
+[mime type]: &lt;http://en.wikipedia.org/wiki/Internet_media_type&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

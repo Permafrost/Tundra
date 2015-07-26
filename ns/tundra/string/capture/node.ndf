@@ -316,74 +316,78 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns the associated [capturing groups] if the given [regular expression 
+  <value name="node_comment">### tundra.string:capture
+
+Returns the associated [capturing groups] if the given [regular expression
 pattern] is found anywhere in the given string.
 
-Refer to the following excerpt from the [java.util.regex.Pattern] 
+Refer to the following excerpt from the [java.util.regex.Pattern]
 documentation:
 
 &gt; Groups and capturing
-&gt; 
+&gt;
 &gt; Capturing groups are numbered by counting their opening parentheses from
-&gt; left to right. In the expression ((A)(B(C))), for example, there are four 
+&gt; left to right. In the expression `((A)(B(C)))`, for example, there are four
 &gt; such groups:
-&gt; 
-&gt; 1. ((A)(B(C)))
-&gt; 2. (A)
-&gt; 3. (B(C))
-&gt; 4. (C)
+&gt;
+&gt; 1. `((A)(B(C)))`
+&gt; 2. `(A)`
+&gt; 3. `(B(C))`
+&gt; 4. `(C)`
 &gt;
 &gt; Group zero always stands for the entire expression.
-&gt; 
-&gt; Capturing groups are so named because, during a match, each subsequence of 
-&gt; the input sequence that matches such a group is saved. The captured 
-&gt; subsequence may be used later in the expression, via a back reference, and 
-&gt; may also be retrieved from the matcher once the match operation is 
+&gt;
+&gt; Capturing groups are so named because, during a match, each subsequence of
+&gt; the input sequence that matches such a group is saved. The captured
+&gt; subsequence may be used later in the expression, via a back reference, and
+&gt; may also be retrieved from the matcher once the match operation is
 &gt; complete.
-&gt; 
-&gt; The captured input associated with a group is always the subsequence that 
-&gt; the group most recently matched. If a group is evaluated a second time 
-&gt; because of quantification then its previously-captured value, if any, will 
-&gt; be retained if the second evaluation fails. Matching the string "aba" 
-&gt; against the expression (a(b)?)+, for example, leaves group two set to "b". 
+&gt;
+&gt; The captured input associated with a group is always the subsequence that
+&gt; the group most recently matched. If a group is evaluated a second time
+&gt; because of quantification then its previously-captured value, if any, will
+&gt; be retained if the second evaluation fails. Matching the string "aba"
+&gt; against the expression `(a(b)?)+`, for example, leaves group two set to "b".
 &gt; All captured input is discarded at the beginning of each match.
-&gt; 
-&gt; Groups beginning with (? are pure, non-capturing groups that do not 
+&gt;
+&gt; Groups beginning with `(?` are pure, non-capturing groups that do not
 &gt; capture text and do not count towards the group total.
 
-* Inputs:
-  * $string is a string to be searched for the given pattern.
-  * $pattern is the [regular expression pattern] to search for against the 
-    given string.
+#### Inputs:
 
-* Outputs:
-  * $captured? is a boolean which when true indicates that the [regular 
-    expression pattern] was found at least once in the given $string.
-  * $captures is an IData[] document list where each item contains the 
-    [capturing groups] associated with each time $pattern was found in 
-    $string.
-    * groups is an IData[] document list where each item in the list 
-      represents a single [capturing group]. Note that the first (zeroth) 
-      item in the list always denotes the entire pattern.
-      * captured? is a boolean flag which when true indicates that this
-        [capturing group] was captured in the matched substring. This flag 
-        will be false for optional [capturing groups] that are not found in 
-        the matched substring.
-      * index is the zero-based start index of the captured substring for 
-        this [capturing group], and is only specified when $captured? is 
-        true.
-      * length is the number of captured characters in the captured 
-        substring for this [capturing group], and is only specified when 
-        $captured? is true.
-      * content is captured substring for this [capturing group], and is 
-        only specified when $captured? is true.
-    * groups.length is the number of items in the groups IData[] document
-      list, which is equal to the number of [capturing groups] + 1 (where
-      the additional item is the entire pattern) present in the [regular
-      expression pattern].
-  * $captures.length is both the number of times the [regular expression 
-    pattern] was found in the given $string, and the number of items in 
-    the $captures IData[] document list.
+* `$string` is a string to be searched for the given pattern.
+* `$pattern` is the [regular expression pattern] to search for against the
+  given string.
+
+#### Outputs:
+
+* `$captured?` is a boolean which when true indicates that the [regular
+  expression pattern] was found at least once in the given `$string`.
+* `$captures` is an `IData[]` document list where each item contains the
+  [capturing groups] associated with each time `$pattern` was found in
+  `$string`.
+  * `groups` is an `IData[]` document list where each item in the list
+    represents a single [capturing group]. Note that the first (zeroth)
+    item in the list always denotes the entire pattern.
+    * `captured?` is a boolean flag which when true indicates that this
+      [capturing group] was captured in the matched substring. This flag
+      will be false for optional [capturing groups] that are not found in
+      the matched substring.
+    * `index` is the zero-based start index of the captured substring for
+      this [capturing group], and is only specified when `$captured?` is
+      true.
+    * `length` is the number of captured characters in the captured
+      substring for this [capturing group], and is only specified when
+      `$captured?` is true.
+    * `content` is captured substring for this [capturing group], and is
+      only specified when `$captured?` is true.
+  * `groups.length` is the number of items in the `groups` IData[] document
+    list, which is equal to the number of [capturing groups] + 1 (where
+    the additional item is the entire pattern) present in the [regular
+    expression pattern].
+* `$captures.length` is both the number of times the [regular expression
+  pattern] was found in the given `$string`, and the number of items in
+  the `$captures` `IData[]` document list.
 
 [capturing group]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html#cg&gt;
 [capturing groups]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html#cg&gt;

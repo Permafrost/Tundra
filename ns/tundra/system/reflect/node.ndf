@@ -555,32 +555,37 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns information about Integration Server, such as the software 
-version, environment settings, Java properties, well-known directory 
+  <value name="node_comment">### tundra.system:reflect
+
+Returns information about Integration Server, such as the software
+version, environment settings, Java properties, well-known directory
 locations, and memory usage.
 
-* Outputs:
-  * $system is a returned IData document containing the software 
-    version, environment settings, Java properties, well-known 
-    directory locations, and memory usage.
-    * version is the Integration Server software version number for 
-      the Integration Server on which this service is executed.
-    * environment is an IData document containing all the environment
-      variables defined on the system on which this service is executed.
-    * properties is an IData document containing all the Java 
-      configuration properties defined for the JVM process in which 
-      this service is executed.
-    * directories is an IData document containing all the well-known
-      directory locations defined for the Integration Server on 
-      which this service is executed.
-    * memory is an IData document containing the memory usage of the
-      JVM process in which this service is executed:
-      * used is the number of bytes of memory allocated to the JVM 
-        heap that are in use.
-      * free is the number of bytes of memory allocated to the JVM 
-        heap that are not in use.
-      * total is the total number of bytes of memory allocated to 
-        the JVM heap.</value>
+#### Outputs:
+
+* `$system` is a returned `IData` document containing the software
+  version, environment settings, Java properties, well-known
+  directory locations, and memory usage.
+  * `version` is the Integration Server software version number for
+    the Integration Server on which this service is executed.
+  * `environment` is an `IData` document containing all the environment
+    variables defined on the system on which this service is executed.
+  * `properties` is an `IData` document containing all the Java
+    configuration properties defined for the JVM process in which
+    this service is executed.
+  * `directories` is an `IData` document containing all the well-known
+    directory locations defined for the Integration Server on
+    which this service is executed.
+  * `memory` is an `IData` document containing the memory usage of the
+    JVM process in which this service is executed:
+    * `used` is the number of bytes of memory allocated to the JVM
+      heap that are in use.
+    * `free` is the number of bytes of memory allocated to the JVM
+      heap that are not in use.
+    * `total` is the total number of bytes of memory allocated to
+      the JVM heap.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

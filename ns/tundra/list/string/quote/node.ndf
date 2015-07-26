@@ -88,16 +88,20 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns a [regular expression pattern] that can be used to match any 
+  <value name="node_comment">### tundra.list.string:quote
+
+Returns a [regular expression pattern] that can be used to match any
 of the given strings literally.
 
-* Inputs:
-  * $list is the list of strings to be converted to a [regular expression 
-    pattern].
+#### Inputs:
 
-* Outputs:
-  * $pattern is a [regular expression pattern] that can be used to match
-    the any of the given $list strings literally.
+* `$list` is the list of strings to be converted to a [regular expression
+  pattern].
+
+#### Outputs:
+
+* `$pattern` is a [regular expression pattern] that can be used to match
+  the any of the given `$list` strings literally.
 
 [regular expression pattern]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html&gt;</value>
   <value name="stateless">no</value>

@@ -92,16 +92,22 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns true if the given item is found in the given list.
+  <value name="node_comment">### tundra.list.object:include
 
-* Inputs:
-  * $list is a list to check whether the given $item exists
-    in.
-  * $item is the item to be checked against the given $list.
+Returns true if the given item is found in the given list.
 
-* Outputs:
-  * $include? is a boolean indicating the the given $item
-    exists as an item in the given $list.</value>
+#### Inputs:
+
+* `$list` is a list to check whether the given $item exists
+  in.
+* `$item` is the item to be checked against the given $list.
+
+#### Outputs:
+
+* `$include?` is a boolean indicating the the given `$item`
+  exists as an item in the given `$list`.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

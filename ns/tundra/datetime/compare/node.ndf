@@ -251,38 +251,41 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Compares two datetime strings, formatted according to the given pattern, indicating 
-their position in time relative to one another.
+  <value name="node_comment">### tundra.datetime:compare
+
+Compares two datetime strings, formatted according to the given pattern,
+indicating their position in time relative to one another.
 
 Supports a handful of well-known named datetime patterns:
 
-    Name           Pattern
-    -------------  --------------------------------------------
-    datetime       ISO8601 XML datetime
-    datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-    date           ISO8601 XML date
-    date.jdbc      yyyy-mm-dd
-    time           ISO8601 XML time
-    time.jdbc      HH:mm:ss
-    milliseconds   Number of milliseconds since the Epoch, 
-                   January 1, 1970 00:00:00.000 GMT (Gregorian)
+Pattern Name  | Description
+------------- | --------------------------------------------
+datetime      | ISO8601 XML datetime
+datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
+date          | ISO8601 XML date
+date.jdbc     | yyyy-mm-dd
+time          | ISO8601 XML time
+time.jdbc     | HH:mm:ss
+milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
-Custom datetime patterns can be specified using [java.text.SimpleDateFormat] 
-compatible patterns.
+Custom datetime patterns can be specified using
+[java.text.SimpleDateFormat] compatible patterns.
 
-* Inputs:
-  * $datetime.x is the datetime string to be compared to $datetime.y.
-  * $datetime.y is the datetime string to be compared to $datetime.x.
-  * $pattern is an optional datetime pattern that $datetime.x and $datetime.y 
-    conform to. Defaults to an [ISO8601]/XML datetime.
+#### Inputs:
 
-* Outputs:
-  * $before? is a boolean flag indicating if $datetime.x is an earlier instant 
-    in time than $datetime.y.
-  * $equal? is a boolean flag indicating if $datetime.x and $datetime.y are 
-    equivalent instants in time.
-  * $after? is a boolean flag indicating if $datetime.x is a later instant in
-    time than $datetime.y.
+* `$datetime.x` is the datetime string to be compared to $datetime.y.
+* `$datetime.y` is the datetime string to be compared to $datetime.x.
+* `$pattern` is an optional datetime pattern that `$datetime.x` and
+  `$datetime.y` conform to. Defaults to an [ISO8601] XML datetime.
+
+#### Outputs:
+
+* `$before?` is a boolean flag indicating if `$datetime.x` is an earlier
+  instant in time than `$datetime.y`.
+* `$equal?` is a boolean flag indicating if `$datetime.x` and
+  `$datetime.y` represent the same instant in time.
+* `$after?` is a boolean flag indicating if `$datetime.x` is a later
+  instant in time than `$datetime.y`.
 
 [ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;
 [java.text.SimpleDateFormat]: &lt;http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html&gt;</value>

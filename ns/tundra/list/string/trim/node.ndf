@@ -80,16 +80,21 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Removes leading and trailing whitespace from each string in the 
+  <value name="node_comment">### tundra.list.string:trim
+
+Removes leading and trailing whitespace from each string in the
 given list.
 
-* Inputs:
-  * $list is a list of strings to be trimmed of leading and trailing 
-    whitespace characters.
+#### Inputs:
 
-* Outputs:
-  * $list is the input list of strings with leading and trailing 
-    whitespace characters removed.
+* `$list` is a list of strings to be trimmed of leading and trailing
+  whitespace characters.
+
+#### Outputs:
+
+* `$list` is the input list of strings with leading and trailing
+  whitespace characters removed.
+
 </value>
   <value name="stateless">no</value>
   <value name="caching">no</value>

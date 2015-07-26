@@ -76,13 +76,19 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns the length of the given byte array.
+  <value name="node_comment">### tundra.bytes:length
 
-* Inputs:
-  * $bytes must be a byte array.
+Returns the length of the given byte array.
 
-* Outputs:
-  * $length is the length of the given byte array.</value>
+#### Inputs:
+
+* `$bytes` must be a byte array.
+
+#### Outputs:
+
+* `$length` is the length of the given byte array.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

@@ -96,16 +96,19 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Throws an assertion error if the expected and actual document lists are equal.
+  <value name="node_comment">### tundra.assertion.list.document:unequal
 
-* Inputs:
-  * $expected is the expected IData document list.
+Throws an assertion error if the expected and actual document lists are
+equal.
 
-  * $actual is the actual IData document list. If this document list is equal to 
-    the expected document list, an assertion error will be thrown.
+#### Inputs:
 
-  * $message is an optional custom message to be used as the assertion error message 
-    if the assertion fails.
+* `$expected` is the expected IData document list.
+* `$actual` is the actual IData document list. If this document list is
+  equal to the expected document list, an assertion error will be thrown.
+* `$message` is an optional custom message to be used as the assertion
+  error message if the assertion fails.
+
 </value>
   <value name="stateless">no</value>
   <value name="caching">no</value>

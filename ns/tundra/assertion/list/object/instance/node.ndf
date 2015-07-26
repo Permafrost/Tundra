@@ -105,22 +105,23 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Throws an assertion error if the given list is not an instance of the given 
+  <value name="node_comment">### tundra.assertion.list.object:instance
+
+Throws an assertion error if the given list is not an instance of the given
 class.
 
-* Inputs:
-  * $list is the java.lang.Object list to be tested as an instance of the 
-    specified class.
+#### Inputs:
 
-  * $class is the Java array class name the given list is asserted to be an 
-    instance of. Note that Java array class names are [different and 
-    distinct][1] to normal Java singleton object class names. For example, 
-    an array of java.lang.String objects has the class name [Ljava.lang.String;.
+* `$list` is the java.lang.Object list to be tested as an instance of the
+  specified class.
+* `$class` is the Java array class name the given list is asserted to be
+  an instance of. Note that [Java array class names] are different and
+  distinct to normal Java object class names. For example, an array of
+  `java.lang.String` objects has the class name `[Ljava.lang.String;`.
+* `$message` is an optional custom message to be used as the assertion
+  error message if the assertion fails.
 
-  * $message is an optional custom message to be used as the assertion error 
-    message if the assertion fails.
-
-[1]: &lt;http://docs.oracle.com/javase/tutorial/reflect/special/arrayComponents.html&gt;</value>
+[Java array class names]: &lt;http://docs.oracle.com/javase/tutorial/reflect/special/arrayComponents.html&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

@@ -126,21 +126,27 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Renames the value associated with the source key to have the target key 
+  <value name="node_comment">### tundra.document:rename
+
+Renames the value associated with the source key to have the target key
 in the given IData document.
 
-* Inputs:
-  * $document is an IData document in which to rename the given key.
-  * $key.source is the key to be renamed, and can be simple or fully-
-    qualified, such as a/b/c[0]/d.
-  * $key.target is the new name that source key will be renamed to, 
-    and can be simple or fully-qualified, such as a/b/c[0]/d. If the
-    target key already exists, its value will be overwitten with the
-    value that was associated with the source key.
+#### Inputs:
 
-* Outputs:
-  * $document is the resulting IData document, where the source key
-    has been renamed to the target key.</value>
+* `$document` is an IData document in which to rename the given key.
+* `$key.source` is the key to be renamed, and can be simple or fully-
+  qualified, such as `a/b/c[0]/d`.
+* `$key.target` is the new name that source key will be renamed to,
+  and can be simple or fully-qualified, such as `a/b/c[0]/d`. If the
+  target key already exists, its value will be overwitten with the
+  value that was associated with the source key.
+
+#### Outputs:
+
+* `$document` is the resulting IData document, where the source key
+  has been renamed to the target key.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

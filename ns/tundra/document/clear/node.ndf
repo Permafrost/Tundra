@@ -96,18 +96,24 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Removes all elements from the given IData document, except for 
+  <value name="node_comment">### tundra.document:clear
+
+Removes all elements from the given IData document, except for
 any keys specified in the preserve list.
 
-* Inputs:
-  * $document is an IData document whose keys are to be removed.
-  * $preserve is list of keys which will not be removed from
-    the given IData document. Keys can be simple or fully
-    qualified, such as a/b/c[0]/d.
+#### Inputs:
 
-* Outputs:
-  * $document is the given IData document with all keys removed,
-    except for those specified in $preserve.</value>
+* `$document` is an IData document whose keys are to be removed.
+* `$preserve` is list of keys which will not be removed from
+  the given IData document. Keys can be simple or fully
+  qualified, such as `a/b/c[0]/d`.
+
+#### Outputs:
+
+* `$document` is the given IData document with all keys removed,
+  except for those specified in `$preserve`.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

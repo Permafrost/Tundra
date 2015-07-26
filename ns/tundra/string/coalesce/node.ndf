@@ -186,22 +186,29 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns the first string argument that is not null.
+  <value name="node_comment">### tundra.string:coalesce
 
-* Inputs:
-  * $string.x is an optional string argument.
-  * $string.y is an optional string argument.
-  * $mode determines what is returned when all
-    arguments are null:
-    * missing: $string is not returned when all
-      arguments are null. This is the default, if
-      $mode is not specified.
-    * null: $string is returned as null when all
-      arguments are null.
-* Outputs:
-  * $string is the first of the given arguments 
-    whose value is not null, or null if all 
-    arguments were null and $mode is 'null'.</value>
+Returns the first string argument that is not null.
+
+#### Inputs:
+
+* `$string.x` is an optional string argument.
+* `$string.y` is an optional string argument.
+* `$mode` determines what is returned when all
+  arguments are null:
+  * `missing`: `$string` is not returned when all
+    arguments are null. This is the default, if
+    `$mode` is not specified.
+  * `null`: `$string` is returned as null when all
+    arguments are null.
+
+#### Outputs:
+
+* `$string` is the first of the given arguments
+  whose value is not null, or null if all
+  arguments were null and `$mode` is 'null'.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

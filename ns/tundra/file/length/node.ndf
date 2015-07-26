@@ -88,16 +88,20 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns the length of the given file in bytes.
+  <value name="node_comment">### tundra.file:length
 
-* Inputs:
-  * $file is the name of the file whose length is to be 
-    checked, specified as either a relative or absolute 
-    file path or file: [URI].
+Returns the length of the given file in bytes.
 
-* Outputs:
-  * $length is the length or size in bytes of the given 
-    file. If the file does not exist, zero is returned.
+#### Inputs:
+
+* `$file` is the name of the file whose length is to be
+  checked, specified as either a relative or absolute
+  file path or file: [URI].
+
+#### Outputs:
+
+* `$length` is the length or size in bytes of the given
+  file. If the file does not exist, zero is returned.
 
 [URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
   <value name="stateless">no</value>

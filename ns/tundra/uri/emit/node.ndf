@@ -415,51 +415,55 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Emits a Uniform Resource Identifier ([URI]) string, according to [RFC 2396], 
-given its constituent parts.
+  <value name="node_comment">### tundra.uri:emit
 
-URIs can be categorized as either hierarchical, where the scheme and body 
-parts are separated by the character sequence '://', or opaque, where the 
+Emits a Uniform Resource Identifier ([URI]) string, according to
+[RFC 2396], given its constituent parts.
+
+URIs can be categorized as either hierarchical, where the scheme and body
+parts are separated by the character sequence '://', or opaque, where the
 scheme and body parts are separated by a ':' character.
 
 Examples of hierarchical URIs:
-- http://example.com/
-- ftp://example.com/path/file.txt
+* http://example.com/
+* ftp://example.com/path/file.txt
 
 Examples of opaque URIs:
-- mailto:john.doe@example.com
-- news:comp.lang.java
-- urn:isbn:096139210x
+* mailto:john.doe@example.com
+* news:comp.lang.java
+* urn:isbn:096139210x
 
 Opaque URIs are constructed according to the following syntax:
 
     (scheme:)body(?query)(#fragment)
 
-Where brackets (...) delineate optional components and the characters 
+Where brackets (...) delineate optional components and the characters
 ':', '?', and '#' stand for themselves.
 
 Hierarchical URIs are constructed according to the following syntax:
 
     (scheme:)(//authority)(path)(?query)(#fragment)
 
-Where the characters ':', '/', '?', and '#' stand for themselves. The authority
-component, if specified, can be either server-based or registry-based. If 
-server-based, it is constructed according to the syntax:
+Where the characters ':', '/', '?', and '#' stand for themselves. The
+authority component, if specified, can be either server-based or registry-
+based. If server-based, it is constructed according to the syntax:
 
     (user:password@)host(:port)
 
 Implemented with the [java.net.URI] class.
 
-* Inputs:
-  * $uri is an IData document containing the constituent parts to construct
-    a new URI string with.
+#### Inputs:
 
-* Outputs:
-  * $string is the resulting URI input string.
+* `$uri` is an `IData` document containing the constituent parts to
+  construct a new [URI] string with.
 
-[java.net.URI]: &lt;http://docs.oracle.com/javase/6/docs/api/java/net/URI.html&gt;
+#### Outputs:
+
+* `$string` is the resulting [URI] input string.
+
 [RFC 2396]: &lt;http://www.ietf.org/rfc/rfc2396.txt&gt;
-[URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
+[URI]: &lt;http://www.w3.org/Addressing/&gt;
+[java.net.URI]: &lt;http://docs.oracle.com/javase/6/docs/api/java/net/URI.html&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

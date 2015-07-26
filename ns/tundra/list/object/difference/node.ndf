@@ -81,16 +81,22 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns a list of only the items in $list.x that are not also 
-present in $list.y.
+  <value name="node_comment">### tundra.list.object:difference
 
-* Inputs:
-  * $list.x is a list to be checked for differences against $list.y.
-  * $list.y is a list to be checked against $list.x for differnces.
+Returns a list of only the items in `$list.x` that are not also
+present in `$list.y`.
 
-* Outputs:
-  * $list is a new list containing only the items in $list.x that 
-    are not also present in $list.y.</value>
+#### Inputs:
+
+* `$list.x` is a list to be checked for differences against `$list.y`.
+* `$list.y` is a list to be checked against `$list.x` for differnces.
+
+#### Outputs:
+
+* `$list` is a new list containing only the items in `$list.x` that
+  are not also present in `$list.y`.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

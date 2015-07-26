@@ -124,19 +124,24 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Iterates through the given list, invoking the given service for each 
-item in the list, passing $item, $index, $iteration and $length 
+  <value name="node_comment">### tundra.list.string:each
+
+Iterates through the given list, invoking the given service for each
+item in the list, passing `$item`, `$index`, `$iteration` and `$length`
 variables.
 
-* Inputs:
-  * $list is a list to be iterated over.
-  * $service is a fully-qualified service name identifying the
-    service to be invoked to process each item in the list.
-  * $pipeline is an optional IData document containing arbitrary
-    input arguments used when invoking $service.
-  * $item.input is an optional variable name used when passing each
-    item in the list to the invocation of $service. Defaults to
-    $item.</value>
+#### Inputs:
+
+* `$list` is a list to be iterated over.
+* `$service` is a fully-qualified service name identifying the
+  service to be invoked to process each item in the list.
+* `$pipeline` is an optional IData document containing arbitrary
+  input arguments used when invoking `$service`.
+* `$item.input` is an optional variable name used when passing each
+  item in the list to the invocation of `$service`. Defaults to
+  $item.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

@@ -88,17 +88,21 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns the canonical file: URI that represents the given 
+  <value name="node_comment">### tundra.file:normalize
+
+Returns the canonical file: URI that represents the given
 file.
 
-* Inputs:
-  * $file is the file name to be normalized to the canonical
-    file: [URI], specified as either a relative or absolute 
-    file path or file: [URI].
+#### Inputs:
 
-* Outputs:
-  * $file is the canonical file: [URI] that represents the
-    given file.
+* `$file` is the file name to be normalized to the canonical
+  file: [URI], specified as either a relative or absolute
+  file path or file: [URI].
+
+#### Outputs:
+
+* `$file` is the canonical file: [URI] that represents the
+  given file.
 
 [URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
   <value name="stateless">no</value>

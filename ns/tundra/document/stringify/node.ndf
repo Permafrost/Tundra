@@ -100,19 +100,25 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Converts all non-IData document and non-IData[] document list values in the 
+  <value name="node_comment">### tundra.document:stringify
+
+Converts all non-IData document and non-IData[] document list values in the
 given IData document to strings.
 
-* Inputs:
-  * $document is an IData document whose values are to be converted to 
-    strings.
-  * $recurse is an optional boolean indicating if embedded IData documents 
-    and IData[] document lists should also have their values converted to 
-    strings. Defaults to false.
+#### Inputs:
 
-* Outputs:
-  * $document is the given IData document with all non-IData document and 
-    non-IData[] document list values converted to strings.</value>
+* `$document` is an IData document whose values are to be converted to
+  strings.
+* `$recurse` is an optional boolean indicating if embedded IData documents
+  and IData[] document lists should also have their values converted to
+  strings. Defaults to `false`.
+
+#### Outputs:
+
+* `$document` is the given IData document with all non-IData document and
+  non-IData[] document list values converted to strings.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

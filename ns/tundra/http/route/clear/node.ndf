@@ -30,9 +30,13 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Removes all configured custom HTTP routes from the Integration
+  <value name="node_comment">### tundra.http.route:clear
+
+Removes all configured custom HTTP routes from the Integration
 Server HTTP request dispatcher. Once this service is invoked,
-no custom HTTP routes will be in effect.</value>
+no custom HTTP routes will be in effect.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

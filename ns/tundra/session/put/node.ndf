@@ -76,14 +76,18 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Stores the given key value pair in current session state.
+  <value name="node_comment">### tundra.session:put
 
-* Inputs:
-  * $key is the optional key name to use to identify the value 
-    to be stored in session state. If not specified, this
-    service does nothing, otherwise the key value pair is stored
-    in session state.
-  * $value is the optional value to be stored in session state.</value>
+Stores the given key value pair in current session state.
+
+#### Inputs:
+
+* `$key` is the optional key name to use to identify the value
+  to be stored in session state. If not specified, this
+  service does nothing.
+* `$value` is the optional value to be stored in session state.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

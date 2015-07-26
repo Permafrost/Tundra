@@ -172,29 +172,32 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Edits the given IData $document with the list of {key, value} pairs 
-specified in $amendments.
+  <value name="node_comment">### tundra.document:amend
 
-* Inputs:
-  * $document is the IData document to be amended.
+Edits the given IData `$document` with the list of {key, value} pairs
+specified in `$amendments`.
 
-  * $amendments is an IData document list containing all the edits to be 
-    made to the given $document.
-    * key is a fully-qualified (for example, a/b/c[0]) key identifying 
-      the value in $document to be edited.
+#### Inputs:
 
-    * value is the value to be assigned to the item identified by key, 
-      and can include percent-delimited variable substitution strings which 
-      will be substituted prior to being inserted into the $document.
+* `$document` is the IData document to be amended.
+* `$amendments` is an IData document list containing all the edits to be
+  made to the given `$document`.
+  * `key` is a fully-qualified (for example, `a/b/c[0]`) key identifying
+    the value in `$document` to be edited.
+  * `value` is the value to be assigned to the item identified by `key`,
+    and can include percent-delimited variable substitution strings which
+    will be substituted prior to being inserted into the `$document`.
+  * `condition` is an optional `Tundra/tundra.condition:evaluate`
+    conditional statement, which is evaluated against the pipeline and
+    only if the condition evaluates to true will the associated amended
+    `value` be applied. If not specified, the amended `value` will always
+    be applied.
 
-    * condition is an optional Tundra/tundra.condition:evaluate
-      conditional statement, which is evaluated against the pipeline and 
-      only if the condition evaluates to true will the associated amended 
-      value be applied. If not specified, the amended value will always 
-      be applied.
+#### Outputs:
 
-* Outputs:
-  * $document is the resulting edited IData document.</value>
+* `$document` is the resulting edited IData document.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

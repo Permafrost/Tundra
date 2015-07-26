@@ -105,17 +105,22 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Converts a list of strings, byte arrays or input streams to a
+  <value name="node_comment">### tundra.list.string:normalize
+
+Converts a list of strings, byte arrays or input streams to a
 list of strings.
 
-* Inputs:
-  * `$objects` is a list of strings, byte arrays, or input streams
-    to be converted to a string.
-  * `$encoding` is an optional character set to use when `$objects`
-    is a list of byte arrays or input streams. Defaults to [UTF-8].
-* Outputs:
-  * `$strings` is the resulting list of strings.
-  
+#### Inputs:
+
+* `$objects` is a list of strings, byte arrays, or input streams
+  to be converted to a string.
+* `$encoding` is an optional character set to use when `$objects`
+  is a list of byte arrays or input streams. Defaults to [UTF-8].
+
+#### Outputs:
+
+* `$strings` is the resulting list of strings.
+
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>

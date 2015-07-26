@@ -170,18 +170,24 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns true if the given XPath expression $expression exists the given 
-XML $content.
+  <value name="node_comment">### tundra.xpath:exists
 
-* Inputs:
-  * $content is a string, byte array, or input stream containing XML data.
-  * $encoding is the character set used by $content if provided as a byte 
-    array or input stream. Defaults to [UTF-8].
-  * $expression is the [XPath expression] to be tested against $content.
+Returns true if the given XPath expression `$expression` exists the given
+XML `$content`.
 
-* Outputs:
-  * $exists? is true if the XPath expression was found to exist in the 
-    given $content.
+#### Inputs:
+
+* `$content` is a string, byte array, or input stream containing XML
+  data.
+* `$encoding` is the character set used by `$content` if provided as a
+  byte array or input stream. Defaults to [UTF-8].
+* `$expression` is the [XPath expression] to be tested against
+  `$content`.
+
+#### Outputs:
+
+* `$exists?` is true if the XPath expression was found to exist in the
+  given `$content`.
 
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;
 [XPath expression]: &lt;http://www.w3.org/TR/xpath/&gt;</value>

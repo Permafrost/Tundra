@@ -90,14 +90,20 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns the absolute value of the given integer.
+  <value name="node_comment">### tundra.integer:absolute
 
-* Inputs:
-  * $integer is a signed integer.
+Returns the absolute value of the given integer.
 
-* Outputs:
-  * $integer is the absolute (unsigned) value of the given 
-    integer.</value>
+#### Inputs:
+
+* `$integer` is a signed integer.
+
+#### Outputs:
+
+* `$integer` is the absolute (unsigned) value of the given
+  integer.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

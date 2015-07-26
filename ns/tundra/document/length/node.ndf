@@ -78,15 +78,21 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns the number of top-level key value pairs in the given 
+  <value name="node_comment">### tundra.document:length
+
+Returns the number of top-level key value pairs in the given
 IData document.
 
-* Inputs:
-  * $document is an IData document.
+#### Inputs:
 
-* Outputs:
-  * $length is the number of top-level keys in the given IData
-    document.</value>
+* `$document` is an IData document.
+
+#### Outputs:
+
+* `$length` is the number of top-level keys in the given IData
+  document.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

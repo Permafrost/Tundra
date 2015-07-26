@@ -88,15 +88,18 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Renames the source file to the target file name.
+  <value name="node_comment">### tundra.file:rename
 
-* Inputs:
-  * $file.source is the name of the file to be renamed, specified as either a
-    relative or absolute file path or file: [URI]. If the source file does not
-    exist, an exception will be thrown.
-  * $file.target is the new name for the renamed file, specified as either a
-    relative or absolute file path or file: [URI]. If the target file already
-    exists, an exception will be thrown.
+Renames the source file to the target file name.
+
+#### Inputs:
+
+* `$file.source` is the name of the file to be renamed, specified as
+  either a relative or absolute file path or file: [URI]. If the source
+  file does not exist, an exception will be thrown.
+* `$file.target` is the new name for the renamed file, specified as
+  either a relative or absolute file path or file: [URI]. If the target
+  file already exists, an exception will be thrown.
 
 [URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
   <value name="stateless">no</value>

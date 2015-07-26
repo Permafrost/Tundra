@@ -115,18 +115,23 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Parses [YAML] content specified as a string, byte array, or input stream
+  <value name="node_comment">### tundra.yaml:parse
+
+Parses [YAML] content specified as a string, byte array, or input stream
 into an IData document.
 
-* Inputs:
-  * $content is a string, byte array, or input stream containing [YAML] 
-    content to be parsed.
-  * $encoding is an optional character set to use when $content is provided 
-    as a byte array or input stream to decode the contained text data. 
-    Defaults to [UTF-8].
-* Outputs:
-  * $document is the resulting IData document representing the parsed 
-    $content.
+#### Inputs:
+
+* `$content` is a string, byte array, or input stream containing [YAML]
+  content to be parsed.
+* `$encoding` is an optional character set to use when `$content` is
+  provided as a byte array or input stream to decode the contained text
+  data. Defaults to [UTF-8].
+
+#### Outputs:
+
+* `$document` is the resulting IData document representing the parsed
+  `$content`.
 
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;
 [YAML]: &lt;http://www.yaml.org&gt;</value>

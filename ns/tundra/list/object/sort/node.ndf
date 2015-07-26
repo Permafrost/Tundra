@@ -64,17 +64,20 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns a new list sorted according to the [natural ordering] of 
-the given list's items. 
+  <value name="node_comment">### tundra.list.object:sort
 
-* Inputs:
-  * $list is the list to be sorted.
+Returns a new list sorted according to the [natural ordering] of
+the given list's items.
 
-* Outputs:
-  * $list is the sorted list.
+#### Inputs:
 
-[natural ordering]: &lt;http://docs.oracle.com/javase/6/docs/api/java/lang/Comparable.html&gt;
-</value>
+* `$list` is the list to be sorted.
+
+#### Outputs:
+
+* `$list` is the sorted list.
+
+[natural ordering]: &lt;http://docs.oracle.com/javase/6/docs/api/java/lang/Comparable.html&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

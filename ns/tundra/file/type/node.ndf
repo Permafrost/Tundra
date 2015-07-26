@@ -88,25 +88,29 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Determines the [mime type] for the given file. 
+  <value name="node_comment">### tundra.file:type
 
-Integration Server file extension to [mime type] mappings are defined 
-in the file ./lib/mime.types. If the [mime type] cannot be found, it 
-defaults to the [mime type] for arbitrary binary data: 
+Determines the [mime type] for the given file.
 
-    application/octet-stream
+Integration Server file extension to [mime type] mappings are defined
+in the file ./lib/mime.types. If the [mime type] cannot be found, it
+defaults to the [mime type] for arbitrary binary data:
 
-* Inputs:
-  * $file is the name of the file whose mime type is to be determined, 
-    specified as either a relative or absolute file path or file: [URI]. 
-    The file is not required to exist, since the mime type is determined
-    purely from the file name itself.
+  application/octet-stream
 
-* Outputs:
-  * $type is the [mime type] of the given file.
+#### Inputs:
 
-[mime type]: &lt;http://en.wikipedia.org/wiki/Internet_media_type&gt;
-[URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
+* `$file` is the name of the file whose mime type is to be determined,
+  specified as either a relative or absolute file path or file: [URI].
+  The file is not required to exist, since the mime type is determined
+  purely from the file name itself.
+
+#### Outputs:
+
+* `$type` is the [mime type] of the given file.
+
+[URI]: &lt;http://www.w3.org/Addressing/&gt;
+[mime type]: &lt;http://en.wikipedia.org/wiki/Internet_media_type&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

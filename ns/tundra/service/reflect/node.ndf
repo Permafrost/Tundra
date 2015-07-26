@@ -188,16 +188,23 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns information about the service with the given name.
+  <value name="node_comment">### tundra.service:reflect
 
-* Inputs:
-  * $service is the name of the service to be reflected on.
-* Outputs:
-  * $service.properties
-    * name is the name of the service.
-    * type is the type of service, such as flow or java
-    * package is the name of the package the service exists in.
-    * description is the service comments.</value>
+Returns information about the service with the given name.
+
+#### Inputs:
+
+* `$service` is the name of the service to be reflected on.
+
+#### Outputs:
+
+* `$service.properties`
+  * `name` is the name of the service.
+  * `type` is the type of service, such as flow or java.
+  * `package` is the name of the package the service exists in.
+  * `description` is the service comments.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

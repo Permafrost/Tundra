@@ -106,17 +106,21 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns an string representation of the given integer object.
+  <value name="node_comment">### tundra.integer:emit
 
-* Inputs:
-  * $object is either a java.math.BigDecimal, java.math.BigInteger, 
-    java.lang.Double, java.lang.Float, java.lang.Integer, or
-    java.lang.Long object.
-  * $radix is an optional [radix] used when encoding the integer as a
-    string. Defaults to 10 (decimal), if not specified.
+Returns an string representation of the given integer object.
 
-* Outputs:
-  * $string is the resulting string representation of the integer.
+#### Inputs:
+
+* `$object` is either a `java.math.BigDecimal`, `java.math.BigInteger`,
+  `java.lang.Double`, `java.lang.Float`, `java.lang.Integer`, or
+  `java.lang.Long` object.
+* `$radix` is an optional [radix] used when encoding the integer as a
+  string. Defaults to 10 (decimal), if not specified.
+
+#### Outputs:
+
+* `$string` is the resulting string representation of the integer.
 
 [radix]: &lt;http://en.wikipedia.org/wiki/Radix&gt;</value>
   <value name="stateless">no</value>

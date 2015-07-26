@@ -134,24 +134,30 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Returns the item stored at a given index in a list. A zero-
-based index can be specified using the $index input, or
-a one-based index can be specified using the $iteration input
+  <value name="node_comment">### tundra.list.string:get
+
+Returns the item stored at a given index in a list. A zero-
+based index can be specified using the `$index` input, or
+a one-based index can be specified using the `$iteration` input
 (which is useful when using this service inside a flow loop).
 
-* Inputs:
-  * $list is a list to fetch an item from.
-  * $index is an optional zero-based index identifying
-    the item to be fetched. Supports forward and reverse 
-    indexing (where, for example, an index of -1 is the 
-    last item in the list, and an index of -2 is the 
-    second last item in the list).
-  * $iteration is an optional one-based index identifying
-    the item to be fetched.
+#### Inputs:
 
-* Outputs:
-  * $item is the item stored at the given index in the given 
-    list.</value>
+* `$list` is a list to fetch an item from.
+* `$index` is an optional zero-based index identifying
+  the item to be fetched. Supports forward and reverse
+  indexing (where, for example, an index of -1 is the
+  last item in the list, and an index of -2 is the
+  second last item in the list).
+* `$iteration` is an optional one-based index identifying
+  the item to be fetched.
+
+#### Outputs:
+
+* `$item` is the item stored at the given index in the given
+  list.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

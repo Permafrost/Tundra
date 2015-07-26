@@ -108,54 +108,59 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Evaluates the given condition against the pipeline (or optional scope IData 
+  <value name="node_comment">### tundra.condition:evaluate
+
+Evaluates the given condition against the pipeline (or optional scope IData
 document).
 
-* Inputs:
-  * $condition is the conditional statement to be evaluated. Conditional 
-    statements have the same form as when they are used in a flow branch
-    step:
+#### Inputs:
 
-        condition = value comparison_op value [logical_op condition]
-                  | [!]value                  [logical_op condition]
+* `$condition` is the conditional statement to be evaluated. Conditional
+  statements have the same form as when they are used in a flow branch
+  step:
 
-    Where:
-    * value is a fully-qualified percent delimited IData document key, 
-      such as %a/b/c[0]%, or a literal (double- or single-quoted) string, 
-      number, (forward slash delimited) regular expression, or $null.
-    * comparison_op is one of the following comparison operators: 
-      * =
-      * ==
-      * !=
-      * &lt;&gt;
-      * &gt;
-      * &gt;=
-      * &lt;
-      * &lt;=
-    * logical_op is one of the following logical operators: 
-      * and
-      * &amp;&amp;
-      * or
-      * ||
+      condition = value comparison_op value [logical_op condition]
+                | [!]value                  [logical_op condition]
 
-    Examples:
-    * %a/b/c[0]% == "xyz"
-    * %num% == /\d\d/
-    * %num% == 10
-    * %something% == $null
-    * %total% == %count%
-    * %inString1% == "abc" and (%inNum1% &lt; 100 or %inNum2% &gt; 1000)
+  Where:
+  * `value` is a fully-qualified percent delimited IData document key,
+    such as `%a/b/c[0]%`, or a literal (double- or single-quoted) string,
+    number, (forward slash delimited) regular expression, or `$null`.
+  * `comparison_op` is one of the following comparison operators:
+    * `=`
+    * `==`
+    * `!=`
+    * `&lt;&gt;`
+    * `&gt;`
+    * `&gt;=`
+    * `&lt;`
+    * `&lt;=`
+  * `logical_op` is one of the following logical operators:
+    * `and`
+    * `&amp;&amp;`
+    * `or`
+    * `||`
 
-    Refer to the Conditional Expressions section in the Integration Server 
-    Developer User's Guide for further details.
+  Examples:
+  * `%a/b/c[0]% == "xyz"`
+  * `%num% == /\d\d/`
+  * `%num% == 10`
+  * `%something% == $null`
+  * `%total% == %count%`
+  * `%inString1% == "abc" and (%inNum1% &lt; 100 or %inNum2% &gt; 1000)`
 
-  * $scope is an optional IData document containing the variables against 
-    which $condition will be evaluated. If not specified, the $condition 
-    will be evaluated against the pipeline.
+  Refer to the Conditional Expressions section in the Integration Server
+  Developer User's Guide for further details.
+* `$scope` is an optional IData document containing the variables against
+  which `$condition` will be evaluated. If not specified, the
+  `$condition` will be evaluated against the pipeline.
 
-* Outputs:
-  * $result? is the boolean result of the evaluation. If no $condition was
-    specified, true will be returned.</value>
+#### Outputs:
+
+* `$result?` is the boolean result of the evaluation. If no `$condition`
+  was specified, true will be returned.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

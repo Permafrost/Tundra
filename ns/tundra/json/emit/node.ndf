@@ -184,23 +184,27 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Serializes an IData document as a [JSON] formatted string, byte array, or 
+  <value name="node_comment">### tundra.json:emit
+
+Serializes an IData document as a [JSON] formatted string, byte array, or
 input stream.
 
-* Inputs:
-  * $document is the IData document to be serialized as a [JSON] string, 
-    byte array, or input stream.
+#### Inputs:
 
-  * $encoding is an optional character set to use when encoding the 
-    resulting text data to a byte array or input stream. Defaults to [UTF-8].
+* `$document` is the IData document to be serialized as a [JSON] string,
+  byte array, or input stream.
+* `$encoding` is an optional character set to use when encoding the
+  resulting text data to a byte array or input stream. Defaults to [UTF-8].
+* `$mode` is an optional choice of {stream, bytes, string} which
+  specifies the type of object `$content` is returned as. Defaults to
+  stream.
 
-  * $mode is an optional choice of {stream, bytes, string} which specifies 
-    the type of object $content is returned as. Defaults to stream.
+#### Outputs:
 
-* Outputs:
-  * $content is the resulting serialization of $document as [JSON] content.
+* `$content` is the resulting serialization of `$document` as [JSON]
+  content.
 
-[JSON]: &lt;http://www.json.org&gt;
+[JSON]: &lt;http://www.json.org/&gt;
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>

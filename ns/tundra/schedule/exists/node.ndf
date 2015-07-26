@@ -89,16 +89,22 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns true if a scheduled task with the given $id exists in
+  <value name="node_comment">### tundra.schedule:exists
+
+Returns true if a scheduled task with the given `$id` exists in
 the task scheduler on this Integration Server.
 
-* Inputs:
-  * $id is an optional string identifier.
+#### Inputs:
 
-* Outputs:
-  * $exists? is a boolean indicating if a scheduled task
-    identified by the given $id exists in the task scheduler
-    of this Integration Server.</value>
+* `$id` is an optional string identifier.
+
+#### Outputs:
+
+* `$exists?` is a boolean indicating if a scheduled task
+  identified by the given `$id` exists in the task scheduler
+  of this Integration Server.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

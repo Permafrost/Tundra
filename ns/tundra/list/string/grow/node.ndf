@@ -141,19 +141,25 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Increases the size of the given list by the given count of items, padded 
+  <value name="node_comment">### tundra.list.string:grow
+
+Increases the size of the given list by the given count of items, padded
 with the given item (or null if not specified).
 
-* Inputs:
-  * $list is the String[] list to be grown.
-  * $item is an optional String used to pad the newly grown section of the 
-    list with.
-  * $count is the number of new items to add to the list.
+#### Inputs:
 
-* Outputs:
-  * $list is the String[] list grown by the desired $count of items, 
-    with the original items preserved and the new items padded with $item 
-    (or null if not specified).</value>
+* `$list` is the String[] list to be grown.
+* `$item` is an optional String used to pad the newly grown section of
+  the list with.
+* `$count` is the number of new items to add to the list.
+
+#### Outputs:
+
+* `$list` is the String[] list grown by the desired `$count` of items,
+  with the original items preserved and the new items padded with `$item`
+  (or null if not specified).
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

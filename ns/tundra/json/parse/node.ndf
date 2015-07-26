@@ -112,22 +112,25 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Parses [JSON] content specified as a string, byte array, or input stream
+  <value name="node_comment">### tundra.json:parse
+
+Parses [JSON] content specified as a string, byte array, or input stream
 into an IData document.
 
-* Inputs:
-  * $content is a string, byte array, or input stream containing [JSON] 
-    content to be parsed.
+#### Inputs:
 
-  * $encoding is an optional character set to use when $content is provided 
-    as a byte array or input stream to decode the contained text data. 
-    Defaults to [UTF-8].
+* `$content` is a string, byte array, or input stream containing [JSON]
+  content to be parsed.
+* `$encoding` is an optional character set to use when $content is
+  provided as a byte array or input stream to decode the contained text
+  data. Defaults to [UTF-8].
 
-* Outputs:
-  * $document is the resulting IData document representing the parsed 
-    $content.
+#### Outputs:
 
-[JSON]: &lt;http://www.json.org&gt;
+* `$document` is the resulting IData document representing the parsed
+  `$content`.
+
+[JSON]: &lt;http://www.json.org/&gt;
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>

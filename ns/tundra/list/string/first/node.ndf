@@ -86,12 +86,19 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns the first item from the given list.
+  <value name="node_comment">### tundra.list.string:first
 
-* Inputs:
-  * $list is a list to fetch the first item from.
-* Outputs:
-  * $item is the first item in the given list.</value>
+Returns the first item from the given list.
+
+#### Inputs:
+
+* `$list` is a list to fetch the first item from.
+
+#### Outputs:
+
+* `$item` is the first item in the given list.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

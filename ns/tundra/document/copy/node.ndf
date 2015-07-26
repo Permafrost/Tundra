@@ -126,21 +126,27 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Copies the value associated with the source key to the target key 
+  <value name="node_comment">### tundra.document:copy
+
+Copies the value associated with the source key to the target key
 in the given IData document.
 
-* Inputs:
-  * $document is an IData document in which to copy the value
-    associated with the source key to the target key.
-  * $key.source is a key identifying the value to be copied,
-    and can be simple or fully qualified, such as a/b/c[0]/d.
-  * $key.target is the key to which the source key value is 
-    copied, and can be simple or fully qualified, such as 
-    a/b/c[0]/d.
+#### Inputs:
 
-* Outputs:
-  * $document is the given IData document where the value
-    associated with $key.source has been copied to $key.target.</value>
+* `$document` is an IData document in which to copy the value
+  associated with the source key to the target key.
+* `$key.source` is a key identifying the value to be copied,
+  and can be simple or fully qualified, such as `a/b/c[0]/d`.
+* `$key.target` is the key to which the source key value is
+  copied, and can be simple or fully qualified, such as
+  `a/b/c[0]/d`.
+
+#### Outputs:
+
+* `$document` is the given IData document where the value
+  associated with `$key.source` has been copied to `$key.target`.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

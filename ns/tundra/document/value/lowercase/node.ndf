@@ -189,23 +189,27 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Converts all string values in the given IData document to lower 
+  <value name="node_comment">### tundra.document.value:lowercase
+
+Converts all string values in the given IData document to lower
 case.
 
-* Inputs:
-  * $document is an IData document whose string values are to be
-    converted to lower case.
-  * $locale optionally identifies the case transformation rules 
-    to be used for a given [Locale]. If not specified, the 
-    [default locale] is used.
-  * $recurse? is an optional boolean indicating if embedded
-    IData documents and IData[] document lists should also
-    have their string values converted to lower case. Defaults 
-    to false.
+#### Inputs:
 
-* Outputs:
-  * $document is the given IData document with all string values 
-    converted to lower case.
+* `$document` is an IData document whose string values are to be
+  converted to lower case.
+* `$locale` optionally identifies the case transformation rules
+  to be used for a given [Locale]. If not specified, the
+  [default locale] is used.
+* `$recurse?` is an optional boolean indicating if embedded
+  IData documents and IData[] document lists should also
+  have their string values converted to lower case. Defaults
+  to `false`.
+
+#### Outputs:
+
+* `$document` is the given IData document with all string values
+  converted to lower case.
 
 [Locale]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/Locale.html&gt;
 [default locale]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/Locale.html#getDefault()&gt;</value>

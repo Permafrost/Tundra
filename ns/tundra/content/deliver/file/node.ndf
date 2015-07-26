@@ -5,12 +5,16 @@
   <value name="svc_subtype">default</value>
   <value name="svc_sigtype">java 3.5</value>
   <value name="svc_spec">tundra.schema.content.deliver:handler</value>
-  <value name="node_comment">The file protocol handler for the Tundra/tundra.content:deliver 
-service, which delivers arbitrary content to a file URI 
+  <value name="node_comment">### tundra.content.deliver:file
+
+The file protocol handler for the `Tundra/tundra.content:deliver`
+service, which delivers arbitrary content to a file URI
 destination.
 
-Implements the Tundra/tundra.schema.content.deliver:handler 
-specification.</value>
+Implements the `Tundra/tundra.schema.content.deliver:handler`
+specification.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

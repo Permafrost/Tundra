@@ -188,24 +188,28 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns true if the given file name matches the given 
-regular expression or wildcard pattern. 
+  <value name="node_comment">### tundra.file:match
 
-* Inputs:
-  * $file is the name of the file to be checked against
-    the given pattern, specified as either a relative or 
-    absolute file path or file: [URI].
-  * $pattern is either a regular expression or wildcard
-    pattern, depending on the $mode selected, to check 
-    the file name against
-  * $mode is an optional choice of either 'regex' or 
-    'wildcard' which determines the type of pattern
-    specified. Defaults to 'regex'.
+Returns true if the given file name matches the given
+regular expression or wildcard pattern.
 
-* Outputs:
-  * $match? is a boolean flag indicating if the file name
-    matches the given $pattern. Only the file name is 
-    considered in the match, not the path.
+#### Inputs:
+
+* `$file` is the name of the file to be checked against
+  the given `$pattern`, specified as either a relative or
+  absolute file path or file: [URI].
+* `$pattern` is either a regular expression or wildcard
+  pattern, depending on the `$mode` selected, to check
+  the file name against
+* `$mode` is an optional choice of either 'regex' or
+  'wildcard' which determines the type of pattern
+  specified. Defaults to 'regex'.
+
+#### Outputs:
+
+* `$match?` is a boolean flag indicating if the file name
+  matches the given `$pattern`. Only the file name is
+  considered in the match, not the path.
 
 [URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
   <value name="stateless">no</value>

@@ -100,19 +100,25 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns an optionally recursive clone of the the given IData 
+  <value name="node_comment">### tundra.document:duplicate
+
+Returns an optionally recursive clone of the the given IData
 document.
 
-* Inputs:
-  * $document is an IData document to be cloned.
-  * $recurse? is an optional boolean indicating if embedded
-    IData documents and IData[] document lists should also
-    be cloned. If not cloned, the resulting IData document
-    will reference the same IData and IData[] objects as
-    the input document. Defaults to false.
+#### Inputs:
 
-* Outputs:
-  * $duplicate is the cloned input IData document.</value>
+* `$document` is an IData document to be cloned.
+* `$recurse?` is an optional boolean indicating if embedded
+  IData documents and IData[] document lists should also
+  be cloned. If not cloned, the resulting IData document
+  will reference the same IData and IData[] objects as
+  the input document. Defaults to false.
+
+#### Outputs:
+
+* `$duplicate` is the cloned input IData document.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

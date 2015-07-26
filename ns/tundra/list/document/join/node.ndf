@@ -158,35 +158,37 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Many-to-one conversion of an IData document list to an IData document.
+  <value name="node_comment">### tundra.list.document:join
 
-Calls the given joining service, passing the IData document list 
-as an input, and returning the resulting IData document as output.  
-The joining service must accept an IData document list, and 
+Many-to-one conversion of an IData document list to an IData document.
+
+Calls the given joining service, passing the IData document list
+as an input, and returning the resulting IData document as output.
+The joining service must accept an IData document list, and
 return a single IData document.
 
-* Inputs:
-  * $documents is an IData document list to be joined or 
-    aggregated together into one IData document.
+#### Inputs:
 
-  * $service is the fully-qualified joining service name that is
-    called to join or aggregate the IData document list. This 
-    service must accept an IData[] array, and return a single 
-    IData object.
+* `$documents` is an IData document list to be joined or
+  aggregated together into one IData document.
+* `$service` is the fully-qualified joining service name that is
+  called to join or aggregate the IData document list. This
+  service must accept an IData[] array, and return a single
+  IData object.
+* `$pipeline` is an optional IData document for specifying
+  arbitrary input arguments to the invocation of `$service`.
+* `$service.input` is an optional name to use for the IData
+  document list for the input pipeline of the `$service` invocation.
+  Defaults to $documents.
+* `$service.output` is an optional name to use for the output IData
+  parameter returned by the `$service` invocation. Defaults to
+  $document.
 
-  * $pipeline is an optional IData document for specifying 
-    arbitrary input arguments to the invocation of $service.
+#### Outputs:
 
-  * $service.input is an optional name to use for the IData
-    document list for the input pipeline of the $service invocation.
-    Defaults to $documents.
+* `$document` is the resulting IData document returned by `$service`.
 
-  * $service.output is an optional name to use for the output IData
-    parameter returned by the $service invocation. Defaults to 
-    $document.
-
-* Outputs:
-  * $document is the resulting IData document returned by $service.</value>
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

@@ -98,17 +98,23 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Removes the element with the given key from the given IData document. 
+  <value name="node_comment">### tundra.document:drop
 
-* Inputs:
-  * $document is an IData document from which to remove the element
-    identified by $key.
-  * $key is a key identifying the element in $document to be removed,
-    and can be simple or fully qualified, such as a/b/c[0]/d.
+Removes the element with the given key from the given IData document.
 
-* Outputs:
-  * $document is the given IData document where the element
-    associated with $key has been removed.</value>
+#### Inputs:
+
+* `$document` is an IData document from which to remove the element
+  identified by `$key`.
+* `$key` is a key identifying the element in `$document` to be removed,
+  and can be simple or fully qualified, such as `a/b/c[0]/d`.
+
+#### Outputs:
+
+* `$document` is the given IData document where the element
+  associated with `$key` has been removed.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

@@ -241,218 +241,211 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Delivers arbitrary content specified as a string, byte array, input stream, 
-or IData document to the given destination URI. 
+  <value name="node_comment">### tundra.content:deliver
 
-Additional delivery protocols can be implemented by creating a service named 
-for the URI scheme (with non-alphanumeric characters replaced with 
-underscores) in the folder tundra.content.deliver. Services in this folder 
-should implement the tundra.schema.content.deliver:handler specification.
+Delivers arbitrary content (string, bytes, or input stream) to the given
+destination URI.
 
-* Inputs:
-  * $content is a string, byte array, input stream, or IData document 
-    containing data to be delivered to the $destination URI.
+Additional delivery protocols can be implemented by creating a service
+named for the URI scheme in the folder `Tundra/tundra.content.deliver`.
+Services in this folder should implement the
+`Tundra/tundra.schema.content.deliver:handler` specification.
 
-    If $content is provided as an IData document, it will be serialized 
-    using an emitter determined in order of precedence by $schema and 
-    $content.type. If $schema is specified, the type of reference determines 
-    the emitter to use: a document reference will use the XML emitter, a 
-    flat file schema reference will use the Flat File emitter. If $schema is 
-    not specified, $content.type is used to determine the most appropriate 
-    emitter for the MIME media type in question. If neither $schema, nor
-    $content.type are specified, $content is serialized as XML by default.
+#### Inputs:
 
-    Emitter implementions are as follows:
-    * [CSV]: Tundra/tundra.csv:emit
-    * Flat File: WmFlatFile/pub.flatFile:convertToString
-    * [JSON]: Tundra/tundra.json:emit
-    * Pipe separated values: Tundra/tundra.csv:emit
-    * [TSV]: Tundra/tundra.csv:emit
-    * [XML]: WmPublic/pub.xml:documentToXMLString
-    * [YAML]: Tundra/tundra.yaml:emit
+* `$content` is a string, byte array, or input stream containing data to
+  be delivered to the `$destination` URI.
 
-  * $namespace is a list of namespace prefixes and the URIs they map to,
-    used when emitting and IData document as [XML] content with elements 
-    in one or more namespaces.
+  If `$content` is provided as an IData document, it will be serialized
+  using an emitter determined in order of precedence by `$schema` and
+  `$content.type`. If `$schema` is specified, the type of reference
+  determines the emitter to use: a document reference will use the XML
+  emitter, a flat file schema reference will use the Flat File emitter.
+  If `$schema` is not specified, `$content.type` is used to determine
+  the most appropriate emitter for the MIME media type in question. If
+  neither `$schema`, nor `$content.type` are specified, `$content` is
+  serialized as XML by default.
 
-  * $content.type is the MIME media type that describes the format of the 
-    given content: 
-    * [CSV]: specify a recognized [CSV] MIME media type, such as "text/csv", 
-      "text/comma-separated-values", or a type that includes a "+csv" 
-      suffix.
-    * Flat File: optionally specify any MIME media type.
-    * [JSON]: specify a recognized [JSON] MIME media type, such as 
-      "application/json", or a type that includes a "+json" suffix.
-    * Pipe separated values: specify a MIME media type "text/psv",
-      "text/pipe-separated-values", or a type that includes a "+psv" suffix.
-    * [TSV]: specify a recognized [TSV] MIME media type, such as "text/tsv", 
-      "text/tab-separated-values", or a type that includes a "+tsv" suffix.
-    * [YAML]: specify a recognized [YAML] MIME media type, such as
-      "application/yaml", or a type that includes a "+yaml" suffix.
-    * [XML]: optionally specify a recognized [XML] MIME media type, such as 
-      "text/xml" or "application/xml", or a type that includes a "+xml" 
-      suffix.
+  Emitter implementions are as follows:
+  * [CSV]: `Tundra/tundra.csv:emit`
+  * Flat File: `WmFlatFile/pub.flatFile:convertToString`
+  * [JSON]: `Tundra/tundra.json:emit`
+  * Pipe separated values: `Tundra/tundra.csv:emit`
+  * [TSV]: `Tundra/tundra.csv:emit`
+  * [XML]: `WmPublic/pub.xml:documentToXMLString`
+  * [YAML]: `Tundra/tundra.yaml:emit`
+* $content.type is the MIME media type that describes the format of the
+  given content:
+  * [CSV]: specify a recognized [CSV] MIME media type, such as
+    "text/csv", "text/comma-separated-values", or a type that includes a
+    "+csv" suffix.
+  * Flat File: optionally specify any MIME media type.
+  * [JSON]: specify a recognized [JSON] MIME media type, such as
+    "application/json", or a type that includes a "+json" suffix.
+  * Pipe separated values: specify a MIME media type "text/psv",
+    "text/pipe-separated-values", or a type that includes a "+psv"
+    suffix.
+  * [TSV]: specify a recognized [TSV] MIME media type, such as
+    "text/tsv", "text/tab-separated-values", or a type that includes a
+    "+tsv" suffix.
+  * [YAML]: specify a recognized [YAML] MIME media type, such as
+    "application/yaml", or a type that includes a "+yaml" suffix.
+  * [XML]: optionally specify a recognized [XML] MIME media type, such as
+    "text/xml" or "application/xml", or a type that includes a "+xml"
+    suffix.
+* `$namespace` is a list of namespace prefixes and the URIs they map to,
+  used when emitting and IData document as [XML] content with elements
+  in one or more namespaces.
+* `$schema` is the fully-qualified name of the parsing schema to use to
+  serialize `$content` (when provided as an IData document) to [XML] or
+  Flat File content, and can have the following values:
+  * [CSV]: do not specify.
+  * Flat File: specify the fully-qualified name of the Integration Server
+    Flat File Schema element that defines the Flat File format.
+  * [JSON]: do not specify.
+  * Pipe separated values: do not specify.
+  * [TSV]: do not specify.
+  * [YAML]: do not specify.
+  * [XML]: specify the fully-qualified name of the document reference
+    that defines the [XML] format.
 
-  * $schema is the fully-qualified name of the parsing schema to use to
-    serialize $content (when provided as an IData document) to [XML] or 
-    Flat File content, and can have the following values:
-    * [CSV]: do not specify.
-    * Flat File: specify the fully-qualified name of the Integration Server 
-      Flat File Schema element that defines the Flat File format.
-    * [JSON]: do not specify.
-    * Pipe separated values: do not specify.
-    * [TSV]: do not specify.
-    * [YAML]: do not specify.
-    * [XML]: specify the fully-qualified name of the document reference that 
-      defines the [XML] format.
+  Defaults to serializing `$content` as [XML], if neither `$content.type`
+  nor `$schema` are specified.
+* `$encoding` is an optional character set to use when `$content` is
+  provided as a string or IData document used to encode the text data
+  upon delivery. Defaults to [UTF-8].
+* `$destination` is a URI identifying the location where the given
+  `$content` should be delivered. If not specified, no delivery will be
+  attempted. Supports the following delivery protocols / URI schemes:
+  * `file`: writes the given content to the file specified by the
+    destination URI. The following additional options can be provided via
+    the `$pipeline` document:
+    * `$mode`: append / write
+  * `ftp`: uploads the given content to the FTP server, directory and
+    file specified by the destination URI. An example FTP URI is as
+    follows:
 
-    Defaults to serializing $content as [XML], if neither $content.type nor 
-    $schema are specified.
+        ftp://aladdin:opensesame@example.com:21/path/file?append=true&amp;active=true&amp;ascii=true
 
-  * $encoding is an optional character set to use when $content is provided 
-    as a string or IData document used to encode the text data upon 
-    delivery. Defaults to [UTF-8].
+    The following additional options can be provided via the `$pipeline`
+    document:
+    * `$user` is the username used to log in to the FTP server. Defaults
+      to the username specified in the authority section of the URI, if
+      not specified.
+    * `$password` is the password used to log in to the FTP server.
+      Defaults to the password specified in the authority section of the
+      URI, if not specified.
+    * `$active` is a boolean which when true indicates that the
+      connection to the FTP server should be in active mode. Defaults to
+      false (passive mode), if not specified.
+    * `$append` is a boolean which when true will append the given
+      content to the file, rather than overwrite it, if the file already
+      exists. Defaults to false (overwriting), if not specified.
+    * `$ascii` is a boolean which when true indicates that the file
+      transfer should be made in ascii mode. Defaults to false (binary
+      mode), if not specified.
+    * `$timeout` is an optional XML duration string which specifies how
+      long the client waits for a response from the server before timing
+      out and terminating the request with an error. Defaults to PT60S,
+      if not specified.
+  * `ftps`: refer to `ftp`
+  * `http`: transmits the given content to the destination URI. The
+    following additional options can be provided via the `$pipeline`
+    document:
+    * `$method`: get / put / post / delete / head / trace / options
+    * `$headers/*`: additional HTTP headers as required
+    * `$authority/user`: the username to log on to the remote web server
+    * `$authority/password`: the password to log on to the remote web
+      server
+    * `$timeout` is an optional XML duration string which specifies how
+      long the client waits for a response from the server before timing
+      out and terminating the request with an error. Defaults to PT60S,
+      if not specified.
+  * `https`: refer to `http`
+  * `jms`: sends the given content as a [JMS] [javax.jms.BytesMessage] to
+    the specified [JMS] alias and queue or topic. The following
+    additional settings can be specified:
+    * $headers/*: additional properties to be added to the [JMS] message
+      header, which can be used for filtering by [JMS] subscribers.
 
-  * $destination is a URI identifying the location where the given $content 
-    should be delivered. If not specified, no delivery will be attempted.
+    The following example will deliver the given content as a [JMS] bytes
+    message to the JMS alias DEFAULT_IS_JMS_CONNECTION, [JMS] topic
+    JMS::Temporary::Topic, with a time to live of 1 day, and with the
+    default priority of 4:
 
-    Supports the following delivery protocols / URI schemes:
-    * file: writes the given content to the file specified by the 
-      destination URI. The following additional options can be provided via 
-      the $pipeline document:
-      * $mode: append / write
+        jms://DEFAULT_IS_JMS_CONNECTION?topic=JMS::Temporary::Topic&amp;lifetime=P1D
 
-    * ftp: uploads the given content to the FTP server, directory and file 
-      specified by the destination URI. An example FTP URI is as follows:
+    The following example will deliver the given content as a [JMS] bytes
+    message to the [JMS] alias DEFAULT_IS_JMS_CONNECTION, [JMS] queue
+    JMS::Temporary::Queue, with no expiry, and with the specified
+    priority of 1:
 
-          ftp://aladdin:opensesame@example.com:21/path/file?append=true&amp;active=true&amp;ascii=true
+        jms://DEFAULT_IS_JMS_CONNECTION?queue=JMS::Temporary::Queue&amp;priority=1
+  * `mailto`: sends an email with the given content attached. An example
+    mailto URI is as follows:
 
-      The following additional options can be provided via the $pipeline 
-      document:
-      * $user is the username used to log in to the FTP server. Defaults to 
-        the username specified in the authority section of the URI, if not 
-        specified.
-      * $password is the password used to log in to the FTP server. Defaults 
-        to the password specified in the authority section of the URI, if 
-        not specified.
-      * $active is a boolean which when true indicates that the connection 
-        to the FTP server should be in active mode. Defaults to false 
-        (passive mode), if not specified.
-      * $append is a boolean which when true will append the given content 
-        to the file, rather than overwrite it, if the file already exists. 
-        Defaults to false (overwriting), if not specified.
-      * $ascii is a boolean which when true indicates that the file transfer 
-        should be made in ascii mode. Defaults to false (binary mode), if 
-        not specified.
-      * $timeout is an optional XML duration string which specifies how long 
-        the client waits for a response from the server before timing out 
-        and terminating the request with an error. Defaults to PT60S, if not 
-        specified.
+        mailto:bob@example.com?cc=jane@example.com&amp;subject=Example&amp;body=Example&amp;attachment=message.xml
 
-    * ftps: refer to ftp
+    The following additional override options can be provided via the
+    `$pipeline` document:
+    * `$attachment`: the attached file's name
+    * `$from`: email address to send the email from
+    * `$subject`: the subject line text
+    * `$body`: the main text of the email
+    * `$smtp`: an SMTP URI specifying the SMTP server to use (for
+      example, `smtp://user:password@host:port`), defaults to the SMTP
+      server configured in the Integration Server setting
+      `watt.server.smtpServer`.
+  * `sap+idoc`: sends an IDoc XML message to an SAP system. Both opaque
+    and non-opaque URIs are allowed: opaque URIs are useful if the SAP
+    Adapter alias contains characters not permitted in a normal domain
+    name, such as underscores.
 
-    * http: transmits the given content to the destination URI. The 
-      following additional options can be provided via the $pipeline 
-      document:
-      * $method: get / put / post / delete / head / trace / options
-      * $headers/*: additional HTTP headers as required
-      * $authority/user: the username used to log on to the remote web server
-      * $authority/password: the password used to log on to the remote web 
-        server 
-      * $timeout is an optional XML duration string which specifies how long 
-        the client waits for a response from the server before timing out 
-        and terminating the request with an error. Defaults to PT60S, if not 
-        specified.
+    An example opaque sap+idoc URI is as follows, where sap_r3 is the
+    SAP Adapter alias name, and the user and password are provided as
+    query string parameters:
 
-    * https: refer to http
+        sap+idoc:sap_r3?user=aladdin&amp;password=opensesame&amp;client=200&amp;language=en&amp;queue=xyz
 
-    * jms: sends the given content as a [JMS] [javax.jms.BytesMessage] to 
-      the specified [JMS] alias and queue or topic. The following additional 
-      settings can be specified:
-      * $headers/*: additional properties to be added to the [JMS] message 
-        header, which can be used for filtering by [JMS] subscribers.
+    An example non-opaque sap+idoc URI is as follows, where sappr3 is the
+    SAP Adapter alias name, and the user and password are provided in the
+    authority section of the URI:
 
-      The following example will deliver the given content as a [JMS] bytes 
-      message to the [JMS] alias DEFAULT_IS_JMS_CONNECTION, [JMS] topic 
-      JMS::Temporary::Topic, with a time to live of 1 day, and with the 
-      default priority of 4:
+        sap+idoc://aladdin:opensesame@sappr3?client=200&amp;language=en&amp;queue=xyz
 
-          jms://DEFAULT_IS_JMS_CONNECTION?topic=JMS::Temporary::Topic&amp;lifetime=P1D
+    The following additional override options can be provided via the
+    `$pipeline` document, and if specified will overrided the relevant
+    parts of the destination URI:
+    * `$user` is the username used for the SAP session. Defaults to the
+      SAP Adapter alias username, if not specified.
+    * `$password` is the password used for the SAP session. Defaults to
+      the SAP Adapter alias password, if not specified.
+    * `$client` is the SAP client used for the SAP session. Defaults to
+      the SAP Adapter alias client, if not specified.
+    * `$language` is the language used for the SAP session. Defaults to
+      the SAP Adapter alias language, if not specified.
+    * `$queue` is the optional name of the SAP system inbound queue,
+      required when using queued remote function calls (qRFC).
+* `$pipeline` is an optional IData document for providing arbitrary
+  variables to the delivery implementation service.
 
-      The following example will deliver the given content as a [JMS] bytes 
-      message to the [JMS] alias DEFAULT_IS_JMS_CONNECTION, [JMS] queue 
-      JMS::Temporary::Queue, with no expiry, and with the specified priority 
-      of 1: 
+#### Outputs:
 
-          jms://DEFAULT_IS_JMS_CONNECTION?queue=JMS::Temporary::Queue&amp;priority=1
-
-    * mailto: sends an email with the given content attached. An example 
-      mailto URI is as follows: 
-      
-          mailto:bob@example.com?cc=jane@example.com&amp;subject=Example&amp;body=Example&amp;attachment=message.xml
-      
-      The following additional override options can be provided via the 
-      $pipeline document:
-      * $attachment: the attached file's name
-      * $from: email address to send the email from
-      * $subject: the subject line text
-      * $body: the main text of the email
-      * $smtp: an SMTP URI specifying the SMTP server to use (for example, 
-        smtp://user:password@host:port), defaults to the SMTP server 
-        configured in the Integration Server setting watt.server.smtpServer.
-
-    * sap+idoc: sends an IDoc XML message to an SAP system. Both opaque 
-      and non-opaque URIs are allowed: opaque URIs are useful if the SAP 
-      Adapter alias contains characters not permitted in a normal domain 
-      name, such as underscores.
-
-      An example opaque sap+idoc URI is as follows, where sap_r3 is the 
-      SAP Adapter alias name, and the user and password are provided as 
-      query string parameters:
-
-          sap+idoc:sap_r3?user=aladdin&amp;password=opensesame&amp;client=200&amp;language=en&amp;queue=xyz
-
-      An example non-opaque sap+idoc URI is as follows, where sappr3 is the 
-      SAP Adapter alias name, and the user and password are provided in the 
-      authority section of the URI:
-
-          sap+idoc://aladdin:opensesame@sappr3?client=200&amp;language=en&amp;queue=xyz
-
-      The following additional override options can be provided via the 
-      $pipeline document, and if specified will overrided the relevant 
-      parts of the destination URI:
-      * $user is the username used for the SAP session. Defaults to the 
-        SAP Adapter alias username, if not specified.
-      * $password is the password used for the SAP session. Defaults to 
-        the SAP Adapter alias password, if not specified.
-      * $client is the SAP client used for the SAP session. Defaults to 
-        the SAP Adapter alias client, if not specified.
-      * $language is the language used for the SAP session. Defaults to 
-        the SAP Adapter alias language, if not specified.
-      * $queue is the optional name of the SAP system inbound queue, 
-        required when using queued remote function calls (qRFC).
-
-  * $pipeline is an optional IData document for providing arbitrary 
-    variables to the delivery implementation service.
-
-* Outputs:
-  * $message is an optional response message, useful for logging, that may 
-    be returned by specific delivery protocols.
-
-  * $response is an optional response content returned by the delivery (for 
-    example, the HTTP response body).
-
-  * $response.type is an optional MIME media type describing the type of 
-    $response returned.
+* `$message` is an optional response message, useful for logging, that
+  may be returned by specific delivery protocols.
+* `$response` is an optional response content returned by the delivery
+  (for example, the HTTP response body).
+* `$response.type` is an optional MIME media type describing the type of
+  `$response` returned.
 
 [CSV]: &lt;http://en.wikipedia.org/wiki/Comma-separated_values&gt;
-[javax.jms.BytesMessage]: &lt;http://docs.oracle.com/javaee/1.4/api/javax/jms/BytesMessage.html&gt;
 [JMS]: &lt;http://en.wikipedia.org/wiki/Java_Message_Service&gt;
-[JSON]: &lt;http://www.json.org&gt;
+[JSON]: &lt;http://www.json.org/&gt;
 [TSV]: &lt;http://en.wikipedia.org/wiki/Tab-separated_values&gt;
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;
 [XML]: &lt;http://www.w3.org/XML/&gt;
-[YAML]: &lt;http://www.yaml.org&gt;</value>
+[YAML]: &lt;http://www.yaml.org&gt;
+[javax.jms.BytesMessage]: &lt;http://docs.oracle.com/javaee/1.4/api/javax/jms/BytesMessage.html&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

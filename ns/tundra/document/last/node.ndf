@@ -95,17 +95,23 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns the last key value pair from the given IData document.
+  <value name="node_comment">### tundra.document:last
 
-* Inputs:
-  * $document is an IData document from which to fetch the last
-    element.
+Returns the last key value pair from the given IData document.
 
-* Outputs:
-  * $key is the key of the last element in the given IData 
-    document.
-  * $value is the value of the last element in the given IData
-    document.</value>
+#### Inputs:
+
+* `$document` is an IData document from which to fetch the last
+  element.
+
+#### Outputs:
+
+* `$key` is the key of the last element in the given IData
+  document.
+* `$value` is the value of the last element in the given IData
+  document.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

@@ -76,14 +76,21 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns an string representation of the given decimal object.
+  <value name="node_comment">### tundra.decimal:emit
 
-* Inputs:
-  * $object is either a java.math.BigDecimal, java.math.BigInteger,
-    java.lang.Double, java.lang.Float, java.lang.Integer, or 
-    java.lang.Long object.
-* Outputs:
-  * $string is the resulting string representation of the decimal.</value>
+Returns an string representation of the given decimal object.
+
+#### Inputs:
+
+* `$object` is either a `java.math.BigDecimal`, `java.math.BigInteger`,
+  `java.lang.Double`, `java.lang.Float`, `java.lang.Integer`, or
+  `java.lang.Long` object.
+
+#### Outputs:
+
+* `$string` is the resulting string representation of the decimal.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

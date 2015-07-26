@@ -100,18 +100,24 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Removes all null values from the given IData document.
+  <value name="node_comment">### tundra.document:compact
 
-* Inputs:
-  * $document is an IData document from which null values are
-    to be removed.
-  * $recurse? is an optional boolean indicating if embedded
-    IData documents and IData[] document lists should also
-    be compacted. Defaults to false.
+Removes all null values from the given IData document.
 
-* Outputs:
-  * $document is the given IData document with all null values
-    removed.</value>
+#### Inputs:
+
+* `$document` is an IData document from which null values are
+  to be removed.
+* `$recurse?` is an optional boolean indicating if embedded
+  IData documents and IData[] document lists should also
+  be compacted. Defaults to false.
+
+#### Outputs:
+
+* `$document` is the given IData document with all null values
+  removed.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

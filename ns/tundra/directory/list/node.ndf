@@ -304,27 +304,31 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Lists a directory, optionally filtering based on the given pattern, 
-which can be either a regular expression (for example, "\w+\.\w+") 
-or a wildcard expression (for example, "*.txt"), depending on the 
+  <value name="node_comment">### tundra.directory:list
+
+Lists a directory, optionally filtering based on the given pattern,
+which can be either a regular expression (for example, "\w+\.\w+")
+or a wildcard expression (for example, "*.txt"), depending on the
 selected mode.
 
-* Inputs:
-  * $directory is a relative or absolute path or file: [URI] to be
-    listed.
-  * $pattern is either an optional regular expression pattern, or 
-    wildcard file glob pattern (depending on the $mode selected), used
-    to filter the resulting listings.
-  * $mode is an optional choice if either 'regex' or 'wildcard', which 
-    determines the type of $pattern specified. Defaults to 'regex'.
-  * $recurse? is an optional boolean flag indicating if subdirectories
-    should also be listed recursively. Defaults to false.
+#### Inputs:
 
-* Outputs:
-  * $directories is a string list of all subdirectories, optionally filtered
-    to only those items whose name match the given $pattern.
-  * $files is a string list of all files in the given $directory, optionally 
-    filtered to only those items whose name match the given $pattern.
+* `$directory` is a relative or absolute path or file: [URI] to be
+  listed.
+* `$pattern` is either an optional regular expression pattern, or
+  wildcard file glob pattern (depending on the `$mode` selected), used
+  to filter the resulting directory listing.
+* `$mode` is an optional choice if either 'regex' or 'wildcard', which
+  determines the type of `$pattern` specified. Defaults to 'regex'.
+* `$recurse?` is an optional boolean flag indicating if subdirectories
+  should also be listed recursively. Defaults to false.
+
+#### Outputs:
+
+* `$directories` is a list of all subdirectories, optionally filtered
+  to only those items whose name match the given `$pattern`.
+* `$files` is a list of all files in the given `$directory`, optionally
+  filtered to only those items whose name match the given `$pattern`.
 
 [URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
   <value name="stateless">no</value>

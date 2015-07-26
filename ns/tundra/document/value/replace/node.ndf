@@ -174,31 +174,35 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Replaces all occurrences of the given [regular expression pattern] 
-in each string value in the given IData document with the replacement 
+  <value name="node_comment">### tundra.document.value:replace
+
+Replaces all occurrences of the given [regular expression pattern]
+in each string value in the given IData document with the replacement
 string.
 
-* Inputs:
-  * $document is an IData document to have all occurrences of the 
-    given [regular expression pattern] in each string value replaced.
-  * $pattern is the [regular expression pattern] to match against
-    each string value.
-  * $replacement is the replacement string to be substituted in
-    each string value wherever the given pattern is found.
-  * $literal? is a boolean indicating if the replacement string
-    should be treated as a literal string. If false, captured
-    groups can be referred to with dollar-sign references, such
-    as $1, and other special characters may need to be escaped.
-    Defaults to false.
-  * $recurse? is an optional boolean indicating if embedded
-    IData documents and IData[] document lists should also
-    have occurrences of the pattern in their string values 
-    replaced. Defaults to false.
+#### Inputs:
 
-* Outputs:
-  * $document is the given IData document with all occurrences of 
-    the given [regular expression pattern] in each string value 
-    replaced with $replacement.
+* `$document` is an IData document to have all occurrences of the
+  given [regular expression pattern] in each string value replaced.
+* `$pattern` is the [regular expression pattern] to match against
+  each string value.
+* `$replacement` is the replacement string to be substituted in
+  each string value wherever the given pattern is found.
+* `$literal?` is a boolean indicating if the replacement string
+  should be treated as a literal string. If false, captured
+  groups can be referred to with dollar-sign references, such
+  as $1, and other special characters may need to be escaped.
+  Defaults to false.
+* `$recurse?` is an optional boolean indicating if embedded
+  IData documents and IData[] document lists should also
+  have occurrences of the pattern in their string values
+  replaced. Defaults to `false`.
+
+#### Outputs:
+
+* `$document` is the given IData document with all occurrences of
+  the given [regular expression pattern] in each string value
+  replaced with `$replacement`.
 
 [regular expression pattern]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html&gt;</value>
   <value name="stateless">no</value>

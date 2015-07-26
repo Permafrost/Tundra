@@ -88,14 +88,20 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns all the lines in the given string as a list.
+  <value name="node_comment">### tundra.string:lines
 
-* Inputs:
-  * $string is an optional string to split into lines.
+Returns all the lines in the given string as a list.
 
-* Outputs:
-  * $lines is a string list containing each line from
-    the given string.</value>
+#### Inputs:
+
+* `$string` is an optional string to split into lines.
+
+#### Outputs:
+
+* `$lines` is a string list containing each line from
+  the given string.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

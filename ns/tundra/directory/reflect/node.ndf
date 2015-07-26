@@ -226,25 +226,27 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns useful details about the given directory.
+  <value name="node_comment">### tundra.directory:reflect
 
-* Inputs:
-  * $directory is the name of the directory to return details about, specified as 
-    either a relative or absolute file path or file: [URI].
+Returns useful details about the given directory.
 
-* Outputs:
-  * $directory.properties is an IData document containing the following details 
-    about the given $directory:
-    * exists? is a boolean flag indicating if the given directory exists.
+#### Inputs:
 
-    * parent is the canonical file: [URI] that represents the parent 
-      directory that contains the given directory.
+* `$directory` is the name of the directory to return details about,
+  specified as either a relative or absolute file path or file: [URI].
 
-    * name is the name component not including the path of the given directory.
+#### Outputs:
 
-    * modified is the last modified datetime of the given directory.
-
-    * uri is the canonical file: [URI] that represents the given directory.
+* `$directory.properties` is an IData document containing the following
+  details about the given `$directory`:
+  * `exists?` is a boolean flag indicating if the given directory exists.
+  * `parent` is the canonical file: [URI] that represents the parent
+    directory that contains the given directory.
+  * `name` is the name component not including the path of the given
+    directory.
+  * `modified` is the last modified datetime of the given directory.
+  * `uri` is the canonical file: [URI] that represents the given
+    directory.
 
 [URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
   <value name="stateless">no</value>

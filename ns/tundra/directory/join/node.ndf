@@ -117,15 +117,19 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns a new file path [URI], given a parent path and a child path 
+  <value name="node_comment">### tundra.directory:join
+
+Returns a new file path [URI], given a parent path and a child path
 or file name.
 
-* Inputs:
-  * $parent is a string specifying a relative or absolute parent path.
-  * $child is a string specifying a relative child path or file name.
+#### Inputs:
 
-* Outputs:
-  * $uri is a file: [URI] representing the path $parent/$child.
+* `$parent` is a string specifying a relative or absolute parent path.
+* `$child` is a string specifying a relative child path or file name.
+
+#### Outputs:
+
+* `$uri` is a file: [URI] representing the path `$parent`/`$child`.
 
 [URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
   <value name="stateless">no</value>

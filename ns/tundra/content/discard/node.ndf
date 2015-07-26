@@ -4,13 +4,16 @@
   <value name="svc_type">flow</value>
   <value name="svc_subtype">default</value>
   <value name="svc_sigtype">java 3.5</value>
-  <value name="node_comment">Receives arbitrary (XML or flat file) content and then discards it (does 
-nothing with it). This is the Tundra equivalent of Unix's [/dev/null][1], 
-which is useful for successfully receiving messages that do not need to be 
-saved or processed. This service is intended to be invoked by clients via 
-HTTP or FTP.
+  <value name="node_comment">### tundra.content:discard
 
-[1]: &lt;http://en.wikipedia.org/wiki//dev/null&gt;</value>
+Receives arbitrary (XML or flat file) content and then discards it (does
+nothing with it). This is the Tundra equivalent of Unix's [/dev/null],
+which is useful for successfully receiving messages that do not need to be
+saved or processed.
+
+This service is intended to be invoked by clients via HTTP or FTP.
+
+[/dev/null]: &lt;http://en.wikipedia.org/wiki//dev/null&gt;</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

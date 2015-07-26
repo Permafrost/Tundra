@@ -173,30 +173,34 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns a new list created by invoking the given service for each 
-item in the input list, passing $item, $index, $iteration and 
-$length variables, and collecting the values returned by the service
+  <value name="node_comment">### tundra.list.document:map
+
+Returns a new list created by invoking the given service for each
+item in the input list, passing `$item`, `$index`, `$iteration` and
+`$length` variables, and collecting the values returned by the service
 to form the new list.
 
 This is an implementation of a higher-order [map function] for
-object lists.
+document lists.
 
-* Inputs:
-  * $list is a list to be iterated over.
-  * $service is a fully-qualified service name identifying the
-    service to be invoked to process each item in the list.
-  * $pipeline is an optional IData document containing arbitrary
-    input arguments used when invoking $service.
-  * $item.input is an optional variable name used when passing each
-    item in the list to the invocation of $service. Defaults to
-    $item.
-  * $item.output is an optional variable name used when extracting
-    the resulting item from the invocation of $service. Defaults to
-    $item.
+#### Inputs:
 
-* Outputs:
-  * $list is the newly constructed list containing the returned
-    items from invoking $service for each input list item.
+* `$list` is a list to be iterated over.
+* `$service` is a fully-qualified service name identifying the
+  service to be invoked to process each item in the list.
+* `$pipeline` is an optional IData document containing arbitrary
+  input arguments used when invoking `$service`.
+* `$item.input` is an optional variable name used when passing each
+  item in the list to the invocation of `$service`. Defaults to
+  $item.
+* `$item.output` is an optional variable name used when extracting
+  the resulting item from the invocation of `$service`. Defaults to
+  $item.
+
+#### Outputs:
+
+* `$list` is the newly constructed list containing the returned
+  items from invoking `$service` for each input list item.
 
 [map function]: &lt;http://en.wikipedia.org/wiki/Map_(higher-order_function)&gt;</value>
   <value name="stateless">no</value>

@@ -198,21 +198,25 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Subtracts one duration (x) from another (y), returning (x - y).
+  <value name="node_comment">### tundra.duration:subtract
 
-* Inputs:
-  * $duration.x is a duration string to subtract $duration.y from.
-  * $duration.y is a duration string to be subtracted from 
-    $duration.x.
-  * $pattern.input is an optional pattern describing the type of 
-    duration specified by the $duration.x and $duration.y strings. 
-    Defaults to an [ISO8601] XML string.
-  * $pattern.output is an optional desired pattern used to format the
-    returned $duration string. Defaults to an [ISO8601] XML string.
+Subtracts one duration (x) from another (y), returning (x - y).
 
-* Outputs:
-  * $duration is a duration string equal to ($duration.x - 
-    $duration.y), and formatted according to $pattern.output.
+#### Inputs:
+
+* `$duration.x` is a duration string to subtract `$duration.y` from.
+* `$duration.y` is a duration string to be subtracted from
+  `$duration.x`.
+* `$pattern.input` is an optional pattern describing the type of
+  duration specified by the `$duration.x` and `$duration.y` strings.
+  Defaults to an [ISO8601] XML string.
+* `$pattern.output` is an optional desired pattern used to format the
+  returned `$duration` string. Defaults to an [ISO8601] XML string.
+
+#### Outputs:
+
+* `$duration` is a duration string equal to (`$duration.x` - `$duration.y`),
+  and formatted according to `$pattern.output`.
 
 [ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;</value>
   <value name="stateless">no</value>

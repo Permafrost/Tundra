@@ -362,23 +362,30 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Exception handling $catch services called by tundra.service:ensure can 
+  <value name="node_comment">### tundra.schema.exception:handler
+
+Exception handling `$catch` services called by `tundra.service:ensure` can
 implement this specification.
 
-* Inputs:
-  * $exception is the java.lang.Throwable object that was caught by this 
-    handler to be handled.
-  * $exception? is a Boolean flag indicating if an exception was thrown.
-  * $exception.class is the Java class name of the caught $exception object.
-  * $exception.message is the exception message describing the error that has 
-    occurred.
-  * $exception.service is the fully qualified name of the service that threw
-    the exception.
-  * $exception.package is the package that $exception.service resides in, 
-    specified only if $exception.service exists.
-  * $exception.info is the exception information returned by 
-    WmPublic/pub.flow:getLastError.
-  * $exception.stack is the Java call stack describing where the error occurred.</value>
+#### Inputs:
+
+* `$exception` is the [java.lang.Throwable] object that was caught by
+  this handler to be handled.
+* `$exception?` is a boolean flag indicating if an exception was thrown.
+* `$exception.class` is the Java class name of the caught exception
+  object.
+* `$exception.message` is the exception message describing the error
+  that has occurred.
+* `$exception.service` is the fully qualified name of the service that threw
+  the exception.
+* `$exception.package` is the package that `$exception.service` resides in,
+  specified only if `$exception.service` exists.
+* `$exception.info` is the exception information returned by
+  `WmPublic/pub.flow:getLastError`.
+* `$exception.stack` is the Java call stack describing where the error
+  occurred.
+
+[java.lang.Throwable]: &lt;http://docs.oracle.com/javase/6/docs/api/java/lang/Throwable.html&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

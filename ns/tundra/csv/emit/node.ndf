@@ -207,30 +207,29 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Serializes an IData document containing a list of records as a [CSV] 
+  <value name="node_comment">### tundra.csv:emit
+
+Serializes an IData document containing a list of records as a [CSV]
 formatted string, byte array, or input stream.
 
-* Inputs:
-  * $document is the IData document containing a list of records to 
-    be serialized as a [CSV] string, byte array, or input stream.
-    * recordWithNoID is the IData[] document list of records to be
-      serialized.
+#### Inputs:
 
-  * $delimiter is the character to use to delimit fields in the 
-    resulting serialization. Defaults to ',' (comma), if not 
-    specified.
+* `$document` is the IData document containing a list of records to be
+  serialized as a [CSV] string, byte array, or input stream.
+  * `recordWithNoID` is the IData[] document list of records to be
+    serialized.
+* `$delimiter` is the character to use to delimit fields in the resulting
+  serialization. Defaults to ',' (comma), if not specified.
+* `$encoding` is an optional character set to use when encoding the
+  resulting text data to a byte array or input stream. Defaults to [UTF-8].
+* `$mode` is an optional choice of {stream, bytes, string} which
+  specifies the type of object `$content` is returned as. Defaults to
+  stream.
 
-  * $encoding is an optional character set to use when encoding the 
-    resulting text data to a byte array or input stream. Defaults to 
-    [UTF-8].
+#### Outputs:
 
-  * $mode is an optional choice of stream, bytes, or string which 
-    specifies the type of object $content is returned as. Defaults 
-    to stream.
-
-* Outputs:
-  * $content is the resulting serialization of the records in 
-    $document as [CSV] content.
+* `$content` is the resulting serialization of the records in `$document`
+  as [CSV] content.
 
 [CSV]: &lt;http://en.wikipedia.org/wiki/Comma-separated_values&gt;
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;</value>

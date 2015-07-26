@@ -59,11 +59,16 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns the number of top-level elements in the pipeline.
+  <value name="node_comment">### tundra.pipeline:length
 
-* Outputs:
-  * $length is the number of top-level elements in the 
-    pipeline.</value>
+Returns the number of top-level elements in the pipeline.
+
+#### Outputs:
+
+* `$length` is the number of top-level elements in the
+  pipeline.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

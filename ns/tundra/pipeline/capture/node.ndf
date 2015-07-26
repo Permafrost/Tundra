@@ -48,12 +48,16 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Clones the pipeline and returns it.  This is useful if you want 
-to use the pipeline itself as a document, which you can then pass 
+  <value name="node_comment">### tundra.pipeline:capture
+
+Clones the pipeline and returns it.  This is useful if you want
+to use the pipeline itself as a document, which you can then pass
 as input when calling a service for example.
 
-* Outputs:
-  * $pipeline is the captured pipeline as an IData document.
+#### Outputs:
+
+* `$pipeline` is the captured pipeline as an IData document.
+
 </value>
   <value name="stateless">no</value>
   <value name="caching">no</value>

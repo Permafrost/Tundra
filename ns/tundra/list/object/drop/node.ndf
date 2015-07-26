@@ -93,19 +93,25 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Removes the item stored at a given index in the given list. 
+  <value name="node_comment">### tundra.list.object:drop
 
-* Inputs:
-  * $list is a list to remove the item from.
-  * $index is an integer identifying which item to be removed from
-    the given list. List indexing is zero-based. Supports both
-    forward and reverse indexing (where, for example, an index of 
-    -1 is the last item in the list, and an index of -2 is the 
-    second last item in the list).
+Removes the item stored at a given index in the given list.
 
-* Outputs:
-  * $list is the given list with the item identified by the given
-    index removed.</value>
+#### Inputs:
+
+* `$list` is a list to remove the item from.
+* `$index` is an integer identifying which item to be removed from
+  the given list. List indexing is zero-based. Supports both
+  forward and reverse indexing (where, for example, an index of
+  -1 is the last item in the list, and an index of -2 is the
+  second last item in the list).
+
+#### Outputs:
+
+* `$list` is the given list with the item identified by the given
+  index removed.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

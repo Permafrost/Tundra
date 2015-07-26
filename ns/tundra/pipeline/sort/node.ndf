@@ -4,8 +4,12 @@
   <value name="svc_type">java</value>
   <value name="svc_subtype">unknown</value>
   <value name="svc_sigtype">java 3.5</value>
-  <value name="node_comment">Sorts the top-level elements in the pipeline by their keys in natural 
-ascending order.</value>
+  <value name="node_comment">### tundra.pipeline:sort
+
+Sorts the top-level elements in the pipeline by their keys in natural
+ascending order.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

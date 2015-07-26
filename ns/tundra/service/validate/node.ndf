@@ -121,18 +121,24 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns true if the given service name exists and is actually 
+  <value name="node_comment">### tundra.service:validate
+
+Returns true if the given service name exists and is actually
 a service.
 
-* Inputs:
-  * $service is the name to be validated.
-  * $raise? is a boolean flag indicating if an exception should
-    be thrown if the given service is not valid. Defaults to
-    false.
+#### Inputs:
 
-* Outputs:
-  * $valid? is a boolean flag indicating if the given service
-    exists and is actually a service on this Integration Server.</value>
+* `$service` is the name to be validated.
+* `$raise?` is a boolean flag indicating if an exception should
+  be thrown if the given service is not valid. Defaults to
+  false.
+
+#### Outputs:
+
+* `$valid?` is a boolean flag indicating if the given service
+  exists and is actually a service on this Integration Server.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

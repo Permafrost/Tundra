@@ -120,14 +120,20 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns the remainder from dividing the given integer x by y.
+  <value name="node_comment">### tundra.integer:remainder
 
-* Inputs:
-  * $integer.x is the numerator to be divided by $integer.y.
-  * $integer.y is the denominator to divide $integer.x by.
+Returns the remainder from dividing the given integer x by y.
 
-* Outputs:
-  * $integer is the remainder from dividing $integer.x by $integer.y.</value>
+#### Inputs:
+
+* `$integer.x` is the numerator to be divided by `$integer.y`.
+* `$integer.y` is the denominator to divide `$integer.x` by.
+
+#### Outputs:
+
+* `$integer` is the remainder from dividing `$integer.x` by `$integer.y`.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

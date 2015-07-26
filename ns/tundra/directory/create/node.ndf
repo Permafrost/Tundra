@@ -91,14 +91,17 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Creates a new directory.
+  <value name="node_comment">### tundra.directory:create
 
-* Inputs:
-  * $directory is a string specifying a relative or absolute path 
-    or file: URI; all directories on this path will be created.
-  * $raise? is an optional boolean flag indicating if an exception
-    should be thrown if the directory already exists. Defaults to
-    false.
+Creates a new directory.
+
+#### Inputs:
+
+* `$directory` is a string specifying a relative or absolute path
+  or file: [URI]; all directories on this path will be created.
+* `$raise?` is an optional boolean flag indicating if an exception
+  should be thrown if the directory already exists. Defaults to
+  false.
 
 [URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
   <value name="stateless">no</value>

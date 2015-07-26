@@ -81,15 +81,21 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns a new list containing all the items in the given lists.
+  <value name="node_comment">### tundra.list.object:concatenate
 
-* Inputs:
-  * $list.x is the first list to be concatenated.
-  * $list.y is the second list to be concatenated.
+Returns a new list containing all the items in the given lists.
 
-* Outputs:
-  * $list is a new list containing all the items from the given
-    input lists.</value>
+#### Inputs:
+
+* `$list.x` is the first list to be concatenated.
+* `$list.y` is the second list to be concatenated.
+
+#### Outputs:
+
+* `$list` is a new list containing all the items from the given
+  input lists.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

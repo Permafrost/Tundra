@@ -91,17 +91,23 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns true if the two given objects are equal.
+  <value name="node_comment">### tundra.object:equal
 
-* Inputs:
-  * $object.x is an optional object of any class to be compared
-    to $object.y.
-  * $object.y is an optional object of any class to be compared
-    to $object.x.
+Returns true if the two given objects are equal.
 
-* Outputs:
-  * $equal? is true if the two input objects are considered 
-    equivalent.</value>
+#### Inputs:
+
+* `$object.x` is an optional object of any class to be compared
+  to `$object.y`.
+* `$object.y` is an optional object of any class to be compared
+  to `$object.x`.
+
+#### Outputs:
+
+* `$equal?` is true if the two input objects are considered
+  equivalent.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

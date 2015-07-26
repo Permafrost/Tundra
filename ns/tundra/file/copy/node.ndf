@@ -154,18 +154,21 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Copies the content of the source file to the target file.
+  <value name="node_comment">### tundra.file:copy
 
-* Inputs:
-  * $file.source is the name of the file to be copied from, specified 
-    as either a relative or absolute file path or file: [URI].
-  * $file.target is the name of the file to be copied to, specified as 
-    either a relative or absolute file path or file: [URI]. If the 
-    target file already exists, it will be overwritten or appended to,
-    depending on the $mode selected, with the source file content.
-  * $mode is an optional choice of 'write' or 'append', which determines
-    whether the target file will be overwritten or appended to respectively.
-    Defaults to 'append', since this is the safer option.
+Copies the content of the source file to the target file.
+
+#### Inputs:
+
+* `$file.source` is the name of the file to be copied from, specified
+  as either a relative or absolute file path or file: [URI].
+* `$file.target` is the name of the file to be copied to, specified as
+  either a relative or absolute file path or file: [URI]. If the
+  target file already exists, it will be overwritten or appended to,
+  depending on the `$mode` selected, with the source file content.
+* `$mode` is an optional choice of 'write' or 'append', which determines
+  whether the target file will be overwritten or appended to
+  respectively. Defaults to 'append', since this is the safer option.
 
 [URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
   <value name="stateless">no</value>

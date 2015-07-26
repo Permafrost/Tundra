@@ -120,14 +120,20 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Divides the given integer x by y, returning the result.
+  <value name="node_comment">### tundra.integer:divide
 
-* Inputs:
-  * $integer.x is the numerator to be divided by $integer.y.
-  * $integer.y is the denominator to divide $integer.x by.
+Divides the given integer x by y, returning the result.
 
-* Outputs:
-  * $integer is the result of dividing $integer.x by $integer.y.</value>
+#### Inputs:
+
+* `$integer.x` is the numerator to be divided by `$integer.y`.
+* `$integer.y` is the denominator to divide `$integer.x` by.
+
+#### Outputs:
+
+* `$integer` is the result of dividing `$integer.x` by `$integer.y`.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

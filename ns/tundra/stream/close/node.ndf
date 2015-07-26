@@ -46,13 +46,17 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Closes the given input stream or output stream, and releases any associated
+  <value name="node_comment">### tundra.stream:close
+
+Closes the given input stream or output stream, and releases any associated
 system resources.
 
-* Inputs:
-  * $stream is an optional [java.io.InputStream] or [java.io.OutputStream] object
-    to be closed. If specified, the stream is closed and any associated system
-    resources are released. If not specified, this service does nothing.
+#### Inputs:
+
+* `$stream` is an optional [java.io.InputStream] or
+  [java.io.OutputStream] object to be closed. If specified, the stream
+  is closed and any associated system resources are released. If not
+  specified, this service does nothing.
 
 [java.io.InputStream]: &lt;http://docs.oracle.com/javase/6/docs/api/java/io/InputStream.html&gt;
 [java.io.OutputStream]: &lt;http://docs.oracle.com/javase/6/docs/api/java/io/OutputStream.html&gt;</value>

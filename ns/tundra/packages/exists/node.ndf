@@ -89,14 +89,21 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns true if a package with the given name exists on this 
+  <value name="node_comment">### tundra.packages:exists
+
+Returns true if a package with the given name exists on this
 Integration Server.
 
-* Inputs:
-  * $name is the name of the package to check existence of.
-* Outputs:
-  * $exists? is a boolean indicating whether a package with 
-    the given name exists on this Integration Server.</value>
+#### Inputs:
+
+* `$name` is the name of the package to check existence of.
+
+#### Outputs:
+
+* `$exists?` is a boolean indicating whether a package with
+  the given name exists on this Integration Server.
+
+</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

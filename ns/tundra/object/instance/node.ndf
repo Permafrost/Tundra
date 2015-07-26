@@ -105,15 +105,21 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns true if the given object is an instance of the given class.
+  <value name="node_comment">### tundra.object:instance
 
-* Inputs:
-  * $object is an optional object of any class.
-  * $class is a Java class name.
+Returns true if the given object is an instance of the given class.
 
-* Outputs:
-  * $instance? is true if the give object is an instance of the given
-    Java class.</value>
+#### Inputs:
+
+* `$object` is an optional object of any class.
+* `$class` is a Java class name.
+
+#### Outputs:
+
+* `$instance?` is true if the give object is an instance of the given
+  Java class.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

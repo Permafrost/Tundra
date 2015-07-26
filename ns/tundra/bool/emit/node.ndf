@@ -136,18 +136,25 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Converts the given $boolean value to a string using the appropriate 
+  <value name="node_comment">### tundra.bool:emit
+
+Converts the given `$boolean` value to a string using the appropriate
 string values specified for true and false.
 
-* Inputs:
-  * $boolean is the value to be converted, and can be either a string
-    parseable as a boolean value, or a java.lang.Boolean object.
-  * $value.true is an optional string value returned if $boolean is 
-    true. Defaults to "true".
-  * $value.false is an optional string value returned if $boolean is 
-    false. Defaults to "false".
-* Outputs:
-  * $string is the converted boolean value.</value>
+#### Inputs:
+
+* `$boolean` is the value to be converted, and can be either a string
+  parseable as a boolean value, or a `java.lang.Boolean` object.
+* `$value.true` is an optional string value returned if `$boolean` is
+  true. Defaults to "true".
+* `$value.false` is an optional string value returned if `$boolean` is
+  false. Defaults to "false".
+
+#### Outputs:
+
+* `$string` is the converted boolean value.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

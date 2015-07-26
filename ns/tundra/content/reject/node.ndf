@@ -4,9 +4,14 @@
   <value name="svc_type">flow</value>
   <value name="svc_subtype">default</value>
   <value name="svc_sigtype">java 3.5</value>
-  <value name="node_comment">Receives arbitrary (XML or flat file) content and then rejects it by always 
-returning an error to the client. This service is intended to be invoked by 
-clients via HTTP or FTP.</value>
+  <value name="node_comment">### tundra.content:reject
+
+Receives arbitrary (XML or flat file) content and then rejects it by always
+returning an error to the client.
+
+This service is intended to be invoked by clients via HTTP or FTP.
+
+</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

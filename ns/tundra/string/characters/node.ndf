@@ -67,13 +67,20 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns the given string as a list of characters.
+  <value name="node_comment">### tundra.string:characters
 
-* Inputs:
-  * $string is a string to be split into characters.
-* Outputs:
-  * $characters is a list of the characters in the 
-    given $string.</value>
+Returns the given string as a list of characters.
+
+#### Inputs:
+
+* `$string` is a string to be split into characters.
+
+#### Outputs:
+
+* `$characters` is a list of the characters in the
+  given `$string`.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

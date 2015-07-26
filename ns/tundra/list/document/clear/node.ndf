@@ -89,19 +89,25 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Removes all elements from all items in the given IData document list, 
+  <value name="node_comment">### tundra.list.document:clear
+
+Removes all elements from all items in the given IData document list,
 except for any keys specified in the preserve list.
 
-* Inputs:
-  * $list is an IData document list for which to remove the keys in
-    each item.
-  * $preserve is list of keys which will not be removed from
-    the given IData document list. Keys can be simple or fully
-    qualified, such as a/b/c[0]/d.
+#### Inputs:
 
-* Outputs:
-  * $list is the given IData document list with all keys removed
-    from each item, except for those specified in $preserve.</value>
+* `$list` is an IData document list for which to remove the keys in
+  each item.
+* `$preserve` is list of keys which will not be removed from
+  the given IData document list. Keys can be simple or fully
+  qualified, such as `a/b/c[0]/d`.
+
+#### Outputs:
+
+* `$list` is the given IData document list with all keys removed
+  from each item, except for those specified in `$preserve`.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

@@ -106,15 +106,21 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Returns true if the two given lists are equal.
+  <value name="node_comment">### tundra.list.string:equal
 
-* Inputs:
-  * $list.x is a list to be compared with $list.y.
-  * $list.y is a list to be compared with $list.x.
+Returns true if the two given lists are equal.
 
-* Outputs:
-  * $equal? is a boolean indicating if $list.x equals
-    $list.y.</value>
+#### Inputs:
+
+* `$list.x` is a list to be compared with `$list.y`.
+* `$list.y` is a list to be compared with `$list.x`.
+
+#### Outputs:
+
+* `$equal?` is a boolean indicating if `$list.x` equals
+  `$list.y`.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

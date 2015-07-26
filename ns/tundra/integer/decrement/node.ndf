@@ -89,16 +89,22 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Decrements the given integer by one. Returns minus one if 
-no integer is specified, so that this service can be used 
+  <value name="node_comment">### tundra.integer:decrement
+
+Decrements the given integer by one. Returns minus one if
+no integer is specified, so that this service can be used
 in a loop to both initialize and decrement a counter variable.
 
-* Inputs:
-  * $integer is the integer to be decremented by one.
+#### Inputs:
 
-* Outputs:
-  * $integer is the given integer minus one, or minus one,
-    if no input integer was specified.</value>
+* `$integer` is the integer to be decremented by one.
+
+#### Outputs:
+
+* `$integer` is the given integer minus one, or minus one,
+  if no input integer was specified.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

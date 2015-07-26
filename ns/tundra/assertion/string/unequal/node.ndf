@@ -118,16 +118,19 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Throws an assertion error if the expected and actual strings are equal.
+  <value name="node_comment">### tundra.assertion.string:unequal
 
-* Inputs:
-  * $expected is the expected string value.
+Throws an assertion error if the expected and actual strings are equal.
 
-  * $actual is the actual string value. If this value is equal to the 
-    expected value, an assertion error will be thrown.
+#### Inputs:
 
-  * $message is an optional custom message to be used as the assertion error 
-    message if the assertion fails.</value>
+* `$expected` is the expected string value.
+* `$actual` is the actual string value. If this value is equal to the
+  expected value, an assertion error will be thrown.
+* `$message` is an optional custom message to be used as the assertion
+  error message if the assertion fails.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

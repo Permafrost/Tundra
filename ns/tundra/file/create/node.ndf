@@ -60,20 +60,25 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Atomically creates a new empty file if a file with this name does not 
-yet exist. 
+  <value name="node_comment">### tundra.file:create
 
-The check for the existence of the file and the creation of the file 
-if it does not exist are a single operation that is atomic with respect 
+Atomically creates a new empty file if a file with this name does not
+yet exist.
+
+The check for the existence of the file and the creation of the file
+if it does not exist are a single operation that is atomic with respect
 to all other file system activities that might affect the file.
 
-* Inputs:
-  * $file is the name of the file to be created, specified as either a
-    relative or absolute file path or file: [URI]. If the file already
-    exists, an exception will be thrown. If not specified, a new 
-    empty temporary file will be created.
-* Outputs:
-  * $file is the name of the file which was created.
+#### Inputs:
+
+* `$file` is the name of the file to be created, specified as either a
+  relative or absolute file path or file: [URI]. If the file already
+  exists, an exception will be thrown. If not specified, a new
+  empty temporary file will be created.
+
+#### Outputs:
+
+* `$file` is the name of the file which was created.
 
 [URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
   <value name="stateless">no</value>

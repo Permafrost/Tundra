@@ -137,13 +137,20 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Parses the given string as a boolean value.
+  <value name="node_comment">### tundra.bool:parse
 
-* Inputs:
-  * $string is an optional string to be parsed.
-* Outputs:
-  * $boolean is the resulting java.lang.Boolean object from parsing 
-    the given $string.</value>
+Parses the given string as a boolean value.
+
+#### Inputs:
+
+* `$string` is an optional string to be parsed.
+
+#### Outputs:
+
+* `$boolean` is the resulting `java.lang.Boolean` object from parsing
+  the given `$string`.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

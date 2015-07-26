@@ -113,17 +113,23 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Decreases the size of the given list by the given count, truncating items
+  <value name="node_comment">### tundra.list.string:shrink
+
+Decreases the size of the given list by the given count, truncating items
 from the end.
 
-* Inputs:
-  * $list is the String[] list to be shrunk.
-  * $count is the number of items to truncate from the end of the list.
+#### Inputs:
 
-* Outputs:
-  * $list is the String[] list shrunk from the end of the list by the 
-    desired item count by truncating items from the end of the list. If
-    the list is smaller than the count, an empty list is returned.</value>
+* `$list` is the String[] list to be shrunk.
+* `$count` is the number of items to truncate from the end of the list.
+
+#### Outputs:
+
+* `$list` is the String[] list shrunk from the end of the list by the
+  desired item count by truncating items from the end of the list. If
+  the list is smaller than the count, an empty list is returned.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

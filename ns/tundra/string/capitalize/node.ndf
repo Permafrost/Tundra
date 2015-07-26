@@ -100,18 +100,26 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Capitalizes the first character in either the first word or
+  <value name="node_comment">### tundra.string:capitalize
+
+Capitalizes the first character in either the first word or
 all words in the given string.
 
-* Inputs:
-  * $string is the string to be capitalized.
-  * $mode is an optional choice that determines whether
-    all words or only the first word is capitalized:
-    * all words
-    * first word
-    Defaults to all words, if not specified.
-* Outputs:
-  * $string is the given string capitalized.</value>
+#### Inputs:
+
+* `$string` is the string to be capitalized.
+* `$mode `is an optional choice that determines whether
+  all words or only the first word is capitalized:
+  * `all words`
+  * `first word`
+
+  Defaults to `all words`, if not specified.
+
+#### Outputs:
+
+* `$string` is the given string capitalized.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

@@ -124,32 +124,37 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Filters the given list to only include items where the 
+  <value name="node_comment">### tundra.list.string:filter
+
+Filters the given list to only include items where the
 given condition evaluates to true.
 
-* Inputs:
-  * $list is the list to be filtered.
-  
-  * $condition is a tundra.condition:evaluate compatible 
-    conditional statement used to filter the given list. 
-    
-    List items are represented in the evaluation scope by
-    a variable named $item.
+#### Inputs:
 
-    For example, to filter a list to only include items 
-    equal to a regular expression pattern, use the following 
-    $condition:
+* `$list` is the list to be filtered.
+* `$condition` is a `tundra.condition:evaluate` compatible
+  conditional statement used to filter the given list.
 
-        %$item% == /\d\d/
+  List items are represented in the evaluation scope by
+  a variable named `$item`.
 
-  * $scope is an optional IData document containing the 
-    variables against which $condition will be evaluated. 
-    If not specified, the $condition will be evaluated 
-    against the pipeline.
+  For example, to filter a list to only include items
+  equal to a regular expression pattern, use the following
+  `$condition`:
 
-* Outputs:
-  * $list is the given list filtered to only include the
-    items where $condition evaluated to true. </value>
+      %$item% == /\d\d/
+
+* `$scope` is an optional IData document containing the
+  variables against which `$condition` will be evaluated.
+  If not specified, the `$condition` will be evaluated
+  against the pipeline.
+
+#### Outputs:
+
+* `$list` is the given list filtered to only include the
+  items where `$condition` evaluated to true.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

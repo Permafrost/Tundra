@@ -90,15 +90,21 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Converts the given string to a legal Java identifier by replacing illegal
+  <value name="node_comment">### tundra.id:normalize
+
+Converts the given string to a legal Java identifier by replacing illegal
 characters with underscore characters.
 
-* Inputs:
-  * $string is a string to be converted to a legal Java identifier.
+#### Inputs:
 
-* Outputs:
-  * $string is the given string with illegal characters replaced with 
-    underscore characters.</value>
+* `$string` is a string to be converted to a legal Java identifier.
+
+#### Outputs:
+
+* `$string` is the given string with illegal characters replaced with
+  underscore characters.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

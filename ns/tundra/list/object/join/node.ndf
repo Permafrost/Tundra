@@ -84,18 +84,24 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns a string created by converting each list item to a string, and
-concatenating the resulting strings together separated by the given 
-$separator.
+  <value name="node_comment">### tundra.list.object:join
 
-* Inputs:
-  * $list is a list to be converted to a string.
-  * $separator is an optional string used to separate each list item 
-    in the resulting string. Defaults to an empty string.
+Returns a string created by converting each list item to a string, and
+concatenating the resulting strings together separated by the given
+`$separator`.
 
-* Outputs:
-  * $result is a string containing each item in the given list, converted
-    to a string and separated by the given $separator.</value>
+#### Inputs:
+
+* `$list` is a list to be converted to a string.
+* `$separator` is an optional string used to separate each list item
+  in the resulting string. Defaults to an empty string.
+
+#### Outputs:
+
+* `$result` is a string containing each item in the given list, converted
+  to a string and separated by the given `$separator`.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

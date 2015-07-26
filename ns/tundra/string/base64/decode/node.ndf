@@ -120,14 +120,17 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">[Base64] decodes the given string.
+  <value name="node_comment">### tundra.string.base64:decode
 
-* Inputs:
-  * $base64 is a [Base64] encoded string to be decoded.
-  * $encoding is the optional character set used to decode the 
-    binary data to text. Defaults to [UTF-8]. 
-* Outputs:
-  * $string is the [Base64] decoded data as a string.
+[Base64] decodes the given string.
+
+#### Inputs:
+
+* `$base64` is a [Base64] encoded string to be decoded.
+
+#### Outputs:
+
+* `$string` is the [Base64] decoded data as a string.
 
 [Base64]: &lt;http://en.wikipedia.org/wiki/Base64&gt;</value>
   <value name="stateless">no</value>

@@ -168,19 +168,23 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Reverses the sign of the given duration.
+  <value name="node_comment">### tundra.duration:negate
 
-* Inputs:
-  * $duration is an duration string to be negated.
-  * $pattern.input is an optional pattern describing the type of 
-    duration specified by the $duration string. Defaults to an 
-    [ISO8601] XML string.
-  * $pattern.output is an optional desired pattern used to format the
-    returned $duration string. Defaults to an [ISO8601] XML string.
+Reverses the sign of the given duration.
 
-* Outputs:
-  * $duration is the negated duration string, formatted according to 
-    $pattern.output.
+#### Inputs:
+
+* `$duration` is an duration string to be negated.
+* `$pattern.input` is an optional pattern describing the type of
+  duration specified by the `$duration` string. Defaults to an
+  [ISO8601] XML string.
+* `$pattern.output` is an optional desired pattern used to format the
+  returned `$duration` string. Defaults to an [ISO8601] XML string.
+
+#### Outputs:
+
+* `$duration` is the negated duration string, formatted according to
+  `$pattern.output`.
 
 [ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;</value>
   <value name="stateless">no</value>

@@ -90,13 +90,20 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns the negative value of the given decimal (-x).
+  <value name="node_comment">### tundra.decimal:negate
 
-* Inputs:
-  * $decimal is a decimal value.
-* Outputs:
-  * $decimal is the given decimal value multiplied
-    by minus one.</value>
+Returns the negative value of the given decimal (-x).
+
+#### Inputs:
+
+* `$decimal` is a decimal value.
+
+#### Outputs:
+
+* `$decimal` is the given decimal value multiplied
+  by minus one.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

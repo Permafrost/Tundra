@@ -49,12 +49,17 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Merges the elements in the given IData document into the 
+  <value name="node_comment">### tundra.pipeline:merge
+
+Merges the elements in the given IData document into the
 pipeline.
 
-* Inputs:
-  * $document is an IData document whose top-level elements
-    are to be copied directly into the pipeline.</value>
+#### Inputs:
+
+* `$document` is an IData document whose top-level elements
+  are to be copied directly into the pipeline.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

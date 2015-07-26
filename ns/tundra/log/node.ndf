@@ -95,12 +95,24 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Writes a message to the server log, automatically prefixed with the call stack.
+  <value name="node_comment">### tundra:log
 
-* Inputs:
-  * $message is the message to be written to the server log.
-  * $level is the logging level of the message, one of {Fatal, Error, Warn, Info, 
-    Debug, Trace, Off}.</value>
+Writes a message to the server log, automatically prefixed with the call
+stack.
+
+#### Inputs:
+
+* `$message` is the message to be written to the server log.
+* `$level` is the logging level of the message:
+  * `Fatal`
+  * `Error`
+  * `Warn`
+  * `Info`
+  * `Debug`
+  * `Trace`
+  * `Off`
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

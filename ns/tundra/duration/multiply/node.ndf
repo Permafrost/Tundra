@@ -265,30 +265,34 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Multiplies the given duration by the given factor.
+  <value name="node_comment">### tundra.duration:multiply
 
-A start instant may be required when formatting fields with 
-indeterminate values, such as converting months to days (because the 
+Multiplies the given duration by the given factor.
+
+A start instant may be required when formatting fields with
+indeterminate values, such as converting months to days (because the
 number of days in a month varies).
 
-* Inputs:
-  * $duration is an duration string to be multiplied.
-  * $pattern.input is an optional pattern describing the type of 
-    duration specified by the $duration string. Defaults to an 
-    [ISO8601] XML string.
-  * $pattern.output is an optional desired pattern used to format the
-    returned $duration string. Defaults to an [ISO8601] XML string.
-  * $datetime is an optional datetime string used as a starting 
-    instant to resolve indeterminate values (such as the number of 
-    days in a month).
-  * $datetime.pattern is an optional datetime pattern that $datetime 
-    conforms to, that will be used to parse the datetime string. 
-    Defaults to an [ISO8601] XML datetime.
-  * $factor is a signed decimal used to multiply the given $duration.
+#### Inputs:
 
-* Outputs:
-  * $duration is the duration string multiplied by the given $factor 
-    and formatted according to $pattern.output.
+* `$duration` is an duration string to be multiplied.
+* `$pattern.input` is an optional pattern describing the type of
+  duration specified by the `$duration` string. Defaults to an
+  [ISO8601] XML string.
+* `$pattern.output` is an optional desired pattern used to format the
+  returned `$duration` string. Defaults to an [ISO8601] XML string.
+* `$datetime` is an optional datetime string used as a starting
+  instant to resolve indeterminate values (such as the number of
+  days in a month).
+* `$datetime.pattern` is an optional datetime pattern that `$datetime`
+  conforms to, that will be used to parse the datetime string.
+  Defaults to an [ISO8601] XML datetime.
+* `$factor` is a signed decimal used to multiply the given `$duration`.
+
+#### Outputs:
+
+* `$duration` is the duration string multiplied by the given `$factor`
+  and formatted according to `$pattern.output`.
 
 [ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;</value>
   <value name="stateless">no</value>

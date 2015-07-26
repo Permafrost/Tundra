@@ -196,37 +196,42 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns the duration between two datetimes.
+  <value name="node_comment">### tundra.datetime:duration
+
+Returns the duration between two datetimes.
 
 Supports a handful of well-known named datetime patterns:
 
-    Name           Pattern
-    -------------  --------------------------------------------
-    datetime       ISO8601 XML datetime
-    datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-    date           ISO8601 XML date
-    date.jdbc      yyyy-mm-dd
-    time           ISO8601 XML time
-    time.jdbc      HH:mm:ss
-    milliseconds   Number of milliseconds since the Epoch, 
-                   January 1, 1970 00:00:00.000 GMT (Gregorian)
+Pattern Name  | Description
+------------- | --------------------------------------------
+datetime      | ISO8601 XML datetime
+datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
+date          | ISO8601 XML date
+date.jdbc     | yyyy-mm-dd
+time          | ISO8601 XML time
+time.jdbc     | HH:mm:ss
+milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
-Custom datetime patterns can be specified using [java.text.SimpleDateFormat] 
-compatible patterns.
+Custom datetime patterns can be specified using
+[java.text.SimpleDateFormat] compatible patterns.
 
-* Inputs:
-  * $datetime.start is the datetime string representing the starting instant 
-    for calculating the duration of time.
-  * $datetime.end is the datetime string representing the ending instant for 
-    calculating the duration of time.
-  * $datetime.pattern is an optional datetime pattern that $datetime.start 
-    and $datetime.end conform to. Defaults to an [ISO8601] XML datetime.
-  * $duration.pattern is an optional duration pattern that the output $duration
-    will be formatted as. Defaults to an [ISO8601] XML duration.
+#### Inputs:
 
-* Outputs:
-  * $duration is the duration of time between $datetime.start and $datetime.end,
-    formatted according to the given $duration.pattern.
+* `$datetime.start` is the datetime string representing the starting
+  instant for calculating the duration of time.
+* `$datetime.end` is the datetime string representing the ending instant
+  for calculating the duration of time.
+* `$datetime.pattern` is an optional datetime pattern that
+  `$datetime.start` and `$datetime.end` conform to. Defaults to an
+  [ISO8601] XML datetime.
+* `$duration.pattern` is an optional duration pattern that the output
+  `$duration` will be formatted as. Defaults to an [ISO8601] XML
+  duration.
+
+#### Outputs:
+
+* `$duration` is the duration of time between `$datetime.start` and
+  `$datetime.end`, formatted according to the given `$duration.pattern`.
 
 [ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;
 [java.text.SimpleDateFormat]: &lt;http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html&gt;</value>

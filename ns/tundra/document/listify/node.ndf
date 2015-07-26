@@ -97,24 +97,30 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Converts the value or values identified by the given key to a new 
-list containing the original value or values as its items, unless 
-the original value is already a list in which case it remains 
+  <value name="node_comment">### tundra.document:listify
+
+Converts the value or values identified by the given key to a new
+list containing the original value or values as its items, unless
+the original value is already a list in which case it remains
 unmodified.
 
-* Inputs:
-  * $key is a simple or fully-qualified (such as a/b/c[0]/d) key 
-    identifying the value to be converted to a list.
-  * $scope is an optional IData document that, if specified, is used
-    to resolve the given $key against. If not specified, $key is
-    resolved against the pipeline.
+#### Inputs:
 
-* Outputs:
-  * $scope is returned if an input $scope was provided, where the value
-    identified by $key within it has been converted to a list. If
-    no input $scope was specified, the value identified by $key in the
-    pipeline is instead converted to a list. If $key does not identify
-    any value, this service does nothing.</value>
+* `$key` is a simple or fully-qualified (such as `a/b/c[0]/d`) key
+  identifying the value to be converted to a list.
+* `$scope` is an optional `IData` document that, if specified, is used
+  to resolve the given `$key` against. If not specified, `$key` is
+  resolved against the pipeline.
+
+#### Outputs:
+
+* `$scope` is returned if an input `$scope` was provided, where the value
+  identified by `$key` within it has been converted to a list. If
+  no input `$scope` was specified, the value identified by `$key` in the
+  pipeline is instead converted to a list. If `$key` does not identify
+  any value, this service does nothing.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

@@ -335,43 +335,49 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Returns the time zone associated with the given ID.
+  <value name="node_comment">### tundra.timezone:get
 
-* Inputs:
-  * $id is a [java.util.TimeZone] ID identifying the time zone to be 
-    returned, or a (+|-)HH:mm time zone offset, or an XML duration 
-    string representing a time zone offset, or a raw millisecond 
-    time zone offset, or `Z` for UTC, or `local` for the default or 
-    local host time zone. If a time zone offset is specified, the 
-    first time zone that matches the given offset is returned.
-  * $datetime is an optional XML datetime string identifying the 
-    instant in time to be used to determine the Universal 
-    Coordinated Time (UTC) offset and whether Daylight Savings Time 
-    (DST) is applicable. If not specified, defaults to the current 
-    datetime.
-  * $datetime.pattern is an optional datetime pattern that $datetime 
-    conforms to, and will be used to parse the datetime string. 
-    Defaults to an [ISO8601]/XML datetime.
+Returns the time zone associated with the given ID.
 
-* Outputs:
-  * $timezone is an IData document describing the time zone 
-    associated with the given $id.
-    * id is the [java.util.TimeZone] ID associated with the time 
-      zone.
-    * name is a short name associated with the time zone.
-    * description is a long name associated with the time zone.
-    * utc.offset is the historically correct XML duration added to 
-      UTC time to get local time in this time zone for the given 
-      $datetime instant. If daylight savings time is in effect for 
-      the given $datetime instant, then this value was adjusted to 
-      include the daylight savings offset.
-    * dst.used? is a boolean indicating if daylight savings time is 
-      used by this time zone.
-    * dst.active? is a boolean indicating if daylight savings time 
-      is in effect for the given $datetime instant.
-    * dst.offset is the XML duration added to the UTC offset when 
-      daylight savings time is in effect.
+#### Inputs:
 
+* `$id` is a [java.util.TimeZone] ID identifying the time
+  zone to be returned, or a `(+|-)HH:mm` timezone offset,
+  or an XML duration string representing a timezone offset,
+  or a raw millisecond timezone offset, or `Z` for UTC, or
+  `local` for the default localhost time zone. If a timezone
+  offset is specified, the first timezone that matches the
+  given offset is returned.
+* `$datetime` is an optional XML datetime string identifying
+  the instant in time to be used to determine the Universal
+  Coordinated Time (UTC) offset and whether Daylight Savings
+  Time (DST) is applicable. If not specified, defaults to
+  the current datetime.
+* `$datetime.pattern` is an optional datetime pattern that
+  `$datetime` conforms to, and will be used to parse the
+  datetime string. Defaults to an [ISO8601] XML datetime.
+
+#### Outputs:
+
+* `$timezone` is an IData document describing the time zone
+  associated with the given `$id`.
+  * `id` is the [java.util.TimeZone] ID associated with the
+    time zone.
+  * `name` is a short name associated with the time zone.
+  * `description` is a long name associated with the time zone.
+  * `utc.offset` is the historically correct XML duration added
+    to UTC time to get local time in this time zone for the
+    given `$datetime` instant. If daylight savings time is in
+    effect for the given `$datetime` instant, then this value was
+    adjusted to include the daylight savings offset.
+  * `dst.used?` is a boolean indicating if daylight savings
+    time is used by this time zone.
+  * `dst.active?` is a boolean indicating if daylight savings
+    time is in effect for the given `$datetime` instant.
+  * `dst.offset` is the XML duration added to the UTC offset
+    when daylight savings time is in effect.
+
+[ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;
 [java.util.TimeZone]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/TimeZone.html&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>

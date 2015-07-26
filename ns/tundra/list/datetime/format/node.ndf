@@ -248,55 +248,58 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Formats a list of datetime strings that conform to the input 
+  <value name="node_comment">### tundra.list.datetime:format
+
+Formats a list of datetime strings that conform to the input
 pattern, according to the output pattern.
 
 Supports a handful of well-known named datetime patterns:
 
-    Name           Pattern
-    -------------  --------------------------------------------
-    datetime       ISO8601 XML datetime
-    datetime.jdbc  yyyy-MM-dd HH:mm:ss.SSS
-    date           [ISO8601 XML date
-    date.jdbc      yyyy-mm-dd
-    time           ISO8601 XML time
-    time.jdbc      HH:mm:ss
-    milliseconds   Number of milliseconds since the Epoch, 
-                   January 1, 1970 00:00:00.000 GMT (Gregorian)
+Pattern Name  | Description
+------------- | --------------------------------------------
+datetime      | ISO8601 XML datetime
+datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
+date          | ISO8601 XML date
+date.jdbc     | yyyy-mm-dd
+time          | ISO8601 XML time
+time.jdbc     | HH:mm:ss
+milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
-Custom datetime patterns can be specified using [java.text.
-SimpleDateFormat] compatible patterns.
+Custom datetime patterns can be specified using
+[java.text.SimpleDateFormat] compatible patterns.
 
-* Inputs:
-  * $list is a list of datetime strings to be formatted.
-  * $pattern.input is an optional datetime pattern that $list 
-    conforms to, that will be used to parse the datetime strings. 
-    Defaults to an [ISO8601] XML datetime.
-  * $patterns.input is an optional list of datetime patterns that 
-    $list might conform to, useful when the exact pattern is not 
-    known. A parse is attempted for each pattern until the first 
-    successful parse, or until all patterns have been tried in which 
-    case an unparseable datetime exception will be thrown.
-  * $pattern.output is an optional datetime pattern that will be 
-    used to format the resulting $list strings. Defaults to an 
-    [ISO8601] XML datetime.
-  * $timezone.input is an optional [java.util.TimeZone] ID, or a 
-    (+|-)HH:mm time zone offset, or an XML duration string 
-    representing a time zone offset, or a raw millisecond time zone 
-    offset, or `Z` for UTC, or `local` for the default localhost 
-    time zone identifying the time zone the input $datetime will
-    be parsed with. If specified, this time zone will override any
-    zone specified in the $list strings themselves.
-  * $timezone.output is an optional [java.util.TimeZone] ID, or a 
-    (+|-)HH:mm time zone offset, or an XML duration string 
-    representing a time zone offset, or a raw millisecond time zone 
-    offset, or `Z` for UTC, or `local` for the default localhost 
-    time zone identifying the time zone the returned $list strings
-    will be formatted with.
+#### Inputs:
 
-* Outputs:
-  * $list is the resulting list of datetime strings formatted 
-    according to $pattern.output in the given $timezone.output.
+* `$list` is a list of datetime strings to be formatted.
+* `$pattern.input` is an optional datetime pattern that `$list`
+  conforms to, that will be used to parse the datetime strings.
+  Defaults to an [ISO8601] XML datetime.
+* `$patterns.input` is an optional list of datetime patterns that
+  `$list` might conform to, useful when the exact pattern is not
+  known. A parse is attempted for each pattern until the first
+  successful parse, or until all patterns have been tried in which
+  case an unparseable datetime exception will be thrown.
+* `$pattern.output` is an optional datetime pattern that will be
+  used to format the resulting `$list` strings. Defaults to an
+  [ISO8601] XML datetime.
+* `$timezone.input` is an optional [java.util.TimeZone] ID, or a
+  `(+|-)HH:mm` time zone offset, or an XML duration string
+  representing a time zone offset, or a raw millisecond time zone
+  offset, or `Z` for UTC, or `local` for the default localhost
+  time zone identifying the time zone the input `$list` strings
+  will be parsed with. If specified, this time zone will override
+  any zone specified in the `$list` strings themselves.
+* `$timezone.output` is an optional [java.util.TimeZone] ID, or a
+  `(+|-)HH:mm` time zone offset, or an XML duration string
+  representing a time zone offset, or a raw millisecond time zone
+  offset, or `Z` for UTC, or `local` for the default localhost
+  time zone identifying the time zone the returned $list strings
+  will be formatted with.
+
+#### Outputs:
+
+* `$list` is the resulting list of datetime strings formatted
+  according to `$pattern.output` in the given `$timezone.output`.
 
 [ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;
 [java.text.SimpleDateFormat]: &lt;http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html&gt;

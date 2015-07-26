@@ -62,11 +62,16 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Writes the current pipeline to the server log.
+  <value name="node_comment">### tundra.pipeline:log
 
-* Inputs:
-  * $level is the logging level used when writing the
-    pipeline contents to the server log.</value>
+Writes the current pipeline to the server log.
+
+#### Inputs:
+
+* `$level` is the logging level used when writing the
+  pipeline contents to the server log.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

@@ -209,34 +209,40 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Invokes a service either synchronously or asynchronously, and either scoped 
-or unscoped.
+  <value name="node_comment">### tundra.service:invoke
+
+Invokes a service either synchronously or asynchronously, and
+either scoped or unscoped.
 
 * Inputs
-  * $service is the fully-qualified name of the service to be invoked.
-  * $pipeline is an optional IData document which, if specified, contains 
-    the input arguments for the invocation of $service; in other words, the 
-    invocation is scoped to this IData document. If not specified, the 
-    invocation is unscoped, and hence the service will operate directly 
-    against the pipeline itself.
-  * $mode is an optional choice of execution mode: either synchronous or 
-    asynchronous.
-    When synchronous, the invocation of Tundra/tundra.service:invoke blocks 
-    until the invocation of $service completes. 
-    When asynchronous, Tundra/tundra.service:invoke returns immediately and 
-    the invocation of $service occurs on another thread.
-* Outputs:
-  * $pipeline is the output pipeline of the invocation of $service. This is 
-    only returned if the $mode is synchronous, and the invocation was scoped 
-    ($pipeline was specified as an input). If the invocation was synchronous 
-    and unscoped, the outputs of the invocation are merged directly with the 
-    pipeline itself. If the invocation was asynchronous, then no outputs are 
-    returned.
-  * $thread is returned only when the invocation $mode is asynchronous, and 
-    is the thread object which can later be waited on to finish using 
-    Tundra/tundra.service:join.
-  * $duration is the service execution duration, returned only when $mode is 
-    synchronous.</value>
+* `$service` is the fully-qualified name of the service to be
+  invoked.
+* `$pipeline` is an optional IData document which, if specified,
+  contains the input arguments for the invocation of `$service`;
+  in other words, the invocation is scoped to this IData document.
+  If not specified, the invocation is unscoped, and hence the
+  service will operate directly against the pipeline itself.
+* `$mode` is an optional choice of execution mode: either synchronous
+  or asynchronous. When synchronous, the invocation of
+  `Tundra/tundra.service:invoke` blocks until the invocation of
+  `$service` completes. When asynchronous, `Tundra/tundra.service:invoke`
+  returns immediately and the invocation of `$service` occurs on another
+  thread.
+
+#### Outputs:
+
+* `$pipeline` is the output pipeline of the invocation of
+  `$service`. This is only returned if the `$mode` is synchronous,
+  and the invocation was scoped (`$pipeline` was specified as an
+  input). If the invocation was synchronous and unscoped, the
+  outputs of the invocation are merged directly with the pipeline
+  itself. If the invocation was asynchronous, then no outputs
+  are returned.
+* `$thread` is returned only when the invocation `$mode` is asynchronous,
+  and is the thread object which can later be waited on to finish
+  using `Tundra/tundra.service:join`.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

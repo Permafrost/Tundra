@@ -219,23 +219,28 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Compresses the given contents using the [zip] file compression format.
+  <value name="node_comment">### tundra.zip:compress
 
-* Inputs:
-  * $contents is an IData document list containing the data to be 
-    compressed.
-    * name is the file path and name given to this item in the 
-      resulting zip archive.
-    * content is the data to be compressed, specified as either a 
-      string, byte array, or input stream.
-    * encoding is an optional character set used when content is
-      specified as a string. Defaults to [UTF-8].
-  * $mode is an optional choice of 'stream', 'bytes', or
-    'string', which determines the type of object returned by
-    this service. If the 'string' mode is chosen, the resulting
-    zipped data is base64-encoded. Defaults to 'stream'.
-* Outputs:
-  * $contents.zip is the resulting compressed data in [zip] format.
+Compresses the given contents using the [zip] file compression format.
+
+#### Inputs:
+
+* `$contents` is an IData document list containing the data to be
+  compressed.
+  * `name` is the file path and name given to this item in the
+    resulting zip archive.
+  * `content` is the data to be compressed, specified as either a
+    string, byte array, or input stream.
+  * `encoding` is an optional character set used when `content` is
+    specified as a string. Defaults to [UTF-8].
+* `$mode` is an optional choice of 'stream', 'bytes', or
+  'string', which determines the type of object returned by
+  this service. If the 'string' mode is chosen, the resulting
+  zipped data is base64-encoded. Defaults to 'stream'.
+
+#### Outputs:
+
+* `$contents.zip` is the resulting compressed data in [zip] format.
 
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;
 [zip]: &lt;http://en.wikipedia.org/wiki/Zip_(file_format)&gt;</value>

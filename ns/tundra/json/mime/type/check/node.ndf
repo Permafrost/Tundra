@@ -79,17 +79,21 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Returns true if the given MIME media type is recognized as a [JSON] media 
+  <value name="node_comment">### tundra.json.mime.type:check
+
+Returns true if the given MIME media type is recognized as a [JSON] media
 type.
 
-* Inputs:
-  * $content.type is the MIME media type to be checked.
+#### Inputs:
 
-* Outputs:
-  * $json? is a boolean which when true indicates that the given 
-    $content.type is a recognized [JSON] media type.
+* `$content.type` is the MIME media type to be checked.
 
-[JSON]: &lt;http://www.json.org&gt;</value>
+#### Outputs:
+
+* `$json?` is a boolean which when true indicates that the given
+  `$content.type` is a recognized [JSON] media type.
+
+[JSON]: &lt;http://www.json.org/&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

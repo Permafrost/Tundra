@@ -118,14 +118,20 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Adds the given integers together, returning the result.
+  <value name="node_comment">### tundra.integer:add
 
-* Inputs:
-  * $integers is a list of integer values to be added.
-  * $integer is a single integer value to be added.
+Adds the given integers together, returning the result.
 
-* Outputs:
-  * $integer is the total sum of the given integers.</value>
+#### Inputs:
+
+* `$integers` is a list of integer values to be added.
+* `$integer` is a single integer value to be added.
+
+#### Outputs:
+
+* `$integer` is the total sum of the given integers.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

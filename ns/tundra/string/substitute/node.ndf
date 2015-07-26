@@ -139,25 +139,30 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Attempts variable substitution on the given string by replacing all 
-occurrences of substrings matching "%key%" with the associated 
+  <value name="node_comment">### tundra.string:substitute
+
+Attempts variable substitution on the given string by replacing all
+occurrences of substrings matching "%key%" with the associated
 (optionally scoped) value.
 
-Optionally replaces null or non-existent values with the given default 
+Optionally replaces null or non-existent values with the given default
 value.
 
-* Inputs:
-  * $string is a string to perform variable substitution on.
-  * $pipeline is an optional IData document used to scope the
-    variable substitution. If not specified, the substitution
-    is unscoped (resolved against the pipeline itself).
-  * $default is an optional default value to substitute in place
-    of null or missing values.
+#### Inputs:
 
-* Outputs:
-  * $string is the input string with variable substitution patterns,
-    such as "%key%", replaced with the value of the key (resolved
-    against either $pipeline, if specified, or the pipeline itself).
+* `$string` is a string to perform variable substitution on.
+* `$pipeline` is an optional IData document used to scope the
+  variable substitution. If not specified, the substitution
+  is unscoped (resolved against the pipeline itself).
+* `$default` is an optional default value to substitute in place
+  of null or missing values.
+
+#### Outputs:
+
+* `$string` is the input string with variable substitution patterns,
+  such as "%key%", replaced with the value of the key (resolved
+  against either $pipeline, if specified, or the pipeline itself).
+
 </value>
   <value name="stateless">no</value>
   <value name="caching">no</value>

@@ -59,14 +59,19 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">Converts the value or values identified by the given key to a new 
-list containing the original value or values as its items, unless 
-the original value is already a list in which case it remains 
+  <value name="node_comment">### tundra.pipeline:listify
+
+Converts the value or values identified by the given key to a new
+list containing the original value or values as its items, unless
+the original value is already a list in which case it remains
 unmodified.
 
-* Inputs:
-  * $key is a simple or fully-qualified (such as a/b/c[0]/d) key 
-    identifying the value to be converted to a list.</value>
+#### Inputs:
+
+* `$key` is a simple or fully-qualified (such as `a/b/c[0]/d`) key
+  identifying the value to be converted to a list.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

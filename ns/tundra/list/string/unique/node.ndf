@@ -80,15 +80,21 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">Returns a new list with all duplicates from the given list 
+  <value name="node_comment">### tundra.list.string:unique
+
+Returns a new list with all duplicates from the given list
 removed, such that no two items are equal.
 
-* Inputs:
-  * $list is the list to process.
+#### Inputs:
 
-* Outputs:
-  * $list is the resulting list with all duplicate items
-    removed.</value>
+* `$list` is the list to process.
+
+#### Outputs:
+
+* `$list` is the resulting list with all duplicate items
+  removed.
+
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
