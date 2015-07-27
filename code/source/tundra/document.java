@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-09 14:35:05 AEST
+// -----( CREATED: 2015-07-27 12:47:56 AEST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -156,7 +156,9 @@ public final class document
 		    IData document = IDataUtil.getIData(cursor, "$document");
 		    String source = IDataUtil.getString(cursor, "$key.source");
 		    String target = IDataUtil.getString(cursor, "$key.target");
-		    IDataUtil.put(cursor, "$document", IDataHelper.copy(document, source, target));
+		    boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$key.literal?"));
+		    
+		    if (document != null) IDataUtil.put(cursor, "$document", IDataHelper.copy(document, source, target, literal));
 		} finally {
 		    cursor.destroy();
 		}
@@ -175,13 +177,16 @@ public final class document
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
 		// [i] field:0:optional $key
+		// [i] field:0:optional $key.literal? {"false","true"}
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		    IData document = IDataUtil.getIData(cursor, "$document");
 		    String key = IDataUtil.getString(cursor, "$key");
-		    IDataUtil.put(cursor, "$document", IDataHelper.drop(document, key));
+		    boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$key.literal?"));
+		    
+		    if (document != null) IDataUtil.put(cursor, "$document", IDataHelper.drop(document, key, literal));
 		} finally {
 		    cursor.destroy();
 		}
@@ -352,6 +357,7 @@ public final class document
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
 		// [i] field:0:optional $key
+		// [i] field:0:optional $key.literal? {"false","true"}
 		// [i] object:0:optional $default.object
 		// [i] field:0:optional $default.string
 		// [o] object:0:optional $value
@@ -362,8 +368,9 @@ public final class document
 		    String key = IDataUtil.getString(cursor, "$key");
 		    Object defaultObject = IDataUtil.get(cursor, "$default.object");
 		    if (defaultObject == null) defaultObject = IDataUtil.getString(cursor, "$default.string");
+		    boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$key.literal?"));
 		
-		    Object value = IDataHelper.get(document, key, defaultObject);
+		    Object value = IDataHelper.get(document, key, defaultObject, literal);
 		
 		    if (value != null) IDataUtil.put(cursor, "$value", value);
 		} finally {
@@ -645,6 +652,7 @@ public final class document
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
 		// [i] field:0:optional $key
+		// [i] field:0:optional $key.literal? {"false","true"}
 		// [i] object:0:optional $value
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
@@ -652,9 +660,10 @@ public final class document
 		try {
 		    IData document = IDataUtil.getIData(cursor, "$document");
 		    String key = IDataUtil.getString(cursor, "$key");
+		    boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$key.literal?"));
 		    Object value = IDataUtil.get(cursor, "$value");
 		
-		    IDataUtil.put(cursor, "$document", IDataHelper.put(document, key, value));
+		    IDataUtil.put(cursor, "$document", IDataHelper.put(document, key, value, true, literal));
 		} finally {
 		    cursor.destroy();
 		}
@@ -674,6 +683,7 @@ public final class document
 		// [i] record:0:optional $document
 		// [i] field:0:required $key.source
 		// [i] field:0:required $key.target
+		// [i] field:0:optional $key.literal? {"false","true"}
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -681,7 +691,9 @@ public final class document
 		    IData document = IDataUtil.getIData(cursor, "$document");
 		    String source = IDataUtil.getString(cursor, "$key.source");
 		    String target = IDataUtil.getString(cursor, "$key.target");
-		    IDataUtil.put(cursor, "$document", IDataHelper.rename(document, source, target));
+		    boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$key.literal?"));
+		    
+		    if (document != null) IDataUtil.put(cursor, "$document", IDataHelper.rename(document, source, target, literal));
 		} finally {
 		    cursor.destroy();
 		}

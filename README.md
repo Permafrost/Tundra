@@ -2893,23 +2893,25 @@ Removes all null values from the given IData document.
 
 ### tundra.document:copy
 
-Copies the value associated with the source key to the target key
-in the given IData document.
+Copies the value associated with the source key to the target key in the
+given IData document.
 
 #### Inputs:
 
-* `$document` is an IData document in which to copy the value
-  associated with the source key to the target key.
-* `$key.source` is a key identifying the value to be copied,
-  and can be simple or fully qualified, such as `a/b/c[0]/d`.
-* `$key.target` is the key to which the source key value is
-  copied, and can be simple or fully qualified, such as
-  `a/b/c[0]/d`.
+* `$document` is an IData document in which to copy the value associated
+  with the source key to the target key.
+* `$key.source` is a key identifying the value to be copied, and can be
+  simple or fully qualified, such as `a/b/c[0]/d`.
+* `$key.target` is the key to which the source key value is copied, and can
+  be simple or fully qualified, such as `a/b/c[0]/d`.
+* `$key.literal?` is an optional boolean flag which if true will treat the
+  given keys literally rather than as potentially fully-qualified keys.
+  Defaults to false if not specified.
 
 #### Outputs:
 
-* `$document` is the given IData document where the value
-  associated with `$key.source` has been copied to `$key.target`.
+* `$document` is the given IData document where the value associated with
+  `$key.source` has been copied to `$key.target`.
 
 ---
 
@@ -3075,6 +3077,9 @@ Removes the element with the given key from the given IData document.
   identified by `$key`.
 * `$key` is a key identifying the element in `$document` to be removed,
   and can be simple or fully qualified, such as `a/b/c[0]/d`.
+* `$key.literal?` is an optional boolean flag which if true will treat
+  the given key literally rather than as a potentially fully-qualified
+  key. Defaults to false if not specified.
 
 #### Outputs:
 
@@ -3201,6 +3206,9 @@ document.
 * `$key` is the key identifying the value in the given document to
   be returned, and can be simple or fully qualified, such as
   `a/b/c[0]/d`.
+* `$key.literal?` is an optional boolean flag which if true will treat
+  the given key literally rather than as a potentially fully-qualified
+  key. Defaults to false if not specified.
 * `$default.object` is an optional value to be returned when either
   the given `$key` does not exist or its associated value is null.
 * `$default.string` is an optional string value, provided for
@@ -3589,6 +3597,9 @@ Sets the value associated with the given key in the given IData document.
 * `$key` is the key to be inserted into the given IData document, and
   can be simple or fully-qualified, such as `a/b/c[0]/d`. If the key
   already exists, it's value will be overwritten with the given value.
+* `$key.literal?` is an optional boolean flag which if true will treat
+  the given key literally rather than as a potentially fully-qualified
+  key. Defaults to false if not specified.
 * `$value` is the value to be associated with the given key. If not
   specified, a null value will be inserted.
 
@@ -3613,6 +3624,9 @@ in the given IData document.
   and can be simple or fully-qualified, such as `a/b/c[0]/d`. If the
   target key already exists, its value will be overwitten with the
   value that was associated with the source key.
+* `$key.literal?` is an optional boolean flag which if true will treat
+  the given keys literally rather than as potentially fully-qualified
+  keys. Defaults to false if not specified.
 
 #### Outputs:
 
