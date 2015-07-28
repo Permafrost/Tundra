@@ -21,6 +21,7 @@ cnRlZCwgcGlwZWxpbmUpOwp9</value>
     <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.data.IDataXMLParser</value>
     <value>permafrost.tundra.io.StreamHelper</value>
+    <value>permafrost.tundra.lang.BooleanHelper</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>
     <value>permafrost.tundra.lang.ObjectHelper</value>
   </array>

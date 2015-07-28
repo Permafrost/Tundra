@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-27 12:47:56 AEST
+// -----( CREATED: 2015-07-28 10:02:51 AEST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -149,6 +149,7 @@ public final class document
 		// [i] record:0:optional $document
 		// [i] field:0:required $key.source
 		// [i] field:0:required $key.target
+		// [i] field:0:optional $key.literal? {"false","true"}
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -663,7 +664,7 @@ public final class document
 		    boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$key.literal?"));
 		    Object value = IDataUtil.get(cursor, "$value");
 		
-		    IDataUtil.put(cursor, "$document", IDataHelper.put(document, key, value, true, literal));
+		    IDataUtil.put(cursor, "$document", IDataHelper.put(document, key, value, literal));
 		} finally {
 		    cursor.destroy();
 		}

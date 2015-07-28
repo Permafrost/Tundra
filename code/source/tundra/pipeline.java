@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-09 13:57:45 AEST
+// -----( CREATED: 2015-07-28 10:11:31 AEST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -13,6 +13,7 @@ import java.io.IOException;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.data.IDataXMLParser;
 import permafrost.tundra.io.StreamHelper;
+import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.lang.ObjectHelper;
 // --- <<IS-END-IMPORTS>> ---
@@ -84,12 +85,15 @@ public final class pipeline
 		// @sigtype java 3.5
 		// [i] field:0:required $key.source
 		// [i] field:0:required $key.target
+		// [i] field:0:optional $key.literal? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		    String source = IDataUtil.getString(cursor, "$key.source");
 		    String target = IDataUtil.getString(cursor, "$key.target");
-		    IDataHelper.copy(pipeline, source, target);
+		    boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$key.literal?"));
+		
+		    IDataHelper.copy(pipeline, source, target, literal);
 		} finally {
 		    cursor.destroy();
 		}
@@ -107,11 +111,14 @@ public final class pipeline
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $key
+		// [i] field:0:optional $key.literal? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		    String key = IDataUtil.getString(cursor, "$key");
-		    IDataHelper.drop(pipeline, key);
+		    boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$key.literal?"));
+		
+		    IDataHelper.drop(pipeline, key, literal);
 		} finally {
 		    cursor.destroy();
 		}
@@ -185,12 +192,21 @@ public final class pipeline
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $key
+		// [i] field:0:optional $key.literal? {"false","true"}
+		// [i] object:0:optional $default.object
+		// [i] field:0:optional $default.string
 		// [o] object:0:optional $value
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		    String key = IDataUtil.getString(cursor, "$key");
-		    IDataUtil.put(cursor, "$value", IDataHelper.get(pipeline, key));
+		    Object defaultObject = IDataUtil.get(cursor, "$default.object");
+		    if (defaultObject == null) defaultObject = IDataUtil.getString(cursor, "$default.string");
+		    boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$key.literal?"));
+		
+		    Object value = IDataHelper.get(pipeline, key, defaultObject, literal);
+		    
+		    if (value != null) IDataUtil.put(cursor, "$value", value);
 		} finally {
 		    cursor.destroy();
 		}
@@ -347,13 +363,16 @@ public final class pipeline
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $key
+		// [i] field:0:optional $key.literal? {"false","true"}
 		// [i] object:0:optional $value
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		    String key = IDataUtil.getString(cursor, "$key");
+		    boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$key.literal?"));
 		    Object value = IDataUtil.get(cursor, "$value");
-		    IDataHelper.put(pipeline, key, value);
+		    
+		    IDataHelper.put(pipeline, key, value, literal);
 		} finally {
 		    cursor.destroy();
 		}
@@ -372,12 +391,15 @@ public final class pipeline
 		// @sigtype java 3.5
 		// [i] field:0:required $key.source
 		// [i] field:0:required $key.target
+		// [i] field:0:optional $key.literal? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		    String source = IDataUtil.getString(cursor, "$key.source");
 		    String target = IDataUtil.getString(cursor, "$key.target");
-		    IDataHelper.rename(pipeline, source, target);
+		    boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$key.literal?"));
+		
+		    IDataHelper.rename(pipeline, source, target, literal);
 		} finally {
 		    cursor.destroy();
 		}

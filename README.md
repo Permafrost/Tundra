@@ -8754,27 +8754,32 @@ specified in the preserve list.
 
 ### tundra.pipeline:copy
 
-Copies the value associated with the source key to the target
-key in the pipeline.
+Copies the value associated with the source key to the target key in the
+pipeline.
 
 #### Inputs:
 
-* `$key.source` identifies the value to be copied, and can be
-  simple or fully qualified, such as `a/b/c[0]/d`.
-* `$key.target` is the key to copy the source value to, and
-  can be simple or fully qualified, such as `a/b/c[0]/d`.
+* `$key.source` identifies the value to be copied, and can be simple or
+  fully qualified, such as `a/b/c[0]/d`.
+* `$key.target` is the key to copy the source value to, and can be simple or
+  fully qualified, such as `a/b/c[0]/d`.
+* `$key.literal?` is an optional boolean flag which if true will treat the
+  given keys literally rather than as potentially fully-qualified keys.
+  Defaults to false if not specified.
 
 ---
 
 ### tundra.pipeline:drop
 
-Drops the key value pair associated with the given key from
-the pipeline.
+Drops the key value pair associated with the given key from the pipeline.
 
 #### Inputs:
 
-* `$key` identifies the key value pair to be dropped, and
-  can be simple or fully qualified, such as `a/b/c[0]/d`.
+* `$key` identifies the key value pair to be dropped, and can be simple or
+  fully qualified, such as `a/b/c[0]/d`.
+* `$key.literal?` is an optional boolean flag which if true will treat the
+  given keys literally rather than as potentially fully-qualified keys.
+  Defaults to false if not specified.
 
 ---
 
@@ -8810,13 +8815,21 @@ Returns the first key value pair from the pipeline.
 
 ### tundra.pipeline:get
 
-Returns the value associated with the given key from the
-pipeline, or null if it doesn't exist.
+Returns the value associated with the given key from the pipeline, or null
+if it doesn't exist.
 
 #### Inputs:
 
-* `$key` identifies the value to be retrieved from the pipeline,
-  and can be simple or fully qualified, such as `a/b/c[0]/d`.
+* `$key` identifies the value to be retrieved from the pipeline, and can be
+  simple or fully qualified, such as `a/b/c[0]/d`.
+* `$key.literal?` is an optional boolean flag which if true will treat the
+  given key literally rather than as a potentially fully-qualified key.
+  Defaults to false if not specified.
+* `$default.object` is an optional value to be returned when either the
+  given `$key` does not exist or its associated value is null.
+* `$default.string` is an optional string value, provided for convenience
+  when hard-coding a default value, to be returned when either the given
+  `$key` does not exist or its associated value is null.
 
 #### Outputs:
 
@@ -8944,24 +8957,30 @@ Sets the value associated with the given key in the pipeline.
 
 #### Inputs:
 
-* `$key` is a simple or fully qualified key (`a/b/c[0]/d`) to
-  associate with the given `$value`.
+* `$key` is a simple or fully qualified key (`a/b/c[0]/d`) to associate with
+  the given `$value`.
+* `$key.literal?` is an optional boolean flag which if true will treat the
+  given key literally rather than as a potentially fully-qualified key.
+  Defaults to false if not specified.
 * `$value` is the value to be associated with the given `$key`.
 
 ---
 
 ### tundra.pipeline:rename
 
-Renames the value associated with the source key to have the
-target key in the pipeline. After being renamed, the source
-key will no longer exist in the pipeline.
+Renames the value associated with the source key to have the target key in
+the pipeline. After being renamed, the source key will no longer exist in
+the pipeline.
 
 #### Inputs:
 
-* `$key.source` is a simple or fully qualified key (`a/b/c[0]/d`)
-  to be renamed to the given target key.
-* `$key.target` is the new simple or fully qualified key that the
-  source key will be renamed to.
+* `$key.source` is a simple or fully qualified key (`a/b/c[0]/d`) to be
+  renamed to the given target key.
+* `$key.target` is the new simple or fully qualified key that the source key
+  will be renamed to.
+* `$key.literal?` is an optional boolean flag which if true will treat the
+  given key literally rather than as a potentially fully-qualified key.
+  Defaults to false if not specified.
 
 ---
 
