@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-09 08:46:25 AEST
+// -----( CREATED: 2015-07-31 13:44:44 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -84,7 +84,7 @@ public final class uri
 		    IData uri = IDataUtil.getIData(cursor, "$uri");
 		    if (uri != null) IDataUtil.put(cursor, "$string", URIHelper.emit(uri));
 		} catch(URISyntaxException ex) {
-			ExceptionHelper.raise(ex);
+		    ExceptionHelper.raise(ex);
 		} finally {
 		    cursor.destroy();
 		}
