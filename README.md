@@ -8037,15 +8037,16 @@ given condition evaluates to true.
 
 ### tundra.list.string:replace
 
-Replaces all occurrences of the given [regular expression pattern]
-in the given list of strings, with the replacement string.
+Replaces either the first or all occurrences of the given 
+[regular expression pattern] in the given list of strings, 
+with the replacement string.
 
 #### Inputs:
 
 * `$list` is a list of strings to have all occurrences of the given
   [regular expression pattern] replaced.
 * `$pattern` is the [regular expression pattern] to match against
-  the given string.
+  the given string. If not specified, no replacement will occur.
 * `$replacement` is the replacement string to be substituted in
   the given string wherever the given pattern is found.
 * `$literal?` is a boolean indicating if the replacement string
@@ -8053,11 +8054,14 @@ in the given list of strings, with the replacement string.
   groups can be referred to with dollar-sign references, such
   as $1, and other special characters may need to be escaped.
   Defaults to false.
+* `$mode` is a choice of whether to replace all occurrences of the
+  pattern, or just the first occurrence. If not specified, 
+  defaults to all occurrences.
 
 #### Outputs:
 
-* `$list` is the input list of strings with all occurrences of the given
-  [regular expression pattern] replaced with `$replacement`.
+* `$list` is the input list of strings with all occurrences of the 
+  given [regular expression pattern] replaced with `$replacement`.
 
 ---
 
@@ -10431,8 +10435,9 @@ expression pattern] from the given string.
 
 ### tundra.string:replace
 
-Replaces all occurrences of the given [regular expression pattern]
-in the given string, with the replacement string.
+Replaces either the first or all occurrences of the given 
+[regular expression pattern] in the given string, with the 
+replacement string.
 
 #### Inputs:
 
