@@ -3281,9 +3281,10 @@ string.
 * `$document` is an IData document to have all occurrences of the
   given [regular expression pattern] in each key replaced.
 * `$pattern` is the [regular expression pattern] to match against
-  each key.
+  each key. If not specified, no replacement will occur.
 * `$replacement` is the replacement string to be substituted in
-  each key wherever the given pattern is found.
+  each key wherever the given pattern is found. If not specified, 
+  no replacement will occur.
 * `$literal?` is a boolean indicating if the replacement string
   should be treated as a literal string. If false, captured
   groups can be referred to with dollar-sign references, such
@@ -10416,7 +10417,7 @@ in the given string, with the replacement string.
 * `$string` is a string to have all occurrences of the given
   [regular expression pattern] replaced.
 * `$pattern` is the [regular expression pattern] to match against
-  the given string.
+  the given string. If not specified, no replacement will occur.
 * `$replacement` is the replacement string to be substituted in
   the given string wherever the given pattern is found. If not
   specified, no replacement will occur.
