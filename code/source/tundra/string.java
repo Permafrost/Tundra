@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-08-04 18:08:32 EST
+// -----( CREATED: 2015-08-04 18:14:59 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -481,6 +481,7 @@ public final class string
 		// [i] field:0:optional $pattern
 		// [i] field:0:optional $replacement
 		// [i] field:0:optional $literal? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $mode {&quot;all&quot;,&quot;first&quot;}
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -489,8 +490,9 @@ public final class string
 		    String pattern = IDataUtil.getString(cursor, "$pattern");
 		    String replacement = IDataUtil.getString(cursor, "$replacement");
 		    boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$literal?"));
+		    String mode = IDataUtil.getString(cursor, "$mode");
 		
-		    if (string != null) IDataUtil.put(cursor, "$string", StringHelper.replace(string, pattern, replacement, literal));
+		    if (string != null) IDataUtil.put(cursor, "$string", StringHelper.replace(string, pattern, replacement, literal, (!(mode == null || mode.equals("all")))));
 		} finally {
 		    cursor.destroy();
 		}

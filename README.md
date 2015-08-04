@@ -10409,8 +10409,8 @@ sequences in the input sequence are given no special meaning.
 
 ### tundra.string:remove
 
-Removes all occurrences of the given [regular expression pattern]
-from the given string.
+Removes either the first or all occurrences of the given [regular 
+expression pattern] from the given string.
 
 #### Inputs:
 
@@ -10418,6 +10418,9 @@ from the given string.
   [regular expression pattern] removed.
 * `$pattern` is the [regular expression pattern] to match against
   the given string. If not specified, no removal will occur.
+* `$mode` is a choice of whether to remove all occurrences of the
+  pattern, or just the first occurrence. If not specified, 
+  defaults to all occurrences.
 
 #### Outputs:
 
@@ -10445,6 +10448,9 @@ in the given string, with the replacement string.
   groups can be referred to with dollar-sign references, such
   as $1, and other special characters may need to be escaped.
   Defaults to false.
+* `$mode` is a choice of whether to replace all occurrences of the
+  pattern, or just the first occurrence. If not specified, 
+  defaults to all occurrences.
 
 #### Outputs:
 
