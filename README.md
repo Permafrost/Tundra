@@ -10407,6 +10407,25 @@ sequences in the input sequence are given no special meaning.
 
 ---
 
+### tundra.string:remove
+
+Removes all occurrences of the given [regular expression pattern]
+from the given string.
+
+#### Inputs:
+
+* `$string` is a string to have all occurrences of the given
+  [regular expression pattern] removed.
+* `$pattern` is the [regular expression pattern] to match against
+  the given string. If not specified, no removal will occur.
+
+#### Outputs:
+
+* `$string` is the input string with all occurrences of the given
+  [regular expression pattern] removed.
+
+---
+
 ### tundra.string:replace
 
 Replaces all occurrences of the given [regular expression pattern]
