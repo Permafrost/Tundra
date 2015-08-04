@@ -3272,13 +3272,13 @@ underscore characters.
 
 ### tundra.document.key:replace
 
-Replaces all occurrences of the given [regular expression pattern]
-in each key in the given IData document with the replacement
-string.
+Replaces either the first or all occurrences of the given
+[regular expression pattern] in each key in the given `IData` 
+document with the replacement string.
 
 #### Inputs:
 
-* `$document` is an IData document to have all occurrences of the
+* `$document` is an `IData` document to have all occurrences of the
   given [regular expression pattern] in each key replaced.
 * `$pattern` is the [regular expression pattern] to match against
   each key. If not specified, no replacement will occur.
@@ -3288,16 +3288,19 @@ string.
 * `$literal?` is a boolean indicating if the replacement string
   should be treated as a literal string. If false, captured
   groups can be referred to with dollar-sign references, such
-  as $1, and other special characters may need to be escaped.
-  Defaults to false.
+  as `$1`, and other special characters may need to be escaped.
+  Defaults to `false`.
+* `$mode` is a choice of whether to replace all occurrences of the
+  pattern, or just the first occurrence. If not specified, 
+  defaults to all occurrences.
 * `$recurse?` is an optional boolean indicating if embedded
-  IData documents and IData[] document lists should also
-  have occurrences of the pattern in their string values
-  replaced. Defaults to false.
+  `IData` documents and `IData[]` document lists should also
+  have occurrences of the pattern in their keys replaced. 
+  Defaults to `false`.
 
 #### Outputs:
 
-* `$document` is the given IData document with all occurrences of
+* `$document` is the given `IData` document with all occurrences of
   the given [regular expression pattern] in each key replaced
   with `$replacement`.
 
