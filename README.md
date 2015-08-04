@@ -3300,9 +3300,9 @@ document with the replacement string.
 
 #### Outputs:
 
-* `$document` is the given `IData` document with all occurrences of
-  the given [regular expression pattern] in each key replaced
-  with `$replacement`.
+* `$document` is the given `IData` document with either the first
+  or all occurrences of the given [regular expression pattern] in 
+  each key replaced with `$replacement`.
 
 ---
 
@@ -3850,9 +3850,9 @@ given `IData` document with the replacement string.
 
 #### Outputs:
 
-* `$document` is the given `IData` document with all occurrences of
-  the given [regular expression pattern] in each string value
-  replaced with `$replacement`.
+* `$document` is the given `IData` document with either the first
+  or all occurrences of the given [regular expression pattern] in 
+  each string value replaced with `$replacement`.
 
 ---
 

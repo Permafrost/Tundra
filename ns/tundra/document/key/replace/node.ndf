@@ -284,9 +284,9 @@ document with the replacement string.
 
 #### Outputs:
 
-* $document is the given IData document with all occurrences of
-  the given [regular expression pattern] in each key replaced
-  with $replacement.
+* $document is the given IData document with either the first
+  or all occurrences of the given [regular expression pattern]
+  in each key replaced with $replacement.
 
 [regular expression pattern]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html&gt;</value>
   <value name="stateless">no</value>
