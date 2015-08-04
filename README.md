@@ -3849,6 +3849,34 @@ case.
 
 ---
 
+### tundra.document.value:remove
+
+Removes either the first or all occurrences of the given 
+[regular expression pattern] in each string value in the 
+given `IData` document.
+
+#### Inputs:
+
+* `$document` is an `IData` document to have all occurrences of the
+  given [regular expression pattern] in each string value removed.
+* `$pattern` is the [regular expression pattern] to match against
+  each string value. If not specified, no removal will occur.
+* `$mode` is a choice of whether to remove all occurrences of the
+  pattern, or just the first occurrence. If not specified, 
+  defaults to all occurrences.
+* `$recurse?` is an optional boolean indicating if embedded
+  `IData` documents and `IData[]` document lists should also
+  have occurrences of the pattern in their string values
+  removed. Defaults to `false`.
+
+#### Outputs:
+
+* `$document` is the given `IData` document with either the first
+  or all occurrences of the given [regular expression pattern]
+  in each string value removed.
+
+---
+
 ### tundra.document.value:replace
 
 Replaces either the first or all occurrences of the given 
