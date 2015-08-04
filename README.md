@@ -3278,7 +3278,7 @@ document.
 
 #### Inputs:
 
-* `$document` is an `IData` document to have all occurrences of the
+* `$document` is an `IData` document to have occurrences of the
   given [regular expression pattern] in each key removed.
 * `$pattern` is the [regular expression pattern] to match against
   each key. If not specified, no removal will occur.
@@ -3306,7 +3306,7 @@ document with the replacement string.
 
 #### Inputs:
 
-* `$document` is an `IData` document to have all occurrences of the
+* `$document` is an `IData` document to have occurrences of the
   given [regular expression pattern] in each key replaced.
 * `$pattern` is the [regular expression pattern] to match against
   each key. If not specified, no replacement will occur.
@@ -3857,7 +3857,7 @@ given `IData` document.
 
 #### Inputs:
 
-* `$document` is an `IData` document to have all occurrences of the
+* `$document` is an `IData` document to have occurrences of the
   given [regular expression pattern] in each string value removed.
 * `$pattern` is the [regular expression pattern] to match against
   each string value. If not specified, no removal will occur.
@@ -3885,7 +3885,7 @@ given `IData` document with the replacement string.
 
 #### Inputs:
 
-* `$document` is an `IData` document to have all occurrences of the
+* `$document` is an `IData` document to have occurrences of the
   given [regular expression pattern] in each string value replaced.
 * `$pattern` is the [regular expression pattern] to match against
   each string value. If not specified, no replacement will occur.
@@ -6062,33 +6062,36 @@ lower case.
 
 ### tundra.list.document.key:replace
 
-Replaces all occurrences of the given [regular expression pattern]
-in each item's keys in the given IData document list with the
-replacement string.
+Replaces either the first or all occurrences of the given
+[regular expression pattern] in each item's keys in the given 
+`IData[]` document list with the replacement string.
 
 #### Inputs:
 
-* `$list` is an IData document list to have all occurrences of the
+* `$list` is an `IData[]` document list to have occurrences of the
   given [regular expression pattern] in each item's keys replaced.
 * `$pattern` is the [regular expression pattern] to match against
-  each key.
+  each key. If not specified, no replacement will occur.
 * `$replacement` is the replacement string to be substituted in
   each key wherever the given pattern is found.
 * `$literal?` is a boolean indicating if the replacement string
-  should be treated as a literal string. If false, captured
+  should be treated as a literal string. If `false`, captured
   groups can be referred to with dollar-sign references, such
-  as $1, and other special characters may need to be escaped.
-  Defaults to false.
+  as `$1`, and other special characters may need to be escaped.
+  Defaults to `false`.
+* `$mode` is a choice of whether to replace all occurrences of the
+  pattern, or just the first occurrence. If not specified, 
+  defaults to all occurrences.
 * `$recurse?` is an optional boolean indicating if embedded
-  IData documents and IData document lists should also
-  have occurrences of the pattern in their string values
-  replaced. Defaults to false.
+  `IData` documents and `IData[]` document lists should also
+  have occurrences of the pattern in their keys replaced.
+  Defaults to `false`.
 
 #### Outputs:
 
-* `$list` is the given IData document list with all occurrences of
-  the given [regular expression pattern] in each item's keys replaced
-  with `$replacement`.
+* `$list` is the given `IData[]` document list with either the first 
+  or all occurrences of the given [regular expression pattern] in
+  each item's keys replaced with `$replacement`.
 
 ---
 
@@ -6614,34 +6617,37 @@ list to lower case.
 
 ### tundra.list.document.value:replace
 
-Replaces all occurrences of the given [regular expression pattern]
-in each item's string values in the given IData document list with
-the replacement string.
+Replaces either the first or all occurrences of the given
+[regular expression pattern] in each item's string values in
+the given `IData[]` document list with the replacement string.
 
 #### Inputs:
 
-* `$list` is an IData document list to have all occurrences of the
-  given [regular expression pattern] in each item's string values
+* `$list` is an `IData[]` document list to have all occurrences of 
+  the given [regular expression pattern] in each item's string values
   replaced.
 * `$pattern` is the [regular expression pattern] to match against
-  each string value.
+  each string value. If not specified, no replacement will occur.
 * `$replacement` is the replacement string to be substituted in
   each string value wherever the given pattern is found.
 * `$literal?` is a boolean indicating if the replacement string
-  should be treated as a literal string. If false, captured
+  should be treated as a literal string. If `false`, captured
   groups can be referred to with dollar-sign references, such
-  as $1, and other special characters may need to be escaped.
-  Defaults to false.
+  as `$1`, and other special characters may need to be escaped.
+  Defaults to `false`.
+* `$mode` is a choice of whether to replace all occurrences of the
+  pattern, or just the first occurrence. If not specified, 
+  defaults to all occurrences.
 * `$recurse?` is an optional boolean indicating if embedded
-  IData documents and IData document lists should also
+  `IData` documents and `IData[]` document lists should also
   have occurrences of the pattern in their string values
   replaced. Defaults to false.
 
 #### Outputs:
 
-* `$list` is the given IData document list with all occurrences of
-  the given [regular expression pattern] in each item's string
-  values replaced with `$replacement`.
+* `$list` is the given `IData[]` document list with either the first
+  or all occurrences of the given [regular expression pattern]
+  in each item's string values replaced with `$replacement`.
 
 ---
 

@@ -248,7 +248,7 @@ with the replacement string.
 
 #### Inputs:
 
-* $list is a list of strings to have all occurrences of the given
+* $list is a list of strings to have occurrences of the given
   [regular expression pattern] replaced.
 * $pattern is the [regular expression pattern] to match against
   the given string. If not specified, no replacement will occur.
@@ -265,8 +265,9 @@ with the replacement string.
 
 #### Outputs:
 
-* $list is the input list of strings with all occurrences of the
-  given [regular expression pattern] replaced with $replacement.
+* $list is the input list of strings with either the first or all
+  occurrences of the given [regular expression pattern] replaced
+  with $replacement.
 
 [regular expression pattern]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html&gt;</value>
   <value name="stateless">no</value>

@@ -202,7 +202,7 @@ document.
 
 #### Inputs:
 
-* $document is an IData document to have all occurrences of the
+* $document is an IData document to have occurrences of the
   given [regular expression pattern] in each key removed.
 * $pattern is the [regular expression pattern] to match against
   each key. If not specified, no removal will occur.
