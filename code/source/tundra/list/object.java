@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-09 15:44:15 AEST
+// -----( CREATED: 2015-08-04 19:40:02 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -64,7 +64,7 @@ public final class object
 		// @sigtype java 3.5
 		// [i] object:1:optional $list
 		// [i] object:0:optional $default
-		// [i] field:0:optional $mode {"missing","null"}
+		// [i] field:0:optional $mode {&quot;missing&quot;,&quot;null&quot;}
 		// [o] object:0:optional $item
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -1190,7 +1190,10 @@ public final class object
 	
 	        // invoke the service for each item in the list, passing $item and $index variables on each invocation
 	        // and collect the returned $item's into a new list
-	        IDataUtil.put(cursor, "$list", map(list == null ? null : java.util.Arrays.copyOf(list, list.length, (Class<T[]>)java.lang.reflect.Array.newInstance(klass, 0).getClass()), service, scoped ? scope : pipeline, input, output));
+	
+	        list = map(list == null ? null : java.util.Arrays.copyOf(list, list.length, (Class<T[]>)java.lang.reflect.Array.newInstance(klass, 0).getClass()), service, scoped ? scope : pipeline, input, output);
+	
+	        if (list != null) IDataUtil.put(cursor, "$list", list);
 	    } finally {
 	        cursor.destroy();
 	    }
