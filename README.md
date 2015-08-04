@@ -8035,6 +8035,28 @@ given condition evaluates to true.
 
 ---
 
+### tundra.list.string:remove
+
+Removes either the first or all occurrences of the given 
+[regular expression pattern] in the given list of strings.
+
+#### Inputs:
+
+* $list is a list of strings to have all occurrences of the given
+  [regular expression pattern] replaced.
+* $pattern is the [regular expression pattern] to match against
+  the given string. If not specified, no removal will occur.
+* $mode is a choice of whether to remove all occurrences of the
+  pattern, or just the first occurrence. If not specified, 
+  defaults to all occurrences.
+
+#### Outputs:
+
+* $list is the input list of strings with all occurrences of the
+  given [regular expression pattern] removed.
+
+---
+
 ### tundra.list.string:replace
 
 Replaces either the first or all occurrences of the given 
