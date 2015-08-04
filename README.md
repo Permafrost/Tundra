@@ -6060,6 +6060,34 @@ lower case.
 
 ---
 
+### tundra.list.document.key:remove
+
+Removes either the first or all occurrences of the given
+[regular expression pattern] in each item's keys in the given 
+`IData[]` document list.
+
+#### Inputs:
+
+* `$list` is an `IData[]` document list to have occurrences of the
+  given [regular expression pattern] in each item's keys removed.
+* `$pattern` is the [regular expression pattern] to match against
+  each key. If not specified, no removal will occur.
+* `$mode` is a choice of whether to remove all occurrences of the
+  pattern, or just the first occurrence. If not specified, 
+  defaults to all occurrences.
+* `$recurse?` is an optional boolean indicating if embedded
+  `IData` documents and `IData[]` document lists should also
+  have occurrences of the pattern in their keys removed.
+  Defaults to `false`.
+
+#### Outputs:
+
+* `$list` is the given `IData[]` document list with either the first
+  or all occurrences of the given [regular expression pattern] in
+  each item's keys removed.
+
+---
+
 ### tundra.list.document.key:replace
 
 Replaces either the first or all occurrences of the given
@@ -6615,6 +6643,35 @@ list to lower case.
 
 ---
 
+### tundra.list.document.value:remove
+
+Remove either the first or all occurrences of the given
+[regular expression pattern] in each item's string values in
+the given `IData[]` document list.
+
+#### Inputs:
+
+* `$list` is an `IData[]` document list to have occurrences of the
+  given [regular expression pattern] in each item's string values
+  removed.
+* `$pattern` is the [regular expression pattern] to match against
+  each string value. If not specified, no removal will occur.
+* `$mode` is a choice of whether to remove all occurrences of the
+  pattern, or just the first occurrence. If not specified, 
+  defaults to all occurrences.
+* `$recurse?` is an optional boolean indicating if embedded
+  `IData` documents and `IData[]` document lists should also
+  have occurrences of the pattern in their string values
+  removed. Defaults to `false`.
+
+#### Outputs:
+
+* `$list` is the given `IData[]` document list with either the first
+  or all occurrences of the given [regular expression pattern]
+  in each item's string values removed.
+
+---
+
 ### tundra.list.document.value:replace
 
 Replaces either the first or all occurrences of the given
@@ -6623,7 +6680,7 @@ the given `IData[]` document list with the replacement string.
 
 #### Inputs:
 
-* `$list` is an `IData[]` document list to have all occurrences of 
+* `$list` is an `IData[]` document list to have occurrences of 
   the given [regular expression pattern] in each item's string values
   replaced.
 * `$pattern` is the [regular expression pattern] to match against

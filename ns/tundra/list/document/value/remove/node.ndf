@@ -66,66 +66,6 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
-            <value name="field_largerEditor">false</value>
-            <value name="field_password">false</value>
-          </record>
-          <value name="is_public">false</value>
-          <value name="field_name">$replacement</value>
-          <value name="field_type">string</value>
-          <value name="field_dim">0</value>
-          <value name="field_opt">true</value>
-          <record name="field_content_type" javaclass="com.wm.util.Values">
-            <value name="contentType">1</value>
-            <value name="internalType">reference</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-            <array name="targetNames" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">string</value>
-              </record>
-            </array>
-          </record>
-          <value name="nillable">true</value>
-          <value name="form_qualified">false</value>
-          <value name="is_global">false</value>
-        </record>
-        <record javaclass="com.wm.util.Values">
-          <value name="node_type">record</value>
-          <value name="node_comment"></value>
-          <record name="node_hints" javaclass="com.wm.util.Values">
-            <value name="field_usereditable">false</value>
-            <value name="field_largerEditor">false</value>
-            <value name="field_password">false</value>
-          </record>
-          <value name="is_public">false</value>
-          <value name="field_name">$literal?</value>
-          <value name="field_type">string</value>
-          <value name="field_dim">0</value>
-          <value name="field_opt">true</value>
-          <array name="field_options" type="value" depth="1">
-            <value>false</value>
-            <value>true</value>
-          </array>
-          <record name="field_content_type" javaclass="com.wm.util.Values">
-            <value name="contentType">1</value>
-            <value name="internalType">reference</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-            <array name="targetNames" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">boolean</value>
-              </record>
-            </array>
-          </record>
-          <value name="nillable">true</value>
-          <value name="form_qualified">false</value>
-          <value name="is_global">false</value>
-        </record>
-        <record javaclass="com.wm.util.Values">
-          <value name="node_type">record</value>
-          <value name="node_comment"></value>
-          <record name="node_hints" javaclass="com.wm.util.Values">
             <value name="field_usereditable">false</value>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
@@ -256,39 +196,32 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">### tundra.list.document.value:replace
+  <value name="node_comment">### tundra.list.document.value:remove
 
-Replaces either the first or all occurrences of the given
+Remove either the first or all occurrences of the given
 [regular expression pattern] in each item's string values in
-the given IData[] document list with the replacement string.
+the given IData[] document list.
 
 #### Inputs:
 
 * $list is an IData[] document list to have occurrences of the
   given [regular expression pattern] in each item's string values
-  replaced.
+  removed.
 * $pattern is the [regular expression pattern] to match against
-  each string value. If not specified, no replacement will occur.
-* $replacement is the replacement string to be substituted in
-  each string value wherever the given pattern is found.
-* $literal? is a boolean indicating if the replacement string
-  should be treated as a literal string. If false, captured
-  groups can be referred to with dollar-sign references, such
-  as $1, and other special characters may need to be escaped.
-  Defaults to false.
-* $mode is a choice of whether to replace all occurrences of the
+  each string value. If not specified, no removal will occur.
+* $mode is a choice of whether to remove all occurrences of the
   pattern, or just the first occurrence. If not specified, 
   defaults to all occurrences.
 * $recurse? is an optional boolean indicating if embedded
   IData documents and IData[] document lists should also
   have occurrences of the pattern in their string values
-  replaced. Defaults to false.
+  removed. Defaults to false.
 
 #### Outputs:
 
 * $list is the given IData[] document list with either the first
   or all occurrences of the given [regular expression pattern]
-  in each item's string values replaced with $replacement.
+  in each item's string values removed.
 
 [regular expression pattern]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html&gt;</value>
   <value name="stateless">no</value>
@@ -296,7 +229,7 @@ the given IData[] document list with the replacement string.
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
-  <value name="template">tundra_list_document_value_replace</value>
+  <value name="template">tundra_list_document_value_remove</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
