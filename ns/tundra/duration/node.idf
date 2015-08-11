@@ -9,7 +9,7 @@
   <array name="implements" type="value" depth="1">
   </array>
   <array name="imports" type="value" depth="1">
-    <value>permafrost.tundra.math.DecimalHelper</value>
+    <value>permafrost.tundra.math.BigDecimalHelper</value>
     <value>permafrost.tundra.time.DurationHelper</value>
   </array>
 </Values>

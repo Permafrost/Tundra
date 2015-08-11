@@ -2233,8 +2233,18 @@ given [rounding algorithm].
 
 #### Inputs:
 
-* `$decimals` is a list of decimal values to be added.
-* `$decimal` is a single decimal value to be added.
+* `$operands` is an `IData` document containing arbitrary elements
+  whose leaf values will be used as operands for this operation.
+  Leaf values can be provided as objects with the following types:
+  * `java.lang.String`
+  * `java.lang.Integer`
+  * `java.lang.Long`
+  * `java.lang.Float`
+  * `java.lang.Double`
+  * `java.math.BigDecimal`
+  * `java.math.BigInteger`
+  Leaf values provided as a `java.lang.String` must be parseable
+  as a decimal number using the [java.math.BigDecimal grammar].
 * `$precision` is an optional number of decimal places to be
   preserved in the result.
 * `$rounding` is an optional choice of the [rounding algorithm]
@@ -2270,7 +2280,18 @@ given [rounding algorithm].
 
 #### Inputs:
 
-* `$decimals` is a list of decimal values to average.
+* `$operands` is an `IData` document containing arbitrary elements
+  whose leaf values will be used as operands for this operation.
+  Leaf values can be provided as objects with the following types:
+  * `java.lang.String`
+  * `java.lang.Integer`
+  * `java.lang.Long`
+  * `java.lang.Float`
+  * `java.lang.Double`
+  * `java.math.BigDecimal`
+  * `java.math.BigInteger`
+  Leaf values provided as a `java.lang.String` must be parseable
+  as a decimal number using the [java.math.BigDecimal grammar].
 * `$precision` is an optional number of decimal places to be
   preserved in the result.
 * `$rounding` is an optional choice of the [rounding algorithm]
@@ -2300,14 +2321,14 @@ given [rounding algorithm].
 
 ### tundra.decimal:divide
 
-Divides the given decimal x by y, returning the result optionally
+Divides one decimal by another, returning the result optionally
 rounded to the given precision (number of decimal places) using
 the given [rounding algorithm].
 
 #### Inputs:
 
-* `$decimal.x` is the numerator decimal for the division.
-* `$decimal.y` is the denominator decimal for the division.
+* $dividend is the numerator decimal for the division.
+* $divisor is the denominator decimal for the division.
 * `$precision` is an optional number of decimal places to be
   preserved in the result.
 * `$rounding` is an optional choice of the [rounding algorithm]
@@ -2329,9 +2350,8 @@ the given [rounding algorithm].
 
 #### Outputs:
 
-* `$decimal` is the result of dividing `$decimal.x` by `$decimal.y`
-  and rounding to the given precision using the nominated
-  [rounding algorithm].
+* `$decimal` is the result of dividing the given values and rounding
+  to the given precision using the nominated [rounding algorithm].
 
 ---
 
@@ -2344,6 +2364,9 @@ Returns an string representation of the given decimal object.
 * `$object` is either a `java.math.BigDecimal`, `java.math.BigInteger`,
   `java.lang.Double`, `java.lang.Float`, `java.lang.Integer`, or
   `java.lang.Long` object.
+* `$pattern` is an optional [java.text.DecimalFormat] pattern that will
+  be used to format the resulting decimal string. If not specified,
+  defaults to [java.math.BigDecimal grammar].
 
 #### Outputs:
 
@@ -2351,15 +2374,52 @@ Returns an string representation of the given decimal object.
 
 ---
 
+### tundra.decimal:format
+
+Formats a decimal string that conforms to the input pattern, according to
+the output pattern.
+
+#### Inputs:
+
+* `$decimal` is a string representation of a decimal number.
+* `$pattern.input` is an optional [java.text.DecimalFormat] pattern that
+  the given string conforms to, and if specified will be used to parse
+  the string. If not specified, defaults to [java.math.BigDecimal grammar].
+* `$patterns.input` is an optional list of [java.text.DecimalFormat] patterns
+  that the given string might conform to, which is useful when the exact
+  pattern is not known. A parse is attempted for each pattern until the
+  first successful parse, or until all patterns have been tried in which
+  case an unparseable decimal exception will be thrown.
+* `$pattern.output` is an optional [java.text.DecimalFormat] pattern that
+  will be used to format the resulting decimal string. If not specified,
+  defaults to [java.math.BigDecimal grammar].
+
+#### Outputs:
+
+* `$decimal` is the resulting formatted decimal string.
+
+---
+
 ### tundra.decimal:maximum
 
-Returns the maximum value in the given list of decimals, optionally
+Returns the maximum value from the given decimal values, optionally
 rounded to the given precision (number of decimal places) using the
 given [rounding algorithm].
 
 #### Inputs:
 
-* `$decimals` is a list of decimal values.
+* `$operands` is an `IData` document containing arbitrary elements
+  whose leaf values will be used as operands for this operation.
+  Leaf values can be provided as objects with the following types:
+  * `java.lang.String`
+  * `java.lang.Integer`
+  * `java.lang.Long`
+  * `java.lang.Float`
+  * `java.lang.Double`
+  * `java.math.BigDecimal`
+  * `java.math.BigInteger`
+  Leaf values provided as a `java.lang.String` must be parseable
+  as a decimal number using the [java.math.BigDecimal grammar].
 * `$precision` is an optional number of decimal places to be
   preserved in the result.
 * `$rounding` is an optional choice of the [rounding algorithm]
@@ -2381,7 +2441,7 @@ given [rounding algorithm].
 
 #### Outputs:
 
-* `$decimal` is the largest value in the given list of decimals,
+* `$decimal` is the largest value from the given decimal values,
   rounded to the given precision using the nominated
   [rounding algorithm].
 
@@ -2389,13 +2449,24 @@ given [rounding algorithm].
 
 ### tundra.decimal:minimum
 
-Returns the minimum value in the given list of decimals, optionally
+Returns the minimum value from the given decimal values, optionally
 rounded to the given precision (number of decimal places) using the
 given [rounding algorithm].
 
 #### Inputs:
 
-* `$decimals` is a list of decimal values.
+* `$operands` is an `IData` document containing arbitrary elements
+  whose leaf values will be used as operands for this operation.
+  Leaf values can be provided as objects with the following types:
+  * `java.lang.String`
+  * `java.lang.Integer`
+  * `java.lang.Long`
+  * `java.lang.Float`
+  * `java.lang.Double`
+  * `java.math.BigDecimal`
+  * `java.math.BigInteger`
+  Leaf values provided as a `java.lang.String` must be parseable
+  as a decimal number using the [java.math.BigDecimal grammar].
 * `$precision` is an optional number of decimal places to be
   preserved in the result.
 * `$rounding` is an optional choice of the [rounding algorithm]
@@ -2417,7 +2488,7 @@ given [rounding algorithm].
 
 #### Outputs:
 
-* `$decimal` is the smallest value in the given list of decimals,
+* `$decimal` is the smallest value from the given decimal values,
   rounded to the given precision using the nominated
   [rounding algorithm].
 
@@ -2431,8 +2502,18 @@ the given [rounding algorithm].
 
 #### Inputs:
 
-* `$decimals` is a list of decimal values to multiply.
-* `$decimal` is a single decimal value to multiply.
+* `$operands` is an `IData` document containing arbitrary elements
+  whose leaf values will be used as operands for this operation.
+  Leaf values can be provided as objects with the following types:
+  * `java.lang.String`
+  * `java.lang.Integer`
+  * `java.lang.Long`
+  * `java.lang.Float`
+  * `java.lang.Double`
+  * `java.math.BigDecimal`
+  * `java.math.BigInteger`
+  Leaf values provided as a `java.lang.String` must be parseable
+  as a decimal number using the [java.math.BigDecimal grammar].
 * `$precision` is an optional number of decimal places to be
   preserved in the result.
 * `$rounding` is an optional choice of the [rounding algorithm]
@@ -2483,6 +2564,14 @@ Returns an decimal object by parsing the given string.
 
 * `$string` is a string representation of a decimal number, formatted
   according to [java.math.BigDecimal grammar].
+* `$pattern` is an optional [java.text.DecimalFormat] pattern that the
+  given string conforms to, and if specified will be used to parse the
+  string. If not specified, defaults to [java.math.BigDecimal grammar].
+* `$patterns` is an optional list of [java.text.DecimalFormat] patterns
+  that the given string might conform to, which is useful when the exact
+  pattern is not known. A parse is attempted for each pattern until the
+  first successful parse, or until all patterns have been tried in which
+  case an unparseable decimal exception will be thrown.
 * `$class` is an optional Java class name that determines the type of
   object returned, a choice of either `java.math.BigDecimal`,
   `java.math.BigInteger`, `java.lang.Double`, `java.lang.Float`,
@@ -2568,14 +2657,14 @@ places) using the given [rounding algorithm].
 
 ### tundra.decimal:subtract
 
-Subtracts the given decimal y from x, returning the result
-optionally rounded to the given precision (number of decimal places)
-using the given [rounding algorithm].
+Subtracts one decimal from another, returning the result optionally
+rounded to the given precision (number of decimal places) using the
+given [rounding algorithm].
 
 #### Inputs:
 
-* `$decimal.x` is a decimal value.
-* `$decimal.y` is a decimal value.
+* `$minuend` is the decimal value to be subtracted from.
+* `$subtrahend` is the decimal value to subtract.
 * `$precision` is an optional number of decimal places to be
   preserved in the result.
 * `$rounding` is an optional choice of the [rounding algorithm]
@@ -2597,9 +2686,8 @@ using the given [rounding algorithm].
 
 #### Outputs:
 
-* `$decimal` is result of subtracting `$decimal.y` from `$decimal.x`
-  and rounding to the given precision using the nominated
-  [rounding algorithm].
+* `$decimal` is result of subtracting the given values and rounding
+  to the given precision using the nominated [rounding algorithm].
 
 ---
 
@@ -3273,7 +3361,7 @@ underscore characters.
 ### tundra.document.key:remove
 
 Removes either the first or all occurrences of the given
-[regular expression pattern] in each key in the given `IData` 
+[regular expression pattern] in each key in the given `IData`
 document.
 
 #### Inputs:
@@ -3283,7 +3371,7 @@ document.
 * `$pattern` is the [regular expression pattern] to match against
   each key. If not specified, no removal will occur.
 * `$mode` is a choice of whether to remove all occurrences of the
-  pattern, or just the first occurrence. If not specified, 
+  pattern, or just the first occurrence. If not specified,
   defaults to all occurrences.
 * `$recurse?` is an optional boolean indicating if embedded
   `IData` documents and `IData[]` document lists should also
@@ -3293,7 +3381,7 @@ document.
 #### Outputs:
 
 * `$document` is the given `IData` document with either the first
-  or all occurrences of the given [regular expression pattern] 
+  or all occurrences of the given [regular expression pattern]
   in each key removed.
 
 ---
@@ -3301,7 +3389,7 @@ document.
 ### tundra.document.key:replace
 
 Replaces either the first or all occurrences of the given
-[regular expression pattern] in each key in the given `IData` 
+[regular expression pattern] in each key in the given `IData`
 document with the replacement string.
 
 #### Inputs:
@@ -3311,7 +3399,7 @@ document with the replacement string.
 * `$pattern` is the [regular expression pattern] to match against
   each key. If not specified, no replacement will occur.
 * `$replacement` is the replacement string to be substituted in
-  each key wherever the given pattern is found. If not specified, 
+  each key wherever the given pattern is found. If not specified,
   no replacement will occur.
 * `$literal?` is a boolean indicating if the replacement string
   should be treated as a literal string. If false, captured
@@ -3319,17 +3407,17 @@ document with the replacement string.
   as `$1`, and other special characters may need to be escaped.
   Defaults to `false`.
 * `$mode` is a choice of whether to replace all occurrences of the
-  pattern, or just the first occurrence. If not specified, 
+  pattern, or just the first occurrence. If not specified,
   defaults to all occurrences.
 * `$recurse?` is an optional boolean indicating if embedded
   `IData` documents and `IData[]` document lists should also
-  have occurrences of the pattern in their keys replaced. 
+  have occurrences of the pattern in their keys replaced.
   Defaults to `false`.
 
 #### Outputs:
 
 * `$document` is the given `IData` document with either the first
-  or all occurrences of the given [regular expression pattern] in 
+  or all occurrences of the given [regular expression pattern] in
   each key replaced with `$replacement`.
 
 ---
@@ -3851,8 +3939,8 @@ case.
 
 ### tundra.document.value:remove
 
-Removes either the first or all occurrences of the given 
-[regular expression pattern] in each string value in the 
+Removes either the first or all occurrences of the given
+[regular expression pattern] in each string value in the
 given `IData` document.
 
 #### Inputs:
@@ -3862,7 +3950,7 @@ given `IData` document.
 * `$pattern` is the [regular expression pattern] to match against
   each string value. If not specified, no removal will occur.
 * `$mode` is a choice of whether to remove all occurrences of the
-  pattern, or just the first occurrence. If not specified, 
+  pattern, or just the first occurrence. If not specified,
   defaults to all occurrences.
 * `$recurse?` is an optional boolean indicating if embedded
   `IData` documents and `IData[]` document lists should also
@@ -3879,8 +3967,8 @@ given `IData` document.
 
 ### tundra.document.value:replace
 
-Replaces either the first or all occurrences of the given 
-[regular expression pattern] in each string value in the 
+Replaces either the first or all occurrences of the given
+[regular expression pattern] in each string value in the
 given `IData` document with the replacement string.
 
 #### Inputs:
@@ -3897,7 +3985,7 @@ given `IData` document with the replacement string.
   as `$1`, and other special characters may need to be escaped.
   Defaults to `false`.
 * `$mode` is a choice of whether to replace all occurrences of the
-  pattern, or just the first occurrence. If not specified, 
+  pattern, or just the first occurrence. If not specified,
   defaults to all occurrences.
 * `$recurse?` is an optional boolean indicating if embedded
   `IData` documents and `IData[]` document lists should also
@@ -3907,7 +3995,7 @@ given `IData` document with the replacement string.
 #### Outputs:
 
 * `$document` is the given `IData` document with either the first
-  or all occurrences of the given [regular expression pattern] in 
+  or all occurrences of the given [regular expression pattern] in
   each string value replaced with `$replacement`.
 
 ---
@@ -6063,7 +6151,7 @@ lower case.
 ### tundra.list.document.key:remove
 
 Removes either the first or all occurrences of the given
-[regular expression pattern] in each item's keys in the given 
+[regular expression pattern] in each item's keys in the given
 `IData[]` document list.
 
 #### Inputs:
@@ -6073,7 +6161,7 @@ Removes either the first or all occurrences of the given
 * `$pattern` is the [regular expression pattern] to match against
   each key. If not specified, no removal will occur.
 * `$mode` is a choice of whether to remove all occurrences of the
-  pattern, or just the first occurrence. If not specified, 
+  pattern, or just the first occurrence. If not specified,
   defaults to all occurrences.
 * `$recurse?` is an optional boolean indicating if embedded
   `IData` documents and `IData[]` document lists should also
@@ -6091,7 +6179,7 @@ Removes either the first or all occurrences of the given
 ### tundra.list.document.key:replace
 
 Replaces either the first or all occurrences of the given
-[regular expression pattern] in each item's keys in the given 
+[regular expression pattern] in each item's keys in the given
 `IData[]` document list with the replacement string.
 
 #### Inputs:
@@ -6108,7 +6196,7 @@ Replaces either the first or all occurrences of the given
   as `$1`, and other special characters may need to be escaped.
   Defaults to `false`.
 * `$mode` is a choice of whether to replace all occurrences of the
-  pattern, or just the first occurrence. If not specified, 
+  pattern, or just the first occurrence. If not specified,
   defaults to all occurrences.
 * `$recurse?` is an optional boolean indicating if embedded
   `IData` documents and `IData[]` document lists should also
@@ -6117,7 +6205,7 @@ Replaces either the first or all occurrences of the given
 
 #### Outputs:
 
-* `$list` is the given `IData[]` document list with either the first 
+* `$list` is the given `IData[]` document list with either the first
   or all occurrences of the given [regular expression pattern] in
   each item's keys replaced with `$replacement`.
 
@@ -6657,7 +6745,7 @@ the given `IData[]` document list.
 * `$pattern` is the [regular expression pattern] to match against
   each string value. If not specified, no removal will occur.
 * `$mode` is a choice of whether to remove all occurrences of the
-  pattern, or just the first occurrence. If not specified, 
+  pattern, or just the first occurrence. If not specified,
   defaults to all occurrences.
 * `$recurse?` is an optional boolean indicating if embedded
   `IData` documents and `IData[]` document lists should also
@@ -6680,7 +6768,7 @@ the given `IData[]` document list with the replacement string.
 
 #### Inputs:
 
-* `$list` is an `IData[]` document list to have occurrences of 
+* `$list` is an `IData[]` document list to have occurrences of
   the given [regular expression pattern] in each item's string values
   replaced.
 * `$pattern` is the [regular expression pattern] to match against
@@ -6693,7 +6781,7 @@ the given `IData[]` document list with the replacement string.
   as `$1`, and other special characters may need to be escaped.
   Defaults to `false`.
 * `$mode` is a choice of whether to replace all occurrences of the
-  pattern, or just the first occurrence. If not specified, 
+  pattern, or just the first occurrence. If not specified,
   defaults to all occurrences.
 * `$recurse?` is an optional boolean indicating if embedded
   `IData` documents and `IData[]` document lists should also
@@ -8162,7 +8250,7 @@ given condition evaluates to true.
 
 ### tundra.list.string:remove
 
-Removes either the first or all occurrences of the given 
+Removes either the first or all occurrences of the given
 [regular expression pattern] in the given list of strings.
 
 #### Inputs:
@@ -8172,7 +8260,7 @@ Removes either the first or all occurrences of the given
 * $pattern is the [regular expression pattern] to match against
   the given string. If not specified, no removal will occur.
 * $mode is a choice of whether to remove all occurrences of the
-  pattern, or just the first occurrence. If not specified, 
+  pattern, or just the first occurrence. If not specified,
   defaults to all occurrences.
 
 #### Outputs:
@@ -8184,8 +8272,8 @@ Removes either the first or all occurrences of the given
 
 ### tundra.list.string:replace
 
-Replaces either the first or all occurrences of the given 
-[regular expression pattern] in the given list of strings, 
+Replaces either the first or all occurrences of the given
+[regular expression pattern] in the given list of strings,
 with the replacement string.
 
 #### Inputs:
@@ -8202,12 +8290,12 @@ with the replacement string.
   as $1, and other special characters may need to be escaped.
   Defaults to false.
 * `$mode` is a choice of whether to replace all occurrences of the
-  pattern, or just the first occurrence. If not specified, 
+  pattern, or just the first occurrence. If not specified,
   defaults to all occurrences.
 
 #### Outputs:
 
-* `$list` is the input list of strings with all occurrences of the 
+* `$list` is the input list of strings with all occurrences of the
   given [regular expression pattern] replaced with `$replacement`.
 
 ---
@@ -10560,7 +10648,7 @@ sequences in the input sequence are given no special meaning.
 
 ### tundra.string:remove
 
-Removes either the first or all occurrences of the given [regular 
+Removes either the first or all occurrences of the given [regular
 expression pattern] from the given string.
 
 #### Inputs:
@@ -10570,7 +10658,7 @@ expression pattern] from the given string.
 * `$pattern` is the [regular expression pattern] to match against
   the given string. If not specified, no removal will occur.
 * `$mode` is a choice of whether to remove all occurrences of the
-  pattern, or just the first occurrence. If not specified, 
+  pattern, or just the first occurrence. If not specified,
   defaults to all occurrences.
 
 #### Outputs:
@@ -10582,8 +10670,8 @@ expression pattern] from the given string.
 
 ### tundra.string:replace
 
-Replaces either the first or all occurrences of the given 
-[regular expression pattern] in the given string, with the 
+Replaces either the first or all occurrences of the given
+[regular expression pattern] in the given string, with the
 replacement string.
 
 #### Inputs:
@@ -10601,7 +10689,7 @@ replacement string.
   as $1, and other special characters may need to be escaped.
   Defaults to false.
 * `$mode` is a choice of whether to replace all occurrences of the
-  pattern, or just the first occurrence. If not specified, 
+  pattern, or just the first occurrence. If not specified,
   defaults to all occurrences.
 
 #### Outputs:
@@ -11481,6 +11569,7 @@ Copyright &copy; 2012 Lachlan Dowding. See the [LICENSE] file for further detail
 [java.net.URI normalize]: <http://docs.oracle.com/javase/6/docs/api/java/net/URI.html#normalize()>
 [java.net.URLDecoder]: <http://docs.oracle.com/javase/6/docs/api/java/net/URLDecoder.html>
 [java.net.URLEncoder]: <http://docs.oracle.com/javase/6/docs/api/java/net/URLEncoder.html>
+[java.text.DecimalFormat]: <http://docs.oracle.com/javase/6/docs/api/java/text/DecimalFormat.html>
 [java.text.SimpleDateFormat]: <http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html>
 [java.util.Date]: <http://docs.oracle.com/javase/6/docs/api/java/util/Date.html>
 [java.util.TimeZone]: <http://docs.oracle.com/javase/6/docs/api/java/util/TimeZone.html>

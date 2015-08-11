@@ -23,7 +23,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$decimal.x</value>
+          <value name="field_name">$minuend</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -53,7 +53,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$decimal.y</value>
+          <value name="field_name">$subtrahend</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -96,7 +96,7 @@
             <array name="targetNames" type="record" depth="1">
               <record javaclass="com.wm.util.Values">
                 <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">nonNegativeInteger</value>
+                <value name="ncName">int</value>
               </record>
             </array>
           </record>
@@ -258,14 +258,14 @@
   </record>
   <value name="node_comment">### tundra.decimal:subtract
 
-Subtracts the given decimal y from x, returning the result
-optionally rounded to the given precision (number of decimal places)
-using the given [rounding algorithm].
+Subtracts one decimal from another, returning the result optionally 
+rounded to the given precision (number of decimal places) using the 
+given [rounding algorithm].
 
 #### Inputs:
 
-* $decimal.x is a decimal value.
-* $decimal.y is a decimal value.
+* $minuend is the decimal value to be subtracted from.
+* $subtrahend is the decimal value to subtract.
 * $precision is an optional number of decimal places to be
   preserved in the result.
 * $rounding is an optional choice of the [rounding algorithm]
@@ -287,9 +287,8 @@ using the given [rounding algorithm].
 
 #### Outputs:
 
-* $decimal is result of subtracting $decimal.y from $decimal.x
-  and rounding to the given precision using the nominated
-  [rounding algorithm].
+* $decimal is result of subtracting the given values and rounding
+  to the given precision using the nominated [rounding algorithm].
 
 [rounding algorithm]: &lt;http://docs.oracle.com/javase/6/docs/api/java/math/RoundingMode.html&gt;</value>
   <value name="stateless">no</value>
@@ -297,11 +296,11 @@ using the given [rounding algorithm].
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template">tundra_decimal_subtract</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
   <value name="icontext_policy">$null</value>
-  <value name="svcInvkURLAlias"></value>
   <value name="system_service">no</value>
   <value name="retry_max">0</value>
   <value name="retry_interval">0</value>
