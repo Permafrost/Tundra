@@ -23,7 +23,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$integer</value>
+          <value name="field_name">$base</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -95,7 +95,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$integer</value>
+          <value name="field_name">$result</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -122,29 +122,27 @@
   </record>
   <value name="node_comment">### tundra.integer:power
 
-Raises the given integer to the power of the given exponent (i^e).
+Raises the given integer to the power of the given exponent (b^e).
 
 #### Inputs:
 
-* $integer is an integer value.
-* $exponent is the exponent to raise the integer by.
+* $base is an integer value to be raised to the given exponent.
+* $exponent is the exponent to raise the base by.
 
 #### Outputs:
 
-* $integer is the result of raising the given integer by
-  the given exponent (i^e).
-
-</value>
+* $result is the result of raising the given base by the given 
+  exponent (b^e).</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template">tundra_integer_power</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
   <value name="icontext_policy">$null</value>
-  <value name="svcInvkURLAlias"></value>
   <value name="system_service">no</value>
   <value name="retry_max">0</value>
   <value name="retry_interval">0</value>

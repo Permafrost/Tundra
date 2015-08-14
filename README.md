@@ -5022,26 +5022,47 @@ Adds the given integers together, returning the result.
 
 #### Inputs:
 
-* `$integers` is a list of integer values to be added.
-* `$integer` is a single integer value to be added.
+* `$operands` is an IData document containing arbitrary elements
+  whose leaf values will be used as operands for this operation.
+  Leaf values can be provided as objects with the following types:
+  * `java.lang.String`
+  * `java.lang.Integer`
+  * `java.lang.Long`
+  * `java.lang.Float`
+  * `java.lang.Double`
+  * `java.math.BigDecimal`
+  * `java.math.BigInteger`
+  Leaf values provided as a `java.lang.String` must be parseable
+  as an integer number.
 
 #### Outputs:
 
-* `$integer` is the total sum of the given integers.
+* `$result` is the total sum of the given integers.
 
 ---
 
 ### tundra.integer:average
 
-Returns the average value of the given list of integers.
+Returns the average value of the given integers.
 
 #### Inputs:
 
-* `$integers` is a list of integers.
+* `$operands` is an IData document containing arbitrary elements
+  whose leaf values will be used as operands for this operation.
+  Leaf values can be provided as objects with the following types:
+  * `java.lang.String`
+  * `java.lang.Integer`
+  * `java.lang.Long`
+  * `java.lang.Float`
+  * `java.lang.Double`
+  * `java.math.BigDecimal`
+  * `java.math.BigInteger`
+  Leaf values provided as a `java.lang.String` must be parseable
+  as an integer number.
 
 #### Outputs:
 
-* `$integer` is the average value of the given integers.
+* `$average` is the average value of the given integers.
 
 ---
 
@@ -5064,16 +5085,18 @@ in a loop to both initialize and decrement a counter variable.
 
 ### tundra.integer:divide
 
-Divides the given integer x by y, returning the result.
+Divides one integer by another, returning the result and
+remainder.
 
 #### Inputs:
 
-* `$integer.x` is the numerator to be divided by `$integer.y`.
-* `$integer.y` is the denominator to divide `$integer.x` by.
+* `$dividend` is the number to be divided.
+* `$divisor` is the to divide by.
 
 #### Outputs:
 
-* `$integer` is the result of dividing `$integer.x` by `$integer.y`.
+* `$result` is the result of dividing the given numbers.
+* `$remainder` is the remainder value after from the division.
 
 ---
 
@@ -5114,31 +5137,51 @@ both initialize and increment a counter variable.
 
 ### tundra.integer:maximum
 
-Returns the maximum value in the given list of integers.
+Returns the maximum value from the given integers.
 
 #### Inputs:
 
-* `$integers` is a list of integers.
+* `$operands` is an IData document containing arbitrary elements
+  whose leaf values will be used as operands for this operation.
+  Leaf values can be provided as objects with the following types:
+  * `java.lang.String`
+  * `java.lang.Integer`
+  * `java.lang.Long`
+  * `java.lang.Float`
+  * `java.lang.Double`
+  * `java.math.BigDecimal`
+  * `java.math.BigInteger`
+  Leaf values provided as a `java.lang.String` must be parseable
+  as an integer number.
 
 #### Outputs:
 
-* `$integer` is the integer in the given list with the
-  largest value.
+* `$maximum` is the largest value of the given integers.
 
 ---
 
 ### tundra.integer:minimum
 
-Returns the minimum value in the given list of integers.
+Returns the minimum value from the given integers.
 
 #### Inputs:
 
-* `$integers` is a list of integers.
+* `$operands` is an IData document containing arbitrary elements
+  whose leaf values will be used as operands for this operation.
+  Leaf values can be provided as objects with the following types:
+  * `java.lang.String`
+  * `java.lang.Integer`
+  * `java.lang.Long`
+  * `java.lang.Float`
+  * `java.lang.Double`
+  * `java.math.BigDecimal`
+  * `java.math.BigInteger`
+  Leaf values provided as a `java.lang.String` must be parseable
+  as an integer number.
 
 #### Outputs:
 
-* `$integer` is the integer in the given list with the
-  smallest value.
+* `$minimum` is the smallest value of the given integers.
 
 ---
 
@@ -5148,12 +5191,22 @@ Multiplies the given integers together, returning the result.
 
 #### Inputs:
 
-* `$integers` is a list of integer values to be multiplied.
-* `$integer` is a single integer value to be multiplied.
+* `$operands` is an IData document containing arbitrary elements
+  whose leaf values will be used as operands for this operation.
+  Leaf values can be provided as objects with the following types:
+  * `java.lang.String`
+  * `java.lang.Integer`
+  * `java.lang.Long`
+  * `java.lang.Float`
+  * `java.lang.Double`
+  * `java.math.BigDecimal`
+  * `java.math.BigInteger`
+  Leaf values provided as a `java.lang.String` must be parseable
+  as an integer number.
 
 #### Outputs:
 
-* `$integer` is the result of multiplying all given integer
+* `$result` is the result of multiplying all given integer
   values together.
 
 ---
@@ -5197,47 +5250,47 @@ Returns an integer object by parsing the given string.
 
 ### tundra.integer:power
 
-Raises the given integer to the power of the given exponent (i^e).
+Raises the given integer to the power of the given exponent (b^e).
 
 #### Inputs:
 
-* `$integer` is an integer value.
-* `$exponent` is the exponent to raise the integer by.
+* `$base` is an integer value to be raised to the given exponent.
+* `$exponent` is the exponent to raise the base by.
 
 #### Outputs:
 
-* `$integer` is the result of raising the given integer by
-  the given exponent (i^e).
+* `$result` is the result of raising the given base by
+  the given exponent (b^e).
 
 ---
 
 ### tundra.integer:remainder
 
-Returns the remainder from dividing the given integer x by y.
+Returns the remainder from dividing the given integers.
 
 #### Inputs:
 
-* `$integer.x` is the numerator to be divided by `$integer.y`.
-* `$integer.y` is the denominator to divide `$integer.x` by.
+* `$dividend` is the number to be divided.
+* `$divisor` is the to divide by.
 
 #### Outputs:
 
-* `$integer` is the remainder from dividing `$integer.x` by `$integer.y`.
+* `$remainder` is the remainder value after from the division.
 
 ---
 
 ### tundra.integer:subtract
 
-Subtracts the given integer y from x, returning the result.
+Subtracts one integer from another, returning the result.
 
 #### Inputs:
 
-* `$integer.x` is an integer value to subtract `$integer.y` from.
-* `$integer.y` is an integer value to subtract from `$integer.x`.
+* `$minuend` is an integer value to subtract from.
+* `$subtrahend` is an integer value to be subtracted.
 
 #### Outputs:
 
-* `$integer` is the result of subtracting `$integer.y` from `$integer.x`.
+* `$results` is the result of subtracting the given values.
 
 ---
 

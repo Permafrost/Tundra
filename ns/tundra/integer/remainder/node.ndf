@@ -23,7 +23,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$integer.x</value>
+          <value name="field_name">$dividend</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -53,7 +53,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$integer.y</value>
+          <value name="field_name">$divisor</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -95,7 +95,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$integer</value>
+          <value name="field_name">$remainder</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -122,28 +122,27 @@
   </record>
   <value name="node_comment">### tundra.integer:remainder
 
-Returns the remainder from dividing the given integer x by y.
+Returns the remainder from dividing the given integers.
 
 #### Inputs:
 
-* $integer.x is the numerator to be divided by $integer.y.
-* $integer.y is the denominator to divide $integer.x by.
+* $dividend is the number to be divided.
+* $divisor is the to divide by.
 
 #### Outputs:
 
-* $integer is the remainder from dividing $integer.x by $integer.y.
-
+* $remainder is the remainder value after from the division.
 </value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template">tundra_integer_remainder</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
   <value name="icontext_policy">$null</value>
-  <value name="svcInvkURLAlias"></value>
   <value name="system_service">no</value>
   <value name="retry_max">0</value>
   <value name="retry_interval">0</value>

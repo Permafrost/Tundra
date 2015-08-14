@@ -22,25 +22,16 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$integers</value>
-          <value name="field_type">string</value>
-          <value name="field_dim">1</value>
+          <value name="field_name">$operands</value>
+          <value name="field_type">record</value>
+          <value name="field_dim">0</value>
           <value name="field_opt">true</value>
-          <record name="field_content_type" javaclass="com.wm.util.Values">
-            <value name="contentType">1</value>
-            <value name="internalType">reference</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-            <array name="targetNames" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">integer</value>
-              </record>
-            </array>
-          </record>
-          <value name="nillable">false</value>
+          <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
-          <value name="is_soap_array_encoding_used">false</value>
+          <array name="rec_fields" type="record" depth="1">
+          </array>
+          <value name="modifiable">true</value>
         </record>
       </array>
       <value name="modifiable">true</value>
@@ -63,7 +54,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$integer</value>
+          <value name="field_name">$average</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -90,27 +81,36 @@
   </record>
   <value name="node_comment">### tundra.integer:average
 
-Returns the average value of the given list of integers.
+Returns the average value of the given integers.
 
 #### Inputs:
 
-* $integers is a list of integers.
+* $operands is an IData document containing arbitrary elements
+  whose leaf values will be used as operands for this operation. 
+  Leaf values can be provided as objects with the following types: 
+  * java.lang.String
+  * java.lang.Integer
+  * java.lang.Long
+  * java.lang.Float
+  * java.lang.Double
+  * java.math.BigDecimal
+  * java.math.BigInteger
+  Leaf values provided as a java.lang.String must be parseable 
+  as an integer number.
 
 #### Outputs:
 
-* $integer is the average value of the given integers.
-
-</value>
+* $average is the average value of the given integers.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template">tundra_integer_average</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
   <value name="icontext_policy">$null</value>
-  <value name="svcInvkURLAlias"></value>
   <value name="system_service">no</value>
   <value name="retry_max">0</value>
   <value name="retry_interval">0</value>

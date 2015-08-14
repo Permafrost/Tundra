@@ -23,7 +23,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$integer.x</value>
+          <value name="field_name">$minuend</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -53,7 +53,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$integer.y</value>
+          <value name="field_name">$subtrahend</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -95,7 +95,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$integer</value>
+          <value name="field_name">$result</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -122,28 +122,26 @@
   </record>
   <value name="node_comment">### tundra.integer:subtract
 
-Subtracts the given integer y from x, returning the result.
+Subtracts one integer from another, returning the result.
 
 #### Inputs:
 
-* $integer.x is an integer value to subtract $integer.y from.
-* $integer.y is an integer value to subtract from $integer.x.
+* $minuend is an integer value to subtract from.
+* $subtrahend is an integer value to be subtracted.
 
 #### Outputs:
 
-* $integer is the result of subtracting $integer.y from $integer.x.
-
-</value>
+* $results is the result of subtracting the given values.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template">tundra_integer_subtract</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
   <value name="icontext_policy">$null</value>
-  <value name="svcInvkURLAlias"></value>
   <value name="system_service">no</value>
   <value name="retry_max">0</value>
   <value name="retry_interval">0</value>

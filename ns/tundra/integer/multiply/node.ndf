@@ -22,55 +22,16 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$integers</value>
-          <value name="field_type">string</value>
-          <value name="field_dim">1</value>
-          <value name="field_opt">true</value>
-          <record name="field_content_type" javaclass="com.wm.util.Values">
-            <value name="contentType">1</value>
-            <value name="internalType">reference</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-            <array name="targetNames" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">integer</value>
-              </record>
-            </array>
-          </record>
-          <value name="nillable">true</value>
-          <value name="form_qualified">false</value>
-          <value name="is_global">false</value>
-          <value name="is_soap_array_encoding_used">false</value>
-        </record>
-        <record javaclass="com.wm.util.Values">
-          <value name="node_type">record</value>
-          <value name="node_comment"></value>
-          <record name="node_hints" javaclass="com.wm.util.Values">
-            <value name="field_usereditable">true</value>
-            <value name="field_largerEditor">false</value>
-            <value name="field_password">false</value>
-          </record>
-          <value name="is_public">false</value>
-          <value name="field_name">$integer</value>
-          <value name="field_type">string</value>
+          <value name="field_name">$operands</value>
+          <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
-          <array name="field_options" type="value" depth="1">
-          </array>
-          <record name="field_content_type" javaclass="com.wm.util.Values">
-            <value name="contentType">1</value>
-            <value name="internalType">reference</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-            <array name="targetNames" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">integer</value>
-              </record>
-            </array>
-          </record>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
+          <array name="rec_fields" type="record" depth="1">
+          </array>
+          <value name="modifiable">true</value>
         </record>
       </array>
       <value name="modifiable">true</value>
@@ -93,7 +54,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$integer</value>
+          <value name="field_name">$result</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -124,12 +85,22 @@ Multiplies the given integers together, returning the result.
 
 #### Inputs:
 
-* $integers is a list of integer values to be multiplied.
-* $integer is a single integer value to be multiplied.
+* $operands is an IData document containing arbitrary elements
+  whose leaf values will be used as operands for this operation. 
+  Leaf values can be provided as objects with the following types: 
+  * java.lang.String
+  * java.lang.Integer
+  * java.lang.Long
+  * java.lang.Float
+  * java.lang.Double
+  * java.math.BigDecimal
+  * java.math.BigInteger
+  Leaf values provided as a java.lang.String must be parseable 
+  as an integer number.
 
 #### Outputs:
 
-* $integer is the result of multiplying all given integer
+* $result is the result of multiplying all given integer
   values together.
 
 </value>
@@ -138,11 +109,11 @@ Multiplies the given integers together, returning the result.
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template">tundra_integer_multiply</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
   <value name="icontext_policy">$null</value>
-  <value name="svcInvkURLAlias"></value>
   <value name="system_service">no</value>
   <value name="retry_max">0</value>
   <value name="retry_interval">0</value>
