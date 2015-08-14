@@ -23,7 +23,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$decimal</value>
+          <value name="field_name">$base</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -231,7 +231,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$decimal</value>
+          <value name="field_name">$result</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -258,14 +258,15 @@
   </record>
   <value name="node_comment">### tundra.decimal:power
 
-Raises the given decimal to the power of the given exponent (d^e),
+Raises the given base to the power of the given exponent (b^e),
 optionally rounded to the given precision (number of decimal places)
 using the given [rounding algorithm].
 
 #### Inputs:
 
-* $decimal is a decimal value.
-* $exponent is the value to raise the decimal by.
+* $base is a decimal value to be raised to the power of the given
+  exponent.
+* $exponent is the value to raise the base by.
 * $precision is an optional number of decimal places to be
   preserved in the result.
 * $rounding is an optional choice of the [rounding algorithm]
@@ -287,7 +288,7 @@ using the given [rounding algorithm].
 
 #### Outputs:
 
-* $decimal is result of raising the given decimal by the
+* $result is result of raising the given base by the
   given exponent, and rounding to the given precision
   using the nominated [rounding algorithm].
 

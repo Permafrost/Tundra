@@ -231,7 +231,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$decimal</value>
+          <value name="field_name">$result</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -287,7 +287,7 @@ the given [rounding algorithm].
 
 #### Outputs:
 
-* $decimal is the result of dividing the given values and rounding
+* $result is the result of dividing the given values and rounding
   to the given precision using the nominated [rounding algorithm].
 
 [rounding algorithm]: &lt;http://docs.oracle.com/javase/6/docs/api/java/math/RoundingMode.html&gt;</value>

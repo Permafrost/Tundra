@@ -2266,7 +2266,7 @@ given [rounding algorithm].
 
 #### Outputs:
 
-* `$decimal` is the result of adding the given decimal values
+* `$result` is the result of adding the given decimal values
   and rounding to the given precision using the nominated
   [rounding algorithm].
 
@@ -2313,7 +2313,7 @@ given [rounding algorithm].
 
 #### Outputs:
 
-* `$decimal` is the result of averaging the given list of decimals
+* `$average` is the result of averaging the given list of decimals
   and rounding to the given precision using the nominated
   [rounding algorithm].
 
@@ -2350,7 +2350,7 @@ the given [rounding algorithm].
 
 #### Outputs:
 
-* `$decimal` is the result of dividing the given values and rounding
+* `$result` is the result of dividing the given values and rounding
   to the given precision using the nominated [rounding algorithm].
 
 ---
@@ -2441,7 +2441,7 @@ given [rounding algorithm].
 
 #### Outputs:
 
-* `$decimal` is the largest value from the given decimal values,
+* `$maximum` is the largest value from the given decimal values,
   rounded to the given precision using the nominated
   [rounding algorithm].
 
@@ -2488,7 +2488,7 @@ given [rounding algorithm].
 
 #### Outputs:
 
-* `$decimal` is the smallest value from the given decimal values,
+* `$minimum` is the smallest value from the given decimal values,
   rounded to the given precision using the nominated
   [rounding algorithm].
 
@@ -2535,7 +2535,7 @@ the given [rounding algorithm].
 
 #### Outputs:
 
-* `$decimal` is result of multiplying the given decimal values
+* `$result` is result of multiplying the given decimal values
   and rounding to the given precision using the nominated
   [rounding algorithm].
 
@@ -2592,8 +2592,9 @@ using the given [rounding algorithm].
 
 #### Inputs:
 
-* `$decimal` is a decimal value.
-* `$exponent` is the value to raise the decimal by.
+* `$base` is a decimal value to be raised to the power of the given
+  exponent.
+* `$exponent` is the value to raise the base by.
 * `$precision` is an optional number of decimal places to be
   preserved in the result.
 * `$rounding` is an optional choice of the [rounding algorithm]
@@ -2615,7 +2616,7 @@ using the given [rounding algorithm].
 
 #### Outputs:
 
-* `$decimal` is result of raising the given decimal by the
+* `$result` is result of raising the given base by the
   given exponent, and rounding to the given precision
   using the nominated [rounding algorithm].
 
@@ -2686,7 +2687,7 @@ given [rounding algorithm].
 
 #### Outputs:
 
-* `$decimal` is result of subtracting the given values and rounding
+* `$result` is result of subtracting the given values and rounding
   to the given precision using the nominated [rounding algorithm].
 
 ---
