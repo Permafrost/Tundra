@@ -3506,6 +3506,78 @@ Returns the last key value pair from the given IData document.
 
 ---
 
+### tundra.document:leaves
+
+Returns all the leaf values in the given `IData` document.
+
+For example, an `IData` document with the following structure
+represented as [JSON]:
+
+    {
+        "band": {
+            "name": "Joy Division",
+            "members": [
+                {
+                    "name": "Ian Curtis",
+                    "role": "Singer"
+                },
+                {
+                    "name": "Bernard Sumner",
+                    "role": "Guitarist"
+                },
+                {
+                    "name": "Peter Hook",
+                    "role": "Bassist"
+                },
+                {
+                    "name": "Stephen Morris",
+                    "role": "Drummer"
+                }
+            ],
+            "songs": [
+                "She's Lost Control",
+                "Love Will Tear Us Apart",
+                "Ceremony"
+            ]
+        }
+    }
+
+
+Would return the following list of leaf values:
+
+    [
+        "Joy Division",
+        "Ian Curtis",
+        "Singer",
+        "Bernard Sumner",
+        "Guitarist",
+        "Peter Hook",
+        "Bassist",
+        "Stephen Morris",
+        "Drummer",
+        "She's Lost Control",
+        "Love Will Tear Us Apart",
+        "Ceremony"
+    ]
+
+#### Inputs:
+
+* `$document` is an `IData` document from which all leaf
+  values are to be fetched.
+* `$classes` is a list of Java class names that the is used
+  to filter the returned values: only those leaf values
+  that are instances of these classes are returned. If not
+  specified, all leaf values regardless of class are
+  returned.
+
+#### Outputs:
+
+* `$values` is the list of all leaf values in the given `IData`
+  document that are instances of the given classes, or all
+  leaf values if no classes are specified.
+
+---
+
 ### tundra.document:length
 
 Returns the number of top-level key value pairs in the given

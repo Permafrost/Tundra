@@ -117,6 +117,7 @@ bGFzcywgcmVjdXJzZSk7Cn0=</value>
     <value>permafrost.tundra.flow.ConditionEvaluator</value>
     <value>permafrost.tundra.io.StreamHelper</value>
     <value>permafrost.tundra.lang.BooleanHelper</value>
+    <value>permafrost.tundra.lang.ClassHelper</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>
     <value>permafrost.tundra.lang.ObjectHelper</value>
   </array>

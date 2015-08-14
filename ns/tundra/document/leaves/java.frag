@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">leaves</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogICAgSURh
+dGEgZG9jdW1lbnQgPSBJRGF0YVV0aWwuZ2V0SURhdGEoY3Vyc29yLCAiJGRvY3VtZW50Iik7CiAg
+ICBTdHJpbmdbXSBjbGFzc2VzID0gSURhdGFVdGlsLmdldFN0cmluZ0FycmF5KGN1cnNvciwgIiRj
+bGFzc2VzIik7CgogICAgT2JqZWN0W10gdmFsdWVzID0gSURhdGFIZWxwZXIuZ2V0TGVhZlZhbHVl
+cyhkb2N1bWVudCwgQ2xhc3NIZWxwZXIuZm9yTmFtZShjbGFzc2VzKSk7CgogICAgaWYgKHZhbHVl
+cyAhPSBudWxsICYmIHZhbHVlcy5sZW5ndGggPiAwKSBJRGF0YVV0aWwucHV0KGN1cnNvciwgIiR2
+YWx1ZXMiLCB2YWx1ZXMpOwp9IGNhdGNoKENsYXNzTm90Rm91bmRFeGNlcHRpb24gZXgpIHsKICAg
+IEV4Y2VwdGlvbkhlbHBlci5yYWlzZShleCk7Cn0gZmluYWxseSB7CiAgICBjdXJzb3IuZGVzdHJv
+eSgpOwp9</value>
+</Values>
