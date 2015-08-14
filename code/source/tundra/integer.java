@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-08-14 15:03:45 EST
+// -----( CREATED: 2015-08-14 15:28:42 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -227,7 +227,7 @@ public final class integer
 		    Object object = IDataUtil.get(cursor, "$object");
 		    String radix = IDataUtil.getString(cursor, "$radix");
 		
-		    String result = BigIntegerHelper.emit(BigIntegerHelper.normalize(object, Integer.parseInt(radix)));
+		    String result = BigIntegerHelper.emit(BigIntegerHelper.normalize(object, radix == null ? BigIntegerHelper.DEFAULT_RADIX : Integer.parseInt(radix)));
 		
 		    if (result != null) IDataUtil.put(cursor, "$string", result);
 		} finally {
