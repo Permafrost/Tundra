@@ -36,7 +36,7 @@
             <array name="targetNames" type="record" depth="1">
               <record javaclass="com.wm.util.Values">
                 <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">string</value>
+                <value name="ncName">integer</value>
               </record>
             </array>
           </record>
@@ -48,18 +48,16 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <value name="field_usereditable">false</value>
+            <value name="field_usereditable">true</value>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$raise?</value>
+          <value name="field_name">$distance</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
           <array name="field_options" type="value" depth="1">
-            <value>false</value>
-            <value>true</value>
           </array>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <value name="contentType">1</value>
@@ -68,7 +66,7 @@
             <array name="targetNames" type="record" depth="1">
               <record javaclass="com.wm.util.Values">
                 <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">boolean</value>
+                <value name="ncName">int</value>
               </record>
             </array>
           </record>
@@ -97,9 +95,10 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$valid?</value>
+          <value name="field_name">$integer</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
           <array name="field_options" type="value" depth="1">
           </array>
           <record name="field_content_type" javaclass="com.wm.util.Values">
@@ -109,11 +108,11 @@
             <array name="targetNames" type="record" depth="1">
               <record javaclass="com.wm.util.Values">
                 <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">boolean</value>
+                <value name="ncName">integer</value>
               </record>
             </array>
           </record>
-          <value name="nillable">false</value>
+          <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
         </record>
@@ -121,27 +120,27 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">### tundra.integer:validate
+  <value name="node_comment">### tundra.integer:shift
 
-Returns true if the given string can be parsed as an integer.
+Bit shifts the given integer by the given distance, to the left
+if distance is positive, and to the right if distance is negative.
 
 #### Inputs:
 
-* $integer is a string to be validated as an integer.
-* $raise? is an optional boolean indicating whether an exception
-  should be thrown if the given integer is invalid. Defaults to
-  false.
+* $integer is a string to be bit shifted.
+* $distance is the number of bits to be shifted. When positive,
+  a left bit shift is performed, when negative a right bit shift 
+  is performed.
 
 #### Outputs:
 
-* $valid? is a boolean indicating if the given string is a valid
-  integer.</value>
+* $integer is the given integer bit shifted by the given distance.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
-  <value name="template">tundra_integer_validate</value>
+  <value name="template">tundra_integer_shift</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>

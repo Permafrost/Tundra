@@ -5279,6 +5279,24 @@ Returns the remainder from dividing the given integers.
 
 ---
 
+### tundra.integer:shift
+
+Bit shifts the given integer by the given distance, to the left
+if distance is positive, and to the right if distance is negative.
+
+#### Inputs:
+
+* `$integer` is a string to be bit shifted.
+* `$distance` is the number of bits to be shifted. When positive,
+  a left bit shift is performed, when negative a right bit shift
+  is performed.
+
+#### Outputs:
+
+* `$integer` is the given integer bit shifted by the given distance.
+
+---
+
 ### tundra.integer:subtract
 
 Subtracts one integer from another, returning the result.

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">shift</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogICAgU3Ry
+aW5nIGludGVnZXIgPSBJRGF0YVV0aWwuZ2V0U3RyaW5nKGN1cnNvciwgIiRpbnRlZ2VyIik7CiAg
+ICBTdHJpbmcgZGlzdGFuY2UgPSBJRGF0YVV0aWwuZ2V0U3RyaW5nKGN1cnNvciwgIiRkaXN0YW5j
+ZSIpOwoKICAgIGlmIChpbnRlZ2VyICE9IG51bGwgJiYgZGlzdGFuY2UgIT0gbnVsbCkgewogICAg
+ICAgIElEYXRhVXRpbC5wdXQoY3Vyc29yLCAiJGludGVnZXIiLCBCaWdJbnRlZ2VySGVscGVyLmVt
+aXQoQmlnSW50ZWdlckhlbHBlci5zaGlmdChCaWdJbnRlZ2VySGVscGVyLnBhcnNlKGludGVnZXIp
+LCBJbnRlZ2VyLnBhcnNlSW50KGRpc3RhbmNlKSkpKTsKICAgIH0KfSBmaW5hbGx5IHsKICAgIGN1
+cnNvci5kZXN0cm95KCk7Cn0=</value>
+</Values>

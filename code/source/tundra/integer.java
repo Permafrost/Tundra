@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-08-14 14:30:48 EST
+// -----( CREATED: 2015-08-14 14:44:05 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -532,6 +532,34 @@ public final class integer
 		        } else {
 		            IDataUtil.put(cursor, "$remainder", result);
 		        }
+		    }
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void shift (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(shift)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $integer
+		// [i] field:0:optional $distance
+		// [o] field:0:optional $integer
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    String integer = IDataUtil.getString(cursor, "$integer");
+		    String distance = IDataUtil.getString(cursor, "$distance");
+		
+		    if (integer != null && distance != null) {
+		        IDataUtil.put(cursor, "$integer", BigIntegerHelper.emit(BigIntegerHelper.shift(BigIntegerHelper.parse(integer), Integer.parseInt(distance))));
 		    }
 		} finally {
 		    cursor.destroy();
