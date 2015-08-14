@@ -5308,7 +5308,7 @@ Subtracts one integer from another, returning the result.
 
 #### Outputs:
 
-* `$results` is the result of subtracting the given values.
+* `$result` is the result of subtracting the given values.
 
 ---
 

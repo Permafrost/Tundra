@@ -131,7 +131,7 @@ Subtracts one integer from another, returning the result.
 
 #### Outputs:
 
-* $results is the result of subtracting the given values.</value>
+* $result is the result of subtracting the given values.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

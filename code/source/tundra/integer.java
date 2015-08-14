@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-08-14 14:44:05 EST
+// -----( CREATED: 2015-08-14 15:03:45 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -600,7 +600,7 @@ public final class integer
 		        if (backwardsCompatiblityRequired) {
 		            IDataUtil.put(cursor, "$integer", result);
 		        } else {
-		            IDataUtil.put(cursor, "$remainder", result);
+		            IDataUtil.put(cursor, "$result", result);
 		        }
 		    }
 		} finally {
