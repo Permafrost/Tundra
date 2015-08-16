@@ -4,30 +4,14 @@
   <value name="node_type">interface</value>
   <value name="node_nsName">tundra.list.html</value>
   <value name="encodeutf8">true</value>
-  <value name="shared">Ly8gaHRtbCBkZWNvZGVzIHRoZSBnaXZlbiBzdHJpbmcKcHVibGljIHN0YXRpYyBTdHJpbmdbXSBk
-ZWNvZGUoU3RyaW5nW10gaW5wdXQpIHsKICAgIGlmIChpbnB1dCA9PSBudWxsKSByZXR1cm4gbnVs
-bDsKCiAgICBTdHJpbmdbXSBvdXRwdXQgPSBuZXcgU3RyaW5nW2lucHV0Lmxlbmd0aF07CiAgICBm
-b3IgKGludCBpID0gMDsgaSA8IGlucHV0Lmxlbmd0aDsgaSsrKSB7CiAgICAgICAgb3V0cHV0W2ld
-ID0gSFRNTEhlbHBlci5kZWNvZGUoaW5wdXRbaV0pOwogICAgfQogICAgcmV0dXJuIG91dHB1dDsK
-fQoKLy8gaHRtbCBlbmNvZGVzIHRoZSBnaXZlbiBzdHJpbmcKcHVibGljIHN0YXRpYyBTdHJpbmdb
-XSBlbmNvZGUoU3RyaW5nW10gaW5wdXQpIHsKICAgIGlmIChpbnB1dCA9PSBudWxsKSByZXR1cm4g
-bnVsbDsKCiAgICBTdHJpbmdbXSBvdXRwdXQgPSBuZXcgU3RyaW5nW2lucHV0Lmxlbmd0aF07CiAg
-ICBmb3IgKGludCBpID0gMDsgaSA8IGlucHV0Lmxlbmd0aDsgaSsrKSB7CiAgICAgICAgb3V0cHV0
-W2ldID0gSFRNTEhlbHBlci5lbmNvZGUoaW5wdXRbaV0pOwogICAgfQogICAgcmV0dXJuIG91dHB1
-dDsKfQoKLy8gY29udmVydHMgYW4gSURhdGFbXSBkb2N1bWVudCBsaXN0IHRvIEhUTUwKcHVibGlj
-IHN0YXRpYyBPYmplY3QgZW1pdChJRGF0YVtdIGlucHV0LCBTdHJpbmcgbW9kZSwgU3RyaW5nIGVu
-Y29kaW5nKSB0aHJvd3MgSU9FeGNlcHRpb24gewogICAgSURhdGEgZG9jdW1lbnQgPSBJRGF0YUZh
-Y3RvcnkuY3JlYXRlKCk7CiAgICBJRGF0YUN1cnNvciBjdXJzb3IgPSBkb2N1bWVudC5nZXRDdXJz
-b3IoKTsKICAgIElEYXRhVXRpbC5wdXQoY3Vyc29yLCAgInJlY29yZFdpdGhOb0lEIiwgaW5wdXQp
-OwogICAgY3Vyc29yLmRlc3Ryb3koKTsKCiAgICByZXR1cm4gT2JqZWN0SGVscGVyLmNvbnZlcnQo
-SURhdGFIVE1MUGFyc2VyLmdldEluc3RhbmNlKCkuZW1pdChkb2N1bWVudCwgZW5jb2RpbmcpLCBl
-bmNvZGluZywgbW9kZSk7Cn0=</value>
+  <value name="shared"></value>
   <value name="extends"></value>
   <array name="implements" type="value" depth="1">
   </array>
   <array name="imports" type="value" depth="1">
     <value>java.io.IOException</value>
     <value>permafrost.tundra.data.IDataHTMLParser</value>
+    <value>permafrost.tundra.data.IDataMap</value>
     <value>permafrost.tundra.html.HTMLHelper</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>
     <value>permafrost.tundra.lang.ObjectHelper</value>
