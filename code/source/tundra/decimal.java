@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-08-14 15:03:40 EST
+// -----( CREATED: 2015-08-17 08:18:32 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -72,14 +72,14 @@ public final class decimal
 		
 		try {
 		    IData operands = IDataUtil.getIData(cursor, "$operands");
-		    String[] list = IDataUtil.getStringArray(cursor, "$decimals");
-		    String decimal = IDataUtil.getString(cursor, "$decimal");
 		    String precision = IDataUtil.getString(cursor, "$precision");
 		    String rounding = IDataUtil.getString(cursor, "$rounding");
 		
 		    // support $decimals and $decimal inputs for backwards-compatibility
 		    boolean backwardsCompatiblityRequired = false;
-		    if (operands == null && (list != null || decimal != null)) {
+		    if (operands == null) {
+		        String[] list = IDataUtil.getStringArray(cursor, "$decimals");
+		        String decimal = IDataUtil.getString(cursor, "$decimal");
 		        IDataMap map = new IDataMap();
 		        if (list != null) map.put("$decimals", list);
 		        if (decimal != null) map.put("$decimal", decimal);
@@ -91,7 +91,7 @@ public final class decimal
 		
 		    if (result != null) {
 		        if (backwardsCompatiblityRequired) {
-		            IDataUtil.put(cursor, "$integer", result);
+		            IDataUtil.put(cursor, "$decimal", result);
 		        } else {
 		            IDataUtil.put(cursor, "$result", result);
 		        }
@@ -120,15 +120,15 @@ public final class decimal
 		
 		try {
 		    IData operands = IDataUtil.getIData(cursor, "$operands");
-		    String[] list = IDataUtil.getStringArray(cursor, "$decimals");
 		    String precision = IDataUtil.getString(cursor, "$precision");
 		    String rounding = IDataUtil.getString(cursor, "$rounding");
 		
 		    // support $decimals input for backwards-compatibility
 		    boolean backwardsCompatiblityRequired = false;
-		    if (operands == null && list != null) {
+		    if (operands == null) {
+		        String[] list = IDataUtil.getStringArray(cursor, "$decimals");
 		        IDataMap map = new IDataMap();
-		        map.put("$decimals", list);
+		        if (list != null) map.put("$decimals", list);
 		        operands = map;
 		        backwardsCompatiblityRequired = true;
 		    }
@@ -168,6 +168,8 @@ public final class decimal
 		try {
 		    String dividend = IDataUtil.getString(cursor, "$dividend");
 		    String divisor = IDataUtil.getString(cursor, "$divisor");
+		    String precision = IDataUtil.getString(cursor, "$precision");
+		    String rounding = IDataUtil.getString(cursor, "$rounding");
 		
 		    // support $decimal.x and $decimal.y inputs for backwards-compatibility
 		    boolean backwardsCompatiblityRequired = false;
@@ -176,9 +178,6 @@ public final class decimal
 		        divisor = IDataUtil.getString(cursor, "$decimal.y");
 		        backwardsCompatiblityRequired = true;
 		    }
-		
-		    String precision = IDataUtil.getString(cursor, "$precision");
-		    String rounding = IDataUtil.getString(cursor, "$rounding");
 		
 		    String result = BigDecimalHelper.emit(BigDecimalHelper.divide(BigDecimalHelper.parse(dividend), BigDecimalHelper.parse(divisor), precision, rounding));
 		
@@ -279,15 +278,15 @@ public final class decimal
 		
 		try {
 		    IData operands = IDataUtil.getIData(cursor, "$operands");
-		    String[] list = IDataUtil.getStringArray(cursor, "$decimals");
 		    String precision = IDataUtil.getString(cursor, "$precision");
 		    String rounding = IDataUtil.getString(cursor, "$rounding");
 		
 		    // support $decimals input for backwards-compatibility
 		    boolean backwardsCompatiblityRequired = false;
-		    if (operands == null && list != null) {
+		    if (operands == null) {
+		        String[] list = IDataUtil.getStringArray(cursor, "$decimals");
 		        IDataMap map = new IDataMap();
-		        map.put("$decimals", list);
+		        if (list != null) map.put("$decimals", list);
 		        operands = map;
 		        backwardsCompatiblityRequired = true;
 		    }
@@ -325,15 +324,15 @@ public final class decimal
 		
 		try {
 		    IData operands = IDataUtil.getIData(cursor, "$operands");
-		    String[] list = IDataUtil.getStringArray(cursor, "$decimals");
 		    String precision = IDataUtil.getString(cursor, "$precision");
 		    String rounding = IDataUtil.getString(cursor, "$rounding");
 		
 		    // support $decimals input for backwards-compatibility
 		    boolean backwardsCompatiblityRequired = false;
-		    if (operands == null && list != null) {
+		    if (operands == null) {
+		        String[] list = IDataUtil.getStringArray(cursor, "$decimals");
 		        IDataMap map = new IDataMap();
-		        map.put("$decimals", list);
+		        if (list != null) map.put("$decimals", list);
 		        operands = map;
 		        backwardsCompatiblityRequired = true;
 		    }
@@ -371,16 +370,17 @@ public final class decimal
 		
 		try {
 		    IData operands = IDataUtil.getIData(cursor, "$operands");
-		    String[] list = IDataUtil.getStringArray(cursor, "$decimals");
-		    String decimal = IDataUtil.getString(cursor, "$decimal");
 		    String precision = IDataUtil.getString(cursor, "$precision");
 		    String rounding = IDataUtil.getString(cursor, "$rounding");
 		
-		    // support $decimals input for backwards-compatibility
+		    // support $decimals and $decimal input for backwards-compatibility
 		    boolean backwardsCompatiblityRequired = false;
-		    if (operands == null && list != null) {
+		    if (operands == null) {
+		        String[] list = IDataUtil.getStringArray(cursor, "$decimals");
+		        String decimal = IDataUtil.getString(cursor, "$decimal");
 		        IDataMap map = new IDataMap();
-		        map.put("$decimals", list);
+		        if (list != null) map.put("$decimals", list);
+		        if (decimal != null) map.put("$decimal", decimal);
 		        operands = map;
 		        backwardsCompatiblityRequired = true;
 		    }
@@ -502,7 +502,7 @@ public final class decimal
 		    String precision = IDataUtil.getString(cursor, "$precision");
 		    String rounding = IDataUtil.getString(cursor, "$rounding");
 		
-		    // support $integer input for backwards-compatibility
+		    // support $decimal input for backwards-compatibility
 		    boolean backwardsCompatiblityRequired = false;
 		    if (base == null) {
 		        base = IDataUtil.getString(cursor, "$decimal");
