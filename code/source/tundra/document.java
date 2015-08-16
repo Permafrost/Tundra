@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-08-14 19:48:26 EST
+// -----( CREATED: 2015-08-16 16:30:29 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -12,6 +12,7 @@ import com.wm.app.b2b.server.ServiceException;
 import java.io.IOException;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.data.IDataXMLParser;
+import permafrost.tundra.data.ReadOnlyIDataMap;
 import permafrost.tundra.flow.ConditionEvaluator;
 import permafrost.tundra.io.StreamHelper;
 import permafrost.tundra.lang.BooleanHelper;
@@ -341,6 +342,29 @@ public final class document
 		        }
 		        dc.destroy();
 		    }
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void freeze (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(freeze)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:0:optional $document
+		// [o] record:0:optional $document
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    IData document = IDataUtil.getIData(cursor, "$document");
+		    if (document != null) IDataUtil.put(cursor, "$document", ReadOnlyIDataMap.of(document));
 		} finally {
 		    cursor.destroy();
 		}

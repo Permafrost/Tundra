@@ -3283,6 +3283,23 @@ Returns the first key value pair from the given IData document.
 
 ---
 
+### tundra.document:freeze
+
+Returns a read-only version of the given `IData` document, such
+that future modification attempts are ignored. A frozen `IData`
+document cannot be unfrozen.
+
+#### Inputs:
+
+* `$document` is an `IData` document to be frozen.
+
+#### Outputs:
+
+* `$document` is the given `IData` document frozen such that no
+  further modifications are possible.
+
+---
+
 ### tundra.document:get
 
 Returns the value associated with the given key from the given IData
