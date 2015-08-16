@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-08-14 15:28:42 EST
+// -----( CREATED: 2015-08-17 08:16:46 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -70,12 +70,12 @@ public final class integer
 		
 		try {
 		    IData operands = IDataUtil.getIData(cursor, "$operands");
-		    String[] list = IDataUtil.getStringArray(cursor, "$integers");
-		    String integer = IDataUtil.getString(cursor, "$integer");
 		
 		    // support $integers and $integer inputs for backwards-compatibility
 		    boolean backwardsCompatiblityRequired = false;
-		    if (operands == null && (list != null || integer != null)) {
+		    if (operands == null) {
+		        String[] list = IDataUtil.getStringArray(cursor, "$integers");
+		        String integer = IDataUtil.getString(cursor, "$integer");
 		        IDataMap map = new IDataMap();
 		        if (list != null) map.put("$integers", list);
 		        if (integer != null) map.put("$integer", integer);
@@ -114,13 +114,13 @@ public final class integer
 		
 		try {
 		    IData operands = IDataUtil.getIData(cursor, "$operands");
-		    String[] list = IDataUtil.getStringArray(cursor, "$integers");
 		
 		    // support $integers input for backwards-compatibility
 		    boolean backwardsCompatiblityRequired = false;
-		    if (operands == null && list != null) {
+		    if (operands == null) {
+		        String[] list = IDataUtil.getStringArray(cursor, "$integers");
 		        IDataMap map = new IDataMap();
-		        map.put("$integers", list);
+		        if (list != null) map.put("$integers", list);
 		        operands = map;
 		        backwardsCompatiblityRequired = true;
 		    }
@@ -276,13 +276,13 @@ public final class integer
 		
 		try {
 		    IData operands = IDataUtil.getIData(cursor, "$operands");
-		    String[] list = IDataUtil.getStringArray(cursor, "$integers");
 		
 		    // support $integers input for backwards-compatibility
 		    boolean backwardsCompatiblityRequired = false;
-		    if (operands == null && list != null) {
+		    if (operands == null) {
+		        String[] list = IDataUtil.getStringArray(cursor, "$integers");
 		        IDataMap map = new IDataMap();
-		        map.put("$integers", list);
+		        if (list != null) map.put("$integers", list);
 		        operands = map;
 		        backwardsCompatiblityRequired = true;
 		    }
@@ -318,13 +318,13 @@ public final class integer
 		
 		try {
 		    IData operands = IDataUtil.getIData(cursor, "$operands");
-		    String[] list = IDataUtil.getStringArray(cursor, "$integers");
 		
 		    // support $integers input for backwards-compatibility
 		    boolean backwardsCompatiblityRequired = false;
-		    if (operands == null && list != null) {
+		    if (operands == null) {
+		        String[] list = IDataUtil.getStringArray(cursor, "$integers");
 		        IDataMap map = new IDataMap();
-		        map.put("$integers", list);
+		        if (list != null) map.put("$integers", list);
 		        operands = map;
 		        backwardsCompatiblityRequired = true;
 		    }
@@ -360,15 +360,15 @@ public final class integer
 		
 		try {
 		    IData operands = IDataUtil.getIData(cursor, "$operands");
-		    String[] list = IDataUtil.getStringArray(cursor, "$integers");
-		    String integer = IDataUtil.getString(cursor, "$integer");
 		
-		    // support $integers input for backwards-compatibility
+		    // support $integers and $integer input for backwards-compatibility
 		    boolean backwardsCompatiblityRequired = false;
-		    if (operands == null && (list != null || integer != null)) {
+		    if (operands == null) {
+		        String[] list = IDataUtil.getStringArray(cursor, "$integers");
+		        String integer = IDataUtil.getString(cursor, "$integer");
 		        IDataMap map = new IDataMap();
-		        map.put("$integers", list);
-		        map.put("$integer", integer);
+		        if (list != null) map.put("$integers", list);
+		        if (integer != null) map.put("$integer", integer);
 		        operands = map;
 		        backwardsCompatiblityRequired = true;
 		    }
