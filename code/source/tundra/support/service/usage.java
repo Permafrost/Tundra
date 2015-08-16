@@ -1,7 +1,7 @@
 package tundra.support.service;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-21 16:04:56 AEST
+// -----( CREATED: 2015-08-17 07:48:07 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -9,6 +9,7 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.data.ReadOnlyIDataMap;
 import permafrost.tundra.time.DateTimeHelper;
 import permafrost.tundra.time.DurationHelper;
 import permafrost.tundra.time.DurationPattern;
@@ -117,7 +118,7 @@ public final class usage
 	
 	    public ServiceExecution(com.wm.app.b2b.server.BaseService service, IData pipeline, com.wm.app.b2b.server.InvokeState state) {
 	        this.service = service;
-	        this.pipeline = pipeline == null ? IDataFactory.create() : IDataUtil.clone(pipeline);
+	        this.pipeline = ReadOnlyIDataMap.of(pipeline);
 	        this.startTime = System.currentTimeMillis();
 	        this.session = state.getSession().getSessionID();
 	        this.user = state.getUser().getName();
