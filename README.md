@@ -7841,7 +7841,8 @@ level of concurrency) or asynchronously.
 Waits for each service thread in the given list to finish before
 returning each output pipeline.
 
-* Inputs
+#### Inputs:
+
 * `$threads` is a list of service thread objects returned by
   `Tundra/tundra.list.service:invoke` when operating in the
   asynchronous invocation mode.
@@ -10116,7 +10117,8 @@ Defers execution of the given service using a dedicated single thread. The
 service is not executed immediately, and is instead queued to wait to be
 executed until the defer thread becomes available.
 
-* Inputs
+#### Inputs:
+
 * `$service` is the fully-qualified name of the service to be deferred.
 * `$pipeline` is an optional IData document which, if specified, contains
   the input arguments for the invocation of `$service`; in other words, the
@@ -10176,7 +10178,8 @@ service for this thread.
 Invokes a service either synchronously or asynchronously, and
 either scoped or unscoped.
 
-* Inputs
+#### Inputs:
+
 * `$service` is the fully-qualified name of the service to be
   invoked.
 * `$pipeline` is an optional IData document which, if specified,
@@ -10211,7 +10214,8 @@ either scoped or unscoped.
 Waits for the given service thread to finish before returning the
 service output pipeline.
 
-* Inputs
+#### Inputs:
+
 * `$thread` is a service thread object returned by
   `Tundra/tundra.service:invoke` when a service is invoked
   asynchronously.

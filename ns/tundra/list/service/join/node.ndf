@@ -7,7 +7,6 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
-      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -21,7 +20,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$threads</value>
           <value name="field_type">object</value>
           <value name="field_dim">1</value>
@@ -32,11 +30,9 @@
           <value name="is_soap_array_encoding_used">false</value>
         </record>
       </array>
-      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
-      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -50,7 +46,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$pipelines</value>
           <value name="field_type">record</value>
           <value name="field_dim">1</value>
@@ -61,10 +56,8 @@
           <value name="is_soap_array_encoding_used">false</value>
           <array name="rec_fields" type="record" depth="1">
           </array>
-          <value name="modifiable">true</value>
         </record>
       </array>
-      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">### tundra.list.service:join
@@ -72,7 +65,8 @@
 Waits for each service thread in the given list to finish before
 returning each output pipeline.
 
-* Inputs
+#### Inputs:
+
 * $threads is a list of service thread objects returned by
   Tundra/tundra.list.service:invoke when operating in the
   asynchronous invocation mode.
@@ -92,23 +86,16 @@ returning each output pipeline.
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
   <value name="icontext_policy">$null</value>
-  <value name="svcInvkURLAlias"></value>
   <value name="system_service">no</value>
   <value name="retry_max">0</value>
   <value name="retry_interval">0</value>
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
-  <null name="auditfields_input"/>
-  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
-  <value name="pipeline_option">1</value>
-  <null name="originURI"/>
-  <value name="modifiable">true</value>
-  <value name="is_public">false</value>
 </Values>
