@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-08-16 16:30:29 EST
+// -----( CREATED: 2015-09-06 12:06:31 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -399,6 +399,38 @@ public final class document
 		    Object value = IDataHelper.get(document, key, defaultObject, literal);
 		
 		    if (value != null) IDataUtil.put(cursor, "$value", value);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void join (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(join)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:0:optional $document
+		// [i] field:0:optional $separator.value
+		// [i] field:0:optional $separator.item
+		// [i] field:0:optional $separator.list
+		// [i] field:0:optional $nulls?
+		// [o] field:0:optional $result
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    IData document = IDataUtil.getIData(cursor, "$document");
+		    String valueSeparator = IDataUtil.getString(cursor, "$separator.value");
+		    String listSeparator = IDataUtil.getString(cursor, "$separator.list");
+		    String itemSeparator = IDataUtil.getString(cursor, "$separator.item");
+		    boolean includeNulls = BooleanHelper.parse(IDataUtil.getString(cursor, "$nulls?"), false);
+		
+		    if (document != null) IDataUtil.put(cursor, "$result", IDataHelper.join(document, itemSeparator, listSeparator, valueSeparator, includeNulls));
 		} finally {
 		    cursor.destroy();
 		}

@@ -3331,6 +3331,33 @@ document.
 
 ---
 
+### tundra.document:join
+
+Converts the given `IData` document to a human-readable string
+representation, useful for logging or display to end users.
+
+#### Inputs:
+
+* `$document` is an `IData` document to be converted to a string.
+* `$separator.value` is an optional string used to separate the key
+  from the value of each item in the `IData` document. Defaults to the
+  string ": ", if not specified.
+* `$separator.item` is an optional string used to separate each key
+  value item in the `IData` document. Defaults to ", ", if not
+  specified.
+* `$separator.list` is an optional string used to separate each list
+  item in the `IData` document. Defaults to ", ", if not specified.
+* `$nulls?` is an optional boolean flag which if `true` will include all
+  `null` values in the resulting string representation, otherwise these
+  are excluded. Defaults to `false`, if not specified.
+
+#### Outputs:
+
+* `$result` is the resulting string representation of the given `IData`
+  document.
+
+---
+
 ### tundra.document.key:lowercase
 
 Converts all keys in the given IData document to lower case.
