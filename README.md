@@ -10008,9 +10008,12 @@ implement this specification.
 
 * `$content` is the content to be processed, specified as a
   [java.io.InputStream].
-* `$content.type` is the mime media type of the content to be processed.
 * `$content.name` is the name associated with the content, such as a
   file name.
+* `$content.type` is the mime media type of the content to be processed.
+* `$content.source` is the source of the content to be processed.
+* `$content.archive` is the archive location of the content after
+  processing.
 
 ---
 
