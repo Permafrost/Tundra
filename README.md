@@ -11597,13 +11597,15 @@ XML `$content`.
 
 ### tundra.yaml:emit
 
-Serializes an IData document as a [YAML] formatted string, byte array, or
+Serializes an `IData` document as a [YAML] formatted string, byte array, or
 input stream.
 
 #### Inputs:
 
-* `$document` is the IData document to be serialized as a [YAML] string,
+* `$document` is the `IData` document to be serialized as a [YAML] string,
   byte array, or input stream.
+  * `recordWithNoID` is an optional `IData[]` document list, which can be
+    used to emit a document list rather than a document.
 * `$encoding` is an optional character set to use when encoding the
   resulting text data to a byte array or input stream. Defaults to [UTF-8].
 * `$mode` is an optional choice of stream, bytes, or string which

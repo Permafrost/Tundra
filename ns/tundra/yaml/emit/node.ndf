@@ -30,26 +30,6 @@
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
           <array name="rec_fields" type="record" depth="1">
-            <record javaclass="com.wm.util.Values">
-              <value name="node_type">record</value>
-              <value name="node_comment"></value>
-              <record name="node_hints" javaclass="com.wm.util.Values">
-                <value name="field_largerEditor">false</value>
-                <value name="field_password">false</value>
-              </record>
-              <value name="is_public">false</value>
-              <value name="field_name">recordWithNoID</value>
-              <value name="field_type">record</value>
-              <value name="field_dim">1</value>
-              <value name="field_opt">true</value>
-              <value name="nillable">true</value>
-              <value name="form_qualified">false</value>
-              <value name="is_global">false</value>
-              <value name="is_soap_array_encoding_used">false</value>
-              <array name="rec_fields" type="record" depth="1">
-              </array>
-              <value name="modifiable">true</value>
-            </record>
           </array>
           <value name="modifiable">true</value>
         </record>
@@ -196,6 +176,8 @@ input stream.
 
 * $document is the IData document to be serialized as a [YAML] string,
   byte array, or input stream.
+  * recordWithNoID is an optional IData[] document list, which can be
+    used to emit a document list rather than a document.
 * $encoding is an optional character set to use when encoding the
   resulting text data to a byte array or input stream. Defaults to [UTF-8].
 * $mode is an optional choice of stream, bytes, or string which
@@ -214,11 +196,11 @@ input stream.
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template">tundra_yaml_emit</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
   <value name="icontext_policy">$null</value>
-  <value name="svcInvkURLAlias"></value>
   <value name="system_service">no</value>
   <value name="retry_max">0</value>
   <value name="retry_interval">0</value>
