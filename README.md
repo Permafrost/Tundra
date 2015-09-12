@@ -4817,14 +4817,16 @@ Serializes an `IData` document as an [HTML] fragment suitable for
 embedding in an [HTML] page, formatted as a string, byte array,
 or input stream.
 
-Child elements that are IData documents, IData[] document lists,
-Object[] object lists, or Object[][] object tables are recursively
+Child elements that are `IData` documents, `IData[]` document lists,
+`Object[]` object lists, or `Object[][]` object tables are recursively
 serialized to clean [HTML] table elements.
 
 #### Inputs:
 
 * `$document` is the `IData` document to be serialized as an [HTML]
   string, byte array, or input stream.
+  * `recordWithNoID` is an optional `IData[]` document list, which can
+    be used to emit a document list rather than a document.
 * `$encoding` is an optional character set to use when encoding the
   resulting text data to a byte array or input stream. Defaults to
   [UTF-8].
