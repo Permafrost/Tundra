@@ -25,7 +25,7 @@ post       /message/discard/{id}                                tundra.content:d
 post       /message/reject                                      tundra.content:reject          Invokes tundra.content:reject
 
 # Pretty URLs for DSP pages
-get        /tundra/http/routes                                  /Tundra/http/routes/list.dsp   Provides a pretty URL in front of a DSP page
+get        /tundra/http/route/                                  /Tundra/http/route/list.dsp    Provides a pretty URL in front of a DSP page
 
 # Commented-out routes
 #get       /foo/bar                                             tundra.pipeline:log            This route is commented out and will be ignored
