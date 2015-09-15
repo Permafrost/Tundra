@@ -21,13 +21,13 @@ Networks] 7.1 and higher.
 provide the underlying implementation for the majority of services, and are
 included in the [Tundra] package as [JAR] files in the following locations:
 
-* `./code/jars/static/Tundra.jar` - http://github.com/Permafrost/Tundra.java
-* `./code/jars/static/TundraCSV.jar` - http://github.com/Permafrost/TundraCSV.java
-* `./code/jars/static/TundraHTML.jar` - http://github.com/Permafrost/TundraHTML.java
-* `./code/jars/static/TundraHTTP.jar` - http://github.com/Permafrost/TundraHTTP.java
-* `./code/jars/static/TundraJSON.jar` - http://github.com/Permafrost/TundraJSON.java
-* `./code/jars/static/TundraXML.jar` - http://github.com/Permafrost/TundraXML.java
-* `./code/jars/static/TundraYAML.jar` - http://github.com/Permafrost/TundraYAML.java
+* `./code/jars/Tundra.jar` - http://github.com/Permafrost/Tundra.java
+* `./code/jars/TundraCSV.jar` - http://github.com/Permafrost/TundraCSV.java
+* `./code/jars/TundraHTML.jar` - http://github.com/Permafrost/TundraHTML.java
+* `./code/jars/TundraHTTP.jar` - http://github.com/Permafrost/TundraHTTP.java
+* `./code/jars/TundraJSON.jar` - http://github.com/Permafrost/TundraJSON.java
+* `./code/jars/TundraXML.jar` - http://github.com/Permafrost/TundraXML.java
+* `./code/jars/TundraYAML.jar` - http://github.com/Permafrost/TundraYAML.java
 * `./code/jars/commons-csv-1.0.jar` - https://commons.apache.org/proper/commons-csv/
 * `./code/jars/jakarta-oro-2.0.8.jar` - http://archive.apache.org/dist/jakarta/oro/
 * `./code/jars/javax.json-1.0.4.jar` - https://jsonp.java.net
