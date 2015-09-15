@@ -17,11 +17,24 @@ Networks] 7.1 and higher.
 * `WmPublic`
 * `WmRoot`
 
-[Tundra] is also dependent on the [Tundra.java] project, which provides the
-underlying implementation for the majority of services, and is included in
-the [Tundra] package as a [JAR] library in the following location:
+[Tundra] is also dependent on the following open source Java libraries, which
+provide the underlying implementation for the majority of services, and are
+included in the [Tundra] package as [JAR] files in the following locations:
 
-* `./code/jars/static/Tundra.jar`
+* `./code/jars/static/Tundra.jar` - http://github.com/Permafrost/Tundra.java
+* `./code/jars/static/TundraCSV.jar` - http://github.com/Permafrost/TundraCSV.java
+* `./code/jars/static/TundraHTML.jar` - http://github.com/Permafrost/TundraHTML.java
+* `./code/jars/static/TundraHTTP.jar` - http://github.com/Permafrost/TundraHTTP.java
+* `./code/jars/static/TundraJSON.jar` - http://github.com/Permafrost/TundraJSON.java
+* `./code/jars/static/TundraXML.jar` - http://github.com/Permafrost/TundraXML.java
+* `./code/jars/static/TundraYAML.jar` - http://github.com/Permafrost/TundraYAML.java
+* `./code/jars/commons-csv-1.0.jar` - https://commons.apache.org/proper/commons-csv/
+* `./code/jars/jakarta-oro-2.0.8.jar` - http://archive.apache.org/dist/jakarta/oro/
+* `./code/jars/javax.json-1.0.4.jar` - https://jsonp.java.net
+* `./code/jars/snakeyaml-1.15.jar` - http://www.snakeyaml.org
+* `./code/jars/static/spring-core-4.1.2.RELEASE.jar` - http://projects.spring.io/spring-framework/
+* `./code/jars/static/spring-web-4.1.2.RELEASE.jar` - http://projects.spring.io/spring-framework/
+* `./code/jars/xmlsec-1.5.8.jar` - http://santuario.apache.org
 
 ## Installation
 
@@ -11803,6 +11816,12 @@ Copyright &copy; 2012 Lachlan Dowding. See the [LICENSE] file for further detail
 [Tundra]: <https://github.com/Permafrost/Tundra>
 [TundraTN]: <https://github.com/Permafrost/TundraTN>
 [Tundra.java]: <https://github.com/Permafrost/Tundra.java>
+[TundraCSV.java]: <https://github.com/Permafrost/TundraCSV.java>
+[TundraHTML.java]: <https://github.com/Permafrost/TundraHTML.java>
+[TundraHTTP.java]: <https://github.com/Permafrost/TundraHTTP.java>
+[TundraJSON.java]: <https://github.com/Permafrost/TundraJSON.java>
+[TundraXML.java]: <https://github.com/Permafrost/TundraXML.java>
+[TundraYAML.java]: <https://github.com/Permafrost/TundraYAML.java>
 [URI]: <http://www.w3.org/Addressing/>
 [URI template]: <https://tools.ietf.org/html/rfc6570>
 [UTF-8]: <http://en.wikipedia.org/wiki/UTF-8>
