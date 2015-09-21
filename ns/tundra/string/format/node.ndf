@@ -349,14 +349,14 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">###### tundra.string:format
+  <value name="node_comment">### tundra.string:format
 
 Returns a formatted string using the given arguments and pattern,
-specified as a [java.util.Formatter] [format string].
+specified as a [java.util.Formatter format string].
 
 #### Inputs:
 
-* $pattern is a [java.util.Formatter] [format string] which can 
+* $pattern is a [java.util.Formatter format string] which can 
   contain fixed text, and one or more format specifiers which 
   indicate how the given arguments should be formatted in the 
   resulting string.
@@ -371,7 +371,8 @@ specified as a [java.util.Formatter] [format string].
     provided to identify which value in the pipeline is to be 
     formatted.
   * type is the type of value the argument represents, and affects
-    the [Java Format String] conversions available to the argument:
+    the [java.util.Formatter format string] conversions available
+    to the argument:
     * string will convert the value to a java.lang.String prior to 
       formatting.
     * integer will convert the value to a java.math.BigInteger prior
@@ -389,8 +390,7 @@ specified as a [java.util.Formatter] [format string].
 
 * $string is the resulting formatted string.
 
-[format string]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/Formatter.html#syntax&gt;
-[java.util.Formatter]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/Formatter.html&gt;
+[java.util.Formatter format string]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/Formatter.html#syntax&gt;
 [Locale]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/Locale.html&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>

@@ -10725,14 +10725,14 @@ string is found anywhere in the given string.
 
 ---
 
-###### tundra.string:format
+### tundra.string:format
 
 Returns a formatted string using the given arguments and pattern,
-specified as a [java.util.Formatter] [format string].
+specified as a [java.util.Formatter format string].
 
 #### Inputs:
 
-* `$pattern` is a [java.util.Formatter] [format string] which can
+* `$pattern` is a [java.util.Formatter format string] which can
   contain fixed text, and one or more format specifiers which
   indicate how the given arguments should be formatted in the
   resulting string.
@@ -10747,7 +10747,8 @@ specified as a [java.util.Formatter] [format string].
     provided to identify which value in the pipeline is to be
     formatted.
   * `type` is the type of value the argument represents, and affects
-    the [Java Format String] conversions available to the argument:
+    the [java.util.Formatter format string] conversions available to
+    the argument:
     * `string` will convert the value to a `java.lang.String` prior to
       formatting.
     * `integer` will convert the value to a `java.math.BigInteger` prior
@@ -11823,7 +11824,6 @@ Copyright &copy; 2012 Lachlan Dowding. See the [LICENSE] file for further detail
 [Exclusive Canonical XML Version 1.0]: <http://www.w3.org/2001/10/xml-exc-c14n#>
 [Exclusive Canonical XML Version 1.0 With Comments]: <http://www.w3.org/2001/10/xml-exc-c14n#WithComments>
 [finally block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/finally.html>
-[format string]: <http://docs.oracle.com/javase/6/docs/api/java/util/Formatter.html#syntax>
 [gzip]: <http://en.wikipedia.org/wiki/Gzip>
 [HTML]: <http://en.wikipedia.org/wiki/HTML>
 [HTML entities]: <http://www.w3.org/TR/html4/sgml/entities.html>
@@ -11851,7 +11851,7 @@ Copyright &copy; 2012 Lachlan Dowding. See the [LICENSE] file for further detail
 [java.text.DecimalFormat]: <http://docs.oracle.com/javase/6/docs/api/java/text/DecimalFormat.html>
 [java.text.SimpleDateFormat]: <http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html>
 [java.util.Date]: <http://docs.oracle.com/javase/6/docs/api/java/util/Date.html>
-[java.util.Formatter]: <http://docs.oracle.com/javase/6/docs/api/java/util/Formatter.html>
+[java.util.Formatter format string]: <http://docs.oracle.com/javase/6/docs/api/java/util/Formatter.html#syntax>
 [java.util.TimeZone]: <http://docs.oracle.com/javase/6/docs/api/java/util/TimeZone.html>
 [java.util.regex.Pattern]: <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html>
 [javax.activation.MimeType]: <http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html>
