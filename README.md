@@ -221,6 +221,19 @@ browser. When invoked via a browser, a basic HTML test report is displayed:
 Throws an assertion error if the expected and actual datetimes are not
 equal.
 
+Supports a handful of well-known named datetime patterns:
+
+Pattern Name  | Description
+------------- | --------------------------------------------
+datetime      | ISO8601 XML datetime
+datetime.db2  | yyyy-MM-dd-HH.mm.ss.SSSSSS
+datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
+date          | ISO8601 XML date
+date.jdbc     | yyyy-mm-dd
+time          | ISO8601 XML time
+time.jdbc     | HH:mm:ss
+milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
+
 #### Inputs:
 
 * `$expected` is the expected datetime string value.
@@ -229,15 +242,7 @@ equal.
 * `$pattern` is an optional datetime string pattern the above values
   conform to, which defaults to an ISO8601/XML datetime pattern. Can
   either be a [java.text.SimpleDateFormat] pattern, or one of the
-  following handful of well-known named patterns:
-  * `datetime`       - ISO8601/XML datetime
-  * `datetime.jdbc`  - yyyy-MM-dd HH:mm:ss.SSS
-  * `date`           - ISO8601/XML date
-  * `date.jdbc`      - yyyy-MM-dd
-  * `time`           - ISO8601/XML time
-  * `time.jdbc`      - HH:mm:ss
-  * `milliseconds`   - The number of milliseconds since the Epoch,
-                       January 1, 1970 00:00:00.000 GMT (Gregorian)
+  named patterns.
 * `$message` is an optional custom message to be used as the assertion
   error message if the assertion fails.
 
@@ -247,6 +252,19 @@ equal.
 
 Throws an assertion error if the expected and actual datetimes are equal.
 
+Supports a handful of well-known named datetime patterns:
+
+Pattern Name  | Description
+------------- | --------------------------------------------
+datetime      | ISO8601 XML datetime
+datetime.db2  | yyyy-MM-dd-HH.mm.ss.SSSSSS
+datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
+date          | ISO8601 XML date
+date.jdbc     | yyyy-mm-dd
+time          | ISO8601 XML time
+time.jdbc     | HH:mm:ss
+milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
+
 #### Inputs:
 
 * `$expected` is the expected datetime string value.
@@ -255,15 +273,7 @@ Throws an assertion error if the expected and actual datetimes are equal.
 * `$pattern` is an optional datetime string pattern the above values
   conform to, which defaults to an ISO8601/XML datetime pattern. Can
   either be a [java.text.SimpleDateFormat] pattern, or one of the
-  following handful of well-known named patterns:
-  * `datetime`       - ISO8601/XML datetime
-  * `datetime.jdbc`  - yyyy-MM-dd HH:mm:ss.SSS
-  * `date`           - ISO8601/XML date
-  * `date.jdbc`      - yyyy-MM-dd
-  * `time`           - ISO8601/XML time
-  * `time.jdbc`      - HH:mm:ss
-  * `milliseconds`   - The number of milliseconds since the Epoch,
-                       January 1, 1970 00:00:00.000 GMT (Gregorian)
+  named patterns:
 * `$message` is an optional custom message to be used as the assertion
   error message if the assertion fails.
 
@@ -1708,6 +1718,7 @@ Supports a handful of well-known named datetime patterns:
 Pattern Name  | Description
 ------------- | --------------------------------------------
 datetime      | ISO8601 XML datetime
+datetime.db2  | yyyy-MM-dd-HH.mm.ss.SSSSSS
 datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
 date          | ISO8601 XML date
 date.jdbc     | yyyy-mm-dd
@@ -1743,6 +1754,7 @@ Supports a handful of well-known named datetime patterns:
 Pattern Name  | Description
 ------------- | --------------------------------------------
 datetime      | ISO8601 XML datetime
+datetime.db2  | yyyy-MM-dd-HH.mm.ss.SSSSSS
 datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
 date          | ISO8601 XML date
 date.jdbc     | yyyy-mm-dd
@@ -1797,6 +1809,7 @@ Supports a handful of well-known named datetime patterns:
 Pattern Name  | Description
 ------------- | --------------------------------------------
 datetime      | ISO8601 XML datetime
+datetime.db2  | yyyy-MM-dd-HH.mm.ss.SSSSSS
 datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
 date          | ISO8601 XML date
 date.jdbc     | yyyy-mm-dd
@@ -1837,6 +1850,7 @@ Supports a handful of well-known named datetime patterns:
 Pattern Name  | Description
 ------------- | --------------------------------------------
 datetime      | ISO8601 XML datetime
+datetime.db2  | yyyy-MM-dd-HH.mm.ss.SSSSSS
 datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
 date          | ISO8601 XML date
 date.jdbc     | yyyy-mm-dd
@@ -1878,6 +1892,7 @@ Supports a handful of well-known named datetime patterns:
 Pattern Name  | Description
 ------------- | --------------------------------------------
 datetime      | ISO8601 XML datetime
+datetime.db2  | yyyy-MM-dd-HH.mm.ss.SSSSSS
 datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
 date          | ISO8601 XML date
 date.jdbc     | yyyy-mm-dd
@@ -1919,6 +1934,7 @@ Supports a handful of well-known named datetime patterns:
 Pattern Name  | Description
 ------------- | --------------------------------------------
 datetime      | ISO8601 XML datetime
+datetime.db2  | yyyy-MM-dd-HH.mm.ss.SSSSSS
 datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
 date          | ISO8601 XML date
 date.jdbc     | yyyy-mm-dd
@@ -1975,6 +1991,7 @@ Supports a handful of well-known named datetime patterns:
 Pattern Name  | Description
 ------------- | --------------------------------------------
 datetime      | ISO8601 XML datetime
+datetime.db2  | yyyy-MM-dd-HH.mm.ss.SSSSSS
 datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
 date          | ISO8601 XML date
 date.jdbc     | yyyy-mm-dd
@@ -2015,6 +2032,7 @@ Supports a handful of well-known named datetime patterns:
 Pattern Name  | Description
 ------------- | --------------------------------------------
 datetime      | ISO8601 XML datetime
+datetime.db2  | yyyy-MM-dd-HH.mm.ss.SSSSSS
 datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
 date          | ISO8601 XML date
 date.jdbc     | yyyy-mm-dd
@@ -2047,6 +2065,7 @@ Supports a handful of well-known named datetime patterns:
 Pattern Name  | Description
 ------------- | --------------------------------------------
 datetime      | ISO8601 XML datetime
+datetime.db2  | yyyy-MM-dd-HH.mm.ss.SSSSSS
 datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
 date          | ISO8601 XML date
 date.jdbc     | yyyy-mm-dd
@@ -2079,6 +2098,7 @@ Supports a handful of well-known named datetime patterns:
 Pattern Name  | Description
 ------------- | --------------------------------------------
 datetime      | ISO8601 XML datetime
+datetime.db2  | yyyy-MM-dd-HH.mm.ss.SSSSSS
 datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
 date          | ISO8601 XML date
 date.jdbc     | yyyy-mm-dd
@@ -2118,6 +2138,7 @@ Supports a handful of well-known named datetime patterns:
 Pattern Name  | Description
 ------------- | --------------------------------------------
 datetime      | ISO8601 XML datetime
+datetime.db2  | yyyy-MM-dd-HH.mm.ss.SSSSSS
 datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
 date          | ISO8601 XML date
 date.jdbc     | yyyy-mm-dd
@@ -2164,6 +2185,7 @@ Supports a handful of well-known named datetime patterns:
 Pattern Name  | Description
 ------------- | --------------------------------------------
 datetime      | ISO8601 XML datetime
+datetime.db2  | yyyy-MM-dd-HH.mm.ss.SSSSSS
 datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
 date          | ISO8601 XML date
 date.jdbc     | yyyy-mm-dd
@@ -2198,6 +2220,7 @@ Supports a handful of well-known named datetime patterns:
 Pattern Name  | Description
 ------------- | --------------------------------------------
 datetime      | ISO8601 XML datetime
+datetime.db2  | yyyy-MM-dd-HH.mm.ss.SSSSSS
 datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
 date          | ISO8601 XML date
 date.jdbc     | yyyy-mm-dd
@@ -5967,6 +5990,7 @@ Supports a handful of well-known named datetime patterns:
 Pattern Name  | Description
 ------------- | --------------------------------------------
 datetime      | ISO8601 XML datetime
+datetime.db2  | yyyy-MM-dd-HH.mm.ss.SSSSSS
 datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
 date          | ISO8601 XML date
 date.jdbc     | yyyy-mm-dd
