@@ -5129,7 +5129,7 @@ definition at ISO/IEC 11578:1996.
 #### Inputs:
 
 * `$mode` is an optional choice which determines how the [UUID] is
-  converted to a string:
+  converted to a string. Defaults to `string`, if not specified:
   * `string` returns the [UUID] in the string representation as per
     [RFC 4122], and is the default.
   * `base64` returns the [UUID] as a [Base64] encoded string.
