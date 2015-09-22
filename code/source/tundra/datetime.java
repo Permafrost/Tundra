@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-09-23 08:54:49.728
+// -----( CREATED: 2015-09-23 09:04:24.857
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -492,6 +492,31 @@ public final class datetime
 		    if (raise) ExceptionHelper.raise(ex);
 		} finally {
 		    IDataUtil.put(cursor, "$valid?", "" + valid);
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
+	public static final void yesterday (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(yesterday)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $pattern {&quot;datetime&quot;,&quot;datetime.db2&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
+		// [i] field:0:optional $timezone
+		// [o] field:0:required $datetime
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    String pattern = IDataUtil.getString(cursor, "$pattern");
+		    String timezone = IDataUtil.getString(cursor, "$timezone");
+		    IDataUtil.put(cursor, "$datetime", DateTimeHelper.yesterday(pattern, timezone));
+		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---

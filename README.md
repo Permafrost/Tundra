@@ -2240,7 +2240,7 @@ Custom datetime patterns can be specified using
   (+|-)HH:mm time zone offset, or an XML duration string
   representing a time zone offset, or a raw millisecond time zone
   offset, or Z for UTC, or local for the default localhost time
-  zone identifying the time zone the returned $datetime will be
+  zone identifying the time zone the returned `$datetime` will be
   formatted with.
 
 #### Outputs:
@@ -2283,6 +2283,46 @@ Custom datetime patterns can be specified using
 
 * `$valid?` is a boolean flag indicating the given `$datetime` conforms
   to, and can be parsed by, the given `$pattern`.
+
+---
+
+### tundra.datetime:yesterday
+
+Returns the current date minus one day formatted according to the given
+pattern.
+
+Supports a handful of well-known named datetime patterns:
+
+Pattern Name  | Description
+------------- | --------------------------------------------
+datetime      | ISO8601 XML datetime
+datetime.db2  | yyyy-MM-dd-HH.mm.ss.SSSSSS
+datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
+date          | ISO8601 XML date
+date.jdbc     | yyyy-mm-dd
+time          | ISO8601 XML time
+time.jdbc     | HH:mm:ss
+milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
+
+Custom datetime patterns can be specified using
+[java.text.SimpleDateFormat] compatible patterns.
+
+#### Inputs:
+
+* `$pattern` is an optional datetime pattern that will be used to format
+  the resulting `$datetime` string. Defaults to an [ISO8601] XML
+  datetime.
+* `$timezone` is an optional [java.util.TimeZone] ID, or a
+  (+|-)HH:mm time zone offset, or an XML duration string
+  representing a time zone offset, or a raw millisecond time zone
+  offset, or Z for UTC, or local for the default localhost time
+  zone identifying the time zone the returned `$datetime` will be
+  formatted with.
+
+#### Outputs:
+
+* `$datetime` is the current date minus one day formatted as a string
+  according to the given `$pattern` in the given `$timezone`.
 
 ---
 
