@@ -4246,14 +4246,14 @@ fully-qualifed domain name, host name, and IP address, if found.
 
 ### tundra.duration:add
 
-Adds one duration (x) to another (y), returning (x + y).
+Adds the given durations, returning the total.
 
 #### Inputs:
 
-* `$duration.x` is a duration string to be added to `$duration.y`.
-* `$duration.y` is a duration string to be added to `$duration.x`.
+* `$operands` is an `IData` document containing arbitrary elements
+  whose leaf values will be used as operands for this operation.
 * `$pattern.input` is an optional pattern describing the type of
-  duration specified by the `$duration.x` and `$duration.y` strings.
+  duration specified by the values specified in `$operands`.
   Defaults to an [ISO8601] XML string.
 * `$pattern.output` is an optional desired pattern used to format
   the returned `$duration` string. Defaults to an [ISO8601] XML
@@ -4261,8 +4261,8 @@ Adds one duration (x) to another (y), returning (x + y).
 
 #### Outputs:
 
-* `$duration` is a duration string equal to (`$duration.x` +
-  `$duration.y`).
+* `$duration` is the total duration resulting from adding all the
+  given durations.
 
 ---
 
