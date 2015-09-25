@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-09-21 09:52:53.143
+// -----( CREATED: 2015-09-25 14:36:25.136
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -42,7 +42,7 @@ public final class string
 		// [i] field:0:optional $string
 		// [o] field:0:required $string
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String input = IDataUtil.getString(cursor, "$string");
 		    IDataUtil.put(cursor, "$string", StringHelper.blankify(input));
@@ -51,7 +51,7 @@ public final class string
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -66,18 +66,18 @@ public final class string
 		// [i] field:0:optional $mode {&quot;all words&quot;,&quot;first word&quot;}
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String input = IDataUtil.getString(cursor, "$string");
 		    String mode = IDataUtil.getString(cursor, "$mode");
-
+		
 		    if (input != null) IDataUtil.put(cursor, "$string", StringHelper.capitalize(input, mode == null ? false : mode.equalsIgnoreCase("first word")));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -100,14 +100,14 @@ public final class string
 		// [o] - field:0:required groups.length
 		// [o] field:0:required $captures.length
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String string = IDataUtil.getString(cursor, "$string");
 		    String pattern = IDataUtil.getString(cursor, "$pattern");
 		    boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$literal?"));
-
+		
 		    IData[] captures = StringHelper.capture(string, pattern);
-
+		
 		    if (captures != null && captures.length > 0) {
 		        IDataUtil.put(cursor, "$captured?", "true");
 		        IDataUtil.put(cursor, "$captures", captures);
@@ -121,7 +121,7 @@ public final class string
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -135,7 +135,7 @@ public final class string
 		// [i] field:0:optional $string
 		// [o] object:1:optional $characters
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String string = IDataUtil.getString(cursor, "$string");
 		    if (string != null) IDataUtil.put(cursor, "$characters", StringHelper.characters(string));
@@ -144,7 +144,7 @@ public final class string
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -160,21 +160,21 @@ public final class string
 		// [i] field:0:optional $mode {&quot;missing&quot;,&quot;null&quot;}
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String x = IDataUtil.getString(cursor, "$string.x");
 		    String y = IDataUtil.getString(cursor, "$string.y");
 		    String mode = IDataUtil.getString(cursor, "$mode");
-
+		
 		    String result = tundra.object.coalesce(x, y);
-
+		
 		    if (result != null || (mode != null && mode.equals("null"))) IDataUtil.put(cursor, "$string", result);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -192,14 +192,14 @@ public final class string
 		// [o] field:0:required $equal?
 		// [o] field:0:required $after?
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String x = IDataUtil.getString(cursor, "$string.x");
 		    String y = IDataUtil.getString(cursor, "$string.y");
 		    boolean caseInsensitive = BooleanHelper.parse(IDataUtil.getString(cursor, "$case.insensitive?"));
-
+		
 		    int comparison = StringHelper.compare(x, y, caseInsensitive);
-
+		
 		    IDataUtil.put(cursor, "$before?", "" + (comparison < 0));
 		    IDataUtil.put(cursor, "$equal?", "" + (comparison == 0));
 		    IDataUtil.put(cursor, "$after?", "" + (comparison > 0));
@@ -208,7 +208,7 @@ public final class string
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -224,19 +224,19 @@ public final class string
 		// [i] field:0:optional $literal? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:required $found?
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String string = IDataUtil.getString(cursor, "$string");
 		    String pattern = IDataUtil.getString(cursor, "$pattern");
 		    boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$literal?"));
-
+		
 		    IDataUtil.put(cursor, "$found?", "" + StringHelper.find(string, pattern, literal));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -248,6 +248,7 @@ public final class string
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $pattern
+		// [i] record:0:optional $scope
 		// [i] record:1:optional $arguments
 		// [i] - field:0:optional key
 		// [i] - object:0:optional value
@@ -259,21 +260,22 @@ public final class string
 		// [i] - field:0:optional variant
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String pattern = IDataUtil.getString(cursor, "$pattern");
+		    IData scope = IDataUtil.getIData(cursor, "$scope");
 		    IData[] arguments = IDataUtil.getIDataArray(cursor, "$arguments");
 		    IData locale = IDataUtil.getIData(cursor, "$locale");
-
-		    String result = StringHelper.format(LocaleHelper.toLocale(locale), pattern, pipeline, arguments);
-
+		
+		    String result = StringHelper.format(LocaleHelper.toLocale(locale), pattern, scope == null ? pipeline : scope, arguments);
+		
 		    if (result != null) IDataUtil.put(cursor, "$string", result);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -287,7 +289,7 @@ public final class string
 		// [i] field:0:optional $string
 		// [o] field:0:required $length
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IDataUtil.put(cursor, "$length", "" + StringHelper.length(IDataUtil.getString(cursor, "$string")));
 		} finally {
@@ -295,7 +297,7 @@ public final class string
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -309,7 +311,7 @@ public final class string
 		// [i] field:0:optional $string
 		// [o] field:1:optional $lines
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String string = IDataUtil.getString(cursor, "$string");
 		    if (string != null) IDataUtil.put(cursor, "$lines", StringHelper.lines(string));
@@ -318,7 +320,7 @@ public final class string
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -335,7 +337,7 @@ public final class string
 		tundra.document.listify(pipeline);
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -353,19 +355,19 @@ public final class string
 		// [i] - field:0:optional variant
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String string = IDataUtil.getString(cursor, "$string");
 		    IData document = IDataUtil.getIData(cursor, "$locale");
-
+		
 		    if (string != null) IDataUtil.put(cursor, "$string", string.toLowerCase(LocaleHelper.toLocale(document)));
-
+		
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -381,19 +383,19 @@ public final class string
 		// [i] field:0:optional $literal? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:required $match?
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String string = IDataUtil.getString(cursor, "$string");
 		    String pattern = IDataUtil.getString(cursor, "$pattern");
 		    boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$literal?"));
-
+		
 		    IDataUtil.put(cursor, "$match?", "" + StringHelper.match(string, pattern, literal));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -408,11 +410,11 @@ public final class string
 		// [i] field:0:optional $encoding
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    Object object = IDataUtil.get(cursor, "$object");
 		    String encoding = IDataUtil.getString(cursor, "$encoding");
-
+		
 		    if (object != null) IDataUtil.put(cursor, "$string", StringHelper.normalize(object, encoding));
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -421,7 +423,7 @@ public final class string
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -437,22 +439,22 @@ public final class string
 		// [i] field:0:optional $character
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String string = IDataUtil.getString(cursor, "$string");
 		    String length = IDataUtil.getString(cursor, "$length");
 		    String character = IDataUtil.getString(cursor, "$character");
-
+		
 		    int len = length == null ? 0 : Integer.parseInt(length);
 		    char c = (character == null || character.length() == 0) ? ' ' : character.charAt(0);
-
+		
 		    if (string != null) IDataUtil.put(cursor, "$string", StringHelper.pad(string, len, c));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -466,7 +468,7 @@ public final class string
 		// [i] field:0:optional $string
 		// [o] field:0:optional $pattern
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String string = IDataUtil.getString(cursor, "$string");
 		    if (string != null) IDataUtil.put(cursor, "$pattern", StringHelper.quote(string));
@@ -475,7 +477,7 @@ public final class string
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -491,19 +493,19 @@ public final class string
 		// [i] field:0:optional $mode {&quot;all&quot;,&quot;first&quot;}
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String string = IDataUtil.getString(cursor, "$string");
 		    String pattern = IDataUtil.getString(cursor, "$pattern");
 		    String mode = IDataUtil.getString(cursor, "$mode");
-
+		
 		    if (string != null) IDataUtil.put(cursor, "$string", StringHelper.remove(string, pattern, (!(mode == null || mode.equals("all")))));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -521,21 +523,21 @@ public final class string
 		// [i] field:0:optional $mode {&quot;all&quot;,&quot;first&quot;}
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String string = IDataUtil.getString(cursor, "$string");
 		    String pattern = IDataUtil.getString(cursor, "$pattern");
 		    String replacement = IDataUtil.getString(cursor, "$replacement");
 		    boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$literal?"));
 		    String mode = IDataUtil.getString(cursor, "$mode");
-
+		
 		    if (string != null) IDataUtil.put(cursor, "$string", StringHelper.replace(string, pattern, replacement, literal, (!(mode == null || mode.equals("all")))));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -551,22 +553,22 @@ public final class string
 		// [i] field:0:optional $length
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String string = IDataUtil.getString(cursor, "$string");
 		    String index = IDataUtil.getString(cursor, "$index");
 		    String length = IDataUtil.getString(cursor, "$length");
-
+		
 		    int ix = index == null ? 0 : Integer.parseInt(index);
 		    int len = length == null ? (string == null ? 0 : (ix < 0 ? -string.length() : string.length())) : Integer.parseInt(length);
-
+		
 		    if (string != null) IDataUtil.put(cursor, "$string", StringHelper.slice(string, ix, len));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -582,19 +584,19 @@ public final class string
 		// [i] field:0:optional $literal? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String string = IDataUtil.getString(cursor, "$string");
 		    String pattern = IDataUtil.getString(cursor, "$pattern");
 		    boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$literal?"));
-
+		
 		    IDataUtil.put(cursor, "$list", StringHelper.split(string, pattern, literal));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -608,7 +610,7 @@ public final class string
 		// [i] field:0:optional $string
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String string = StringHelper.squeeze(IDataUtil.getString(cursor, "$string"));
 		    if (string != null) IDataUtil.put(cursor, "$string", string);
@@ -617,7 +619,7 @@ public final class string
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -633,19 +635,19 @@ public final class string
 		// [i] field:0:optional $default
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String string = IDataUtil.getString(cursor, "$string");
 		    String defaultValue = IDataUtil.getString(cursor, "$default");
 		    IData scope = IDataUtil.getIData(cursor, "$pipeline");
-
+		
 		    IDataUtil.put(cursor, "$string", VariableSubstitutor.substitute(string, defaultValue, scope == null ? pipeline : scope));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -659,7 +661,7 @@ public final class string
 		// [i] field:0:optional $string
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String string = StringHelper.trim(IDataUtil.getString(cursor, "$string"));
 		    if (string != null) IDataUtil.put(cursor, "$string", string);
@@ -668,7 +670,7 @@ public final class string
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -686,19 +688,19 @@ public final class string
 		// [i] - field:0:optional variant
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String string = IDataUtil.getString(cursor, "$string");
 		    IData document = IDataUtil.getIData(cursor, "$locale");
-
+		
 		    if (string != null) IDataUtil.put(cursor, "$string", string.toUpperCase(LocaleHelper.toLocale(document)));
-
+		
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 

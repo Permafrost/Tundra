@@ -10855,6 +10855,9 @@ specified as a [java.util.Formatter format string].
   contain fixed text, and one or more format specifiers which
   indicate how the given arguments should be formatted in the
   resulting string.
+* `$scope` is an optional `IData` document used to resolve the
+  given argument keys against. If not specified, argument keys
+  are resolved against the pipeline itself.
 * `$arguments` is an optional list of arguments referenced by the
   given `$pattern` for inclusion in the resulting formatted string:
   * `key` is an optional simple or fully-qualified key identifying the
