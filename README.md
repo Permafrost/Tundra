@@ -10855,9 +10855,24 @@ specified as a [java.util.Formatter format string].
   contain fixed text, and one or more format specifiers which
   indicate how the given arguments should be formatted in the
   resulting string.
-* `$scope` is an optional `IData` document used to resolve the
+* `$patterns` is a list of [java.util.Formatter format strings]
+  which can contain fixed text, and one or more format specifiers
+  which  indicate how the given arguments should be formatted in
+  the resulting string. If specified, all items in this list are
+  concatenated together to create the format string. This list
+  can be used to separate the format string into logical units
+  for ease of understanding.
+* `$document` is an optional `IData` document used to resolve the
   given argument keys against. If not specified, argument keys
   are resolved against the pipeline itself.
+* `$list` is an optional `IData[]` document list which if specified
+  is iterated over, and each item in the list is used to resolve
+  the given argument keys against and the resulting format strings
+  for each item are then concatenated together separated by
+  `$separator` before being returned. If not specified, argument
+  keys are resolved against `$document`.
+* $separator is an optional string used to separate each format
+  string for each item in $list. Only used if $list is specified.
 * `$arguments` is an optional list of arguments referenced by the
   given `$pattern` for inclusion in the resulting formatted string:
   * `key` is an optional simple or fully-qualified key identifying the
@@ -11974,6 +11989,7 @@ Copyright &copy; 2012 Lachlan Dowding. See the [LICENSE] file for further detail
 [java.text.SimpleDateFormat]: <http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html>
 [java.util.Date]: <http://docs.oracle.com/javase/6/docs/api/java/util/Date.html>
 [java.util.Formatter format string]: <http://docs.oracle.com/javase/6/docs/api/java/util/Formatter.html#syntax>
+[java.util.Formatter format strings]: <http://docs.oracle.com/javase/6/docs/api/java/util/Formatter.html#syntax>
 [java.util.TimeZone]: <http://docs.oracle.com/javase/6/docs/api/java/util/TimeZone.html>
 [java.util.regex.Pattern]: <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html>
 [javax.activation.MimeType]: <http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html>

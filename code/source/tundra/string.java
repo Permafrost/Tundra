@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-09-25 14:36:25.136
-// -----( ON-HOST: -
+// -----( CREATED: 2015-09-26 11:19:54 EST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -11,6 +11,7 @@ import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import java.io.IOException;
 import permafrost.tundra.flow.VariableSubstitutor;
+import permafrost.tundra.lang.ArrayHelper;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.lang.LocaleHelper;
@@ -248,12 +249,15 @@ public final class string
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $pattern
-		// [i] record:0:optional $scope
+		// [i] field:1:optional $patterns
+		// [i] record:0:optional $document
+		// [i] record:1:optional $list
+		// [i] field:0:optional $separator
 		// [i] record:1:optional $arguments
 		// [i] - field:0:optional key
 		// [i] - object:0:optional value
 		// [i] - field:0:optional type {&quot;string&quot;,&quot;integer&quot;,&quot;decimal&quot;,&quot;datetime&quot;}
-		// [i] - field:0:optional pattern
+		// [i] - field:0:optional pattern {&quot;datetime&quot;,&quot;datetime.db2&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
 		// [i] record:0:optional $locale
 		// [i] - field:0:required language
 		// [i] - field:0:optional country
@@ -263,11 +267,21 @@ public final class string
 		
 		try {
 		    String pattern = IDataUtil.getString(cursor, "$pattern");
-		    IData scope = IDataUtil.getIData(cursor, "$scope");
+		    String[] patterns = IDataUtil.getStringArray(cursor, "$patterns");
+		    IData document = IDataUtil.getIData(cursor, "$document");
+		    IData[] list = IDataUtil.getIDataArray(cursor, "$list");
+		    String separator = IDataUtil.getString(cursor, "$separator");
 		    IData[] arguments = IDataUtil.getIDataArray(cursor, "$arguments");
 		    IData locale = IDataUtil.getIData(cursor, "$locale");
 		
-		    String result = StringHelper.format(LocaleHelper.toLocale(locale), pattern, scope == null ? pipeline : scope, arguments);
+		    if (patterns != null) pattern = ArrayHelper.join(patterns, null, false);
+		
+		    String result = null;
+		    if (list != null) {
+		        result = StringHelper.format(LocaleHelper.toLocale(locale), pattern, arguments, separator, list);
+		    } else {
+		        result = StringHelper.format(LocaleHelper.toLocale(locale), pattern, arguments, document == null? pipeline : document);
+		    }
 		
 		    if (result != null) IDataUtil.put(cursor, "$string", result);
 		} finally {
