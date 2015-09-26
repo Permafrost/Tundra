@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-09-26 21:48:11 EST
+// -----( CREATED: 2015-09-26 22:18:37 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -61,6 +61,32 @@ public final class string
 		try {
 		    String[] list = StringHelper.blankify(IDataUtil.getStringArray(cursor, "$list"));
 		    if (list != null) IDataUtil.put(cursor, "$list", list);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void capitalize (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(capitalize)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:1:optional $list
+		// [i] field:0:optional $mode {&quot;all words&quot;,&quot;first word&quot;}
+		// [o] field:1:optional $list
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    String[] list = IDataUtil.getStringArray(cursor, "$list");
+		    String mode = IDataUtil.getString(cursor, "$mode");
+		
+		    if (list != null) IDataUtil.put(cursor, "$list", StringHelper.capitalize(list, mode == null ? false : mode.equalsIgnoreCase("first word")));
 		} finally {
 		    cursor.destroy();
 		}

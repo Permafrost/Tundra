@@ -8071,6 +8071,27 @@ Converts any null items in the given string list to empty strings.
 
 ---
 
+### tundra.list.string:capitalize
+
+Capitalizes the first character in either the first word or
+all words in each of the given strings.
+
+#### Inputs:
+
+* `$list` is the list of strings to be capitalized.
+* `$mode` is an optional choice that determines whether
+  all words or only the first word is capitalized:
+  * `all words`
+  * `first word`
+
+  Defaults to all words, if not specified.
+
+#### Outputs:
+
+* `$list` is the given list of strings capitalized.
+
+---
+
 ### tundra.list.string:coalesce
 
 Returns the first string in the given list that is not null, or if
