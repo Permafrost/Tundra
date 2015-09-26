@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">pad</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogICAgU3Ry
+aW5nW10gbGlzdCA9IElEYXRhVXRpbC5nZXRTdHJpbmdBcnJheShjdXJzb3IsICIkbGlzdCIpOwog
+ICAgU3RyaW5nIGxlbmd0aCA9IElEYXRhVXRpbC5nZXRTdHJpbmcoY3Vyc29yLCAiJGxlbmd0aCIp
+OwogICAgU3RyaW5nIGNoYXJhY3RlciA9IElEYXRhVXRpbC5nZXRTdHJpbmcoY3Vyc29yLCAiJGNo
+YXJhY3RlciIpOwoKICAgIGludCBsZW4gPSBsZW5ndGggPT0gbnVsbCA/IDAgOiBJbnRlZ2VyLnBh
+cnNlSW50KGxlbmd0aCk7CiAgICBjaGFyIGMgPSAoY2hhcmFjdGVyID09IG51bGwgfHwgY2hhcmFj
+dGVyLmxlbmd0aCgpID09IDApID8gJyAnIDogY2hhcmFjdGVyLmNoYXJBdCgwKTsKCiAgICBpZiAo
+bGlzdCAhPSBudWxsKSBJRGF0YVV0aWwucHV0KGN1cnNvciwgIiRsaXN0IiwgU3RyaW5nSGVscGVy
+LnBhZChsaXN0LCBsZW4sIGMpKTsKfSBmaW5hbGx5IHsKICAgIGN1cnNvci5kZXN0cm95KCk7Cn0=
+</value>
+</Values>

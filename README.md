@@ -8522,6 +8522,30 @@ list of strings.
 
 ---
 
+### tundra.list.string:pad
+
+Pads each string in the given string list with the given character as
+many times as necessary to reach the given length.
+
+#### Inputs:
+
+* `$list` is the list of strings to be padded to the given length. If
+  `$list[n].length >= |$length|`, `$list[n]` is returned unmodified.
+* `$length` is the minimum desired length for the returned strings. If
+  specified as a positive integer, `$list[n]` will be padded from the
+  left by prepending it with `(|$length|- $list[n].length)` characters.
+  If specified as a negative integer, `$list[n]` will be padded from the
+  right by appending it with `(|$length|- $list[n].length)` characters.
+* `$character` is the character to use when padding `$list[n]`. If
+  `$character.length > 1`, only the first character in `$character` will
+  be used. Defaults to ' ' (space character), if not specified.
+
+#### Outputs:
+
+* `$list` is the resulting list of padded strings.
+
+---
+
 ### tundra.list.string:prepend
 
 Prepends a single item to the front of a list, such that prepending

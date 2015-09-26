@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-09-26 21:32:15 EST
+// -----( CREATED: 2015-09-26 21:48:11 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -510,6 +510,37 @@ public final class string
 		    if (strings != null) IDataUtil.put(cursor, "$strings", strings);
 		} catch(java.io.IOException ex) {
 		    ExceptionHelper.raise(ex);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void pad (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(pad)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:1:optional $list
+		// [i] field:0:optional $length
+		// [i] field:0:optional $character
+		// [o] field:1:optional $list
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    String[] list = IDataUtil.getStringArray(cursor, "$list");
+		    String length = IDataUtil.getString(cursor, "$length");
+		    String character = IDataUtil.getString(cursor, "$character");
+		
+		    int len = length == null ? 0 : Integer.parseInt(length);
+		    char c = (character == null || character.length() == 0) ? ' ' : character.charAt(0);
+		
+		    if (list != null) IDataUtil.put(cursor, "$list", StringHelper.pad(list, len, c));
 		} finally {
 		    cursor.destroy();
 		}
