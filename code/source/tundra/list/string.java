@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-09 15:31:52 AEST
+// -----( CREATED: 2015-09-26 21:32:15 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -48,6 +48,29 @@ public final class string
 
 
 
+	public static final void blankify (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(blankify)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:1:optional $list
+		// [o] field:1:optional $list
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    String[] list = StringHelper.blankify(IDataUtil.getStringArray(cursor, "$list"));
+		    if (list != null) IDataUtil.put(cursor, "$list", list);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void coalesce (IData pipeline)
         throws ServiceException
 	{
@@ -56,7 +79,7 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:1:optional $list
 		// [i] field:0:optional $default
-		// [i] field:0:optional $mode {"missing","null"}
+		// [i] field:0:optional $mode {&quot;missing&quot;,&quot;null&quot;}
 		// [o] field:0:optional $item
 		tundra.list.object.coalesce(pipeline);
 		// --- <<IS-END>> ---
@@ -194,7 +217,7 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:1:optional $list
 		// [i] field:0:optional $pattern
-		// [i] field:0:optional $literal? {"false","true"}
+		// [i] field:0:optional $literal? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:required $found.all?
 		// [o] field:0:required $found.any?
 		// [o] field:0:required $found.none?
@@ -421,7 +444,7 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:1:optional $list
 		// [i] field:0:optional $pattern
-		// [i] field:0:optional $literal? {"false","true"}
+		// [i] field:0:optional $literal? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:required $matched.all?
 		// [o] field:0:required $matched.any?
 		// [o] field:0:required $matched.none?

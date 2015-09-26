@@ -8056,6 +8056,21 @@ to a list containing n items results in a new list of n + 1 items.
 
 ---
 
+### tundra.list.string:blankify
+
+Converts any null items in the given string list to empty strings.
+
+#### Inputs:
+
+* `$list` is an optional string list.
+
+#### Outputs:
+
+* `$list` is the given list with any null items converted to empty
+  strings.
+
+---
+
 ### tundra.list.string:coalesce
 
 Returns the first string in the given list that is not null, or if
