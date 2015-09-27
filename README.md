@@ -6722,6 +6722,26 @@ document lists.
 
 ---
 
+### tundra.list.document:nullify
+
+Converts all string values that contain only whitespace characters
+in the given `IData[]` document list to null.
+
+#### Inputs:
+
+* `$list` is an `IData[]` document list to be nullified.
+* `$recurse?` is an optional boolean indicating if embedded
+  `IData` documents and `IData[]` document lists should also
+  be nullified. Defaults to `false`.
+
+#### Outputs:
+
+* `$list` is the resulting `IData[]` document list with all string
+  values that contain only whitespace characters converted to
+  null.
+
+---
+
 ### tundra.list.document:pivot
 
 Returns a given `IData[]` document list pivoted on a given list of

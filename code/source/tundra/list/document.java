@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-09-27 18:33:50 EST
+// -----( CREATED: 2015-09-27 19:05:54 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -376,6 +376,31 @@ public final class document
 
 
 
+	public static final void nullify (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(nullify)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:1:optional $list
+		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [o] record:1:optional $list
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
+		    IData[] list = IDataHelper.nullify(IDataUtil.getIDataArray(cursor, "$list"), recurse);
+		    if (list != null) IDataUtil.put(cursor, "$list", list);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void pivot (IData pipeline)
         throws ServiceException
 	{
@@ -591,6 +616,7 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
+		
 		    boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
 		    IData[] list = IDataHelper.squeeze(IDataUtil.getIDataArray(cursor, "$list"), recurse);
 		
