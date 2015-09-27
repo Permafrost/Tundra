@@ -6191,6 +6191,25 @@ to a list containing n items results in a new list of n + 1 items.
 
 ---
 
+### tundra.list.document:blankify
+
+Converts all null values in the given `IData[]` document list
+to empty strings.
+
+#### Inputs:
+
+* `$list` is an `IData[]` document list to be blankified.
+* `$recurse?` is an optional boolean indicating if embedded
+  `IData` documents and `IData[]` document lists should also
+  be blankified. Defaults to `false`.
+
+#### Outputs:
+
+* `$list` is the resulting `IData[]` document list with all null
+  values converted to empty string values.
+
+---
+
 ### tundra.list.document:clear
 
 Removes all elements from all items in the given IData document list,

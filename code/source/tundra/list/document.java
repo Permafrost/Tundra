@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-23 16:07:37 AEST
+// -----( CREATED: 2015-09-27 18:33:50 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -46,6 +46,31 @@ public final class document
 
 
 
+	public static final void blankify (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(blankify)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:1:optional $list
+		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [o] record:1:optional $list
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
+		    IData[] list = IDataHelper.blankify(IDataUtil.getIDataArray(cursor, "$list"), recurse);
+		    if (list != null) IDataUtil.put(cursor, "$list", list);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void compact (IData pipeline)
         throws ServiceException
 	{
@@ -53,7 +78,7 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:1:optional $list
-		// [i] field:0:optional $recurse? {"false","true"}
+		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
 		// [o] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -517,9 +542,9 @@ public final class document
 		// [i] record:1:optional $list
 		// [i] record:1:optional $criteria
 		// [i] - field:0:required key
-		// [i] - field:0:optional type {"string","integer","decimal","datetime","duration"}
+		// [i] - field:0:optional type {&quot;string&quot;,&quot;integer&quot;,&quot;decimal&quot;,&quot;datetime&quot;,&quot;duration&quot;}
 		// [i] - field:0:optional pattern
-		// [i] - field:0:optional descending? {"false","true"}
+		// [i] - field:0:optional descending? {&quot;false&quot;,&quot;true&quot;}
 		// [o] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -561,12 +586,11 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:1:optional $list
-		// [i] field:0:optional $recurse? {"false","true"}
+		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
 		// [o] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		
 		    boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
 		    IData[] list = IDataHelper.squeeze(IDataUtil.getIDataArray(cursor, "$list"), recurse);
 		
@@ -615,6 +639,9 @@ public final class document
 	{
 		// --- <<IS-START(unique)>> ---
 		// @sigtype java 3.5
+		// [i] record:1:optional $list
+		// [i] field:1:optional $keys
+		// [o] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
