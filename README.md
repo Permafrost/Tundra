@@ -3958,6 +3958,25 @@ input stream to an IData document.
 
 ---
 
+### tundra.document:nullify
+
+Converts strings that contain only whitespace characters in the given
+`IData` document to null.
+
+#### Inputs:
+
+* `$document` is an `IData` document whose string values are converted to
+  null if they contain only whitespace characters.
+* `$recurse` is an optional boolean indicating if embedded `IData` documents
+  and `IData[]` document lists should also be nullified. Defaults to `false`.
+
+#### Outputs:
+
+* `$document` is the given `IData` document with all string values that
+  contained only whitespace characters converted to null.
+
+---
+
 ### tundra.document:pivot
 
 Returns an IData[] document list of each key value pair in the given IData

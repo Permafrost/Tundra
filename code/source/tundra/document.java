@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-09-06 12:06:31 EST
+// -----( CREATED: 2015-09-27 18:25:04 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -419,7 +419,7 @@ public final class document
 		// [i] field:0:optional $separator.value
 		// [i] field:0:optional $separator.item
 		// [i] field:0:optional $separator.list
-		// [i] field:0:optional $nulls?
+		// [i] field:0:optional $nulls? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:optional $result
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -667,6 +667,31 @@ public final class document
 		try {
 		    IData document = IDataUtil.getIData(cursor, "$document");
 		    IDataUtil.put(cursor, "$document", IDataHelper.normalize(document));
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void nullify (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(nullify)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:0:optional $document
+		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [o] record:0:optional $document
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    IData document = IDataUtil.getIData(cursor, "$document");
+		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
+		    if (document != null) IDataUtil.put(cursor, "$document", IDataHelper.nullify(document, recurse));
 		} finally {
 		    cursor.destroy();
 		}
