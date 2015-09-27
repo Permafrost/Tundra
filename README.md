@@ -8543,6 +8543,22 @@ list of strings.
 
 ---
 
+### tundra.list.string:nullify
+
+Converts any strings in the given list that contain only whitespace
+characters to null.
+
+#### Inputs:
+
+* `$list` is an optional string list.
+
+#### Outputs:
+
+* `$list` is the given list with any items that contained only whitespace
+  characters converted to null.
+
+---
+
 ### tundra.list.string:pad
 
 Pads each string in the given string list with the given character as
