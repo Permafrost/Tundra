@@ -11078,6 +11078,22 @@ Converts a string, bytes or input stream to a string.
 
 ---
 
+### tundra.string:nullify
+
+Returns null if the given input string contains only whitespace
+characters, otherwise returns the given input string unchanged.
+
+#### Inputs:
+
+* `$string` is an optional string input value.
+
+#### Outputs:
+
+* `$string` is null if the given `$string` contained only whitespace
+  characters, otherwise `$string` is returned unchanged.
+
+---
+
 ### tundra.string:pad
 
 Pads the given string with the given character as many times as necessary

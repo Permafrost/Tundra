@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-09-26 11:19:54 EST
+// -----( CREATED: 2015-09-27 18:12:20 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -432,6 +432,29 @@ public final class string
 		    if (object != null) IDataUtil.put(cursor, "$string", StringHelper.normalize(object, encoding));
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void nullify (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(nullify)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $string
+		// [o] field:0:required $string
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    String input = IDataUtil.getString(cursor, "$string");
+		    IDataUtil.put(cursor, "$string", StringHelper.nullify(input));
 		} finally {
 		    cursor.destroy();
 		}
