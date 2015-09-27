@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-09-27 19:05:54 EST
+// -----( CREATED: 2015-09-27 19:09:40 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -369,6 +369,29 @@ public final class document
 		// [i] field:0:optional $item.output
 		// [o] record:1:optional $list
 		tundra.list.object.map(pipeline, IData.class);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void normalize (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(normalize)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:1:optional $list
+		// [o] record:1:optional $list
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    IData[] list = IDataHelper.normalize(IDataUtil.getIDataArray(cursor, "$list"));
+		    if (list != null) IDataUtil.put(cursor, "$list", list);
+		} finally {
+		    cursor.destroy();
+		}
 		// --- <<IS-END>> ---
 
                 

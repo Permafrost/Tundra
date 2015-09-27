@@ -6722,6 +6722,58 @@ document lists.
 
 ---
 
+### tundra.list.document:normalize
+
+Returns a new `IData[]` document list with all fully qualified keys (for
+example, 'a/b/c' or 'x/y[0]/z[1]') deconstructed into their constituent
+parts, and any non-IData objects converted to an IData representation
+wherever possible.
+
+For example, if an `IData` document contains the following key value pairs
+(using [JSON] notation to represent the pipeline):
+
+    {
+      "a/b/c": "example 1",
+      "a/b/d": "example 2",
+      "e": "example 3",
+      "f[0]": "example 4",
+      "f[1]": "example 5"
+    }
+
+This is normalized to the following:
+
+    {
+      "a": {
+        "b": {
+          "c": "example 1",
+          "d": "example 2"
+        }
+      },
+      "e": "example 3",
+      "f": ["example 4", "example 5"]
+    }
+
+Keys using path-style notation, for example `a/b/c`, are
+converted to nested `IData` documents with the final key
+in the path, `c` in this example, assigned the value of
+the original key.
+
+Keys using array- or list-style notation, for example `f[0]`,
+are converted to an array or list with the value of the
+original key assigned to the indexed item (the zeroth item in
+this example).
+
+
+#### Inputs:
+
+* `$list` is an `IData[]` document list to be normalized.
+
+#### Outputs:
+
+* $list is the resulting normalized `IData[]` document list.
+
+---
+
 ### tundra.list.document:nullify
 
 Converts all string values that contain only whitespace characters
