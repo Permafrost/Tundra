@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-09-27 18:12:20 EST
+// -----( CREATED: 2015-09-27 19:38:20 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -258,6 +258,7 @@ public final class string
 		// [i] - object:0:optional value
 		// [i] - field:0:optional type {&quot;string&quot;,&quot;integer&quot;,&quot;decimal&quot;,&quot;datetime&quot;}
 		// [i] - field:0:optional pattern {&quot;datetime&quot;,&quot;datetime.db2&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
+		// [i] - field:0:optional blankify? {&quot;false&quot;,&quot;true&quot;}
 		// [i] record:0:optional $locale
 		// [i] - field:0:required language
 		// [i] - field:0:optional country
@@ -449,7 +450,7 @@ public final class string
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
-		// [o] field:0:required $string
+		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
