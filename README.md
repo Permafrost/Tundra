@@ -6770,7 +6770,7 @@ this example).
 
 #### Outputs:
 
-* $list is the resulting normalized `IData[]` document list.
+* `$list` is the resulting normalized `IData[]` document list.
 
 ---
 
