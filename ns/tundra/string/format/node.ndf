@@ -527,7 +527,12 @@ specified as a [java.util.Formatter format string].
   * key is an optional simple or fully-qualified key identifying the 
     value in the pipeline to be used to format the resulting string. 
     If not specified, then a value should be provided directly in 
-    the value field.
+    the value field. The following two special keys are also
+    supported with their values set automatically when used:
+    * $index is the zero-based index of the item in $list being
+      formatted.
+    * $iteration is the one-based index of the item in $list being
+      formatted.
   * value is the optional value of the argument to be formatted in 
     the resulting string. If not specified, then a key should be 
     provided to identify which value in the pipeline is to be 
