@@ -9022,6 +9022,48 @@ Converts all strings in the given list to upper case.
 
 ---
 
+### tundra.measure:convert
+
+Converts a value in one unit of measurement to another, as long as
+it is for the same class of measurement such as distance or mass.
+
+#### Inputs:
+
+* `$value` is an integer or decimal value to be converted from one
+  unit of measurement to another.
+* `$unit.input` is the standard unit abreviation for the unit of
+  measurement that `$value` is to be converted from, such as `kg`,
+  `km/h`, `mi/h`, or `ft`.
+* `$unit.output` is the standard unit abreviation for the unit of
+  measurement that `$value` is to be converted to, such as `kg`,
+  `km/h`, `mi/h`, or `ft`. This unit must be in the same class of
+  measurement as `$unit.input`.
+* `$precision` is an optional number of decimal places to be preserved
+  in the result.
+* `$rounding` is an optional choice of the [rounding algorithm]
+  to use when rounding the result to the specified `$precision`.
+  If not specifed, defaults to the `HALF_UP` algorithm.
+  * `HALF_UP` rounds towards "nearest neighbor" unless both
+    neighbors are equidistant, in which case rounds up.
+  * `CEILING` rounds towards positive infinity.
+  * `DOWN` rounds towards zero.
+  * `FLOOR` rounds towards negative infinity.
+  * `HALF_DOWN` rounds towards "nearest neighbor" unless both
+    neighbors are equidistant, in which case round down.
+  * `HALF_EVEN` rounds towards the "nearest neighbor" unless both
+    neighbors are equidistant, in which case, round towards the
+    even neighbor.
+  * `UNNECESSARY` asserts that the requested operation has an exact
+    result, and hence no rounding is necessary.
+  * `UP` rounds away from zero.
+
+#### Outputs:
+
+* `$result` is the result of converting the given `$value` from the
+  given `$unit.input` to `$unit.output` units of measurement.
+
+---
+
 ### tundra.mime.type:emit
 
 Emits a Multipurpose Internet Mail Extension ([MIME]) type,
