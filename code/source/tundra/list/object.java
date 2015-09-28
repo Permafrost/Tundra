@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-08-04 19:40:02 EST
+// -----( CREATED: 2015-09-29 09:29:21 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -10,6 +10,7 @@ import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import permafrost.tundra.flow.ConditionEvaluator;
+import permafrost.tundra.lang.ArrayHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 // --- <<IS-END-IMPORTS>> ---
 
@@ -369,6 +370,34 @@ public final class object
 		    Object item = IDataUtil.get(cursor, "$item");
 		
 		    IDataUtil.put(cursor, "$include?", "" + include(list, item));
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void index (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(index)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:1:optional $list
+		// [i] field:0:optional index.start
+		// [i] field:0:optional index.step
+		// [o] field:1:optional $indexes
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
+		    String indexStart = IDataUtil.getString(cursor, "$index.start");
+		    String indexStep = IDataUtil.getString(cursor, "$index.step");
+		
+		    if (list != null) IDataUtil.put(cursor, "$indexes", ArrayHelper.index(list, indexStart == null ? 0 : Integer.parseInt(indexStart), indexStep == null ? 1 : Integer.parseInt(indexStep)));
 		} finally {
 		    cursor.destroy();
 		}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">index</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogICAgT2Jq
+ZWN0W10gbGlzdCA9IElEYXRhVXRpbC5nZXRPYmplY3RBcnJheShjdXJzb3IsICIkbGlzdCIpOwog
+ICAgU3RyaW5nIGluZGV4U3RhcnQgPSBJRGF0YVV0aWwuZ2V0U3RyaW5nKGN1cnNvciwgIiRpbmRl
+eC5zdGFydCIpOwogICAgU3RyaW5nIGluZGV4U3RlcCA9IElEYXRhVXRpbC5nZXRTdHJpbmcoY3Vy
+c29yLCAiJGluZGV4LnN0ZXAiKTsKCiAgICBpZiAobGlzdCAhPSBudWxsKSBJRGF0YVV0aWwucHV0
+KGN1cnNvciwgIiRpbmRleGVzIiwgQXJyYXlIZWxwZXIuaW5kZXgobGlzdCwgaW5kZXhTdGFydCA9
+PSBudWxsID8gMCA6IEludGVnZXIucGFyc2VJbnQoaW5kZXhTdGFydCksIGluZGV4U3RlcCA9PSBu
+dWxsID8gMSA6IEludGVnZXIucGFyc2VJbnQoaW5kZXhTdGVwKSkpOwp9IGZpbmFsbHkgewogICAg
+Y3Vyc29yLmRlc3Ryb3koKTsKfQ==</value>
+</Values>

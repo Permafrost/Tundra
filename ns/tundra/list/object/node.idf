@@ -370,6 +370,7 @@ cnJheSwgMCkpOwp9</value>
   </array>
   <array name="imports" type="value" depth="1">
     <value>permafrost.tundra.flow.ConditionEvaluator</value>
+    <value>permafrost.tundra.lang.ArrayHelper</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>
   </array>
 </Values>

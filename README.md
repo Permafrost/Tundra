@@ -7697,6 +7697,29 @@ Returns true if the given item is found in the given list.
 
 ---
 
+### tundra.list.object:index
+
+Returns a new string list containing index values for each
+relative item in the given list.
+
+#### Inputs:
+
+* `$list` is the list to be indexed.
+* `$index.start` is the optional starting index to be used for
+  the first item in `$list`. If not specified, defaults to 0.
+* `$index.step` is the optional value by which each index is
+  incremented for each subsequent item in `$list`. If not
+  specified, defaults to 1.
+
+#### Outputs:
+
+* `$indexes` is a string list containing index values for each
+  item in `$list` calculated as follows:
+
+      $indexes[n] = $index.start + $index.step * n
+
+---
+
 ### tundra.list.object:insert
 
 Returns a new list with the given item inserted at the desired
