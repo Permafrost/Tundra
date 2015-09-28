@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-09-28 17:51:23 EST
+// -----( CREATED: 2015-09-28 19:45:30 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -9,6 +9,7 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import java.math.MathContext;
 import permafrost.tundra.math.BigDecimalHelper;
 import permafrost.tundra.measure.MeasureHelper;
 import permafrost.tundra.measure.UnitHelper;
@@ -51,7 +52,7 @@ public final class measure
 		    String precision = IDataUtil.getString(cursor, "$precision");
 		    String rounding = IDataUtil.getString(cursor, "$rounding");
 		
-		    if (value != null) IDataUtil.put(cursor, "$result", BigDecimalHelper.emit(BigDecimalHelper.round(MeasureHelper.format(BigDecimalHelper.parse(value), UnitHelper.parse(inputUnit), UnitHelper.parse(outputUnit)), precision, rounding)));
+		    if (value != null) IDataUtil.put(cursor, "$result", BigDecimalHelper.emit(BigDecimalHelper.round(MeasureHelper.format(BigDecimalHelper.parse(value), UnitHelper.parse(inputUnit), UnitHelper.parse(outputUnit), MathContext.DECIMAL128), precision, rounding)));
 		} finally {
 		    cursor.destroy();
 		}

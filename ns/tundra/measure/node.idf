@@ -10,6 +10,7 @@
   <array name="implements" type="value" depth="1">
   </array>
   <array name="imports" type="value" depth="1">
+    <value>java.math.MathContext</value>
     <value>permafrost.tundra.math.BigDecimalHelper</value>
     <value>permafrost.tundra.measure.MeasureHelper</value>
     <value>permafrost.tundra.measure.UnitHelper</value>
