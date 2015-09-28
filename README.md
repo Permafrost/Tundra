@@ -11088,7 +11088,8 @@ specified as a [java.util.Formatter format string].
   * `pattern` is an optional datetime pattern string which is used to
     parse the given value if the specified type is datetime.
   * `blankify?` is an optional boolean which if `true` will convert
-    the argument value if it is null to an empty string.
+    the argument value if it is null to an empty string for string
+    types, and to zero for number types.
 * `$locale` optionally identifies the [Locale] to apply during
   formatting. If not specified, no localization is applied.
 
