@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-09-29 14:06:09 EST
+// -----( CREATED: 2015-09-29 15:02:33 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -280,9 +280,9 @@ public final class string
 		    String result = null;
 		    if (pattern != null) {
 		        if (list != null) {
-		            result = StringHelper.format(LocaleHelper.toLocale(locale), pattern, arguments, separator, list);
+		            result = StringHelper.format(LocaleHelper.toLocale(locale), pattern, arguments, pipeline, separator, list);
 		        } else {
-		            result = StringHelper.format(LocaleHelper.toLocale(locale), pattern, arguments, document == null ? pipeline : document);
+		            result = StringHelper.format(LocaleHelper.toLocale(locale), pattern, arguments, pipeline, document == null ? pipeline : document);
 		        }
 		    }
 		
