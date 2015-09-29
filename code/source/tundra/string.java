@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-09-29 15:02:33 EST
+// -----( CREATED: 2015-09-29 16:19:49 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -250,7 +250,7 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:0:optional $pattern
 		// [i] field:1:optional $patterns
-		// [i] record:0:optional $document
+		// [i] record:0:optional $pipeline
 		// [i] record:1:optional $list
 		// [i] field:0:optional $separator
 		// [i] record:1:optional $arguments
@@ -269,7 +269,7 @@ public final class string
 		try {
 		    String pattern = IDataUtil.getString(cursor, "$pattern");
 		    String[] patterns = IDataUtil.getStringArray(cursor, "$patterns");
-		    IData document = IDataUtil.getIData(cursor, "$document");
+		    IData scope = IDataUtil.getIData(cursor, "$pipeline");
 		    IData[] list = IDataUtil.getIDataArray(cursor, "$list");
 		    String separator = IDataUtil.getString(cursor, "$separator");
 		    IData[] arguments = IDataUtil.getIDataArray(cursor, "$arguments");
@@ -280,9 +280,9 @@ public final class string
 		    String result = null;
 		    if (pattern != null) {
 		        if (list != null) {
-		            result = StringHelper.format(LocaleHelper.toLocale(locale), pattern, arguments, pipeline, separator, list);
+		            result = StringHelper.format(LocaleHelper.toLocale(locale), pattern, arguments, scope == null ? pipeline : scope, separator, list);
 		        } else {
-		            result = StringHelper.format(LocaleHelper.toLocale(locale), pattern, arguments, pipeline, document == null ? pipeline : document);
+		            result = StringHelper.format(LocaleHelper.toLocale(locale), pattern, arguments, pipeline, scope == null ? pipeline : scope);
 		        }
 		    }
 		

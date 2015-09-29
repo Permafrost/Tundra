@@ -11113,7 +11113,7 @@ specified as a [java.util.Formatter format string].
   concatenated together to create the format string. This list
   can be used to separate the format string into logical units
   for ease of understanding.
-* `$document` is an optional `IData` document used to resolve the
+* `$pipeline` is an optional `IData` document used to resolve the
   given argument keys against. If not specified, argument keys
   are resolved against the pipeline itself.
 * `$list` is an optional `IData[]` document list which if specified
@@ -11121,16 +11121,19 @@ specified as a [java.util.Formatter format string].
   the given argument keys against and the resulting format strings
   for each item are then concatenated together separated by
   `$separator` before being returned. If not specified, argument
-  keys are resolved against `$document`.
+  keys are resolved against `$pipeline`.
 * $separator is an optional string used to separate each format
   string for each item in $list. Only used if $list is specified.
 * `$arguments` is an optional list of arguments referenced by the
   given `$pattern` for inclusion in the resulting formatted string:
   * `key` is an optional simple or fully-qualified key identifying the
     value in the pipeline to be used to format the resulting string.
-    If not specified, then a value should be provided directly in
-    the `value` field. The following two special keys are also
-    supported with their values set automatically when used:
+    Supports absolute keys prefixed with `/`, which will always be
+    resolved against `$pipeline`, if it exists, or the pipeline itself,
+    if it does not exist. If not specified, then a value should be
+    provided directly in the value field. The following two special
+    keys are also supported with their values set automatically when
+    used:
     * `$index` is the zero-based index of the item in $list being
       formatted.
     * `$iteration` is the one-based index of the item in $list being
