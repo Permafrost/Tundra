@@ -10,14 +10,13 @@
 
   <!-- nodes -->
 
-<MAP NAME="$default" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="$default" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -31,7 +30,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -47,7 +45,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content.type</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -75,7 +72,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$encoding</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -91,7 +87,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$destination</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -107,7 +102,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">scheme</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -135,7 +129,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">body</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -162,7 +155,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">authority</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -172,7 +164,6 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
-            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
@@ -181,7 +172,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">path</value>
             <value name="field_type">string</value>
             <value name="field_dim">1</value>
@@ -210,7 +200,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">file</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -237,7 +226,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">query</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -248,7 +236,6 @@
             <array name="rec_fields" type="record" depth="1">
               <record javaclass="com.wm.util.Values">
                 <value name="node_type">unknown</value>
-                <value name="is_public">false</value>
                 <value name="field_name">timeout</value>
                 <value name="field_type">string</value>
                 <value name="field_dim">0</value>
@@ -257,7 +244,6 @@
                 <value name="is_global">false</value>
               </record>
             </array>
-            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
@@ -267,7 +253,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">fragment</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -288,10 +273,8 @@
             <value name="is_global">false</value>
           </record>
         </array>
-        <value name="modifiable">true</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -300,7 +283,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -314,7 +296,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -330,7 +311,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content.type</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -358,7 +338,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$encoding</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -374,7 +353,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$destination</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -383,11 +361,9 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
-        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$timeout</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -396,7 +372,6 @@
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -426,7 +401,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -441,7 +415,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$duration</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -469,7 +442,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$datetime</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -497,7 +469,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$pattern.input</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -536,7 +507,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$pattern.output</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -566,7 +536,6 @@
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -575,7 +544,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -589,7 +557,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -605,7 +572,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content.type</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -633,7 +599,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$encoding</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -649,7 +614,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$destination</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -665,7 +629,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">scheme</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -693,7 +656,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">body</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -720,7 +682,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">authority</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -730,7 +691,6 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
-            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
@@ -739,7 +699,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">path</value>
             <value name="field_type">string</value>
             <value name="field_dim">1</value>
@@ -768,7 +727,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">file</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -795,7 +753,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">query</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -806,7 +763,6 @@
             <array name="rec_fields" type="record" depth="1">
               <record javaclass="com.wm.util.Values">
                 <value name="node_type">unknown</value>
-                <value name="is_public">false</value>
                 <value name="field_name">timeout</value>
                 <value name="field_type">string</value>
                 <value name="field_dim">0</value>
@@ -815,7 +771,6 @@
                 <value name="is_global">false</value>
               </record>
             </array>
-            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
@@ -825,7 +780,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">fragment</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -846,10 +800,8 @@
             <value name="is_global">false</value>
           </record>
         </array>
-        <value name="modifiable">true</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -872,7 +824,6 @@
       <value name="field_largerEditor">false</value>
       <value name="field_password">false</value>
     </record>
-    <value name="is_public">false</value>
     <value name="field_name">$duration</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
@@ -909,7 +860,6 @@
       <value name="field_largerEditor">false</value>
       <value name="field_password">false</value>
     </record>
-    <value name="is_public">false</value>
     <value name="field_name">$pattern.output</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
@@ -955,7 +905,6 @@
       <value name="field_largerEditor">false</value>
       <value name="field_password">false</value>
     </record>
-    <value name="is_public">false</value>
     <value name="field_name">$pattern.input</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
@@ -997,7 +946,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -1006,7 +954,6 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$duration</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1021,7 +968,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -1031,7 +977,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$pattern.input</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1041,7 +986,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$pattern.output</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1057,7 +1001,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content.type</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1085,7 +1028,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$encoding</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1101,7 +1043,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$destination</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -1117,7 +1058,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">scheme</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1145,7 +1085,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">body</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1172,7 +1111,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">authority</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -1182,7 +1120,6 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
-            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
@@ -1191,7 +1128,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">path</value>
             <value name="field_type">string</value>
             <value name="field_dim">1</value>
@@ -1220,7 +1156,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">file</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1247,7 +1182,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">query</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -1258,7 +1192,6 @@
             <array name="rec_fields" type="record" depth="1">
               <record javaclass="com.wm.util.Values">
                 <value name="node_type">unknown</value>
-                <value name="is_public">false</value>
                 <value name="field_name">timeout</value>
                 <value name="field_type">string</value>
                 <value name="field_dim">0</value>
@@ -1267,7 +1200,6 @@
                 <value name="is_global">false</value>
               </record>
             </array>
-            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
@@ -1277,7 +1209,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">fragment</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1298,10 +1229,8 @@
             <value name="is_global">false</value>
           </record>
         </array>
-        <value name="modifiable">true</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -1310,7 +1239,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -1325,7 +1253,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$duration</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1346,7 +1273,6 @@
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -1372,14 +1298,13 @@
 
   <!-- nodes -->
 
-<MAP NAME="$default" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="$default" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -1393,7 +1318,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -1409,7 +1333,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content.type</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1437,7 +1360,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$encoding</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1453,7 +1375,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$destination</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -1469,7 +1390,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">scheme</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1497,7 +1417,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">body</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1524,7 +1443,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">authority</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -1541,7 +1459,6 @@
                   <value name="field_largerEditor">false</value>
                   <value name="field_password">false</value>
                 </record>
-                <value name="is_public">false</value>
                 <value name="field_name">registry</value>
                 <value name="field_type">string</value>
                 <value name="field_dim">0</value>
@@ -1568,7 +1485,6 @@
                   <value name="field_largerEditor">false</value>
                   <value name="field_password">false</value>
                 </record>
-                <value name="is_public">false</value>
                 <value name="field_name">server</value>
                 <value name="field_type">record</value>
                 <value name="field_dim">0</value>
@@ -1585,7 +1501,6 @@
                       <value name="field_largerEditor">false</value>
                       <value name="field_password">false</value>
                     </record>
-                    <value name="is_public">false</value>
                     <value name="field_name">user</value>
                     <value name="field_type">string</value>
                     <value name="field_dim">0</value>
@@ -1613,7 +1528,6 @@
                       <value name="field_largerEditor">false</value>
                       <value name="field_password">false</value>
                     </record>
-                    <value name="is_public">false</value>
                     <value name="field_name">password</value>
                     <value name="field_type">string</value>
                     <value name="field_dim">0</value>
@@ -1641,7 +1555,6 @@
                       <value name="field_largerEditor">false</value>
                       <value name="field_password">false</value>
                     </record>
-                    <value name="is_public">false</value>
                     <value name="field_name">host</value>
                     <value name="field_type">string</value>
                     <value name="field_dim">0</value>
@@ -1668,7 +1581,6 @@
                       <value name="field_largerEditor">false</value>
                       <value name="field_password">false</value>
                     </record>
-                    <value name="is_public">false</value>
                     <value name="field_name">port</value>
                     <value name="field_type">string</value>
                     <value name="field_dim">0</value>
@@ -1689,10 +1601,8 @@
                     <value name="is_global">false</value>
                   </record>
                 </array>
-                <value name="modifiable">true</value>
               </record>
             </array>
-            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
@@ -1701,7 +1611,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">path</value>
             <value name="field_type">string</value>
             <value name="field_dim">1</value>
@@ -1730,7 +1639,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">file</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1757,7 +1665,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">query</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -1767,7 +1674,6 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
-            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
@@ -1777,7 +1683,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">fragment</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1798,11 +1703,9 @@
             <value name="is_global">false</value>
           </record>
         </array>
-        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$timeout</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1812,7 +1715,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$user</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1822,7 +1724,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$password</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1831,7 +1732,6 @@
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -1840,7 +1740,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -1854,7 +1753,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -1870,7 +1768,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content.type</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1898,7 +1795,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$encoding</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1914,7 +1810,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$destination</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -1923,11 +1818,9 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
-        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$timeout</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1943,7 +1836,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$user</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1953,7 +1845,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$password</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1962,7 +1853,6 @@
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -1992,14 +1882,13 @@
 
   <!-- nodes -->
 
-<MAP NAME="$default" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="$default" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -2013,7 +1902,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -2029,7 +1917,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content.type</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2057,7 +1944,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$encoding</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2073,7 +1959,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$destination</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -2089,7 +1974,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">scheme</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2117,7 +2001,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">body</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2144,7 +2027,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">authority</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -2154,7 +2036,6 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
-            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
@@ -2163,7 +2044,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">path</value>
             <value name="field_type">string</value>
             <value name="field_dim">1</value>
@@ -2192,7 +2072,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">file</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2219,7 +2098,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">query</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -2230,7 +2108,6 @@
             <array name="rec_fields" type="record" depth="1">
               <record javaclass="com.wm.util.Values">
                 <value name="node_type">unknown</value>
-                <value name="is_public">false</value>
                 <value name="field_name">timeout</value>
                 <value name="field_type">string</value>
                 <value name="field_dim">0</value>
@@ -2240,7 +2117,6 @@
               </record>
               <record javaclass="com.wm.util.Values">
                 <value name="node_type">unknown</value>
-                <value name="is_public">false</value>
                 <value name="field_name">active</value>
                 <value name="field_type">string</value>
                 <value name="field_dim">0</value>
@@ -2249,7 +2125,6 @@
                 <value name="is_global">false</value>
               </record>
             </array>
-            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
@@ -2259,7 +2134,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">fragment</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2280,10 +2154,8 @@
             <value name="is_global">false</value>
           </record>
         </array>
-        <value name="modifiable">true</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -2292,7 +2164,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -2306,7 +2177,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -2322,7 +2192,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content.type</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2350,7 +2219,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$encoding</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2366,7 +2234,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$destination</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -2375,7 +2242,6 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
-        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
@@ -2385,7 +2251,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$active</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2394,7 +2259,6 @@
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -2418,14 +2282,13 @@
 
   <!-- nodes -->
 
-<MAP NAME="true" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="true" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -2439,7 +2302,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -2455,7 +2317,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content.type</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2483,7 +2344,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$encoding</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2499,7 +2359,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$destination</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -2508,11 +2367,9 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
-        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">transfertype</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2521,7 +2378,6 @@
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -2530,7 +2386,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -2538,7 +2393,6 @@
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -2558,7 +2412,6 @@
       <value name="field_largerEditor">false</value>
       <value name="field_password">false</value>
     </record>
-    <value name="is_public">false</value>
     <value name="field_name">transfertype</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
@@ -2575,14 +2428,13 @@
 </MAPSET>
 </MAP>
 
-<MAP NAME="$default" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="$default" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -2596,7 +2448,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -2612,7 +2463,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content.type</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2640,7 +2490,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$encoding</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2656,7 +2505,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$destination</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -2665,11 +2513,9 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
-        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">transfertype</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2678,7 +2524,6 @@
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -2687,7 +2532,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -2695,7 +2539,6 @@
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -2715,7 +2558,6 @@
       <value name="field_largerEditor">false</value>
       <value name="field_password">false</value>
     </record>
-    <value name="is_public">false</value>
     <value name="field_name">transfertype</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
@@ -2738,14 +2580,13 @@
 
   <!-- nodes -->
 
-<MAP NAME="$default" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="$default" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -2759,7 +2600,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -2775,7 +2615,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content.type</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2803,7 +2642,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$encoding</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2819,7 +2657,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$destination</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -2835,7 +2672,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">scheme</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2863,7 +2699,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">body</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2890,7 +2725,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">authority</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -2900,7 +2734,6 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
-            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
@@ -2909,7 +2742,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">path</value>
             <value name="field_type">string</value>
             <value name="field_dim">1</value>
@@ -2938,7 +2770,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">file</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2965,7 +2796,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">query</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -2976,7 +2806,6 @@
             <array name="rec_fields" type="record" depth="1">
               <record javaclass="com.wm.util.Values">
                 <value name="node_type">unknown</value>
-                <value name="is_public">false</value>
                 <value name="field_name">ascii</value>
                 <value name="field_type">string</value>
                 <value name="field_dim">0</value>
@@ -2986,7 +2815,6 @@
               </record>
               <record javaclass="com.wm.util.Values">
                 <value name="node_type">unknown</value>
-                <value name="is_public">false</value>
                 <value name="field_name">timeout</value>
                 <value name="field_type">string</value>
                 <value name="field_dim">0</value>
@@ -2996,7 +2824,6 @@
               </record>
               <record javaclass="com.wm.util.Values">
                 <value name="node_type">unknown</value>
-                <value name="is_public">false</value>
                 <value name="field_name">active</value>
                 <value name="field_type">string</value>
                 <value name="field_dim">0</value>
@@ -3005,7 +2832,6 @@
                 <value name="is_global">false</value>
               </record>
             </array>
-            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
@@ -3015,7 +2841,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">fragment</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -3036,11 +2861,9 @@
             <value name="is_global">false</value>
           </record>
         </array>
-        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">transfertype</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3049,7 +2872,6 @@
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -3058,7 +2880,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -3072,7 +2893,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -3088,7 +2908,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content.type</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3116,7 +2935,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$encoding</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3132,7 +2950,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$destination</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -3141,11 +2958,9 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
-        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$ascii</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3155,7 +2970,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">transfertype</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3164,7 +2978,6 @@
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -3188,14 +3001,13 @@
 
   <!-- nodes -->
 
-<MAP NAME="true" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="true" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -3209,7 +3021,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -3225,7 +3036,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content.type</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3253,7 +3063,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$encoding</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3269,7 +3078,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$destination</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -3278,11 +3086,9 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
-        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">transfertype</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3292,7 +3098,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">transfermode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3301,7 +3106,6 @@
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -3310,7 +3114,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -3318,7 +3121,6 @@
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -3338,7 +3140,6 @@
       <value name="field_largerEditor">false</value>
       <value name="field_password">false</value>
     </record>
-    <value name="is_public">false</value>
     <value name="field_name">transfermode</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
@@ -3355,14 +3156,13 @@
 </MAPSET>
 </MAP>
 
-<MAP NAME="$default" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="$default" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -3376,7 +3176,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -3392,7 +3191,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content.type</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3420,7 +3218,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$encoding</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3436,7 +3233,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$destination</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -3445,11 +3241,9 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
-        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">transfertype</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3465,7 +3259,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">transfermode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3478,7 +3271,6 @@
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -3487,7 +3279,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -3495,7 +3286,6 @@
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -3515,7 +3305,6 @@
       <value name="field_largerEditor">false</value>
       <value name="field_password">false</value>
     </record>
-    <value name="is_public">false</value>
     <value name="field_name">transfermode</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
@@ -3538,14 +3327,13 @@
 
   <!-- nodes -->
 
-<MAP NAME="$default" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="$default" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -3559,7 +3347,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -3575,7 +3362,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content.type</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3603,7 +3389,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$encoding</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3619,7 +3404,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$destination</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -3635,7 +3419,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">scheme</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -3663,7 +3446,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">body</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -3690,7 +3472,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">authority</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -3700,7 +3481,6 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
-            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
@@ -3709,7 +3489,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">path</value>
             <value name="field_type">string</value>
             <value name="field_dim">1</value>
@@ -3738,7 +3517,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">file</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -3765,7 +3543,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">query</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -3776,7 +3553,6 @@
             <array name="rec_fields" type="record" depth="1">
               <record javaclass="com.wm.util.Values">
                 <value name="node_type">unknown</value>
-                <value name="is_public">false</value>
                 <value name="field_name">ascii</value>
                 <value name="field_type">string</value>
                 <value name="field_dim">0</value>
@@ -3786,7 +3562,6 @@
               </record>
               <record javaclass="com.wm.util.Values">
                 <value name="node_type">unknown</value>
-                <value name="is_public">false</value>
                 <value name="field_name">timeout</value>
                 <value name="field_type">string</value>
                 <value name="field_dim">0</value>
@@ -3796,7 +3571,6 @@
               </record>
               <record javaclass="com.wm.util.Values">
                 <value name="node_type">unknown</value>
-                <value name="is_public">false</value>
                 <value name="field_name">active</value>
                 <value name="field_type">string</value>
                 <value name="field_dim">0</value>
@@ -3806,7 +3580,6 @@
               </record>
               <record javaclass="com.wm.util.Values">
                 <value name="node_type">unknown</value>
-                <value name="is_public">false</value>
                 <value name="field_name">append</value>
                 <value name="field_type">string</value>
                 <value name="field_dim">0</value>
@@ -3815,7 +3588,6 @@
                 <value name="is_global">false</value>
               </record>
             </array>
-            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
@@ -3825,7 +3597,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">fragment</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -3846,11 +3617,9 @@
             <value name="is_global">false</value>
           </record>
         </array>
-        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">transfertype</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3860,7 +3629,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">transfermode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3869,7 +3637,6 @@
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -3878,7 +3645,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -3892,7 +3658,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -3908,7 +3673,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content.type</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3936,7 +3700,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$encoding</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3952,7 +3715,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$destination</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -3961,11 +3723,9 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
-        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$append</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3975,7 +3735,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">transfertype</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3985,7 +3744,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">transfermode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3994,7 +3752,6 @@
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -4024,7 +3781,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -4038,7 +3794,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$list</value>
         <value name="field_type">string</value>
         <value name="field_dim">1</value>
@@ -4067,7 +3822,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$separator</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4088,7 +3842,6 @@
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -4097,7 +3850,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -4111,7 +3863,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -4127,7 +3878,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content.type</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4155,7 +3905,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$encoding</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4171,7 +3920,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$destination</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -4187,7 +3935,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">scheme</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -4215,7 +3962,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">body</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -4242,7 +3988,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">authority</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -4252,7 +3997,6 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
-            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
@@ -4261,7 +4005,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">path</value>
             <value name="field_type">string</value>
             <value name="field_dim">1</value>
@@ -4290,7 +4033,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">file</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -4317,7 +4059,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">query</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -4327,7 +4068,6 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
-            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
@@ -4337,7 +4077,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">fragment</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -4358,10 +4097,8 @@
             <value name="is_global">false</value>
           </record>
         </array>
-        <value name="modifiable">true</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -4384,7 +4121,6 @@
       <value name="field_largerEditor">false</value>
       <value name="field_password">false</value>
     </record>
-    <value name="is_public">false</value>
     <value name="field_name">$separator</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
@@ -4415,7 +4151,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -4424,7 +4159,6 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$list</value>
         <value name="field_type">string</value>
         <value name="field_dim">1</value>
@@ -4435,7 +4169,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$separator</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4450,7 +4183,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -4466,7 +4198,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content.type</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4494,7 +4225,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$encoding</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4510,7 +4240,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$destination</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -4519,7 +4248,6 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
-        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
@@ -4529,7 +4257,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$result</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4550,7 +4277,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$path</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4559,7 +4285,6 @@
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -4568,7 +4293,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -4583,7 +4307,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$result</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4603,7 +4326,6 @@
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -4635,7 +4357,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -4649,7 +4370,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$list</value>
         <value name="field_type">string</value>
         <value name="field_dim">1</value>
@@ -4678,7 +4398,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$separator</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4699,7 +4418,6 @@
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -4708,7 +4426,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -4722,7 +4439,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -4738,7 +4454,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content.type</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4766,7 +4481,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$encoding</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4782,7 +4496,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$destination</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -4791,11 +4504,9 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
-        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">transfertype</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4805,7 +4516,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$path</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4815,7 +4525,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">transfermode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4824,7 +4533,6 @@
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -4848,7 +4556,6 @@
       <value name="field_largerEditor">false</value>
       <value name="field_password">false</value>
     </record>
-    <value name="is_public">false</value>
     <value name="field_name">$list</value>
     <value name="field_type">string</value>
     <value name="field_dim">1</value>
@@ -4880,7 +4587,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -4889,7 +4595,6 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$list</value>
         <value name="field_type">string</value>
         <value name="field_dim">1</value>
@@ -4905,7 +4610,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -4921,7 +4625,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content.type</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4949,7 +4652,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$encoding</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4965,7 +4667,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$destination</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -4974,11 +4675,9 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
-        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">transfertype</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4988,7 +4687,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$path</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4998,7 +4696,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">transfermode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5014,7 +4711,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$result</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5034,7 +4730,6 @@
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -5043,7 +4738,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -5058,7 +4752,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$result</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5078,7 +4771,6 @@
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -5107,7 +4799,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_name">loginInput</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -5117,7 +4808,6 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">serverhost</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5127,7 +4817,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">serverport</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5137,7 +4826,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">dataport</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5148,7 +4836,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">username</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5163,7 +4850,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">true</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">password</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5174,7 +4860,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">account</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5185,7 +4870,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">transfertype</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5199,7 +4883,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">encoding</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5210,7 +4893,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">serverencoding</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5227,7 +4909,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">timeout</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5238,7 +4919,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
-        <value name="is_public">false</value>
         <value name="field_name">secure</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -5248,11 +4928,9 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
-        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">newSession</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5267,7 +4945,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">clientTimeout</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5278,7 +4955,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">proxyAlias</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5288,7 +4964,6 @@
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -5297,7 +4972,6 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -5311,7 +4985,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -5327,7 +5000,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content.type</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5355,7 +5027,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$encoding</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5371,7 +5042,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$destination</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -5387,7 +5057,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">scheme</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -5415,7 +5084,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">body</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -5442,7 +5110,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">authority</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -5459,7 +5126,6 @@
                   <value name="field_largerEditor">false</value>
                   <value name="field_password">false</value>
                 </record>
-                <value name="is_public">false</value>
                 <value name="field_name">registry</value>
                 <value name="field_type">string</value>
                 <value name="field_dim">0</value>
@@ -5486,7 +5152,6 @@
                   <value name="field_largerEditor">false</value>
                   <value name="field_password">false</value>
                 </record>
-                <value name="is_public">false</value>
                 <value name="field_name">server</value>
                 <value name="field_type">record</value>
                 <value name="field_dim">0</value>
@@ -5503,7 +5168,6 @@
                       <value name="field_largerEditor">false</value>
                       <value name="field_password">false</value>
                     </record>
-                    <value name="is_public">false</value>
                     <value name="field_name">user</value>
                     <value name="field_type">string</value>
                     <value name="field_dim">0</value>
@@ -5531,7 +5195,6 @@
                       <value name="field_largerEditor">false</value>
                       <value name="field_password">false</value>
                     </record>
-                    <value name="is_public">false</value>
                     <value name="field_name">password</value>
                     <value name="field_type">string</value>
                     <value name="field_dim">0</value>
@@ -5559,7 +5222,6 @@
                       <value name="field_largerEditor">false</value>
                       <value name="field_password">false</value>
                     </record>
-                    <value name="is_public">false</value>
                     <value name="field_name">host</value>
                     <value name="field_type">string</value>
                     <value name="field_dim">0</value>
@@ -5586,7 +5248,6 @@
                       <value name="field_largerEditor">false</value>
                       <value name="field_password">false</value>
                     </record>
-                    <value name="is_public">false</value>
                     <value name="field_name">port</value>
                     <value name="field_type">string</value>
                     <value name="field_dim">0</value>
@@ -5607,10 +5268,8 @@
                     <value name="is_global">false</value>
                   </record>
                 </array>
-                <value name="modifiable">true</value>
               </record>
             </array>
-            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
@@ -5619,7 +5278,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">path</value>
             <value name="field_type">string</value>
             <value name="field_dim">1</value>
@@ -5648,7 +5306,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">file</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -5675,7 +5332,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">query</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -5686,7 +5342,6 @@
             <array name="rec_fields" type="record" depth="1">
               <record javaclass="com.wm.util.Values">
                 <value name="node_type">unknown</value>
-                <value name="is_public">false</value>
                 <value name="field_name">ascii</value>
                 <value name="field_type">string</value>
                 <value name="field_dim">0</value>
@@ -5702,7 +5357,6 @@
                   <value name="field_largerEditor">false</value>
                   <value name="field_password">false</value>
                 </record>
-                <value name="is_public">false</value>
                 <value name="field_name">timeout</value>
                 <value name="field_type">string</value>
                 <value name="field_dim">0</value>
@@ -5712,7 +5366,6 @@
               </record>
               <record javaclass="com.wm.util.Values">
                 <value name="node_type">unknown</value>
-                <value name="is_public">false</value>
                 <value name="field_name">active</value>
                 <value name="field_type">string</value>
                 <value name="field_dim">0</value>
@@ -5722,7 +5375,6 @@
               </record>
               <record javaclass="com.wm.util.Values">
                 <value name="node_type">unknown</value>
-                <value name="is_public">false</value>
                 <value name="field_name">append</value>
                 <value name="field_type">string</value>
                 <value name="field_dim">0</value>
@@ -5731,7 +5383,6 @@
                 <value name="is_global">false</value>
               </record>
             </array>
-            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
@@ -5741,7 +5392,6 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">fragment</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -5762,7 +5412,6 @@
             <value name="is_global">false</value>
           </record>
         </array>
-        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
@@ -5772,7 +5421,6 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">transfertype</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5782,7 +5430,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$path</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5792,7 +5439,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">transfermode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5801,7 +5447,6 @@
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -5845,7 +5490,6 @@
       <value name="field_largerEditor">false</value>
       <value name="field_password">false</value>
     </record>
-    <value name="is_public">false</value>
     <value name="field_name">serverport</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
@@ -5870,7 +5514,6 @@
       <value name="field_largerEditor">false</value>
       <value name="field_password">false</value>
     </record>
-    <value name="is_public">false</value>
     <value name="field_name">username</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
@@ -5890,13 +5533,12 @@ PSJub2RlX2NvbW1lbnQiPjwvdmFsdWU+CiAgICA8cmVjb3JkIG5hbWU9Im5vZGVfaGludHMiIGph
 dmFjbGFzcz0iY29tLndtLnV0aWwuVmFsdWVzIj4KICAgICAgPG51bGwgbmFtZT0iZmllbGRfdXNl
 cmVkaXRhYmxlIi8+CiAgICAgIDx2YWx1ZSBuYW1lPSJmaWVsZF9sYXJnZXJFZGl0b3IiPmZhbHNl
 PC92YWx1ZT4KICAgICAgPHZhbHVlIG5hbWU9ImZpZWxkX3Bhc3N3b3JkIj50cnVlPC92YWx1ZT4K
-ICAgIDwvcmVjb3JkPgogICAgPHZhbHVlIG5hbWU9ImlzX3B1YmxpYyI+ZmFsc2U8L3ZhbHVlPgog
-ICAgPHZhbHVlIG5hbWU9ImZpZWxkX25hbWUiPnBhc3N3b3JkPC92YWx1ZT4KICAgIDx2YWx1ZSBu
-YW1lPSJmaWVsZF90eXBlIj5zdHJpbmc8L3ZhbHVlPgogICAgPHZhbHVlIG5hbWU9ImZpZWxkX2Rp
-bSI+MDwvdmFsdWU+CiAgICA8dmFsdWUgbmFtZT0iZmllbGRfb3B0Ij50cnVlPC92YWx1ZT4KICAg
-IDx2YWx1ZSBuYW1lPSJuaWxsYWJsZSI+dHJ1ZTwvdmFsdWU+CiAgICA8dmFsdWUgbmFtZT0iZm9y
-bV9xdWFsaWZpZWQiPmZhbHNlPC92YWx1ZT4KICAgIDx2YWx1ZSBuYW1lPSJpc19nbG9iYWwiPmZh
-bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
+ICAgIDwvcmVjb3JkPgogICAgPHZhbHVlIG5hbWU9ImZpZWxkX25hbWUiPnBhc3N3b3JkPC92YWx1
+ZT4KICAgIDx2YWx1ZSBuYW1lPSJmaWVsZF90eXBlIj5zdHJpbmc8L3ZhbHVlPgogICAgPHZhbHVl
+IG5hbWU9ImZpZWxkX2RpbSI+MDwvdmFsdWU+CiAgICA8dmFsdWUgbmFtZT0iZmllbGRfb3B0Ij50
+cnVlPC92YWx1ZT4KICAgIDx2YWx1ZSBuYW1lPSJuaWxsYWJsZSI+dHJ1ZTwvdmFsdWU+CiAgICA8
+dmFsdWUgbmFtZT0iZm9ybV9xdWFsaWZpZWQiPmZhbHNlPC92YWx1ZT4KICAgIDx2YWx1ZSBuYW1l
+PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
 </MAPSET>
 
 <MAPSET NAME="Setter" OVERWRITE="false" VARIABLES="false" FIELD="/newSession;1;0">
@@ -5912,7 +5554,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       <value name="field_largerEditor">false</value>
       <value name="field_password">false</value>
     </record>
-    <value name="is_public">false</value>
     <value name="field_name">newSession</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
@@ -5939,7 +5580,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -5948,7 +5588,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">serverhost</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5958,7 +5597,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">serverport</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5973,7 +5611,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -5983,7 +5620,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">username</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5993,7 +5629,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">password</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6008,7 +5643,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$destination</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -6017,11 +5651,9 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
-        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">transfertype</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6031,7 +5663,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">encoding</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6041,7 +5672,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$path</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6051,7 +5681,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">timeout</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6061,7 +5690,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">transfermode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6071,7 +5699,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">newSession</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6081,7 +5708,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">clientTimeout</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6091,7 +5717,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">sessionkey</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6101,7 +5726,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">returncode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6111,7 +5735,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">returnmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6121,7 +5744,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">logmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6130,7 +5752,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -6139,7 +5760,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_name">loginOutput</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -6149,7 +5769,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">sessionkey</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6159,7 +5778,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">returncode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6169,7 +5787,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">returnmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6179,7 +5796,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">logmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6188,7 +5804,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -6244,7 +5859,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_name">cdInput</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -6254,7 +5868,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">sessionkey</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6264,7 +5877,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">dirpath</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6273,7 +5885,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -6282,7 +5893,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -6296,7 +5906,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -6311,7 +5920,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$destination</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -6320,11 +5928,9 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
-        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$path</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6334,7 +5940,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">transfermode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6344,7 +5949,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">sessionkey</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6353,7 +5957,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -6376,7 +5979,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -6390,7 +5992,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -6400,7 +6001,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">dirpath</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6415,7 +6015,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$destination</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -6424,11 +6023,9 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
-        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">transfermode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6438,7 +6035,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">sessionkey</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6448,7 +6044,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">returncode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6458,7 +6053,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$message</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6468,7 +6062,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$response</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -6478,7 +6071,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">returnmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6488,7 +6080,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">logmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6497,7 +6088,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -6506,7 +6096,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_name">cdOutput</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -6516,7 +6105,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">returncode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6526,7 +6114,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">returnmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6536,7 +6123,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">logmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6545,7 +6131,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -6595,7 +6180,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_name">appendInput</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -6605,7 +6189,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">sessionkey</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6615,7 +6198,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">transfermode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6629,7 +6211,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -6639,7 +6220,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">localfile</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6650,7 +6230,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">remotefile</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6659,7 +6238,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -6668,7 +6246,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -6682,7 +6259,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -6692,7 +6268,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">localfile</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6707,7 +6282,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$destination</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -6723,7 +6297,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">scheme</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -6751,7 +6324,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">body</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -6778,7 +6350,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">authority</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -6788,7 +6359,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
-            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
@@ -6797,7 +6367,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">path</value>
             <value name="field_type">string</value>
             <value name="field_dim">1</value>
@@ -6826,7 +6395,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">file</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -6853,7 +6421,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">query</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -6863,7 +6430,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
-            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
@@ -6873,7 +6439,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">fragment</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -6894,7 +6459,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
             <value name="is_global">false</value>
           </record>
         </array>
-        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
@@ -6904,7 +6468,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">transfermode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6914,7 +6477,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">sessionkey</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6924,7 +6486,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">returncode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6934,7 +6495,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$message</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6944,7 +6504,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$response</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -6953,7 +6512,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -6988,7 +6546,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -7002,7 +6559,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$destination</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -7011,11 +6567,9 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
-        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">transfermode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7025,7 +6579,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -7035,7 +6588,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">sessionkey</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7045,7 +6597,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">remotefile</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7055,7 +6606,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$message</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7065,7 +6615,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$response</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -7075,7 +6624,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">returncode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7085,7 +6633,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">returnmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7095,7 +6642,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">logmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7104,7 +6650,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -7113,7 +6658,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_name">appendOutput</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -7123,7 +6667,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">returncode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7133,7 +6676,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">returnmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7143,7 +6685,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">logmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7152,7 +6693,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -7193,7 +6733,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_name">putInput</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -7203,7 +6742,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">sessionkey</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7213,7 +6751,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">transfermode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7227,7 +6764,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -7237,7 +6773,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">localfile</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7248,7 +6783,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">remotefile</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7258,7 +6792,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">putunique</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7272,7 +6805,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -7281,7 +6813,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -7295,7 +6826,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -7310,7 +6840,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$destination</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -7326,7 +6855,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">scheme</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -7354,7 +6882,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">body</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -7381,7 +6908,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">authority</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -7391,7 +6917,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
-            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
@@ -7400,7 +6925,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">path</value>
             <value name="field_type">string</value>
             <value name="field_dim">1</value>
@@ -7429,7 +6953,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">file</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -7456,7 +6979,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">query</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -7466,7 +6988,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
-            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
@@ -7476,7 +6997,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">fragment</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -7497,11 +7017,9 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
             <value name="is_global">false</value>
           </record>
         </array>
-        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">transfermode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7511,7 +7029,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">sessionkey</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7521,7 +7038,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">localfile</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7531,7 +7047,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">returncode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7541,7 +7056,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$message</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7551,7 +7065,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$response</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -7560,7 +7073,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -7592,7 +7104,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
   <value name="xml">false</value>
   <record name="type" javaclass="com.wm.util.Values">
     <value name="node_type">unknown</value>
-    <value name="is_public">false</value>
     <value name="field_name">putunique</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
@@ -7619,7 +7130,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -7633,7 +7143,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$destination</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -7642,11 +7151,9 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
-        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">transfermode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7656,7 +7163,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -7666,7 +7172,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">sessionkey</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7676,7 +7181,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">remotefile</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7686,7 +7190,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">putunique</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7696,7 +7199,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$message</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7706,7 +7208,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$response</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -7716,7 +7217,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">returncode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7726,7 +7226,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">returnmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7736,7 +7235,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">logmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7745,7 +7243,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -7754,7 +7251,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_name">putOutput</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -7764,7 +7260,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">returncode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7774,7 +7269,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">returnmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7784,7 +7278,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">logmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7793,7 +7286,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -7848,7 +7340,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_name">logoutInput</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -7858,7 +7349,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">sessionkey</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7867,7 +7357,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -7876,7 +7365,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -7890,7 +7378,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$destination</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -7899,7 +7386,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
-        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
@@ -7909,7 +7395,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">sessionkey</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7919,7 +7404,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$message</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7929,7 +7413,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$response</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -7939,7 +7422,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">returncode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7948,7 +7430,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -7965,7 +7446,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -7979,7 +7459,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$destination</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -7995,7 +7474,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">scheme</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -8023,7 +7501,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">body</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -8050,7 +7527,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">authority</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -8060,7 +7536,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
-            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
@@ -8069,7 +7544,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">path</value>
             <value name="field_type">string</value>
             <value name="field_dim">1</value>
@@ -8098,7 +7572,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">file</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -8125,7 +7598,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">query</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -8135,7 +7607,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
-            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
@@ -8145,7 +7616,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">fragment</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -8166,11 +7636,9 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
             <value name="is_global">false</value>
           </record>
         </array>
-        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">sessionkey</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -8186,7 +7654,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$message</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -8213,7 +7680,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$response</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -8224,7 +7690,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">returncode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -8234,7 +7699,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">returnmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -8244,7 +7708,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">logmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -8260,7 +7723,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">$response.type</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -8281,7 +7743,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -8290,7 +7751,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="is_public">false</value>
     <value name="field_name">logoutOutput</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -8300,7 +7760,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">returncode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -8310,7 +7769,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">returnmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -8320,7 +7778,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">logmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -8329,7 +7786,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -8364,7 +7820,6 @@ bHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       <value name="field_largerEditor">false</value>
       <value name="field_password">false</value>
     </record>
-    <value name="is_public">false</value>
     <value name="field_name">$response.type</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
