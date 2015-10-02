@@ -12039,6 +12039,28 @@ type.
 
 ---
 
+### tundra.xml:minify
+
+Removes all comments and extraneous whitespace from the given
+[XML] content.
+
+#### Inputs:
+
+* `$content` is a string, byte array, or input stream containing
+  [XML] data.
+* `$encoding` is the character set used by $content if provided
+  as a byte array or input stream. Defaults to [UTF-8].
+* `$mode` is a choice of bytes, stream, or string, and determines
+  the type of object `$content.minified` is returned as. Defaults
+  to stream.
+
+#### Outputs:
+
+* `$content.minified` is the given XML content with all comments
+  and extraneous whitespace removed.
+
+---
+
 ### tundra.xml:validate
 
 Validates the given content as [XML], and optionally against an [XML]

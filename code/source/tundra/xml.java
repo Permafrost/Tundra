@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-09 08:32:47 AEST
+// -----( CREATED: 2015-10-02 20:58:52 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -42,8 +42,8 @@ public final class xml
 		// @sigtype java 3.5
 		// [i] object:0:optional $content
 		// [i] field:0:optional $encoding
-		// [i] field:0:optional $algorithm {"Canonical XML Version 1.0","Canonical XML Version 1.0 With Comments","Canonical XML Version 1.1","Canonical XML Version 1.1 With Comments","Exclusive Canonical XML Version 1.0","Exclusive Canonical XML Version 1.0 With Comments"}
-		// [i] field:0:optional $mode {"stream","bytes","string"}
+		// [i] field:0:optional $algorithm {&quot;Canonical XML Version 1.0&quot;,&quot;Canonical XML Version 1.0 With Comments&quot;,&quot;Canonical XML Version 1.1&quot;,&quot;Canonical XML Version 1.1 With Comments&quot;,&quot;Exclusive Canonical XML Version 1.0&quot;,&quot;Exclusive Canonical XML Version 1.0 With Comments&quot;}
+		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
 		// [o] object:0:optional $content.canonical
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -66,6 +66,39 @@ public final class xml
 
 
 
+	public static final void minify (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(minify)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:0:optional $content
+		// [i] field:0:optional $encoding
+		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
+		// [o] object:0:optional $content.minified
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    Object content = IDataUtil.get(cursor, "$content");
+		    String encoding = IDataUtil.getString(cursor, "$encoding");
+		
+		    String mode = IDataUtil.getString(cursor, "$mode");
+		
+		    content = ObjectHelper.convert(XMLHelper.minify(StreamHelper.normalize(content, encoding)), mode);
+		
+		    if (content != null) IDataUtil.put(cursor, "$content.minified", content);
+		} catch(IOException ex) {
+		    ExceptionHelper.raise(ex);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void validate (IData pipeline)
         throws ServiceException
 	{
@@ -76,7 +109,7 @@ public final class xml
 		// [i] field:0:optional $content.encoding
 		// [i] object:0:optional $schema
 		// [i] field:0:optional $schema.encoding
-		// [i] field:0:optional $raise? {"false","true"}
+		// [i] field:0:optional $raise? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:required $valid?
 		// [o] field:1:optional $errors
 		IDataCursor cursor = pipeline.getCursor();
