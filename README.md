@@ -6436,8 +6436,7 @@ level groupings.
   * `by` is an `IData` document containing the keys and values that
     defined this group.
   * `items` is an `IData[]` document list containing all the items from
-    `$list` whose values are equal to values of the associated group,
-    provided only when no further `$group` levels were specified.
+    `$list` whose values are equal to values of the associated group.
   * `then` is an `IData` document list containing the next level of
     grouped items as per the `$group` levels specified.
     * ... refer to `$list.groups` structure.
