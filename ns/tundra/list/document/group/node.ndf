@@ -42,25 +42,15 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$keys</value>
-          <value name="field_type">string</value>
-          <value name="field_dim">1</value>
+          <value name="field_name">$group</value>
+          <value name="field_type">recref</value>
+          <value name="field_dim">0</value>
           <value name="field_opt">true</value>
-          <record name="field_content_type" javaclass="com.wm.util.Values">
-            <value name="contentType">1</value>
-            <value name="internalType">reference</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-            <array name="targetNames" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">string</value>
-              </record>
-            </array>
-          </record>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
-          <value name="is_soap_array_encoding_used">false</value>
+          <value name="modifiable">true</value>
+          <value name="rec_ref">tundra.schema.list.document.group:input</value>
         </record>
       </array>
       <value name="modifiable">true</value>
@@ -82,54 +72,16 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$list.grouped</value>
-          <value name="field_type">record</value>
+          <value name="field_name">$list.groups</value>
+          <value name="field_type">recref</value>
           <value name="field_dim">1</value>
           <value name="field_opt">true</value>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
           <value name="is_soap_array_encoding_used">false</value>
-          <array name="rec_fields" type="record" depth="1">
-            <record javaclass="com.wm.util.Values">
-              <value name="node_type">record</value>
-              <value name="node_comment"></value>
-              <record name="node_hints" javaclass="com.wm.util.Values">
-                <value name="field_largerEditor">false</value>
-                <value name="field_password">false</value>
-              </record>
-              <value name="is_public">false</value>
-              <value name="field_name">group</value>
-              <value name="field_type">record</value>
-              <value name="field_dim">0</value>
-              <value name="nillable">false</value>
-              <value name="form_qualified">false</value>
-              <value name="is_global">false</value>
-              <array name="rec_fields" type="record" depth="1">
-              </array>
-              <value name="modifiable">true</value>
-            </record>
-            <record javaclass="com.wm.util.Values">
-              <value name="node_type">record</value>
-              <value name="node_comment"></value>
-              <record name="node_hints" javaclass="com.wm.util.Values">
-                <value name="field_largerEditor">false</value>
-                <value name="field_password">false</value>
-              </record>
-              <value name="is_public">false</value>
-              <value name="field_name">items</value>
-              <value name="field_type">record</value>
-              <value name="field_dim">1</value>
-              <value name="nillable">false</value>
-              <value name="form_qualified">false</value>
-              <value name="is_global">false</value>
-              <value name="is_soap_array_encoding_used">false</value>
-              <array name="rec_fields" type="record" depth="1">
-              </array>
-              <value name="modifiable">true</value>
-            </record>
-          </array>
           <value name="modifiable">true</value>
+          <value name="rec_ref">tundra.schema.list.document.group:output</value>
         </record>
       </array>
       <value name="modifiable">true</value>
@@ -137,39 +89,65 @@
   </record>
   <value name="node_comment">### tundra.list.document:group
 
-Groups the given IData document list items by the given keys. This
-service can be used to process an IData document list in a way
-similar to a [SQL GROUP BY] clause.
+Groups the given IData[] document list items by the given criteria.
+This service can be used to process an IData[] document list in a
+way similar to a [SQL GROUP BY] clause, but also supports multi-
+level groupings.
 
 #### Inputs:
 
-* $list is an IData document list whose items are to be grouped.
-* $keys is a String list containg the keys used to group like items
-  in $list together, and can be simple or fully qualified, such
-  as a/b/c[0]/d.
+* $list is an IData[] document list whose items are to be grouped.
+* $group specifies the grouping criteria as a recursive hierarchicy 
+  of keys:
+  * by is a list of keys whose associated values are used to group
+    like items in $list together:
+    * key is the fully-qualified key identifying the values in $list
+      on which to group.
+    * type is an optional choice that defines type of comparison
+      performed between the values associated with the key:
+      * string will compare the values as strings.
+      * integer will compare the values as integers.
+      * decimal will compare the values as decimal numbers.
+      * datetime will compare the values as datetimes.
+      * duration will compare the values as durations of time.
+    * pattern is an optional pattern string used when the type of
+      comparison is either datetime (in which case a pattern
+      compatible with Tundra/tundra.datetime:format must be
+      specified), or duration (in which case a pattern compatible
+      with Tundra/tundra.duration:format must be specified).
+    * descending? is an optional boolean indicating if the values
+      associated with the key are to be sorted in descending
+      (largest to smallest) order. Defaults to false, if not
+      specified.
+  * then is an optional next level of grouping criteria, which is
+    used to further group like items in $list together.
+    * ... refer to $group structure.
 
 #### Outputs:
 
-* $list.grouped is an IData document list containing one item per
-  each unique set of grouping key value tuples associated with
-  $keys from $list:
-  * group is an IData document containing the keys and values
-    that defined this group.
-  * items is an IData document list containing all the items from
-    $list whose keys and values are equal to key value tuples in
-    the associated group.
+* $list.groups is an IDat[]a document list containing one item per
+  each unique set of grouped value associated:
+  * by is an IData document containing the keys and values that
+    defined this group.
+  * items is an IData[] document list containing all the items from
+    $list whose values are equal to values of the associated group,
+    provided only when no further $group levels were specified.
+  * then is an IData[] document list containing the next level of
+    grouped items as per the $group levels specified.
+    * ... refer to $list.groups structure.
 
-[SQL GROUP BY]: &lt;http://en.wikipedia.org/wiki/SQL#Queries&gt;</value>
+[SQL GROUP BY]: &lt;http://en.wikipedia.org/wiki/SQL#Queries&gt;
+</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template">tundra_list_document_group</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
   <value name="icontext_policy">$null</value>
-  <value name="svcInvkURLAlias"></value>
   <value name="system_service">no</value>
   <value name="retry_max">0</value>
   <value name="retry_interval">0</value>

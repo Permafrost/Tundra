@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-09-27 19:09:40 EST
+// -----( CREATED: 2015-10-05 13:50:29 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -224,17 +224,20 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:1:optional $list
-		// [i] field:1:optional $keys
-		// [o] record:1:optional $list.grouped
-		// [o] - record:0:required group
-		// [o] - record:1:required items
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		    IData[] list = IDataUtil.getIDataArray(cursor, "$list");
+		    IData criteria = IDataUtil.getIData(cursor, "$group");
 		    String[] keys = IDataUtil.getStringArray(cursor, "$keys");
 		
-		    if (list != null && list.length > 0) IDataUtil.put(cursor, "$list.grouped", IDataHelper.group(list, keys));
+		    if (list != null) {
+		        if (keys != null) {
+		            IDataUtil.put(cursor, "$list.grouped", IDataHelper.group(list, keys));
+		        } else {
+		            IDataUtil.put(cursor, "$list.groups", IDataHelper.group(list, criteria));
+		        }
+		    }
 		} finally {
 		    cursor.destroy();
 		}

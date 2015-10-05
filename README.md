@@ -6392,27 +6392,52 @@ a one-based index can be specified using the `$iteration` input
 
 ### tundra.list.document:group
 
-Groups the given IData document list items by the given keys. This
-service can be used to process an IData document list in a way
-similar to a [SQL GROUP BY] clause.
+Groups the given `IData[]` document list items by the given criteria.
+This service can be used to process an `IData[]` document list in a
+way similar to a [SQL GROUP BY] clause, but also supports multi-
+level groupings.
 
 #### Inputs:
 
-* `$list` is an IData document list whose items are to be grouped.
-* `$keys` is a String list containg the keys used to group like items
-  in `$list` together, and can be simple or fully qualified, such
-  as `a/b/c[0]/d`.
+* `$list` is an `IData[]` document list whose items are to be grouped.
+* `$group` specifies the grouping criteria as a recursive hierarchicy
+  of keys:
+  * `by` is a list of keys whose associated values are used to group
+    like items in `$list` together:
+    * `key` is the fully-qualified key identifying the values in `$list`
+      on which to group.
+    * `type` is an optional choice that defines type of comparison
+      performed between the values associated with the `key`:
+      * `string` will compare the values as strings.
+      * `integer` will compare the values as integers.
+      * `decimal` will compare the values as decimal numbers.
+      * `datetime` will compare the values as datetimes.
+      * `duration` will compare the values as durations of time.
+    * `pattern` is an optional pattern string used when the type of
+      comparison is either `datetime` (in which case a pattern
+      compatible with `Tundra/tundra.datetime:format` must be
+      specified), or `duration` (in which case a pattern compatible
+      with `Tundra/tundra.duration:format` must be specified).
+    * `descending?` is an optional boolean indicating if the values
+      associated with the key are to be sorted in descending
+      (largest to smallest) order. Defaults to `false`, if not
+      specified.
+  * `then` is an optional next level of grouping criteria, which is
+    used to further group like items in `$list` together.
+    * ... refer to `$group` structure.
 
 #### Outputs:
 
-* `$list.grouped` is an IData document list containing one item per
-  each unique set of grouping key value tuples associated with
-  `$keys` from `$list`:
-  * `group` is an IData document containing the keys and values
-    that defined this group.
-  * `items` is an IData document list containing all the items from
-    `$list` whose keys and values are equal to key value tuples in
-    the associated `group`.
+* `$list.groups` is an `IData[]` document list containing one item per
+  each unique set of grouped value associated:
+  * `by` is an `IData` document containing the keys and values that
+    defined this group.
+  * `items` is an `IData[]` document list containing all the items from
+    `$list` whose values are equal to values of the associated group,
+    provided only when no further `$group` levels were specified.
+  * `then` is an `IData` document list containing the next level of
+    grouped items as per the `$group` levels specified.
+    * ... refer to `$list.groups` structure.
 
 ---
 
