@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-09-29 16:19:49 EST
+// -----( CREATED: 2015-10-29 17:14:06 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -188,7 +188,8 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:0:optional $string.x
 		// [i] field:0:optional $string.y
-		// [i] field:0:optional $case.insensitive? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $insensitive.case? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $insensitive.whitespace? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:required $before?
 		// [o] field:0:required $equal?
 		// [o] field:0:required $after?
@@ -197,13 +198,15 @@ public final class string
 		try {
 		    String x = IDataUtil.getString(cursor, "$string.x");
 		    String y = IDataUtil.getString(cursor, "$string.y");
-		    boolean caseInsensitive = BooleanHelper.parse(IDataUtil.getString(cursor, "$case.insensitive?"));
+		    String insensitiveCase = IDataUtil.getString(cursor, "$insensitive.case?");
+		    if (insensitiveCase == null) insensitiveCase = IDataUtil.getString(cursor, "$case.insensitive?");
+		    String insensitiveWhitespace = IDataUtil.getString(cursor, "$insensitive.whitespace?");
 		
-		    int comparison = StringHelper.compare(x, y, caseInsensitive);
+		    int comparison = StringHelper.compare(x, y, BooleanHelper.parse(insensitiveCase), BooleanHelper.parse(insensitiveWhitespace));
 		
-		    IDataUtil.put(cursor, "$before?", "" + (comparison < 0));
-		    IDataUtil.put(cursor, "$equal?", "" + (comparison == 0));
-		    IDataUtil.put(cursor, "$after?", "" + (comparison > 0));
+		    IDataUtil.put(cursor, "$before?", BooleanHelper.emit(comparison < 0));
+		    IDataUtil.put(cursor, "$equal?", BooleanHelper.emit(comparison == 0));
+		    IDataUtil.put(cursor, "$after?", BooleanHelper.emit(comparison > 0));
 		} finally {
 		    cursor.destroy();
 		}

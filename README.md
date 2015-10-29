@@ -11086,8 +11086,11 @@ Implemented using the java.lang.String [compareTo] and
 
 * `$string.x` is the datetime string to be compared to `$string.y`.
 * `$string.y` is the datetime string to be compared to `$string.x`.
-* `$case.insensitive?` is a boolean flag indicating if the string
-  comparison should ignore case differences. Defaults to false.
+* `$insensitive.case?` is a boolean flag indicating if the string
+  comparison should ignore case differences. Defaults to `false`.
+* `$insensitive.whitespace?` is a boolean flag indicating if the
+  string comparison should ignore whitespace differences.
+  Defaults to `false`.
 
 #### Outputs:
 
