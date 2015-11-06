@@ -5,7 +5,7 @@
 
   <!-- nodes -->
 
-<MAP NAME="init" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="init" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
@@ -2523,7 +2523,7 @@
 
   <!-- nodes -->
 
-<EXIT NAME="false" FROM="$flow" SIGNAL="FAILURE" FAILURE-MESSAGE="Content retrieve failed as $source does not exist: %$source.directory%">
+<EXIT NAME="false" FROM="$flow" SIGNAL="FAILURE" FAILURE-MESSAGE="Content retrieve failed as $source does not exist or is unreachable: %$source.directory%">
   <COMMENT></COMMENT>
 </EXIT>
 </BRANCH>
@@ -17539,7 +17539,7 @@
 </MAP>
 </INVOKE>
 
-<MAP TIMEOUT="" MODE="STANDALONE">
+<MAP MODE="STANDALONE">
   <COMMENT>content name and type</COMMENT>
   <MAPTARGET>
 
@@ -20265,7 +20265,7 @@
 </MAP>
 </INVOKE>
 
-<MAP NAME="drop" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="drop" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
@@ -20527,7 +20527,7 @@
 </SEQUENCE>
 </BRANCH>
 
-<MAP NAME="drop" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="drop" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
@@ -20756,7 +20756,7 @@
 </SEQUENCE>
 </BRANCH>
 
-<MAP NAME="drop" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="drop" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
