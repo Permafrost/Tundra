@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-11-13 09:02:48.758
+// -----( CREATED: 2015-11-13 09:40:51.898
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -10,6 +10,7 @@ import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import permafrost.tundra.data.IDataHelper;
+import permafrost.tundra.io.StreamHelper;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.CharsetHelper;
 import permafrost.tundra.lang.ExceptionHelper;
@@ -337,7 +338,7 @@ public final class service
 		    String contentType = IDataUtil.getString(cursor, "$content.type");
 		    String encoding = IDataUtil.getString(cursor, "$encoding");
 
-		    respond(code, message, headers, content, contentType, encoding);
+		    ServiceHelper.respond(code, message, headers, StreamHelper.normalize(content, encoding), contentType, CharsetHelper.normalize(encoding));
 		} finally {
 		    cursor.destroy();
 		}
@@ -416,53 +417,6 @@ public final class service
 	}
 
 	// --- <<IS-START-SHARED>> ---
-	// sets the response headers and body for the current service invocation
-	public static void respond(int code, String message, IData headers, Object content, String contentType, String encoding) throws ServiceException {
-	    try {
-	        com.wm.net.HttpHeader response = com.wm.app.b2b.server.Service.getHttpResponseHeader();
-
-	        if (response == null) {
-	            // not invoked via HTTP, so throw an exception instead for HTTP statuses >= 400
-	            if (code >= 400) ExceptionHelper.raise(StringHelper.normalize(content, encoding));
-	        } else {
-	            if (message == null) message = HTTPHelper.getResponseStatusMessage(code);
-	            response.setResponse(code, message);
-
-	            if (contentType == null) contentType = "application/octet-stream";
-	            if (encoding == null) encoding = CharsetHelper.DEFAULT_CHARSET_NAME;
-
-	            javax.activation.MimeType mimeType = new javax.activation.MimeType(contentType);
-	            mimeType.setParameter("charset", encoding);
-
-	            response.clearField("Content-Type");
-	            response.addField("Content-Type", mimeType.toString());
-
-	            if (headers != null) {
-	                IDataCursor hc = headers.getCursor();
-
-	                while(hc.next()) {
-	                    String key = hc.getKey();
-	                    Object value = hc.getValue();
-
-	                    if (key != null && value != null) {
-	                        response.clearField(key);
-	                        response.addField(key, value.toString());
-	                    }
-	                }
-	                hc.destroy();
-	            }
-	        }
-
-	        if (content == null) content = "";
-	        byte[] body = permafrost.tundra.lang.BytesHelper.normalize(content, encoding);
-	        com.wm.app.b2b.server.Service.setResponse(body);
-	    } catch (java.io.IOException ex) {
-	        ExceptionHelper.raise(ex);
-	    } catch (javax.activation.MimeTypeParseException ex) {
-	        ExceptionHelper.raise(ex);
-	    }
-	}
-
 	// returns true if the calling service is the top-level initiating
 	// service of the current thread
 	public static boolean initiator() {
