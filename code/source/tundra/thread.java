@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-09 10:31:58 AEST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2015-11-12 16:50:26.336
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -34,17 +34,16 @@ public final class thread
 		// --- <<IS-START(current)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [o] recref:0:required $thread tundra.support.schema:thread
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
-		    IDataUtil.put(cursor, "$thread", ThreadHelper.getCurrentThreadAsIData());
+		    IDataUtil.put(cursor, "$thread", ThreadHelper.toIData(ThreadHelper.current()));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -55,13 +54,12 @@ public final class thread
 		// --- <<IS-START(list)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [o] recref:1:required $threads tundra.support.schema:thread
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
-		    IData[] threads = ThreadHelper.listThreadsAsIDataArray();
+		    Thread[] threads = ThreadHelper.list();
 		    if (threads != null) {
-		        IDataUtil.put(cursor, "$threads", threads);
+		        IDataUtil.put(cursor, "$threads", ThreadHelper.toIDataArray(threads));
 		        IDataUtil.put(cursor, "$threads.length", "" + threads.length);
 		    } else {
 		        IDataUtil.put(cursor, "$threads.length", "0");
@@ -71,7 +69,7 @@ public final class thread
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 
