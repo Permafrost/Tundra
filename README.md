@@ -12053,6 +12053,26 @@ Implemented with the [Apache Santuario] XML Security library.
 
 ---
 
+### tundra.xml:emit
+
+Serializes an [org.w3c.dom.Document] object, known as a node in
+webMethods parlance, to an [XML] string, byte array, or input stream.
+
+#### Inputs:
+
+* $node is an [org.w3c.dom.Document] object to be serialized.
+* $encoding is the character set used when serializing the content.
+  Defaults to [UTF-8].
+* $mode is a choice of bytes, stream, or string, and determines the
+  type of object $content is returned as. Defaults to stream.
+
+#### Outputs:
+
+* $content is the given [org.w3c.dom.Document] object serialized to
+  [XML].
+
+---
+
 ### tundra.xml.mime.type:check
 
 Returns true if the given MIME media type is recognized as a [XML] media
@@ -12335,6 +12355,7 @@ Copyright &copy; 2012 Lachlan Dowding. See the [LICENSE] file for further detail
 [MIME]: <http://en.wikipedia.org/wiki/MIME>
 [natural ordering]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Comparable.html>
 [Object.toString()]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html#toString()>
+[org.w3c.dom.Document]: <http://docs.oracle.com/javase/6/docs/api/org/w3c/dom/Document.html>
 [primitive type]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Class.html#isPrimitive()>
 [radix]: <http://en.wikipedia.org/wiki/Radix>
 [regular expression pattern]: <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html>

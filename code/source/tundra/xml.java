@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-10-02 20:58:52 EST
+// -----( CREATED: 2015-11-16 15:29:36 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -10,9 +10,11 @@ import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import java.io.IOException;
+import org.w3c.dom.Document;
 import permafrost.tundra.io.StreamHelper;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.BytesHelper;
+import permafrost.tundra.lang.CharsetHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.lang.ObjectHelper;
 import permafrost.tundra.xml.XMLHelper;
@@ -54,6 +56,38 @@ public final class xml
 		    String mode = IDataUtil.getString(cursor, "$mode");
 		
 		    if (content != null) IDataUtil.put(cursor, "$content.canonical", ObjectHelper.convert(XMLHelper.canonicalize(BytesHelper.normalize(content, encoding), encoding, algorithm), mode));
+		} catch(IOException ex) {
+		    ExceptionHelper.raise(ex);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void emit (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(emit)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:0:optional $node
+		// [i] field:0:optional $encoding
+		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
+		// [o] object:0:optional $content
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    Document document = (Document)IDataUtil.get(cursor, "$node");
+		    String encoding = IDataUtil.getString(cursor, "$encoding");
+		    String mode = IDataUtil.getString(cursor, "$mode");
+		
+		    Object content = ObjectHelper.convert(XMLHelper.emit(document, CharsetHelper.normalize(encoding)), mode);
+		
+		    if (content != null) IDataUtil.put(cursor, "$content", content);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
