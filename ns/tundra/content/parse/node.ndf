@@ -7,7 +7,6 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
-      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -21,7 +20,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$content</value>
           <value name="field_type">object</value>
           <value name="field_dim">0</value>
@@ -38,7 +36,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$content.type</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -65,7 +62,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$namespace</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
@@ -75,7 +71,6 @@
           <value name="is_global">false</value>
           <array name="rec_fields" type="record" depth="1">
           </array>
-          <value name="modifiable">true</value>
         </record>
         <record javaclass="com.wm.util.Values">
           <value name="node_type">record</value>
@@ -85,7 +80,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$encoding</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -113,7 +107,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$schema</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -133,12 +126,41 @@
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
         </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_usereditable">false</value>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="field_name">$validate?</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <array name="field_options" type="value" depth="1">
+            <value>false</value>
+            <value>true</value>
+          </array>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">boolean</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
       </array>
-      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
-      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -152,7 +174,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$document</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
@@ -162,10 +183,8 @@
           <value name="is_global">false</value>
           <array name="rec_fields" type="record" depth="1">
           </array>
-          <value name="modifiable">true</value>
         </record>
       </array>
-      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">### tundra.content:parse
@@ -208,6 +227,9 @@ Parser implementions for the supported content types are as follows:
 * $namespace is a list of namespace prefixes and the URIs they map to,
   used when parsing [XML] content with elements in one or more
   namespaces.
+* $encoding is an optional character set to use when $content is
+  provided as a byte array or input stream to decode the contained text
+  data. Defaults to [UTF-8].
 * $schema is the fully-qualified name of the parsing schema to use when
   parsing $content as [XML] or Flat File content, and can have the
   following values:
@@ -223,9 +245,9 @@ Parser implementions for the supported content types are as follows:
 
   Defaults to parsing $content as [XML], if neither $content.type nor
   $schema are specified.
-* $encoding is an optional character set to use when $content is
-  provided as a byte array or input stream to decode the contained text
-  data. Defaults to [UTF-8].
+* $validate? is an optional boolean flag which when true will validate
+  the parsed content against the given $schema, and throw an exception
+  if the content is invalid. Defaults to false.
 
 #### Outputs:
 
@@ -254,16 +276,10 @@ Parser implementions for the supported content types are as follows:
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
-  <null name="auditfields_input"/>
-  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
-  <value name="pipeline_option">1</value>
-  <null name="originURI"/>
-  <value name="modifiable">true</value>
-  <value name="is_public">false</value>
 </Values>

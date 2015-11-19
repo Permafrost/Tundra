@@ -1241,6 +1241,9 @@ Parser implementions for the supported content types are as follows:
 * `$namespace` is a list of namespace prefixes and the URIs they map to,
   used when parsing [XML] content with elements in one or more
   namespaces.
+* `$encoding` is an optional character set to use when `$content` is
+  provided as a byte array or input stream to decode the contained text
+  data. Defaults to [UTF-8].
 * `$schema` is the fully-qualified name of the parsing schema to use when
   parsing `$content` as [XML] or Flat File content, and can have the
   following values:
@@ -1256,9 +1259,9 @@ Parser implementions for the supported content types are as follows:
 
   Defaults to parsing `$content` as [XML], if neither `$content.type` nor
   `$schema` are specified.
-* `$encoding` is an optional character set to use when `$content` is
-  provided as a byte array or input stream to decode the contained text
-  data. Defaults to [UTF-8].
+* `$validate?` is an optional boolean flag which when `true` will validate
+  the parsed content against the given `$schema`, and throw an exception
+  if the content is invalid. Defaults to `false`.
 
 #### Outputs:
 
