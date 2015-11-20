@@ -11,7 +11,7 @@
   <!-- nodes -->
 
 <SEQUENCE NAME="$default" TIMEOUT="" EXIT-ON="FAILURE">
-  <COMMENT></COMMENT>
+  <COMMENT>check whether this it a flat file schema</COMMENT>
 
   <!-- nodes -->
 
@@ -582,7 +582,7 @@
 
   <!-- nodes -->
 
-<MAP NAME="Flat File Schema" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="Flat File Schema" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
@@ -774,7 +774,7 @@
 </EXIT>
 </BRANCH>
 
-<MAP NAME="drop" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="drop" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
@@ -935,6 +935,10 @@
 <MAPDELETE NAME="Dropper" FIELD="/$type;1;0">
 </MAPDELETE>
 </MAP>
+</SEQUENCE>
+
+<SEQUENCE NAME="$null" TIMEOUT="" EXIT-ON="FAILURE">
+  <COMMENT>do nothing</COMMENT>
 </SEQUENCE>
 </BRANCH>
 
@@ -1969,7 +1973,7 @@
 
   <!-- nodes -->
 
-<MAP NAME="true" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="true" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
@@ -2242,7 +2246,7 @@
 </MAPSET>
 </MAP>
 
-<MAP NAME="$default" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="$default" MODE="STANDALONE">
   <COMMENT>finally: default to xml</COMMENT>
   <MAPTARGET>
 
@@ -3211,7 +3215,7 @@
 </SEQUENCE>
 </BRANCH>
 
-<MAP NAME="drop" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="drop" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
@@ -3340,7 +3344,7 @@
 </MAP>
 </SEQUENCE>
 
-<MAP NAME="$null" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="$null" MODE="STANDALONE">
   <COMMENT>default to xml</COMMENT>
   <MAPTARGET>
 
@@ -3469,7 +3473,7 @@
 
   <!-- nodes -->
 
-<MAP NAME="xml" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="xml" MODE="STANDALONE">
   <COMMENT>default $content.type to text/xml</COMMENT>
   <MAPTARGET>
 
@@ -3604,7 +3608,7 @@
 </MAPSET>
 </MAP>
 
-<MAP NAME="plain" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="plain" MODE="STANDALONE">
   <COMMENT>default $content.type to text/plain</COMMENT>
   <MAPTARGET>
 
@@ -3739,7 +3743,7 @@
 </MAPSET>
 </MAP>
 
-<MAP NAME="csv" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="csv" MODE="STANDALONE">
   <COMMENT>default $content.type to text/csv</COMMENT>
   <MAPTARGET>
 
@@ -3874,7 +3878,7 @@
 </MAPSET>
 </MAP>
 
-<MAP NAME="psv" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="psv" MODE="STANDALONE">
   <COMMENT>default $content.type to text/psv</COMMENT>
   <MAPTARGET>
 
@@ -4009,7 +4013,7 @@
 </MAPSET>
 </MAP>
 
-<MAP NAME="tsv" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="tsv" MODE="STANDALONE">
   <COMMENT>default $content.type to text/tsv</COMMENT>
   <MAPTARGET>
 
@@ -4144,7 +4148,7 @@
 </MAPSET>
 </MAP>
 
-<MAP NAME="json" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="json" MODE="STANDALONE">
   <COMMENT>default $content.type to application/json</COMMENT>
   <MAPTARGET>
 
@@ -4279,7 +4283,7 @@
 </MAPSET>
 </MAP>
 
-<MAP NAME="yaml" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="yaml" MODE="STANDALONE">
   <COMMENT>default $content.type to text/yaml</COMMENT>
   <MAPTARGET>
 
@@ -4414,7 +4418,7 @@
 </MAPSET>
 </MAP>
 
-<MAP NAME="$default" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="$default" MODE="STANDALONE">
   <COMMENT>default $content.type to application/octet-stream</COMMENT>
 </MAP>
 </BRANCH>
