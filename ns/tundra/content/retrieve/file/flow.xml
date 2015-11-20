@@ -2528,7 +2528,7 @@
 </EXIT>
 </BRANCH>
 
-<MAP NAME="drop" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="drop" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
@@ -21752,7 +21752,7 @@
 
   <!-- nodes -->
 
-<MAP NAME="1" MODE="STANDALONE">
+<MAP NAME="1" TIMEOUT="" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
@@ -21823,6 +21823,15 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="field_name">$purge.message</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
         <value name="field_name">$working.directory</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -21838,17 +21847,6 @@
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">record</value>
-        <value name="field_name">$archive.uri</value>
-        <value name="field_type">record</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-        <array name="rec_fields" type="record" depth="1">
-        </array>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
@@ -21871,6 +21869,17 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
+        <value name="field_name">$archive.uri</value>
+        <value name="field_type">record</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+        <array name="rec_fields" type="record" depth="1">
+        </array>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
         <value name="field_name">$working.uri</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -21883,15 +21892,6 @@
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
         <value name="field_name">$processed.count</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="field_name">$purge.duration</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -21924,7 +21924,7 @@
   <DATA ENCODING="XMLValues" I18N="true">
 
 <Values version="2.0">
-  <value name="xml">%$message%; 1 file skipped as it was either locked by another process, or the retrieve process has insufficient access rights</value>
+  <value name="xml">%$message%; 1 file skipped possibly due to locking by another process, or the retrieve process having insufficient access rights</value>
   <record name="type" javaclass="com.wm.util.Values">
     <value name="node_type">unknown</value>
     <value name="field_name">$message</value>
@@ -21939,7 +21939,7 @@
 </MAPSET>
 </MAP>
 
-<MAP NAME="$default" MODE="STANDALONE">
+<MAP NAME="$default" TIMEOUT="" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
@@ -22010,6 +22010,15 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="field_name">$purge.message</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
         <value name="field_name">$working.directory</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -22025,17 +22034,6 @@
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">record</value>
-        <value name="field_name">$archive.uri</value>
-        <value name="field_type">record</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-        <array name="rec_fields" type="record" depth="1">
-        </array>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
@@ -22058,6 +22056,17 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
+        <value name="field_name">$archive.uri</value>
+        <value name="field_type">record</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+        <array name="rec_fields" type="record" depth="1">
+        </array>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
         <value name="field_name">$working.uri</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -22070,15 +22079,6 @@
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
         <value name="field_name">$processed.count</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="field_name">$purge.duration</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -22111,7 +22111,7 @@
   <DATA ENCODING="XMLValues" I18N="true">
 
 <Values version="2.0">
-  <value name="xml">%$message%; %$skipped% files skipped as they were either locked by another process, or the retrieve process has insufficient access rights</value>
+  <value name="xml">%$message%; %$skipped% files skipped possibly due to locking by another process, or the retrieve process having insufficient access rights</value>
   <record name="type" javaclass="com.wm.util.Values">
     <value name="node_type">unknown</value>
     <value name="field_name">$message</value>
