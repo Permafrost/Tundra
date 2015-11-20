@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-11-13 09:40:51.898
+// -----( CREATED: 2015-11-20 12:50:07.897
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -16,6 +16,7 @@ import permafrost.tundra.lang.CharsetHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.lang.StringHelper;
 import permafrost.tundra.lang.ThreadHelper;
+import permafrost.tundra.math.IntegerHelper;
 import permafrost.tundra.math.NormalDistributionEstimator;
 import permafrost.tundra.net.http.HTTPHelper;
 import permafrost.tundra.server.NodeHelper;
@@ -49,6 +50,7 @@ public final class service
 		// [i] field:0:required $service
 		// [i] record:0:optional $pipeline
 		// [i] field:0:required $count
+		// [i] field:0:optional $raise? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:required $duration.average
 		// [o] field:0:required $duration.standard.deviation
 		// [o] field:0:required $duration.minimum
@@ -59,9 +61,10 @@ public final class service
 		try {
 		    String service = IDataUtil.getString(cursor, "$service");
 		    IData scope = IDataUtil.getIData(cursor, "$pipeline");
-		    int count = Integer.parseInt(IDataUtil.getString(cursor, "$count"));
+		    int count = IntegerHelper.parse(IDataUtil.getString(cursor, "$count"));
+		    boolean raise = BooleanHelper.parse(IDataUtil.getString(cursor, "$raise?"));
 
-		    NormalDistributionEstimator estimator = benchmark(service, scope == null? pipeline : scope, count);
+		    NormalDistributionEstimator estimator = benchmark(service, scope == null? pipeline : scope, count, raise);
 
 		    IDataUtil.put(cursor, "$duration.average", DurationHelper.format(estimator.getMean()/1000.0, 6, DurationPattern.XML));
 		    IDataUtil.put(cursor, "$duration.standard.deviation", DurationHelper.format(estimator.getStandardDeviation()/1000.0, 6, DurationPattern.XML));
@@ -598,20 +601,25 @@ public final class service
 
 	// invokes the given service a given number of times, and returns execution duration statistics
 	public static NormalDistributionEstimator benchmark(String service, IData pipeline, int count) throws ServiceException {
+	    return benchmark(service, pipeline, count, false);
+	}
+
+	// invokes the given service a given number of times, and returns execution duration statistics
+	public static NormalDistributionEstimator benchmark(String service, IData pipeline, int count, boolean raise) throws ServiceException {
 	    NormalDistributionEstimator estimator = new NormalDistributionEstimator("ms");
 
 	    validate(service, true);
 
-	    try {
-	        for (int i = 0; i < count; i++) {
-	            long start = System.currentTimeMillis();
+	    for (int i = 0; i < count; i++) {
+	        long start = System.currentTimeMillis();
+	        try {
 	            tundra.service.invoke.synchronous(service, pipeline);
+	        } catch (ServiceException ex) {
+	            if (raise) throw ex;
+	        } finally {
 	            long end = System.currentTimeMillis();
-
 	            estimator.add(end - start);
 	        }
-	    } catch (ServiceException ex) {
-	        // ignore exceptions
 	    }
 
 	    return estimator;

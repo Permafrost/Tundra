@@ -10518,6 +10518,9 @@ deviation execution durations.
   be greater than or equal to 1. The more times `$service` is
   invoked, the more reliable the resulting statistics will be (in
   other words, the more samples the better).
+* `$raise?` is an optional boolean flag which when `true` will halt the
+  benchmark immediately upon encountering the first exception thrown by
+  `$service`, and rethrows it. Defaults to `false`.
 
 #### Outputs:
 
