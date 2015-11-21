@@ -325,6 +325,70 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
+          <value name="field_name">$validate.input?</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <array name="field_options" type="value" depth="1">
+            <value>false</value>
+            <value>true</value>
+          </array>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">boolean</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_usereditable">false</value>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$validate.output?</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <array name="field_options" type="value" depth="1">
+            <value>false</value>
+            <value>true</value>
+          </array>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">boolean</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_usereditable">false</value>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
           <value name="field_name">$mode.output</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -499,27 +563,9 @@
   </record>
   <value name="node_comment">### tundra.content:split
 
-One-to-many conversion of content in one format to another format. Calls
-the given splitting service, passing the parsed $content as an input,
-and emitting the split list of $contents as output.
-
-Parser implementions for the supported content types are as follows:
-* [CSV]: Tundra/tundra.csv:parse
-* Flat File: WmFlatFile/pub.flatFile:convertToValues
-* [JSON]: Tundra/tundra.json:parse
-* Pipe separated values: Tundra/tundra.csv:parse
-* [TSV]: Tundra/tundra.csv:parse
-* [XML]: WmPublic/pub.xml:xmlStringToXMLNode, pub.xml:xmlNodeToDocument
-* [YAML]: Tundra/tundra.yaml:parse
-
-Emitter implementions for the supported content types are as follows:
-* [CSV]: Tundra/tundra.csv:emit
-* Flat File: WmFlatFile/pub.flatFile:convertToString
-* [JSON]: Tundra/tundra.json:emit
-* Pipe separated values: Tundra/tundra.csv:emit
-* [TSV]: Tundra/tundra.csv:emit
-* [XML]: WmPublic/pub.xml:documentToXMLString
-* [YAML]: Tundra/tundra.yaml:emit
+One-to-many (1:N) conversion of content in one format to another format.
+Calls the given splitting service, passing the parsed $content as an
+input, and emitting the split list of $contents as output.
 
 #### Inputs:
 
@@ -532,93 +578,32 @@ Emitter implementions for the supported content types are as follows:
   variables to be included in the input pipeline of the invocation of
   $service.
 * $content.type.input is the MIME media type that describes the format
-  of the given $content:
-  * [CSV]: specify a recognized [CSV] MIME media type, such as
-    "text/csv", "text/comma-separated-values", or a type that includes a
-    "+csv" suffix.
-  * Flat File: optionally specify any MIME media type.
-  * [JSON]: specify a recognized [JSON] MIME media type, such as
-    "application/json", or a type that includes a "+json" suffix.
-  * Pipe separated values: specify a MIME media type "text/psv",
-    "text/pipe-separated-values", or a type that includes a "+psv"
-    suffix.
-  * [TSV]: specify a recognized [TSV] MIME media type, such as
-    "text/tsv", "text/tab-separated-values", or a type that includes a
-    "+tsv" suffix.
-  * [YAML]: specify a recognized [YAML] MIME media type, such as
-    "application/yaml", or a type that includes a "+yaml" suffix.
-  * [XML]: optionally specify a recognized [XML] MIME media type, such as
-    "text/xml" or "application/xml", or a type that includes a "+xml"
-    suffix.
+  of the given $content.
 * $content.type.output is the MIME media type that describes the
   format of the resulting serialized split content, if all split content
-  formats are alike:
-  * [CSV]: specify a recognized [CSV] MIME media type, such as
-    "text/csv", "text/comma-separated-values", or a type that includes a
-    "+csv" suffix.
-  * Flat File: optionally specify any MIME media type.
-  * [JSON]: specify a recognized [JSON] MIME media type, such as
-    "application/json", or a type that includes a "+json" suffix.
-  * Pipe separated values: specify a MIME media type "text/psv",
-    "text/pipe-separated-values", or a type that includes a "+psv"
-    suffix.
-  * [TSV]: specify a recognized [TSV] MIME media type, such as
-    "text/tsv", "text/tab-separated-values", or a type that includes a
-    "+tsv" suffix.
-  * [YAML]: specify a recognized [YAML] MIME media type, such as
-    "application/yaml", or a type that includes a "+yaml" suffix.
-  * [XML]: optionally specify a recognized [XML] MIME media type, such as
-    "text/xml" or "application/xml", or a type that includes a "+xml"
-    suffix.
-
-  Alternatively, it is permissible for the resulting list returned by
-  $service to contain unlike documents (documents whose MIME types are
-  different), and in this case $service is required to return a string
-  list $content.types, where each item in $content.types has a value
-  appropriate (for example, "application/json" for [JSON] content) for
-  serializing the corresponding indexed item in the returned document
-  list.
+  formats are alike. Alternatively, it is permissible for the resulting
+  list returned by $service to contain unlike documents (documents whose
+  MIME types are different), and in this case $service is required to
+  return a string list $content.types, where each item in $content.types
+  has a value appropriate (for example, "application/json" for [JSON]
+  content) for serializing the corresponding indexed item in the returned
+  document list.
 * $namespace.input is a list of namespace prefixes and the URIs they
   map to, used when parsing [XML] content with elements in one or more
   namespaces.
 * $namespace.output is a list of namespace prefixes and the URIs they
   map to, used when emitting [XML] content with elements in one or more
-  namespaces.
-
-  Alternatively, it is permissible for the resulting list returned by
-  $service to contain unlike documents (documents whose MIME types are
-  different), and in this case $service is required to return an IData
-  document list $namespaces, where each item in $namespaces declares the
-  namespace prefixes and URIs appropriate for serializing the
-  corresponding indexed item in the returned document list.
-* $schema.input is the fully-qualified name of the parsing schema to
-  use when parsing $content as [XML] or Flat File content, and can
-  have the following values:
-  * [CSV]: do not specify.
-  * Flat File: specify the fully-qualified name of the Integration Server
-    Flat File Schema element that defines the Flat File format.
-  * [JSON]: do not specify.
-  * Pipe separated values: do not specify.
-  * [TSV]: do not specify.
-  * [YAML]: do not specify.
-  * [XML]: specify the fully-qualified name of the Integration Server
-    document reference that defines the [XML] format.
-
-  Defaults to parsing $content as [XML], if neither
-  $content.type.input nor $schema.input are specified.
-* $schema.output is the fully-qualified name of the parsing schema to
-  use when serializing the split documents to [XML] or Flat File
-  content, and can have the following values:
-  * [CSV]: do not specify.
-  * Flat File: specify the fully-qualified name of the Integration Server
-    Flat File Schema element that defines the Flat File format.
-  * [JSON]: do not specify.
-  * Pipe separated values: do not specify.
-  * [TSV]: do not specify.
-  * [YAML]: do not specify.
-  * [XML]: specify the fully-qualified name of the document reference
-    that defines the [XML] format.
-
+  namespaces. Alternatively, it is permissible for the resulting list
+  returned by $service to contain unlike documents (documents whose
+  MIME types are different), and in this case $service is required to
+  return an IData document list $namespaces, where each item in
+  $namespaces declares the namespace prefixes and URIs appropriate for
+  serializing the corresponding indexed item in the returned document
+  list.
+* $schema.input is the fully-qualified name of the document reference
+  or flat file schema to use when parsing $content.
+* $schema.output is the fully-qualified name of the document reference
+  or flat file schema to use when serializing the split documents.
   Alternatively, it is permissible for the resulting list returned by
   $service to contain unlike documents (documents whose formats are
   different), and in this case $service is required to return a string
@@ -626,10 +611,6 @@ Emitter implementions for the supported content types are as follows:
   (document reference for [XML], flat file schema for Flat Files) for
   serializing the corresponding indexed item in the returned document
   list.
-
-  Defaults to serializing the returned documents as [XML], if neither
-  $content.type.output nor $schema.output are specified, and neither
-  $content.types nor $schemas are returned by $service.
 * $service.input is an optional variable name to use in the input
   pipeline of the call to $service for the parsed $content IData
   document. Defaults to $document.
@@ -642,6 +623,12 @@ Emitter implementions for the supported content types are as follows:
 * $encoding.output is an optional character set used to encode the
   split text datum if the specified $mode.output is a byte array or
   stream. Defaults to [UTF-8].
+* $validate.input? is an optional boolean flag which when true will
+  validate the input content against the given $schema.input, and throw
+  an exception if the content is invalid. Defaults to false.
+* $validate.output? is an optional boolean flag which when true will
+  validate each output content against the appropriate schema, and throw
+  an exception if the content is invalid. Defaults to false.
 * $mode.output is an optional choice of stream, bytes, or string which
   specifies the type of object each item in $contents is returned as.
   Defaults to stream.
@@ -656,12 +643,8 @@ Emitter implementions for the supported content types are as follows:
   (for XML) or flat file schemas (for flat files) returned by $service
   if the $contents list contains unlike formats.
 
-[CSV]: &lt;http://en.wikipedia.org/wiki/Comma-separated_values&gt;
-[JSON]: &lt;http://www.json.org/&gt;
-[TSV]: &lt;http://en.wikipedia.org/wiki/Tab-separated_values&gt;
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;
-[XML]: &lt;http://www.w3.org/XML/&gt;
-[YAML]: &lt;http://www.yaml.org&gt;</value>
+[XML]: &lt;http://www.w3.org/XML/&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

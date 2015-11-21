@@ -1,7 +1,7 @@
-package tundra.support;
+package tundra.support.exception;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-09 14:01:21 AEST
+// -----( CREATED: 2015-11-20 18:21:38 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -9,39 +9,36 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.lang.ValidationException;
 // --- <<IS-END-IMPORTS>> ---
 
-public final class exception
+public final class validation
 
 {
 	// ---( internal utility methods )---
 
-	final static exception _instance = new exception();
+	final static validation _instance = new validation();
 
-	static exception _newInstance() { return new exception(); }
+	static validation _newInstance() { return new validation(); }
 
-	static exception _cast(Object o) { return (exception)o; }
+	static validation _cast(Object o) { return (validation)o; }
 
 	// ---( server methods )---
 
 
 
 
-	public static final void create (IData pipeline)
+	public static final void raise (IData pipeline)
         throws ServiceException
 	{
-		// --- <<IS-START(create)>> ---
+		// --- <<IS-START(raise)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $message
-		// [o] object:0:required $exception
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String message = IDataUtil.getString(cursor, "$message");
-		    if (message == null) message = "";
-		
-		    IDataUtil.put(cursor, "$exception", new Exception(message));
+		    throw new ValidationException(IDataUtil.getString(cursor, "$message"));
 		} finally {
 		    cursor.destroy();
 		}

@@ -2,7 +2,7 @@
 
 <Values version="2.0">
   <value name="node_type">interface</value>
-  <value name="node_nsName">tundra.support.test.exception</value>
+  <value name="node_nsName">tundra.support.exception.validation</value>
   <value name="is_public">false</value>
   <value name="shared"></value>
   <value name="encodeutf8">true</value>
@@ -10,5 +10,6 @@
   <array name="implements" type="value" depth="1">
   </array>
   <array name="imports" type="value" depth="1">
+    <value>permafrost.tundra.lang.ValidationException</value>
   </array>
 </Values>
