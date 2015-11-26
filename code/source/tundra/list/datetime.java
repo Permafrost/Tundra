@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-21 15:28:14 AEST
+// -----( CREATED: 2015-11-26 18:44:52 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -10,6 +10,7 @@ import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import permafrost.tundra.time.DateTimeHelper;
+import permafrost.tundra.time.DurationHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class datetime
@@ -28,6 +29,51 @@ public final class datetime
 
 
 
+	public static final void duration (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(duration)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:1:optional $datetimes
+		// [i] - field:0:optional start
+		// [i] - field:0:optional end
+		// [i] field:0:optional $datetime.pattern {&quot;datetime&quot;,&quot;datetime.db2&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
+		// [i] field:0:optional $duration.pattern {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
+		// [o] field:1:optional $durations
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    IData[] datetimes = IDataUtil.getIDataArray(cursor, "$datetimes");
+		    String datetimePattern = IDataUtil.getString(cursor, "$datetime.pattern");
+		    String durationPattern = IDataUtil.getString(cursor, "$duration.pattern");
+		
+		    if (datetimes != null) {
+		        String[] durations = new String[datetimes.length];
+		
+		        for (int i = 0; i < datetimes.length; i++) {
+		            if (datetimes[i] != null) {
+		                IDataCursor dc = datetimes[i].getCursor();
+		                String start = IDataUtil.getString(dc, "start");
+		                String end = IDataUtil.getString(dc, "end");
+		                dc.destroy();
+		
+		                durations[i] = DurationHelper.emit(DateTimeHelper.duration(DateTimeHelper.parse(start, datetimePattern), DateTimeHelper.parse(end, datetimePattern)), durationPattern);
+		            }
+		        }
+		
+		        IDataUtil.put(cursor, "$durations", durations);
+		    }
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void format (IData pipeline)
         throws ServiceException
 	{
@@ -35,9 +81,9 @@ public final class datetime
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:1:optional $list
-		// [i] field:0:optional $pattern.input {"datetime","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
+		// [i] field:0:optional $pattern.input {&quot;datetime&quot;,&quot;datetime.db2&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
 		// [i] field:1:optional $patterns.input
-		// [i] field:0:optional $pattern.output {"datetime","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
+		// [i] field:0:optional $pattern.output {&quot;datetime&quot;,&quot;datetime.db2&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
 		// [i] field:0:optional $timezone.input
 		// [i] field:0:optional $timezone.output
 		// [o] field:1:optional $list

@@ -5620,6 +5620,47 @@ input streams) into an IData[] document list.
 
 ---
 
+### tundra.list.datetime:duration
+
+Returns the durations between a list of datetime pairs.
+
+Supports a handful of well-known named datetime patterns:
+
+Pattern Name  | Description
+------------- | --------------------------------------------
+datetime      | ISO8601 XML datetime
+datetime.db2  | yyyy-MM-dd-HH.mm.ss.SSSSSS
+datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
+date          | ISO8601 XML date
+date.jdbc     | yyyy-mm-dd
+time          | ISO8601 XML time
+time.jdbc     | HH:mm:ss
+milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
+
+Custom datetime patterns can be specified using
+[java.text.SimpleDateFormat] compatible patterns.
+
+#### Inputs:
+
+* `$datetimes` is a list of datetime pairs for which durations will be
+  calculated.
+  * `start` is the datetime string representing the starting instant
+    for calculating the duration of time.
+  * `end` is the datetime string representing the ending instant for
+    calculating the duration of time.
+* `$datetime.pattern` is an optional datetime pattern that the given
+  datetime strings conform to. Defaults to an [ISO8601] XML datetime.
+* `$duration.pattern` is an optional duration pattern that the output
+  `$durations` will be formatted as. Defaults to an [ISO8601] XML
+  duration.
+
+#### Outputs:
+
+* `$durations` is a list of the durations of time between each given
+  datetime string pair.
+
+---
+
 ### tundra.list.datetime:format
 
 Formats a list of datetime strings that conform to the input
