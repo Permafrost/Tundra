@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-11-28 15:43:09 EST
+// -----( CREATED: 2015-11-28 15:52:29 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -82,6 +82,7 @@ public final class directory
 		try {
 		    String directory = IDataUtil.getString(cursor, "$directory");
 		    boolean raise = BooleanHelper.parse(IDataUtil.getString(cursor, "$raise?"));
+		
 		    DirectoryHelper.create(directory, raise);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -107,7 +108,7 @@ public final class directory
 		
 		try {
 		    String directory = IDataUtil.getString(cursor, "$directory");
-		    IDataUtil.put(cursor, "$exists?", "" + DirectoryHelper.exists(directory));
+		    IDataUtil.put(cursor, "$exists?", BooleanHelper.emit(DirectoryHelper.exists(directory)));
 		} finally {
 		    cursor.destroy();
 		}
@@ -164,7 +165,7 @@ public final class directory
 		    String directory = IDataUtil.getString(cursor, "$directory");
 		    String pattern = IDataUtil.getString(cursor, "$pattern");
 		    String mode = IDataUtil.getString(cursor, "$mode");
-		    boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
+		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
 		
 		    DirectoryLister lister;
 		    if (pattern != null) {
@@ -263,7 +264,7 @@ public final class directory
 		    String directory = IDataUtil.getString(cursor, "$directory");
 		    String duration = IDataUtil.getString(cursor, "$duration");
 		    String pattern = IDataUtil.getString(cursor, "$duration.pattern");
-		    boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
+		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
 		
 		    long count = DirectoryHelper.purge(directory, DurationHelper.parse(duration, pattern), recurse);
 		
@@ -320,7 +321,8 @@ public final class directory
 		
 		try {
 		    String directory = IDataUtil.getString(cursor, "$directory");
-		    boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
+		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
+		
 		    DirectoryHelper.remove(directory, recurse);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -347,6 +349,7 @@ public final class directory
 		try {
 		    String source = IDataUtil.getString(cursor, "$directory.source");
 		    String target = IDataUtil.getString(cursor, "$directory.target");
+		
 		    DirectoryHelper.rename(source, target);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
