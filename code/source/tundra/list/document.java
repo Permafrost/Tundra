@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-10-05 13:50:29 EST
+// -----( CREATED: 2015-11-28 15:52:01 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -58,7 +58,7 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
+		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
 		    IData[] list = IDataHelper.blankify(IDataUtil.getIDataArray(cursor, "$list"), recurse);
 		    if (list != null) IDataUtil.put(cursor, "$list", list);
 		} finally {
@@ -84,7 +84,7 @@ public final class document
 		
 		try {
 		    IData[] list = IDataUtil.getIDataArray(cursor, "$list");
-		    boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
+		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
 		    if (list != null) IDataUtil.put(cursor, "$list", IDataHelper.compact(list, recurse));
 		} finally {
 		    cursor.destroy();
@@ -414,7 +414,7 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
+		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
 		    IData[] list = IDataHelper.nullify(IDataUtil.getIDataArray(cursor, "$list"), recurse);
 		    if (list != null) IDataUtil.put(cursor, "$list", list);
 		} finally {
@@ -642,12 +642,9 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		
-		    boolean recurse = Boolean.parseBoolean(IDataUtil.getString(cursor, "$recurse?"));
+		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
 		    IData[] list = IDataHelper.squeeze(IDataUtil.getIDataArray(cursor, "$list"), recurse);
-		
-		    if (list == null) list = new IData[0];
-		    IDataUtil.put(cursor, "$list", list);
+		    IDataUtil.put(cursor, "$list", list == null ? new IData[0] : list);
 		} finally {
 		    cursor.destroy();
 		}
