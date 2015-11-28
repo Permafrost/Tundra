@@ -2589,6 +2589,25 @@ Returns true if the given string can be parsed as a decimal.
 
 ---
 
+### tundra.directory:compact
+
+Deletes all empty child directories recursively from the given
+directory, and optionally deletes the given directory itself if
+also empty after compacting.
+
+#### Inputs:
+
+* `$directory` is a relative or absolute path or file: [URI] to be
+  compacted.
+* `$delete?` is an optional boolean flag which when `true` will delete
+  the given `$directory` itself if it is emtpy after compaction.
+  Defaults to `false`.
+* `$raise? is an optional boolean flag which when `true` will throw
+  an exception if the deletion of any directories fails. Defaults
+  to `false`.
+
+---
+
 ### tundra.directory:create
 
 Creates a new directory.
