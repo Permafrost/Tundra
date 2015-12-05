@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-09-27 18:17:55 EST
+// -----( CREATED: 2015-12-05 19:19:30 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -9,6 +9,8 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import java.util.ArrayList;
+import java.util.List;
 import permafrost.tundra.flow.VariableSubstitutor;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.ExceptionHelper;
@@ -137,8 +139,7 @@ public final class string
 		// --- <<IS-START(concatenate)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:1:optional $list.x
-		// [i] field:1:optional $list.y
+		// [i] record:0:optional $operands
 		// [o] field:1:optional $list
 		tundra.list.object.concatenate(pipeline);
 		// --- <<IS-END>> ---
@@ -206,8 +207,7 @@ public final class string
 		// --- <<IS-START(equal)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:1:optional $list.x
-		// [i] field:1:optional $list.y
+		// [i] record:0:optional $operands
 		// [o] field:0:required $equal?
 		tundra.list.object.equal(pipeline);
 		// --- <<IS-END>> ---
@@ -382,8 +382,7 @@ public final class string
 		// --- <<IS-START(intersection)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:1:optional $list.x
-		// [i] field:1:optional $list.y
+		// [i] record:0:optional $operands
 		// [o] field:1:optional $list
 		tundra.list.object.intersection(pipeline);
 		// --- <<IS-END>> ---
@@ -804,13 +803,50 @@ public final class string
 	}
 
 	// --- <<IS-START-SHARED>> ---
-	// returns the list of items that match and did not match the given regular 
-	// expression or literal string pattern
+	/**
+	 * Returns the list of items that include and do not include the given regular expression or literal string pattern.
+	 * 
+	 * @param input     The array of strings to be processed.
+	 * @param pattern   The pattern to look for in the given strings.
+	 * @param literal   Whether the pattern is literal or a regular expression.
+	 * @return          A pair of arrays, the first containing the strings that contain the pattern, the second
+	 *                  contains the strings that do not contain the pattern.
+	 */
+	public static String[][] find(String[] input, String pattern, boolean literal) {
+	    if (input == null) return null;
+	
+	    List<String> found = new ArrayList<String>(input.length);
+	    List<String> unfound = new ArrayList<String>(input.length);
+	
+	    for (int i = 0; i < input.length; i++) {
+	        if (StringHelper.find(input[i], pattern, literal)) {
+	            found.add(input[i]);
+	        } else {
+	            unfound.add(input[i]);
+	        }
+	    }
+	
+	    String[][] output = new String[2][];
+	    output[0] = found.toArray(new String[found.size()]);
+	    output[1] = unfound.toArray(new String[unfound.size()]);
+	
+	    return output;
+	}
+	
+	/**
+	 * Returns the list of items that match and did not match the given regular expression or literal string pattern.
+	 *
+	 * @param input     The array of strings to be processed.
+	 * @param pattern   The pattern to match against the given strings.
+	 * @param literal   Whether the pattern is literal or a regular expression.
+	 * @return          A pair of arrays, the first containing the strings that match the pattern, the second
+	 *                  contains the strings that do not match the pattern.
+	 */
 	public static String[][] match(String[] input, String pattern, boolean literal) {
 	    if (input == null) return null;
 	
-	    java.util.List<String> matched = new java.util.ArrayList<String>(input.length);
-	    java.util.List<String> unmatched = new java.util.ArrayList<String>(input.length);
+	    List<String> matched = new ArrayList<String>(input.length);
+	    List<String> unmatched = new ArrayList<String>(input.length);
 	
 	    for (int i = 0; i < input.length; i++) {
 	        if (StringHelper.match(input[i], pattern, literal)) {
@@ -823,29 +859,6 @@ public final class string
 	    String[][] output = new String[2][];
 	    output[0] = matched.toArray(new String[0]);
 	    output[1] = unmatched.toArray(new String[0]);
-	
-	    return output;
-	}
-	
-	// returns the list of items that include and do not include the given regular 
-	// expression or literal string pattern
-	public static String[][] find(String[] input, String pattern, boolean literal) {
-	    if (input == null) return null;
-	
-	    java.util.List<String> found = new java.util.ArrayList<String>(input.length);
-	    java.util.List<String> unfound = new java.util.ArrayList<String>(input.length);
-	
-	    for (int i = 0; i < input.length; i++) {
-	        if (StringHelper.find(input[i], pattern, literal)) {
-	            found.add(input[i]);
-	        } else {
-	            unfound.add(input[i]);
-	        }
-	    }
-	
-	    String[][] output = new String[2][];
-	    output[0] = found.toArray(new String[0]);
-	    output[1] = unfound.toArray(new String[0]);
 	
 	    return output;
 	}

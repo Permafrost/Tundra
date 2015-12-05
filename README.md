@@ -5816,8 +5816,8 @@ Returns a new list containing all the items in the given lists.
 
 #### Inputs:
 
-* `$list.x` is the first list to be concatenated.
-* `$list.y` is the second list to be concatenated.
+* `$operands` is an `IData` document under which all the lists to
+  be concatenated should be included.
 
 #### Outputs:
 
@@ -5867,17 +5867,16 @@ variables.
 
 ### tundra.list.document:equal
 
-Returns true if the two given lists are equal.
+Returns true if the given lists are equal.
 
 #### Inputs:
 
-* `$list.x` is a list to be compared with `$list.y`.
-* `$list.y` is a list to be compared with `$list.x`.
+* `$operands` is an `IData` document under which all the lists to
+  be compared for equality should be included.
 
 #### Outputs:
 
-* `$equal?` is a boolean indicating if `$list.x` equals
-  `$list.y`.
+* `$equal?` is a boolean indicating if the given lists are equal.
 
 ---
 
@@ -7092,8 +7091,8 @@ Returns a new list containing all the items in the given lists.
 
 #### Inputs:
 
-* `$list.x` is the first list to be concatenated.
-* `$list.y` is the second list to be concatenated.
+* `$operands` is an `IData` document under which all the lists to
+  be concatenated should be included.
 
 #### Outputs:
 
@@ -7160,17 +7159,16 @@ variables.
 
 ### tundra.list.object:equal
 
-Returns true if the two given lists are equal.
+Returns true if the given lists are equal.
 
 #### Inputs:
 
-* `$list.x` is a list to be compared with `$list.y`.
-* `$list.y` is a list to be compared with `$list.x`.
+* `$operands` is an `IData` document under which all the lists to
+  be compared for equality should be included.
 
 #### Outputs:
 
-* `$equal?` is a boolean indicating if `$list.x` equals
-  `$list.y`.
+* `$equal?` is a boolean indicating if the given lists are equal.
 
 ---
 
@@ -7351,18 +7349,18 @@ Returns true if the given list is an instance of the given class.
 
 ### tundra.list.object:intersection
 
-Returns a list of only the items in `$list.x` that are also present in
-`$list.y`.
+Returns a list of only the items that are also present in all
+the given lists.
 
 #### Inputs:
 
-* `$list.x` is a list to be intersected with `$list.y`.
-* `$list.y` is a list to be intersected with `$list.x`.
+* `$operands` is an `IData` document under which all the lists to
+  be intersected should be included.
 
 #### Outputs:
 
 * `$list` is a new list containing only the items that are present
-  in both input lists (the [set intersection]).
+  in all input lists (the [set intersection]).
 
 ---
 
@@ -7855,8 +7853,8 @@ Returns a new list containing all the items in the given lists.
 
 #### Inputs:
 
-* `$list.x` is the first list to be concatenated.
-* `$list.y` is the second list to be concatenated.
+* `$operands` is an `IData` document under which all the lists to
+  be concatenated should be included.
 
 #### Outputs:
 
@@ -7923,17 +7921,16 @@ variables.
 
 ### tundra.list.string:equal
 
-Returns true if the two given lists are equal.
+Returns true if the given lists are equal.
 
 #### Inputs:
 
-* `$list.x` is a list to be compared with `$list.y`.
-* `$list.y` is a list to be compared with `$list.x`.
+* `$operands` is an `IData` document under which all the lists to
+  be compared for equality should be included.
 
 #### Outputs:
 
-* `$equal?` is a boolean indicating if `$list.x` equals
-  `$list.y`.
+* `$equal?` is a boolean indicating if the given lists are equal.
 
 ---
 
@@ -8101,18 +8098,18 @@ index in the given list.
 
 ### tundra.list.string:intersection
 
-Returns a list of only the items in `$list.x` that are also present in
-`$list.y`.
+Returns a list of only the items that are also present in all
+the given lists.
 
 #### Inputs:
 
-* `$list.x` is a list to be intersected with `$list.y`.
-* `$list.y` is a list to be intersected with `$list.x`.
+* `$operands` is an `IData` document under which all the lists to
+  be intersected should be included.
 
 #### Outputs:
 
 * `$list` is a new list containing only the items that are present
-  in both input lists (the [set intersection]).
+  in all input lists (the [set intersection]).
 
 ---
 

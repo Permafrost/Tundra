@@ -22,31 +22,16 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$list.x</value>
-          <value name="field_type">object</value>
-          <value name="field_dim">1</value>
+          <value name="field_name">$operands</value>
+          <value name="field_type">record</value>
+          <value name="field_dim">0</value>
           <value name="field_opt">true</value>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
-          <value name="is_soap_array_encoding_used">false</value>
-        </record>
-        <record javaclass="com.wm.util.Values">
-          <value name="node_type">record</value>
-          <value name="node_comment"></value>
-          <record name="node_hints" javaclass="com.wm.util.Values">
-            <value name="field_largerEditor">false</value>
-            <value name="field_password">false</value>
-          </record>
-          <value name="is_public">false</value>
-          <value name="field_name">$list.y</value>
-          <value name="field_type">object</value>
-          <value name="field_dim">1</value>
-          <value name="field_opt">true</value>
-          <value name="nillable">true</value>
-          <value name="form_qualified">false</value>
-          <value name="is_global">false</value>
-          <value name="is_soap_array_encoding_used">false</value>
+          <array name="rec_fields" type="record" depth="1">
+          </array>
+          <value name="modifiable">true</value>
         </record>
       </array>
       <value name="modifiable">true</value>
@@ -95,17 +80,16 @@
   </record>
   <value name="node_comment">### tundra.list.object:equal
 
-Returns true if the two given lists are equal.
+Returns true if the given lists are equal.
 
 #### Inputs:
 
-* $list.x is a list to be compared with $list.y.
-* $list.y is a list to be compared with $list.x.
+* $operands is an IData document under which all the lists to
+  be compared for equality should be included.
 
 #### Outputs:
 
-* $equal? is a boolean indicating if $list.x equals
-  $list.y.
+* $equal? is a boolean indicating if the given lists are equal.
 
 </value>
   <value name="stateless">no</value>
@@ -113,10 +97,11 @@ Returns true if the two given lists are equal.
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template">tundra_list_object_equal</value>
+  <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
   <value name="icontext_policy">$null</value>
-  <value name="svcInvkURLAlias"></value>
   <value name="system_service">no</value>
   <value name="retry_max">0</value>
   <value name="retry_interval">0</value>

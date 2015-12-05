@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-09-29 09:29:21 EST
+// -----( CREATED: 2015-12-05 18:56:47 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -9,9 +9,17 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import permafrost.tundra.data.IDataHelper;
+import permafrost.tundra.data.IDataMap;
 import permafrost.tundra.flow.ConditionEvaluator;
 import permafrost.tundra.lang.ArrayHelper;
+import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.ExceptionHelper;
+import permafrost.tundra.math.IntegerHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class object
@@ -74,7 +82,7 @@ public final class object
 		    Object defaultValue = IDataUtil.get(cursor, "$default");
 		    String mode = IDataUtil.getString(cursor, "$mode");
 		
-		    Object result = coalesce(list, defaultValue);
+		    Object result = ArrayHelper.coalesce(list, defaultValue);
 		
 		    if (result != null || (mode != null && mode.equals("null"))) IDataUtil.put(cursor, "$item", result);
 		} finally {
@@ -99,8 +107,7 @@ public final class object
 		
 		try {
 		    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
-		
-		    IDataUtil.put(cursor, "$list", compact(list));
+		    if (list != null && list.length > 0) IDataUtil.put(cursor, "$list", ArrayHelper.compact(list));
 		} finally {
 		    cursor.destroy();
 		}
@@ -117,16 +124,25 @@ public final class object
 		// --- <<IS-START(concatenate)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] object:1:optional $list.x
-		// [i] object:1:optional $list.y
+		// [i] record:0:optional $operands
 		// [o] object:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object[] list = IDataUtil.getObjectArray(cursor, "$list.x");
-		    Object[] items = IDataUtil.getObjectArray(cursor, "$list.y");
+		    IData operands = IDataUtil.getIData(cursor, "$operands");
 		
-		    IDataUtil.put(cursor, "$list", concatenate(list, items));
+		    // support $list.x and $list.y inputs for backwards-compatibility
+		    if (operands == null) {
+		        Object[] listX = IDataUtil.getObjectArray(cursor, "$list.x");
+		        Object[] listY = IDataUtil.getObjectArray(cursor, "$list.y");
+		
+		        IDataMap map = new IDataMap();
+		        if (listX != null) map.put("$list.x", listX);
+		        if (listY != null) map.put("$list.y", listY);
+		        operands = map;
+		    }
+		
+		    if (IDataHelper.size(operands) > 0) IDataUtil.put(cursor, "$list", ArrayHelper.concatenate(operands));
 		} finally {
 		    cursor.destroy();
 		}
@@ -149,10 +165,10 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object[] x = IDataUtil.getObjectArray(cursor, "$list.x");
-		    Object[] y = IDataUtil.getObjectArray(cursor, "$list.y");
+		    Object[] listX = IDataUtil.getObjectArray(cursor, "$list.x");
+		    Object[] listY = IDataUtil.getObjectArray(cursor, "$list.y");
 		
-		    if (x != null) IDataUtil.put(cursor, "$list", difference(x, y));
+		    if (listX != null) IDataUtil.put(cursor, "$list", ArrayHelper.difference(listX, listY));
 		} finally {
 		    cursor.destroy();
 		}
@@ -176,8 +192,9 @@ public final class object
 		
 		try {
 		    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
-		    String index = IDataUtil.getString(cursor, "$index");
-		    IDataUtil.put(cursor, "$list", drop(list, index));
+		    int index = IntegerHelper.parse(IDataUtil.getString(cursor, "$index"));
+		
+		    if (list != null && list.length > 0) IDataUtil.put(cursor, "$list", ArrayHelper.drop(list, index));
 		} finally {
 		    cursor.destroy();
 		}
@@ -227,16 +244,25 @@ public final class object
 		// --- <<IS-START(equal)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] object:1:optional $list.x
-		// [i] object:1:optional $list.y
+		// [i] record:0:optional $operands
 		// [o] field:0:required $equal?
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object[] x = IDataUtil.getObjectArray(cursor, "$list.x");
-		    Object[] y = IDataUtil.getObjectArray(cursor, "$list.y");
+		    IData operands = IDataUtil.getIData(cursor, "$operands");
 		
-		    IDataUtil.put(cursor, "$equal?", "" + equal(x, y));
+		    // support $list.x and $list.y inputs for backwards-compatibility
+		    if (operands == null) {
+		        Object[] listX = IDataUtil.getObjectArray(cursor, "$list.x");
+		        Object[] listY = IDataUtil.getObjectArray(cursor, "$list.y");
+		
+		        IDataMap map = new IDataMap();
+		        if (listX != null) map.put("$list.x", listX);
+		        if (listY != null) map.put("$list.y", listY);
+		        operands = map;
+		    }
+		
+		    IDataUtil.put(cursor, "$equal?", BooleanHelper.emit(ArrayHelper.equal(operands)));
 		} finally {
 		    cursor.destroy();
 		}
@@ -264,7 +290,7 @@ public final class object
 		    String condition = IDataUtil.getString(cursor, "$condition");
 		    IData scope = IDataUtil.getIData(cursor, "$scope");
 		
-		    IDataUtil.put(cursor, "$list", filter(list, condition, scope == null? pipeline : scope));
+		    if (list != null) IDataUtil.put(cursor, "$list", filter(list, condition, scope == null? pipeline : scope));
 		} finally {
 		    cursor.destroy();
 		}
@@ -287,7 +313,7 @@ public final class object
 		
 		try {
 		    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
-		    if (list != null && list.length > 0) IDataUtil.put(cursor, "$item", first(list));
+		    if (list != null && list.length > 0) IDataUtil.put(cursor, "$item", ArrayHelper.get(list, 0));
 		} finally {
 		    cursor.destroy();
 		}
@@ -312,10 +338,8 @@ public final class object
 		
 		try {
 		    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
-		    String index = IDataUtil.getString(cursor, "$index");
-		    String iteration = IDataUtil.getString(cursor, "$iteration");
-		
-		    if (index != null || iteration != null) IDataUtil.put(cursor, "$item", get(list, index, iteration));
+		    int index = IntegerHelper.parse(IDataUtil.getString(cursor, "$index"), IntegerHelper.parse(IDataUtil.getString(cursor, "$iteration"), 1));
+		    if (list != null && list.length > 0) IDataUtil.put(cursor, "$item", ArrayHelper.get(list, index));
 		} finally {
 		    cursor.destroy();
 		}
@@ -369,7 +393,7 @@ public final class object
 		    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
 		    Object item = IDataUtil.get(cursor, "$item");
 		
-		    IDataUtil.put(cursor, "$include?", "" + include(list, item));
+		    IDataUtil.put(cursor, "$include?", BooleanHelper.emit(ArrayHelper.include(list, item)));
 		} finally {
 		    cursor.destroy();
 		}
@@ -387,8 +411,8 @@ public final class object
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:1:optional $list
-		// [i] field:0:optional index.start
-		// [i] field:0:optional index.step
+		// [i] field:0:optional $index.start
+		// [i] field:0:optional $index.step
 		// [o] field:1:optional $indexes
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -449,7 +473,7 @@ public final class object
 		try {
 		    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
 		    String klass = IDataUtil.getString(cursor, "$class");
-		    if (list != null && klass != null) IDataUtil.put(cursor, "$instance?", "" + tundra.object.instance(list, klass));
+		    if (list != null && klass != null) IDataUtil.put(cursor, "$instance?", BooleanHelper.emit(tundra.object.instance(list, klass)));
 		} finally {
 		    cursor.destroy();
 		}
@@ -466,16 +490,25 @@ public final class object
 		// --- <<IS-START(intersection)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] object:1:optional $list.x
-		// [i] object:1:optional $list.y
+		// [i] record:0:optional $operands
 		// [o] object:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object[] x = IDataUtil.getObjectArray(cursor, "$list.x");
-		    Object[] y = IDataUtil.getObjectArray(cursor, "$list.y");
+		    IData operands = IDataUtil.getIData(cursor, "$operands");
 		
-		    if (x != null && y != null) IDataUtil.put(cursor, "$list", intersection(x, y));
+		    // support $list.x and $list.y inputs for backwards-compatibility
+		    if (operands == null) {
+		        Object[] listX = IDataUtil.getObjectArray(cursor, "$list.x");
+		        Object[] listY = IDataUtil.getObjectArray(cursor, "$list.y");
+		
+		        IDataMap map = new IDataMap();
+		        if (listX != null) map.put("$list.x", listX);
+		        if (listY != null) map.put("$list.y", listY);
+		        operands = map;
+		    }
+		
+		    if (IDataHelper.size(operands) > 0) IDataUtil.put(cursor, "$list", ArrayHelper.intersect(operands));
 		} finally {
 		    cursor.destroy();
 		}
@@ -501,7 +534,7 @@ public final class object
 		    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
 		    String separator = IDataUtil.getString(cursor, "$separator");
 		
-		    IDataUtil.put(cursor, "$result", join(list, separator));
+		    IDataUtil.put(cursor, "$result", ArrayHelper.join(list, separator));
 		} finally {
 		    cursor.destroy();
 		}
@@ -524,7 +557,7 @@ public final class object
 		
 		try {
 		    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
-		    if (list != null && list.length > 0) IDataUtil.put(cursor, "$item", last(list));
+		    if (list != null && list.length > 0) IDataUtil.put(cursor, "$item", ArrayHelper.get(list, -1));
 		} finally {
 		    cursor.destroy();
 		}
@@ -546,7 +579,7 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		try {
 		    Object[] array = IDataUtil.getObjectArray(cursor, "$list");
-		    IDataUtil.put(cursor, "$length", "" + length(array));
+		    IDataUtil.put(cursor, "$length", "" + ArrayHelper.length(array));
 		} finally {
 		    cursor.destroy();
 		}
@@ -700,8 +733,7 @@ public final class object
 		
 		try {
 		    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
-		
-		    IDataUtil.put(cursor, "$list", reverse(list));
+		    if (list != null) IDataUtil.put(cursor, "$list", ArrayHelper.reverse(list));
 		} finally {
 		    cursor.destroy();
 		}
@@ -727,7 +759,7 @@ public final class object
 		    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
 		    int count = Integer.parseInt(IDataUtil.getString(cursor, "$count"));
 		
-		    list = shrink(list, count);
+		    list = ArrayHelper.shrink(list, count);
 		
 		    if (list != null) IDataUtil.put(cursor, "$list", list);
 		} finally {
@@ -754,10 +786,13 @@ public final class object
 		
 		try {
 		    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
-		    String index = IDataUtil.getString(cursor, "$index");
-		    String length = IDataUtil.getString(cursor, "$length");
 		
-		    IDataUtil.put(cursor, "$list", slice(list, index, length));
+		    if (list != null) {
+		        int index = IntegerHelper.parse(IDataUtil.getString(cursor, "$index"));
+		        int length = IntegerHelper.parse(IDataUtil.getString(cursor, "$length"), list.length);
+		
+		        IDataUtil.put(cursor, "$list", ArrayHelper.slice(list, index, length));
+		    }
 		} finally {
 		    cursor.destroy();
 		}
@@ -779,7 +814,7 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		try {
 		    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
-		    IDataUtil.put(cursor, "$list", sort(list));
+		    if (list != null) IDataUtil.put(cursor, "$list", ArrayHelper.sort(list));
 		} finally {
 		    cursor.destroy();
 		}
@@ -801,7 +836,7 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		try {
 		    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
-		    IDataUtil.put(cursor, "$list", squeeze(list));
+		    if (list != null) IDataUtil.put(cursor, "$list", ArrayHelper.squeeze(list));
 		} finally {
 		    cursor.destroy();
 		}
@@ -823,7 +858,7 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		try {
 		    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
-		    IDataUtil.put(cursor, "$list", unique(list));
+		    if (list != null) IDataUtil.put(cursor, "$list", ArrayHelper.unique(list));
 		} finally {
 		    cursor.destroy();
 		}
@@ -833,12 +868,13 @@ public final class object
 	}
 
 	// --- <<IS-START-SHARED>> ---
-	// returns a new array, with the given element inserted at the end
-	public static <T> T[] append(T[] array, T item, Class<T> klass) {
-	    return insert(array, item, -1, klass);
-	}
-	
-	// returns a new array, with the given element inserted at the end
+	/**
+	 * Returns a new array, with the given element inserted at the end.
+	 * 
+	 * @param pipeline The pipeline containing the array and item to be inserted.
+	 * @param klass    The class of the item being appended.
+	 * @param <T>      The class of the item being appended.
+	 */
 	public static <T> void append(IData pipeline, Class<T> klass) {
 	    IDataCursor cursor = pipeline.getCursor();
 	
@@ -846,7 +882,7 @@ public final class object
 	        T[] list = (T[])IDataUtil.getObjectArray(cursor, "$list");
 	        T item = (T)IDataUtil.get(cursor, "$item");
 	
-	        list = append(list == null ? null : java.util.Arrays.copyOf(list, list.length, (Class<T[]>)java.lang.reflect.Array.newInstance(klass, 0).getClass()), item, klass);
+	        list = ArrayHelper.append(list, item, klass, false);
 	
 	        if (list != null) IDataUtil.put(cursor, "$list", list);
 	    } finally {
@@ -854,116 +890,35 @@ public final class object
 	    }
 	}
 	
-	// returns the first non-null item from the given list, or defaultValue if all items are null
-	public static <T> T coalesce(T[] list, T defaultValue) {
-	    T result = null;
-	
-	    if (list != null && list.length > 0) {
-	        for (int i = 0; i < list.length; i++) {
-	            result = list[i];
-	            if (result != null) break;
-	        }
-	    }
-	    if (result == null) result = defaultValue;
-	
-	    return result;
-	}
-	
-	// returns the first non-null item from the given list
-	public static <T> T coalesce(T[] list) {
-	    return coalesce(list, null);
-	}
-	
-	// returns a new array with all null elements removed
-	public static <T> T[] compact(T[] array) {
-	    if (array == null) return array;
-	
-	    java.util.List<T> list = new java.util.ArrayList<T>(array.length);
-	
-	    for (int i = 0; i < array.length; i++) {
-	        if (array[i] != null) list.add(array[i]);
-	    }
-	
-	    return list.toArray(java.util.Arrays.copyOf(array, 0));
-	}
-	
-	// returns a new array which contains all the elements from the given arrays
-	public static <T> T[] concatenate(T[] array, T[] items) {
-	    if (array == null) return items;
-	    if (items == null) return array;
-	
-	    java.util.List<T> list = new java.util.ArrayList<T>(array.length + items.length);
-	
-	    java.util.Collections.addAll(list, array);
-	    java.util.Collections.addAll(list, items);
-	
-	    return list.toArray(java.util.Arrays.copyOf(array, 0));
-	}
-	
-	// returns only the items in x that are not also in y
-	public static <T> T[] difference(T[] x, T[] y) {
-	    if (x == null || y == null) return x;
-	
-	    java.util.List<T> d = new java.util.ArrayList<T>(x.length);
-	    d.addAll(java.util.Arrays.asList(x));
-	    d.removeAll(java.util.Arrays.asList(y));
-	
-	    return d.toArray(java.util.Arrays.copyOf(x, 0));
-	}
-	
-	// removes the element at the given index from the given list
-	public static <T> T[] drop(T[] array, String index) {
-	    return drop(array, Integer.parseInt(index));
-	}
-	
-	// removes the element at the given index from the given list
-	public static <T> T[] drop(T[] array, int index) {
-	    if (array != null) {
-	        // support reverse/tail indexing
-	        if (index < 0) index += array.length;
-	        if (index < 0 || array.length <= index) throw new ArrayIndexOutOfBoundsException(index);
-	
-	        T[] head = slice(array, 0, index);
-	        T[] tail = slice(array, index + 1, array.length - index);
-	
-	        array = concatenate(head, tail);
-	    }
-	
-	    return array;
-	}
-	
-	// invokes the given service for each element in the array
+	/**
+	 * Invokes the given service for each element in the array.
+	 *
+	 * @param array     The array to iterate over.
+	 * @param service   The service to invoke for each item in the array.
+	 * @param pipeline  The input pipeline used when invoking the service.
+	 * @param input     The variable name used for the item in the input pipeline.
+	 * @param <T>       The array component class.
+	 * @throws ServiceException If an error invoking the service occurs.
+	 */
 	public static <T> void each(T[] array, String service, IData pipeline, String input) throws ServiceException {
 	    map(array, service, pipeline, input, null);
 	}
 	
-	// returns true if the given arrays are equal
-	public static <T> boolean equal(T[] x, T[] y) {
-	    boolean result = true;
-	
-	    if (x != null && y != null) {
-	        result = (x.length == y.length);
-	
-	        if (result) {
-	            for (int i = 0; i < x.length; i++) {
-	                result = result && tundra.object.equal(x[i], y[i]);
-	                if (!result) break;
-	            }
-	        }
-	    } else {
-	        result = (x == null && y == null);
-	    }
-	
-	    return result;
-	}
-	
-	// filters the given list to only include items where the 
-	// given condition evaluates to true
+	/**
+	 * Filters the given list to only include items where the given condition evaluates to true.
+	 * 
+	 * @param array     The array to be filtered.
+	 * @param condition The filter condition.
+	 * @param pipeline  The pipeline against which the condition is evaluated.
+	 * @param <T>       The array component class.
+	 * @return          A new array containing only the items from the given array where the condition was true.
+	 * @throws ServiceException If an error occurs evaluating the condition.
+	 */
 	public static <T> T[] filter(T[] array, String condition, IData pipeline) throws ServiceException {
 	    if (array == null || array.length == 0 || condition == null || condition.equals("")) return array;
 	    if (pipeline == null) pipeline = IDataFactory.create();
 	
-	    java.util.ArrayList<T> list = new java.util.ArrayList<T>(array.length);
+	    List<T> list = new ArrayList<T>(array.length);
 	
 	    for (int i = 0; i < array.length; i++) {
 	        IDataCursor cursor = pipeline.getCursor();
@@ -975,126 +930,25 @@ public final class object
 	        cursor.destroy();
 	    }
 	
-	    return list.toArray(java.util.Arrays.copyOf(array, 0));
+	    return list.toArray(Arrays.copyOf(array, list.size()));
 	}
 	
-	// returns a new array which is a one-dimensional recursive flattening of the given array
-	public static <T> T[] flatten(T[] array) {
-	    if (array == null || array.length == 0) return array;
-	
-	    java.util.ArrayList<T> list = new java.util.ArrayList<T>(array.length);
-	
-	    for (int i = 0; i < array.length; i++) {
-	        if (array[i] != null && array[i].getClass().isArray()) {
-	            list.ensureCapacity(list.size() + ((T[])array[i]).length);
-	            list.addAll(java.util.Arrays.asList(flatten((T[])array[i])));
-	        } else {
-	            list.add(array[i]);
-	        }
-	    }
-	
-	    return list.toArray(java.util.Arrays.copyOf(array, 0));
-	}
-	
-	// returns the element from the given array at the given index (supports ruby-style reverse indexing)
-	public static <T> T get(T[] array, String index, String iteration) {
-	    int i = 0;
-	    if (index != null) {
-	        i = Integer.parseInt(index);
-	    } else {
-	        i = Integer.parseInt(iteration) - 1;
-	    }
-	    return get(array, i);
-	}
-	
-	// returns the element from the given array at the given index (supports ruby-style reverse indexing)
-	public static <T> T get(T[] array, String index) {
-	    return get(array, index, null);
-	}
-	
-	// returns the element from the given array at the given index (supports ruby-style reverse indexing)
-	public static <T> T get(T[] array, int index) {
-	    T item = null;
-	
-	    if (array != null) {
-	        // support reverse/tail indexing
-	        if (index < 0) index += array.length;
-	
-	        item = array[index];
-	    }
-	
-	    return item;
-	}
-	
-	// returns the first element from the given array
-	public static <T> T first(T[] array) {
-	    return get(array, 0);
-	}
-	
-	// returns the last element from the given array
-	public static <T> T last(T[] array) {
-	    return get(array, -1);
-	}
-	
-	// resizes the given array (or instantiates a new array, if null) to the desired length, 
-	// and pads with the given item
-	public static <T> T[] resize(T[] array, int newLength, T item, Class<T> klass) {
-	    if (array == null) array = (T[])java.lang.reflect.Array.newInstance(klass, 0);
-	    return resize(array, newLength, item);
-	}
-	
-	// resizes the given array to the desired length, and pads with the given item
-	public static <T> T[] resize(T[] array, int newLength, T item) {
-	    if (newLength < 0) newLength = array.length + newLength;
-	    if (newLength < 0) newLength = 0;
-	
-	    int originalLength = array.length;
-	    if (newLength == originalLength) return array;
-	
-	    array = java.util.Arrays.copyOf(array, newLength);
-	    if (item != null) {
-	        for (int i = originalLength; i < newLength; i++) array[i] = item;
-	    }
-	    return array;
-	}
-	
-	// resizes the given array to the desired length, and pads with nulls
-	public static <T> T[] resize(T[] array, int newLength) {
-	    return resize(array, newLength, null);
-	}
-	
-	// resizes the given array to the desired length, and pads with the given item
-	public static <T> void resize(IData pipeline, Class<T> klass) {
-	    IDataCursor cursor = pipeline.getCursor();
-	
-	    try {
-	        T[] list = (T[])IDataUtil.getObjectArray(cursor, "$list");
-	        int length = Integer.parseInt(IDataUtil.getString(cursor, "$length"));
-	        T item = (T)IDataUtil.get(cursor, "$item");
-	
-	        list = resize(list, length, item, klass);
-	
-	        if (list != null) IDataUtil.put(cursor, "$list", list);
-	    } finally {
-	        cursor.destroy();
-	    }
-	}
-	
-	// grows the size of the given array by the given count, and pads with the given item
-	public static <T> T[] grow(T[] array, int count, T item, Class<T> klass) {
-	    return resize(array, array == null ? count : array.length + count, item, klass);
-	}
-	
-	// grows the given array to the desired length, and pads with the given item
+	/**
+	 * Grows the given array to the desired length, and pads with the given item.
+	 *
+	 * @param pipeline  The pipeline containing $list, $count, and $item variables.
+	 * @param klass     The array component class.
+	 * @param <T>       The array component class.
+	 */
 	public static <T> void grow(IData pipeline, Class<T> klass) {
 	    IDataCursor cursor = pipeline.getCursor();
 	
 	    try {
 	        T[] list = (T[])IDataUtil.getObjectArray(cursor, "$list");
-	        int count = Integer.parseInt(IDataUtil.getString(cursor, "$count"));
+	        int count = IntegerHelper.parse(IDataUtil.getString(cursor, "$count"));
 	        T item = (T)IDataUtil.get(cursor, "$item");
 	
-	        list = grow(list, count, item, klass);
+	        list = ArrayHelper.grow(list, count, item, klass);
 	
 	        if (list != null) IDataUtil.put(cursor, "$list", list);
 	    } finally {
@@ -1102,109 +956,35 @@ public final class object
 	    }
 	}
 	
-	// shrinks the size of the given array by the given count
-	public static <T> T[] shrink(T[] array, int count) {
-	    if (array != null) {
-	        int length = array.length - count;
-	        array = resize(array, length < 0 ? 0 : length);
-	    }
-	    return array;
-	}
-	
-	// returns true if the given item is found in the given array
-	public static <T> boolean include(T[] array, T item) {
-	    boolean found = false;
-	
-	    if (array != null) {
-	        for (int i = 0; i < array.length; i++) {
-	            found = tundra.object.equal(array[i], item);
-	            if (found) break;
-	        }
-	    }
-	
-	    return found;
-	}
-	
-	// returns a new array with the given item inserted at the given index
-	public static <T> T[] insert(T[] array, T item, String index, Class<T> klass) {
-	    if (index == null) index = "-1";
-	    return insert(array, item, Integer.parseInt(index), klass);
-	}
-	
-	// returns a new array with the given item inserted at the given index
-	public static <T> T[] insert(T[] array, T item, int index, Class<T> klass) {
-	    if (array == null) array = (T[])java.lang.reflect.Array.newInstance(klass, 0);
-	
-	    java.util.ArrayList<T> list = new java.util.ArrayList<T>(java.util.Arrays.asList(array));
-	
-	    int capacity = 0;
-	    if (index < 0) index += list.size() + 1;
-	    if (index < 0) {
-	        capacity = (index * -1) + list.size();
-	        index = 0;
-	    } else {
-	        capacity = index;
-	    }
-	
-	    list.ensureCapacity(capacity);
-	    if (capacity >= list.size()) {
-	        // fill the list with nulls if it needs to be extended
-	        for (int i = list.size(); i < capacity; i++) {
-	            list.add(i, null);
-	        }
-	    }
-	    list.add(index, item);
-	
-	    return list.toArray(array);
-	}
-	
-	// returns a new array, with the given element inserted at the given index
+	/**
+	 * Returns a new array, with the given element inserted at the given index.
+	 * 
+	 * @param pipeline  The pipeline containing the $list, $item, $index variables.
+	 * @param klass     The array component class.
+	 * @param <T>       The array component class.
+	 */
 	public static <T> void insert(IData pipeline, Class<T> klass) {
 	    IDataCursor cursor = pipeline.getCursor();
 	
 	    try {
 	        T[] list = (T[])IDataUtil.getObjectArray(cursor, "$list");
 	        T item = (T)IDataUtil.get(cursor, "$item");
-	        String index = IDataUtil.getString(cursor, "$index");
+	        int index = IntegerHelper.parse(IDataUtil.getString(cursor, "$index"));
 	
-	        IDataUtil.put(cursor, "$list", insert(list == null ? null : java.util.Arrays.copyOf(list, list.length, (Class<T[]>)java.lang.reflect.Array.newInstance(klass, 0).getClass()), item, index, klass));
+	        IDataUtil.put(cursor, "$list", ArrayHelper.insert(list, item, index, klass));
 	    } finally {
 	        cursor.destroy();
 	    }
 	}
 	
-	// returns only the items in x that are also in y
-	public static <T> T[] intersection(T[] x, T[] y) {
-	    if (x == null || y == null) return null;
-	
-	    java.util.List<T> d = new java.util.ArrayList<T>(x.length);
-	    d.addAll(java.util.Arrays.asList(x));
-	    d.retainAll(java.util.Arrays.asList(y));
-	
-	    return d.toArray(java.util.Arrays.copyOf(x, 0));
-	}
-	
-	// returns a string created by concatenating each element of the given array, separated by the given separator string
-	public static <T> String join(T[] array, String separator) {
-	    StringBuilder builder = new StringBuilder();
-	
-	    if (array != null) {
-	        for (int i = 0; i < array.length; i++) {
-	            T value = array[i];
-	            if (value != null) builder.append(value.toString());
-	            if (separator != null && i < array.length - 1) builder.append(separator);
-	        }
-	    }
-	
-	    return builder.toString();
-	}
-	
-	// returns the length of the given array
-	public static <T> int length(T[] array) {
-	    return (array == null? 0 : array.length);
-	}
-	
-	// maps the given array to a new array by invoking a service for each element and collecting the output
+	/**
+	 * Maps the given array to a new array by invoking a service for each element and collecting the output.
+	 * 
+	 * @param pipeline The pipeline containing the $list, $service, $pipeline, $item.input, and $item.output variables.
+	 * @param klass    The array component class.
+	 * @param <T>      The array component class.
+	 * @throws ServiceException If an error occurs invoking the service.
+	 */
 	public static <T> void map(IData pipeline, Class<T> klass) throws ServiceException {
 	    IDataCursor cursor = pipeline.getCursor();
 	
@@ -1220,7 +1000,7 @@ public final class object
 	        // invoke the service for each item in the list, passing $item and $index variables on each invocation
 	        // and collect the returned $item's into a new list
 	
-	        list = map(list == null ? null : java.util.Arrays.copyOf(list, list.length, (Class<T[]>)java.lang.reflect.Array.newInstance(klass, 0).getClass()), service, scoped ? scope : pipeline, input, output);
+	        list = map(list == null ? null : Arrays.copyOf(list, list.length, (Class<T[]>)Array.newInstance(klass, 0).getClass()), service, scoped ? scope : pipeline, input, output);
 	
 	        if (list != null) IDataUtil.put(cursor, "$list", list);
 	    } finally {
@@ -1228,14 +1008,25 @@ public final class object
 	    }
 	}
 	
-	// maps the given array to a new array by invoking a service for each element and collecting the output
+	/**
+	 * Maps the given array to a new array by invoking a service for each element and collecting the output.
+	 * 
+	 * @param array     The array to be iterated over.
+	 * @param service   The service to be invoked for each item in the array.
+	 * @param pipeline  The input pipeline used when invoking the array.
+	 * @param input     The variable name used when passing the array item in the input pipeline.
+	 * @param output    The variable name of the mapped item returned by the invoked service.
+	 * @param <T>       The array component class.
+	 * @return          A new array containing each item from the given array after being transformed by the given service.
+	 * @throws ServiceException If an error occurs invoking the service.
+	 */
 	public static <T> T[] map(T[] array, String service, IData pipeline, String input, String output) throws ServiceException {
 	    if (array == null || array.length == 0 || service == null) return array;
 	    if (pipeline == null) pipeline = IDataFactory.create();
 	    if (input == null) input = "$item";
 	    if (output == null) output = input;
 	
-	    java.util.List<T> list = new java.util.ArrayList<T>(array.length);
+	    List<T> list = new ArrayList<T>(array.length);
 	    IDataCursor cursor = null;
 	
 	    for (int i = 0; i < array.length; i++) {
@@ -1264,15 +1055,16 @@ public final class object
 	        list.add(item);
 	    }
 	
-	    return list.toArray(java.util.Arrays.copyOf(array, 0));
+	    return list.toArray(Arrays.copyOf(array, list.size()));
 	}
 	
-	// returns a new array with a new element inserted at the beginning
-	public static <T> T[] prepend(T[] array, T item, Class<T> klass) {
-	    return insert(array, item, 0, klass);
-	}
-	
-	// returns a new array, with the given element inserted at the end
+	/**
+	 * Returns a new array, with the given element inserted at the beginning.
+	 * 
+	 * @param pipeline  The pipeline containing the $list and $item variables.
+	 * @param klass     The array component class.
+	 * @param <T>       The array component class.
+	 */
 	public static <T> void prepend(IData pipeline, Class<T> klass) {
 	    IDataCursor cursor = pipeline.getCursor();
 	
@@ -1280,7 +1072,7 @@ public final class object
 	        T[] list = (T[])IDataUtil.getObjectArray(cursor, "$list");
 	        T item = (T)IDataUtil.get(cursor, "$item");
 	
-	        list = prepend(list == null ? null : java.util.Arrays.copyOf(list, list.length, (Class<T[]>)java.lang.reflect.Array.newInstance(klass, 0).getClass()), item, klass);
+	        list = ArrayHelper.prepend(list, item, klass);
 	
 	        if (list != null) IDataUtil.put(cursor, "$list", list);
 	    } finally {
@@ -1288,53 +1080,42 @@ public final class object
 	    }
 	}
 	
-	// sets the element from the given array at the given index (supports ruby-style reverse indexing)
-	public static <T> T[] put(T[] array, T item, String index, Class<T> klass) {
-	    return put(array, item, Integer.parseInt(index), klass);
-	}
-	
-	// sets the element from the given array at the given index (supports ruby-style reverse indexing)
-	public static <T> T[] put(T[] array, T item, int index, Class<T> klass) {
-	    if (array == null) array = (T[])java.lang.reflect.Array.newInstance(klass, 0);
-	
-	    // support reverse/tail indexing
-	    if (index < 0) index += array.length;
-	    int capacity = 0;
-	    if (index < 0) {
-	        capacity = (index * -1) + array.length;
-	        index = 0;
-	    } else {
-	        capacity = index + 1;
-	    }
-	    if (capacity > array.length) array = java.util.Arrays.copyOf(array, capacity);
-	
-	    array[index] = item;
-	
-	    return array;
-	}
-	
-	// sets the element from the given array at the given index (supports ruby-style reverse indexing)
+	/**
+	 * Sets the element from the given array at the given index (supports ruby-style reverse indexing).
+	 *
+	 * @param pipeline  The pipeline containing the $list, $item, and $index variables.
+	 * @param klass     The array component class.
+	 * @param <T>       The array component class.
+	 */
 	public static <T> void put(IData pipeline, Class<T> klass) {
 	    IDataCursor cursor = pipeline.getCursor();
 	
 	    try {
 	        T[] list = (T[])IDataUtil.getObjectArray(cursor, "$list");
 	        T item = (T)IDataUtil.get(cursor, "$item");
-	        String index = IDataUtil.getString(cursor, "$index");
+	        int index = IntegerHelper.parse(IDataUtil.getString(cursor, "$index"));
 	
-	        IDataUtil.put(cursor, "$list", put(list == null ? null : java.util.Arrays.copyOf(list, list.length, (Class<T[]>)java.lang.reflect.Array.newInstance(klass, 0).getClass()), item, index, klass));
+	        IDataUtil.put(cursor, "$list", ArrayHelper.put(list == null ? null : Arrays.copyOf(list, list.length, (Class<T[]>)Array.newInstance(klass, 0).getClass()), item, index, klass));
 	    } finally {
 	        cursor.destroy();
 	    }
 	}
 	
-	// filters the given list to not include items where the 
-	// given condition evaluates to true
+	/**
+	 * Filters the given list to not include items where the given condition evaluates to true.
+	 *
+	 * @param array     The array to be filtered.
+	 * @param condition The filter condition.
+	 * @param pipeline  The pipeline against which the condition is evaluated.
+	 * @param <T>       The array component class.
+	 * @return          A new array containing only the items from the given array where the condition was false.
+	 * @throws ServiceException If an error occurs evaluating the condition.
+	 */
 	public static <T> T[] reject(T[] array, String condition, IData pipeline) throws ServiceException {
 	    if (array == null || array.length == 0 || condition == null || condition.equals("")) return array;
 	    if (pipeline == null) pipeline = IDataFactory.create();
 	
-	    java.util.ArrayList<T> list = new java.util.ArrayList<T>(array.length);
+	    List<T> list = new ArrayList<T>(array.length);
 	
 	    for (int i = 0; i < array.length; i++) {
 	        IDataCursor cursor = pipeline.getCursor();
@@ -1346,78 +1127,30 @@ public final class object
 	        cursor.destroy();
 	    }
 	
-	    return list.toArray(java.util.Arrays.copyOf(array, 0));
+	    return list.toArray(Arrays.copyOf(array, list.size()));
 	}
 	
-	// returns a new array with all elements from the given array but in reverse order
-	public static <T> T[] reverse(T[] array) {
-	    if (array == null || array.length <= 1) return array;
+	/**
+	 * Resizes the given array to the desired length, and pads with the given item.
+	 * 
+	 * @param pipeline The pipeline containing $list, $length, and $item variables.
+	 * @param klass    The array component class.
+	 * @param <T>      The array component class.
+	 */
+	public static <T> void resize(IData pipeline, Class<T> klass) {
+	    IDataCursor cursor = pipeline.getCursor();
 	
-	    java.util.ArrayList<T> list = new java.util.ArrayList<T>(java.util.Arrays.asList(array));
-	    java.util.Collections.reverse(list);
+	    try {
+	        T[] list = (T[])IDataUtil.getObjectArray(cursor, "$list");
+	        int length = IntegerHelper.parse(IDataUtil.getString(cursor, "$length"));
+	        T item = (T)IDataUtil.get(cursor, "$item");
 	
-	    return list.toArray(java.util.Arrays.copyOf(array, 0));
-	}
+	        list = ArrayHelper.resize(list, length, item, klass);
 	
-	// returns a new array which is a subset of elements from the given array
-	public static <T> T[] slice(T[] array, String index, String length) {
-	    return slice(array, index == null ? 0 : Integer.parseInt(index), length == null ? (array == null ? 0 : array.length) : Integer.parseInt(length));
-	}
-	
-	// returns a new array which is a subset of elements from the given array
-	public static <T> T[] slice(T[] array, int index, int length) {
-	    if (array == null || array.length == 0) return array;
-	    // support reverse/tail length
-	    if (length < 0) length = array.length + length;
-	    // support reverse/tail indexing
-	    if (index < 0) index += array.length;
-	    // don't slice past the end of the array
-	    if ((length += index) > array.length) length = array.length;
-	
-	    return java.util.Arrays.copyOfRange(array, index, length);
-	}
-	
-	// returns a new array with all elements sorted
-	public static <T> T[] sort(T[] array) {
-	    if (array == null || array.length <= 1) return array;
-	
-	    T[] copy = java.util.Arrays.copyOf(array, array.length);
-	    java.util.Arrays.sort(copy);
-	    return copy;
-	}
-	
-	// returns a new array with all string items trimmed, all
-	// empty string items removed, and all null items removed
-	public static <T> T[] squeeze(T[] array) {
-	    if (array == null || array.length == 0) return null;
-	
-	    java.util.List<T> list = new java.util.ArrayList<T>(array.length);
-	
-	    for (int i = 0; i < array.length; i++) {
-	        if (array[i] != null && array[i] instanceof String) {
-	            T item = (T)((String)array[i]).trim();
-	            if (item.equals("")) {
-	                array[i] = null;
-	            } else {
-	                array[i] = item;
-	            }
-	        }
-	        if (array[i] != null) list.add(array[i]);
+	        if (list != null) IDataUtil.put(cursor, "$list", list);
+	    } finally {
+	        cursor.destroy();
 	    }
-	
-	    array = list.toArray(java.util.Arrays.copyOf(array, 0));
-	    if (array.length == 0) array = null;
-	
-	    return array;
-	}
-	
-	// returns a new array with all duplicate elements removed
-	public static <T> T[] unique(T[] array) {
-	    if (array == null || array.length <= 1) return array;
-	
-	    java.util.Set<T> set = new java.util.TreeSet<T>(java.util.Arrays.asList(array));
-	
-	    return set.toArray(java.util.Arrays.copyOf(array, 0));
 	}
 	// --- <<IS-END-SHARED>> ---
 }
