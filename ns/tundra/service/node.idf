@@ -147,6 +147,7 @@ bmQgLSBzdGFydCk7CiAgICAgICAgfQogICAgfQoKICAgIHJldHVybiBlc3RpbWF0b3I7Cn0=</value>
   <array name="imports" type="value" depth="1">
     <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.io.StreamHelper</value>
+    <value>permafrost.tundra.lang.ArrayHelper</value>
     <value>permafrost.tundra.lang.BooleanHelper</value>
     <value>permafrost.tundra.lang.CharsetHelper</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>

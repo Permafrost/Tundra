@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-11-20 12:50:07.897
+// -----( CREATED: 2015-12-07 08:03:17.902
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -11,6 +11,7 @@ import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.io.StreamHelper;
+import permafrost.tundra.lang.ArrayHelper;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.CharsetHelper;
 import permafrost.tundra.lang.ExceptionHelper;
@@ -94,7 +95,7 @@ public final class service
 
 		try {
 		    String[] stack = callstack();
-		    String callers = tundra.list.object.join(stack, " \u2192 ");
+		    String callers = ArrayHelper.join(stack, " \u2192 ");
 		    IDataUtil.put(cursor, "$callstack", stack);
 		    IDataUtil.put(cursor, "$callers", callers);
 		    IDataUtil.put(cursor, "$caller", stack.length > 0 ? stack[0] : "");
