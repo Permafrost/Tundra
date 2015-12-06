@@ -21,14 +21,14 @@ Networks] 7.1 and higher.
 provide the underlying implementation for the majority of services, and are
 included in the [Tundra] package as [JAR] files in the following locations:
 
-* `./code/jars/commons-csv-1.0.jar` - https://commons.apache.org/proper/commons-csv/
+* `./code/jars/commons-csv-1.2.jar` - https://commons.apache.org/proper/commons-csv/
 * `./code/jars/htmlcompressor-1.5.3.jar` - http://htmlcompressor.googlecode.com
 * `./code/jars/jakarta-oro-2.0.8.jar` - http://archive.apache.org/dist/jakarta/oro/
 * `./code/jars/javax.json-1.0.4.jar` - https://jsonp.java.net
 * `./code/jars/jscience-4.3.1.jar` - http://jscience.org
 * `./code/jars/snakeyaml-1.15.jar` - http://www.snakeyaml.org
-* `./code/jars/static/spring-core-4.1.2.RELEASE.jar` - http://projects.spring.io/spring-framework/
-* `./code/jars/static/spring-web-4.1.2.RELEASE.jar` - http://projects.spring.io/spring-framework/
+* `./code/jars/static/spring-core-4.2.1.RELEASE.jar` - http://projects.spring.io/spring-framework/
+* `./code/jars/static/spring-web-4.2.1.RELEASE.jar` - http://projects.spring.io/spring-framework/
 * `./code/jars/Tundra.jar` - http://github.com/Permafrost/Tundra.java
 * `./code/jars/TundraCSV.jar` - http://github.com/Permafrost/TundraCSV.java
 * `./code/jars/TundraHTML.jar` - http://github.com/Permafrost/TundraHTML.java
