@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-10-29 17:14:06 EST
+// -----( CREATED: 2015-12-07 20:14:58 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -207,6 +207,30 @@ public final class string
 		    IDataUtil.put(cursor, "$before?", BooleanHelper.emit(comparison < 0));
 		    IDataUtil.put(cursor, "$equal?", BooleanHelper.emit(comparison == 0));
 		    IDataUtil.put(cursor, "$after?", BooleanHelper.emit(comparison > 0));
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void concatenate (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(concatenate)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:0:optional $operands
+		// [o] field:0:optional $string
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    IData operands = IDataUtil.getIData(cursor, "$operands");
+		    String result = StringHelper.concatenate(operands);
+		    if (result != null) IDataUtil.put(cursor, "$string", result);
 		} finally {
 		    cursor.destroy();
 		}

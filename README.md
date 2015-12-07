@@ -10662,6 +10662,23 @@ Implemented using the java.lang.String [compareTo] and
 
 ---
 
+### tundra.string:concatenate
+
+Concatenates all string values specified as strings, string lists or
+string tables in the given `IData` document.
+
+#### Inputs:
+
+* `$operands` is an `IData` document in which arbitrary string, string
+  list, and string table values can be specified for concatenation.
+
+#### Outputs:
+
+* `$string` is the result of concatenating all the string values
+  provided in the given `IData` document.
+
+---
+
 ### tundra.string:find
 
 Returns whether the given [regular expression pattern] or literal
