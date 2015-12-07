@@ -10671,6 +10671,8 @@ string tables in the given `IData` document.
 
 * `$operands` is an `IData` document in which arbitrary string, string
   list, and string table values can be specified for concatenation.
+* `$separator` is an optional string used to separate each list item
+  in the resulting string. Defaults to an empty string.
 
 #### Outputs:
 
