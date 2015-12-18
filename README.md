@@ -11590,6 +11590,26 @@ Implemented with the [java.net.URI] class.
 
 ---
 
+### tundra.uri:substitute
+
+Performs variable substitution on the components of a Uniform
+Resource Identifier ([URI]) string.
+
+#### Inputs:
+
+* `$string` is the a [URI] string to perform variable substitution
+  against.
+* `$scope` is an optional `IData` document against which variables are
+  resolved. If not specified, the substitution is unscoped, and
+  variables are resolved against the pipeline itself.
+
+#### Outputs:
+
+* `$string` is the resulting [URI] string after variable substitution
+  was performed against its parsed components.
+
+---
+
 ### tundra.user:current
 
 Returns the current Integration Server user used to invoke this service.

@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-31 13:44:44 EST
+// -----( CREATED: 2015-12-18 21:15:12 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -10,7 +10,6 @@ import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import java.net.URISyntaxException;
-import permafrost.tundra.flow.VariableSubstitutor;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.net.uri.URIHelper;
 // --- <<IS-END-IMPORTS>> ---
@@ -174,6 +173,34 @@ public final class uri
 		try {
 		    String string = IDataUtil.getString(cursor, "$string");
 		    if (string != null) IDataUtil.put(cursor, "$uri", URIHelper.parse(string));
+		} catch(URISyntaxException ex) {
+		    ExceptionHelper.raise(ex);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void substitute (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(substitute)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $string
+		// [i] record:0:optional $scope
+		// [o] field:0:optional $string
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    String uri = IDataUtil.getString(cursor, "$string");
+		    IData scope = IDataUtil.getIData(cursor, "$scope");
+		
+		    if (uri != null) IDataUtil.put(cursor, "$string", URIHelper.substitute(uri, scope == null ? pipeline : scope));
 		} catch(URISyntaxException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {

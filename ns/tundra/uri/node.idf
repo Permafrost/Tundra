@@ -10,7 +10,6 @@
   </array>
   <array name="imports" type="value" depth="1">
     <value>java.net.URISyntaxException</value>
-    <value>permafrost.tundra.flow.VariableSubstitutor</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>
     <value>permafrost.tundra.net.uri.URIHelper</value>
   </array>

@@ -48,31 +48,20 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <value name="field_usereditable">true</value>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$encoding</value>
-          <value name="field_type">string</value>
+          <value name="field_name">$scope</value>
+          <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
-          <array name="field_options" type="value" depth="1">
-          </array>
-          <record name="field_content_type" javaclass="com.wm.util.Values">
-            <value name="contentType">1</value>
-            <value name="internalType">reference</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-            <array name="targetNames" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">string</value>
-              </record>
-            </array>
-          </record>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
+          <array name="rec_fields" type="record" depth="1">
+          </array>
+          <value name="modifiable">true</value>
         </record>
       </array>
       <value name="modifiable">true</value>
@@ -120,47 +109,31 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">### tundra.uri:decode
+  <value name="node_comment">### tundra.uri:substitute
 
-Decodes a URI-encoded (application/x-www-form-urlencoded) string, according
-to [RFC 2396].
-
-The following rules are applied in the conversion:
-
-* The alphanumeric characters "a" through "z", "A" through "Z" and "0"
-through "9" remain the same.
-* The special characters ".", "-", "*", and "_" remain the same.
-* The plus sign "+" is converted into a space character " " .
-* A sequence of the form "%xy" will be treated as representing a byte
-where xy is the two-digit hexadecimal representation of the 8 bits. Then,
-all substrings that contain one or more of these byte sequences
-consecutively will be replaced by the character(s) whose encoding would
-result in those consecutive bytes. The encoding scheme used to decode
-these characters may be specified, or if unspecified, the default
-encoding of the platform will be used.
-
-Implemented with the [java.net.URLDecoder] class.
+Performs variable substitution on the components of a Uniform 
+Resource Identifier ([URI]) string.
 
 #### Inputs:
 
-* $string is a string containing URI-encoded data to be decoded.
-* $encoding is the character set used to determine what characters are
-  represented by any consecutive sequences of the form "%xy". Defaults
-  to [UTF-8].
+* $string is the a [URI] string to perform variable substitution 
+  against.
+* $scope is an optional IData document against which variables are 
+  resolved. If not specified, the substitution is unscoped, and 
+  variables are resolved against the pipeline itself.
 
 #### Outputs:
 
-* $string is the decoded input string.
+* $string is the resulting [URI] string after variable substitution 
+  was performed against its parsed components.
 
-[RFC 2396]: &lt;http://www.ietf.org/rfc/rfc2396.txt&gt;
-[UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;
-[java.net.URLDecoder]: &lt;http://docs.oracle.com/javase/6/docs/api/java/net/URLDecoder.html&gt;</value>
+[URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
-  <value name="template">tundra_uri_decode</value>
+  <value name="template">tundra_uri_substitute</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
