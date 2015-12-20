@@ -1,7 +1,7 @@
 package tundra.support.exception;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-12-19 16:21:58 EST
+// -----( CREATED: 2015-12-19 20:32:33 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -11,6 +11,7 @@ import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import javax.activation.MimeTypeParseException;
 import java.io.IOException;
+import permafrost.tundra.data.Content;
 import permafrost.tundra.lang.BytesHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.lang.TransportException;
@@ -48,10 +49,8 @@ public final class transport
 		    Object content = IDataUtil.get(cursor, "$content");
 		    String contentType = IDataUtil.getString(cursor, "$content.type");
 		
-		    throw new TransportException(message, BytesHelper.normalize(content), contentType);
+		    throw new TransportException(message, Content.of(BytesHelper.normalize(content), contentType));
 		} catch(IOException ex) {
-		    ExceptionHelper.raise(ex);
-		} catch(MimeTypeParseException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
 		    cursor.destroy();

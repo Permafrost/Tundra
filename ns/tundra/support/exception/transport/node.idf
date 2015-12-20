@@ -12,6 +12,7 @@
   <array name="imports" type="value" depth="1">
     <value>javax.activation.MimeTypeParseException</value>
     <value>java.io.IOException</value>
+    <value>permafrost.tundra.data.Content</value>
     <value>permafrost.tundra.lang.BytesHelper</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>
     <value>permafrost.tundra.lang.TransportException</value>
