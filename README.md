@@ -891,6 +891,8 @@ Services in this folder should implement the
   * `file`: writes the given content to the file specified by the
     destination URI. The following additional options can be provided via
     the `$pipeline` document:
+    * `$filename`: the name of the file to be written. This value will
+      override the value provided in the destination URI.
     * `$mode`: append / write
   * `ftp`: uploads the given content to the FTP server, directory and
     file specified by the destination URI. An example FTP URI is as
