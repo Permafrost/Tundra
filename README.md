@@ -3207,8 +3207,8 @@ document.
 
 #### Inputs:
 
-* `$document` is an IData document from which to fetch the first
-  element.
+* `$document` is an `IData` document from which to fetch the value
+  associated with the given `$key`.
 * `$key` is the key identifying the value in the given document to
   be returned, and can be simple or fully qualified, such as
   `a/b/c[0]/d`.
