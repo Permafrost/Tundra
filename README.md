@@ -3183,6 +3183,73 @@ Returns the first key value pair from the given IData document.
 
 ---
 
+### tundra.document:flatten
+
+Returns the values associated with the given key from the given `IData`
+document flattened to a one-dimensional array.
+
+For example, given the following `IData` document (represented in
+[JSON] form):
+
+    {
+      "a": [
+        {
+          "b": [
+            {
+              "c": "1"
+            },
+            {
+              "c": "2"
+            },
+            {
+              "c": "3"
+            }
+          ]
+        },
+        {
+          "b": [
+            {
+              "c": "4"
+            },
+            {
+              "c": "5"
+            }
+          ]
+        }
+      ]
+    }
+
+A flattening of `a/b/c` would return the following (represented in
+[JSON] form):
+
+    ["1", "2", "3", "4", "5"]
+
+A flattening of `a/b[0]/c` would return the following (represented
+in [JSON] form):
+
+    ["1", "2", "3"]
+
+And a flattening of `a/b[0]/c[0]` would return the following
+(represented in [JSON] form):
+
+    ["1"]
+
+#### Inputs:
+
+* `$document` is an `IData` document from which to fetch and flatten the
+  value associated with the given `$key`.
+* `$key` is the fully-qualified key identifying the values in the given
+  document to be flattened. If the key indexes multiple nested arrays
+  all associated values in those arrays will be flattened into a
+  one-dimensional array.
+
+#### Outputs:
+
+* `$values` is a one-dimensional array containing the flattened values
+  associated with the given `$key` in the given `IData` document.
+
+---
+
 ### tundra.document:freeze
 
 Returns a read-only version of the given `IData` document, such
