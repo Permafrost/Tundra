@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-09 10:59:56 AEST
+// -----( CREATED: 2016-01-07 19:17:13 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -87,7 +87,7 @@ public final class packages
 		
 		try {
 		    String packageName = IDataUtil.getString(cursor, "$name");
-		    IData document = PackageHelper.getPackageAsIData(packageName);
+		    IData document = PackageHelper.toIData(PackageHelper.getPackage(packageName));
 		    boolean exists = document != null;
 		    if (exists) IDataUtil.put(cursor, "$package", document);
 		    IDataUtil.put(cursor, "$exists?", BooleanHelper.emit(exists));
@@ -106,7 +106,7 @@ public final class packages
 	{
 		// --- <<IS-START(list)>> ---
 		// @sigtype java 3.5
-		// [i] field:0:optional $enabled? {"false","true"}
+		// [i] field:0:optional $enabled? {&quot;false&quot;,&quot;true&quot;}
 		// [o] record:1:required $packages
 		// [o] - field:0:required name
 		// [o] - field:0:required version
@@ -137,9 +137,56 @@ public final class packages
 		
 		try {
 		    boolean enabledOnly = BooleanHelper.parse(IDataUtil.getString(cursor, "$enabled?"));
-		    IData[] list = PackageHelper.listAsIDataArray(enabledOnly);
+		    IData[] list = PackageHelper.toIDataArray(PackageHelper.list(enabledOnly));
 		    IDataUtil.put(cursor, "$packages", list);
 		    IDataUtil.put(cursor, "$packages.length", "" + list.length);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void self (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(self)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [o] record:0:optional $package
+		// [o] - field:0:required name
+		// [o] - field:0:required version
+		// [o] - field:0:required enabled?
+		// [o] - field:0:required system?
+		// [o] - record:1:required dependencies
+		// [o] -- field:0:required package
+		// [o] -- field:0:required version
+		// [o] - field:0:required dependencies.length
+		// [o] - record:0:required services
+		// [o] -- field:1:required startup
+		// [o] -- field:0:required startup.length
+		// [o] -- field:1:required shutdown
+		// [o] -- field:0:required shutdown.length
+		// [o] -- field:1:required replication
+		// [o] -- field:0:required replication.length
+		// [o] -- field:1:required loaded
+		// [o] -- field:0:required loaded.length
+		// [o] - record:0:required directories
+		// [o] -- field:0:required root
+		// [o] -- field:0:required ns
+		// [o] -- field:0:required pub
+		// [o] -- field:0:required template
+		// [o] -- field:0:required web
+		// [o] -- field:0:required config
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    boolean enabledOnly = BooleanHelper.parse(IDataUtil.getString(cursor, "$enabled?"));
+		    IData self = PackageHelper.toIData(PackageHelper.self());
+		    if (self != null) IDataUtil.put(cursor, "$package", self);
 		} finally {
 		    cursor.destroy();
 		}

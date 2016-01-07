@@ -9056,6 +9056,51 @@ this Integration Server.
 
 ---
 
+### tundra.packages:self
+
+Returns information about the package in which the calling service
+is stored.
+
+#### Outputs:
+
+* `$package` contains the following information about the package
+  in which the calling service is stored.
+  * `name` is the name of the package.
+  * `version` is the version of the package as per its manifest.
+  * `enabled?` is a boolean indicating if the package is enabled.
+  * `system?` is a boolean indicating if the package is considered
+    a system package.
+  * `dependencies` is a list of all the packages this package is
+    dependent on as per its manifest:
+    * `package` is the name of the dependent package.
+    * `version` is the version of the dependent package.
+  * `dependencies.length` is the number of items in the
+    dependencies list.
+  * `services` lists all the different type of services in the
+    package:
+    * `startup` is a list of all the registered startup services in
+      the package.
+    * `startup.length` is the number of items in the startup list.
+    * `shutdown` is a list of all the registered shutdown services
+      in the package.
+    * `shutdown.length` is the number of items in the shutdown list.
+    * `replication` is a list of all the registered replication
+      services in the package.
+    * `replication.length` is the number of items in the replication
+      list.
+    * `loaded` is a list of all the loaded services in the package.
+    * `loaded.length` is the number of items in the loaded list.
+  * `directories` provides the location of all the well-known
+    directories for the package:
+    * `root` is the package's root directory.
+    * `ns` is the package's namespace directory.
+    * `pub` is the package's public HTML directory.
+    * `template` is the package's service template directory.
+    * `web` is the package's Java web application directory.
+    * `config` is the package's configuration directory.
+
+---
+
 ### tundra.object:coalesce
 
 Returns the first object argument that is not null.
