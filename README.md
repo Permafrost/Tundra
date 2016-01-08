@@ -3185,8 +3185,8 @@ Returns the first key value pair from the given IData document.
 
 ### tundra.document:flatten
 
-Returns the values associated with the given key from the given `IData`
-document flattened to a one-dimensional array.
+Returns the values associated with the given keys from the given
+`IData` document flattened to a one-dimensional array.
 
 For example, given the following `IData` document (represented in
 [JSON] form):
@@ -3236,17 +3236,20 @@ And a flattening of `a/b[0]/c[0]` would return the following
 
 #### Inputs:
 
-* `$document` is an `IData` document from which to fetch and flatten the
-  value associated with the given `$key`.
-* `$key` is the fully-qualified key identifying the values in the given
-  document to be flattened. If the key indexes multiple nested arrays
-  all associated values in those arrays will be flattened into a
-  one-dimensional array.
+* `$document` is an `IData` document from which to collect and flatten
+  the values associated with the given `$keys`.
+* `$keys` is a list of fully-qualified keys identifying the values in
+  the given document to be flattened. If the keys index multiple
+  nested arrays all associated values in those arrays will be
+  flattened into the returned one-dimensional array.
+* `$nulls?` is an optional boolean flag which when `true` will include
+  missing or null values as nulls in the resulting array. Defaults
+  to `false`.
 
 #### Outputs:
 
 * `$values` is a one-dimensional array containing the flattened values
-  associated with the given `$key` in the given `IData` document.
+  associated with the given `$keys` in the given `IData` document.
 
 ---
 
