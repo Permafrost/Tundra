@@ -9351,6 +9351,74 @@ Returns the first key value pair from the pipeline.
 
 ---
 
+### tundra.pipeline:flatten
+
+Returns the values associated with the given keys from the pipeline
+flattened to a one-dimensional array.
+
+For example, given the following pipeline containing a single `IData`
+document `a` (represented in [JSON] form):
+
+    {
+      "a": [
+        {
+          "b": [
+            {
+              "c": "1"
+            },
+            {
+              "c": "2"
+            },
+            {
+              "c": "3"
+            }
+          ]
+        },
+        {
+          "b": [
+            {
+              "c": "4"
+            },
+            {
+              "c": "5"
+            }
+          ]
+        }
+      ]
+    }
+
+A flattening of `a/b/c` would return the following (represented in
+[JSON] form):
+
+    ["1", "2", "3", "4", "5"]
+
+A flattening of `a/b[0]/c` would return the following (represented
+in [JSON] form):
+
+    ["1", "2", "3"]
+
+And a flattening of `a/b[0]/c[0]` would return the following
+(represented in [JSON] form):
+
+    ["1"]
+
+#### Inputs:
+
+* `$keys` is a list of fully-qualified keys identifying the values in
+  the pipeline to be flattened. If the keys index multiple nested
+  arrays all associated values in those arrays will be flattened
+  into the returned one-dimensional array.
+* `$nulls?` is an optional boolean flag which when `true` will include
+  missing or null values as nulls in the resulting array. Defaults
+  to `false`.
+
+#### Outputs:
+
+* `$values` is a one-dimensional array containing the flattened values
+  associated with the given `$keys` in pipeline.
+
+---
+
 ### tundra.pipeline:get
 
 Returns the value associated with the given key from the pipeline, or null

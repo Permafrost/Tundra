@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-28 10:11:31 AEST
+// -----( CREATED: 2016-01-08 21:22:31 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -85,7 +85,7 @@ public final class pipeline
 		// @sigtype java 3.5
 		// [i] field:0:required $key.source
 		// [i] field:0:required $key.target
-		// [i] field:0:optional $key.literal? {"false","true"}
+		// [i] field:0:optional $key.literal? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -111,7 +111,7 @@ public final class pipeline
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $key
-		// [i] field:0:optional $key.literal? {"false","true"}
+		// [i] field:0:optional $key.literal? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -136,7 +136,7 @@ public final class pipeline
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $encoding
-		// [i] field:0:optional $mode {"stream","bytes","string"}
+		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -185,6 +185,34 @@ public final class pipeline
 
 
 
+	public static final void flatten (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(flatten)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:1:optional $keys
+		// [i] field:0:optional $nulls? {&quot;false&quot;,&quot;true&quot;}
+		// [o] object:1:optional $values
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    String[] keys = IDataUtil.getStringArray(cursor, "$keys");
+		    boolean includeNulls = BooleanHelper.parse(IDataUtil.getString(cursor, "$nulls?"));
+		
+		    Object[] values = IDataHelper.flatten(pipeline, includeNulls, keys);
+		
+		    if (values != null) IDataUtil.put(cursor, "$values", values);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void get (IData pipeline)
         throws ServiceException
 	{
@@ -192,7 +220,7 @@ public final class pipeline
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $key
-		// [i] field:0:optional $key.literal? {"false","true"}
+		// [i] field:0:optional $key.literal? {&quot;false&quot;,&quot;true&quot;}
 		// [i] object:0:optional $default.object
 		// [i] field:0:optional $default.string
 		// [o] object:0:optional $value
@@ -363,7 +391,7 @@ public final class pipeline
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $key
-		// [i] field:0:optional $key.literal? {"false","true"}
+		// [i] field:0:optional $key.literal? {&quot;false&quot;,&quot;true&quot;}
 		// [i] object:0:optional $value
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -391,7 +419,7 @@ public final class pipeline
 		// @sigtype java 3.5
 		// [i] field:0:required $key.source
 		// [i] field:0:required $key.target
-		// [i] field:0:optional $key.literal? {"false","true"}
+		// [i] field:0:optional $key.literal? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
