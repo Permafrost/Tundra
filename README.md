@@ -2814,7 +2814,26 @@ Returns the total size in bytes of all files in the given directory.
 * `$size` is the total size in bytes of all files in the given
   directory.
 
-[URI]: <http://www.w3.org/Addressing/>
+---
+
+### tundra.directory:squeeze
+
+Reduces the total size in bytes of the given directory to the given
+size by progressively deleting files in order of least recently
+modified.
+
+#### Inputs:
+
+* `$directory` is a relative or absolute path, or file: [URI], in which
+  files will be deleted to reduce the total size of the directory to
+  the required size.
+* `$size?` is the required size in bytes of the given directory. If the
+  directory's size is less that this size, no files will be deleted.
+  If the directory's size is greater than this size, files will be
+  progressively deleted in order of least recently modified until the
+  directory size is equal to or less than the required size.
+* `$recurse?` is an optional boolean flag which when `true` will include
+  all child directories in the squeezing process. Defaults to `false`.
 
 ---
 

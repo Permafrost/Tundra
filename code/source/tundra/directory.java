@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-01-18 08:53:33 EST
+// -----( CREATED: 2016-01-18 09:09:34 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -398,6 +398,35 @@ public final class directory
 		    BigInteger totalSize = DirectoryHelper.size(directory, recurse);
 		
 		    IDataUtil.put(cursor, "$size", BigIntegerHelper.emit(totalSize));
+		} catch(IOException ex) {
+		    ExceptionHelper.raise(ex);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void squeeze (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(squeeze)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $directory
+		// [i] field:0:optional $size
+		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    String directory = IDataUtil.getString(cursor, "$directory");
+		    BigInteger size = BigIntegerHelper.parse(IDataUtil.getString(cursor, "$size"));
+		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
+		
+		    DirectoryHelper.squeeze(directory, size, recurse);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {

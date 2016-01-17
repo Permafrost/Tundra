@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">squeeze</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogICAgU3Ry
+aW5nIGRpcmVjdG9yeSA9IElEYXRhVXRpbC5nZXRTdHJpbmcoY3Vyc29yLCAiJGRpcmVjdG9yeSIp
+OwogICAgQmlnSW50ZWdlciBzaXplID0gQmlnSW50ZWdlckhlbHBlci5wYXJzZShJRGF0YVV0aWwu
+Z2V0U3RyaW5nKGN1cnNvciwgIiRzaXplIikpOwogICAgYm9vbGVhbiByZWN1cnNlID0gQm9vbGVh
+bkhlbHBlci5wYXJzZShJRGF0YVV0aWwuZ2V0U3RyaW5nKGN1cnNvciwgIiRyZWN1cnNlPyIpKTsK
+CiAgICBEaXJlY3RvcnlIZWxwZXIuc3F1ZWV6ZShkaXJlY3RvcnksIHNpemUsIHJlY3Vyc2UpOwp9
+IGNhdGNoKElPRXhjZXB0aW9uIGV4KSB7CiAgICBFeGNlcHRpb25IZWxwZXIucmFpc2UoZXgpOwp9
+IGZpbmFsbHkgewogICAgY3Vyc29yLmRlc3Ryb3koKTsKfQ==</value>
+</Values>
