@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">size</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogICAgU3Ry
+aW5nIGRpcmVjdG9yeSA9IElEYXRhVXRpbC5nZXRTdHJpbmcoY3Vyc29yLCAiJGRpcmVjdG9yeSIp
+OwogICAgYm9vbGVhbiByZWN1cnNlID0gQm9vbGVhbkhlbHBlci5wYXJzZShJRGF0YVV0aWwuZ2V0
+U3RyaW5nKGN1cnNvciwgIiRyZWN1cnNlPyIpKTsKCiAgICBCaWdJbnRlZ2VyIHRvdGFsU2l6ZSA9
+IERpcmVjdG9yeUhlbHBlci5zaXplKGRpcmVjdG9yeSwgcmVjdXJzZSk7CgogICAgSURhdGFVdGls
+LnB1dChjdXJzb3IsICIkc2l6ZSIsIEJpZ0ludGVnZXJIZWxwZXIuZW1pdCh0b3RhbFNpemUpKTsK
+fSBjYXRjaChJT0V4Y2VwdGlvbiBleCkgewogICAgRXhjZXB0aW9uSGVscGVyLnJhaXNlKGV4KTsK
+fSBmaW5hbGx5IHsKICAgIGN1cnNvci5kZXN0cm95KCk7Cn0=</value>
+</Values>

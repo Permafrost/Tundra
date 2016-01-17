@@ -2797,6 +2797,27 @@ target already exists, an exception will be thrown.
 
 ---
 
+### tundra.directory:size
+
+Returns the total size in bytes of all files in the given directory.
+
+#### Inputs:
+
+* `$directory` is a relative or absolute path, or file: [URI], to
+  calculate the total size of.
+* `$recurse?` is an optional boolean flag which when `true` will include
+  the size of all child directories in the calculation. Defaults to
+  `false`.
+
+#### Outputs:
+
+* `$size` is the total size in bytes of all files in the given
+  directory.
+
+[URI]: <http://www.w3.org/Addressing/>
+
+---
+
 ### tundra.document:amend
 
 Edits the given IData `$document` with the list of {key, value} pairs

@@ -11,6 +11,7 @@
   <array name="imports" type="value" depth="1">
     <value>java.io.IOException</value>
     <value>java.io.FilenameFilter</value>
+    <value>java.math.BigInteger</value>
     <value>permafrost.tundra.io.DirectoryHelper</value>
     <value>permafrost.tundra.io.DirectoryLister</value>
     <value>permafrost.tundra.io.DirectoryListing</value>
@@ -20,6 +21,7 @@
     <value>permafrost.tundra.lang.ArrayHelper</value>
     <value>permafrost.tundra.lang.BooleanHelper</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>
+    <value>permafrost.tundra.math.BigIntegerHelper</value>
     <value>permafrost.tundra.time.DurationHelper</value>
   </array>
 </Values>

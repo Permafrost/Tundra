@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-01-18 08:45:40 EST
+// -----( CREATED: 2016-01-18 08:53:33 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -11,6 +11,7 @@ import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import java.io.IOException;
 import java.io.FilenameFilter;
+import java.math.BigInteger;
 import permafrost.tundra.io.DirectoryHelper;
 import permafrost.tundra.io.DirectoryLister;
 import permafrost.tundra.io.DirectoryListing;
@@ -20,6 +21,7 @@ import permafrost.tundra.io.filter.WildcardFilter;
 import permafrost.tundra.lang.ArrayHelper;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.ExceptionHelper;
+import permafrost.tundra.math.BigIntegerHelper;
 import permafrost.tundra.time.DurationHelper;
 // --- <<IS-END-IMPORTS>> ---
 
@@ -366,6 +368,36 @@ public final class directory
 		    String target = IDataUtil.getString(cursor, "$directory.target");
 		
 		    DirectoryHelper.rename(source, target);
+		} catch(IOException ex) {
+		    ExceptionHelper.raise(ex);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void size (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(size)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $directory
+		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [o] field:0:required $size
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    String directory = IDataUtil.getString(cursor, "$directory");
+		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
+		
+		    BigInteger totalSize = DirectoryHelper.size(directory, recurse);
+		
+		    IDataUtil.put(cursor, "$size", BigIntegerHelper.emit(totalSize));
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
