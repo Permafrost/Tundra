@@ -11316,8 +11316,9 @@ length.
   right. When specified as a negative value, truncation occurs
   right to left.
 * `$ellipsis?` is an optional boolean indicating whether truncated
-  strings should be suffixed with the ellipsis character to show
-  that truncation has occured. Defaults to `false`.
+  strings should be suffixed for left to right truncations or
+  prefixed with right to left truncations with the ellipsis
+  character to show that truncation has occured. Defaults to `false`.
 
 #### Outputs:
 
