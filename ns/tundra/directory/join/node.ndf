@@ -26,6 +26,7 @@
           <value name="field_name">$parent</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
           <array name="field_options" type="value" depth="1">
           </array>
           <record name="field_content_type" javaclass="com.wm.util.Values">
@@ -39,7 +40,7 @@
               </record>
             </array>
           </record>
-          <value name="nillable">false</value>
+          <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
         </record>
@@ -47,16 +48,14 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <value name="field_usereditable">true</value>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$child</value>
+          <value name="field_name">$children</value>
           <value name="field_type">string</value>
-          <value name="field_dim">0</value>
-          <array name="field_options" type="value" depth="1">
-          </array>
+          <value name="field_dim">1</value>
+          <value name="field_opt">true</value>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <value name="contentType">1</value>
             <value name="internalType">reference</value>
@@ -68,9 +67,10 @@
               </record>
             </array>
           </record>
-          <value name="nillable">false</value>
+          <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
+          <value name="is_soap_array_encoding_used">false</value>
         </record>
       </array>
       <value name="modifiable">true</value>
@@ -96,6 +96,7 @@
           <value name="field_name">$uri</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
           <array name="field_options" type="value" depth="1">
           </array>
           <record name="field_content_type" javaclass="com.wm.util.Values">
@@ -109,7 +110,7 @@
               </record>
             </array>
           </record>
-          <value name="nillable">false</value>
+          <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
         </record>
@@ -119,17 +120,19 @@
   </record>
   <value name="node_comment">### tundra.directory:join
 
-Returns a new file path [URI], given a parent path and a child path
-or file name.
+Returns a new file path [URI], given a parent path and a children 
+paths or file names.
 
 #### Inputs:
 
 * $parent is a string specifying a relative or absolute parent path.
-* $child is a string specifying a relative child path or file name.
+* $children is a string list specifying relative child paths or file 
+  names.
 
 #### Outputs:
 
-* $uri is a file: [URI] representing the path $parent/$child.
+* $uri is a file: [URI] representing the path of the joined parent
+  and children items.
 
 [URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
   <value name="stateless">no</value>
@@ -137,11 +140,11 @@ or file name.
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template">tundra_directory_join</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
   <value name="icontext_policy">$null</value>
-  <value name="svcInvkURLAlias"></value>
   <value name="system_service">no</value>
   <value name="retry_max">0</value>
   <value name="retry_interval">0</value>

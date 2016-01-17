@@ -2647,12 +2647,13 @@ or file name.
 #### Inputs:
 
 * `$parent` is a string specifying a relative or absolute parent path.
-* `$child` is a string specifying a relative child path or file name.
+* `$children` is a string list specifying relative child paths or file
+  names.
 
 #### Outputs:
 
-* `$uri` is a file: [URI] representing the path `$parent`/`$child`.
-
+* `$uri` is a `file:` [URI] representing the path of the joined parent
+  and children items.
 ---
 
 ### tundra.directory:list

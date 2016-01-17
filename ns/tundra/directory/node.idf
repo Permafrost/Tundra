@@ -17,6 +17,7 @@
     <value>permafrost.tundra.io.FileHelper</value>
     <value>permafrost.tundra.io.filter.RegularExpressionFilter</value>
     <value>permafrost.tundra.io.filter.WildcardFilter</value>
+    <value>permafrost.tundra.lang.ArrayHelper</value>
     <value>permafrost.tundra.lang.BooleanHelper</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>
     <value>permafrost.tundra.time.DurationHelper</value>

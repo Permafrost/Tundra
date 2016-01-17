@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-11-28 15:52:29 EST
+// -----( CREATED: 2016-01-18 08:45:40 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -17,6 +17,7 @@ import permafrost.tundra.io.DirectoryListing;
 import permafrost.tundra.io.FileHelper;
 import permafrost.tundra.io.filter.RegularExpressionFilter;
 import permafrost.tundra.io.filter.WildcardFilter;
+import permafrost.tundra.lang.ArrayHelper;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.time.DurationHelper;
@@ -125,16 +126,30 @@ public final class directory
 		// --- <<IS-START(join)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:required $parent
-		// [i] field:0:required $child
-		// [o] field:0:required $uri
+		// [i] field:0:optional $parent
+		// [i] field:1:optional $children
+		// [o] field:0:optional $uri
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		    String parent = IDataUtil.getString(cursor, "$parent");
-		    String child = IDataUtil.getString(cursor, "$child");
+		    String[] children = IDataUtil.getStringArray(cursor, "$children");
 		
-		    IDataUtil.put(cursor, "$uri", DirectoryHelper.join(parent, child));
+		    if (children == null) {
+		        String child = IDataUtil.getString(cursor, "$child");
+		        if (child != null) {
+		            children = new String[1];
+		            children[0] = child;
+		        }
+		    }
+		
+		    if (parent != null) {
+		        children = ArrayHelper.prepend(children, parent, String.class);
+		    }
+		
+		    String path = DirectoryHelper.join(children);
+		
+		    if (path != null) IDataUtil.put(cursor, "$uri", path);
 		} finally {
 		    cursor.destroy();
 		}
