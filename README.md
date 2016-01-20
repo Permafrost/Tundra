@@ -6950,6 +6950,23 @@ the given `IData[]` document list with the replacement string.
 
 ---
 
+### tundra.list.document:take
+
+Returns the given number of items from the head of the given list
+and the remainding tail of the list.
+
+#### Inputs:
+
+* `$list` is a list to fetch the head and tail from.
+* `$count` is the number of items to take as the head of the list.
+
+#### Outputs:
+
+* `$head` is a list of the first `$count` items from the given `$list`.
+* `$tail` is a list of the remaining items from the given `$list`.
+
+---
+
 ### tundra.list.document.value:trim
 
 Removes leading and trailing whitespace from all item's string
@@ -7736,6 +7753,23 @@ removing all null values.
 * `$list` is the resulting object list with all string values
   trimmed of leading and trailing whitespace characters, and
   all empty string values and null values removed.
+
+---
+
+### tundra.list.object:take
+
+Returns the given number of items from the head of the given list
+and the remainding tail of the list.
+
+#### Inputs:
+
+* `$list` is a list to fetch the head and tail from.
+* `$count` is the number of items to take as the head of the list.
+
+#### Outputs:
+
+* `$head` is a list of the first `$count` items from the given `$list`.
+* `$tail` is a list of the remaining items from the given `$list`.
 
 ---
 
@@ -8685,6 +8719,23 @@ default value.
   patterns, such as "%key%", replaced with the value of the key
   (resolved against either `$pipeline`, if specified, or the pipeline
   itself).
+
+---
+
+### tundra.list.string:take
+
+Returns the given number of items from the head of the given list
+and the remainding tail of the list.
+
+#### Inputs:
+
+* `$list` is a list to fetch the head and tail from.
+* `$count` is the number of items to take as the head of the list.
+
+#### Outputs:
+
+* `$head` is a list of the first `$count` items from the given `$list`.
+* `$tail` is a list of the remaining items from the given `$list`.
 
 ---
 

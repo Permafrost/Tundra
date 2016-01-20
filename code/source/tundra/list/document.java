@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-11-28 15:52:01 EST
+// -----( CREATED: 2016-01-21 08:30:08 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -102,8 +102,7 @@ public final class document
 		// --- <<IS-START(concatenate)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] record:1:optional $list.x
-		// [i] record:1:optional $list.y
+		// [i] record:0:optional $operands
 		// [o] record:1:optional $list
 		tundra.list.object.concatenate(pipeline);
 		// --- <<IS-END>> ---
@@ -154,8 +153,7 @@ public final class document
 		// --- <<IS-START(equal)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] record:1:optional $list.x
-		// [i] record:1:optional $list.y
+		// [i] record:0:optional $operands
 		// [o] field:0:required $equal?
 		tundra.list.object.equal(pipeline);
 		// --- <<IS-END>> ---
@@ -676,6 +674,24 @@ public final class document
 		} finally {
 		    cursor.destroy();
 		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void take (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(take)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:1:optional $list
+		// [i] field:0:required $count
+		// [o] record:1:optional $head
+		// [o] record:1:optional $tail
+		tundra.list.object.take(pipeline);
 		// --- <<IS-END>> ---
 
                 

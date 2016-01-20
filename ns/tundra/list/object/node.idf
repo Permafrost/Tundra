@@ -208,6 +208,7 @@ OwogICAgfSBmaW5hbGx5IHsKICAgICAgICBjdXJzb3IuZGVzdHJveSgpOwogICAgfQp9</value>
     <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.data.IDataMap</value>
     <value>permafrost.tundra.flow.ConditionEvaluator</value>
+    <value>permafrost.tundra.lang.ArraySplitter</value>
     <value>permafrost.tundra.lang.ArrayHelper</value>
     <value>permafrost.tundra.lang.BooleanHelper</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>
