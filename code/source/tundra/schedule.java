@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-22 15:30:47 AEST
+// -----( CREATED: 2016-01-28 20:10:28 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -12,6 +12,7 @@ import com.wm.app.b2b.server.ServiceException;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.flow.ConditionEvaluator;
 import permafrost.tundra.lang.ExceptionHelper;
+import permafrost.tundra.server.ScheduleHelper;
 import permafrost.tundra.time.DateTimeHelper;
 import permafrost.tundra.time.DurationHelper;
 import permafrost.tundra.time.DurationPattern;
@@ -65,7 +66,7 @@ public final class schedule
 		// [i] field:0:optional $id
 		// [o] record:0:optional $schedule
 		// [o] - field:0:required id
-		// [o] - field:0:required type {"complex","once","repeat"}
+		// [o] - field:0:required type {&quot;complex&quot;,&quot;once&quot;,&quot;repeat&quot;}
 		// [o] - field:0:required service
 		// [o] - field:0:optional package
 		// [o] - field:0:optional description
@@ -114,7 +115,7 @@ public final class schedule
 		// [i] field:0:optional $service
 		// [o] record:1:optional $schedules
 		// [o] - field:0:required id
-		// [o] - field:0:required type {"complex","once","repeat"}
+		// [o] - field:0:required type {&quot;complex&quot;,&quot;once&quot;,&quot;repeat&quot;}
 		// [o] - field:0:required service
 		// [o] - field:0:optional package
 		// [o] - field:0:optional description
@@ -149,6 +150,48 @@ public final class schedule
 		} finally {
 		    cursor.destroy();
 		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void restart (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(restart)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		ScheduleHelper.restart();
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void start (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(start)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		ScheduleHelper.start();
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void stop (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(stop)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		ScheduleHelper.stop();
 		// --- <<IS-END>> ---
 
                 

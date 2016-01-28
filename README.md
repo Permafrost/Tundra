@@ -10168,6 +10168,32 @@ specified.
 
 ---
 
+### tundra.schedule:restart
+
+Stops and then starts the Integration Server task scheduler on
+the server on which this service is invoked. If already stopped,
+this service will start the scheduler. This service can be used
+to fix the task scheduler if it gets stuck.
+
+---
+
+### tundra.schedule:start
+
+Starts the Integration Server task scheduler on the server on
+which this service is invoked. If already started, this service
+has no effect.
+
+---
+
+### tundra.schedule:stop
+
+Stops the Integration Server task scheduler on the server on
+which this service is invoked. No user tasks will be executed
+on this server by the task scheduler until the scheduler is
+started again. If already stopped, this service has no effect.
+
+---
+
 ### tundra.schedule:suspend
 
 Suspends (or pauses) either the scheduled task identified by the given
