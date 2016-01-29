@@ -749,6 +749,100 @@ Converts a string, byte array or input stream to a byte array.
 
 ---
 
+### tundra.collection.list.document:append
+
+Appends a single item to the end of a [java.util.List] object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object to append an item to.
+* `$item` is an item to be appended to the given list.
+
+#### Outputs:
+
+* `$list` is the resulting [java.util.List] with the given `$item`
+  appended to the end.
+
+---
+
+### tundra.collection.list.document:arrayify
+
+Converts a [java.util.List] object to an array.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object to be converted.
+
+#### Outputs:
+
+* `$array` is an array representation of the given `$list`.
+
+---
+
+### tundra.collection.list.object:append
+
+Appends a single item to the end of a [java.util.List] object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object to append an item to.
+* `$item` is an item to be appended to the given list.
+* `$class` is an optional Java class name that the list and item
+  to be appended are required to be instances of.
+
+#### Outputs:
+
+* `$list` is the resulting [java.util.List] with the given `$item`
+  appended to the end.
+
+---
+
+### tundra.collection.list.object:arrayify
+
+Converts a [java.util.List] object to an array.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object to be converted.
+* `$class` is an optional Java class name for the type of item
+  stored in the list and resulting array.
+
+#### Outputs:
+
+* `$array` is an array representation of the given `$list`.
+
+---
+
+### tundra.collection.list.string:append
+
+Appends a single item to the end of a [java.util.List] object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object to append an item to.
+* `$item` is an item to be appended to the given list.
+
+#### Outputs:
+
+* `$list` is the resulting [java.util.List] with the given `$item`
+  appended to the end.
+
+---
+
+### tundra.collection.list.string:arrayify
+
+Converts a [java.util.List] object to an array.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object to be converted.
+
+#### Outputs:
+
+* `$array` is an array representation of the given `$list`.
+
+---
+
 ### tundra.condition:evaluate
 
 Evaluates the given condition against the pipeline (or optional scope IData
@@ -12267,6 +12361,7 @@ Copyright &copy; 2012 Lachlan Dowding. See the [LICENSE] file for further detail
 [java.util.Date]: <http://docs.oracle.com/javase/6/docs/api/java/util/Date.html>
 [java.util.Formatter format string]: <http://docs.oracle.com/javase/6/docs/api/java/util/Formatter.html#syntax>
 [java.util.Formatter format strings]: <http://docs.oracle.com/javase/6/docs/api/java/util/Formatter.html#syntax>
+[java.util.List]: <http://docs.oracle.com/javase/6/docs/api/java/util/List.html>
 [java.util.TimeZone]: <http://docs.oracle.com/javase/6/docs/api/java/util/TimeZone.html>
 [java.util.regex.Pattern]: <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html>
 [javax.activation.MimeType]: <http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html>

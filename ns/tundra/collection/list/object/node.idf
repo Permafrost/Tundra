@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="node_type">interface</value>
+  <value name="node_nsName">tundra.collection.list.object</value>
+  <value name="is_public">false</value>
+  <value name="shared">LyoqCiAqIEFkZHMgdGhlIGdpdmVuIGl0ZW0gdG8gdGhlIGdpdmVuIGphdmEudXRpbC5MaXN0Lgog
+KiAKICogQHBhcmFtIHBpcGVsaW5lIFRoZSBwaXBlbGluZSBjb250YWluaW5nIHRoZSBsaXN0IGFu
+ZCBpdGVtIHRvIGJlIGluc2VydGVkLgogKiBAcGFyYW0ga2xhc3MgICAgVGhlIGNsYXNzIG9mIHRo
+ZSBpdGVtIGJlaW5nIGFwcGVuZGVkLgogKiBAcGFyYW0gPFQ+ICAgICAgVGhlIGNsYXNzIG9mIHRo
+ZSBpdGVtIGJlaW5nIGFwcGVuZGVkLgogKi8KcHVibGljIHN0YXRpYyA8VD4gdm9pZCBhcHBlbmQo
+SURhdGEgcGlwZWxpbmUsIENsYXNzPFQ+IGtsYXNzKSB7CiAgICBJRGF0YUN1cnNvciBjdXJzb3Ig
+PSBwaXBlbGluZS5nZXRDdXJzb3IoKTsKCiAgICB0cnkgewogICAgICAgIExpc3Q8VD4gbGlzdCA9
+IChMaXN0PFQ+KUlEYXRhVXRpbC5nZXQoY3Vyc29yLCAiJGxpc3QiKTsKICAgICAgICBUIGl0ZW0g
+PSAoVClJRGF0YVV0aWwuZ2V0KGN1cnNvciwgIiRpdGVtIik7CgogICAgICAgIGxpc3QgPSBMaXN0
+SGVscGVyLmFwcGVuZChsaXN0LCBpdGVtKTsKCiAgICAgICAgaWYgKGxpc3QgIT0gbnVsbCkgSURh
+dGFVdGlsLnB1dChjdXJzb3IsICIkbGlzdCIsIGxpc3QpOwogICAgfSBmaW5hbGx5IHsKICAgICAg
+ICBjdXJzb3IuZGVzdHJveSgpOwogICAgfQp9CgovKioKICogUmV0dXJucyBhIG5ldyBhcnJheSwg
+d2l0aCB0aGUgZ2l2ZW4gZWxlbWVudCBpbnNlcnRlZCBhdCB0aGUgZW5kLgogKiAKICogQHBhcmFt
+IHBpcGVsaW5lIFRoZSBwaXBlbGluZSBjb250YWluaW5nIHRoZSBsaXN0IHRvIGJlIGNvbnZlcnRl
+ZCB0byBhbiBhcnJheS4KICogQHBhcmFtIGtsYXNzICAgIFRoZSBjb21wb25lbnQgdHlwZSBvZiB0
+aGUgbGlzdC4KICogQHBhcmFtIDxUPiAgICAgIFRoZSBjb21wb25lbnQgdHlwZSBvZiB0aGUgbGlz
+dC4KICovCnB1YmxpYyBzdGF0aWMgPFQ+IHZvaWQgYXJyYXlpZnkoSURhdGEgcGlwZWxpbmUsIENs
+YXNzPFQ+IGtsYXNzKSB7CiAgICBJRGF0YUN1cnNvciBjdXJzb3IgPSBwaXBlbGluZS5nZXRDdXJz
+b3IoKTsKCiAgICB0cnkgewogICAgICAgIExpc3Q8VD4gbGlzdCA9IChMaXN0PFQ+KUlEYXRhVXRp
+bC5nZXQoY3Vyc29yLCAiJGxpc3QiKTsKCiAgICAgICAgVFtdIGFycmF5ID0gTGlzdEhlbHBlci5h
+cnJheWlmeShsaXN0LCBrbGFzcyk7CgogICAgICAgIGlmIChhcnJheSAhPSBudWxsKSBJRGF0YVV0
+aWwucHV0KGN1cnNvciwgIiRhcnJheSIsIGFycmF5KTsKICAgIH0gZmluYWxseSB7CiAgICAgICAg
+Y3Vyc29yLmRlc3Ryb3koKTsKICAgIH0KfQ==</value>
+  <value name="encodeutf8">true</value>
+  <value name="extends"></value>
+  <array name="implements" type="value" depth="1">
+  </array>
+  <array name="imports" type="value" depth="1">
+    <value>java.util.List</value>
+    <value>permafrost.tundra.collection.ListHelper</value>
+    <value>permafrost.tundra.lang.ExceptionHelper</value>
+  </array>
+</Values>
