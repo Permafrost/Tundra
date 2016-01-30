@@ -34,18 +34,20 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$item</value>
-          <value name="field_type">string</value>
+          <value name="field_name">$items</value>
+          <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
+          <array name="rec_fields" type="record" depth="1">
+          </array>
+          <value name="modifiable">true</value>
         </record>
       </array>
       <value name="modifiable">true</value>
@@ -80,17 +82,21 @@
   </record>
   <value name="node_comment">### tundra.collection.list.string:append
 
-Appends a single item to the end of a [java.util.List] object.
+Appends arbitrarily specified items to the end of a [java.util.List] 
+object.
 
 #### Inputs:
 
-* $list is a [java.util.List] object to append an item to.
-* $item is an item to be appended to the given list.
+* $list is a [java.util.List] object to append items to. If not
+  specified, a new [java.util.List] object is automatically created.
+* $items is an IData document containing arbitrarily specified 
+  strings to be appended to the list. The leaf values from the
+  given document will be appended in the order they appear.
 
 #### Outputs:
 
-* $list is the resulting [java.util.List] with the given $item
-  appended to the end.
+* $list is the resulting [java.util.List] object with the given
+  items appended to the end.
 
 [java.util.List]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/List.html&gt;</value>
   <value name="stateless">no</value>

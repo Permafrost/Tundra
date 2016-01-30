@@ -1,7 +1,7 @@
 package tundra.collection.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-01-29 14:31:53 EST
+// -----( CREATED: 2016-01-30 15:29:49 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -11,6 +11,7 @@ import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import java.util.List;
 import permafrost.tundra.collection.ListHelper;
+import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 // --- <<IS-END-IMPORTS>> ---
 
@@ -37,7 +38,7 @@ public final class object
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:0:optional $list
-		// [i] object:0:optional $item
+		// [i] record:0:optional $items
 		// [i] field:0:optional $class
 		// [o] object:0:required $list
 		IDataCursor cursor = pipeline.getCursor();
@@ -81,6 +82,32 @@ public final class object
                 
 	}
 
+
+
+	public static final void listify (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(listify)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:1:optional $array
+		// [i] field:0:optional $class
+		// [o] object:0:optional $list
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    String className = IDataUtil.getString(cursor, "$class");
+		    listify(pipeline, className == null ? Object.class : Class.forName(className));
+		} catch (ClassNotFoundException ex) {
+		    ExceptionHelper.raise(ex);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
 	// --- <<IS-START-SHARED>> ---
 	/**
 	 * Adds the given item to the given java.util.List.
@@ -94,9 +121,14 @@ public final class object
 	
 	    try {
 	        List<T> list = (List<T>)IDataUtil.get(cursor, "$list");
-	        T item = (T)IDataUtil.get(cursor, "$item");
+	        IData items = IDataUtil.getIData(cursor, "$items");
 	
-	        list = ListHelper.append(list, item);
+	        if (items == null) {
+	            T item = (T)IDataUtil.get(cursor, "$item");
+	            list = ListHelper.append(list, item);
+	        } else {
+	            list = ListHelper.append(list, (T[])IDataHelper.getLeafValues(items, klass));
+	        }
 	
 	        if (list != null) IDataUtil.put(cursor, "$list", list);
 	    } finally {
@@ -105,7 +137,7 @@ public final class object
 	}
 	
 	/**
-	 * Returns a new array, with the given element inserted at the end.
+	 * Returns a new array representation of the given java.util.List object.
 	 * 
 	 * @param pipeline The pipeline containing the list to be converted to an array.
 	 * @param klass    The component type of the list.
@@ -116,10 +148,26 @@ public final class object
 	
 	    try {
 	        List<T> list = (List<T>)IDataUtil.get(cursor, "$list");
+	        if (list != null) IDataUtil.put(cursor, "$array", ListHelper.arrayify(list, klass));
+	    } finally {
+	        cursor.destroy();
+	    }
+	}
 	
-	        T[] array = ListHelper.arrayify(list, klass);
 	
-	        if (array != null) IDataUtil.put(cursor, "$array", array);
+	/**
+	 * Returns a new java.util.List representation of the given array.
+	 * 
+	 * @param pipeline The pipeline containing the array to be converted to a list.
+	 * @param klass    The component type of the list.
+	 * @param <T>      The component type of the list.
+	 */
+	public static <T> void listify(IData pipeline, Class<T> klass) {
+	    IDataCursor cursor = pipeline.getCursor();
+	
+	    try {
+	        T[] array = (T[])IDataUtil.getObjectArray(cursor, "$array");
+	        if (array != null) IDataUtil.put(cursor, "$list", ListHelper.listify(array, klass));
 	    } finally {
 	        cursor.destroy();
 	    }

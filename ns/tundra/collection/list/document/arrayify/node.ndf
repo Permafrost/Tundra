@@ -66,6 +66,19 @@
       <value name="modifiable">true</value>
     </record>
   </record>
+  <value name="node_comment">### tundra.collection.list.document:arrayify
+
+Converts a [java.util.List] object to an array.
+
+#### Inputs:
+
+* $list is a [java.util.List] object to be converted.
+
+#### Outputs:
+
+* $array is an array representation of the given $list.
+
+[java.util.List]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/List.html&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

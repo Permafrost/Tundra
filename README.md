@@ -751,17 +751,21 @@ Converts a string, byte array or input stream to a byte array.
 
 ### tundra.collection.list.document:append
 
-Appends a single item to the end of a [java.util.List] object.
+Appends arbitrarily specified items to the end of a [java.util.List]
+object.
 
 #### Inputs:
 
-* `$list` is a [java.util.List] object to append an item to.
-* `$item` is an item to be appended to the given list.
+* `$list` is a [java.util.List] object to append items to. If not
+  specified, a new [java.util.List] object is automatically created.
+* `$items` is an `IData` document containing arbitrarily specified
+  IData documents to be appended to the list. The leaf values from
+  the given document will be appended in the order they appear.
 
 #### Outputs:
 
-* `$list` is the resulting [java.util.List] with the given `$item`
-  appended to the end.
+* `$list` is the resulting [java.util.List] object with the given
+  items appended to the end.
 
 ---
 
@@ -776,6 +780,20 @@ Converts a [java.util.List] object to an array.
 #### Outputs:
 
 * `$array` is an array representation of the given `$list`.
+
+---
+
+### tundra.collection.list.document:listify
+
+Converts an `IData[]` object to a [java.util.List] object.
+
+#### Inputs:
+
+* `$array` is an `IData[]` object to be converted.
+
+#### Outputs:
+
+* `$list` is a [java.util.List] representation of the given `$array`.
 
 ---
 
@@ -797,19 +815,41 @@ Appends a single item to the end of a [java.util.List] object.
 
 ---
 
-### tundra.collection.list.object:arrayify
+### tundra.collection.list.object:append
 
-Converts a [java.util.List] object to an array.
+Appends arbitrarily specified items to the end of a [java.util.List]
+object.
 
 #### Inputs:
 
-* `$list` is a [java.util.List] object to be converted.
-* `$class` is an optional Java class name for the type of item
-  stored in the list and resulting array.
+* `$list` is a [java.util.List] object to append items to. If not
+  specified, a new [java.util.List] object is automatically created.
+* `$items` is an `IData` document containing arbitrarily specified
+  objects to be appended to the list. The leaf values from the
+  given document will be appended in the order they appear.
+* `$class` is an optional Java class name that the list and item
+  to be appended are required to be instances of.
 
 #### Outputs:
 
-* `$array` is an array representation of the given `$list`.
+* `$list` is the resulting [java.util.List] object with the given
+  items appended to the end.
+
+---
+
+### tundra.collection.list.object:listify
+
+Converts an array to a [java.util.List] object.
+
+#### Inputs:
+
+* `$array` is an array to be converted to a [java.util.List].
+* `$class` is an optional Java class name for the type of item
+  stored in the array and resulting list.
+
+#### Outputs:
+
+* `$list` is a [java.util.List] representation of the given `$array`.
 
 ---
 
@@ -840,6 +880,20 @@ Converts a [java.util.List] object to an array.
 #### Outputs:
 
 * `$array` is an array representation of the given `$list`.
+
+---
+
+### tundra.collection.list.string:listify
+
+Converts a `String[]` object to a [java.util.List] object.
+
+#### Inputs:
+
+* `$array` is a `String[]` object to be converted.
+
+#### Outputs:
+
+* `$list` is a [java.util.List] representation of the given `$array`.
 
 ---
 
