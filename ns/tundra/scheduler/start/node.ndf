@@ -4,18 +4,17 @@
   <value name="svc_type">java</value>
   <value name="svc_subtype">unknown</value>
   <value name="svc_sigtype">java 3.5</value>
-  <value name="node_comment">### tundra.schedule:stop
+  <value name="node_comment">### tundra.scheduler:start
 
-Stops the Integration Server task scheduler on the server on
-which this service is invoked. No user tasks will be executed
-on this server by the task scheduler until the scheduler is
-started again. If already stopped, this service has no effect.</value>
+Starts the Integration Server task scheduler on the server on
+which this service is invoked. If already started, this service
+has no effect.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
-  <value name="template">tundra_schedule_stop</value>
+  <value name="template">tundra_scheduler_start</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>

@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-01-28 20:10:28 EST
+// -----( CREATED: 2016-02-01 08:30:32 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -12,7 +12,6 @@ import com.wm.app.b2b.server.ServiceException;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.flow.ConditionEvaluator;
 import permafrost.tundra.lang.ExceptionHelper;
-import permafrost.tundra.server.ScheduleHelper;
 import permafrost.tundra.time.DateTimeHelper;
 import permafrost.tundra.time.DurationHelper;
 import permafrost.tundra.time.DurationPattern;
@@ -150,48 +149,6 @@ public final class schedule
 		} finally {
 		    cursor.destroy();
 		}
-		// --- <<IS-END>> ---
-
-                
-	}
-
-
-
-	public static final void restart (IData pipeline)
-        throws ServiceException
-	{
-		// --- <<IS-START(restart)>> ---
-		// @subtype unknown
-		// @sigtype java 3.5
-		ScheduleHelper.restart();
-		// --- <<IS-END>> ---
-
-                
-	}
-
-
-
-	public static final void start (IData pipeline)
-        throws ServiceException
-	{
-		// --- <<IS-START(start)>> ---
-		// @subtype unknown
-		// @sigtype java 3.5
-		ScheduleHelper.start();
-		// --- <<IS-END>> ---
-
-                
-	}
-
-
-
-	public static final void stop (IData pipeline)
-        throws ServiceException
-	{
-		// --- <<IS-START(stop)>> ---
-		// @subtype unknown
-		// @sigtype java 3.5
-		ScheduleHelper.stop();
 		// --- <<IS-END>> ---
 
                 

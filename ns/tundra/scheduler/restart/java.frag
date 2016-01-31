@@ -3,5 +3,5 @@
 <Values version="2.0">
   <value name="name">restart</value>
   <value name="encodeutf8">true</value>
-  <value name="body">U2NoZWR1bGVIZWxwZXIucmVzdGFydCgpOw==</value>
+  <value name="body">U2NoZWR1bGVySGVscGVyLnJlc3RhcnQoKTs=</value>
 </Values>
