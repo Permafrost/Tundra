@@ -842,24 +842,6 @@ object.
 
 ### tundra.collection.list.object:append
 
-Appends a single item to the end of a [java.util.List] object.
-
-#### Inputs:
-
-* `$list` is a [java.util.List] object to append an item to.
-* `$item` is an item to be appended to the given list.
-* `$class` is an optional Java class name that the list and item
-  to be appended are required to be instances of.
-
-#### Outputs:
-
-* `$list` is the resulting [java.util.List] with the given `$item`
-  appended to the end.
-
----
-
-### tundra.collection.list.object:append
-
 Appends arbitrarily specified items to the end of a [java.util.List]
 object.
 
