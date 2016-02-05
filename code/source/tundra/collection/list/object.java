@@ -1,7 +1,7 @@
 package tundra.collection.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-01-30 15:29:49 EST
+// -----( CREATED: 2016-02-05 13:17:51 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -13,6 +13,7 @@ import java.util.List;
 import permafrost.tundra.collection.ListHelper;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.lang.ExceptionHelper;
+import permafrost.tundra.math.IntegerHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class object
@@ -84,6 +85,35 @@ public final class object
 
 
 
+	public static final void insert (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(insert)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:0:optional $list
+		// [i] record:0:optional $items
+		// [i] field:0:required $index
+		// [i] field:0:optional $index.base {&quot;0&quot;,&quot;1&quot;}
+		// [i] field:0:optional $class
+		// [o] object:0:required $list
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    String className = IDataUtil.getString(cursor, "$class");
+		    insert(pipeline, className == null ? Object.class : Class.forName(className));
+		} catch (ClassNotFoundException ex) {
+		    ExceptionHelper.raise(ex);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void listify (IData pipeline)
         throws ServiceException
 	{
@@ -108,13 +138,40 @@ public final class object
                 
 	}
 
+
+
+	public static final void prepend (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(prepend)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:0:optional $list
+		// [i] record:0:optional $items
+		// [i] field:0:optional $class
+		// [o] object:0:required $list
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    String className = IDataUtil.getString(cursor, "$class");
+		    prepend(pipeline, className == null ? Object.class : Class.forName(className));
+		} catch (ClassNotFoundException ex) {
+		    ExceptionHelper.raise(ex);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
 	// --- <<IS-START-SHARED>> ---
 	/**
-	 * Adds the given item to the given java.util.List.
+	 * Appends the given items to the given java.util.List.
 	 * 
-	 * @param pipeline The pipeline containing the list and item to be inserted.
-	 * @param klass    The class of the item being appended.
-	 * @param <T>      The class of the item being appended.
+	 * @param pipeline The pipeline containing the list and items to be appended.
+	 * @param klass    The component type of the list.
+	 * @param <T>      The component type of the list.
 	 */
 	public static <T> void append(IData pipeline, Class<T> klass) {
 	    IDataCursor cursor = pipeline.getCursor();
@@ -122,15 +179,47 @@ public final class object
 	    try {
 	        List<T> list = (List<T>)IDataUtil.get(cursor, "$list");
 	        IData items = IDataUtil.getIData(cursor, "$items");
+	        IDataUtil.put(cursor, "$list", ListHelper.append(list, (T[])IDataHelper.getLeafValues(items, klass)));
+	    } finally {
+	        cursor.destroy();
+	    }
+	}
 	
-	        if (items == null) {
-	            T item = (T)IDataUtil.get(cursor, "$item");
-	            list = ListHelper.append(list, item);
-	        } else {
-	            list = ListHelper.append(list, (T[])IDataHelper.getLeafValues(items, klass));
-	        }
+	/**
+	 * Prepends the given items to the given java.util.List.
+	 * 
+	 * @param pipeline The pipeline containing the list and items to be prepended.
+	 * @param klass    The component type of the list.
+	 * @param <T>      The component type of the list.
+	 */
+	public static <T> void prepend(IData pipeline, Class<T> klass) {
+	    IDataCursor cursor = pipeline.getCursor();
 	
-	        if (list != null) IDataUtil.put(cursor, "$list", list);
+	    try {
+	        List<T> list = (List<T>)IDataUtil.get(cursor, "$list");
+	        IData items = IDataUtil.getIData(cursor, "$items");
+	        IDataUtil.put(cursor, "$list", ListHelper.prepend(list, (T[])IDataHelper.getLeafValues(items, klass)));
+	    } finally {
+	        cursor.destroy();
+	    }
+	}
+	
+	/**
+	 * Prepends the given items to the given java.util.List.
+	 * 
+	 * @param pipeline The pipeline containing the list and items to be prepended.
+	 * @param klass    The component type of the list.
+	 * @param <T>      The component type of the list.
+	 */
+	public static <T> void insert(IData pipeline, Class<T> klass) {
+	    IDataCursor cursor = pipeline.getCursor();
+	
+	    try {
+	        List<T> list = (List<T>)IDataUtil.get(cursor, "$list");
+	        IData items = IDataUtil.getIData(cursor, "$items");
+	        int indexBase = IntegerHelper.parse(IDataUtil.getString(cursor, "$index.base"), 0);
+	        int index = IntegerHelper.parse(IDataUtil.getString(cursor, "$index")) - indexBase;
+	        IDataUtil.put(cursor, "$list", ListHelper.insert(list, index, (T[])IDataHelper.getLeafValues(items, klass)));
 	    } finally {
 	        cursor.destroy();
 	    }

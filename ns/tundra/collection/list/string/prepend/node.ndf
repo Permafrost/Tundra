@@ -49,36 +49,6 @@
           </array>
           <value name="modifiable">true</value>
         </record>
-        <record javaclass="com.wm.util.Values">
-          <value name="node_type">record</value>
-          <value name="node_comment"></value>
-          <record name="node_hints" javaclass="com.wm.util.Values">
-            <value name="field_usereditable">true</value>
-            <value name="field_largerEditor">false</value>
-            <value name="field_password">false</value>
-          </record>
-          <value name="is_public">false</value>
-          <value name="field_name">$class</value>
-          <value name="field_type">string</value>
-          <value name="field_dim">0</value>
-          <value name="field_opt">true</value>
-          <array name="field_options" type="value" depth="1">
-          </array>
-          <record name="field_content_type" javaclass="com.wm.util.Values">
-            <value name="contentType">1</value>
-            <value name="internalType">reference</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-            <array name="targetNames" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">string</value>
-              </record>
-            </array>
-          </record>
-          <value name="nillable">true</value>
-          <value name="form_qualified">false</value>
-          <value name="is_global">false</value>
-        </record>
       </array>
       <value name="modifiable">true</value>
     </record>
@@ -110,25 +80,23 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">### tundra.collection.list.object:append
+  <value name="node_comment">### tundra.collection.list.string:prepend
 
-Appends arbitrarily specified items to the end of a [java.util.List] 
+Prepends arbitrarily specified items to the end of a [java.util.List] 
 object.
 
 #### Inputs:
 
-* $list is a [java.util.List] object to append items to. If not
+* $list is a [java.util.List] object to prepend items to. If not
   specified, a new [java.util.List] object is automatically created.
 * $items is an IData document containing arbitrarily specified 
-  objects to be appended to the list. The leaf values from the
-  given document will be appended in the order they appear.
-* $class is an optional Java class name that the list and items
-  to be appended are required to be instances of.
+  strings to be prepended to the list. The leaf values from the
+  given document will be prepended in the order they appear.
 
 #### Outputs:
 
 * $list is the resulting [java.util.List] object with the given
-  items appended to the end.
+  items prepended to the end.
 
 [java.util.List]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/List.html&gt;</value>
   <value name="stateless">no</value>
@@ -136,7 +104,7 @@ object.
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
-  <value name="template">tundra_collection_list_object_append</value>
+  <value name="template">tundra_collection_list_string_prepend</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>

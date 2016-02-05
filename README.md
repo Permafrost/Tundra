@@ -783,6 +783,29 @@ Converts a [java.util.List] object to an array.
 
 ---
 
+### tundra.collection.list.document:insert
+
+Inserts arbitrarily specified items at the specified index of a
+[java.util.List] object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object to insert items into. If not
+  specified, a new [java.util.List] object is automatically created.
+* `$items` is an `IData` document containing arbitrarily specified
+  `IData` documents to be inserted into the list. The leaf values from
+  the given document will be inserted in the order they appear.
+* `$index` is the index at which the given items will be inserted.
+* `$index.base` specifies whether the index is zero-based or one-
+  based. Defaults to zero-based if not specified.
+
+#### Outputs:
+
+* `$list` is the resulting [java.util.List] object with the given
+  items inserted at the specified index.
+
+---
+
 ### tundra.collection.list.document:listify
 
 Converts an `IData[]` object to a [java.util.List] object.
@@ -794,6 +817,26 @@ Converts an `IData[]` object to a [java.util.List] object.
 #### Outputs:
 
 * `$list` is a [java.util.List] representation of the given `$array`.
+
+---
+
+### tundra.collection.list.document:prepend
+
+Prepends arbitrarily specified items to the end of a [java.util.List]
+object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object to prepend items to. If not
+  specified, a new [java.util.List] object is automatically created.
+* `$items` is an `IData` document containing arbitrarily specified
+  `IData` documents to be prepended to the list. The leaf values from
+  the given document will be prepended in the order they appear.
+
+#### Outputs:
+
+* `$list` is the resulting [java.util.List] object with the given
+  items prepended to the end.
 
 ---
 
@@ -827,13 +870,54 @@ object.
 * `$items` is an `IData` document containing arbitrarily specified
   objects to be appended to the list. The leaf values from the
   given document will be appended in the order they appear.
-* `$class` is an optional Java class name that the list and item
+* `$class` is an optional Java class name that the list and items
   to be appended are required to be instances of.
 
 #### Outputs:
 
 * `$list` is the resulting [java.util.List] object with the given
   items appended to the end.
+
+---
+
+### tundra.collection.list.object:arrayify
+
+Converts a [java.util.List] object to an array.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object to be converted.
+* `$class` is an optional Java class name for the type of item
+  stored in the list and resulting array.
+
+#### Outputs:
+
+* `$array` is an array representation of the given $list.
+
+---
+
+### tundra.collection.list.object:insert
+
+Inserts arbitrarily specified items at the specified index of a
+[java.util.List] object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object to insert items into. If not
+  specified, a new [java.util.List] object is automatically created.
+* `$items` is an `IData` document containing arbitrarily specified
+  objects to be inserted into the list. The leaf values from the
+  given document will be inserted in the order they appear.
+* `$class` is an optional Java class name that the list and items
+  to be inserted are required to be instances of.
+* `$index` is the index at which the given items will be inserted.
+* `$index.base` specifies whether the index is zero-based or one-
+  based. Defaults to zero-based if not specified.
+
+#### Outputs:
+
+* `$list` is the resulting [java.util.List] object with the given
+  items inserted at the specified index.
 
 ---
 
@@ -850,6 +934,28 @@ Converts an array to a [java.util.List] object.
 #### Outputs:
 
 * `$list` is a [java.util.List] representation of the given `$array`.
+
+---
+
+### tundra.collection.list.object:prepend
+
+Prepends arbitrarily specified items to the end of a [java.util.List]
+object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object to prepend items to. If not
+  specified, a new [java.util.List] object is automatically created.
+* `$items` is an `IData` document containing arbitrarily specified
+  objects to be prepended to the list. The leaf values from the
+  given document will be prepended in the order they appear.
+* `$class` is an optional Java class name that the list and items
+  to be prepended are required to be instances of.
+
+#### Outputs:
+
+* `$list` is the resulting [java.util.List] object with the given
+  items prepended to the start of the list.
 
 ---
 
@@ -883,6 +989,29 @@ Converts a [java.util.List] object to an array.
 
 ---
 
+### tundra.collection.list.string:insert
+
+Inserts arbitrarily specified items at the specified index of a
+[java.util.List] object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object to insert items into. If not
+  specified, a new [java.util.List] object is automatically created.
+* `$items` is an `IData` document containing arbitrarily specified
+  strings to be inserted into the list. The leaf values from the
+  given document will be inserted in the order they appear.
+* `$index` is the index at which the given items will be inserted.
+* `$index.base` specifies whether the index is zero-based or one-
+  based. Defaults to zero-based if not specified.
+
+#### Outputs:
+
+* `$list` is the resulting [java.util.List] object with the given
+  items inserted at the specified index.
+
+---
+
 ### tundra.collection.list.string:listify
 
 Converts a `String[]` object to a [java.util.List] object.
@@ -894,6 +1023,26 @@ Converts a `String[]` object to a [java.util.List] object.
 #### Outputs:
 
 * `$list` is a [java.util.List] representation of the given `$array`.
+
+---
+
+### tundra.collection.list.string:prepend
+
+Prepends arbitrarily specified items to the end of a [java.util.List]
+object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object to prepend items to. If not
+  specified, a new [java.util.List] object is automatically created.
+* `$items` is an `IData` document containing arbitrarily specified
+  strings to be prepended to the list. The leaf values from the
+  given document will be prepended in the order they appear.
+
+#### Outputs:
+
+* `$list` is the resulting [java.util.List] object with the given
+  items prepended to the end.
 
 ---
 
