@@ -806,6 +806,20 @@ Inserts arbitrarily specified items at the specified index of a
 
 ---
 
+### tundra.collection.list.document:length
+
+Returns the number of items in the given [java.util.List] object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object.
+
+#### Outputs:
+
+* `$length` is the number of items in the given a [java.util.List] object.
+
+---
+
 ### tundra.collection.list.document:listify
 
 Converts an `IData[]` object to a [java.util.List] object.
@@ -903,6 +917,20 @@ Inserts arbitrarily specified items at the specified index of a
 
 ---
 
+### tundra.collection.list.object:length
+
+Returns the number of items in the given [java.util.List] object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object.
+
+#### Outputs:
+
+* `$length` is the number of items in the given a [java.util.List] object.
+
+---
+
 ### tundra.collection.list.object:listify
 
 Converts an array to a [java.util.List] object.
@@ -991,6 +1019,20 @@ Inserts arbitrarily specified items at the specified index of a
 
 * `$list` is the resulting [java.util.List] object with the given
   items inserted at the specified index.
+
+---
+
+### tundra.collection.list.string:length
+
+Returns the number of items in the given [java.util.List] object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object.
+
+#### Outputs:
+
+* `$length` is the number of items in the given a [java.util.List] object.
 
 ---
 

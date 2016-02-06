@@ -1,7 +1,7 @@
 package tundra.collection.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-02-05 13:17:51 EST
+// -----( CREATED: 2016-02-06 16:14:13 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -9,7 +9,9 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import java.util.Collection;
 import java.util.List;
+import permafrost.tundra.collection.CollectionHelper;
 import permafrost.tundra.collection.ListHelper;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.lang.ExceptionHelper;
@@ -104,6 +106,29 @@ public final class object
 		    insert(pipeline, className == null ? Object.class : Class.forName(className));
 		} catch (ClassNotFoundException ex) {
 		    ExceptionHelper.raise(ex);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void length (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(length)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:0:optional $list
+		// [o] field:0:required $length
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    Collection collection = (Collection)IDataUtil.get(cursor, "$list");
+		    IDataUtil.put(cursor, "$length", IntegerHelper.emit(CollectionHelper.length(collection)));
 		} finally {
 		    cursor.destroy();
 		}
@@ -237,7 +262,7 @@ public final class object
 	
 	    try {
 	        List<T> list = (List<T>)IDataUtil.get(cursor, "$list");
-	        if (list != null) IDataUtil.put(cursor, "$array", ListHelper.arrayify(list, klass));
+	        if (list != null) IDataUtil.put(cursor, "$array", CollectionHelper.arrayify(list, klass));
 	    } finally {
 	        cursor.destroy();
 	    }
