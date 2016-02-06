@@ -1,7 +1,7 @@
 package tundra.collection.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-02-06 16:14:13 EST
+// -----( CREATED: 2016-02-06 16:33:12 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -75,6 +75,32 @@ public final class object
 		try {
 		    String className = IDataUtil.getString(cursor, "$class");
 		    arrayify(pipeline, className == null ? Object.class : Class.forName(className));
+		} catch (ClassNotFoundException ex) {
+		    ExceptionHelper.raise(ex);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void clear (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(clear)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:0:optional $list
+		// [i] field:0:optional $class
+		// [o] object:0:required $list
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    String className = IDataUtil.getString(cursor, "$class");
+		    clear(pipeline, className == null ? Object.class : Class.forName(className));
 		} catch (ClassNotFoundException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -205,6 +231,23 @@ public final class object
 	        List<T> list = (List<T>)IDataUtil.get(cursor, "$list");
 	        IData items = IDataUtil.getIData(cursor, "$items");
 	        IDataUtil.put(cursor, "$list", ListHelper.append(list, (T[])IDataHelper.getLeafValues(items, klass)));
+	    } finally {
+	        cursor.destroy();
+	    }
+	}
+	
+	/**
+	 * Prepends the given items to the given java.util.List.
+	 * 
+	 * @param pipeline The pipeline containing the list and items to be prepended.
+	 * @param <T>      The component type of the list.
+	 */
+	public static <T> void clear(IData pipeline, Class<T> klass) {
+	    IDataCursor cursor = pipeline.getCursor();
+	
+	    try {
+	        List list = (List)IDataUtil.get(cursor, "$list");
+	        IDataUtil.put(cursor, "$list", ListHelper.clear(list, klass));
 	    } finally {
 	        cursor.destroy();
 	    }

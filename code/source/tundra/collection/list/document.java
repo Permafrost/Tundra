@@ -1,7 +1,7 @@
 package tundra.collection.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-02-06 16:17:11 EST
+// -----( CREATED: 2016-02-06 16:34:36 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -53,6 +53,22 @@ public final class document
 		// [i] object:0:optional $list
 		// [o] record:1:optional $array
 		tundra.collection.list.object.arrayify(pipeline, IData.class);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void clear (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(clear)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:0:optional $list
+		// [o] object:0:required $list
+		tundra.collection.list.object.clear(pipeline, IData.class);
 		// --- <<IS-END>> ---
 
                 

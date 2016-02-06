@@ -783,6 +783,20 @@ Converts a [java.util.List] object to an array.
 
 ---
 
+### tundra.collection.list.document:clear
+
+Removes all items from the given [java.util.List] object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object.
+
+#### Outputs:
+
+* `$list` is the given [java.util.List] object with all items removed.
+
+---
+
 ### tundra.collection.list.document:insert
 
 Inserts arbitrarily specified items at the specified index of a
@@ -892,6 +906,22 @@ Converts a [java.util.List] object to an array.
 
 ---
 
+### tundra.collection.list.object:clear
+
+Removes all items from the given [java.util.List] object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object.
+* `$class` is an optional Java class name that list items are
+  required to be instances of.
+
+#### Outputs:
+
+* `$list` is the given [java.util.List] object with all items removed.
+
+---
+
 ### tundra.collection.list.object:insert
 
 Inserts arbitrarily specified items at the specified index of a
@@ -996,6 +1026,20 @@ Converts a [java.util.List] object to an array.
 #### Outputs:
 
 * `$array` is an array representation of the given `$list`.
+
+---
+
+### tundra.collection.list.string:clear
+
+Removes all items from the given [java.util.List] object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object.
+
+#### Outputs:
+
+* `$list` is the given [java.util.List] object with all items removed.
 
 ---
 
