@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">remove</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogICAgU3Ry
+aW5nW10gZmlsZXMgPSBJRGF0YVV0aWwuZ2V0U3RyaW5nQXJyYXkoY3Vyc29yLCAiJGZpbGVzIik7
+CgogICAgTGlzdDxUaHJvd2FibGU+IGV4Y2VwdGlvbnMgPSBuZXcgQXJyYXlMaXN0PFRocm93YWJs
+ZT4oKTsKCiAgICBmb3IgKFN0cmluZyBmaWxlIDogZmlsZXMpIHsKICAgICAgICB0cnkgewogICAg
+ICAgICAgICBGaWxlSGVscGVyLnJlbW92ZShmaWxlKTsKICAgICAgICB9IGNhdGNoKElPRXhjZXB0
+aW9uIGV4KSB7CiAgICAgICAgICAgIGV4Y2VwdGlvbnMuYWRkKGV4KTsKICAgICAgICB9CiAgICB9
+CgogICAgaWYgKGV4Y2VwdGlvbnMuc2l6ZSgpID4gMCkgRXhjZXB0aW9uSGVscGVyLnJhaXNlKGV4
+Y2VwdGlvbnMpOwp9IGZpbmFsbHkgewogICAgY3Vyc29yLmRlc3Ryb3koKTsKfQ==</value>
+</Values>
