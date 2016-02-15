@@ -7536,6 +7536,18 @@ Returns the sum of all the given durations, returning
 
 ---
 
+### tundra.list.file:remove
+
+Deletes the given files, if they exist. This service does not throw
+an exception when a file does not exist.
+
+#### Inputs:
+
+* `$files` is a list of files to be deleted, specified as either a
+  relative or absolute file path or `file:` [URI].
+
+---
+
 ### tundra.list.html:decode
 
 [HTML] decodes the given string list.
