@@ -6214,6 +6214,85 @@ Custom datetime patterns can be specified using
 
 ---
 
+### tundra.list.directory:compact
+
+Deletes all empty child directories recursively from the given
+directories, and optionally deletes the given directory itself if
+also empty after compacting.
+
+#### Inputs:
+
+* `$directories is a list of directories specified as a relative or
+  absolute path or `file:` [URI] to be compacted.
+* `$delete?` is an optional boolean flag which when `true` will delete
+  the given $directory itself if it is emtpy after compaction.
+  Defaults to `false`.
+* `$raise?` is an optional boolean flag which when `true` will throw
+  an exception if the deletion of any directories fails. Defaults
+  to `false`.
+
+---
+
+### tundra.list.directory:purge
+
+Deletes all files older than the given duration, based on the last
+modified datetime, from the given directories, and optionally from
+their sub-directories.
+
+#### Inputs:
+
+* `$directories` is a list of directories from which files will be
+  deleted, specified as either a relative or absolute file path or
+  `file:` [URI].
+* `$duration` is the duration of time representing the age of files to
+  be deleted. For example, a duration of P1D will delete all files
+  that were last modified 24 hours ago or earlier.
+* `$duration.pattern` is an optional pattern describing the type of
+  duration specified by the $duration string. Defaults to an
+  [ISO8601] XML string.
+* `$recurse?` is an optional boolean flag indicating if files in sub-
+  directories should also deleted. Defaults to `false`.
+
+---
+
+### tundra.list.directory:remove
+
+Deletes the given directories, and optionally all child files and
+directories recursively if desired.
+
+#### Inputs:
+
+* `$directories` is a list of directories specifed as a relative or
+  absolute path or `file:` [URI] to be deleted.
+* `$recurse?` is a boolean flag indicating that all child files and
+  directories should be recursively deleted also. If `false`, and
+  a directory is not empty, an exception will be thrown. Defaults
+  to `false`.
+
+---
+
+### tundra.list.directory:squeeze
+
+Reduces the total size in bytes of the given directories to the given
+size by progressively deleting files in order of least recently
+modified.
+
+#### Inputs:
+
+* `$directories` is a list of directories specified as relative or
+  absolute path, or `file:` [URI], in which files will be deleted to
+  reduce the total size of the directory to the required size.
+* `$size?` is the required size in bytes of the given directories. If
+  the directory's size is less that this size, no files will be
+  deleted. If a directory's size is greater than this size, files
+  will be progressively deleted in order of least recently modified
+  until the directory size is equal to or less than the required
+  size.
+* `$recurse?` is an optional boolean flag which when `true` will include
+  all child directories in the squeezing process. Defaults to `false`.
+
+---
+
 ### tundra.list.document:append
 
 Appends a single item to the end of a list, such that appending an item
