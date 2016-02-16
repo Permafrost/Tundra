@@ -797,6 +797,24 @@ Removes all items from the given [java.util.List] object.
 
 ---
 
+### tundra.collection.list.document:get
+
+Returns the item at the specified index of a [java.util.List] object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object to retrieve an item from.
+* `$index` is the index of the item to be returned.
+* `$index.base` specifies whether the index is zero-based or one-
+  based. Defaults to zero-based if not specified.
+
+#### Outputs:
+
+* `$item` is the value [java.util.List] at the specified index, if it
+  exists.
+
+---
+
 ### tundra.collection.list.document:insert
 
 Inserts arbitrarily specified items at the specified index of a
@@ -922,6 +940,26 @@ Removes all items from the given [java.util.List] object.
 
 ---
 
+### tundra.collection.list.object:get
+
+Returns the item at the specified index of a [java.util.List] object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object to retrieve an item from.
+* `$index` is the index of the item to be returned.
+* `$index.base` specifies whether the index is zero-based or one-
+  based. Defaults to zero-based if not specified.
+* `$class` is an optional Java class name that the list and items
+  to be inserted are required to be instances of.
+
+#### Outputs:
+
+* `$item` is the value [java.util.List] at the specified index, if it
+  exists.
+
+---
+
 ### tundra.collection.list.object:insert
 
 Inserts arbitrarily specified items at the specified index of a
@@ -934,11 +972,11 @@ Inserts arbitrarily specified items at the specified index of a
 * `$items` is an `IData` document containing arbitrarily specified
   objects to be inserted into the list. The leaf values from the
   given document will be inserted in the order they appear.
-* `$class` is an optional Java class name that the list and items
-  to be inserted are required to be instances of.
 * `$index` is the index at which the given items will be inserted.
 * `$index.base` specifies whether the index is zero-based or one-
   based. Defaults to zero-based if not specified.
+* `$class` is an optional Java class name that the list and items
+  to be inserted are required to be instances of.
 
 #### Outputs:
 
@@ -1040,6 +1078,24 @@ Removes all items from the given [java.util.List] object.
 #### Outputs:
 
 * `$list` is the given [java.util.List] object with all items removed.
+
+---
+
+### tundra.collection.list.string:get
+
+Returns the item at the specified index of a [java.util.List] object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object to retrieve an item from.
+* `$index` is the index of the item to be returned.
+* `$index.base` specifies whether the index is zero-based or one-
+  based. Defaults to zero-based if not specified.
+
+#### Outputs:
+
+* `$item` is the value [java.util.List] at the specified index, if it
+  exists.
 
 ---
 

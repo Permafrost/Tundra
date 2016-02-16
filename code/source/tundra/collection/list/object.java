@@ -1,7 +1,7 @@
 package tundra.collection.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-02-06 16:33:12 EST
+// -----( CREATED: 2016-02-16 19:00:27 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -14,6 +14,7 @@ import java.util.List;
 import permafrost.tundra.collection.CollectionHelper;
 import permafrost.tundra.collection.ListHelper;
 import permafrost.tundra.data.IDataHelper;
+import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.math.IntegerHelper;
 // --- <<IS-END-IMPORTS>> ---
@@ -101,6 +102,34 @@ public final class object
 		try {
 		    String className = IDataUtil.getString(cursor, "$class");
 		    clear(pipeline, className == null ? Object.class : Class.forName(className));
+		} catch (ClassNotFoundException ex) {
+		    ExceptionHelper.raise(ex);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void get (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(get)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:0:optional $list
+		// [i] field:0:required $index
+		// [i] field:0:optional $index.base {&quot;0&quot;,&quot;1&quot;}
+		// [i] field:0:optional $class
+		// [o] object:0:optional $item
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    String className = IDataUtil.getString(cursor, "$class");
+		    get(pipeline, className == null ? Object.class : Class.forName(className));
 		} catch (ClassNotFoundException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -237,6 +266,24 @@ public final class object
 	}
 	
 	/**
+	 * Returns a new array representation of the given java.util.List object.
+	 * 
+	 * @param pipeline The pipeline containing the list to be converted to an array.
+	 * @param klass    The component type of the list.
+	 * @param <T>      The component type of the list.
+	 */
+	public static <T> void arrayify(IData pipeline, Class<T> klass) {
+	    IDataCursor cursor = pipeline.getCursor();
+	
+	    try {
+	        List<T> list = (List<T>)IDataUtil.get(cursor, "$list");
+	        if (list != null) IDataUtil.put(cursor, "$array", CollectionHelper.arrayify(list, klass));
+	    } finally {
+	        cursor.destroy();
+	    }
+	}
+	
+	/**
 	 * Prepends the given items to the given java.util.List.
 	 * 
 	 * @param pipeline The pipeline containing the list and items to be prepended.
@@ -248,6 +295,85 @@ public final class object
 	    try {
 	        List list = (List)IDataUtil.get(cursor, "$list");
 	        IDataUtil.put(cursor, "$list", ListHelper.clear(list, klass));
+	    } finally {
+	        cursor.destroy();
+	    }
+	}
+	
+	/**
+	 * Returns the item from the given java.util.List at the given index.
+	 * 
+	 * @param pipeline The pipeline containing the list and index of the required item.
+	 * @param klass    The component type of the list.
+	 * @param <T>      The component type of the list.
+	 */
+	public static <T> void exists(IData pipeline, Class<T> klass) {
+	    IDataCursor cursor = pipeline.getCursor();
+	
+	    try {
+	        List<T> list = (List<T>)IDataUtil.get(cursor, "$list");
+	        int indexBase = IntegerHelper.parse(IDataUtil.getString(cursor, "$index.base"), 0);
+	        int index = IntegerHelper.parse(IDataUtil.getString(cursor, "$index")) - indexBase;
+	        IDataUtil.put(cursor, "$exists?", BooleanHelper.emit(ListHelper.exists(list, index)));
+	    } finally {
+	        cursor.destroy();
+	    }
+	}
+	
+	/**
+	 * Returns the item from the given java.util.List at the given index.
+	 * 
+	 * @param pipeline The pipeline containing the list and index of the required item.
+	 * @param klass    The component type of the list.
+	 * @param <T>      The component type of the list.
+	 */
+	public static <T> void get(IData pipeline, Class<T> klass) {
+	    IDataCursor cursor = pipeline.getCursor();
+	
+	    try {
+	        List<T> list = (List<T>)IDataUtil.get(cursor, "$list");
+	        int indexBase = IntegerHelper.parse(IDataUtil.getString(cursor, "$index.base"), 0);
+	        int index = IntegerHelper.parse(IDataUtil.getString(cursor, "$index")) - indexBase;
+	        if (ListHelper.exists(list, index)) IDataUtil.put(cursor, "$item", ListHelper.get(list, index));
+	    } finally {
+	        cursor.destroy();
+	    }
+	}
+	
+	/**
+	 * Inserts the given items to the given java.util.List.
+	 * 
+	 * @param pipeline The pipeline containing the list and items to be inserted.
+	 * @param klass    The component type of the list.
+	 * @param <T>      The component type of the list.
+	 */
+	public static <T> void insert(IData pipeline, Class<T> klass) {
+	    IDataCursor cursor = pipeline.getCursor();
+	
+	    try {
+	        List<T> list = (List<T>)IDataUtil.get(cursor, "$list");
+	        IData items = IDataUtil.getIData(cursor, "$items");
+	        int indexBase = IntegerHelper.parse(IDataUtil.getString(cursor, "$index.base"), 0);
+	        int index = IntegerHelper.parse(IDataUtil.getString(cursor, "$index")) - indexBase;
+	        IDataUtil.put(cursor, "$list", ListHelper.insert(list, index, (T[])IDataHelper.getLeafValues(items, klass)));
+	    } finally {
+	        cursor.destroy();
+	    }
+	}
+	
+	/**
+	 * Returns a new java.util.List representation of the given array.
+	 * 
+	 * @param pipeline The pipeline containing the array to be converted to a list.
+	 * @param klass    The component type of the list.
+	 * @param <T>      The component type of the list.
+	 */
+	public static <T> void listify(IData pipeline, Class<T> klass) {
+	    IDataCursor cursor = pipeline.getCursor();
+	
+	    try {
+	        T[] array = (T[])IDataUtil.getObjectArray(cursor, "$array");
+	        if (array != null) IDataUtil.put(cursor, "$list", ListHelper.listify(array, klass));
 	    } finally {
 	        cursor.destroy();
 	    }
@@ -273,58 +399,101 @@ public final class object
 	}
 	
 	/**
-	 * Prepends the given items to the given java.util.List.
+	 * Removes the item from the given java.util.List at the given index.
 	 * 
-	 * @param pipeline The pipeline containing the list and items to be prepended.
+	 * @param pipeline The pipeline containing the list, and index.
 	 * @param klass    The component type of the list.
 	 * @param <T>      The component type of the list.
 	 */
-	public static <T> void insert(IData pipeline, Class<T> klass) {
+	public static <T> void remove(IData pipeline, Class<T> klass) {
 	    IDataCursor cursor = pipeline.getCursor();
 	
 	    try {
 	        List<T> list = (List<T>)IDataUtil.get(cursor, "$list");
-	        IData items = IDataUtil.getIData(cursor, "$items");
-	        int indexBase = IntegerHelper.parse(IDataUtil.getString(cursor, "$index.base"), 0);
-	        int index = IntegerHelper.parse(IDataUtil.getString(cursor, "$index")) - indexBase;
-	        IDataUtil.put(cursor, "$list", ListHelper.insert(list, index, (T[])IDataHelper.getLeafValues(items, klass)));
+	        if (list != null) {
+	            int indexBase = IntegerHelper.parse(IDataUtil.getString(cursor, "$index.base"), 0);
+	            int index = IntegerHelper.parse(IDataUtil.getString(cursor, "$index")) - indexBase;
+	            IDataUtil.put(cursor, "$list", list);
+	            IDataUtil.put(cursor, "$item", ListHelper.remove(list, index));
+	        }
 	    } finally {
 	        cursor.destroy();
 	    }
 	}
 	
 	/**
-	 * Returns a new array representation of the given java.util.List object.
+	 * Sets the item in the given java.util.List at the given index.
 	 * 
-	 * @param pipeline The pipeline containing the list to be converted to an array.
+	 * @param pipeline The pipeline containing the list, item, and index.
 	 * @param klass    The component type of the list.
 	 * @param <T>      The component type of the list.
 	 */
-	public static <T> void arrayify(IData pipeline, Class<T> klass) {
+	public static <T> void set(IData pipeline, Class<T> klass) {
 	    IDataCursor cursor = pipeline.getCursor();
 	
 	    try {
 	        List<T> list = (List<T>)IDataUtil.get(cursor, "$list");
-	        if (list != null) IDataUtil.put(cursor, "$array", CollectionHelper.arrayify(list, klass));
+	        if (list != null) {
+	            T item = (T)IDataUtil.get(cursor, "$item.new");
+	            int indexBase = IntegerHelper.parse(IDataUtil.getString(cursor, "$index.base"), 0);
+	            int index = IntegerHelper.parse(IDataUtil.getString(cursor, "$index")) - indexBase;
+	            IDataUtil.put(cursor, "$list", list);
+	            IDataUtil.put(cursor, "$item.old", ListHelper.set(list, index, item));
+	        }
 	    } finally {
 	        cursor.destroy();
 	    }
 	}
 	
-	
 	/**
-	 * Returns a new java.util.List representation of the given array.
+	 * Returns a new list which is the reverse of the given java.util.List.
 	 * 
-	 * @param pipeline The pipeline containing the array to be converted to a list.
+	 * @param pipeline The pipeline containing the list, and count.
 	 * @param klass    The component type of the list.
 	 * @param <T>      The component type of the list.
 	 */
-	public static <T> void listify(IData pipeline, Class<T> klass) {
+	public static <T> void reverse(IData pipeline, Class<T> klass) {
 	    IDataCursor cursor = pipeline.getCursor();
 	
 	    try {
-	        T[] array = (T[])IDataUtil.getObjectArray(cursor, "$array");
-	        if (array != null) IDataUtil.put(cursor, "$list", ListHelper.listify(array, klass));
+	        List<T> list = (List<T>)IDataUtil.get(cursor, "$list");
+	        if (list != null) IDataUtil.put(cursor, "$list.reverse", ListHelper.reverse(list));
+	    } finally {
+	        cursor.destroy();
+	    }
+	}
+	
+	/**
+	 * Removes and returns a specified number of items from the head of the given java.util.List.
+	 * 
+	 * @param pipeline The pipeline containing the list, and count.
+	 * @param klass    The component type of the list.
+	 * @param <T>      The component type of the list.
+	 */
+	public static <T> void take(IData pipeline, Class<T> klass) {
+	    IDataCursor cursor = pipeline.getCursor();
+	
+	    try {
+	        List<T> list = (List<T>)IDataUtil.get(cursor, "$list");
+	        if (list != null) IDataUtil.put(cursor, "$list.head", ListHelper.take(list, IntegerHelper.parse(IDataUtil.getString(cursor, "$count"))));
+	    } finally {
+	        cursor.destroy();
+	    }
+	}
+	
+	/**
+	 * Returns a new list containing only the unique items from the given java.util.List.
+	 * 
+	 * @param pipeline The pipeline containing the list, and count.
+	 * @param klass    The component type of the list.
+	 * @param <T>      The component type of the list.
+	 */
+	public static <T> void unique(IData pipeline, Class<T> klass) {
+	    IDataCursor cursor = pipeline.getCursor();
+	
+	    try {
+	        List<T> list = (List<T>)IDataUtil.get(cursor, "$list");
+	        if (list != null) IDataUtil.put(cursor, "$list.unique", ListHelper.unique(list));
 	    } finally {
 	        cursor.destroy();
 	    }
