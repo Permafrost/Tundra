@@ -811,6 +811,8 @@ Returns the item at the specified index of a [java.util.List] object.
 #### Outputs:
 
 * `$item` is the value at the specified index, if it exists.
+* `$item.exists?` is a boolean indicating whether the an item at the
+  specified index exists in the given list.
 
 ---
 
@@ -974,6 +976,8 @@ Returns the item at the specified index of a [java.util.List] object.
 #### Outputs:
 
 * `$item` is the value at the specified index, if it exists.
+* `$item.exists?` is a boolean indicating whether the an item at the
+  specified index exists in the given list.
 
 ---
 
@@ -1133,6 +1137,8 @@ Returns the item at the specified index of a [java.util.List] object.
 #### Outputs:
 
 * `$item` is the value at the specified index, if it exists.
+* `$item.exists?` is a boolean indicating whether the an item at the
+  specified index exists in the given list.
 
 ---
 

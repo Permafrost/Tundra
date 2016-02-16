@@ -147,6 +147,33 @@
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
         </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <null name="field_usereditable"/>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$item.exists?</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">boolean</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">false</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
       </array>
       <value name="modifiable">true</value>
     </record>
@@ -166,7 +193,9 @@ Returns the item at the specified index of a [java.util.List] object.
 
 #### Outputs:
 
-* $item is the value at the specified index, if it exists.
+* $item is the value at the specified index, if it exists.
+* $item.exists? is a boolean indicating whether the an item at the
+  specified index exists in the given list.
 
 [java.util.List]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/List.html&gt;</value>
   <value name="stateless">no</value>

@@ -1,7 +1,7 @@
 package tundra.collection.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-02-16 19:21:54 EST
+// -----( CREATED: 2016-02-16 19:33:04 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -125,6 +125,7 @@ public final class object
 		// [i] field:0:optional $index.base {&quot;0&quot;,&quot;1&quot;}
 		// [i] field:0:optional $class
 		// [o] object:0:optional $item
+		// [o] field:0:required $item.exists?
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -336,26 +337,6 @@ public final class object
 	 * @param klass    The component type of the list.
 	 * @param <T>      The component type of the list.
 	 */
-	public static <T> void exists(IData pipeline, Class<T> klass) {
-	    IDataCursor cursor = pipeline.getCursor();
-	
-	    try {
-	        List<T> list = (List<T>)IDataUtil.get(cursor, "$list");
-	        int indexBase = IntegerHelper.parse(IDataUtil.getString(cursor, "$index.base"), 0);
-	        int index = IntegerHelper.parse(IDataUtil.getString(cursor, "$index")) - indexBase;
-	        IDataUtil.put(cursor, "$exists?", BooleanHelper.emit(ListHelper.exists(list, index)));
-	    } finally {
-	        cursor.destroy();
-	    }
-	}
-	
-	/**
-	 * Returns the item from the given java.util.List at the given index.
-	 * 
-	 * @param pipeline The pipeline containing the list and index of the required item.
-	 * @param klass    The component type of the list.
-	 * @param <T>      The component type of the list.
-	 */
 	public static <T> void get(IData pipeline, Class<T> klass) {
 	    IDataCursor cursor = pipeline.getCursor();
 	
@@ -363,7 +344,9 @@ public final class object
 	        List<T> list = (List<T>)IDataUtil.get(cursor, "$list");
 	        int indexBase = IntegerHelper.parse(IDataUtil.getString(cursor, "$index.base"), 0);
 	        int index = IntegerHelper.parse(IDataUtil.getString(cursor, "$index")) - indexBase;
-	        if (ListHelper.exists(list, index)) IDataUtil.put(cursor, "$item", ListHelper.get(list, index));
+	        boolean exists = ListHelper.exists(list, index);
+	        if (exists) IDataUtil.put(cursor, "$item", ListHelper.get(list, index));
+	        IDataUtil.put(cursor, "$item.exists?", BooleanHelper.emit(exists));
 	    } finally {
 	        cursor.destroy();
 	    }
