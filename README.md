@@ -942,6 +942,22 @@ object.
 
 ---
 
+### tundra.collection.list.document:unique
+
+Returns a new [java.util.List] object which contains only the
+unique items from the given [java.util.List] object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object.
+
+#### Outputs:
+
+* `$list.unique` is a new [java.util.List] object which contains
+  only the unique items from the given [java.util.List] object.
+
+---
+
 ### tundra.collection.list.object:append
 
 Appends arbitrarily specified items to the end of a [java.util.List]
@@ -1153,6 +1169,22 @@ object.
 
 ---
 
+### tundra.collection.list.object:unique
+
+Returns a new [java.util.List] object which contains only the
+unique items from the given [java.util.List] object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object.
+
+#### Outputs:
+
+* `$list.unique` is a new [java.util.List] object which contains
+  only the unique items from the given [java.util.List] object.
+
+---
+
 ### tundra.collection.list.string:append
 
 Appends a single item to the end of a [java.util.List] object.
@@ -1339,6 +1371,22 @@ object.
 #### Outputs:
 
 * `$item.old` is the previous value at the specified index.
+
+---
+
+### tundra.collection.list.string:unique
+
+Returns a new [java.util.List] object which contains only the
+unique items from the given [java.util.List] object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object.
+
+#### Outputs:
+
+* `$list.unique` is a new [java.util.List] object which contains
+  only the unique items from the given [java.util.List] object.
 
 ---
 

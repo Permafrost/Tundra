@@ -1,7 +1,7 @@
 package tundra.collection.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-02-16 19:54:56 EST
+// -----( CREATED: 2016-02-16 20:10:49 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -327,6 +327,29 @@ public final class object
                 
 	}
 
+
+
+	public static final void unique (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(unique)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:0:optional $list
+		// [o] object:0:optional $list.unique
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    List list = (List)IDataUtil.get(cursor, "$list");
+		    if (list != null) IDataUtil.put(cursor, "$list.unique", ListHelper.unique(list));
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
 	// --- <<IS-START-SHARED>> ---
 	/**
 	 * Appends the given items to the given java.util.List.
@@ -522,24 +545,6 @@ public final class object
 	    try {
 	        List<T> list = (List<T>)IDataUtil.get(cursor, "$list");
 	        if (list != null) IDataUtil.put(cursor, "$list.head", ListHelper.take(list, IntegerHelper.parse(IDataUtil.getString(cursor, "$count"))));
-	    } finally {
-	        cursor.destroy();
-	    }
-	}
-	
-	/**
-	 * Returns a new list containing only the unique items from the given java.util.List.
-	 * 
-	 * @param pipeline The pipeline containing the list, and count.
-	 * @param klass    The component type of the list.
-	 * @param <T>      The component type of the list.
-	 */
-	public static <T> void unique(IData pipeline, Class<T> klass) {
-	    IDataCursor cursor = pipeline.getCursor();
-	
-	    try {
-	        List<T> list = (List<T>)IDataUtil.get(cursor, "$list");
-	        if (list != null) IDataUtil.put(cursor, "$list.unique", ListHelper.unique(list));
 	    } finally {
 	        cursor.destroy();
 	    }
