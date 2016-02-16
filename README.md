@@ -907,6 +907,22 @@ from a [java.util.List] object.
 
 ---
 
+### tundra.collection.list.document:reverse
+
+Returns a new [java.util.List] object which is a reverse of the
+given [java.util.List] object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object.
+
+#### Outputs:
+
+* `$list.reverse` is a new [java.util.List] object which is a
+  reverse of the given [java.util.List] object.
+
+---
+
 ### tundra.collection.list.document:set
 
 Sets the value of at the specified index in a [java.util.List]
@@ -1100,6 +1116,22 @@ from a [java.util.List] object.
 
 ---
 
+### tundra.collection.list.object:reverse
+
+Returns a new [java.util.List] object which is a reverse of the
+given [java.util.List] object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object.
+
+#### Outputs:
+
+* `$list.reverse` is a new [java.util.List] object which is a
+  reverse of the given [java.util.List] object.
+
+---
+
 ### tundra.collection.list.object:set
 
 Sets the value of at the specified index in a [java.util.List]
@@ -1272,6 +1304,22 @@ from a [java.util.List] object.
 * `$item` is the value that was removed at the specified index.
 * `$item.exists?` is a boolean indicating whether an item at the
   specified index existed in the given list.
+
+---
+
+### tundra.collection.list.string:reverse
+
+Returns a new [java.util.List] object which is a reverse of the
+given [java.util.List] object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object.
+
+#### Outputs:
+
+* `$list.reverse` is a new [java.util.List] object which is a
+  reverse of the given [java.util.List] object.
 
 ---
 

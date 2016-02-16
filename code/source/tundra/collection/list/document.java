@@ -1,7 +1,7 @@
 package tundra.collection.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-02-16 19:44:22 EST
+// -----( CREATED: 2016-02-16 19:55:28 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -175,6 +175,22 @@ public final class document
 		// [o] record:0:optional $item
 		// [o] field:0:required $item.exists?
 		tundra.collection.list.object.remove(pipeline, IData.class);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void reverse (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(reverse)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:0:optional $list
+		// [o] object:0:optional $list.reverse
+		tundra.collection.list.object.reverse(pipeline);
 		// --- <<IS-END>> ---
 
                 

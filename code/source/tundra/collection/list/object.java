@@ -1,7 +1,7 @@
 package tundra.collection.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-02-16 19:49:02 EST
+// -----( CREATED: 2016-02-16 19:54:56 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -277,6 +277,29 @@ public final class object
 
 
 
+	public static final void reverse (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(reverse)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:0:optional $list
+		// [o] object:0:optional $list.reverse
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    List list = (List)IDataUtil.get(cursor, "$list");
+		    if (list != null) IDataUtil.put(cursor, "$list.reverse", ListHelper.reverse(list));
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void set (IData pipeline)
         throws ServiceException
 	{
@@ -374,7 +397,7 @@ public final class object
 	        int indexBase = IntegerHelper.parse(IDataUtil.getString(cursor, "$index.base"), 0);
 	        int index = IntegerHelper.parse(IDataUtil.getString(cursor, "$index")) - indexBase;
 	        boolean exists = ListHelper.exists(list, index);
-	        
+	
 	        if (exists) IDataUtil.put(cursor, "$item", ListHelper.get(list, index));
 	        IDataUtil.put(cursor, "$item.exists?", BooleanHelper.emit(exists));
 	    } finally {
@@ -462,25 +485,6 @@ public final class object
 	        cursor.destroy();
 	    }
 	}
-	
-	/**
-	 * Returns a new list which is the reverse of the given java.util.List.
-	 * 
-	 * @param pipeline The pipeline containing the list, and count.
-	 * @param klass    The component type of the list.
-	 * @param <T>      The component type of the list.
-	 */
-	public static <T> void reverse(IData pipeline, Class<T> klass) {
-	    IDataCursor cursor = pipeline.getCursor();
-	
-	    try {
-	        List<T> list = (List<T>)IDataUtil.get(cursor, "$list");
-	        if (list != null) IDataUtil.put(cursor, "$list.reverse", ListHelper.reverse(list));
-	    } finally {
-	        cursor.destroy();
-	    }
-	}
-	
 	
 	/**
 	 * Sets the item in the given java.util.List at the given index.
