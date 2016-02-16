@@ -1,7 +1,7 @@
 package tundra.collection.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-02-16 20:10:49 EST
+// -----( CREATED: 2016-02-16 20:21:13 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -329,6 +329,32 @@ public final class object
 
 
 
+	public static final void take (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(take)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:0:optional $list
+		// [i] field:0:required $count
+		// [o] object:0:optional $list.head
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    String className = IDataUtil.getString(cursor, "$class");
+		    take(pipeline, className == null ? Object.class : Class.forName(className));
+		} catch (ClassNotFoundException ex) {
+		    ExceptionHelper.raise(ex);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void unique (IData pipeline)
         throws ServiceException
 	{
@@ -544,7 +570,9 @@ public final class object
 	
 	    try {
 	        List<T> list = (List<T>)IDataUtil.get(cursor, "$list");
-	        if (list != null) IDataUtil.put(cursor, "$list.head", ListHelper.take(list, IntegerHelper.parse(IDataUtil.getString(cursor, "$count"))));
+	        int count = IntegerHelper.parse(IDataUtil.getString(cursor, "$count"));
+	
+	        if (list != null) IDataUtil.put(cursor, "$list.head", ListHelper.take(list, count));
 	    } finally {
 	        cursor.destroy();
 	    }

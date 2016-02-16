@@ -942,6 +942,23 @@ object.
 
 ---
 
+### tundra.collection.list.document:take
+
+Removes and returns a specified number of items from the head
+of the given [java.util.List] object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object.
+* `$count` is the number of items to take from the head of the list.
+
+#### Outputs:
+
+* `$list.head` is a new [java.util.List] object containing the given
+  count of items removed from the head of the given list.
+
+---
+
 ### tundra.collection.list.document:unique
 
 Returns a new [java.util.List] object which contains only the
@@ -1169,6 +1186,25 @@ object.
 
 ---
 
+### tundra.collection.list.object:take
+
+Removes and returns a specified number of items from the head
+of the given [java.util.List] object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object.
+* `$count` is the number of items to take from the head of the list.
+* `$class` is an optional Java class name that the list and items
+  are required to be instances of.
+
+#### Outputs:
+
+* `$list.head` is a new [java.util.List] object containing the given
+  count of items removed from the head of the given list.
+
+---
+
 ### tundra.collection.list.object:unique
 
 Returns a new [java.util.List] object which contains only the
@@ -1371,6 +1407,23 @@ object.
 #### Outputs:
 
 * `$item.old` is the previous value at the specified index.
+
+---
+
+### tundra.collection.list.string:take
+
+Removes and returns a specified number of items from the head
+of the given [java.util.List] object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object.
+* `$count` is the number of items to take from the head of the list.
+
+#### Outputs:
+
+* `$list.head` is a new [java.util.List] object containing the given
+  count of items removed from the head of the given list.
 
 ---
 
