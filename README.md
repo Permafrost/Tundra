@@ -811,7 +811,7 @@ Returns the item at the specified index of a [java.util.List] object.
 #### Outputs:
 
 * `$item` is the value at the specified index, if it exists.
-* `$item.exists?` is a boolean indicating whether the an item at the
+* `$item.exists?` is a boolean indicating whether an item at the
   specified index exists in the given list.
 
 ---
@@ -884,6 +884,26 @@ object.
 
 * `$list` is the resulting [java.util.List] object with the given
   items prepended to the end.
+
+---
+
+### tundra.collection.list.document:remove
+
+Removes and returns the value of the item at the specified index
+from a [java.util.List] object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object.
+* `$index` is the index of the item to be removed.
+* `$index.base` specifies whether the index is zero-based or one-
+  based. Defaults to zero-based if not specified.
+
+#### Outputs:
+
+* `$item` is the value that was removed at the specified index.
+* `$item.exists?` is a boolean indicating whether an item at the
+  specified index existed in the given list.
 
 ---
 
@@ -976,7 +996,7 @@ Returns the item at the specified index of a [java.util.List] object.
 #### Outputs:
 
 * `$item` is the value at the specified index, if it exists.
-* `$item.exists?` is a boolean indicating whether the an item at the
+* `$item.exists?` is a boolean indicating whether an item at the
   specified index exists in the given list.
 
 ---
@@ -1055,6 +1075,28 @@ object.
 
 * `$list` is the resulting [java.util.List] object with the given
   items prepended to the start of the list.
+
+---
+
+### tundra.collection.list.object:remove
+
+Removes and returns the value of the item at the specified index
+from a [java.util.List] object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object.
+* `$index` is the index of the item to be removed.
+* `$index.base` specifies whether the index is zero-based or one-
+  based. Defaults to zero-based if not specified.
+* `$class` is an optional Java class name that the list and items
+  are required to be instances of.
+
+#### Outputs:
+
+* `$item` is the value that was removed at the specified index.
+* `$item.exists?` is a boolean indicating whether an item at the
+  specified index existed in the given list.
 
 ---
 
@@ -1137,7 +1179,7 @@ Returns the item at the specified index of a [java.util.List] object.
 #### Outputs:
 
 * `$item` is the value at the specified index, if it exists.
-* `$item.exists?` is a boolean indicating whether the an item at the
+* `$item.exists?` is a boolean indicating whether an item at the
   specified index exists in the given list.
 
 ---
@@ -1210,6 +1252,26 @@ object.
 
 * `$list` is the resulting [java.util.List] object with the given
   items prepended to the end.
+
+---
+
+### tundra.collection.list.string:remove
+
+Removes and returns the value of the item at the specified index
+from a [java.util.List] object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object.
+* `$index` is the index of the item to be removed.
+* `$index.base` specifies whether the index is zero-based or one-
+  based. Defaults to zero-based if not specified.
+
+#### Outputs:
+
+* `$item` is the value that was removed at the specified index.
+* `$item.exists?` is a boolean indicating whether an item at the
+  specified index existed in the given list.
 
 ---
 

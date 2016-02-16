@@ -1,7 +1,7 @@
 package tundra.collection.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-02-16 19:33:04 EST
+// -----( CREATED: 2016-02-16 19:49:02 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -248,6 +248,35 @@ public final class object
 
 
 
+	public static final void remove (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(remove)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:0:optional $list
+		// [i] field:0:required $index
+		// [i] field:0:optional $index.base {&quot;0&quot;,&quot;1&quot;}
+		// [i] field:0:optional $class
+		// [o] object:0:optional $item
+		// [o] field:0:required $item.exists?
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    String className = IDataUtil.getString(cursor, "$class");
+		    remove(pipeline, className == null ? Object.class : Class.forName(className));
+		} catch (ClassNotFoundException ex) {
+		    ExceptionHelper.raise(ex);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void set (IData pipeline)
         throws ServiceException
 	{
@@ -345,6 +374,7 @@ public final class object
 	        int indexBase = IntegerHelper.parse(IDataUtil.getString(cursor, "$index.base"), 0);
 	        int index = IntegerHelper.parse(IDataUtil.getString(cursor, "$index")) - indexBase;
 	        boolean exists = ListHelper.exists(list, index);
+	        
 	        if (exists) IDataUtil.put(cursor, "$item", ListHelper.get(list, index));
 	        IDataUtil.put(cursor, "$item.exists?", BooleanHelper.emit(exists));
 	    } finally {
@@ -422,16 +452,35 @@ public final class object
 	
 	    try {
 	        List<T> list = (List<T>)IDataUtil.get(cursor, "$list");
-	        if (list != null) {
-	            int indexBase = IntegerHelper.parse(IDataUtil.getString(cursor, "$index.base"), 0);
-	            int index = IntegerHelper.parse(IDataUtil.getString(cursor, "$index")) - indexBase;
-	            IDataUtil.put(cursor, "$list", list);
-	            IDataUtil.put(cursor, "$item", ListHelper.remove(list, index));
-	        }
+	        int indexBase = IntegerHelper.parse(IDataUtil.getString(cursor, "$index.base"), 0);
+	        int index = IntegerHelper.parse(IDataUtil.getString(cursor, "$index")) - indexBase;
+	        boolean exists = ListHelper.exists(list, index);
+	
+	        if (exists) IDataUtil.put(cursor, "$item", ListHelper.remove(list, index));
+	        IDataUtil.put(cursor, "$item.exists?", BooleanHelper.emit(exists));
 	    } finally {
 	        cursor.destroy();
 	    }
 	}
+	
+	/**
+	 * Returns a new list which is the reverse of the given java.util.List.
+	 * 
+	 * @param pipeline The pipeline containing the list, and count.
+	 * @param klass    The component type of the list.
+	 * @param <T>      The component type of the list.
+	 */
+	public static <T> void reverse(IData pipeline, Class<T> klass) {
+	    IDataCursor cursor = pipeline.getCursor();
+	
+	    try {
+	        List<T> list = (List<T>)IDataUtil.get(cursor, "$list");
+	        if (list != null) IDataUtil.put(cursor, "$list.reverse", ListHelper.reverse(list));
+	    } finally {
+	        cursor.destroy();
+	    }
+	}
+	
 	
 	/**
 	 * Sets the item in the given java.util.List at the given index.
@@ -451,24 +500,6 @@ public final class object
 	            int index = IntegerHelper.parse(IDataUtil.getString(cursor, "$index")) - indexBase;
 	            IDataUtil.put(cursor, "$item.old", ListHelper.set(list, index, item));
 	        }
-	    } finally {
-	        cursor.destroy();
-	    }
-	}
-	
-	/**
-	 * Returns a new list which is the reverse of the given java.util.List.
-	 * 
-	 * @param pipeline The pipeline containing the list, and count.
-	 * @param klass    The component type of the list.
-	 * @param <T>      The component type of the list.
-	 */
-	public static <T> void reverse(IData pipeline, Class<T> klass) {
-	    IDataCursor cursor = pipeline.getCursor();
-	
-	    try {
-	        List<T> list = (List<T>)IDataUtil.get(cursor, "$list");
-	        if (list != null) IDataUtil.put(cursor, "$list.reverse", ListHelper.reverse(list));
 	    } finally {
 	        cursor.destroy();
 	    }

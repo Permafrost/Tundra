@@ -1,7 +1,7 @@
 package tundra.collection.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-02-16 19:25:20 EST
+// -----( CREATED: 2016-02-16 19:44:22 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -86,6 +86,7 @@ public final class document
 		// [i] field:0:required $index
 		// [i] field:0:optional $index.base {&quot;0&quot;,&quot;1&quot;}
 		// [o] record:0:optional $item
+		// [o] field:0:required $item.exists?
 		tundra.collection.list.object.get(pipeline, IData.class);
 		// --- <<IS-END>> ---
 
@@ -162,6 +163,25 @@ public final class document
 
 
 
+	public static final void remove (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(remove)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:0:optional $list
+		// [i] field:0:required $index
+		// [i] field:0:optional $index.base {&quot;0&quot;,&quot;1&quot;}
+		// [o] record:0:optional $item
+		// [o] field:0:required $item.exists?
+		tundra.collection.list.object.remove(pipeline, IData.class);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void set (IData pipeline)
         throws ServiceException
 	{
@@ -173,7 +193,7 @@ public final class document
 		// [i] field:0:required $index
 		// [i] field:0:optional $index.base {&quot;0&quot;,&quot;1&quot;}
 		// [i] field:0:optional $class
-		// [o] field:0:optional $item.old
+		// [o] record:0:optional $item.old
 		tundra.collection.list.object.set(pipeline, IData.class);
 		// --- <<IS-END>> ---
 

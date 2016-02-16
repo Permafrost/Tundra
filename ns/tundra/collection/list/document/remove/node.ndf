@@ -105,29 +105,20 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
           <value name="field_name">$item</value>
-          <value name="field_type">string</value>
+          <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
-          <record name="field_content_type" javaclass="com.wm.util.Values">
-            <value name="contentType">1</value>
-            <value name="internalType">reference</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-            <array name="targetNames" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">string</value>
-              </record>
-            </array>
-          </record>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
+          <array name="rec_fields" type="record" depth="1">
+          </array>
+          <value name="modifiable">true</value>
         </record>
         <record javaclass="com.wm.util.Values">
           <value name="node_type">record</value>
@@ -160,22 +151,23 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">### tundra.collection.list.string:get
+  <value name="node_comment">### tundra.collection.list.document:remove
 
-Returns the item at the specified index of a [java.util.List] object.
+Removes and returns the value of the item at the specified index
+from a [java.util.List] object.
 
 #### Inputs:
 
-* $list is a [java.util.List] object to retrieve an item from.
-* $index is the index of the item to be returned.
+* $list is a [java.util.List] object.
+* $index is the index of the item to be removed.
 * $index.base specifies whether the index is zero-based or one-
   based. Defaults to zero-based if not specified.
 
 #### Outputs:
 
-* $item is the value at the specified index, if it exists.
+* $item is the value that was removed at the specified index.
 * $item.exists? is a boolean indicating whether an item at the
-  specified index exists in the given list.
+  specified index existed in the given list.
 
 [java.util.List]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/List.html&gt;</value>
   <value name="stateless">no</value>
@@ -183,7 +175,7 @@ Returns the item at the specified index of a [java.util.List] object.
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
-  <value name="template">tundra_collection_list_string_get</value>
+  <value name="template">tundra_collection_list_document_remove</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
