@@ -810,8 +810,7 @@ Returns the item at the specified index of a [java.util.List] object.
 
 #### Outputs:
 
-* `$item` is the value [java.util.List] at the specified index, if it
-  exists.
+* `$item` is the value at the specified index, if it exists.
 
 ---
 
@@ -886,6 +885,25 @@ object.
 
 ---
 
+### tundra.collection.list.document:set
+
+Sets the value of at the specified index in a [java.util.List]
+object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object to set the value in.
+* `$item.new` is the new value to be set.
+* `$index` is the index of the item to be set.
+* `$index.base` specifies whether the index is zero-based or one-
+  based. Defaults to zero-based if not specified.
+
+#### Outputs:
+
+* `$item.old` is the previous value at the specified index.
+
+---
+
 ### tundra.collection.list.object:append
 
 Appends arbitrarily specified items to the end of a [java.util.List]
@@ -951,12 +969,11 @@ Returns the item at the specified index of a [java.util.List] object.
 * `$index.base` specifies whether the index is zero-based or one-
   based. Defaults to zero-based if not specified.
 * `$class` is an optional Java class name that the list and items
-  to be inserted are required to be instances of.
+  are required to be instances of.
 
 #### Outputs:
 
-* `$item` is the value [java.util.List] at the specified index, if it
-  exists.
+* `$item` is the value at the specified index, if it exists.
 
 ---
 
@@ -1037,6 +1054,27 @@ object.
 
 ---
 
+### tundra.collection.list.object:set
+
+Sets the value of at the specified index in a [java.util.List]
+object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object to set the value in.
+* `$item.new` is the new value to be set.
+* `$index` is the index of the item to be set.
+* `$index.base` specifies whether the index is zero-based or one-
+  based. Defaults to zero-based if not specified.
+* `$class` is an optional Java class name that the list and items
+  are required to be instances of.
+
+#### Outputs:
+
+* `$item.old` is the previous value at the specified index.
+
+---
+
 ### tundra.collection.list.string:append
 
 Appends a single item to the end of a [java.util.List] object.
@@ -1094,8 +1132,7 @@ Returns the item at the specified index of a [java.util.List] object.
 
 #### Outputs:
 
-* `$item` is the value [java.util.List] at the specified index, if it
-  exists.
+* `$item` is the value at the specified index, if it exists.
 
 ---
 
@@ -1167,6 +1204,25 @@ object.
 
 * `$list` is the resulting [java.util.List] object with the given
   items prepended to the end.
+
+---
+
+### tundra.collection.list.string:set
+
+Sets the value of at the specified index in a [java.util.List]
+object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object to set the value in.
+* `$item.new` is the new value to be set.
+* `$index` is the index of the item to be set.
+* `$index.base` specifies whether the index is zero-based or one-
+  based. Defaults to zero-based if not specified.
+
+#### Outputs:
+
+* `$item.old` is the previous value at the specified index.
 
 ---
 

@@ -146,8 +146,7 @@ Returns the item at the specified index of a [java.util.List] object.
 
 #### Outputs:
 
-* $item is the value [java.util.List] at the specified index, if it
-  exists.
+* $item is the value at the specified index, if it exists.
 
 [java.util.List]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/List.html&gt;</value>
   <value name="stateless">no</value>

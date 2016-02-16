@@ -1,7 +1,7 @@
 package tundra.collection.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-02-16 19:00:27 EST
+// -----( CREATED: 2016-02-16 19:21:54 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -245,6 +245,35 @@ public final class object
                 
 	}
 
+
+
+	public static final void set (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(set)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:0:optional $list
+		// [i] object:0:optional $item.new
+		// [i] field:0:required $index
+		// [i] field:0:optional $index.base {&quot;0&quot;,&quot;1&quot;}
+		// [i] field:0:optional $class
+		// [o] object:0:optional $item.old
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    String className = IDataUtil.getString(cursor, "$class");
+		    set(pipeline, className == null ? Object.class : Class.forName(className));
+		} catch (ClassNotFoundException ex) {
+		    ExceptionHelper.raise(ex);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
 	// --- <<IS-START-SHARED>> ---
 	/**
 	 * Appends the given items to the given java.util.List.
@@ -437,7 +466,6 @@ public final class object
 	            T item = (T)IDataUtil.get(cursor, "$item.new");
 	            int indexBase = IntegerHelper.parse(IDataUtil.getString(cursor, "$index.base"), 0);
 	            int index = IntegerHelper.parse(IDataUtil.getString(cursor, "$index")) - indexBase;
-	            IDataUtil.put(cursor, "$list", list);
 	            IDataUtil.put(cursor, "$item.old", ListHelper.set(list, index, item));
 	        }
 	    } finally {

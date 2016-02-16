@@ -113,17 +113,6 @@
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
-          <record name="field_content_type" javaclass="com.wm.util.Values">
-            <value name="contentType">1</value>
-            <value name="internalType">reference</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-            <array name="targetNames" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">string</value>
-              </record>
-            </array>
-          </record>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
@@ -148,8 +137,7 @@ Returns the item at the specified index of a [java.util.List] object.
 
 #### Outputs:
 
-* $item is the value [java.util.List] at the specified index, if it
-  exists.
+* $item is the value at the specified index, if it exists.
 
 [java.util.List]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/List.html&gt;</value>
   <value name="stateless">no</value>
