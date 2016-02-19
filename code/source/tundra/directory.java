@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-01-18 09:09:34 EST
+// -----( CREATED: 2016-02-19 22:22:48 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -16,8 +16,8 @@ import permafrost.tundra.io.DirectoryHelper;
 import permafrost.tundra.io.DirectoryLister;
 import permafrost.tundra.io.DirectoryListing;
 import permafrost.tundra.io.FileHelper;
-import permafrost.tundra.io.filter.RegularExpressionFilter;
-import permafrost.tundra.io.filter.WildcardFilter;
+import permafrost.tundra.io.filter.RegularExpressionFilenameFilter;
+import permafrost.tundra.io.filter.WildcardFilenameFilter;
 import permafrost.tundra.lang.ArrayHelper;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.ExceptionHelper;
@@ -188,9 +188,9 @@ public final class directory
 		    if (pattern != null) {
 		        FilenameFilter filter = null;
 		        if (mode == null || mode.equalsIgnoreCase("regular expression") || mode.equalsIgnoreCase("regex")) {
-		            filter = new RegularExpressionFilter(pattern);
+		            filter = new RegularExpressionFilenameFilter(pattern);
 		        } else {
-		            filter = new WildcardFilter(pattern);
+		            filter = new WildcardFilenameFilter(pattern);
 		        }
 		        lister = new DirectoryLister(directory, recurse, filter);
 		    } else {

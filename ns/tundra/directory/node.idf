@@ -16,8 +16,8 @@
     <value>permafrost.tundra.io.DirectoryLister</value>
     <value>permafrost.tundra.io.DirectoryListing</value>
     <value>permafrost.tundra.io.FileHelper</value>
-    <value>permafrost.tundra.io.filter.RegularExpressionFilter</value>
-    <value>permafrost.tundra.io.filter.WildcardFilter</value>
+    <value>permafrost.tundra.io.filter.RegularExpressionFilenameFilter</value>
+    <value>permafrost.tundra.io.filter.WildcardFilenameFilter</value>
     <value>permafrost.tundra.lang.ArrayHelper</value>
     <value>permafrost.tundra.lang.BooleanHelper</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>
