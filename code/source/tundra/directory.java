@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-02-20 20:51:43 EST
+// -----( CREATED: 2016-02-20 21:37:17 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -208,7 +208,7 @@ public final class directory
 		        }
 		    }
 		
-		    DirectoryLister lister = new DirectoryLister(directory, recurse, filter);
+		    DirectoryLister lister = new DirectoryLister(directory, filter, recurse);
 		
 		    DirectoryListing listing = lister.list();
 		    String[] directories = listing.listDirectoriesAsStringArray();
@@ -448,16 +448,36 @@ public final class directory
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $directory
-		// [i] field:0:optional $size
+		// [i] field:0:required $size.required
 		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [o] field:0:required $size.squeezed
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		    String directory = IDataUtil.getString(cursor, "$directory");
-		    BigInteger size = BigIntegerHelper.parse(IDataUtil.getString(cursor, "$size"));
+		    BigInteger size = BigIntegerHelper.parse(IDataUtil.getString(cursor, "$size.required"));
+		    // support $size for backwards-compatibility
+		    if (size == null) size = BigIntegerHelper.parse(IDataUtil.getString(cursor, "$size"));
+		    String[] inclusions = IDataUtil.getStringArray(cursor, "$filter.inclusions");
+		    String[] exclusions = IDataUtil.getStringArray(cursor, "$filter.exclusions");
+		    String type = IDataUtil.getString(cursor, "$filter.type");
 		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
 		
-		    DirectoryHelper.squeeze(directory, size, recurse);
+		    ConditionalFilenameFilter filter = null;
+		
+		    if (inclusions != null || exclusions != null) {
+		        filter = new AndFilenameFilter();
+		        if (inclusions != null) {
+		            filter.add(new InclusionFilenameFilter(FilenameFilterType.normalize(type), inclusions));
+		        }
+		        if (exclusions != null) {
+		            filter.add(new ExclusionFilenameFilter(FilenameFilterType.normalize(type), exclusions));
+		        }
+		    }
+		
+		    size = DirectoryHelper.squeeze(directory, size, filter, recurse);
+		
+		    IDataUtil.put(cursor, "$size.squeezed", BigIntegerHelper.emit(size));
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {

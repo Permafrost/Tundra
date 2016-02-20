@@ -3438,7 +3438,7 @@ directories.
 * `$filter.exclusions` is an optional list of regular expression
   patterns, wildcard file glob patterns, or literals used to
   exclude files with matching names from deletion.
-* `$filter.type` is an optional choice if either 'regular expression'
+* `$filter.type` is an optional choice if either 'regular expression',
   'wildcard', or 'literal', which determines the type of filter
   patterns provided. Defaults to 'regular expression'.
 * `$recurse?` is an optional boolean flag indicating if files in sub-
@@ -3531,16 +3531,30 @@ modified.
 
 #### Inputs:
 
-* `$directory` is a relative or absolute path, or file: [URI], in which
+* `$directory` is a relative or absolute path, or `file:` [URI], in which
   files will be deleted to reduce the total size of the directory to
   the required size.
-* `$size?` is the required size in bytes of the given directory. If the
-  directory's size is less that this size, no files will be deleted.
-  If the directory's size is greater than this size, files will be
-  progressively deleted in order of least recently modified until the
-  directory size is equal to or less than the required size.
-* `$recurse?` is an optional boolean flag which when `true` will include
+* `$size.required` is the required size in bytes of the given directory.
+  If the directory's size is less that this size, no files will be
+  deleted. If the directory's size is greater than this size, files
+  will be progressively deleted in order of least recently modified
+  until the directory size is equal to or less than the required size.
+* `$filter.inclusions` is an optional list of regular expression
+  patterns, wildcard file glob patterns, or literals used to
+  include files with matching names for deletion.
+* `$filter.exclusions` is an optional list of regular expression
+  patterns, wildcard file glob patterns, or literals used to
+  exclude files with matching names from deletion.
+* `$filter.type` is an optional choice if either 'regular expression',
+  'wildcard', or 'literal', which determines the type of filter
+  patterns provided. Defaults to 'regular expression'.
+* `$recurse?` is an optional boolean flag which when true will include
   all child directories in the squeezing process. Defaults to `false`.
+
+#### Outputs:
+
+* `$size.squeezed` is the resulting size in bytes of the directory
+  after it has been squeezed.
 
 ---
 
@@ -6608,8 +6622,8 @@ their sub-directories.
 
 #### Outputs:
 
-* `$count` is the total number of files deleted by this service for
-  all directories.
+* `$counts` is a list of the number of files deleted by this service
+  for each directory.
 
 ---
 
@@ -6637,17 +6651,33 @@ modified.
 
 #### Inputs:
 
-* `$directories` is a list of directories specified as relative or
-  absolute path, or `file:` [URI], in which files will be deleted to
-  reduce the total size of the directory to the required size.
-* `$size?` is the required size in bytes of the given directories. If
-  the directory's size is less that this size, no files will be
-  deleted. If a directory's size is greater than this size, files
-  will be progressively deleted in order of least recently modified
-  until the directory size is equal to or less than the required
-  size.
-* `$recurse?` is an optional boolean flag which when `true` will include
-  all child directories in the squeezing process. Defaults to `false`.
+* `$directories` is a list of directories to be squeezed:
+  * `directory` is a relative or absolute path, or `file:` [URI], in
+    which files will be deleted to reduce the total size of the
+    directory to the required size.
+  * `size.required` is the required size in bytes of the given
+    directory. If the directory's size is less that this size, no
+    files will be deleted. If the directory's size is greater than
+    this size, files will be progressively deleted in order of least
+    recently modified until the directory size is equal to or less
+    than the required size.
+  * `filter.inclusions` is an optional list of regular expression
+    patterns, wildcard file glob patterns, or literals used to
+    include files with matching names for deletion.
+  * `filter.exclusions` is an optional list of regular expression
+    patterns, wildcard file glob patterns, or literals used to
+    exclude files with matching names from deletion.
+  * `filter.type` is an optional choice if either 'regular
+    expression', 'wildcard', or 'literal', which determines the type
+    of filter patterns provided. Defaults to 'regular expression'.
+  * `recurse?` is an optional boolean flag which when true will
+    include all child directories in the squeezing process. Defaults
+    to `false`.
+
+#### Outputs:
+
+* `$sizes.squeezed` is a list of the resulting sizes in bytes of the
+  directories after they have been squeezed.
 
 ---
 

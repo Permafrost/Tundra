@@ -338,7 +338,7 @@ directories.
 * $filter.exclusions is an optional list of regular expression 
   patterns, wildcard file glob patterns, or literals used to
   exclude files with matching names from deletion.
-* $filter.type is an optional choice if either 'regular expression' 
+* $filter.type is an optional choice if either 'regular expression', 
   'wildcard', or 'literal', which determines the type of filter
   patterns provided. Defaults to 'regular expression'.
 * $recurse? is an optional boolean flag indicating if files in sub-
