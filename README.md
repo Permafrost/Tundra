@@ -3362,14 +3362,16 @@ selected mode.
 * `$directory` is a relative or absolute path or `file:` [URI] to be
   listed.
 * `$filter.inclusions` is an optional list of regular expression
-  patterns or wildcard file glob patterns used to include objects
-  with matching names in the resulting directory listing.
+  patterns, wildcard file glob patterns, or literals used to
+  include objects with matching names in the resulting directory
+  listing.
 * `$filter.exclusions` is an optional list of regular expression
-  patterns or wildcard file glob patterns used to exclude objects
-  with matching names from the resulting directory listing.
-* `$filter.type` is an optional choice if either 'regular expression'
-  or 'wildcard', which determines the type of filter patterns
-  provided. Defaults to 'regular expression'.
+  patterns, wildcard file glob patterns, or literals used to
+  exclude objects with matching names from the resulting directory
+  listing.
+* `$filter.type` is an optional choice if either 'regular expression',
+  'wildcard', or 'literal', which determines the type of filter
+  patterns provided. Defaults to 'regular expression'.
 * `$recurse?` is an optional boolean flag indicating if subdirectories
   should also be listed recursively. Defaults to `false`.
 
@@ -3430,13 +3432,21 @@ directories.
 * `$duration.pattern` is an optional pattern describing the type of
   duration specified by the `$duration` string. Defaults to an [ISO8601]
   XML string.
+* `$filter.inclusions` is an optional list of regular expression
+  patterns, wildcard file glob patterns, or literals used to
+  include files with matching names for deletion.
+* `$filter.exclusions` is an optional list of regular expression
+  patterns, wildcard file glob patterns, or literals used to
+  exclude files with matching names from deletion.
+* `$filter.type` is an optional choice if either 'regular expression'
+  'wildcard', or 'literal', which determines the type of filter
+  patterns provided. Defaults to 'regular expression'.
 * `$recurse?` is an optional boolean flag indicating if files in sub-
   directories should also deleted. Defaults to false.
 
 #### Outputs:
 
-* `$count` is the number of files deleted by this service that were older
-  than the given `$duration`.
+* `$count` is the number of files deleted by this service.
 
 ---
 
@@ -6573,17 +6583,33 @@ their sub-directories.
 
 #### Inputs:
 
-* `$directories` is a list of directories from which files will be
-  deleted, specified as either a relative or absolute file path or
-  `file:` [URI].
-* `$duration` is the duration of time representing the age of files to
-  be deleted. For example, a duration of P1D will delete all files
-  that were last modified 24 hours ago or earlier.
-* `$duration.pattern` is an optional pattern describing the type of
-  duration specified by the $duration string. Defaults to an
-  [ISO8601] XML string.
-* `$recurse?` is an optional boolean flag indicating if files in sub-
-  directories should also deleted. Defaults to `false`.
+* `$directories` is a list of directories to be purged:
+  * `directory` is the directory from which files will be deleted,
+    specified as either a relative or absolute file path or `file:`
+    [URI].
+  * `duration` is the duration of time representing the age of files
+    to be deleted. For example, a duration of P1D will delete all
+    files that were last modified 24 hours ago or earlier.
+  * `duration.pattern` is an optional pattern describing the type of
+    duration specified by the `duration` string. Defaults to an
+    [ISO8601] XML string.
+  * `filter.inclusions` is an optional list of regular expression
+    patterns, wildcard file glob patterns, or literals used to
+    include files with matching names for deletion.
+  * `filter.exclusions` is an optional list of regular expression
+    patterns, wildcard file glob patterns, or literals used to
+    exclude files with matching names from deletion.
+  * `filter.type` is an optional choice if either 'regular
+    expression', 'wildcard', or 'literal', which determines the
+    type of filter patterns provided. Defaults to 'regular
+    expression'.
+  * `recurse?` is an optional boolean flag indicating if files in
+    sub-directories should also deleted. Defaults to `false`.
+
+#### Outputs:
+
+* `$count` is the total number of files deleted by this service for
+  all directories.
 
 ---
 

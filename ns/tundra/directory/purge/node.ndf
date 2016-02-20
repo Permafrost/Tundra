@@ -115,6 +115,134 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$filter.inclusions</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">1</value>
+          <value name="field_opt">true</value>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">string</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+          <value name="is_soap_array_encoding_used">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$filter.exclusions</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">1</value>
+          <value name="field_opt">true</value>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">string</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+          <value name="is_soap_array_encoding_used">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_usereditable">false</value>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$filter.type</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <array name="field_options" type="value" depth="1">
+            <value>regular expression</value>
+            <value>wildcard</value>
+            <value>literal</value>
+          </array>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <array name="enumeration" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="primitiveType">0</value>
+                <value name="lexRep">literal</value>
+                <value name="isList">false</value>
+              </record>
+              <record javaclass="com.wm.util.Values">
+                <value name="primitiveType">0</value>
+                <value name="lexRep">regular expression</value>
+                <value name="isList">false</value>
+              </record>
+              <record javaclass="com.wm.util.Values">
+                <value name="primitiveType">0</value>
+                <value name="lexRep">wildcard</value>
+                <value name="isList">false</value>
+              </record>
+            </array>
+            <value name="contentType">1</value>
+            <value name="internalType">instance</value>
+            <value name="ct_class">com.wm.lang.schema.datatypev2.WmString</value>
+            <value name="name">string_customized</value>
+            <array name="parent-ancestors" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">anySimpleType</value>
+              </record>
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">anyType</value>
+              </record>
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">string</value>
+              </record>
+            </array>
+            <record name="baseType" javaclass="com.wm.util.Values">
+              <record name="whiteSpace" javaclass="com.wm.util.Values">
+                <record name="FacetWSCValue" javaclass="com.wm.util.Values">
+                  <value name="cDecimalValue">3</value>
+                </record>
+                <value name="facetFixed">false</value>
+              </record>
+              <value name="contentType">1</value>
+              <value name="internalType">instance</value>
+              <value name="ct_class">com.wm.lang.schema.datatypev2.WmString</value>
+              <value name="dataTypeVersion">dtVersion2</value>
+            </record>
+            <value name="dataTypeVersion">dtVersion2</value>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
             <value name="field_usereditable">false</value>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
@@ -204,13 +332,21 @@ directories.
 * $duration.pattern is an optional pattern describing the type of
   duration specified by the $duration string. Defaults to an [ISO8601]
   XML string.
+* $filter.inclusions is an optional list of regular expression 
+  patterns, wildcard file glob patterns, or literals used to 
+  include files with matching names for deletion.
+* $filter.exclusions is an optional list of regular expression 
+  patterns, wildcard file glob patterns, or literals used to
+  exclude files with matching names from deletion.
+* $filter.type is an optional choice if either 'regular expression' 
+  'wildcard', or 'literal', which determines the type of filter
+  patterns provided. Defaults to 'regular expression'.
 * $recurse? is an optional boolean flag indicating if files in sub-
   directories should also deleted. Defaults to false.
 
 #### Outputs:
 
-* $count is the number of files deleted by this service that were older
-  than the given $duration.
+* $count is the number of files deleted by this service.
 
 [ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;
 [URI]: &lt;http://www.w3.org/Addressing/&gt;</value>

@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-02-20 20:03:19 EST
+// -----( CREATED: 2016-02-20 20:51:43 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -172,10 +172,10 @@ public final class directory
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $directory
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
 		// [i] field:1:optional $filter.inclusions
 		// [i] field:1:optional $filter.exclusions
-		// [i] field:0:optional $filter.type {&quot;regular expression&quot;,&quot;wildcard&quot;}
+		// [i] field:0:optional $filter.type {&quot;regular expression&quot;,&quot;wildcard&quot;,&quot;literal&quot;}
+		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:1:required $directories
 		// [o] field:0:required $directories.length
 		// [o] field:1:required $files
@@ -286,6 +286,9 @@ public final class directory
 		// [i] field:0:required $directory
 		// [i] field:0:required $duration
 		// [i] field:0:optional $duration.pattern {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
+		// [i] field:1:optional $filter.inclusions
+		// [i] field:1:optional $filter.exclusions
+		// [i] field:0:optional $filter.type {&quot;regular expression&quot;,&quot;wildcard&quot;,&quot;literal&quot;}
 		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:required $count
 		IDataCursor cursor = pipeline.getCursor();
@@ -294,9 +297,24 @@ public final class directory
 		    String directory = IDataUtil.getString(cursor, "$directory");
 		    String duration = IDataUtil.getString(cursor, "$duration");
 		    String pattern = IDataUtil.getString(cursor, "$duration.pattern");
+		    String[] inclusions = IDataUtil.getStringArray(cursor, "$filter.inclusions");
+		    String[] exclusions = IDataUtil.getStringArray(cursor, "$filter.exclusions");
+		    String type = IDataUtil.getString(cursor, "$filter.type");
 		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
 		
-		    long count = DirectoryHelper.purge(directory, DurationHelper.parse(duration, pattern), recurse);
+		    ConditionalFilenameFilter filter = null;
+		
+		    if (inclusions != null || exclusions != null) {
+		        filter = new AndFilenameFilter();
+		        if (inclusions != null) {
+		            filter.add(new InclusionFilenameFilter(FilenameFilterType.normalize(type), inclusions));
+		        }
+		        if (exclusions != null) {
+		            filter.add(new ExclusionFilenameFilter(FilenameFilterType.normalize(type), exclusions));
+		        }
+		    }
+		
+		    long count = DirectoryHelper.purge(directory, DurationHelper.parse(duration, pattern), filter, recurse);
 		
 		    IDataUtil.put(cursor, "$count", "" + count);
 		} catch(IOException ex) {

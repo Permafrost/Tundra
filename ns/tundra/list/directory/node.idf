@@ -13,6 +13,11 @@
     <value>java.util.List</value>
     <value>permafrost.tundra.io.DirectoryHelper</value>
     <value>permafrost.tundra.io.FileHelper</value>
+    <value>permafrost.tundra.io.filter.AndFilenameFilter</value>
+    <value>permafrost.tundra.io.filter.ConditionalFilenameFilter</value>
+    <value>permafrost.tundra.io.filter.ExclusionFilenameFilter</value>
+    <value>permafrost.tundra.io.filter.FilenameFilterType</value>
+    <value>permafrost.tundra.io.filter.InclusionFilenameFilter</value>
     <value>permafrost.tundra.lang.BooleanHelper</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>
     <value>permafrost.tundra.math.BigIntegerHelper</value>

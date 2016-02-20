@@ -115,17 +115,18 @@
           <array name="field_options" type="value" depth="1">
             <value>regular expression</value>
             <value>wildcard</value>
+            <value>literal</value>
           </array>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <array name="enumeration" type="record" depth="1">
               <record javaclass="com.wm.util.Values">
                 <value name="primitiveType">0</value>
-                <value name="lexRep">regular expression</value>
+                <value name="lexRep">literal</value>
                 <value name="isList">false</value>
               </record>
               <record javaclass="com.wm.util.Values">
                 <value name="primitiveType">0</value>
-                <value name="lexRep">regex</value>
+                <value name="lexRep">regular expression</value>
                 <value name="isList">false</value>
               </record>
               <record javaclass="com.wm.util.Values">
@@ -342,14 +343,16 @@ selected mode.
 * $directory is a relative or absolute path or file: [URI] to be
   listed.
 * $filter.inclusions is an optional list of regular expression 
-  patterns or wildcard file glob patterns used to include objects 
-  with matching names in the resulting directory listing.
+  patterns, wildcard file glob patterns, or literals used to 
+  include objects with matching names in the resulting directory
+  listing.
 * $filter.exclusions is an optional list of regular expression 
-  patterns or wildcard file glob patterns used to exclude objects 
-  with matching names from the resulting directory listing.
-* $filter.type is an optional choice if either 'regular expression' 
-  or 'wildcard', which determines the type of filter patterns 
-  provided. Defaults to 'regular expression'.
+  patterns, wildcard file glob patterns, or literals used to
+  exclude objects with matching names from the resulting directory
+  listing.
+* $filter.type is an optional choice if either 'regular expression', 
+  'wildcard', or 'literal', which determines the type of filter
+  patterns provided. Defaults to 'regular expression'.
 * $recurse? is an optional boolean flag indicating if subdirectories
   should also be listed recursively. Defaults to false.
 
