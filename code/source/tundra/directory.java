@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-02-19 22:22:48 EST
+// -----( CREATED: 2016-02-20 20:03:19 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -16,8 +16,11 @@ import permafrost.tundra.io.DirectoryHelper;
 import permafrost.tundra.io.DirectoryLister;
 import permafrost.tundra.io.DirectoryListing;
 import permafrost.tundra.io.FileHelper;
-import permafrost.tundra.io.filter.RegularExpressionFilenameFilter;
-import permafrost.tundra.io.filter.WildcardFilenameFilter;
+import permafrost.tundra.io.filter.AndFilenameFilter;
+import permafrost.tundra.io.filter.ConditionalFilenameFilter;
+import permafrost.tundra.io.filter.ExclusionFilenameFilter;
+import permafrost.tundra.io.filter.InclusionFilenameFilter;
+import permafrost.tundra.io.filter.FilenameFilterType;
 import permafrost.tundra.lang.ArrayHelper;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.ExceptionHelper;
@@ -169,9 +172,10 @@ public final class directory
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $directory
-		// [i] field:0:optional $pattern
-		// [i] field:0:optional $mode {&quot;regular expression&quot;,&quot;wildcard&quot;}
 		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:1:optional $filter.inclusions
+		// [i] field:1:optional $filter.exclusions
+		// [i] field:0:optional $filter.type {&quot;regular expression&quot;,&quot;wildcard&quot;}
 		// [o] field:1:required $directories
 		// [o] field:0:required $directories.length
 		// [o] field:1:required $files
@@ -180,27 +184,36 @@ public final class directory
 		
 		try {
 		    String directory = IDataUtil.getString(cursor, "$directory");
-		    String pattern = IDataUtil.getString(cursor, "$pattern");
-		    String mode = IDataUtil.getString(cursor, "$mode");
+		    String[] inclusions = IDataUtil.getStringArray(cursor, "$filter.inclusions");
+		    String[] exclusions = IDataUtil.getStringArray(cursor, "$filter.exclusions");
+		    String type = IDataUtil.getString(cursor, "$filter.type");
 		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
 		
-		    DirectoryLister lister;
-		    if (pattern != null) {
-		        FilenameFilter filter = null;
-		        if (mode == null || mode.equalsIgnoreCase("regular expression") || mode.equalsIgnoreCase("regex")) {
-		            filter = new RegularExpressionFilenameFilter(pattern);
-		        } else {
-		            filter = new WildcardFilenameFilter(pattern);
+		    ConditionalFilenameFilter filter = null;
+		
+		    if (inclusions != null || exclusions != null) {
+		        filter = new AndFilenameFilter();
+		        if (inclusions != null) {
+		            filter.add(new InclusionFilenameFilter(FilenameFilterType.normalize(type), inclusions));
 		        }
-		        lister = new DirectoryLister(directory, recurse, filter);
+		        if (exclusions != null) {
+		            filter.add(new ExclusionFilenameFilter(FilenameFilterType.normalize(type), exclusions));
+		        }
 		    } else {
-		        lister = new DirectoryLister(directory, recurse);
+		        // support $pattern and $mode for backwards-compatibility
+		        String pattern = IDataUtil.getString(cursor, "$pattern");
+		        String mode = IDataUtil.getString(cursor, "$mode");
+		        if (pattern != null) {
+		            filter = new InclusionFilenameFilter(FilenameFilterType.normalize(mode), pattern);
+		        }
 		    }
+		
+		    DirectoryLister lister = new DirectoryLister(directory, recurse, filter);
 		
 		    DirectoryListing listing = lister.list();
 		    String[] directories = listing.listDirectoriesAsStringArray();
 		    String[] files = listing.listFilesAsStringArray();
-		    	
+		        
 		    IDataUtil.put(cursor, "$directories", directories);
 		    IDataUtil.put(cursor, "$directories.length", "" + directories.length);
 		    IDataUtil.put(cursor, "$files", files);

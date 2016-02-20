@@ -47,17 +47,14 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <value name="field_usereditable">true</value>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$pattern</value>
+          <value name="field_name">$filter.inclusions</value>
           <value name="field_type">string</value>
-          <value name="field_dim">0</value>
+          <value name="field_dim">1</value>
           <value name="field_opt">true</value>
-          <array name="field_options" type="value" depth="1">
-          </array>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <value name="contentType">1</value>
             <value name="internalType">reference</value>
@@ -72,6 +69,35 @@
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
+          <value name="is_soap_array_encoding_used">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$filter.exclusions</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">1</value>
+          <value name="field_opt">true</value>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">string</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+          <value name="is_soap_array_encoding_used">false</value>
         </record>
         <record javaclass="com.wm.util.Values">
           <value name="node_type">record</value>
@@ -82,7 +108,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$mode</value>
+          <value name="field_name">$filter.type</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -306,7 +332,7 @@
   </record>
   <value name="node_comment">### tundra.directory:list
 
-Lists a directory, optionally filtering based on the given pattern,
+Lists a directory, optionally filtering based on the given patterns,
 which can be either a regular expression (for example, "\w+\.\w+")
 or a wildcard expression (for example, "*.txt"), depending on the
 selected mode.
@@ -315,20 +341,23 @@ selected mode.
 
 * $directory is a relative or absolute path or file: [URI] to be
   listed.
-* $pattern is either an optional regular expression pattern, or
-  wildcard file glob pattern (depending on the $mode selected), used
-  to filter the resulting directory listing.
-* $mode is an optional choice if either 'regex' or 'wildcard', which
-  determines the type of $pattern specified. Defaults to 'regex'.
+* $filter.inclusions is an optional list of regular expression 
+  patterns or wildcard file glob patterns used to include objects 
+  with matching names in the resulting directory listing.
+* $filter.exclusions is an optional list of regular expression 
+  patterns or wildcard file glob patterns used to exclude objects 
+  with matching names from the resulting directory listing.
+* $filter.type is an optional choice if either 'regular expression' 
+  or 'wildcard', which determines the type of filter patterns 
+  provided. Defaults to 'regular expression'.
 * $recurse? is an optional boolean flag indicating if subdirectories
   should also be listed recursively. Defaults to false.
 
 #### Outputs:
 
-* $directories is a list of all subdirectories, optionally filtered
-  to only those items whose name match the given $pattern.
-* $files is a list of all files in the given $directory, optionally
-  filtered to only those items whose name match the given $pattern.
+* $directories is a list of all subdirectories, optionally filtered.
+* $files is a list of all files in the given $directory, optionally 
+  filtered.
 
 [URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
   <value name="stateless">no</value>

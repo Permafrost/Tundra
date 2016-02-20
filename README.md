@@ -3352,29 +3352,32 @@ or file name.
 
 ### tundra.directory:list
 
-Lists a directory, optionally filtering based on the given pattern,
+Lists a directory, optionally filtering based on the given patterns,
 which can be either a regular expression (for example, "\w+\.\w+")
 or a wildcard expression (for example, "*.txt"), depending on the
 selected mode.
 
 #### Inputs:
 
-* `$directory` is a relative or absolute path or file: [URI] to be
+* `$directory` is a relative or absolute path or `file:` [URI] to be
   listed.
-* `$pattern` is either an optional regular expression pattern, or
-  wildcard file glob pattern (depending on the `$mode` selected), used
-  to filter the resulting directory listing.
-* `$mode` is an optional choice if either 'regex' or 'wildcard', which
-  determines the type of `$pattern` specified. Defaults to 'regex'.
+* `$filter.inclusions` is an optional list of regular expression
+  patterns or wildcard file glob patterns used to include objects
+  with matching names in the resulting directory listing.
+* `$filter.exclusions` is an optional list of regular expression
+  patterns or wildcard file glob patterns used to exclude objects
+  with matching names from the resulting directory listing.
+* `$filter.type` is an optional choice if either 'regular expression'
+  or 'wildcard', which determines the type of filter patterns
+  provided. Defaults to 'regular expression'.
 * `$recurse?` is an optional boolean flag indicating if subdirectories
-  should also be listed recursively. Defaults to false.
+  should also be listed recursively. Defaults to `false`.
 
 #### Outputs:
 
-* `$directories` is a list of all subdirectories, optionally filtered
-  to only those items whose name match the given `$pattern`.
+* `$directories` is a list of all subdirectories, optionally filtered.
 * `$files` is a list of all files in the given `$directory`, optionally
-  filtered to only those items whose name match the given `$pattern`.
+  filtered.
 
 ---
 
