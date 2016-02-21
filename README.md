@@ -3348,6 +3348,7 @@ or file name.
 
 * `$uri` is a `file:` [URI] representing the path of the joined parent
   and children items.
+
 ---
 
 ### tundra.directory:list
