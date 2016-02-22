@@ -3,5 +3,5 @@
 <Values version="2.0">
   <value name="name">equal</value>
   <value name="encodeutf8">true</value>
-  <value name="body">dHVuZHJhLmxpc3Qub2JqZWN0LmVxdWFsKHBpcGVsaW5lKTs=</value>
+  <value name="body">dHVuZHJhLmxpc3Qub2JqZWN0LmVxdWFsKHBpcGVsaW5lLCBJRGF0YS5jbGFzcyk7</value>
 </Values>
