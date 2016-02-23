@@ -3379,8 +3379,11 @@ selected mode.
 #### Outputs:
 
 * `$directories` is a list of all subdirectories, optionally filtered.
+* `$directories.length` is the number of items in the `$directories`
+  list.
 * `$files` is a list of all files in the given `$directory`, optionally
   filtered.
+* `$files.length` is the number of items in the `$files` list.
 
 ---
 
