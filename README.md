@@ -1497,6 +1497,55 @@ document).
 
 ---
 
+### tundra.configuration:get
+
+Returns the configuration settings associated with the given package.
+
+This service supports the tiering of configuration settings across a
+package-specific file and a server-specific file, where both files
+are merged with the server-specific file taking precedence. This
+approach allows for settings which are not environment-specific or
+for default settings to be stored within the package itself, and for
+other environment-specific settings or overridden settings to be
+stored in a configuration file specific to an Integration Server
+instance. Note that if this is not required, a single file can still
+be used.
+
+Package-specific settings are loaded from the following file:
+
+    ./packages/<package>/config/package.cnf
+
+Server-specific settings are loaded from the following file:
+
+    ./config/packages/<package>.cnf
+
+These files are required to be formatted as either [JSON] or [YAML],
+which allows for rich data structures to be represented.
+
+([XML] is deliberately not supported due to its use of implicit list
+structures requiring a schema for correct representation of single
+item lists, which is incompatible with allowing arbitrary
+configuration data structures.)
+
+Package configurations are cached lazily in memory: read first from
+disk on the initial invocation, and then returned from an in-memory
+cache thereafter.
+
+#### Inputs:
+
+* `$package` is the optional name of the package whose configuration
+  is to be returned. If not specified, the package is automatically
+  inferred from the invoking service.
+* `$refresh?` is an optional boolean which when true will force a
+  refresh of the cached configuration from disk. Defaults to `false`.
+
+#### Outputs:
+
+* `$configuration` is an IData document containing the configuration
+  settings for the given package.
+
+---
+
 ### tundra.content:amend
 
 Edits the given content with the list of key value pairs specified in
