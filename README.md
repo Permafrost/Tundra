@@ -11124,6 +11124,19 @@ to fix the task scheduler if it gets stuck.
 
 ---
 
+### tundra.scheduler:self
+
+Returns the Integration Server user task scheduler node name for the
+Integration Server on which this service is run.
+
+#### Outputs:
+
+* `$scheduler.self.name` is the node name of this instance of the
+  Integration Server user task scheduler. This can be used to target
+  a schedule to this specific server.
+
+---
+
 ### tundra.scheduler:start
 
 Starts the Integration Server task scheduler on the server on

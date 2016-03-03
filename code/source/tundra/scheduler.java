@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-02-01 08:31:12 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2016-03-03 09:52:12.288
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -37,7 +37,28 @@ public final class scheduler
 		SchedulerHelper.restart();
 		// --- <<IS-END>> ---
 
-                
+
+	}
+
+
+
+	public static final void self (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(self)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [o] field:0:required $scheduler.self.name
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    IDataUtil.put(cursor, "$scheduler.self.name", SchedulerHelper.self());
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
 	}
 
 
@@ -51,7 +72,7 @@ public final class scheduler
 		SchedulerHelper.start();
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -65,7 +86,7 @@ public final class scheduler
 		SchedulerHelper.stop();
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 
