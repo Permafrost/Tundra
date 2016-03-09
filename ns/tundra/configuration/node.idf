@@ -11,7 +11,7 @@
   </array>
   <array name="imports" type="value" depth="1">
     <value>java.io.IOException</value>
-    <value>permafrost.tundra.config.ConfigHelper</value>
+    <value>permafrost.tundra.configuration.ConfigurationManager</value>
     <value>permafrost.tundra.lang.BooleanHelper</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>
   </array>

@@ -30,6 +30,7 @@ included in the [Tundra] package as [JAR] files in the following locations:
 * `./code/jars/static/spring-core-4.2.1.RELEASE.jar` - http://projects.spring.io/spring-framework/
 * `./code/jars/static/spring-web-4.2.1.RELEASE.jar` - http://projects.spring.io/spring-framework/
 * `./code/jars/Tundra.jar` - http://github.com/Permafrost/Tundra.java
+* `./code/jars/TundraConfiguration.jar` - http://github.com/Permafrost/TundraConfiguration.java
 * `./code/jars/TundraCSV.jar` - http://github.com/Permafrost/TundraCSV.java
 * `./code/jars/TundraHTML.jar` - http://github.com/Permafrost/TundraHTML.java
 * `./code/jars/TundraHTTP.jar` - http://github.com/Permafrost/TundraHTTP.java

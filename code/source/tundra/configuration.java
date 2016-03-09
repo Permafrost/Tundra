@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-02-27 19:25:23 EST
+// -----( CREATED: 2016-03-09 20:38:50 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -10,7 +10,7 @@ import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import java.io.IOException;
-import permafrost.tundra.config.ConfigHelper;
+import permafrost.tundra.configuration.ConfigurationManager;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 // --- <<IS-END-IMPORTS>> ---
@@ -46,7 +46,7 @@ public final class configuration
 		    String packageName = IDataUtil.getString(cursor, "$package");
 		    boolean refresh = BooleanHelper.parse(IDataUtil.getString(cursor, "$refresh?"));
 		
-		    IData configuration = ConfigHelper.get(packageName, refresh);
+		    IData configuration = ConfigurationManager.get(packageName, refresh);
 		
 		    if (configuration != null) IDataUtil.put(cursor, "$configuration", configuration);
 		} catch(IOException ex) {
