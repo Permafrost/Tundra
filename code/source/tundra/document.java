@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-01-08 21:22:04 EST
+// -----( CREATED: 2016-03-10 08:09:12 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -14,6 +14,8 @@ import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.data.IDataXMLParser;
 import permafrost.tundra.data.ReadOnlyIDataMap;
 import permafrost.tundra.flow.ConditionEvaluator;
+import permafrost.tundra.flow.variable.SubstitutionHelper;
+import permafrost.tundra.flow.variable.SubstitutionType;
 import permafrost.tundra.io.StreamHelper;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.ClassHelper;
@@ -938,6 +940,7 @@ public final class document
 		// [i] record:0:optional $document
 		// [i] record:0:optional $pipeline
 		// [i] field:0:optional $default
+		// [i] field:0:optional $mode {&quot;local&quot;,&quot;global&quot;,&quot;all&quot;}
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -945,8 +948,9 @@ public final class document
 		    IData document = IDataUtil.getIData(cursor, "$document");
 		    IData scope = IDataUtil.getIData(cursor, "$pipeline");
 		    String defaultValue = IDataUtil.getString(cursor, "$default");
+		    SubstitutionType mode = SubstitutionType.normalize(IDataUtil.getString(cursor, "$mode"));
 		
-		    IDataUtil.put(cursor, "$document", IDataHelper.substitute(document, defaultValue, scope == null ? pipeline : scope, true));
+		    IDataUtil.put(cursor, "$document", SubstitutionHelper.substitute(document, defaultValue, scope == null ? pipeline : scope, true, mode));
 		} finally {
 		    cursor.destroy();
 		}

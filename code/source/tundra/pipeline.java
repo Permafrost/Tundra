@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-01-08 21:22:31 EST
+// -----( CREATED: 2016-03-10 09:33:40 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -12,6 +12,8 @@ import com.wm.app.b2b.server.ServiceException;
 import java.io.IOException;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.data.IDataXMLParser;
+import permafrost.tundra.flow.variable.SubstitutionHelper;
+import permafrost.tundra.flow.variable.SubstitutionType;
 import permafrost.tundra.io.StreamHelper;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.ExceptionHelper;
@@ -458,10 +460,14 @@ public final class pipeline
 		// --- <<IS-START(substitute)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
+		// [i] field:0:optional $default
+		// [i] field:0:optional $mode {&quot;local&quot;,&quot;global&quot;,&quot;all&quot;}
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData copy = IDataHelper.substitute(pipeline, pipeline, true);
+		    SubstitutionType mode = SubstitutionType.normalize(IDataUtil.getString(cursor, "$mode"));
+		
+		    IData copy = SubstitutionHelper.substitute(pipeline, null, pipeline, true, mode);
 		    IDataHelper.clear(pipeline);
 		    merge(pipeline, copy);
 		} finally {

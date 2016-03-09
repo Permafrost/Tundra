@@ -50,7 +50,8 @@ dGNoZWQudG9BcnJheShuZXcgU3RyaW5nWzBdKTsKCiAgICByZXR1cm4gb3V0cHV0Owp9</value>
   <array name="imports" type="value" depth="1">
     <value>java.util.ArrayList</value>
     <value>java.util.List</value>
-    <value>permafrost.tundra.flow.VariableSubstitutor</value>
+    <value>permafrost.tundra.flow.variable.SubstitutionHelper</value>
+    <value>permafrost.tundra.flow.variable.SubstitutionType</value>
     <value>permafrost.tundra.lang.BooleanHelper</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>
     <value>permafrost.tundra.lang.StringHelper</value>

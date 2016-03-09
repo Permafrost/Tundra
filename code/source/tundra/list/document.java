@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-02-22 15:25:56.951
-// -----( ON-HOST: -
+// -----( CREATED: 2016-03-10 08:12:56 EST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -10,6 +10,8 @@ import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import permafrost.tundra.data.IDataHelper;
+import permafrost.tundra.flow.variable.SubstitutionHelper;
+import permafrost.tundra.flow.variable.SubstitutionType;
 import permafrost.tundra.lang.BooleanHelper;
 // --- <<IS-END-IMPORTS>> ---
 
@@ -41,7 +43,7 @@ public final class document
 		tundra.list.object.append(pipeline, IData.class);
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -56,7 +58,7 @@ public final class document
 		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
 		// [o] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
 		    IData[] list = IDataHelper.blankify(IDataUtil.getIDataArray(cursor, "$list"), recurse);
@@ -66,7 +68,7 @@ public final class document
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -81,7 +83,7 @@ public final class document
 		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
 		// [o] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IData[] list = IDataUtil.getIDataArray(cursor, "$list");
 		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
@@ -91,7 +93,7 @@ public final class document
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -107,7 +109,7 @@ public final class document
 		tundra.list.object.concatenate(pipeline, IData.class);
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -124,7 +126,7 @@ public final class document
 		tundra.list.object.drop(pipeline);
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -142,7 +144,7 @@ public final class document
 		tundra.list.object.each(pipeline);
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -158,7 +160,7 @@ public final class document
 		tundra.list.object.equal(pipeline, IData.class);
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -176,7 +178,7 @@ public final class document
 		tundra.list.object.filter(pipeline);
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -192,7 +194,7 @@ public final class document
 		tundra.list.object.first(pipeline);
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -210,7 +212,7 @@ public final class document
 		tundra.list.object.get(pipeline);
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -223,12 +225,12 @@ public final class document
 		// @sigtype java 3.5
 		// [i] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IData[] list = IDataUtil.getIDataArray(cursor, "$list");
 		    IData criteria = IDataUtil.getIData(cursor, "$group");
 		    String[] keys = IDataUtil.getStringArray(cursor, "$keys");
-
+		
 		    if (list != null) {
 		        if (keys != null) {
 		            IDataUtil.put(cursor, "$list.grouped", IDataHelper.group(list, keys));
@@ -241,7 +243,7 @@ public final class document
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -259,7 +261,7 @@ public final class document
 		tundra.list.object.grow(pipeline, IData.class);
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -276,7 +278,7 @@ public final class document
 		tundra.list.object.include(pipeline);
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -294,7 +296,7 @@ public final class document
 		tundra.list.object.insert(pipeline, IData.class);
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -309,18 +311,18 @@ public final class document
 		// [i] field:0:optional $pattern
 		// [o] field:1:required $keys
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IData[] list = IDataUtil.getIDataArray(cursor, "$list");
 		    String pattern = IDataUtil.getString(cursor, "$pattern");
-
+		
 		    IDataUtil.put(cursor, "$keys", IDataHelper.getKeys(list, pattern));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -336,7 +338,7 @@ public final class document
 		tundra.list.object.last(pipeline);
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -352,7 +354,7 @@ public final class document
 		tundra.list.object.length(pipeline);
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -372,7 +374,7 @@ public final class document
 		tundra.list.object.map(pipeline, IData.class);
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -386,7 +388,7 @@ public final class document
 		// [i] record:1:optional $list
 		// [o] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IData[] list = IDataHelper.normalize(IDataUtil.getIDataArray(cursor, "$list"));
 		    if (list != null) IDataUtil.put(cursor, "$list", list);
@@ -395,7 +397,7 @@ public final class document
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -410,7 +412,7 @@ public final class document
 		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
 		// [o] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
 		    IData[] list = IDataHelper.nullify(IDataUtil.getIDataArray(cursor, "$list"), recurse);
@@ -420,7 +422,7 @@ public final class document
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -436,13 +438,13 @@ public final class document
 		// [i] field:0:optional $delimiter
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IData[] list = IDataUtil.getIDataArray(cursor, "$list");
 		    String[] keys = IDataUtil.getStringArray(cursor, "$keys");
 		    String key = IDataUtil.getString(cursor, "$key");
 		    String delimiter = IDataUtil.getString(cursor, "$delimiter");
-
+		
 		    if (list != null) {
 		        if (keys != null) {
 		            IDataUtil.put(cursor, "$document", IDataHelper.pivot(list, delimiter, keys));
@@ -455,7 +457,7 @@ public final class document
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -472,7 +474,7 @@ public final class document
 		tundra.list.object.prepend(pipeline, IData.class);
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -490,7 +492,7 @@ public final class document
 		tundra.list.object.put(pipeline, IData.class);
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -508,7 +510,7 @@ public final class document
 		tundra.list.object.reject(pipeline);
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -526,7 +528,7 @@ public final class document
 		tundra.list.object.resize(pipeline, IData.class);
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -542,7 +544,7 @@ public final class document
 		tundra.list.object.reverse(pipeline);
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -559,7 +561,7 @@ public final class document
 		tundra.list.object.shrink(pipeline);
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -577,7 +579,7 @@ public final class document
 		tundra.list.object.slice(pipeline);
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -596,17 +598,17 @@ public final class document
 		// [i] - field:0:optional descending? {&quot;false&quot;,&quot;true&quot;}
 		// [o] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IData[] list = IDataUtil.getIDataArray(cursor, "$list");
 		    IData[] criteria = IDataUtil.getIDataArray(cursor, "$criteria");
-
+		
 		    // silently support $key, $keys and $ascending? for backwards compatibility
 		    String[] keys = IDataUtil.getStringArray(cursor, "$keys");
 		    String key = IDataUtil.getString(cursor, "$key");
 		    String sAscending = IDataUtil.getString(cursor, "$ascending?");
 		    boolean ascending = BooleanHelper.parse(sAscending, true);
-
+		
 		    if (list != null) {
 		        if (criteria == null) {
 		            if (keys == null) {
@@ -623,7 +625,7 @@ public final class document
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -638,7 +640,7 @@ public final class document
 		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
 		// [o] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
 		    IData[] list = IDataHelper.squeeze(IDataUtil.getIDataArray(cursor, "$list"), recurse);
@@ -648,7 +650,7 @@ public final class document
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -664,19 +666,20 @@ public final class document
 		// [i] field:0:optional $default
 		// [o] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IData[] list = IDataUtil.getIDataArray(cursor, "$list");
 		    IData scope = IDataUtil.getIData(cursor, "$pipeline");
 		    String defaultValue = IDataUtil.getString(cursor, "$default");
-
-		    if (list != null) IDataUtil.put(cursor, "$list", IDataHelper.substitute(list, defaultValue, scope == null ? pipeline : scope, true));
+		    SubstitutionType mode = SubstitutionType.normalize(IDataUtil.getString(cursor, "$mode"));
+		
+		    if (list != null) IDataUtil.put(cursor, "$list", SubstitutionHelper.substitute(list, defaultValue, scope == null ? pipeline : scope, true, mode));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -694,7 +697,7 @@ public final class document
 		tundra.list.object.take(pipeline);
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -708,18 +711,18 @@ public final class document
 		// [i] field:1:optional $keys
 		// [o] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IData[] list = IDataUtil.getIDataArray(cursor, "$list");
 		    String[] keys = IDataUtil.getStringArray(cursor, "$keys");
-
+		
 		    if (list != null) IDataUtil.put(cursor, "$list", IDataHelper.unique(list, keys));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -736,22 +739,22 @@ public final class document
 		// [i] field:0:optional $default.string
 		// [o] object:1:optional $values
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IData[] list = IDataUtil.getIDataArray(cursor, "$list");
 		    String key = IDataUtil.getString(cursor, "$key");
 		    Object defaultObject = IDataUtil.get(cursor, "$default.object");
 		    if (defaultObject == null) defaultObject = IDataUtil.getString(cursor, "$default.string");
-
+		
 		    Object[] values = IDataHelper.getValues(list, key, defaultObject);
-
+		
 		    if (values != null) IDataUtil.put(cursor, "$values", values);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 

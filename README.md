@@ -4798,6 +4798,13 @@ value.
   that resolve to null or missing values. If not specified, no
   substitution will be made for keys that resolve to null or missing
   values.
+* `$mode` is an optional choice of whether the substitution scope
+  should be `local` variables only, `global` variables only, or `all`
+  variables (local and global variables where local variables take
+  precedence). Note that choosing `global` on an Integration Server
+  version that does not support global variables will result in
+  all values being substituted with the default value if one is
+  provided. Defaults to `local`.
 
 #### Outputs:
 
@@ -7684,6 +7691,13 @@ value.
   that resolve to null or missing values. If not specified, no
   substitution will be made for keys that resolve to null or missing
   values.
+* `$mode` is an optional choice of whether the substitution scope
+  should be `local` variables only, `global` variables only, or `all`
+  variables (local and global variables where local variables take
+  precedence). Note that choosing `global` on an Integration Server
+  version that does not support global variables will result in
+  all values being substituted with the default value if one is
+  provided. Defaults to `local`.
 
 #### Outputs:
 
@@ -9610,6 +9624,13 @@ default value.
   is unscoped (resolved against the pipeline itself).
 * `$default` is an optional default value to substitute in place
   of null or missing values.
+* `$mode` is an optional choice of whether the substitution scope
+  should be `local` variables only, `global` variables only, or `all`
+  variables (local and global variables where local variables take
+  precedence). Note that choosing `global` on an Integration Server
+  version that does not support global variables will result in
+  all values being substituted with the default value if one is
+  provided. Defaults to `local`.
 
 #### Outputs:
 
@@ -10592,6 +10613,16 @@ ascending order.
 Attempts variable substitution on every string element in the
 pipeline by replacing all occurrences of substrings matching
 "%key%" with the associated value.
+
+#### Inputs:
+
+* `$mode` is an optional choice of whether the substitution scope
+  should be `local` variables only, `global` variables only, or `all`
+  variables (local and global variables where local variables take
+  precedence). Note that choosing `global` on an Integration Server
+  version that does not support global variables will result in
+  all values being substituted with the default value if one is
+  provided. Defaults to `local`.
 
 ---
 
@@ -12306,6 +12337,13 @@ value.
   is unscoped (resolved against the pipeline itself).
 * `$default` is an optional default value to substitute in place
   of null or missing values.
+* `$mode` is an optional choice of whether the substitution scope
+  should be `local` variables only, `global` variables only, or `all`
+  variables (local and global variables where local variables take
+  precedence). Note that choosing `global` on an Integration Server
+  version that does not support global variables will result in
+  all values being substituted with the default value if one is
+  provided. Defaults to `local`.
 
 #### Outputs:
 

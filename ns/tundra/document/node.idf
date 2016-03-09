@@ -116,6 +116,8 @@ bGFzcywgcmVjdXJzZSk7Cn0=</value>
     <value>permafrost.tundra.data.IDataXMLParser</value>
     <value>permafrost.tundra.data.ReadOnlyIDataMap</value>
     <value>permafrost.tundra.flow.ConditionEvaluator</value>
+    <value>permafrost.tundra.flow.variable.SubstitutionHelper</value>
+    <value>permafrost.tundra.flow.variable.SubstitutionType</value>
     <value>permafrost.tundra.io.StreamHelper</value>
     <value>permafrost.tundra.lang.BooleanHelper</value>
     <value>permafrost.tundra.lang.ClassHelper</value>
