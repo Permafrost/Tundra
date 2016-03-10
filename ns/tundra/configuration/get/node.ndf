@@ -153,7 +153,7 @@ Note that because the global variable resolution occurs when the
 configuration is first read from disk and cached (to optimise
 performance), changes to global variable values will not be 
 reflected in the returned package configurations until those 
-configurations refreshed from disk.
+configurations are refreshed from disk.
 
 #### Inputs:
 
