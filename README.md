@@ -1514,19 +1514,26 @@ be used.
 
 Package-specific settings are loaded from the following file:
 
-    ./packages/<package>/config/package.cnf
+    ./packages/<package>/config/package.<format>
 
 Server-specific settings are loaded from the following file:
 
-    ./config/packages/<package>.cnf
+    ./config/packages/<package>.<format>
 
-These files are required to be formatted as either [JSON] or [YAML],
-which allows for rich data structures to be represented.
+Where `<package>` is the name of the package in question, and
+`<format>` is one of the following supported file extensions:
 
-([XML] is deliberately not supported due to its use of implicit list
-structures requiring a schema for correct representation of single
-item lists, which is incompatible with allowing arbitrary
-configuration data structures.)
+File Extension | File Format
+-------------- | --------------------------------------------
+json           | [JSON]
+properties     | Java properties
+values         | com.wm.util.coder.IDataXMLCoder XML
+yaml           | [YAML]
+
+(Arbitrary [XML] is deliberately not supported due to its use of
+implicit list structures requiring a schema for correct
+representation of single item lists, which is incompatible with
+allowing arbitrary configuration data structures.)
 
 Package configurations are cached lazily in memory: read first from
 disk on the initial invocation, and then returned from an in-memory
