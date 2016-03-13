@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-03-10 06:49:33 EST
+// -----( CREATED: 2016-03-13 15:06:12 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -10,6 +10,7 @@ import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.List;
 import permafrost.tundra.flow.variable.SubstitutionHelper;
 import permafrost.tundra.flow.variable.SubstitutionType;
@@ -778,7 +779,7 @@ public final class string
 		    String[] list = IDataUtil.getStringArray(cursor, "$list");
 		    IData scope = IDataUtil.getIData(cursor, "$pipeline");
 		    String defaultValue = IDataUtil.getString(cursor, "$default");
-		    SubstitutionType mode = SubstitutionType.normalize(IDataUtil.getString(cursor, "$mode"));
+		    EnumSet<SubstitutionType> mode = SubstitutionType.normalize(IDataUtil.getString(cursor, "$mode"));
 		
 		    IDataUtil.put(cursor, "$list", SubstitutionHelper.substitute(list, defaultValue, scope == null ? pipeline : scope, mode));
 		} finally {

@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-03-10 08:09:12 EST
+// -----( CREATED: 2016-03-13 15:04:04 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -10,6 +10,7 @@ import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import java.io.IOException;
+import java.util.EnumSet;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.data.IDataXMLParser;
 import permafrost.tundra.data.ReadOnlyIDataMap;
@@ -948,7 +949,7 @@ public final class document
 		    IData document = IDataUtil.getIData(cursor, "$document");
 		    IData scope = IDataUtil.getIData(cursor, "$pipeline");
 		    String defaultValue = IDataUtil.getString(cursor, "$default");
-		    SubstitutionType mode = SubstitutionType.normalize(IDataUtil.getString(cursor, "$mode"));
+		    EnumSet<SubstitutionType> mode = SubstitutionType.normalize(IDataUtil.getString(cursor, "$mode"));
 		
 		    IDataUtil.put(cursor, "$document", SubstitutionHelper.substitute(document, defaultValue, scope == null ? pipeline : scope, true, mode));
 		} finally {

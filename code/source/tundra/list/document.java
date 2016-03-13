@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-03-10 08:12:56 EST
+// -----( CREATED: 2016-03-13 15:05:50 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -9,6 +9,7 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import java.util.EnumSet;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.flow.variable.SubstitutionHelper;
 import permafrost.tundra.flow.variable.SubstitutionType;
@@ -664,6 +665,7 @@ public final class document
 		// [i] record:1:optional $list
 		// [i] record:0:optional $pipeline
 		// [i] field:0:optional $default
+		// [i] field:0:optional $mode {&quot;local&quot;,&quot;global&quot;,&quot;all&quot;}
 		// [o] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -671,7 +673,7 @@ public final class document
 		    IData[] list = IDataUtil.getIDataArray(cursor, "$list");
 		    IData scope = IDataUtil.getIData(cursor, "$pipeline");
 		    String defaultValue = IDataUtil.getString(cursor, "$default");
-		    SubstitutionType mode = SubstitutionType.normalize(IDataUtil.getString(cursor, "$mode"));
+		    EnumSet<SubstitutionType> mode = SubstitutionType.normalize(IDataUtil.getString(cursor, "$mode"));
 		
 		    if (list != null) IDataUtil.put(cursor, "$list", SubstitutionHelper.substitute(list, defaultValue, scope == null ? pipeline : scope, true, mode));
 		} finally {

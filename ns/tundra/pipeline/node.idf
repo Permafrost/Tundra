@@ -18,6 +18,7 @@ cnRlZCwgcGlwZWxpbmUpOwp9</value>
   </array>
   <array name="imports" type="value" depth="1">
     <value>java.io.IOException</value>
+    <value>java.util.EnumSet</value>
     <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.data.IDataXMLParser</value>
     <value>permafrost.tundra.flow.variable.SubstitutionHelper</value>

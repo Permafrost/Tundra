@@ -1541,15 +1541,16 @@ cache thereafter.
 
 Prior to a configuration being cached in memory, variable
 substitution `%key%` substrings found in configuration values are
-automatically resolved against global variables on Integration
-Servers that support the global variable feature. This allows for
-server-specific global configuration values stored as global
-variables to be included in the returned package configurations.
-Note that because the global variable resolution occurs when the
-configuration is first read from disk and cached (to optimise
-performance), changes to global variable values will not be
-reflected in the returned package configurations until those
-configurations are refreshed from disk.
+automatically resolved against the system environment variables,
+java properties, and global variables on Integration Servers that
+support the global variable feature. This allows for server-specific
+global configuration values stored as global variables to be
+included in the returned package configurations. Note that because
+the global variable resolution occurs when the configuration is
+first read from disk and cached (to optimise performance), changes
+to global variable values will not be reflected in the returned
+package configurations until those configurations are refreshed from
+disk.
 
 #### Inputs:
 
