@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="node_type">interface</value>
+  <value name="node_nsName">tundra.security.content</value>
+  <value name="shared"></value>
+  <value name="encodeutf8">true</value>
+  <value name="extends"></value>
+  <array name="implements" type="value" depth="1">
+  </array>
+  <array name="imports" type="value" depth="1">
+    <value>java.io.IOException</value>
+    <value>java.security.NoSuchAlgorithmException</value>
+    <value>java.util.Map</value>
+    <value>permafrost.tundra.lang.CharsetHelper</value>
+    <value>permafrost.tundra.lang.ExceptionHelper</value>
+    <value>permafrost.tundra.lang.ObjectHelper</value>
+    <value>permafrost.tundra.security.MessageDigestHelper</value>
+  </array>
+</Values>

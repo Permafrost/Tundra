@@ -11323,6 +11323,39 @@ service called by `tundra.http:client`.
 
 ---
 
+### tundra.security.content:digest
+
+Returns a message digest for the given content using the given
+algorithm. A message digest is a secure one-way fixed-length hash
+of arbitrary data.
+
+#### Inputs:
+
+* `$content` is arbitrary data provided as a string, byte array, or
+  input stream.
+* `$encoding` is the character set used to encode the character data
+  if `$content` is provided as a string. Defaults to `UTF-8`.
+* `$algorithm` is the name of the hashing algorithm to use when
+  calculating the message digest. Defaults to `SHA-512`.
+* `$mode` is a choice of `stream`, `bytes`, or `base64`, and determines
+  how the calculated digest is returned. Defaults to `stream`.
+
+#### Outputs:
+
+* `$content` is the given content which was used to calculate the
+  digest, and can now be further processed. The reason this is
+  returned is that when an input stream is provided calculating
+  the message digest necessarily requires consuming the stream,
+  therefore a new input stream is instead returned, positioned at
+  the start of the data stream and ready for further consumption.
+  This allows a message digest to be calculated in advance of normal
+  processing of an input stream.
+* `$digest` is the calculated message digest for the given content,
+  returned either as a byte array, input stream, or base64-encoded
+  string, depending on the `$mode` chosen.
+
+---
+
 ### tundra.service:benchmark
 
 Benchmarks the performance of the given service by invoking it the
