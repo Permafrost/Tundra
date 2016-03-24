@@ -10,6 +10,6 @@
   <array name="implements" type="value" depth="1">
   </array>
   <array name="imports" type="value" depth="1">
-    <value>permafrost.tundra.lang.ValidationException</value>
+    <value>permafrost.tundra.content.ValidationException</value>
   </array>
 </Values>

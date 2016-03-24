@@ -1,15 +1,15 @@
 package tundra.support.exception;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-11-20 18:21:38 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2016-03-24 09:44:38.977
+// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
-import permafrost.tundra.lang.ValidationException;
+import permafrost.tundra.content.ValidationException;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class validation
