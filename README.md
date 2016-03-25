@@ -154,11 +154,7 @@ Then restart Integration Server to complete the upgrade.
 
 ## Tests
 
-Most services in Tundra have unit tests, located in the `tundra.support.test`
-folder. To run the unit tests either:
-
-* Run the `Tundra/tundra:test($package = "Tundra")` service directly, or
-* Visit the <http://server:port/invoke/tundra/test?$package=Tundra> web page.
+Refer to the [TundraTest] project for unit testing [Tundra].
 
 ## Services
 
@@ -13297,6 +13293,7 @@ Copyright &copy; 2012 Lachlan Dowding. See the [LICENSE] file for further detail
 [try block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/try.html>
 [TSV]: <http://en.wikipedia.org/wiki/Tab-separated_values>
 [Tundra]: <https://github.com/Permafrost/Tundra>
+[TundraTest]: <https://github.com/Permafrost/TundraTest>
 [TundraTN]: <https://github.com/Permafrost/TundraTN>
 [Tundra.java]: <https://github.com/Permafrost/Tundra.java>
 [TundraCSV.java]: <https://github.com/Permafrost/TundraCSV.java>
