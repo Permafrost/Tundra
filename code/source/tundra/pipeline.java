@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-03-13 15:05:26 EST
+// -----( CREATED: 2016-03-25 16:01:30 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -88,7 +88,7 @@ public final class pipeline
 		// @sigtype java 3.5
 		// [i] field:0:required $key.source
 		// [i] field:0:required $key.target
-		// [i] field:0:optional $key.literal? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $key.literal? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -114,7 +114,7 @@ public final class pipeline
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $key
-		// [i] field:0:optional $key.literal? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $key.literal? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -139,7 +139,7 @@ public final class pipeline
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $encoding
-		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
+		// [i] field:0:optional $mode {"stream","bytes","string"}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -195,7 +195,7 @@ public final class pipeline
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:1:optional $keys
-		// [i] field:0:optional $nulls? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $nulls? {"false","true"}
 		// [o] object:1:optional $values
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -223,7 +223,7 @@ public final class pipeline
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $key
-		// [i] field:0:optional $key.literal? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $key.literal? {"false","true"}
 		// [i] object:0:optional $default.object
 		// [i] field:0:optional $default.string
 		// [o] object:0:optional $value
@@ -394,7 +394,7 @@ public final class pipeline
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $key
-		// [i] field:0:optional $key.literal? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $key.literal? {"false","true"}
 		// [i] object:0:optional $value
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -422,7 +422,7 @@ public final class pipeline
 		// @sigtype java 3.5
 		// [i] field:0:required $key.source
 		// [i] field:0:required $key.target
-		// [i] field:0:optional $key.literal? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $key.literal? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -461,13 +461,10 @@ public final class pipeline
 		// --- <<IS-START(substitute)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional $mode {&quot;local&quot;,&quot;global&quot;,&quot;all&quot;}
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    EnumSet<SubstitutionType> mode = SubstitutionType.normalize(IDataUtil.getString(cursor, "$mode"));
-		
-		    IData copy = SubstitutionHelper.substitute(pipeline, null, pipeline, true, mode);
+		    IData copy = SubstitutionHelper.substitute(pipeline, null, pipeline, true);
 		    IDataHelper.clear(pipeline);
 		    merge(pipeline, copy);
 		} finally {

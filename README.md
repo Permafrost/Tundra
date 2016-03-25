@@ -10640,16 +10640,6 @@ Attempts variable substitution on every string element in the
 pipeline by replacing all occurrences of substrings matching
 "%key%" with the associated value.
 
-#### Inputs:
-
-* `$mode` is an optional choice of whether the substitution scope
-  should be `local` variables only, `global` variables only, or `all`
-  variables (local and global variables where local variables take
-  precedence). Note that choosing `global` on an Integration Server
-  version that does not support global variables will result in
-  all values being substituted with the default value if one is
-  provided. Defaults to `local`.
-
 ---
 
 ### tundra.schedule:create
