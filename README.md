@@ -12577,6 +12577,7 @@ Returns a list of all threads known in the current execution context.
   * `stack` is a document list describing the call stack associated with
     this thread.
   * `thread` is the actual `java.lang.Thread` object itself.
+* `$threads.length` is the number of items returned in the `$threads` list.
 
 ---
 
