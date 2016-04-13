@@ -1,7 +1,7 @@
 package tundra.collection.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-02-16 20:27:06 EST
+// -----( CREATED: 2016-04-14 08:21:54.073
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -39,7 +39,7 @@ public final class string
 		tundra.collection.list.object.append(pipeline, String.class);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -55,7 +55,7 @@ public final class string
 		tundra.collection.list.object.arrayify(pipeline, String.class);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -71,7 +71,24 @@ public final class string
 		tundra.collection.list.object.clear(pipeline, String.class);
 		// --- <<IS-END>> ---
 
-                
+
+	}
+
+
+
+	public static final void first (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(first)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:0:optional $list
+		// [o] field:0:optional $item
+		// [o] field:0:required $item.exists?
+		tundra.collection.list.object.first(pipeline, String.class);
+		// --- <<IS-END>> ---
+
+
 	}
 
 
@@ -90,7 +107,7 @@ public final class string
 		tundra.collection.list.object.get(pipeline, String.class);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -109,7 +126,24 @@ public final class string
 		tundra.collection.list.object.insert(pipeline, String.class);
 		// --- <<IS-END>> ---
 
-                
+
+	}
+
+
+
+	public static final void last (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(last)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:0:optional $list
+		// [o] field:0:optional $item
+		// [o] field:0:required $item.exists?
+		tundra.collection.list.object.last(pipeline, String.class);
+		// --- <<IS-END>> ---
+
+
 	}
 
 
@@ -125,7 +159,7 @@ public final class string
 		tundra.collection.list.object.length(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -141,7 +175,7 @@ public final class string
 		tundra.collection.list.object.listify(pipeline, String.class);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -158,7 +192,7 @@ public final class string
 		tundra.collection.list.object.prepend(pipeline, String.class);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -177,7 +211,7 @@ public final class string
 		tundra.collection.list.object.remove(pipeline, String.class);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -193,7 +227,7 @@ public final class string
 		tundra.collection.list.object.reverse(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -213,7 +247,7 @@ public final class string
 		tundra.collection.list.object.set(pipeline, String.class);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -230,7 +264,7 @@ public final class string
 		tundra.collection.list.object.take(pipeline, String.class);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -246,7 +280,7 @@ public final class string
 		tundra.collection.list.object.unique(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 
