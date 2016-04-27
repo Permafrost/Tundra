@@ -794,6 +794,25 @@ Removes all items from the given [java.util.List] object.
 
 ---
 
+### tundra.collection.list.document:first
+
+Returns the first item from a [java.util.List] object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object to retrieve the first item
+  from.
+* `$class` is an optional Java class name that the list and items
+  are required to be instances of.
+
+#### Outputs:
+
+* `$item` is the first value in the list, if it exists.
+* `$item.exists?` is a boolean indicating whether at least one
+  item existed in the list.
+
+---
+
 ### tundra.collection.list.document:get
 
 Returns the item at the specified index of a [java.util.List] object.
@@ -833,6 +852,25 @@ Inserts arbitrarily specified items at the specified index of a
 
 * `$list` is the resulting [java.util.List] object with the given
   items inserted at the specified index.
+
+---
+
+### tundra.collection.list.document:last
+
+Returns the last item from a [java.util.List] object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object to retrieve the last item
+  from.
+* `$class` is an optional Java class name that the list and items
+  are required to be instances of.
+
+#### Outputs:
+
+* `$item` is the last value in the list, if it exists.
+* `$item.exists?` is a boolean indicating whether at least one
+  item existed in the list.
 
 ---
 
@@ -984,7 +1022,7 @@ object.
 * `$items` is an `IData` document containing arbitrarily specified
   objects to be appended to the list. The leaf values from the
   given document will be appended in the order they appear.
-* `$class` is an optional Java class name that the list and items
+* `$class` is an optional Java class name that the list items
   to be appended are required to be instances of.
 
 #### Outputs:
@@ -1026,6 +1064,25 @@ Removes all items from the given [java.util.List] object.
 
 ---
 
+### tundra.collection.list.object:first
+
+Returns the first item from a [java.util.List] object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object to retrieve the first item
+  from.
+* `$class` is an optional Java class name that the list items
+  are required to be instances of.
+
+#### Outputs:
+
+* `$item` is the first value in the list, if it exists.
+* `$item.exists?` is a boolean indicating whether at least one
+  item existed in the list.
+
+---
+
 ### tundra.collection.list.object:get
 
 Returns the item at the specified index of a [java.util.List] object.
@@ -1036,7 +1093,7 @@ Returns the item at the specified index of a [java.util.List] object.
 * `$index` is the index of the item to be returned.
 * `$index.base` specifies whether the index is zero-based or one-
   based. Defaults to zero-based if not specified.
-* `$class` is an optional Java class name that the list and items
+* `$class` is an optional Java class name that the list items
   are required to be instances of.
 
 #### Outputs:
@@ -1062,13 +1119,32 @@ Inserts arbitrarily specified items at the specified index of a
 * `$index` is the index at which the given items will be inserted.
 * `$index.base` specifies whether the index is zero-based or one-
   based. Defaults to zero-based if not specified.
-* `$class` is an optional Java class name that the list and items
+* `$class` is an optional Java class name that the list items
   to be inserted are required to be instances of.
 
 #### Outputs:
 
 * `$list` is the resulting [java.util.List] object with the given
   items inserted at the specified index.
+
+---
+
+### tundra.collection.list.object:last
+
+Returns the last item from a [java.util.List] object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object to retrieve the last item
+  from.
+* `$class` is an optional Java class name that the list items
+  are required to be instances of.
+
+#### Outputs:
+
+* `$item` is the last value in the list, if it exists.
+* `$item.exists?` is a boolean indicating whether at least one
+  item existed in the list.
 
 ---
 
@@ -1114,7 +1190,7 @@ object.
 * `$items` is an `IData` document containing arbitrarily specified
   objects to be prepended to the list. The leaf values from the
   given document will be prepended in the order they appear.
-* `$class` is an optional Java class name that the list and items
+* `$class` is an optional Java class name that the list items
   to be prepended are required to be instances of.
 
 #### Outputs:
@@ -1135,7 +1211,7 @@ from a [java.util.List] object.
 * `$index` is the index of the item to be removed.
 * `$index.base` specifies whether the index is zero-based or one-
   based. Defaults to zero-based if not specified.
-* `$class` is an optional Java class name that the list and items
+* `$class` is an optional Java class name that the list items
   are required to be instances of.
 
 #### Outputs:
@@ -1174,7 +1250,7 @@ object.
 * `$index` is the index of the item to be set.
 * `$index.base` specifies whether the index is zero-based or one-
   based. Defaults to zero-based if not specified.
-* `$class` is an optional Java class name that the list and items
+* `$class` is an optional Java class name that the list items
   are required to be instances of.
 
 #### Outputs:
@@ -1192,7 +1268,7 @@ of the given [java.util.List] object.
 
 * `$list` is a [java.util.List] object.
 * `$count` is the number of items to take from the head of the list.
-* `$class` is an optional Java class name that the list and items
+* `$class` is an optional Java class name that the list items
   are required to be instances of.
 
 #### Outputs:
@@ -1262,6 +1338,23 @@ Removes all items from the given [java.util.List] object.
 
 ---
 
+### tundra.collection.list.string:first
+
+Returns the first item from a [java.util.List] object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object to retrieve the first item
+  from.
+
+#### Outputs:
+
+* `$item` is the first value in the list, if it exists.
+* `$item.exists?` is a boolean indicating whether at least one
+  item existed in the list.
+
+---
+
 ### tundra.collection.list.string:get
 
 Returns the item at the specified index of a [java.util.List] object.
@@ -1301,6 +1394,23 @@ Inserts arbitrarily specified items at the specified index of a
 
 * `$list` is the resulting [java.util.List] object with the given
   items inserted at the specified index.
+
+---
+
+### tundra.collection.list.string:last
+
+Returns the last item from a [java.util.List] object.
+
+#### Inputs:
+
+* `$list` is a [java.util.List] object to retrieve the last item
+  from.
+
+#### Outputs:
+
+* `$item` is the last value in the list, if it exists.
+* `$item.exists?` is a boolean indicating whether at least one
+  item existed in the list.
 
 ---
 
