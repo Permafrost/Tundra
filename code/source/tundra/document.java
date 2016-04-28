@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-03-13 15:04:04 EST
+// -----( CREATED: 2016-04-28 19:17:45 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -76,7 +76,7 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -127,14 +127,19 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData document = IDataUtil.getIData(cursor, "$document");
+		    IData input = IDataUtil.getIData(cursor, "$document");
 		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
-		    IDataUtil.put(cursor, "$document", IDataHelper.compact(document, recurse));
+		
+		    if (input != null) {
+		        IData output = IDataHelper.compact(input, recurse);
+		        if (output == null) output = IDataFactory.create();
+		        IDataUtil.put(cursor, "$document", output);
+		    }
 		} finally {
 		    cursor.destroy();
 		}
@@ -154,7 +159,7 @@ public final class document
 		// [i] record:0:optional $document
 		// [i] field:0:required $key.source
 		// [i] field:0:required $key.target
-		// [i] field:0:optional $key.literal? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $key.literal? {"false","true"}
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -183,7 +188,7 @@ public final class document
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
 		// [i] field:0:optional $key
-		// [i] field:0:optional $key.literal? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $key.literal? {"false","true"}
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -210,7 +215,7 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] record:0:optional $duplicate
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -240,7 +245,7 @@ public final class document
 		// [i] field:0:optional $key.input
 		// [i] field:0:optional $value.input
 		// [i] field:0:optional $value.class
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -274,7 +279,7 @@ public final class document
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
 		// [i] field:0:optional $encoding
-		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
+		// [i] field:0:optional $mode {"stream","bytes","string"}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -363,7 +368,7 @@ public final class document
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
 		// [i] field:1:optional $keys
-		// [i] field:0:optional $nulls? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $nulls? {"false","true"}
 		// [o] object:1:optional $values
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -422,7 +427,7 @@ public final class document
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
 		// [i] field:0:optional $key
-		// [i] field:0:optional $key.literal? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $key.literal? {"false","true"}
 		// [i] object:0:optional $default.object
 		// [i] field:0:optional $default.string
 		// [o] object:0:optional $value
@@ -458,7 +463,7 @@ public final class document
 		// [i] field:0:optional $separator.value
 		// [i] field:0:optional $separator.item
 		// [i] field:0:optional $separator.list
-		// [i] field:0:optional $nulls? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $nulls? {"false","true"}
 		// [o] field:0:optional $result
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -641,7 +646,7 @@ public final class document
 		// [i] field:0:optional $value.input
 		// [i] field:0:optional $value.output
 		// [i] field:0:optional $value.class
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -723,7 +728,7 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -776,7 +781,7 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] record:1:optional $pivot
 		// [o] - field:0:required key
 		// [o] - object:0:required value
@@ -804,7 +809,7 @@ public final class document
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
 		// [i] field:0:optional $key
-		// [i] field:0:optional $key.literal? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $key.literal? {"false","true"}
 		// [i] object:0:optional $value
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
@@ -835,7 +840,7 @@ public final class document
 		// [i] record:0:optional $document
 		// [i] field:0:required $key.source
 		// [i] field:0:required $key.target
-		// [i] field:0:optional $key.literal? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $key.literal? {"false","true"}
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -863,7 +868,7 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -888,15 +893,19 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
+		    IData input = IDataUtil.getIData(cursor, "$document");
 		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
-		    IData document = IDataHelper.squeeze(IDataUtil.getIData(cursor, "$document"), recurse);
 		
-		    if (document != null) IDataUtil.put(cursor, "$document", document);
+		    if (input != null) {
+		        IData output = IDataHelper.squeeze(input, recurse);
+		        if (output == null) output = IDataFactory.create();
+		        IDataUtil.put(cursor, "$document", output);
+		    }
 		} finally {
 		    cursor.destroy();
 		}
@@ -914,7 +923,7 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -941,7 +950,7 @@ public final class document
 		// [i] record:0:optional $document
 		// [i] record:0:optional $pipeline
 		// [i] field:0:optional $default
-		// [i] field:0:optional $mode {&quot;local&quot;,&quot;global&quot;,&quot;all&quot;}
+		// [i] field:0:optional $mode {"local","global","all"}
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
 		
