@@ -24,7 +24,7 @@ included in the [Tundra] package as [JAR] files in the following locations:
 * `./code/jars/commons-csv-1.2.jar` - https://commons.apache.org/proper/commons-csv/
 * `./code/jars/htmlcompressor-1.5.3.jar` - http://htmlcompressor.googlecode.com
 * `./code/jars/jakarta-oro-2.0.8.jar` - http://archive.apache.org/dist/jakarta/oro/
-* `./code/jars/javax.json-1.0.4.jar` - https://jsonp.java.net
+* `./code/jars/javax.json-1.0.jar` - https://jsonp.java.net
 * `./code/jars/jscience-4.3.1.jar` - http://jscience.org
 * `./code/jars/snakeyaml-1.15.jar` - http://www.snakeyaml.org
 * `./code/jars/static/spring-core-4.2.1.RELEASE.jar` - http://projects.spring.io/spring-framework/
