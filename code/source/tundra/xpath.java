@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-09 08:31:44 AEST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2016-05-24 15:52:47.926
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -10,6 +10,8 @@ import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import java.io.IOException;
+import org.w3c.dom.Document;
+import org.xml.sax.InputSource;
 import permafrost.tundra.io.StreamHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.xml.XPathHelper;
@@ -44,25 +46,29 @@ public final class xpath
 		// [i] - field:0:optional default
 		// [o] field:0:required $exists?
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Object content = IDataUtil.get(cursor, "$content");
 		    String encoding = IDataUtil.getString(cursor, "$encoding");
 		    String expression = IDataUtil.getString(cursor, "$expression");
 		    IData namespace = IDataUtil.getIData(cursor, "$namespace");
 		    boolean result = false;
-		
-		    if (content != null) result = XPathHelper.exists(StreamHelper.normalize(content, encoding), expression, namespace);
-		
+
+		    if (content instanceof Document) {
+		        result = XPathHelper.exists((Document)content, expression, namespace);
+		    } else if (content instanceof InputSource) {
+		        result = XPathHelper.exists((InputSource)content, expression, namespace);
+		    } else if (content != null) {
+		        result = XPathHelper.exists(StreamHelper.normalize(content, encoding), expression, namespace);
+		    }
+
 		    IDataUtil.put(cursor, "$exists?", "" + result);
-		} catch (IOException ex) {
-		    ExceptionHelper.raise(ex);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 

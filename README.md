@@ -13177,17 +13177,18 @@ documents when parsing from an input stream.
 
 ### tundra.xpath:exists
 
-Returns true if the given XPath expression `$expression` exists the given
-XML `$content`.
+Returns true if the given XPath expression `$expression` exists the 
+given XML `$content`.
 
 #### Inputs:
 
-* `$content` is a string, byte array, or input stream containing XML
-  data.
-* `$encoding` is the character set used by `$content` if provided as a
+* `$content` is a string, byte array, input stream, 
+  `org.w3c.dom.Document` object (node), or `org.xml.sax.InputSource` 
+  object containing XML data.
+* `$encoding` is the character set used by $content if provided as a
   byte array or input stream. Defaults to [UTF-8].
 * `$expression` is the [XPath expression] to be tested against
-  `$content`.
+  `$content.
 
 #### Outputs:
 
