@@ -169,7 +169,7 @@ given XML $content.
 #### Inputs:
 
 * $content is a string, byte array, input stream, 
-  org.w3c.dom.Document object (node), or org.xml.sax.InputSource 
+  org.w3c.dom.Node object (node), or org.xml.sax.InputSource 
   object containing XML data.
 * $encoding is the character set used by $content if provided as a
   byte array or input stream. Defaults to [UTF-8].

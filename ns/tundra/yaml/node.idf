@@ -11,8 +11,10 @@
   <array name="imports" type="value" depth="1">
     <value>java.io.IOException</value>
     <value>permafrost.tundra.data.IDataYAMLParser</value>
-    <value>permafrost.tundra.io.StreamHelper</value>
+    <value>permafrost.tundra.io.InputStreamHelper</value>
+    <value>permafrost.tundra.lang.CharsetHelper</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>
+    <value>permafrost.tundra.lang.ObjectConvertMode</value>
     <value>permafrost.tundra.lang.ObjectHelper</value>
   </array>
 </Values>

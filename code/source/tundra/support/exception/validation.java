@@ -2,7 +2,7 @@ package tundra.support.exception;
 
 // -----( IS Java Code Template v1.2
 // -----( CREATED: 2016-03-24 09:44:38.977
-// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -36,7 +36,7 @@ public final class validation
 		// @sigtype java 3.5
 		// [i] field:0:optional $message
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    throw new ValidationException(IDataUtil.getString(cursor, "$message"));
 		} finally {
@@ -44,7 +44,7 @@ public final class validation
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 

@@ -140,8 +140,9 @@ ICAgcmV0dXJuIGVzdGltYXRvcjsKfQ==</value>
   </array>
   <array name="imports" type="value" depth="1">
     <value>com.wm.lang.ns.NSService</value>
+    <value>java.nio.charset.Charset</value>
     <value>permafrost.tundra.data.IDataHelper</value>
-    <value>permafrost.tundra.io.StreamHelper</value>
+    <value>permafrost.tundra.io.InputStreamHelper</value>
     <value>permafrost.tundra.lang.ArrayHelper</value>
     <value>permafrost.tundra.lang.BooleanHelper</value>
     <value>permafrost.tundra.lang.CharsetHelper</value>

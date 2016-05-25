@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-05-24 15:52:47.926
+// -----( CREATED: 2016-05-25 13:57:37.052
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -10,11 +10,15 @@ import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import java.io.IOException;
-import org.w3c.dom.Document;
+import javax.xml.xpath.XPathExpression;
+import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
-import permafrost.tundra.io.StreamHelper;
+import permafrost.tundra.io.InputStreamHelper;
+import permafrost.tundra.lang.CharsetHelper;
 import permafrost.tundra.lang.ExceptionHelper;
-import permafrost.tundra.xml.XPathHelper;
+import permafrost.tundra.xml.dom.DocumentHelper;
+import permafrost.tundra.xml.namespace.IDataNamespaceContext;
+import permafrost.tundra.xml.xpath.XPathHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class xpath
@@ -54,15 +58,18 @@ public final class xpath
 		    IData namespace = IDataUtil.getIData(cursor, "$namespace");
 		    boolean result = false;
 
-		    if (content instanceof Document) {
-		        result = XPathHelper.exists((Document)content, expression, namespace);
+		    XPathExpression compiledExpression = XPathHelper.compile(expression, IDataNamespaceContext.of(namespace));
+		    Node node = null;
+
+		    if (content instanceof Node) {
+		        node = (Node)content;
 		    } else if (content instanceof InputSource) {
-		        result = XPathHelper.exists((InputSource)content, expression, namespace);
+		        node = DocumentHelper.parse((InputSource)content);
 		    } else if (content != null) {
-		        result = XPathHelper.exists(StreamHelper.normalize(content, encoding), expression, namespace);
+		        node = DocumentHelper.parse(InputStreamHelper.normalize(content, CharsetHelper.normalize(encoding)), CharsetHelper.normalize(encoding), true);
 		    }
 
-		    IDataUtil.put(cursor, "$exists?", "" + result);
+		    IDataUtil.put(cursor, "$exists?", node == null ? "false" : "" + XPathHelper.exists(node, compiledExpression));
 		} finally {
 		    cursor.destroy();
 		}

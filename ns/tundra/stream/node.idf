@@ -11,8 +11,13 @@
   <array name="imports" type="value" depth="1">
     <value>java.io.Closeable</value>
     <value>java.io.IOException</value>
-    <value>permafrost.tundra.io.StreamHelper</value>
+    <value>java.io.OutputStream</value>
+    <value>java.nio.charset.Charset</value>
+    <value>permafrost.tundra.io.CloseableHelper</value>
+    <value>permafrost.tundra.io.InputOutputHelper</value>
+    <value>permafrost.tundra.io.InputStreamHelper</value>
     <value>permafrost.tundra.lang.BooleanHelper</value>
+    <value>permafrost.tundra.lang.CharsetHelper</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>
   </array>
 </Values>

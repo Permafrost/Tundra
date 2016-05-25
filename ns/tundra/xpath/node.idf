@@ -10,10 +10,14 @@
   </array>
   <array name="imports" type="value" depth="1">
     <value>java.io.IOException</value>
-    <value>org.w3c.dom.Document</value>
+    <value>javax.xml.xpath.XPathExpression</value>
+    <value>org.w3c.dom.Node</value>
     <value>org.xml.sax.InputSource</value>
-    <value>permafrost.tundra.io.StreamHelper</value>
+    <value>permafrost.tundra.io.InputStreamHelper</value>
+    <value>permafrost.tundra.lang.CharsetHelper</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>
-    <value>permafrost.tundra.xml.XPathHelper</value>
+    <value>permafrost.tundra.xml.dom.DocumentHelper</value>
+    <value>permafrost.tundra.xml.namespace.IDataNamespaceContext</value>
+    <value>permafrost.tundra.xml.xpath.XPathHelper</value>
   </array>
 </Values>

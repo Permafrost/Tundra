@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-08 21:16:35 AEST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2016-05-25 16:54:28.969
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -10,9 +10,12 @@ import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import java.io.IOException;
+import java.nio.charset.Charset;
 import permafrost.tundra.data.IDataCSVParser;
-import permafrost.tundra.io.StreamHelper;
+import permafrost.tundra.io.InputStreamHelper;
+import permafrost.tundra.lang.CharsetHelper;
 import permafrost.tundra.lang.ExceptionHelper;
+import permafrost.tundra.lang.ObjectConvertMode;
 import permafrost.tundra.lang.ObjectHelper;
 // --- <<IS-END-IMPORTS>> ---
 
@@ -42,18 +45,18 @@ public final class csv
 		// [i] - record:1:optional recordWithNoID
 		// [i] field:0:optional $delimiter
 		// [i] field:0:optional $encoding
-		// [i] field:0:optional $mode {"stream","bytes","string"}
+		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IData document = IDataUtil.getIData(cursor, "$document");
 		    String delimiter = IDataUtil.getString(cursor, "$delimiter");
-		    String charset = IDataUtil.getString(cursor, "$encoding");
-		    String mode = IDataUtil.getString(cursor, "$mode");
-		
+		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
+		    ObjectConvertMode mode = ObjectConvertMode.normalize(IDataUtil.getString(cursor, "$mode"));
+
 		    if (document != null) {
-		        IDataUtil.put(cursor, "$content", ObjectHelper.convert(new IDataCSVParser(delimiter).emit(document, charset), mode));
+		        IDataUtil.put(cursor, "$content", ObjectHelper.convert(new IDataCSVParser(delimiter).emit(document, charset), charset, mode));
 		    }
 		} catch (IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -62,7 +65,7 @@ public final class csv
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -79,14 +82,14 @@ public final class csv
 		// [o] record:0:optional $document
 		// [o] - record:1:optional recordWithNoID
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Object content = IDataUtil.get(cursor, "$content");
 		    String delimiter = IDataUtil.getString(cursor, "$delimiter");
-		    String charset = IDataUtil.getString(cursor, "$encoding");
-		
+		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
+
 		    if (content != null) {
-		        IDataUtil.put(cursor, "$document", new IDataCSVParser(delimiter).parse(StreamHelper.normalize(content, charset)));
+		        IDataUtil.put(cursor, "$document", new IDataCSVParser(delimiter).parse(InputStreamHelper.normalize(content, charset)));
 		    }
 		} catch (IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -95,7 +98,7 @@ public final class csv
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 

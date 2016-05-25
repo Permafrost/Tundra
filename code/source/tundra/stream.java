@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-09 11:09:48 AEST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2016-05-25 14:14:30.027
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -11,8 +11,13 @@ import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import java.io.Closeable;
 import java.io.IOException;
-import permafrost.tundra.io.StreamHelper;
+import java.io.OutputStream;
+import java.nio.charset.Charset;
+import permafrost.tundra.io.CloseableHelper;
+import permafrost.tundra.io.InputOutputHelper;
+import permafrost.tundra.io.InputStreamHelper;
 import permafrost.tundra.lang.BooleanHelper;
+import permafrost.tundra.lang.CharsetHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 // --- <<IS-END-IMPORTS>> ---
 
@@ -40,16 +45,16 @@ public final class stream
 		// @sigtype java 3.5
 		// [i] object:0:optional $stream
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Object stream = IDataUtil.get(cursor, "$stream");
-		    if (stream instanceof Closeable) StreamHelper.close((Closeable)stream);
+		    if (stream instanceof Closeable) CloseableHelper.close((Closeable)stream);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -62,14 +67,14 @@ public final class stream
 		// @sigtype java 3.5
 		// [i] object:0:optional $input
 		// [i] object:0:optional $output
-		// [i] field:0:optional $close? {"true","false"}
+		// [i] field:0:optional $close? {&quot;true&quot;,&quot;false&quot;}
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Object input = IDataUtil.get(cursor, "$input");
 		    Object output = IDataUtil.get(cursor, "$output");
 		    boolean close = BooleanHelper.parse(IDataUtil.getString(cursor, "$close?"), true);
-		    StreamHelper.copy(input, output, close);
+		    InputOutputHelper.copy(InputStreamHelper.normalize(input), (OutputStream)output, close);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -77,7 +82,7 @@ public final class stream
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -92,18 +97,18 @@ public final class stream
 		// [i] field:0:optional $encoding
 		// [o] object:0:optional $stream
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Object object = IDataUtil.get(cursor, "$object");
-		    String encoding = IDataUtil.getString(cursor, "$encoding");
-		
-		    IDataUtil.put(cursor, "$stream", StreamHelper.normalize(object, encoding));
+		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
+
+		    IDataUtil.put(cursor, "$stream", InputStreamHelper.normalize(object, charset));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 

@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-09 08:30:58 AEST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2016-05-25 13:49:14.439
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -11,8 +11,10 @@ import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import java.io.IOException;
 import permafrost.tundra.data.IDataYAMLParser;
-import permafrost.tundra.io.StreamHelper;
+import permafrost.tundra.io.InputStreamHelper;
+import permafrost.tundra.lang.CharsetHelper;
 import permafrost.tundra.lang.ExceptionHelper;
+import permafrost.tundra.lang.ObjectConvertMode;
 import permafrost.tundra.lang.ObjectHelper;
 // --- <<IS-END-IMPORTS>> ---
 
@@ -39,18 +41,17 @@ public final class yaml
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
-		// [i] - record:1:optional recordWithNoID
 		// [i] field:0:optional $encoding
-		// [i] field:0:optional $mode {"stream","bytes","string"}
+		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IData document = IDataUtil.getIData(cursor, "$document");
 		    String charset = IDataUtil.getString(cursor, "$encoding");
 		    String mode = IDataUtil.getString(cursor, "$mode");
-		
-		    if (document != null) IDataUtil.put(cursor, "$content", ObjectHelper.convert(IDataYAMLParser.getInstance().emit(document, charset), charset, mode));
+
+		    if (document != null) IDataUtil.put(cursor, "$content", ObjectHelper.convert(IDataYAMLParser.getInstance().emit(document, CharsetHelper.normalize(charset)), CharsetHelper.normalize(charset), ObjectConvertMode.normalize(mode)));
 		} catch (IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -58,7 +59,7 @@ public final class yaml
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -74,13 +75,13 @@ public final class yaml
 		// [o] record:0:optional $document
 		// [o] - record:1:optional recordWithNoID
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Object content = IDataUtil.get(cursor, "$content");
 		    String charset = IDataUtil.getString(cursor, "$encoding");
-		
+
 		    if (content != null) {
-		        IDataUtil.put(cursor, "$document", IDataYAMLParser.getInstance().parse(StreamHelper.normalize(content, charset)));
+		        IDataUtil.put(cursor, "$document", IDataYAMLParser.getInstance().parse(InputStreamHelper.normalize(content, CharsetHelper.normalize(charset))));
 		    }
 		} catch (IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -89,7 +90,7 @@ public final class yaml
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 

@@ -1,22 +1,25 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-11-16 15:29:36 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2016-05-25 14:10:02.635
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import java.nio.charset.Charset;
 import java.io.IOException;
 import org.w3c.dom.Document;
-import permafrost.tundra.io.StreamHelper;
+import permafrost.tundra.io.InputStreamHelper;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.BytesHelper;
 import permafrost.tundra.lang.CharsetHelper;
 import permafrost.tundra.lang.ExceptionHelper;
+import permafrost.tundra.lang.ObjectConvertMode;
 import permafrost.tundra.lang.ObjectHelper;
+import permafrost.tundra.xml.dom.DocumentHelper;
 import permafrost.tundra.xml.XMLHelper;
 // --- <<IS-END-IMPORTS>> ---
 
@@ -48,14 +51,14 @@ public final class xml
 		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
 		// [o] object:0:optional $content.canonical
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Object content = IDataUtil.get(cursor, "$content");
-		    String encoding = IDataUtil.getString(cursor, "$encoding");
+		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
 		    String algorithm = IDataUtil.getString(cursor, "$algorithm");
 		    String mode = IDataUtil.getString(cursor, "$mode");
-		
-		    if (content != null) IDataUtil.put(cursor, "$content.canonical", ObjectHelper.convert(XMLHelper.canonicalize(BytesHelper.normalize(content, encoding), encoding, algorithm), mode));
+
+		    if (content != null) IDataUtil.put(cursor, "$content.canonical", ObjectHelper.convert(XMLHelper.canonicalize(BytesHelper.normalize(content, charset), charset, algorithm), charset, ObjectConvertMode.normalize(mode)));
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -63,7 +66,7 @@ public final class xml
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -79,14 +82,14 @@ public final class xml
 		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Document document = (Document)IDataUtil.get(cursor, "$node");
-		    String encoding = IDataUtil.getString(cursor, "$encoding");
-		    String mode = IDataUtil.getString(cursor, "$mode");
-		
-		    Object content = ObjectHelper.convert(XMLHelper.emit(document, CharsetHelper.normalize(encoding)), mode);
-		
+		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
+		    ObjectConvertMode mode = ObjectConvertMode.normalize(IDataUtil.getString(cursor, "$mode"));
+
+		    Object content = ObjectHelper.convert(DocumentHelper.emit(document, charset), mode);
+
 		    if (content != null) IDataUtil.put(cursor, "$content", content);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -95,7 +98,7 @@ public final class xml
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -111,15 +114,15 @@ public final class xml
 		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
 		// [o] object:0:optional $content.minified
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Object content = IDataUtil.get(cursor, "$content");
-		    String encoding = IDataUtil.getString(cursor, "$encoding");
-		
-		    String mode = IDataUtil.getString(cursor, "$mode");
-		
-		    content = ObjectHelper.convert(XMLHelper.minify(StreamHelper.normalize(content, encoding)), mode);
-		
+		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
+
+		    ObjectConvertMode mode = ObjectConvertMode.normalize(IDataUtil.getString(cursor, "$mode"));
+
+		    content = ObjectHelper.convert(XMLHelper.minify(InputStreamHelper.normalize(content, charset)), charset, mode);
+
 		    if (content != null) IDataUtil.put(cursor, "$content.minified", content);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -128,7 +131,7 @@ public final class xml
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -147,17 +150,17 @@ public final class xml
 		// [o] field:0:required $valid?
 		// [o] field:1:optional $errors
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Object content = IDataUtil.get(cursor, "$content");
-		    String contentEncoding = IDataUtil.getString(cursor, "$content.encoding");
+		    Charset contentCharset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$content.encoding"));
 		    Object schema = IDataUtil.get(cursor, "$schema");
-		    String schemaEncoding = IDataUtil.getString(cursor, "$schema.encoding");
+		    Charset schemaCharset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$schema.encoding"));
 		    boolean raise = BooleanHelper.parse(IDataUtil.getString(cursor, "$raise?"));
-		
-		    String[] errors = XMLHelper.validate(StreamHelper.normalize(content, contentEncoding), StreamHelper.normalize(schema, schemaEncoding), raise);
+
+		    String[] errors = XMLHelper.validate(InputStreamHelper.normalize(content, contentCharset), contentCharset, InputStreamHelper.normalize(schema, schemaCharset), schemaCharset, raise);
 		    boolean valid = content != null && (errors == null || errors.length == 0);
-		
+
 		    IDataUtil.put(cursor, "$valid?", "" + valid);
 		    if (!valid && errors != null) IDataUtil.put(cursor, "$errors", errors);
 		} finally {
@@ -165,7 +168,7 @@ public final class xml
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 

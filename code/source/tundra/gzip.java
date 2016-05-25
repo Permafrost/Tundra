@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-09 08:25:28 AEST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2016-05-25 16:59:30.846
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -10,8 +10,11 @@ import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import java.io.IOException;
-import permafrost.tundra.io.StreamHelper;
+import java.nio.charset.Charset;
+import permafrost.tundra.io.InputStreamHelper;
+import permafrost.tundra.lang.CharsetHelper;
 import permafrost.tundra.lang.ExceptionHelper;
+import permafrost.tundra.lang.ObjectConvertMode;
 import permafrost.tundra.lang.ObjectHelper;
 import permafrost.tundra.zip.GzipHelper;
 // --- <<IS-END-IMPORTS>> ---
@@ -40,17 +43,17 @@ public final class gzip
 		// @sigtype java 3.5
 		// [i] object:0:optional $content
 		// [i] field:0:optional $encoding
-		// [i] field:0:optional $mode {"stream","bytes","string","base64"}
+		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;,&quot;base64&quot;}
 		// [o] object:0:optional $content.gzip
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Object input = IDataUtil.get(cursor, "$content");
-		    String charset = IDataUtil.getString(cursor, "$encoding");
-		    String mode = IDataUtil.getString(cursor, "$mode");
-		
-		    Object output = ObjectHelper.convert(GzipHelper.compress(StreamHelper.normalize(input, charset)), charset, mode);
-		
+		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
+		    ObjectConvertMode mode = ObjectConvertMode.normalize(IDataUtil.getString(cursor, "$mode"));
+
+		    Object output = ObjectHelper.convert(GzipHelper.compress(InputStreamHelper.normalize(input, charset)), charset, mode);
+
 		    if (output != null) IDataUtil.put(cursor, "$content.gzip", output);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -59,7 +62,7 @@ public final class gzip
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -72,17 +75,17 @@ public final class gzip
 		// @sigtype java 3.5
 		// [i] object:0:optional $content.gzip
 		// [i] field:0:optional $encoding
-		// [i] field:0:optional $mode {"stream","bytes","string","base64"}
+		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;,&quot;base64&quot;}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Object input = IDataUtil.get(cursor, "$content.gzip");
-		    String charset = IDataUtil.getString(cursor, "$encoding");
-		    String mode = IDataUtil.getString(cursor, "$mode");
-		
-		    Object output = ObjectHelper.convert(GzipHelper.decompress(StreamHelper.normalize(input, charset)), charset, mode);
-		
+		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
+		    ObjectConvertMode mode = ObjectConvertMode.normalize(IDataUtil.getString(cursor, "$mode"));
+
+		    Object output = ObjectHelper.convert(GzipHelper.decompress(InputStreamHelper.normalize(input, charset)), charset, mode);
+
 		    if (output != null) IDataUtil.put(cursor, "$content", output);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -91,7 +94,7 @@ public final class gzip
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 
