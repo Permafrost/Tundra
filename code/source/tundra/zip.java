@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-05-25 13:47:38.830
-// -----( ON-HOST: -
+// -----( CREATED: 2016-05-27 08:05:36 EST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -10,6 +10,7 @@ import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import java.io.IOException;
+import java.nio.charset.Charset;
 import permafrost.tundra.io.InputStreamHelper;
 import permafrost.tundra.lang.CharsetHelper;
 import permafrost.tundra.lang.ExceptionHelper;
@@ -45,16 +46,16 @@ public final class zip
 		// [i] - field:0:required name
 		// [i] - object:0:required content
 		// [i] - field:0:optional encoding
-		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;,&quot;base64&quot;}
+		// [i] field:0:optional $mode {"stream","bytes","string","base64"}
 		// [o] object:0:optional $contents.zip
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IData[] contents = IDataUtil.getIDataArray(cursor, "$contents");
-		    String mode = IDataUtil.getString(cursor, "$mode");
-
+		    ObjectConvertMode mode = ObjectConvertMode.normalize(IDataUtil.getString(cursor, "$mode"));
+		
 		    Object output = ObjectHelper.convert(ZipHelper.compress(ZipEntryWithData.valueOf(contents)), mode);
-
+		
 		    if (output != null) IDataUtil.put(cursor, "$contents.zip", output);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -63,7 +64,7 @@ public final class zip
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -76,20 +77,20 @@ public final class zip
 		// @sigtype java 3.5
 		// [i] object:0:optional $contents.zip
 		// [i] field:0:optional $encoding
-		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;,&quot;base64&quot;}
+		// [i] field:0:optional $mode {"stream","bytes","string","base64"}
 		// [o] record:1:optional $contents
 		// [o] - field:0:required name
 		// [o] - object:0:required content
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    Object input = IDataUtil.get(cursor, "$contents.zip");
-		    String charset = IDataUtil.getString(cursor, "$encoding");
-		    String mode = IDataUtil.getString(cursor, "$mode");
-
-		    ZipEntryWithData[] entries = ZipHelper.decompress(InputStreamHelper.normalize(input, CharsetHelper.normalize(charset)));
-
-		    if (entries != null) IDataUtil.put(cursor, "$contents", ZipEntryWithData.toIDataArray(entries, CharsetHelper.normalize(charset), ObjectConvertMode.normalize(mode)));
+		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
+		    ObjectConvertMode mode = ObjectConvertMode.normalize(IDataUtil.getString(cursor, "$mode"));
+		
+		    ZipEntryWithData[] entries = ZipHelper.decompress(InputStreamHelper.normalize(input, charset));
+		
+		    if (entries != null) IDataUtil.put(cursor, "$contents", ZipEntryWithData.toIDataArray(entries, charset, mode));
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -97,7 +98,7 @@ public final class zip
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 
