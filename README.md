@@ -13217,23 +13217,24 @@ documents when parsing from an input stream.
 
 ### tundra.xpath:exists
 
-Returns true if the given XPath expression `$expression` exists the
-given XML `$content`.
+Returns true if the given [XPath expression] exists the given [XML]
+content.
 
 #### Inputs:
 
-* `$content` is a string, byte array, input stream,
-  `org.w3c.dom.Node` object (node), or `org.xml.sax.InputSource`
-  object containing XML data.
-* `$encoding` is the character set used by $content if provided as a
+* `$content` is a string, byte array, input stream, [org.w3c.dom.Node]
+  object (node in webMethods parlance), or [org.xml.sax.InputSource]
+  object containing [XML] data.
+* `$encoding` is the character set used by `$content` if provided as a
   byte array or input stream. Defaults to [UTF-8].
 * `$expression` is the [XPath expression] to be tested against
-  `$content.
+  `$content`.
 
 #### Outputs:
 
-* `$exists?` is true if the XPath expression was found to exist in the
-  given `$content`.
+* `$exists?` is `true` if the given `$expression` was found to exist in the
+  given `$content` (in other words the expression returned one or more
+  [org.w3c.dom.Node] objects when evaluated).
 
 ---
 
@@ -13431,6 +13432,7 @@ Copyright &copy; 2012 Lachlan Dowding. See the [LICENSE] file for further detail
 [Object.toString()]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html#toString()>
 [org.w3c.dom.Document]: <http://docs.oracle.com/javase/6/docs/api/org/w3c/dom/Document.html>
 [org.w3c.dom.Node]: <http://docs.oracle.com/javase/6/docs/api/org/w3c/dom/Node.html>
+[org.xml.sax.InputSource]: <http://docs.oracle.com/javase/6/docs/api/org/xml/sax/InputSource.html>
 [primitive type]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Class.html#isPrimitive()>
 [radix]: <http://en.wikipedia.org/wiki/Radix>
 [regular expression pattern]: <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html>

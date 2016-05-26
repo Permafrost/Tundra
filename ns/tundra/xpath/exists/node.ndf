@@ -174,25 +174,29 @@
   </record>
   <value name="node_comment">### tundra.xpath:exists
 
-Returns true if the given XPath expression $expression exists the 
-given XML $content.
+Returns true if the given [XPath expression] exists the given [XML] 
+content.
 
 #### Inputs:
 
-* $content is a string, byte array, input stream, 
-  org.w3c.dom.Node object (node), or org.xml.sax.InputSource 
-  object containing XML data.
+* $content is a string, byte array, input stream, [org.w3c.dom.Node] 
+  object (node in webMethods parlance), or [org.xml.sax.InputSource] 
+  object containing [XML] data.
 * $encoding is the character set used by $content if provided as a
   byte array or input stream. Defaults to [UTF-8].
-* $expression is the [XPath expression] to be tested against
+* $expression is the [XPath expression] to be tested against 
   $content.
 
 #### Outputs:
 
-* $exists? is true if the XPath expression was found to exist in the
-  given $content.
+* $exists? is true if the given $expression was found to exist in the
+  given $content (in other words the expression returned one or more
+  [org.w3c.dom.Node] objects when evaluated).
 
+[org.w3c.dom.Node]: &lt;http://docs.oracle.com/javase/6/docs/api/org/w3c/dom/Node.html&gt;
+[org.xml.sax.InputSource]: &lt;http://docs.oracle.com/javase/6/docs/api/org/xml/sax/InputSource.html&gt;
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;
+[XML]: &lt;http://www.w3.org/XML/&gt;
 [XPath expression]: &lt;http://www.w3.org/TR/xpath/&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
