@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-08 21:13:14 AEST
+// -----( CREATED: 2016-05-26 19:59:20 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -9,7 +9,9 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import java.nio.charset.Charset;
 import permafrost.tundra.lang.BytesHelper;
+import permafrost.tundra.lang.CharsetHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 // --- <<IS-END-IMPORTS>> ---
 
@@ -69,7 +71,7 @@ public final class bytes
 		
 		try {
 		    Object object = IDataUtil.get(cursor, "$object");
-		    String charset = IDataUtil.getString(cursor, "$encoding");
+		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
 		
 		    IDataUtil.put(cursor, "$bytes", BytesHelper.normalize(object, charset));
 		} catch(java.io.IOException ex) {
