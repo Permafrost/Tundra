@@ -28,6 +28,7 @@ cnRlZCwgcGlwZWxpbmUpOwp9</value>
     <value>permafrost.tundra.lang.BooleanHelper</value>
     <value>permafrost.tundra.lang.CharsetHelper</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>
+    <value>permafrost.tundra.lang.ObjectConvertMode</value>
     <value>permafrost.tundra.lang.ObjectHelper</value>
   </array>
 </Values>
