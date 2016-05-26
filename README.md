@@ -1604,6 +1604,23 @@ document).
 
 ---
 
+### tundra.configuration:all
+
+Returns all configuration settings for all configured packages.
+
+#### Inputs:
+
+* `$refresh?` is an optional boolean which when true will force a
+  refresh of the cached configurations from disk. Defaults to
+  `false`.
+
+#### Outputs:
+
+* `$configurations` is an `IData` document containing the configuration
+  settings for each configured package.
+
+---
+
 ### tundra.configuration:get
 
 Returns the configuration settings associated with the given package.
@@ -1676,6 +1693,23 @@ refreshed from disk.
 
 * `$configuration` is an IData document containing the configuration
   settings for the given package.
+
+---
+
+### tundra.configuration:list
+
+Returns all configuration settings for all configured packages.
+
+#### Inputs:
+
+* `$refresh?` is an optional boolean which when true will force a
+  refresh of the cached configurations from disk. Defaults to
+  `false`.
+
+#### Outputs:
+
+* `$configurations` is an `IData[]` document list containing the
+  configuration settings for each configured package.
 
 ---
 
@@ -13177,13 +13211,13 @@ documents when parsing from an input stream.
 
 ### tundra.xpath:exists
 
-Returns true if the given XPath expression `$expression` exists the 
+Returns true if the given XPath expression `$expression` exists the
 given XML `$content`.
 
 #### Inputs:
 
-* `$content` is a string, byte array, input stream, 
-  `org.w3c.dom.Document` object (node), or `org.xml.sax.InputSource` 
+* `$content` is a string, byte array, input stream,
+  `org.w3c.dom.Document` object (node), or `org.xml.sax.InputSource`
   object containing XML data.
 * `$encoding` is the character set used by $content if provided as a
   byte array or input stream. Defaults to [UTF-8].
