@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-03-13 15:06:12 EST
+// -----( CREATED: 2016-05-26 20:31:43 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -9,12 +9,14 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 import permafrost.tundra.flow.variable.SubstitutionHelper;
 import permafrost.tundra.flow.variable.SubstitutionType;
 import permafrost.tundra.lang.BooleanHelper;
+import permafrost.tundra.lang.CharsetHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.lang.StringHelper;
 // --- <<IS-END-IMPORTS>> ---
@@ -82,7 +84,7 @@ public final class string
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:1:optional $list
-		// [i] field:0:optional $mode {&quot;all words&quot;,&quot;first word&quot;}
+		// [i] field:0:optional $mode {"all words","first word"}
 		// [o] field:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -109,7 +111,7 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:1:optional $list
 		// [i] field:0:optional $default
-		// [i] field:0:optional $mode {&quot;missing&quot;,&quot;null&quot;}
+		// [i] field:0:optional $mode {"missing","null"}
 		// [o] field:0:optional $item
 		tundra.list.object.coalesce(pipeline);
 		// --- <<IS-END>> ---
@@ -245,7 +247,7 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:1:optional $list
 		// [i] field:0:optional $pattern
-		// [i] field:0:optional $literal? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $literal? {"false","true"}
 		// [o] field:0:required $found.all?
 		// [o] field:0:required $found.any?
 		// [o] field:0:required $found.none?
@@ -471,7 +473,7 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:1:optional $list
 		// [i] field:0:optional $pattern
-		// [i] field:0:optional $literal? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $literal? {"false","true"}
 		// [o] field:0:required $matched.all?
 		// [o] field:0:required $matched.any?
 		// [o] field:0:required $matched.none?
@@ -530,9 +532,9 @@ public final class string
 		
 		try {
 		    Object[] objects = IDataUtil.getObjectArray(cursor, "$objects");
-		    String encoding = IDataUtil.getString(cursor, "$encoding");
+		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
 		
-		    String[] strings = StringHelper.normalize(objects, encoding);
+		    String[] strings = StringHelper.normalize(objects, charset);
 		
 		    if (strings != null) IDataUtil.put(cursor, "$strings", strings);
 		} catch(java.io.IOException ex) {
@@ -771,7 +773,7 @@ public final class string
 		// [i] field:1:optional $list
 		// [i] record:0:optional $pipeline
 		// [i] field:0:optional $default
-		// [i] field:0:optional $mode {&quot;local&quot;,&quot;global&quot;,&quot;all&quot;}
+		// [i] field:0:optional $mode {"local","global","all"}
 		// [o] field:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 		
