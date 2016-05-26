@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-08-17 09:15:21 EST
+// -----( CREATED: 2016-05-26 20:29:22 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -10,10 +10,13 @@ import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import java.io.IOException;
+import java.nio.charset.Charset;
 import permafrost.tundra.data.IDataHTMLParser;
 import permafrost.tundra.data.IDataMap;
 import permafrost.tundra.html.HTMLHelper;
+import permafrost.tundra.lang.CharsetHelper;
 import permafrost.tundra.lang.ExceptionHelper;
+import permafrost.tundra.lang.ObjectConvertMode;
 import permafrost.tundra.lang.ObjectHelper;
 // --- <<IS-END-IMPORTS>> ---
 
@@ -64,20 +67,20 @@ public final class html
 		// @sigtype java 3.5
 		// [i] record:1:optional $list
 		// [i] field:0:optional $encoding
-		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
+		// [i] field:0:optional $mode {"stream","bytes","string"}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		    IData[] list = IDataUtil.getIDataArray(cursor, "$list");
-		    String encoding = IDataUtil.getString(cursor, "$encoding");
-		    String mode = IDataUtil.getString(cursor, "$mode");
+		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
+		    ObjectConvertMode mode = ObjectConvertMode.normalize(IDataUtil.getString(cursor, "$mode"));
 		
 		    if (list != null) {
 		        IDataMap map = new IDataMap();
 		        map.put("recordWithNoID", list);
 		
-		        IDataUtil.put(cursor, "$content", ObjectHelper.convert(IDataHTMLParser.getInstance().emit(map, encoding), encoding, mode));
+		        IDataUtil.put(cursor, "$content", ObjectHelper.convert(IDataHTMLParser.getInstance().emit(map, charset), charset, mode));
 		    }
 		} catch (IOException ex) {
 		    ExceptionHelper.raise(ex);
