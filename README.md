@@ -13127,20 +13127,20 @@ Implemented with the [Apache Santuario] XML Security library.
 
 ### tundra.xml:emit
 
-Serializes an [org.w3c.dom.Document] object, known as a node in
+Serializes an [org.w3c.dom.Node] object, known as a node in
 webMethods parlance, to an [XML] string, byte array, or input stream.
 
 #### Inputs:
 
-* $node is an [org.w3c.dom.Document] object to be serialized.
-* $encoding is the character set used when serializing the content.
+* `$node` is an [org.w3c.dom.Node] object to be serialized.
+* `$encoding` is the character set used when serializing the content.
   Defaults to [UTF-8].
-* $mode is a choice of bytes, stream, or string, and determines the
-  type of object $content is returned as. Defaults to stream.
+* `$mode` is a choice of `bytes`, `stream`, or `string`, and determines the
+  type of object `$content` is returned as. Defaults to `stream`.
 
 #### Outputs:
 
-* $content is the given [org.w3c.dom.Document] object serialized to
+* `$content` is the given [org.w3c.dom.Node] object serialized to
   [XML].
 
 ---
@@ -13430,6 +13430,7 @@ Copyright &copy; 2012 Lachlan Dowding. See the [LICENSE] file for further detail
 [natural ordering]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Comparable.html>
 [Object.toString()]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html#toString()>
 [org.w3c.dom.Document]: <http://docs.oracle.com/javase/6/docs/api/org/w3c/dom/Document.html>
+[org.w3c.dom.Node]: <http://docs.oracle.com/javase/6/docs/api/org/w3c/dom/Node.html>
 [primitive type]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Class.html#isPrimitive()>
 [radix]: <http://en.wikipedia.org/wiki/Radix>
 [regular expression pattern]: <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html>

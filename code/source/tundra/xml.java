@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-05-27 08:10:41 EST
+// -----( CREATED: 2016-05-27 08:18:50 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -11,7 +11,7 @@ import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import java.nio.charset.Charset;
 import java.io.IOException;
-import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 import permafrost.tundra.io.InputStreamHelper;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.BytesHelper;
@@ -19,7 +19,7 @@ import permafrost.tundra.lang.CharsetHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.lang.ObjectConvertMode;
 import permafrost.tundra.lang.ObjectHelper;
-import permafrost.tundra.xml.dom.DocumentHelper;
+import permafrost.tundra.xml.dom.NodeHelper;
 import permafrost.tundra.xml.XMLCanonicalizationAlgorithm;
 import permafrost.tundra.xml.XMLHelper;
 // --- <<IS-END-IMPORTS>> ---
@@ -85,11 +85,11 @@ public final class xml
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Document document = (Document)IDataUtil.get(cursor, "$node");
+		    Node node = (Node)IDataUtil.get(cursor, "$node");
 		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
 		    ObjectConvertMode mode = ObjectConvertMode.normalize(IDataUtil.getString(cursor, "$mode"));
 		
-		    Object content = ObjectHelper.convert(DocumentHelper.emit(document, charset), mode);
+		    Object content = ObjectHelper.convert(NodeHelper.emit(node, charset), mode);
 		
 		    if (content != null) IDataUtil.put(cursor, "$content", content);
 		} catch(IOException ex) {

@@ -11,7 +11,7 @@
   <array name="imports" type="value" depth="1">
     <value>java.nio.charset.Charset</value>
     <value>java.io.IOException</value>
-    <value>org.w3c.dom.Document</value>
+    <value>org.w3c.dom.Node</value>
     <value>permafrost.tundra.io.InputStreamHelper</value>
     <value>permafrost.tundra.lang.BooleanHelper</value>
     <value>permafrost.tundra.lang.BytesHelper</value>
@@ -19,7 +19,7 @@
     <value>permafrost.tundra.lang.ExceptionHelper</value>
     <value>permafrost.tundra.lang.ObjectConvertMode</value>
     <value>permafrost.tundra.lang.ObjectHelper</value>
-    <value>permafrost.tundra.xml.dom.DocumentHelper</value>
+    <value>permafrost.tundra.xml.dom.NodeHelper</value>
     <value>permafrost.tundra.xml.XMLCanonicalizationAlgorithm</value>
     <value>permafrost.tundra.xml.XMLHelper</value>
   </array>
