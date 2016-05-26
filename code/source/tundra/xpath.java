@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-05-25 13:57:37.052
-// -----( ON-HOST: -
+// -----( CREATED: 2016-05-27 08:00:35 EST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -10,6 +10,7 @@ import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import java.io.IOException;
+import java.nio.charset.Charset;
 import javax.xml.xpath.XPathExpression;
 import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
@@ -50,32 +51,32 @@ public final class xpath
 		// [i] - field:0:optional default
 		// [o] field:0:required $exists?
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    Object content = IDataUtil.get(cursor, "$content");
-		    String encoding = IDataUtil.getString(cursor, "$encoding");
+		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
 		    String expression = IDataUtil.getString(cursor, "$expression");
 		    IData namespace = IDataUtil.getIData(cursor, "$namespace");
 		    boolean result = false;
-
+		
 		    XPathExpression compiledExpression = XPathHelper.compile(expression, IDataNamespaceContext.of(namespace));
 		    Node node = null;
-
+		
 		    if (content instanceof Node) {
 		        node = (Node)content;
 		    } else if (content instanceof InputSource) {
 		        node = DocumentHelper.parse((InputSource)content);
 		    } else if (content != null) {
-		        node = DocumentHelper.parse(InputStreamHelper.normalize(content, CharsetHelper.normalize(encoding)), CharsetHelper.normalize(encoding), true);
+		        node = DocumentHelper.parse(InputStreamHelper.normalize(content, charset),charset, true);
 		    }
-
+		
 		    IDataUtil.put(cursor, "$exists?", node == null ? "false" : "" + XPathHelper.exists(node, compiledExpression));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 

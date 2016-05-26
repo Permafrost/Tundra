@@ -10,6 +10,7 @@
   </array>
   <array name="imports" type="value" depth="1">
     <value>java.io.IOException</value>
+    <value>java.nio.charset.Charset</value>
     <value>javax.xml.xpath.XPathExpression</value>
     <value>org.w3c.dom.Node</value>
     <value>org.xml.sax.InputSource</value>
