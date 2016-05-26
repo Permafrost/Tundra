@@ -6459,6 +6459,9 @@ input stream.
 
 * `$document` is the IData document to be serialized as a [JSON] string,
   byte array, or input stream.
+  * `recordWithNoID` is an optional array such as an `IData[]` document
+    list which if specified will be serialized directly as a [JSON]
+    array.
 * `$encoding` is an optional character set to use when encoding the
   resulting text data to a byte array or input stream. Defaults to [UTF-8].
 * `$mode` is an optional choice of {stream, bytes, string} which
@@ -6505,6 +6508,9 @@ into an IData document.
 
 * `$document` is the resulting IData document representing the parsed
   `$content`.
+  * `recordWithNoID` is an optional array which is returned only when
+    the given [JSON] content represents an array rather than an
+    object.
 
 ---
 
