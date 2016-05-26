@@ -20,6 +20,7 @@
     <value>permafrost.tundra.lang.ObjectConvertMode</value>
     <value>permafrost.tundra.lang.ObjectHelper</value>
     <value>permafrost.tundra.xml.dom.DocumentHelper</value>
+    <value>permafrost.tundra.xml.XMLCanonicalizationAlgorithm</value>
     <value>permafrost.tundra.xml.XMLHelper</value>
   </array>
 </Values>
