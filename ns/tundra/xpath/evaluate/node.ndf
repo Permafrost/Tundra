@@ -127,6 +127,53 @@
           </array>
           <value name="modifiable">true</value>
         </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_usereditable">true</value>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$value.expected</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <array name="field_options" type="value" depth="1">
+          </array>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">string</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$values.expected</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">1</value>
+          <value name="field_opt">true</value>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+          <value name="is_soap_array_encoding_used">false</value>
+        </record>
       </array>
       <value name="modifiable">true</value>
     </record>
@@ -148,7 +195,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$exists?</value>
+          <value name="field_name">$result?</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <array name="field_options" type="value" depth="1">
@@ -172,10 +219,10 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">### tundra.xpath:exists
+  <value name="node_comment">### tundra.xpath:evaluate
 
-Returns true if the given [XPath expression] exists the given [XML] 
-content.
+Returns true if the given [XPath expression] when resolved against
+the given [XML] content has the given expected value/s.
 
 #### Inputs:
 
@@ -184,18 +231,22 @@ content.
   object containing [XML] data.
 * $encoding is the character set used by $content if provided as a
   byte array or input stream. Defaults to [UTF-8].
-* $expression is the [XPath expression] to be tested against 
+* $expression is the [XPath expression] to be resolved against 
   $content.
 * $namespace is an optional list of namespace prefixes and the URIs 
   they map to, used when parsing [XML] content with elements in one 
   or more namespaces.
   * default is the URI for the default namespace, if applicable.
+* $expected.value is the value of the element or attribute that the
+  given [XPath expression] is expected to resolve to.
+* $expected.values is a list of values of the elements or attributes 
+  that the given [XPath expression] is expected to resolve to.
 
 #### Outputs:
 
-* $exists? is true if the given $expression was found to exist in the
-  given $content (in other words the expression returned one or more
-  [org.w3c.dom.Node] objects when evaluated).
+* $result? is true if the given $expression resolved against the 
+  given $content and the element/s or attribute/s returned had the 
+  expected given value/s.
 
 [org.w3c.dom.Node]: &lt;http://docs.oracle.com/javase/6/docs/api/org/w3c/dom/Node.html&gt;
 [org.xml.sax.InputSource]: &lt;http://docs.oracle.com/javase/6/docs/api/org/xml/sax/InputSource.html&gt;

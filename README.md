@@ -13215,6 +13215,37 @@ documents when parsing from an input stream.
 
 ---
 
+### tundra.xpath:evaluate
+
+Returns true if the given [XPath expression] when resolved against
+the given [XML] content has the given expected value/s.
+
+#### Inputs:
+
+* `$content` is a string, byte array, input stream, [org.w3c.dom.Node]
+  object (node in webMethods parlance), or [org.xml.sax.InputSource]
+  object containing [XML] data.
+* `$encoding` is the character set used by `$content` if provided as a
+  byte array or input stream. Defaults to [UTF-8].
+* `$expression` is the [XPath expression] to be resolved against
+  `$content`.
+* `$namespace` is an optional list of namespace prefixes and the URIs
+  they map to, used when parsing [XML] content with elements in one
+  or more namespaces.
+  * `default` is the URI for the default namespace, if applicable.
+* `$expected.value` is the value of the element or attribute that the
+  given [XPath expression] is expected to resolve to.
+* `$expected.values` is a list of values of the elements or attributes
+  that the given [XPath expression] is expected to resolve to.
+
+#### Outputs:
+
+* `$result?` is true if the given `$expression` resolved against the
+  given `$content` and the element/s or attribute/s returned had the
+  expected given value/s.
+
+---
+
 ### tundra.xpath:exists
 
 Returns true if the given [XPath expression] exists the given [XML]
@@ -13229,12 +13260,44 @@ content.
   byte array or input stream. Defaults to [UTF-8].
 * `$expression` is the [XPath expression] to be tested against
   `$content`.
+* `$namespace` is an optional list of namespace prefixes and the URIs
+  they map to, used when parsing [XML] content with elements in one
+  or more namespaces.
+  * `default` is the URI for the default namespace, if applicable.
 
 #### Outputs:
 
 * `$exists?` is `true` if the given `$expression` was found to exist in the
   given `$content` (in other words the expression returned one or more
   [org.w3c.dom.Node] objects when evaluated).
+
+---
+
+### tundra.xpath:get
+
+Returns the values of the element/s or attribute/s returned by the
+given [XPath expression] when resolved against the given [XML]
+content.
+
+#### Inputs:
+
+* `$content` is a string, byte array, input stream, [org.w3c.dom.Node]
+  object (node in webMethods parlance), or [org.xml.sax.InputSource]
+  object containing [XML] data.
+* `$encoding` is the character set used by `$content` if provided as a
+  byte array or input stream. Defaults to [UTF-8].
+* `$expression` is the [XPath expression] to be resolved against
+  `$content`.
+* `$namespace` is an optional list of namespace prefixes and the URIs
+  they map to, used when parsing [XML] content with elements in one
+  or more namespaces.
+  * `default` is the URI for the default namespace, if applicable.
+
+#### Outputs:
+
+* `$values` are the values associated with the element/s or attribute/s
+  returned by the given `$expression` when resolved against the given
+  `$content`.
 
 ---
 
