@@ -21,6 +21,7 @@
     <value>permafrost.tundra.lang.BooleanHelper</value>
     <value>permafrost.tundra.lang.CharsetHelper</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>
+    <value>permafrost.tundra.math.IntegerHelper</value>
     <value>permafrost.tundra.xml.dom.DocumentHelper</value>
     <value>permafrost.tundra.xml.dom.Nodes</value>
     <value>permafrost.tundra.xml.namespace.IDataNamespaceContext</value>

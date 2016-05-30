@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-05-29 15:56:51 EST
+// -----( CREATED: 2016-05-30 10:17:09 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -21,6 +21,7 @@ import permafrost.tundra.io.InputStreamHelper;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.CharsetHelper;
 import permafrost.tundra.lang.ExceptionHelper;
+import permafrost.tundra.math.IntegerHelper;
 import permafrost.tundra.xml.dom.DocumentHelper;
 import permafrost.tundra.xml.dom.Nodes;
 import permafrost.tundra.xml.namespace.IDataNamespaceContext;
@@ -40,59 +41,6 @@ public final class xpath
 
 	// ---( server methods )---
 
-
-
-
-	public static final void evaluate (IData pipeline)
-        throws ServiceException
-	{
-		// --- <<IS-START(evaluate)>> ---
-		// @subtype unknown
-		// @sigtype java 3.5
-		// [i] object:0:optional $content
-		// [i] field:0:optional $encoding
-		// [i] field:0:required $expression
-		// [i] record:0:optional $namespace
-		// [i] - field:0:optional default
-		// [i] field:0:optional $value.expected
-		// [i] field:1:optional $values.expected
-		// [o] field:0:required $result?
-		IDataCursor cursor = pipeline.getCursor();
-		
-		try {
-		    Object content = IDataUtil.get(cursor, "$content");
-		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
-		    String expression = IDataUtil.getString(cursor, "$expression");
-		    IData namespace = IDataUtil.getIData(cursor, "$namespace");
-		    String expectedValue = IDataUtil.getString(cursor, "$value.expected");
-		    String[] expectedValues = IDataUtil.getStringArray(cursor, "$values.expected");
-		
-		    XPathExpression compiledExpression = XPathHelper.compile(expression, IDataNamespaceContext.of(namespace));
-		
-		    Node node = null;
-		    if (content instanceof Node) {
-		        node = (Node)content;
-		    } else if (content instanceof InputSource) {
-		        node = DocumentHelper.parse((InputSource)content);
-		    } else if (content != null) {
-		        node = DocumentHelper.parse(InputStreamHelper.normalize(content, charset),charset, true);
-		    }
-		
-		    List<String> expectedValueList = null;
-		    if (expectedValue != null) {
-		        expectedValueList = Collections.singletonList(expectedValue);
-		    } else if (expectedValues != null) {
-		        expectedValueList = Arrays.asList(expectedValues);
-		    }
-		
-		    IDataUtil.put(cursor, "$result?", BooleanHelper.emit(XPathHelper.evaluate(node, compiledExpression, expectedValueList)));
-		} finally {
-		    cursor.destroy();
-		}
-		// --- <<IS-END>> ---
-
-                
-	}
 
 
 
@@ -124,7 +72,7 @@ public final class xpath
 		    } else if (content instanceof InputSource) {
 		        node = DocumentHelper.parse((InputSource)content);
 		    } else if (content != null) {
-		        node = DocumentHelper.parse(InputStreamHelper.normalize(content, charset),charset, true);
+		        node = DocumentHelper.parse(InputStreamHelper.normalize(content, charset), charset, true);
 		    }
 		
 		    IDataUtil.put(cursor, "$exists?", BooleanHelper.emit(XPathHelper.exists(node, compiledExpression)));
@@ -149,7 +97,10 @@ public final class xpath
 		// [i] field:0:required $expression
 		// [i] record:0:optional $namespace
 		// [i] - field:0:optional default
-		// [o] field:1:optional $values
+		// [o] record:1:optional $nodes
+		// [o] - object:0:required node
+		// [o] - field:0:optional content
+		// [o] field:0:required $nodes.length
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -166,12 +117,17 @@ public final class xpath
 		    } else if (content instanceof InputSource) {
 		        node = DocumentHelper.parse((InputSource)content);
 		    } else if (content != null) {
-		        node = DocumentHelper.parse(InputStreamHelper.normalize(content, charset),charset, true);
+		        node = DocumentHelper.parse(InputStreamHelper.normalize(content, charset), charset, true);
 		    }
 		
 		    Nodes nodes = XPathHelper.get(node, compiledExpression);
 		
-		    if (nodes != null) IDataUtil.put(cursor, "$values", nodes.getTextContents().toArray(new String[nodes.size()]));
+		    if (nodes != null) {
+		        IDataUtil.put(cursor, "$nodes", nodes.toIDataArray());
+		        IDataUtil.put(cursor, "$nodes.length", IntegerHelper.emit(nodes.size()));
+		    } else {
+		        IDataUtil.put(cursor, "$nodes.length", "0");
+		    }
 		} finally {
 		    cursor.destroy();
 		}
