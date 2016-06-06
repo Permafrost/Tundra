@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-11-12 16:50:26.336
+// -----( CREATED: 2016-06-06 17:03:40.157
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -10,6 +10,7 @@ import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import permafrost.tundra.lang.ThreadHelper;
+import permafrost.tundra.math.IntegerHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class thread
@@ -54,13 +55,14 @@ public final class thread
 		// --- <<IS-START(list)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
+		// [o] field:0:required $threads.length
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
 		    Thread[] threads = ThreadHelper.list();
 		    if (threads != null) {
 		        IDataUtil.put(cursor, "$threads", ThreadHelper.toIDataArray(threads));
-		        IDataUtil.put(cursor, "$threads.length", "" + threads.length);
+		        IDataUtil.put(cursor, "$threads.length", IntegerHelper.emit(threads.length));
 		    } else {
 		        IDataUtil.put(cursor, "$threads.length", "0");
 		    }
