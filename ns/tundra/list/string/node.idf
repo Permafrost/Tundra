@@ -58,5 +58,6 @@ dGNoZWQudG9BcnJheShuZXcgU3RyaW5nWzBdKTsKCiAgICByZXR1cm4gb3V0cHV0Owp9</value>
     <value>permafrost.tundra.lang.CharsetHelper</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>
     <value>permafrost.tundra.lang.StringHelper</value>
+    <value>permafrost.tundra.math.IntegerHelper</value>
   </array>
 </Values>
