@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-05-26 19:59:20 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2016-06-06 15:57:55.085
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -13,6 +13,7 @@ import java.nio.charset.Charset;
 import permafrost.tundra.lang.BytesHelper;
 import permafrost.tundra.lang.CharsetHelper;
 import permafrost.tundra.lang.ExceptionHelper;
+import permafrost.tundra.math.IntegerHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class bytes
@@ -40,20 +41,20 @@ public final class bytes
 		// [i] object:0:optional $bytes
 		// [o] field:0:required $length
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    byte[] bytes = (byte[])IDataUtil.get(cursor, "$bytes");
-		
+
 		    int length = 0;
 		    if (bytes != null) length = bytes.length;
-		
-		    IDataUtil.put(cursor, "$length", "" + length);
+
+		    IDataUtil.put(cursor, "$length", IntegerHelper.emit(length));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -68,11 +69,11 @@ public final class bytes
 		// [i] field:0:optional $encoding
 		// [o] object:0:optional $bytes
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Object object = IDataUtil.get(cursor, "$object");
 		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
-		
+
 		    IDataUtil.put(cursor, "$bytes", BytesHelper.normalize(object, charset));
 		} catch(java.io.IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -81,7 +82,7 @@ public final class bytes
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 
