@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-02-22 15:51:19.390
+// -----( CREATED: 2016-06-06 16:23:06.360
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -553,7 +553,7 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		try {
 		    Object[] array = IDataUtil.getObjectArray(cursor, "$list");
-		    IDataUtil.put(cursor, "$length", "" + ArrayHelper.length(array));
+		    IDataUtil.put(cursor, "$length", IntegerHelper.emit(ArrayHelper.length(array)));
 		} finally {
 		    cursor.destroy();
 		}
@@ -1128,9 +1128,9 @@ public final class object
 	        // add $item, $index, $iteration and $length variables to the input pipeline
 	        cursor = pipeline.getCursor();
 	        IDataUtil.put(cursor, input, array[i]);
-	        IDataUtil.put(cursor, "$index", "" + i);
-	        IDataUtil.put(cursor, "$iteration", "" + (i + 1));
-	        IDataUtil.put(cursor, "$length", "" + array.length);
+	        IDataUtil.put(cursor, "$index", IntegerHelper.emit(i));
+	        IDataUtil.put(cursor, "$iteration", IntegerHelper.emit(i + 1));
+	        IDataUtil.put(cursor, "$length", IntegerHelper.emit(array.length));
 	        cursor.destroy();
 
 	        // invoke the iterator service
