@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-05-25 16:56:56.329
+// -----( CREATED: 2016-06-06 16:09:27.511
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -319,7 +319,7 @@ public final class document
 		    IData x = IDataUtil.getIData(cursor, "$document.x");
 		    IData y = IDataUtil.getIData(cursor, "$document.y");
 
-		    IDataUtil.put(cursor, "$equal?", "" + ObjectHelper.equal(x, y));
+		    IDataUtil.put(cursor, "$equal?", BooleanHelper.emit(ObjectHelper.equal(x, y)));
 		} finally {
 		    cursor.destroy();
 		}
