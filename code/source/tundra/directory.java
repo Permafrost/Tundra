@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-06-06 16:06:21.807
+// -----( CREATED: 2016-06-06 16:08:04.058
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -26,6 +26,7 @@ import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.math.BigIntegerHelper;
 import permafrost.tundra.math.IntegerHelper;
+import permafrost.tundra.math.LongHelper;
 import permafrost.tundra.time.DurationHelper;
 // --- <<IS-END-IMPORTS>> ---
 
@@ -317,7 +318,7 @@ public final class directory
 
 		    long count = DirectoryHelper.purge(directory, DurationHelper.parse(duration, pattern), filter, recurse);
 
-		    IDataUtil.put(cursor, "$count", "" + count);
+		    IDataUtil.put(cursor, "$count", LongHelper.emit(count));
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
