@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-05-25 14:16:50.872
+// -----( CREATED: 2016-06-06 16:56:51.748
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -204,7 +204,7 @@ public final class service
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
-		    IDataUtil.put(cursor, "$initiator?", "" + initiator());
+		    IDataUtil.put(cursor, "$initiator?", BooleanHelper.emit(initiator()));
 		} finally {
 		    cursor.destroy();
 		}
@@ -413,7 +413,7 @@ public final class service
 		try {
 		    String service = IDataUtil.getString(cursor, "$service");
 		    boolean raise = BooleanHelper.parse(IDataUtil.getString(cursor, "$raise?"));
-		    IDataUtil.put(cursor, "$valid?", "" + validate(service, raise));
+		    IDataUtil.put(cursor, "$valid?", BooleanHelper.emit(validate(service, raise)));
 		} finally {
 		    cursor.destroy();
 		}
