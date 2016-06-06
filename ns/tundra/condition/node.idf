@@ -11,5 +11,6 @@
   </array>
   <array name="imports" type="value" depth="1">
     <value>permafrost.tundra.flow.ConditionEvaluator</value>
+    <value>permafrost.tundra.lang.BooleanHelper</value>
   </array>
 </Values>
