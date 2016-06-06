@@ -127,5 +127,6 @@ bGFzcywgcmVjdXJzZSk7Cn0=</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>
     <value>permafrost.tundra.lang.ObjectConvertMode</value>
     <value>permafrost.tundra.lang.ObjectHelper</value>
+    <value>permafrost.tundra.math.IntegerHelper</value>
   </array>
 </Values>

@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-06-06 16:09:27.511
+// -----( CREATED: 2016-06-06 16:10:52.981
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -25,6 +25,7 @@ import permafrost.tundra.lang.ClassHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.lang.ObjectConvertMode;
 import permafrost.tundra.lang.ObjectHelper;
+import permafrost.tundra.math.IntegerHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class document
@@ -589,7 +590,7 @@ public final class document
 
 		try {
 		    IData document = IDataUtil.getIData(cursor, "$document");
-		    IDataUtil.put(cursor, "$length", "" + IDataHelper.size(document));
+		    IDataUtil.put(cursor, "$length", IntegerHelper.emit(IDataHelper.size(document)));
 		} finally {
 		    cursor.destroy();
 		}
