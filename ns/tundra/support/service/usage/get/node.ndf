@@ -7,7 +7,6 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
-      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -15,11 +14,9 @@
       <value name="is_global">false</value>
       <array name="rec_fields" type="record" depth="1">
       </array>
-      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
-      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -33,7 +30,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$context</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
@@ -49,7 +45,6 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
-              <value name="is_public">false</value>
               <value name="field_name">monitoring.started?</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -76,7 +71,6 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
-              <value name="is_public">false</value>
               <value name="field_name">monitoring.start</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -104,7 +98,6 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
-              <value name="is_public">false</value>
               <value name="field_name">monitoring.duration</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -131,7 +124,6 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
-              <value name="is_public">false</value>
               <value name="field_name">invocations.started</value>
               <value name="field_type">object</value>
               <value name="field_dim">0</value>
@@ -147,7 +139,6 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
-              <value name="is_public">false</value>
               <value name="field_name">invocations.errored</value>
               <value name="field_type">object</value>
               <value name="field_dim">0</value>
@@ -163,7 +154,6 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
-              <value name="is_public">false</value>
               <value name="field_name">invocations.current</value>
               <value name="field_type">record</value>
               <value name="field_dim">1</value>
@@ -179,7 +169,6 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
-                  <value name="is_public">false</value>
                   <value name="field_name">thread.id</value>
                   <value name="field_type">object</value>
                   <value name="field_dim">0</value>
@@ -196,7 +185,6 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
-                  <value name="is_public">false</value>
                   <value name="field_name">thread.name</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -222,7 +210,6 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
-                  <value name="is_public">false</value>
                   <value name="field_name">thread.object</value>
                   <value name="field_type">object</value>
                   <value name="field_dim">0</value>
@@ -238,7 +225,6 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
-                  <value name="is_public">false</value>
                   <value name="field_name">thread.start</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -265,7 +251,6 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
-                  <value name="is_public">false</value>
                   <value name="field_name">thread.duration</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -291,7 +276,6 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
-                  <value name="is_public">false</value>
                   <value name="field_name">callstack</value>
                   <value name="field_type">record</value>
                   <value name="field_dim">1</value>
@@ -309,7 +293,6 @@
                         <value name="field_largerEditor">false</value>
                         <value name="field_password">false</value>
                       </record>
-                      <value name="is_public">false</value>
                       <value name="field_name">service</value>
                       <value name="field_type">string</value>
                       <value name="field_dim">0</value>
@@ -336,7 +319,6 @@
                         <value name="field_largerEditor">false</value>
                         <value name="field_password">false</value>
                       </record>
-                      <value name="is_public">false</value>
                       <value name="field_name">package</value>
                       <value name="field_type">string</value>
                       <value name="field_dim">0</value>
@@ -362,7 +344,6 @@
                         <value name="field_largerEditor">false</value>
                         <value name="field_password">false</value>
                       </record>
-                      <value name="is_public">false</value>
                       <value name="field_name">pipeline</value>
                       <value name="field_type">record</value>
                       <value name="field_dim">0</value>
@@ -372,7 +353,6 @@
                       <value name="is_global">false</value>
                       <array name="rec_fields" type="record" depth="1">
                       </array>
-                      <value name="modifiable">true</value>
                     </record>
                     <record javaclass="com.wm.util.Values">
                       <value name="node_type">unknown</value>
@@ -381,7 +361,6 @@
                         <value name="field_largerEditor">false</value>
                         <value name="field_password">false</value>
                       </record>
-                      <value name="is_public">false</value>
                       <value name="field_name">pipeline.length</value>
                       <value name="field_type">object</value>
                       <value name="field_dim">0</value>
@@ -398,7 +377,6 @@
                         <value name="field_largerEditor">false</value>
                         <value name="field_password">false</value>
                       </record>
-                      <value name="is_public">false</value>
                       <value name="field_name">start</value>
                       <value name="field_type">string</value>
                       <value name="field_dim">0</value>
@@ -425,7 +403,6 @@
                         <value name="field_largerEditor">false</value>
                         <value name="field_password">false</value>
                       </record>
-                      <value name="is_public">false</value>
                       <value name="field_name">duration</value>
                       <value name="field_type">string</value>
                       <value name="field_dim">0</value>
@@ -452,7 +429,6 @@
                         <value name="field_largerEditor">false</value>
                         <value name="field_password">false</value>
                       </record>
-                      <value name="is_public">false</value>
                       <value name="field_name">session</value>
                       <value name="field_type">string</value>
                       <value name="field_dim">0</value>
@@ -479,7 +455,6 @@
                         <value name="field_largerEditor">false</value>
                         <value name="field_password">false</value>
                       </record>
-                      <value name="is_public">false</value>
                       <value name="field_name">user</value>
                       <value name="field_type">string</value>
                       <value name="field_dim">0</value>
@@ -499,7 +474,6 @@
                       <value name="is_global">false</value>
                     </record>
                   </array>
-                  <value name="modifiable">true</value>
                 </record>
                 <record javaclass="com.wm.util.Values">
                   <value name="node_type">unknown</value>
@@ -508,7 +482,6 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
-                  <value name="is_public">false</value>
                   <value name="field_name">callstack.length</value>
                   <value name="field_type">object</value>
                   <value name="field_dim">0</value>
@@ -518,7 +491,6 @@
                   <value name="is_global">false</value>
                 </record>
               </array>
-              <value name="modifiable">true</value>
             </record>
             <record javaclass="com.wm.util.Values">
               <value name="node_type">unknown</value>
@@ -527,7 +499,6 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
-              <value name="is_public">false</value>
               <value name="field_name">invocations.current.length</value>
               <value name="field_type">object</value>
               <value name="field_dim">0</value>
@@ -537,10 +508,8 @@
               <value name="is_global">false</value>
             </record>
           </array>
-          <value name="modifiable">true</value>
         </record>
       </array>
-      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">Returns the current service execution context.</value>
@@ -560,16 +529,10 @@
   <value name="svc_in_validator_options">none</value>
   <value name="svc_out_validator_options">none</value>
   <value name="auditoption">0</value>
-  <null name="auditfields_input"/>
-  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
-  <value name="pipeline_option">1</value>
-  <null name="originURI"/>
-  <value name="modifiable">true</value>
-  <value name="is_public">false</value>
 </Values>
