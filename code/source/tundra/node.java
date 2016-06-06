@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-09 11:32:44 AEST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2016-06-06 16:30:55.660
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -39,21 +39,21 @@ public final class node
 		// @sigtype java 3.5
 		// [i] field:0:optional $node
 		// [i] record:1:optional $permissions
-		// [i] - field:0:required type {"list","read","write","execute"}
+		// [i] - field:0:required type {&quot;list&quot;,&quot;read&quot;,&quot;write&quot;,&quot;execute&quot;}
 		// [i] - field:0:optional acl
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String node = IDataUtil.getString(cursor, "$node");
 		    IData[] permissions = IDataUtil.getIDataArray(cursor, "$permissions");
-		
+
 		    NodeHelper.setPermissions(node, permissions);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -67,16 +67,16 @@ public final class node
 		// [i] field:0:optional $node
 		// [o] field:0:required $exists?
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String node = IDataUtil.getString(cursor, "$node");
-		    IDataUtil.put(cursor, "$exists?", "" + NodeHelper.exists(node));
+		    IDataUtil.put(cursor, "$exists?", BooleanHelper.emit(NodeHelper.exists(node)));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -89,26 +89,26 @@ public final class node
 		// @sigtype java 3.5
 		// [i] field:0:optional $interface
 		// [i] field:0:optional $pattern
-		// [i] field:0:optional $type {"service","record","interface","Flat File Schema"}
-		// [i] field:0:optional $recurse? {"false","true"}
+		// [i] field:0:optional $type {&quot;service&quot;,&quot;record&quot;,&quot;interface&quot;,&quot;Flat File Schema&quot;}
+		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:1:required $nodes
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String parent = IDataUtil.getString(cursor, "$interface");
 		    String pattern = IDataUtil.getString(cursor, "$pattern");
 		    String type = IDataUtil.getString(cursor, "$type");
 		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
-		
+
 		    SortedSet<String> set = NodeHelper.list(parent, pattern, type, recurse);
-		
+
 		    if (set != null) IDataUtil.put(cursor, "$nodes", set.toArray(new String[set.size()]));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -122,7 +122,7 @@ public final class node
 		// [i] field:0:optional $node
 		// [o] field:0:optional $type
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String node = IDataUtil.getString(cursor, "$node");
 		    NSType type = NodeHelper.getNodeType(node);
@@ -132,7 +132,7 @@ public final class node
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 
