@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-09-23 08:45:33.334
+// -----( CREATED: 2016-06-06 15:54:11.990
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -11,6 +11,7 @@ import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.data.IDataMap;
+import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.math.BigDecimalHelper;
 import permafrost.tundra.time.DurationHelper;
 // --- <<IS-END-IMPORTS>> ---
@@ -99,10 +100,10 @@ public final class duration
 		    boolean greater       = comparison == javax.xml.datatype.DatatypeConstants.GREATER;
 		    boolean indeterminate = comparison == javax.xml.datatype.DatatypeConstants.INDETERMINATE;
 
-		    IDataUtil.put(cursor, "$lesser?",        "" + lesser);
-		    IDataUtil.put(cursor, "$equal?",         "" + equal);
-		    IDataUtil.put(cursor, "$greater?",       "" + greater);
-		    IDataUtil.put(cursor, "$indeterminate?", "" + indeterminate);
+		    IDataUtil.put(cursor, "$lesser?", BooleanHelper.emit(lesser));
+		    IDataUtil.put(cursor, "$equal?", BooleanHelper.emit(equal));
+		    IDataUtil.put(cursor, "$greater?", BooleanHelper.emit(greater));
+		    IDataUtil.put(cursor, "$indeterminate?", BooleanHelper.emit(indeterminate));
 		} finally {
 		    cursor.destroy();
 		}
