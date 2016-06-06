@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-05-27 07:27:14 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2016-06-06 16:37:50.429
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -22,6 +22,7 @@ import permafrost.tundra.lang.CharsetHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.lang.ObjectConvertMode;
 import permafrost.tundra.lang.ObjectHelper;
+import permafrost.tundra.math.IntegerHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class pipeline
@@ -48,7 +49,7 @@ public final class pipeline
 		// @sigtype java 3.5
 		// [o] record:0:required $pipeline
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IDataUtil.put(cursor, "$pipeline", IDataHelper.duplicate(pipeline, false));
 		} finally {
@@ -56,7 +57,7 @@ public final class pipeline
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -69,7 +70,7 @@ public final class pipeline
 		// @sigtype java 3.5
 		// [i] field:1:optional $preserve
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String[] keys = IDataUtil.getStringArray(cursor, "$preserve");
 		    IDataHelper.clear(pipeline, keys);
@@ -78,7 +79,7 @@ public final class pipeline
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -91,21 +92,21 @@ public final class pipeline
 		// @sigtype java 3.5
 		// [i] field:0:required $key.source
 		// [i] field:0:required $key.target
-		// [i] field:0:optional $key.literal? {"false","true"}
+		// [i] field:0:optional $key.literal? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String source = IDataUtil.getString(cursor, "$key.source");
 		    String target = IDataUtil.getString(cursor, "$key.target");
 		    boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$key.literal?"));
-		
+
 		    IDataHelper.copy(pipeline, source, target, literal);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -117,20 +118,20 @@ public final class pipeline
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $key
-		// [i] field:0:optional $key.literal? {"false","true"}
+		// [i] field:0:optional $key.literal? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String key = IDataUtil.getString(cursor, "$key");
 		    boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$key.literal?"));
-		
+
 		    IDataHelper.drop(pipeline, key, literal);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -142,18 +143,18 @@ public final class pipeline
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $encoding
-		// [i] field:0:optional $mode {"stream","bytes","string"}
+		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
 		    ObjectConvertMode mode = ObjectConvertMode.normalize(IDataUtil.getString(cursor, "$mode"));
-		
+
 		    // remove input arguments so that they are not included in serialization of the pipeline
 		    IDataUtil.remove(cursor, "$encoding");
 		    IDataUtil.remove(cursor, "$mode");
-		
+
 		    IDataUtil.put(cursor, "$content", ObjectHelper.convert(IDataXMLParser.getInstance().emit(pipeline, charset), charset, mode));
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -162,7 +163,7 @@ public final class pipeline
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -188,7 +189,7 @@ public final class pipeline
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -200,23 +201,23 @@ public final class pipeline
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:1:optional $keys
-		// [i] field:0:optional $nulls? {"false","true"}
+		// [i] field:0:optional $nulls? {&quot;false&quot;,&quot;true&quot;}
 		// [o] object:1:optional $values
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String[] keys = IDataUtil.getStringArray(cursor, "$keys");
 		    boolean includeNulls = BooleanHelper.parse(IDataUtil.getString(cursor, "$nulls?"));
-		
+
 		    Object[] values = IDataHelper.flatten(pipeline, includeNulls, keys);
-		
+
 		    if (values != null) IDataUtil.put(cursor, "$values", values);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -228,27 +229,27 @@ public final class pipeline
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $key
-		// [i] field:0:optional $key.literal? {"false","true"}
+		// [i] field:0:optional $key.literal? {&quot;false&quot;,&quot;true&quot;}
 		// [i] object:0:optional $default.object
 		// [i] field:0:optional $default.string
 		// [o] object:0:optional $value
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String key = IDataUtil.getString(cursor, "$key");
 		    Object defaultObject = IDataUtil.get(cursor, "$default.object");
 		    if (defaultObject == null) defaultObject = IDataUtil.getString(cursor, "$default.string");
 		    boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$key.literal?"));
-		
+
 		    Object value = IDataHelper.get(pipeline, key, defaultObject, literal);
-		    
+
 		    if (value != null) IDataUtil.put(cursor, "$value", value);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -274,7 +275,7 @@ public final class pipeline
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -287,15 +288,15 @@ public final class pipeline
 		// @sigtype java 3.5
 		// [o] field:0:required $length
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
-		    IDataUtil.put(cursor, "$length", "" + IDataHelper.size(pipeline));
+		    IDataUtil.put(cursor, "$length", IntegerHelper.emit(IDataHelper.size(pipeline)));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -308,7 +309,7 @@ public final class pipeline
 		// @sigtype java 3.5
 		// [i] field:0:required $key
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String key = IDataUtil.getString(cursor, "$key");
 		    IDataHelper.arrayify(pipeline, key);
@@ -317,7 +318,7 @@ public final class pipeline
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -330,7 +331,7 @@ public final class pipeline
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    merge(pipeline, IDataUtil.getIData(cursor, "$document"));
 		} finally {
@@ -338,7 +339,7 @@ public final class pipeline
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -350,7 +351,7 @@ public final class pipeline
 		// @subtype unknown
 		// @sigtype java 3.5
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IData copy = IDataHelper.normalize(pipeline);
 		    IDataHelper.clear(pipeline);
@@ -360,7 +361,7 @@ public final class pipeline
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -374,11 +375,11 @@ public final class pipeline
 		// [i] object:0:optional $content
 		// [i] field:0:optional $encoding
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Object content = IDataUtil.get(cursor, "$content");
 		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
-		
+
 		    merge(pipeline, IDataXMLParser.getInstance().parse(InputStreamHelper.normalize(content, charset)));
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -387,7 +388,7 @@ public final class pipeline
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -399,22 +400,22 @@ public final class pipeline
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $key
-		// [i] field:0:optional $key.literal? {"false","true"}
+		// [i] field:0:optional $key.literal? {&quot;false&quot;,&quot;true&quot;}
 		// [i] object:0:optional $value
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String key = IDataUtil.getString(cursor, "$key");
 		    boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$key.literal?"));
 		    Object value = IDataUtil.get(cursor, "$value");
-		    
+
 		    IDataHelper.put(pipeline, key, value, literal);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -427,21 +428,21 @@ public final class pipeline
 		// @sigtype java 3.5
 		// [i] field:0:required $key.source
 		// [i] field:0:required $key.target
-		// [i] field:0:optional $key.literal? {"false","true"}
+		// [i] field:0:optional $key.literal? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String source = IDataUtil.getString(cursor, "$key.source");
 		    String target = IDataUtil.getString(cursor, "$key.target");
 		    boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$key.literal?"));
-		
+
 		    IDataHelper.rename(pipeline, source, target, literal);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -455,7 +456,7 @@ public final class pipeline
 		sort(pipeline, false);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -467,7 +468,7 @@ public final class pipeline
 		// @subtype unknown
 		// @sigtype java 3.5
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IData copy = SubstitutionHelper.substitute(pipeline, null, pipeline, true);
 		    IDataHelper.clear(pipeline);
@@ -477,7 +478,7 @@ public final class pipeline
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 	// --- <<IS-START-SHARED>> ---
@@ -485,7 +486,7 @@ public final class pipeline
 	public static void merge(IData target, IData source) {
 	    if (target != null && source != null) IDataUtil.merge(source, target);
 	}
-	
+
 	// sorts the elements in the pipeline by its keys in natural ascending order
 	public static void sort(IData pipeline, boolean recurse) {
 	    IData sorted = IDataHelper.sort(pipeline, recurse);
