@@ -9,6 +9,7 @@
   <array name="implements" type="value" depth="1">
   </array>
   <array name="imports" type="value" depth="1">
+    <value>permafrost.tundra.math.IntegerHelper</value>
     <value>permafrost.tundra.net.http.route.HTTPRouter</value>
   </array>
 </Values>
