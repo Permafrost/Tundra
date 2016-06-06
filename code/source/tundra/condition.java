@@ -2,7 +2,7 @@ package tundra;
 
 // -----( IS Java Code Template v1.2
 // -----( CREATED: 2016-06-06 15:59:36.883
-// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -39,18 +39,18 @@ public final class condition
 		// [i] record:0:optional $scope
 		// [o] field:0:required $result?
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String condition = IDataUtil.getString(cursor, "$condition");
 		    IData scope = IDataUtil.getIData(cursor, "$scope");
-		
+
 		    IDataUtil.put(cursor, "$result?", BooleanHelper.emit(ConditionEvaluator.evaluate(condition, scope == null? pipeline : scope)));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 
