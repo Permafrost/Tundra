@@ -21,6 +21,8 @@
     <value>permafrost.tundra.lang.ObjectHelper</value>
     <value>permafrost.tundra.xml.dom.NodeHelper</value>
     <value>permafrost.tundra.xml.XMLCanonicalizationAlgorithm</value>
+    <value>permafrost.tundra.xml.XMLCanonicalizationHelper</value>
     <value>permafrost.tundra.xml.XMLHelper</value>
+    <value>permafrost.tundra.xml.XMLMinificationHelper</value>
   </array>
 </Values>
