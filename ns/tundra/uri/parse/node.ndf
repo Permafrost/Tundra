@@ -479,12 +479,10 @@ parts are separated by the character sequence '://', or opaque, where the
 scheme and body parts are separated by a ':' character.
 
 Examples of hierarchical URIs:
-
 * http://example.com/
 * ftp://example.com/path/file.txt
 
 Examples of opaque URIs:
-
 * mailto:john.doe@example.com
 * news:comp.lang.java
 * urn:isbn:096139210x
@@ -498,7 +496,7 @@ Where brackets (...) delineate optional components and the characters
 
 Hierarchical URIs are constructed according to the following syntax:
 
-    (scheme:)(//authority)(path)(?query)(#fragment)
+    (scheme:)(//authority)(/path/)(file)(?query)(#fragment)
 
 Where the characters ':', '/', '?', and '#' stand for themselves. The
 authority component, if specified, can be either server-based or registry-
@@ -513,7 +511,32 @@ accomodate the mailto: URI's use of a query string for additional data
 (such as cc, bcc, subject, and body), this service checks if the body
 contains a query string and, if so, parses the query string also.
 
-Implemented with the [java.net.URI] class.
+For example, the following [URI]:
+
+    http://bob:secret@example.com:8080/x/y/z/index.html?a=1&amp;a=2&amp;b=c#footer
+
+Will be parsed to the following components, represented using [JSON]:
+
+    {
+      "scheme": "http",
+      "authority": {
+        "server": {
+          "user": "bob",
+          "password": "secret",
+          "host": "example.com",
+          "port": "8080"
+        }
+      },
+      "path": ["x", "y", "z"],
+      "file": "index.html",
+      "query": {
+        "a": ["1", "2"],
+        "b": "c"
+      },
+      "fragment": "footer"
+    }
+
+This service was implemented with the [java.net.URI] class.
 
 #### Inputs:
 
@@ -523,7 +546,32 @@ Implemented with the [java.net.URI] class.
 
 * $uri is an IData document containing the constituent parts of the
   parsed [URI] string.
+  * scheme is the optional scheme for this [URI]; for an 
+    hierarchical [URI] this is typically a protocol such as http.
+  * body is the scheme-specific part of an opaque [URI].
+  * authority is the optional authority part of an hierarchical 
+    [URI].
+    * registry is the authority for a registry-based hierarchical 
+      [URI].
+    * server is the authority for a server-based heirarchical [URI].
+      * user is the optional user component of the [URI] authority.
+      * password is the optional password component of the [URI]
+        authority.
+      * host is the host or domain name component of the [URI] 
+        authority.
+      * port is the port component of the [URI] authority.
+  * path is the optional path component of the [URI], provided as 
+    the list of string tokens that were separated by the '/' 
+    character.
+  * file is the optional file component of the [URI], provided as
+    the string token that follows the final '/' character of the path component.
+  * query is an optional IData document whose elements are the set 
+    of [URI] query string key value parameters. Lists are supported
+    in query strings as follows: ?a=1&amp;a=2&amp;a=3 is parsed to a 
+    String[] = { "1", "2", "3" }.
+  * fragment is the optional fragment component of the [URI].
 
+[JSON]: &lt;http://www.json.org/&gt;
 [RFC 2396]: &lt;http://www.ietf.org/rfc/rfc2396.txt&gt;
 [URI]: &lt;http://www.w3.org/Addressing/&gt;
 [java.net.URI]: &lt;http://docs.oracle.com/javase/6/docs/api/java/net/URI.html&gt;</value>
@@ -536,7 +584,6 @@ Implemented with the [java.net.URI] class.
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
   <value name="icontext_policy">$null</value>
-  <value name="svcInvkURLAlias"></value>
   <value name="system_service">no</value>
   <value name="retry_max">0</value>
   <value name="retry_interval">0</value>

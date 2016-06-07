@@ -12890,9 +12890,9 @@ Implemented with the [java.net.URLDecoder] class.
 Emits a Uniform Resource Identifier ([URI]) string, according to
 [RFC 2396], given its constituent parts.
 
-URIs can be categorized as either hierarchical, where the scheme and body
-parts are separated by the character sequence '://', or opaque, where the
-scheme and body parts are separated by a ':' character.
+URIs can be categorized as either hierarchical, where the scheme and
+body parts are separated by the character sequence '://', or opaque,
+where the scheme and body parts are separated by a ':' character.
 
 Examples of hierarchical URIs:
 * http://example.com/
@@ -12912,20 +12912,70 @@ Where brackets (...) delineate optional components and the characters
 
 Hierarchical URIs are constructed according to the following syntax:
 
-    (scheme:)(//authority)(path)(?query)(#fragment)
+    (scheme:)(//authority)(/path/)(file)(?query)(#fragment)
 
 Where the characters ':', '/', '?', and '#' stand for themselves. The
-authority component, if specified, can be either server-based or registry-
-based. If server-based, it is constructed according to the syntax:
+authority component, if specified, can be either server-based or
+registry-based. If server-based, it is constructed according to the
+syntax:
 
     (user:password@)host(:port)
 
-Implemented with the [java.net.URI] class.
+For example, the following components represented using [JSON]:
+
+    {
+      "scheme": "http",
+      "authority": {
+        "server": {
+          "user": "bob",
+          "password": "secret",
+          "host": "example.com",
+          "port": "8080"
+        }
+      },
+      "path": ["x", "y", "z"],
+      "file": "index.html",
+      "query": {
+        "a": ["1", "2"],
+        "b": "c"
+      },
+      "fragment": "footer"
+    }
+
+Will be emitted as the following [URI]:
+
+    http://bob:secret@example.com:8080/x/y/z/index.html?a=1&a=2&b=c#footer
+
+This service was implemented with the [java.net.URI] class.
 
 #### Inputs:
 
 * `$uri` is an `IData` document containing the constituent parts to
   construct a new [URI] string with.
+  * `scheme` is the optional scheme for this [URI]; for an
+    hierarchical [URI] this is typically a protocol such as http.
+  * `body` is the scheme-specific part of an opaque [URI].
+  * `authority` is the optional authority part of an hierarchical
+    [URI].
+    * `registry` is the authority for a registry-based hierarchical
+      [URI].
+    * `server` is the authority for a server-based heirarchical [URI].
+      * `user` is the optional user component of the [URI] authority.
+      * `password` is the optional password component of the [URI]
+        authority.
+      * `host` is the host or domain name component of the [URI]
+        authority.
+      * `port` is the port component of the [URI] authority.
+  * `path` is the optional path component of the [URI], provided as
+    the list of string tokens that were separated by the '/'
+    character.
+  * `file` is the optional file component of the [URI], provided as
+    the string token that follows the final '/' character of the path component.
+  * `query` is an optional IData document whose elements are the set
+    of [URI] query string key value parameters. Lists are supported
+    in query strings as follows: `?a=1&a=2&a=3` is parsed to a
+    `String[] = { "1", "2", "3" }`.
+  * `fragment` is the optional fragment component of the [URI].
 
 #### Outputs:
 
@@ -13017,12 +13067,10 @@ parts are separated by the character sequence '://', or opaque, where the
 scheme and body parts are separated by a ':' character.
 
 Examples of hierarchical URIs:
-
 * http://example.com/
 * ftp://example.com/path/file.txt
 
 Examples of opaque URIs:
-
 * mailto:john.doe@example.com
 * news:comp.lang.java
 * urn:isbn:096139210x
@@ -13036,7 +13084,7 @@ Where brackets (...) delineate optional components and the characters
 
 Hierarchical URIs are constructed according to the following syntax:
 
-    (scheme:)(//authority)(path)(?query)(#fragment)
+    (scheme:)(//authority)(/path/)(file)(?query)(#fragment)
 
 Where the characters ':', '/', '?', and '#' stand for themselves. The
 authority component, if specified, can be either server-based or registry-
@@ -13051,7 +13099,32 @@ accomodate the mailto: URI's use of a query string for additional data
 (such as cc, bcc, subject, and body), this service checks if the body
 contains a query string and, if so, parses the query string also.
 
-Implemented with the [java.net.URI] class.
+For example, the following [URI]:
+
+    http://bob:secret@example.com:8080/x/y/z/index.html?a=1&a=2&b=c#footer
+
+Will be parsed to the following components, represented using [JSON]:
+
+    {
+      "scheme": "http",
+      "authority": {
+        "server": {
+          "user": "bob",
+          "password": "secret",
+          "host": "example.com",
+          "port": "8080"
+        }
+      },
+      "path": ["x", "y", "z"],
+      "file": "index.html",
+      "query": {
+        "a": ["1", "2"],
+        "b": "c"
+      },
+      "fragment": "footer"
+    }
+
+This service was implemented with the [java.net.URI] class.
 
 #### Inputs:
 
@@ -13061,6 +13134,30 @@ Implemented with the [java.net.URI] class.
 
 * `$uri` is an `IData` document containing the constituent parts of the
   parsed [URI] string.
+  * `scheme` is the optional scheme for this [URI]; for an
+    hierarchical [URI] this is typically a protocol such as http.
+  * `body` is the scheme-specific part of an opaque [URI].
+  * `authority` is the optional authority part of an hierarchical
+    [URI].
+    * `registry` is the authority for a registry-based hierarchical
+      [URI].
+    * `server` is the authority for a server-based heirarchical [URI].
+      * `user` is the optional user component of the [URI] authority.
+      * `password` is the optional password component of the [URI]
+        authority.
+      * `host` is the host or domain name component of the [URI]
+        authority.
+      * `port` is the port component of the [URI] authority.
+  * `path` is the optional path component of the [URI], provided as
+    the list of string tokens that were separated by the '/'
+    character.
+  * `file` is the optional file component of the [URI], provided as
+    the string token that follows the final '/' character of the path component.
+  * `query` is an optional IData document whose elements are the set
+    of [URI] query string key value parameters. Lists are supported
+    in query strings as follows: `?a=1&a=2&a=3` is parsed to a
+    `String[] = { "1", "2", "3" }`.
+  * `fragment` is the optional fragment component of the [URI].
 
 ---
 
