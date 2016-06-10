@@ -16,6 +16,7 @@
     <value>java.util.List</value>
     <value>javax.xml.namespace.NamespaceContext</value>
     <value>javax.xml.xpath.XPathExpression</value>
+    <value>javax.xml.xpath.XPathExpressionException</value>
     <value>org.w3c.dom.Node</value>
     <value>org.xml.sax.InputSource</value>
     <value>permafrost.tundra.io.InputStreamHelper</value>

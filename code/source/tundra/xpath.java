@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-06-10 12:04:41.352
+// -----( CREATED: 2016-06-10 12:31:26.716
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -16,6 +16,7 @@ import java.util.Collections;
 import java.util.List;
 import javax.xml.namespace.NamespaceContext;
 import javax.xml.xpath.XPathExpression;
+import javax.xml.xpath.XPathExpressionException;
 import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
 import permafrost.tundra.io.InputStreamHelper;
@@ -77,6 +78,8 @@ public final class xpath
 		    }
 
 		    IDataUtil.put(cursor, "$exists?", BooleanHelper.emit(XPathHelper.exists(node, compiledExpression)));
+		} catch(XPathExpressionException ex) {
+		    ExceptionHelper.raise(ex);
 		} finally {
 		    cursor.destroy();
 		}
@@ -152,6 +155,8 @@ public final class xpath
 		    } else {
 		        IDataUtil.put(cursor, "$nodes.length", "0");
 		    }
+		} catch(XPathExpressionException ex) {
+		    ExceptionHelper.raise(ex);
 		} finally {
 		    cursor.destroy();
 		}
