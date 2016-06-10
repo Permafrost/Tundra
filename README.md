@@ -13357,13 +13357,47 @@ when resolved against the given [XML] content.
   they map to, used when parsing [XML] content with elements in one
   or more namespaces.
   * `default` is the URI for the default namespace, if applicable.
+* `$recurse?` is an optional boolean which when `true` will recursively
+  return the child elements for the selected nodes. Defaults to
+  `false`.
 
 #### Outputs:
 
 * `$nodes` is the list of [XML] nodes assocated with the the given
   `$expression` when resolved against the given `$content`.
   * `node` is a [org.w3c.dom.Node] object.
-  * `content` is the text content associated with the `node`.
+  * `name.qualified` is the qualified name or [QName] of this node.
+  * `name.local` is the optional local part of the qualified name of
+    this node, and is only provided when the node type is
+    `ATTRIBUTE_NODE` or `ELEMENT_NODE`.
+  * `name.prefix` is the optional namespace prefix for this node, and
+    is only provided when the node type is `ATTRIBUTE_NODE` or
+    `ELEMENT_NODE` and the node is in a namespace other than the
+    default.
+  * `name.uri` is the optional namespace [URI] for this node, and
+    is only provided when the node type is `ATTRIBUTE_NODE` or
+    `ELEMENT_NODE` and the node is in a namespace other than the
+    default.
+  * `type` is the type of this node, and is one of the following
+    values:
+    * `ATTRIBUTE_NODE`
+    * `CDATA_SECTION_NODE`
+    * `COMMENT_NODE`
+    * `DOCUMENT_FRAGMENT_NODE`
+    * `DOCUMENT_NODE`
+    * `DOCUMENT_TYPE_NODE`
+    * `ELEMENT_NODE`
+    * `ENTITY_NODE`
+    * `ENTITY_REFERENCE_NODE`
+    * `NOTATION_NODE`
+    * `PROCESSING_INSTRUCTION_NODE`
+    * `TEXT_NODE`
+  * `value` is the optional text content associated with the node, if
+    any.
+  * `attributes` is an optional list of attribute nodes associated
+    with this node.
+  * `elements` is an optional list of child element nodes associated
+    with this node, only provided when `$recurse` is `true`.
 
 ---
 
@@ -13563,6 +13597,7 @@ Copyright &copy; 2012 Lachlan Dowding. See the [LICENSE] file for further detail
 [org.w3c.dom.Node]: <http://docs.oracle.com/javase/6/docs/api/org/w3c/dom/Node.html>
 [org.xml.sax.InputSource]: <http://docs.oracle.com/javase/6/docs/api/org/xml/sax/InputSource.html>
 [primitive type]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Class.html#isPrimitive()>
+[QName]: <https://en.wikipedia.org/wiki/QName>
 [radix]: <http://en.wikipedia.org/wiki/Radix>
 [regular expression pattern]: <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html>
 [releases]: <https://github.com/Permafrost/Tundra/releases>

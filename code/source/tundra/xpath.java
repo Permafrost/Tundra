@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-06-08 15:58:25.778
+// -----( CREATED: 2016-06-10 09:29:59.620
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -14,6 +14,7 @@ import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import javax.xml.namespace.NamespaceContext;
 import javax.xml.xpath.XPathExpression;
 import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
@@ -62,17 +63,17 @@ public final class xpath
 		    Object content = IDataUtil.get(cursor, "$content");
 		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
 		    String expression = IDataUtil.getString(cursor, "$expression");
-		    IData namespace = IDataUtil.getIData(cursor, "$namespace");
+		    NamespaceContext namespace =  IDataNamespaceContext.of(IDataUtil.getIData(cursor, "$namespace"));
 
-		    XPathExpression compiledExpression = XPathHelper.compile(expression, IDataNamespaceContext.of(namespace));
+		    XPathExpression compiledExpression = XPathHelper.compile(expression, namespace);
 		    Node node = null;
 
 		    if (content instanceof Node) {
 		        node = (Node)content;
 		    } else if (content instanceof InputSource) {
-		        node = DocumentHelper.parse((InputSource)content);
+		        node = DocumentHelper.parse((InputSource)content, namespace);
 		    } else if (content != null) {
-		        node = DocumentHelper.parse(InputStreamHelper.normalize(content, charset), charset, true);
+		        node = DocumentHelper.parse(InputStreamHelper.normalize(content, charset), charset, true, namespace);
 		    }
 
 		    IDataUtil.put(cursor, "$exists?", BooleanHelper.emit(XPathHelper.exists(node, compiledExpression)));
@@ -100,7 +101,12 @@ public final class xpath
 		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
 		// [o] record:1:optional $nodes
 		// [o] - object:0:required node
-		// [o] - field:0:optional content
+		// [o] - field:0:required name.qualified
+		// [o] - field:0:optional name.local
+		// [o] - field:0:optional name.prefix
+		// [o] - field:0:optional name.uri
+		// [o] - field:0:required type
+		// [o] - field:0:optional value
 		// [o] field:0:required $nodes.length
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -108,24 +114,24 @@ public final class xpath
 		    Object content = IDataUtil.get(cursor, "$content");
 		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
 		    String expression = IDataUtil.getString(cursor, "$expression");
-		    IData namespace = IDataUtil.getIData(cursor, "$namespace");
+		    NamespaceContext namespace = IDataNamespaceContext.of(IDataUtil.getIData(cursor, "$namespace"));
 		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
 
-		    XPathExpression compiledExpression = XPathHelper.compile(expression, IDataNamespaceContext.of(namespace));
+		    XPathExpression compiledExpression = XPathHelper.compile(expression, namespace);
 
 		    Node node = null;
 		    if (content instanceof Node) {
 		        node = (Node)content;
 		    } else if (content instanceof InputSource) {
-		        node = DocumentHelper.parse((InputSource)content);
+		        node = DocumentHelper.parse((InputSource)content, namespace);
 		    } else if (content != null) {
-		        node = DocumentHelper.parse(InputStreamHelper.normalize(content, charset), charset, true);
+		        node = DocumentHelper.parse(InputStreamHelper.normalize(content, charset), charset, true, namespace);
 		    }
 
 		    Nodes nodes = XPathHelper.get(node, compiledExpression);
 
 		    if (nodes != null) {
-		        IDataUtil.put(cursor, "$nodes", nodes.toIDataArray(recurse));
+		        IDataUtil.put(cursor, "$nodes", nodes.reflect(recurse));
 		        IDataUtil.put(cursor, "$nodes.length", IntegerHelper.emit(nodes.size()));
 		    } else {
 		        IDataUtil.put(cursor, "$nodes.length", "0");
