@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-06-10 09:29:59.620
+// -----( CREATED: 2016-06-10 12:04:41.352
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -107,6 +107,22 @@ public final class xpath
 		// [o] - field:0:optional name.uri
 		// [o] - field:0:required type
 		// [o] - field:0:optional value
+		// [o] - record:1:optional attributes
+		// [o] -- object:0:required node
+		// [o] -- field:0:required name.qualified
+		// [o] -- field:0:optional name.local
+		// [o] -- field:0:optional name.prefix
+		// [o] -- field:0:optional name.uri
+		// [o] -- field:0:required type
+		// [o] -- field:0:optional value
+		// [o] - record:1:optional elements
+		// [o] -- object:0:required node
+		// [o] -- field:0:required name.qualified
+		// [o] -- field:0:optional name.local
+		// [o] -- field:0:optional name.prefix
+		// [o] -- field:0:optional name.uri
+		// [o] -- field:0:required type
+		// [o] -- field:0:optional value
 		// [o] field:0:required $nodes.length
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -131,7 +147,7 @@ public final class xpath
 		    Nodes nodes = XPathHelper.get(node, compiledExpression);
 
 		    if (nodes != null) {
-		        IDataUtil.put(cursor, "$nodes", nodes.reflect(recurse));
+		        IDataUtil.put(cursor, "$nodes", nodes.reflect(namespace, recurse));
 		        IDataUtil.put(cursor, "$nodes.length", IntegerHelper.emit(nodes.size()));
 		    } else {
 		        IDataUtil.put(cursor, "$nodes.length", "0");
