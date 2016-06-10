@@ -13280,6 +13280,39 @@ Removes all comments and extraneous whitespace from the given
 
 ---
 
+### tundra.xml:parse
+
+Parses [XML] content into an `IData` document.
+
+This service is not intended as a replacement for
+`pub.xml:xmlNodeToDocument`. However, unlike that service, this
+service can parse any implementation of the [org.w3c.dom.Node]
+interface, not just the standard webMethods implementation class
+`com.wm.lang.xml.Node`.
+
+TODO: optionally reference an [XML] schema so that elements with a
+`maxOccurs` of `unbounded` can be correctly represented as lists.
+
+#### Inputs:
+
+* `$content` is a string, byte array, input stream, [org.w3c.dom.Node]
+  object (node in webMethods parlance), or [org.xml.sax.InputSource]
+  object containing [XML] data.
+* `$encoding` is an optional character set to use when $content is
+  provided as a byte array or input stream to decode the contained
+  text data. Defaults to [UTF-8].
+* `$namespace` is an optional list of namespace prefixes and the URIs
+  they map to, used when parsing [XML] content with elements in one
+  or more namespaces.
+  * `default` is the [URI] for the default namespace, if applicable.
+
+#### Outputs:
+
+* `$document` is the resulting `IData` document representing the parsed
+  `$content`.
+
+---
+
 ### tundra.xml:validate
 
 Validates the given content as [XML], and optionally against an [XML]

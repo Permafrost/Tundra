@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="svc_type">java</value>
+  <value name="svc_subtype">unknown</value>
+  <value name="svc_sigtype">java 3.5</value>
+  <record name="svc_sig" javaclass="com.wm.util.Values">
+    <record name="sig_in" javaclass="com.wm.util.Values">
+      <value name="node_type">record</value>
+      <value name="field_type">record</value>
+      <value name="field_dim">0</value>
+      <value name="nillable">true</value>
+      <value name="form_qualified">false</value>
+      <value name="is_global">false</value>
+      <array name="rec_fields" type="record" depth="1">
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="field_name">$content</value>
+          <value name="field_type">object</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_usereditable">true</value>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="field_name">$encoding</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <array name="field_options" type="value" depth="1">
+          </array>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="field_name">$namespace</value>
+          <value name="field_type">record</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+          <array name="rec_fields" type="record" depth="1">
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">record</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_usereditable">true</value>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="field_name">default</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <array name="field_options" type="value" depth="1">
+              </array>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">string</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+          </array>
+        </record>
+      </array>
+    </record>
+    <record name="sig_out" javaclass="com.wm.util.Values">
+      <value name="node_type">record</value>
+      <value name="field_type">record</value>
+      <value name="field_dim">0</value>
+      <value name="nillable">true</value>
+      <value name="form_qualified">false</value>
+      <value name="is_global">false</value>
+      <array name="rec_fields" type="record" depth="1">
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="field_name">$document</value>
+          <value name="field_type">record</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+          <array name="rec_fields" type="record" depth="1">
+          </array>
+        </record>
+      </array>
+    </record>
+  </record>
+  <value name="node_comment">### tundra.xml:parse
+
+Parses [XML] content into an IData document.
+
+This service is not intended as a replacement for 
+pub.xml:xmlNodeToDocument. However, unlike that service, this 
+service can parse any implementation of the [org.w3c.dom.Node] 
+interface, not just the standard webMethods implementation class 
+com.wm.lang.xml.Node.
+
+TODO: optionally reference an [XML] schema so that elements with a 
+maxOccurs of unbounded can be correctly represented as lists.
+
+#### Inputs:
+
+* $content is a string, byte array, input stream, [org.w3c.dom.Node] 
+  object (node in webMethods parlance), or [org.xml.sax.InputSource] 
+  object containing [XML] data.
+* $encoding is an optional character set to use when $content is
+  provided as a byte array or input stream to decode the contained 
+  text data. Defaults to [UTF-8].
+* $namespace is an optional list of namespace prefixes and the URIs 
+  they map to, used when parsing [XML] content with elements in one 
+  or more namespaces.
+  * default is the [URI] for the default namespace, if applicable.
+
+#### Outputs:
+
+* $document is the resulting IData document representing the parsed
+  $content.
+
+[org.w3c.dom.Node]: &lt;http://docs.oracle.com/javase/6/docs/api/org/w3c/dom/Node.html&gt;
+[org.xml.sax.InputSource]: &lt;http://docs.oracle.com/javase/6/docs/api/org/xml/sax/InputSource.html&gt;
+[URI]: &lt;http://www.w3.org/Addressing/&gt;
+[UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;
+[XML]: &lt;http://www.w3.org/XML/&gt;</value>
+  <value name="stateless">no</value>
+  <value name="caching">no</value>
+  <value name="prefetch">no</value>
+  <value name="cache_ttl">15</value>
+  <value name="prefetch_level">1</value>
+  <value name="audit_level">off</value>
+  <value name="check_internal_acls">no</value>
+  <value name="icontext_policy">$null</value>
+  <value name="system_service">no</value>
+  <value name="retry_max">0</value>
+  <value name="retry_interval">0</value>
+  <value name="svc_in_validator_options">default</value>
+  <value name="svc_out_validator_options">default</value>
+  <value name="auditoption">0</value>
+  <record name="auditsettings" javaclass="com.wm.util.Values">
+    <value name="document_data">0</value>
+    <value name="startExecution">false</value>
+    <value name="stopExecution">false</value>
+    <value name="onError">true</value>
+  </record>
+</Values>
