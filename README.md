@@ -12936,15 +12936,20 @@ For example, the following components represented using [JSON]:
       "path": ["x", "y", "z"],
       "file": "index.html",
       "query": {
-        "a": ["1", "2"],
-        "b": "c"
+        "a": "1",
+        "a": "2",
+        "b": "3",
+        "c": ["4", "5"],
+        "d": {
+          "e": "6"
+        }
       },
       "fragment": "footer"
     }
 
 Will be emitted as the following [URI]:
 
-    http://bob:secret@example.com:8080/x/y/z/index.html?a=1&a=2&b=c#footer
+    http://bob:secret@example.com:8080/x/y/z/index.html?a=1&a=2&b=3&c%5B0%5D=4&c%5B1%5D=5&d%2Fe=6#footer
 
 This service was implemented with the [java.net.URI] class.
 
@@ -13101,7 +13106,7 @@ contains a query string and, if so, parses the query string also.
 
 For example, the following [URI]:
 
-    http://bob:secret@example.com:8080/x/y/z/index.html?a=1&a=2&b=c#footer
+    http://bob:secret@example.com:8080/x/y/z/index.html?a=1&a=2&b=3&c%5B0%5D=4&c%5B1%5D=5&d%2Fe=6#footer
 
 Will be parsed to the following components, represented using [JSON]:
 
@@ -13118,11 +13123,18 @@ Will be parsed to the following components, represented using [JSON]:
       "path": ["x", "y", "z"],
       "file": "index.html",
       "query": {
-        "a": ["1", "2"],
-        "b": "c"
+        "a": "1",
+        "a": "2",
+        "b": "3"
+,
+        "c": ["4", "5"],
+        "d": {
+          "e": "6"
+        }
       },
       "fragment": "footer"
     }
+
 
 This service was implemented with the [java.net.URI] class.
 
@@ -13152,11 +13164,11 @@ This service was implemented with the [java.net.URI] class.
     the list of string tokens that were separated by the '/'
     character.
   * `file` is the optional file component of the [URI], provided as
-    the string token that follows the final '/' character of the path component.
+    the string token that follows the final '/' character of the
+    path component.
   * `query` is an optional IData document whose elements are the set
-    of [URI] query string key value parameters. Lists are supported
-    in query strings as follows: `?a=1&a=2&a=3` is parsed to a
-    `String[] = { "1", "2", "3" }`.
+    of [URI] query string key value parameters. Parameter keys are
+    treated as fully-qualified IData keys.
   * `fragment` is the optional fragment component of the [URI].
 
 ---

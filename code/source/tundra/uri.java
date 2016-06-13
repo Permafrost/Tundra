@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-12-18 21:15:12 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2016-06-13 11:43:37.121
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -40,18 +40,18 @@ public final class uri
 		// [i] field:0:optional $encoding
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String string = IDataUtil.getString(cursor, "$string");
 		    String encoding = IDataUtil.getString(cursor, "$encoding");
-		
+
 		    if (string != null) IDataUtil.put(cursor, "$string", URIHelper.decode(string, encoding));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -78,7 +78,7 @@ public final class uri
 		// [i] - field:0:optional fragment
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IData uri = IDataUtil.getIData(cursor, "$uri");
 		    if (uri != null) IDataUtil.put(cursor, "$string", URIHelper.emit(uri));
@@ -89,7 +89,7 @@ public final class uri
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -104,18 +104,18 @@ public final class uri
 		// [i] field:0:optional $encoding
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String string = IDataUtil.getString(cursor, "$string");
 		    String encoding = IDataUtil.getString(cursor, "$encoding");
-		
+
 		    if (string != null) IDataUtil.put(cursor, "$string", URIHelper.encode(string, encoding));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -129,7 +129,7 @@ public final class uri
 		// [i] field:0:optional $string
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String string = IDataUtil.getString(cursor, "$string");
 		    if (string != null) IDataUtil.put(cursor, "$string", URIHelper.normalize(string));
@@ -140,7 +140,7 @@ public final class uri
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -169,7 +169,7 @@ public final class uri
 		// [o] - field:0:required absolute?
 		// [o] - field:0:required opaque?
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String string = IDataUtil.getString(cursor, "$string");
 		    if (string != null) IDataUtil.put(cursor, "$uri", URIHelper.parse(string));
@@ -180,7 +180,7 @@ public final class uri
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -195,11 +195,11 @@ public final class uri
 		// [i] record:0:optional $scope
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String uri = IDataUtil.getString(cursor, "$string");
 		    IData scope = IDataUtil.getIData(cursor, "$scope");
-		
+
 		    if (uri != null) IDataUtil.put(cursor, "$string", URIHelper.substitute(uri, scope == null ? pipeline : scope));
 		} catch(URISyntaxException ex) {
 		    ExceptionHelper.raise(ex);
@@ -208,7 +208,7 @@ public final class uri
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 
