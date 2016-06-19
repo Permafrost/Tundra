@@ -1555,6 +1555,9 @@ unique items from the given [java.util.List] object.
 Evaluates the given condition against the pipeline (or optional scope IData
 document).
 
+Also supports resolving [XPath] expressions against [org.w3c.dom.Node]
+objects named node.
+
 #### Inputs:
 
 * `$condition` is the conditional statement to be evaluated. Conditional
@@ -4256,6 +4259,9 @@ document cannot be unfrozen.
 
 Returns the value associated with the given key from the given IData
 document.
+
+Also supports resolving [XPath] expressions against [org.w3c.dom.Node]
+objects named node.
 
 #### Inputs:
 
@@ -10607,6 +10613,9 @@ And a flattening of `a/b[0]/c[0]` would return the following
 Returns the value associated with the given key from the pipeline, or null
 if it doesn't exist.
 
+Also supports resolving [XPath] expressions against [org.w3c.dom.Node]
+objects named node.
+
 #### Inputs:
 
 * `$key` identifies the value to be retrieved from the pipeline, and can be
@@ -13673,6 +13682,7 @@ Copyright &copy; 2012 Lachlan Dowding. See the [LICENSE] file for further detail
 [webMethods Integration Server]: <http://www.softwareag.com/corporate/products/wm/integration/products/ai/overview/default.asp>
 [webMethods Trading Networks]: <http://www.softwareag.com/corporate/products/wm/integration/products/b2b/overview/default.asp>
 [XML]: <http://www.w3.org/XML/>
+[XPath]: <http://www.w3.org/TR/xpath/>
 [XPath expression]: <http://www.w3.org/TR/xpath/>
 [XSD]: <http://www.w3.org/XML/Schema>
 [YAML]: <http://www.yaml.org>

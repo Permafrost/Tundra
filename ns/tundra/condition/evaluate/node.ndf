@@ -7,6 +7,7 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -21,6 +22,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$condition</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -49,6 +51,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$scope</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
@@ -58,11 +61,14 @@
           <value name="is_global">false</value>
           <array name="rec_fields" type="record" depth="1">
           </array>
+          <value name="modifiable">true</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -77,6 +83,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$result?</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -98,12 +105,16 @@
           <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">### tundra.condition:evaluate
 
 Evaluates the given condition against the pipeline (or optional scope IData
 document).
+
+Also supports resolving [XPath] expressions against [org.w3c.dom.Node]
+objects named node.
 
 #### Inputs:
 
@@ -152,6 +163,8 @@ document).
 * $result? is the boolean result of the evaluation. If no $condition
   was specified, true will be returned.
 
+[org.w3c.dom.Node]: &lt;http://docs.oracle.com/javase/6/docs/api/org/w3c/dom/Node.html&gt;
+[XPath]: &lt;http://www.w3.org/TR/xpath/&gt;
 </value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
@@ -168,10 +181,16 @@ document).
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
 </Values>
