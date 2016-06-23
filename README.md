@@ -1671,8 +1671,6 @@ automatically substituted as follows:
 
 * Keys prefixed with `$system` are resolved against the `$system`
   document returned by `tundra.system:reflect`.
-* Other keys are resolved against global variables on Integration
-  Servers that support the global variable feature.
 
 This approach allows for server-specific global configuration values
 stored as environment variables, java system properties, or global

@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-05-26 19:17:54 EST
+// -----( CREATED: 2016-06-23 16:52:49 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -38,9 +38,7 @@ public final class configuration
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $refresh? {"false","true"}
-		// [o] record:1:required $configurations
-		// [o] - field:0:required package
-		// [o] - record:0:required configuration
+		// [o] record:0:required $configurations
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -96,7 +94,9 @@ public final class configuration
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $refresh? {"false","true"}
-		// [o] record:0:required $configurations
+		// [o] record:1:required $configurations
+		// [o] - field:0:required package
+		// [o] - record:0:required configuration
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
