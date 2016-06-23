@@ -243,7 +243,8 @@
   </record>
   <value name="node_comment">### tundra.content:deliver
 
-Delivers arbitrary content (string, bytes, or input stream) to the given
+Delivers arbitrary content specified as a string, byte array, IData
+document, [org.w3c.dom.Node] object, or input stream to the given
 destination URI.
 
 Additional delivery protocols can be implemented by creating a service
@@ -253,8 +254,9 @@ Tundra/tundra.schema.content.deliver:handler specification.
 
 #### Inputs:
 
-* $content is a string, byte array, or input stream containing data to
-  be delivered to the $destination URI.
+* $content is a string, byte array, IData document, [org.w3c.dom.Node]
+  object, or input stream containing data to be delivered to the 
+  $destination URI.
 
   If $content is provided as an IData document, it will be serialized
   using an emitter determined in order of precedence by $schema and
@@ -402,6 +404,7 @@ Tundra/tundra.schema.content.deliver:handler specification.
 * $response.type is an optional MIME media type describing the type of
   $response returned.
 
+[org.w3c.dom.Node]: &lt;http://docs.oracle.com/javase/6/docs/api/org/w3c/dom/Node.html&gt;
 [CSV]: &lt;http://en.wikipedia.org/wiki/Comma-separated_values&gt;
 [JMS]: &lt;http://en.wikipedia.org/wiki/Java_Message_Service&gt;
 [JSON]: &lt;http://www.json.org/&gt;

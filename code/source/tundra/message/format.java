@@ -1,8 +1,8 @@
 package tundra.message;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-06-23 12:40:29 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2016-06-24 07:50:25.299
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -37,23 +37,45 @@ public final class format
 
 
 
+	public static final void get (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(get)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $message.format.name
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    String name = IDataUtil.getString(cursor, "$message.format.name");
+		    Format format = RECOGNIZER.get(name);
+		    if (format != null) IDataUtil.put(cursor, "$message.format", format.getIData());
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
 	public static final void list (IData pipeline)
         throws ServiceException
 	{
 		// --- <<IS-START(list)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [o] recref:1:required $formats tundra.schema.message:format
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
-		    IDataUtil.put(cursor, "$formats", Format.toIDataArray(RECOGNIZER.list()));
+		    IDataUtil.put(cursor, "$message.formats", Format.toIDataArray(RECOGNIZER.list()));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -64,21 +86,20 @@ public final class format
 		// --- <<IS-START(recognize)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [o] field:0:required $recognized?
-		// [o] recref:0:required $recognized.format tundra.schema.message:format
+		// [o] field:0:required $message.recognized?
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Format format = RECOGNIZER.recognize(pipeline);
 		    boolean recognized = format != null;
-		    IDataUtil.put(cursor, "$recognized?", BooleanHelper.emit(recognized));
-		    if (recognized) IDataUtil.put(cursor, "$recognized.format", format.getIData());
+		    IDataUtil.put(cursor, "$message.recognized?", BooleanHelper.emit(recognized));
+		    if (recognized) IDataUtil.put(cursor, "$message.format", format.getIData());
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -90,16 +111,16 @@ public final class format
 		// @subtype unknown
 		// @sigtype java 3.5
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IData[] configurations = ConfigurationManager.list(true, false);
-		
+
 		    List<Format> formats = new ArrayList<Format>();
 		    List<Exception> exceptions = new ArrayList<Exception>();
-		
+
 		    for (IData configuration : configurations) {
 		        Object value = IDataHelper.get(IDataHelper.stringify(IDataHelper.normalize(configuration), true), "configuration/tundra/message/format");
-		
+
 		        try {
 		            if (value instanceof IData) {
 		                formats.add(Format.of((IData)value));
@@ -110,9 +131,9 @@ public final class format
 		            exceptions.add(ex);
 		        }
 		    }
-		
+
 		    RECOGNIZER.initialize(formats);
-		
+
 		    if (exceptions.size() > 0) ExceptionHelper.raise(exceptions);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -121,7 +142,7 @@ public final class format
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 	// --- <<IS-START-SHARED>> ---

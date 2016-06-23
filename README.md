@@ -1763,8 +1763,10 @@ emitting or serializing the amended content.
 
 ### tundra.content:deliver
 
-Delivers arbitrary content (string, bytes, or input stream) to the given
+Delivers arbitrary content specified as a string, byte array, IData
+document, [org.w3c.dom.Node] object, or input stream to the given
 destination URI.
+
 
 Additional delivery protocols can be implemented by creating a service
 named for the URI scheme in the folder `Tundra/tundra.content.deliver`.
@@ -1773,8 +1775,9 @@ Services in this folder should implement the
 
 #### Inputs:
 
-* `$content` is a string, byte array, or input stream containing data to
-  be delivered to the `$destination` URI.
+* `$content` is a string, byte array, IData document, [org.w3c.dom.Node]
+  object, or input stream containing data to be delivered to the
+  `$destination` URI.
 
   If `$content` is provided as an IData document, it will be serialized
   using an emitter determined in order of precedence by `$schema` and
@@ -9929,6 +9932,22 @@ it is for the same class of measurement such as distance or mass.
 
 ---
 
+### tundra.message.format:get
+
+Returns the registered message format with the given name.
+
+#### Inputs:
+
+* `$message.format.name` is the name of the message format to be
+  returned.
+
+#### Outputs:
+
+* `$message.format` is the registered message format with the given
+  name, if one exists.
+
+---
+
 ### tundra.message.format:list
 
 Returns all registered message formats which are used by
@@ -9937,8 +9956,8 @@ to identify the format or type of a received message.
 
 #### Outputs:
 
-* `$formats` is the list of registered message formats in the
-  ascending lexical name order, which is also the order in
+* `$message.formats` is the list of registered message formats
+  in ascending lexical name order, which is also the order in
   which they are evaluated for recognition.
 
 ---
@@ -9992,11 +10011,11 @@ are mutually exclusive.
 
 #### Outputs:
 
-* `$recognized?` is a boolean which when `true` indicates that a
+* `$message.recognized?` is a boolean which when `true` indicates that a
   message format was recognized against the given pipeline.
-* `$recognized.format` is returned when `$recognized?` is `true` and
-  is the first registered message format whose recognize condition
-  matched the pipeline.
+* `$message.format` is returned when `$recognized?` is `true` and is the
+  first registered message format whose recognize condition matched
+  the pipeline.
 
 ---
 
@@ -10050,10 +10069,9 @@ are mutually exclusive.
 
 Receives arbitrary (XML or flat file) content and routes it to
 either the webMethods messaging subsystem via `pub.publish:publish`,
-a JMS destination, or a direct service invocation. Currently only
-`pub.publish:publish` routing is supported.
+a JMS destination, or a direct service invocation.
 
-The content can be specified as a string, byte array,
+The content can be specified as a string, byte array, IData document
 `java.io.InputStream`, or `org.w3c.dom.Node` object.
 
 This service is either intended to be invoked directly by clients
