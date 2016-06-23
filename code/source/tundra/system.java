@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-09 10:35:12 AEST
+// -----( CREATED: 2016-06-23 16:45:53 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -37,8 +37,9 @@ public final class system
 		// [o] record:0:required $system
 		// [o] - field:0:required version
 		// [o] - record:0:required environment
-		// [o] - record:0:required properties
-		// [o] - record:0:required directories
+		// [o] - record:0:required property
+		// [o] - record:0:required global
+		// [o] - record:0:required directory
 		// [o] -- field:0:required root
 		// [o] -- field:0:required config
 		// [o] -- field:0:required datastore
@@ -58,7 +59,7 @@ public final class system
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IDataUtil.put(cursor, "$system", SystemHelper.getIntegrationServerProperties());
+		    IDataUtil.put(cursor, "$system", SystemHelper.reflect());
 		} finally {
 		    cursor.destroy();
 		}

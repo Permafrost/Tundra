@@ -4,7 +4,6 @@
   <value name="name">reflect</value>
   <value name="encodeutf8">true</value>
   <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7DQoNCnRyeSB7DQogICAg
-SURhdGFVdGlsLnB1dChjdXJzb3IsICIkc3lzdGVtIiwgU3lzdGVtSGVscGVyLmdldEludGVncmF0
-aW9uU2VydmVyUHJvcGVydGllcygpKTsNCn0gZmluYWxseSB7DQogICAgY3Vyc29yLmRlc3Ryb3ko
-KTsNCn0=</value>
+SURhdGFVdGlsLnB1dChjdXJzb3IsICIkc3lzdGVtIiwgU3lzdGVtSGVscGVyLnJlZmxlY3QoKSk7
+DQp9IGZpbmFsbHkgew0KICAgIGN1cnNvci5kZXN0cm95KCk7DQp9</value>
 </Values>

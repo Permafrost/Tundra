@@ -94,7 +94,7 @@
                 <value name="field_password">false</value>
               </record>
               <value name="is_public">false</value>
-              <value name="field_name">properties</value>
+              <value name="field_name">property</value>
               <value name="field_type">record</value>
               <value name="field_dim">0</value>
               <value name="nillable">false</value>
@@ -112,10 +112,28 @@
                 <value name="field_password">false</value>
               </record>
               <value name="is_public">false</value>
-              <value name="field_name">directories</value>
+              <value name="field_name">global</value>
               <value name="field_type">record</value>
               <value name="field_dim">0</value>
-              <value name="nillable">true</value>
+              <value name="nillable">false</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+              <array name="rec_fields" type="record" depth="1">
+              </array>
+              <value name="modifiable">true</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">record</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">directory</value>
+              <value name="field_type">record</value>
+              <value name="field_dim">0</value>
+              <value name="nillable">false</value>
               <value name="form_qualified">false</value>
               <value name="is_global">false</value>
               <array name="rec_fields" type="record" depth="1">
@@ -557,7 +575,7 @@
   </record>
   <value name="node_comment">### tundra.system:reflect
 
-Returns information about Integration Server, such as the software
+Returns information about Integration Server, such as the software 
 version, environment settings, Java properties, well-known directory
 locations, and memory usage.
 
@@ -570,10 +588,12 @@ locations, and memory usage.
     the Integration Server on which this service is executed.
   * environment is an IData document containing all the environment
     variables defined on the system on which this service is executed.
-  * properties is an IData document containing all the Java
+  * property is an IData document containing all the Java
     configuration properties defined for the JVM process in which
     this service is executed.
-  * directories is an IData document containing all the well-known
+  * global is an IData document containing all the defined 
+    Integration Server global variables.
+  * directory is an IData document containing all the well-known
     directory locations defined for the Integration Server on
     which this service is executed.
   * memory is an IData document containing the memory usage of the
@@ -584,17 +604,16 @@ locations, and memory usage.
       heap that are not in use.
     * total is the total number of bytes of memory allocated to
       the JVM heap.
-
 </value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
   <value name="icontext_policy">$null</value>
-  <value name="svcInvkURLAlias"></value>
   <value name="system_service">no</value>
   <value name="retry_max">0</value>
   <value name="retry_interval">0</value>

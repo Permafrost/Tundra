@@ -12867,10 +12867,12 @@ locations, and memory usage.
     the Integration Server on which this service is executed.
   * `environment` is an `IData` document containing all the environment
     variables defined on the system on which this service is executed.
-  * `properties` is an `IData` document containing all the Java
+  * `property` is an `IData` document containing all the Java
     configuration properties defined for the JVM process in which
     this service is executed.
-  * `directories` is an `IData` document containing all the well-known
+  * `global` is an IData document containing all the defined
+    Integration Server global variables.
+  * `directory` is an `IData` document containing all the well-known
     directory locations defined for the Integration Server on
     which this service is executed.
   * `memory` is an `IData` document containing the memory usage of the
