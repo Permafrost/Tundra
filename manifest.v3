@@ -5,9 +5,10 @@
   <value name="system_package">no</value>
   <value name="version">0.0.24</value>
   <record name="startup_services" javaclass="com.wm.util.Values">
-    <null name="tundra.support:access"/>
     <null name="tundra.http.route:refresh"/>
+    <null name="tundra.support:access"/>
     <null name="tundra.support.menu:add"/>
+    <null name="tundra.message.format:refresh"/>
   </record>
   <record name="shutdown_services" javaclass="com.wm.util.Values">
     <null name="tundra.support.menu:remove"/>

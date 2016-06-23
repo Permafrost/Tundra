@@ -1,8 +1,8 @@
-package tundra.support.content;
+package tundra.message;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-06-22 14:19:02.370
-// -----( ON-HOST: -
+// -----( CREATED: 2016-06-23 12:40:29 EST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -14,40 +14,26 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import permafrost.tundra.configuration.ConfigurationManager;
-import permafrost.tundra.content.format.Format;
-import permafrost.tundra.content.format.Recognizer;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.ExceptionHelper;
+import permafrost.tundra.message.format.Format;
+import permafrost.tundra.message.format.Recognizer;
 // --- <<IS-END-IMPORTS>> ---
 
-public final class recognize
+public final class format
 
 {
 	// ---( internal utility methods )---
 
-	final static recognize _instance = new recognize();
+	final static format _instance = new format();
 
-	static recognize _newInstance() { return new recognize(); }
+	static format _newInstance() { return new format(); }
 
-	static recognize _cast(Object o) { return (recognize)o; }
+	static format _cast(Object o) { return (format)o; }
 
 	// ---( server methods )---
 
-
-
-
-	public static final void clear (IData pipeline)
-        throws ServiceException
-	{
-		// --- <<IS-START(clear)>> ---
-		// @subtype unknown
-		// @sigtype java 3.5
-		Recognizer.clear();
-		// --- <<IS-END>> ---
-
-
-	}
 
 
 
@@ -57,17 +43,17 @@ public final class recognize
 		// --- <<IS-START(list)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [o] record:1:optional $formats
+		// [o] recref:1:required $formats tundra.schema.message:format
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    IDataUtil.put(cursor, "$formats", Format.toIDataArray(Recognizer.list()));
+		    IDataUtil.put(cursor, "$formats", Format.toIDataArray(RECOGNIZER.list()));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -79,21 +65,11 @@ public final class recognize
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [o] field:0:required $recognized?
-		// [o] record:0:optional $recognized.format
-		// [o] - field:0:required name
-		// [o] - field:0:optional description
-		// [o] - field:0:optional content.type
-		// [o] - record:0:optional attributes
-		// [o] - record:0:optional namespace
-		// [o] -- field:0:optional default
-		// [o] - field:0:optional schema.parse
-		// [o] - field:0:optional schema.validate
-		// [o] - field:0:required recognize
-		// [o] - field:0:optional enabled?
+		// [o] recref:0:required $recognized.format tundra.schema.message:format
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    Format format = Recognizer.recognize(pipeline);
+		    Format format = RECOGNIZER.recognize(pipeline);
 		    boolean recognized = format != null;
 		    IDataUtil.put(cursor, "$recognized?", BooleanHelper.emit(recognized));
 		    if (recognized) IDataUtil.put(cursor, "$recognized.format", format.getIData());
@@ -102,7 +78,7 @@ public final class recognize
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -114,16 +90,16 @@ public final class recognize
 		// @subtype unknown
 		// @sigtype java 3.5
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IData[] configurations = ConfigurationManager.list(true, false);
-
+		
 		    List<Format> formats = new ArrayList<Format>();
 		    List<Exception> exceptions = new ArrayList<Exception>();
-
+		
 		    for (IData configuration : configurations) {
-		        Object value = IDataHelper.get(configuration, "configuration/tundra.content:recognize");
-
+		        Object value = IDataHelper.get(IDataHelper.stringify(IDataHelper.normalize(configuration), true), "configuration/tundra/message/format");
+		
 		        try {
 		            if (value instanceof IData) {
 		                formats.add(Format.of((IData)value));
@@ -134,9 +110,9 @@ public final class recognize
 		            exceptions.add(ex);
 		        }
 		    }
-
-		    Recognizer.initialize(formats);
-
+		
+		    RECOGNIZER.initialize(formats);
+		
 		    if (exceptions.size() > 0) ExceptionHelper.raise(exceptions);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -145,7 +121,11 @@ public final class recognize
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
+
+	// --- <<IS-START-SHARED>> ---
+	public static final Recognizer RECOGNIZER = new Recognizer();
+	// --- <<IS-END-SHARED>> ---
 }
 

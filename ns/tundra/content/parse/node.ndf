@@ -202,13 +202,15 @@
   </record>
   <value name="node_comment">### tundra.content:parse
 
-Parses or deserializes content specified as a string, byte array, or
-input stream into an IData document.
+Parses or deserializes content specified as a string, byte array, 
+[org.w3c.dom.Node] object (node in webMethods parlance), or input
+stream into an IData document.
 
 #### Inputs:
 
-* $content is a string, byte array, or input stream containing content
-  to be parsed.
+* $content is a string, byte array, [org.w3c.dom.Node] object (node in
+  webMethods parlance), or input stream containing content to be
+  parsed.
 * $content.type is the MIME media type that describes the format of the
   given $content.
 * $namespace is a list of namespace prefixes and the URIs they map to,
@@ -228,6 +230,7 @@ input stream into an IData document.
 * $document is the resulting IData document representing the parsed
   $content.
 
+[org.w3c.dom.Node]: &lt;http://docs.oracle.com/javase/6/docs/api/org/w3c/dom/Node.html&gt;
 [CSV]: &lt;http://en.wikipedia.org/wiki/Comma-separated_values&gt;
 [JSON]: &lt;http://www.json.org/&gt;
 [TSV]: &lt;http://en.wikipedia.org/wiki/Tab-separated_values&gt;
@@ -239,7 +242,6 @@ input stream into an IData document.
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
-  <value name="template">tundra_content_parse</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>

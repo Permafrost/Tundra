@@ -14,82 +14,6 @@
       <value name="form_qualified">false</value>
       <value name="is_global">false</value>
       <array name="rec_fields" type="record" depth="1">
-        <record javaclass="com.wm.util.Values">
-          <value name="node_type">record</value>
-          <value name="node_comment"></value>
-          <record name="node_hints" javaclass="com.wm.util.Values">
-            <value name="field_usereditable">true</value>
-            <value name="field_largerEditor">false</value>
-            <value name="field_password">false</value>
-          </record>
-          <value name="is_public">false</value>
-          <value name="field_name">$message</value>
-          <value name="field_type">string</value>
-          <value name="field_dim">0</value>
-          <value name="field_opt">true</value>
-          <array name="field_options" type="value" depth="1">
-          </array>
-          <record name="field_content_type" javaclass="com.wm.util.Values">
-            <value name="contentType">1</value>
-            <value name="internalType">reference</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-            <array name="targetNames" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">string</value>
-              </record>
-            </array>
-          </record>
-          <value name="nillable">true</value>
-          <value name="form_qualified">false</value>
-          <value name="is_global">false</value>
-        </record>
-        <record javaclass="com.wm.util.Values">
-          <value name="node_type">record</value>
-          <value name="node_comment"></value>
-          <record name="node_hints" javaclass="com.wm.util.Values">
-            <value name="field_largerEditor">false</value>
-            <value name="field_password">false</value>
-          </record>
-          <value name="is_public">false</value>
-          <value name="field_name">$content</value>
-          <value name="field_type">object</value>
-          <value name="field_dim">0</value>
-          <value name="field_opt">true</value>
-          <value name="nillable">true</value>
-          <value name="form_qualified">false</value>
-          <value name="is_global">false</value>
-        </record>
-        <record javaclass="com.wm.util.Values">
-          <value name="node_type">record</value>
-          <value name="node_comment"></value>
-          <record name="node_hints" javaclass="com.wm.util.Values">
-            <value name="field_usereditable">true</value>
-            <value name="field_largerEditor">false</value>
-            <value name="field_password">false</value>
-          </record>
-          <value name="is_public">false</value>
-          <value name="field_name">$content.type</value>
-          <value name="field_type">string</value>
-          <value name="field_dim">0</value>
-          <value name="field_opt">true</value>
-          <array name="field_options" type="value" depth="1">
-          </array>
-          <record name="field_content_type" javaclass="com.wm.util.Values">
-            <value name="contentType">1</value>
-            <value name="internalType">reference</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-            <array name="targetNames" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">string</value>
-              </record>
-            </array>
-          </record>
-          <value name="nillable">true</value>
-          <value name="form_qualified">false</value>
-          <value name="is_global">false</value>
-        </record>
       </array>
       <value name="modifiable">true</value>
     </record>
@@ -102,10 +26,109 @@
       <value name="form_qualified">false</value>
       <value name="is_global">false</value>
       <array name="rec_fields" type="record" depth="1">
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <null name="field_usereditable"/>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$recognized?</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">boolean</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">false</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$recognized.format</value>
+          <value name="field_type">recref</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+          <value name="modifiable">true</value>
+          <value name="rec_ref">tundra.schema.message:format</value>
+        </record>
       </array>
       <value name="modifiable">true</value>
     </record>
   </record>
+  <value name="node_comment">### tundra.message.format:recognize
+
+Attempts to recognize the message received by an Integration Server 
+gateway service by checking the pipeline against each registered 
+message format's recognition condition. Message formats are 
+evaluated in ascending lexical name order, and the first format 
+whose recognition condition evaluates to true against the pipeline 
+is returned.
+
+Message formats are registered by including the following 
+configuration section in a tundra.configuration:get compatible 
+package configuration file:
+
+    "tundra/message/format": [
+        {
+            "name": "Example 1",
+            "description": "An example message format",
+            "type": "text/xml",
+            "namespace": {
+                "cn": "http://example.com/common",
+                "sh": "http://example.com/shared"
+            },
+            "recognize": {
+                "ref": "%node/example/head/id% != $null"
+            },
+            "parse": {
+                "ref": "schema.example:document"
+            },
+            "validate": {
+                "ref": "schema.example:document"
+            },
+            "route": {
+                "type": "publish",
+                "ref": "schema.example:document"
+            },
+            "enabled": true
+        }
+    ]
+
+Refer to tundra.schema.message:format for further details on the 
+structure of a message format.
+
+The total set of registered message formats is the set of all 
+formats specified across all package configuration files whose names 
+are unique. It is expected, but not required, that message formats 
+are mutually exclusive.
+
+#### Outputs:
+
+* $recognized? is a boolean which when true indicates that a 
+  message format was recognized against the given pipeline.
+* $recognized.format is returned when $recognized? is true and
+  is the first registered message format whose recognize condition 
+  matched the pipeline.</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
@@ -119,7 +142,7 @@
   <value name="retry_max">0</value>
   <value name="retry_interval">0</value>
   <value name="svc_in_validator_options">none</value>
-  <value name="svc_out_validator_options">none</value>
+  <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
   <null name="auditfields_input"/>
   <null name="auditfields_output"/>

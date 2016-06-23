@@ -1,7 +1,7 @@
 package tundra.support.exception;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-12-19 20:32:33 EST
+// -----( CREATED: 2016-06-23 13:39:20 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -11,7 +11,7 @@ import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import javax.activation.MimeTypeParseException;
 import java.io.IOException;
-import permafrost.tundra.data.Content;
+import permafrost.tundra.content.Content;
 import permafrost.tundra.lang.BytesHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.lang.TransportException;

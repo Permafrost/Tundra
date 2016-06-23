@@ -9931,6 +9931,169 @@ it is for the same class of measurement such as distance or mass.
 
 ---
 
+### tundra.message.format:list
+
+Returns all registered message formats which are used by
+`tundra.message:receive` and `tundra.message.format:recognize`
+to identify the format or type of a received message.
+
+#### Outputs:
+
+* `$formats` is the list of registered message formats in the
+  ascending lexical name order, which is also the order in
+  which they are evaluated for recognition.
+
+---
+
+### tundra.message.format:recognize
+
+Attempts to recognize the message received by an Integration Server
+gateway service by checking the pipeline against each registered
+message format's recognition condition. Message formats are
+evaluated in ascending lexical name order, and the first format
+whose recognition condition evaluates to true against the pipeline
+is returned.
+
+Message formats are registered by including the following
+configuration section in a `tundra.configuration:get` compatible
+package configuration file:
+
+    "tundra/message/format": [
+        {
+            "name": "Example 1",
+            "description": "An example message format",
+            "type": "text/xml",
+            "namespace": {
+                "cn": "http://example.com/common",
+                "sh": "http://example.com/shared"
+            },
+            "recognize": {
+                "ref": "%node/example/head/id% != $null"
+            },
+            "parse": {
+                "ref": "schema.example:document"
+            },
+            "validate": {
+                "ref": "schema.example:document"
+            },
+            "route": {
+                "type": "publish",
+                "ref": "schema.example:document"
+            },
+            "enabled": true
+        }
+    ]
+
+Refer to `tundra.schema.message:format` for further details on the
+structure of a message format.
+
+The total set of registered message formats is the set of all
+formats specified across all package configuration files whose names
+are unique. It is expected, but not required, that message formats
+are mutually exclusive.
+
+#### Outputs:
+
+* `$recognized?` is a boolean which when `true` indicates that a
+  message format was recognized against the given pipeline.
+* `$recognized.format` is returned when `$recognized?` is `true` and
+  is the first registered message format whose recognize condition
+  matched the pipeline.
+
+---
+
+### tundra.message.format:refresh
+
+Reloads all registered message formats from disk. Changes made to
+message formats in package configuration files will not take effect
+until this service is run.
+
+Message formats are registered by including the following
+configuration section in a `tundra.configuration:get` compatible
+package configuration file:
+
+    "tundra/message/format": [
+        {
+            "name": "Example 1",
+            "description": "An example message format",
+            "type": "text/xml",
+            "namespace": {
+                "cn": "http://example.com/common",
+                "sh": "http://example.com/shared"
+            },
+            "recognize": {
+                "ref": "%node/example/head/id% != $null"
+            },
+            "parse": {
+                "ref": "schema.example:document"
+            },
+            "validate": {
+                "ref": "schema.example:document"
+            },
+            "route": {
+                "type": "publish",
+                "ref": "schema.example:document"
+            },
+            "enabled": true
+        }
+    ]
+
+Refer to `tundra.schema.message:format` for further details on the
+structure of a message format.
+
+The total set of registered message formats is the set of all
+formats specified across all package configuration files whose names
+are unique. It is expected, but not required, that message formats
+are mutually exclusive.
+
+---
+
+### tundra.message:receive
+
+Receives arbitrary (XML or flat file) content and routes it to
+either the webMethods messaging subsystem via `pub.publish:publish`,
+a JMS destination, or a direct service invocation. Currently only
+`pub.publish:publish` routing is supported.
+
+The content can be specified as a string, byte array,
+`java.io.InputStream`, or `org.w3c.dom.Node` object.
+
+This service is either intended to be invoked directly by clients
+via HTTP or FTP, or it can be wrapped by another service which
+specifies appropriate pipeline variables to control the routing of
+the content.
+
+When invoked via HTTP, the service returns a 'text/plain' response
+body that is empty on success, or contains a message describing the
+errors that occurred on failure, and an appropriate HTTP response
+code according to the following table:
+
+Response                   | Reason
+---------------------------|-------------------------------------------------------
+202 Accepted               | Received content was routed successfully
+400 Bad Request            | Received content was malformed
+403 Forbidden              | Sender was denied access to route the received content
+406 Not Acceptable         | Received content was not recognized (Unknown)
+409 Conflict               | Received content was detected as a duplicate
+422 Unprocessable Entity   | Received content failed validation
+500 Internal Server Error  | All other errors that occur while processing
+
+When invoked via transports other than HTTP, for example FTP, if the
+content is received successfully the service invocation will succeed
+and an empty response body is returned. If a security or any other
+exception is encountered, the service invocation will fail by
+rethrowing the exception.
+
+When invoked by a wrapping service, an exceptions encountered will
+be thrown to the calling service. It is then the calling service's
+responsibility to set an appropriate response for the transport in
+question.
+
+Refer to `tundra.message.format:recognize` for further details on how
+message formats are recognized by this service.
+
+---
+
 ### tundra.mime.type:emit
 
 Emits a Multipurpose Internet Mail Extension ([MIME]) type,
@@ -11465,6 +11628,76 @@ service called by `tundra.http:client`.
   processed is at the discretion of the implementing service. Refer to
   the standard `tundra.http.response:handle` service for a reference
   implementation.
+
+---
+
+### tundra.schema.message:format
+
+Defines the structure required of a message format to be
+registered with and evaluated by `tundra.message:receive` via
+`tundra.message.format:recognize`.
+
+Message formats are registered by including the following
+configuration section in a `tundra.configuration:get` compatible
+package configuration file:
+
+    "tundra/message/format": [
+        {
+            "name": "Example 1",
+            "description": "An example message format",
+            "type": "text/xml",
+            "namespace": {
+                "cn": "http://example.com/common",
+                "sh": "http://example.com/shared"
+            },
+            "recognize": {
+                "ref": "%node/example/head/id% != $null"
+            },
+            "parse": {
+                "ref": "schema.example:document"
+            },
+            "validate": {
+                "ref": "schema.example:document"
+            },
+            "route": {
+                "type": "publish",
+                "ref": "schema.example:document"
+            },
+            "enabled": true
+        }
+    ]
+
+#### Structure:
+
+* `name` is the unique name for the message format. Note that message
+  formats are evaluated in ascending lexical name order.
+* `description` is an optional description of the message format.
+* `type` is an optional MIME content type of the message format.
+* `namespace` is an optional list of XML namespace prefixes and URIs,
+  used when evaluating XPath queries and parsing.
+* `recognize`
+  * `ref` is a `tundra.condition:evaluate` compatible conditional
+    statement which is evaluated against the pipeline to determine
+    if the received message is of this format.
+* `parse`
+  * `ref` is the document reference or flat file schema to be used to
+    parse and emit content in this message format.
+* `validate`
+  * `ref` is the document reference or schema reference to be used to
+    validate content in this message format.
+* `route`
+  * `type` is the type of routing to be performance, and is a choice
+    of (currently only publish is supported):
+    * `publish` routes the message to the webMethods messaging
+      subsystem via `pub.publish:publish` using the `documentTypeName`
+      specified in `ref`.
+    * `jms` routes the message to a JMS destination specified in `ref`.
+    * `service` routes the message via a direct service invocation of
+      the service specified in `ref`.
+  * `ref` is the logical destination for the type of route specified.
+* `enabled` is an optional boolean which when `true` enables this
+  message format for recognition by `tundra.message.format:recognize`.
+  Defaults to `true`, if not specified.
 
 ---
 

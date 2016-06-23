@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Values version="2.0">
-  <value name="node_type">interface</value>
-  <value name="node_nsName">tundra.support.content.recognize</value>
+  <value name="shared">cHVibGljIHN0YXRpYyBmaW5hbCBSZWNvZ25pemVyIFJFQ09HTklaRVIgPSBuZXcgUmVjb2duaXpl
+cigpOw==</value>
   <value name="encodeutf8">true</value>
-  <value name="shared"></value>
   <value name="extends"></value>
   <array name="implements" type="value" depth="1">
   </array>
@@ -14,10 +13,10 @@
     <value>java.util.Arrays</value>
     <value>java.util.List</value>
     <value>permafrost.tundra.configuration.ConfigurationManager</value>
-    <value>permafrost.tundra.content.format.Format</value>
-    <value>permafrost.tundra.content.format.Recognizer</value>
     <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.lang.BooleanHelper</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>
+    <value>permafrost.tundra.message.format.Format</value>
+    <value>permafrost.tundra.message.format.Recognizer</value>
   </array>
 </Values>
