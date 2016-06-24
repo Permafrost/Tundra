@@ -56,7 +56,7 @@
                     <code>{foo}</code> and <code>{bar}</code> are variables that can match any
                     valid URI path segment.</p>
 
-                    <p>Custom HTTP routes specify an <a href="<http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html">
+                    <p>Custom HTTP routes specify an <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html">
                     HTTP request method</a> and <a href="https://tools.ietf.org/html/rfc6570">URI
                     template</a> which, if matched by an Integration Server HTTP request,
                     will return the associated target (either by invoking the target if
