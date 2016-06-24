@@ -48,7 +48,12 @@
               <tbody>
               %ifvar $message.formats.length equals('0')%
                 <tr class="example">
-                  <td colspan="9">No registered message formats exist.</td>
+                  <td colspan="9">
+                    <p>
+                      No registered message formats exist. Refer to <code>tundra.message:receive</code>
+                      and <code>tundra.message.format:recognize</code> for further details.
+                    </p>
+                  </td>
                 </tr>
               %else%
                 %loop $message.formats -$index%
