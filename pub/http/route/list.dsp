@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Tundra &gt; HTTP Routes</title>
+    <title>Tundra &gt; HTTP Route</title>
     <link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../assets/css/application.css" rel="stylesheet">
     <script src="../../assets/js/jquery.min.js"></script>
@@ -31,7 +31,7 @@
           %invoke tundra.http.route:list%
           <div class="table-responsive">
             <table class="table table-striped" width="100%">
-              <caption>Tundra &gt; HTTP Routes</caption>
+              <caption>Tundra &gt; HTTP Route</caption>
               <thead>
                 <tr>
                   <th>Directive</th>
