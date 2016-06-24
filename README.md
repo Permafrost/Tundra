@@ -9959,6 +9959,7 @@ to identify the format or type of a received message.
 * `$message.formats` is the list of registered message formats
   in ascending lexical name order, which is also the order in
   which they are evaluated for recognition.
+* `$message.formats.length` is the number of items in the list.
 
 ---
 

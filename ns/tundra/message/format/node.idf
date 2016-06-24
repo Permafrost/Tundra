@@ -11,11 +11,13 @@ cigpOw==</value>
     <value>java.io.IOException</value>
     <value>java.util.ArrayList</value>
     <value>java.util.Arrays</value>
+    <value>java.util.Collection</value>
     <value>java.util.List</value>
     <value>permafrost.tundra.configuration.ConfigurationManager</value>
     <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.lang.BooleanHelper</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>
+    <value>permafrost.tundra.math.IntegerHelper</value>
     <value>permafrost.tundra.message.format.Format</value>
     <value>permafrost.tundra.message.format.Recognizer</value>
   </array>
