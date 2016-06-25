@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="svc_type">java</value>
+  <value name="svc_subtype">unknown</value>
+  <value name="svc_sigtype">java 3.5</value>
+  <value name="node_comment">### tundra.pipeline:denormalize
+
+Replaces all nested child elements in the pipeline with non-nested 
+elements whose keys are fully-qualified.
+
+For example, if the pipeline contains the following key value pairs 
+(using [JSON] notation to represent the pipeline):
+
+    {
+      "a": {
+        "b": {
+          "c": "example 1",
+          "d": "example 2"
+        }
+      },
+      "e": "example 3",
+      "f": ["example 4", "example 5"]
+    }
+
+This is denormalized to the following:
+
+    {
+      "a/b/c": "example 1",
+      "a/b/d": "example 2",
+      "e": "example 3",
+      "f[0]": "example 4",
+      "f[1]": "example 5"
+    }
+
+[JSON]: &lt;http://www.json.org/&gt;</value>
+  <value name="stateless">no</value>
+  <value name="caching">no</value>
+  <value name="prefetch">no</value>
+  <value name="cache_ttl">15</value>
+  <value name="prefetch_level">1</value>
+  <value name="template_type">html</value>
+  <value name="audit_level">off</value>
+  <value name="check_internal_acls">no</value>
+  <value name="icontext_policy">$null</value>
+  <value name="system_service">no</value>
+  <value name="retry_max">0</value>
+  <value name="retry_interval">0</value>
+  <value name="svc_in_validator_options">none</value>
+  <value name="svc_out_validator_options">none</value>
+  <value name="auditoption">0</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
+  <record name="auditsettings" javaclass="com.wm.util.Values">
+    <value name="document_data">0</value>
+    <value name="startExecution">false</value>
+    <value name="stopExecution">false</value>
+    <value name="onError">true</value>
+  </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
+</Values>
