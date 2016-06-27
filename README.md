@@ -10111,6 +10111,78 @@ message formats are recognized by this service.
 
 ---
 
+### tundra.message:retrieve
+
+Retrieves arbitrary content from the given `$source` URI, and routes
+it to either the webMethods messaging subsystem via
+`pub.publish:publish`, a JMS destination, or a direct service
+invocation.
+
+Additional retrieval protocols can be implemented by creating a
+service named for the URI scheme in the folder
+`Tundra/tundra.content.retrieve`.  Services in this folder must
+implement the `Tundra/tundra.schema.content.retrieve:handler`
+specification.
+
+#### Inputs:
+
+* `$source` is a URI identifying the location from which content is to
+  be retrieved. Supports the following retrieval protocols / URI
+  schemes:
+  * `file:` routes each file matching the given `$source` URI according
+    to the routing specified by the recognized message format. The
+    file component of the URI can include wildcards or globs (such
+    as *.txt or *.j?r) for matching multiple files at once.
+
+    The following example would process all *.txt files in the
+    specified directory:
+
+        file:////server:port/directory/*.txt
+
+    To ensure each file processed is not locked or being written to
+    by another process, the file is first moved to a working
+    directory. The name of this directory can be configured by
+    adding a query string parameter called working to the URI, for
+    example:
+
+        file:////server:port/directory/*.txt?working=temp
+
+    In this example, files are first moved to a subdirectory named
+    temp. If not specified, the working directory defaults to a
+    subdirectory named `working`.
+
+    After successful processing, the file is then moved to an archive
+    directory. The name of this directory can be configured by
+    adding a query string parameter called archive to the URI, for
+    example:
+
+        file:////server:port/directory/*.txt?archive=backup
+
+    In this example, files are moved to a subdirectory named backup
+    after being successfully processed. If not specified, the
+    archive directory defaults to a subdirectory named `archive`.
+
+    Optionally, archived files older than a given age can be cleaned
+    up automatically by the retrieve process by specifying a query
+    string parameter called purge with an XML duration value
+    representing the age an archived file must be before being
+    purged, for example:
+
+        file:////server:port/directory/*.txt?purge=P14D
+
+    In this example, any files in the archive directory older than
+    14 days will be automatically deleted by the retrieve process.
+    If the query string parameter purge is not specified, archived
+    files will not be automatically cleaned up.
+
+* `$message.format.name` is an optional message format name which if
+  specified will skip the recognition step and instead use the
+  format with the given name when routing.
+* `$limit` is an optional maximum number of content matches to be
+  processed in a single execution. Defaults to `1000`.
+
+---
+
 ### tundra.message:route
 
 Routes arbitrary content to either the webMethods messaging
