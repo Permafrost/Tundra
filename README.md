@@ -10068,11 +10068,11 @@ are mutually exclusive.
 
 ### tundra.message:receive
 
-Receives arbitrary (XML or flat file) content and routes it to
-either the webMethods messaging subsystem via `pub.publish:publish`,
-a JMS destination, or a direct service invocation.
+Receives arbitrary content and routes it to either the webMethods
+messaging subsystem via `pub.publish:publish`, a JMS destination,
+or a direct service invocation.
 
-The content can be specified as a string, byte array, IData document
+The content can be specified as a string, byte array, IData document,
 `java.io.InputStream`, or `org.w3c.dom.Node` object.
 
 This service is either intended to be invoked directly by clients
@@ -10108,6 +10108,25 @@ question.
 
 Refer to `tundra.message.format:recognize` for further details on how
 message formats are recognized by this service.
+
+---
+
+### tundra.message:route
+
+Routes arbitrary content to either the webMethods messaging
+subsystem via `pub.publish:publish`, a JMS destination, or a direct
+service invocation.
+
+The content can be specified as a string, byte array, `IData` document,
+`java.io.InputStream`, or `org.w3c.dom.Node` object.
+
+#### Inputs:
+
+* $content is arbitrary content specified as a string, byte array,
+  `IData` document, `java.io.InputStream`, or `org.w3c.dom.Node` object.
+* `$message.format.name` is an optional message format name which if
+  specified will skip the recognition step and instead use the
+  format with the given name for routing.
 
 ---
 
