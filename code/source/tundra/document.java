@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-06-20 08:13:28 EST
+// -----( CREATED: 2016-06-25 11:14:22 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -174,6 +174,29 @@ public final class document
 		    boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$key.literal?"));
 		    
 		    if (document != null) IDataUtil.put(cursor, "$document", IDataHelper.copy(document, source, target, literal));
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void denormalize (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(denormalize)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:0:optional $document
+		// [o] record:0:optional $document
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    IData document = IDataUtil.getIData(cursor, "$document");
+		    if (document != null) IDataUtil.put(cursor, "$document", IDataHelper.denormalize(document));
 		} finally {
 		    cursor.destroy();
 		}

@@ -4042,6 +4042,46 @@ specification.
 
 ---
 
+### tundra.document:denormalize
+
+Returns a new `IData` document where all nested child elements in the
+given `IData` document are replaced with non-nested elements whose
+keys are fully-qualified.
+
+For example, if the `IData` document contains the following key value
+pairs (using [JSON] notation to represent the pipeline):
+
+    {
+      "a": {
+        "b": {
+          "c": "example 1",
+          "d": "example 2"
+        }
+      },
+      "e": "example 3",
+      "f": ["example 4", "example 5"]
+    }
+
+This is denormalized to the following:
+
+    {
+      "a/b/c": "example 1",
+      "a/b/d": "example 2",
+      "e": "example 3",
+      "f[0]": "example 4",
+      "f[1]": "example 5"
+    }
+
+#### Inputs:
+
+* `$document` is an `IData` document to be denormalized.
+
+#### Outputs:
+
+* `$document` is the resulting denormalized `IData` document.
+
+---
+
 ### tundra.document:drop
 
 Removes the element with the given key from the given IData document.
@@ -10764,6 +10804,37 @@ pipeline.
 * `$key.literal?` is an optional boolean flag which if true will treat the
   given keys literally rather than as potentially fully-qualified keys.
   Defaults to false if not specified.
+
+---
+
+### tundra.pipeline:denormalize
+
+Replaces all nested child elements in the pipeline with non-nested
+elements whose keys are fully-qualified.
+
+For example, if the pipeline contains the following key value pairs
+(using [JSON] notation to represent the pipeline):
+
+    {
+      "a": {
+        "b": {
+          "c": "example 1",
+          "d": "example 2"
+        }
+      },
+      "e": "example 3",
+      "f": ["example 4", "example 5"]
+    }
+
+This is denormalized to the following:
+
+    {
+      "a/b/c": "example 1",
+      "a/b/d": "example 2",
+      "e": "example 3",
+      "f[0]": "example 4",
+      "f[1]": "example 5"
+    }
 
 ---
 
