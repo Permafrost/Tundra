@@ -11880,6 +11880,26 @@ package configuration file:
 
 ---
 
+### tundra.security.acl:create
+
+Creates an Integration Server ACL with the given name and group
+membership.
+
+#### Inputs:
+
+* `$acl.name` is the name of the ACL to be created.
+* `$groups.allowed` is an optional list of group names which will be
+  added as members to the ACL's allowed groups.
+* `$groups.denied` is an optional list of group names which will be
+  added as members to the ACL's denied groups.
+* `$force?` is an optional boolean which when `true` will replace the
+  existing ACL with the given name with a new ACL with the same name
+  and the given group membership. If `false`, and an ACL already
+  exists with the given name, no changes to the ACL will be made by
+  this service. Defaults to `false`.
+
+---
+
 ### tundra.security.content:digest
 
 Returns a message digest for the given content using the given
