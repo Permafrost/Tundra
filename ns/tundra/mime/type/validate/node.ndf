@@ -139,7 +139,7 @@ Implemented with the [javax.activation.MimeType] class.
 [RFC 2046]: &lt;http://www.ietf.org/rfc/rfc2046.txt&gt;
 [javax.activation.MimeType]: &lt;http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html&gt;
 [mime type]: &lt;http://en.wikipedia.org/wiki/Internet_media_type&gt;</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
