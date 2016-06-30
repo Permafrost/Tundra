@@ -151,7 +151,7 @@ or tab separated values media type.
 
 [CSV]: &lt;http://en.wikipedia.org/wiki/Comma-separated_values&gt;
 [TSV]: &lt;http://en.wikipedia.org/wiki/Tab-separated_values&gt;</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>

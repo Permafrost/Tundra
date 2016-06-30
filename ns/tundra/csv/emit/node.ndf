@@ -221,7 +221,7 @@ formatted string, byte array, or input stream.
 
 [CSV]: &lt;http://en.wikipedia.org/wiki/Comma-separated_values&gt;
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
