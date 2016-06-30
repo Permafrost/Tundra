@@ -574,7 +574,7 @@ locations, and memory usage.
     * total is the total number of bytes of memory allocated to
       the JVM heap.
 </value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
