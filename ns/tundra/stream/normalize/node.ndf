@@ -97,7 +97,7 @@ Converts a string, bytes or input stream to an input stream.
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;
 [java.io.InputStream]: &lt;http://docs.oracle.com/javase/6/docs/api/java/io/InputStream.html&gt;
 [java.lang.String]: &lt;http://docs.oracle.com/javase/6/docs/api/java/lang/String.html&gt;</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
