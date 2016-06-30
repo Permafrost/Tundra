@@ -352,7 +352,7 @@ browser. When invoked via a browser, a basic HTML test report is displayed:
       service failed, which describes why the test case failed.
 
 </value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
