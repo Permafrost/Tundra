@@ -83,11 +83,12 @@ java.io.InputStream, or org.w3c.dom.Node object.
 * $message.format.name is an optional message format name which if
   specified will skip the recognition step and instead use the 
   format with the given name for routing.</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
   <value name="icontext_policy">$null</value>

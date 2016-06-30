@@ -123,7 +123,7 @@ are mutually exclusive.
   is the first registered message format whose recognize condition 
   matched the pipeline.
 </value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
