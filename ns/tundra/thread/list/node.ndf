@@ -111,7 +111,7 @@ Returns a list of all threads known in the current execution context.
     this thread.
   * thread is the actual java.lang.Thread object itself.
 * $threads.length is the number of items returned in the $threads list.</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
