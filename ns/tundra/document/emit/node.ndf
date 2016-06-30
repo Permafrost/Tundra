@@ -179,7 +179,7 @@ byte array, or input stream.
 
 [IData XML]: &lt;http://documentation.softwareag.com/webmethods/wmsuites/wmsuite8-2_sp2/Integration_Server/8-2-SP1_Integration_Server_Java_API_Reference/com/wm/util/coder/IDataXMLCoder.html&gt;
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
