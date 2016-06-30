@@ -4302,7 +4302,7 @@ Returns the value associated with the given key from the given IData
 document.
 
 Also supports resolving [XPath] expressions against [org.w3c.dom.Node]
-objects named node.
+objects in the top level of the given IData document.
 
 #### Inputs:
 
@@ -10956,7 +10956,7 @@ Returns the value associated with the given key from the pipeline, or null
 if it doesn't exist.
 
 Also supports resolving [XPath] expressions against [org.w3c.dom.Node]
-objects named node.
+objects in the top level of the pipeline.
 
 #### Inputs:
 
