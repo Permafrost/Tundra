@@ -202,7 +202,7 @@ array of a [primitive type], and its Java class name.
 
 [java.lang.System.identityHashCode()]: &lt;http://docs.oracle.com/javase/6/docs/api/java/lang/System.html#identityHashCode(java.lang.Object)&gt;
 [primitive type]: &lt;http://docs.oracle.com/javase/6/docs/api/java/lang/Class.html#isPrimitive()&gt;</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
