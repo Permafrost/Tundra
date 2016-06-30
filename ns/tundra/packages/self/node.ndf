@@ -7,7 +7,6 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
-      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -15,11 +14,9 @@
       <value name="is_global">false</value>
       <array name="rec_fields" type="record" depth="1">
       </array>
-      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
-      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -33,7 +30,6 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="is_public">false</value>
           <value name="field_name">$package</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
@@ -50,7 +46,6 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
-              <value name="is_public">false</value>
               <value name="field_name">name</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -79,7 +74,6 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
-              <value name="is_public">false</value>
               <value name="field_name">version</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -108,7 +102,6 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
-              <value name="is_public">false</value>
               <value name="field_name">enabled?</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -137,7 +130,6 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
-              <value name="is_public">false</value>
               <value name="field_name">system?</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -165,7 +157,6 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
-              <value name="is_public">false</value>
               <value name="field_name">dependencies</value>
               <value name="field_type">record</value>
               <value name="field_dim">1</value>
@@ -182,7 +173,6 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
-                  <value name="is_public">false</value>
                   <value name="field_name">package</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -211,7 +201,6 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
-                  <value name="is_public">false</value>
                   <value name="field_name">version</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -234,7 +223,6 @@
                 </record>
               </array>
               <value name="rec_closed">true</value>
-              <value name="modifiable">true</value>
             </record>
             <record javaclass="com.wm.util.Values">
               <value name="node_type">unknown</value>
@@ -244,7 +232,6 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
-              <value name="is_public">false</value>
               <value name="field_name">dependencies.length</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -272,7 +259,6 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
-              <value name="is_public">false</value>
               <value name="field_name">services</value>
               <value name="field_type">record</value>
               <value name="field_dim">0</value>
@@ -287,7 +273,6 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
-                  <value name="is_public">false</value>
                   <value name="field_name">startup</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">1</value>
@@ -315,7 +300,6 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
-                  <value name="is_public">false</value>
                   <value name="field_name">startup.length</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -343,7 +327,6 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
-                  <value name="is_public">false</value>
                   <value name="field_name">shutdown</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">1</value>
@@ -371,7 +354,6 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
-                  <value name="is_public">false</value>
                   <value name="field_name">shutdown.length</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -399,7 +381,6 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
-                  <value name="is_public">false</value>
                   <value name="field_name">replication</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">1</value>
@@ -427,7 +408,6 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
-                  <value name="is_public">false</value>
                   <value name="field_name">replication.length</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -455,7 +435,6 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
-                  <value name="is_public">false</value>
                   <value name="field_name">loaded</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">1</value>
@@ -483,7 +462,6 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
-                  <value name="is_public">false</value>
                   <value name="field_name">loaded.length</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -506,7 +484,6 @@
                 </record>
               </array>
               <value name="rec_closed">true</value>
-              <value name="modifiable">true</value>
             </record>
             <record javaclass="com.wm.util.Values">
               <value name="node_type">record</value>
@@ -515,7 +492,6 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
-              <value name="is_public">false</value>
               <value name="field_name">directories</value>
               <value name="field_type">record</value>
               <value name="field_dim">0</value>
@@ -531,7 +507,6 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
-                  <value name="is_public">false</value>
                   <value name="field_name">root</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -560,7 +535,6 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
-                  <value name="is_public">false</value>
                   <value name="field_name">ns</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -589,7 +563,6 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
-                  <value name="is_public">false</value>
                   <value name="field_name">pub</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -618,7 +591,6 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
-                  <value name="is_public">false</value>
                   <value name="field_name">template</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -647,7 +619,6 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
-                  <value name="is_public">false</value>
                   <value name="field_name">web</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -676,7 +647,6 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
-                  <value name="is_public">false</value>
                   <value name="field_name">config</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -699,13 +669,10 @@
                 </record>
               </array>
               <value name="rec_closed">true</value>
-              <value name="modifiable">true</value>
             </record>
           </array>
-          <value name="modifiable">true</value>
         </record>
       </array>
-      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">### tundra.packages:self
@@ -750,7 +717,7 @@ is stored.
     * template is the package's service template directory.
     * web is the package's Java web application directory.
     * config is the package's configuration directory.</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
@@ -766,16 +733,10 @@ is stored.
   <value name="svc_in_validator_options">none</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
-  <null name="auditfields_input"/>
-  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
-  <value name="pipeline_option">1</value>
-  <null name="originURI"/>
-  <value name="modifiable">true</value>
-  <value name="is_public">false</value>
 </Values>
