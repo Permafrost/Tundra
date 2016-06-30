@@ -114,7 +114,7 @@ Evaluates the given condition against the pipeline (or optional scope IData
 document).
 
 Also supports resolving [XPath] expressions against [org.w3c.dom.Node]
-objects named node.
+objects in the top level of the given scope or pipeline.
 
 #### Inputs:
 
