@@ -210,7 +210,7 @@ of the invoking transport.
 
 [HTTP status code]: &lt;http://www.iana.org/assignments/http-status-codes/http-status-codes.txt&gt;
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
