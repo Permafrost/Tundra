@@ -179,7 +179,7 @@ milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00
   error message if the assertion fails.
 
 [java.text.SimpleDateFormat]: &lt;http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html&gt;</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
