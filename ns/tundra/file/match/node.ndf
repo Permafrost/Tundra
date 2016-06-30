@@ -204,7 +204,7 @@ regular expression or wildcard pattern.
   considered in the match, not the path.
 
 [URI]: &lt;http://www.w3.org/Addressing/&gt;</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
