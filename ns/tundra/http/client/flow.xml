@@ -661,7 +661,7 @@
 
   <!-- nodes -->
 
-<MAP NAME="init" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="init" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
@@ -2344,7 +2344,7 @@
 
   <!-- nodes -->
 
-<MAP NAME="reuse" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="reuse" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 

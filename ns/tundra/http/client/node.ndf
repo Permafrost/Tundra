@@ -519,7 +519,7 @@ Provides an [HTTP] client for issuing requests against [HTTP] servers.
 
 [HTTP response code]: &lt;http://httpstatus.es/&gt;
 [HTTP]: &lt;http://tools.ietf.org/search/rfc2616&gt;</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>

@@ -406,7 +406,7 @@ Returns a list of all the custom HTTP routes currently in effect.
 
 [HTTP request method]: &lt;http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html&gt;
 [URI template]: &lt;https://tools.ietf.org/html/rfc6570&gt;</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
