@@ -496,7 +496,7 @@ This service was implemented with the [java.net.URI] class.
 [RFC 2396]: &lt;http://www.ietf.org/rfc/rfc2396.txt&gt;
 [URI]: &lt;http://www.w3.org/Addressing/&gt;
 [java.net.URI]: &lt;http://docs.oracle.com/javase/6/docs/api/java/net/URI.html&gt;</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
