@@ -69,7 +69,7 @@ question.
 Refer to tundra.message.format:recognize for further details on how 
 message formats are recognized by this service.
 </value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
