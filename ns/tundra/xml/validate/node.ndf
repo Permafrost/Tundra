@@ -212,7 +212,7 @@ documents when parsing from an input stream.
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;
 [XML]: &lt;http://www.w3.org/XML/&gt;
 [XSD]: &lt;http://www.w3.org/XML/Schema&gt;</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>

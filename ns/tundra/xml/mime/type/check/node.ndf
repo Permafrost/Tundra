@@ -94,7 +94,7 @@ type.
   $content.type is a recognized [XML] media type.
 
 [XML]: &lt;http://www.w3.org/XML/&gt;</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
