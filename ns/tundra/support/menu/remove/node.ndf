@@ -6,7 +6,7 @@
   <value name="svc_sigtype">java 3.5</value>
   <value name="node_comment">Unregisters the Integration Server administration web site menu 
 callbacks for the Tundra web pages.</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>

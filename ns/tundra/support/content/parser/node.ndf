@@ -136,7 +136,7 @@
   </record>
   <value name="node_comment">Returns the type of parser that should be used for the given MIME media type 
 and parsing schema.</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
