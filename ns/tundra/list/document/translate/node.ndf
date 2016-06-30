@@ -189,7 +189,7 @@ translated documents returned by the translation service as output.
   translated documents.
 
 </value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>

@@ -125,7 +125,7 @@ Removes the item stored at a given index in the given list.
   index removed.
 
 </value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>

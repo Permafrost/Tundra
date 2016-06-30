@@ -95,7 +95,7 @@ $separator.
   to a string and separated by the given $separator.
 
 </value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>

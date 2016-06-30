@@ -108,7 +108,7 @@ except for any keys specified in the preserve list.
   from each item, except for those specified in $preserve.
 
 </value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>

@@ -94,11 +94,12 @@ the given list's items.
 * $list is the sorted list.
 
 [natural ordering]: &lt;http://docs.oracle.com/javase/6/docs/api/java/lang/Comparable.html&gt;</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
   <value name="icontext_policy">$null</value>
