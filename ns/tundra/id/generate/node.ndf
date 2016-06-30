@@ -170,7 +170,7 @@ definition at ISO/IEC 11578:1996.
 [Base64]: &lt;http://en.wikipedia.org/wiki/Base64&gt;
 [RFC 4122]: &lt;http://www.ietf.org/rfc/rfc4122.txt&gt;
 [UUID]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/UUID.html&gt;</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
