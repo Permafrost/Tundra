@@ -104,7 +104,7 @@ string tables in the given IData document.
 
 * $string is the result of concatenating all the string values
   provided in the given IData document.</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
