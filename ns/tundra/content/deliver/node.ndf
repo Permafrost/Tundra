@@ -413,7 +413,7 @@ Tundra/tundra.schema.content.deliver:handler specification.
 [XML]: &lt;http://www.w3.org/XML/&gt;
 [YAML]: &lt;http://www.yaml.org&gt;
 [javax.jms.BytesMessage]: &lt;http://docs.oracle.com/javaee/1.4/api/javax/jms/BytesMessage.html&gt;</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>

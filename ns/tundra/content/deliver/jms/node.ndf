@@ -12,7 +12,7 @@ service, which delivers content to a jms URI destination.
 
 Implements the Tundra/tundra.schema.content.deliver:handler
 specification.</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>

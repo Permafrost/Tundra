@@ -167,7 +167,7 @@ tundra.schema.content.retrieve:handler specification.
   process each item of content retrieved from the $source URI.
 * $limit is an optional maximum number of content matches to be
   processed in a single execution. Defaults to 1000, if not specified.</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
