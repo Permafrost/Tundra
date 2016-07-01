@@ -5910,16 +5910,39 @@ software.
 
 ### tundra.http:client
 
-Provides an [HTTP] client for issuing requests against [HTTP] servers.
+Provides an [HTTP] client for issuing requests against [HTTP]
+servers.
 
 #### Inputs:
 
-* `$request` is an IData document containing the parameters required for
-  making an [HTTP] request to an [HTTP] server.
-* `$service` is an optional custom [HTTP] response handler service, which
-  implements the `tundra.schema.http.response:handler` specification, and
-  can be specified when the standard `tundra.http.response:handle`
-  service does not suffice. The standard handler does the following:
+* `$request` is an IData document containing the parameters required
+  for making an [HTTP] request to an [HTTP] server.
+  * `uri` is the [URI] the request will be sent to.
+  * `method` is the [HTTP] method for the request, a choice of: `get`,
+    `post`, `head`, `put`, `delete`, `options`, or `trace`. Defaults to `get`.
+  * `content` is a string, byte array, input stream, or `IData`
+    document used as the body of the request. If an `IData` document
+    is specified for a get request, the elements are encoded as
+    query string parameters in the request [URI]. If an `IData`
+    document is specified for a post or put request, the elements
+    are encoded as form parameters in the request body.
+  * `encoding` is an optional character set used to encode the given
+    content if provided as a string.
+  * `authority` are optional credentials for the request.
+  * `headers` are the [HTTP] headers sent with the request.
+  * `query` are optional query string parameters to be added to the
+    request [URI], provided separately for convenience.
+  * `timeout` is an optional timeout duration for the request
+    specified as an XML duration string. Defaults to 60 seconds.
+  * `session` is an optional choice of `new` or `reuse`, and determines
+    whether a new [HTTP] connection is established for this request
+    or whether an existing pooled [HTTP] connection can be used for
+    this request respectively. Defaults to `new`.
+* `$service` is an optional custom [HTTP] response handler service,
+  which implements the `tundra.schema.http.response:handler`
+  specification, and can be specified when the standard
+  `tundra.http.response:handle` service does not suffice. The standard
+  handler does the following:
   * checks the [HTTP response code] is < 400, and throws an exception
     when it is not
   * normalizes the response header keys to lower case
@@ -5927,8 +5950,18 @@ Provides an [HTTP] client for issuing requests against [HTTP] servers.
 
 #### Outputs:
 
-* `$response` is an IData document containing the [HTTP] server response
-  for the given request.
+* `$response` is an `IData` document containing the [HTTP] server
+  response for the given request.
+  * `uri` is the request [URI] that was used to generate this response,
+    provided for convenience.
+  * `status` is the response status from the [HTTP] server.
+    * `code` is the [HTTP response code] returned by the [HTTP] server
+      for this request.
+    * `message` is the [HTTP] response message associated with the
+      `code`.
+  * `headers` are the [HTTP] headers returned by the [HTTP] server in
+    its response.
+  * `content` is the [HTTP] response body returned.
 
 ---
 
