@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-05-26 20:04:08 EST
+// -----( CREATED: 2016-07-07 10:37:06 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -17,6 +17,7 @@ import permafrost.tundra.lang.CharsetHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.lang.ObjectConvertMode;
 import permafrost.tundra.lang.ObjectHelper;
+import permafrost.tundra.math.IntegerHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class html
@@ -66,6 +67,7 @@ public final class html
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
 		// [i] field:0:optional $encoding
+		// [i] field:0:optional $depth
 		// [i] field:0:optional $mode {"stream","bytes","string"}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
@@ -73,9 +75,10 @@ public final class html
 		try {
 		    IData document = IDataUtil.getIData(cursor, "$document");
 		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
+		    int depth = IntegerHelper.parse(IDataUtil.getString(cursor, "$depth"), Integer.MAX_VALUE);
 		    ObjectConvertMode mode = ObjectConvertMode.normalize(IDataUtil.getString(cursor, "$mode"));
 		
-		    IDataUtil.put(cursor, "$content", ObjectHelper.convert(IDataHTMLParser.getInstance().emit(document, charset), charset, mode));
+		    IDataUtil.put(cursor, "$content", ObjectHelper.convert(IDataHTMLParser.getInstance().encodeToString(document, depth), charset, mode));
 		} catch (IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
