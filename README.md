@@ -1898,7 +1898,7 @@ Services in this folder should implement the
         sap+idoc://aladdin:opensesame@sappr3?client=200&language=en&queue=xyz
 
     The following additional override options can be provided via the
-    `$pipeline` document, and if specified will overrided the relevant
+    `$pipeline` document, and if specified will override the relevant
     parts of the destination URI:
     * `$user` is the username used for the SAP session. Defaults to the
       SAP Adapter alias username, if not specified.
