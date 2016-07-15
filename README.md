@@ -5840,6 +5840,55 @@ Decompresses the given content using the [gzip] file compression format.
 
 ---
 
+### tundra.hjson:emit
+
+Serializes an IData document as an [Hjson] formatted string, byte
+array, or input stream.
+
+#### Inputs:
+
+* `$document` is the `IData` document to be serialized as an [Hjson]
+  string, byte array, or input stream.
+  * `recordWithNoID` is an optional array such as an `IData[]` document
+    list which if specified will be serialized directly as a [Hjson]
+    array.
+* `$encoding` is an optional character set to use when encoding the
+  resulting text data to a byte array or input stream. Defaults to
+  [UTF-8].
+* `$mode` is an optional choice of stream, bytes, or string which
+  specifies the type of object `$content` is returned as. Defaults to
+  stream.
+
+#### Outputs:
+
+* `$content` is the resulting serialization of `$document` as [Hjson]
+  content.
+
+---
+
+### tundra.hjson:parse
+
+Parses [Hjson] content specified as a string, byte array, or input
+stream into an IData document.
+
+#### Inputs:
+
+* `$content` is a string, byte array, or input stream containing
+  [Hjson] content to be parsed.
+* `$encoding` is an optional character set to use when `$content` is
+  provided as a byte array or input stream to decode the contained
+  text data. Defaults to [UTF-8].
+
+#### Outputs:
+
+* `$document` is the resulting `IData` document representing the parsed
+  `$content`.
+  * `recordWithNoID` is an optional array which is returned only when
+    the given [Hjson] content represents an array rather than an
+    object.
+
+---
+
 ### tundra.html:decode
 
 [HTML] decodes the given string.

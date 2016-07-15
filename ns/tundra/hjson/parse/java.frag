@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">parse</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogICAgT2Jq
+ZWN0IGNvbnRlbnQgPSBJRGF0YVV0aWwuZ2V0KGN1cnNvciwgIiRjb250ZW50Iik7CiAgICBDaGFy
+c2V0IGNoYXJzZXQgPSBDaGFyc2V0SGVscGVyLm5vcm1hbGl6ZShJRGF0YVV0aWwuZ2V0U3RyaW5n
+KGN1cnNvciwgIiRlbmNvZGluZyIpKTsKCiAgICBpZiAoY29udGVudCAhPSBudWxsKSB7CiAgICAg
+ICAgSURhdGFVdGlsLnB1dChjdXJzb3IsICIkZG9jdW1lbnQiLCBJRGF0YUhqc29uUGFyc2VyLmdl
+dEluc3RhbmNlKCkucGFyc2UoSW5wdXRTdHJlYW1IZWxwZXIubm9ybWFsaXplKGNvbnRlbnQsIGNo
+YXJzZXQpLCBjaGFyc2V0KSk7CiAgICB9Cn0gY2F0Y2ggKElPRXhjZXB0aW9uIGV4KSB7CiAgICBF
+eGNlcHRpb25IZWxwZXIucmFpc2UoZXgpOwp9IGZpbmFsbHkgewogICAgY3Vyc29yLmRlc3Ryb3ko
+KTsKfQ==</value>
+</Values>
