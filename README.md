@@ -22,6 +22,7 @@ provide the underlying implementation for the majority of services, and are
 included in the [Tundra] package as [JAR] files in the following locations:
 
 * `./code/jars/commons-csv-1.2.jar` - https://commons.apache.org/proper/commons-csv/
+* `./code/jars/hjson-1.1.4.jar` - https://github.com/Permafrost/hjson-java
 * `./code/jars/htmlcompressor-1.5.3.jar` - http://htmlcompressor.googlecode.com
 * `./code/jars/jakarta-oro-2.0.8.jar` - http://archive.apache.org/dist/jakarta/oro/
 * `./code/jars/javax.json-1.0.jar` - https://jsonp.java.net
@@ -32,6 +33,7 @@ included in the [Tundra] package as [JAR] files in the following locations:
 * `./code/jars/Tundra.jar` - http://github.com/Permafrost/Tundra.java
 * `./code/jars/TundraConfiguration.jar` - http://github.com/Permafrost/TundraConfiguration.java
 * `./code/jars/TundraCSV.jar` - http://github.com/Permafrost/TundraCSV.java
+* `./code/jars/TundraHjson.jar` - http://github.com/Permafrost/TundraHjson.java
 * `./code/jars/TundraHTML.jar` - http://github.com/Permafrost/TundraHTML.java
 * `./code/jars/TundraHTTP.jar` - http://github.com/Permafrost/TundraHTTP.java
 * `./code/jars/TundraJSON.jar` - http://github.com/Permafrost/TundraJSON.java
