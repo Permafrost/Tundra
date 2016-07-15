@@ -5940,7 +5940,7 @@ serialized to clean [HTML] table elements.
 
 ### tundra.html:encode
 
-HTML encodes the given string.
+[HTML] encodes the given string.
 
 Reserved characters in [HTML], such as `<` and `>`, are encoded to the
 appropriate [HTML entity], such as `&lt;` and `&gt;`, to ensure the [HTML]
@@ -13759,6 +13759,23 @@ Implemented with the [Apache Santuario] XML Security library.
 
 ---
 
+### tundra.xml:decode
+
+[XML] decodes the given string.
+
+[XML entities], such as `&lt;` and `&gt;`, are decoded to the
+appropriate character representation, such as `<` and `>`.
+
+#### Inputs:
+
+* `$string` is an optional string to be [XML] decoded.
+
+#### Outputs:
+
+* `$string` is the given string with [XML entities] decoded.
+
+---
+
 ### tundra.xml:emit
 
 Serializes an [org.w3c.dom.Node] object, known as a node in
@@ -13776,6 +13793,25 @@ webMethods parlance, to an [XML] string, byte array, or input stream.
 
 * `$content` is the given [org.w3c.dom.Node] object serialized to
   [XML].
+
+---
+
+### tundra.xml:encode
+
+[XML] encodes the given string.
+
+Reserved characters in [XML], such as `<` and `>`, are encoded to the
+appropriate [XML entity], such as `&lt;` and `&gt;`, to ensure the [XML]
+is rendered correctly by web browsers and other [XML] rendering
+software.
+
+#### Inputs:
+
+* `$string` is an optional string to be [XML] encoded.
+
+#### Outputs:
+
+* `$string` is the given string with special characters [XML] encoded.
 
 ---
 
@@ -14199,6 +14235,8 @@ Copyright &copy; 2012 Lachlan Dowding. See the [LICENSE] file for further detail
 [webMethods Integration Server]: <http://www.softwareag.com/corporate/products/wm/integration/products/ai/overview/default.asp>
 [webMethods Trading Networks]: <http://www.softwareag.com/corporate/products/wm/integration/products/b2b/overview/default.asp>
 [XML]: <http://www.w3.org/XML/>
+[XML entities]: <http://www.w3.org/TR/html4/sgml/entities.html>
+[XML entity]: <http://www.w3.org/TR/html4/sgml/entities.html>
 [XPath]: <http://www.w3.org/TR/xpath/>
 [XPath expression]: <http://www.w3.org/TR/xpath/>
 [XSD]: <http://www.w3.org/XML/Schema>

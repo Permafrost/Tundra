@@ -90,26 +90,25 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">### tundra.html:encode
+  <value name="node_comment">### tundra.xml:decode
 
-[HTML] encodes the given string.
+[XML] decodes the given string.
 
-Reserved characters in [HTML], such as &lt; and &gt;, are encoded to the
-appropriate [HTML entity], such as &amp;lt; and &amp;gt;, to ensure the [HTML]
-is rendered correctly by web browsers and other [HTML] rendering
-software.
+[XML entities], such as &amp;lt; and &amp;gt;, are decoded to the
+appropriate character representation, such as &lt; and &gt;.
 
 #### Inputs:
 
-* $string is an optional string to be [HTML] encoded.
+* $string is an optional string to be [XML] decoded.
 
 #### Outputs:
 
-* $string is the given string with special characters [HTML] encoded.
+* $string is the given string with [XML entities] decoded.
 
-[HTML entity]: &lt;http://www.w3.org/TR/html4/sgml/entities.html&gt;
-[HTML]: &lt;http://en.wikipedia.org/wiki/HTML&gt;</value>
-  <value name="stateless">yes</value>
+[XML]: &lt;http://www.w3.org/XML/&gt;
+[XML entities]: &lt;http://www.w3.org/TR/html4/sgml/entities.html&gt;
+</value>
+  <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
