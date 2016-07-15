@@ -128,6 +128,7 @@ Where &lt;package&gt; is the name of the package in question, and
 
 File Extension | File Format
 -------------- | --------------------------------------------
+hjson          | [Hjson]
 json           | [JSON]
 properties     | Java properties
 values         | com.wm.util.coder.IDataXMLCoder XML
@@ -172,6 +173,7 @@ refreshed from disk.
 * $configuration is an IData document containing the configuration 
   settings for the given package.
 
+[Hjson]: &lt;http://hjson.org/&gt;
 [JSON]: &lt;http://www.json.org/&gt;
 [YAML]: &lt;http://www.yaml.org&gt;
 [XML]: &lt;http://www.w3.org/XML/&gt;

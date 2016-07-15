@@ -1648,6 +1648,7 @@ Where `<package>` is the name of the package in question, and
 
 File Extension | File Format
 -------------- | --------------------------------------------
+hjson          | [Hjson]
 json           | [JSON]
 properties     | Java properties
 values         | com.wm.util.coder.IDataXMLCoder XML
@@ -14069,6 +14070,7 @@ Copyright &copy; 2012 Lachlan Dowding. See the [LICENSE] file for further detail
 [Exclusive Canonical XML Version 1.0 With Comments]: <http://www.w3.org/2001/10/xml-exc-c14n#WithComments>
 [finally block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/finally.html>
 [gzip]: <http://en.wikipedia.org/wiki/Gzip>
+[Hjson]: <http://hjson.org/>
 [HTML]: <http://en.wikipedia.org/wiki/HTML>
 [HTML entities]: <http://www.w3.org/TR/html4/sgml/entities.html>
 [HTML entity]: <http://www.w3.org/TR/html4/sgml/entities.html>
