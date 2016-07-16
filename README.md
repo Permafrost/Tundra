@@ -1653,13 +1653,9 @@ File Extension | File Format
 hjson          | [Hjson]
 json           | [JSON]
 properties     | Java properties
-values         | com.wm.util.coder.IDataXMLCoder XML
+values         | IData or Values encoded XML
+xml            | Aribtrary or IData or Values encoded XML
 yaml           | [YAML]
-
-(Arbitrary [XML] is deliberately not supported due to its use of
-implicit list structures requiring a schema for correct
-representation of single item lists, which is incompatible with
-allowing arbitrary configuration data structures.)
 
 Package configurations are cached lazily in memory: read first from
 disk on the initial invocation, and then returned from an in-memory
