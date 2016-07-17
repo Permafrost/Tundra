@@ -10314,7 +10314,7 @@ The content can be specified as a string, byte array, `IData` document,
 
 #### Inputs:
 
-* $content is arbitrary content specified as a string, byte array,
+* `$content` is arbitrary content specified as a string, byte array,
   `IData` document, `java.io.InputStream`, or `org.w3c.dom.Node` object.
 * `$message.format.name` is an optional message format name which if
   specified will skip the recognition step and instead use the
