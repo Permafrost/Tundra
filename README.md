@@ -1683,12 +1683,14 @@ refreshed from disk.
 * `$package` is the optional name of the package whose configuration
   is to be returned. If not specified, the package is automatically
   inferred from the invoking service.
-* `$refresh?` is an optional boolean which when true will force a
+* `$refresh?` is an optional boolean which when `true` will force a
   refresh of the cached configuration from disk. Defaults to `false`.
 
 #### Outputs:
 
-* `$configuration` is an IData document containing the configuration
+* `$package` is the name of the package whose configuration was
+  returned.
+* `$configuration` is an `IData` document containing the configuration
   settings for the given package.
 
 ---
