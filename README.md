@@ -12962,6 +12962,20 @@ replacement string.
 
 ---
 
+### tundra.string:reverse
+
+Reverses the order of characters in the given string.
+
+#### Input:
+
+* `$string` is a string to be reversed.
+
+#### Output:
+
+* `$string` is the reverse of the given string.
+
+---
+
 ### tundra.string:slice
 
 Returns a new string which is a subset of the characters in the given

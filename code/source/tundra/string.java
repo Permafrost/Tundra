@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-06-06 16:59:14.452
+// -----( CREATED: 2016-07-19 07:58:02.149
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -608,6 +608,29 @@ public final class string
 		    String mode = IDataUtil.getString(cursor, "$mode");
 
 		    if (string != null) IDataUtil.put(cursor, "$string", StringHelper.replace(string, pattern, replacement, literal, (!(mode == null || mode.equals("all")))));
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
+	public static final void reverse (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(reverse)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $string
+		// [o] field:0:optional $string
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    String input = IDataUtil.getString(cursor, "$string");
+		    if (input != null) IDataUtil.put(cursor, "$string", StringHelper.reverse(input));
 		} finally {
 		    cursor.destroy();
 		}
