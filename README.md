@@ -5063,6 +5063,26 @@ returning the translated document as output.
 
 ---
 
+### tundra.document:uncase
+
+Returns a recursive clone with case-insensitive keys of the given
+`IData` document.
+
+#### Inputs:
+
+* `$document` is an `IData` document to be cloned to a case-insensitive
+  representation.
+* `$locale` optionally identifies the case transformation rules to be
+  used for a given [Locale]. If not specified, the [default locale]
+  is used.
+
+#### Outputs:
+
+* `$document` is the resulting recursive clone with case-insensitive
+  keys of the given `IData` document.
+
+---
+
 ### tundra.document.value:lowercase
 
 Converts all string values in the given IData document to lower

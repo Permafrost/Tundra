@@ -114,6 +114,8 @@ bGFzcywgcmVjdXJzZSk7Cn0=</value>
     <value>java.io.IOException</value>
     <value>java.nio.charset.Charset</value>
     <value>java.util.EnumSet</value>
+    <value>java.util.Locale</value>
+    <value>permafrost.tundra.data.CaseInsensitiveElementList</value>
     <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.data.IDataXMLParser</value>
     <value>permafrost.tundra.data.ReadOnlyIDataMap</value>
@@ -125,6 +127,7 @@ bGFzcywgcmVjdXJzZSk7Cn0=</value>
     <value>permafrost.tundra.lang.CharsetHelper</value>
     <value>permafrost.tundra.lang.ClassHelper</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>
+    <value>permafrost.tundra.lang.LocaleHelper</value>
     <value>permafrost.tundra.lang.ObjectConvertMode</value>
     <value>permafrost.tundra.lang.ObjectHelper</value>
     <value>permafrost.tundra.math.IntegerHelper</value>
