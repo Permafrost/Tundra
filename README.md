@@ -11335,9 +11335,9 @@ is paused or cancelled.
       If not specified, defaults to `run immediately`.
   * `repeat` is an optional IData document containing arguments only
     applicable when the schedule type is `repeat`.
-    * `interval` is an optional duration of time determining how often
+    * `interval` is an optional [XML] duration determining how often
       the scheduled task will execute. If not specified, defaults to
-      60 seconds.
+      `PT60S` (60 seconds).
   * `complex` is an optional IData document containing arguments only
     applicable when the schedule type is `complex`.
     * `months` is an optional list of months of the year, provided as

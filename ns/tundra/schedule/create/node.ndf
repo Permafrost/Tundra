@@ -1007,9 +1007,9 @@ is paused or cancelled.
       If not specified, defaults to run immediately.
   * repeat is an optional IData document containing arguments only
     applicable when the schedule type is repeat.
-    * interval is an optional duration of time determining how often
+    * interval is an optional [XML] duration determining how often
       the scheduled task will execute. If not specified, defaults to
-      60 seconds.
+      PT60S (60 seconds).
   * complex is an optional IData document containing arguments only
     applicable when the schedule type is complex.
     * months is an optional list of months of the year, provided as
@@ -1046,7 +1046,9 @@ is paused or cancelled.
 
 * $id uniquely identifies the resulting scheduled task.
 
-[event loop]: &lt;http://en.wikipedia.org/wiki/Event_loop&gt;</value>
+[event loop]: &lt;http://en.wikipedia.org/wiki/Event_loop&gt;
+[XML]: &lt;http://www.w3.org/XML/&gt;
+</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
