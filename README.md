@@ -13183,6 +13183,13 @@ Returns information about Integration Server, such as the software
 version, environment settings, Java properties, well-known directory
 locations, and memory usage.
 
+#### Inputs:
+
+* `$refresh?` is an optional boolean which when `true` will reload the
+  system environment and system properties from the Java virtual
+  machine, and the system directories from Integration Server.
+  Defaults to `false`.
+
 #### Outputs:
 
 * `$system` is a returned `IData` document containing the software

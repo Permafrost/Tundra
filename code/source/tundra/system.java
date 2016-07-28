@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-06-24 08:42:10.468
+// -----( CREATED: 2016-07-28 13:21:08.124
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -9,6 +9,7 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.server.SystemHelper;
 // --- <<IS-END-IMPORTS>> ---
 
@@ -34,6 +35,7 @@ public final class system
 		// --- <<IS-START(reflect)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
+		// [i] field:0:optional $refresh? {&quot;false&quot;,&quot;true&quot;}
 		// [o] record:0:required $system
 		// [o] - field:0:required version
 		// [o] - record:0:required environment
@@ -59,7 +61,8 @@ public final class system
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
-		    IDataUtil.put(cursor, "$system", SystemHelper.reflect());
+		    boolean refresh = BooleanHelper.parse(IDataUtil.getString(cursor, "$refresh?"));
+		    IDataUtil.put(cursor, "$system", SystemHelper.reflect(refresh));
 		} finally {
 		    cursor.destroy();
 		}
