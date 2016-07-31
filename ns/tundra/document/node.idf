@@ -115,10 +115,10 @@ bGFzcywgcmVjdXJzZSk7Cn0=</value>
     <value>java.nio.charset.Charset</value>
     <value>java.util.EnumSet</value>
     <value>java.util.Locale</value>
-    <value>permafrost.tundra.data.CaseInsensitiveElementList</value>
+    <value>permafrost.tundra.data.CaseInsensitiveIData</value>
     <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.data.IDataXMLParser</value>
-    <value>permafrost.tundra.data.ReadOnlyIDataMap</value>
+    <value>permafrost.tundra.data.ImmutableIData</value>
     <value>permafrost.tundra.flow.ConditionEvaluator</value>
     <value>permafrost.tundra.flow.variable.SubstitutionHelper</value>
     <value>permafrost.tundra.flow.variable.SubstitutionType</value>

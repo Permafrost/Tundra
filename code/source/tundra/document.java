@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-07-25 14:40:22.168
+// -----( CREATED: 2016-08-01 09:08:50.827
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -13,10 +13,10 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.EnumSet;
 import java.util.Locale;
-import permafrost.tundra.data.CaseInsensitiveElementList;
+import permafrost.tundra.data.CaseInsensitiveIData;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.data.IDataXMLParser;
-import permafrost.tundra.data.ReadOnlyIDataMap;
+import permafrost.tundra.data.ImmutableIData;
 import permafrost.tundra.flow.ConditionEvaluator;
 import permafrost.tundra.flow.variable.SubstitutionHelper;
 import permafrost.tundra.flow.variable.SubstitutionType;
@@ -438,7 +438,7 @@ public final class document
 
 		try {
 		    IData document = IDataUtil.getIData(cursor, "$document");
-		    if (document != null) IDataUtil.put(cursor, "$document", ReadOnlyIDataMap.of(document));
+		    if (document != null) IDataUtil.put(cursor, "$document", new ImmutableIData(document));
 		} finally {
 		    cursor.destroy();
 		}
@@ -1019,7 +1019,7 @@ public final class document
 		    IData document = IDataUtil.getIData(cursor, "$document");
 		    Locale locale = LocaleHelper.toLocale(IDataUtil.getIData(cursor, "$locale"));
 
-		    if (document != null) IDataUtil.put(cursor, "$document", CaseInsensitiveElementList.of(document, locale));
+		    if (document != null) IDataUtil.put(cursor, "$document", new CaseInsensitiveIData(IDataHelper.duplicate(document, true), locale));
 		} finally {
 		    cursor.destroy();
 		}
