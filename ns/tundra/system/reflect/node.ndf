@@ -587,7 +587,7 @@ locations, and memory usage.
 
 #### Outputs:
 
-* $system is a returned IData document containing the software
+* $system is an immutable IData document containing the software
   version, environment settings, Java properties, well-known
   directory locations, and memory usage.
   * version is the Integration Server software version number for
