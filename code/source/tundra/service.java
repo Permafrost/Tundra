@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-06-06 16:56:51.748
+// -----( CREATED: 2016-08-02 16:36:58.386
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -528,7 +528,6 @@ public final class service
 
 	// provides a try/catch/finally pattern for flow services
 	public static IData ensure(String service, IData pipeline, String catchService, String finallyService) throws ServiceException {
-
 	    try {
 	        pipeline = invoke.synchronous(service, pipeline);
 	    } catch (Throwable t) {
@@ -539,20 +538,26 @@ public final class service
 	        IDataUtil.put(cursor, "$exception.message", t.getMessage());
 
 	        com.wm.app.b2b.server.InvokeState invokeState = com.wm.app.b2b.server.InvokeState.getCurrentState();
-	        IData exceptionInfo = IDataHelper.duplicate(invokeState.getErrorInfoFormatted(), true);
-	        IDataCursor ec = exceptionInfo.getCursor();
-	        String exceptionService = IDataUtil.getString(ec, "service");
-	        if (exceptionService != null) {
-	            IDataUtil.put(cursor, "$exception.service", exceptionService);
-	            com.wm.app.b2b.server.BaseService baseService = com.wm.app.b2b.server.ns.Namespace.getService(com.wm.lang.ns.NSName.create(exceptionService));
-	            if (baseService != null) {
-	                String packageName = baseService.getPackageName();
-	                IDataUtil.put(ec, "package", packageName);
-	                IDataUtil.put(cursor, "$exception.package", packageName);
+	        if (invokeState != null) {
+	            IData exceptionInfo = IDataHelper.duplicate(invokeState.getErrorInfoFormatted(), true);
+	            if (exceptionInfo != null) {
+	                IDataCursor ec = exceptionInfo.getCursor();
+	                String exceptionService = IDataUtil.getString(ec, "service");
+	                if (exceptionService != null) {
+	                    IDataUtil.put(cursor, "$exception.service", exceptionService);
+	                    com.wm.app.b2b.server.BaseService baseService = com.wm.app.b2b.server.ns.Namespace.getService(com.wm.lang.ns.NSName.create(exceptionService));
+	                    if (baseService != null) {
+	                        String packageName = baseService.getPackageName();
+	                        if (packageName != null) {
+	                            IDataUtil.put(ec, "package", packageName);
+	                            IDataUtil.put(cursor, "$exception.package", packageName);
+	                        }
+	                    }
+	                }
+	                ec.destroy();
+	                IDataUtil.put(cursor, "$exception.info", exceptionInfo);
 	            }
 	        }
-	        ec.destroy();
-	        IDataUtil.put(cursor, "$exception.info", exceptionInfo);
 
 	        IDataUtil.put(cursor, "$exception.stack", ExceptionHelper.getStackTrace(t));
 
