@@ -29,6 +29,60 @@
           <value name="is_global">false</value>
           <array name="rec_fields" type="record" depth="1">
             <record javaclass="com.wm.util.Values">
+              <value name="node_type">record</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <null name="field_usereditable"/>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="field_name">name</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">string</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">unknown</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <null name="field_usereditable"/>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="field_name">description</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">string</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
               <value name="node_type">unknown</value>
               <value name="node_comment"></value>
               <record name="node_hints" javaclass="com.wm.util.Values">
@@ -121,33 +175,6 @@
                 </array>
               </record>
               <value name="nillable">false</value>
-              <value name="form_qualified">false</value>
-              <value name="is_global">false</value>
-            </record>
-            <record javaclass="com.wm.util.Values">
-              <value name="node_type">unknown</value>
-              <value name="node_comment"></value>
-              <record name="node_hints" javaclass="com.wm.util.Values">
-                <null name="field_usereditable"/>
-                <value name="field_largerEditor">false</value>
-                <value name="field_password">false</value>
-              </record>
-              <value name="field_name">description</value>
-              <value name="field_type">string</value>
-              <value name="field_dim">0</value>
-              <value name="field_opt">true</value>
-              <record name="field_content_type" javaclass="com.wm.util.Values">
-                <value name="contentType">1</value>
-                <value name="internalType">reference</value>
-                <value name="dataTypeVersion">dtVersion2</value>
-                <array name="targetNames" type="record" depth="1">
-                  <record javaclass="com.wm.util.Values">
-                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                    <value name="ncName">string</value>
-                  </record>
-                </array>
-              </record>
-              <value name="nillable">true</value>
               <value name="form_qualified">false</value>
               <value name="is_global">false</value>
             </record>
@@ -927,17 +954,22 @@
 
 Schedules a service for execution once or periodically.
 
-The resulting scheduled task ID is added to the input pipeline
-of the scheduled service as a variable named $schedule.id,
-enabling the service itself to query its owning scheduled task.
-This can be useful if, for example, the service implements an
-[event loop] and should exit that loop if its owning schedule
-is paused or cancelled.
+The resulting scheduled task ID is added to the input pipeline of 
+the scheduled service as a variable named $schedule.id, enabling the 
+service itself to query its owning scheduled task. This can be 
+useful if, for example, the service implements an [event loop] and 
+should exit that loop if its owning schedule is paused or cancelled.
 
 #### Inputs:
 
-* $schedule is an IData document representing the task to be
+* $schedule is an IData document representing the task to be 
   scheduled.
+  * name is an optional unique identity for this scheduled task, 
+    provided by the creator of the task. This value will be added to 
+    the input pipeline of the resulting scheduled task as 
+    $schedule.name, and provides easy identification for the creator 
+    of instances of this task post-creation.
+  * description is an optional description of the scheduled task.
   * type describes the type of schedule to be created, and is
     a choice of the following:
     * once will schedule the service to execute one time only
@@ -949,7 +981,6 @@ is paused or cancelled.
       months of the year.
   * service is the fully-qualified name of the service to be
     scheduled for execution.
-  * description is an optional description of the scheduled task.
   * target optionally identifies the server or servers to execute
     the service on. Either specify a specific hostname:port to
     execute the service on, or one of the following values:
@@ -1033,10 +1064,10 @@ is paused or cancelled.
   * pipeline is an optional IData document containing the input
     arguments used as the input pipeline when executing the service.
 * $singleton? is an optional boolean which when true indicates that
-  only one scheduled task should ever exist for this service, and
-  therefore any existing scheduled tasks for this service will be
-  first removed prior to creating a new scheduled task. Defaults
-  to false.
+  only one scheduled task should ever exist for this name, if 
+  specified, or this service if no name is specified, and therefore 
+  any existing instances of this scheduled task will be first 
+  removed prior to creating a new scheduled task. Defaults to false.
 * $enabled? is an optional boolean which when true indicates that
   the scheduled task should be created in an active state, and
   when false indicates that the scheduled task should be created
@@ -1044,7 +1075,8 @@ is paused or cancelled.
 
 #### Outputs:
 
-* $id uniquely identifies the resulting scheduled task.
+* $id is the internal unique identity assigned by Integration Server 
+  to the resulting scheduled task.
 
 [event loop]: &lt;http://en.wikipedia.org/wiki/Event_loop&gt;
 [XML]: &lt;http://www.w3.org/XML/&gt;

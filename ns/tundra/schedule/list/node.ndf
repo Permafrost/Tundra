@@ -17,11 +17,38 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
+            <null name="field_usereditable"/>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="field_name">$name</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">string</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
             <value name="field_usereditable">true</value>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$filter</value>
+          <value name="field_name">$service</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -50,7 +77,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$service</value>
+          <value name="field_name">$filter</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -120,6 +147,60 @@
                 </array>
               </record>
               <value name="nillable">false</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">unknown</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <null name="field_usereditable"/>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="field_name">name</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">string</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">unknown</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <null name="field_usereditable"/>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="field_name">description</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">string</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">true</value>
               <value name="form_qualified">false</value>
               <value name="is_global">false</value>
             </record>
@@ -228,33 +309,6 @@
                 <value name="field_password">false</value>
               </record>
               <value name="field_name">package</value>
-              <value name="field_type">string</value>
-              <value name="field_dim">0</value>
-              <value name="field_opt">true</value>
-              <record name="field_content_type" javaclass="com.wm.util.Values">
-                <value name="contentType">1</value>
-                <value name="internalType">reference</value>
-                <value name="dataTypeVersion">dtVersion2</value>
-                <array name="targetNames" type="record" depth="1">
-                  <record javaclass="com.wm.util.Values">
-                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                    <value name="ncName">string</value>
-                  </record>
-                </array>
-              </record>
-              <value name="nillable">true</value>
-              <value name="form_qualified">false</value>
-              <value name="is_global">false</value>
-            </record>
-            <record javaclass="com.wm.util.Values">
-              <value name="node_type">unknown</value>
-              <value name="node_comment"></value>
-              <record name="node_hints" javaclass="com.wm.util.Values">
-                <null name="field_usereditable"/>
-                <value name="field_largerEditor">false</value>
-                <value name="field_password">false</value>
-              </record>
-              <value name="field_name">description</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
               <value name="field_opt">true</value>
@@ -1024,17 +1078,24 @@
   </record>
   <value name="node_comment">### tundra.schedule:list
 
-Returns a list of all scheduled tasks that satisfy the given $filter
-condition, or every task if no $filter is specified.
+Returns a list of all scheduled tasks that satisfy the given inputs, 
+or every task if no inputs were specified.
 
 #### Inputs:
 
+* $name is an optional name given to the scheduled task by the 
+  creator, which is stored in the input pipeline of the task by 
+  tundra.schedule:create as $schedule.name, which if specified 
+  will filter the returned list to only be scheduled tasks with 
+  this name.
+* $service is an optional fully-qualified service name which, if 
+  specified, will filter the returned list to only be scheduled 
+  tasks that execute this service.
 * $filter is an optional tundra.condition:evaluate conditional
   statement, used to filter the list of scheduled tasks returned. The
-  conditional statement is evaluated against the pipeline, which
-  includes the task being evaluated as an IData document named
-  $schedule with the same structure as returned by
-  tundra.schedule:get.
+  conditional statement is evaluated against the pipeline, which 
+  includes the task being evaluated as an IData document named 
+  $schedule with the same structure returned by tundra.schedule:get.
 
   Examples of some filter strings are as follows:
 
@@ -1052,19 +1113,19 @@ condition, or every task if no $filter is specified.
 
      %$schedule/status%=="suspended" and %$schedule/service%==%svc%
 
-  Refer to the tundra.condition:evaluate service documentation for the
-  format of conditional statements.
-* $service is an optional fully-qualified service name which, if specified,
-  will filter the returned list to only be scheduled tasks that execute this
-  service.
+  Refer to the tundra.condition:evaluate service documentation for 
+  the format of conditional statements.
+
 
 #### Outputs:
 
-* $schedules is a document list (IData[]) containing the details of all
-  the scheduled tasks that satisfy the given $filter, or every
-  scheduled task known to the task scheduler on this Integration Server
-  if no $filter is specified.
+* $schedules is an IData[] document list containing the details of 
+  all the scheduled tasks that satisfy the given inputs, or every
+  scheduled task known to the task scheduler on this Integration 
+  Server if no inputs were specified.
   * id is the identifying string for this scheduled task.
+  * name is the name assigned to this scheduled task by the creator.
+  * description is an optional description of the scheduled task.
   * type is the type of schedule, a choice of one of the following:
     * once is a schedule that executes one time only at the specified
       start datetime.
@@ -1076,7 +1137,6 @@ condition, or every task if no $filter is specified.
     the schedule.
   * package is the name of the package the scheduled service is a
     member of.
-  * description is an optional description of the scheduled task.
   * target identifies the server or servers the schedule executes
     the service on, provided either as a specific hostname:port, or
     one of the following values:
@@ -1144,15 +1204,14 @@ condition, or every task if no $filter is specified.
       not specified, the schedule executes every minute.
   * pipeline is an optional IData document containing the input
     arguments used as the input pipeline when executing the service.
-  * status is the current status of the scheduled task, and is a choice
-    of one of the following:
+  * status is the current status of the scheduled task, and is a 
+    choice of one of the following:
     * cancelled
     * running
     * suspended
     * waiting
   * next is the datetime of the next scheduled execution of the
     service, if applicable.
-
 </value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>

@@ -46,16 +46,14 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <value name="field_usereditable">true</value>
+            <null name="field_usereditable"/>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$filter</value>
+          <value name="field_name">$name</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
-          <array name="field_options" type="value" depth="1">
-          </array>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <value name="contentType">1</value>
             <value name="internalType">reference</value>
@@ -100,6 +98,35 @@
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
         </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_usereditable">true</value>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="field_name">$filter</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <array name="field_options" type="value" depth="1">
+          </array>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">string</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
       </array>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
@@ -115,24 +142,27 @@
   </record>
   <value name="node_comment">### tundra.schedule:suspend
 
-Suspends (or pauses) either the scheduled task identified by the given
-$id, or every scheduled task that satisfies the given $filter
-condition.
+Suspends the execution of one or more scheduled tasks identified by 
+the given identity, or name, service, and filter condition.
 
-Suspended tasks do not execute for the period they are suspended. To start
-executing a suspended task according to its schedule, it should be resumed
-using tundra.schedule:resume.
+Suspended tasks do not execute for the period they are suspended. To 
+start executing a suspended task according to its schedule, it 
+should be resumed using tundra.schedule:resume.
 
-Attempting to suspend tasks that are already suspended has no effect on the
-task, and results in no exception being thrown.
-
-The $id and $filter inputs are mutually exclusive: only one should be
-specified.
+Attempting to suspend tasks that are already suspended has no effect 
+on the task, and results in no exception being thrown.
 
 #### Inputs:
 
-* $id is an optional string identifier which identifies the schedule
-  task to be suspend.
+* $id is the internal identity assigned by Integration Server to 
+  the task when it was created. When specified, other input 
+  arguments are ignored.
+* $name is an optional name given to the scheduled task by the 
+  creator, which is stored in the input pipeline of the task by 
+  tundra.schedule:create as $schedule.name.
+* $service is an optional fully-qualified service name which, if 
+  specified, will filter the scheduled tasks to be removed to only 
+  those that execute this service.
 * $filter is an optional tundra.condition:evaluate conditional
   statement. All scheduled tasks which satisfy the given filter
   condition will be suspended. The conditional statement is evaluated
@@ -160,7 +190,6 @@ specified.
 * $service is an optional fully-qualified service name which, if specified,
   will filter the scheduled tasks to be suspended to only those that execute
   this service.
-
 </value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>

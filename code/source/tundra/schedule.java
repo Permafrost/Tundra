@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-06-06 16:54:47.357
+// -----( CREATED: 2016-08-04 12:00:57.983
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -42,12 +42,19 @@ public final class schedule
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $id
+		// [i] field:0:optional $name
 		// [o] field:0:required $exists?
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
 		    String id = IDataUtil.getString(cursor, "$id");
-		    IDataUtil.put(cursor, "$exists?", BooleanHelper.emit(exists(id)));
+		    String name = IDataUtil.getString(cursor, "$name");
+
+		    if (id != null) {
+		        IDataUtil.put(cursor, "$exists?", BooleanHelper.emit(exists(id)));
+		    } else {
+		        IDataUtil.put(cursor, "$exists?", BooleanHelper.emit(existsByName(name)));
+		    }
 		} finally {
 		    cursor.destroy();
 		}
@@ -65,12 +72,14 @@ public final class schedule
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $id
+		// [i] field:0:optional $name
 		// [o] record:0:optional $schedule
 		// [o] - field:0:required id
+		// [o] - field:0:optional name
+		// [o] - field:0:optional description
 		// [o] - field:0:required type {&quot;complex&quot;,&quot;once&quot;,&quot;repeat&quot;}
 		// [o] - field:0:required service
 		// [o] - field:0:optional package
-		// [o] - field:0:optional description
 		// [o] - field:0:required target
 		// [o] - field:0:required user
 		// [o] - field:0:optional start
@@ -94,8 +103,15 @@ public final class schedule
 
 		try {
 		    String id = IDataUtil.getString(cursor, "$id");
-		    IData schedule = get(id);
-		    if (schedule != null) IDataUtil.put(cursor, "$schedule", schedule);
+		    String name = IDataUtil.getString(cursor, "$name");
+
+		    if (id != null) {
+		        IData schedule = get(id);
+		        if (schedule != null) IDataUtil.put(cursor, "$schedule", schedule);
+		    } else if (name != null) {
+		        IData schedule = getByName(name);
+		        if (schedule != null) IDataUtil.put(cursor, "$schedule", schedule);
+		    }
 		} finally {
 		    cursor.destroy();
 		}
@@ -112,8 +128,9 @@ public final class schedule
 		// --- <<IS-START(list)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional $filter
+		// [i] field:0:optional $name
 		// [i] field:0:optional $service
+		// [i] field:0:optional $filter
 		// [o] record:1:optional $schedules
 		// [o] - field:0:required id
 		// [o] - field:0:required type {&quot;complex&quot;,&quot;once&quot;,&quot;repeat&quot;}
@@ -142,10 +159,11 @@ public final class schedule
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
-		    String filter = IDataUtil.getString(cursor, "$filter");
+		    String name = IDataUtil.getString(cursor, "$name");
 		    String service = IDataUtil.getString(cursor, "$service");
+		    String filter = IDataUtil.getString(cursor, "$filter");
 
-		    IData[] schedules = list(service, filter, pipeline);
+		    IData[] schedules = list(name, service, filter, pipeline);
 
 		    if (schedules != null && schedules.length > 0) IDataUtil.put(cursor, "$schedules", schedules);
 		} finally {
@@ -157,6 +175,13 @@ public final class schedule
 	}
 
 	// --- <<IS-START-SHARED>> ---
+	// returns the scheduled task identified by the given name, or null if no
+	// task for that name exists
+	public static IData getByName(String name) throws ServiceException {
+	    IData[] results = list(name, null, null, null);
+	    return results != null && results.length > 0 ? results[0] : null;
+	}
+
 	// returns the scheduled task identified by the given id, or null if no
 	// task for that id exists
 	public static IData get(String id) throws ServiceException {
@@ -251,11 +276,19 @@ public final class schedule
 	    cursor = output.getCursor();
 
 	    IDataUtil.put(cursor, "id", id);
+	    if (inputs != null) {
+	        IDataCursor inputCursor = inputs.getCursor();
+	        String name = IDataUtil.getString(inputCursor, "$schedule.name");
+	        inputCursor.destroy();
+
+	        if (name != null) IDataUtil.put(cursor, "name", name);
+	    }
+
+	    if (description != null) IDataUtil.put(cursor, "description", description);
 	    IDataUtil.put(cursor, "type", type);
 	    IDataUtil.put(cursor, "service", service);
 	    String packageName = getPackageName(service);
 	    if (packageName != null) IDataUtil.put(cursor, "package", packageName);
-	    if (description != null) IDataUtil.put(cursor, "description", description);
 	    IDataUtil.put(cursor, "target", target);
 	    IDataUtil.put(cursor, "user", user);
 
@@ -342,6 +375,12 @@ public final class schedule
 	    return ids != null && ids.length > 0 && java.util.Arrays.binarySearch(ids, id) >= 0;
 	}
 
+	// returns true if a scheduled task with the given id exists, false otherwise
+	public static boolean existsByName(String name) throws ServiceException {
+	    if (name == null) return false;
+	    return getByName(name) != null;
+	}
+
 	// returns all scheduled tasks matching the given filter condition
 	public static IData[] list(String filter, IData pipeline) throws ServiceException {
 	    return list(null, filter, pipeline);
@@ -349,6 +388,11 @@ public final class schedule
 
 	// returns all scheduled tasks matching the given service and filter condition
 	public static IData[] list(String service, String filter, IData pipeline) throws ServiceException {
+	    return list(null, service, filter, pipeline);
+	}
+
+	// returns all scheduled tasks matching the given service and filter condition
+	public static IData[] list(String name, String service, String filter, IData pipeline) throws ServiceException {
 	    if (pipeline == null) pipeline = IDataFactory.create();
 
 	    String[] ids = listIDs();
@@ -359,6 +403,14 @@ public final class schedule
 	        IData task = get(ids[i]);
 
 	        boolean matched = true;
+
+	        if (name != null) {
+	            IDataCursor cursor = task.getCursor();
+	            String taskName = IDataUtil.getString(cursor, "name");
+	            cursor.destroy();
+
+	            matched = matched && name.equals(taskName);
+	        }
 
 	        if (service != null) {
 	            IDataCursor cursor = task.getCursor();

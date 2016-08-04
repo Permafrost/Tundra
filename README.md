@@ -11266,6 +11266,11 @@ is paused or cancelled.
 
 * `$schedule` is an IData document representing the task to be
   scheduled.
+  * `name` is an optional unique identity for this scheduled task,
+    provided by the creator of the task. This value will be added to
+    the input pipeline of the resulting scheduled task as
+    `$schedule.name`, and provides easy identification for the creator
+    of instances of this task post-creation.
   * `type` describes the type of schedule to be created, and is
     a choice of the following:
     * `once` will schedule the service to execute one time only
@@ -11360,11 +11365,11 @@ is paused or cancelled.
       not specified, the schedule will execute every minute.
   * `pipeline` is an optional IData document containing the input
     arguments used as the input pipeline when executing the service.
-* `$singleton?` is an optional boolean which when true indicates that
-  only one scheduled task should ever exist for this service, and
-  therefore any existing scheduled tasks for this service will be
-  first removed prior to creating a new scheduled task. Defaults
-  to false.
+* `$singleton?` is an optional boolean which when `true` indicates that
+  only one scheduled task should ever exist for this `name`, if
+  specified, or this `service` if no `name` is specified, and therefore
+  any existing instances of this scheduled task will be first
+  removed prior to creating a new scheduled task. Defaults to `false`.
 * `$enabled?` is an optional boolean which when `true` indicates that
   the scheduled task should be created in an active state, and
   when `false` indicates that the scheduled task should be created
@@ -11378,35 +11383,48 @@ is paused or cancelled.
 
 ### tundra.schedule:exists
 
-Returns true if a scheduled task with the given `$id` exists in
-the task scheduler on this Integration Server.
+Returns true if a scheduled task with the given identity or name
+exists in the task scheduler on this Integration Server.
 
 #### Inputs:
 
-* `$id` is an optional string identifier.
+* `$id` is the internal identity assigned by Integration Server to
+  the task when it was created.  When specified, other input
+  arguments are ignored.
+* `$name` is an optional name given to the scheduled task by the
+  creator, which is stored in the input pipeline of the task by
+  `tundra.schedule:create` as `$schedule.name`.
 
 #### Outputs:
 
-* `$exists?` is a boolean indicating if a scheduled task
-  identified by the given `$id` exists in the task scheduler
-  of this Integration Server.
+* `$exists?` is a boolean indicating if a scheduled task identified by
+  the given `$id` or `$name` (in order or precedence) exists in the task
+  scheduler of this Integration Server.
+
 
 ---
 
 ### tundra.schedule:get
 
-Returns the details of the scheduled task identified by the given `$id`,
-or nothing if no task with that `$id` exists.
+Returns the details of the scheduled task identified by the given
+identity or name.
 
 #### Inputs:
 
-* `$id` is an optional string identifier.
+* `$id` is the internal identity assigned by Integration Server to
+  the task when it was created. When specified, other input
+  arguments are ignored.
+* `$name` is an optional name given to the scheduled task by the
+  creator, which is stored in the input pipeline of the task by
+  `tundra.schedule:create` as `$schedule.name`.
 
 #### Outputs:
 
 * `$schedule` is an IData document containing the details of the
   scheduled task identified by the given `$id`, if it exists.
   * `id` is the identifying string for this scheduled task.
+  * `name` is the name assigned to this scheduled task by the creator.
+  * `description` is an optional description of the scheduled task.
   * `type` is the type of schedule, a choice of one of the following:
     * `once` is a schedule that executes one time only at the specified
       start datetime.
@@ -11418,7 +11436,6 @@ or nothing if no task with that `$id` exists.
     the schedule.
   * `package` is the name of the package the scheduled `service` is a
     member of.
-  * `description` is an optional description of the scheduled task.
   * `target` identifies the server or servers the schedule executes
     the service on, provided either as a specific `hostname:port`, or
     one of the following values:
@@ -11486,8 +11503,8 @@ or nothing if no task with that `$id` exists.
       not specified, the schedule executes every minute.
   * `pipeline` is an optional IData document containing the input
     arguments used as the input pipeline when executing the service.
-  * `status` is the current status of the scheduled task, and is a choice
-    of one of the following:
+  * `status` is the current status of the scheduled task, and is a
+    choice of one of the following:
     * `cancelled`
     * `running`
     * `suspended`
@@ -11499,11 +11516,19 @@ or nothing if no task with that `$id` exists.
 
 ### tundra.schedule:list
 
-Returns a list of all scheduled tasks that satisfy the given `$filter`
-condition, or every task if no `$filter` is specified.
+Returns a list of all scheduled tasks that satisfy the given inputs,
+or every task if no inputs were specified.
 
 #### Inputs:
 
+* `$name` is an optional name given to the scheduled task by the
+  creator, which is stored in the input pipeline of the task by
+  `tundra.schedule:create` as `$schedule.name`, which if specified
+  will filter the returned list to only be scheduled tasks with
+  this name.
+* `$service` is an optional fully-qualified service name which, if
+  specified, will filter the returned list to only be scheduled
+  tasks that execute this service.
 * `$filter` is an optional `tundra.condition:evaluate` conditional
   statement, used to filter the list of scheduled tasks returned. The
   conditional statement is evaluated against the pipeline, which
@@ -11529,17 +11554,16 @@ condition, or every task if no `$filter` is specified.
 
   Refer to the `tundra.condition:evaluate` service documentation for the
   format of conditional statements.
-* `$service` is an optional fully-qualified service name which, if specified,
-  will filter the returned list to only be scheduled tasks that execute this
-  service.
 
 #### Outputs:
 
-* `$schedules` is a document list (IData[]) containing the details of all
-  the scheduled tasks that satisfy the given `$filter`, or every
+* `$schedules` is a `IData[]` document list containing the details of all
+  the scheduled tasks that satisfy the given inputs, or every
   scheduled task known to the task scheduler on this Integration Server
-  if no `$filter` is specified.
+  if no inputs were specified.
   * `id` is the identifying string for this scheduled task.
+  * `name` is the name assigned to this scheduled task by the creator.
+  * `description` is an optional description of the scheduled task.
   * `type` is the type of schedule, a choice of one of the following:
     * `once` is a schedule that executes one time only at the specified
       start datetime.
@@ -11551,7 +11575,6 @@ condition, or every task if no `$filter` is specified.
     the schedule.
   * `package` is the name of the package the scheduled `service` is a
     member of.
-  * `description` is an optional description of the scheduled task.
   * `target` identifies the server or servers the schedule executes
     the service on, provided either as a specific hostname:port, or
     one of the following values:
@@ -11619,8 +11642,8 @@ condition, or every task if no `$filter` is specified.
       not specified, the schedule executes every minute.
   * `pipeline` is an optional IData document containing the input
     arguments used as the input pipeline when executing the service.
-  * `status` is the current status of the scheduled task, and is a choice
-    of one of the following:
+  * `status` is the current status of the scheduled task, and is a
+    choice of one of the following:
     * `cancelled`
     * `running`
     * `suspended`
@@ -11632,17 +11655,20 @@ condition, or every task if no `$filter` is specified.
 
 ### tundra.schedule:remove
 
-Deletes (or cancels) either the scheduled task identified by the given
-`$id`, or every scheduled task that satisfies the given `$filter`
-condition.
-
-The `$id` and `$filter` input arguments are mutually exclusive: only one
-should be specified.
+Deletes one or more scheduled tasks identified by the given identity,
+or name, service, and filter condition.
 
 #### Inputs:
 
-* `$id` is an optional string identifier which identifies the schedule
-  task to be deleted.
+* `$id` is the internal identity assigned by Integration Server to
+  the task when it was created. When specified, other input
+  arguments are ignored.
+* `$name` is an optional name given to the scheduled task by the
+  creator, which is stored in the input pipeline of the task by
+  `tundra.schedule:create` as `$schedule.name`.
+* `$service` is an optional fully-qualified service name which, if
+  specified, will filter the scheduled tasks to be removed to only
+  those that execute this service.
 * `$filter` is an optional `tundra.condition:evaluate` conditional
   statement. All scheduled tasks which satisfy the given filter
   condition will be deleted. The conditional statement is evaluated
@@ -11667,31 +11693,33 @@ should be specified.
 
   Refer to the `tundra.condition:evaluate` service documentation for the
   format of conditional statements.
-* `$service` is an optional fully-qualified service name which, if specified,
-  will filter the scheduled tasks to be removed to only those that execute
-  this service.
+
 ---
 
 ### tundra.schedule:resume
 
-Resumes (or unpauses) either the scheduled task identified by the given
-`$id`, or every scheduled task that satisfies the given `$filter`
+Resumes the execution of one or more paused scheduled tasks
+identified by the given identity, or name, service, and filter
 condition.
 
 Suspended tasks do not execute for the period they are suspended.
-Previously suspended tasks that are resumed will begin executing again
-according to their schedule.
+Previously suspended tasks that are resumed will begin executing
+again according to their schedule.
 
-Attempting to resume tasks which are not suspended has no effect on the
-task, and results in no exception being thrown.
-
-The `$id` and `$filter` inputs are mutually exclusive: only one should be
-specified.
+Attempting to resume tasks which are not suspended has no effect on
+the task, and results in no exception being thrown.
 
 #### Inputs:
 
-* `$id` is an optional string identifier which identifies the schedule
-  task to be resumed.
+* `$id` is the internal identity assigned by Integration Server to
+  the task when it was created. When specified, other input
+  arguments are ignored.
+* `$name` is an optional name given to the scheduled task by the
+  creator, which is stored in the input pipeline of the task by
+  `tundra.schedule:create` as `$schedule.name`.
+* `$service` is an optional fully-qualified service name which, if
+  specified, will filter the scheduled tasks to be removed to only
+  those that execute this service.
 * `$filter` is an optional `tundra.condition:evaluate` conditional
   statement. All scheduled tasks which satisfy the given filter
   condition will be resumed. The conditional statement is evaluated
@@ -11716,32 +11744,32 @@ specified.
 
   Refer to the `tundra.condition:evaluate` service documentation for the
   format of conditional statements.
-* `$service` is an optional fully-qualified service name which, if specified,
-  will filter the scheduled tasks to be resumed to only those that execute
-  this service.
 
 ---
 
 ### tundra.schedule:suspend
 
-Suspends (or pauses) either the scheduled task identified by the given
-`$id`, or every scheduled task that satisfies the given `$filter`
-condition.
+Suspends the execution of one or more scheduled tasks identified by
+the given identity, or name, service, and filter condition.
 
-Suspended tasks do not execute for the period they are suspended. To start
-executing a suspended task according to its schedule, it should be resumed
-using `tundra.schedule:resume`.
+Suspended tasks do not execute for the period they are suspended. To
+start executing a suspended task according to its schedule, it
+should be resumed using `tundra.schedule:resume`.
 
-Attempting to suspend tasks that are already suspended has no effect on the
-task, and results in no exception being thrown.
-
-The `$id` and `$filter` inputs are mutually exclusive: only one should be
-specified.
+Attempting to suspend tasks that are already suspended has no effect
+on the task, and results in no exception being thrown.
 
 #### Inputs:
 
-* `$id` is an optional string identifier which identifies the schedule
-  task to be suspend.
+* `$id` is the internal identity assigned by Integration Server to
+  the task when it was created. When specified, other input
+  arguments are ignored.
+* `$name` is an optional name given to the scheduled task by the
+  creator, which is stored in the input pipeline of the task by
+  `tundra.schedule:create` as `$schedule.name`.
+* `$service` is an optional fully-qualified service name which, if
+  specified, will filter the scheduled tasks to be removed to only
+  those that execute this service.
 * `$filter` is an optional `tundra.condition:evaluate` conditional
   statement. All scheduled tasks which satisfy the given filter
   condition will be suspended. The conditional statement is evaluated
@@ -11766,9 +11794,6 @@ specified.
 
   Refer to the `tundra.condition:evaluate` service documentation for the
   format of conditional statements.
-* `$service` is an optional fully-qualified service name which, if specified,
-  will filter the scheduled tasks to be suspended to only those that execute
-  this service.
 
 ---
 
