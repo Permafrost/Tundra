@@ -3878,6 +3878,15 @@
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
       </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$path.separator</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
     </array>
   </record>
 </Values>
@@ -4014,6 +4023,24 @@
 </Values>
 </DATA>
 </MAPSET>
+
+<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$path.separator;1;0">
+  <DATA ENCODING="XMLValues" I18N="true">
+
+<Values version="2.0">
+  <value name="xml">/</value>
+  <record name="type" javaclass="com.wm.util.Values">
+    <value name="node_type">record</value>
+    <value name="field_name">$path.separator</value>
+    <value name="field_type">string</value>
+    <value name="field_dim">0</value>
+    <value name="nillable">true</value>
+    <value name="form_qualified">false</value>
+    <value name="is_global">false</value>
+  </record>
+</Values>
+</DATA>
+</MAPSET>
 </MAP>
 
 <INVOKE TIMEOUT="" SERVICE="tundra.list.string:join" VALIDATE-IN="$none" VALIDATE-OUT="$none">
@@ -4133,6 +4160,15 @@
         <value name="node_type">unknown</value>
         <value name="field_name">$content.original</value>
         <value name="field_type">object</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$response.type</value>
+        <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
@@ -4357,6 +4393,15 @@
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
       </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$path.separator</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
     </array>
   </record>
 </Values>
@@ -4367,41 +4412,8 @@
 <MAPCOPY NAME="Link" FROM="/$destination;2;0/path;1;1" TO="/$list;1;1">
 </MAPCOPY>
 
-<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$separator;1;0">
-  <DATA ENCODING="XMLValues" I18N="true">
-
-<Values version="2.0">
-  <value name="xml">/</value>
-  <record name="type" javaclass="com.wm.util.Values">
-    <value name="node_type">record</value>
-    <value name="node_comment"></value>
-    <record name="node_hints" javaclass="com.wm.util.Values">
-      <null name="field_usereditable"/>
-      <value name="field_largerEditor">false</value>
-      <value name="field_password">false</value>
-    </record>
-    <value name="field_name">$separator</value>
-    <value name="field_type">string</value>
-    <value name="field_dim">0</value>
-    <value name="field_opt">true</value>
-    <record name="field_content_type" javaclass="com.wm.util.Values">
-      <value name="contentType">1</value>
-      <value name="internalType">reference</value>
-      <value name="dataTypeVersion">dtVersion2</value>
-      <array name="targetNames" type="record" depth="1">
-        <record javaclass="com.wm.util.Values">
-          <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-          <value name="ncName">string</value>
-        </record>
-      </array>
-    </record>
-    <value name="nillable">true</value>
-    <value name="form_qualified">false</value>
-    <value name="is_global">false</value>
-  </record>
-</Values>
-</DATA>
-</MAPSET>
+<MAPCOPY FROM="/$path.separator;1;0" TO="/$separator;1;0">
+</MAPCOPY>
 </MAP>
 
 <MAP MODE="OUTPUT">
@@ -4472,6 +4484,15 @@
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$response.type</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
@@ -4505,15 +4526,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="field_name">transfertype</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
         <value name="field_name">$path</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4523,7 +4535,25 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="field_name">transfertype</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
         <value name="field_name">transfermode</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$path.separator</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -4604,16 +4634,16 @@
 
   <!-- nodes -->
 
-<MAPCOPY NAME="Link" FROM="/$result;1;0" TO="/$path;1;0">
-</MAPCOPY>
-
 <MAPDELETE NAME="Dropper" FIELD="/$result;1;0">
 </MAPDELETE>
 
 <MAPDELETE NAME="Dropper" FIELD="/$list;1;1">
 </MAPDELETE>
 
-<MAPDELETE NAME="Dropper" FIELD="/$separator;1;0">
+<MAPCOPY FROM="/$result;1;0" TO="/$path;1;0">
+</MAPCOPY>
+
+<MAPDELETE FIELD="/$separator;1;0">
 </MAPDELETE>
 </MAP>
 </INVOKE>
@@ -4741,6 +4771,15 @@
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$response.type</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
@@ -4774,7 +4813,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="field_name">transfertype</value>
+        <value name="field_name">$path</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -4783,7 +4822,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="field_name">$path</value>
+        <value name="field_name">transfertype</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -4799,6 +4838,24 @@
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
       </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$path.separator</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$separator</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
     </array>
   </record>
 </Values>
@@ -4806,46 +4863,17 @@
 
   <!-- nodes -->
 
-<MAPCOPY NAME="Link" FROM="/$path;1;0" TO="/$list[1];1;1">
+<MAPCOPY NAME="Link" FROM="/$path;1;0" TO="/$list[1];1;1" CONDITION="%$path% != $null">
 </MAPCOPY>
 
-<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$list;1;1">
-  <DATA ENCODING="XMLValues" I18N="true">
+<MAPCOPY FROM="/$path.separator;1;0" TO="/$list[0];1;1">
+</MAPCOPY>
 
-<Values version="2.0">
-  <array name="xml" type="value" depth="1">
-    <value>/</value>
-  </array>
-  <record name="type" javaclass="com.wm.util.Values">
-    <value name="node_type">record</value>
-    <value name="node_comment"></value>
-    <record name="node_hints" javaclass="com.wm.util.Values">
-      <value name="field_largerEditor">false</value>
-      <value name="field_password">false</value>
-    </record>
-    <value name="field_name">$list</value>
-    <value name="field_type">string</value>
-    <value name="field_dim">1</value>
-    <value name="field_opt">true</value>
-    <record name="field_content_type" javaclass="com.wm.util.Values">
-      <value name="contentType">1</value>
-      <value name="internalType">reference</value>
-      <value name="dataTypeVersion">dtVersion2</value>
-      <array name="targetNames" type="record" depth="1">
-        <record javaclass="com.wm.util.Values">
-          <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-          <value name="ncName">string</value>
-        </record>
-      </array>
-    </record>
-    <value name="nillable">true</value>
-    <value name="form_qualified">false</value>
-    <value name="is_global">false</value>
-    <value name="is_soap_array_encoding_used">false</value>
-  </record>
-</Values>
-</DATA>
-</MAPSET>
+<MAPDELETE FIELD="/$separator;1;0">
+</MAPDELETE>
+
+<MAPDELETE FIELD="/$path.separator;1;0">
+</MAPDELETE>
 </MAP>
 
 <MAP MODE="OUTPUT">
@@ -4907,6 +4935,15 @@
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$response.type</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
@@ -4940,7 +4977,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="field_name">transfertype</value>
+        <value name="field_name">$path</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -4949,7 +4986,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="field_name">$path</value>
+        <value name="field_name">transfertype</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -5209,6 +5246,16 @@
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
       </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">proxyAlias</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
     </array>
   </record>
 </Values>
@@ -5228,7 +5275,7 @@
         <value name="node_type">unknown</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
-          <null name="field_usereditable"/>
+          <value name="field_usereditable">true</value>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
@@ -5236,6 +5283,8 @@
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="field_opt">true</value>
+        <array name="field_options" type="value" depth="1">
+        </array>
         <record name="field_content_type" javaclass="com.wm.util.Values">
           <value name="contentType">1</value>
           <value name="internalType">reference</value>
@@ -5261,10 +5310,19 @@
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$response.type</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
-          <null name="field_usereditable"/>
+          <value name="field_usereditable">true</value>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
@@ -5272,6 +5330,8 @@
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="field_opt">true</value>
+        <array name="field_options" type="value" depth="1">
+        </array>
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
@@ -5650,15 +5710,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="field_name">transfertype</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
         <value name="field_name">$path</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5668,7 +5719,25 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="field_name">transfertype</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
         <value name="field_name">transfermode</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$path.separator</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -5861,6 +5930,15 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$response.type</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
@@ -5875,15 +5953,6 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="field_name">transfertype</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
@@ -5914,7 +5983,7 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="field_name">transfermode</value>
+        <value name="field_name">transfertype</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -5933,6 +6002,24 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
         <value name="field_name">clientTimeout</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">transfermode</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$path.separator</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -6091,7 +6178,7 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
+        <value name="node_type">field</value>
         <value name="field_name">sessionkey</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6100,7 +6187,7 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
+        <value name="node_type">field</value>
         <value name="field_name">dirpath</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6127,6 +6214,15 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="node_type">unknown</value>
         <value name="field_name">$content.original</value>
         <value name="field_type">object</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$response.type</value>
+        <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
@@ -6160,6 +6256,15 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
         <value name="field_name">transfermode</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$path.separator</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -6223,6 +6328,15 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$response.type</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
@@ -6249,16 +6363,7 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="field_name">sessionkey</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="field_name">returncode</value>
+        <value name="field_name">$path.separator</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -6285,6 +6390,24 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="field_name">sessionkey</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">field</value>
+        <value name="field_name">returncode</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">field</value>
         <value name="field_name">returnmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6293,7 +6416,7 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
+        <value name="node_type">field</value>
         <value name="field_name">logmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6318,7 +6441,7 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
+        <value name="node_type">field</value>
         <value name="field_name">returncode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6327,7 +6450,7 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
+        <value name="node_type">field</value>
         <value name="field_name">returnmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6336,7 +6459,7 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
+        <value name="node_type">field</value>
         <value name="field_name">logmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6402,7 +6525,7 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
+        <value name="node_type">field</value>
         <value name="field_name">sessionkey</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6411,7 +6534,7 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
+        <value name="node_type">field</value>
         <value name="field_name">transfermode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6424,7 +6547,7 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
+        <value name="node_type">field</value>
         <value name="field_name">content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -6433,7 +6556,7 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
+        <value name="node_type">field</value>
         <value name="field_name">localfile</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6443,7 +6566,7 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
+        <value name="node_type">field</value>
         <value name="field_name">remotefile</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6468,8 +6591,8 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="field_name">$content.original</value>
-        <value name="field_type">object</value>
+        <value name="field_name">fileName</value>
+        <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
@@ -6479,6 +6602,60 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="node_type">unknown</value>
         <value name="field_name">localfile</value>
         <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$content.original</value>
+        <value name="field_type">object</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$response.type</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$object</value>
+        <value name="field_type">object</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">transfermode</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$message</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$response</value>
+        <value name="field_type">object</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
@@ -6671,15 +6848,6 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="field_name">transfermode</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
         <value name="field_name">sessionkey</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6688,27 +6856,9 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
+        <value name="node_type">field</value>
         <value name="field_name">returncode</value>
         <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="field_name">$message</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="field_name">$response</value>
-        <value name="field_type">object</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
@@ -6756,24 +6906,17 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">record</value>
-        <value name="node_comment"></value>
-        <record name="node_hints" javaclass="com.wm.util.Values">
-          <value name="field_largerEditor">false</value>
-          <value name="field_password">false</value>
-        </record>
-        <value name="field_name">$destination</value>
-        <value name="field_type">record</value>
+        <value name="node_type">unknown</value>
+        <value name="field_name">fileName</value>
+        <value name="field_type">string</value>
         <value name="field_dim">0</value>
-        <value name="nillable">false</value>
+        <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
-        <array name="rec_fields" type="record" depth="1">
-        </array>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="field_name">transfermode</value>
+        <value name="field_name">$response.type</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -6791,8 +6934,8 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="field_name">sessionkey</value>
-        <value name="field_type">string</value>
+        <value name="field_name">$object</value>
+        <value name="field_type">object</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
@@ -6801,6 +6944,15 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
         <value name="field_name">remotefile</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">transfermode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -6826,7 +6978,32 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="node_comment"></value>
+        <record name="node_hints" javaclass="com.wm.util.Values">
+          <value name="field_largerEditor">false</value>
+          <value name="field_password">false</value>
+        </record>
+        <value name="field_name">$destination</value>
+        <value name="field_type">record</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">false</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+        <array name="rec_fields" type="record" depth="1">
+        </array>
+      </record>
+      <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="field_name">sessionkey</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">field</value>
         <value name="field_name">returncode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6835,7 +7012,7 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
+        <value name="node_type">field</value>
         <value name="field_name">returnmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6844,7 +7021,7 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
+        <value name="node_type">field</value>
         <value name="field_name">logmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6869,7 +7046,7 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
+        <value name="node_type">field</value>
         <value name="field_name">returncode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6878,7 +7055,7 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
+        <value name="node_type">field</value>
         <value name="field_name">returnmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6887,7 +7064,7 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
+        <value name="node_type">field</value>
         <value name="field_name">logmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6944,7 +7121,7 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
+        <value name="node_type">field</value>
         <value name="field_name">sessionkey</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6953,7 +7130,7 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
+        <value name="node_type">field</value>
         <value name="field_name">transfermode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6966,7 +7143,7 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
+        <value name="node_type">field</value>
         <value name="field_name">content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -6975,7 +7152,7 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
+        <value name="node_type">field</value>
         <value name="field_name">localfile</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6985,7 +7162,7 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
+        <value name="node_type">field</value>
         <value name="field_name">remotefile</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6994,7 +7171,7 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
+        <value name="node_type">field</value>
         <value name="field_name">putunique</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7024,7 +7201,70 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="field_name">fileName</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
         <value name="field_name">$content.original</value>
+        <value name="field_type">object</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$response.type</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$object</value>
+        <value name="field_type">object</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">localfile</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">transfermode</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$message</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="field_name">$response</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -7218,15 +7458,6 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="field_name">transfermode</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
         <value name="field_name">sessionkey</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7235,36 +7466,9 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="field_name">localfile</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
+        <value name="node_type">field</value>
         <value name="field_name">returncode</value>
         <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="field_name">$message</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="field_name">$response</value>
-        <value name="field_type">object</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
@@ -7335,24 +7539,17 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">record</value>
-        <value name="node_comment"></value>
-        <record name="node_hints" javaclass="com.wm.util.Values">
-          <value name="field_largerEditor">false</value>
-          <value name="field_password">false</value>
-        </record>
-        <value name="field_name">$destination</value>
-        <value name="field_type">record</value>
+        <value name="node_type">unknown</value>
+        <value name="field_name">fileName</value>
+        <value name="field_type">string</value>
         <value name="field_dim">0</value>
-        <value name="nillable">false</value>
+        <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
-        <array name="rec_fields" type="record" depth="1">
-        </array>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="field_name">transfermode</value>
+        <value name="field_name">$response.type</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -7370,8 +7567,8 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="field_name">sessionkey</value>
-        <value name="field_type">string</value>
+        <value name="field_name">$object</value>
+        <value name="field_type">object</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
@@ -7397,6 +7594,15 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="field_name">transfermode</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
         <value name="field_name">$message</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7414,7 +7620,32 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="node_comment"></value>
+        <record name="node_hints" javaclass="com.wm.util.Values">
+          <value name="field_largerEditor">false</value>
+          <value name="field_password">false</value>
+        </record>
+        <value name="field_name">$destination</value>
+        <value name="field_type">record</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">false</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+        <array name="rec_fields" type="record" depth="1">
+        </array>
+      </record>
+      <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="field_name">sessionkey</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">field</value>
         <value name="field_name">returncode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7423,7 +7654,7 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
+        <value name="node_type">field</value>
         <value name="field_name">returnmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7432,7 +7663,7 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
+        <value name="node_type">field</value>
         <value name="field_name">logmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7457,7 +7688,7 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
+        <value name="node_type">field</value>
         <value name="field_name">returncode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7466,7 +7697,7 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
+        <value name="node_type">field</value>
         <value name="field_name">returnmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7475,7 +7706,7 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
+        <value name="node_type">field</value>
         <value name="field_name">logmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -7522,7 +7753,7 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
 
   <!-- nodes -->
 
-<MAP NAME="%returncode% != 226" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="%returncode% != 226" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
@@ -7639,7 +7870,7 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
 </BRANCH>
 </SEQUENCE>
 
-<MAP NAME="$default" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="$default" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
@@ -8495,7 +8726,7 @@ PSJpc19nbG9iYWwiPmZhbHNlPC92YWx1ZT4KICA8L3JlY29yZD4KPC9WYWx1ZXM+Cg==</DATA>
 </INVOKE>
 </BRANCH>
 
-<MAP NAME="drop" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="drop" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
