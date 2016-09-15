@@ -13452,6 +13452,21 @@ Returns the default time zone for this host.
 
 ---
 
+### tundra.ulid:generate
+
+Returns a newly generated [ULID], a 128-bit universally unique
+lexicographically sortable identifier base-32 encoded to a 26
+character string.
+
+#### Outputs:
+
+* `$id` is a 26 character string representing a newly generated
+  [ULID].
+
+[ULID]: <https://github.com/alizain/ulid>
+
+---
+
 ### tundra.uri:decode
 
 Decodes a URI-encoded (application/x-www-form-urlencoded) string, according
