@@ -10354,6 +10354,26 @@ The content can be specified as a string, byte array, `IData` document,
 
 ---
 
+### tundra.message.trigger:recognize
+
+Attempts to recognize the published document in a trigger service's
+pipeline, and returns the document with a normalized variable name
+and the message format that the document is a parsed instance of.
+
+This service is designed to be invoked as the first step in a
+trigger service, and it is expected that the pipeline contains only
+one variable: the published document the trigger was invoked to
+process.
+
+#### Outputs:
+
+* `$message` is the published document with a normalized and
+  predictable variable name.
+* `$message.format` is the message format the published document was
+  recognized to be a parsed instance of.
+
+---
+
 ### tundra.mime.type:emit
 
 Emits a Multipurpose Internet Mail Extension ([MIME]) type,
