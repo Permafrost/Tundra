@@ -12002,8 +12002,8 @@ package configuration file:
   * `ref` is the document reference or schema reference to be used to
     validate content in this message format.
 * `route`
-  * `type` is the type of routing to be performance, and is a choice
-    of (currently only publish is supported):
+  * `type` is the type of routing to be performed, and is a choice
+    of:
     * `publish` routes the message to the webMethods messaging
       subsystem via `pub.publish:publish` using the `documentTypeName`
       specified in `ref`.
