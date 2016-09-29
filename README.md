@@ -11315,14 +11315,15 @@ is paused or cancelled.
     * `$any` executes the task on any server in the cluster. Choose
       this option to ensure the service is only executed once at
       any one time, but can be executed by any server in the cluster.
+      This is the default when no target is specified.
     * `$all` execute the task on all servers in the cluster. Choose
       this option when the service needs to be executed on every
       cluster node at the same time to perform, for example, clean
-      up or house keeping on every server.
-
-    If not specified, will default to `$any` if the server is a
-    member of a cluster, otherwise will default to execution on
-    the server creating the scheduled task.
+      up or house keeping on every server. If this target is
+      chosen for a server not in a cluster, it is equivalent to
+      choosing `$self`.
+    * `$self` executes the task on the same server used to create
+      the task.
   * `user` is the optional user account under which the service will
     be executed. If not specified, the service will execute under
     the `Default` user account context.
@@ -11472,6 +11473,9 @@ identity or name.
       option executes the service on every cluster node at the
       same time to perform, for example, clean up or house keeping
       on every server.
+  * `target.logical` is equal to the value of `target` except when
+    `target` is equal to the local scheduler node name in which
+    case it is set to the value `$self`.
   * `user` is the user account under which the service is executed.
   * `start` is the optional datetime from which the scheduled task
     is in effect or active. For `once` only tasks, this is the
@@ -11611,6 +11615,9 @@ or every task if no inputs were specified.
       option executes the service on every cluster node at the
       same time to perform, for example, clean up or house keeping
       on every server.
+  * `target.logical` is equal to the value of `target` except when
+    `target` is equal to the local scheduler node name in which
+    case it is set to the value `$self`.
   * `user` is the user account under which the service is executed.
   * `start` is the optional datetime from which the scheduled task
     is in effect or active. For `once` only tasks, this is the
