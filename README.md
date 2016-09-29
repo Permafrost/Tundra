@@ -10084,6 +10084,12 @@ it is for the same class of measurement such as distance or mass.
 
 ---
 
+### tundra.message.format:clear
+
+Removes all registered message formats from memory.
+
+---
+
 ### tundra.message.format:get
 
 Returns the registered message format with the given name.
