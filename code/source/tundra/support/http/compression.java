@@ -1,7 +1,7 @@
 package tundra.support.http;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-10-07 21:17:10 EST
+// -----( CREATED: 2016-09-29 12:50:13 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -28,13 +28,13 @@ public final class compression
 
 
 
-	public static final void shutdown (IData pipeline)
+	public static final void start (IData pipeline)
         throws ServiceException
 	{
-		// --- <<IS-START(shutdown)>> ---
+		// --- <<IS-START(start)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		HTTPCompressionContentHandlerFactory.unregister();
+		HTTPCompressionContentHandlerFactory.register();
 		// --- <<IS-END>> ---
 
                 
@@ -42,13 +42,13 @@ public final class compression
 
 
 
-	public static final void startup (IData pipeline)
+	public static final void stop (IData pipeline)
         throws ServiceException
 	{
-		// --- <<IS-START(startup)>> ---
+		// --- <<IS-START(stop)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		HTTPCompressionContentHandlerFactory.register();
+		HTTPCompressionContentHandlerFactory.unregister();
 		// --- <<IS-END>> ---
 
                 
