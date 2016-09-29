@@ -1,0 +1,34 @@
+{
+    http: {
+        compression: {
+            enabled: false
+        }
+        route: {
+            enabled: true
+        }
+    }
+    message: {
+        format: {
+            enabled: true
+        }
+    }
+    package: {
+        install: {
+            enabled: false
+            pattern: {
+                install: ^([^\.]+\.)*support(\.[^\.]+)*:install$
+                uninstall: ^([^\.]+\.)*support(\.[^\.]+)*:uninstall$
+            }
+        }
+    }
+    service: {
+        usage: {
+            enabled: true
+        }
+    }
+    thread: {
+        name: {
+            enabled: false
+        }
+    }
+}
