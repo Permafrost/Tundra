@@ -1,39 +1,88 @@
+# Tundra package configuration
+#
+# These settings can be overridden in this file, however
+# changes may be lost when updating to a newer version of
+# the package.
+#
+# Alternatively, these settings can be overridden using
+# a server-specific configuration file stored in the
+# server config directory: ./config/packages/Tundra.hjson.
 {
-    content: {
-        log: {
-            enabled: false
-        }
-    }
-    http: {
-        compression: {
-            enabled: false
-        }
-        route: {
-            enabled: true
-        }
-    }
-    message: {
-        format: {
-            enabled: true
-        }
-    }
-    package: {
-        install: {
-            enabled: false
-            pattern: {
-                install: ^([^\.]+\.)*support(\.[^\.]+)*:install$
-                uninstall: ^([^\.]+\.)*support(\.[^\.]+)*:uninstall$
+    # Tundra package features, which can be enabled with feature flags in
+    # this configuration section.
+    feature: {
+        content: {
+            filter: {
+                # When enabled, wraps all existing Integration Server content
+                # handlers in a proxy class that adds support for extensible
+                # content filtering.
+                enabled: false
+            }
+            log: {
+                # When enabled, logs received content to ./logs/content.log
+                # (also requires feature/content/filter to be enabled).
+                enabled: false
             }
         }
-    }
-    service: {
-        usage: {
-            enabled: true
+        http: {
+            compression: {
+                # When enabled, adds support for gzip and deflate HTTP compression
+                # by automatically decompressing the content stream on HTTP requests
+                # where Content-Encoding header is `gzip` or `deflate`
+                # (also requires feature/content/filter to be enabled).
+                enabled: false
+            }
+            route: {
+                # When enabled, adds support for arbitrary custom HTTP routing to
+                # Integration Server; routes are declared in package-level or
+                # server-level configuration files, and can be used to hide
+                # implementation details behind pretty URIs.
+                enabled: true
+            }
         }
-    }
-    thread: {
-        name: {
-            enabled: false
+        message: {
+            format: {
+                # When enabled, adds support for arbitrary message recognition
+                # via the tundra.message:receive and tundra.message:route
+                # services; intended to be similar to Trading Networks document
+                # recognition, except for internal webMethods messaging via
+                # Broker or Universal Messaging or JMS.
+                enabled: true
+            }
+        }
+        package: {
+            install: {
+                # When enabled, registers an Integration Server invoke chain
+                # processor which detects when a package is being installed
+                # or uninstalled and invokes any install or uninstall services
+                # found in the package in question.
+                enabled: false
+                pattern: {
+                    # regular expression used for finding install services in
+                    # a package
+                    install: ^([^\.]+\.)*support(\.[^\.]+)*:install$
+                    # regular expression used for finding uninstall services
+                    # in a package
+                    uninstall: ^([^\.]+\.)*support(\.[^\.]+)*:uninstall$
+                }
+            }
+        }
+        service: {
+            usage: {
+                # When enabled, adds a Solutions | Tundra > Service Usage page to
+                # the Integration Server web site, which can be used to view
+                # currently executing services, call stack, and pipelines.
+                enabled: true
+            }
+        }
+        thread: {
+            name: {
+                # When enabled, registers an Integration Server invoke chain
+                # processor which updates the current thread name to include
+                # the name of the service being executed and the time it
+                # started execution.
+                enabled: false
+            }
         }
     }
 }

@@ -1,7 +1,7 @@
 package tundra.support.content;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-10-01 14:23:59 EST
+// -----( CREATED: 2016-10-01 17:38:47 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -40,22 +40,10 @@ public final class filter
 		// --- <<IS-START(start)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] object:0:optional $content.log.enabled?
-		// [i] object:0:optional $http.compression.enabled?
-		IDataCursor cursor = pipeline.getCursor();
-		
-		try {
-		    boolean contentLogEnabled = BooleanHelper.parse(IDataUtil.get(cursor, "$content.log.enabled?"));
-		    boolean httpCompressionEnabled = BooleanHelper.parse(IDataUtil.get(cursor, "$http.compression.enabled?"));
-		
-		    List<FilterContentHandlerFactory> filters = new ArrayList<FilterContentHandlerFactory>();
-		    if (httpCompressionEnabled) filters.add(HTTPCompressionContentHandlerFactory.getInstance());
-		    if (contentLogEnabled) filters.add(LoggingContentHandlerFactory.getInstance());
-		
-		    ChainedFilterContentHandlerFactory.register(filters);
-		} finally {
-		    cursor.destroy();
-		}
+		ChainedFilterContentHandlerFactory.register(
+		    HTTPCompressionContentHandlerFactory.getInstance(),
+		    LoggingContentHandlerFactory.getInstance()
+		);
 		// --- <<IS-END>> ---
 
                 
