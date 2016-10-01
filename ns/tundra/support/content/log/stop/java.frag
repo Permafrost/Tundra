@@ -3,6 +3,5 @@
 <Values version="2.0">
   <value name="name">stop</value>
   <value name="encodeutf8">true</value>
-  <value name="body">SFRUUENvbXByZXNzaW9uQ29udGVudEhhbmRsZXJGYWN0b3J5LmdldEluc3RhbmNlKCkuc3RvcCgp
-Ow==</value>
+  <value name="body">TG9nZ2luZ0NvbnRlbnRIYW5kbGVyRmFjdG9yeS5nZXRJbnN0YW5jZSgpLnN0b3AoKTs=</value>
 </Values>

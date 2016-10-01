@@ -1,4 +1,9 @@
 {
+    content: {
+        log: {
+            enabled: false
+        }
+    }
     http: {
         compression: {
             enabled: false

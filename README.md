@@ -40,6 +40,7 @@ included in the [Tundra] package as [JAR] files in the following locations:
 * `./code/jars/TundraMeasure.jar` - http://github.com/Permafrost/TundraMeasure.java
 * `./code/jars/TundraXML.jar` - http://github.com/Permafrost/TundraXML.java
 * `./code/jars/TundraYAML.jar` - http://github.com/Permafrost/TundraYAML.java
+* `./code/jars/unbescape-1.1.3.RELEASE.jar` - http://www.unbescape.org/
 * `./code/jars/xmlsec-1.5.8.jar` - http://santuario.apache.org
 
 ## Installation

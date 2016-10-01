@@ -1,7 +1,7 @@
-package tundra.support.http;
+package tundra.support.content;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-10-01 14:10:28 EST
+// -----( CREATED: 2016-10-01 14:10:36 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -9,19 +9,19 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
-import permafrost.tundra.server.content.HTTPCompressionContentHandlerFactory;
+import permafrost.tundra.server.content.LoggingContentHandlerFactory;
 // --- <<IS-END-IMPORTS>> ---
 
-public final class compression
+public final class log
 
 {
 	// ---( internal utility methods )---
 
-	final static compression _instance = new compression();
+	final static log _instance = new log();
 
-	static compression _newInstance() { return new compression(); }
+	static log _newInstance() { return new log(); }
 
-	static compression _cast(Object o) { return (compression)o; }
+	static log _cast(Object o) { return (log)o; }
 
 	// ---( server methods )---
 
@@ -34,7 +34,7 @@ public final class compression
 		// --- <<IS-START(start)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		HTTPCompressionContentHandlerFactory.getInstance().start();
+		LoggingContentHandlerFactory.getInstance().start();
 		// --- <<IS-END>> ---
 
                 
@@ -48,7 +48,7 @@ public final class compression
 		// --- <<IS-START(stop)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		HTTPCompressionContentHandlerFactory.getInstance().stop();
+		LoggingContentHandlerFactory.getInstance().stop();
 		// --- <<IS-END>> ---
 
                 

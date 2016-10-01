@@ -4,12 +4,14 @@
   <value name="svc_type">java</value>
   <value name="svc_subtype">unknown</value>
   <value name="svc_sigtype">java 3.5</value>
-  <value name="node_comment">Installs support for HTTP compression in Integration Server by 
+  <value name="node_comment">### tundra.support.http.compression:start
+
+Enables support for HTTP compression in Integration Server by 
 wrapping all non-SOAP content handlers with a custom content 
 handler, which if the request is HTTP and includes the 
 `Content-Encoding: gzip` header it decompresses the request
-body and then calls the original content handler to handle the
-request as normal.</value>
+body and then calls the original content handler to handle 
+the request as normal.</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
