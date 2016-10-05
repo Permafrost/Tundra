@@ -1550,6 +1550,155 @@ unique items from the given [java.util.List] object.
 
 ---
 
+### tundra.collection.map.document:mapify
+
+Copies the top-level elements from the given `IData` document to a
+newly created thread-safe [java.util.Map] object, which provides
+either O(1) time cost for an unsorted map, or O(log(n)) time cost
+for a sorted map, for the contains, get, put, and remove operations.
+
+Therefore the resulting [java.util.Map] is more efficient than the
+default `IData` implementations, such as `com.wm.data.ISMemDataImpl` or
+`com.wm.data.BasicData`, which are order preserving linked lists with
+a time cost is O(n) for the same operations.
+
+Note that the resulting [java.util.Map] requires keys to be `String`
+objects and values to be `IData` objects.
+
+#### Inputs:
+
+* `$document` is an `IData` document whose top-level elements will be
+  used to seed the returned [java.util.Map] object. All values
+  are required to be `IData` objects.
+* `$sorted?` is an optional boolean which when `true` indicates that
+  the resulting [java.util.Map] should maintain its keys sorted in
+  natural ascending order. Defaults to `false`.
+
+#### Outputs:
+
+* `$map` is a new [java.util.Map] object containing all the top-level
+  elements from the given `$document`.
+
+---
+
+### tundra.collection.map.document:get
+
+Returns the value associated with the given key in the given
+[java.util.Map] object.
+
+#### Inputs:
+
+* `$map` is a [java.util.Map] object.
+* `$key` is the key whose associated value is to be returned.
+
+#### Outputs:
+
+* `$value` is the value associated with the given key in the given
+  [java.util.Map].
+
+---
+
+### tundra.collection.map.object:mapify
+
+Copies the top-level elements from the given `IData` document to a
+newly created thread-safe [java.util.Map] object, which provides
+either O(1) time cost for an unsorted map, or O(log(n)) time cost
+for a sorted map, for the contains, get, put, and remove operations.
+
+Therefore the resulting [java.util.Map] is more efficient than the
+default `IData` implementations, such as `com.wm.data.ISMemDataImpl` or
+`com.wm.data.BasicData`, which are order preserving linked lists with
+a time cost is O(n) for the same operations.
+
+Note that the resulting [java.util.Map] requires keys to be `String`
+objects.
+
+#### Inputs:
+
+* `$document` is an `IData` document whose top-level elements will be
+  used to seed the returned [java.util.Map] object.
+* `$value.class` is the optional class name identifying the class
+  that values in the resulting [java.util.Map] are required to be
+  instances of. Defaults to `Object`, if not specified.
+* `$sorted?` is an optional boolean which when `true` indicates that
+  the resulting [java.util.Map] should maintain its keys sorted in
+  natural ascending order. Defaults to `false`.
+
+#### Outputs:
+
+* `$map` is a new [java.util.Map] object containing all the top-level
+  elements from the given `$document`.
+
+---
+
+### tundra.collection.map.object:get
+
+Returns the value associated with the given key in the given
+[java.util.Map] object.
+
+#### Inputs:
+
+* `$map` is a [java.util.Map] object.
+* `$key` is the key whose associated value is to be returned.
+* `$key.class` is the class name identifying the class that keys
+  stored in the map are instances of.
+* `$value.class` is the class name identifying the class that values
+  stored in the map are instances of.
+
+#### Outputs:
+
+* `$value` is the value associated with the given key in the given
+  [java.util.Map].
+
+---
+### tundra.collection.map.string:mapify
+
+Copies the top-level elements from the given `IData` document to a
+newly created thread-safe [java.util.Map] object, which provides
+either O(1) time cost for an unsorted map, or O(log(n)) time cost
+for a sorted map, for the contains, get, put, and remove operations.
+
+Therefore the resulting [java.util.Map] is more efficient than the
+default `IData` implementations, such as `com.wm.data.ISMemDataImpl` or
+`com.wm.data.BasicData`, which are order preserving linked lists with
+a time cost is O(n) for the same operations.
+
+Note that the resulting [java.util.Map] requires both keys and
+values to be String objects.
+
+#### Inputs:
+
+* `$document` is an `IData` document whose top-level elements will be
+  used to seed the returned [java.util.Map] object. All values
+  are required to be `String` objects.
+* `$sorted?` is an optional boolean which when `true` indicates that
+  the resulting [java.util.Map] should maintain its keys sorted in
+  natural ascending order. Defaults to `false`.
+
+#### Outputs:
+
+* `$map` is a new [java.util.Map] object containing all the top-level
+  elements from the given `$document`.
+
+---
+
+### tundra.collection.map.string:get
+
+Returns the value associated with the given key in the given
+[java.util.Map] object.
+
+#### Inputs:
+
+* `$map` is a [java.util.Map] object.
+* `$key` is the key whose associated value is to be returned.
+
+#### Outputs:
+
+* `$value` is the value associated with the given key in the given
+  [java.util.Map].
+
+---
+
 ### tundra.condition:evaluate
 
 Evaluates the given condition against the pipeline (or optional scope IData
@@ -14310,6 +14459,7 @@ Copyright &copy; 2012 Lachlan Dowding. See the [LICENSE] file for further detail
 [java.util.Formatter format string]: <http://docs.oracle.com/javase/6/docs/api/java/util/Formatter.html#syntax>
 [java.util.Formatter format strings]: <http://docs.oracle.com/javase/6/docs/api/java/util/Formatter.html#syntax>
 [java.util.List]: <http://docs.oracle.com/javase/6/docs/api/java/util/List.html>
+[java.util.Map]: <https://docs.oracle.com/javase/6/docs/api/java/util/Map.html>
 [java.util.TimeZone]: <http://docs.oracle.com/javase/6/docs/api/java/util/TimeZone.html>
 [java.util.regex.Pattern]: <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html>
 [javax.activation.MimeType]: <http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html>

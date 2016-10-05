@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="node_type">interface</value>
+  <value name="node_nsName">tundra.collection.map.object</value>
+  <value name="shared">LyoqCiAqIFJldHVybnMgdGhlIHZhbHVlIGFzc29jaWF0ZWQgd2l0aCBhIGtleSBmcm9tIGEgZ2l2
+ZW4gTWFwLgogKiAKICogQHBhcmFtIHBpcGVsaW5lICAgVGhlIHBpcGVsaW5lIGNvbnRhaW5pbmcg
+dGhlIGFyZ3VtZW50cyB0byB0aGUgbWV0aG9kLgogKiBAcGFyYW0ga2xhc3MgICAgICBUaGUgY29t
+cG9uZW50IHR5cGUgb2YgdGhlIGxpc3QuCiAqIEBwYXJhbSBrZXlDbGFzcyAgIFRoZSBjbGFzcyBv
+ZiBrZXlzIHN0b3JlZCBpbiB0aGUgTWFwLgogKiBAcGFyYW0gdmFsdWVDbGFzcyBUaGUgY2xhc3Mg
+b2YgdmFsdWVzIHN0b3JlZCBpbiB0aGUgTWFwLgogKiBAcGFyYW0gPEs+ICAgICAgICBUaGUgY2xh
+c3Mgb2Yga2V5cyBzdG9yZWQgaW4gdGhlIE1hcC4KICogQHBhcmFtIDxWPiAgICAgICAgVGhlIGNs
+YXNzIG9mIHZhbHVlcyBzdG9yZWQgaW4gdGhlIE1hcC4KICovCnB1YmxpYyBzdGF0aWMgPEssIFY+
+IHZvaWQgZ2V0KElEYXRhIHBpcGVsaW5lLCBDbGFzczxLPiBrZXlDbGFzcywgQ2xhc3M8Vj4gdmFs
+dWVDbGFzcykgewogICAgSURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7
+CgogICAgdHJ5IHsKICAgICAgICBNYXA8SywgVj4gbWFwID0gKE1hcDxLLCBWPilJRGF0YVV0aWwu
+Z2V0KGN1cnNvciwgIiRtYXAiKTsKICAgICAgICBLIGtleSA9IChLKUlEYXRhVXRpbC5nZXQoY3Vy
+c29yLCAiJGtleSIpOwogICAgICAgIGlmIChtYXAgIT0gbnVsbCkgSURhdGFVdGlsLnB1dChjdXJz
+b3IsICIkdmFsdWUiLCBNYXBIZWxwZXIuZ2V0KG1hcCwga2V5KSk7CiAgICB9IGZpbmFsbHkgewog
+ICAgICAgIGN1cnNvci5kZXN0cm95KCk7CiAgICB9Cn0KCi8qKgogKiBSZXR1cm5zIGEgbmV3IE1h
+cCByZXByZXNlbnRhdGlvbiBvZiB0aGUgZ2l2ZW4gSURhdGEgb2JqZWN0LgogKiAKICogQHBhcmFt
+IHBpcGVsaW5lICAgVGhlIHBpcGVsaW5lIGNvbnRhaW5pbmcgdGhlIGFyZ3VtZW50cyB0byB0aGUg
+bWV0aG9kLgogKiBAcGFyYW0gdmFsdWVDbGFzcyBUaGUgY2xhc3Mgb2YgdmFsdWVzIHN0b3JlZCBp
+biB0aGUgTWFwLgogKiBAcGFyYW0gPFY+ICAgICAgICBUaGUgY2xhc3Mgb2YgdmFsdWVzIHN0b3Jl
+ZCBpbiB0aGUgTWFwLgogKi8KcHVibGljIHN0YXRpYyA8Vj4gdm9pZCBtYXBpZnkoSURhdGEgcGlw
+ZWxpbmUsIENsYXNzPFY+IHZhbHVlQ2xhc3MpIHsKICAgIElEYXRhQ3Vyc29yIGN1cnNvciA9IHBp
+cGVsaW5lLmdldEN1cnNvcigpOwoKICAgIHRyeSB7CiAgICAgICAgSURhdGEgZG9jdW1lbnQgPSBJ
+RGF0YVV0aWwuZ2V0SURhdGEoY3Vyc29yLCAiJGRvY3VtZW50Iik7CiAgICAgICAgYm9vbGVhbiBz
+b3J0ZWQgPSBCb29sZWFuSGVscGVyLnBhcnNlKElEYXRhVXRpbC5nZXQoY3Vyc29yLCAiJHNvcnRl
+ZD8iKSk7CiAgICAgICAgaWYgKGRvY3VtZW50ICE9IG51bGwpIElEYXRhVXRpbC5wdXQoY3Vyc29y
+LCAiJG1hcCIsIENvbmN1cnJlbnRNYXBIZWxwZXIubWFwaWZ5KGRvY3VtZW50LCBzb3J0ZWQsIHZh
+bHVlQ2xhc3MpKTsKICAgIH0gZmluYWxseSB7CiAgICAgICAgY3Vyc29yLmRlc3Ryb3koKTsKICAg
+IH0KfQ==</value>
+  <value name="encodeutf8">true</value>
+  <value name="extends"></value>
+  <array name="implements" type="value" depth="1">
+  </array>
+  <array name="imports" type="value" depth="1">
+    <value>java.util.Map</value>
+    <value>permafrost.tundra.collection.ConcurrentMapHelper</value>
+    <value>permafrost.tundra.collection.MapHelper</value>
+    <value>permafrost.tundra.lang.BooleanHelper</value>
+    <value>permafrost.tundra.lang.ExceptionHelper</value>
+  </array>
+</Values>
