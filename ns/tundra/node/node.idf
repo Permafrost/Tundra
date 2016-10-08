@@ -12,6 +12,7 @@
     <value>com.wm.lang.ns.NSType</value>
     <value>java.util.SortedSet</value>
     <value>permafrost.tundra.lang.BooleanHelper</value>
+    <value>permafrost.tundra.math.IntegerHelper</value>
     <value>permafrost.tundra.server.NodeHelper</value>
   </array>
 </Values>

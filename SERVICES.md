@@ -1,7 +1,3 @@
-# Tundra ❄
-
-## Services
-
 ### tundra:log
 
 Writes a message to the server log, automatically prefixed with the call
@@ -10543,6 +10539,7 @@ the given regular expression pattern, and node type.
 
 * `$nodes` is the list of (optionally filtered) child nodes that
   exist as items within the given `$interface`.
+* `$nodes.length` is the number of items in the `$nodes` list.
 
 ---
 
