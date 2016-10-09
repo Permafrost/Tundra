@@ -157,6 +157,7 @@ ICAgfQoKICAgIHJldHVybiBlc3RpbWF0b3I7Cn0=</value>
     <value>permafrost.tundra.math.IntegerHelper</value>
     <value>permafrost.tundra.math.NormalDistributionEstimator</value>
     <value>permafrost.tundra.net.http.HTTPHelper</value>
+    <value>permafrost.tundra.server.invoke.RetryableServiceProcessor</value>
     <value>permafrost.tundra.server.NodeHelper</value>
     <value>permafrost.tundra.server.ServiceHelper</value>
     <value>permafrost.tundra.time.DurationHelper</value>

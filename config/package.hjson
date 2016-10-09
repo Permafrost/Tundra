@@ -84,6 +84,15 @@
             }
         }
         service: {
+            retryable: {
+                # When enabled, registers an Integration Server invoke chain
+                # processor which converts any exceptions thrown by services
+                # which call tundra.service:retryable to be instances of
+                # ISRuntimeException so that the service can be retried by
+                # a trigger.
+                # If disabled, calling tundra.service:retryable has no effect.
+                enabled: true
+            }
             usage: {
                 # When enabled, adds a Solutions | Tundra > Service Usage page to
                 # the Integration Server web site, which can be used to view

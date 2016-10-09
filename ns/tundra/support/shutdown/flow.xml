@@ -466,6 +466,9 @@
 <INVOKE SERVICE="tundra.support.message.trigger.retry:stop">
 </INVOKE>
 
+<INVOKE SERVICE="tundra.support.service.retryable:stop">
+</INVOKE>
+
 <INVOKE TIMEOUT="" SERVICE="tundra.message.format:clear" VALIDATE-IN="$none" VALIDATE-OUT="$none">
   <COMMENT></COMMENT>
 

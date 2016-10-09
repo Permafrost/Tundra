@@ -12352,6 +12352,18 @@ of the invoking transport.
 
 ---
 
+### tundra.service:retryable
+
+Registers the current invocation of the calling service to have any
+exceptions thrown by it automatically converted to be instances of
+`com.wm.app.b2b.server.ISRuntimeException`.
+
+Use this service instead of a `pub.flow:throwExceptionForRetry` try-
+catch-throw block for trigger implementation services that should
+be retried regardless of the type of exception thrown.
+
+---
+
 ### tundra.service:self
 
 Returns the name of the current service, or nothing if invoked
