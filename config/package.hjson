@@ -24,6 +24,13 @@
                 enabled: false
             }
         }
+        exception: {
+            logging: {
+                # When enabled, exceptions thrown by top-level services are
+                # logged to the server error log.
+                enabled: false
+            }
+        }
         http: {
             compression: {
                 # When enabled, adds support for gzip and deflate HTTP compression

@@ -475,6 +475,9 @@
 </MAP>
 </INVOKE>
 
+<INVOKE SERVICE="tundra.support.exception.logging:stop">
+</INVOKE>
+
 <INVOKE TIMEOUT="" SERVICE="tundra.message.format:clear" VALIDATE-IN="$none" VALIDATE-OUT="$none">
   <COMMENT></COMMENT>
 
