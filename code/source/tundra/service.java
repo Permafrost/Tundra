@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-10-09 18:16:08 EST
+// -----( CREATED: 2016-10-10 19:01:57 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -22,6 +22,7 @@ import permafrost.tundra.lang.ThreadHelper;
 import permafrost.tundra.math.IntegerHelper;
 import permafrost.tundra.math.NormalDistributionEstimator;
 import permafrost.tundra.net.http.HTTPHelper;
+import permafrost.tundra.server.invoke.DeferHelper;
 import permafrost.tundra.server.invoke.RetryableServiceProcessor;
 import permafrost.tundra.server.NodeHelper;
 import permafrost.tundra.server.ServiceHelper;
@@ -151,7 +152,7 @@ public final class service
 		    String service = IDataUtil.getString(cursor, "$service");
 		    IData scope = IDataUtil.getIData(cursor, "$pipeline");
 		
-		    defer(service, scope == null ? pipeline : scope);
+		    DeferHelper.defer(service, scope == null ? pipeline : scope);
 		} finally {
 		    cursor.destroy();
 		}
@@ -456,11 +457,6 @@ public final class service
 	    if (raise && !valid) throw new ServiceException("Service does not exist: " + service);
 	
 	    return valid;
-	}
-	
-	// queues the service for execution on a defer thread pool
-	public static void defer(String service, IData pipeline) {
-	    tundra.support.service.defer.enqueue(service, pipeline);
 	}
 	
 	// returns the invocation call stack

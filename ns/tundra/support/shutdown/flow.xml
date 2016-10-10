@@ -10,7 +10,91 @@
 
   <!-- nodes -->
 
-<INVOKE TIMEOUT="" SERVICE="tundra.support.service.defer:shutdown" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+<INVOKE TIMEOUT="" SERVICE="tundra.support.service.defer:stop" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+  <COMMENT></COMMENT>
+
+  <!-- nodes -->
+
+<MAP MODE="INPUT">
+</MAP>
+
+<MAP MODE="OUTPUT">
+</MAP>
+</INVOKE>
+
+<INVOKE TIMEOUT="" SERVICE="tundra.support.packages.install:stop" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+  <COMMENT></COMMENT>
+
+  <!-- nodes -->
+
+<MAP MODE="INPUT">
+</MAP>
+
+<MAP MODE="OUTPUT">
+</MAP>
+</INVOKE>
+
+<INVOKE TIMEOUT="" SERVICE="tundra.support.thread.name:stop" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+  <COMMENT></COMMENT>
+
+  <!-- nodes -->
+
+<MAP MODE="INPUT">
+</MAP>
+
+<MAP MODE="OUTPUT">
+</MAP>
+</INVOKE>
+
+<INVOKE TIMEOUT="" SERVICE="tundra.support.content.log:stop" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+  <COMMENT></COMMENT>
+
+  <!-- nodes -->
+
+<MAP MODE="INPUT">
+</MAP>
+
+<MAP MODE="OUTPUT">
+</MAP>
+</INVOKE>
+
+<INVOKE TIMEOUT="" SERVICE="tundra.support.http.compression:stop" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+  <COMMENT></COMMENT>
+
+  <!-- nodes -->
+
+<MAP MODE="INPUT">
+</MAP>
+
+<MAP MODE="OUTPUT">
+</MAP>
+</INVOKE>
+
+<INVOKE TIMEOUT="" SERVICE="tundra.support.content.filter:stop" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+  <COMMENT></COMMENT>
+
+  <!-- nodes -->
+
+<MAP MODE="INPUT">
+</MAP>
+
+<MAP MODE="OUTPUT">
+</MAP>
+</INVOKE>
+
+<INVOKE TIMEOUT="" SERVICE="tundra.support.service.retryable:stop" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+  <COMMENT></COMMENT>
+
+  <!-- nodes -->
+
+<MAP MODE="INPUT">
+</MAP>
+
+<MAP MODE="OUTPUT">
+</MAP>
+</INVOKE>
+
+<INVOKE TIMEOUT="" SERVICE="tundra.support.exception.logging:stop" VALIDATE-IN="$none" VALIDATE-OUT="$none">
   <COMMENT></COMMENT>
 
   <!-- nodes -->
@@ -401,81 +485,6 @@
 <MAPDELETE NAME="Dropper" FIELD="/callback;1;0">
 </MAPDELETE>
 </MAP>
-</INVOKE>
-
-<INVOKE TIMEOUT="" SERVICE="tundra.support.packages.install:stop" VALIDATE-IN="$none" VALIDATE-OUT="$none">
-  <COMMENT></COMMENT>
-
-  <!-- nodes -->
-
-<MAP MODE="INPUT">
-</MAP>
-
-<MAP MODE="OUTPUT">
-</MAP>
-</INVOKE>
-
-<INVOKE TIMEOUT="" SERVICE="tundra.support.service.thread.name:stop" VALIDATE-IN="$none" VALIDATE-OUT="$none">
-  <COMMENT></COMMENT>
-
-  <!-- nodes -->
-
-<MAP MODE="INPUT">
-</MAP>
-
-<MAP MODE="OUTPUT">
-</MAP>
-</INVOKE>
-
-<INVOKE TIMEOUT="" SERVICE="tundra.support.content.log:stop" VALIDATE-IN="$none" VALIDATE-OUT="$none">
-  <COMMENT></COMMENT>
-
-  <!-- nodes -->
-
-<MAP MODE="INPUT">
-</MAP>
-
-<MAP MODE="OUTPUT">
-</MAP>
-</INVOKE>
-
-<INVOKE TIMEOUT="" SERVICE="tundra.support.http.compression:stop" VALIDATE-IN="$none" VALIDATE-OUT="$none">
-  <COMMENT></COMMENT>
-
-  <!-- nodes -->
-
-<MAP MODE="INPUT">
-</MAP>
-
-<MAP MODE="OUTPUT">
-</MAP>
-</INVOKE>
-
-<INVOKE TIMEOUT="" SERVICE="tundra.support.content.filter:stop" VALIDATE-IN="$none" VALIDATE-OUT="$none">
-  <COMMENT></COMMENT>
-
-  <!-- nodes -->
-
-<MAP MODE="INPUT">
-</MAP>
-
-<MAP MODE="OUTPUT">
-</MAP>
-</INVOKE>
-
-<INVOKE TIMEOUT="" SERVICE="tundra.support.service.retryable:stop" VALIDATE-IN="$none" VALIDATE-OUT="$none">
-  <COMMENT></COMMENT>
-
-  <!-- nodes -->
-
-<MAP MODE="INPUT">
-</MAP>
-
-<MAP MODE="OUTPUT">
-</MAP>
-</INVOKE>
-
-<INVOKE SERVICE="tundra.support.exception.logging:stop">
 </INVOKE>
 
 <INVOKE TIMEOUT="" SERVICE="tundra.message.format:clear" VALIDATE-IN="$none" VALIDATE-OUT="$none">

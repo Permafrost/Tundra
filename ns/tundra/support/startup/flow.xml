@@ -1502,7 +1502,7 @@
 
   <!-- nodes -->
 
-<INVOKE NAME="true" TIMEOUT="" SERVICE="tundra.support.service.thread.name:start" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+<INVOKE NAME="true" TIMEOUT="" SERVICE="tundra.support.thread.name:start" VALIDATE-IN="$none" VALIDATE-OUT="$none">
   <COMMENT></COMMENT>
 
   <!-- nodes -->
