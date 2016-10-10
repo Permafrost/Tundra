@@ -463,10 +463,16 @@
 </MAP>
 </INVOKE>
 
-<INVOKE SERVICE="tundra.support.message.trigger.retry:stop">
-</INVOKE>
+<INVOKE TIMEOUT="" SERVICE="tundra.support.service.retryable:stop" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+  <COMMENT></COMMENT>
 
-<INVOKE SERVICE="tundra.support.service.retryable:stop">
+  <!-- nodes -->
+
+<MAP MODE="INPUT">
+</MAP>
+
+<MAP MODE="OUTPUT">
+</MAP>
 </INVOKE>
 
 <INVOKE TIMEOUT="" SERVICE="tundra.message.format:clear" VALIDATE-IN="$none" VALIDATE-OUT="$none">

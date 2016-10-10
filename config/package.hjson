@@ -49,22 +49,6 @@
                 # Broker or Universal Messaging or JMS.
                 enabled: true
             }
-            trigger: {
-                retry: {
-                    # When enabled, adds support for converting any exceptions
-                    # thrown by a message trigger service to an instance of
-                    # ISRuntimeException so that the service can be retried
-                    # by the trigger.
-                    enabled: false
-                    # The regular expression used to identify which services
-                    # this feature affects.
-                    include: .*
-                    # The regular expression used to identify which services
-                    # this feature does not affect. Exclusions take precedence
-                    # over inclusions.
-                    exclude: (pub|wm)\..*
-                }
-            }
         }
         package: {
             install: {
