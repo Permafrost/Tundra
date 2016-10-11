@@ -2118,6 +2118,9 @@ Services in this folder must implement the
   service, which implements the
   `tundra.schema.content.retrieve:processor` specification, invoked to
   process each item of content retrieved from the `$source` URI.
+* `$service.input` is the optional variable name for the retrieved
+  content in the input pipeline of `$service`. Defaults to `$content` if
+  not specified.
 * `$limit` is an optional maximum number of content matches to be
   processed in a single execution. Defaults to 1000, if not specified.
 
@@ -11897,6 +11900,9 @@ Content retrieval protocol handling services used by
 * `$service` is the content processing service that is called for each
   item of content retrieved from `$source`. This service is required to
   implement the `tundra.schema.content.retrieve:processor` specification.
+* `$service.input` is the optional variable name for the retrieved
+  content in the input pipeline of `$service`. Defaults to `$content` if
+  not specified.
 * `$limit` is an optional maximum number of content items to be
   retrieved from `$source` per retrieval.
 

@@ -73,6 +73,33 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="field_name">$service.input</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">string</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <null name="field_usereditable"/>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
           <value name="field_name">$limit</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -165,6 +192,9 @@ tundra.schema.content.retrieve:handler specification.
   service, which implements the
   tundra.schema.content.retrieve:processor specification, invoked to
   process each item of content retrieved from the $source URI.
+* $service.input is the optional variable name for the retrieved 
+  content in the input pipeline of $service. Defaults to $content if
+  not specified.
 * $limit is an optional maximum number of content matches to be
   processed in a single execution. Defaults to 1000, if not specified.</value>
   <value name="stateless">yes</value>
