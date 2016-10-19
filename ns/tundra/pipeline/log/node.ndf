@@ -10,6 +10,7 @@
       <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
+      <value name="wrapper_type">IData</value>
       <value name="nillable">true</value>
       <value name="form_qualified">false</value>
       <value name="is_global">false</value>
@@ -18,7 +19,7 @@
           <value name="node_type">unknown</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
+            <value name="field_usereditable">true</value>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
@@ -59,6 +60,7 @@
       <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
+      <value name="wrapper_type">IData</value>
       <value name="nillable">true</value>
       <value name="form_qualified">false</value>
       <value name="is_global">false</value>
@@ -86,6 +88,7 @@ Writes the current pipeline to the server log.
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
   <value name="icontext_policy">$null</value>
+  <value name="svcInvkURLAlias"></value>
   <value name="system_service">no</value>
   <value name="retry_max">0</value>
   <value name="retry_interval">0</value>
