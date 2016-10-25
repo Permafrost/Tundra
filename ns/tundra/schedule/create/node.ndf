@@ -989,20 +989,20 @@
 
 Schedules a service for execution once or periodically.
 
-The resulting scheduled task ID is added to the input pipeline of 
-the scheduled service as a variable named $schedule.id, enabling the 
-service itself to query its owning scheduled task. This can be 
-useful if, for example, the service implements an [event loop] and 
+The resulting scheduled task ID is added to the input pipeline of
+the scheduled service as a variable named $schedule.id, enabling the
+service itself to query its owning scheduled task. This can be
+useful if, for example, the service implements an [event loop] and
 should exit that loop if its owning schedule is paused or cancelled.
 
 #### Inputs:
 
-* $schedule is an IData document representing the task to be 
+* $schedule is an IData document representing the task to be
   scheduled.
-  * name is an optional unique identity for this scheduled task, 
-    provided by the creator of the task. This value will be added to 
-    the input pipeline of the resulting scheduled task as 
-    $schedule.name, and provides easy identification for the creator 
+  * name is an optional unique identity for this scheduled task,
+    provided by the creator of the task. This value will be added to
+    the input pipeline of the resulting scheduled task as
+    $schedule.name, and provides easy identification for the creator
     of instances of this task post-creation.
   * description is an optional description of the scheduled task.
   * type describes the type of schedule to be created, and is
@@ -1026,7 +1026,7 @@ should exit that loop if its owning schedule is paused or cancelled.
     * $all executes the task on all servers in the cluster. Choose
       this option when the service needs to be executed on every
       cluster node at the same time to perform, for example, clean
-      up or house keeping on every server. If this target is
+      up or house keeping on every server. If this target is
       chosen for a server not in a cluster, it is equivalent to
       choosing $self.
     * $self executes the task on the same server used to create
@@ -1100,9 +1100,9 @@ should exit that loop if its owning schedule is paused or cancelled.
   * pipeline is an optional IData document containing the input
     arguments used as the input pipeline when executing the service.
 * $singleton? is an optional boolean which when true indicates that
-  only one scheduled task should ever exist for this name, if 
-  specified, or this service if no name is specified, and therefore 
-  any existing instances of this scheduled task will be first 
+  only one scheduled task should ever exist for this name, if
+  specified, or this service if no name is specified, and therefore
+  any existing instances of this scheduled task will be first
   removed prior to creating a new scheduled task. Defaults to false.
 * $enabled? is an optional boolean which when true indicates that
   the scheduled task should be created in an active state, and
@@ -1111,7 +1111,7 @@ should exit that loop if its owning schedule is paused or cancelled.
 
 #### Outputs:
 
-* $id is the internal unique identity assigned by Integration Server 
+* $id is the internal unique identity assigned by Integration Server
   to the resulting scheduled task.
 
 [event loop]: &lt;http://en.wikipedia.org/wiki/Event_loop&gt;
