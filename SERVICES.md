@@ -10342,11 +10342,13 @@ The content can be specified as a string, byte array, `IData` document,
 
 #### Inputs:
 
-* `$content` is arbitrary content specified as a string, byte array,
+* `$message` is arbitrary content specified as a string, byte array,
   `IData` document, `java.io.InputStream`, or `org.w3c.dom.Node` object.
-* `$message.format.name` is an optional message format name which if
-  specified will skip the recognition step and instead use the
-  format with the given name for routing.
+* `$message.format` is an optional message format structure where only
+  the `name` element is mandatory.
+  * `name` is an optional message format name which if specified will
+    skip the recognition step and instead use the format with the
+    given name for routing.
 
 ---
 
