@@ -1,7 +1,7 @@
 ### tundra:log
 
-Writes a message to the server log, automatically prefixed with the call
-stack.
+Writes a message to the server log, automatically prefixed with the
+current user and call stack.
 
 #### Inputs:
 
