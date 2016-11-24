@@ -3,7 +3,6 @@
 <Values version="2.0">
   <record name="record" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
-    <value name="node_subtype">unknown</value>
     <value name="node_nsName">tundra.schema.message:format</value>
     <value name="node_pkg">Tundra</value>
     <value name="node_comment">### tundra.schema.message:format
@@ -73,24 +72,20 @@ package configuration file:
 * enabled is an optional boolean which when true enables this 
   message format for recognition by tundra.message.format:recognize. 
   Defaults to true, if not specified.</value>
-    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
-    <value name="wrapper_type">IData</value>
     <value name="nillable">true</value>
     <value name="form_qualified">false</value>
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
-        <value name="node_subtype">unknown</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
           <value name="field_usereditable">true</value>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">name</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -113,14 +108,12 @@ package configuration file:
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
-        <value name="node_subtype">unknown</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
           <value name="field_usereditable">true</value>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">description</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -144,14 +137,12 @@ package configuration file:
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
-        <value name="node_subtype">unknown</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
           <value name="field_usereditable">true</value>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">type</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -175,32 +166,27 @@ package configuration file:
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
-        <value name="node_subtype">unknown</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">namespace</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
         <value name="field_opt">true</value>
-        <value name="wrapper_type">IData</value>
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
-            <value name="node_subtype">unknown</value>
             <value name="node_comment"></value>
             <record name="node_hints" javaclass="com.wm.util.Values">
               <null name="field_usereditable"/>
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">default</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -221,35 +207,29 @@ package configuration file:
             <value name="is_global">false</value>
           </record>
         </array>
-        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
-        <value name="node_subtype">unknown</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">recognize</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
-        <value name="wrapper_type">IData</value>
         <value name="nillable">false</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
-            <value name="node_subtype">unknown</value>
             <value name="node_comment"></value>
             <record name="node_hints" javaclass="com.wm.util.Values">
               <null name="field_usereditable"/>
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">ref</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -269,36 +249,30 @@ package configuration file:
             <value name="is_global">false</value>
           </record>
         </array>
-        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
-        <value name="node_subtype">unknown</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">parse</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
         <value name="field_opt">true</value>
-        <value name="wrapper_type">IData</value>
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
-            <value name="node_subtype">unknown</value>
             <value name="node_comment"></value>
             <record name="node_hints" javaclass="com.wm.util.Values">
               <null name="field_usereditable"/>
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">ref</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -318,36 +292,30 @@ package configuration file:
             <value name="is_global">false</value>
           </record>
         </array>
-        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
-        <value name="node_subtype">unknown</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">validate</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
         <value name="field_opt">true</value>
-        <value name="wrapper_type">IData</value>
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
-            <value name="node_subtype">unknown</value>
             <value name="node_comment"></value>
             <record name="node_hints" javaclass="com.wm.util.Values">
               <null name="field_usereditable"/>
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">ref</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -367,36 +335,30 @@ package configuration file:
             <value name="is_global">false</value>
           </record>
         </array>
-        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
-        <value name="node_subtype">unknown</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">route</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
         <value name="field_opt">true</value>
-        <value name="wrapper_type">IData</value>
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
-            <value name="node_subtype">unknown</value>
             <value name="node_comment"></value>
             <record name="node_hints" javaclass="com.wm.util.Values">
               <null name="field_usereditable"/>
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">type</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -461,14 +423,12 @@ package configuration file:
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
-            <value name="node_subtype">unknown</value>
             <value name="node_comment"></value>
             <record name="node_hints" javaclass="com.wm.util.Values">
               <null name="field_usereditable"/>
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
-            <value name="is_public">false</value>
             <value name="field_name">ref</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -487,19 +447,60 @@ package configuration file:
             <value name="form_qualified">false</value>
             <value name="is_global">false</value>
           </record>
+          <record javaclass="com.wm.util.Values">
+            <value name="node_type">record</value>
+            <value name="node_comment"></value>
+            <record name="node_hints" javaclass="com.wm.util.Values">
+              <value name="field_largerEditor">false</value>
+              <value name="field_password">false</value>
+            </record>
+            <value name="field_name">env</value>
+            <value name="field_type">record</value>
+            <value name="field_dim">0</value>
+            <value name="field_opt">true</value>
+            <value name="nillable">true</value>
+            <value name="form_qualified">false</value>
+            <value name="is_global">false</value>
+            <array name="rec_fields" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="node_type">record</value>
+                <value name="node_comment"></value>
+                <record name="node_hints" javaclass="com.wm.util.Values">
+                  <null name="field_usereditable"/>
+                  <value name="field_largerEditor">false</value>
+                  <value name="field_password">false</value>
+                </record>
+                <value name="field_name">activation</value>
+                <value name="field_type">string</value>
+                <value name="field_dim">0</value>
+                <value name="field_opt">true</value>
+                <record name="field_content_type" javaclass="com.wm.util.Values">
+                  <value name="contentType">1</value>
+                  <value name="internalType">reference</value>
+                  <value name="dataTypeVersion">dtVersion2</value>
+                  <array name="targetNames" type="record" depth="1">
+                    <record javaclass="com.wm.util.Values">
+                      <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                      <value name="ncName">string</value>
+                    </record>
+                  </array>
+                </record>
+                <value name="nillable">true</value>
+                <value name="form_qualified">false</value>
+                <value name="is_global">false</value>
+              </record>
+            </array>
+          </record>
         </array>
-        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
-        <value name="node_subtype">unknown</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
           <value name="field_usereditable">true</value>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
-        <value name="is_public">false</value>
         <value name="field_name">enabled</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -522,6 +523,5 @@ package configuration file:
         <value name="is_global">false</value>
       </record>
     </array>
-    <value name="modifiable">true</value>
   </record>
 </Values>
