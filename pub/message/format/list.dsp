@@ -141,12 +141,50 @@
                       %ifvar route -notempty%
                         <table>
                           <tbody>
-                        %loop route -struct%
+                            %scope route%
                             <tr>
-                              <th>%value $key encode(xml)%</th>
-                              <td>%value encode(xml)%</td>
+                              <th>type</th>
+                              <td>%value type encode(xml)%</td>
                             </tr>
-                        %endloop%
+                            <tr>
+                              <th>ref</th>
+                              <td>%value ref encode(xml)%</td>
+                            </tr>
+                            %ifvar env%
+                            <tr>
+                              <th>env</th>
+                              <td>
+                                <table>
+                                  <tbody>
+                                    %loop env -struct%
+                                    <tr>
+                                      <th>%value $key encode(xml)%</th>
+                                      <td>%value encode(xml)%</td>
+                                    </tr>
+                                    %endloop%
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                            %endif%
+                            %ifvar properties%
+                            <tr>
+                              <th>properties</th>
+                              <td>
+                                <table>
+                                  <tbody>
+                                    %loop properties -struct%
+                                    <tr>
+                                      <th>%value $key encode(xml)%</th>
+                                      <td>%value encode(xml)%</td>
+                                    </tr>
+                                    %endloop%
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                            %endif%
+                            %endscope%
                           </tbody>
                         </table>
                       %else%
