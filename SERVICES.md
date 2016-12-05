@@ -1387,6 +1387,23 @@ unique items from the given [java.util.List] object.
 
 ---
 
+### tundra.collection.map.document:get
+
+Returns the value associated with the given key in the given
+[java.util.Map] object.
+
+#### Inputs:
+
+* `$map` is a [java.util.Map] object.
+* `$key` is the key whose associated value is to be returned.
+
+#### Outputs:
+
+* `$value` is the value associated with the given key in the given
+  [java.util.Map].
+
+---
+
 ### tundra.collection.map.document:mapify
 
 Copies the top-level elements from the given `IData` document to a
@@ -1418,7 +1435,38 @@ objects and values to be `IData` objects.
 
 ---
 
-### tundra.collection.map.document:get
+### tundra.collection.map.object:clear
+
+Removes all of the mappings from the given map.
+
+#### Inputs:
+
+* `$map` is a [java.util.Map] object from which all key value mappings
+  will be removed.
+
+---
+
+### tundra.collection.map.object:create
+
+Returns a newly constructed [java.util.Map] object.
+
+#### Inputs:
+
+* `$key.class` is the name of the Java class that keys in the
+  resulting map will use. Defaults to `java.lang.Object`.
+* `$value.class` is the name of the Java class that values in the
+  resulting map will use. Defaults to `java.lang.Object`.
+* `$sorted?` is an optional boolean which when `true` indicates that
+  the resulting [java.util.Map] should maintain its keys sorted
+  in natural ascending order. Defaults to `false`.
+
+#### Outputs:
+
+* `$map` is a newly constructed [java.util.Map] object.
+
+---
+
+### tundra.collection.map.object:get
 
 Returns the value associated with the given key in the given
 [java.util.Map] object.
@@ -1430,8 +1478,36 @@ Returns the value associated with the given key in the given
 
 #### Outputs:
 
-* `$value` is the value associated with the given key in the given
+* $value is the value associated with the given key in the given
   [java.util.Map].
+
+---
+
+### tundra.collection.map.object:keys
+
+Returns the list of keys stored in the given [java.util.Map] object.
+
+#### Inputs:
+
+* `$map` is a [java.util.Map] object.
+
+#### Outputs:
+
+* `$keys` is the list of keys currently stored in the given map.
+
+---
+
+### tundra.collection.map.object:length
+
+Returns the number of mappings stored in the given [java.util.Map] object.
+
+#### Inputs:
+
+* `$map` is a [java.util.Map] object.
+
+#### Outputs:
+
+* `$length` is the number of mappings currently stored in the given map.
 
 ---
 
@@ -1468,7 +1544,64 @@ objects.
 
 ---
 
-### tundra.collection.map.object:get
+### tundra.collection.map.object:put
+
+Associates the given value with the given key in the given
+[java.util.Map] object.
+
+#### Inputs:
+
+* `$map` is a [java.util.Map] object.
+* `$key` is the key to be associated with the given value.
+* `$value` is the value to be associated with the given key.
+* `$mode` is an optional choice of `always`, in which case the given
+  key will be associated with the given value regardless of whether
+  the key is already associated with a different value, or `absent`,
+  in which case the given value will only be associated with the
+  given key if the key is not already associated with another value.
+  Note the `absent` mode requires the given map to be an instance of
+  [java.util.concurrent.ConcurrentMap].
+
+#### Outputs:
+
+* `$value.existing` is the existing value associated with the given
+  key, if any, and is only returned when the specified mode is
+  `absent`.
+
+---
+
+### tundra.collection.map.object:remove
+
+Removes the mapping associated the given key from the given
+[java.util.Map] object.
+
+#### Inputs:
+
+* `$map` is a [java.util.Map] object.
+* `$key` is the key to be associated with the given value.
+
+#### Outputs:
+
+* `$value` is the value that was associated with the given key before
+  it was removed, if any.
+
+---
+
+### tundra.collection.map.object:values
+
+Returns the list of values stored in the given [java.util.Map] object.
+
+#### Inputs:
+
+* `$map` is a [java.util.Map] object.
+
+#### Outputs:
+
+* `$values` is the list of values currently stored in the given map.
+
+---
+
+### tundra.collection.map.string:get
 
 Returns the value associated with the given key in the given
 [java.util.Map] object.
@@ -1477,10 +1610,6 @@ Returns the value associated with the given key in the given
 
 * `$map` is a [java.util.Map] object.
 * `$key` is the key whose associated value is to be returned.
-* `$key.class` is the class name identifying the class that keys
-  stored in the map are instances of.
-* `$value.class` is the class name identifying the class that values
-  stored in the map are instances of.
 
 #### Outputs:
 
@@ -1516,23 +1645,6 @@ values to be String objects.
 
 * `$map` is a new [java.util.Map] object containing all the top-level
   elements from the given `$document`.
-
----
-
-### tundra.collection.map.string:get
-
-Returns the value associated with the given key in the given
-[java.util.Map] object.
-
-#### Inputs:
-
-* `$map` is a [java.util.Map] object.
-* `$key` is the key whose associated value is to be returned.
-
-#### Outputs:
-
-* `$value` is the value associated with the given key in the given
-  [java.util.Map].
 
 ---
 
@@ -14302,6 +14414,7 @@ Decompresses the given content using the [zip] file compression format.
 [java.util.List]: <http://docs.oracle.com/javase/6/docs/api/java/util/List.html>
 [java.util.Map]: <https://docs.oracle.com/javase/6/docs/api/java/util/Map.html>
 [java.util.TimeZone]: <http://docs.oracle.com/javase/6/docs/api/java/util/TimeZone.html>
+[java.util.concurrent.ConcurrentMap]: <https://docs.oracle.com/javase/6/docs/api/java/util/concurrent/ConcurrentMap.html>
 [java.util.regex.Pattern]: <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html>
 [javax.activation.MimeType]: <http://docs.oracle.com/javase/6/docs/api/javax/activation/MimeType.html>
 [javax.jms.BytesMessage]: <http://docs.oracle.com/javaee/1.4/api/javax/jms/BytesMessage.html>
