@@ -22,14 +22,13 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$documents</value>
+          <value name="field_name">$operands</value>
           <value name="field_type">record</value>
-          <value name="field_dim">1</value>
+          <value name="field_dim">0</value>
           <value name="field_opt">true</value>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
-          <value name="is_soap_array_encoding_used">false</value>
           <array name="rec_fields" type="record" depth="1">
           </array>
           <value name="modifiable">true</value>
@@ -102,7 +101,10 @@
   </record>
   <value name="node_comment">### tundra.document:merge
 
-Merges multiple IData documents into a single document.
+Merges multiple IData documents into a single document. The 
+resulting document contains all keys from all source documents, and 
+each key is assigned the value associated with the final occurrence 
+of that key across all source documents.
 
 This service can be useful for combining a document constructed with
 default values with a document sourced externally, where the merged
@@ -112,16 +114,16 @@ sourced document.
 
 #### Inputs:
 
-* $documents is an IData[] document list containing IData documents
-  to be merged into a single IData document.
+* $operands is an IData document in which arbitrary top-level IData 
+  documents and IData[] document lists can be provided for merging 
+  into a single IData document.
 * $recurse? is an optional boolean which when true will recursively
   merge child IData documents also. Defaults to false, where only
-  top-level elements are merged and last wins.
+  top-level elements are merged.
 
 #### Outputs:
 
-* $document is the merged IData document, containing all keys from 
-  all documents in the given IData[] document list.
+* $document is the resulting merged IData document.
 </value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>

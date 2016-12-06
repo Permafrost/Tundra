@@ -4819,7 +4819,10 @@ tundra.document.key:* and tundra.document.value:* services.
 
 ### tundra.document:merge
 
-Merges multiple `IData` documents into a single document.
+Merges multiple `IData` documents into a single document. The
+resulting document contains all keys from all source documents, and
+each key is assigned the value associated with the final occurrence
+of that key across all source documents.
 
 This service can be useful for combining a document constructed with
 default values with a document sourced externally, where the merged
@@ -4829,16 +4832,16 @@ sourced document.
 
 #### Inputs:
 
-* `$documents` is an `IData[]` document list containing `IData` documents
-  to be merged into a single IData document.
+* `$operands` is an `IData` document in which arbitrary top-level `IData`
+  documents and `IData[]` document lists can be provided for merging
+  into a single `IData` document.
 * `$recurse?` is an optional boolean which when `true` will recursively
   merge child `IData` documents also. Defaults to `false`, where only
-  top-level elements are merged and last wins.
+  top-level elements are merged.
 
 #### Outputs:
 
-* `$document` is the merged `IData` document, containing all keys from
-  all documents in the given `IData[]` document list.
+* `$document` is the resulting merged `IData` document.
 
 ---
 
@@ -7772,8 +7775,7 @@ sourced document.
 
 #### Outputs:
 
-* `$document` is the merged `IData` document, containing all keys from
-  all elements in the given `$documents` `IData[]` document list.
+* `$document` is the resulting merged `IData` document.
 
 ---
 

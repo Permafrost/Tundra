@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-12-07 08:58:00 GMT+10:00
+// -----( CREATED: 2016-12-07 14:21:07 GMT+10:00
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -402,7 +402,7 @@ public final class document
 		    IData[] list = IDataUtil.getIDataArray(cursor, "$list");
 		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
 
-		    IDataUtil.put(cursor, "$document", IDataHelper.merge(recurse, list));
+		    IDataUtil.put(cursor, "$document", IDataHelper.merge(list, recurse));
 		} finally {
 		    cursor.destroy();
 		}
