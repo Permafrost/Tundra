@@ -16,12 +16,12 @@
 </BRANCH>
 
 <BRANCH TIMEOUT="" LABELEXPRESSIONS="true">
-  <COMMENT></COMMENT>
+  <COMMENT>_env and _properties</COMMENT>
 
   <!-- nodes -->
 
 <MAP NAME="%$document/_env/activation% != $null" MODE="STANDALONE">
-  <COMMENT>drop _env publishable document section, if it exists, so that it is not included in the serialized data</COMMENT>
+  <COMMENT>if publishable document, drop _env and _properties so that they are not included in the serialized data</COMMENT>
   <MAPTARGET>
 
 <Values version="2.0">
@@ -291,6 +291,17 @@
             <array name="rec_fields" type="record" depth="1">
             </array>
           </record>
+          <record javaclass="com.wm.util.Values">
+            <value name="node_type">record</value>
+            <value name="field_name">_properties</value>
+            <value name="field_type">record</value>
+            <value name="field_dim">0</value>
+            <value name="nillable">true</value>
+            <value name="form_qualified">false</value>
+            <value name="is_global">false</value>
+            <array name="rec_fields" type="record" depth="1">
+            </array>
+          </record>
         </array>
       </record>
       <record javaclass="com.wm.util.Values">
@@ -501,6 +512,9 @@
   <!-- nodes -->
 
 <MAPDELETE NAME="Dropper" FIELD="/$document;2;0/_env;2;0">
+</MAPDELETE>
+
+<MAPDELETE NAME="Dropper" FIELD="/$document;2;0/_properties;2;0">
 </MAPDELETE>
 </MAP>
 </BRANCH>
