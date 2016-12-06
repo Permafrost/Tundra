@@ -7749,6 +7749,34 @@ document lists.
 
 ---
 
+### tundra.list.document:merge
+
+Merges multiple `IData` documents into a single document. The
+resulting document contains all keys from all source documents, and
+each key is assigned the value associated with the final occurrence
+of that key across all source documents.
+
+This service can be useful for combining a document constructed with
+default values with a document sourced externally, where the merged
+document will contain the key set union of both documents, and will
+include default values where no value was present in the externally
+sourced document.
+
+#### Inputs:
+
+* `$list` is an `IData[]` document list whose elements will be merged
+  into a single `IData` document.
+* `$recurse?` is an optional boolean which when `true` will recursively
+  merge child `IData` documents also. Defaults to `false`, where only
+  top-level elements are merged.
+
+#### Outputs:
+
+* `$document` is the merged `IData` document, containing all keys from
+  all elements in the given `$documents` `IData[]` document list.
+
+---
+
 ### tundra.list.document:normalize
 
 Returns a new `IData[]` document list with all fully qualified keys (for
