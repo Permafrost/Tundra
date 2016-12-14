@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-12-14 12:26:01 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2016-12-15 08:16:26 GMT+10:00
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -67,15 +67,15 @@ public final class service
 		// [o] field:0:required $duration.maximum
 		// [o] field:0:required $message
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String service = IDataUtil.getString(cursor, "$service");
 		    IData scope = IDataUtil.getIData(cursor, "$pipeline");
 		    int count = IntegerHelper.parse(IDataUtil.getString(cursor, "$count"));
 		    boolean raise = BooleanHelper.parse(IDataUtil.getString(cursor, "$raise?"));
-		
+
 		    NormalDistributionEstimator estimator = ServiceHelper.benchmark(service, scope == null? pipeline : scope, count, raise);
-		
+
 		    IDataUtil.put(cursor, "$duration.average", DurationHelper.format(estimator.getMean()/1000.0, 6, DurationPattern.XML));
 		    IDataUtil.put(cursor, "$duration.standard.deviation", DurationHelper.format(estimator.getStandardDeviation()/1000.0, 6, DurationPattern.XML));
 		    IDataUtil.put(cursor, "$duration.minimum", DurationHelper.format(estimator.getMinimum()/1000.0, 6, DurationPattern.XML));
@@ -86,7 +86,7 @@ public final class service
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -101,17 +101,17 @@ public final class service
 		// [o] field:0:required $callers
 		// [o] field:0:required $caller
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    List<NSService> stack = ServiceHelper.getCallStack();
 		    if (stack.size() > 0) stack.remove(stack.size() - 1); // remove call to this service
-		
+
 		    String caller = "";
 		    if (stack.size() > 1) {
 		        NSService service = stack.get(stack.size() - 2);
 		        if (service != null) caller = ObjectHelper.stringify(service);
 		    }
-		
+
 		    IDataUtil.put(cursor, "$callstack", CollectionHelper.arrayify(CollectionHelper.stringify(stack), String.class));
 		    IDataUtil.put(cursor, "$callers", IterableHelper.join(stack, " \u2192 "));
 		    IDataUtil.put(cursor, "$caller", caller);
@@ -120,7 +120,7 @@ public final class service
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -134,18 +134,18 @@ public final class service
 		// [i] field:0:required $package
 		// [i] field:0:required $service
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String packageName = IDataUtil.getString(cursor, "$package");
 		    String serviceName = IDataUtil.getString(cursor, "$service");
-		
+
 		    ServiceHelper.create(packageName, serviceName);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -159,18 +159,18 @@ public final class service
 		// [i] field:0:required $service
 		// [i] record:0:optional $pipeline
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String service = IDataUtil.getString(cursor, "$service");
 		    IData scope = IDataUtil.getIData(cursor, "$pipeline");
-		
+
 		    DeferHelper.defer(service, scope == null ? pipeline : scope);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -187,23 +187,23 @@ public final class service
 		// [i] record:0:optional $pipeline
 		// [o] record:0:optional $pipeline
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
-		    String $service = IDataUtil.getString(cursor, "$service");
-		    String $catch = IDataUtil.getString(cursor, "$catch");
-		    String $finally = IDataUtil.getString(cursor, "$finally");
+		    String tryService = IDataUtil.getString(cursor, "$service");
+		    String catchService = IDataUtil.getString(cursor, "$catch");
+		    String finallyService = IDataUtil.getString(cursor, "$finally");
 		    IData scope = IDataUtil.getIData(cursor, "$pipeline");
 		    boolean scoped = scope != null;
-		
-		    scope = ServiceHelper.ensure($service, scoped ? scope : pipeline, $catch, $finally);
-		
+
+		    scope = ServiceHelper.ensure(tryService, catchService, finallyService, scoped ? scope : pipeline);
+
 		    if (scoped) IDataUtil.put(cursor, "$pipeline", scope);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -218,18 +218,18 @@ public final class service
 		// [i] record:0:optional $pipeline
 		// [o] object:0:required $thread
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String service = IDataUtil.getString(cursor, "$service");
 		    IData scope = IDataUtil.getIData(cursor, "$pipeline");
-		
+
 		    IDataUtil.put(cursor, "$thread", ServiceHelper.fork(service, scope == null ? pipeline : scope));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -242,7 +242,7 @@ public final class service
 		// @sigtype java 3.5
 		// [o] field:0:required $initiator?
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IDataUtil.put(cursor, "$initiator?", BooleanHelper.emit(ServiceHelper.isInitiator()));
 		} finally {
@@ -250,7 +250,7 @@ public final class service
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -267,15 +267,15 @@ public final class service
 		// [o] record:0:optional $pipeline
 		// [o] field:0:optional $duration
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String service = IDataUtil.getString(cursor, "$service");
 		    IData scope = IDataUtil.getIData(cursor, "$pipeline");
 		    String mode = IDataUtil.getString(cursor, "$mode");
 		    boolean raise = BooleanHelper.parse(IDataUtil.getString(cursor, "$raise?"), true);
-		
+
 		    boolean scoped = scope != null;
-		
+
 		    if (mode != null && mode.equals("asynchronous")) {
 		        // support asynchronous mode for backwards compatiblity
 		        IDataUtil.put(cursor, "$thread", ServiceHelper.fork(service, scoped ? scope : pipeline));
@@ -283,7 +283,7 @@ public final class service
 		        long start = System.currentTimeMillis();
 		        scope = ServiceHelper.invoke(service, scoped ? scope : pipeline, raise);
 		        long end = System.currentTimeMillis();
-		
+
 		        if (scoped) IDataUtil.put(cursor, "$pipeline", scope);
 		        IDataUtil.put(cursor, "$duration", DurationHelper.format(end - start, DurationPattern.XML));
 		    }
@@ -292,7 +292,7 @@ public final class service
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -307,10 +307,10 @@ public final class service
 		// [i] field:0:optional $raise? {"true","false"}
 		// [o] record:0:optional $pipeline
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    ServiceThread thread = (ServiceThread)IDataUtil.get(cursor, "$thread");
-		
+
 		    boolean raise = BooleanHelper.parse(IDataUtil.getString(cursor, "$raise"), true);
 		    if (thread != null) IDataUtil.put(cursor, "$pipeline", ServiceHelper.join(thread, raise));
 		} finally {
@@ -318,7 +318,7 @@ public final class service
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -331,7 +331,7 @@ public final class service
 		// @sigtype java 3.5
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -349,7 +349,7 @@ public final class service
 		// [o] - field:0:required package
 		// [o] - field:0:optional description
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String service = IDataUtil.getString(cursor, "$service");
 		    IData properties = ServiceHelper.reflect(service);
@@ -359,7 +359,7 @@ public final class service
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -377,7 +377,7 @@ public final class service
 		// [i] field:0:optional $content.type
 		// [i] field:0:optional $encoding
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    int code = Integer.parseInt(IDataUtil.getString(cursor, "$code"));
 		    String message = IDataUtil.getString(cursor, "$message");
@@ -385,14 +385,14 @@ public final class service
 		    Object content = IDataUtil.get(cursor, "$content");
 		    String contentType = IDataUtil.getString(cursor, "$content.type");
 		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
-		
+
 		    ServiceHelper.respond(code, message, headers, InputStreamHelper.normalize(content, charset), contentType, charset);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -406,7 +406,7 @@ public final class service
 		RetryableServiceProcessor.getInstance().register();
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -419,7 +419,7 @@ public final class service
 		// @sigtype java 3.5
 		// [o] field:0:optional $self
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    NSService self = ServiceHelper.self();
 		    if (self != null) IDataUtil.put(cursor, "$self", self.toString());
@@ -428,7 +428,7 @@ public final class service
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -441,7 +441,7 @@ public final class service
 		// @sigtype java 3.5
 		// [i] field:0:required $duration
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String duration = IDataUtil.getString(cursor, "$duration");
 		    if (duration != null) ThreadHelper.sleep(DurationHelper.parse(duration));
@@ -450,7 +450,7 @@ public final class service
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -465,7 +465,7 @@ public final class service
 		// [i] field:0:optional $raise? {"false","true"}
 		// [o] field:0:required $valid?
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String service = IDataUtil.getString(cursor, "$service");
 		    boolean raise = BooleanHelper.parse(IDataUtil.getString(cursor, "$raise?"));
@@ -475,7 +475,7 @@ public final class service
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 
