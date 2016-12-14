@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-12-14 10:53:58 EST
+// -----( CREATED: 2016-12-14 11:46:52 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -11,12 +11,16 @@ import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import com.wm.lang.ns.NSService;
 import java.nio.charset.Charset;
+import java.util.List;
+import permafrost.tundra.collection.CollectionHelper;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.io.InputStreamHelper;
 import permafrost.tundra.lang.ArrayHelper;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.CharsetHelper;
 import permafrost.tundra.lang.ExceptionHelper;
+import permafrost.tundra.lang.IterableHelper;
+import permafrost.tundra.lang.ObjectHelper;
 import permafrost.tundra.lang.StringHelper;
 import permafrost.tundra.lang.ThreadHelper;
 import permafrost.tundra.math.IntegerHelper;
@@ -98,11 +102,18 @@ public final class service
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String[] stack = callstack();
-		    String callers = ArrayHelper.join(stack, " \u2192 ");
-		    IDataUtil.put(cursor, "$callstack", stack);
-		    IDataUtil.put(cursor, "$callers", callers);
-		    IDataUtil.put(cursor, "$caller", stack.length > 0 ? stack[0] : "");
+		    List<NSService> stack = ServiceHelper.getCallStack();
+		    if (stack.size() > 0) stack.remove(stack.size() - 1); // remove call to this service
+		
+		    String caller = "";
+		    if (stack.size() > 1) {
+		        NSService service = stack.get(stack.size() - 2);
+		        if (service != null) caller = ObjectHelper.stringify(service);
+		    }
+		
+		    IDataUtil.put(cursor, "$callstack", CollectionHelper.arrayify(CollectionHelper.stringify(stack), String.class));
+		    IDataUtil.put(cursor, "$callers", IterableHelper.join(stack, " \u2192 "));
+		    IDataUtil.put(cursor, "$caller", caller);
 		} finally {
 		    cursor.destroy();
 		}
@@ -465,18 +476,6 @@ public final class service
 	}
 
 	// --- <<IS-START-SHARED>> ---
-	// returns the invocation call stack
-	public static String[] callstack() {
-	    java.util.Iterator stack = com.wm.app.b2b.server.InvokeState.getCurrentState().getCallStack().iterator();
-	    java.util.List<String> services = new java.util.ArrayList<String>();
-	    while (stack.hasNext()) {
-	        services.add(stack.next().toString());
-	    }
-	    // remove call to tundra.invoke:callstack from the stack
-	    if (services.size() > 0) services.remove(services.size() - 1);
-	    return (String[])services.toArray(new String[services.size()]);
-	}
-	
 	// invokes the given service synchronously
 	public static IData invoke(String service, IData pipeline) throws ServiceException {
 	    return (IData)invoke(service, pipeline, "synchronous");
