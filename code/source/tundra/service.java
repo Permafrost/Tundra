@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-12-14 11:46:52 EST
+// -----( CREATED: 2016-12-14 11:49:53 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -349,7 +349,7 @@ public final class service
 		
 		try {
 		    String service = IDataUtil.getString(cursor, "$service");
-		    IData properties = reflect(service);
+		    IData properties = ServiceHelper.reflect(service);
 		    if (properties != null) IDataUtil.put(cursor, "$service.properties", properties);
 		} finally {
 		    cursor.destroy();
@@ -589,28 +589,6 @@ public final class service
 	    }
 	
 	    return pipeline;
-	}
-	
-	// returns information about the given service
-	public static IData reflect(String serviceName) {
-	    if (serviceName == null) return null;
-	
-	    com.wm.app.b2b.server.BaseService service = com.wm.app.b2b.server.ns.Namespace.getService(com.wm.lang.ns.NSName.create(serviceName));
-	    if (service == null) return null;
-	
-	    IData output = IDataFactory.create();
-	    IDataCursor cursor = output.getCursor();
-	
-	    IDataUtil.put(cursor, "name", serviceName);
-	    IDataUtil.put(cursor, "type", service.getServiceType().getType());
-	    IDataUtil.put(cursor, "package", service.getPackageName());
-	
-	    String description = service.getComment();
-	    if (description != null) IDataUtil.put(cursor, "description", description);
-	
-	    cursor.destroy();
-	
-	    return output;
 	}
 	// --- <<IS-END-SHARED>> ---
 }
