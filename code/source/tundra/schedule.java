@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-09-29 17:36:19 EST
+// -----( CREATED: 2016-12-14 13:31:51 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -15,6 +15,7 @@ import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.math.LongHelper;
 import permafrost.tundra.server.SchedulerHelper;
+import permafrost.tundra.server.ServiceHelper;
 import permafrost.tundra.time.DateTimeHelper;
 import permafrost.tundra.time.DurationHelper;
 import permafrost.tundra.time.DurationPattern;
@@ -141,6 +142,7 @@ public final class schedule
 		// [o] - field:0:required service
 		// [o] - field:0:optional package
 		// [o] - field:0:required target
+		// [o] - field:0:required target.logical
 		// [o] - field:0:required user
 		// [o] - field:0:optional start
 		// [o] - field:0:optional end
@@ -195,7 +197,7 @@ public final class schedule
 	    IDataUtil.put(cursor, "taskID", id);
 	    cursor.destroy();
 	
-	    pipeline = tundra.service.invoke("pub.scheduler:getTaskInfo", pipeline);
+	    pipeline = ServiceHelper.invoke("pub.scheduler:getTaskInfo", pipeline);
 	
 	    cursor = pipeline.getCursor();
 	    String type = IDataUtil.getString(cursor, "type");
@@ -459,7 +461,7 @@ public final class schedule
 	    IDataUtil.put(cursor, "running", BooleanHelper.emit(running));
 	    cursor.destroy();
 	
-	    pipeline = tundra.service.invoke("pub.scheduler:getTaskIDs", pipeline);
+	    pipeline = ServiceHelper.invoke("pub.scheduler:getTaskIDs", pipeline);
 	
 	    cursor = pipeline.getCursor();
 	    String[] list = IDataUtil.getStringArray(cursor, "taskIDs");

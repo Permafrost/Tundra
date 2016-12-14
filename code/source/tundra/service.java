@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-12-14 12:09:38 EST
+// -----( CREATED: 2016-12-14 12:26:01 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -263,9 +263,8 @@ public final class service
 		// @sigtype java 3.5
 		// [i] field:0:required $service
 		// [i] record:0:optional $pipeline
-		// [i] field:0:optional $mode {"synchronous","asynchronous"}
+		// [i] field:0:optional $raise? {"true","false"}
 		// [o] record:0:optional $pipeline
-		// [o] object:0:optional $thread
 		// [o] field:0:optional $duration
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -273,20 +272,21 @@ public final class service
 		    String service = IDataUtil.getString(cursor, "$service");
 		    IData scope = IDataUtil.getIData(cursor, "$pipeline");
 		    String mode = IDataUtil.getString(cursor, "$mode");
+		    boolean raise = BooleanHelper.parse(IDataUtil.getString(cursor, "$raise?"), true);
 		
-		    if (mode == null) mode = "synchronous";
 		    boolean scoped = scope != null;
 		
-		    long start = System.currentTimeMillis();
-		    Object value = invoke(service, scoped ? scope : pipeline, mode);
-		    long end = System.currentTimeMillis();
+		    if (mode != null && mode.equals("asynchronous")) {
+		        // support asynchronous mode for backwards compatiblity
+		        IDataUtil.put(cursor, "$thread", ServiceHelper.fork(service, scoped ? scope : pipeline));
+		    } else {
+		        long start = System.currentTimeMillis();
+		        scope = ServiceHelper.invoke(service, scoped ? scope : pipeline, raise);
+		        long end = System.currentTimeMillis();
 		
-		    String key = mode.equals("asynchronous")? "$thread" : "$pipeline";
-		
-		    if (scoped || mode.equals("asynchronous")) {
-		        IDataUtil.put(cursor, key, value);
+		        if (scoped) IDataUtil.put(cursor, "$pipeline", scope);
+		        IDataUtil.put(cursor, "$duration", DurationHelper.format(end - start, DurationPattern.XML));
 		    }
-		    if (mode.equals("synchronous")) IDataUtil.put(cursor, "$duration", DurationHelper.format(end - start, DurationPattern.XML));
 		} finally {
 		    cursor.destroy();
 		}
@@ -477,58 +477,5 @@ public final class service
 
                 
 	}
-
-	// --- <<IS-START-SHARED>> ---
-	// invokes the given service synchronously
-	public static IData invoke(String service, IData pipeline) throws ServiceException {
-	    return (IData)invoke(service, pipeline, "synchronous");
-	}
-	
-	// invokes the given service either synchronously or asynchronously
-	public static Object invoke(String service, IData pipeline, String mode) throws ServiceException {
-	    Object result = null;
-	    if (mode.equals("synchronous")) {
-	        result = invoke.synchronous(service, pipeline);
-	    } else if (mode.equals("asynchronous")) {
-	        result = invoke.asynchronous(service, pipeline);
-	    } else {
-	        throw new IllegalArgumentException("mode must be either 'synchronous' or 'asynchronous': " + mode);
-	    }
-	    return result;
-	}
-	
-	public static class invoke {
-	    // invokes a service asynchronously
-	    public static com.wm.app.b2b.server.ServiceThread asynchronous(String service, IData pipeline) {
-	        if (pipeline == null) pipeline = IDataFactory.create();
-	        if (service == null) return null;
-	
-	        IData scope = IDataUtil.clone(pipeline);
-	        com.wm.lang.ns.NSName name = com.wm.lang.ns.NSName.create(service);
-	        com.wm.app.b2b.server.ServiceThread thread = com.wm.app.b2b.server.Service.doThreadInvoke(name, scope);
-	
-	        return thread;
-	    }
-	
-	    // invokes a service synchronously
-	    public static IData synchronous(String service, IData pipeline) throws ServiceException {
-	        if (pipeline == null) pipeline = IDataFactory.create();
-	        if (service == null) return pipeline;
-	
-	        IData scope = IDataUtil.clone(pipeline);
-	        com.wm.lang.ns.NSName name = com.wm.lang.ns.NSName.create(service);
-	
-	        try {
-	            scope = com.wm.app.b2b.server.Service.doInvoke(name, scope);
-	        } catch (Exception ex) {
-	            ExceptionHelper.raise(ex);
-	        }
-	
-	        IDataUtil.merge(scope, pipeline);
-	
-	        return pipeline;
-	    }
-	}
-	// --- <<IS-END-SHARED>> ---
 }
 

@@ -1,7 +1,7 @@
 package tundra.assertion;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-08 20:51:15 AEST
+// -----( CREATED: 2016-12-14 12:38:20 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -11,6 +11,7 @@ import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.StringHelper;
+import permafrost.tundra.server.ServiceHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class exception
@@ -89,7 +90,7 @@ public final class exception
 	    Throwable exception = null;
 	
 	    try {
-	        tundra.service.invoke(service, pipeline);
+	        ServiceHelper.invoke(service, pipeline);
 	    } catch(Throwable ex) {
 	        exception = ex;
 	    } finally {

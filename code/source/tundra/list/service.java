@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-11 15:00:11 AEST
+// -----( CREATED: 2016-12-14 13:07:18 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -12,6 +12,7 @@ import com.wm.app.b2b.server.ServiceException;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.time.DurationHelper;
 import permafrost.tundra.time.DurationPattern;
+import permafrost.tundra.server.ServiceHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class service
@@ -48,7 +49,7 @@ public final class service
 		    boolean scoped = scope != null;
 		
 		    long start = System.currentTimeMillis();
-		    scope = chain(services, scoped ? scope : pipeline);
+		    scope = ServiceHelper.chain(services, scoped ? scope : pipeline);
 		    long end = System.currentTimeMillis();
 		
 		    if (scoped) IDataUtil.put(cursor, "$pipeline", scope);
@@ -151,36 +152,14 @@ public final class service
 	}
 
 	// --- <<IS-START-SHARED>> ---
-	// invokes a list of services with a shared pipeline
-	public static IData chain(String[] services, IData pipeline) throws ServiceException {
-	    if (services != null) {
-	        for (int i = 0; i < services.length; i++) {
-	            pipeline = tundra.service.invoke(services[i], pipeline);
-	        }
-	    }
-	    return pipeline;
-	}
-	
 	// provides a try/catch/finally pattern for chained flow services
 	public static IData ensure(String[] services, IData pipeline, String catchService, String finallyService) throws ServiceException {
 	    try {
-	        pipeline = chain(services, pipeline);
-	    } catch (Throwable t) {
-	        IDataCursor cursor = pipeline.getCursor();
-	        IDataUtil.put(cursor, "$exception", t);
-	        IDataUtil.put(cursor, "$exception?", "true");
-	        IDataUtil.put(cursor, "$exception.class", t.getClass().getName());
-	        IDataUtil.put(cursor, "$exception.message", t.getMessage());
-	        IDataUtil.put(cursor, "$exception.stack", ExceptionHelper.getStackTrace(t));
-	        cursor.destroy();
-	
-	        if (catchService == null) {
-	            ExceptionHelper.raise(t);
-	        } else {
-	            pipeline = tundra.service.invoke(catchService, pipeline);
-	        }
+	        pipeline = ServiceHelper.chain(services, pipeline);
+	    } catch (Throwable exception) {
+	        pipeline = ServiceHelper.rescue(catchService, pipeline, exception);
 	    } finally {
-	        if (finallyService != null) pipeline = tundra.service.invoke(finallyService, pipeline);
+	        pipeline = ServiceHelper.invoke(finallyService, pipeline);
 	    }
 	
 	    return pipeline;
@@ -216,7 +195,7 @@ public final class service
 	                try {
 	                    String service = IDataUtil.getString(cursor, "service");
 	                    IData pipeline = IDataUtil.getIData(cursor, "pipeline");
-	                    IDataUtil.put(cursor, "thread", tundra.service.invoke.asynchronous(service, pipeline));
+	                    IDataUtil.put(cursor, "thread", ServiceHelper.fork(service, pipeline));
 	                } catch (Exception ex) {
 	                    hasError = true;
 	                    errors[i] = ex;
@@ -248,7 +227,7 @@ public final class service
 	                IDataUtil.put(cursor, "$invocations", table[i]);
 	                IDataUtil.put(cursor, "$mode", "synchronous");
 	
-	                threads[i] = tundra.service.invoke.asynchronous("tundra.list.service:invoke", scope);
+	                threads[i] = ServiceHelper.fork("tundra.list.service:invoke", scope);
 	            }
 	
 	            join(threads);
@@ -282,7 +261,7 @@ public final class service
 	                try {
 	                    String service = IDataUtil.getString(cursor, "service");
 	                    IData pipeline = IDataUtil.getIData(cursor, "pipeline");
-	                    IDataUtil.put(cursor, "pipeline", tundra.service.invoke.synchronous(service, pipeline));
+	                    IDataUtil.put(cursor, "pipeline", ServiceHelper.invoke(service, pipeline));
 	                } catch (Exception ex) {
 	                    hasError = true;
 	                    errors[i] = ex;
