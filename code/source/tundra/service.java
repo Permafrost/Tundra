@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-12-14 10:53:05 EST
+// -----( CREATED: 2016-12-14 10:53:58 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -232,7 +232,7 @@ public final class service
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IDataUtil.put(cursor, "$initiator?", BooleanHelper.emit(initiator()));
+		    IDataUtil.put(cursor, "$initiator?", BooleanHelper.emit(ServiceHelper.isInitiator()));
 		} finally {
 		    cursor.destroy();
 		}
@@ -465,12 +465,6 @@ public final class service
 	}
 
 	// --- <<IS-START-SHARED>> ---
-	// returns true if the calling service is the top-level initiating 
-	// service of the current thread
-	public static boolean initiator() {
-	    return callstack().length <= 1;
-	}
-	
 	// returns the invocation call stack
 	public static String[] callstack() {
 	    java.util.Iterator stack = com.wm.app.b2b.server.InvokeState.getCurrentState().getCallStack().iterator();
