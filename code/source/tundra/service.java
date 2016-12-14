@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-10-10 19:01:57 EST
+// -----( CREATED: 2016-12-14 10:24:18 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -186,6 +186,32 @@ public final class service
 		    scope = ensure($service, scoped ? scope : pipeline, $catch, $finally);
 		
 		    if (scoped) IDataUtil.put(cursor, "$pipeline", scope);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void fork (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(fork)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $service
+		// [i] record:0:optional $pipeline
+		// [o] object:0:required $thread
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    String service = IDataUtil.getString(cursor, "$service");
+		    IData scope = IDataUtil.getIData(cursor, "$pipeline");
+		
+		    IDataUtil.put(cursor, "$thread", ServiceHelper.fork(service, scope == null ? pipeline : scope));
 		} finally {
 		    cursor.destroy();
 		}

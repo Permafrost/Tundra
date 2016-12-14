@@ -12378,6 +12378,27 @@ Provides a try/catch/finally pattern for flow services.
 
 ---
 
+### tundra.service:fork
+
+Invokes a service asynchronously, and either scoped or unscoped.
+
+#### Inputs:
+
+* `$service` is the fully-qualified name of the service to be
+  invoked.
+* `$pipeline` is an optional `IData` document which, if specified,
+  contains the input arguments for the invocation of `$service`;
+  in other words, the invocation is scoped to this `IData` document.
+  If not specified, the invocation is unscoped, and hence the
+  service will operate directly against the pipeline itself.
+
+#### Outputs:
+
+* `$thread` is the service thread object which can later be waited
+  on to finish using `Tundra/tundra.service:join`.
+
+---
+
 ### tundra.service:initiator
 
 Returns true if the calling service is the initiating top-level
