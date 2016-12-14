@@ -7,6 +7,7 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -20,6 +21,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$thread</value>
           <value name="field_type">object</value>
           <value name="field_dim">0</value>
@@ -28,10 +30,44 @@
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
         </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_usereditable">false</value>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$raise?</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <array name="field_options" type="value" depth="1">
+            <value>true</value>
+            <value>false</value>
+          </array>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">boolean</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -45,6 +81,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$pipeline</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
@@ -54,26 +91,30 @@
           <value name="is_global">false</value>
           <array name="rec_fields" type="record" depth="1">
           </array>
+          <value name="modifiable">true</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">### tundra.service:join
 
-Waits for the given service thread to finish before returning the
+Waits for the given service thread to finish before returning the 
 service output pipeline.
 
-#### Inputs:
+#### Inputs:
 
-* $thread is a service thread object returned by
-  Tundra/tundra.service:invoke when a service is invoked
-  asynchronously.
+* $thread is a service thread object representing an asynchronously 
+  invoked service.
+* $raise? is an optional boolean which when true will rethrow any 
+  exceptions thrown by the asynchronously invoked service, and when 
+  false will add the exception details if an exception was thrown to
+  the returned $pipeline as per the tundra.schema.exception:handler 
+  specification. Defaults to true.
 
 #### Outputs:
 
-* $pipeline is the output pipeline returned by the service
-  thread.
-
+* $pipeline is the output pipeline returned by the service thread.
 </value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
@@ -90,10 +131,16 @@ service output pipeline.
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
 </Values>

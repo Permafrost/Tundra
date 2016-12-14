@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-12-14 11:49:53 EST
+// -----( CREATED: 2016-12-14 11:53:56 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -9,6 +9,7 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import com.wm.app.b2b.server.ServiceThread;
 import com.wm.lang.ns.NSService;
 import java.nio.charset.Charset;
 import java.util.List;
@@ -303,13 +304,15 @@ public final class service
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:0:optional $thread
+		// [i] field:0:optional $raise? {"true","false"}
 		// [o] record:0:optional $pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    com.wm.app.b2b.server.ServiceThread thread = (com.wm.app.b2b.server.ServiceThread)IDataUtil.get(cursor, "$thread");
+		    ServiceThread thread = (ServiceThread)IDataUtil.get(cursor, "$thread");
 		
-		    if (thread != null) IDataUtil.put(cursor, "$pipeline", join(thread));
+		    boolean raise = BooleanHelper.parse(IDataUtil.getString(cursor, "$raise"), true);
+		    if (thread != null) IDataUtil.put(cursor, "$pipeline", ServiceHelper.join(thread, raise));
 		} finally {
 		    cursor.destroy();
 		}
@@ -525,21 +528,6 @@ public final class service
 	
 	        return pipeline;
 	    }
-	}
-	
-	// waits for an asynchronously invoked service to complete
-	public static IData join(com.wm.app.b2b.server.ServiceThread thread) throws ServiceException {
-	    IData pipeline = IDataFactory.create();
-	
-	    if (thread != null) {
-	        try {
-	            pipeline = thread.getIData();
-	        } catch (Exception ex) {
-	            ExceptionHelper.raise(ex);
-	        }
-	    }
-	
-	    return pipeline;
 	}
 	
 	// provides a try/catch/finally pattern for flow services

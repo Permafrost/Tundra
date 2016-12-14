@@ -12454,14 +12454,17 @@ service output pipeline.
 
 #### Inputs:
 
-* `$thread` is a service thread object returned by
-  `Tundra/tundra.service:invoke` when a service is invoked
-  asynchronously.
+* `$thread` is a service thread object representing an asynchronously
+  invoked service.
+* `$raise?` is an optional boolean which when `true` will rethrow any
+  exceptions thrown by the asynchronously invoked service, and when
+  `false` will add the exception details if an exception was thrown to
+  the returned `$pipeline` as per the `tundra.schema.exception:handler`
+  specification. Defaults to `true`.
 
 #### Outputs:
 
-* `$pipeline` is the output pipeline returned by the service
-  thread.
+* `$pipeline` is the output pipeline returned by the service thread.
 
 ---
 
