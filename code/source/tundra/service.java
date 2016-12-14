@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-12-14 10:24:18 EST
+// -----( CREATED: 2016-12-14 10:51:40 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -69,7 +69,7 @@ public final class service
 		    int count = IntegerHelper.parse(IDataUtil.getString(cursor, "$count"));
 		    boolean raise = BooleanHelper.parse(IDataUtil.getString(cursor, "$raise?"));
 		
-		    NormalDistributionEstimator estimator = benchmark(service, scope == null? pipeline : scope, count, raise);
+		    NormalDistributionEstimator estimator = ServiceHelper.benchmark(service, scope == null? pipeline : scope, count, raise);
 		
 		    IDataUtil.put(cursor, "$duration.average", DurationHelper.format(estimator.getMean()/1000.0, 6, DurationPattern.XML));
 		    IDataUtil.put(cursor, "$duration.standard.deviation", DurationHelper.format(estimator.getStandardDeviation()/1000.0, 6, DurationPattern.XML));
@@ -632,32 +632,6 @@ public final class service
 	    cursor.destroy();
 	
 	    return output;
-	}
-	
-	// invokes the given service a given number of times, and returns execution duration statistics
-	public static NormalDistributionEstimator benchmark(String service, IData pipeline, int count) throws ServiceException {
-	    return benchmark(service, pipeline, count, false);
-	}
-	
-	// invokes the given service a given number of times, and returns execution duration statistics
-	public static NormalDistributionEstimator benchmark(String service, IData pipeline, int count, boolean raise) throws ServiceException {
-	    NormalDistributionEstimator estimator = new NormalDistributionEstimator("ms");
-	
-	    validate(service, true);
-	
-	    for (int i = 0; i < count; i++) {
-	        long start = System.currentTimeMillis();
-	        try { 
-	            tundra.service.invoke.synchronous(service, pipeline);
-	        } catch (ServiceException ex) {
-	            if (raise) throw ex;
-	        } finally {
-	            long end = System.currentTimeMillis();
-	            estimator.add(end - start);
-	        }
-	    }
-	
-	    return estimator;
 	}
 	// --- <<IS-END-SHARED>> ---
 }
