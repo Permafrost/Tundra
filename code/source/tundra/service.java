@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-12-14 11:53:56 EST
+// -----( CREATED: 2016-12-14 12:09:38 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -195,7 +195,7 @@ public final class service
 		    IData scope = IDataUtil.getIData(cursor, "$pipeline");
 		    boolean scoped = scope != null;
 		
-		    scope = ensure($service, scoped ? scope : pipeline, $catch, $finally);
+		    scope = ServiceHelper.ensure($service, scoped ? scope : pipeline, $catch, $finally);
 		
 		    if (scoped) IDataUtil.put(cursor, "$pipeline", scope);
 		} finally {
@@ -528,55 +528,6 @@ public final class service
 	
 	        return pipeline;
 	    }
-	}
-	
-	// provides a try/catch/finally pattern for flow services
-	public static IData ensure(String service, IData pipeline, String catchService, String finallyService) throws ServiceException {
-	    try {
-	        pipeline = invoke.synchronous(service, pipeline);
-	    } catch (Throwable t) {
-	        IDataCursor cursor = pipeline.getCursor();
-	        IDataUtil.put(cursor, "$exception", t);
-	        IDataUtil.put(cursor, "$exception?", "true");
-	        IDataUtil.put(cursor, "$exception.class", t.getClass().getName());
-	        IDataUtil.put(cursor, "$exception.message", t.getMessage());
-	
-	        com.wm.app.b2b.server.InvokeState invokeState = com.wm.app.b2b.server.InvokeState.getCurrentState();
-	        if (invokeState != null) {
-	            IData exceptionInfo = IDataHelper.duplicate(invokeState.getErrorInfoFormatted(), true);
-	            if (exceptionInfo != null) {
-	                IDataCursor ec = exceptionInfo.getCursor();
-	                String exceptionService = IDataUtil.getString(ec, "service");
-	                if (exceptionService != null) {
-	                    IDataUtil.put(cursor, "$exception.service", exceptionService);
-	                    com.wm.app.b2b.server.BaseService baseService = com.wm.app.b2b.server.ns.Namespace.getService(com.wm.lang.ns.NSName.create(exceptionService));
-	                    if (baseService != null) {
-	                        String packageName = baseService.getPackageName();
-	                        if (packageName != null) {
-	                            IDataUtil.put(ec, "package", packageName);
-	                            IDataUtil.put(cursor, "$exception.package", packageName);
-	                        }
-	                    }
-	                }
-	                ec.destroy();
-	                IDataUtil.put(cursor, "$exception.info", exceptionInfo);
-	            }
-	        }
-	
-	        IDataUtil.put(cursor, "$exception.stack", ExceptionHelper.getStackTrace(t));
-	
-	        cursor.destroy();
-	
-	        if (catchService == null) {
-	            ExceptionHelper.raise(t);
-	        } else {
-	            pipeline = invoke(catchService, pipeline);
-	        }
-	    } finally {
-	        if (finallyService != null) pipeline = invoke(finallyService, pipeline);
-	    }
-	
-	    return pipeline;
 	}
 	// --- <<IS-END-SHARED>> ---
 }
