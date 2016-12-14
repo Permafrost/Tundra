@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-12-14 10:51:40 EST
+// -----( CREATED: 2016-12-14 10:53:05 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -455,7 +455,7 @@ public final class service
 		try {
 		    String service = IDataUtil.getString(cursor, "$service");
 		    boolean raise = BooleanHelper.parse(IDataUtil.getString(cursor, "$raise?"));
-		    IDataUtil.put(cursor, "$valid?", BooleanHelper.emit(validate(service, raise)));
+		    IDataUtil.put(cursor, "$valid?", BooleanHelper.emit(ServiceHelper.exists(service, raise)));
 		} finally {
 		    cursor.destroy();
 		}
@@ -469,20 +469,6 @@ public final class service
 	// service of the current thread
 	public static boolean initiator() {
 	    return callstack().length <= 1;
-	}
-	
-	// returns true if the given string is a service and exists
-	public static boolean validate(String service) throws ServiceException {
-	    return validate(service, false);
-	}
-	
-	// returns true if the given string is a service and exists
-	public static boolean validate(String service, boolean raise) throws ServiceException {
-	    boolean valid = NodeHelper.exists(service) && "service".equals(NodeHelper.getNodeType(service).toString());
-	
-	    if (raise && !valid) throw new ServiceException("Service does not exist: " + service);
-	
-	    return valid;
 	}
 	
 	// returns the invocation call stack
