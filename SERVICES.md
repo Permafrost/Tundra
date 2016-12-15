@@ -8874,20 +8874,26 @@ the given lists.
 
 ### tundra.list.object:join
 
-Returns a string created by converting each list item to a string, and
-concatenating the resulting strings together separated by the given
-`$separator`.
+Returns a string created by converting each list item to a string,
+and concatenating the resulting strings together separated by the
+given separator.
 
 #### Inputs:
 
 * `$list` is a list to be converted to a string.
 * `$separator` is an optional string used to separate each list item
   in the resulting string. Defaults to an empty string.
+* `$default` is an optional string which is will be returned in `$result`
+  if the given `$list` is null.
+* `$nulls?` is an optional boolean flag which if `true` will include all
+  null values in the resulting string representation, otherwise these
+  are excluded. Defaults to `false`.
 
 #### Outputs:
 
-* `$result` is a string containing each item in the given list, converted
-  to a string and separated by the given `$separator`.
+* `$result` is a string containing each item in the given `$list`
+  converted to a string and separated by the given `$separator`, or
+  the given `$default` string if the given `$list` is null.
 
 ---
 
@@ -9641,18 +9647,24 @@ the given lists.
 ### tundra.list.string:join
 
 Returns a string created by concatenating the list items together,
-separated by the given $separator.
+separated by the given separator.
 
 #### Inputs:
 
 * `$list` is a list to be converted to a string.
 * `$separator` is an optional string used to separate each list item
   in the resulting string. Defaults to an empty string.
+* `$default` is an optional string which is will be returned in `$result`
+  if the given `$list` is null.
+* `$nulls?` is an optional boolean flag which if `true` will include all
+  null values in the resulting string representation, otherwise these
+  are excluded. Defaults to `false`.
 
 #### Outputs:
 
-* `$result` is a string containing each item in the given list, converted
-  to a string and separated by the given `$separator`.
+* `$result` is a string containing each item in the given `$list`
+  separated by the given `$separator`, or the given `$default` string if
+  the given `$list` is null.
 
 ---
 
