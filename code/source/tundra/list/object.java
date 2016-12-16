@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-12-15 14:40:17 GMT+10:00
+// -----( CREATED: 2016-12-16 11:09:42 GMT+10:00
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -513,10 +513,7 @@ public final class object
 		    String defaultCharacter = IDataUtil.getString(cursor, "$default");
 		    boolean includeNulls = BooleanHelper.parse(IDataUtil.getString(cursor, "$nulls?"));
 
-		    String result = ArrayHelper.join(list, separatorCharacter, includeNulls);
-		    if (result == null) result = defaultCharacter;
-
-		    IDataHelper.put(cursor, "$result", result, false);
+		    IDataHelper.put(cursor, "$result", ArrayHelper.join(list, separatorCharacter, defaultCharacter, includeNulls), false);
 		} finally {
 		    cursor.destroy();
 		}

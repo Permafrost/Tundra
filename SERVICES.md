@@ -8884,7 +8884,7 @@ given separator.
 * `$separator` is an optional string used to separate each list item
   in the resulting string. Defaults to an empty string.
 * `$default` is an optional string which is will be returned in `$result`
-  if the given `$list` is null.
+  if the given `$list` is null or empty.
 * `$nulls?` is an optional boolean flag which if `true` will include all
   null values in the resulting string representation, otherwise these
   are excluded. Defaults to `false`.
@@ -8893,7 +8893,7 @@ given separator.
 
 * `$result` is a string containing each item in the given `$list`
   converted to a string and separated by the given `$separator`, or
-  the given `$default` string if the given `$list` is null.
+  the given `$default` string if the given `$list` is null or empty.
 
 ---
 
@@ -9655,7 +9655,7 @@ separated by the given separator.
 * `$separator` is an optional string used to separate each list item
   in the resulting string. Defaults to an empty string.
 * `$default` is an optional string which is will be returned in `$result`
-  if the given `$list` is null.
+  if the given `$list` is null or empty.
 * `$nulls?` is an optional boolean flag which if `true` will include all
   null values in the resulting string representation, otherwise these
   are excluded. Defaults to `false`.
@@ -9664,7 +9664,7 @@ separated by the given separator.
 
 * `$result` is a string containing each item in the given `$list`
   separated by the given `$separator`, or the given `$default` string if
-  the given `$list` is null.
+  the given `$list` is null or empty.
 
 ---
 
