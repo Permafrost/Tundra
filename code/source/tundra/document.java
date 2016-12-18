@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-12-14 12:41:09 EST
+// -----( CREATED: 2016-12-18 14:19:22 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -28,6 +28,7 @@ import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.lang.LocaleHelper;
 import permafrost.tundra.lang.ObjectConvertMode;
 import permafrost.tundra.lang.ObjectHelper;
+import permafrost.tundra.lang.Sanitization;
 import permafrost.tundra.math.IntegerHelper;
 import permafrost.tundra.server.ServiceHelper;
 // --- <<IS-END-IMPORTS>> ---
@@ -494,7 +495,7 @@ public final class document
 		// [i] field:0:optional $separator.value
 		// [i] field:0:optional $separator.item
 		// [i] field:0:optional $separator.list
-		// [i] field:0:optional $nulls? {"false","true"}
+		// [i] field:0:optional $sanitization {"remove nulls","remove nulls and blanks"}
 		// [o] field:0:optional $result
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -503,9 +504,9 @@ public final class document
 		    String valueSeparator = IDataUtil.getString(cursor, "$separator.value");
 		    String listSeparator = IDataUtil.getString(cursor, "$separator.list");
 		    String itemSeparator = IDataUtil.getString(cursor, "$separator.item");
-		    boolean includeNulls = BooleanHelper.parse(IDataUtil.getString(cursor, "$nulls?"), false);
+		    Sanitization sanitization = Sanitization.normalize(IDataUtil.getString(cursor, "$sanitization"));
 		
-		    if (document != null) IDataUtil.put(cursor, "$result", IDataHelper.join(document, itemSeparator, listSeparator, valueSeparator, includeNulls));
+		    if (document != null) IDataUtil.put(cursor, "$result", IDataHelper.join(document, itemSeparator, listSeparator, valueSeparator, sanitization));
 		} finally {
 		    cursor.destroy();
 		}

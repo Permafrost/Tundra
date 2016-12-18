@@ -269,6 +269,7 @@ ICAgICAgY3Vyc29yLmRlc3Ryb3koKTsKICAgIH0KfQ==</value>
     <value>permafrost.tundra.lang.ArrayHelper</value>
     <value>permafrost.tundra.lang.BooleanHelper</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>
+    <value>permafrost.tundra.lang.Sanitization</value>
     <value>permafrost.tundra.math.IntegerHelper</value>
     <value>permafrost.tundra.server.ServiceHelper</value>
   </array>

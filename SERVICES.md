@@ -8885,9 +8885,9 @@ given separator.
   in the resulting string. Defaults to an empty string.
 * `$default` is an optional string which is will be returned in `$result`
   if the given `$list` is null or empty.
-* `$nulls?` is an optional boolean flag which if `true` will include all
-  null values in the resulting string representation, otherwise these
-  are excluded. Defaults to `false`.
+* `$sanitization` is an optional choice of whether to remove nulls, or
+  nulls and blanks (strings that only contain whitespace characters).
+  If not specified, no sanitization is performed prior to the join.
 
 #### Outputs:
 
@@ -9656,9 +9656,9 @@ separated by the given separator.
   in the resulting string. Defaults to an empty string.
 * `$default` is an optional string which is will be returned in `$result`
   if the given `$list` is null or empty.
-* `$nulls?` is an optional boolean flag which if `true` will include all
-  null values in the resulting string representation, otherwise these
-  are excluded. Defaults to `false`.
+* `$sanitization` is an optional choice of whether to remove nulls, or
+  nulls and blanks (strings that only contain whitespace characters).
+  If not specified, no sanitization is performed prior to the join.
 
 #### Outputs:
 

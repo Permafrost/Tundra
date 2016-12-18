@@ -98,13 +98,13 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$nulls?</value>
+          <value name="field_name">$sanitization</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
           <array name="field_options" type="value" depth="1">
-            <value>false</value>
-            <value>true</value>
+            <value>remove nulls</value>
+            <value>remove nulls and blanks</value>
           </array>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <value name="contentType">1</value>
@@ -113,7 +113,7 @@
             <array name="targetNames" type="record" depth="1">
               <record javaclass="com.wm.util.Values">
                 <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">boolean</value>
+                <value name="ncName">string</value>
               </record>
             </array>
           </record>
@@ -180,9 +180,9 @@ given separator.
   in the resulting string. Defaults to an empty string.
 * $default is an optional string which is will be returned in $result
   if the given $list is null or empty.
-* $nulls? is an optional boolean flag which if true will include all
-  null values in the resulting string representation, otherwise these
-  are excluded. Defaults to false.
+* $sanitization is an optional choice of whether to remove nulls, or
+  nulls and blanks (strings that only contain whitespace characters).
+  If not specified, no sanitization is performed prior to the join.
 
 #### Outputs:
 

@@ -130,6 +130,7 @@ YXNzLCByZWN1cnNlKTsKfQ==</value>
     <value>permafrost.tundra.lang.LocaleHelper</value>
     <value>permafrost.tundra.lang.ObjectConvertMode</value>
     <value>permafrost.tundra.lang.ObjectHelper</value>
+    <value>permafrost.tundra.lang.Sanitization</value>
     <value>permafrost.tundra.math.IntegerHelper</value>
     <value>permafrost.tundra.server.ServiceHelper</value>
   </array>
