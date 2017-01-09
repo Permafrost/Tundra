@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-12-15 08:16:26 GMT+10:00
+// -----( CREATED: 2017-01-09 09:46:25.376
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -60,7 +60,7 @@ public final class service
 		// [i] field:0:required $service
 		// [i] record:0:optional $pipeline
 		// [i] field:0:required $count
-		// [i] field:0:optional $raise? {"false","true"}
+		// [i] field:0:optional $raise? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:required $duration.average
 		// [o] field:0:required $duration.standard.deviation
 		// [o] field:0:required $duration.minimum
@@ -244,7 +244,10 @@ public final class service
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
-		    IDataUtil.put(cursor, "$initiator?", BooleanHelper.emit(ServiceHelper.isInitiator()));
+		    List<NSService> stack = ServiceHelper.getCallStack();
+		    if (stack.size() > 0) stack.remove(stack.size() - 1); // remove call to this service
+
+		    IDataUtil.put(cursor, "$initiator?", BooleanHelper.emit(stack.size() <= 1));
 		} finally {
 		    cursor.destroy();
 		}
@@ -263,7 +266,7 @@ public final class service
 		// @sigtype java 3.5
 		// [i] field:0:required $service
 		// [i] record:0:optional $pipeline
-		// [i] field:0:optional $raise? {"true","false"}
+		// [i] field:0:optional $raise? {&quot;true&quot;,&quot;false&quot;}
 		// [o] record:0:optional $pipeline
 		// [o] field:0:optional $duration
 		IDataCursor cursor = pipeline.getCursor();
@@ -304,7 +307,7 @@ public final class service
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:0:optional $thread
-		// [i] field:0:optional $raise? {"true","false"}
+		// [i] field:0:optional $raise? {&quot;true&quot;,&quot;false&quot;}
 		// [o] record:0:optional $pipeline
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -462,7 +465,7 @@ public final class service
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $service
-		// [i] field:0:optional $raise? {"false","true"}
+		// [i] field:0:optional $raise? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:required $valid?
 		IDataCursor cursor = pipeline.getCursor();
 
