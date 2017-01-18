@@ -5168,6 +5168,26 @@ returning the translated document as output.
 
 ---
 
+### tundra.document:trim
+
+Removes leading and trailing whitespace from all string values in the
+given `IData` document.
+
+#### Inputs:
+
+* `$document` is an IData document whose string values are to be
+  trimmed of leading and trailing whitespace characters.
+* `$recurse?` is an optional boolean indicating if embedded
+  `IData` documents and `IData[]` document lists should also
+  have their string values trimmed. Defaults to `false`.
+
+#### Outputs:
+
+* `$document` is the given `IData` document with all string values
+  trimmed of leading and trailing whitespace characters.
+
+---
+
 ### tundra.document:uncase
 
 Returns a recursive clone with case-insensitive keys of the given
@@ -5276,6 +5296,8 @@ given `IData` document with the replacement string.
 ---
 
 ### tundra.document.value:trim
+
+DEPRECATED: use `tundra.document:trim` instead.
 
 Removes leading and trailing whitespace from all string values in the
 given IData document.
