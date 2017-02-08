@@ -59,6 +59,52 @@
           <array name="rec_fields" type="record" depth="1">
           </array>
         </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="field_name">$namespace</value>
+          <value name="field_type">record</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+          <array name="rec_fields" type="record" depth="1">
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">record</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_usereditable">true</value>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="field_name">default</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <array name="field_options" type="value" depth="1">
+              </array>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">string</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+          </array>
+        </record>
       </array>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
@@ -102,25 +148,27 @@
   </record>
   <value name="node_comment">### tundra.condition:evaluate
 
-Evaluates the given condition against the pipeline (or optional scope IData
-document).
+Evaluates the given condition against the pipeline (or optional 
+scope IData document).
 
-Also supports resolving [XPath] expressions against [org.w3c.dom.Node]
-objects in the top level of the given scope or pipeline.
+Also supports resolving [XPath] expressions against 
+[org.w3c.dom.Node] objects in the top level of the given scope or 
+pipeline.
 
 #### Inputs:
 
-* $condition is the conditional statement to be evaluated. Conditional
-  statements have the same form as when they are used in a flow branch
-  step:
+* $condition is the conditional statement to be evaluated. 
+  Conditional statements have the same form as when they are used in 
+  a flow branch step:
 
       condition = value comparison_op value [logical_op condition]
                 | [!]value                  [logical_op condition]
 
   Where:
   * value is a fully-qualified percent delimited IData document key,
-    such as %a/b/c[0]%, or a literal (double- or single-quoted) string,
-    number, (forward slash delimited) regular expression, or $null.
+    such as %a/b/c[0]%, or a literal (double- or single-quoted) 
+    string, number, (forward slash delimited) regular expression, or 
+    $null.
   * comparison_op is one of the following comparison operators:
     * =
     * ==
@@ -144,11 +192,15 @@ objects in the top level of the given scope or pipeline.
   * %total% == %count%
   * %inString1% == "abc" and (%inNum1% &lt; 100 or %inNum2% &gt; 1000)
 
-  Refer to the Conditional Expressions section in the Integration Server
-  Developer User's Guide for further details.
-* $scope is an optional IData document containing the variables against
-  which $condition will be evaluated. If not specified, the
+  Refer to the Conditional Expressions section in the Integration 
+  Server Developer User's Guide for further details.
+* $scope is an optional IData document containing the variables 
+  against which $condition will be evaluated. If not specified, the
   $condition will be evaluated against the pipeline.
+* $namespace is an optional list of namespace prefixes and the URIs 
+  they map to, used when evaluating [XPath] expressions against 
+  [org.w3c.dom.Node] objects.
+  * default is the URI for the default namespace, if applicable.
 
 #### Outputs:
 

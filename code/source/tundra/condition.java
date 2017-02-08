@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-06-06 15:59:36.883
+// -----( CREATED: 2017-02-09 09:04:12.276
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -9,8 +9,10 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.flow.ConditionEvaluator;
 import permafrost.tundra.lang.BooleanHelper;
+import permafrost.tundra.xml.namespace.IDataNamespaceContext;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class condition
@@ -37,14 +39,17 @@ public final class condition
 		// @sigtype java 3.5
 		// [i] field:0:optional $condition
 		// [i] record:0:optional $scope
+		// [i] record:0:optional $namespace
+		// [i] - field:0:optional default
 		// [o] field:0:required $result?
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
 		    String condition = IDataUtil.getString(cursor, "$condition");
 		    IData scope = IDataUtil.getIData(cursor, "$scope");
+		    IData namespace = IDataUtil.getIData(cursor, "$namespace");
 
-		    IDataUtil.put(cursor, "$result?", BooleanHelper.emit(ConditionEvaluator.evaluate(condition, scope == null? pipeline : scope)));
+		    IDataUtil.put(cursor, "$result?", BooleanHelper.emit(ConditionEvaluator.evaluate(condition, scope == null? pipeline : scope, IDataNamespaceContext.of(namespace))));
 		} finally {
 		    cursor.destroy();
 		}
