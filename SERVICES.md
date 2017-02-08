@@ -1648,6 +1648,77 @@ values to be String objects.
 
 ---
 
+### tundra.condition:choose
+
+Evaluates the given condition against the pipeline (or optional
+scope `IData` document), and returns the appropriate result.
+
+Also supports resolving [XPath] expressions against
+[org.w3c.dom.Node] objects in the top level of the given scope or
+pipeline.
+
+#### Inputs:
+
+* `$condition` is the conditional statement to be evaluated.
+  Conditional statements have the same form as when they are used in
+  a flow branch step:
+
+      condition = value comparison_op value [logical_op condition]
+                | [!]value                  [logical_op condition]
+
+  Where:
+  * `value` is a fully-qualified percent delimited `IData` document key,
+    such as `%a/b/c[0]%`, or a literal (double- or single-quoted)
+    string, number, (forward slash delimited) regular expression, or
+    `$null`.
+  * `comparison_op` is one of the following comparison operators:
+    * `=`
+    * `==`
+    * `!=`
+    * `<>`
+    * `>`
+    * `>=`
+    * `<`
+    * `<=`
+  * `logical_op` is one of the following logical operators:
+    * `and`
+    * `&&`
+    * `or`
+    * `||`
+
+  Examples:
+  * `%a/b/c[0]% == "xyz"`
+  * `%num% == /\d\d/`
+  * `%num% == 10`
+  * `%something% == $null`
+  * `%total% == %count%`
+  * `%inString1% == "abc" and (%inNum1% < 100 or %inNum2% > 1000)`
+
+  Refer to the Conditional Expressions section in the Integration
+  Server Developer User's Guide for further details.
+* `$scope` is an optional `IData` document containing the variables
+  against which `$condition` will be evaluated. If not specified, the
+  `$condition` will be evaluated against the pipeline.
+* `$namespace` is an optional list of namespace prefixes and the URIs
+  they map to, used when evaluating [XPath] expressions against
+  [org.w3c.dom.Node] objects.
+  * `default` is the URI for the default namespace, if applicable.
+* `$result.true` is the result to be returned when `$condition`
+  evaluates to `true`. If not specified or null, no `$result` is
+  returned when the condition evaluates to `true`.
+* `$result.false` is the result to be returned when `$condition`
+  evaluates to `false`. If not specified or null, no `$result` is
+  returned when the condition evaluates to `false`.
+
+#### Outputs:
+
+* `$result?` is the given `$result.true` when `$condition` evaluates to
+  `true`, or `$result.false` when `$condition` evaluates to `false`.
+  If no `$condition` was specified, this is treated as equivalent to
+  evaluating to `true`.
+
+---
+
 ### tundra.condition:evaluate
 
 Evaluates the given condition against the pipeline (or optional
@@ -1667,7 +1738,7 @@ pipeline.
                 | [!]value                  [logical_op condition]
 
   Where:
-  * `value` is a fully-qualified percent delimited IData document key,
+  * `value` is a fully-qualified percent delimited `IData` document key,
     such as `%a/b/c[0]%`, or a literal (double- or single-quoted)
     string, number, (forward slash delimited) regular expression, or
     `$null`.

@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-02-09 09:04:12.276
+// -----( CREATED: 2017-02-09 09:13:40.699
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -28,6 +28,42 @@ public final class condition
 
 	// ---( server methods )---
 
+
+
+
+	public static final void choose (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(choose)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $condition
+		// [i] record:0:optional $scope
+		// [i] record:0:optional $namespace
+		// [i] - field:0:optional default
+		// [i] object:0:optional $result.true
+		// [i] object:0:optional $result.false
+		// [o] object:0:optional $result
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    String condition = IDataUtil.getString(cursor, "$condition");
+		    IData scope = IDataUtil.getIData(cursor, "$scope");
+		    IData namespace = IDataUtil.getIData(cursor, "$namespace");
+		    Object trueResult = IDataUtil.get(cursor, "$result.true");
+		    Object falseResult = IDataUtil.get(cursor, "$result.false");
+
+		    if (trueResult != null || falseResult != null) {
+		        boolean result = ConditionEvaluator.evaluate(condition, scope == null? pipeline : scope, IDataNamespaceContext.of(namespace));
+		        IDataHelper.put(cursor, "$result", result ? trueResult : falseResult, false);
+		    }
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
 
 
 
