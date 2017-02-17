@@ -2617,13 +2617,34 @@ string.
 
 #### Inputs:
 
-* `$date` is an [ISO8601] XML date string.
-* `$time` is an [ISO8601] XML time string.
+* `$date` is a date string.
+* `$time` is a time string.
+* `$pattern.date` is an optional date pattern that `$date` conforms to,
+  that will be used to parse the date string. Defaults to an
+  [ISO8601] XML datetime.
+* `$pattern.input` is an optional time pattern that `$time` conforms to,
+  that will be used to parse the datetime string. Defaults to an
+  [ISO8601] XML datetime.
+* `$pattern.datetime` is an optional datetime pattern that will be
+  used to format the resulting `$datetime` string. Defaults to an
+  [ISO8601] XML datetime.
+* `$timezone.input` is an optional [java.util.TimeZone] ID, or a
+  (+|-)HH:mm time zone offset, or an XML duration string
+  representing a time zone offset, or a raw millisecond time zone
+  offset, or Z for UTC, or local for the default localhost
+  time zone identifying the time zone the input `$time` will
+  be parsed with. If specified, this time zone will override any
+  zone specified in the `$time` string itself.
+* `$timezone.output` is an optional [java.util.TimeZone] ID, or a
+  (+|-)HH:mm time zone offset, or an XML duration string
+  representing a time zone offset, or a raw millisecond time zone
+  offset, or Z for UTC, or local for the default localhost
+  time zone identifying the time zone the returned `$datetime` will
+  be formatted with.
 
 #### Outputs:
 
-* `$datetime` is an [ISO8601] XML datetime string that concatenates the
-  inputs.
+* `$datetime` is a datetime string that concatenates the inputs.
 
 ---
 
