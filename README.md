@@ -149,7 +149,7 @@ majority of services, and are included in the [Tundra] package as
 * `./code/jars/jakarta-oro-2.0.8.jar` - http://archive.apache.org/dist/jakarta/oro/
 * `./code/jars/javax.json-1.0.jar` - https://jsonp.java.net
 * `./code/jars/jscience-4.3.1.jar` - http://jscience.org
-* `./code/jars/snakeyaml-1.15.jar` - http://www.snakeyaml.org
+* `./code/jars/snakeyaml-1.18.jar` - http://www.snakeyaml.org
 * `./code/jars/static/spring-core-4.2.1.RELEASE.jar` - http://projects.spring.io/spring-framework/
 * `./code/jars/static/spring-web-4.2.1.RELEASE.jar` - http://projects.spring.io/spring-framework/
 * `./code/jars/Tundra.jar` - http://github.com/Permafrost/Tundra.java
