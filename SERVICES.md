@@ -14440,27 +14440,25 @@ when resolved against the given [XML] content.
 
 ---
 
-### tundra.yaml:emit
+### tundra.yaml:parse
 
-Serializes an `IData` document as a [YAML] formatted string, byte array, or
-input stream.
+Parses [YAML] content specified as a string, byte array, or input
+stream into an `IData` document.
 
 #### Inputs:
 
-* `$document` is the `IData` document to be serialized as a [YAML] string,
-  byte array, or input stream.
-  * `recordWithNoID` is an optional `IData[]` document list, which can be
-    used to emit a document list rather than a document.
-* `$encoding` is an optional character set to use when encoding the
-  resulting text data to a byte array or input stream. Defaults to [UTF-8].
-* `$mode` is an optional choice of stream, bytes, or string which
-  specifies the type of object `$content` is returned as. Defaults to
-  stream.
+* `$content` is a string, byte array, or input stream containing [YAML]
+  content to be parsed.
+* `$encoding` is an optional character set to use when `$content` is
+  provided as a byte array or input stream to decode the contained
+  text data. Defaults to [UTF-8].
 
 #### Outputs:
 
-* `$content` is the resulting serialization of `$document` as [YAML]
-  content.
+* `$document` is the resulting `IData` document representing the parsed
+  `$content`.
+  * `recordWithNoID` is an optional object or array, present only when
+    the top-level of the given YAML content is not a key value map.
 
 ---
 
