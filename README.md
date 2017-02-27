@@ -144,7 +144,7 @@ majority of services, and are included in the [Tundra] package as
 [JAR] files in the following locations:
 
 * `./code/jars/commons-csv-1.2.jar` - https://commons.apache.org/proper/commons-csv/
-* `./code/jars/hjson-1.1.4.jar` - https://github.com/Permafrost/hjson-java
+* `./code/jars/hjson-2.1.1.jar` - https://github.com/Permafrost/hjson-java
 * `./code/jars/htmlcompressor-1.5.3.jar` - http://htmlcompressor.googlecode.com
 * `./code/jars/jakarta-oro-2.0.8.jar` - http://archive.apache.org/dist/jakarta/oro/
 * `./code/jars/javax.json-1.0.jar` - https://jsonp.java.net
