@@ -4676,6 +4676,8 @@ document with the replacement string.
 
 ### tundra.document.key:trim
 
+DEPRECATED: use `tundra.document:trim` instead.
+
 Removes leading and trailing whitespace from all keys in the given
 IData document.
 
@@ -5278,6 +5280,9 @@ given `IData` document.
 * `$recurse?` is an optional boolean indicating if embedded
   `IData` documents and `IData[]` document lists should also
   have their string values trimmed. Defaults to `false`.
+* `$mode` is an optional choice for what should be trimmed:
+  either the values, the keys, or both the keys and the values.
+  Defaults to trimming values only.
 
 #### Outputs:
 

@@ -2,7 +2,7 @@ package tundra.collection.map;
 
 // -----( IS Java Code Template v1.2
 // -----( CREATED: 2016-11-30 08:18:09 GMT+10:00
-// -----( ON-HOST: PCO62XKG2S.internal.qr.com.au
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -42,7 +42,7 @@ public final class object
 		// @sigtype java 3.5
 		// [i] object:0:optional $map
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Map map = (Map)IDataUtil.get(cursor, "$map");
 		    if (map != null) MapHelper.clear(map);
@@ -51,7 +51,7 @@ public final class object
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -67,7 +67,7 @@ public final class object
 		// [i] field:0:optional $sorted? {&quot;false&quot;,&quot;true&quot;}
 		// [o] object:0:optional $map
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String keyClass = IDataUtil.getString(cursor, "$key.class");
 		    String valueClass = IDataUtil.getString(cursor, "$value.class");
@@ -79,7 +79,7 @@ public final class object
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -94,18 +94,18 @@ public final class object
 		// [i] object:0:optional $key
 		// [o] object:0:optional $value
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Map map = (Map)IDataUtil.get(cursor, "$map");
 		    Object key = IDataUtil.get(cursor, "$key");
-		
+
 		    if (map != null) IDataUtil.put(cursor, "$value", MapHelper.get(map, key));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -119,7 +119,7 @@ public final class object
 		// [i] object:0:optional $map
 		// [o] object:1:optional $keys
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Map map = (Map)IDataUtil.get(cursor, "$map");
 		    if (map != null) IDataUtil.put(cursor, "$keys", MapHelper.keys(map));
@@ -128,7 +128,7 @@ public final class object
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -142,7 +142,7 @@ public final class object
 		// [i] object:0:optional $map
 		// [o] field:0:required $length
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Map map = (Map)IDataUtil.get(cursor, "$map");
 		    if (map != null) IDataUtil.put(cursor, "$length", IntegerHelper.emit(MapHelper.length(map)));
@@ -151,7 +151,7 @@ public final class object
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -167,7 +167,7 @@ public final class object
 		// [i] field:0:optional $sorted? {&quot;false&quot;,&quot;true&quot;}
 		// [o] object:0:optional $map
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String className = IDataUtil.getString(cursor, "$value.class");
 		    mapify(pipeline, className == null ? Object.class : Class.forName(className));
@@ -178,7 +178,7 @@ public final class object
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -195,13 +195,13 @@ public final class object
 		// [i] field:0:optional $mode {&quot;always&quot;,&quot;absent&quot;}
 		// [o] object:0:optional $value.existing
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Map map = (Map)IDataUtil.get(cursor, "$map");
 		    Object key = IDataUtil.get(cursor, "$key");
 		    Object value = IDataUtil.get(cursor, "$value");
 		    String mode = IDataUtil.getString(cursor, "$mode");
-		
+
 		    if (map != null && key != null) {
 		        if (mode == null || mode.equals("always")) {
 		            MapHelper.put(map, key, value);
@@ -215,7 +215,7 @@ public final class object
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -230,18 +230,18 @@ public final class object
 		// [i] object:0:optional $key
 		// [o] object:0:optional $value
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Map map = (Map)IDataUtil.get(cursor, "$map");
 		    Object key = IDataUtil.get(cursor, "$key");
-		
+
 		    if (map != null) IDataUtil.put(cursor, "$length", MapHelper.remove(map, key));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -255,7 +255,7 @@ public final class object
 		// [i] object:0:optional $map
 		// [o] object:1:optional $values
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Map map = (Map)IDataUtil.get(cursor, "$map");
 		    if (map != null) IDataUtil.put(cursor, "$values", MapHelper.values(map));
@@ -264,13 +264,13 @@ public final class object
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 	// --- <<IS-START-SHARED>> ---
 	/**
 	 * Returns a new Map representation of the given IData object.
-	 * 
+	 *
 	 * @param pipeline   The pipeline containing the arguments to the method.
 	 * @param keyClass   The class of keys stored in the Map.
 	 * @param valueClass The class of values stored in the Map.
@@ -279,7 +279,7 @@ public final class object
 	 */
 	public static <K, V> void create(IData pipeline, Class<K> keyClass, Class<V> valueClass) {
 	    IDataCursor cursor = pipeline.getCursor();
-	
+
 	    try {
 	        boolean sorted = BooleanHelper.parse(IDataUtil.get(cursor, "$sorted?"));
 	        IDataUtil.put(cursor, "$map", ConcurrentMapHelper.create(sorted));
@@ -287,17 +287,17 @@ public final class object
 	        cursor.destroy();
 	    }
 	}
-	
+
 	/**
 	 * Returns a new Map representation of the given IData object.
-	 * 
+	 *
 	 * @param pipeline   The pipeline containing the arguments to the method.
 	 * @param valueClass The class of values stored in the Map.
 	 * @param <V>        The class of values stored in the Map.
 	 */
 	public static <V> void mapify(IData pipeline, Class<V> valueClass) {
 	    IDataCursor cursor = pipeline.getCursor();
-	
+
 	    try {
 	        IData document = IDataUtil.getIData(cursor, "$document");
 	        boolean sorted = BooleanHelper.parse(IDataUtil.get(cursor, "$sorted?"));
