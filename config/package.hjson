@@ -25,7 +25,7 @@
             }
         }
         exception: {
-            logging: {
+            log: {
                 # When enabled, exceptions thrown by top-level services are
                 # logged to the server error log.
                 enabled: false

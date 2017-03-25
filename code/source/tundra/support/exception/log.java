@@ -1,7 +1,7 @@
 package tundra.support.exception;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-10-10 18:10:45 EST
+// -----( CREATED: 2017-03-25 20:26:20 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -12,16 +12,16 @@ import com.wm.app.b2b.server.ServiceException;
 import permafrost.tundra.server.invoke.ExceptionLoggingProcessor;
 // --- <<IS-END-IMPORTS>> ---
 
-public final class logging
+public final class log
 
 {
 	// ---( internal utility methods )---
 
-	final static logging _instance = new logging();
+	final static log _instance = new log();
 
-	static logging _newInstance() { return new logging(); }
+	static log _newInstance() { return new log(); }
 
-	static logging _cast(Object o) { return (logging)o; }
+	static log _cast(Object o) { return (log)o; }
 
 	// ---( server methods )---
 

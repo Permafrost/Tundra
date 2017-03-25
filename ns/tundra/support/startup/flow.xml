@@ -1533,12 +1533,12 @@
 </INVOKE>
 </BRANCH>
 
-<BRANCH TIMEOUT="" SWITCH="/$configuration/feature/exception/logging/enabled">
+<BRANCH TIMEOUT="" SWITCH="/$configuration/feature/exception/log/enabled">
   <COMMENT></COMMENT>
 
   <!-- nodes -->
 
-<INVOKE NAME="true" TIMEOUT="" SERVICE="tundra.support.exception.logging:start" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+<INVOKE NAME="true" TIMEOUT="" SERVICE="tundra.support.exception.log:start" VALIDATE-IN="$none" VALIDATE-OUT="$none">
   <COMMENT></COMMENT>
 
   <!-- nodes -->
