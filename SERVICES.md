@@ -10630,7 +10630,10 @@ The content can be specified as a string, byte array, `IData` document,
   the `name` element is mandatory.
   * `name` is an optional message format name which if specified will
     skip the recognition step and instead use the format with the
-    given name for routing.
+    given name for routing. If the given `$message` is not recognized
+    but is provided as an `IData` document, it will default to being
+    routed using `pub.publish:publish` with this value as the
+    `documentTypeName`.
 
 ---
 

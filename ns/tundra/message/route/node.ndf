@@ -52,7 +52,7 @@
               <value name="node_type">record</value>
               <value name="node_comment"></value>
               <record name="node_hints" javaclass="com.wm.util.Values">
-                <null name="field_usereditable"/>
+                <value name="field_usereditable">true</value>
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
@@ -60,6 +60,8 @@
               <value name="field_name">name</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
+              <array name="field_options" type="value" depth="1">
+              </array>
               <record name="field_content_type" javaclass="com.wm.util.Values">
                 <value name="contentType">1</value>
                 <value name="internalType">reference</value>
@@ -106,13 +108,16 @@ java.io.InputStream, or org.w3c.dom.Node object.
 
 #### Inputs:
 
-* $messge is arbitrary content specified as a string, byte array, 
+* $message is arbitrary content specified as a string, byte array, 
   IData document, java.io.InputStream, or org.w3c.dom.Node object.
 * $message.format is an optional message format structure where only
   the name element is mandatory.
   * name is an optional message format name which if specified will
     skip the recognition step and instead use the format with the 
-    given name for routing.</value>
+    given name for routing. If the given $message is not recognized
+    but is provided as an IData document, it will default to being
+    routed using pub.publish:publish with this value as the
+    documentTypeName.</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
