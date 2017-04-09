@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">zip</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogICAgU3Ry
+aW5nIHNvdXJjZSA9IElEYXRhSGVscGVyLmdldChjdXJzb3IsICIkZmlsZSIsIFN0cmluZy5jbGFz
+cyk7CiAgICBTdHJpbmcgdGFyZ2V0ID0gSURhdGFIZWxwZXIuZ2V0KGN1cnNvciwgIiRmaWxlLnpp
+cCIsIFN0cmluZy5jbGFzcyk7CiAgICBib29sZWFuIHJlcGxhY2UgPSBJRGF0YUhlbHBlci5nZXQo
+Y3Vyc29yLCAiJHJlcGxhY2U/IiwgQm9vbGVhbi5jbGFzcyk7CgogICAgSURhdGFVdGlsLnB1dChj
+dXJzb3IsICIkZmlsZS56aXAiLCBGaWxlSGVscGVyLnppcChzb3VyY2UsIHRhcmdldCwgcmVwbGFj
+ZSkpOwp9IGNhdGNoKElPRXhjZXB0aW9uIGV4KSB7CiAgICBFeGNlcHRpb25IZWxwZXIucmFpc2Uo
+ZXgpOwp9IGZpbmFsbHkgewogICAgY3Vyc29yLmRlc3Ryb3koKTsKfQ==</value>
+</Values>

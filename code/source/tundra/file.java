@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-04-09 10:59:55 EST
+// -----( CREATED: 2017-04-09 11:37:37 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -150,7 +150,6 @@ public final class file
 		// [i] field:0:required $file
 		// [i] field:0:optional $file.gzip
 		// [i] field:0:optional $replace? {"false","true"}
-		// [i] object:0:required Untitled
 		// [o] field:0:required $file.gzip
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -509,6 +508,36 @@ public final class file
 		    file = FileHelper.writeFromStream(file, InputStreamHelper.normalize(content, charset), mode == null || mode.equalsIgnoreCase("append"));
 		
 		    IDataUtil.put(cursor, "$file", file);
+		} catch(IOException ex) {
+		    ExceptionHelper.raise(ex);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void zip (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(zip)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $file
+		// [i] field:0:optional $file.zip
+		// [i] field:0:optional $replace? {"false","true"}
+		// [o] field:0:required $file.zip
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    String source = IDataHelper.get(cursor, "$file", String.class);
+		    String target = IDataHelper.get(cursor, "$file.zip", String.class);
+		    boolean replace = IDataHelper.get(cursor, "$replace?", Boolean.class);
+		
+		    IDataUtil.put(cursor, "$file.zip", FileHelper.zip(source, target, replace));
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {

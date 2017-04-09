@@ -6080,6 +6080,28 @@ If no file is specified, a new temporary file is created automatically.
 
 ---
 
+### tundra.file:zip
+
+Compresses the given file using the zip algorithm.
+
+#### Inputs:
+
+* `$file` is the name of the file to be read, specified as either a
+  relative or absolute file path or file [URI].
+* `$file.zip` is the optional name of the resulting compressed file,
+  specified as either a relative or absolute file path or file
+  [URI]. Defaults to the source file suffixed with ".zip".
+* `$replace?` is an optional boolean flag indicating whether the
+  source file should be deleted once it has been compressed.
+  Defaults to `false`.
+
+#### Outputs:
+
+* `$file.zip` is resulting compressed file name specifed as a file
+  [URI].
+
+---
+
 ### tundra.gzip:compress
 
 Compresses the given content using the [gzip] file compression format.
