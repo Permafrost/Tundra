@@ -47,6 +47,38 @@
                 enabled: true
             }
         }
+        log: {
+            compress: {
+                enabled: false
+                directories: [
+                    {
+                        directory: "./logs"
+                        filter: {
+                            inclusions: ["*.log", "*.log.*"]
+                            exclusions: ["*.log.gz", "*.log.*.gz"]
+                            type: wildcard
+                        }
+                        duration: P14D
+                        recurse: false
+                    }
+                ]
+            }
+            purge: {
+                enabled: false
+                directories: [
+                    {
+                        directory: "./logs"
+                        filter: {
+                            inclusions: ["*.log", "*.log.*"]
+                            #exclusions: [...]
+                            type: wildcard
+                        }
+                        duration: P1M
+                        recurse: false
+                    }
+                ]
+            }
+        }
         message: {
             format: {
                 # When enabled, adds support for arbitrary message recognition
