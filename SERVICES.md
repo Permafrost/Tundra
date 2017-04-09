@@ -3761,6 +3761,43 @@ Returns true if the given directory exists.
 
 ---
 
+### tundra.directory:gzip
+
+Compresses all files matching the specified criteria from the given
+directory using the gzip algorithm, and optionally recursively from
+all child directories.
+
+#### Inputs:
+
+* `$directory` is the directory in which files will be compressed,
+  specified as either a relative or absolute file path or file
+  [URI].
+* `$duration` is an optional duration of time representing the age of
+  files to be compressed. For example, a duration of `P1D` will
+  compress all files that were last modified 24 hours ago or earlier.
+* `$duration.pattern` is an optional pattern describing the type of
+  duration specified by the `$duration` string. Defaults to an
+  [ISO8601] XML string.
+* `$filter.inclusions` is an optional list of regular expression
+  patterns, wildcard file glob patterns, or literals used to
+  include files with matching names for compression.
+* `$filter.exclusions` is an optional list of regular expression
+  patterns, wildcard file glob patterns, or literals used to
+  exclude files with matching names from compression.
+* `$filter.type` is an optional choice if either 'regular expression',
+  'wildcard', or 'literal', which determines the type of filter
+  patterns provided. Defaults to 'regular expression'.
+* `$recurse?` is an optional boolean flag indicating if files in child
+  directories should also compressed. Defaults to `false`.
+* `$replace?` is an optional boolean flag indicating if files should
+  be deleted once they are compressed. Defaults to `false`.
+
+#### Outputs:
+
+* `$count` is the number of files compressed by this service.
+
+---
+
 ### tundra.directory:join
 
 Returns a new file path [URI], given a parent path and a child path

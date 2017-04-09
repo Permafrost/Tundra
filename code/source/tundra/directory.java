@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-06-06 16:08:04.058
-// -----( ON-HOST: -
+// -----( CREATED: 2017-04-09 11:53:32 EST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -12,6 +12,7 @@ import com.wm.app.b2b.server.ServiceException;
 import java.io.IOException;
 import java.io.FilenameFilter;
 import java.math.BigInteger;
+import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.io.DirectoryHelper;
 import permafrost.tundra.io.DirectoryLister;
 import permafrost.tundra.io.DirectoryListing;
@@ -53,17 +54,17 @@ public final class directory
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $directory
-		// [i] field:0:optional $delete? {&quot;false&quot;,&quot;true&quot;}
-		// [i] field:0:optional $raise? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $delete? {"false","true"}
+		// [i] field:0:optional $raise? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		boolean raise = false;
-
+		
 		try {
 		    String directory = IDataUtil.getString(cursor, "$directory");
 		    boolean deleteSelf = BooleanHelper.parse(IDataUtil.getString(cursor, "$delete?"));
 		    raise = BooleanHelper.parse(IDataUtil.getString(cursor, "$raise?"));
-
+		
 		    DirectoryHelper.compact(FileHelper.construct(directory), deleteSelf);
 		} catch(IOException ex) {
 		   if (raise) ExceptionHelper.raise(ex);
@@ -72,7 +73,7 @@ public final class directory
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -84,13 +85,13 @@ public final class directory
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $directory
-		// [i] field:0:optional $raise? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $raise? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String directory = IDataUtil.getString(cursor, "$directory");
 		    boolean raise = BooleanHelper.parse(IDataUtil.getString(cursor, "$raise?"));
-
+		
 		    DirectoryHelper.create(directory, raise);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -99,7 +100,7 @@ public final class directory
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -113,7 +114,7 @@ public final class directory
 		// [i] field:0:required $directory
 		// [o] field:0:required $exists?
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String directory = IDataUtil.getString(cursor, "$directory");
 		    IDataUtil.put(cursor, "$exists?", BooleanHelper.emit(DirectoryHelper.exists(directory)));
@@ -122,7 +123,61 @@ public final class directory
 		}
 		// --- <<IS-END>> ---
 
+                
+	}
 
+
+
+	public static final void gzip (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(gzip)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $directory
+		// [i] field:0:optional $duration
+		// [i] field:0:optional $duration.pattern {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
+		// [i] field:1:optional $filter.inclusions
+		// [i] field:1:optional $filter.exclusions
+		// [i] field:0:optional $filter.type {"regular expression","wildcard","literal"}
+		// [i] field:0:optional $recurse? {"false","true"}
+		// [i] field:0:optional $replace? {"false","true"}
+		// [o] field:0:required $count
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    String directory = IDataHelper.get(cursor, "$directory", String.class);
+		    String duration = IDataHelper.get(cursor, "$duration", String.class);
+		    String pattern = IDataHelper.get(cursor, "$duration.pattern", String.class);
+		    String[] inclusions = IDataHelper.get(cursor, "$filter.inclusions", String[].class);
+		    String[] exclusions = IDataHelper.get(cursor, "$filter.exclusions", String[].class);
+		    String type = IDataHelper.get(cursor, "$filter.type", String.class);
+		    boolean recurse = IDataHelper.get(cursor, "$recurse?", Boolean.class);
+		    boolean replace = IDataHelper.get(cursor, "$replace?", Boolean.class);
+		
+		    ConditionalFilenameFilter filter = null;
+		
+		    if (inclusions != null || exclusions != null) {
+		        filter = new AndFilenameFilter();
+		        if (inclusions != null) {
+		            filter.add(new InclusionFilenameFilter(FilenameFilterType.normalize(type), inclusions));
+		        }
+		        if (exclusions != null) {
+		            filter.add(new ExclusionFilenameFilter(FilenameFilterType.normalize(type), exclusions));
+		        }
+		    }
+		
+		    long count = DirectoryHelper.gzip(FileHelper.construct(directory), DurationHelper.parse(duration, pattern), filter, recurse, replace);
+		
+		    IDataUtil.put(cursor, "$count", LongHelper.emit(count));
+		} catch(IOException ex) {
+		    ExceptionHelper.raise(ex);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
 	}
 
 
@@ -137,11 +192,11 @@ public final class directory
 		// [i] field:1:optional $children
 		// [o] field:0:optional $uri
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String parent = IDataUtil.getString(cursor, "$parent");
 		    String[] children = IDataUtil.getStringArray(cursor, "$children");
-
+		
 		    if (children == null) {
 		        String child = IDataUtil.getString(cursor, "$child");
 		        if (child != null) {
@@ -149,20 +204,20 @@ public final class directory
 		            children[0] = child;
 		        }
 		    }
-
+		
 		    if (parent != null) {
 		        children = ArrayHelper.prepend(children, parent, String.class);
 		    }
-
+		
 		    String path = DirectoryHelper.join(children);
-
+		
 		    if (path != null) IDataUtil.put(cursor, "$uri", path);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -176,23 +231,23 @@ public final class directory
 		// [i] field:0:required $directory
 		// [i] field:1:optional $filter.inclusions
 		// [i] field:1:optional $filter.exclusions
-		// [i] field:0:optional $filter.type {&quot;regular expression&quot;,&quot;wildcard&quot;,&quot;literal&quot;}
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $filter.type {"regular expression","wildcard","literal"}
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] field:1:required $directories
 		// [o] field:0:required $directories.length
 		// [o] field:1:required $files
 		// [o] field:0:required $files.length
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String directory = IDataUtil.getString(cursor, "$directory");
 		    String[] inclusions = IDataUtil.getStringArray(cursor, "$filter.inclusions");
 		    String[] exclusions = IDataUtil.getStringArray(cursor, "$filter.exclusions");
 		    String type = IDataUtil.getString(cursor, "$filter.type");
 		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
-
+		
 		    ConditionalFilenameFilter filter = null;
-
+		
 		    if (inclusions != null || exclusions != null) {
 		        filter = new AndFilenameFilter();
 		        if (inclusions != null) {
@@ -209,13 +264,13 @@ public final class directory
 		            filter = new InclusionFilenameFilter(FilenameFilterType.normalize(mode), pattern);
 		        }
 		    }
-
+		
 		    DirectoryLister lister = new DirectoryLister(directory, filter, recurse);
-
+		
 		    DirectoryListing listing = lister.list();
 		    String[] directories = listing.listDirectoriesAsStringArray();
 		    String[] files = listing.listFilesAsStringArray();
-
+		        
 		    IDataUtil.put(cursor, "$directories", directories);
 		    IDataUtil.put(cursor, "$directories.length", IntegerHelper.emit(directories.length));
 		    IDataUtil.put(cursor, "$files", files);
@@ -227,7 +282,7 @@ public final class directory
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -241,7 +296,7 @@ public final class directory
 		// [i] field:0:required $directory
 		// [o] field:1:required $list
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String directory = IDataUtil.getString(cursor, "$directory");
 		    IDataUtil.put(cursor, "$list", DirectoryHelper.list(directory));
@@ -252,7 +307,7 @@ public final class directory
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -266,7 +321,7 @@ public final class directory
 		// [i] field:0:required $directory
 		// [o] field:0:required $directory
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IDataUtil.put(cursor, "$directory", FileHelper.normalize(IDataUtil.getString(cursor, "$directory")));
 		} finally {
@@ -274,7 +329,7 @@ public final class directory
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -287,14 +342,14 @@ public final class directory
 		// @sigtype java 3.5
 		// [i] field:0:required $directory
 		// [i] field:0:required $duration
-		// [i] field:0:optional $duration.pattern {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
+		// [i] field:0:optional $duration.pattern {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
 		// [i] field:1:optional $filter.inclusions
 		// [i] field:1:optional $filter.exclusions
-		// [i] field:0:optional $filter.type {&quot;regular expression&quot;,&quot;wildcard&quot;,&quot;literal&quot;}
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $filter.type {"regular expression","wildcard","literal"}
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] field:0:required $count
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String directory = IDataUtil.getString(cursor, "$directory");
 		    String duration = IDataUtil.getString(cursor, "$duration");
@@ -303,9 +358,9 @@ public final class directory
 		    String[] exclusions = IDataUtil.getStringArray(cursor, "$filter.exclusions");
 		    String type = IDataUtil.getString(cursor, "$filter.type");
 		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
-
+		
 		    ConditionalFilenameFilter filter = null;
-
+		
 		    if (inclusions != null || exclusions != null) {
 		        filter = new AndFilenameFilter();
 		        if (inclusions != null) {
@@ -315,9 +370,9 @@ public final class directory
 		            filter.add(new ExclusionFilenameFilter(FilenameFilterType.normalize(type), exclusions));
 		        }
 		    }
-
+		
 		    long count = DirectoryHelper.purge(directory, DurationHelper.parse(duration, pattern), filter, recurse);
-
+		
 		    IDataUtil.put(cursor, "$count", LongHelper.emit(count));
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -326,7 +381,7 @@ public final class directory
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -345,7 +400,7 @@ public final class directory
 		// [o] - field:0:optional modified
 		// [o] - field:0:required uri
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String directory = IDataUtil.getString(cursor, "$directory");
 		    IDataUtil.put(cursor, "$directory.properties", FileHelper.getPropertiesAsIData(directory));
@@ -354,7 +409,7 @@ public final class directory
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -366,13 +421,13 @@ public final class directory
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $directory
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String directory = IDataUtil.getString(cursor, "$directory");
 		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
-
+		
 		    DirectoryHelper.remove(directory, recurse);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -381,7 +436,7 @@ public final class directory
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -395,11 +450,11 @@ public final class directory
 		// [i] field:0:required $directory.source
 		// [i] field:0:required $directory.target
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String source = IDataUtil.getString(cursor, "$directory.source");
 		    String target = IDataUtil.getString(cursor, "$directory.target");
-
+		
 		    DirectoryHelper.rename(source, target);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -408,7 +463,7 @@ public final class directory
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -420,16 +475,16 @@ public final class directory
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $directory
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] field:0:required $size
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String directory = IDataUtil.getString(cursor, "$directory");
 		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
-
+		
 		    BigInteger totalSize = DirectoryHelper.size(directory, recurse);
-
+		
 		    IDataUtil.put(cursor, "$size", BigIntegerHelper.emit(totalSize));
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -438,7 +493,7 @@ public final class directory
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -453,11 +508,11 @@ public final class directory
 		// [i] field:0:required $size.required
 		// [i] field:1:optional $filter.inclusions
 		// [i] field:1:optional $filter.exclusions
-		// [i] field:0:optional $filter.type {&quot;regular expression&quot;,&quot;wildcard&quot;,&quot;literal&quot;}
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $filter.type {"regular expression","wildcard","literal"}
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] field:0:required $size.squeezed
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String directory = IDataUtil.getString(cursor, "$directory");
 		    BigInteger size = BigIntegerHelper.parse(IDataUtil.getString(cursor, "$size.required"));
@@ -467,9 +522,9 @@ public final class directory
 		    String[] exclusions = IDataUtil.getStringArray(cursor, "$filter.exclusions");
 		    String type = IDataUtil.getString(cursor, "$filter.type");
 		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
-
+		
 		    ConditionalFilenameFilter filter = null;
-
+		
 		    if (inclusions != null || exclusions != null) {
 		        filter = new AndFilenameFilter();
 		        if (inclusions != null) {
@@ -479,9 +534,9 @@ public final class directory
 		            filter.add(new ExclusionFilenameFilter(FilenameFilterType.normalize(type), exclusions));
 		        }
 		    }
-
+		
 		    size = DirectoryHelper.squeeze(directory, size, filter, recurse);
-
+		
 		    IDataUtil.put(cursor, "$size.squeezed", BigIntegerHelper.emit(size));
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -490,7 +545,7 @@ public final class directory
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 

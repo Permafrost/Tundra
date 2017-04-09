@@ -12,6 +12,7 @@
     <value>java.io.IOException</value>
     <value>java.io.FilenameFilter</value>
     <value>java.math.BigInteger</value>
+    <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.io.DirectoryHelper</value>
     <value>permafrost.tundra.io.DirectoryLister</value>
     <value>permafrost.tundra.io.DirectoryListing</value>
