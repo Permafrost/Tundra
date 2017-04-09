@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-04-09 11:53:32 EST
+// -----( CREATED: 2017-04-09 15:03:51 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -351,13 +351,13 @@ public final class directory
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String directory = IDataUtil.getString(cursor, "$directory");
-		    String duration = IDataUtil.getString(cursor, "$duration");
-		    String pattern = IDataUtil.getString(cursor, "$duration.pattern");
-		    String[] inclusions = IDataUtil.getStringArray(cursor, "$filter.inclusions");
-		    String[] exclusions = IDataUtil.getStringArray(cursor, "$filter.exclusions");
-		    String type = IDataUtil.getString(cursor, "$filter.type");
-		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
+		    String directory = IDataHelper.get(cursor, "$directory", String.class);
+		    String duration = IDataHelper.get(cursor, "$duration", String.class);
+		    String pattern = IDataHelper.get(cursor, "$duration.pattern", String.class);
+		    String[] inclusions = IDataHelper.get(cursor, "$filter.inclusions", String[].class);
+		    String[] exclusions = IDataHelper.get(cursor, "$filter.exclusions", String[].class);
+		    String type = IDataHelper.get(cursor, "$filter.type", String.class);
+		    boolean recurse = IDataHelper.get(cursor, "$recurse?", Boolean.class);
 		
 		    ConditionalFilenameFilter filter = null;
 		

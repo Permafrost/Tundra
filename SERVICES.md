@@ -3887,20 +3887,20 @@ Returns the canonical file: URI that represents the given directory.
 
 ### tundra.directory:purge
 
-Deletes all files older than the given duration, based on the last modified
-datetime, from the given directory, and optionally from all sub-
-directories.
+Deletes all files that match the given criteria from the given
+directory, and optionally recursively from all child directories.
 
 #### Inputs:
 
 * `$directory` is the directory from which files will be deleted,
-  specified as either a relative or absolute file path or file: [URI].
-* `$duration` is the duration of time representing the age of files to be
-  deleted. For example, a duration of P1D will delete all files that were
-  last modified 24 hours ago or earlier.
+  specified as either a relative or absolute file path or file
+  [URI].
+* `$duration` is an optional duration of time representing the age of
+  files to be deleted. For example, a duration of P1D will delete
+  all files that were last modified 24 hours ago or earlier.
 * `$duration.pattern` is an optional pattern describing the type of
-  duration specified by the `$duration` string. Defaults to an [ISO8601]
-  XML string.
+  duration specified by the `$duration` string. Defaults to an
+  [ISO8601] XML string.
 * `$filter.inclusions` is an optional list of regular expression
   patterns, wildcard file glob patterns, or literals used to
   include files with matching names for deletion.
@@ -3910,8 +3910,8 @@ directories.
 * `$filter.type` is an optional choice if either 'regular expression',
   'wildcard', or 'literal', which determines the type of filter
   patterns provided. Defaults to 'regular expression'.
-* `$recurse?` is an optional boolean flag indicating if files in sub-
-  directories should also deleted. Defaults to false.
+* `$recurse?` is an optional boolean flag indicating if files in child
+  directories should also deleted. Defaults to `false`.
 
 #### Outputs:
 
