@@ -40,6 +40,7 @@ Cn0=</value>
     <value>java.io.Closeable</value>
     <value>java.io.IOException</value>
     <value>java.nio.charset.Charset</value>
+    <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.io.CloseableHelper</value>
     <value>permafrost.tundra.io.FileHelper</value>
     <value>permafrost.tundra.io.InputStreamHelper</value>
