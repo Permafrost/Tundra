@@ -1,7 +1,7 @@
 package tundra.collection.map;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-11-30 08:18:09 GMT+10:00
+// -----( CREATED: 2017-04-11 08:35:03 EST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -283,6 +283,28 @@ public final class object
 	    try {
 	        boolean sorted = BooleanHelper.parse(IDataUtil.get(cursor, "$sorted?"));
 	        IDataUtil.put(cursor, "$map", ConcurrentMapHelper.create(sorted));
+	    } finally {
+	        cursor.destroy();
+	    }
+	}
+
+	/**
+	 * Returns the value associated with the given key in the given Map.
+	 *
+	 * @param pipeline   The pipeline containing the arguments to the method.
+	 * @param keyClass   The class of keys stored in the Map.
+	 * @param valueClass The class of values stored in the Map.
+	 * @param <K>        The class of keys stored in the Map.
+	 * @param <V>        The class of values stored in the Map.
+	 */
+	public static <K, V> void get(IData pipeline, Class<K> keyClass, Class<V> valueClass) {
+	    IDataCursor cursor = pipeline.getCursor();
+
+	    try {
+	        Map map = (Map)IDataUtil.get(cursor, "$map");
+	        Object key = IDataUtil.get(cursor, "$key");
+
+	        if (map != null) IDataUtil.put(cursor, "$value", MapHelper.get(map, key));
 	    } finally {
 	        cursor.destroy();
 	    }

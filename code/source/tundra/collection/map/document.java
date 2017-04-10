@@ -1,7 +1,7 @@
 package tundra.collection.map;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-10-05 15:30:06.392
+// -----( CREATED: 2017-04-11 08:35:28 EST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -36,7 +36,7 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:0:optional $map
-		// [i] field:0:required $key
+		// [i] field:0:optional $key
 		// [o] record:0:optional $value
 		tundra.collection.map.object.get(pipeline, String.class, IData.class);
 		// --- <<IS-END>> ---
