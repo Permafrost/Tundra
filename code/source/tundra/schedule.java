@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-12-15 11:39:11 GMT+10:00
+// -----( CREATED: 2017-04-19 09:02:00 EST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -72,7 +72,7 @@ public final class schedule
 		// [o] - field:0:required id
 		// [o] - field:0:optional name
 		// [o] - field:0:optional description
-		// [o] - field:0:required type {"complex","once","repeat"}
+		// [o] - field:0:required type {&quot;complex&quot;,&quot;once&quot;,&quot;repeat&quot;}
 		// [o] - field:0:required service
 		// [o] - field:0:optional package
 		// [o] - field:0:required target
@@ -102,9 +102,9 @@ public final class schedule
 		    String name = IDataUtil.getString(cursor, "$name");
 
 		    if (id != null) {
-		        IDataHelper.put(cursor, "$schedule", ScheduleHelper.get(id), true);
+		        IDataHelper.put(cursor, "$schedule", ScheduleHelper.get(id), false);
 		    } else if (name != null) {
-		        IDataHelper.put(cursor, "$schedule", ScheduleHelper.getByName(name), true);
+		        IDataHelper.put(cursor, "$schedule", ScheduleHelper.getByName(name), false);
 		    }
 		} finally {
 		    cursor.destroy();
@@ -129,7 +129,7 @@ public final class schedule
 		// [o] - field:0:required id
 		// [o] - field:0:optional name
 		// [o] - field:0:optional description
-		// [o] - field:0:required type {"complex","once","repeat"}
+		// [o] - field:0:required type {&quot;complex&quot;,&quot;once&quot;,&quot;repeat&quot;}
 		// [o] - field:0:required service
 		// [o] - field:0:optional package
 		// [o] - field:0:required target
