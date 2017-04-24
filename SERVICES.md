@@ -12704,6 +12704,25 @@ Returns information about the service with the given name.
   * `type` is the type of service, such as flow or java.
   * `package` is the name of the package the service exists in.
   * `description` is the service comments.
+  * `references` describes the elements this service references.
+    * `packages` is the list of referenced packages.
+    * `packages.length` is the length of the list of referenced
+      packages.
+    * `nodes` is the list of resolved references.
+      * `package` is the package the reference resides in.
+      * `node` is the name of the referenced element.
+    * `nodes.length` is the length of the resolved references list.
+    * `unresolved` is the list of unresolved references.
+    * `unresolved.length` is the length of the unresolved references
+      list.
+  * `dependents` describes the elements which reference this service.
+    * `packages` is the list of dependent packages.
+    * `packages.length` is the length of the list of dependent
+      packages.
+    * `nodes` is the list of dependent elements.
+      * `package` is the package the dependent element resides in.
+      * `node` is the name of the dependent element.
+    * `nodes.length` is the length of the resolved references list.
 
 ---
 
