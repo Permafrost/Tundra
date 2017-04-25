@@ -7,6 +7,7 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -14,9 +15,11 @@
       <value name="is_global">false</value>
       <array name="rec_fields" type="record" depth="1">
       </array>
+      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -30,6 +33,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$package</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
@@ -46,6 +50,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">name</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -74,6 +79,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">version</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -102,6 +108,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">enabled?</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -130,6 +137,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">system?</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -157,6 +165,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">dependencies</value>
               <value name="field_type">record</value>
               <value name="field_dim">1</value>
@@ -173,6 +182,7 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
+                  <value name="is_public">false</value>
                   <value name="field_name">package</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -201,6 +211,7 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
+                  <value name="is_public">false</value>
                   <value name="field_name">version</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -223,6 +234,7 @@
                 </record>
               </array>
               <value name="rec_closed">true</value>
+              <value name="modifiable">true</value>
             </record>
             <record javaclass="com.wm.util.Values">
               <value name="node_type">unknown</value>
@@ -232,6 +244,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">dependencies.length</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -259,6 +272,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">services</value>
               <value name="field_type">record</value>
               <value name="field_dim">0</value>
@@ -273,6 +287,7 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
+                  <value name="is_public">false</value>
                   <value name="field_name">startup</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">1</value>
@@ -300,6 +315,7 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
+                  <value name="is_public">false</value>
                   <value name="field_name">startup.length</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -327,6 +343,7 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
+                  <value name="is_public">false</value>
                   <value name="field_name">shutdown</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">1</value>
@@ -354,6 +371,7 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
+                  <value name="is_public">false</value>
                   <value name="field_name">shutdown.length</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -381,6 +399,7 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
+                  <value name="is_public">false</value>
                   <value name="field_name">replication</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">1</value>
@@ -408,6 +427,7 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
+                  <value name="is_public">false</value>
                   <value name="field_name">replication.length</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -435,6 +455,7 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
+                  <value name="is_public">false</value>
                   <value name="field_name">loaded</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">1</value>
@@ -462,6 +483,7 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
+                  <value name="is_public">false</value>
                   <value name="field_name">loaded.length</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -484,6 +506,7 @@
                 </record>
               </array>
               <value name="rec_closed">true</value>
+              <value name="modifiable">true</value>
             </record>
             <record javaclass="com.wm.util.Values">
               <value name="node_type">record</value>
@@ -492,6 +515,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">directories</value>
               <value name="field_type">record</value>
               <value name="field_dim">0</value>
@@ -507,6 +531,7 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
+                  <value name="is_public">false</value>
                   <value name="field_name">root</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -535,6 +560,7 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
+                  <value name="is_public">false</value>
                   <value name="field_name">ns</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -563,6 +589,7 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
+                  <value name="is_public">false</value>
                   <value name="field_name">pub</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -591,6 +618,7 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
+                  <value name="is_public">false</value>
                   <value name="field_name">template</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -619,6 +647,7 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
+                  <value name="is_public">false</value>
                   <value name="field_name">web</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -647,6 +676,7 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
+                  <value name="is_public">false</value>
                   <value name="field_name">config</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -669,10 +699,239 @@
                 </record>
               </array>
               <value name="rec_closed">true</value>
+              <value name="modifiable">true</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">record</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">references</value>
+              <value name="field_type">record</value>
+              <value name="field_dim">0</value>
+              <value name="nillable">false</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+              <array name="rec_fields" type="record" depth="1">
+                <record javaclass="com.wm.util.Values">
+                  <value name="node_type">record</value>
+                  <value name="node_comment"></value>
+                  <record name="node_hints" javaclass="com.wm.util.Values">
+                    <value name="field_largerEditor">false</value>
+                    <value name="field_password">false</value>
+                  </record>
+                  <value name="is_public">false</value>
+                  <value name="field_name">packages</value>
+                  <value name="field_type">string</value>
+                  <value name="field_dim">1</value>
+                  <record name="field_content_type" javaclass="com.wm.util.Values">
+                    <value name="contentType">1</value>
+                    <value name="internalType">reference</value>
+                    <value name="dataTypeVersion">dtVersion2</value>
+                    <array name="targetNames" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">string</value>
+                      </record>
+                    </array>
+                  </record>
+                  <value name="nillable">false</value>
+                  <value name="form_qualified">false</value>
+                  <value name="is_global">false</value>
+                  <value name="is_soap_array_encoding_used">false</value>
+                </record>
+                <record javaclass="com.wm.util.Values">
+                  <value name="node_type">record</value>
+                  <value name="node_comment"></value>
+                  <record name="node_hints" javaclass="com.wm.util.Values">
+                    <null name="field_usereditable"/>
+                    <value name="field_largerEditor">false</value>
+                    <value name="field_password">false</value>
+                  </record>
+                  <value name="is_public">false</value>
+                  <value name="field_name">packages.length</value>
+                  <value name="field_type">string</value>
+                  <value name="field_dim">0</value>
+                  <record name="field_content_type" javaclass="com.wm.util.Values">
+                    <value name="contentType">1</value>
+                    <value name="internalType">reference</value>
+                    <value name="dataTypeVersion">dtVersion2</value>
+                    <array name="targetNames" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">nonNegativeInteger</value>
+                      </record>
+                    </array>
+                  </record>
+                  <value name="nillable">false</value>
+                  <value name="form_qualified">false</value>
+                  <value name="is_global">false</value>
+                </record>
+                <record javaclass="com.wm.util.Values">
+                  <value name="node_type">record</value>
+                  <value name="node_comment"></value>
+                  <record name="node_hints" javaclass="com.wm.util.Values">
+                    <value name="field_largerEditor">false</value>
+                    <value name="field_password">false</value>
+                  </record>
+                  <value name="is_public">false</value>
+                  <value name="field_name">nodes</value>
+                  <value name="field_type">record</value>
+                  <value name="field_dim">1</value>
+                  <value name="nillable">false</value>
+                  <value name="form_qualified">false</value>
+                  <value name="is_global">false</value>
+                  <value name="is_soap_array_encoding_used">false</value>
+                  <array name="rec_fields" type="record" depth="1">
+                    <record javaclass="com.wm.util.Values">
+                      <value name="node_type">record</value>
+                      <value name="node_comment"></value>
+                      <record name="node_hints" javaclass="com.wm.util.Values">
+                        <null name="field_usereditable"/>
+                        <value name="field_largerEditor">false</value>
+                        <value name="field_password">false</value>
+                      </record>
+                      <value name="is_public">false</value>
+                      <value name="field_name">package</value>
+                      <value name="field_type">string</value>
+                      <value name="field_dim">0</value>
+                      <record name="field_content_type" javaclass="com.wm.util.Values">
+                        <value name="contentType">1</value>
+                        <value name="internalType">reference</value>
+                        <value name="dataTypeVersion">dtVersion2</value>
+                        <array name="targetNames" type="record" depth="1">
+                          <record javaclass="com.wm.util.Values">
+                            <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                            <value name="ncName">string</value>
+                          </record>
+                        </array>
+                      </record>
+                      <value name="nillable">false</value>
+                      <value name="form_qualified">false</value>
+                      <value name="is_global">false</value>
+                    </record>
+                    <record javaclass="com.wm.util.Values">
+                      <value name="node_type">record</value>
+                      <value name="node_comment"></value>
+                      <record name="node_hints" javaclass="com.wm.util.Values">
+                        <null name="field_usereditable"/>
+                        <value name="field_largerEditor">false</value>
+                        <value name="field_password">false</value>
+                      </record>
+                      <value name="is_public">false</value>
+                      <value name="field_name">node</value>
+                      <value name="field_type">string</value>
+                      <value name="field_dim">0</value>
+                      <record name="field_content_type" javaclass="com.wm.util.Values">
+                        <value name="contentType">1</value>
+                        <value name="internalType">reference</value>
+                        <value name="dataTypeVersion">dtVersion2</value>
+                        <array name="targetNames" type="record" depth="1">
+                          <record javaclass="com.wm.util.Values">
+                            <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                            <value name="ncName">string</value>
+                          </record>
+                        </array>
+                      </record>
+                      <value name="nillable">false</value>
+                      <value name="form_qualified">false</value>
+                      <value name="is_global">false</value>
+                    </record>
+                  </array>
+                  <value name="modifiable">true</value>
+                </record>
+                <record javaclass="com.wm.util.Values">
+                  <value name="node_type">record</value>
+                  <value name="node_comment"></value>
+                  <record name="node_hints" javaclass="com.wm.util.Values">
+                    <null name="field_usereditable"/>
+                    <value name="field_largerEditor">false</value>
+                    <value name="field_password">false</value>
+                  </record>
+                  <value name="is_public">false</value>
+                  <value name="field_name">nodes.length</value>
+                  <value name="field_type">string</value>
+                  <value name="field_dim">0</value>
+                  <record name="field_content_type" javaclass="com.wm.util.Values">
+                    <value name="contentType">1</value>
+                    <value name="internalType">reference</value>
+                    <value name="dataTypeVersion">dtVersion2</value>
+                    <array name="targetNames" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">nonNegativeInteger</value>
+                      </record>
+                    </array>
+                  </record>
+                  <value name="nillable">false</value>
+                  <value name="form_qualified">false</value>
+                  <value name="is_global">false</value>
+                </record>
+                <record javaclass="com.wm.util.Values">
+                  <value name="node_type">record</value>
+                  <value name="node_comment"></value>
+                  <record name="node_hints" javaclass="com.wm.util.Values">
+                    <value name="field_largerEditor">false</value>
+                    <value name="field_password">false</value>
+                  </record>
+                  <value name="is_public">false</value>
+                  <value name="field_name">unresolved</value>
+                  <value name="field_type">string</value>
+                  <value name="field_dim">1</value>
+                  <record name="field_content_type" javaclass="com.wm.util.Values">
+                    <value name="contentType">1</value>
+                    <value name="internalType">reference</value>
+                    <value name="dataTypeVersion">dtVersion2</value>
+                    <array name="targetNames" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">string</value>
+                      </record>
+                    </array>
+                  </record>
+                  <value name="nillable">false</value>
+                  <value name="form_qualified">false</value>
+                  <value name="is_global">false</value>
+                  <value name="is_soap_array_encoding_used">false</value>
+                </record>
+                <record javaclass="com.wm.util.Values">
+                  <value name="node_type">record</value>
+                  <value name="node_comment"></value>
+                  <record name="node_hints" javaclass="com.wm.util.Values">
+                    <null name="field_usereditable"/>
+                    <value name="field_largerEditor">false</value>
+                    <value name="field_password">false</value>
+                  </record>
+                  <value name="is_public">false</value>
+                  <value name="field_name">unresolved.length</value>
+                  <value name="field_type">string</value>
+                  <value name="field_dim">0</value>
+                  <record name="field_content_type" javaclass="com.wm.util.Values">
+                    <value name="contentType">1</value>
+                    <value name="internalType">reference</value>
+                    <value name="dataTypeVersion">dtVersion2</value>
+                    <array name="targetNames" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">nonNegativeInteger</value>
+                      </record>
+                    </array>
+                  </record>
+                  <value name="nillable">false</value>
+                  <value name="form_qualified">false</value>
+                  <value name="is_global">false</value>
+                </record>
+              </array>
+              <value name="modifiable">true</value>
             </record>
           </array>
+          <value name="modifiable">true</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">### tundra.packages:self
@@ -716,13 +975,24 @@ is stored.
     * pub is the package's public HTML directory.
     * template is the package's service template directory.
     * web is the package's Java web application directory.
-    * config is the package's configuration directory.</value>
+    * config is the package's configuration directory.
+  * references describes the elements the services in this package 
+    reference.
+    * packages is the list of referenced packages. 
+    * packages.length is the length of the list of referenced 
+      packages.
+    * nodes is the list of resolved references.
+      * package is the package the reference resides in.
+      * node is the name of the referenced element.
+    * nodes.length is the length of the resolved references list.
+    * unresolved is the list of unresolved references.
+    * unresolved.length is the length of the unresolved references 
+      list.</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
-  <value name="template">tundra_packages_self</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
@@ -733,10 +1003,16 @@ is stored.
   <value name="svc_in_validator_options">none</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
 </Values>

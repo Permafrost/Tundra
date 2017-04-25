@@ -10999,6 +10999,18 @@ Returns information about the package with the given name.
     * `template` is the package's service template directory.
     * `web` is the package's Java web application directory.
     * `config` is the package's configuration directory.
+  * `references` describes the elements the services in this package
+    reference.
+    * `packages` is the list of referenced packages.
+    * `packages.length` is the length of the list of referenced
+      packages.
+    * `nodes` is the list of resolved references.
+      * `package` is the package the reference resides in.
+      * `node` is the name of the referenced element.
+    * `nodes.length` is the length of the resolved references list.
+    * `unresolved` is the list of unresolved references.
+    * `unresolved.length` is the length of the unresolved references
+      list.
 * `$exists?` is a boolean indicating whether a package with
   the given name exists on this Integration Server.
 
@@ -11098,6 +11110,18 @@ is stored.
     * `template` is the package's service template directory.
     * `web` is the package's Java web application directory.
     * `config` is the package's configuration directory.
+  * `references` describes the elements the services in this package
+    reference.
+    * `packages` is the list of referenced packages.
+    * `packages.length` is the length of the list of referenced
+      packages.
+    * `nodes` is the list of resolved references.
+      * `package` is the package the reference resides in.
+      * `node` is the name of the referenced element.
+    * `nodes.length` is the length of the resolved references list.
+    * `unresolved` is the list of unresolved references.
+    * `unresolved.length` is the length of the unresolved references
+      list.
 
 ---
 
