@@ -8742,6 +8742,35 @@ software.
 
 ---
 
+### tundra.list.node:access
+
+Grants the specified permissions on the given namespace nodes.
+
+#### Inputs:
+
+* `$nodes` is a list of Integration Server namespace nodes and
+  permissions to be granted.
+  * `node` is the Integration Server namespace node to grant
+    permissions on, provided as a normal namespace identifer:
+
+        folder(.folder)*(:object)
+
+    Where brackets indicate optional components of the namespace
+    identifer, '*' indicates 0 or more occurrences of a
+    component, '.' and ':' are literal characters.
+  * `permissions` is the list of permissions to be granted on
+    the given `node`.
+    * `type` identifies the type of permission to be granted, one of:
+      * `list` allows members of the given ACL to see the child items
+        in the given node.
+      * `read` allows members of the given ACL to view the given node.
+      * `write` allows members of the given ACL to change the given node.
+      * `execute` allows members of the given ACL to execute the given node.
+    * `acl` is the name of the ACL object to be granted permission on
+      this namespace node.
+
+---
+
 ### tundra.list.object:append
 
 Appends a single item to the end of a list, such that appending an item
