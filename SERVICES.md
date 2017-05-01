@@ -583,6 +583,131 @@ Converts a string, byte array or input stream to a byte array.
 
 ---
 
+### tundra.cache.memory:clear
+
+Removes all entries from the cache with the given name.
+
+#### Inputs:
+
+* `$cache.name` is the name of the cache to be cleared.
+
+---
+
+### tundra.cache.memory:exists
+
+Returns true if the cache with the given name contains the given key.
+
+#### Inputs:
+
+* `$cache.name` is the name of the cache to be checked.
+* `$cache.key` is the key whose existence is to be checked.
+
+#### Outputs:
+
+* `$cache.key.exists?` is `true` if the given key exists in the cache
+  with the given name.
+
+---
+
+### tundra.cache.memory:get
+
+Returns the value associated with the given key from the cache with
+the given name.
+
+#### Inputs:
+
+* `$cache.name` is the name of the cache to be checked.
+* `$cache.key` is the key whose value is to be returned.
+
+#### Outputs:
+
+* `$cache.value` is the value associated with the given key from the
+  cache with the given name, if it exists.
+
+---
+
+### tundra.cache.memory:put
+
+Sets the value associated with the given key in the cache with
+the given name.
+
+#### Inputs:
+
+* `$cache.name` is the name of the cache to be updated.
+* `$cache.key` is the key whose associated value is to be set.
+* `$cache.key.absent?` is an optional boolean which when `true` will
+  only associate the given value with the given key if the key does
+  not already exist in the cache. Defaults to `false`.
+* `$cache.value` is the value to be set.
+
+#### Outputs:
+
+* `$cache.value` is the value associated with the given key in the
+  cache with the given name. If `$cache.key.absent?` was `true` and the
+  key already existed, this is the value already associated with the
+  key.
+
+---
+
+### tundra.cache.memory:reflect
+
+Returns the cache with the given name.
+
+#### Inputs:
+
+* `$cache.name` is the name of the cache to be returned.
+
+#### Outputs:
+
+* `$cache` is the cache with the given name, if it exists.
+
+---
+
+### tundra.cache.memory:remove
+
+Removes the given key and its associated value from the cache with
+the given name.
+
+#### Inputs:
+
+* `$cache.name` is the name of the cache to be updated.
+* `$cache.key` is the key to be removed.
+* `$cache.value` is the optional value associated with the key. If
+  specified, the key is only removed from the cache if it is already
+  associated with this value.
+
+#### Outputs:
+
+* `$cache.key.removed?` is `true` if the key value pair was removed from
+  the cache with the given name.
+* `$cache.value` was the value associated with the given key at the
+  time of its removal.
+
+---
+
+### tundra.cache.memory:replace
+
+Replaces the value associated with the given key in the cache with
+the given name.
+
+#### Inputs:
+
+* `$cache.name` is the name of the cache to be updated.
+* `$cache.key` is the key whose associated value is to be replaced.
+* `$cache.value.old` is the optional value which is expected to
+  already be associated with the key. If specified, the key's
+  associated value is only replaced with the given new value if its
+  current value is equal to this value. If not specified, the key's
+  associated value will always be replaced with the given new value.
+* `$cache.value.new` is the new value to be associated with the key.
+
+#### Outputs:
+
+* `$cache.value.replaced?` is `true` if the key exists and it's value was
+  replaced with the given new value in the cache with the given name.
+
+---
+
 ### tundra.collection.list.document:append
 
 Appends arbitrarily specified items to the end of a [java.util.List]
