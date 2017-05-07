@@ -1,14 +1,15 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-06-06 15:54:11.990
-// -----( ON-HOST: -
+// -----( CREATED: 2017-05-06 16:26:52 EST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import java.math.BigDecimal;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.data.IDataMap;
 import permafrost.tundra.lang.BooleanHelper;
@@ -39,36 +40,36 @@ public final class duration
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $operands
-		// [i] field:0:optional $pattern.input {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
-		// [i] field:0:optional $pattern.output {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
+		// [i] field:0:optional $pattern.input {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
+		// [i] field:0:optional $pattern.output {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
 		// [o] field:0:required $duration
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    IData operands = IDataUtil.getIData(cursor, "$operands");
-		    String inPattern = IDataUtil.getString(cursor, "$pattern.input");
-		    String outPattern = IDataUtil.getString(cursor, "$pattern.output");
-
+		    IData operands = IDataHelper.get(cursor, "$operands", IData.class);
+		    String inPattern = IDataHelper.get(cursor, "$pattern.input", String.class);
+		    String outPattern = IDataHelper.get(cursor, "$pattern.output", String.class);
+		
 		    // support $duration.x and $duration.y inputs for backwards-compatibility
 		    if (operands == null) {
-		        String dx = IDataUtil.getString(cursor, "$duration.x");
-		        String dy = IDataUtil.getString(cursor, "$duration.y");
-
+		        String dx = IDataHelper.get(cursor, "$duration.x", String.class);
+		        String dy = IDataHelper.get(cursor, "$duration.y", String.class);
+		
 		        IDataMap map = new IDataMap();
 		        if (dx != null) map.put("$duration.x", dx);
 		        if (dy != null) map.put("$duration.y", dy);
 		        operands = map;
 		    }
-
+		
 		    String result = DurationHelper.emit(DurationHelper.add(DurationHelper.normalize(IDataHelper.getLeafValues(operands), inPattern)), outPattern);
-
-		    if (result != null) IDataUtil.put(cursor, "$duration", result);
+		    
+		    IDataHelper.put(cursor, "$duration", result, false);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -81,35 +82,35 @@ public final class duration
 		// @sigtype java 3.5
 		// [i] field:0:optional $duration.x
 		// [i] field:0:optional $duration.y
-		// [i] field:0:optional $pattern {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
+		// [i] field:0:optional $pattern {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
 		// [o] field:0:required $lesser?
 		// [o] field:0:required $equal?
 		// [o] field:0:required $greater?
 		// [o] field:0:required $indeterminate?
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    String x = IDataUtil.getString(cursor, "$duration.x");
-		    String y = IDataUtil.getString(cursor, "$duration.y");
-		    String pattern = IDataUtil.getString(cursor, "$pattern");
-
+		    String x = IDataHelper.get(cursor, "$duration.x", String.class);
+		    String y = IDataHelper.get(cursor, "$duration.y", String.class);
+		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
+		
 		    int comparison = DurationHelper.compare(DurationHelper.parse(x, pattern), DurationHelper.parse(y, pattern));
-
+		
 		    boolean lesser        = comparison == javax.xml.datatype.DatatypeConstants.LESSER;
 		    boolean equal         = comparison == javax.xml.datatype.DatatypeConstants.EQUAL;
 		    boolean greater       = comparison == javax.xml.datatype.DatatypeConstants.GREATER;
 		    boolean indeterminate = comparison == javax.xml.datatype.DatatypeConstants.INDETERMINATE;
-
-		    IDataUtil.put(cursor, "$lesser?", BooleanHelper.emit(lesser));
-		    IDataUtil.put(cursor, "$equal?", BooleanHelper.emit(equal));
-		    IDataUtil.put(cursor, "$greater?", BooleanHelper.emit(greater));
-		    IDataUtil.put(cursor, "$indeterminate?", BooleanHelper.emit(indeterminate));
+		
+		    IDataHelper.put(cursor, "$lesser?", lesser, String.class);
+		    IDataHelper.put(cursor, "$equal?", equal, String.class);
+		    IDataHelper.put(cursor, "$greater?", greater, String.class);
+		    IDataHelper.put(cursor, "$indeterminate?", indeterminate, String.class);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -121,29 +122,29 @@ public final class duration
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $duration
-		// [i] field:0:optional $pattern.input {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
-		// [i] field:0:optional $pattern.output {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;}
+		// [i] field:0:optional $pattern.input {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
+		// [i] field:0:optional $pattern.output {"xml","milliseconds","seconds","minutes","hours","days","weeks"}
 		// [i] field:0:optional $datetime
-		// [i] field:0:optional $datetime.pattern {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
+		// [i] field:0:optional $datetime.pattern {"datetime","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
 		// [o] field:0:optional $duration
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    String duration = IDataUtil.getString(cursor, "$duration");
-		    String datetime = IDataUtil.getString(cursor, "$datetime");
-		    String inPattern = IDataUtil.getString(cursor, "$pattern.input");
-		    String outPattern = IDataUtil.getString(cursor, "$pattern.output");
-		    String datetimePattern = IDataUtil.getString(cursor, "$datetime.pattern");
-
+		    String duration = IDataHelper.get(cursor, "$duration", String.class);
+		    String datetime = IDataHelper.get(cursor, "$datetime", String.class);
+		    String inPattern = IDataHelper.get(cursor, "$pattern.input", String.class);
+		    String outPattern = IDataHelper.get(cursor, "$pattern.output", String.class);
+		    String datetimePattern = IDataHelper.get(cursor, "$datetime.pattern", String.class);
+		
 		    duration = DurationHelper.format(duration, inPattern, outPattern, datetime, datetimePattern);
-
-		    if (duration != null) IDataUtil.put(cursor, "$duration", duration);
+		
+		    IDataHelper.put(cursor, "$duration", duration, false);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -155,31 +156,31 @@ public final class duration
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $duration
-		// [i] field:0:optional $pattern.input {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
-		// [i] field:0:optional $pattern.output {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
+		// [i] field:0:optional $pattern.input {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
+		// [i] field:0:optional $pattern.output {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
 		// [i] field:0:optional $datetime
-		// [i] field:0:optional $datetime.pattern {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
+		// [i] field:0:optional $datetime.pattern {"datetime","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
 		// [i] field:0:optional $factor
 		// [o] field:0:optional $duration
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    String duration = IDataUtil.getString(cursor, "$duration");
-		    String inPattern = IDataUtil.getString(cursor, "$pattern.input");
-		    String outPattern = IDataUtil.getString(cursor, "$pattern.output");
-		    String datetime = IDataUtil.getString(cursor, "$datetime");
-		    String datetimePattern = IDataUtil.getString(cursor, "$datetime.pattern");
-		    String factor = IDataUtil.getString(cursor, "$factor");
-
-		    duration = DurationHelper.emit(DurationHelper.multiply(DurationHelper.parse(duration, inPattern), BigDecimalHelper.parse(factor), datetime, datetimePattern));
-
-		    if (duration != null) IDataUtil.put(cursor, "$duration", duration);
+		    String duration = IDataHelper.get(cursor, "$duration", String.class);
+		    String inPattern = IDataHelper.get(cursor, "$pattern.input", String.class);
+		    String outPattern = IDataHelper.get(cursor, "$pattern.output", String.class);
+		    String datetime = IDataHelper.get(cursor, "$datetime", String.class);
+		    String datetimePattern = IDataHelper.get(cursor, "$datetime.pattern", String.class);
+		    BigDecimal factor = IDataHelper.get(cursor, "$factor", BigDecimal.class);
+		
+		    duration = DurationHelper.emit(DurationHelper.multiply(DurationHelper.parse(duration, inPattern), factor, datetime, datetimePattern));
+		
+		    IDataHelper.put(cursor, "$duration", duration, false);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -191,25 +192,25 @@ public final class duration
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $duration
-		// [i] field:0:optional $pattern.input {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
-		// [i] field:0:optional $pattern.output {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
+		// [i] field:0:optional $pattern.input {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
+		// [i] field:0:optional $pattern.output {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
 		// [o] field:0:optional $duration
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    String duration = IDataUtil.getString(cursor, "$duration");
-		    String inPattern = IDataUtil.getString(cursor, "$pattern.input");
-		    String outPattern = IDataUtil.getString(cursor, "$pattern.output");
-
+		    String duration = IDataHelper.get(cursor, "$duration", String.class);
+		    String inPattern = IDataHelper.get(cursor, "$pattern.input", String.class);
+		    String outPattern = IDataHelper.get(cursor, "$pattern.output", String.class);
+		
 		    duration = DurationHelper.emit(DurationHelper.negate(DurationHelper.parse(duration, inPattern)), outPattern);
-
-		    if (duration != null) IDataUtil.put(cursor, "$duration", duration);
+		
+		    IDataHelper.put(cursor, "$duration", duration, false);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -222,26 +223,26 @@ public final class duration
 		// @sigtype java 3.5
 		// [i] field:0:optional $duration.x
 		// [i] field:0:optional $duration.y
-		// [i] field:0:optional $pattern.input {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
-		// [i] field:0:optional $pattern.output {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
+		// [i] field:0:optional $pattern.input {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
+		// [i] field:0:optional $pattern.output {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
 		// [o] field:0:optional $duration
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    String x = IDataUtil.getString(cursor, "$duration.x");
-		    String y = IDataUtil.getString(cursor, "$duration.y");
-		    String inPattern = IDataUtil.getString(cursor, "$pattern.input");
-		    String outPattern = IDataUtil.getString(cursor, "$pattern.output");
-
+		    String x = IDataHelper.get(cursor, "$duration.x", String.class);
+		    String y = IDataHelper.get(cursor, "$duration.y", String.class);
+		    String inPattern = IDataHelper.get(cursor, "$pattern.input", String.class);
+		    String outPattern = IDataHelper.get(cursor, "$pattern.output", String.class);
+		
 		    String result = DurationHelper.emit(DurationHelper.subtract(DurationHelper.parse(x, inPattern), DurationHelper.parse(y, inPattern)), outPattern);
-
-		    if (result != null) IDataUtil.put(cursor, "$duration", result);
+		
+		    IDataHelper.put(cursor, "$duration", result, false);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 

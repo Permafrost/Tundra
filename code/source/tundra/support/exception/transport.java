@@ -1,7 +1,7 @@
 package tundra.support.exception;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-06-23 13:39:20 EST
+// -----( CREATED: 2017-05-07 17:37:52 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -12,6 +12,7 @@ import com.wm.app.b2b.server.ServiceException;
 import javax.activation.MimeTypeParseException;
 import java.io.IOException;
 import permafrost.tundra.content.Content;
+import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.lang.BytesHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.lang.TransportException;
@@ -45,9 +46,9 @@ public final class transport
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String message = IDataUtil.getString(cursor, "$message");
-		    Object content = IDataUtil.get(cursor, "$content");
-		    String contentType = IDataUtil.getString(cursor, "$content.type");
+		    String message = IDataHelper.get(cursor, "$message", String.class);
+		    Object content = IDataHelper.get(cursor, "$content");
+		    String contentType = IDataHelper.get(cursor, "$content.type", String.class);
 		
 		    throw new TransportException(message, Content.of(BytesHelper.normalize(content), contentType));
 		} catch(IOException ex) {

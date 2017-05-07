@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-07-07 10:37:06 EST
+// -----( CREATED: 2017-05-06 16:00:59 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -11,6 +11,7 @@ import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import java.io.IOException;
 import java.nio.charset.Charset;
+import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.data.IDataHTMLParser;
 import permafrost.tundra.html.HTMLHelper;
 import permafrost.tundra.lang.CharsetHelper;
@@ -47,8 +48,8 @@ public final class html
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String string = IDataUtil.getString(cursor, "$string");
-		    if (string != null) IDataUtil.put(cursor, "$string", HTMLHelper.decode(string));
+		    String string = IDataHelper.get(cursor, "$string", String.class);
+		    IDataHelper.put(cursor, "$string", HTMLHelper.decode(string), false);
 		} finally {
 		    cursor.destroy();
 		}

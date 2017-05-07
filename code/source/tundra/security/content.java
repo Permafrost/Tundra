@@ -1,7 +1,7 @@
 package tundra.security;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-05-27 07:53:49 EST
+// -----( CREATED: 2017-05-07 14:54:06 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -14,6 +14,7 @@ import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Map;
+import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.lang.CharsetHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.lang.ObjectConvertMode;
@@ -52,16 +53,16 @@ public final class content
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object content = IDataUtil.get(cursor, "$content");
-		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
-		    MessageDigest algorithm = MessageDigestHelper.normalize(IDataUtil.getString(cursor, "$algorithm"));
-		    ObjectConvertMode mode = ObjectConvertMode.normalize(IDataUtil.getString(cursor, "$mode"));
+		    Object content = IDataHelper.get(cursor, "$content");
+		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
+		    MessageDigest algorithm = IDataHelper.getOrDefault(cursor, "$algorithm", MessageDigest.class, MessageDigestHelper.DEFAULT_ALGORITHM);
+		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
 		
 		    if (content != null) {
 		        Map.Entry<? extends Object, byte[]> digest = MessageDigestHelper.digest(algorithm, content, charset);
 		        if (digest != null) {
-		            IDataUtil.put(cursor, "$content", digest.getKey());
-		            IDataUtil.put(cursor, "$digest", ObjectHelper.convert(digest.getValue(), mode));
+		            IDataHelper.put(cursor, "$content", digest.getKey());
+		            IDataHelper.put(cursor, "$digest", ObjectHelper.convert(digest.getValue(), mode));
 		        }
 		    }
 		} catch(IOException ex) {

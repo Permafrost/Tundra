@@ -3485,7 +3485,8 @@ Custom datetime patterns can be specified using
 
 ### tundra.datetime:today
 
-Returns the current date formatted according to the given pattern.
+Returns the current date at midnight formatted according to the
+given pattern.
 
 Supports a handful of well-known named datetime patterns:
 
@@ -3524,8 +3525,8 @@ Custom datetime patterns can be specified using
 
 ### tundra.datetime:tomorrow
 
-Returns the current date plus one day formatted according to the given
-pattern.
+Returns the current date at midnight plus one day formatted
+according to the given pattern.
 
 Supports a handful of well-known named datetime patterns:
 
@@ -3600,8 +3601,8 @@ Custom datetime patterns can be specified using
 
 ### tundra.datetime:yesterday
 
-Returns the current date minus one day formatted according to the given
-pattern.
+Returns the current date at midnight minus one day formatted
+according to the given pattern.
 
 Supports a handful of well-known named datetime patterns:
 
@@ -3999,11 +4000,12 @@ Returns an decimal object by parsing the given string.
   pattern is not known. A parse is attempted for each pattern until the
   first successful parse, or until all patterns have been tried in which
   case an unparseable decimal exception will be thrown.
-* `$class` is an optional Java class name that determines the type of
-  object returned, a choice of either `java.math.BigDecimal`,
+* $class is an optional Java class name that determines the type of
+  object returned, a choice of either java.math.BigDecimal,
   `java.math.BigInteger`, `java.lang.Double`, `java.lang.Float`,
-  `java.lang.Integer`, or `java.lang.Long`. Defaults to `java.math.BigDecimal`,
-  if not specified.
+  `java.lang.Long`, `java.lang.Integer`, `java.lang.Short`, or `java.lang.Byte`.
+  Defaults to `java.math.BigDecimal`, if not specified.
+
 
 #### Outputs:
 
@@ -4021,7 +4023,8 @@ using the given [rounding algorithm].
 
 * `$base` is a decimal value to be raised to the power of the given
   exponent.
-* `$exponent` is the value to raise the base by.
+* `$exponent` is the value to raise the base by. If not specified,
+  defaults to `1`.
 * `$precision` is an optional number of decimal places to be
   preserved in the result.
 * `$rounding` is an optional choice of the [rounding algorithm]
@@ -13267,14 +13270,16 @@ directly.
 
 ### tundra.service:sleep
 
-Sends the currently executing thread to sleep (temporarily
-cease execution) for the specified duration, subject to the
-precision and accuracy of system timers and schedulers.
+Sends the currently executing thread to sleep (temporarily cease
+execution) for the specified duration, subject to the precision and
+accuracy of system timers and schedulers.
+
+This service is an alias for the `tundra.thread:sleep` service.
 
 #### Inputs:
 
-* `$duration` is an [ISO8601] XML duration for which the
-  current thread should sleep.
+* `$duration` is an [ISO8601] XML duration for which the current
+  thread should sleep.
 
 ---
 
@@ -14250,6 +14255,19 @@ Returns a list of all threads known in the current execution context.
     this thread.
   * `thread` is the actual `java.lang.Thread` object itself.
 * `$threads.length` is the number of items returned in the `$threads` list.
+
+---
+
+### tundra.thread:sleep
+
+Sends the currently executing thread to sleep (temporarily cease
+execution) for the specified duration, subject to the precision and
+accuracy of system timers and schedulers.
+
+#### Inputs:
+
+* `$duration` is an [ISO8601] XML duration for which the current
+  thread should sleep.
 
 ---
 

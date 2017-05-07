@@ -1,7 +1,7 @@
 package tundra.assertion;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-08 21:02:49 AEST
+// -----( CREATED: 2017-05-03 13:08:26 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -9,6 +9,7 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.data.IDataHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class object
@@ -39,9 +40,9 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object expected = IDataUtil.get(cursor, "$expected");
-		    Object actual = IDataUtil.get(cursor, "$actual");
-		    String message = IDataUtil.getString(cursor, "$message");
+		    Object expected = IDataHelper.get(cursor, "$expected");
+		    Object actual = IDataHelper.get(cursor, "$actual");
+		    String message = IDataHelper.get(cursor, "$message", String.class);
 		
 		    equal(expected, actual, message);
 		} finally {
@@ -65,8 +66,8 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object object = IDataUtil.get(cursor, "$object");
-		    String message = IDataUtil.getString(cursor, "$message");
+		    Object object = IDataHelper.get(cursor, "$object");
+		    String message = IDataHelper.get(cursor, "$message", String.class);
 		
 		    exist(object, message);
 		} finally {
@@ -91,9 +92,9 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object object = IDataUtil.get(cursor, "$object");
-		    String className = IDataUtil.getString(cursor, "$class");
-		    String message = IDataUtil.getString(cursor, "$message");
+		    Object object = IDataHelper.get(cursor, "$object");
+		    String className = IDataHelper.get(cursor, "$class", String.class);
+		    String message = IDataHelper.get(cursor, "$message", String.class);
 		
 		    instance(object, className, message);
 		} finally {
@@ -117,8 +118,8 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object object = IDataUtil.get(cursor, "$object");
-		    String message = IDataUtil.getString(cursor, "$message");
+		    Object object = IDataHelper.get(cursor, "$object");
+		    String message = IDataHelper.get(cursor, "$message", String.class);
 		
 		    nothing(object, message);
 		} finally {
@@ -143,9 +144,9 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object expected = IDataUtil.get(cursor, "$expected");
-		    Object actual = IDataUtil.get(cursor, "$actual");
-		    String message = IDataUtil.getString(cursor, "$message");
+		    Object expected = IDataHelper.get(cursor, "$expected");
+		    Object actual = IDataHelper.get(cursor, "$actual");
+		    String message = IDataHelper.get(cursor, "$message", String.class);
 		
 		    unequal(expected, actual, message);
 		} finally {

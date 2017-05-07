@@ -12,6 +12,7 @@
     <value>java.io.IOException</value>
     <value>java.nio.charset.Charset</value>
     <value>permafrost.tundra.data.IDataCSVParser</value>
+    <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.io.InputStreamHelper</value>
     <value>permafrost.tundra.lang.CharsetHelper</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>

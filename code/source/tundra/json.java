@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-05-26 20:06:31 EST
+// -----( CREATED: 2017-05-07 10:51:34 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -11,6 +11,7 @@ import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import java.io.IOException;
 import java.nio.charset.Charset;
+import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.data.IDataJSONParser;
 import permafrost.tundra.io.InputStreamHelper;
 import permafrost.tundra.lang.CharsetHelper;
@@ -49,11 +50,13 @@ public final class json
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData document = IDataUtil.getIData(cursor, "$document");
-		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
-		    ObjectConvertMode mode = ObjectConvertMode.normalize(IDataUtil.getString(cursor, "$mode"));
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
+		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
 		
-		    if (document != null) IDataUtil.put(cursor, "$content", ObjectHelper.convert(IDataJSONParser.getInstance().emit(document, charset), charset, mode));
+		    if (document != null) {
+		        IDataUtil.put(cursor, "$content", ObjectHelper.convert(IDataJSONParser.getInstance().emit(document, charset), charset, mode));
+		    }
 		} catch (IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -79,8 +82,8 @@ public final class json
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object content = IDataUtil.get(cursor, "$content");
-		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
+		    Object content = IDataHelper.get(cursor, "$content");
+		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
 		
 		    if (content != null) {
 		        IDataUtil.put(cursor, "$document", IDataJSONParser.getInstance().parse(InputStreamHelper.normalize(content, charset), charset));

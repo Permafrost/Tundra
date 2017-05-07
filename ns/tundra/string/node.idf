@@ -12,8 +12,10 @@
     <value>java.io.IOException</value>
     <value>java.nio.charset.Charset</value>
     <value>java.util.EnumSet</value>
+    <value>java.util.Locale</value>
     <value>permafrost.tundra.flow.variable.SubstitutionHelper</value>
     <value>permafrost.tundra.flow.variable.SubstitutionType</value>
+    <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.lang.ArrayHelper</value>
     <value>permafrost.tundra.lang.BooleanHelper</value>
     <value>permafrost.tundra.lang.CharsetHelper</value>

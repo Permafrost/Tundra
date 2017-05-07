@@ -11,6 +11,7 @@
     <value>java.math.BigInteger</value>
     <value>java.util.ArrayList</value>
     <value>java.util.List</value>
+    <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.io.DirectoryHelper</value>
     <value>permafrost.tundra.io.FileHelper</value>
     <value>permafrost.tundra.io.filter.AndFilenameFilter</value>
@@ -21,6 +22,7 @@
     <value>permafrost.tundra.lang.BooleanHelper</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>
     <value>permafrost.tundra.math.BigIntegerHelper</value>
+    <value>permafrost.tundra.math.LongHelper</value>
     <value>permafrost.tundra.time.DurationHelper</value>
   </array>
 </Values>

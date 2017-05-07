@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-05-27 08:05:36 EST
+// -----( CREATED: 2017-05-07 13:51:06 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -11,6 +11,7 @@ import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import java.io.IOException;
 import java.nio.charset.Charset;
+import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.io.InputStreamHelper;
 import permafrost.tundra.lang.CharsetHelper;
 import permafrost.tundra.lang.ExceptionHelper;
@@ -51,12 +52,12 @@ public final class zip
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData[] contents = IDataUtil.getIDataArray(cursor, "$contents");
-		    ObjectConvertMode mode = ObjectConvertMode.normalize(IDataUtil.getString(cursor, "$mode"));
+		    IData[] contents = IDataHelper.get(cursor, "$contents", IData[].class);
+		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
 		
 		    Object output = ObjectHelper.convert(ZipHelper.compress(ZipEntryWithData.valueOf(contents)), mode);
 		
-		    if (output != null) IDataUtil.put(cursor, "$contents.zip", output);
+		    IDataHelper.put(cursor, "$contents.zip", output, false);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -84,13 +85,13 @@ public final class zip
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object input = IDataUtil.get(cursor, "$contents.zip");
-		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
-		    ObjectConvertMode mode = ObjectConvertMode.normalize(IDataUtil.getString(cursor, "$mode"));
+		    Object input = IDataHelper.get(cursor, "$contents.zip");
+		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
+		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
 		
 		    ZipEntryWithData[] entries = ZipHelper.decompress(InputStreamHelper.normalize(input, charset));
 		
-		    if (entries != null) IDataUtil.put(cursor, "$contents", ZipEntryWithData.toIDataArray(entries, charset, mode));
+		    IDataHelper.put(cursor, "$contents", ZipEntryWithData.toIDataArray(entries, charset, mode), false);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {

@@ -5,6 +5,6 @@
   <value name="encodeutf8">true</value>
   <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7DQoNCnRyeSB7DQogICAg
 TlNTZXJ2aWNlIHNlbGYgPSBTZXJ2aWNlSGVscGVyLnNlbGYoKTsNCiAgICBpZiAoc2VsZiAhPSBu
-dWxsKSBJRGF0YVV0aWwucHV0KGN1cnNvciwgIiRzZWxmIiwgc2VsZi50b1N0cmluZygpKTsNCn0g
-ZmluYWxseSB7DQogICAgY3Vyc29yLmRlc3Ryb3koKTsNCn0=</value>
+dWxsKSBJRGF0YUhlbHBlci5wdXQoY3Vyc29yLCAiJHNlbGYiLCBzZWxmLnRvU3RyaW5nKCkpOw0K
+fSBmaW5hbGx5IHsNCiAgICBjdXJzb3IuZGVzdHJveSgpOw0KfQ==</value>
 </Values>

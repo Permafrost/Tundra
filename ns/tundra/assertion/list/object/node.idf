@@ -32,6 +32,7 @@ aHJvdyBuZXcgQXNzZXJ0aW9uRXJyb3IobWVzc2FnZSk7CiAgICB9Cn0=</value>
   <array name="implements" type="value" depth="1">
   </array>
   <array name="imports" type="value" depth="1">
+    <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.lang.ArrayHelper</value>
     <value>permafrost.tundra.lang.ObjectHelper</value>
   </array>

@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-12-14 13:07:18 EST
+// -----( CREATED: 2017-05-08 18:40:13 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -9,6 +9,8 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import com.wm.app.b2b.server.ServiceThread;
+import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.time.DurationHelper;
 import permafrost.tundra.time.DurationPattern;
@@ -44,16 +46,16 @@ public final class service
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String[] services = IDataUtil.getStringArray(cursor, "$services");
-		    IData scope = IDataUtil.getIData(cursor, "$pipeline");
+		    String[] services = IDataHelper.get(cursor, "$services", String[].class);
+		    IData scope = IDataHelper.get(cursor, "$pipeline", IData.class);
 		    boolean scoped = scope != null;
 		
 		    long start = System.currentTimeMillis();
 		    scope = ServiceHelper.chain(services, scoped ? scope : pipeline);
 		    long end = System.currentTimeMillis();
 		
-		    if (scoped) IDataUtil.put(cursor, "$pipeline", scope);
-		    IDataUtil.put(cursor, "$duration", DurationHelper.format(end - start, DurationPattern.XML));
+		    if (scoped) IDataHelper.put(cursor, "$pipeline", scope);
+		    IDataHelper.put(cursor, "$duration", DurationHelper.format(end - start, DurationPattern.XML));
 		} finally {
 		    cursor.destroy();
 		}
@@ -78,15 +80,15 @@ public final class service
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String[] $services = IDataUtil.getStringArray(cursor, "$services");
-		    String $catch = IDataUtil.getString(cursor, "$catch");
-		    String $finally = IDataUtil.getString(cursor, "$finally");
-		    IData scope = IDataUtil.getIData(cursor, "$pipeline");
+		    String[] $services = IDataHelper.get(cursor, "$services", String[].class);
+		    String $catch = IDataHelper.get(cursor, "$catch", String.class);
+		    String $finally = IDataHelper.get(cursor, "$finally", String.class);
+		    IData scope = IDataHelper.get(cursor, "$pipeline", IData.class);
 		    boolean scoped = scope != null;
 		
 		    scope = ensure($services, scoped ? scope : pipeline, $catch, $finally);
 		
-		    if (scoped) IDataUtil.put(cursor, "$pipeline", scope);
+		    if (scoped) IDataHelper.put(cursor, "$pipeline", scope);
 		} finally {
 		    cursor.destroy();
 		}
@@ -115,11 +117,11 @@ public final class service
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData[] invocations = IDataUtil.getIDataArray(cursor, "$invocations");
-		    String mode = IDataUtil.getString(cursor, "$mode");
-		    String concurrency = IDataUtil.getString(cursor, "$concurrency");
+		    IData[] invocations = IDataHelper.get(cursor, "$invocations", IData[].class);
+		    String mode = IDataHelper.get(cursor, "$mode", String.class);
+		    String concurrency = IDataHelper.get(cursor, "$concurrency", String.class);
 		
-		    IDataUtil.put(cursor, "$invocations", invoke(invocations, mode, concurrency));
+		    IDataHelper.put(cursor, "$invocations", invoke(invocations, mode, concurrency));
 		} finally {
 		    cursor.destroy();
 		}
@@ -141,8 +143,8 @@ public final class service
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object[] threads = IDataUtil.getObjectArray(cursor, "$threads");
-		    IDataUtil.put(cursor, "$pipelines", join(threads));
+		    Object[] threads = IDataHelper.get(cursor, "$threads", Object[].class);
+		    IDataHelper.put(cursor, "$pipelines", join(threads), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -278,7 +280,7 @@ public final class service
 	}
 	
 	// waits for a list of asynchronously invoked services to complete
-	public static IData[] join(com.wm.app.b2b.server.ServiceThread[] threads) throws ServiceException {
+	public static IData[] join(ServiceThread[] threads) throws ServiceException {
 	    IData[] pipelines = null;
 	    boolean hasError = false;
 	
@@ -305,7 +307,7 @@ public final class service
 	public static IData[] join(Object[] threads) throws ServiceException {
 	    IData[] pipelines = null;
 	    if (threads != null) {
-	        pipelines = join(java.util.Arrays.copyOf(threads, threads.length, com.wm.app.b2b.server.ServiceThread[].class));
+	        pipelines = join(java.util.Arrays.copyOf(threads, threads.length, ServiceThread[].class));
 	    }
 	    return pipelines;
 	}

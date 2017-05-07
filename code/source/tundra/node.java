@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-10-08 12:13:16 EST
+// -----( CREATED: 2017-05-07 11:30:35 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -11,6 +11,7 @@ import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import com.wm.lang.ns.NSType;
 import java.util.SortedSet;
+import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.math.IntegerHelper;
 import permafrost.tundra.server.NodeHelper;
@@ -45,8 +46,8 @@ public final class node
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String node = IDataUtil.getString(cursor, "$node");
-		    IData[] permissions = IDataUtil.getIDataArray(cursor, "$permissions");
+		    String node = IDataHelper.get(cursor, "$node", String.class);
+		    IData[] permissions = IDataHelper.get(cursor, "$permissions", IData[].class);
 		
 		    NodeHelper.setPermissions(node, permissions);
 		} finally {
@@ -70,8 +71,8 @@ public final class node
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String node = IDataUtil.getString(cursor, "$node");
-		    IDataUtil.put(cursor, "$exists?", BooleanHelper.emit(NodeHelper.exists(node)));
+		    String node = IDataHelper.get(cursor, "$node", String.class);
+		    IDataHelper.put(cursor, "$exists?", NodeHelper.exists(node), String.class);
 		} finally {
 		    cursor.destroy();
 		}
@@ -97,15 +98,15 @@ public final class node
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String parent = IDataUtil.getString(cursor, "$interface");
-		    String pattern = IDataUtil.getString(cursor, "$pattern");
-		    String type = IDataUtil.getString(cursor, "$type");
-		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
+		    String parent = IDataHelper.get(cursor, "$interface", String.class);
+		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
+		    String type = IDataHelper.get(cursor, "$type", String.class);
+		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
 		
 		    SortedSet<String> set = NodeHelper.list(parent, pattern, type, recurse);
 		
-		    IDataUtil.put(cursor, "$nodes", set.toArray(new String[set.size()]));
-		    IDataUtil.put(cursor, "$nodes.length", IntegerHelper.emit(set.size()));
+		    IDataHelper.put(cursor, "$nodes", set.toArray(new String[set.size()]));
+		    IDataHelper.put(cursor, "$nodes.length", set.size(), String.class);
 		} finally {
 		    cursor.destroy();
 		}
@@ -127,9 +128,9 @@ public final class node
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String node = IDataUtil.getString(cursor, "$node");
+		    String node = IDataHelper.get(cursor, "$node", String.class);
 		    NSType type = NodeHelper.getNodeType(node);
-		    if (type != null) IDataUtil.put(cursor, "$type", type.toString());
+		    if (type != null) IDataHelper.put(cursor, "$type", type.toString());
 		} finally {
 		    cursor.destroy();
 		}

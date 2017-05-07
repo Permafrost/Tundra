@@ -4,7 +4,7 @@
   <value name="name">touch</value>
   <value name="encodeutf8">true</value>
   <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7DQoNCnRyeSB7DQogICAg
-RmlsZUhlbHBlci50b3VjaChJRGF0YVV0aWwuZ2V0U3RyaW5nKGN1cnNvciwgIiRmaWxlIikpOw0K
-fSBjYXRjaChJT0V4Y2VwdGlvbiBleCkgew0KICAgIEV4Y2VwdGlvbkhlbHBlci5yYWlzZShleCk7
-DQp9IGZpbmFsbHkgew0KICAgIGN1cnNvci5kZXN0cm95KCk7DQp9</value>
+RmlsZUhlbHBlci50b3VjaChJRGF0YUhlbHBlci5nZXQoY3Vyc29yLCAiJGZpbGUiLCBTdHJpbmcu
+Y2xhc3MpKTsNCn0gY2F0Y2goSU9FeGNlcHRpb24gZXgpIHsNCiAgICBFeGNlcHRpb25IZWxwZXIu
+cmFpc2UoZXgpOw0KfSBmaW5hbGx5IHsNCiAgICBjdXJzb3IuZGVzdHJveSgpOw0KfQ==</value>
 </Values>

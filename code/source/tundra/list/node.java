@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-04-28 15:34:57.456
-// -----( ON-HOST: -
+// -----( CREATED: 2017-05-07 17:54:03 EST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -38,10 +38,10 @@ public final class node
 		// [i] record:1:optional $nodes
 		// [i] - field:0:optional node
 		// [i] - record:1:optional permissions
-		// [i] -- field:0:required type {&quot;list&quot;,&quot;read&quot;,&quot;write&quot;,&quot;execute&quot;}
+		// [i] -- field:0:required type {"list","read","write","execute"}
 		// [i] -- field:0:optional acl
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IData[] nodes = IDataHelper.get(cursor, "$nodes", IData[].class);
 		    access(nodes);
@@ -50,7 +50,7 @@ public final class node
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 	// --- <<IS-START-SHARED>> ---
@@ -67,7 +67,7 @@ public final class node
 	                try {
 	                    String name = IDataHelper.get(cursor, "node", String.class);
 	                    IData[] permissions = IDataHelper.get(cursor, "permissions", IData[].class);
-
+	
 	                    NodeHelper.setPermissions(name, permissions);
 	                } finally {
 	                    cursor.destroy();

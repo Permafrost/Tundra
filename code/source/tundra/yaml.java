@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-05-27 08:03:17 EST
+// -----( CREATED: 2017-05-07 14:00:34 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -11,6 +11,7 @@ import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import java.io.IOException;
 import java.nio.charset.Charset;
+import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.data.IDataYAMLParser;
 import permafrost.tundra.io.InputStreamHelper;
 import permafrost.tundra.lang.CharsetHelper;
@@ -48,11 +49,13 @@ public final class yaml
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData document = IDataUtil.getIData(cursor, "$document");
-		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
-		    ObjectConvertMode mode = ObjectConvertMode.normalize(IDataUtil.getString(cursor, "$mode"));
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
+		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
 		
-		    if (document != null) IDataUtil.put(cursor, "$content", ObjectHelper.convert(IDataYAMLParser.getInstance().emit(document, charset), charset, mode));
+		    if (document != null) {
+		        IDataHelper.put(cursor, "$content", ObjectHelper.convert(IDataYAMLParser.getInstance().emit(document, charset), charset, mode));
+		    }
 		} catch (IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -74,15 +77,14 @@ public final class yaml
 		// [i] object:0:optional $content
 		// [i] field:0:optional $encoding
 		// [o] record:0:optional $document
-		// [o] - record:1:optional recordWithNoID
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object content = IDataUtil.get(cursor, "$content");
-		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
+		    Object content = IDataHelper.get(cursor, "$content");
+		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
 		
 		    if (content != null) {
-		        IDataUtil.put(cursor, "$document", IDataYAMLParser.getInstance().parse(InputStreamHelper.normalize(content, charset)));
+		        IDataHelper.put(cursor, "$document", IDataYAMLParser.getInstance().parse(InputStreamHelper.normalize(content, charset)));
 		    }
 		} catch (IOException ex) {
 		    ExceptionHelper.raise(ex);

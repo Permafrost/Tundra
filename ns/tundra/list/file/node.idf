@@ -10,6 +10,7 @@
     <value>java.io.IOException</value>
     <value>java.util.ArrayList</value>
     <value>java.util.List</value>
+    <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.io.FileHelper</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>
   </array>

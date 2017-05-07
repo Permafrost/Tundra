@@ -9,6 +9,7 @@
   <array name="implements" type="value" depth="1">
   </array>
   <array name="imports" type="value" depth="1">
+    <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.time.DateTimeHelper</value>
     <value>permafrost.tundra.time.DurationHelper</value>
   </array>

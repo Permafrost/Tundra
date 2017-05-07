@@ -4,8 +4,8 @@
   <value name="name">lines</value>
   <value name="encodeutf8">true</value>
   <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7DQoNCnRyeSB7DQogICAg
-U3RyaW5nIHN0cmluZyA9IElEYXRhVXRpbC5nZXRTdHJpbmcoY3Vyc29yLCAiJHN0cmluZyIpOw0K
-ICAgIGlmIChzdHJpbmcgIT0gbnVsbCkgSURhdGFVdGlsLnB1dChjdXJzb3IsICIkbGluZXMiLCBT
-dHJpbmdIZWxwZXIubGluZXMoc3RyaW5nKSk7DQp9IGZpbmFsbHkgew0KICAgIGN1cnNvci5kZXN0
-cm95KCk7DQp9</value>
+U3RyaW5nIHN0cmluZyA9IElEYXRhSGVscGVyLmdldChjdXJzb3IsICIkc3RyaW5nIiwgU3RyaW5n
+LmNsYXNzKTsNCiAgICBJRGF0YUhlbHBlci5wdXQoY3Vyc29yLCAiJGxpbmVzIiwgU3RyaW5nSGVs
+cGVyLmxpbmVzKHN0cmluZyksIGZhbHNlKTsNCn0gZmluYWxseSB7DQogICAgY3Vyc29yLmRlc3Ry
+b3koKTsNCn0=</value>
 </Values>

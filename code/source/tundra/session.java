@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-09 11:02:31 AEST
+// -----( CREATED: 2017-05-07 14:26:54 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -9,6 +9,7 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.server.SessionHelper;
 // --- <<IS-END-IMPORTS>> ---
 
@@ -46,7 +47,7 @@ public final class session
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IDataUtil.put(cursor, "$session", SessionHelper.getCurrentSessionAsIData());
+		    IDataHelper.put(cursor, "$session", SessionHelper.getCurrentSessionAsIData());
 		} finally {
 		    cursor.destroy();
 		}
@@ -68,8 +69,8 @@ public final class session
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String key = IDataUtil.getString(cursor, "$key");
-		    Object value = IDataUtil.get(cursor, "$value");
+		    String key = IDataHelper.get(cursor, "$key", String.class);
+		    Object value = IDataHelper.get(cursor, "$value");
 		
 		    SessionHelper.put(key, value);
 		} finally {
@@ -93,10 +94,10 @@ public final class session
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String key = IDataUtil.getString(cursor, "$key");
+		    String key = IDataHelper.get(cursor, "$key", String.class);
 		    Object value = SessionHelper.remove(key);
 		
-		    if (value != null) IDataUtil.put(cursor, "$value", value);
+		    IDataHelper.put(cursor, "$value", value, false);
 		} finally {
 		    cursor.destroy();
 		}

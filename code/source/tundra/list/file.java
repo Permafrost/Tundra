@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-02-15 11:56:17 EST
+// -----( CREATED: 2017-05-07 17:53:33 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -12,6 +12,7 @@ import com.wm.app.b2b.server.ServiceException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.io.FileHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 // --- <<IS-END-IMPORTS>> ---
@@ -42,7 +43,7 @@ public final class file
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String[] files = IDataUtil.getStringArray(cursor, "$files");
+		    String[] files = IDataHelper.get(cursor, "$files", String[].class);
 		
 		    List<Throwable> exceptions = new ArrayList<Throwable>();
 		

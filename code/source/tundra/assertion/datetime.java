@@ -1,7 +1,7 @@
 package tundra.assertion;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-21 15:24:16 AEST
+// -----( CREATED: 2017-05-03 12:56:23 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -9,6 +9,7 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.time.DateTimeHelper;
 // --- <<IS-END-IMPORTS>> ---
 
@@ -36,15 +37,15 @@ public final class datetime
 		// @sigtype java 3.5
 		// [i] field:0:required $expected
 		// [i] field:0:required $actual
-		// [i] field:0:optional $pattern {"datetime","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
+		// [i] field:0:optional $pattern {"datetime","datetime.db2","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
 		// [i] field:0:optional $message
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String expected = IDataUtil.getString(cursor, "$expected");
-		    String actual = IDataUtil.getString(cursor, "$actual");
-		    String pattern = IDataUtil.getString(cursor, "$pattern");
-		    String message = IDataUtil.getString(cursor, "$message");
+		    String expected = IDataHelper.get(cursor, "$expected", String.class);
+		    String actual = IDataHelper.get(cursor, "$actual", String.class);
+		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
+		    String message = IDataHelper.get(cursor, "$message", String.class);
 		
 		    equal(expected, actual, pattern, message);
 		} finally {
@@ -65,15 +66,15 @@ public final class datetime
 		// @sigtype java 3.5
 		// [i] field:0:required $expected
 		// [i] field:0:required $actual
-		// [i] field:0:optional $pattern {"datetime","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
+		// [i] field:0:optional $pattern {"datetime","datetime.db2","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
 		// [i] field:0:optional $message
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String expected = IDataUtil.getString(cursor, "$expected");
-		    String actual = IDataUtil.getString(cursor, "$actual");
-		    String pattern = IDataUtil.getString(cursor, "$pattern");
-		    String message = IDataUtil.getString(cursor, "$message");
+		    String expected = IDataHelper.get(cursor, "$expected", String.class);
+		    String actual = IDataHelper.get(cursor, "$actual", String.class);
+		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
+		    String message = IDataHelper.get(cursor, "$message", String.class);
 		
 		    equal(expected, actual, pattern, message);
 		} finally {

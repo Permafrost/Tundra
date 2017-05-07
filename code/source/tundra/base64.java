@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-05-25 16:51:35.358
-// -----( ON-HOST: -
+// -----( CREATED: 2017-05-01 18:51:22 EST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -11,6 +11,7 @@ import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import java.io.IOException;
 import java.nio.charset.Charset;
+import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.lang.BytesHelper;
 import permafrost.tundra.lang.CharsetHelper;
 import permafrost.tundra.lang.ExceptionHelper;
@@ -43,18 +44,18 @@ public final class base64
 		// @sigtype java 3.5
 		// [i] object:0:optional $base64
 		// [i] field:0:optional $encoding
-		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
+		// [i] field:0:optional $mode {"stream","bytes","string"}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    Object input = IDataUtil.get(cursor, "$base64");
-		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
-		    ObjectConvertMode mode = ObjectConvertMode.normalize(IDataUtil.getString(cursor, "$mode"));
-
+		    Object input = IDataHelper.get(cursor, "$base64");
+		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
+		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
+		
 		    Object output = ObjectHelper.convert(BytesHelper.base64Decode(StringHelper.normalize(input, charset)), charset, mode);
-
-		    if (output != null) IDataUtil.put(cursor, "$content", output);
+		
+		    IDataHelper.put(cursor, "$content", output, false);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -62,7 +63,7 @@ public final class base64
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -75,18 +76,18 @@ public final class base64
 		// @sigtype java 3.5
 		// [i] object:0:optional $content
 		// [i] field:0:optional $encoding
-		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
+		// [i] field:0:optional $mode {"stream","bytes","string"}
 		// [o] object:0:optional $base64
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    Object input = IDataUtil.get(cursor, "$content");
-		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
-		    ObjectConvertMode mode = ObjectConvertMode.normalize(IDataUtil.getString(cursor, "$mode"));
-
+		    Object input = IDataHelper.get(cursor, "$content");
+		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
+		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
+		
 		    Object output = ObjectHelper.convert(BytesHelper.base64Encode(BytesHelper.normalize(input, charset)), charset, mode);
-
-		    if (output != null) IDataUtil.put(cursor, "$base64", output);
+		
+		    IDataHelper.put(cursor, "$base64", output, false);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -94,7 +95,7 @@ public final class base64
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 

@@ -11,6 +11,7 @@
   </array>
   <array name="imports" type="value" depth="1">
     <value>java.math.BigDecimal</value>
+    <value>java.math.BigInteger</value>
     <value>java.math.RoundingMode</value>
     <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.data.IDataMap</value>
@@ -18,5 +19,6 @@
     <value>permafrost.tundra.lang.ExceptionHelper</value>
     <value>permafrost.tundra.math.BigDecimalHelper</value>
     <value>permafrost.tundra.math.BigIntegerHelper</value>
+    <value>permafrost.tundra.math.PrecisionHelper</value>
   </array>
 </Values>

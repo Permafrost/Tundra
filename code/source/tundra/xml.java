@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-07-15 20:16:58 EST
+// -----( CREATED: 2017-05-08 18:33:31 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -14,6 +14,7 @@ import java.io.IOException;
 import javax.xml.namespace.NamespaceContext;
 import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
+import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.io.InputStreamHelper;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.BytesHelper;
@@ -60,12 +61,12 @@ public final class xml
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object content = IDataUtil.get(cursor, "$content");
-		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
-		    XMLCanonicalizationAlgorithm algorithm = XMLCanonicalizationAlgorithm.normalize(IDataUtil.getString(cursor, "$algorithm"));
-		    ObjectConvertMode mode = ObjectConvertMode.normalize(IDataUtil.getString(cursor, "$mode"));
+		    Object content = IDataHelper.get(cursor, "$content");
+		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
+		    XMLCanonicalizationAlgorithm algorithm = XMLCanonicalizationAlgorithm.normalize(IDataHelper.get(cursor, "$algorithm", String.class));
+		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
 		
-		    if (content != null) IDataUtil.put(cursor, "$content.canonical", ObjectHelper.convert(XMLCanonicalizationHelper.canonicalize(BytesHelper.normalize(content, charset), charset, algorithm), charset, mode));
+		    if (content != null) IDataHelper.put(cursor, "$content.canonical", ObjectHelper.convert(XMLCanonicalizationHelper.canonicalize(BytesHelper.normalize(content, charset), charset, algorithm), charset, mode));
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -107,13 +108,13 @@ public final class xml
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Node node = (Node)IDataUtil.get(cursor, "$node");
-		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
-		    ObjectConvertMode mode = ObjectConvertMode.normalize(IDataUtil.getString(cursor, "$mode"));
+		    Node node = IDataHelper.get(cursor, "$node", Node.class);
+		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
+		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
 		
 		    Object content = ObjectHelper.convert(NodeHelper.emit(node, charset), mode);
 		
-		    if (content != null) IDataUtil.put(cursor, "$content", content);
+		    IDataHelper.put(cursor, "$content", content, false);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -155,14 +156,12 @@ public final class xml
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object content = IDataUtil.get(cursor, "$content");
-		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
+		    Object content = IDataHelper.get(cursor, "$content");
+		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
 		
-		    ObjectConvertMode mode = ObjectConvertMode.normalize(IDataUtil.getString(cursor, "$mode"));
+		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
 		
-		    content = ObjectHelper.convert(XMLMinificationHelper.minify(InputStreamHelper.normalize(content, charset)), charset, mode);
-		
-		    if (content != null) IDataUtil.put(cursor, "$content.minified", content);
+		    IDataHelper.put(cursor, "$content.minified", ObjectHelper.convert(XMLMinificationHelper.minify(InputStreamHelper.normalize(content, charset)), charset, mode), false);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -189,9 +188,9 @@ public final class xml
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object content = IDataUtil.get(cursor, "$content");
-		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
-		    NamespaceContext namespace = IDataNamespaceContext.of(IDataUtil.getIData(cursor, "$namespace"));
+		    Object content = IDataHelper.get(cursor, "$content");
+		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
+		    NamespaceContext namespace = IDataHelper.get(cursor, "$namespace", IDataNamespaceContext.class);
 		
 		    Node node = null;
 		    if (content instanceof Node) {
@@ -202,7 +201,7 @@ public final class xml
 		        node = DocumentHelper.parse(InputStreamHelper.normalize(content, charset), charset, true, namespace);
 		    }
 		
-		    if (node != null) IDataUtil.put(cursor, "$document", NodeHelper.parse(node, namespace, true));
+		    if (node != null) IDataHelper.put(cursor, "$document", NodeHelper.parse(node, namespace, true));
 		} finally {
 		    cursor.destroy();
 		}
@@ -229,17 +228,17 @@ public final class xml
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object content = IDataUtil.get(cursor, "$content");
-		    Charset contentCharset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$content.encoding"));
-		    Object schema = IDataUtil.get(cursor, "$schema");
-		    Charset schemaCharset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$schema.encoding"));
-		    boolean raise = BooleanHelper.parse(IDataUtil.getString(cursor, "$raise?"));
+		    Object content = IDataHelper.get(cursor, "$content");
+		    Charset contentCharset = IDataHelper.get(cursor, "$content.encoding", Charset.class);
+		    Object schema = IDataHelper.get(cursor, "$schema");
+		    Charset schemaCharset = IDataHelper.get(cursor, "$schema.encoding", Charset.class);
+		    boolean raise = IDataHelper.getOrDefault(cursor, "$raise?", Boolean.class, false);
 		
 		    String[] errors = XMLHelper.validate(InputStreamHelper.normalize(content, contentCharset), contentCharset, InputStreamHelper.normalize(schema, schemaCharset), schemaCharset, raise);
 		    boolean valid = content != null && (errors == null || errors.length == 0);
 		
-		    IDataUtil.put(cursor, "$valid?", BooleanHelper.emit(valid));
-		    if (!valid && errors != null) IDataUtil.put(cursor, "$errors", errors);
+		    IDataHelper.put(cursor, "$valid?", valid, String.class);
+		    IDataHelper.put(cursor, "$errors", errors, false, false);
 		} finally {
 		    cursor.destroy();
 		}

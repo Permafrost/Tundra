@@ -1,7 +1,7 @@
 package tundra.http;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-09 10:49:24 AEST
+// -----( CREATED: 2017-05-06 16:16:30 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -9,6 +9,7 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.net.http.HTTPHelper;
 // --- <<IS-END-IMPORTS>> ---
 
@@ -39,8 +40,8 @@ public final class response
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    int code = Integer.parseInt(IDataUtil.getString(cursor, "$code"));
-		    IDataUtil.put(cursor, "$message", HTTPHelper.getResponseStatusMessage(code));
+		    int code = IDataHelper.get(cursor, "$code", Integer.class);
+		    IDataHelper.put(cursor, "$message", HTTPHelper.getResponseStatusMessage(code));
 		} finally {
 		    cursor.destroy();
 		}

@@ -4,8 +4,8 @@
   <value name="name">denormalize</value>
   <value name="encodeutf8">true</value>
   <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogICAgSURh
-dGEgZG9jdW1lbnQgPSBJRGF0YVV0aWwuZ2V0SURhdGEoY3Vyc29yLCAiJGRvY3VtZW50Iik7CiAg
-ICBpZiAoZG9jdW1lbnQgIT0gbnVsbCkgSURhdGFVdGlsLnB1dChjdXJzb3IsICIkZG9jdW1lbnQi
-LCBJRGF0YUhlbHBlci5kZW5vcm1hbGl6ZShkb2N1bWVudCkpOwp9IGZpbmFsbHkgewogICAgY3Vy
-c29yLmRlc3Ryb3koKTsKfQ==</value>
+dGEgZG9jdW1lbnQgPSBJRGF0YUhlbHBlci5nZXQoY3Vyc29yLCAiJGRvY3VtZW50IiwgSURhdGEu
+Y2xhc3MpOwogICAgSURhdGFIZWxwZXIucHV0KGN1cnNvciwgIiRkb2N1bWVudCIsIElEYXRhSGVs
+cGVyLmRlbm9ybWFsaXplKGRvY3VtZW50KSwgZmFsc2UpOwp9IGZpbmFsbHkgewogICAgY3Vyc29y
+LmRlc3Ryb3koKTsKfQ==</value>
 </Values>

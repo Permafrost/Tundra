@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-19 19:12:50 AEST
+// -----( CREATED: 2017-05-07 17:52:09 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -9,6 +9,7 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.time.DurationHelper;
 // --- <<IS-END-IMPORTS>> ---
 
@@ -43,15 +44,15 @@ public final class duration
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String[] list = IDataUtil.getStringArray(cursor, "$list");
-		    String inPattern = IDataUtil.getString(cursor, "$pattern.input");
-		    String outPattern = IDataUtil.getString(cursor, "$pattern.output");
-		    String datetime = IDataUtil.getString(cursor, "$datetime");
-		    String datetimePattern = IDataUtil.getString(cursor, "$datetime.pattern");
+		    String[] list = IDataHelper.get(cursor, "$list", String[].class);
+		    String inPattern = IDataHelper.get(cursor, "$pattern.input", String.class);
+		    String outPattern = IDataHelper.get(cursor, "$pattern.output", String.class);
+		    String datetime = IDataHelper.get(cursor, "$datetime", String.class);
+		    String datetimePattern = IDataHelper.get(cursor, "$datetime.pattern", String.class);
 		    
 		    String[] output = DurationHelper.format(list, inPattern, outPattern, datetime, datetimePattern);
 		
-		    if (output != null) IDataUtil.put(cursor, "$list", output);
+		    IDataHelper.put(cursor, "$list", output, false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -75,11 +76,11 @@ public final class duration
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String[] list = IDataUtil.getStringArray(cursor, "$list");
-		    String inPattern = IDataUtil.getString(cursor, "$pattern.input");
-		    String outPattern = IDataUtil.getString(cursor, "$pattern.output");
+		    String[] list = IDataHelper.get(cursor, "$list", String[].class);
+		    String inPattern = IDataHelper.get(cursor, "$pattern.input", String.class);
+		    String outPattern = IDataHelper.get(cursor, "$pattern.output", String.class);
 		
-		    IDataUtil.put(cursor, "$duration", DurationHelper.emit(DurationHelper.add(DurationHelper.parse(list, inPattern)), outPattern));
+		    IDataHelper.put(cursor, "$duration", DurationHelper.emit(DurationHelper.add(DurationHelper.parse(list, inPattern)), outPattern));
 		} finally {
 		    cursor.destroy();
 		}

@@ -1,7 +1,7 @@
 package tundra.assertion.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-08 20:58:18 AEST
+// -----( CREATED: 2017-05-03 13:03:10 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -9,6 +9,7 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.lang.ArrayHelper;
 import permafrost.tundra.lang.ObjectHelper;
 // --- <<IS-END-IMPORTS>> ---
@@ -41,9 +42,9 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object[] expected = IDataUtil.getObjectArray(cursor, "$expected");
-		    Object[] actual = IDataUtil.getObjectArray(cursor, "$actual");
-		    String message = IDataUtil.getString(cursor, "$message");
+		    Object[] expected = IDataHelper.get(cursor, "$expected", Object[].class);
+		    Object[] actual = IDataHelper.get(cursor, "$actual", Object[].class);
+		    String message = IDataHelper.get(cursor, "$message", String.class);
 		
 		    equal(expected, actual, message);
 		} finally {
@@ -67,8 +68,8 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object object = IDataUtil.get(cursor, "$list");
-		    String message = IDataUtil.getString(cursor, "$message");
+		    Object object = IDataHelper.get(cursor, "$list");
+		    String message = IDataHelper.get(cursor, "$message", String.class);
 		
 		    tundra.assertion.object.exist(object, message);
 		} finally {
@@ -93,9 +94,9 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object object = IDataUtil.get(cursor, "$list");
-		    String className = IDataUtil.getString(cursor, "$class");
-		    String message = IDataUtil.getString(cursor, "$message");
+		    Object object = IDataHelper.get(cursor, "$list");
+		    String className = IDataHelper.get(cursor, "$class", String.class);
+		    String message = IDataHelper.get(cursor, "$message", String.class);
 		
 		    tundra.assertion.object.instance(object, className, message);
 		} finally {
@@ -119,8 +120,8 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object object = IDataUtil.get(cursor, "$list");
-		    String message = IDataUtil.getString(cursor, "$message");
+		    Object object = IDataHelper.get(cursor, "$list");
+		    String message = IDataHelper.get(cursor, "$message", String.class);
 		
 		    tundra.assertion.object.nothing(object, message);
 		} finally {
@@ -145,9 +146,9 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object[] expected = IDataUtil.getObjectArray(cursor, "$expected");
-		    Object[] actual = IDataUtil.getObjectArray(cursor, "$actual");
-		    String message = IDataUtil.getString(cursor, "$message");
+		    Object[] expected = IDataHelper.get(cursor, "$expected", Object[].class);
+		    Object[] actual = IDataHelper.get(cursor, "$actual", Object[].class);
+		    String message = IDataHelper.get(cursor, "$message", String.class);
 		
 		    unequal(expected, actual, message);
 		} finally {

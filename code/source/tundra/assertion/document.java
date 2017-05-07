@@ -1,7 +1,7 @@
 package tundra.assertion;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-08 20:39:28 AEST
+// -----( CREATED: 2017-05-03 12:57:59 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -9,6 +9,7 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.lang.ObjectHelper;
 // --- <<IS-END-IMPORTS>> ---
 
@@ -40,9 +41,9 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData expected = IDataUtil.getIData(cursor, "$expected");
-		    IData actual = IDataUtil.getIData(cursor, "$actual");
-		    String message = IDataUtil.getString(cursor, "$message");
+		    IData expected = IDataHelper.get(cursor, "$expected", IData.class);
+		    IData actual = IDataHelper.get(cursor, "$actual", IData.class);
+		    String message = IDataHelper.get(cursor, "$message", String.class);
 		
 		    equal(expected, actual, message);
 		} finally {
@@ -67,9 +68,9 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData expected = IDataUtil.getIData(cursor, "$expected");
-		    IData actual = IDataUtil.getIData(cursor, "$actual");
-		    String message = IDataUtil.getString(cursor, "$message");
+		    IData expected = IDataHelper.get(cursor, "$expected", IData.class);
+		    IData actual = IDataHelper.get(cursor, "$actual", IData.class);
+		    String message = IDataHelper.get(cursor, "$message", String.class);
 		
 		    unequal(expected, actual, message);
 		} finally {

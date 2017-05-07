@@ -83,6 +83,7 @@ cm4gYXNzZXJ0aW9uTWVzc2FnZTsKfQ==</value>
   <array name="implements" type="value" depth="1">
   </array>
   <array name="imports" type="value" depth="1">
+    <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.lang.BooleanHelper</value>
     <value>permafrost.tundra.lang.StringHelper</value>
     <value>permafrost.tundra.server.ServiceHelper</value>

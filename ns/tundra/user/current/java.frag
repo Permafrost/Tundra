@@ -4,6 +4,6 @@
   <value name="name">current</value>
   <value name="encodeutf8">true</value>
   <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7DQoNCnRyeSB7DQogICAg
-SURhdGFVdGlsLnB1dChjdXJzb3IsICIkdXNlciIsIFNlc3Npb25IZWxwZXIuZ2V0Q3VycmVudFVz
-ZXJOYW1lKCkpOw0KfSBmaW5hbGx5IHsNCiAgICBjdXJzb3IuZGVzdHJveSgpOw0KfQ==</value>
+SURhdGFIZWxwZXIucHV0KGN1cnNvciwgIiR1c2VyIiwgU2Vzc2lvbkhlbHBlci5nZXRDdXJyZW50
+VXNlck5hbWUoKSk7DQp9IGZpbmFsbHkgew0KICAgIGN1cnNvci5kZXN0cm95KCk7DQp9</value>
 </Values>

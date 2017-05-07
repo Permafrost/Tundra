@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-06-10 12:31:26.716
-// -----( ON-HOST: -
+// -----( CREATED: 2017-05-07 14:07:30 EST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -19,6 +19,7 @@ import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
+import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.io.InputStreamHelper;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.CharsetHelper;
@@ -59,16 +60,16 @@ public final class xpath
 		// [i] - field:0:optional default
 		// [o] field:0:required $exists?
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    Object content = IDataUtil.get(cursor, "$content");
-		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
-		    String expression = IDataUtil.getString(cursor, "$expression");
-		    NamespaceContext namespace =  IDataNamespaceContext.of(IDataUtil.getIData(cursor, "$namespace"));
-
+		    Object content = IDataHelper.get(cursor, "$content");
+		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
+		    String expression = IDataHelper.get(cursor, "$expression", String.class);
+		    NamespaceContext namespace =  IDataHelper.get(cursor, "$namespace", IDataNamespaceContext.class);
+		
 		    XPathExpression compiledExpression = XPathHelper.compile(expression, namespace);
 		    Node node = null;
-
+		
 		    if (content instanceof Node) {
 		        node = (Node)content;
 		    } else if (content instanceof InputSource) {
@@ -76,8 +77,8 @@ public final class xpath
 		    } else if (content != null) {
 		        node = DocumentHelper.parse(InputStreamHelper.normalize(content, charset), charset, true, namespace);
 		    }
-
-		    IDataUtil.put(cursor, "$exists?", BooleanHelper.emit(XPathHelper.exists(node, compiledExpression)));
+		
+		    IDataHelper.put(cursor, "$exists?", XPathHelper.exists(node, compiledExpression), String.class);
 		} catch(XPathExpressionException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -85,7 +86,7 @@ public final class xpath
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -101,7 +102,7 @@ public final class xpath
 		// [i] field:0:required $expression
 		// [i] record:0:optional $namespace
 		// [i] - field:0:optional default
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] record:1:optional $nodes
 		// [o] - object:0:required node
 		// [o] - field:0:required name.qualified
@@ -128,16 +129,16 @@ public final class xpath
 		// [o] -- field:0:optional value
 		// [o] field:0:required $nodes.length
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    Object content = IDataUtil.get(cursor, "$content");
-		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
-		    String expression = IDataUtil.getString(cursor, "$expression");
-		    NamespaceContext namespace = IDataNamespaceContext.of(IDataUtil.getIData(cursor, "$namespace"));
-		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
-
+		    Object content = IDataHelper.get(cursor, "$content");
+		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
+		    String expression = IDataHelper.get(cursor, "$expression", String.class);
+		    NamespaceContext namespace = IDataHelper.get(cursor, "$namespace", IDataNamespaceContext.class);
+		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
+		
 		    XPathExpression compiledExpression = XPathHelper.compile(expression, namespace);
-
+		
 		    Node node = null;
 		    if (content instanceof Node) {
 		        node = (Node)content;
@@ -146,12 +147,12 @@ public final class xpath
 		    } else if (content != null) {
 		        node = DocumentHelper.parse(InputStreamHelper.normalize(content, charset), charset, true, namespace);
 		    }
-
+		
 		    Nodes nodes = XPathHelper.get(node, compiledExpression);
-
+		
 		    if (nodes != null) {
-		        IDataUtil.put(cursor, "$nodes", nodes.reflect(namespace, recurse));
-		        IDataUtil.put(cursor, "$nodes.length", IntegerHelper.emit(nodes.size()));
+		        IDataHelper.put(cursor, "$nodes", nodes.reflect(namespace, recurse));
+		        IDataHelper.put(cursor, "$nodes.length", nodes.size(), String.class);
 		    } else {
 		        IDataUtil.put(cursor, "$nodes.length", "0");
 		    }
@@ -162,7 +163,7 @@ public final class xpath
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 

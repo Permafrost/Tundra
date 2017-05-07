@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-03-16 20:44:23 EST
+// -----( CREATED: 2017-05-08 19:02:30 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -65,10 +65,10 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData document = IDataUtil.getIData(cursor, "$document");
-		    IData[] amendments = IDataUtil.getIDataArray(cursor, "$amendments");
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    IData[] amendments = IDataHelper.get(cursor, "$amendments", IData[].class);
 		
-		    if (document != null) IDataUtil.put(cursor, "$document", IDataHelper.amend(document, amendments, pipeline));
+		    if (document != null) IDataHelper.put(cursor, "$document", IDataHelper.amend(document, amendments, pipeline));
 		} finally {
 		    cursor.destroy();
 		}
@@ -91,9 +91,10 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData document = IDataUtil.getIData(cursor, "$document");
-		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
-		    if (document != null) IDataUtil.put(cursor, "$document", IDataHelper.blankify(document, recurse));
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
+		
+		    if (document != null) IDataHelper.put(cursor, "$document", IDataHelper.blankify(document, recurse));
 		} finally {
 		    cursor.destroy();
 		}
@@ -116,7 +117,7 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData document = IDataUtil.getIData(cursor, "$document");
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
 		    String[] keys = IDataUtil.getStringArray(cursor, "$preserve");
 		
 		    IDataHelper.clear(document, keys);
@@ -142,13 +143,13 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData input = IDataUtil.getIData(cursor, "$document");
-		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
+		    IData input = IDataHelper.get(cursor, "$document", IData.class);
+		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
 		
 		    if (input != null) {
 		        IData output = IDataHelper.compact(input, recurse);
 		        if (output == null) output = IDataFactory.create();
-		        IDataUtil.put(cursor, "$document", output);
+		        IDataHelper.put(cursor, "$document", output);
 		    }
 		} finally {
 		    cursor.destroy();
@@ -174,12 +175,12 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData document = IDataUtil.getIData(cursor, "$document");
-		    String source = IDataUtil.getString(cursor, "$key.source");
-		    String target = IDataUtil.getString(cursor, "$key.target");
-		    boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$key.literal?"));
-		    
-		    if (document != null) IDataUtil.put(cursor, "$document", IDataHelper.copy(document, source, target, literal));
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    String source = IDataHelper.get(cursor, "$key.source", String.class);
+		    String target = IDataHelper.get(cursor, "$key.target", String.class);
+		    boolean literal = IDataHelper.getOrDefault(cursor, "$key.literal?", Boolean.class, false);
+		
+		    IDataHelper.put(cursor, "$document", IDataHelper.copy(document, source, target, literal), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -201,8 +202,8 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData document = IDataUtil.getIData(cursor, "$document");
-		    if (document != null) IDataUtil.put(cursor, "$document", IDataHelper.denormalize(document));
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    IDataHelper.put(cursor, "$document", IDataHelper.denormalize(document), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -226,11 +227,11 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData document = IDataUtil.getIData(cursor, "$document");
-		    String key = IDataUtil.getString(cursor, "$key");
-		    boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$key.literal?"));
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    String key = IDataHelper.get(cursor, "$key", String.class);
+		    boolean literal = IDataHelper.getOrDefault(cursor, "$key.literal?", Boolean.class, false);
 		    
-		    if (document != null) IDataUtil.put(cursor, "$document", IDataHelper.drop(document, key, literal));
+		    IDataHelper.put(cursor, "$document", IDataHelper.drop(document, key, literal), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -253,9 +254,10 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData document = IDataUtil.getIData(cursor, "$document");
-		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
-		    if (document != null) IDataUtil.put(cursor, "$duplicate", IDataHelper.duplicate(document, recurse));
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
+		
+		    IDataHelper.put(cursor, "$duplicate", IDataHelper.duplicate(document, recurse), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -282,18 +284,16 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData document = IDataUtil.getIData(cursor, "$document");
-		    String service = IDataUtil.getString(cursor, "$service");
-		    IData scope = IDataUtil.getIData(cursor, "$pipeline");
-		    String keyInput = IDataUtil.getString(cursor, "$key.input");
-		    String valueInput = IDataUtil.getString(cursor, "$value.input");
-		    String valueClass = IDataUtil.getString(cursor, "$value.class");
-		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    String service = IDataHelper.get(cursor, "$service", String.class);
+		    IData scope = IDataHelper.get(cursor, "$pipeline", IData.class);
+		    String keyInput = IDataHelper.get(cursor, "$key.input", String.class);
+		    String valueInput = IDataHelper.get(cursor, "$value.input", String.class);
+		    Class valueClass = IDataHelper.get(cursor, "$value.class", Class.class);
+		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
 		    boolean scoped = scope != null;
 		
-		    each(document, service, scoped ? scope: pipeline, keyInput, valueInput, valueClass == null? null : Class.forName(valueClass), recurse);
-		} catch (ClassNotFoundException ex) {
-		    ExceptionHelper.raise(ex);
+		    each(document, service, scoped ? scope: pipeline, keyInput, valueInput, valueClass, recurse);
 		} finally {
 		    cursor.destroy();
 		}
@@ -317,11 +317,13 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData document = IDataUtil.getIData(cursor, "$document");
-		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
-		    ObjectConvertMode mode = ObjectConvertMode.normalize(IDataUtil.getString(cursor, "$mode"));
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
+		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
 		
-		    if (document != null) IDataUtil.put(cursor, "$content", ObjectHelper.convert(IDataXMLParser.getInstance().emit(document, charset), charset, mode));
+		    if (document != null) {
+		        IDataHelper.put(cursor, "$content", ObjectHelper.convert(IDataXMLParser.getInstance().emit(document, charset), charset, mode));
+		    }
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -346,10 +348,10 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData x = IDataUtil.getIData(cursor, "$document.x");
-		    IData y = IDataUtil.getIData(cursor, "$document.y");
+		    IData x = IDataHelper.get(cursor, "$document.x", IData.class);
+		    IData y = IDataHelper.get(cursor, "$document.y", IData.class);
 		
-		    IDataUtil.put(cursor, "$equal?", BooleanHelper.emit(ObjectHelper.equal(x, y)));
+		    IDataHelper.put(cursor, "$equal?", ObjectHelper.equal(x, y), String.class);
 		} finally {
 		    cursor.destroy();
 		}
@@ -372,16 +374,15 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData document = IDataUtil.getIData(cursor, "$document");
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		
 		    if (document != null) {
-		        IDataCursor dc = document.getCursor();
-		        if (dc.first()) {
-		            String key = dc.getKey();
-		            Object value = dc.getValue();
-		            IDataUtil.put(cursor, "$key", key);
-		            IDataUtil.put(cursor, "$value", value);
+		        IDataCursor documentCursor = document.getCursor();
+		        if (documentCursor.first()) {
+		            IDataHelper.put(cursor, "$key", documentCursor.getKey());
+		            IDataHelper.put(cursor, "$value", documentCursor.getValue());
 		        }
-		        dc.destroy();
+		        documentCursor.destroy();
 		    }
 		} finally {
 		    cursor.destroy();
@@ -406,19 +407,19 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData document = IDataUtil.getIData(cursor, "$document");
-		    String[] keys = IDataUtil.getStringArray(cursor, "$keys");
-		    boolean includeNulls = BooleanHelper.parse(IDataUtil.getString(cursor, "$nulls?"));
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    String[] keys = IDataHelper.get(cursor, "$keys", String[].class);
+		    boolean includeNulls = IDataHelper.getOrDefault(cursor, "$nulls?", Boolean.class, false);
 		
 		    // support $key for backwards compatibility
 		    if (keys == null) {
-		        String key = IDataUtil.getString(cursor, "$key");
+		        String key = IDataHelper.get(cursor, "$key", String.class);
 		        if (key != null) keys = new String[] { key };
 		    }
 		
 		    Object[] values = IDataHelper.flatten(document, includeNulls, keys);
 		
-		    if (values != null) IDataUtil.put(cursor, "$values", values);
+		    IDataHelper.put(cursor, "$values", values, false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -440,8 +441,8 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData document = IDataUtil.getIData(cursor, "$document");
-		    if (document != null) IDataUtil.put(cursor, "$document", new ImmutableIData(document));
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    if (document != null) IDataHelper.put(cursor, "$document", new ImmutableIData(document));
 		} finally {
 		    cursor.destroy();
 		}
@@ -467,15 +468,15 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData document = IDataUtil.getIData(cursor, "$document");
-		    String key = IDataUtil.getString(cursor, "$key");
-		    Object defaultObject = IDataUtil.get(cursor, "$default.object");
-		    if (defaultObject == null) defaultObject = IDataUtil.getString(cursor, "$default.string");
-		    boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$key.literal?"));
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    String key = IDataHelper.get(cursor, "$key", String.class);
+		    Object defaultObject = IDataHelper.get(cursor, "$default.object");
+		    if (defaultObject == null) defaultObject = IDataHelper.get(cursor, "$default.string", String.class);
+		    boolean literal = IDataHelper.getOrDefault(cursor, "$key.literal?", Boolean.class, false);
 		
 		    Object value = IDataHelper.get(pipeline, document, key, defaultObject, literal);
 		
-		    if (value != null) IDataUtil.put(cursor, "$value", value);
+		    IDataHelper.put(cursor, "$value", value, false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -501,13 +502,13 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData document = IDataUtil.getIData(cursor, "$document");
-		    String valueSeparator = IDataUtil.getString(cursor, "$separator.value");
-		    String listSeparator = IDataUtil.getString(cursor, "$separator.list");
-		    String itemSeparator = IDataUtil.getString(cursor, "$separator.item");
-		    Sanitization sanitization = Sanitization.normalize(IDataUtil.getString(cursor, "$sanitization"));
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    String valueSeparator = IDataHelper.get(cursor, "$separator.value", String.class);
+		    String listSeparator = IDataHelper.get(cursor, "$separator.list", String.class);
+		    String itemSeparator = IDataHelper.get(cursor, "$separator.item", String.class);
+		    Sanitization sanitization = IDataHelper.get(cursor, "$sanitization", Sanitization.class);
 		
-		    if (document != null) IDataUtil.put(cursor, "$result", IDataHelper.join(document, itemSeparator, listSeparator, valueSeparator, sanitization));
+		    if (document != null) IDataHelper.put(cursor, "$result", IDataHelper.join(document, itemSeparator, listSeparator, valueSeparator, sanitization));
 		} finally {
 		    cursor.destroy();
 		}
@@ -530,10 +531,10 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData document = IDataUtil.getIData(cursor, "$document");
-		    String pattern = IDataUtil.getString(cursor, "$pattern");
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
 		
-		    IDataUtil.put(cursor, "$keys", IDataHelper.getKeys(document, pattern));
+		    IDataHelper.put(cursor, "$keys", IDataHelper.getKeys(document, pattern));
 		} finally {
 		    cursor.destroy();
 		}
@@ -556,16 +557,15 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData document = IDataUtil.getIData(cursor, "$document");
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		
 		    if (document != null) {
-		        IDataCursor dc = document.getCursor();
-		        if (dc.last()) {
-		            String key = dc.getKey();
-		            Object value = dc.getValue();
-		            IDataUtil.put(cursor, "$key", key);
-		            IDataUtil.put(cursor, "$value", value);
+		        IDataCursor documentCursor = document.getCursor();
+		        if (documentCursor.last()) {
+		            IDataHelper.put(cursor, "$key", documentCursor.getKey());
+		            IDataHelper.put(cursor, "$value", documentCursor.getValue());
 		        }
-		        dc.destroy();
+		        documentCursor.destroy();
 		    }
 		} finally {
 		    cursor.destroy();
@@ -589,12 +589,12 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData document = IDataUtil.getIData(cursor, "$document");
-		    String[] classes = IDataUtil.getStringArray(cursor, "$classes");
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    String[] classes = IDataHelper.get(cursor, "$classes", String[].class);
 		
 		    Object[] values = IDataHelper.getLeafValues(document, ClassHelper.forName(classes));
 		
-		    if (values != null && values.length > 0) IDataUtil.put(cursor, "$values", values);
+		    IDataHelper.put(cursor, "$values", values, false, false);
 		} catch(ClassNotFoundException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -618,8 +618,8 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData document = IDataUtil.getIData(cursor, "$document");
-		    IDataUtil.put(cursor, "$length", IntegerHelper.emit(IDataHelper.size(document)));
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    IDataHelper.put(cursor, "$length", IDataHelper.size(document), String.class);
 		} finally {
 		    cursor.destroy();
 		}
@@ -642,8 +642,8 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String key = IDataUtil.getString(cursor, "$key");
-		    IData scope = IDataUtil.getIData(cursor, "$scope");
+		    String key = IDataHelper.get(cursor, "$key", String.class);
+		    IData scope = IDataHelper.get(cursor, "$scope", IData.class);
 		    boolean scoped = scope != null;
 		
 		    if (scoped) {
@@ -654,7 +654,7 @@ public final class document
 		
 		    scope = IDataHelper.arrayify(scope, key);
 		
-		    if (scoped) IDataUtil.put(cursor, "$scope", scope);
+		    if (scoped) IDataHelper.put(cursor, "$scope", scope);
 		} finally {
 		    cursor.destroy();
 		}
@@ -684,20 +684,18 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData document = IDataUtil.getIData(cursor, "$document");
-		    String service = IDataUtil.getString(cursor, "$service");
-		    IData scope = IDataUtil.getIData(cursor, "$pipeline");
-		    String keyInput = IDataUtil.getString(cursor, "$key.input");
-		    String keyOutput = IDataUtil.getString(cursor, "$key.output");
-		    String valueInput = IDataUtil.getString(cursor, "$value.input");
-		    String valueOutput = IDataUtil.getString(cursor, "$value.output");
-		    String valueClass = IDataUtil.getString(cursor, "$value.class");
-		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    String service = IDataHelper.get(cursor, "$service", String.class);
+		    IData scope = IDataHelper.get(cursor, "$pipeline", IData.class);
+		    String keyInput = IDataHelper.get(cursor, "$key.input", String.class);
+		    String keyOutput = IDataHelper.get(cursor, "$key.output", String.class);
+		    String valueInput = IDataHelper.get(cursor, "$value.input", String.class);
+		    String valueOutput = IDataHelper.get(cursor, "$value.output", String.class);
+		    Class valueClass = IDataHelper.get(cursor, "$value.class", Class.class);
+		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
 		    boolean scoped = scope != null;
 		
-		    IDataUtil.put(cursor, "$document", map(document, service, scoped ? scope: pipeline, keyInput, keyOutput, valueInput, valueOutput, valueClass == null? null : Class.forName(valueClass), recurse));
-		} catch (ClassNotFoundException ex) {
-		    ExceptionHelper.raise(ex);
+		    IDataHelper.put(cursor, "$document", map(document, service, scoped ? scope: pipeline, keyInput, keyOutput, valueInput, valueOutput, valueClass, recurse));
 		} finally {
 		    cursor.destroy();
 		}
@@ -720,15 +718,15 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData operands = IDataUtil.getIData(cursor, "$operands");
-		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
+		    IData operands = IDataHelper.get(cursor, "$operands", IData.class);
+		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
 		
 		    if (operands == null) {
 		        // support $documents IData[] argument for backwards compatibility
-		        IData[] documents = IDataUtil.getIDataArray(cursor, "$documents");
-		        IDataUtil.put(cursor, "$document", IDataHelper.merge(documents, recurse));
+		        IData[] documents = IDataHelper.get(cursor, "$documents", IData[].class);
+		        IDataHelper.put(cursor, "$document", IDataHelper.merge(documents, recurse));
 		    } else {
-		        IDataUtil.put(cursor, "$document", IDataHelper.merge(operands, recurse));
+		        IDataHelper.put(cursor, "$document", IDataHelper.merge(operands, recurse));
 		    }
 		} finally {
 		    cursor.destroy();
@@ -751,8 +749,8 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData document = IDataUtil.getIData(cursor, "$document");
-		    IDataUtil.put(cursor, "$document", IDataHelper.normalize(document));
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    IDataHelper.put(cursor, "$document", IDataHelper.normalize(document), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -775,9 +773,10 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData document = IDataUtil.getIData(cursor, "$document");
-		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
-		    if (document != null) IDataUtil.put(cursor, "$document", IDataHelper.nullify(document, recurse));
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
+		
+		    IDataHelper.put(cursor, "$document", IDataHelper.nullify(document, recurse), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -800,10 +799,10 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object content = IDataUtil.get(cursor, "$content");
-		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
+		    Object content = IDataHelper.get(cursor, "$content");
+		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
 		
-		    if (content != null) IDataUtil.put(cursor, "$document", IDataXMLParser.getInstance().parse(InputStreamHelper.normalize(content, charset)));
+		    IDataHelper.put(cursor, "$document", IDataXMLParser.getInstance().parse(InputStreamHelper.normalize(content, charset)), false);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -830,9 +829,10 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData document = IDataUtil.getIData(cursor, "$document");
-		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
-		    if (document != null) IDataUtil.put(cursor, "$pivot", IDataHelper.pivot(document, recurse));
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
+		
+		    IDataHelper.put(cursor, "$pivot", IDataHelper.pivot(document, recurse), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -887,12 +887,12 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData document = IDataUtil.getIData(cursor, "$document");
-		    String source = IDataUtil.getString(cursor, "$key.source");
-		    String target = IDataUtil.getString(cursor, "$key.target");
-		    boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$key.literal?"));
-		    
-		    if (document != null) IDataUtil.put(cursor, "$document", IDataHelper.rename(document, source, target, literal));
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    String source = IDataHelper.get(cursor, "$key.source", String.class);
+		    String target = IDataHelper.get(cursor, "$key.target", String.class);
+		    boolean literal = IDataHelper.getOrDefault(cursor, "$key.literal?", Boolean.class, false);
+		
+		    IDataHelper.put(cursor, "$document", IDataHelper.rename(document, source, target, literal), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -915,9 +915,10 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData document = IDataUtil.getIData(cursor, "$document");
-		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
-		    if (document != null) IDataUtil.put(cursor, "$document", IDataHelper.sort(document, recurse));
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
+		
+		    IDataHelper.put(cursor, "$document", IDataHelper.sort(document, recurse), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -940,13 +941,13 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData input = IDataUtil.getIData(cursor, "$document");
-		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
+		    IData input = IDataHelper.get(cursor, "$document", IData.class);
+		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
 		
 		    if (input != null) {
 		        IData output = IDataHelper.squeeze(input, recurse);
 		        if (output == null) output = IDataFactory.create();
-		        IDataUtil.put(cursor, "$document", output);
+		        IDataHelper.put(cursor, "$document", output);
 		    }
 		} finally {
 		    cursor.destroy();
@@ -970,9 +971,10 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData document = IDataUtil.getIData(cursor, "$document");
-		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
-		    if (document != null) IDataUtil.put(cursor, "$document", IDataHelper.stringify(document, recurse));
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
+		
+		    IDataHelper.put(cursor, "$document", IDataHelper.stringify(document, recurse), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -997,12 +999,12 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData document = IDataUtil.getIData(cursor, "$document");
-		    IData scope = IDataUtil.getIData(cursor, "$pipeline");
-		    String defaultValue = IDataUtil.getString(cursor, "$default");
-		    EnumSet<SubstitutionType> mode = SubstitutionType.normalize(IDataUtil.getString(cursor, "$mode"));
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    IData scope = IDataHelper.get(cursor, "$pipeline", IData.class);
+		    String defaultValue = IDataHelper.get(cursor, "$default", String.class);
+		    EnumSet<SubstitutionType> mode = SubstitutionType.normalize(IDataHelper.get(cursor, "$mode", String.class));
 		
-		    IDataUtil.put(cursor, "$document", SubstitutionHelper.substitute(document, defaultValue, scope == null ? pipeline : scope, true, mode));
+		    IDataHelper.put(cursor, "$document", SubstitutionHelper.substitute(document, defaultValue, scope == null ? pipeline : scope, true, mode), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -1026,11 +1028,11 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData document = IDataUtil.getIData(cursor, "$document");
-		    boolean recurse = BooleanHelper.parse(IDataUtil.getString(cursor, "$recurse?"));
-		    String mode = IDataUtil.getString(cursor, "$mode");
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
+		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
 		
-		    if (document != null) IDataUtil.put(cursor, "$document", IDataHelper.trim(document, TransformerMode.normalize(mode), recurse));
+		    IDataHelper.put(cursor, "$document", IDataHelper.trim(document, mode, recurse), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -1056,10 +1058,10 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData document = IDataUtil.getIData(cursor, "$document");
-		    Locale locale = LocaleHelper.toLocale(IDataUtil.getIData(cursor, "$locale"));
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    Locale locale = IDataHelper.getOrDefault(cursor, "$locale", Locale.class, Locale.getDefault());
 		
-		    if (document != null) IDataUtil.put(cursor, "$document", new CaseInsensitiveIData(IDataHelper.duplicate(document, true), locale));
+		    if (document != null) IDataHelper.put(cursor, "$document", new CaseInsensitiveIData(IDataHelper.duplicate(document, true), locale));
 		} finally {
 		    cursor.destroy();
 		}
@@ -1081,8 +1083,8 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData document = IDataUtil.getIData(cursor, "$document");
-		    if (document != null) IDataUtil.put(cursor, "$values", IDataHelper.getValues(document));
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    IDataHelper.put(cursor, "$values", IDataHelper.getValues(document), false, false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -1153,7 +1155,7 @@ public final class document
 	                    }
 	                }
 	                tuple = map(tuple, service, pipeline, keyInput, keyOutput, valueInput, valueOutput, valueClass);
-	                IDataUtil.put(oc, tuple.key, tuple.value);
+	                IDataHelper.put(oc, tuple.key, tuple.value);
 	            }
 	        } finally {
 	            ic.destroy();
@@ -1180,27 +1182,27 @@ public final class document
 	protected static <T> Tuple<T> map(Tuple<T> tuple, String service, IData pipeline, String keyInput, String keyOutput, String valueInput, String valueOutput, Class valueClass) throws ServiceException {
 	    if (tuple.value == null || valueClass == null || valueClass.isInstance(tuple.value)) {
 	        IDataCursor cursor = pipeline.getCursor();
-	        IDataUtil.put(cursor, keyInput, tuple.key);
-	        IDataUtil.put(cursor, valueInput, tuple.value);
+	        IDataHelper.put(cursor, keyInput, tuple.key);
+	        IDataHelper.put(cursor, valueInput, tuple.value);
 	        cursor.destroy();
 	
 	        pipeline = ServiceHelper.invoke(service, pipeline);
 	
 	        // clean up the input pipeline
 	        cursor = pipeline.getCursor();
-	        tuple.key = IDataUtil.getString(cursor, keyOutput);
-	        tuple.value = (T)IDataUtil.get(cursor, valueOutput);
-	        IDataUtil.remove(cursor, keyInput);
-	        if (!keyInput.equals(keyOutput)) IDataUtil.remove(cursor, keyOutput);
-	        IDataUtil.remove(cursor, valueInput);
-	        if (!valueInput.equals(valueOutput)) IDataUtil.remove(cursor, valueOutput);
+	        tuple.key = IDataHelper.get(cursor, keyOutput, String.class);
+	        tuple.value = (T)IDataHelper.get(cursor, valueOutput);
+	        IDataHelper.remove(cursor, keyInput);
+	        if (!keyInput.equals(keyOutput)) IDataHelper.remove(cursor, keyOutput);
+	        IDataHelper.remove(cursor, valueInput);
+	        if (!valueInput.equals(valueOutput)) IDataHelper.remove(cursor, valueOutput);
 	        cursor.destroy();
 	    }
 	    return tuple;
 	}
 	
 	// invokes the given service for each {key, value} pair in the given IData document
-	public static void each(IData input, String service, IData pipeline, String keyInput, String valueInput, Class valueClass, boolean recurse) throws ServiceException {
+	public static <T> void each(IData input, String service, IData pipeline, String keyInput, String valueInput, Class valueClass, boolean recurse) throws ServiceException {
 	    map(input, service, pipeline, keyInput, null, valueInput, null, valueClass, recurse);
 	}
 	// --- <<IS-END-SHARED>> ---

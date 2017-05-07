@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-06-25 11:30:43 EST
+// -----( CREATED: 2017-05-07 15:58:39 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -51,7 +51,7 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IDataUtil.put(cursor, "$pipeline", IDataHelper.duplicate(pipeline, false));
+		    IDataHelper.put(cursor, "$pipeline", IDataHelper.duplicate(pipeline, false));
 		} finally {
 		    cursor.destroy();
 		}
@@ -72,7 +72,7 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String[] keys = IDataUtil.getStringArray(cursor, "$preserve");
+		    String[] keys = IDataHelper.get(cursor, "$preserve", String[].class);
 		    IDataHelper.clear(pipeline, keys);
 		} finally {
 		    cursor.destroy();
@@ -96,9 +96,9 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String source = IDataUtil.getString(cursor, "$key.source");
-		    String target = IDataUtil.getString(cursor, "$key.target");
-		    boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$key.literal?"));
+		    String source = IDataHelper.get(cursor, "$key.source", String.class);
+		    String target = IDataHelper.get(cursor, "$key.target", String.class);
+		    boolean literal = IDataHelper.getOrDefault(cursor, "$key.literal?", Boolean.class, false);
 		
 		    IDataHelper.copy(pipeline, source, target, literal);
 		} finally {
@@ -144,8 +144,8 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String key = IDataUtil.getString(cursor, "$key");
-		    boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$key.literal?"));
+		    String key = IDataHelper.get(cursor, "$key", String.class);
+		    boolean literal = IDataHelper.getOrDefault(cursor, "$key.literal?", Boolean.class, false);
 		
 		    IDataHelper.drop(pipeline, key, literal);
 		} finally {
@@ -170,14 +170,11 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
-		    ObjectConvertMode mode = ObjectConvertMode.normalize(IDataUtil.getString(cursor, "$mode"));
-		
 		    // remove input arguments so that they are not included in serialization of the pipeline
-		    IDataUtil.remove(cursor, "$encoding");
-		    IDataUtil.remove(cursor, "$mode");
+		    Charset charset = IDataHelper.remove(cursor, "$encoding", Charset.class);
+		    ObjectConvertMode mode = IDataHelper.remove(cursor, "$mode", ObjectConvertMode.class);
 		
-		    IDataUtil.put(cursor, "$content", ObjectHelper.convert(IDataXMLParser.getInstance().emit(pipeline, charset), charset, mode));
+		    IDataHelper.put(cursor, "$content", ObjectHelper.convert(IDataXMLParser.getInstance().emit(pipeline, charset), charset, mode));
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -201,10 +198,8 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		try {
 		    if (cursor.first()) {
-		        String key = cursor.getKey();
-		        Object value = cursor.getValue();
-		        IDataUtil.put(cursor, "$key", key);
-		        IDataUtil.put(cursor, "$value", value);
+		        IDataHelper.put(cursor, "$key", cursor.getKey());
+		        IDataHelper.put(cursor, "$value", cursor.getValue());
 		    }
 		} finally {
 		    cursor.destroy();
@@ -228,12 +223,12 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String[] keys = IDataUtil.getStringArray(cursor, "$keys");
-		    boolean includeNulls = BooleanHelper.parse(IDataUtil.getString(cursor, "$nulls?"));
+		    String[] keys = IDataHelper.get(cursor, "$keys", String[].class);
+		    boolean includeNulls = IDataHelper.getOrDefault(cursor, "$nulls?", Boolean.class, false);
 		
 		    Object[] values = IDataHelper.flatten(pipeline, includeNulls, keys);
 		
-		    if (values != null) IDataUtil.put(cursor, "$values", values);
+		    IDataHelper.put(cursor, "$values", values, false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -258,14 +253,14 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String key = IDataUtil.getString(cursor, "$key");
-		    Object defaultObject = IDataUtil.get(cursor, "$default.object");
-		    if (defaultObject == null) defaultObject = IDataUtil.getString(cursor, "$default.string");
-		    boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$key.literal?"));
+		    String key = IDataHelper.get(cursor, "$key", String.class);
+		    Object defaultObject = IDataHelper.get(cursor, "$default.object");
+		    if (defaultObject == null) defaultObject = IDataHelper.get(cursor, "$default.string", String.class);
+		    boolean literal = IDataHelper.getOrDefault(cursor, "$key.literal?", Boolean.class, false);
 		
 		    Object value = IDataHelper.get(pipeline, key, defaultObject, literal);
 		    
-		    if (value != null) IDataUtil.put(cursor, "$value", value);
+		    IDataHelper.put(cursor, "$value", value, false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -287,10 +282,8 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		try {
 		    if (cursor.last()) {
-		        String key = cursor.getKey();
-		        Object value = cursor.getValue();
-		        IDataUtil.put(cursor, "$key", key);
-		        IDataUtil.put(cursor, "$value", value);
+		        IDataHelper.put(cursor, "$key", cursor.getKey());
+		        IDataHelper.put(cursor, "$value", cursor.getValue());
 		    }
 		} finally {
 		    cursor.destroy();
@@ -312,7 +305,7 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IDataUtil.put(cursor, "$length", IntegerHelper.emit(IDataHelper.size(pipeline)));
+		    IDataHelper.put(cursor, "$length", IDataHelper.size(pipeline), String.class);
 		} finally {
 		    cursor.destroy();
 		}
@@ -333,7 +326,7 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String key = IDataUtil.getString(cursor, "$key");
+		    String key = IDataHelper.get(cursor, "$key", String.class);
 		    IDataHelper.arrayify(pipeline, key);
 		} finally {
 		    cursor.destroy();
@@ -355,7 +348,7 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    merge(pipeline, IDataUtil.getIData(cursor, "$document"));
+		    merge(pipeline, IDataHelper.get(cursor, "$document", IData.class));
 		} finally {
 		    cursor.destroy();
 		}
@@ -399,8 +392,8 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object content = IDataUtil.get(cursor, "$content");
-		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
+		    Object content = IDataHelper.get(cursor, "$content");
+		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
 		
 		    merge(pipeline, IDataXMLParser.getInstance().parse(InputStreamHelper.normalize(content, charset)));
 		} catch(IOException ex) {
@@ -427,9 +420,9 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String key = IDataUtil.getString(cursor, "$key");
-		    boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$key.literal?"));
-		    Object value = IDataUtil.get(cursor, "$value");
+		    String key = IDataHelper.get(cursor, "$key", String.class);
+		    boolean literal = IDataHelper.getOrDefault(cursor, "$key.literal?", Boolean.class, false);
+		    Object value = IDataHelper.get(cursor, "$value");
 		    
 		    IDataHelper.put(pipeline, key, value, literal);
 		} finally {
@@ -454,9 +447,9 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String source = IDataUtil.getString(cursor, "$key.source");
-		    String target = IDataUtil.getString(cursor, "$key.target");
-		    boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$key.literal?"));
+		    String source = IDataHelper.get(cursor, "$key.source", String.class);
+		    String target = IDataHelper.get(cursor, "$key.target", String.class);
+		    boolean literal = IDataHelper.getOrDefault(cursor, "$key.literal?", Boolean.class, false);
 		
 		    IDataHelper.rename(pipeline, source, target, literal);
 		} finally {

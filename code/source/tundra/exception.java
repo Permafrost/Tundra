@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-11 14:40:19 AEST
+// -----( CREATED: 2017-05-06 15:55:53 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -9,6 +9,7 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 // --- <<IS-END-IMPORTS>> ---
 
@@ -39,13 +40,13 @@ public final class exception
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String message = IDataUtil.getString(cursor, "$message");
-		    Object exception = IDataUtil.get(cursor, "$exception");
+		    String message = IDataHelper.get(cursor, "$message", String.class);
+		    Throwable exception = IDataHelper.get(cursor, "$exception", Throwable.class);
 		
-		    if (exception instanceof Throwable) {
-		        ExceptionHelper.raise((Throwable)exception);
-		    } else {
+		    if (exception == null) {
 		        ExceptionHelper.raise(message);
+		    } else {
+		        ExceptionHelper.raise(exception);
 		    }
 		} finally {
 		    cursor.destroy();

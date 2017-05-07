@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-05-26 20:29:22 EST
+// -----( CREATED: 2017-05-07 17:56:29 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -12,6 +12,7 @@ import com.wm.app.b2b.server.ServiceException;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import permafrost.tundra.data.IDataHTMLParser;
+import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.data.IDataMap;
 import permafrost.tundra.html.HTMLHelper;
 import permafrost.tundra.lang.CharsetHelper;
@@ -47,8 +48,8 @@ public final class html
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String[] list = IDataUtil.getStringArray(cursor, "$list");
-		    if (list != null) IDataUtil.put(cursor, "$list", HTMLHelper.decode(list));
+		    String[] list = IDataHelper.get(cursor, "$list", String[].class);
+		    IDataHelper.put(cursor, "$list", HTMLHelper.decode(list), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -72,15 +73,15 @@ public final class html
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData[] list = IDataUtil.getIDataArray(cursor, "$list");
-		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
-		    ObjectConvertMode mode = ObjectConvertMode.normalize(IDataUtil.getString(cursor, "$mode"));
+		    IData[] list = IDataHelper.get(cursor, "$list", IData[].class);
+		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
+		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
 		
 		    if (list != null) {
 		        IDataMap map = new IDataMap();
 		        map.put("recordWithNoID", list);
 		
-		        IDataUtil.put(cursor, "$content", ObjectHelper.convert(IDataHTMLParser.getInstance().emit(map, charset), charset, mode));
+		        IDataHelper.put(cursor, "$content", ObjectHelper.convert(IDataHTMLParser.getInstance().emit(map, charset), charset, mode));
 		    }
 		} catch (IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -105,8 +106,8 @@ public final class html
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String[] list = IDataUtil.getStringArray(cursor, "$list");
-		    if (list != null) IDataUtil.put(cursor, "$list", HTMLHelper.encode(list));
+		    String[] list = IDataHelper.get(cursor, "$list", String[].class);
+		    IDataHelper.put(cursor, "$list", HTMLHelper.encode(list), false);
 		} finally {
 		    cursor.destroy();
 		}

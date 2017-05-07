@@ -1,7 +1,7 @@
 package tundra.assertion;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-08 21:04:09 AEST
+// -----( CREATED: 2017-05-03 13:08:55 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -9,6 +9,7 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.data.IDataHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class step
@@ -36,7 +37,7 @@ public final class step
 		// [i] field:0:optional $message
 		IDataCursor cursor = pipeline.getCursor();
 		try {
-		    String message  = IDataUtil.getString(cursor, "$message");
+		    String message  = IDataHelper.get(cursor, "$message", String.class);
 		    unreached(message);
 		} finally {
 		    cursor.destroy();

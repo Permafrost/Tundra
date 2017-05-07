@@ -14,6 +14,7 @@
     <value>java.security.MessageDigest</value>
     <value>java.security.NoSuchAlgorithmException</value>
     <value>java.util.Map</value>
+    <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.lang.CharsetHelper</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>
     <value>permafrost.tundra.lang.ObjectConvertMode</value>

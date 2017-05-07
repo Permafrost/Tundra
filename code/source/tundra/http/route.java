@@ -1,14 +1,15 @@
 package tundra.http;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-06-06 16:19:56.484
-// -----( ON-HOST: -
+// -----( CREATED: 2017-05-06 16:17:32 EST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.math.IntegerHelper;
 import permafrost.tundra.net.http.route.HTTPRouter;
 // --- <<IS-END-IMPORTS>> ---
@@ -38,7 +39,7 @@ public final class route
 		HTTPRouter.getInstance().clear();
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -60,17 +61,17 @@ public final class route
 		// [o] - field:0:required routes.length
 		// [o] field:0:required $routes.length
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IData[] list = HTTPRouter.getInstance().getRoutes().toIDataArray();
-		    IDataUtil.put(cursor, "$routes", list);
-		    IDataUtil.put(cursor, "$routes.length", IntegerHelper.emit(list.length));
+		    IDataHelper.put(cursor, "$routes", list);
+		    IDataHelper.put(cursor, "$routes.length", list.length, String.class);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -84,7 +85,7 @@ public final class route
 		HTTPRouter.getInstance().refresh();
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 

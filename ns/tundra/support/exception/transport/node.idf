@@ -13,6 +13,7 @@
     <value>javax.activation.MimeTypeParseException</value>
     <value>java.io.IOException</value>
     <value>permafrost.tundra.content.Content</value>
+    <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.lang.BytesHelper</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>
     <value>permafrost.tundra.lang.TransportException</value>

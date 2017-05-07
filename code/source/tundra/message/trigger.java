@@ -1,7 +1,7 @@
 package tundra.message;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-09-26 14:45:06 EST
+// -----( CREATED: 2017-05-07 11:18:28 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -9,6 +9,7 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.message.format.Format;
 // --- <<IS-END-IMPORTS>> ---
@@ -48,8 +49,8 @@ public final class trigger
 		            Format format = tundra.message.format.RECOGNIZER.getByPublishableDocumentType(key);
 		
 		            if (format != null) {
-		                IDataUtil.put(cursor, "$message", value);
-		                IDataUtil.put(cursor, "$message.format", format.getIData());
+		                IDataHelper.put(cursor, "$message", value);
+		                IDataHelper.put(cursor, "$message.format", format, IData.class);
 		                return;
 		            }
 		        }

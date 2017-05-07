@@ -14,5 +14,6 @@ IHRocm93IG5ldyBBc3NlcnRpb25FcnJvcihtZXNzYWdlKTsKfQ==</value>
   <array name="implements" type="value" depth="1">
   </array>
   <array name="imports" type="value" depth="1">
+    <value>permafrost.tundra.data.IDataHelper</value>
   </array>
 </Values>

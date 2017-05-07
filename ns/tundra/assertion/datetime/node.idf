@@ -19,6 +19,7 @@ dGVUaW1lSGVscGVyLnBhcnNlKGFjdHVhbCwgcGF0dGVybiksIG1lc3NhZ2UpOwp9</value>
   <array name="implements" type="value" depth="1">
   </array>
   <array name="imports" type="value" depth="1">
+    <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.time.DateTimeHelper</value>
   </array>
 </Values>

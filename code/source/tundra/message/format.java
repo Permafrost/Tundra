@@ -1,7 +1,7 @@
 package tundra.message;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-09-28 20:22:28 EST
+// -----( CREATED: 2017-05-07 11:16:27 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -64,9 +64,10 @@ public final class format
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String name = IDataUtil.getString(cursor, "$message.format.name");
+		    String name = IDataHelper.get(cursor, "$message.format.name", String.class);
 		    Format format = RECOGNIZER.get(name);
-		    if (format != null) IDataUtil.put(cursor, "$message.format", format.getIData());
+		
+		    IDataHelper.put(cursor, "$message.format", format, IData.class, false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -89,8 +90,9 @@ public final class format
 		
 		try {
 		    Collection<Format> collection = RECOGNIZER.list();
-		    IDataUtil.put(cursor, "$message.formats", Format.toIDataArray(collection));
-		    IDataUtil.put(cursor, "$message.formats.length", IntegerHelper.emit(collection.size()));
+		
+		    IDataHelper.put(cursor, "$message.formats", Format.toIDataArray(collection));
+		    IDataHelper.put(cursor, "$message.formats.length", collection.size(), String.class);
 		} finally {
 		    cursor.destroy();
 		}
@@ -113,9 +115,9 @@ public final class format
 		
 		try {
 		    Format format = RECOGNIZER.recognize(pipeline);
-		    boolean recognized = format != null;
-		    IDataUtil.put(cursor, "$message.recognized?", BooleanHelper.emit(recognized));
-		    if (recognized) IDataUtil.put(cursor, "$message.format", format.getIData());
+		
+		    IDataHelper.put(cursor, "$message.recognized?", format != null, String.class);
+		    IDataHelper.put(cursor, "$message.format", format, IData.class, false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -157,8 +159,6 @@ public final class format
 		    RECOGNIZER.initialize(formats);
 		
 		    if (exceptions.size() > 0) ExceptionHelper.raise(exceptions);
-		} catch(IOException ex) {
-		    ExceptionHelper.raise(ex);
 		} finally {
 		    cursor.destroy();
 		}

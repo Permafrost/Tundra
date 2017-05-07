@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-02-17 22:01:11 EST
+// -----( CREATED: 2017-05-06 15:05:01 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -9,6 +9,9 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import java.util.Date;
+import java.util.Calendar;
+import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.time.DateTimeHelper;
@@ -44,15 +47,17 @@ public final class datetime
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String datetime = IDataUtil.getString(cursor, "$datetime");
-		    String datetimePattern = IDataUtil.getString(cursor, "$datetime.pattern");
+		    String datetime = IDataHelper.get(cursor, "$datetime", String.class);
+		    String datetimePattern = IDataHelper.get(cursor, "$datetime.pattern", String.class);
 		    // support $pattern to be backwards compatible
-		    if (datetimePattern == null) datetimePattern = IDataUtil.getString(cursor, "$pattern");
+		    if (datetimePattern == null) datetimePattern = IDataHelper.get(cursor, "$pattern", String.class);
 		
-		    String duration = IDataUtil.getString(cursor, "$duration");
-		    String durationPattern = IDataUtil.getString(cursor, "$duration.pattern");
+		    String duration = IDataHelper.get(cursor, "$duration", String.class);
+		    String durationPattern = IDataHelper.get(cursor, "$duration.pattern", String.class);
 		
-		    IDataUtil.put(cursor, "$datetime", DateTimeHelper.add(datetime, datetimePattern, duration, durationPattern));
+		    String result = DateTimeHelper.add(datetime, datetimePattern, duration, durationPattern);
+		
+		    IDataHelper.put(cursor, "$datetime", result, false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -78,21 +83,21 @@ public final class datetime
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String date1 = IDataUtil.getString(cursor, "$datetime.x");
-		    String date2 = IDataUtil.getString(cursor, "$datetime.y");
-		    String pattern1 = IDataUtil.getString(cursor, "$pattern.x");
-		    String pattern2 = IDataUtil.getString(cursor, "$pattern.y");
+		    String date1 = IDataHelper.get(cursor, "$datetime.x", String.class);
+		    String date2 = IDataHelper.get(cursor, "$datetime.y", String.class);
+		    String pattern1 = IDataHelper.get(cursor, "$pattern.x", String.class);
+		    String pattern2 = IDataHelper.get(cursor, "$pattern.y", String.class);
 		
 		    // support $pattern for backwards compatibility
-		    String pattern = IDataUtil.getString(cursor, "$pattern");
+		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
 		    if (pattern1 == null) pattern1 = pattern;
 		    if (pattern2 == null) pattern2 = pattern;
 		
 		    int comparison = DateTimeHelper.compare(date1, pattern1, date2, pattern2);
 		
-		    IDataUtil.put(cursor, "$before?", BooleanHelper.emit(comparison < 0));
-		    IDataUtil.put(cursor, "$equal?", BooleanHelper.emit(comparison == 0));
-		    IDataUtil.put(cursor, "$after?", BooleanHelper.emit(comparison > 0));
+		    IDataHelper.put(cursor, "$before?", comparison < 0, String.class);
+		    IDataHelper.put(cursor, "$equal?", comparison == 0, String.class);
+		    IDataHelper.put(cursor, "$after?", comparison > 0, String.class);
 		} finally {
 		    cursor.destroy();
 		}
@@ -120,18 +125,18 @@ public final class datetime
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String date = IDataUtil.getString(cursor, "$date");
-		    String time = IDataUtil.getString(cursor, "$time");
-		    String datePattern = IDataUtil.getString(cursor, "$pattern.date");
+		    String date = IDataHelper.get(cursor, "$date", String.class);
+		    String time = IDataHelper.get(cursor, "$time", String.class);
+		    String datePattern = IDataHelper.get(cursor, "$pattern.date", String.class);
 		    
-		String timePattern = IDataUtil.getString(cursor, "$pattern.time");
-		    String datetimePattern = IDataUtil.getString(cursor, "$pattern.datetime");
-		    String inTimeZone = IDataUtil.getString(cursor, "$timezone.input");
-		    String outTimeZone = IDataUtil.getString(cursor, "$timezone.output");
+		String timePattern = IDataHelper.get(cursor, "$pattern.time", String.class);
+		    String datetimePattern = IDataHelper.get(cursor, "$pattern.datetime", String.class);
+		    String inTimeZone = IDataHelper.get(cursor, "$timezone.input", String.class);
+		    String outTimeZone = IDataHelper.get(cursor, "$timezone.output", String.class);
 		
 		    String datetime = DateTimeHelper.emit(DateTimeHelper.concatenate(DateTimeHelper.parse(date, datePattern, inTimeZone), DateTimeHelper.parse(time, timePattern, inTimeZone)), datetimePattern, outTimeZone);
 		
-		    if (datetime != null) IDataUtil.put(cursor, "$datetime", datetime);
+		    IDataHelper.put(cursor, "$datetime", datetime, false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -156,16 +161,16 @@ public final class datetime
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String start = IDataUtil.getString(cursor, "$datetime.start");
-		    String end = IDataUtil.getString(cursor, "$datetime.end");
-		    String datetimePattern = IDataUtil.getString(cursor, "$datetime.pattern");
+		    String start = IDataHelper.get(cursor, "$datetime.start", String.class);
+		    String end = IDataHelper.get(cursor, "$datetime.end", String.class);
+		    String datetimePattern = IDataHelper.get(cursor, "$datetime.pattern", String.class);
 		    // support $pattern to be backwards compatible
-		    if (datetimePattern == null) datetimePattern = IDataUtil.getString(cursor, "$pattern");
-		    String durationPattern = IDataUtil.getString(cursor, "$duration.pattern");
+		    if (datetimePattern == null) datetimePattern = IDataHelper.get(cursor, "$pattern", String.class);
+		    String durationPattern = IDataHelper.get(cursor, "$duration.pattern", String.class);
 		
 		    String duration = DurationHelper.emit(DateTimeHelper.duration(DateTimeHelper.parse(start, datetimePattern), DateTimeHelper.parse(end, datetimePattern)), durationPattern);
 		
-		    if (duration != null) IDataUtil.put(cursor, "$duration", duration);
+		    IDataHelper.put(cursor, "$duration", duration, false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -185,16 +190,18 @@ public final class datetime
 		// [i] field:0:optional $duration
 		// [i] field:0:optional $duration.pattern {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
 		// [i] field:0:optional $timezone
-		// [o] field:0:optional $datetime
+		// [o] field:0:required $datetime
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String datetimePattern = IDataUtil.getString(cursor, "$datetime.pattern");
-		    String duration = IDataUtil.getString(cursor, "$duration");
-		    String durationPattern = IDataUtil.getString(cursor, "$duration.pattern");
-		    String timezone = IDataUtil.getString(cursor, "$timezone");
+		    String datetimePattern = IDataHelper.get(cursor, "$datetime.pattern", String.class);
+		    String duration = IDataHelper.get(cursor, "$duration", String.class);
+		    String durationPattern = IDataHelper.get(cursor, "$duration.pattern", String.class);
+		    String timezone = IDataHelper.get(cursor, "$timezone", String.class);
 		
-		    IDataUtil.put(cursor, "$datetime", DateTimeHelper.emit(DateTimeHelper.earlier(DurationHelper.parse(duration, durationPattern)), datetimePattern, timezone));
+		    String datetime = DateTimeHelper.emit(DateTimeHelper.earlier(DurationHelper.parse(duration, durationPattern)), datetimePattern, timezone);
+		
+		    IDataHelper.put(cursor, "$datetime", datetime);
 		} finally {
 		    cursor.destroy();
 		}
@@ -218,11 +225,13 @@ public final class datetime
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    java.util.Date datetime = (java.util.Date)IDataUtil.get(cursor, "$datetime.object");
-		    String pattern = IDataUtil.getString(cursor, "$pattern");
-		    String timezone = IDataUtil.getString(cursor, "$timezone");
+		    Date date = IDataHelper.get(cursor, "$datetime.object", Date.class);
+		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
+		    String timezone = IDataHelper.get(cursor, "$timezone", String.class);
 		
-		    if (datetime != null) IDataUtil.put(cursor, "$datetime", DateTimeHelper.emit(datetime, pattern, timezone));
+		    String datetime = DateTimeHelper.emit(date, pattern, timezone);
+		
+		    IDataHelper.put(cursor, "$datetime", datetime, false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -248,12 +257,12 @@ public final class datetime
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String datetime = IDataUtil.getString(cursor, "$datetime");
-		    String inPattern = IDataUtil.getString(cursor, "$pattern.input");
-		    String[] inPatterns = IDataUtil.getStringArray(cursor, "$patterns.input");
-		    String outPattern = IDataUtil.getString(cursor, "$pattern.output");
-		    String inTimeZone = IDataUtil.getString(cursor, "$timezone.input");
-		    String outTimeZone = IDataUtil.getString(cursor, "$timezone.output");
+		    String datetime = IDataHelper.get(cursor, "$datetime", String.class);
+		    String inPattern = IDataHelper.get(cursor, "$pattern.input", String.class);
+		    String[] inPatterns = IDataHelper.get(cursor, "$patterns.input", String[].class);
+		    String outPattern = IDataHelper.get(cursor, "$pattern.output", String.class);
+		    String inTimeZone = IDataHelper.get(cursor, "$timezone.input", String.class);
+		    String outTimeZone = IDataHelper.get(cursor, "$timezone.output", String.class);
 		
 		    if (datetime != null) {
 		        if (inPatterns == null) {
@@ -261,7 +270,7 @@ public final class datetime
 		        } else {
 		            datetime = DateTimeHelper.format(datetime, inPatterns, inTimeZone, outPattern, outTimeZone);
 		        }
-		        IDataUtil.put(cursor, "$datetime", datetime);
+		        IDataHelper.put(cursor, "$datetime", datetime);
 		    }
 		} finally {
 		    cursor.destroy();
@@ -282,16 +291,18 @@ public final class datetime
 		// [i] field:0:optional $duration
 		// [i] field:0:optional $duration.pattern {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
 		// [i] field:0:optional $timezone
-		// [o] field:0:optional $datetime
+		// [o] field:0:required $datetime
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String datetimePattern = IDataUtil.getString(cursor, "$datetime.pattern");
-		    String duration = IDataUtil.getString(cursor, "$duration");
-		    String durationPattern = IDataUtil.getString(cursor, "$duration.pattern");
-		    String timezone = IDataUtil.getString(cursor, "$timezone");
+		    String datetimePattern = IDataHelper.get(cursor, "$datetime.pattern", String.class);
+		    String duration = IDataHelper.get(cursor, "$duration", String.class);
+		    String durationPattern = IDataHelper.get(cursor, "$duration.pattern", String.class);
+		    String timezone = IDataHelper.get(cursor, "$timezone", String.class);
 		
-		    IDataUtil.put(cursor, "$datetime", DateTimeHelper.emit(DateTimeHelper.later(DurationHelper.parse(duration, durationPattern)), datetimePattern, timezone));
+		    String datetime = DateTimeHelper.emit(DateTimeHelper.later(DurationHelper.parse(duration, durationPattern)), datetimePattern, timezone);
+		
+		    IDataUtil.put(cursor, "$datetime", datetime);
 		} finally {
 		    cursor.destroy();
 		}
@@ -314,12 +325,12 @@ public final class datetime
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String[] datetimes = IDataUtil.getStringArray(cursor, "$datetimes");
-		    String pattern = IDataUtil.getString(cursor, "$pattern");
+		    String[] datetimes = IDataHelper.get(cursor, "$datetimes", String[].class);
+		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
 		
 		    String datetime = DateTimeHelper.emit(DateTimeHelper.maximum(DateTimeHelper.parse(datetimes, pattern)), pattern);
 		
-		    if (datetime != null) IDataUtil.put(cursor, "$datetime", datetime);
+		    IDataHelper.put(cursor, "$datetime", datetime, false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -342,12 +353,12 @@ public final class datetime
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String[] datetimes = IDataUtil.getStringArray(cursor, "$datetimes");
-		    String pattern = IDataUtil.getString(cursor, "$pattern");
+		    String[] datetimes = IDataHelper.get(cursor, "$datetimes", String[].class);
+		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
 		
 		    String datetime = DateTimeHelper.emit(DateTimeHelper.minimum(DateTimeHelper.parse(datetimes, pattern)), pattern);
 			
-		    if (datetime != null) IDataUtil.put(cursor, "$datetime", datetime);
+		    IDataHelper.put(cursor, "$datetime", datetime, false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -370,9 +381,10 @@ public final class datetime
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String pattern = IDataUtil.getString(cursor, "$pattern");
-		    String timezone = IDataUtil.getString(cursor, "$timezone");
-		    IDataUtil.put(cursor, "$datetime", DateTimeHelper.now(pattern, timezone));
+		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
+		    String timezone = IDataHelper.get(cursor, "$timezone", String.class);
+		
+		    IDataHelper.put(cursor, "$datetime", DateTimeHelper.now(pattern, timezone));
 		} finally {
 		    cursor.destroy();
 		}
@@ -397,19 +409,19 @@ public final class datetime
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String datetime = IDataUtil.getString(cursor, "$datetime");
-		    String pattern = IDataUtil.getString(cursor, "$pattern");
-		    String[] patterns = IDataUtil.getStringArray(cursor, "$patterns");
-		    String timezone = IDataUtil.getString(cursor, "$timezone");
+		    String datetime = IDataHelper.get(cursor, "$datetime", String.class);
+		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
+		    String[] patterns = IDataHelper.get(cursor, "$patterns", String[].class);
+		    String timezone = IDataHelper.get(cursor, "$timezone", String.class);
 		
 		    if (datetime != null) {
-		        java.util.Calendar calendar = null;
+		        Calendar calendar;
 		        if (patterns == null) {
 		            calendar = DateTimeHelper.parse(datetime, pattern, timezone);
 		        } else {
 		            calendar = DateTimeHelper.parse(datetime, patterns, timezone);
 		        }
-		        IDataUtil.put(cursor, "$datetime.object", calendar.getTime());
+		        IDataHelper.put(cursor, "$datetime.object", calendar.getTime());
 		    }
 		} finally {
 		    cursor.destroy();
@@ -434,16 +446,16 @@ public final class datetime
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String datetime = IDataUtil.getString(cursor, "$datetime");
-		    String datetimePattern = IDataUtil.getString(cursor, "$datetime.pattern");
+		    String datetime = IDataHelper.get(cursor, "$datetime", String.class);
+		    String datetimePattern = IDataHelper.get(cursor, "$datetime.pattern", String.class);
 		    // support $pattern to be backwards compatible
-		    if (datetimePattern == null) datetimePattern = IDataUtil.getString(cursor, "$pattern");
-		    String duration = IDataUtil.getString(cursor, "$duration");
-		    String durationPattern = IDataUtil.getString(cursor, "$duration.pattern");
+		    if (datetimePattern == null) datetimePattern = IDataHelper.get(cursor, "$pattern", String.class);
+		    String duration = IDataHelper.get(cursor, "$duration", String.class);
+		    String durationPattern = IDataHelper.get(cursor, "$duration.pattern", String.class);
 		    
 		    String result = DateTimeHelper.emit(DateTimeHelper.subtract(DateTimeHelper.parse(datetime, datetimePattern), DurationHelper.parse(duration, durationPattern)), datetimePattern);
 		
-		    if (result != null) IDataUtil.put(cursor, "$datetime", result);
+		    IDataHelper.put(cursor, "$datetime", result, false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -466,9 +478,12 @@ public final class datetime
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String pattern = IDataUtil.getString(cursor, "$pattern");
-		    String timezone = IDataUtil.getString(cursor, "$timezone");
-		    IDataUtil.put(cursor, "$datetime", DateTimeHelper.today(pattern, timezone));
+		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
+		    String timezone = IDataHelper.get(cursor, "$timezone", String.class);
+		
+		    String datetime = DateTimeHelper.today(pattern, timezone);
+		
+		    IDataUtil.put(cursor, "$datetime", datetime);
 		} finally {
 		    cursor.destroy();
 		}
@@ -491,9 +506,12 @@ public final class datetime
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String pattern = IDataUtil.getString(cursor, "$pattern");
-		    String timezone = IDataUtil.getString(cursor, "$timezone");
-		    IDataUtil.put(cursor, "$datetime", DateTimeHelper.tomorrow(pattern, timezone));
+		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
+		    String timezone = IDataHelper.get(cursor, "$timezone", String.class);
+		
+		    String datetime = DateTimeHelper.tomorrow(pattern, timezone);
+		
+		    IDataHelper.put(cursor, "$datetime", datetime);
 		} finally {
 		    cursor.destroy();
 		}
@@ -516,10 +534,11 @@ public final class datetime
 		IDataCursor cursor = pipeline.getCursor();
 		
 		boolean valid = false, raise = false;
+		
 		try {
-		    String datetime = IDataUtil.getString(cursor, "$datetime");
-		    String pattern = IDataUtil.getString(cursor, "$pattern");
-		    raise = BooleanHelper.parse(IDataUtil.getString(cursor, "$raise?"));
+		    String datetime = IDataHelper.get(cursor, "$datetime", String.class);
+		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
+		    raise = IDataHelper.getOrDefault(cursor, "$raise?", Boolean.class, false);
 		
 		    // attempt to parse the datetime string, if no exception is thrown then the string is valid
 		    DateTimeHelper.parse(datetime, pattern);
@@ -527,7 +546,7 @@ public final class datetime
 		} catch (IllegalArgumentException ex) {
 		    if (raise) ExceptionHelper.raise(ex);
 		} finally {
-		    IDataUtil.put(cursor, "$valid?", BooleanHelper.emit(valid));
+		    IDataHelper.put(cursor, "$valid?", valid, String.class);
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
@@ -549,9 +568,12 @@ public final class datetime
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String pattern = IDataUtil.getString(cursor, "$pattern");
-		    String timezone = IDataUtil.getString(cursor, "$timezone");
-		    IDataUtil.put(cursor, "$datetime", DateTimeHelper.yesterday(pattern, timezone));
+		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
+		    String timezone = IDataHelper.get(cursor, "$timezone", String.class);
+		
+		    String datetime = DateTimeHelper.yesterday(pattern, timezone);
+		
+		    IDataHelper.put(cursor, "$datetime", datetime);
 		} finally {
 		    cursor.destroy();
 		}

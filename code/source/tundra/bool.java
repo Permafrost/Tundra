@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-08 21:11:15 AEST
+// -----( CREATED: 2017-05-01 18:56:13 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -9,6 +9,7 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.lang.BooleanHelper;
 // --- <<IS-END-IMPORTS>> ---
 
@@ -41,11 +42,11 @@ public final class bool
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object bool = IDataUtil.get(cursor, "$boolean");
-		    String trueValue = IDataUtil.getString(cursor, "$value.true");
-		    String falseValue = IDataUtil.getString(cursor, "$value.false");
+		    Object bool = IDataHelper.get(cursor, "$boolean");
+		    String trueValue = IDataHelper.get(cursor, "$value.true", String.class);
+		    String falseValue = IDataHelper.get(cursor, "$value.false", String.class);
 		
-		    if (bool != null) IDataUtil.put(cursor, "$string", BooleanHelper.emit(BooleanHelper.parse(bool.toString()), trueValue, falseValue));
+		    if (bool != null) IDataHelper.put(cursor, "$string", BooleanHelper.emit(BooleanHelper.parse(bool.toString()), trueValue, falseValue));
 		} finally {
 		    cursor.destroy();
 		}
@@ -70,13 +71,13 @@ public final class bool
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String inString = IDataUtil.getString(cursor, "$string");
-		    String inTrueValue = IDataUtil.getString(cursor, "$value.true.input");
-		    String inFalseValue = IDataUtil.getString(cursor, "$value.false.input");
-		    String outTrueValue = IDataUtil.getString(cursor, "$value.true.output");
-		    String outFalseValue = IDataUtil.getString(cursor, "$value.false.output");
+		    String inString = IDataHelper.get(cursor, "$string", String.class);
+		    String inTrueValue = IDataHelper.get(cursor, "$value.true.input", String.class);
+		    String inFalseValue = IDataHelper.get(cursor, "$value.false.input", String.class);
+		    String outTrueValue = IDataHelper.get(cursor, "$value.true.output", String.class);
+		    String outFalseValue = IDataHelper.get(cursor, "$value.false.output", String.class);
 		
-		    if (inString != null) IDataUtil.put(cursor,  "$string", BooleanHelper.format(inString, inTrueValue, inFalseValue, outTrueValue, outFalseValue));
+		    if (inString != null) IDataHelper.put(cursor,  "$string", BooleanHelper.format(inString, inTrueValue, inFalseValue, outTrueValue, outFalseValue));
 		} finally {
 		    cursor.destroy();
 		}
@@ -98,8 +99,8 @@ public final class bool
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String input = IDataUtil.getString(cursor, "$boolean");
-		    if (input != null) IDataUtil.put(cursor, "$boolean", BooleanHelper.negate(input));
+		    String input = IDataHelper.get(cursor, "$boolean", String.class);
+		    if (input != null) IDataHelper.put(cursor, "$boolean", BooleanHelper.negate(input));
 		} finally {
 		    cursor.destroy();
 		}
@@ -122,9 +123,9 @@ public final class bool
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String input = IDataUtil.getString(cursor, "$boolean");
-		    String defaultValue = IDataUtil.getString(cursor, "$default");
-		    IDataUtil.put(cursor, "$boolean", BooleanHelper.normalize(input, defaultValue));
+		    String input = IDataHelper.get(cursor, "$boolean", String.class);
+		    String defaultValue = IDataHelper.get(cursor, "$default", String.class);
+		    IDataHelper.put(cursor, "$boolean", BooleanHelper.normalize(input, defaultValue));
 		} finally {
 		    cursor.destroy();
 		}
@@ -148,11 +149,11 @@ public final class bool
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String input = IDataUtil.getString(cursor, "$string");
-		    String trueValue = IDataUtil.getString(cursor, "$value.true");
-		    String falseValue = IDataUtil.getString(cursor, "$value.false");
+		    String input = IDataHelper.get(cursor, "$string", String.class);
+		    String trueValue = IDataHelper.get(cursor, "$value.true", String.class);
+		    String falseValue = IDataHelper.get(cursor, "$value.false", String.class);
 		
-		    if (input != null) IDataUtil.put(cursor, "$boolean", BooleanHelper.parse(input, trueValue, falseValue));
+		    if (input != null) IDataHelper.put(cursor, "$boolean", BooleanHelper.parse(input, trueValue, falseValue));
 		} finally {
 		    cursor.destroy();
 		}

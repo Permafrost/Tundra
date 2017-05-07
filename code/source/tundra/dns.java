@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-08 21:26:23 AEST
+// -----( CREATED: 2017-05-06 15:49:48 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -9,6 +9,7 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.server.NameHelper;
 // --- <<IS-END-IMPORTS>> ---
 
@@ -58,7 +59,8 @@ public final class dns
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IDataUtil.merge(NameHelper.resolve(IDataUtil.getString(cursor, "$name")), pipeline);
+		    String name = IDataHelper.get(cursor, "$name", String.class);
+		    IDataUtil.merge(NameHelper.resolve(name), pipeline);
 		} finally {
 		    cursor.destroy();
 		}

@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-04-19 09:02:00 EST
-// -----( ON-HOST: -
+// -----( CREATED: 2017-05-07 14:58:28 EST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -40,22 +40,22 @@ public final class schedule
 		// [i] field:0:optional $name
 		// [o] field:0:required $exists?
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    String id = IDataUtil.getString(cursor, "$id");
-		    String name = IDataUtil.getString(cursor, "$name");
-
+		    String id = IDataHelper.get(cursor, "$id", String.class);
+		    String name = IDataHelper.get(cursor, "$name", String.class);
+		
 		    if (id != null) {
-		        IDataHelper.put(cursor, "$exists?", BooleanHelper.emit(ScheduleHelper.exists(id)));
+		        IDataHelper.put(cursor, "$exists?", ScheduleHelper.exists(id), String.class);
 		    } else {
-		        IDataHelper.put(cursor, "$exists?", BooleanHelper.emit(ScheduleHelper.existsByName(name)));
+		        IDataHelper.put(cursor, "$exists?", ScheduleHelper.existsByName(name), String.class);
 		    }
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -72,7 +72,7 @@ public final class schedule
 		// [o] - field:0:required id
 		// [o] - field:0:optional name
 		// [o] - field:0:optional description
-		// [o] - field:0:required type {&quot;complex&quot;,&quot;once&quot;,&quot;repeat&quot;}
+		// [o] - field:0:required type {"complex","once","repeat"}
 		// [o] - field:0:required service
 		// [o] - field:0:optional package
 		// [o] - field:0:required target
@@ -96,11 +96,11 @@ public final class schedule
 		// [o] - field:0:required status
 		// [o] - field:0:optional next
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    String id = IDataUtil.getString(cursor, "$id");
-		    String name = IDataUtil.getString(cursor, "$name");
-
+		    String id = IDataHelper.get(cursor, "$id", String.class);
+		    String name = IDataHelper.get(cursor, "$name", String.class);
+		
 		    if (id != null) {
 		        IDataHelper.put(cursor, "$schedule", ScheduleHelper.get(id), false);
 		    } else if (name != null) {
@@ -111,7 +111,7 @@ public final class schedule
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -129,7 +129,7 @@ public final class schedule
 		// [o] - field:0:required id
 		// [o] - field:0:optional name
 		// [o] - field:0:optional description
-		// [o] - field:0:required type {&quot;complex&quot;,&quot;once&quot;,&quot;repeat&quot;}
+		// [o] - field:0:required type {"complex","once","repeat"}
 		// [o] - field:0:required service
 		// [o] - field:0:optional package
 		// [o] - field:0:required target
@@ -153,19 +153,19 @@ public final class schedule
 		// [o] - field:0:required status
 		// [o] - field:0:optional next
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    String name = IDataUtil.getString(cursor, "$name");
-		    String service = IDataUtil.getString(cursor, "$service");
-		    String filter = IDataUtil.getString(cursor, "$filter");
-
+		    String name = IDataHelper.get(cursor, "$name", String.class);
+		    String service = IDataHelper.get(cursor, "$service", String.class);
+		    String filter = IDataHelper.get(cursor, "$filter", String.class);
+		
 		    IDataHelper.put(cursor, "$schedules", ScheduleHelper.list(name, service, filter, pipeline), false, false);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 

@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-09 10:27:38 AEST
+// -----( CREATED: 2017-05-07 14:11:50 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -9,6 +9,7 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.time.TimeZoneHelper;
 // --- <<IS-END-IMPORTS>> ---
 
@@ -48,13 +49,13 @@ public final class timezone
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String id = IDataUtil.getString(cursor, "$id");
-		    String datetime = IDataUtil.getString(cursor, "$datetime");
-		    String pattern = IDataUtil.getString(cursor, "$datetime.pattern");
+		    String id = IDataHelper.get(cursor, "$id", String.class);
+		    String datetime = IDataHelper.get(cursor, "$datetime", String.class);
+		    String pattern = IDataHelper.get(cursor, "$datetime.pattern", String.class);
 		
 		    IData timezone = TimeZoneHelper.toIData(TimeZoneHelper.get(id), datetime, pattern);
 		
-		    if (timezone != null) IDataUtil.put(cursor, "$timezone", timezone);
+		    IDataHelper.put(cursor, "$timezone", timezone, false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -84,12 +85,12 @@ public final class timezone
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String datetime = IDataUtil.getString(cursor, "$datetime");
-		    String pattern = IDataUtil.getString(cursor, "$datetime.pattern");
+		    String datetime = IDataHelper.get(cursor, "$datetime", String.class);
+		    String pattern = IDataHelper.get(cursor, "$datetime.pattern", String.class);
 		
 		    IData[] timezones = TimeZoneHelper.toIDataArray(TimeZoneHelper.list(), datetime, pattern);
 		
-		    if (timezones != null) IDataUtil.put(cursor, "$timezones", timezones);
+		    IDataHelper.put(cursor, "$timezones", timezones, false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -119,12 +120,12 @@ public final class timezone
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String datetime = IDataUtil.getString(cursor, "$datetime");
-		    String pattern = IDataUtil.getString(cursor, "$datetime.pattern");
+		    String datetime = IDataHelper.get(cursor, "$datetime", String.class);
+		    String pattern = IDataHelper.get(cursor, "$datetime.pattern", String.class);
 		
 		    IData timezone = TimeZoneHelper.toIData(TimeZoneHelper.self(), datetime, pattern);
 		
-		    if (timezone != null) IDataUtil.put(cursor, "$timezone", timezone);
+		    IDataHelper.put(cursor, "$timezone", timezone, false);
 		} finally {
 		    cursor.destroy();
 		}

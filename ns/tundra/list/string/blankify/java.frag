@@ -4,8 +4,8 @@
   <value name="name">blankify</value>
   <value name="encodeutf8">true</value>
   <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogICAgU3Ry
-aW5nW10gbGlzdCA9IFN0cmluZ0hlbHBlci5ibGFua2lmeShJRGF0YVV0aWwuZ2V0U3RyaW5nQXJy
-YXkoY3Vyc29yLCAiJGxpc3QiKSk7CiAgICBpZiAobGlzdCAhPSBudWxsKSBJRGF0YVV0aWwucHV0
-KGN1cnNvciwgIiRsaXN0IiwgbGlzdCk7Cn0gZmluYWxseSB7CiAgICBjdXJzb3IuZGVzdHJveSgp
-Owp9</value>
+aW5nW10gbGlzdCA9IElEYXRhSGVscGVyLmdldChjdXJzb3IsICIkbGlzdCIsIFN0cmluZ1tdLmNs
+YXNzKTsKICAgIElEYXRhSGVscGVyLnB1dChjdXJzb3IsICIkbGlzdCIsIFN0cmluZ0hlbHBlci5i
+bGFua2lmeShsaXN0KSwgZmFsc2UpOwp9IGZpbmFsbHkgewogICAgY3Vyc29yLmRlc3Ryb3koKTsK
+fQ==</value>
 </Values>

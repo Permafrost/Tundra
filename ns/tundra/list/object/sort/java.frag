@@ -4,8 +4,8 @@
   <value name="name">sort</value>
   <value name="encodeutf8">true</value>
   <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7DQp0cnkgew0KICAgIE9i
-amVjdFtdIGxpc3QgPSBJRGF0YVV0aWwuZ2V0T2JqZWN0QXJyYXkoY3Vyc29yLCAiJGxpc3QiKTsN
-CiAgICBpZiAobGlzdCAhPSBudWxsKSBJRGF0YVV0aWwucHV0KGN1cnNvciwgIiRsaXN0IiwgQXJy
-YXlIZWxwZXIuc29ydChsaXN0KSk7DQp9IGZpbmFsbHkgew0KICAgIGN1cnNvci5kZXN0cm95KCk7
-DQp9</value>
+amVjdFtdIGxpc3QgPSBJRGF0YUhlbHBlci5nZXQoY3Vyc29yLCAiJGxpc3QiLCBPYmplY3RbXS5j
+bGFzcyk7DQogICAgaWYgKGxpc3QgIT0gbnVsbCkgSURhdGFIZWxwZXIucHV0KGN1cnNvciwgIiRs
+aXN0IiwgQXJyYXlIZWxwZXIuc29ydChsaXN0KSk7DQp9IGZpbmFsbHkgew0KICAgIGN1cnNvci5k
+ZXN0cm95KCk7DQp9</value>
 </Values>

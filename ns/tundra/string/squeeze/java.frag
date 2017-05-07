@@ -4,8 +4,8 @@
   <value name="name">squeeze</value>
   <value name="encodeutf8">true</value>
   <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7DQoNCnRyeSB7DQogICAg
-U3RyaW5nIHN0cmluZyA9IFN0cmluZ0hlbHBlci5zcXVlZXplKElEYXRhVXRpbC5nZXRTdHJpbmco
-Y3Vyc29yLCAiJHN0cmluZyIpKTsNCiAgICBpZiAoc3RyaW5nICE9IG51bGwpIElEYXRhVXRpbC5w
-dXQoY3Vyc29yLCAiJHN0cmluZyIsIHN0cmluZyk7DQp9IGZpbmFsbHkgew0KICAgIGN1cnNvci5k
-ZXN0cm95KCk7DQp9</value>
+U3RyaW5nIHN0cmluZyA9IElEYXRhSGVscGVyLmdldChjdXJzb3IsICIkc3RyaW5nIiwgU3RyaW5n
+LmNsYXNzKTsNCiAgICBJRGF0YUhlbHBlci5wdXQoY3Vyc29yLCAiJHN0cmluZyIsIFN0cmluZ0hl
+bHBlci5zcXVlZXplKHN0cmluZyksIGZhbHNlKTsNCn0gZmluYWxseSB7DQogICAgY3Vyc29yLmRl
+c3Ryb3koKTsNCn0=</value>
 </Values>

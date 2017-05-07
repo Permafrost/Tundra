@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-02-09 09:13:40.699
-// -----( ON-HOST: -
+// -----( CREATED: 2017-05-06 15:01:20 EST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -45,16 +45,16 @@ public final class condition
 		// [i] object:0:optional $result.false
 		// [o] object:0:optional $result
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    String condition = IDataUtil.getString(cursor, "$condition");
-		    IData scope = IDataUtil.getIData(cursor, "$scope");
-		    IData namespace = IDataUtil.getIData(cursor, "$namespace");
-		    Object trueResult = IDataUtil.get(cursor, "$result.true");
-		    Object falseResult = IDataUtil.get(cursor, "$result.false");
-
+		    String condition = IDataHelper.get(cursor, "$condition", String.class);
+		    IData scope = IDataHelper.get(cursor, "$scope", IData.class);
+		    IDataNamespaceContext namespace = IDataHelper.get(cursor, "$namespace", IDataNamespaceContext.class);
+		    Object trueResult = IDataHelper.get(cursor, "$result.true");
+		    Object falseResult = IDataHelper.get(cursor, "$result.false");
+		
 		    if (trueResult != null || falseResult != null) {
-		        boolean result = ConditionEvaluator.evaluate(condition, scope == null? pipeline : scope, IDataNamespaceContext.of(namespace));
+		        boolean result = ConditionEvaluator.evaluate(condition, scope == null? pipeline : scope, namespace);
 		        IDataHelper.put(cursor, "$result", result ? trueResult : falseResult, false);
 		    }
 		} finally {
@@ -62,7 +62,7 @@ public final class condition
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -79,19 +79,19 @@ public final class condition
 		// [i] - field:0:optional default
 		// [o] field:0:required $result?
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    String condition = IDataUtil.getString(cursor, "$condition");
-		    IData scope = IDataUtil.getIData(cursor, "$scope");
-		    IData namespace = IDataUtil.getIData(cursor, "$namespace");
-
-		    IDataUtil.put(cursor, "$result?", BooleanHelper.emit(ConditionEvaluator.evaluate(condition, scope == null? pipeline : scope, IDataNamespaceContext.of(namespace))));
+		    String condition = IDataHelper.get(cursor, "$condition", String.class);
+		    IData scope = IDataHelper.get(cursor, "$scope", IData.class);
+		    IDataNamespaceContext namespace = IDataHelper.get(cursor, "$namespace", IDataNamespaceContext.class);
+		
+		    IDataHelper.put(cursor, "$result?", ConditionEvaluator.evaluate(condition, scope == null? pipeline : scope, namespace), String.class);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 

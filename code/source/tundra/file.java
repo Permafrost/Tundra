@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-04-09 11:37:37 EST
+// -----( CREATED: 2017-05-06 15:51:46 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -54,9 +54,9 @@ public final class file
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String source = IDataUtil.getString(cursor, "$file.source");
-		    String target = IDataUtil.getString(cursor, "$file.target");
-		    String mode = IDataUtil.getString(cursor, "$mode");
+		    String source = IDataHelper.get(cursor, "$file.source", String.class);
+		    String target = IDataHelper.get(cursor, "$file.target", String.class);
+		    String mode = IDataHelper.get(cursor, "$mode", String.class);
 		
 		    FileHelper.copy(source, target, mode == null || mode.equalsIgnoreCase("append"));
 		} catch(IOException ex) {
@@ -81,8 +81,8 @@ public final class file
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String file = IDataUtil.getString(cursor, "$file");
-		    IDataUtil.put(cursor, "$file", FileHelper.create(file));
+		    String file = IDataHelper.get(cursor, "$file", String.class);
+		    IDataHelper.put(cursor, "$file", FileHelper.create(file));
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -106,8 +106,8 @@ public final class file
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String file = IDataUtil.getString(cursor, "$file");
-		    IDataUtil.put(cursor, "$executable?", BooleanHelper.emit(FileHelper.isExecutable(file)));
+		    String file = IDataHelper.get(cursor, "$file", String.class);
+		    IDataHelper.put(cursor, "$executable?", FileHelper.isExecutable(file), String.class);
 		} finally {
 		    cursor.destroy();
 		}
@@ -129,8 +129,8 @@ public final class file
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String file = IDataUtil.getString(cursor, "$file");
-		    IDataUtil.put(cursor, "$exists?", BooleanHelper.emit(FileHelper.exists(file)));
+		    String file = IDataHelper.get(cursor, "$file", String.class);
+		    IDataHelper.put(cursor, "$exists?", FileHelper.exists(file), String.class);
 		} finally {
 		    cursor.destroy();
 		}
@@ -156,9 +156,9 @@ public final class file
 		try {
 		    String source = IDataHelper.get(cursor, "$file", String.class);
 		    String target = IDataHelper.get(cursor, "$file.gzip", String.class);
-		    boolean replace = IDataHelper.get(cursor, "$replace?", Boolean.class);
+		    boolean replace = IDataHelper.getOrDefault(cursor, "$replace?", Boolean.class, false);
 		
-		    IDataUtil.put(cursor, "$file.gzip", FileHelper.gzip(source, target, replace));
+		    IDataHelper.put(cursor, "$file.gzip", FileHelper.gzip(source, target, replace));
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -182,8 +182,8 @@ public final class file
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String file = IDataUtil.getString(cursor, "$file");
-		    IDataUtil.put(cursor, "$length", LongHelper.emit(FileHelper.length(file)));
+		    String file = IDataHelper.get(cursor, "$file", String.class);
+		    IDataHelper.put(cursor, "$length", FileHelper.length(file), String.class);
 		} finally {
 		    cursor.destroy();
 		}
@@ -207,11 +207,11 @@ public final class file
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String file = IDataUtil.getString(cursor, "$file");
-		    String pattern = IDataUtil.getString(cursor, "$pattern");
-		    String mode = IDataUtil.getString(cursor, "$mode");
+		    String file = IDataHelper.get(cursor, "$file", String.class);
+		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
+		    String mode = IDataHelper.get(cursor, "$mode", String.class);
 		
-		    IDataUtil.put(cursor, "$match?", BooleanHelper.emit(FileHelper.match(file, pattern, mode == null || mode.equalsIgnoreCase("regular expression")  || mode.equalsIgnoreCase("regex"))));
+		    IDataHelper.put(cursor, "$match?", FileHelper.match(file, pattern, mode == null || mode.equalsIgnoreCase("regular expression")  || mode.equalsIgnoreCase("regex")), String.class);
 		} finally {
 		    cursor.destroy();
 		}
@@ -233,7 +233,7 @@ public final class file
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IDataUtil.put(cursor, "$file", FileHelper.normalize(IDataUtil.getString(cursor, "$file")));
+		    IDataHelper.put(cursor, "$file", FileHelper.normalize(IDataHelper.get(cursor, "$file", String.class)));
 		} finally {
 		    cursor.destroy();
 		}
@@ -259,16 +259,16 @@ public final class file
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String file = IDataUtil.getString(cursor, "$file");
-		    String mode = IDataUtil.getString(cursor, "$mode");
-		    String service = IDataUtil.getString(cursor, "$service");
-		    String input = IDataUtil.getString(cursor, "$service.input");
-		    IData scope = IDataUtil.getIData(cursor, "$pipeline");
+		    String file = IDataHelper.get(cursor, "$file", String.class);
+		    String mode = IDataHelper.get(cursor, "$mode", String.class);
+		    String service = IDataHelper.get(cursor, "$service", String.class);
+		    String input = IDataHelper.get(cursor, "$service.input", String.class);
+		    IData scope = IDataHelper.get(cursor, "$pipeline", IData.class);
 		    boolean scoped = scope != null;
 		
 		    scope = process(file, mode, service, input, scoped? scope : pipeline);
 		
-		    if (scoped) IDataUtil.put(cursor, "$pipeline", scope);
+		    if (scoped) IDataHelper.put(cursor, "$pipeline", scope);
 		} finally {
 		    cursor.destroy();
 		}
@@ -292,12 +292,12 @@ public final class file
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String file = IDataUtil.getString(cursor, "$file");
-		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
+		    String file = IDataHelper.get(cursor, "$file", String.class);
+		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
 		
-		    ObjectConvertMode mode = ObjectConvertMode.normalize(IDataUtil.getString(cursor, "$mode"));
+		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
 		
-		    IDataUtil.put(cursor, "$content", ObjectHelper.convert(FileHelper.readToBytes(file), charset, mode));
+		    IDataHelper.put(cursor, "$content", ObjectHelper.convert(FileHelper.readToBytes(file), charset, mode));
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -321,8 +321,8 @@ public final class file
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String file = IDataUtil.getString(cursor, "$file");
-		    IDataUtil.put(cursor, "$readable?", BooleanHelper.emit(FileHelper.isReadable(file)));
+		    String file = IDataHelper.get(cursor, "$file", String.class);
+		    IDataHelper.put(cursor, "$readable?", FileHelper.isReadable(file), String.class);
 		} finally {
 		    cursor.destroy();
 		}
@@ -356,8 +356,8 @@ public final class file
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String file = IDataUtil.getString(cursor, "$file");
-		    IDataUtil.put(cursor, "$file.properties", FileHelper.getPropertiesAsIData(file));
+		    String file = IDataHelper.get(cursor, "$file", String.class);
+		    IDataHelper.put(cursor, "$file.properties", FileHelper.getPropertiesAsIData(file));
 		} finally {
 		    cursor.destroy();
 		}
@@ -378,7 +378,7 @@ public final class file
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    FileHelper.remove(IDataUtil.getString(cursor, "$file"));
+		    FileHelper.remove(IDataHelper.get(cursor, "$file", String.class));
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -402,8 +402,9 @@ public final class file
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String source = IDataUtil.getString(cursor, "$file.source");
-		    String target = IDataUtil.getString(cursor, "$file.target");
+		    String source = IDataHelper.get(cursor, "$file.source", String.class);
+		    String target = IDataHelper.get(cursor, "$file.target", String.class);
+		
 		    FileHelper.rename(source, target);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -427,7 +428,7 @@ public final class file
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    FileHelper.touch(IDataUtil.getString(cursor, "$file"));
+		    FileHelper.touch(IDataHelper.get(cursor, "$file", String.class));
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -451,8 +452,8 @@ public final class file
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String file = IDataUtil.getString(cursor, "$file");
-		    IDataUtil.put(cursor, "$type", FileHelper.getMIMEType(file));
+		    String file = IDataHelper.get(cursor, "$file", String.class);
+		    IDataHelper.put(cursor, "$type", FileHelper.getMIMEType(file));
 		} finally {
 		    cursor.destroy();
 		}
@@ -474,8 +475,8 @@ public final class file
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String file = IDataUtil.getString(cursor, "$file");
-		    IDataUtil.put(cursor, "$writable?", BooleanHelper.emit(FileHelper.isWritable(file)));
+		    String file = IDataHelper.get(cursor, "$file", String.class);
+		    IDataHelper.put(cursor, "$writable?", FileHelper.isWritable(file), String.class);
 		} finally {
 		    cursor.destroy();
 		}
@@ -496,18 +497,18 @@ public final class file
 		// [i] field:0:optional $mode {"append","write"}
 		// [i] object:0:optional $content
 		// [i] field:0:optional $encoding
-		// [o] field:0:optional $file
+		// [o] field:0:required $file
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String file = IDataUtil.getString(cursor, "$file");
-		    String mode = IDataUtil.getString(cursor, "$mode");
-		    Object content = IDataUtil.get(cursor, "$content");
-		    Charset charset = CharsetHelper.normalize(IDataUtil.getString(cursor, "$encoding"));
+		    String file = IDataHelper.get(cursor, "$file", String.class);
+		    String mode = IDataHelper.get(cursor, "$mode", String.class);
+		    Object content = IDataHelper.get(cursor, "$content");
+		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
 		
 		    file = FileHelper.writeFromStream(file, InputStreamHelper.normalize(content, charset), mode == null || mode.equalsIgnoreCase("append"));
 		
-		    IDataUtil.put(cursor, "$file", file);
+		    IDataHelper.put(cursor, "$file", file);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -537,7 +538,7 @@ public final class file
 		    String target = IDataHelper.get(cursor, "$file.zip", String.class);
 		    boolean replace = IDataHelper.get(cursor, "$replace?", Boolean.class);
 		
-		    IDataUtil.put(cursor, "$file.zip", FileHelper.zip(source, target, replace));
+		    IDataHelper.put(cursor, "$file.zip", FileHelper.zip(source, target, replace));
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {

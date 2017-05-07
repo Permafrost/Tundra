@@ -4,8 +4,8 @@
   <value name="name">executable</value>
   <value name="encodeutf8">true</value>
   <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7DQoNCnRyeSB7DQogICAg
-U3RyaW5nIGZpbGUgPSBJRGF0YVV0aWwuZ2V0U3RyaW5nKGN1cnNvciwgIiRmaWxlIik7DQogICAg
-SURhdGFVdGlsLnB1dChjdXJzb3IsICIkZXhlY3V0YWJsZT8iLCBCb29sZWFuSGVscGVyLmVtaXQo
-RmlsZUhlbHBlci5pc0V4ZWN1dGFibGUoZmlsZSkpKTsNCn0gZmluYWxseSB7DQogICAgY3Vyc29y
-LmRlc3Ryb3koKTsNCn0=</value>
+U3RyaW5nIGZpbGUgPSBJRGF0YUhlbHBlci5nZXQoY3Vyc29yLCAiJGZpbGUiLCBTdHJpbmcuY2xh
+c3MpOw0KICAgIElEYXRhSGVscGVyLnB1dChjdXJzb3IsICIkZXhlY3V0YWJsZT8iLCBGaWxlSGVs
+cGVyLmlzRXhlY3V0YWJsZShmaWxlKSwgU3RyaW5nLmNsYXNzKTsNCn0gZmluYWxseSB7DQogICAg
+Y3Vyc29yLmRlc3Ryb3koKTsNCn0=</value>
 </Values>

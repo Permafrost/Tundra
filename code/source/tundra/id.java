@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2015-07-09 08:27:46 AEST
+// -----( CREATED: 2017-05-08 19:05:58 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -9,6 +9,7 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.lang.IdentityHelper;
 // --- <<IS-END-IMPORTS>> ---
 
@@ -39,7 +40,7 @@ public final class id
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IDataUtil.put(cursor, "$id", IdentityHelper.generate(IDataUtil.getString(cursor, "$mode")));
+		    IDataHelper.put(cursor, "$id", IdentityHelper.generate(IDataHelper.get(cursor, "$mode", String.class)));
 		} finally {
 		    cursor.destroy();
 		}
@@ -61,9 +62,9 @@ public final class id
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String input = IDataUtil.getString(cursor, "$string");
+		    String input = IDataHelper.get(cursor, "$string", String.class);
 		    String output = IdentityHelper.normalize(input);
-		    if (output != null) IDataUtil.put(cursor, "$string", output);
+		    IDataHelper.put(cursor, "$string", output, false);
 		} finally {
 		    cursor.destroy();
 		}

@@ -19,6 +19,7 @@
     <value>javax.xml.xpath.XPathExpressionException</value>
     <value>org.w3c.dom.Node</value>
     <value>org.xml.sax.InputSource</value>
+    <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.io.InputStreamHelper</value>
     <value>permafrost.tundra.lang.BooleanHelper</value>
     <value>permafrost.tundra.lang.CharsetHelper</value>

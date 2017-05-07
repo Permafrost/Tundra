@@ -4,8 +4,8 @@
   <value name="name">unique</value>
   <value name="encodeutf8">true</value>
   <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7DQp0cnkgew0KICAgIE9i
-amVjdFtdIGxpc3QgPSBJRGF0YVV0aWwuZ2V0T2JqZWN0QXJyYXkoY3Vyc29yLCAiJGxpc3QiKTsN
-CiAgICBpZiAobGlzdCAhPSBudWxsKSBJRGF0YVV0aWwucHV0KGN1cnNvciwgIiRsaXN0IiwgQXJy
-YXlIZWxwZXIudW5pcXVlKGxpc3QpKTsNCn0gZmluYWxseSB7DQogICAgY3Vyc29yLmRlc3Ryb3ko
-KTsNCn0=</value>
+amVjdFtdIGxpc3QgPSBJRGF0YUhlbHBlci5nZXQoY3Vyc29yLCAiJGxpc3QiLCBPYmplY3RbXS5j
+bGFzcyk7DQogICAgaWYgKGxpc3QgIT0gbnVsbCkgSURhdGFIZWxwZXIucHV0KGN1cnNvciwgIiRs
+aXN0IiwgQXJyYXlIZWxwZXIudW5pcXVlKGxpc3QpKTsNCn0gZmluYWxseSB7DQogICAgY3Vyc29y
+LmRlc3Ryb3koKTsNCn0=</value>
 </Values>

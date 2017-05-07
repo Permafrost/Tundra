@@ -1,7 +1,7 @@
 package tundra.support.service;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-10-10 18:04:22 EST
+// -----( CREATED: 2017-05-07 17:36:12 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -66,7 +66,7 @@ public final class usage
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IDataUtil.put(cursor, "$context", ServiceUsageProcessor.getInstance().getIData());
+		    IDataHelper.put(cursor, "$context", ServiceUsageProcessor.getInstance().getIData());
 		} finally {
 		    cursor.destroy();
 		}

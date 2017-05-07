@@ -1,7 +1,7 @@
 package tundra.assertion;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-12-14 12:38:20 EST
+// -----( CREATED: 2017-05-03 12:59:24 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -9,6 +9,7 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.StringHelper;
 import permafrost.tundra.server.ServiceHelper;
@@ -47,10 +48,10 @@ public final class exception
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String service = IDataUtil.getString(cursor, "$service");
-		    IData scope = IDataUtil.getIData(cursor, "$pipeline");
-		    IData criteria = IDataUtil.getIData(cursor, "$exception");
-		    String message = IDataUtil.getString(cursor, "$message");
+		    String service = IDataHelper.get(cursor, "$service", String.class);
+		    IData scope = IDataHelper.get(cursor, "$pipeline", IData.class);
+		    IData criteria = IDataHelper.get(cursor, "$exception", IData.class);
+		    String message = IDataHelper.get(cursor, "$message", String.class);
 		
 		    raised(service, scope == null ? pipeline : scope, criteria, message);
 		} finally {

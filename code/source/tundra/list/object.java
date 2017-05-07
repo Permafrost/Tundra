@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-12-18 13:48:26 EST
+// -----( CREATED: 2017-05-08 19:16:34 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -19,6 +19,7 @@ import permafrost.tundra.flow.ConditionEvaluator;
 import permafrost.tundra.lang.ArraySplitter;
 import permafrost.tundra.lang.ArrayHelper;
 import permafrost.tundra.lang.BooleanHelper;
+import permafrost.tundra.lang.ClassHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.lang.Sanitization;
 import permafrost.tundra.math.IntegerHelper;
@@ -54,10 +55,8 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String className = IDataUtil.getString(cursor, "$class");
-		    append(pipeline, className == null ? Object.class : Class.forName(className));
-		} catch (ClassNotFoundException ex) {
-		    ExceptionHelper.raise(ex);
+		    Class klass = IDataHelper.get(cursor, "$class", Class.class);
+		    append(pipeline, klass == null ? Object.class : klass);
 		} finally {
 		    cursor.destroy();
 		}
@@ -81,13 +80,13 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
-		    Object defaultValue = IDataUtil.get(cursor, "$default");
-		    String mode = IDataUtil.getString(cursor, "$mode");
+		    Object[] list = IDataHelper.get(cursor, "$list", Object[].class);
+		    Object defaultValue = IDataHelper.get(cursor, "$default");
+		    String mode = IDataHelper.get(cursor, "$mode", String.class);
 		
 		    Object result = ArrayHelper.coalesce(list, defaultValue);
 		
-		    if (result != null || (mode != null && mode.equals("null"))) IDataUtil.put(cursor, "$item", result);
+		    if (result != null || (mode != null && mode.equals("null"))) IDataHelper.put(cursor, "$item", result);
 		} finally {
 		    cursor.destroy();
 		}
@@ -109,8 +108,8 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
-		    if (list != null && list.length > 0) IDataUtil.put(cursor, "$list", ArrayHelper.compact(list));
+		    Object[] list = IDataHelper.get(cursor, "$list", Object[].class);
+		    if (list != null && list.length > 0) IDataHelper.put(cursor, "$list", ArrayHelper.compact(list));
 		} finally {
 		    cursor.destroy();
 		}
@@ -133,10 +132,8 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String className = IDataUtil.getString(cursor, "$class");
-		    concatenate(pipeline, className == null ? Object.class : Class.forName(className));
-		} catch (ClassNotFoundException ex) {
-		    ExceptionHelper.raise(ex);
+		    Class klass = IDataHelper.get(cursor, "$class", Class.class);
+		    concatenate(pipeline, klass == null ? Object.class : klass);
 		} finally {
 		    cursor.destroy();
 		}
@@ -159,10 +156,10 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object[] listX = IDataUtil.getObjectArray(cursor, "$list.x");
-		    Object[] listY = IDataUtil.getObjectArray(cursor, "$list.y");
+		    Object[] listX = IDataHelper.get(cursor, "$list.x", Object[].class);
+		    Object[] listY = IDataHelper.get(cursor, "$list.y", Object[].class);
 		
-		    if (listX != null) IDataUtil.put(cursor, "$list", ArrayHelper.difference(listX, listY));
+		    if (listX != null) IDataHelper.put(cursor, "$list", ArrayHelper.difference(listX, listY));
 		} finally {
 		    cursor.destroy();
 		}
@@ -185,10 +182,10 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
-		    int index = IntegerHelper.parse(IDataUtil.getString(cursor, "$index"));
+		    Object[] list = IDataHelper.get(cursor, "$list", Object[].class);
+		    int index = IDataHelper.get(cursor, "$index", Integer.class);
 		
-		    if (list != null && list.length > 0) IDataUtil.put(cursor, "$list", ArrayHelper.drop(list, index));
+		    if (list != null && list.length > 0) IDataHelper.put(cursor, "$list", ArrayHelper.drop(list, index));
 		} finally {
 		    cursor.destroy();
 		}
@@ -212,10 +209,10 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
-		    String service = IDataUtil.getString(cursor, "$service");
-		    IData scope = IDataUtil.getIData(cursor, "$pipeline");
-		    String input = IDataUtil.getString(cursor, "$item.input");
+		    Object[] list = IDataHelper.get(cursor, "$list", Object[].class);
+		    String service = IDataHelper.get(cursor, "$service", String.class);
+		    IData scope = IDataHelper.get(cursor, "$pipeline", IData.class);
+		    String input = IDataHelper.get(cursor, "$item.input", String.class);
 		
 		    boolean scoped = scope != null;
 		
@@ -244,10 +241,8 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String className = IDataUtil.getString(cursor, "$class");
-		    equal(pipeline, className == null ? Object.class : Class.forName(className));
-		} catch (ClassNotFoundException ex) {
-		    ExceptionHelper.raise(ex);
+		    Class klass = IDataHelper.get(cursor, "$class", Class.class);
+		    equal(pipeline, klass == null ? Object.class : klass);
 		} finally {
 		    cursor.destroy();
 		}
@@ -271,11 +266,11 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
-		    String condition = IDataUtil.getString(cursor, "$condition");
-		    IData scope = IDataUtil.getIData(cursor, "$scope");
+		    Object[] list = IDataHelper.get(cursor, "$list", Object[].class);
+		    String condition = IDataHelper.get(cursor, "$condition", String.class);
+		    IData scope = IDataHelper.get(cursor, "$scope", IData.class);
 		
-		    if (list != null) IDataUtil.put(cursor, "$list", filter(list, condition, scope == null? pipeline : scope));
+		    if (list != null) IDataHelper.put(cursor, "$list", filter(list, condition, scope == null? pipeline : scope));
 		} finally {
 		    cursor.destroy();
 		}
@@ -297,8 +292,8 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
-		    if (list != null && list.length > 0) IDataUtil.put(cursor, "$item", ArrayHelper.get(list, 0));
+		    Object[] list = IDataHelper.get(cursor, "$list", Object[].class);
+		    if (list != null && list.length > 0) IDataHelper.put(cursor, "$item", ArrayHelper.get(list, 0));
 		} finally {
 		    cursor.destroy();
 		}
@@ -322,9 +317,9 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
-		    int index = IntegerHelper.parse(IDataUtil.getString(cursor, "$index"), IntegerHelper.parse(IDataUtil.getString(cursor, "$iteration"), 1) - 1);
-		    if (list != null && list.length > 0) IDataUtil.put(cursor, "$item", ArrayHelper.get(list, index));
+		    Object[] list = IDataHelper.get(cursor, "$list", Object[].class);
+		    int index = IDataHelper.getOrDefault(cursor, "$index", Integer.class, IDataHelper.getOrDefault(cursor, "$iteration", Integer.class, 1) - 1);
+		    if (list != null && list.length > 0) IDataHelper.put(cursor, "$item", ArrayHelper.get(list, index));
 		} finally {
 		    cursor.destroy();
 		}
@@ -349,10 +344,8 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String className = IDataUtil.getString(cursor, "$class");
-		    grow(pipeline, className == null ? Object.class : Class.forName(className));
-		} catch (ClassNotFoundException ex) {
-		    ExceptionHelper.raise(ex);
+		    Class klass = IDataHelper.get(cursor, "$class", Class.class);
+		    grow(pipeline, klass == null ? Object.class : klass);
 		} finally {
 		    cursor.destroy();
 		}
@@ -375,10 +368,10 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
-		    Object item = IDataUtil.get(cursor, "$item");
+		    Object[] list = IDataHelper.get(cursor, "$list", Object[].class);
+		    Object item = IDataHelper.get(cursor, "$item");
 		
-		    IDataUtil.put(cursor, "$include?", BooleanHelper.emit(ArrayHelper.include(list, item)));
+		    IDataHelper.put(cursor, "$include?", ArrayHelper.include(list, item), String.class);
 		} finally {
 		    cursor.destroy();
 		}
@@ -402,11 +395,11 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
-		    String indexStart = IDataUtil.getString(cursor, "$index.start");
-		    String indexStep = IDataUtil.getString(cursor, "$index.step");
+		    Object[] list = IDataHelper.get(cursor, "$list", Object[].class);
+		    int indexStart = IDataHelper.getOrDefault(cursor, "$index.start", Integer.class, 0);
+		    int indexStep = IDataHelper.getOrDefault(cursor, "$index.step", Integer.class, 1);
 		
-		    if (list != null) IDataUtil.put(cursor, "$indexes", ArrayHelper.index(list, indexStart == null ? 0 : Integer.parseInt(indexStart), indexStep == null ? 1 : Integer.parseInt(indexStep)));
+		    if (list != null) IDataUtil.put(cursor, "$indexes", ArrayHelper.index(list, indexStart, indexStep));
 		} finally {
 		    cursor.destroy();
 		}
@@ -431,10 +424,8 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String className = IDataUtil.getString(cursor, "$class");
-		    insert(pipeline, className == null ? Object.class : Class.forName(className));
-		} catch (ClassNotFoundException ex) {
-		    ExceptionHelper.raise(ex);
+		    Class klass = IDataHelper.get(cursor, "$class", Class.class);
+		    insert(pipeline, klass == null ? Object.class : klass);
 		} finally {
 		    cursor.destroy();
 		}
@@ -455,10 +446,12 @@ public final class object
 		// [i] field:0:optional $class
 		// [o] field:0:optional $instance?
 		IDataCursor cursor = pipeline.getCursor();
+		
 		try {
-		    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
-		    String klass = IDataUtil.getString(cursor, "$class");
-		    if (list != null && klass != null) IDataUtil.put(cursor, "$instance?", BooleanHelper.emit(tundra.object.instance(list, klass)));
+		    Object[] list = IDataHelper.get(cursor, "$list", Object[].class);
+		    Class klass = IDataHelper.get(cursor, "$class", Class.class);
+		
+		    IDataHelper.put(cursor, "$instance?", tundra.object.instance(list, klass), String.class);
 		} finally {
 		    cursor.destroy();
 		}
@@ -481,10 +474,8 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String className = IDataUtil.getString(cursor, "$class");
-		    intersection(pipeline, className == null ? Object.class : Class.forName(className));
-		} catch (ClassNotFoundException ex) {
-		    ExceptionHelper.raise(ex);
+		    Class klass = IDataHelper.get(cursor, "$class", Class.class);
+		    intersection(pipeline, klass == null ? Object.class : klass);
 		} finally {
 		    cursor.destroy();
 		}
@@ -509,10 +500,10 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
-		    String separatorCharacter = IDataUtil.getString(cursor, "$separator");
-		    String defaultCharacter = IDataUtil.getString(cursor, "$default");
-		    Sanitization sanitization = Sanitization.normalize(IDataUtil.getString(cursor, "$sanitization"));
+		    Object[] list = IDataHelper.get(cursor, "$list", Object[].class);
+		    String separatorCharacter = IDataHelper.get(cursor, "$separator", String.class);
+		    String defaultCharacter = IDataHelper.get(cursor, "$default", String.class);
+		    Sanitization sanitization = IDataHelper.get(cursor, "$sanitization", Sanitization.class);
 		
 		    IDataHelper.put(cursor, "$result", ArrayHelper.join(list, separatorCharacter, defaultCharacter, sanitization), false);
 		} finally {
@@ -536,8 +527,8 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
-		    if (list != null && list.length > 0) IDataUtil.put(cursor, "$item", ArrayHelper.get(list, -1));
+		    Object[] list = IDataHelper.get(cursor, "$list", Object[].class);
+		    if (list != null && list.length > 0) IDataHelper.put(cursor, "$item", ArrayHelper.get(list, -1));
 		} finally {
 		    cursor.destroy();
 		}
@@ -558,8 +549,8 @@ public final class object
 		// [o] field:0:required $length
 		IDataCursor cursor = pipeline.getCursor();
 		try {
-		    Object[] array = IDataUtil.getObjectArray(cursor, "$list");
-		    IDataUtil.put(cursor, "$length", IntegerHelper.emit(ArrayHelper.length(array)));
+		    Object[] array = IDataHelper.get(cursor, "$list", Object[].class);
+		    IDataHelper.put(cursor, "$length", ArrayHelper.length(array), String.class);
 		} finally {
 		    cursor.destroy();
 		}
@@ -603,10 +594,8 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String className = IDataUtil.getString(cursor, "$class");
-		    prepend(pipeline, className == null ? Object.class : Class.forName(className));
-		} catch (ClassNotFoundException ex) {
-		    ExceptionHelper.raise(ex);
+		    Class klass = IDataHelper.get(cursor, "$class", Class.class);
+		    prepend(pipeline, klass == null ? Object.class : klass);
 		} finally {
 		    cursor.destroy();
 		}
@@ -631,10 +620,8 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String className = IDataUtil.getString(cursor, "$class");
-		    put(pipeline, className == null ? Object.class : Class.forName(className));
-		} catch (ClassNotFoundException ex) {
-		    ExceptionHelper.raise(ex);
+		    Class klass = IDataHelper.get(cursor, "$class", Class.class);
+		    put(pipeline, klass == null ? Object.class : klass);
 		} finally {
 		    cursor.destroy();
 		}
@@ -658,11 +645,11 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
-		    String condition = IDataUtil.getString(cursor, "$condition");
-		    IData scope = IDataUtil.getIData(cursor, "$scope");
+		    Object[] list = IDataHelper.get(cursor, "$list", Object[].class);
+		    String condition = IDataHelper.get(cursor, "$condition", String.class);
+		    IData scope = IDataHelper.get(cursor, "$scope", IData.class);
 		
-		    IDataUtil.put(cursor, "$list", reject(list, condition, scope == null? pipeline : scope));
+		    IDataHelper.put(cursor, "$list", reject(list, condition, scope == null? pipeline : scope));
 		} finally {
 		    cursor.destroy();
 		}
@@ -687,10 +674,8 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String className = IDataUtil.getString(cursor, "$class");
-		    resize(pipeline, className == null ? Object.class : Class.forName(className));
-		} catch (ClassNotFoundException ex) {
-		    ExceptionHelper.raise(ex);
+		    Class klass = IDataHelper.get(cursor, "$class", Class.class);
+		    resize(pipeline, klass == null ? Object.class : klass);
 		} finally {
 		    cursor.destroy();
 		}
@@ -712,8 +697,8 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
-		    if (list != null) IDataUtil.put(cursor, "$list", ArrayHelper.reverse(list));
+		    Object[] list = IDataHelper.get(cursor, "$list", Object[].class);
+		    if (list != null) IDataHelper.put(cursor, "$list", ArrayHelper.reverse(list));
 		} finally {
 		    cursor.destroy();
 		}
@@ -736,12 +721,12 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
-		    int count = Integer.parseInt(IDataUtil.getString(cursor, "$count"));
+		    Object[] list = IDataHelper.get(cursor, "$list", Object[].class);
+		    int count = IDataHelper.get(cursor, "$count", Integer.class);
 		
 		    list = ArrayHelper.shrink(list, count);
 		
-		    if (list != null) IDataUtil.put(cursor, "$list", list);
+		    IDataHelper.put(cursor, "$list", list, false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -765,13 +750,13 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
+		    Object[] list = IDataHelper.get(cursor, "$list", Object[].class);
 		
 		    if (list != null) {
-		        int index = IntegerHelper.parse(IDataUtil.getString(cursor, "$index"));
-		        int length = IntegerHelper.parse(IDataUtil.getString(cursor, "$length"), list.length);
+		        int index = IDataHelper.getOrDefault(cursor, "$index", Integer.class, 0);
+		        int length = IDataHelper.getOrDefault(cursor, "$length", Integer.class, list.length);
 		
-		        IDataUtil.put(cursor, "$list", ArrayHelper.slice(list, index, length));
+		        IDataHelper.put(cursor, "$list", ArrayHelper.slice(list, index, length));
 		    }
 		} finally {
 		    cursor.destroy();
@@ -793,8 +778,8 @@ public final class object
 		// [o] object:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 		try {
-		    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
-		    if (list != null) IDataUtil.put(cursor, "$list", ArrayHelper.sort(list));
+		    Object[] list = IDataHelper.get(cursor, "$list", Object[].class);
+		    if (list != null) IDataHelper.put(cursor, "$list", ArrayHelper.sort(list));
 		} finally {
 		    cursor.destroy();
 		}
@@ -815,8 +800,8 @@ public final class object
 		// [o] object:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 		try {
-		    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
-		    if (list != null) IDataUtil.put(cursor, "$list", ArrayHelper.squeeze(list));
+		    Object[] list = IDataHelper.get(cursor, "$list", Object[].class);
+		    if (list != null) IDataHelper.put(cursor, "$list", ArrayHelper.squeeze(list));
 		} finally {
 		    cursor.destroy();
 		}
@@ -840,13 +825,13 @@ public final class object
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
-		    int count = IntegerHelper.parse(IDataUtil.getString(cursor, "$count"));
+		    Object[] list = IDataHelper.get(cursor, "$list", Object[].class);
+		    int count = IDataHelper.get(cursor, "$count", Integer.class);
 		
 		    if (list != null) {
 		        ArraySplitter splitter = new ArraySplitter(list, count);
-		        IDataUtil.put(cursor, "$head", splitter.getHead());
-		        IDataUtil.put(cursor, "$tail", splitter.getTail());
+		        IDataHelper.put(cursor, "$head", splitter.getHead());
+		        IDataHelper.put(cursor, "$tail", splitter.getTail());
 		    }
 		} finally {
 		    cursor.destroy();
@@ -868,8 +853,8 @@ public final class object
 		// [o] object:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 		try {
-		    Object[] list = IDataUtil.getObjectArray(cursor, "$list");
-		    if (list != null) IDataUtil.put(cursor, "$list", ArrayHelper.unique(list));
+		    Object[] list = IDataHelper.get(cursor, "$list", Object[].class);
+		    if (list != null) IDataHelper.put(cursor, "$list", ArrayHelper.unique(list));
 		} finally {
 		    cursor.destroy();
 		}
@@ -1015,13 +1000,13 @@ public final class object
 	    IDataCursor cursor = pipeline.getCursor();
 	
 	    try {
-	        T[] list = (T[])IDataUtil.getObjectArray(cursor, "$list");
-	        int count = IntegerHelper.parse(IDataUtil.getString(cursor, "$count"));
-	        T item = (T)IDataUtil.get(cursor, "$item");
+	        T[] list = (T[])IDataHelper.get(cursor, "$list", Object[].class);
+	        int count = IDataHelper.getOrDefault(cursor, "$count", Integer.class, 0);
+	        T item = IDataHelper.get(cursor, "$item", klass);
 	
 	        list = ArrayHelper.grow(list, count, item, klass);
 	
-	        if (list != null) IDataUtil.put(cursor, "$list", list);
+	        IDataHelper.put(cursor, "$list", list, false);
 	    } finally {
 	        cursor.destroy();
 	    }
@@ -1038,11 +1023,11 @@ public final class object
 	    IDataCursor cursor = pipeline.getCursor();
 	
 	    try {
-	        T[] list = (T[])IDataUtil.getObjectArray(cursor, "$list");
-	        T item = (T)IDataUtil.get(cursor, "$item");
-	        int index = IntegerHelper.parse(IDataUtil.getString(cursor, "$index"));
+	        T[] list = (T[])IDataHelper.get(cursor, "$list", Object[].class);
+	        T item = IDataHelper.get(cursor, "$item", klass);
+	        int index = IDataHelper.getOrDefault(cursor, "$index", Integer.class, 0);
 	
-	        IDataUtil.put(cursor, "$list", ArrayHelper.insert(list, item, index, klass, false));
+	        IDataHelper.put(cursor, "$list", ArrayHelper.insert(list, item, index, klass, false));
 	    } finally {
 	        cursor.destroy();
 	    }
@@ -1059,12 +1044,12 @@ public final class object
 	    IDataCursor cursor = pipeline.getCursor();
 	
 	    try {
-	        IData operands = IDataUtil.getIData(cursor, "$operands");
+	        IData operands = IDataHelper.get(cursor, "$operands", IData.class);
 	
 	        // support $list.x and $list.y inputs for backwards-compatibility
 	        if (operands == null) {
-	            Object[] listX = IDataUtil.getObjectArray(cursor, "$list.x");
-	            Object[] listY = IDataUtil.getObjectArray(cursor, "$list.y");
+	            Object[] listX = IDataHelper.get(cursor, "$list.x", Object[].class);
+	            Object[] listY = IDataHelper.get(cursor, "$list.y", Object[].class);
 	
 	            IDataMap map = new IDataMap();
 	            if (listX != null) map.put("$list.x", listX);
@@ -1072,7 +1057,7 @@ public final class object
 	            operands = map;
 	        }
 	
-	        if (IDataHelper.size(operands) > 0) IDataUtil.put(cursor, "$list", ArrayHelper.intersect(operands, klass));
+	        if (IDataHelper.size(operands) > 0) IDataHelper.put(cursor, "$list", ArrayHelper.intersect(operands, klass));
 	    } finally {
 	        cursor.destroy();
 	    }
@@ -1090,11 +1075,11 @@ public final class object
 	    IDataCursor cursor = pipeline.getCursor();
 	
 	    try {
-	        Object[] list = IDataUtil.getObjectArray(cursor, "$list");
-	        String service = IDataUtil.getString(cursor, "$service");
-	        IData scope = IDataUtil.getIData(cursor, "$pipeline");
-	        String input = IDataUtil.getString(cursor, "$item.input");
-	        String output = IDataUtil.getString(cursor, "$item.output");
+	        Object[] list = IDataHelper.get(cursor, "$list", Object[].class);
+	        String service = IDataHelper.get(cursor, "$service", String.class);
+	        IData scope = IDataHelper.get(cursor, "$pipeline", IData.class);
+	        String input = IDataHelper.get(cursor, "$item.input", String.class);
+	        String output = IDataHelper.get(cursor, "$item.output", String.class);
 	
 	        boolean scoped = scope != null;
 	
@@ -1103,7 +1088,7 @@ public final class object
 	
 	        list = map(list == null ? null : Arrays.copyOf(list, list.length, (Class<T[]>)Array.newInstance(klass, 0).getClass()), service, scoped ? scope : pipeline, input, output);
 	
-	        if (list != null) IDataUtil.put(cursor, "$list", list);
+	        IDataHelper.put(cursor, "$list", list, false);
 	    } finally {
 	        cursor.destroy();
 	    }
@@ -1133,10 +1118,10 @@ public final class object
 	    for (int i = 0; i < array.length; i++) {
 	        // add $item, $index, $iteration and $length variables to the input pipeline
 	        cursor = pipeline.getCursor();
-	        IDataUtil.put(cursor, input, array[i]);
-	        IDataUtil.put(cursor, "$index", IntegerHelper.emit(i));
-	        IDataUtil.put(cursor, "$iteration", IntegerHelper.emit(i + 1));
-	        IDataUtil.put(cursor, "$length", IntegerHelper.emit(array.length));
+	        IDataHelper.put(cursor, input, array[i]);
+	        IDataHelper.put(cursor, "$index", i, String.class);
+	        IDataHelper.put(cursor, "$iteration", i + 1, String.class);
+	        IDataHelper.put(cursor, "$length", array.length, String.class);
 	        cursor.destroy();
 	
 	        // invoke the iterator service
@@ -1144,12 +1129,12 @@ public final class object
 	
 	        // clean up the input pipeline
 	        cursor = pipeline.getCursor();
-	        T item = (T)IDataUtil.get(cursor, output);
-	        IDataUtil.remove(cursor, input);
-	        IDataUtil.remove(cursor, output);
-	        IDataUtil.remove(cursor, "$index");
-	        IDataUtil.remove(cursor, "$iteration");
-	        IDataUtil.remove(cursor, "$length");
+	        T item = (T)IDataHelper.get(cursor, output);
+	        IDataHelper.remove(cursor, input);
+	        IDataHelper.remove(cursor, output);
+	        IDataHelper.remove(cursor, "$index");
+	        IDataHelper.remove(cursor, "$iteration");
+	        IDataHelper.remove(cursor, "$length");
 	        cursor.destroy();
 	
 	        // collect the mapped items
@@ -1170,12 +1155,12 @@ public final class object
 	    IDataCursor cursor = pipeline.getCursor();
 	
 	    try {
-	        T[] list = (T[])IDataUtil.getObjectArray(cursor, "$list");
-	        T item = (T)IDataUtil.get(cursor, "$item");
+	        T[] list = (T[])IDataHelper.get(cursor, "$list", Object[].class);
+	        T item = IDataHelper.get(cursor, "$item", klass);
 	
 	        list = ArrayHelper.prepend(list, item, klass, false);
 	
-	        if (list != null) IDataUtil.put(cursor, "$list", list);
+	        IDataHelper.put(cursor, "$list", list, false);
 	    } finally {
 	        cursor.destroy();
 	    }
@@ -1192,11 +1177,11 @@ public final class object
 	    IDataCursor cursor = pipeline.getCursor();
 	
 	    try {
-	        T[] list = (T[])IDataUtil.getObjectArray(cursor, "$list");
-	        T item = (T)IDataUtil.get(cursor, "$item");
-	        int index = IntegerHelper.parse(IDataUtil.getString(cursor, "$index"));
+	        T[] list = (T[])IDataHelper.get(cursor, "$list", Object[].class);
+	        T item = IDataHelper.get(cursor, "$item", klass);
+	        int index = IDataHelper.getOrDefault(cursor, "$index", Integer.class, 1);
 	
-	        IDataUtil.put(cursor, "$list", ArrayHelper.put(list == null ? null : Arrays.copyOf(list, list.length, (Class<T[]>)Array.newInstance(klass, 0).getClass()), item, index, klass));
+	        IDataHelper.put(cursor, "$list", ArrayHelper.put(list == null ? null : Arrays.copyOf(list, list.length, (Class<T[]>)Array.newInstance(klass, 0).getClass()), item, index, klass));
 	    } finally {
 	        cursor.destroy();
 	    }
@@ -1220,11 +1205,11 @@ public final class object
 	
 	    for (int i = 0; i < array.length; i++) {
 	        IDataCursor cursor = pipeline.getCursor();
-	        IDataUtil.put(cursor, "$item", array[i]);
+	        IDataHelper.put(cursor, "$item", array[i]);
 	
 	        if (!ConditionEvaluator.evaluate(condition, pipeline)) list.add(array[i]);
 	
-	        IDataUtil.remove(cursor, "$item");
+	        IDataHelper.remove(cursor, "$item");
 	        cursor.destroy();
 	    }
 	
@@ -1242,13 +1227,13 @@ public final class object
 	    IDataCursor cursor = pipeline.getCursor();
 	
 	    try {
-	        T[] list = (T[])IDataUtil.getObjectArray(cursor, "$list");
-	        int length = IntegerHelper.parse(IDataUtil.getString(cursor, "$length"));
-	        T item = (T)IDataUtil.get(cursor, "$item");
+	        T[] list = (T[])IDataHelper.get(cursor, "$list", Object[].class);
+	        int length = IDataHelper.getOrDefault(cursor, "$length", Integer.class, 0);
+	        T item = IDataHelper.get(cursor, "$item", klass);
 	
 	        list = ArrayHelper.resize(list, length, item, klass);
 	
-	        if (list != null) IDataUtil.put(cursor, "$list", list);
+	        IDataHelper.put(cursor, "$list", list, false);
 	    } finally {
 	        cursor.destroy();
 	    }

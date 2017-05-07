@@ -1,8 +1,8 @@
 package tundra.mime;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-06-06 16:28:27.644
-// -----( ON-HOST: -
+// -----( CREATED: 2017-05-07 11:27:07 EST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -10,6 +10,7 @@ import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import javax.activation.MimeTypeParseException;
+import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.mime.MIMETypeHelper;
@@ -43,10 +44,10 @@ public final class type
 		// [i] - record:0:optional parameters
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    IData type = IDataUtil.getIData(cursor, "$type");
-		    if (type != null) IDataUtil.put(cursor, "$string", MIMETypeHelper.emit(type));
+		    IData type = IDataHelper.get(cursor, "$type", IData.class);
+		    IDataHelper.put(cursor, "$string", MIMETypeHelper.emit(type), false);
 		} catch(MimeTypeParseException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -54,7 +55,7 @@ public final class type
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -69,12 +70,12 @@ public final class type
 		// [i] field:0:optional $string.y
 		// [o] field:0:required $equal?
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    String string1 = IDataUtil.getString(cursor, "$string.x");
-		    String string2 = IDataUtil.getString(cursor, "$string.y");
-
-		    IDataUtil.put(cursor, "$equal?", BooleanHelper.emit(MIMETypeHelper.equal(string1, string2)));
+		    String string1 = IDataHelper.get(cursor, "$string.x", String.class);
+		    String string2 = IDataHelper.get(cursor, "$string.y", String.class);
+		
+		    IDataHelper.put(cursor, "$equal?", MIMETypeHelper.equal(string1, string2), String.class);
 		} catch(MimeTypeParseException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -82,7 +83,7 @@ public final class type
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -96,10 +97,10 @@ public final class type
 		// [i] field:0:optional $string
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    String string = IDataUtil.getString(cursor, "$string");
-		    if (string != null) IDataUtil.put(cursor, "$string", MIMETypeHelper.normalize(string));
+		    String string = IDataHelper.get(cursor, "$string", String.class);
+		    IDataHelper.put(cursor, "$string", MIMETypeHelper.normalize(string), false);
 		} catch(MimeTypeParseException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -107,7 +108,7 @@ public final class type
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -124,10 +125,10 @@ public final class type
 		// [o] - field:0:required subtype
 		// [o] - record:0:optional parameters
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    String string = IDataUtil.getString(cursor, "$string");
-		    if (string != null) IDataUtil.put(cursor, "$type", MIMETypeHelper.parse(string));
+		    String string = IDataHelper.get(cursor, "$string", String.class);
+		    IDataHelper.put(cursor, "$type", MIMETypeHelper.parse(string), false);
 		} catch(MimeTypeParseException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -135,7 +136,7 @@ public final class type
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -147,21 +148,21 @@ public final class type
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
-		// [i] field:0:optional $raise? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $raise? {"false","true"}
 		// [o] field:0:required $valid?
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    String string = IDataUtil.getString(cursor, "$string");
-		    boolean raise = BooleanHelper.parse(IDataUtil.getString(cursor, "$raise?"));
-
-		    IDataUtil.put(cursor, "$valid?", BooleanHelper.emit(MIMETypeHelper.validate(string, raise)));
+		    String string = IDataHelper.get(cursor, "$string", String.class);
+		    boolean raise = IDataHelper.getOrDefault(cursor, "$raise?", Boolean.class, false);
+		
+		    IDataHelper.put(cursor, "$valid?", MIMETypeHelper.validate(string, raise), String.class);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 
