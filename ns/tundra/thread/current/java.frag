@@ -4,7 +4,7 @@
   <value name="name">current</value>
   <value name="encodeutf8">true</value>
   <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7DQoNCnRyeSB7DQogICAg
-SURhdGFVdGlsLnB1dChjdXJzb3IsICIkdGhyZWFkIiwgVGhyZWFkSGVscGVyLnRvSURhdGEoVGhy
-ZWFkSGVscGVyLmN1cnJlbnQoKSkpOw0KfSBmaW5hbGx5IHsNCiAgICBjdXJzb3IuZGVzdHJveSgp
-Ow0KfQ==</value>
+SURhdGFIZWxwZXIucHV0KGN1cnNvciwgIiR0aHJlYWQiLCBUaHJlYWRIZWxwZXIudG9JRGF0YShU
+aHJlYWRIZWxwZXIuY3VycmVudCgpKSk7DQp9IGZpbmFsbHkgew0KICAgIGN1cnNvci5kZXN0cm95
+KCk7DQp9</value>
 </Values>
