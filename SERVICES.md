@@ -583,6 +583,20 @@ Converts a string, byte array or input stream to a byte array.
 
 ---
 
+### tundra.cache.memory:all
+
+Returns the cache with the given name.
+
+#### Inputs:
+
+* `$cache.name` is the name of the cache to be returned.
+
+#### Outputs:
+
+* `$cache` is the cache with the given name, if it exists.
+
+---
+
 ### tundra.cache.memory:clear
 
 Removes all entries from the cache with the given name.
@@ -646,20 +660,6 @@ the given name.
   cache with the given name. If `$cache.key.absent?` was `true` and the
   key already existed, this is the value already associated with the
   key.
-
----
-
-### tundra.cache.memory:reflect
-
-Returns the cache with the given name.
-
-#### Inputs:
-
-* `$cache.name` is the name of the cache to be returned.
-
-#### Outputs:
-
-* `$cache` is the cache with the given name, if it exists.
 
 ---
 
@@ -1512,6 +1512,34 @@ unique items from the given [java.util.List] object.
 
 ---
 
+### tundra.collection.map.document:clear
+
+Removes all of the mappings from the given map.
+
+#### Inputs:
+
+* `$map` is a [java.util.Map] object from which all key value mappings
+  will be removed.
+
+---
+
+### tundra.collection.map.document:create
+
+Returns a newly constructed [java.util.Map] object with String
+keys and IData values.
+
+#### Inputs:
+
+* `$sorted?` is an optional boolean which when `true` indicates that
+  the resulting [java.util.Map] should maintain its keys sorted
+  in natural ascending order. Defaults to `false`.
+
+#### Outputs:
+
+* `$map` is a newly constructed [java.util.Map] object.
+
+---
+
 ### tundra.collection.map.document:get
 
 Returns the value associated with the given key in the given
@@ -1526,6 +1554,34 @@ Returns the value associated with the given key in the given
 
 * `$value` is the value associated with the given key in the given
   [java.util.Map].
+
+---
+
+### tundra.collection.map.document:keys
+
+Returns the list of keys stored in the given [java.util.Map] object.
+
+#### Inputs:
+
+* `$map` is a [java.util.Map] object.
+
+#### Outputs:
+
+* `$keys` is the list of keys currently stored in the given map.
+
+---
+
+### tundra.collection.map.object:length
+
+Returns the number of mappings stored in the given [java.util.Map] object.
+
+#### Inputs:
+
+* `$map` is a [java.util.Map] object.
+
+#### Outputs:
+
+* `$length` is the number of mappings currently stored in the given map.
 
 ---
 
@@ -1557,6 +1613,87 @@ objects and values to be `IData` objects.
 
 * `$map` is a new [java.util.Map] object containing all the top-level
   elements from the given `$document`.
+
+---
+
+### tundra.collection.map.document:put
+
+Associates the given value with the given key in the given
+[java.util.Map] object.
+
+#### Inputs:
+
+* `$map` is a [java.util.Map] object.
+* `$key` is the key to be associated with the given value.
+* `$key.absent?` is an optional boolean which when `true` will only
+  associate the given value with the given key if the key does
+  not already exist in the map. Defaults to `false`.
+* `$value` is the value to be associated with the given key.
+
+#### Outputs:
+
+* `$map` is the given map, or a newly created map if none was given.
+* `$value` is the value associated with the given key. If `$key.absent?`
+  was `true` and the key already existed, this is the value already
+  associated with the key.
+
+---
+
+### tundra.collection.map.document:remove
+
+Removes the mapping associated the given key from the given
+[java.util.Map] object.
+
+#### Inputs:
+
+* `$map` is a [java.util.Map] object.
+* `$key` is the key to be removed.
+* `$value` is the optional value associated with the key. If
+  specified, the key is only removed from the map if it is
+  associated with this value.
+
+#### Outputs:
+
+* `$key.removed?` is `true` if the key value pair was removed from the
+  map.
+* `$value` was the value associated with the given key at the time of
+  its removal.
+
+---
+
+### tundra.collection.map.document:replace
+
+Replaces the value associated with the given key in the given map.
+
+#### Inputs:
+
+* `$map` is a [java.util.Map] object.
+* `$key` is the key whose associated value is to be replaced.
+* `$value.ol`d is the optional value which is expected to already be
+  associated with the key. If specified, the key's associated value
+  is only replaced with the given new value if its current value is
+  equal to this value. If not specified, the key's associated value
+  will always be replaced with the given new value.
+* `$value.new` is the new value to be associated with the key.
+
+#### Outputs:
+
+* `$value.replaced?` is `true` if the key exists and it's value was
+  replaced with the given new value.
+
+---
+
+### tundra.collection.map.document:values
+
+Returns the list of values stored in the given [java.util.Map] object.
+
+#### Inputs:
+
+* `$map` is a [java.util.Map] object.
+
+#### Outputs:
+
+* `$values` is the list of values currently stored in the given map.
 
 ---
 
@@ -1678,20 +1815,17 @@ Associates the given value with the given key in the given
 
 * `$map` is a [java.util.Map] object.
 * `$key` is the key to be associated with the given value.
+* `$key.absent?` is an optional boolean which when `true` will only
+  associate the given value with the given key if the key does
+  not already exist in the map. Defaults to `false`.
 * `$value` is the value to be associated with the given key.
-* `$mode` is an optional choice of `always`, in which case the given
-  key will be associated with the given value regardless of whether
-  the key is already associated with a different value, or `absent`,
-  in which case the given value will only be associated with the
-  given key if the key is not already associated with another value.
-  Note the `absent` mode requires the given map to be an instance of
-  [java.util.concurrent.ConcurrentMap].
 
 #### Outputs:
 
-* `$value.existing` is the existing value associated with the given
-  key, if any, and is only returned when the specified mode is
-  `absent`.
+* `$map` is the given map, or a newly created map if none was given.
+* `$value` is the value associated with the given key. If `$key.absent?`
+  was `true` and the key already existed, this is the value already
+  associated with the key.
 
 ---
 
@@ -1703,12 +1837,39 @@ Removes the mapping associated the given key from the given
 #### Inputs:
 
 * `$map` is a [java.util.Map] object.
-* `$key` is the key to be associated with the given value.
+* `$key` is the key to be removed.
+* `$value` is the optional value associated with the key. If
+  specified, the key is only removed from the map if it is
+  associated with this value.
 
 #### Outputs:
 
-* `$value` is the value that was associated with the given key before
-  it was removed, if any.
+* `$key.removed?` is `true` if the key value pair was removed from the
+  map.
+* `$value` was the value associated with the given key at the time of
+  its removal.
+
+---
+
+### tundra.collection.map.object:replace
+
+Replaces the value associated with the given key in the given map.
+
+#### Inputs:
+
+* `$map` is a [java.util.Map] object.
+* `$key` is the key whose associated value is to be replaced.
+* `$value.old` is the optional value which is expected to already be
+  associated with the key. If specified, the key's associated value
+  is only replaced with the given new value if its current value is
+  equal to this value. If not specified, the key's associated value
+  will always be replaced with the given new value.
+* `$value.new` is the new value to be associated with the key.
+
+#### Outputs:
+
+* `$value.replaced?` is `true` if the key exists and it's value was
+  replaced with the given new value.
 
 ---
 
@@ -1723,6 +1884,34 @@ Returns the list of values stored in the given [java.util.Map] object.
 #### Outputs:
 
 * `$values` is the list of values currently stored in the given map.
+
+---
+
+### tundra.collection.map.string:clear
+
+Removes all of the mappings from the given map.
+
+#### Inputs:
+
+* `$map` is a [java.util.Map] object from which all key value mappings
+  will be removed.
+
+---
+
+### tundra.collection.map.string:create
+
+Returns a newly constructed [java.util.Map] object with String
+keys and String values.
+
+#### Inputs:
+
+* `$sorted?` is an optional boolean which when `true` indicates that
+  the resulting [java.util.Map] should maintain its keys sorted
+  in natural ascending order. Defaults to `false`.
+
+#### Outputs:
+
+* `$map` is a newly constructed [java.util.Map] object.
 
 ---
 
@@ -1742,6 +1931,35 @@ Returns the value associated with the given key in the given
   [java.util.Map].
 
 ---
+
+### tundra.collection.map.string:keys
+
+Returns the list of keys stored in the given [java.util.Map] object.
+
+#### Inputs:
+
+* `$map` is a [java.util.Map] object.
+
+#### Outputs:
+
+* `$keys` is the list of keys currently stored in the given map.
+
+---
+
+### tundra.collection.map.string:length
+
+Returns the number of mappings stored in the given [java.util.Map] object.
+
+#### Inputs:
+
+* `$map` is a [java.util.Map] object.
+
+#### Outputs:
+
+* `$length` is the number of mappings currently stored in the given map.
+
+---
+
 ### tundra.collection.map.string:mapify
 
 Copies the top-level elements from the given `IData` document to a
@@ -1770,6 +1988,87 @@ values to be String objects.
 
 * `$map` is a new [java.util.Map] object containing all the top-level
   elements from the given `$document`.
+
+---
+
+### tundra.collection.map.string:put
+
+Associates the given value with the given key in the given
+[java.util.Map] object.
+
+#### Inputs:
+
+* `$map` is a [java.util.Map] object.
+* `$key` is the key to be associated with the given value.
+* `$key.absent?` is an optional boolean which when `true` will only
+  associate the given value with the given key if the key does
+  not already exist in the map. Defaults to `false`.
+* `$value` is the value to be associated with the given key.
+
+#### Outputs:
+
+* `$map` is the given map, or a newly created map if none was given.
+* `$value` is the value associated with the given key. If `$key.absent?`
+  was `true` and the key already existed, this is the value already
+  associated with the key.
+
+---
+
+### tundra.collection.map.string:remove
+
+Removes the mapping associated the given key from the given
+[java.util.Map] object.
+
+#### Inputs:
+
+* `$map` is a [java.util.Map] object.
+* `$key` is the key to be removed.
+* `$value` is the optional value associated with the key. If
+  specified, the key is only removed from the map if it is
+  associated with this value.
+
+#### Outputs:
+
+* `$key.removed?` is `true` if the key value pair was removed from the
+  map.
+* `$value` was the value associated with the given key at the time of
+  its removal.
+
+---
+
+### tundra.collection.map.string:replace
+
+Replaces the value associated with the given key in the given map.
+
+#### Inputs:
+
+* `$map` is a [java.util.Map] object.
+* `$key` is the key whose associated value is to be replaced.
+* `$value.old` is the optional value which is expected to already be
+  associated with the key. If specified, the key's associated value
+  is only replaced with the given new value if its current value is
+  equal to this value. If not specified, the key's associated value
+  will always be replaced with the given new value.
+* `$value.new` is the new value to be associated with the key.
+
+#### Outputs:
+
+* `$value.replaced?` is `true` if the key exists and it's value was
+  replaced with the given new value.
+
+---
+
+### tundra.collection.map.string:values
+
+Returns the list of values stored in the given [java.util.Map] object.
+
+#### Inputs:
+
+* `$map` is a [java.util.Map] object.
+
+#### Outputs:
+
+* `$values` is the list of values currently stored in the given map.
 
 ---
 

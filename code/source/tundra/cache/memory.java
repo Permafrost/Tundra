@@ -1,7 +1,7 @@
 package tundra.cache;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-01 16:04:27 EST
+// -----( CREATED: 2017-05-06 14:45:43 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -29,6 +29,29 @@ public final class memory
 
 	// ---( server methods )---
 
+
+
+
+	public static final void all (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(all)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $cache.name
+		// [o] record:0:optional $cache
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    String name = IDataHelper.get(cursor, "$cache.name", String.class);
+		    IDataHelper.put(cursor, "$cache", getCache(name), false);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
 
 
 
@@ -75,7 +98,7 @@ public final class memory
 		    boolean exists = false;
 		    if (cache != null) exists = cache.containsKey(key);
 		
-		    IDataHelper.put(cursor, "$cache.key.exists?", BooleanHelper.emit(exists));
+		    IDataHelper.put(cursor, "$cache.key.exists?", exists, String.class);
 		} finally {
 		    cursor.destroy();
 		}
@@ -131,7 +154,7 @@ public final class memory
 		try {
 		    String name = IDataHelper.get(cursor, "$cache.name", String.class);
 		    String key = IDataHelper.get(cursor, "$cache.key", String.class);
-		    boolean absent = IDataHelper.get(cursor, "$cache.key.absent?", Boolean.class);
+		    boolean absent = IDataHelper.get(cursor, "$cache.key.absent?", Boolean.class, false);
 		    Object value = IDataHelper.get(cursor, "$cache.value", Object.class);
 		
 		    ConcurrentMap<String, Object> cache = getCache(name, true);
@@ -144,29 +167,6 @@ public final class memory
 		    }
 		
 		    IDataHelper.put(cursor, "$cache.value", value, false);
-		} finally {
-		    cursor.destroy();
-		}
-		// --- <<IS-END>> ---
-
-                
-	}
-
-
-
-	public static final void reflect (IData pipeline)
-        throws ServiceException
-	{
-		// --- <<IS-START(reflect)>> ---
-		// @subtype unknown
-		// @sigtype java 3.5
-		// [i] field:0:required $cache.name
-		// [o] record:0:optional $cache
-		IDataCursor cursor = pipeline.getCursor();
-		
-		try {
-		    String name = IDataHelper.get(cursor, "$cache.name", String.class);
-		    IDataHelper.put(cursor, "$cache", getCache(name), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -252,7 +252,7 @@ public final class memory
 		        }
 		    }
 		
-		    IDataHelper.put(cursor, "$cache.value.replaced?", BooleanHelper.emit(replaced));
+		    IDataHelper.put(cursor, "$cache.value.replaced?", replaced, String.class);
 		} finally {
 		    cursor.destroy();
 		}

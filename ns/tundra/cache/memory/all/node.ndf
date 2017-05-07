@@ -76,7 +76,7 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">### tundra.cache.memory:reflect
+  <value name="node_comment">### tundra.cache.memory:all
 
 Returns the cache with the given name.
 
