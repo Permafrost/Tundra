@@ -41,7 +41,38 @@
           <value name="field_name">$key</value>
           <value name="field_type">object</value>
           <value name="field_dim">0</value>
+          <value name="nillable">false</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_usereditable">false</value>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$key.absent?</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
           <value name="field_opt">true</value>
+          <array name="field_options" type="value" depth="1">
+            <value>false</value>
+            <value>true</value>
+          </array>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">boolean</value>
+              </record>
+            </array>
+          </record>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
@@ -57,74 +88,7 @@
           <value name="field_name">$value</value>
           <value name="field_type">object</value>
           <value name="field_dim">0</value>
-          <value name="field_opt">true</value>
-          <value name="nillable">true</value>
-          <value name="form_qualified">false</value>
-          <value name="is_global">false</value>
-        </record>
-        <record javaclass="com.wm.util.Values">
-          <value name="node_type">record</value>
-          <value name="node_comment"></value>
-          <record name="node_hints" javaclass="com.wm.util.Values">
-            <value name="field_usereditable">false</value>
-            <value name="field_largerEditor">false</value>
-            <value name="field_password">false</value>
-          </record>
-          <value name="is_public">false</value>
-          <value name="field_name">$mode</value>
-          <value name="field_type">string</value>
-          <value name="field_dim">0</value>
-          <value name="field_opt">true</value>
-          <array name="field_options" type="value" depth="1">
-            <value>always</value>
-            <value>absent</value>
-          </array>
-          <record name="field_content_type" javaclass="com.wm.util.Values">
-            <array name="enumeration" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="primitiveType">0</value>
-                <value name="lexRep">always</value>
-                <value name="isList">false</value>
-              </record>
-              <record javaclass="com.wm.util.Values">
-                <value name="primitiveType">0</value>
-                <value name="lexRep">absent</value>
-                <value name="isList">false</value>
-              </record>
-            </array>
-            <value name="contentType">1</value>
-            <value name="internalType">instance</value>
-            <value name="ct_class">com.wm.lang.schema.datatypev2.WmString</value>
-            <value name="name">string_customized</value>
-            <array name="parent-ancestors" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">anySimpleType</value>
-              </record>
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">anyType</value>
-              </record>
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">string</value>
-              </record>
-            </array>
-            <record name="baseType" javaclass="com.wm.util.Values">
-              <record name="whiteSpace" javaclass="com.wm.util.Values">
-                <record name="FacetWSCValue" javaclass="com.wm.util.Values">
-                  <value name="cDecimalValue">3</value>
-                </record>
-                <value name="facetFixed">false</value>
-              </record>
-              <value name="contentType">1</value>
-              <value name="internalType">instance</value>
-              <value name="ct_class">com.wm.lang.schema.datatypev2.WmString</value>
-              <value name="dataTypeVersion">dtVersion2</value>
-            </record>
-            <value name="dataTypeVersion">dtVersion2</value>
-          </record>
-          <value name="nillable">true</value>
+          <value name="nillable">false</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
         </record>
@@ -148,11 +112,25 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$value.existing</value>
+          <value name="field_name">$map</value>
           <value name="field_type">object</value>
           <value name="field_dim">0</value>
-          <value name="field_opt">true</value>
-          <value name="nillable">true</value>
+          <value name="nillable">false</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$value</value>
+          <value name="field_type">object</value>
+          <value name="field_dim">0</value>
+          <value name="nillable">false</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
         </record>
@@ -169,20 +147,17 @@ Associates the given value with the given key in the given
 
 * $map is a [java.util.Map] object.
 * $key is the key to be associated with the given value.
+* $key.absent? is an optional boolean which when true will only 
+  associate the given value with the given key if the key does 
+  not already exist in the map. Defaults to false.
 * $value is the value to be associated with the given key.
-* $mode is an optional choice of `always`, in which case the given 
-  key will be associated with the given value regardless of whether 
-  the key is already associated with a different value, or `absent`, 
-  in which case the given value will only be associated with the 
-  given key if the key is not already associated with another value.
-  Note the `absent` mode requires the given map to be an instance of 
-  [java.util.concurrent.ConcurrentMap].
 
 #### Outputs:
 
-* $value.existing is the existing value associated with the given 
-  key, if any, and is only returned when the specified mode is 
-  `absent`.
+* $map is the given map, or a newly created map if none was given.
+* $value is the value associated with the given key. If $key.absent? 
+  was true and the key already existed, this is the value already 
+  associated with the key.
 
 [java.util.concurrent.ConcurrentMap]: &lt;https://docs.oracle.com/javase/6/docs/api/java/util/concurrent/ConcurrentMap.html&gt;
 [java.util.Map]: &lt;https://docs.oracle.com/javase/6/docs/api/java/util/Map.html&gt;</value>

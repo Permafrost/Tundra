@@ -1,7 +1,7 @@
 package tundra.collection.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-04-14 08:17:38.807
+// -----( CREATED: 2017-05-06 14:55:43 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -15,6 +15,7 @@ import permafrost.tundra.collection.CollectionHelper;
 import permafrost.tundra.collection.ListHelper;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.lang.BooleanHelper;
+import permafrost.tundra.lang.ClassHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.math.IntegerHelper;
 // --- <<IS-END-IMPORTS>> ---
@@ -46,18 +47,16 @@ public final class object
 		// [i] field:0:optional $class
 		// [o] object:0:required $list
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    String className = IDataUtil.getString(cursor, "$class");
-		    append(pipeline, className == null ? Object.class : Class.forName(className));
-		} catch (ClassNotFoundException ex) {
-		    ExceptionHelper.raise(ex);
+		    Class klass = IDataHelper.get(cursor, "$class", Class.class);
+		    append(pipeline, klass == null ? Object.class : klass);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -72,18 +71,16 @@ public final class object
 		// [i] field:0:optional $class
 		// [o] object:1:optional $array
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    String className = IDataUtil.getString(cursor, "$class");
-		    arrayify(pipeline, className == null ? Object.class : Class.forName(className));
-		} catch (ClassNotFoundException ex) {
-		    ExceptionHelper.raise(ex);
+		    Class klass = IDataHelper.get(cursor, "$class", Class.class);
+		    arrayify(pipeline, klass == null ? Object.class : klass);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -96,20 +93,18 @@ public final class object
 		// @sigtype java 3.5
 		// [i] object:0:optional $list
 		// [i] field:0:optional $class
-		// [o] object:0:required $list
+		// [o] object:0:optional $list
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    String className = IDataUtil.getString(cursor, "$class");
-		    clear(pipeline, className == null ? Object.class : Class.forName(className));
-		} catch (ClassNotFoundException ex) {
-		    ExceptionHelper.raise(ex);
+		    Class klass = IDataHelper.get(cursor, "$class", Class.class);
+		    clear(pipeline, klass == null ? Object.class : klass);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -125,18 +120,16 @@ public final class object
 		// [o] object:0:optional $item
 		// [o] field:0:required $item.exists?
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    String className = IDataUtil.getString(cursor, "$class");
-		    first(pipeline, className == null ? Object.class : Class.forName(className));
-		} catch (ClassNotFoundException ex) {
-		    ExceptionHelper.raise(ex);
+		    Class klass = IDataHelper.get(cursor, "$class", Class.class);
+		    first(pipeline, klass == null ? Object.class : klass);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -149,23 +142,21 @@ public final class object
 		// @sigtype java 3.5
 		// [i] object:0:optional $list
 		// [i] field:0:required $index
-		// [i] field:0:optional $index.base {&quot;0&quot;,&quot;1&quot;}
+		// [i] field:0:optional $index.base {"0","1"}
 		// [i] field:0:optional $class
 		// [o] object:0:optional $item
 		// [o] field:0:required $item.exists?
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    String className = IDataUtil.getString(cursor, "$class");
-		    get(pipeline, className == null ? Object.class : Class.forName(className));
-		} catch (ClassNotFoundException ex) {
-		    ExceptionHelper.raise(ex);
+		    Class klass = IDataHelper.get(cursor, "$class", Class.class);
+		    get(pipeline, klass == null ? Object.class : klass);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -179,22 +170,20 @@ public final class object
 		// [i] object:0:optional $list
 		// [i] record:0:optional $items
 		// [i] field:0:required $index
-		// [i] field:0:optional $index.base {&quot;0&quot;,&quot;1&quot;}
+		// [i] field:0:optional $index.base {"0","1"}
 		// [i] field:0:optional $class
 		// [o] object:0:required $list
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    String className = IDataUtil.getString(cursor, "$class");
-		    insert(pipeline, className == null ? Object.class : Class.forName(className));
-		} catch (ClassNotFoundException ex) {
-		    ExceptionHelper.raise(ex);
+		    Class klass = IDataHelper.get(cursor, "$class", Class.class);
+		    insert(pipeline, klass == null ? Object.class : klass);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -210,18 +199,16 @@ public final class object
 		// [o] object:0:optional $item
 		// [o] field:0:required $item.exists?
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    String className = IDataUtil.getString(cursor, "$class");
-		    first(pipeline, className == null ? Object.class : Class.forName(className));
-		} catch (ClassNotFoundException ex) {
-		    ExceptionHelper.raise(ex);
+		    Class klass = IDataHelper.get(cursor, "$class", Class.class);
+		    first(pipeline, klass == null ? Object.class : klass);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -235,16 +222,16 @@ public final class object
 		// [i] object:0:optional $list
 		// [o] field:0:required $length
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    Collection collection = (Collection)IDataUtil.get(cursor, "$list");
-		    IDataUtil.put(cursor, "$length", IntegerHelper.emit(CollectionHelper.length(collection)));
+		    Collection collection = IDataHelper.get(cursor, "$list", Collection.class);
+		    IDataHelper.put(cursor, "$length", CollectionHelper.length(collection), String.class);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -259,18 +246,16 @@ public final class object
 		// [i] field:0:optional $class
 		// [o] object:0:optional $list
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    String className = IDataUtil.getString(cursor, "$class");
-		    listify(pipeline, className == null ? Object.class : Class.forName(className));
-		} catch (ClassNotFoundException ex) {
-		    ExceptionHelper.raise(ex);
+		    Class klass = IDataHelper.get(cursor, "$class", Class.class);
+		    listify(pipeline, klass == null ? Object.class : klass);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -286,18 +271,16 @@ public final class object
 		// [i] field:0:optional $class
 		// [o] object:0:required $list
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    String className = IDataUtil.getString(cursor, "$class");
-		    prepend(pipeline, className == null ? Object.class : Class.forName(className));
-		} catch (ClassNotFoundException ex) {
-		    ExceptionHelper.raise(ex);
+		    Class klass = IDataHelper.get(cursor, "$class", Class.class);
+		    prepend(pipeline, klass == null ? Object.class : klass);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -310,23 +293,21 @@ public final class object
 		// @sigtype java 3.5
 		// [i] object:0:optional $list
 		// [i] field:0:required $index
-		// [i] field:0:optional $index.base {&quot;0&quot;,&quot;1&quot;}
+		// [i] field:0:optional $index.base {"0","1"}
 		// [i] field:0:optional $class
 		// [o] object:0:optional $item
 		// [o] field:0:required $item.exists?
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    String className = IDataUtil.getString(cursor, "$class");
-		    remove(pipeline, className == null ? Object.class : Class.forName(className));
-		} catch (ClassNotFoundException ex) {
-		    ExceptionHelper.raise(ex);
+		    Class klass = IDataHelper.get(cursor, "$class", Class.class);
+		    remove(pipeline, klass == null ? Object.class : klass);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -340,16 +321,16 @@ public final class object
 		// [i] object:0:optional $list
 		// [o] object:0:optional $list.reverse
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    List list = (List)IDataUtil.get(cursor, "$list");
-		    if (list != null) IDataUtil.put(cursor, "$list.reverse", ListHelper.reverse(list));
+		    List list = IDataHelper.get(cursor, "$list", List.class);
+		    IDataHelper.put(cursor, "$list.reverse", ListHelper.reverse(list), false);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -363,22 +344,20 @@ public final class object
 		// [i] object:0:optional $list
 		// [i] object:0:optional $item.new
 		// [i] field:0:required $index
-		// [i] field:0:optional $index.base {&quot;0&quot;,&quot;1&quot;}
+		// [i] field:0:optional $index.base {"0","1"}
 		// [i] field:0:optional $class
 		// [o] object:0:optional $item.old
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    String className = IDataUtil.getString(cursor, "$class");
-		    set(pipeline, className == null ? Object.class : Class.forName(className));
-		} catch (ClassNotFoundException ex) {
-		    ExceptionHelper.raise(ex);
+		    Class klass = IDataHelper.get(cursor, "$class", Class.class);
+		    set(pipeline, klass == null ? Object.class : klass);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -394,18 +373,16 @@ public final class object
 		// [i] field:0:optional $class
 		// [o] object:0:optional $list.head
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    String className = IDataUtil.getString(cursor, "$class");
-		    take(pipeline, className == null ? Object.class : Class.forName(className));
-		} catch (ClassNotFoundException ex) {
-		    ExceptionHelper.raise(ex);
+		    Class klass = IDataHelper.get(cursor, "$class", Class.class);
+		    take(pipeline, klass == null ? Object.class : klass);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -419,259 +396,268 @@ public final class object
 		// [i] object:0:optional $list
 		// [o] object:0:optional $list.unique
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    List list = (List)IDataUtil.get(cursor, "$list");
-		    if (list != null) IDataUtil.put(cursor, "$list.unique", ListHelper.unique(list));
+		    List list = IDataHelper.get(cursor, "$list", List.class);
+		    IDataHelper.put(cursor, "$list.unique", ListHelper.unique(list), false);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 	// --- <<IS-START-SHARED>> ---
 	/**
 	 * Appends the given items to the given java.util.List.
-	 *
+	 * 
 	 * @param pipeline The pipeline containing the list and items to be appended.
 	 * @param klass    The component type of the list.
 	 * @param <T>      The component type of the list.
 	 */
 	public static <T> void append(IData pipeline, Class<T> klass) {
 	    IDataCursor cursor = pipeline.getCursor();
-
+	
 	    try {
-	        List<T> list = (List<T>)IDataUtil.get(cursor, "$list");
-	        IData items = IDataUtil.getIData(cursor, "$items");
-	        IDataUtil.put(cursor, "$list", ListHelper.append(list, (T[])IDataHelper.getLeafValues(items, klass)));
+	        List<T> list = (List<T>)IDataHelper.get(cursor, "$list", List.class);
+	        IData items = IDataHelper.get(cursor, "$items", IData.class);
+	
+	        IDataHelper.put(cursor, "$list", ListHelper.append(list, (T[])IDataHelper.getLeafValues(items, klass)), false);
 	    } finally {
 	        cursor.destroy();
 	    }
 	}
-
+	
 	/**
 	 * Returns a new array representation of the given java.util.List object.
-	 *
+	 * 
 	 * @param pipeline The pipeline containing the list to be converted to an array.
 	 * @param klass    The component type of the list.
 	 * @param <T>      The component type of the list.
 	 */
 	public static <T> void arrayify(IData pipeline, Class<T> klass) {
 	    IDataCursor cursor = pipeline.getCursor();
-
+	
 	    try {
-	        List<T> list = (List<T>)IDataUtil.get(cursor, "$list");
-	        if (list != null) IDataUtil.put(cursor, "$array", CollectionHelper.arrayify(list, klass));
+	        List<T> list = (List<T>)IDataHelper.get(cursor, "$list", List.class);
+	        IDataHelper.put(cursor, "$array", CollectionHelper.arrayify(list, klass), false);
 	    } finally {
 	        cursor.destroy();
 	    }
 	}
-
+	
 	/**
 	 * Prepends the given items to the given java.util.List.
-	 *
+	 * 
 	 * @param pipeline The pipeline containing the list and items to be prepended.
 	 * @param <T>      The component type of the list.
 	 */
 	public static <T> void clear(IData pipeline, Class<T> klass) {
 	    IDataCursor cursor = pipeline.getCursor();
-
+	
 	    try {
-	        List list = (List)IDataUtil.get(cursor, "$list");
-	        IDataUtil.put(cursor, "$list", ListHelper.clear(list, klass));
+	        List<T> list = (List<T>)IDataHelper.get(cursor, "$list", List.class);
+	        IDataHelper.put(cursor, "$list", ListHelper.clear(list, klass), false);
 	    } finally {
 	        cursor.destroy();
 	    }
 	}
-
+	
 	/**
 	 * Returns the first item from the given java.util.List.
-	 *
+	 * 
 	 * @param pipeline The pipeline containing the list.
 	 * @param klass    The component type of the list.
 	 * @param <T>      The component type of the list.
 	 */
 	public static <T> void first(IData pipeline, Class<T> klass) {
 	    IDataCursor cursor = pipeline.getCursor();
-
+	    int index = 0;
+	
 	    try {
-	        List<T> list = (List<T>)IDataUtil.get(cursor, "$list");
-	        int index = 0;
+	        List<T> list = (List<T>)IDataHelper.get(cursor, "$list", List.class);
+	
 	        boolean exists = ListHelper.exists(list, index);
-
-	        if (exists) IDataUtil.put(cursor, "$item", ListHelper.get(list, index));
-	        IDataUtil.put(cursor, "$item.exists?", BooleanHelper.emit(exists));
+	
+	        if (exists) IDataHelper.put(cursor, "$item", ListHelper.get(list, index));
+	        IDataHelper.put(cursor, "$item.exists?", exists, String.class);
 	    } finally {
 	        cursor.destroy();
 	    }
 	}
-
+	
 	/**
 	 * Returns the item from the given java.util.List at the given index.
-	 *
+	 * 
 	 * @param pipeline The pipeline containing the list and index of the required item.
 	 * @param klass    The component type of the list.
 	 * @param <T>      The component type of the list.
 	 */
 	public static <T> void get(IData pipeline, Class<T> klass) {
 	    IDataCursor cursor = pipeline.getCursor();
-
+	
 	    try {
-	        List<T> list = (List<T>)IDataUtil.get(cursor, "$list");
-	        int indexBase = IntegerHelper.parse(IDataUtil.getString(cursor, "$index.base"), 0);
-	        int index = IntegerHelper.parse(IDataUtil.getString(cursor, "$index")) - indexBase;
+	        List<T> list = (List<T>)IDataHelper.get(cursor, "$list", List.class);
+	        int indexBase = IDataHelper.getOrDefault(cursor, "$index.base", Integer.class, 0);
+	        int index = IDataHelper.get(cursor, "$index", Integer.class) - indexBase;
+	
 	        boolean exists = ListHelper.exists(list, index);
-
-	        if (exists) IDataUtil.put(cursor, "$item", ListHelper.get(list, index));
-	        IDataUtil.put(cursor, "$item.exists?", BooleanHelper.emit(exists));
+	
+	        if (exists) IDataHelper.put(cursor, "$item", ListHelper.get(list, index));
+	        IDataHelper.put(cursor, "$item.exists?", exists, String.class);
 	    } finally {
 	        cursor.destroy();
 	    }
 	}
-
+	
 	/**
 	 * Inserts the given items to the given java.util.List.
-	 *
+	 * 
 	 * @param pipeline The pipeline containing the list and items to be inserted.
 	 * @param klass    The component type of the list.
 	 * @param <T>      The component type of the list.
 	 */
 	public static <T> void insert(IData pipeline, Class<T> klass) {
 	    IDataCursor cursor = pipeline.getCursor();
-
+	
 	    try {
-	        List<T> list = (List<T>)IDataUtil.get(cursor, "$list");
-	        IData items = IDataUtil.getIData(cursor, "$items");
-	        int indexBase = IntegerHelper.parse(IDataUtil.getString(cursor, "$index.base"), 0);
-	        int index = IntegerHelper.parse(IDataUtil.getString(cursor, "$index")) - indexBase;
-	        IDataUtil.put(cursor, "$list", ListHelper.insert(list, index, (T[])IDataHelper.getLeafValues(items, klass)));
+	        List<T> list = (List<T>)IDataHelper.get(cursor, "$list", List.class);
+	        IData items = IDataHelper.get(cursor, "$items", IData.class);
+	        int indexBase = IDataHelper.getOrDefault(cursor, "$index.base", Integer.class, 0);
+	        int index = IDataHelper.get(cursor, "$index", Integer.class) - indexBase;
+	
+	        IDataHelper.put(cursor, "$list", ListHelper.insert(list, index, (T[])IDataHelper.getLeafValues(items, klass)), false);
 	    } finally {
 	        cursor.destroy();
 	    }
 	}
-
+	
 	/**
 	 * Returns the last item from the given java.util.List.
-	 *
+	 * 
 	 * @param pipeline The pipeline containing the list.
 	 * @param klass    The component type of the list.
 	 * @param <T>      The component type of the list.
 	 */
 	public static <T> void last(IData pipeline, Class<T> klass) {
 	    IDataCursor cursor = pipeline.getCursor();
-
+	    int index = -1;
+	
 	    try {
-	        List<T> list = (List<T>)IDataUtil.get(cursor, "$list");
-	        int index = -1;
+	        List<T> list = (List<T>)IDataHelper.get(cursor, "$list", List.class);
+	
 	        boolean exists = ListHelper.exists(list, index);
-
-	        if (exists) IDataUtil.put(cursor, "$item", ListHelper.get(list, index));
-	        IDataUtil.put(cursor, "$item.exists?", BooleanHelper.emit(exists));
+	
+	        if (exists) IDataHelper.put(cursor, "$item", ListHelper.get(list, index));
+	        IDataHelper.put(cursor, "$item.exists?", exists, String.class);
 	    } finally {
 	        cursor.destroy();
 	    }
 	}
-
+	
 	/**
 	 * Returns a new java.util.List representation of the given array.
-	 *
+	 * 
 	 * @param pipeline The pipeline containing the array to be converted to a list.
 	 * @param klass    The component type of the list.
 	 * @param <T>      The component type of the list.
 	 */
 	public static <T> void listify(IData pipeline, Class<T> klass) {
 	    IDataCursor cursor = pipeline.getCursor();
-
+	
 	    try {
-	        T[] array = (T[])IDataUtil.getObjectArray(cursor, "$array");
-	        if (array != null) IDataUtil.put(cursor, "$list", ListHelper.listify(array, klass));
+	        T[] array = (T[])IDataHelper.get(cursor, "$array", ClassHelper.getArrayClass(klass));
+	        IDataHelper.put(cursor, "$list", ListHelper.listify(array, klass), false);
 	    } finally {
 	        cursor.destroy();
 	    }
 	}
-
+	
 	/**
 	 * Prepends the given items to the given java.util.List.
-	 *
+	 * 
 	 * @param pipeline The pipeline containing the list and items to be prepended.
 	 * @param klass    The component type of the list.
 	 * @param <T>      The component type of the list.
 	 */
 	public static <T> void prepend(IData pipeline, Class<T> klass) {
 	    IDataCursor cursor = pipeline.getCursor();
-
+	
 	    try {
-	        List<T> list = (List<T>)IDataUtil.get(cursor, "$list");
-	        IData items = IDataUtil.getIData(cursor, "$items");
-	        IDataUtil.put(cursor, "$list", ListHelper.prepend(list, (T[])IDataHelper.getLeafValues(items, klass)));
+	        List<T> list = (List<T>)IDataHelper.get(cursor, "$list", List.class);
+	        IData items = IDataHelper.get(cursor, "$items", IData.class);
+	
+	        IDataHelper.put(cursor, "$list", ListHelper.prepend(list, (T[])IDataHelper.getLeafValues(items, klass)));
 	    } finally {
 	        cursor.destroy();
 	    }
 	}
-
+	
 	/**
 	 * Removes the item from the given java.util.List at the given index.
-	 *
+	 * 
 	 * @param pipeline The pipeline containing the list, and index.
 	 * @param klass    The component type of the list.
 	 * @param <T>      The component type of the list.
 	 */
 	public static <T> void remove(IData pipeline, Class<T> klass) {
 	    IDataCursor cursor = pipeline.getCursor();
-
+	
 	    try {
-	        List<T> list = (List<T>)IDataUtil.get(cursor, "$list");
-	        int indexBase = IntegerHelper.parse(IDataUtil.getString(cursor, "$index.base"), 0);
-	        int index = IntegerHelper.parse(IDataUtil.getString(cursor, "$index")) - indexBase;
+	        List<T> list = (List<T>)IDataHelper.get(cursor, "$list", List.class);
+	        int indexBase = IDataHelper.getOrDefault(cursor, "$index.base", Integer.class, 0);
+	        int index = IDataHelper.get(cursor, "$index", Integer.class) - indexBase;
+	
 	        boolean exists = ListHelper.exists(list, index);
-
-	        if (exists) IDataUtil.put(cursor, "$item", ListHelper.remove(list, index));
-	        IDataUtil.put(cursor, "$item.exists?", BooleanHelper.emit(exists));
+	
+	        if (exists) IDataHelper.put(cursor, "$item", ListHelper.remove(list, index));
+	        IDataHelper.put(cursor, "$item.exists?", BooleanHelper.emit(exists));
 	    } finally {
 	        cursor.destroy();
 	    }
 	}
-
+	
 	/**
 	 * Sets the item in the given java.util.List at the given index.
-	 *
+	 * 
 	 * @param pipeline The pipeline containing the list, item, and index.
 	 * @param klass    The component type of the list.
 	 * @param <T>      The component type of the list.
 	 */
 	public static <T> void set(IData pipeline, Class<T> klass) {
 	    IDataCursor cursor = pipeline.getCursor();
-
+	
 	    try {
-	        List<T> list = (List<T>)IDataUtil.get(cursor, "$list");
+	        List<T> list = (List<T>)IDataHelper.get(cursor, "$list", List.class);
+	        
 	        if (list != null) {
-	            T item = (T)IDataUtil.get(cursor, "$item.new");
-	            int indexBase = IntegerHelper.parse(IDataUtil.getString(cursor, "$index.base"), 0);
-	            int index = IntegerHelper.parse(IDataUtil.getString(cursor, "$index")) - indexBase;
-	            IDataUtil.put(cursor, "$item.old", ListHelper.set(list, index, item));
+	            T item = IDataHelper.get(cursor, "$item.new", klass);
+	            int indexBase = IDataHelper.getOrDefault(cursor, "$index.base", Integer.class, 0);
+	            int index = IDataHelper.get(cursor, "$index", Integer.class) - indexBase;
+	            
+	            IDataHelper.put(cursor, "$item.old", ListHelper.set(list, index, item));
 	        }
 	    } finally {
 	        cursor.destroy();
 	    }
 	}
-
+	
 	/**
 	 * Removes and returns a specified number of items from the head of the given java.util.List.
-	 *
+	 * 
 	 * @param pipeline The pipeline containing the list, and count.
 	 * @param klass    The component type of the list.
 	 * @param <T>      The component type of the list.
 	 */
 	public static <T> void take(IData pipeline, Class<T> klass) {
 	    IDataCursor cursor = pipeline.getCursor();
-
+	
 	    try {
-	        List<T> list = (List<T>)IDataUtil.get(cursor, "$list");
-	        int count = IntegerHelper.parse(IDataUtil.getString(cursor, "$count"));
-
-	        if (list != null) IDataUtil.put(cursor, "$list.head", ListHelper.take(list, count));
+	        List<T> list = (List<T>)IDataHelper.get(cursor, "$list", List.class);
+	        int count = IDataHelper.get(cursor, "$count", Integer.class);
+	
+	        IDataHelper.put(cursor, "$list.head", ListHelper.take(list, count), false);
 	    } finally {
 	        cursor.destroy();
 	    }

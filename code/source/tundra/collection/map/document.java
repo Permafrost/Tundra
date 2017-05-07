@@ -1,16 +1,14 @@
 package tundra.collection.map;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-04-11 08:35:28 EST
-// -----( ON-HOST: -
+// -----( CREATED: 2017-05-03 20:25:43 EST
+// -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
 import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
-import permafrost.tundra.collection.MapHelper;
-import permafrost.tundra.lang.ExceptionHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class document
@@ -29,6 +27,37 @@ public final class document
 
 
 
+	public static final void clear (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(clear)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:0:optional $map
+		tundra.collection.map.object.clear(pipeline);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void create (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(create)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $sorted? {"false","true"}
+		// [o] object:0:optional $map
+		tundra.collection.map.object.create(pipeline, String.class, IData.class);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void get (IData pipeline)
         throws ServiceException
 	{
@@ -36,12 +65,44 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:0:optional $map
-		// [i] field:0:optional $key
+		// [i] field:0:required $key
 		// [o] record:0:optional $value
 		tundra.collection.map.object.get(pipeline, String.class, IData.class);
 		// --- <<IS-END>> ---
 
+                
+	}
 
+
+
+	public static final void keys (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(keys)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:0:optional $map
+		// [o] field:1:optional $keys
+		tundra.collection.map.object.keys(pipeline);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void length (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(length)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:0:optional $map
+		// [o] field:0:required $length
+		tundra.collection.map.object.length(pipeline);
+		// --- <<IS-END>> ---
+
+                
 	}
 
 
@@ -53,32 +114,86 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
-		// [i] field:0:optional $sorted? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $sorted? {"false","true"}
 		// [o] object:0:optional $map
 		tundra.collection.map.object.mapify(pipeline, IData.class);
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
-	// --- <<IS-START-SHARED>> ---
-	/**
-	 * Returns a new Map representation of the given IData object.
-	 *
-	 * @param pipeline The pipeline containing the IData to be converted to a Map.
-	 * @param klass    The component type of the list.
-	 * @param <T>      The component type of the list.
-	 */
-	public static <T> void mapify(IData pipeline, Class<T> klass) {
-	    IDataCursor cursor = pipeline.getCursor();
 
-	    try {
-	        IData document = IDataUtil.getIData(cursor, "$document");
-	        if (document != null) IDataUtil.put(cursor, "$map", MapHelper.mapify(document, klass));
-	    } finally {
-	        cursor.destroy();
-	    }
+
+	public static final void put (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(put)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:0:optional $map
+		// [i] field:0:required $key
+		// [i] field:0:optional $key.absent? {"false","true"}
+		// [i] record:0:required $value
+		// [o] object:0:required $map
+		// [o] object:0:required $value
+		tundra.collection.map.object.put(pipeline);
+		// --- <<IS-END>> ---
+
+                
 	}
-	// --- <<IS-END-SHARED>> ---
+
+
+
+	public static final void remove (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(remove)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:0:optional $map
+		// [i] object:0:required $key
+		// [i] object:0:optional $value
+		// [o] field:0:required $key.removed? {"false","true"}
+		// [o] object:0:optional $value
+		tundra.collection.map.object.remove(pipeline);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void replace (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(replace)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:0:optional $map
+		// [i] field:0:required $key
+		// [i] record:0:optional $value.old
+		// [i] record:0:required $value.new
+		// [o] field:0:required $value.replaced? {"false","true"}
+		tundra.collection.map.object.replace(pipeline);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void values (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(values)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:0:optional $map
+		// [o] record:1:optional $values
+		tundra.collection.map.object.values(pipeline);
+		// --- <<IS-END>> ---
+
+                
+	}
 }
 

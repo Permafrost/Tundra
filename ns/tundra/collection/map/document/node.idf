@@ -3,23 +3,11 @@
 <Values version="2.0">
   <value name="node_type">interface</value>
   <value name="node_nsName">tundra.collection.map.document</value>
-  <value name="shared">LyoqCiAqIFJldHVybnMgYSBuZXcgTWFwIHJlcHJlc2VudGF0aW9uIG9mIHRoZSBnaXZlbiBJRGF0
-YSBvYmplY3QuCiAqIAogKiBAcGFyYW0gcGlwZWxpbmUgVGhlIHBpcGVsaW5lIGNvbnRhaW5pbmcg
-dGhlIElEYXRhIHRvIGJlIGNvbnZlcnRlZCB0byBhIE1hcC4KICogQHBhcmFtIGtsYXNzICAgIFRo
-ZSBjb21wb25lbnQgdHlwZSBvZiB0aGUgbGlzdC4KICogQHBhcmFtIDxUPiAgICAgIFRoZSBjb21w
-b25lbnQgdHlwZSBvZiB0aGUgbGlzdC4KICovCnB1YmxpYyBzdGF0aWMgPFQ+IHZvaWQgbWFwaWZ5
-KElEYXRhIHBpcGVsaW5lLCBDbGFzczxUPiBrbGFzcykgewogICAgSURhdGFDdXJzb3IgY3Vyc29y
-ID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7CgogICAgdHJ5IHsKICAgICAgICBJRGF0YSBkb2N1bWVu
-dCA9IElEYXRhVXRpbC5nZXRJRGF0YShjdXJzb3IsICIkZG9jdW1lbnQiKTsKICAgICAgICBpZiAo
-ZG9jdW1lbnQgIT0gbnVsbCkgSURhdGFVdGlsLnB1dChjdXJzb3IsICIkbWFwIiwgTWFwSGVscGVy
-Lm1hcGlmeShkb2N1bWVudCwga2xhc3MpKTsKICAgIH0gZmluYWxseSB7CiAgICAgICAgY3Vyc29y
-LmRlc3Ryb3koKTsKICAgIH0KfQ==</value>
+  <value name="shared"></value>
   <value name="encodeutf8">true</value>
   <value name="extends"></value>
   <array name="implements" type="value" depth="1">
   </array>
   <array name="imports" type="value" depth="1">
-    <value>permafrost.tundra.collection.MapHelper</value>
-    <value>permafrost.tundra.lang.ExceptionHelper</value>
   </array>
 </Values>
