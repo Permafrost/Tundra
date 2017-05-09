@@ -1552,6 +1552,7 @@ Returns the value associated with the given key in the given
 
 #### Outputs:
 
+* `$key.exists?` is `true` if the given key exists in the given map.
 * `$value` is the value associated with the given key in the given
   [java.util.Map].
 
@@ -1740,7 +1741,8 @@ Returns the value associated with the given key in the given
 
 #### Outputs:
 
-* $value is the value associated with the given key in the given
+* `$key.exists?` is `true` if the given key exists in the given map.
+* `$value` is the value associated with the given key in the given
   [java.util.Map].
 
 ---
@@ -1927,6 +1929,7 @@ Returns the value associated with the given key in the given
 
 #### Outputs:
 
+* `$key.exists?` is `true` if the given key exists in the given map.
 * `$value` is the value associated with the given key in the given
   [java.util.Map].
 
