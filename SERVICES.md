@@ -7963,33 +7963,33 @@ Returns true if the given lists are equal.
 
 ### tundra.list.document:filter
 
-Filters the given list to only include items where the
-given condition evaluates to true.
+Filters the given list to only include items where the given
+condition evaluates to true.
 
 #### Inputs:
 
 * `$list` is the list to be filtered.
-* `$condition` is a `tundra.condition:evaluate` compatible
-  conditional statement used to filter the given list.
+* `$condition` is a `tundra.condition:evaluate` compatible conditional
+  statement used to filter the given list.
 
-  List items are represented in the evaluation scope by
-  a variable named `$item`.
+  List items are represented in the evaluation scope by a variable
+  named `$item`.
 
-  For example, to filter a list to only include items
-  where surname and firstname keys have specific values,
-  use the following `$condition`:
+  For example, to filter a list to only include items where surname
+  and firstname keys have specific values, use the following
+  `$condition`:
 
       %$item/surname% == "Smith" and %$item/firstname% == "John"
 
-* `$scope` is an optional IData document containing the
-  variables against which `$condition` will be evaluated.
-  If not specified, the `$condition` will be evaluated
-  against the pipeline.
+* `$scope` is an optional `IData` document containing the variables
+  against which `$condition` will be evaluated. If not specified, the
+  `$condition` will be evaluated against the pipeline.
 
 #### Outputs:
 
-* `$list` is the given list filtered to only include the
-  items where `$condition` evaluated to true.
+* `$list` is the given list filtered to only include the items where
+  $condition evaluated to `true`.
+* `$list.length` is the number of items in the returned `$list`.
 
 ---
 
@@ -8608,33 +8608,33 @@ Sets the value of the item at the given index in the given list.
 
 ### tundra.list.document:reject
 
-Filters the given list to not include items where the
-given condition evaluates to true.
+Filters the given list to not include items where the given
+condition evaluates to true.
 
 #### Inputs:
 
 * `$list` is the list to be filtered.
-* `$condition` is a `tundra.condition:evaluate` compatible
-  conditional statement used to filter the given list.
+* `$condition` is a `tundra.condition:evaluate` compatible conditional
+  statement used to filter the given list.
 
-  List items are represented in the evaluation scope by
-  a variable named `$item`.
+  List items are represented in the evaluation scope by a variable
+  named `$item`.
 
-  For example, to filter a list to not include items
-  where surname and firstname keys have specific values,
-  use the following `$condition`:
+  For example, to filter a list to not include items where surname
+  and firstname keys have specific values, use the following
+  `$condition`:
 
       %$item/surname% == "Smith" and %$item/firstname% == "John"
 
-* `$scope` is an optional IData document containing the
-  variables against which `$condition` will be evaluated.
-  If not specified, the `$condition` will be evaluated
-  against the pipeline.
+* `$scope` is an optional `IData` document containing the variables
+  against which `$condition` will be evaluated. If not specified, the
+  `$condition` will be evaluated against the pipeline.
 
 #### Outputs:
 
-* `$list` is the given list filtered to not include the
-  items where `$condition` evaluated to true.
+* `$list` is the given list filtered to not include the items where
+  `$condition` evaluated to `true`.
+* `$list.length` is the number of items in the returned `$list`.
 
 ---
 
@@ -9347,32 +9347,32 @@ Returns true if the given lists are equal.
 
 ### tundra.list.object:filter
 
-Filters the given list to only include items where the
-given condition evaluates to true.
+Filters the given list to only include items where the given
+condition evaluates to true.
 
 #### Inputs:
 
 * `$list` is the list to be filtered.
-* `$condition` is a `tundra.condition:evaluate` compatible
-  conditional statement used to filter the given list.
+* `$condition` is a `tundra.condition:evaluate` compatible conditional
+  statement used to filter the given list.
 
-  List items are represented in the evaluation scope by
-  a variable named `$item`.
+  List items are represented in the evaluation scope by a variable
+  named `$item`.
 
-  For example, to filter a list to only include items
-  equal to 1 or 2, use the following `$condition`:
+  For example, to filter a list to only include items equal to 1 or
+  2, use the following `$condition`:
 
       %$item% == 1 or %$item% == 2
 
-* `$scope` is an optional IData document containing the
-  variables against which `$condition` will be evaluated.
-  If not specified, the `$condition` will be evaluated
-  against the pipeline.
+* `$scope` is an optional `IData` document containing the variables
+  against which `$condition` will be evaluated. If not specified, the
+  `$condition` will be evaluated against the pipeline.
 
 #### Outputs:
 
-* `$list` is the given list filtered to only include the
-  items where `$condition` evaluated to true.
+* `$list` is the given list filtered to only include the items where
+  `$condition` evaluated to `true`.
+* `$list.length` is the number of items in the returned `$list`.
 
 ---
 
@@ -9666,32 +9666,32 @@ Sets the value of the item at the given index in the given list.
 
 ### tundra.list.object:reject
 
-Filters the given list to not include items where the
-given condition evaluates to true.
+Filters the given list to not include items where the given
+condition evaluates to true.
 
 #### Inputs:
 
 * `$list` is the list to be filtered.
-* `$condition` is a `tundra.condition:evaluate` compatible
-  conditional statement used to filter the given list.
+* `$condition` is a `tundra.condition:evaluate` compatible conditional
+  statement used to filter the given list.
 
-  List items are represented in the evaluation scope by
-  a variable named `$item`.
+  List items are represented in the evaluation scope by a variable
+  named `$item`.
 
-  For example, to filter a list to not include items
-  equal to 1 or 2, use the following `$condition`:
+  For example, to filter a list to not include items equal to 1 or
+  2, use the following `$condition`:
 
       %$item% == 1 or %$item% == 2
 
-* `$scope` is an optional IData document containing the
-  variables against which `$condition` will be evaluated.
-  If not specified, the `$condition` will be evaluated
-  against the pipeline.
+* `$scope` is an optional `IData` document containing the variables
+  against which `$condition` will be evaluated. If not specified, the
+  `$condition` will be evaluated against the pipeline.
 
 #### Outputs:
 
-* `$list` is the given list filtered to not include the
-  items where `$condition` evaluated to true.
+* `$list` is the given list filtered to not include the items where
+  `$condition` evaluated to `true`.
+* `$list.length` is the number of items in the returned `$list`.
 
 ---
 
@@ -10132,33 +10132,32 @@ Returns true if the given lists are equal.
 
 ### tundra.list.string:filter
 
-Filters the given list to only include items where the
-given condition evaluates to true.
+Filters the given list to only include items where the given
+condition evaluates to true.
 
 #### Inputs:
 
 * `$list` is the list to be filtered.
-* `$condition` is a `tundra.condition:evaluate` compatible
-  conditional statement used to filter the given list.
+* `$condition` is a `tundra.condition:evaluate` compatible conditional
+  statement used to filter the given list.
 
-  List items are represented in the evaluation scope by
-  a variable named `$item`.
+  List items are represented in the evaluation scope by a variable
+  named `$item`.
 
-  For example, to filter a list to only include items
-  equal to a regular expression pattern, use the following
-  `$condition`:
+  For example, to filter a list to only include items equal to a
+  regular expression pattern, use the following `$condition`:
 
       %$item% == /\d\d/
 
-* `$scope` is an optional IData document containing the
-  variables against which `$condition` will be evaluated.
-  If not specified, the `$condition` will be evaluated
-  against the pipeline.
+* `$scope` is an optional `IData` document containing the variables
+  against which `$condition` will be evaluated. If not specified, the
+  `$condition` will be evaluated against the pipeline.
 
 #### Outputs:
 
-* `$list` is the given list filtered to only include the
-  items where `$condition` evaluated to true.
+* `$list` is the given list filtered to only include the items where
+  `$condition` evaluated to `true`.
+* `$list.length` is the number of items in the returned `$list`.
 
 ---
 
@@ -10559,33 +10558,32 @@ of the given strings literally.
 
 ### tundra.list.string:reject
 
-Filters the given list to not include items where the
-given condition evaluates to true.
+Filters the given list to not include items where the given
+condition evaluates to true.
 
 #### Inputs:
 
 * `$list` is the list to be filtered.
-* `$condition` is a `tundra.condition:evaluate` compatible
-  conditional statement used to filter the given list.
+* `$condition` is a `tundra.condition:evaluate` compatible conditional
+  statement used to filter the given list.
 
-  List items are represented in the evaluation scope by
-  a variable named `$item`.
+  List items are represented in the evaluation scope by a variable
+  named `$item`.
 
-  For example, to filter a list to not include items
-  equal to a regular expression pattern, use the following
-  `$condition`:
+  For example, to filter a list to not include items equal to a
+  regular expression pattern, use the following `$condition`:
 
       %$item% == /\d\d/
 
-* `$scope` is an optional IData document containing the
-  variables against which `$condition` will be evaluated.
-  If not specified, the `$condition` will be evaluated
-  against the pipeline.
+* `$scope` is an optional `IData` document containing the variables
+  against which `$condition` will be evaluated. If not specified, the
+  `$condition` will be evaluated against the pipeline.
 
 #### Outputs:
 
-* `$list` is the given list filtered to not include the
-  items where `$condition` evaluated to true.
+* `$list` is the given list filtered to not include the items where
+  `$condition` evaluated to `true`.
+* `$list.length` is the number of items in the returned `$list`.
 
 ---
 
