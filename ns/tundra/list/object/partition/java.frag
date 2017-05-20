@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">partition</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogICAgT2Jq
+ZWN0W10gbGlzdCA9IElEYXRhSGVscGVyLmdldChjdXJzb3IsICIkbGlzdCIsIE9iamVjdFtdLmNs
+YXNzKTsKICAgIElEYXRhW10gcGFydGl0aW9ucyA9IElEYXRhSGVscGVyLmdldChjdXJzb3IsICIk
+cGFydGl0aW9ucyIsIElEYXRhW10uY2xhc3MpOwogICAgSURhdGEgc2NvcGUgPSBJRGF0YUhlbHBl
+ci5nZXRPckRlZmF1bHQoY3Vyc29yLCAiJHNjb3BlIiwgSURhdGEuY2xhc3MsIHBpcGVsaW5lKTsK
+CiAgICBJRGF0YUhlbHBlci5wdXQoY3Vyc29yLCAiJHJlc3VsdHMiLCBwYXJ0aXRpb24obGlzdCwg
+cGFydGl0aW9ucywgc2NvcGUpLCBmYWxzZSk7Cn0gZmluYWxseSB7CiAgICBjdXJzb3IuZGVzdHJv
+eSgpOwp9</value>
+</Values>

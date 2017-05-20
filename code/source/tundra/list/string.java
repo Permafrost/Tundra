@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-07 18:35:20 EST
+// -----( CREATED: 2017-05-20 15:13:47 EST
 // -----( ON-HOST: 192.168.66.129
 
 import com.wm.data.*;
@@ -234,6 +234,7 @@ public final class string
 		// [i] field:0:optional $condition
 		// [i] record:0:optional $scope
 		// [o] field:1:optional $list
+		// [o] field:0:required $list.length
 		tundra.list.object.filter(pipeline);
 		// --- <<IS-END>> ---
 
@@ -607,6 +608,20 @@ public final class string
 
 
 
+	public static final void partition (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(partition)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		tundra.list.object.partition(pipeline);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void prepend (IData pipeline)
         throws ServiceException
 	{
@@ -675,6 +690,7 @@ public final class string
 		// [i] field:0:optional $condition
 		// [i] record:0:optional $scope
 		// [o] field:1:optional $list
+		// [o] field:0:required $list.length
 		tundra.list.object.reject(pipeline);
 		// --- <<IS-END>> ---
 

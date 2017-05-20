@@ -8487,6 +8487,58 @@ in the given `IData[]` document list to null.
 
 ---
 
+### tundra.list.document:partition
+
+Partitions the given list into a number of lists using the
+associated conditions to determine inclusion of an item in the
+partitions.
+
+Note that an item can be included in multiple partitions if it
+satisfies multiple conditions.
+
+#### Inputs:
+
+* `$list` is the list to be partitioned.
+* `$partitions` is the list of partitions to be created from `$list`.
+  * `name` is the name used to identify this partition in the returned
+    `$results`.
+  * `condition` is a `tundra.condition:evaluate` compatible conditional
+    statement used to determine if a `$list` item is to be included in
+    this partition.
+
+    List items are represented in the evaluation scope by a variable
+    named `$item`.
+
+    For example, to partition a list to only include items where
+    surname and firstname keys have specific values, you could use
+    the following condition:
+
+        %$item/surname% == "Smith" and %$item/firstname% == "John"
+
+  * `scope` is an optional `IData` document containing the variables
+    against which condition will be evaluated. If not specified, the
+    condition will be evaluated against `$scope` if specifed,
+    otherwise it will be evaluated against the pipeline itself.
+* `$scope` is an optional `IData` document containing the variables
+  against which `$partitions[n]/condition` will be evaluated when no
+  `$partitions[n]/scope` is specified. If not specified, a
+  `$partitions[n]/condition` without an associated `$partitions[n]/scope`
+  will be evaluated against the pipeline.
+
+#### Outputs:
+
+* `$results` contains the resulting partitions.
+  * `<$partitions[n]/name>` is a dynamically named list containing the
+    items which satisfied the associated `$partitions[n]/condition`.
+  * `<$partitions[n]/name>.length` is the number of items in the
+    associated dynamically named partition.
+  * `remainder` is a list of the remaining items which are not members
+    of any named partitions.
+  * `remainder.length` is the number of items in the associated
+    remainder list.
+
+---
+
 ### tundra.list.document:pivot
 
 Returns a given `IData[]` document list pivoted on a given list of
@@ -9621,6 +9673,58 @@ object lists.
 
 ---
 
+### tundra.list.object:partition
+
+Partitions the given list into a number of lists using the
+associated conditions to determine inclusion of an item in the
+partitions.
+
+Note that an item can be included in multiple partitions if it
+satisfies multiple conditions.
+
+#### Inputs:
+
+* `$list` is the list to be partitioned.
+* `$partitions` is the list of partitions to be created from `$list`.
+  * `name` is the name used to identify this partition in the returned
+    `$results`.
+  * `condition` is a `tundra.condition:evaluate` compatible conditional
+    statement used to determine if a `$list` item is to be included in
+    this partition.
+
+    List items are represented in the evaluation scope by a variable
+    named `$item`.
+
+    For example, to partition a list to only include items where
+    surname and firstname keys have specific values, you could use
+    the following condition:
+
+        %$item/surname% == "Smith" and %$item/firstname% == "John"
+
+  * `scope` is an optional `IData` document containing the variables
+    against which condition will be evaluated. If not specified, the
+    condition will be evaluated against `$scope` if specifed,
+    otherwise it will be evaluated against the pipeline itself.
+* `$scope` is an optional `IData` document containing the variables
+  against which `$partitions[n]/condition` will be evaluated when no
+  `$partitions[n]/scope` is specified. If not specified, a
+  `$partitions[n]/condition` without an associated `$partitions[n]/scope`
+  will be evaluated against the pipeline.
+
+#### Outputs:
+
+* `$results` contains the resulting partitions.
+  * `<$partitions[n]/name>` is a dynamically named list containing the
+    items which satisfied the associated `$partitions[n]/condition`.
+  * `<$partitions[n]/name>.length` is the number of items in the
+    associated dynamically named partition.
+  * `remainder` is a list of the remaining items which are not members
+    of any named partitions.
+  * `remainder.length` is the number of items in the associated
+    remainder list.
+
+---
+
 ### tundra.list.object:prepend
 
 Prepends a single item to the front of a list, such that prepending
@@ -10174,7 +10278,8 @@ of items which did not include any occurrences of the pattern.
   search for against the given list.
 * `$literal?` is a boolean indicating if the `$pattern` string should be
   treated as a literal string. If false, `$pattern` is treated as a
-  [regular expression pattern]. If true, `$pattern` is treated as a literal string. Defaults to false, if not specified.
+  [regular expression pattern]. If true, `$pattern` is treated as a literal
+  string. Defaults to false, if not specified.
 
 #### Outputs:
 
@@ -10497,6 +10602,58 @@ many times as necessary to reach the given length.
 #### Outputs:
 
 * `$list` is the resulting list of padded strings.
+
+---
+
+### tundra.list.string:partition
+
+Partitions the given list into a number of lists using the
+associated conditions to determine inclusion of an item in the
+partitions.
+
+Note that an item can be included in multiple partitions if it
+satisfies multiple conditions.
+
+#### Inputs:
+
+* `$list` is the list to be partitioned.
+* `$partitions` is the list of partitions to be created from `$list`.
+  * `name` is the name used to identify this partition in the returned
+    `$results`.
+  * `condition` is a `tundra.condition:evaluate` compatible conditional
+    statement used to determine if a `$list` item is to be included in
+    this partition.
+
+    List items are represented in the evaluation scope by a variable
+    named `$item`.
+
+    For example, to partition a list to only include items where
+    surname and firstname keys have specific values, you could use
+    the following condition:
+
+        %$item/surname% == "Smith" and %$item/firstname% == "John"
+
+  * `scope` is an optional `IData` document containing the variables
+    against which condition will be evaluated. If not specified, the
+    condition will be evaluated against `$scope` if specifed,
+    otherwise it will be evaluated against the pipeline itself.
+* `$scope` is an optional `IData` document containing the variables
+  against which `$partitions[n]/condition` will be evaluated when no
+  `$partitions[n]/scope` is specified. If not specified, a
+  `$partitions[n]/condition` without an associated `$partitions[n]/scope`
+  will be evaluated against the pipeline.
+
+#### Outputs:
+
+* `$results` contains the resulting partitions.
+  * `<$partitions[n]/name>` is a dynamically named list containing the
+    items which satisfied the associated `$partitions[n]/condition`.
+  * `<$partitions[n]/name>.length` is the number of items in the
+    associated dynamically named partition.
+  * `remainder` is a list of the remaining items which are not members
+    of any named partitions.
+  * `remainder.length` is the number of items in the associated
+    remainder list.
 
 ---
 
