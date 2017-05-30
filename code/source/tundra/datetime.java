@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-06 15:05:01 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2017-05-30 21:22:43 EST
+// -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -40,9 +40,9 @@ public final class datetime
 		// --- <<IS-START(add)>> ---
 		// @sigtype java 3.5
 		// [i] field:0:optional $datetime
-		// [i] field:0:optional $datetime.pattern {"datetime","datetime.db2","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
+		// [i] field:0:optional $datetime.pattern
 		// [i] field:0:optional $duration
-		// [i] field:0:optional $duration.pattern {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
+		// [i] field:0:optional $duration.pattern
 		// [o] field:0:optional $datetime
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -73,25 +73,20 @@ public final class datetime
 	{
 		// --- <<IS-START(compare)>> ---
 		// @sigtype java 3.5
-		// [i] field:0:optional $datetime.x
-		// [i] field:0:optional $datetime.y
-		// [i] field:0:optional $pattern.x {"datetime","datetime.db2","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
-		// [i] field:0:optional $pattern.y {"datetime","datetime.db2","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
+		// [i] field:0:optional $datetime.first
+		// [i] field:0:optional $datetime.first.pattern
+		// [i] field:0:optional $datetime.second
+		// [i] field:0:optional $datetime.second.pattern
 		// [o] field:0:required $before?
 		// [o] field:0:required $equal?
 		// [o] field:0:required $after?
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String date1 = IDataHelper.get(cursor, "$datetime.x", String.class);
-		    String date2 = IDataHelper.get(cursor, "$datetime.y", String.class);
-		    String pattern1 = IDataHelper.get(cursor, "$pattern.x", String.class);
-		    String pattern2 = IDataHelper.get(cursor, "$pattern.y", String.class);
-		
-		    // support $pattern for backwards compatibility
-		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
-		    if (pattern1 == null) pattern1 = pattern;
-		    if (pattern2 == null) pattern2 = pattern;
+		    String date1 = IDataHelper.first(cursor, String.class, "$datetime.first", "$datetime.x");
+		    String date2 = IDataHelper.first(cursor, String.class, "$datetime.second", "$datetime.y");
+		    String pattern1 = IDataHelper.first(cursor, String.class, "$datetime.first.pattern", "$pattern.x", "$pattern");
+		    String pattern2 = IDataHelper.first(cursor, String.class, "$datetime.second.pattern", "$pattern.y", "$pattern");
 		
 		    int comparison = DateTimeHelper.compare(date1, pattern1, date2, pattern2);
 		

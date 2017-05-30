@@ -2980,8 +2980,8 @@ Custom datetime patterns can be specified using
 
 ### tundra.datetime:compare
 
-Compares two datetime strings, formatted according to the given pattern,
-indicating their position in time relative to one another.
+Compares two datetime strings, formatted according to the given
+patterns, indicating their position in time relative to one another.
 
 Supports a handful of well-known named datetime patterns:
 
@@ -3001,19 +3001,23 @@ Custom datetime patterns can be specified using
 
 #### Inputs:
 
-* `$datetime.x` is the datetime string to be compared to $datetime.y.
-* `$datetime.y` is the datetime string to be compared to $datetime.x.
-* `$pattern` is an optional datetime pattern that `$datetime.x` and
-  `$datetime.y` conform to. Defaults to an [ISO8601] XML datetime.
+* `$datetime.first` is the datetime string to be compared to
+  `$datetime.second`.
+* `$datetime.first.pattern` is an optional datetime pattern that
+  `$datetime.first` conforms to. Defaults to an [ISO8601] XML datetime.
+* `$datetime.second` is the datetime string to be compared to
+  `$datetime.first`.
+* `$datetime.second.pattern` is an optional datetime pattern that
+  `$datetime.second` conforms to. Defaults to an [ISO8601] XML datetime.
 
 #### Outputs:
 
-* `$before?` is a boolean flag indicating if `$datetime.x` is an earlier
-  instant in time than `$datetime.y`.
-* `$equal?` is a boolean flag indicating if `$datetime.x` and
-  `$datetime.y` represent the same instant in time.
-* `$after?` is a boolean flag indicating if `$datetime.x` is a later
-  instant in time than `$datetime.y`.
+* `$before?` is a boolean flag indicating if `$datetime.first` is an
+  earlier instant in time than `$datetime.second`.
+* `$equal?` is a boolean flag indicating if `$datetime.first` and
+  `$datetime.second` represent the same instant in time.
+* `$after?` is a boolean flag indicating if `$datetime.first` is a later
+  instant in time than `$datetime.second`.
 
 ---
 
