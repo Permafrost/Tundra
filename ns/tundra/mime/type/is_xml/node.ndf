@@ -58,59 +58,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$csv?</value>
-          <value name="field_type">string</value>
-          <value name="field_dim">0</value>
-          <record name="field_content_type" javaclass="com.wm.util.Values">
-            <value name="contentType">1</value>
-            <value name="internalType">reference</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-            <array name="targetNames" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">boolean</value>
-              </record>
-            </array>
-          </record>
-          <value name="nillable">false</value>
-          <value name="form_qualified">false</value>
-          <value name="is_global">false</value>
-        </record>
-        <record javaclass="com.wm.util.Values">
-          <value name="node_type">record</value>
-          <value name="node_comment"></value>
-          <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
-            <value name="field_largerEditor">false</value>
-            <value name="field_password">false</value>
-          </record>
-          <value name="field_name">$psv?</value>
-          <value name="field_type">string</value>
-          <value name="field_dim">0</value>
-          <record name="field_content_type" javaclass="com.wm.util.Values">
-            <value name="contentType">1</value>
-            <value name="internalType">reference</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-            <array name="targetNames" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">boolean</value>
-              </record>
-            </array>
-          </record>
-          <value name="nillable">false</value>
-          <value name="form_qualified">false</value>
-          <value name="is_global">false</value>
-        </record>
-        <record javaclass="com.wm.util.Values">
-          <value name="node_type">record</value>
-          <value name="node_comment"></value>
-          <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
-            <value name="field_largerEditor">false</value>
-            <value name="field_password">false</value>
-          </record>
-          <value name="field_name">$tsv?</value>
+          <value name="field_name">$xml?</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <record name="field_content_type" javaclass="com.wm.util.Values">
@@ -131,10 +79,10 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">### tundra.csv.mime.type:check
+  <value name="node_comment">### tundra.mime.type:is_xml
 
-Returns true if the given MIME media type is recognized as a comma, pipe,
-or tab separated values media type.
+Returns true if the given MIME media type is recognized as a [XML] media
+type.
 
 #### Inputs:
 
@@ -142,21 +90,16 @@ or tab separated values media type.
 
 #### Outputs:
 
-* $csv? is a boolean which when true indicates that the given
-  $content.type is a recognized [CSV] media type.
-* $psv? is a boolean which when true indicates that the given
-  $content.type is a recognized pipe separated values media type.
-* $tsv? is a boolean which when true indicates that the given
-  $content.type is a recognized [TSV] media type.
+* $xml? is a boolean which when true indicates that the given
+  $content.type is a recognized [XML] media type.
 
-[CSV]: &lt;http://en.wikipedia.org/wiki/Comma-separated_values&gt;
-[TSV]: &lt;http://en.wikipedia.org/wiki/Tab-separated_values&gt;</value>
+[XML]: &lt;http://www.w3.org/XML/&gt;</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
-  <value name="template">tundra_csv_mime_type_check</value>
+  <value name="template">tundra_xml_mime_type_check</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>

@@ -2919,26 +2919,6 @@ formatted string, byte array, or input stream.
 
 ---
 
-### tundra.csv.mime.type:check
-
-Returns true if the given MIME media type is recognized as a comma, pipe,
-or tab separated values media type.
-
-#### Inputs:
-
-* `$content.type` is the MIME media type to be checked.
-
-#### Outputs:
-
-* `$csv?` is a boolean which when true indicates that the given
-  `$content.type` is a recognized [CSV] media type.
-* `$psv?` is a boolean which when true indicates that the given
-  `$content.type` is a recognized pipe separated values media type.
-* `$tsv?` is a boolean which when true indicates that the given
-  `$content.type` is a recognized [TSV] media type.
-
----
-
 ### tundra.csv:parse
 
 Parses [CSV] content specified as a string, byte array, or input stream
@@ -7378,22 +7358,6 @@ input stream.
 
 ---
 
-### tundra.json.mime.type:check
-
-Returns true if the given MIME media type is recognized as a [JSON] media
-type.
-
-#### Inputs:
-
-* `$content.type` is the MIME media type to be checked.
-
-#### Outputs:
-
-* `$json?` is a boolean which when true indicates that the given
-  `$content.type` is a recognized [JSON] media type.
-
----
-
 ### tundra.json:parse
 
 Parses [JSON] content specified as a string, byte array, or input stream
@@ -11390,6 +11354,74 @@ Returns true if the given [mime type] strings are considered equal.
 
 ---
 
+### tundra.mime.type:is_csv
+
+Returns true if the given MIME media type is recognized as a comma, pipe,
+or tab separated values media type.
+
+#### Inputs:
+
+* `$content.type` is the MIME media type to be checked.
+
+#### Outputs:
+
+* `$csv?` is a boolean which when true indicates that the given
+  `$content.type` is a recognized [CSV] media type.
+* `$psv?` is a boolean which when true indicates that the given
+  `$content.type` is a recognized pipe separated values media type.
+* `$tsv?` is a boolean which when true indicates that the given
+  `$content.type` is a recognized [TSV] media type.
+
+---
+
+### tundra.mime.type:is_json
+
+Returns true if the given MIME media type is recognized as a [JSON] media
+type.
+
+#### Inputs:
+
+* `$content.type` is the MIME media type to be checked.
+
+#### Outputs:
+
+* `$json?` is a boolean which when true indicates that the given
+  `$content.type` is a recognized [JSON] media type.
+
+---
+
+### tundra.mime.type:is_xml
+
+Returns true if the given MIME media type is recognized as a [XML] media
+type.
+
+#### Inputs:
+
+* `$content.type` is the MIME media type to be checked.
+
+#### Outputs:
+
+* `$xml?` is a boolean which when true indicates that the given
+  `$content.type` is a recognized [XML] media type.
+
+---
+
+### tundra.mime.type:is_yaml
+
+Returns true if the given MIME media type is recognized as a [YAML] media
+type.
+
+#### Inputs:
+
+* `$content.type` is the MIME media type to be checked.
+
+#### Outputs:
+
+* `$yaml?` is a boolean which when true indicates that the given
+  `$content.type` is a recognized [YAML] media type.
+
+---
+
 ### tundra.mime.type:normalize
 
 Normalizes a mime type by removing extraneous whitespace characters,
@@ -15003,22 +15035,6 @@ software.
 
 ---
 
-### tundra.xml.mime.type:check
-
-Returns true if the given MIME media type is recognized as a [XML] media
-type.
-
-#### Inputs:
-
-* `$content.type` is the MIME media type to be checked.
-
-#### Outputs:
-
-* `$xml?` is a boolean which when true indicates that the given
-  `$content.type` is a recognized [XML] media type.
-
----
-
 ### tundra.xml:minify
 
 Removes all comments and extraneous whitespace from the given
@@ -15214,22 +15230,6 @@ stream into an `IData` document.
   `$content`.
   * `recordWithNoID` is an optional object or array, present only when
     the top-level of the given YAML content is not a key value map.
-
----
-
-### tundra.yaml.mime.type:check
-
-Returns true if the given MIME media type is recognized as a [YAML] media
-type.
-
-#### Inputs:
-
-* `$content.type` is the MIME media type to be checked.
-
-#### Outputs:
-
-* `$yaml?` is a boolean which when true indicates that the given
-  `$content.type` is a recognized [YAML] media type.
 
 ---
 

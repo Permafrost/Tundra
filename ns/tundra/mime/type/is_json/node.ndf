@@ -58,7 +58,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$yaml?</value>
+          <value name="field_name">$json?</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <record name="field_content_type" javaclass="com.wm.util.Values">
@@ -79,9 +79,9 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">### tundra.yaml.mime.type:check
+  <value name="node_comment">### tundra.mime.type:is_json
 
-Returns true if the given MIME media type is recognized as a [YAML] media
+Returns true if the given MIME media type is recognized as a [JSON] media
 type.
 
 #### Inputs:
@@ -90,16 +90,16 @@ type.
 
 #### Outputs:
 
-* $yaml? is a boolean which when true indicates that the given
-  $content.type is a recognized [YAML] media type.
+* $json? is a boolean which when true indicates that the given
+  $content.type is a recognized [JSON] media type.
 
-[YAML]: &lt;http://www.yaml.org&gt;</value>
+[JSON]: &lt;http://www.json.org/&gt;</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
-  <value name="template">tundra_yaml_mime_type_check</value>
+  <value name="template">tundra_json_mime_type_check</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
