@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-30 21:22:43 EST
+// -----( CREATED: 2017-05-30 21:43:15 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -110,10 +110,10 @@ public final class datetime
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $date
+		// [i] field:0:optional $date.pattern
 		// [i] field:0:optional $time
-		// [i] field:0:optional $pattern.date {"datetime","datetime.db2","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
-		// [i] field:0:optional $pattern.time {"datetime","datetime.db2","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
-		// [i] field:0:optional $pattern.datetime {"datetime","datetime.db2","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
+		// [i] field:0:optional $time.pattern
+		// [i] field:0:optional $datetime.pattern
 		// [i] field:0:optional $timezone.input
 		// [i] field:0:optional $timezone.output
 		// [o] field:0:optional $datetime
@@ -122,10 +122,10 @@ public final class datetime
 		try {
 		    String date = IDataHelper.get(cursor, "$date", String.class);
 		    String time = IDataHelper.get(cursor, "$time", String.class);
-		    String datePattern = IDataHelper.get(cursor, "$pattern.date", String.class);
+		    String datePattern = IDataHelper.first(cursor, String.class, "$date.pattern", "$pattern.date");
 		    
-		String timePattern = IDataHelper.get(cursor, "$pattern.time", String.class);
-		    String datetimePattern = IDataHelper.get(cursor, "$pattern.datetime", String.class);
+		String timePattern = IDataHelper.first(cursor, String.class, "$time.pattern", "$pattern.time");
+		    String datetimePattern = IDataHelper.first(cursor, String.class, "$datetime.pattern", "$pattern.datetime");
 		    String inTimeZone = IDataHelper.get(cursor, "$timezone.input", String.class);
 		    String outTimeZone = IDataHelper.get(cursor, "$timezone.output", String.class);
 		

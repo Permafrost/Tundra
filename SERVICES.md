@@ -3029,15 +3029,15 @@ string.
 #### Inputs:
 
 * `$date` is a date string.
-* `$time` is a time string.
-* `$pattern.date` is an optional date pattern that `$date` conforms to,
+* `$date.pattern` is an optional date pattern that `$date` conforms to,
   that will be used to parse the date string. Defaults to an
   [ISO8601] XML datetime.
-* `$pattern.input` is an optional time pattern that `$time` conforms to,
-  that will be used to parse the datetime string. Defaults to an
+* `$time` is a time string.
+* `$time.pattern` is an optional time pattern that `$time` conforms to,
+  that will be used to parse the time string. Defaults to an
   [ISO8601] XML datetime.
-* `$pattern.datetime` is an optional datetime pattern that will be
-  used to format the resulting `$datetime` string. Defaults to an
+* `$datetime.pattern` is an optional datetime pattern that will be
+  used to format the returned `$datetime` string. Defaults to an
   [ISO8601] XML datetime.
 * `$timezone.input` is an optional [java.util.TimeZone] ID, or a
   (+|-)HH:mm time zone offset, or an XML duration string
