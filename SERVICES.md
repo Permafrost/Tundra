@@ -3083,11 +3083,12 @@ Custom datetime patterns can be specified using
 
 * `$datetime.start` is the datetime string representing the starting
   instant for calculating the duration of time.
-* `$datetime.end` is the datetime string representing the ending instant
-  for calculating the duration of time.
-* `$datetime.pattern` is an optional datetime pattern that
-  `$datetime.start` and `$datetime.end` conform to. Defaults to an
-  [ISO8601] XML datetime.
+* `$datetime.start.pattern` is an optional datetime pattern that
+  `$datetime.start` conforms to. Defaults to an [ISO8601] XML datetime.
+* `$datetime.end` is the datetime string representing the ending
+  instant for calculating the duration of time.
+* `$datetime.end.pattern` is an optional datetime pattern that
+  `$datetime.end` conforms to. Defaults to an [ISO8601] XML datetime.
 * `$duration.pattern` is an optional duration pattern that the output
   `$duration` will be formatted as. Defaults to an [ISO8601] XML
   duration.

@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-30 21:43:15 EST
+// -----( CREATED: 2017-05-30 21:53:21 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -74,9 +74,9 @@ public final class datetime
 		// --- <<IS-START(compare)>> ---
 		// @sigtype java 3.5
 		// [i] field:0:optional $datetime.first
-		// [i] field:0:optional $datetime.first.pattern
+		// [i] field:0:optional $datetime.first.pattern {"datetime","datetime.db2","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
 		// [i] field:0:optional $datetime.second
-		// [i] field:0:optional $datetime.second.pattern
+		// [i] field:0:optional $datetime.second.pattern {"datetime","datetime.db2","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
 		// [o] field:0:required $before?
 		// [o] field:0:required $equal?
 		// [o] field:0:required $after?
@@ -110,10 +110,10 @@ public final class datetime
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $date
-		// [i] field:0:optional $date.pattern
+		// [i] field:0:optional $date.pattern {"datetime","datetime.db2","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
 		// [i] field:0:optional $time
-		// [i] field:0:optional $time.pattern
-		// [i] field:0:optional $datetime.pattern
+		// [i] field:0:optional $time.pattern {"datetime","datetime.db2","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
+		// [i] field:0:optional $datetime.pattern {"datetime","datetime.db2","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
 		// [i] field:0:optional $timezone.input
 		// [i] field:0:optional $timezone.output
 		// [o] field:0:optional $datetime
@@ -149,8 +149,9 @@ public final class datetime
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $datetime.start
+		// [i] field:0:optional $datetime.start.pattern {"datetime","datetime.db2","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
 		// [i] field:0:optional $datetime.end
-		// [i] field:0:optional $datetime.pattern {"datetime","datetime.db2","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
+		// [i] field:0:optional $datetime.end.pattern {"datetime","datetime.db2","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
 		// [i] field:0:optional $duration.pattern {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
 		// [o] field:0:optional $duration
 		IDataCursor cursor = pipeline.getCursor();
@@ -158,12 +159,11 @@ public final class datetime
 		try {
 		    String start = IDataHelper.get(cursor, "$datetime.start", String.class);
 		    String end = IDataHelper.get(cursor, "$datetime.end", String.class);
-		    String datetimePattern = IDataHelper.get(cursor, "$datetime.pattern", String.class);
-		    // support $pattern to be backwards compatible
-		    if (datetimePattern == null) datetimePattern = IDataHelper.get(cursor, "$pattern", String.class);
+		    String startPattern = IDataHelper.first(cursor, String.class, "$datetime.start.pattern", "$datetime.pattern", "$pattern");
+		    String endPattern = IDataHelper.first(cursor, String.class, "$datetime.end.pattern", "$datetime.pattern", "$pattern");
 		    String durationPattern = IDataHelper.get(cursor, "$duration.pattern", String.class);
 		
-		    String duration = DurationHelper.emit(DateTimeHelper.duration(DateTimeHelper.parse(start, datetimePattern), DateTimeHelper.parse(end, datetimePattern)), durationPattern);
+		    String duration = DurationHelper.emit(DateTimeHelper.duration(DateTimeHelper.parse(start, startPattern), DateTimeHelper.parse(end, endPattern)), durationPattern);
 		
 		    IDataHelper.put(cursor, "$duration", duration, false);
 		} finally {
