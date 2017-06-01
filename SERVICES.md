@@ -11283,13 +11283,15 @@ Routes arbitrary content to either the webMethods messaging
 subsystem via `pub.publish:publish`, a JMS destination, or a direct
 service invocation.
 
-The content can be specified as a string, byte array, `IData` document,
-`java.io.InputStream`, or `org.w3c.dom.Node` object.
+The content can be specified as a string, byte array, input stream,
+`org.w3c.dom.Node` object, `com.sap.conn.idoc.IDocDocumentList` object,
+or `IData` document.
 
 #### Inputs:
 
 * `$message` is arbitrary content specified as a string, byte array,
-  `IData` document, `java.io.InputStream`, or `org.w3c.dom.Node` object.
+  input stream, `IData` document, `com.sap.conn.idoc.IDocDocumentList`,
+  or `org.w3c.dom.Node`.
 * `$message.format` is an optional message format structure where only
   the `name` element is mandatory.
   * `name` is an optional message format name which if specified will
@@ -11298,6 +11300,12 @@ The content can be specified as a string, byte array, `IData` document,
     but is provided as an `IData` document, it will default to being
     routed using `pub.publish:publish` with this value as the
     `documentTypeName`.
+  * `parse/ref` is an optional document reference to be used when a
+    `$message` is specified as a `com.sap.conn.idoc.IDocDocumentList`
+    object: before message recognition and routing, `$message` is
+    converted to an `IData` document named `$document` using the service
+    `WmSAP/pub.sap.idoc:iDocToDocument` with the input argument
+    `conformsTo` set to this value.
 
 ---
 
