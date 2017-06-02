@@ -5324,6 +5324,19 @@ unmodified.
 
 ---
 
+### tundra.document:log
+
+Writes the given `IData` document to the server log as a minified
+[JSON] string, prefixed with the invoking user and call stack.
+
+#### Inputs:
+
+* `$document` is the `IData` document to be logged to the server log.
+* `$level` is the logging level used when writing the document to the
+  server log.
+
+---
+
 ### tundra.document:map
 
 Constructs a new IData document by invoking the given service for
