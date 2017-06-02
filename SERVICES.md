@@ -7340,21 +7340,26 @@ Returns true if the given string can be parsed as an integer.
 
 ### tundra.json:emit
 
-Serializes an IData document as a [JSON] formatted string, byte array, or
-input stream.
+Serializes an `IData` document as a [JSON] formatted string, byte
+array, or input stream.
 
 #### Inputs:
 
-* `$document` is the IData document to be serialized as a [JSON] string,
-  byte array, or input stream.
+* `$document` is the `IData` document to be serialized as a [JSON]
+  string, byte array, or input stream.
   * `recordWithNoID` is an optional array such as an `IData[]` document
     list which if specified will be serialized directly as a [JSON]
     array.
 * `$encoding` is an optional character set to use when encoding the
-  resulting text data to a byte array or input stream. Defaults to [UTF-8].
-* `$mode` is an optional choice of {stream, bytes, string} which
+  resulting text data to a byte array or input stream. Defaults to
+  [UTF-8].
+* `$mode` is an optional choice of `stream`, `bytes`, or `string` which
   specifies the type of object `$content` is returned as. Defaults to
-  stream.
+  `stream`.
+* `$minify?` is an optional boolean indicating whether the returned
+  [JSON] content should be minified by removing extraneous white
+  space. Defaults to `false`, and hence the returned content is pretty-
+  printed by default.
 
 #### Outputs:
 
