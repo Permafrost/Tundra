@@ -11329,6 +11329,28 @@ process.
 
 ---
 
+### tundra.mime.type:classify
+
+Returns a well-known content class for the given MIME media type.
+
+#### Inputs:
+
+* `$content.type` is the MIME media type to be classified.
+
+#### Outputs:
+
+* `$content.class` is the resulting classification of the given MIME
+  media type, and is one of the following values or null if it could
+  not be classified as one of these values:
+  * `csv` - comma-separated values
+  * `json` - javascript object notation
+  * `psv` - pipe-separated values
+  * `tsv` - tab-separated values
+  * `xml` - extensible markup language
+  * `yaml` - yaml ain't markup language
+
+---
+
 ### tundra.mime.type:emit
 
 Emits a Multipurpose Internet Mail Extension ([MIME]) type,
@@ -11364,74 +11386,6 @@ Returns true if the given [mime type] strings are considered equal.
 
 * `$equal?` is true if the given [mime type] strings are considered
   equal (their base and sub types both match).
-
----
-
-### tundra.mime.type:is_csv
-
-Returns true if the given MIME media type is recognized as a comma, pipe,
-or tab separated values media type.
-
-#### Inputs:
-
-* `$content.type` is the MIME media type to be checked.
-
-#### Outputs:
-
-* `$csv?` is a boolean which when true indicates that the given
-  `$content.type` is a recognized [CSV] media type.
-* `$psv?` is a boolean which when true indicates that the given
-  `$content.type` is a recognized pipe separated values media type.
-* `$tsv?` is a boolean which when true indicates that the given
-  `$content.type` is a recognized [TSV] media type.
-
----
-
-### tundra.mime.type:is_json
-
-Returns true if the given MIME media type is recognized as a [JSON] media
-type.
-
-#### Inputs:
-
-* `$content.type` is the MIME media type to be checked.
-
-#### Outputs:
-
-* `$json?` is a boolean which when true indicates that the given
-  `$content.type` is a recognized [JSON] media type.
-
----
-
-### tundra.mime.type:is_xml
-
-Returns true if the given MIME media type is recognized as a [XML] media
-type.
-
-#### Inputs:
-
-* `$content.type` is the MIME media type to be checked.
-
-#### Outputs:
-
-* `$xml?` is a boolean which when true indicates that the given
-  `$content.type` is a recognized [XML] media type.
-
----
-
-### tundra.mime.type:is_yaml
-
-Returns true if the given MIME media type is recognized as a [YAML] media
-type.
-
-#### Inputs:
-
-* `$content.type` is the MIME media type to be checked.
-
-#### Outputs:
-
-* `$yaml?` is a boolean which when true indicates that the given
-  `$content.type` is a recognized [YAML] media type.
 
 ---
 
