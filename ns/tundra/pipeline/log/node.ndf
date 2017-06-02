@@ -64,14 +64,15 @@
   </record>
   <value name="node_comment">### tundra.pipeline:log
 
-Writes the current pipeline to the server log.
+Writes the current pipeline to the server log as a minified [JSON] 
+string, prefixed with the invoking user and call stack.
 
 #### Inputs:
 
-* $level is the logging level used when writing the
-  pipeline contents to the server log.
+* $level is the logging level used when writing the pipeline 
+  contents to the server log.
 
-</value>
+[JSON]: &lt;http://www.json.org/&gt;</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

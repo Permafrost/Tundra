@@ -12154,12 +12154,13 @@ unmodified.
 
 ### tundra.pipeline:log
 
-Writes the current pipeline to the server log.
+Writes the current pipeline to the server log as a minified [JSON]
+string, prefixed with the invoking user and call stack.
 
 #### Inputs:
 
-* `$level` is the logging level used when writing the
-  pipeline contents to the server log.
+* `$level` is the logging level used when writing the pipeline
+  contents to the server log.
 
 ---
 
