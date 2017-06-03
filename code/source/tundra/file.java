@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-06 15:51:46 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2017-06-03 18:27:50 EST
+// -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -11,6 +11,8 @@ import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import java.io.Closeable;
 import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.nio.charset.Charset;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.io.CloseableHelper;
@@ -558,14 +560,14 @@ public final class file
 	
 	        try {
 	            if (mode == null || mode.equals("read")) {
-	                stream = InputStreamHelper.normalize(new java.io.FileInputStream(file));
+	                stream = InputStreamHelper.normalize(new FileInputStream(file));
 	            } else {
 	                if (!FileHelper.exists(file)) FileHelper.create(file);
-	                stream = OutputStreamHelper.normalize(new java.io.FileOutputStream(file, mode.equalsIgnoreCase("append")));
+	                stream = OutputStreamHelper.normalize(new FileOutputStream(file, mode.equalsIgnoreCase("append")));
 	            }
 	
 	            IDataCursor cursor = pipeline.getCursor();
-	            IDataUtil.put(cursor, input, stream);
+	            IDataHelper.put(cursor, input, stream);
 	            cursor.destroy();
 	
 	            pipeline = ServiceHelper.invoke(service, pipeline);
@@ -575,7 +577,7 @@ public final class file
 	            CloseableHelper.close(stream);
 	
 	            IDataCursor cursor = pipeline.getCursor();
-	            IDataUtil.remove(cursor, input);
+	            IDataHelper.remove(cursor, input);
 	            cursor.destroy();
 	        }
 	    }

@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-06 15:48:41 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2017-06-03 18:11:53 EST
+// -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -258,10 +258,10 @@ public final class directory
 		        }
 		    } else {
 		        // support $pattern and $mode for backwards-compatibility
-		        String pattern = IDataUtil.getString(cursor, "$pattern");
-		        String mode = IDataUtil.getString(cursor, "$mode");
+		        String pattern = IDataHelper.get(cursor, "$pattern", String.class);
+		        FilenameFilterType mode = IDataHelper.get(cursor, "$mode", FilenameFilterType.class);
 		        if (pattern != null) {
-		            filter = new InclusionFilenameFilter(FilenameFilterType.normalize(mode), pattern);
+		            filter = new InclusionFilenameFilter(mode, pattern);
 		        }
 		    }
 		

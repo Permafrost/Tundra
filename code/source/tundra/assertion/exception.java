@@ -1,14 +1,15 @@
 package tundra.assertion;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-03 12:59:24 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2017-06-03 18:04:00 EST
+// -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
 import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import java.text.MessageFormat;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.StringHelper;
@@ -65,29 +66,29 @@ public final class exception
 	// --- <<IS-START-SHARED>> ---
 	// throws an assertion exception if the invocation of the give service does not throw an exception matching the given criteria
 	public static void raised(String service, IData pipeline, IData criteria, String assertionMessage) {
-	    String exceptionClassName = null;
+	    Class exceptionClass = null;
 	    String exceptionMessagePattern = null;
 	    boolean exceptionMessagePatternLiteral = false;
 	
 	    if (criteria != null) {
 	        IDataCursor cc = criteria.getCursor();
-	        exceptionClassName = IDataUtil.getString(cc, "class");
-	        IData messageCriteria = IDataUtil.getIData(cc, "message");
+	        exceptionClass = IDataHelper.get(cc, "class", Class.class);
+	        IData messageCriteria = IDataHelper.get(cc, "message", IData.class);
 	        cc.destroy();
 	
 	        if (messageCriteria != null) {
 	            IDataCursor mc = messageCriteria.getCursor();
-	            exceptionMessagePattern = IDataUtil.getString(mc, "pattern");
-	            exceptionMessagePatternLiteral = BooleanHelper.parse(IDataUtil.getString(mc, "literal?"));
+	            exceptionMessagePattern = IDataHelper.get(mc, "pattern", String.class);
+	            exceptionMessagePatternLiteral = IDataHelper.getOrDefault(mc, "literal?", Boolean.class, false);
 	            mc.destroy();
 	        }
 	    }
 	
-	    raised(service, pipeline, exceptionClassName, exceptionMessagePattern, exceptionMessagePatternLiteral, assertionMessage);
+	    raised(service, pipeline, exceptionClass, exceptionMessagePattern, exceptionMessagePatternLiteral, assertionMessage);
 	}
 	
 	// throws an assertion exception if the invocation of the give service does not throw an exception matching the given criteria
-	public static void raised(String service, IData pipeline, String exceptionClassName, String exceptionMessagePattern, boolean exceptionMessagePatternLiteral, String assertionMessage) {
+	public static void raised(String service, IData pipeline, Class exceptionClass, String exceptionMessagePattern, boolean exceptionMessagePatternLiteral, String assertionMessage) {
 	    Throwable exception = null;
 	
 	    try {
@@ -96,54 +97,43 @@ public final class exception
 	        exception = ex;
 	    } finally {
 	        boolean assertionFailed = (exception == null) ||
-	                (exceptionClassName != null && !instance(exception, exceptionClassName)) ||
+	                (exceptionClass != null && !tundra.object.instance(exception, exceptionClass)) ||
 	                (exceptionMessagePattern != null && !StringHelper.match(exception.getMessage(), exceptionMessagePattern, exceptionMessagePatternLiteral));
 	
-	        if (assertionFailed) throw new AssertionError(getMessage(exception, assertionMessage, exceptionClassName, exceptionMessagePattern, exceptionMessagePatternLiteral));
+	        if (assertionFailed) throw new AssertionError(getMessage(exception, assertionMessage, exceptionClass, exceptionMessagePattern, exceptionMessagePatternLiteral));
 	    }
 	}
 	
-	// returns true if the given object is an instance of the given className
-	protected static boolean instance(Object object, String className) {
-	    boolean result = false;
-	
-	    try {
-	        result = tundra.object.instance(object, className);
-	    } catch(ServiceException ex) { }
-	
-	    return result;
-	}
-	
-	protected static String getMessage(Throwable exception, String assertionMessage, String exceptionClassName, String exceptionMessagePattern, boolean exceptionMessagePatternLiteral) {
+	private static String getMessage(Throwable exception, String assertionMessage, Class exceptionClass, String exceptionMessagePattern, boolean exceptionMessagePatternLiteral) {
 	    String message = null;
 	
-	    if (exceptionClassName != null || exceptionMessagePattern != null) {
+	    if (exceptionClass != null || exceptionMessagePattern != null) {
 	        String criteriaMessage = null;
-	        if (exceptionClassName != null) criteriaMessage = java.text.MessageFormat.format("that is an instance of class ''{0}''", exceptionClassName);
+	        if (exceptionClass != null) criteriaMessage = MessageFormat.format("that is an instance of class ''{0}''", exceptionClass.getName());
 	        if (exceptionMessagePattern != null) {
 	            if (criteriaMessage != null) {
 	                if (exceptionMessagePatternLiteral) {
-	                    criteriaMessage = java.text.MessageFormat.format("{0} with a message that literally matches ''{1}''", criteriaMessage, exceptionMessagePattern);
+	                    criteriaMessage = MessageFormat.format("{0} with a message that literally matches ''{1}''", criteriaMessage, exceptionMessagePattern);
 	                } else {
-	                    criteriaMessage = java.text.MessageFormat.format("{0} with a message that matches the regular expression /{1}/", criteriaMessage, exceptionMessagePattern);
+	                    criteriaMessage = MessageFormat.format("{0} with a message that matches the regular expression /{1}/", criteriaMessage, exceptionMessagePattern);
 	                }
 	            } else {
 	                if (exceptionMessagePatternLiteral) {
-	                    criteriaMessage = java.text.MessageFormat.format("with a message that literally matches ''{0}''", exceptionMessagePattern);
+	                    criteriaMessage = MessageFormat.format("with a message that literally matches ''{0}''", exceptionMessagePattern);
 	                } else {
-	                    criteriaMessage = java.text.MessageFormat.format("with a message that matches the regular expression /{0}/", exceptionMessagePattern);
+	                    criteriaMessage = MessageFormat.format("with a message that matches the regular expression /{0}/", exceptionMessagePattern);
 	                }
 	            }
 	        }
-	        message = java.text.MessageFormat.format("an exception {0} was expected but none was thrown", criteriaMessage);
+	        message = MessageFormat.format("an exception {0} was expected but none was thrown", criteriaMessage);
 	    } else {
 	        message = "an exception was expected but none was thrown";
 	    }
 	
 	    if (assertionMessage == null) {
-	        assertionMessage = java.text.MessageFormat.format("Assertion failed: {0}", message);
+	        assertionMessage = MessageFormat.format("Assertion failed: {0}", message);
 	    } else {
-	        assertionMessage = java.text.MessageFormat.format("Assertion failed: {0} ({1})", assertionMessage, message);
+	        assertionMessage = MessageFormat.format("Assertion failed: {0} ({1})", assertionMessage, message);
 	    }
 	
 	    return assertionMessage;

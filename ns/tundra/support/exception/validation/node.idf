@@ -11,5 +11,6 @@
   </array>
   <array name="imports" type="value" depth="1">
     <value>permafrost.tundra.content.ValidationException</value>
+    <value>permafrost.tundra.data.IDataHelper</value>
   </array>
 </Values>

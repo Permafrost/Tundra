@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-20 15:21:32 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2017-06-03 18:56:23 EST
+// -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -406,7 +406,7 @@ public final class object
 		    int indexStart = IDataHelper.getOrDefault(cursor, "$index.start", Integer.class, 0);
 		    int indexStep = IDataHelper.getOrDefault(cursor, "$index.step", Integer.class, 1);
 		
-		    if (list != null) IDataUtil.put(cursor, "$indexes", ArrayHelper.index(list, indexStart, indexStep));
+		    if (list != null) IDataHelper.put(cursor, "$indexes", ArrayHelper.index(list, indexStart, indexStep));
 		} finally {
 		    cursor.destroy();
 		}
@@ -919,12 +919,12 @@ public final class object
 	    IDataCursor cursor = pipeline.getCursor();
 	
 	    try {
-	        T[] list = (T[])IDataUtil.getObjectArray(cursor, "$list");
-	        T item = (T)IDataUtil.get(cursor, "$item");
+	        T[] list = (T[])IDataHelper.get(cursor, "$list", ClassHelper.getArrayClass(klass, 1));
+	        T item = (T)IDataHelper.get(cursor, "$item", klass);
 	
 	        list = ArrayHelper.append(list, item, klass, false);
 	
-	        if (list != null) IDataUtil.put(cursor, "$list", list);
+	        IDataHelper.put(cursor, "$list", list, false);
 	    } finally {
 	        cursor.destroy();
 	    }
@@ -941,12 +941,12 @@ public final class object
 	    IDataCursor cursor = pipeline.getCursor();
 	
 	    try {
-	        IData operands = IDataUtil.getIData(cursor, "$operands");
+	        IData operands = IDataHelper.get(cursor, "$operands", IData.class);
 	
 	        // support $list.x and $list.y inputs for backwards-compatibility
 	        if (operands == null) {
-	            Object[] listX = IDataUtil.getObjectArray(cursor, "$list.x");
-	            Object[] listY = IDataUtil.getObjectArray(cursor, "$list.y");
+	            Object[] listX = IDataHelper.get(cursor, "$list.x", Object[].class);
+	            Object[] listY = IDataHelper.get(cursor, "$list.y", Object[].class);
 	
 	            IDataMap map = new IDataMap();
 	            if (listX != null) map.put("$list.x", listX);
@@ -954,7 +954,7 @@ public final class object
 	            operands = map;
 	        }
 	
-	        if (IDataHelper.size(operands) > 0) IDataUtil.put(cursor, "$list", ArrayHelper.concatenate(operands, klass));
+	        if (IDataHelper.size(operands) > 0) IDataHelper.put(cursor, "$list", ArrayHelper.concatenate(operands, klass));
 	    } finally {
 	        cursor.destroy();
 	    }
@@ -985,12 +985,12 @@ public final class object
 	    IDataCursor cursor = pipeline.getCursor();
 	
 	    try {
-	        IData operands = IDataUtil.getIData(cursor, "$operands");
+	        IData operands = IDataHelper.get(cursor, "$operands", IData.class);
 	
 	        // support $list.x and $list.y inputs for backwards-compatibility
 	        if (operands == null) {
-	            Object[] listX = IDataUtil.getObjectArray(cursor, "$list.x");
-	            Object[] listY = IDataUtil.getObjectArray(cursor, "$list.y");
+	            Object[] listX = IDataHelper.get(cursor, "$list.x", Object[].class);
+	            Object[] listY = IDataHelper.get(cursor, "$list.y", Object[].class);
 	
 	            IDataMap map = new IDataMap();
 	            if (listX != null) map.put("$list.x", listX);
@@ -998,7 +998,7 @@ public final class object
 	            operands = map;
 	        }
 	
-	        IDataUtil.put(cursor, "$equal?", BooleanHelper.emit(ArrayHelper.equal(operands, klass)));
+	        IDataHelper.put(cursor, "$equal?", ArrayHelper.equal(operands, klass), String.class);
 	    } finally {
 	        cursor.destroy();
 	    }
@@ -1022,11 +1022,11 @@ public final class object
 	
 	    for (int i = 0; i < array.length; i++) {
 	        IDataCursor cursor = pipeline.getCursor();
-	        IDataUtil.put(cursor, "$item", array[i]);
+	        IDataHelper.put(cursor, "$item", array[i]);
 	
 	        if (ConditionEvaluator.evaluate(condition, pipeline)) list.add(array[i]);
 	
-	        IDataUtil.remove(cursor, "$item");
+	        IDataHelper.remove(cursor, "$item");
 	        cursor.destroy();
 	    }
 	

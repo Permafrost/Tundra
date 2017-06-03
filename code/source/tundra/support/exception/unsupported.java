@@ -1,8 +1,8 @@
 package tundra.support.exception;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2016-06-23 13:15:30 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2017-06-03 18:36:08 EST
+// -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -10,6 +10,7 @@ import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import permafrost.tundra.content.UnsupportedException;
+import permafrost.tundra.data.IDataHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class unsupported
@@ -38,7 +39,7 @@ public final class unsupported
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    throw new UnsupportedException(IDataUtil.getString(cursor, "$message"));
+		    throw new UnsupportedException(IDataHelper.get(cursor, "$message", String.class));
 		} finally {
 		    cursor.destroy();
 		}

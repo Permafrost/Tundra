@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-08 18:35:04 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2017-06-03 18:37:51 EST
+// -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -287,7 +287,7 @@ public final class service
 		        scope = ServiceHelper.invoke(service, scoped ? scope : pipeline, raise);
 		        long end = System.currentTimeMillis();
 		
-		        if (scoped) IDataUtil.put(cursor, "$pipeline", scope);
+		        if (scoped) IDataHelper.put(cursor, "$pipeline", scope);
 		        IDataHelper.put(cursor, "$duration", DurationHelper.format(end - start, DurationPattern.XML));
 		    }
 		} finally {

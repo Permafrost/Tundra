@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-06-02 12:35:14.431
-// -----( ON-HOST: -
+// -----( CREATED: 2017-06-03 18:15:40 EST
+// -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -45,17 +45,17 @@ public final class json
 		// [i] record:0:optional $document
 		// [i] - object:1:optional recordWithNoID
 		// [i] field:0:optional $encoding
-		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
-		// [i] field:0:optional $minify? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $mode {"stream","bytes","string"}
+		// [i] field:0:optional $minify? {"false","true"}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IData document = IDataHelper.get(cursor, "$document", IData.class);
 		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
 		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
 		    boolean minify = IDataHelper.getOrDefault(cursor, "$minify?", Boolean.class, false);
-
+		
 		    if (document != null) {
 		        IDataJSONParser parser = minify ? new IDataJSONParser(!minify) : IDataJSONParser.getInstance();
 		        IDataHelper.put(cursor, "$content", ObjectHelper.convert(parser.emit(document, charset), charset, mode));
@@ -67,7 +67,7 @@ public final class json
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -83,13 +83,13 @@ public final class json
 		// [o] record:0:optional $document
 		// [o] - object:1:optional recordWithNoID
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    Object content = IDataHelper.get(cursor, "$content");
 		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
-
+		
 		    if (content != null) {
-		        IDataUtil.put(cursor, "$document", IDataJSONParser.getInstance().parse(InputStreamHelper.normalize(content, charset), charset));
+		        IDataHelper.put(cursor, "$document", IDataJSONParser.getInstance().parse(InputStreamHelper.normalize(content, charset), charset));
 		    }
 		} catch (IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -98,7 +98,7 @@ public final class json
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 

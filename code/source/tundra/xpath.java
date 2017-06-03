@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-07 14:07:30 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2017-06-03 18:14:03 EST
+// -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -154,7 +154,7 @@ public final class xpath
 		        IDataHelper.put(cursor, "$nodes", nodes.reflect(namespace, recurse));
 		        IDataHelper.put(cursor, "$nodes.length", nodes.size(), String.class);
 		    } else {
-		        IDataUtil.put(cursor, "$nodes.length", "0");
+		        IDataHelper.put(cursor, "$nodes.length", "0");
 		    }
 		} catch(XPathExpressionException ex) {
 		    ExceptionHelper.raise(ex);

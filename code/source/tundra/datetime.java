@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-06-03 17:18:53 EST
+// -----( CREATED: 2017-06-03 18:06:42 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -295,7 +295,7 @@ public final class datetime
 		
 		    String datetime = DateTimeHelper.emit(DateTimeHelper.later(DurationHelper.parse(duration, durationPattern)), datetimePattern, timezone);
 		
-		    IDataUtil.put(cursor, "$datetime", datetime);
+		    IDataHelper.put(cursor, "$datetime", datetime);
 		} finally {
 		    cursor.destroy();
 		}
@@ -474,7 +474,7 @@ public final class datetime
 		
 		    String datetime = DateTimeHelper.today(pattern, timezone);
 		
-		    IDataUtil.put(cursor, "$datetime", datetime);
+		    IDataHelper.put(cursor, "$datetime", datetime);
 		} finally {
 		    cursor.destroy();
 		}

@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-08 19:02:30 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2017-06-03 18:45:55 EST
+// -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -118,7 +118,7 @@ public final class document
 		
 		try {
 		    IData document = IDataHelper.get(cursor, "$document", IData.class);
-		    String[] keys = IDataUtil.getStringArray(cursor, "$preserve");
+		    String[] keys = IDataHelper.get(cursor, "$preserve", String[].class);
 		
 		    IDataHelper.clear(document, keys);
 		} finally {
@@ -857,12 +857,12 @@ public final class document
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData document = IDataUtil.getIData(cursor, "$document");
-		    String key = IDataUtil.getString(cursor, "$key");
-		    boolean literal = BooleanHelper.parse(IDataUtil.getString(cursor, "$key.literal?"));
-		    Object value = IDataUtil.get(cursor, "$value");
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    String key = IDataHelper.get(cursor, "$key", String.class);
+		    boolean literal = IDataHelper.getOrDefault(cursor, "$key.literal?", Boolean.class, false);
+		    Object value = IDataHelper.get(cursor, "$value");
 		
-		    IDataUtil.put(cursor, "$document", IDataHelper.put(document, key, value, literal));
+		    IDataHelper.put(cursor, "$document", IDataHelper.put(document, key, value, literal));
 		} finally {
 		    cursor.destroy();
 		}
