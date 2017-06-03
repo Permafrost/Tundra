@@ -4226,6 +4226,7 @@ or file name.
 
 #### Outputs:
 
+* `$path` is the path of the joined parent and children items.
 * `$uri` is a `file:` [URI] representing the path of the joined parent
   and children items.
 

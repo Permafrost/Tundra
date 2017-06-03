@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-06-03 18:11:53 EST
+// -----( CREATED: 2017-06-03 19:30:20 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -9,8 +9,9 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
-import java.io.IOException;
+import java.io.File;
 import java.io.FilenameFilter;
+import java.io.IOException;
 import java.math.BigInteger;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.io.DirectoryHelper;
@@ -190,6 +191,7 @@ public final class directory
 		// @sigtype java 3.5
 		// [i] field:0:optional $parent
 		// [i] field:1:optional $children
+		// [o] field:0:optional $path
 		// [o] field:0:optional $uri
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -209,9 +211,12 @@ public final class directory
 		        children = ArrayHelper.prepend(children, parent, String.class);
 		    }
 		
-		    String path = DirectoryHelper.join(children);
+		    File file = DirectoryHelper.join(children);
 		
-		    IDataHelper.put(cursor, "$uri", path, false);
+		    if (file != null) {
+		        IDataHelper.put(cursor, "$path", file.getPath(), false);
+		        IDataHelper.put(cursor, "$uri", FileHelper.normalize(file), false);
+		    }
 		} finally {
 		    cursor.destroy();
 		}
