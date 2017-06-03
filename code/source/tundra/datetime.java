@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-30 21:53:21 EST
+// -----( CREATED: 2017-06-03 17:18:53 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -48,9 +48,7 @@ public final class datetime
 		
 		try {
 		    String datetime = IDataHelper.get(cursor, "$datetime", String.class);
-		    String datetimePattern = IDataHelper.get(cursor, "$datetime.pattern", String.class);
-		    // support $pattern to be backwards compatible
-		    if (datetimePattern == null) datetimePattern = IDataHelper.get(cursor, "$pattern", String.class);
+		    String datetimePattern = IDataHelper.first(cursor, String.class, "$datetime.pattern", "$pattern");
 		
 		    String duration = IDataHelper.get(cursor, "$duration", String.class);
 		    String durationPattern = IDataHelper.get(cursor, "$duration.pattern", String.class);
@@ -83,12 +81,12 @@ public final class datetime
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String date1 = IDataHelper.first(cursor, String.class, "$datetime.first", "$datetime.x");
-		    String date2 = IDataHelper.first(cursor, String.class, "$datetime.second", "$datetime.y");
-		    String pattern1 = IDataHelper.first(cursor, String.class, "$datetime.first.pattern", "$pattern.x", "$pattern");
-		    String pattern2 = IDataHelper.first(cursor, String.class, "$datetime.second.pattern", "$pattern.y", "$pattern");
+		    String firstDateTime = IDataHelper.first(cursor, String.class, "$datetime.first", "$datetime.x");
+		    String secondDateTime = IDataHelper.first(cursor, String.class, "$datetime.second", "$datetime.y");
+		    String firstPattern = IDataHelper.first(cursor, String.class, "$datetime.first.pattern", "$pattern.x", "$pattern");
+		    String secondPattern = IDataHelper.first(cursor, String.class, "$datetime.second.pattern", "$pattern.y", "$pattern");
 		
-		    int comparison = DateTimeHelper.compare(date1, pattern1, date2, pattern2);
+		    int comparison = DateTimeHelper.compare(firstDateTime, firstPattern, secondDateTime, secondPattern);
 		
 		    IDataHelper.put(cursor, "$before?", comparison < 0, String.class);
 		    IDataHelper.put(cursor, "$equal?", comparison == 0, String.class);
@@ -442,9 +440,7 @@ public final class datetime
 		
 		try {
 		    String datetime = IDataHelper.get(cursor, "$datetime", String.class);
-		    String datetimePattern = IDataHelper.get(cursor, "$datetime.pattern", String.class);
-		    // support $pattern to be backwards compatible
-		    if (datetimePattern == null) datetimePattern = IDataHelper.get(cursor, "$pattern", String.class);
+		    String datetimePattern = IDataHelper.first(cursor, String.class, "$datetime.pattern", "$pattern");
 		    String duration = IDataHelper.get(cursor, "$duration", String.class);
 		    String durationPattern = IDataHelper.get(cursor, "$duration.pattern", String.class);
 		    
