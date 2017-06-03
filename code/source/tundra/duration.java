@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-06 16:26:52 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2017-06-03 20:17:19 EST
+// -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -80,8 +80,10 @@ public final class duration
 		// --- <<IS-START(compare)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional $duration.x
-		// [i] field:0:optional $duration.y
+		// [i] field:0:optional $duration.first
+		// [i] field:0:optional $duration.first.pattern {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
+		// [i] field:0:optional $duration.second
+		// [i] field:0:optional $duration.second.pattern {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
 		// [i] field:0:optional $pattern {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
 		// [o] field:0:required $lesser?
 		// [o] field:0:required $equal?
@@ -90,11 +92,12 @@ public final class duration
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String x = IDataHelper.get(cursor, "$duration.x", String.class);
-		    String y = IDataHelper.get(cursor, "$duration.y", String.class);
-		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
+		    String firstDuration = IDataHelper.first(cursor, String.class, "$duration.first", "$duration.x");
+		    String firstPattern = IDataHelper.first(cursor, String.class, "$duration.first.pattern", "$pattern");
+		    String secondDuration = IDataHelper.first(cursor, String.class, "$duration.second", "$duration.y");
+		    String secondPattern = IDataHelper.first(cursor, String.class, "$duration.second.pattern", "$pattern");
 		
-		    int comparison = DurationHelper.compare(DurationHelper.parse(x, pattern), DurationHelper.parse(y, pattern));
+		    int comparison = DurationHelper.compare(DurationHelper.parse(firstDuration, firstPattern), DurationHelper.parse(secondDuration, secondPattern));
 		
 		    boolean lesser        = comparison == javax.xml.datatype.DatatypeConstants.LESSER;
 		    boolean equal         = comparison == javax.xml.datatype.DatatypeConstants.EQUAL;

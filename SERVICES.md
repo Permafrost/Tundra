@@ -6004,9 +6004,9 @@ Adds the given durations, returning the total.
 
 ### tundra.duration:compare
 
-Compares one duration (x) to another (y), returning if the first is
-less than, equal to, greater than, or if the comparison is
-indeterminate.
+Compares one duration to another, returning if the first is less
+than, equal to, or greater than the second, or if the comparison
+itself is indeterminate.
 
 Indeterminate comparisons occur when, for example, comparing 1 month
 with 30 days: as the result could change depending on the month in
@@ -6014,20 +6014,27 @@ question, it is therefore considered indeterminate.
 
 #### Inputs:
 
-* `$duration.x` is a duration string to be compared to `$duration.y`.
-* `$duration.y` is a duration string to be compared to `$duration.x`.
-* `$pattern` is an optional pattern describing the type of duration
-  specified by the `$duration.x` and `$duration.y` strings. Defaults
-  to an [ISO8601] XML string.
+* `$duration.first` is a duration string to be compared to
+  `$duration.second`.
+* `$duration.first.pattern` is an optional pattern describing the type
+  of duration specified by `$duration.first`. Defaults to an [ISO8601]
+  XML string.
+* `$duration.second` is a duration string to be compared to
+  `$duration.first`.
+* `$duration.second.pattern` is an optional pattern describing the
+  type of duration specified by `$duration.second`. Defaults to an
+  [ISO8601] XML string.
 
 #### Outputs:
 
-* `$lesser?` is true if `$duration.x` is a smaller duration than
-  `$duration.y`.
-* `$equal?` is true if `$duration.x` is equivalent to `$duration.y`.
-* `$greater?` is true if `$duration.x` is larger than `$duration.y`.
-* `$indeterminate?` is true if `$duration.x` and `$duration.y` cannot be
-  compared.
+* `$lesser?` is `true` if `$duration.first` is a smaller duration than
+  `$duration.second`.
+* `$equal?` is `true` if `$duration.first` is equivalent to
+  `$duration.second`.
+* `$greater?` is `true` if `$duration.first` is larger than
+  `$duration.second`.
+* `$indeterminate?` is `true` if `$duration.first` and `$duration.second`
+  cannot be compared.
 
 ---
 
