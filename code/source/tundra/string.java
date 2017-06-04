@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-07 17:34:28 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2017-06-04 14:22:04 EST
+// -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -99,7 +99,7 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
 		// [i] field:0:optional $pattern
-		// [o] field:0:required $captured?
+		// [o] field:0:required $captured? {"false","true"}
 		// [o] record:1:optional $captures
 		// [o] - record:1:required groups
 		// [o] -- field:0:required captured?
@@ -197,9 +197,9 @@ public final class string
 		// [i] field:0:optional $string.y
 		// [i] field:0:optional $insensitive.case? {"false","true"}
 		// [i] field:0:optional $insensitive.whitespace? {"false","true"}
-		// [o] field:0:required $before?
-		// [o] field:0:required $equal?
-		// [o] field:0:required $after?
+		// [o] field:0:required $before? {"false","true"}
+		// [o] field:0:required $equal? {"false","true"}
+		// [o] field:0:required $after? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -261,7 +261,7 @@ public final class string
 		// [i] field:0:optional $string
 		// [i] field:0:optional $pattern
 		// [i] field:0:optional $literal? {"false","true"}
-		// [o] field:0:required $found?
+		// [o] field:0:required $found? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -438,7 +438,7 @@ public final class string
 		// [i] field:0:optional $string
 		// [i] field:0:optional $pattern
 		// [i] field:0:optional $literal? {"false","true"}
-		// [o] field:0:required $match?
+		// [o] field:0:required $match? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -571,6 +571,7 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
 		// [i] field:0:optional $pattern
+		// [i] field:0:optional $literal? {"false","true"}
 		// [i] field:0:optional $mode {"all","first"}
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
@@ -578,9 +579,10 @@ public final class string
 		try {
 		    String string = IDataHelper.get(cursor, "$string", String.class);
 		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
+		    boolean literal = IDataHelper.getOrDefault(cursor, "$literal?", Boolean.class, false);
 		    String mode = IDataHelper.get(cursor, "$mode", String.class);
 		
-		    IDataHelper.put(cursor, "$string", StringHelper.remove(string, pattern, (!(mode == null || mode.equals("all")))), false);
+		    IDataHelper.put(cursor, "$string", StringHelper.remove(string, pattern, literal, (!(mode == null || mode.equals("all")))), false);
 		} finally {
 		    cursor.destroy();
 		}

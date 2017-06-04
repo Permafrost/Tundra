@@ -14088,13 +14088,17 @@ expression pattern] from the given string.
   [regular expression pattern] removed.
 * `$pattern` is the [regular expression pattern] to match against
   the given string. If not specified, no removal will occur.
+* `$literal?` is a boolean indicating if the `$pattern` string should
+  be treated as a literal string. If `false`, `$pattern` is treated
+  as a [regular expression pattern]. If `true`, `$pattern` is treated
+  as a literal string. Defaults to `false`, if not specified.
 * `$mode` is a choice of whether to remove all occurrences of the
-  pattern, or just the first occurrence. If not specified,
-  defaults to all occurrences.
+  pattern, or just the first occurrence. Defaults to all occurrences,
+  if not specified.
 
 #### Outputs:
 
-* `$string` is the input string with all occurrences of the given
+* `$string` is the input string with occurrences of the given
   [regular expression pattern] removed.
 
 ---
