@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-08 17:34:21 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2017-06-04 19:57:16 EST
+// -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -18,6 +18,8 @@ import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.math.BigDecimalHelper;
 import permafrost.tundra.math.BigIntegerHelper;
+import permafrost.tundra.math.DoubleHelper;
+import permafrost.tundra.math.NormalDistributionEstimator;
 import permafrost.tundra.math.PrecisionHelper;
 // --- <<IS-END-IMPORTS>> ---
 
@@ -142,6 +144,48 @@ public final class decimal
 		        IDataHelper.put(cursor, "$decimal", result, String.class, false);
 		    } else {
 		        IDataHelper.put(cursor, "$average", result, String.class, false);
+		    }
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void deviate (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(deviate)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:0:optional $operands
+		// [i] field:0:optional $precision
+		// [i] field:0:optional $rounding {"HALF_UP","CEILING","DOWN","FLOOR","HALF_DOWN","HALF_EVEN","UNNECESSARY","UP"}
+		// [o] field:0:optional $sample.deviation
+		// [o] field:0:optional $sample.variance
+		// [o] field:0:optional $sample.mean
+		// [o] field:0:optional $sample.count
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    IData operands = IDataHelper.get(cursor, "$operands", IData.class);
+		    int precision = IDataHelper.getOrDefault(cursor, "$precision", Integer.class, -1);
+		    RoundingMode rounding = IDataHelper.get(cursor, "$rounding", RoundingMode.class);
+		
+		    Object[] leaves = IDataHelper.getLeafValues(operands);
+		
+		    if (leaves != null && leaves.length > 0) {
+		        double[] samples = DoubleHelper.normalize(BigDecimalHelper.normalize(leaves));
+		
+		        NormalDistributionEstimator estimator = new NormalDistributionEstimator(samples);
+		
+		        IDataHelper.put(cursor, "$sample.deviation", BigDecimalHelper.round(new BigDecimal(estimator.getStandardDeviation()), precision, rounding), String.class, false);
+		        IDataHelper.put(cursor, "$sample.variance", BigDecimalHelper.round(new BigDecimal(estimator.getVariance()), precision, rounding), String.class, false);
+		        IDataHelper.put(cursor, "$sample.mean", BigDecimalHelper.round(new BigDecimal(estimator.getMean()), precision, rounding), String.class, false);
+		        IDataHelper.put(cursor, "$sample.count", estimator.getCount(), String.class, false);
 		    }
 		} finally {
 		    cursor.destroy();

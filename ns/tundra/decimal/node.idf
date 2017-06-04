@@ -19,6 +19,8 @@
     <value>permafrost.tundra.lang.ExceptionHelper</value>
     <value>permafrost.tundra.math.BigDecimalHelper</value>
     <value>permafrost.tundra.math.BigIntegerHelper</value>
+    <value>permafrost.tundra.math.DoubleHelper</value>
+    <value>permafrost.tundra.math.NormalDistributionEstimator</value>
     <value>permafrost.tundra.math.PrecisionHelper</value>
   </array>
 </Values>

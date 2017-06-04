@@ -3735,6 +3735,64 @@ given [rounding algorithm].
 
 ---
 
+### tundra.decimal:deviate
+
+Returns the standard deviation and related statistics for the given
+list of decimals, optionally rounded to the given precision (number
+of decimal places) using the given [rounding algorithm].
+
+Note that only double-precision decimal numbers are supported by
+this service.
+
+#### Inputs:
+
+* `$operands` is an `IData` document containing arbitrary elements
+  whose leaf values will be used as operands for this operation.
+  Leaf values can be provided as objects with the following types:
+  * `java.lang.String`
+  * `java.lang.Integer`
+  * `java.lang.Long`
+  * `java.lang.Float`
+  * `java.lang.Double`
+  * `java.math.BigDecimal`
+  * `java.math.BigInteger`
+  Leaf values provided as a `java.lang.String` must be parseable
+  as a decimal number using the [java.math.BigDecimal grammar].
+* `$precision` is an optional number of decimal places to be
+  preserved in the result.
+* `$rounding` is an optional choice of the [rounding algorithm]
+  to use when rounding the result to the specified `$precision`.
+  If not specifed, defaults to the `HALF_UP` algorithm.
+  * `HALF_UP` rounds towards "nearest neighbor" unless both
+    neighbors are equidistant, in which case rounds up.
+  * `CEILING` rounds towards positive infinity.
+  * `DOWN` rounds towards zero.
+  * `FLOOR` rounds towards negative infinity.
+  * `HALF_DOWN` rounds towards "nearest neighbor" unless both
+    neighbors are equidistant, in which case round down.
+  * `HALF_EVEN` rounds towards the "nearest neighbor" unless both
+    neighbors are equidistant, in which case, round towards the
+    even neighbor.
+  * `UNNECESSARY` asserts that the requested operation has an exact
+    result, and hence no rounding is necessary.
+  * `UP` rounds away from zero.
+
+#### Outputs:
+
+* `$sample.deviation` is the standard deviation of the given list of
+  decimals rounded to the given precision using the nominated
+  [rounding algorithm].
+* `$sample.variance` is the statistical variance of the given list of
+  decimals rounded to the given precision using the nominated
+  [rounding algorithm].
+* `$sample.mean` is the statistical average of the given list of
+  decimals rounded to the given precision using the nominated
+  [rounding algorithm].
+* `$sample.count` is the number of samples used for calculating the
+  above values.
+
+---
+
 ### tundra.decimal:divide
 
 Divides one decimal by another, returning the result optionally
