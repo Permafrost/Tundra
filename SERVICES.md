@@ -13462,8 +13462,11 @@ This service is an alias for the `tundra.thread:sleep` service.
 
 #### Inputs:
 
-* `$duration` is an [ISO8601] XML duration for which the current
-  thread should sleep.
+* `$duration` is a duration of time specified as a string for which
+  the current thread should sleep.
+* `$duration.pattern` is an optional pattern describing the type of
+  duration specified by `$duration`. Defaults to an [ISO8601] XML
+  string.
 
 ---
 
@@ -14450,8 +14453,11 @@ accuracy of system timers and schedulers.
 
 #### Inputs:
 
-* `$duration` is an [ISO8601] XML duration for which the current
-  thread should sleep.
+* `$duration` is a duration of time specified as a string for which
+  the current thread should sleep.
+* `$duration.pattern` is an optional pattern describing the type of
+  duration specified by `$duration`. Defaults to an [ISO8601] XML
+  string.
 
 ---
 

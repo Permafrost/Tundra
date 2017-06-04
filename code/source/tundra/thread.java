@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-07 14:22:27 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2017-06-04 11:20:02 EST
+// -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -13,6 +13,7 @@ import javax.xml.datatype.Duration;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.lang.ThreadHelper;
 import permafrost.tundra.math.IntegerHelper;
+import permafrost.tundra.time.DurationHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class thread
@@ -37,7 +38,6 @@ public final class thread
 		// --- <<IS-START(current)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [o] recref:0:required $thread tundra.support.schema:thread
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -58,7 +58,6 @@ public final class thread
 		// --- <<IS-START(list)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [o] recref:1:required $threads tundra.support.schema:thread
 		// [o] field:0:required $threads.length
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -87,11 +86,14 @@ public final class thread
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $duration
+		// [i] field:0:optional $duration.pattern
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Duration duration = IDataHelper.get(cursor, "$duration", Duration.class);
-		    ThreadHelper.sleep(duration);
+		    String duration = IDataHelper.get(cursor, "$duration", String.class);
+		    String durationPattern = IDataHelper.get(cursor, "$duration.pattern", String.class);
+		
+		    ThreadHelper.sleep(DurationHelper.parse(duration, durationPattern));
 		} finally {
 		    cursor.destroy();
 		}
