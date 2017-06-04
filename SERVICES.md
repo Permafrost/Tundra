@@ -9001,18 +9001,20 @@ the given `IData[]` document list with the replacement string.
 
 ### tundra.list.document:take
 
-Returns the given number of items from the head of the given list
-and the remainding tail of the list.
+Returns the given number of items from either the head or the tail
+of the given list.
 
 #### Inputs:
 
 * `$list` is a list to fetch the head and tail from.
-* `$count` is the number of items to take as the head of the list.
+* `$count` is the number of items to take from either the head when
+  specified as a positive number, or the tail when specified as a
+  negative number.
 
 #### Outputs:
 
-* `$head` is a list of the first `$count` items from the given `$list`.
-* `$tail` is a list of the remaining items from the given `$list`.
+* `$head` is a list containing the head items from the given `$list`.
+* `$tail` is a list containing the tail items from the given `$list`.
 
 ---
 
@@ -9906,18 +9908,20 @@ removing all null values.
 
 ### tundra.list.object:take
 
-Returns the given number of items from the head of the given list
-and the remainding tail of the list.
+Returns the given number of items from either the head or the tail
+of the given list.
 
 #### Inputs:
 
 * `$list` is a list to fetch the head and tail from.
-* `$count` is the number of items to take as the head of the list.
+* `$count` is the number of items to take from either the head when
+  specified as a positive number, or the tail when specified as a
+  negative number.
 
 #### Outputs:
 
-* `$head` is a list of the first `$count` items from the given `$list`.
-* `$tail` is a list of the remaining items from the given `$list`.
+* `$head` is a list containing the head items from the given `$list`.
+* `$tail` is a list containing the tail items from the given `$list`.
 
 ---
 
@@ -10940,18 +10944,20 @@ default value.
 
 ### tundra.list.string:take
 
-Returns the given number of items from the head of the given list
-and the remainding tail of the list.
+Returns the given number of items from either the head or the tail
+of the given list.
 
 #### Inputs:
 
 * `$list` is a list to fetch the head and tail from.
-* `$count` is the number of items to take as the head of the list.
+* `$count` is the number of items to take from either the head when
+  specified as a positive number, or the tail when specified as a
+  negative number.
 
 #### Outputs:
 
-* `$head` is a list of the first `$count` items from the given `$list`.
-* `$tail` is a list of the remaining items from the given `$list`.
+* `$head` is a list containing the head items from the given `$list`.
+* `$tail` is a list containing the tail items from the given `$list`.
 
 ---
 

@@ -49,7 +49,7 @@
             <array name="targetNames" type="record" depth="1">
               <record javaclass="com.wm.util.Values">
                 <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">nonNegativeInteger</value>
+                <value name="ncName">integer</value>
               </record>
             </array>
           </record>
@@ -108,18 +108,20 @@
   </record>
   <value name="node_comment">### tundra.list.document:take
 
-Returns the given number of items from the head of the given list
-and the remainding tail of the list.
+Returns the given number of items from either the head or the tail 
+of the given list.
 
 #### Inputs:
 
 * $list is a list to fetch the head and tail from.
-* $count is the number of items to take as the head of the list.
+* $count is the number of items to take from either the head when 
+  specified as a positive number, or the tail when specified as a 
+  negative number.
 
 #### Outputs:
 
-* $head is a list of the first $count items from the given $list.
-* $tail is a list of the remaining items from the given $list.</value>
+* $head is a list containing the head items from the given $list.
+* $tail is a list containing the tail items from the given $list.</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
