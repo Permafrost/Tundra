@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-06-03 18:37:51 EST
+// -----( CREATED: 2017-06-04 15:06:32 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -440,8 +440,7 @@ public final class service
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    NSService self = ServiceHelper.self();
-		    if (self != null) IDataHelper.put(cursor, "$self", self.toString());
+		    IDataHelper.put(cursor, "$self", ServiceHelper.self(), String.class, false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -459,6 +458,7 @@ public final class service
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $duration
+		// [i] field:0:optional $duration.pattern {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
 		tundra.thread.sleep(pipeline);
 		// --- <<IS-END>> ---
 
@@ -475,7 +475,7 @@ public final class service
 		// @sigtype java 3.5
 		// [i] field:0:optional $service
 		// [i] field:0:optional $raise? {"false","true"}
-		// [o] field:0:required $valid?
+		// [o] field:0:required $valid? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
