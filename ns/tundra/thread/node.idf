@@ -13,5 +13,6 @@
     <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.lang.ThreadHelper</value>
     <value>permafrost.tundra.math.IntegerHelper</value>
+    <value>permafrost.tundra.time.DurationHelper</value>
   </array>
 </Values>
