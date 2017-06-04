@@ -11797,11 +11797,11 @@ byte array or input stream object.
 
 * `$object` is an optional string, byte array, or input stream
   object. If null, this service does nothing.
-* `$mode` is an optional choice of 'stream', 'bytes', or
-  'string', which determines the type of object returned by
-  this service. Defaults to 'stream'.
 * `$encoding` is an optional character set to use when converting
   from or to a string. Defaults to [UTF-8].
+* `$mode` is an optional choice of `stream`, `bytes`, or
+  `string`, which determines the type of object returned by
+  this service. Defaults to `stream`.
 
 #### Outputs:
 
