@@ -75,6 +75,37 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="field_name">$literal?</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <array name="field_options" type="value" depth="1">
+            <value>false</value>
+            <value>true</value>
+          </array>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">boolean</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_usereditable">false</value>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
           <value name="field_name">$mode</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -175,23 +206,26 @@
   <value name="node_comment">### tundra.list.string:remove
 
 Removes either the first or all occurrences of the given 
-[regular expression pattern] in the given list of strings.
+pattern in the given list of strings.
 
 #### Inputs:
 
 * $list is a list of strings to have occurrences of the given
-  [regular expression pattern] replaced.
-* $pattern is the [regular expression pattern] to match against
-  the given string. If not specified, no removal will occur.
-* $mode is a choice of whether to remove all occurrences of the
+  pattern removed.
+* $pattern is the pattern to match against the given string. If 
+  not specified, no removal will occur.
+* $literal? is a boolean indicating if the $pattern string should
+  be treated as a literal string. If false, $pattern is treated
+  as a [regular expression pattern]. If true, $pattern is treated
+  as a literal string. Defaults to false, if not specified.
+* $mode is a choice of whether to remove all occurrences of the
   pattern, or just the first occurrence. If not specified, 
   defaults to all occurrences.
 
 #### Outputs:
 
 * $list is the input list of strings with either the first or
-  all occurrences of the given [regular expression pattern]
-  removed.
+  all occurrences of the given pattern removed.
 
 [regular expression pattern]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html&gt;</value>
   <value name="stateless">yes</value>

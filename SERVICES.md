@@ -10742,22 +10742,26 @@ condition evaluates to true.
 ### tundra.list.string:remove
 
 Removes either the first or all occurrences of the given
-[regular expression pattern] in the given list of strings.
+pattern in the given list of strings.
 
 #### Inputs:
 
-* $list is a list of strings to have all occurrences of the given
-  [regular expression pattern] replaced.
-* $pattern is the [regular expression pattern] to match against
-  the given string. If not specified, no removal will occur.
-* $mode is a choice of whether to remove all occurrences of the
+* `$list` is a list of strings to have all occurrences of the given
+  pattern removed.
+* `$pattern` is the pattern to match against the given string. If
+  not specified, no removal will occur.
+* `$literal?` is a boolean indicating if the `$pattern` string should
+  be treated as a literal string. If `false`, `$pattern` is treated
+  as a [regular expression pattern]. If `true`, `$pattern` is treated
+  as a literal string. Defaults to `false`, if not specified.
+* `$mode` is a choice of whether to remove all occurrences of the
   pattern, or just the first occurrence. If not specified,
   defaults to all occurrences.
 
 #### Outputs:
 
-* $list is the input list of strings with all occurrences of the
-  given [regular expression pattern] removed.
+* `$list` is the input list of strings with occurrences of the
+  given pattern removed.
 
 ---
 
@@ -14079,15 +14083,15 @@ sequences in the input sequence are given no special meaning.
 
 ### tundra.string:remove
 
-Removes either the first or all occurrences of the given [regular
-expression pattern] from the given string.
+Removes either the first or all occurrences of the given pattern
+from the given string.
 
 #### Inputs:
 
-* `$string` is a string to have all occurrences of the given
-  [regular expression pattern] removed.
-* `$pattern` is the [regular expression pattern] to match against
-  the given string. If not specified, no removal will occur.
+* `$string` is a string to have occurrences of the given pattern
+  removed.
+* `$pattern` is the pattern to match against the given string. If not
+  specified, no removal will occur.
 * `$literal?` is a boolean indicating if the `$pattern` string should
   be treated as a literal string. If `false`, `$pattern` is treated
   as a [regular expression pattern]. If `true`, `$pattern` is treated
@@ -14098,8 +14102,8 @@ expression pattern] from the given string.
 
 #### Outputs:
 
-* `$string` is the input string with occurrences of the given
-  [regular expression pattern] removed.
+* `$string` is the input string with either the first or all
+  occurrences of the given pattern removed.
 
 ---
 

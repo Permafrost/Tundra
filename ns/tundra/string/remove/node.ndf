@@ -205,16 +205,15 @@
   </record>
   <value name="node_comment">### tundra.string:remove
 
-Removes either the first or all occurrences of the given [regular 
-expression pattern] from the given string.
+Removes either the first or all occurrences of the given pattern 
+from the given string.
 
 #### Inputs:
 
-* $string is a string to have all occurrences of the given
-  [regular expression pattern] removed.
-* $pattern is the [regular expression pattern] to match against
-  the given string.
- If not specified, no removal will occur.
+* $string is a string to have occurrences of the given pattern 
+  removed.
+* $pattern is the pattern to match against the given string. If not 
+  specified, no removal will occur.
 * $literal? is a boolean indicating if the $pattern string should
   be treated as a literal string. If false, $pattern is treated
   as a [regular expression pattern]. If true, $pattern is treated
@@ -225,8 +224,8 @@ expression pattern] from the given string.
 
 #### Outputs:
 
-* $string is the input string with occurrences of the given
-  [regular expression pattern] removed.
+* $string is the input string with either the first or all 
+  occurrences of the given pattern removed.
 
 [regular expression pattern]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html&gt;</value>
   <value name="stateless">yes</value>
