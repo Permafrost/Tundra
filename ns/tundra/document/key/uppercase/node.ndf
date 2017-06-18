@@ -191,6 +191,8 @@
   </record>
   <value name="node_comment">### tundra.document.key:uppercase
 
+DEPRECATED: use tundra.document:uppercase instead.
+
 Converts all keys in the given IData document to upper case.
 
 #### Inputs:

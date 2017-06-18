@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-06-18 16:26:11 EST
+// -----( CREATED: 2017-06-18 17:27:21 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -1093,6 +1093,39 @@ public final class document
 		    Locale locale = IDataHelper.getOrDefault(cursor, "$locale", Locale.class, Locale.getDefault());
 		
 		    if (document != null) IDataHelper.put(cursor, "$document", new CaseInsensitiveIData(IDataHelper.duplicate(document, true), locale));
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void uppercase (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(uppercase)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:0:optional $document
+		// [i] record:0:optional $locale
+		// [i] - field:0:required language
+		// [i] - field:0:optional country
+		// [i] - field:0:optional variant
+		// [i] field:0:optional $recurse? {"false","true"}
+		// [i] field:0:optional $mode {"values","keys","keys and values"}
+		// [o] record:0:optional $document
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    Locale locale = IDataHelper.get(cursor, "$locale", Locale.class);
+		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
+		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
+		
+		    IDataHelper.put(cursor, "$document", IDataHelper.uppercase(document, locale, mode, recurse), false);
 		} finally {
 		    cursor.destroy();
 		}

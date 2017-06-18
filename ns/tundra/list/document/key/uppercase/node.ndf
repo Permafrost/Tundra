@@ -193,6 +193,8 @@
   </record>
   <value name="node_comment">### tundra.list.document.key:uppercase
 
+DEPRECATED: use tundra.list.document:uppercase instead.
+
 Converts all keys in each item in the given IData document list to
 upper case.
 

@@ -5157,29 +5157,6 @@ document with the replacement string.
 
 ---
 
-### tundra.document.key:uppercase
-
-Converts all keys in the given IData document to upper case.
-
-#### Inputs:
-
-* `$document` is an IData document whose keys are to be
-  converted to upper case.
-* `$locale` optionally identifies the case transformation rules
-  to be used for a given [Locale]. If not specified, the
-  [default locale] is used.
-* `$recurse?` is an optional boolean indicating if embedded
-  IData documents and IData[] document lists should also
-  have their keys converted to upper case. Defaults to
-  false.
-
-#### Outputs:
-
-* `$document` is the given IData document with all keys
-  converted to upper case.
-
----
-
 ### tundra.document:keys
 
 Returns the top-level keys in the given IData document that match
@@ -5807,6 +5784,28 @@ Returns a recursive clone with case-insensitive keys of the given
 
 ---
 
+### tundra.document:uppercase
+
+Converts all string values in the given `IData` document to uppercase.
+
+#### Inputs:
+
+* `$document` is an `IData` document whose string values are to be
+  converted to uppercase.
+* `$recurse?` is an optional boolean indicating if embedded `IData`
+  documents and `IData[]` document lists should also have string
+  values converted to uppercase. Defaults to `false`.
+* `$mode` is an optional choice for what should be converted: either
+  the values, the keys, or both the keys and the values. Defaults to
+  trimming values only.
+
+#### Outputs:
+
+* `$document` is the given `IData` document with all string values
+  converted to uppercase.
+
+---
+
 ### tundra.document.value:remove
 
 Removes either the first or all occurrences of the given
@@ -5867,29 +5866,6 @@ given `IData` document with the replacement string.
 * `$document` is the given `IData` document with either the first
   or all occurrences of the given [regular expression pattern] in
   each string value replaced with `$replacement`.
-
----
-
-### tundra.document.value:uppercase
-
-Converts all string values in the given IData document to upper case.
-
-#### Inputs:
-
-* `$document` is an IData document whose string values are to be
-  converted to upper case.
-* `$locale` optionally identifies the case transformation rules
-  to be used for a given [Locale]. If not specified, the
-  [default locale] is used.
-* `$recurse?` is an optional boolean indicating if embedded
-  IData documents and IData[] document lists should also
-  have their string values converted to upper case. Defaults to
-  `false`.
-
-#### Outputs:
-
-* `$document` is the given IData document with all string values
-  converted to upper case.
 
 ---
 
@@ -8216,30 +8192,6 @@ Replaces either the first or all occurrences of the given
 
 ---
 
-### tundra.list.document.key:uppercase
-
-Converts all keys in each item in the given IData document list to
-upper case.
-
-#### Inputs:
-
-* `$list` is an IData document list whose item's keys are to be
-  converted to upper case.
-* `$locale` optionally identifies the case transformation rules
-  to be used for a given [Locale]. If not specified, the
-  [default locale] is used.
-* `$recurse?` is an optional boolean indicating if embedded
-  IData documents and IData document lists should also
-  have their keys converted to upper case. Defaults to
-  false.
-
-#### Outputs:
-
-* `$list` is the given IData document list with all item's keys
-  converted to upper case.
-
----
-
 ### tundra.list.document:keys
 
 Returns the union set of all top-level keys present in each IData
@@ -8872,6 +8824,29 @@ with the given keys are unique.
 
 ---
 
+### tundra.list.document:uppercase
+
+Converts all string values in the given `IData[]` document list to
+uppercase.
+
+#### Inputs:
+
+* `$list` is an `IData[]` document list whose string values are to be
+  converted to uppercase.
+* `$recurse?` is an optional boolean indicating if embedded `IData`
+  documents and `IData[]` document lists should also have string
+  values converted to uppercase. Defaults to `false`.
+* `$mode` is an optional choice for what should be converted: either
+  the values, the keys, or both the keys and the values. Defaults to
+  trimming values only.
+
+#### Outputs:
+
+* `$list` is the given `IData[]` document list with all string values
+  converted to uppercase.
+
+---
+
 ### tundra.list.document.value:remove
 
 Remove either the first or all occurrences of the given
@@ -8975,30 +8950,6 @@ the given `IData[]` document list.
 
 * `$list` is the given `IData[]` document list with all string values
   trimmed of leading and trailing whitespace characters.
-
----
-
-### tundra.list.document.value:uppercase
-
-Converts all item's string values in the given IData document
-list to upper case.
-
-#### Inputs:
-
-* `$list` is an IData document list whose item's string values
-  are to be converted to upper case.
-* `$locale` optionally identifies the case transformation rules
-  to be used for a given [Locale]. If not specified, the
-  [default locale] is used.
-* `$recurse?` is an optional boolean indicating if embedded
-  IData documents and IData document lists should also
-  have their string values converted to upper case. Defaults to
-  false.
-
-#### Outputs:
-
-* `$list` is the given IData document list with all string values
-  converted to upper case.
 
 ---
 

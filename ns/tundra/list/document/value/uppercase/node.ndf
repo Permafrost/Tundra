@@ -193,6 +193,8 @@
   </record>
   <value name="node_comment">### tundra.list.document.value:uppercase
 
+DEPRECATED: use tundra.list.document:uppercase instead.
+
 Converts all item's string values in the given IData document
 list to upper case.
 
