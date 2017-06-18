@@ -95,6 +95,8 @@
   </record>
   <value name="node_comment">### tundra.list.document.key:trim
 
+DEPRECATED: use tundra.list.document:trim instead.
+
 Removes leading and trailing whitespace from all item's keys
 in the given IData document list.
 

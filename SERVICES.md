@@ -5180,28 +5180,6 @@ document with the replacement string.
 
 ---
 
-### tundra.document.key:trim
-
-DEPRECATED: use `tundra.document:trim` instead.
-
-Removes leading and trailing whitespace from all keys in the given
-IData document.
-
-#### Inputs:
-
-* `$document` is an IData document whose keys are to be trimmed of
-  leading and trailing whitespace characters.
-* `$recurse?` is an optional boolean indicating if embedded
-  IData documents and IData[] document lists should also
-  have their keys trimmed. Defaults to false.
-
-#### Outputs:
-
-* `$document` is the given IData document with all keys trimmed of
-  leading and trailing whitespace characters.
-
----
-
 ### tundra.document.key:uppercase
 
 Converts all keys in the given IData document to upper case.
@@ -5914,28 +5892,6 @@ given `IData` document with the replacement string.
 * `$document` is the given `IData` document with either the first
   or all occurrences of the given [regular expression pattern] in
   each string value replaced with `$replacement`.
-
----
-
-### tundra.document.value:trim
-
-DEPRECATED: use `tundra.document:trim` instead.
-
-Removes leading and trailing whitespace from all string values in the
-given IData document.
-
-#### Inputs:
-
-* `$document` is an IData document whose string values are to be
-  trimmed of leading and trailing whitespace characters.
-* `$recurse?` is an optional boolean indicating if embedded
-  IData documents and IData[] document lists should also
-  have their string values trimmed. Defaults to `false`.
-
-#### Outputs:
-
-* `$document` is the given IData document with all string values
-  trimmed of leading and trailing whitespace characters.
 
 ---
 
@@ -8309,27 +8265,6 @@ Replaces either the first or all occurrences of the given
 
 ---
 
-### tundra.list.document.key:trim
-
-Removes leading and trailing whitespace from all item's keys
-in the given IData document list.
-
-#### Inputs:
-
-* `$list` is an IData document list whose item's keys are to
-  be trimmed of leading and trailing whitespace characters.
-* `$recurse?` is an optional boolean indicating if embedded
-  IData documents and IData document lists should also
-  have their keys trimmed. Defaults to false.
-
-#### Outputs:
-
-* `$list` is the given IData document list with all item's
-  keys trimmed of leading and trailing whitespace characters
-  removed.
-
----
-
 ### tundra.list.document.key:uppercase
 
 Converts all keys in each item in the given IData document list to
@@ -9071,24 +9006,25 @@ of the given list.
 
 ---
 
-### tundra.list.document.value:trim
+### tundra.list.document:trim
 
-Removes leading and trailing whitespace from all item's string
-values in the given IData document list.
+Removes leading and trailing whitespace from all string values in
+the given `IData[]` document list.
 
 #### Inputs:
 
-* `$list` is an IData document list whose item's string values
-  are to be trimmed of leading and trailing whitespace
-  characters.
-* `$recurse?` is an optional boolean indicating if embedded
-  IData documents and IData document lists should also
-  have their string values trimmed. Defaults to false.
+* `$list` is an `IData[]` document list to process.
+* `$recurse?` is an optional boolean indicating if embedded `IData`
+  documents and `IData[]` document lists should also have their string
+  values trimmed. Defaults to `false`.
+* `$mode` is an optional choice for what should be trimmed: either the
+  values, the keys, or both the keys and the values. Defaults to
+  trimming values only.
 
 #### Outputs:
 
-* `$list` is the given IData document list with all item's string
-  values trimmed of leading and trailing whitespace characters.
+* `$list` is the given `IData[]` document list with all string values
+  trimmed of leading and trailing whitespace characters.
 
 ---
 

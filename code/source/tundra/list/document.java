@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-20 15:19:37 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2017-06-18 16:07:46 EST
+// -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -11,6 +11,7 @@ import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import java.util.EnumSet;
 import permafrost.tundra.data.IDataHelper;
+import permafrost.tundra.data.transform.TransformerMode;
 import permafrost.tundra.flow.variable.SubstitutionHelper;
 import permafrost.tundra.flow.variable.SubstitutionType;
 import permafrost.tundra.lang.BooleanHelper;
@@ -232,8 +233,6 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:1:optional $list
-		// [i] recref:0:optional $group tundra.schema.list.document.group:input
-		// [o] recref:1:optional $list.groups tundra.schema.list.document.group:output
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -761,6 +760,33 @@ public final class document
 		// [o] record:1:optional $head
 		// [o] record:1:optional $tail
 		tundra.list.object.take(pipeline);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void trim (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(trim)>> ---
+		// @sigtype java 3.5
+		// [i] record:1:optional $list
+		// [i] field:0:optional $recurse? {"false","true"}
+		// [i] field:0:optional $mode {"values","keys","keys and values"}
+		// [o] record:1:optional $list
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    IData[] list = IDataHelper.get(cursor, "$list", IData[].class);
+		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
+		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
+		
+		    IDataHelper.put(cursor, "$list", IDataHelper.trim(list, mode, recurse), false);
+		} finally {
+		    cursor.destroy();
+		}
 		// --- <<IS-END>> ---
 
                 
