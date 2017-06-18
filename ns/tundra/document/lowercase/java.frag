@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">lowercase</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7DQoNCnRyeSB7DQogICAg
+SURhdGEgZG9jdW1lbnQgPSBJRGF0YUhlbHBlci5nZXQoY3Vyc29yLCAiJGRvY3VtZW50IiwgSURh
+dGEuY2xhc3MpOw0KICAgIExvY2FsZSBsb2NhbGUgPSBJRGF0YUhlbHBlci5nZXQoY3Vyc29yLCAi
+JGxvY2FsZSIsIExvY2FsZS5jbGFzcyk7CiAgICBib29sZWFuIHJlY3Vyc2UgPSBJRGF0YUhlbHBl
+ci5nZXRPckRlZmF1bHQoY3Vyc29yLCAiJHJlY3Vyc2U/IiwgQm9vbGVhbi5jbGFzcywgZmFsc2Up
+Ow0KICAgIFRyYW5zZm9ybWVyTW9kZSBtb2RlID0gSURhdGFIZWxwZXIuZ2V0KGN1cnNvciwgIiRt
+b2RlIiwgVHJhbnNmb3JtZXJNb2RlLmNsYXNzKTsKCiAgICBJRGF0YUhlbHBlci5wdXQoY3Vyc29y
+LCAiJGRvY3VtZW50IiwgSURhdGFIZWxwZXIubG93ZXJjYXNlKGRvY3VtZW50LCBsb2NhbGUsIG1v
+ZGUsIHJlY3Vyc2UpLCBmYWxzZSk7DQp9IGZpbmFsbHkgew0KICAgIGN1cnNvci5kZXN0cm95KCk7
+DQp9</value>
+</Values>

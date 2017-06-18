@@ -5071,29 +5071,6 @@ representation, useful for logging or display to end users.
 
 ---
 
-### tundra.document.key:lowercase
-
-Converts all keys in the given IData document to lower case.
-
-#### Inputs:
-
-* `$document` is an IData document whose keys are to be
-  converted to lower case.
-* `$locale` optionally identifies the case transformation rules
-  to be used for a given [Locale]. If not specified, the
-  [default locale] is used.
-* `$recurse?` is an optional boolean indicating if embedded
-  IData documents and IData[] document lists should also
-  have their keys converted to lower case. Defaults to
-  false.
-
-#### Outputs:
-
-* `$document` is the given IData document with all keys
-  converted to lower case.
-
----
-
 ### tundra.document.key:normalize
 
 Converts all keys in the given IData document to legal Java
@@ -5366,6 +5343,28 @@ Writes the given `IData` document to the server log as a minified
 * `$document` is the `IData` document to be logged to the server log.
 * `$level` is the logging level used when writing the document to the
   server log.
+
+---
+
+### tundra.document:lowercase
+
+Converts all string values in the given `IData` document to lowercase.
+
+#### Inputs:
+
+* `$document` is an `IData` document whose string values are to be
+  converted to lowercase.
+* `$recurse?` is an optional boolean indicating if embedded `IData`
+  documents and `IData[]` document lists should also have string
+  values converted to lowercase. Defaults to `false`.
+* `$mode` is an optional choice for what should be converted: either
+  the values, the keys, or both the keys and the values. Defaults to
+  trimming values only.
+
+#### Outputs:
+
+* `$document` is the given `IData` document with all string values
+  converted to lowercase.
 
 ---
 
@@ -5805,30 +5804,6 @@ Returns a recursive clone with case-insensitive keys of the given
 
 * `$document` is the resulting recursive clone with case-insensitive
   keys of the given `IData` document.
-
----
-
-### tundra.document.value:lowercase
-
-Converts all string values in the given IData document to lower
-case.
-
-#### Inputs:
-
-* `$document` is an IData document whose string values are to be
-  converted to lower case.
-* `$locale` optionally identifies the case transformation rules
-  to be used for a given [Locale]. If not specified, the
-  [default locale] is used.
-* `$recurse?` is an optional boolean indicating if embedded
-  IData documents and IData[] document lists should also
-  have their string values converted to lower case. Defaults
-  to `false`.
-
-#### Outputs:
-
-* `$document` is the given IData document with all string values
-  converted to lower case.
 
 ---
 
@@ -8178,30 +8153,6 @@ return a single IData document.
 
 ---
 
-### tundra.list.document.key:lowercase
-
-Converts all keys in each item in the given IData document list to
-lower case.
-
-#### Inputs:
-
-* `$list` is an IData document list whose item's keys are to be
-  converted to lower case.
-* `$locale` optionally identifies the case transformation rules
-  to be used for a given [Locale]. If not specified, the
-  [default locale] is used.
-* `$recurse?` is an optional boolean indicating if embedded
-  IData documents and IData document lists should also
-  have their keys converted to lower case. Defaults to
-  false.
-
-#### Outputs:
-
-* `$list` is the given IData document list with all item's keys
-  converted to lower case.
-
----
-
 ### tundra.list.document.key:remove
 
 Removes either the first or all occurrences of the given
@@ -8337,6 +8288,29 @@ Returns the number of items in the given list.
 #### Outputs:
 
 * `$length` is the number of items in the given list.
+
+---
+
+### tundra.list.document:lowercase
+
+Converts all string values in the given `IData[]` document list to
+lowercase.
+
+#### Inputs:
+
+* `$list` is an `IData[]` document list whose string values are to be
+  converted to lowercase.
+* `$recurse?` is an optional boolean indicating if embedded `IData`
+  documents and `IData[]` document lists should also have string
+  values converted to lowercase. Defaults to `false`.
+* `$mode` is an optional choice for what should be converted: either
+  the values, the keys, or both the keys and the values. Defaults to
+  trimming values only.
+
+#### Outputs:
+
+* `$list` is the given `IData[]` document list with all string values
+  converted to lowercase.
 
 ---
 
@@ -8895,30 +8869,6 @@ with the given keys are unique.
 * `$list` is the resulting `IData[]` document list that only contains
   the first occurrence of each `IData` document whose values
   associated with the given keys are unique in the list.
-
----
-
-### tundra.list.document.value:lowercase
-
-Converts all item's string values in the given IData document
-list to lower case.
-
-#### Inputs:
-
-* `$list` is an IData document list whose item's string values
-  are to be converted to lower case.
-* `$locale` optionally identifies the case transformation rules
-  to be used for a given [Locale]. If not specified, the
-  [default locale] is used.
-* `$recurse?` is an optional boolean indicating if embedded
-  IData documents and IData document lists should also
-  have their string values converted to lower case. Defaults
-  to false.
-
-#### Outputs:
-
-* `$list` is the given IData document list with all item's string
-  values converted to lower case.
 
 ---
 

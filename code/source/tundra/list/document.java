@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-06-18 16:07:46 EST
+// -----( CREATED: 2017-06-18 16:33:27 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -10,6 +10,7 @@ import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import java.util.EnumSet;
+import java.util.Locale;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.data.transform.TransformerMode;
 import permafrost.tundra.flow.variable.SubstitutionHelper;
@@ -361,6 +362,38 @@ public final class document
 		// [i] record:1:optional $list
 		// [o] field:0:required $length
 		tundra.list.object.length(pipeline);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void lowercase (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(lowercase)>> ---
+		// @sigtype java 3.5
+		// [i] record:1:optional $list
+		// [i] record:0:optional $locale
+		// [i] - field:0:required language
+		// [i] - field:0:optional country
+		// [i] - field:0:optional variant
+		// [i] field:0:optional $recurse? {"false","true"}
+		// [i] field:0:optional $mode {"values","keys","keys and values"}
+		// [o] record:1:optional $list
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    IData[] list = IDataHelper.get(cursor, "$list", IData[].class);
+		    Locale locale = IDataHelper.get(cursor, "$locale", Locale.class);
+		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
+		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
+		
+		    IDataHelper.put(cursor, "$list", IDataHelper.lowercase(list, locale, mode, recurse), false);
+		} finally {
+		    cursor.destroy();
+		}
 		// --- <<IS-END>> ---
 
                 

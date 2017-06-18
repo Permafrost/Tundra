@@ -2213,7 +2213,25 @@
 <Values version="2.0">
   <array name="xml" type="record" depth="1">
     <record javaclass="com.wm.util.Values">
+      <value name="node">tundra.document.key:lowercase</value>
+      <array name="permissions" type="record" depth="1">
+        <record javaclass="com.wm.util.Values">
+          <value name="type">list</value>
+          <value name="acl">WmPrivate</value>
+        </record>
+      </array>
+    </record>
+    <record javaclass="com.wm.util.Values">
       <value name="node">tundra.document.key:trim</value>
+      <array name="permissions" type="record" depth="1">
+        <record javaclass="com.wm.util.Values">
+          <value name="type">list</value>
+          <value name="acl">WmPrivate</value>
+        </record>
+      </array>
+    </record>
+    <record javaclass="com.wm.util.Values">
+      <value name="node">tundra.document.value:lowercase</value>
       <array name="permissions" type="record" depth="1">
         <record javaclass="com.wm.util.Values">
           <value name="type">list</value>
@@ -2231,7 +2249,25 @@
       </array>
     </record>
     <record javaclass="com.wm.util.Values">
+      <value name="node">tundra.list.document.key:lowercase</value>
+      <array name="permissions" type="record" depth="1">
+        <record javaclass="com.wm.util.Values">
+          <value name="type">list</value>
+          <value name="acl">WmPrivate</value>
+        </record>
+      </array>
+    </record>
+    <record javaclass="com.wm.util.Values">
       <value name="node">tundra.list.document.key:trim</value>
+      <array name="permissions" type="record" depth="1">
+        <record javaclass="com.wm.util.Values">
+          <value name="type">list</value>
+          <value name="acl">WmPrivate</value>
+        </record>
+      </array>
+    </record>
+    <record javaclass="com.wm.util.Values">
+      <value name="node">tundra.list.document.value:lowercase</value>
       <array name="permissions" type="record" depth="1">
         <record javaclass="com.wm.util.Values">
           <value name="type">list</value>

@@ -191,6 +191,8 @@
   </record>
   <value name="node_comment">### tundra.document.value:lowercase
 
+DEPRECATED: use tundra.document:lowercase instead.
+
 Converts all string values in the given IData document to lower
 case.
 
