@@ -95,37 +95,10 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$default.object</value>
+          <value name="field_name">$value.default</value>
           <value name="field_type">object</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
-          <value name="nillable">true</value>
-          <value name="form_qualified">false</value>
-          <value name="is_global">false</value>
-        </record>
-        <record javaclass="com.wm.util.Values">
-          <value name="node_type">record</value>
-          <value name="node_comment"></value>
-          <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
-            <value name="field_largerEditor">false</value>
-            <value name="field_password">false</value>
-          </record>
-          <value name="field_name">$default.string</value>
-          <value name="field_type">string</value>
-          <value name="field_dim">0</value>
-          <value name="field_opt">true</value>
-          <record name="field_content_type" javaclass="com.wm.util.Values">
-            <value name="contentType">1</value>
-            <value name="internalType">reference</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-            <array name="targetNames" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">string</value>
-              </record>
-            </array>
-          </record>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
@@ -171,24 +144,19 @@ objects in the top level of the given IData document.
 * $document is an IData document from which to fetch the value 
   associated with the given $key.
 * $key is the key identifying the value in the given document to
-  be returned, and can be simple or fully qualified, such as
+  be returned, and can be simple or fully-qualified, such as
   a/b/c[0]/d.
 * $key.literal? is an optional boolean flag which if true will treat
-  the given key literally rather than as a potentially fully-qualified
-  key. Defaults to false if not specified.
-* $default.object is an optional value to be returned when either
+  the given key literally rather than as a potentially fully-
+  qualified key. Defaults to false if not specified.
+* $value.default is an optional value to be returned when either
   the given $key does not exist or its associated value is null.
-* $default.string is an optional string value, provided for
-  convenience when hard-coding a default value, to be returned
-  when either the given $key does not exist or its associated
-  value is null.
 
 #### Outputs:
 
 * $value is the value associated with the given $key in the given
-  IData document, or the given $default.object or $default.string
-  if specified and the associated value for $key either does not
-  exist or is null.
+  IData document, or the given $value.default if specified and the 
+  associated value for $key either does not exist or is null.
 
 [org.w3c.dom.Node]: &lt;http://docs.oracle.com/javase/6/docs/api/org/w3c/dom/Node.html&gt;
 [XPath]: &lt;http://www.w3.org/TR/xpath/&gt;

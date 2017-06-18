@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-06-03 18:45:55 EST
+// -----( CREATED: 2017-06-18 15:09:20 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -462,19 +462,17 @@ public final class document
 		// [i] record:0:optional $document
 		// [i] field:0:optional $key
 		// [i] field:0:optional $key.literal? {"false","true"}
-		// [i] object:0:optional $default.object
-		// [i] field:0:optional $default.string
+		// [i] object:0:optional $value.default
 		// [o] object:0:optional $value
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		    IData document = IDataHelper.get(cursor, "$document", IData.class);
 		    String key = IDataHelper.get(cursor, "$key", String.class);
-		    Object defaultObject = IDataHelper.get(cursor, "$default.object");
-		    if (defaultObject == null) defaultObject = IDataHelper.get(cursor, "$default.string", String.class);
+		    Object defaultValue = IDataHelper.get(cursor, "$value.default", "$default.object", "$default.string");
 		    boolean literal = IDataHelper.getOrDefault(cursor, "$key.literal?", Boolean.class, false);
 		
-		    Object value = IDataHelper.get(pipeline, document, key, defaultObject, literal);
+		    Object value = IDataHelper.get(pipeline, document, key, defaultValue, literal);
 		
 		    IDataHelper.put(cursor, "$value", value, false);
 		} finally {
@@ -825,7 +823,7 @@ public final class document
 		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] record:1:optional $pivot
 		// [o] - field:0:required key
-		// [o] - object:0:required value
+		// [o] - object:0:optional value
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {

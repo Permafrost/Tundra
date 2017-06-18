@@ -5028,24 +5028,19 @@ objects in the top level of the given IData document.
 * `$document` is an `IData` document from which to fetch the value
   associated with the given `$key`.
 * `$key` is the key identifying the value in the given document to
-  be returned, and can be simple or fully qualified, such as
+  be returned, and can be simple or fully-qualified, such as
   `a/b/c[0]/d`.
 * `$key.literal?` is an optional boolean flag which if true will treat
   the given key literally rather than as a potentially fully-qualified
   key. Defaults to false if not specified.
-* `$default.object` is an optional value to be returned when either
+* `$value.default` is an optional value to be returned when either
   the given `$key` does not exist or its associated value is null.
-* `$default.string` is an optional string value, provided for
-  convenience when hard-coding a default value, to be returned
-  when either the given `$key` does not exist or its associated
-  value is null.
 
 #### Outputs:
 
 * `$value` is the value associated with the given `$key` in the given
-  IData document, or the given `$default.object` or `$default.string`
-  if specified and the associated value for `$key` either does not
-  exist or is null.
+  IData document, or the given `$value.default` if specified and the
+  associated value for `$key` either does not exist or is null.
 
 ---
 
