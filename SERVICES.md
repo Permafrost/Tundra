@@ -4998,6 +4998,22 @@ And a flattening of `a/b[0]/c[0]` would return the following
 
 ---
 
+### tundra.document:flip
+
+Flips the given `IData` document so that the keys become the values
+and the values become the keys.
+
+#### Inputs:
+
+* `$document` is an `IData` document to be flipped.
+
+#### Outputs:
+
+* `$document` is the given `IData` document flipped so that the keys are
+  now the values and the values are now the keys.
+
+---
+
 ### tundra.document:freeze
 
 Returns a read-only version of the given `IData` document, such
@@ -7959,6 +7975,22 @@ Returns the first item from the given list.
 #### Outputs:
 
 * `$item` is the first item in the given list.
+
+---
+
+### tundra.list.document:flip
+
+Flipes the given `IData[]` document list so that for each item the
+keys become the values and the values become the keys.
+
+#### Inputs:
+
+* `$list` is an`IData[]` document list to be flipped.
+
+#### Outputs:
+
+* `$list` is the given `IData[]` document list flipped so that for each
+  item the keys are now the values and the values are now the keys.
 
 ---
 

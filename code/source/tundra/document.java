@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-06-18 17:27:21 EST
+// -----( CREATED: 2017-06-19 20:20:19 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -420,6 +420,29 @@ public final class document
 		    Object[] values = IDataHelper.flatten(document, includeNulls, keys);
 		
 		    IDataHelper.put(cursor, "$values", values, false);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void flip (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(flip)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:0:optional $document
+		// [o] record:0:optional $document
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    IDataHelper.put(cursor, "$document", IDataHelper.flip(document), false);
 		} finally {
 		    cursor.destroy();
 		}

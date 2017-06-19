@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-06-18 17:30:56 EST
+// -----( CREATED: 2017-06-19 20:25:14 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -202,6 +202,28 @@ public final class document
 		// [i] record:1:optional $list
 		// [o] record:0:optional $item
 		tundra.list.object.first(pipeline);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void flip (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(flip)>> ---
+		// @sigtype java 3.5
+		// [i] record:1:optional $list
+		// [o] record:1:optional $list
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    IData[] list = IDataHelper.get(cursor, "$list", IData[].class);
+		    IDataHelper.put(cursor, "$list", IDataHelper.flip(list), false);
+		} finally {
+		    cursor.destroy();
+		}
 		// --- <<IS-END>> ---
 
                 
