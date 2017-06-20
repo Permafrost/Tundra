@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-06-04 15:06:32 EST
-// -----( ON-HOST: 192.168.66.132
+// -----( CREATED: 2017-06-20 10:07:55.078
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -60,22 +60,23 @@ public final class service
 		// [i] field:0:required $service
 		// [i] record:0:optional $pipeline
 		// [i] field:0:required $count
-		// [i] field:0:optional $raise? {"false","true"}
+		// [i] field:0:optional $raise? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:required $duration.average
 		// [o] field:0:required $duration.standard.deviation
 		// [o] field:0:required $duration.minimum
 		// [o] field:0:required $duration.maximum
 		// [o] field:0:required $message
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
-		    String service = IDataHelper.get(cursor, "$service", String.class);
 		    IData scope = IDataHelper.get(cursor, "$pipeline", IData.class);
+		    if (scope == null) scope = IDataHelper.clone(pipeline, "$service", "$count", "$raise?");
+		    String service = IDataHelper.get(cursor, "$service", String.class);
 		    int count = IDataHelper.get(cursor, "$count", Integer.class);
 		    boolean raise = IDataHelper.getOrDefault(cursor, "$raise?", Boolean.class, false);
-		
-		    NormalDistributionEstimator estimator = ServiceHelper.benchmark(service, scope == null? pipeline : scope, count, raise);
-		
+
+		    NormalDistributionEstimator estimator = ServiceHelper.benchmark(service, scope, count, raise);
+
 		    IDataHelper.put(cursor, "$duration.average", DurationHelper.format(estimator.getMean()/1000.0, 6, DurationPattern.XML));
 		    IDataHelper.put(cursor, "$duration.standard.deviation", DurationHelper.format(estimator.getStandardDeviation()/1000.0, 6, DurationPattern.XML));
 		    IDataHelper.put(cursor, "$duration.minimum", DurationHelper.format(estimator.getMinimum()/1000.0, 6, DurationPattern.XML));
@@ -86,7 +87,7 @@ public final class service
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -101,17 +102,17 @@ public final class service
 		// [o] field:0:required $callers
 		// [o] field:0:required $caller
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    List<NSService> stack = ServiceHelper.getCallStack();
 		    if (stack.size() > 0) stack.remove(stack.size() - 1); // remove call to this service
-		
+
 		    String caller = "";
 		    if (stack.size() > 1) {
 		        NSService service = stack.get(stack.size() - 2);
 		        if (service != null) caller = ObjectHelper.stringify(service);
 		    }
-		
+
 		    IDataHelper.put(cursor, "$callstack", CollectionHelper.arrayify(CollectionHelper.stringify(stack), String.class));
 		    IDataHelper.put(cursor, "$callers", IterableHelper.join(stack, " \u2192 "));
 		    IDataHelper.put(cursor, "$caller", caller);
@@ -120,7 +121,7 @@ public final class service
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -134,18 +135,18 @@ public final class service
 		// [i] field:0:required $package
 		// [i] field:0:required $service
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String packageName = IDataHelper.get(cursor, "$package", String.class);
 		    String serviceName = IDataHelper.get(cursor, "$service", String.class);
-		
+
 		    ServiceHelper.create(packageName, serviceName);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -159,18 +160,19 @@ public final class service
 		// [i] field:0:required $service
 		// [i] record:0:optional $pipeline
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
-		    String service = IDataHelper.get(cursor, "$service", String.class);
 		    IData scope = IDataHelper.get(cursor, "$pipeline", IData.class);
-		
-		    DeferHelper.defer(service, scope == null ? pipeline : scope);
+		    if (scope == null) scope = IDataHelper.clone(pipeline, "$service");
+		    String service = IDataHelper.get(cursor, "$service", String.class);
+
+		    DeferHelper.defer(service, scope);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -187,23 +189,29 @@ public final class service
 		// [i] record:0:optional $pipeline
 		// [o] record:0:optional $pipeline
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
+		    IData scope = IDataHelper.get(cursor, "$pipeline", IData.class);
+		    boolean scoped = scope != null;
+		    if (!scoped) scope = IDataHelper.clone(pipeline, "$service", "$catch", "$finally");
+
 		    String tryService = IDataHelper.get(cursor, "$service", String.class);
 		    String catchService = IDataHelper.get(cursor, "$catch", String.class);
 		    String finallyService = IDataHelper.get(cursor, "$finally", String.class);
-		    IData scope = IDataHelper.get(cursor, "$pipeline", IData.class);
-		    boolean scoped = scope != null;
-		
-		    scope = ServiceHelper.ensure(tryService, catchService, finallyService, scoped ? scope : pipeline);
-		
-		    if (scoped) IDataHelper.put(cursor, "$pipeline", scope);
+
+		    scope = ServiceHelper.ensure(tryService, catchService, finallyService, scope);
+
+		    if (scoped) {
+		        IDataHelper.put(cursor, "$pipeline", scope);
+		    } else {
+		        IDataHelper.mergeInto(pipeline, scope);
+		    }
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -218,18 +226,19 @@ public final class service
 		// [i] record:0:optional $pipeline
 		// [o] object:0:required $thread
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
-		    String service = IDataHelper.get(cursor, "$service", String.class);
 		    IData scope = IDataHelper.get(cursor, "$pipeline", IData.class);
-		
-		    IDataHelper.put(cursor, "$thread", ServiceHelper.fork(service, scope == null ? pipeline : scope));
+		    if (scope == null) scope = IDataHelper.clone(pipeline, "$service");
+		    String service = IDataHelper.get(cursor, "$service", String.class);
+
+		    IDataHelper.put(cursor, "$thread", ServiceHelper.fork(service, scope));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -240,20 +249,20 @@ public final class service
 		// --- <<IS-START(initiator)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [o] field:0:required $initiator?
+		// [o] field:0:required $initiator? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    List<NSService> stack = ServiceHelper.getCallStack();
 		    if (stack.size() > 0) stack.remove(stack.size() - 1); // remove call to this service
-		
+
 		    IDataHelper.put(cursor, "$initiator?", stack.size() <= 1, String.class);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -266,28 +275,33 @@ public final class service
 		// @sigtype java 3.5
 		// [i] field:0:required $service
 		// [i] record:0:optional $pipeline
-		// [i] field:0:optional $raise? {"true","false"}
+		// [i] field:0:optional $raise? {&quot;true&quot;,&quot;false&quot;}
 		// [o] record:0:optional $pipeline
 		// [o] field:0:optional $duration
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
+		    IData scope = IDataHelper.remove(cursor, "$pipeline", IData.class);
+		    boolean scoped = scope != null;
+		    if (!scoped) scope = IDataHelper.clone(pipeline, "$service", "$mode", "$raise?");
+
 		    String service = IDataHelper.get(cursor, "$service", String.class);
-		    IData scope = IDataHelper.get(cursor, "$pipeline", IData.class);
 		    String mode = IDataHelper.get(cursor, "$mode", String.class);
 		    boolean raise = IDataHelper.getOrDefault(cursor, "$raise?", Boolean.class, true);
-		
-		    boolean scoped = scope != null;
-		
+
 		    if (mode != null && mode.equals("asynchronous")) {
 		        // support asynchronous mode for backwards compatiblity
-		        IDataHelper.put(cursor, "$thread", ServiceHelper.fork(service, scoped ? scope : pipeline));
+		        IDataHelper.put(cursor, "$thread", ServiceHelper.fork(service, scope));
 		    } else {
 		        long start = System.currentTimeMillis();
-		        scope = ServiceHelper.invoke(service, scoped ? scope : pipeline, raise);
+		        scope = ServiceHelper.invoke(service, scope, raise);
 		        long end = System.currentTimeMillis();
-		
-		        if (scoped) IDataHelper.put(cursor, "$pipeline", scope);
+
+		        if (scoped) {
+		            IDataHelper.put(cursor, "$pipeline", scope);
+		        } else {
+		            IDataHelper.mergeInto(pipeline, scope);
+		        }
 		        IDataHelper.put(cursor, "$duration", DurationHelper.format(end - start, DurationPattern.XML));
 		    }
 		} finally {
@@ -295,7 +309,7 @@ public final class service
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -307,22 +321,22 @@ public final class service
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:0:optional $thread
-		// [i] field:0:optional $raise? {"true","false"}
+		// [i] field:0:optional $raise? {&quot;true&quot;,&quot;false&quot;}
 		// [o] record:0:optional $pipeline
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    ServiceThread thread = IDataHelper.get(cursor, "$thread", ServiceThread.class);
-		
+
 		    boolean raise = IDataHelper.getOrDefault(cursor, "$raise", Boolean.class, true);
-		
+
 		    if (thread != null) IDataHelper.put(cursor, "$pipeline", ServiceHelper.join(thread, raise));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -335,7 +349,7 @@ public final class service
 		// @sigtype java 3.5
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -369,7 +383,7 @@ public final class service
 		// [o] --- field:0:required node
 		// [o] -- field:0:required nodes.length
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String service = IDataHelper.get(cursor, "$service", String.class);
 		    IDataHelper.put(cursor, "$service.properties", ServiceHelper.reflect(service), false);
@@ -378,7 +392,7 @@ public final class service
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -396,7 +410,7 @@ public final class service
 		// [i] field:0:optional $content.type
 		// [i] field:0:optional $encoding
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    int code = IDataHelper.get(cursor, "$code", Integer.class);
 		    String message = IDataHelper.get(cursor, "$message", String.class);
@@ -404,14 +418,14 @@ public final class service
 		    Object content = IDataHelper.get(cursor, "$content");
 		    String contentType = IDataHelper.get(cursor, "$content.type", String.class);
 		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
-		
+
 		    ServiceHelper.respond(code, message, headers, InputStreamHelper.normalize(content, charset), contentType, charset);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -425,7 +439,7 @@ public final class service
 		RetryableServiceProcessor.getInstance().register();
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -438,7 +452,7 @@ public final class service
 		// @sigtype java 3.5
 		// [o] field:0:optional $self
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IDataHelper.put(cursor, "$self", ServiceHelper.self(), String.class, false);
 		} finally {
@@ -446,7 +460,7 @@ public final class service
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -458,11 +472,11 @@ public final class service
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $duration
-		// [i] field:0:optional $duration.pattern {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
+		// [i] field:0:optional $duration.pattern {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
 		tundra.thread.sleep(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -474,21 +488,21 @@ public final class service
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $service
-		// [i] field:0:optional $raise? {"false","true"}
-		// [o] field:0:required $valid? {"false","true"}
+		// [i] field:0:optional $raise? {&quot;false&quot;,&quot;true&quot;}
+		// [o] field:0:required $valid? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String service = IDataHelper.get(cursor, "$service", String.class);
 		    boolean raise = IDataHelper.getOrDefault(cursor, "$raise?", Boolean.class, false);
-		
+
 		    IDataHelper.put(cursor, "$valid?", ServiceHelper.exists(service, raise), String.class);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 
