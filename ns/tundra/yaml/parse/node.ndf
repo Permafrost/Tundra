@@ -119,7 +119,7 @@ stream into an IData document.
 * $document is the resulting IData document representing the parsed
   $content.
   * recordWithNoID is an optional object or array, present only when
-    the top-level of the given YAML content is not a key value map.
+    the top-level of the given [YAML] content is not a key value map.
 
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;
 [YAML]: &lt;http://www.yaml.org&gt;</value>

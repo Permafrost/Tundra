@@ -183,7 +183,7 @@ array, or input stream.
   string, byte array, or input stream.
   * recordWithNoID is an optional object or array, which can be
     used to emit arbitrary objects or arrays at the top-level of the 
-    resulting YAML content.
+    resulting [YAML] content.
 * $encoding is an optional character set to use when encoding the
   resulting text data to a byte array or input stream. Defaults to 
   [UTF-8].
