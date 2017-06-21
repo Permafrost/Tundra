@@ -14039,12 +14039,12 @@ to reach the given length.
   `$string.length >= |$length|`, `$string` is returned unmodified.
 * `$length` is the minimum desired length for the returned string. If
   specified as a positive integer, `$string` will be padded from the
-  left by prepending it with `(|$length|- $string.length)` characters.
+  left by prepending it with `(|$length| - $string.length)` characters.
   If specified as a negative integer, $string will be padded from the
-  right by appending it with `(|$length|- $string.length)` characters.
+  right by appending it with `(|$length| - $string.length)` characters.
 * `$character` is the character to use when padding `$string`. If
-  `$character.length` > 1, only the first character in `$character` will
-  be used. Defaults to ' ' (space character), if not specified.
+  `$character.length` > 1, only the first character will be used.
+  Defaults to " " (space character), if not specified.
 
 #### Outputs:
 
