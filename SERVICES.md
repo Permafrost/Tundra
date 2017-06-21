@@ -8090,7 +8090,7 @@ level groupings.
 #### Inputs:
 
 * `$list` is an `IData[]` document list whose items are to be grouped.
-* `$group` specifies the grouping criteria as a recursive hierarchicy
+* `$group` specifies the grouping criteria as a recursive hierarchy
   of keys:
   * `by` is a list of keys whose associated values are used to group
     like items in `$list` together:
