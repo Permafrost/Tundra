@@ -5001,7 +5001,23 @@ And a flattening of `a/b[0]/c[0]` would return the following
 ### tundra.document:flip
 
 Flips the given `IData` document so that the keys become the values
-and the values become the keys.
+and the values become the keys. Note that only top-level elements
+with String values are flipped; other elements are not included.
+
+For example, an `IData` document with the following structure
+represented as [JSON]:
+
+    {
+        "band": "Joy Division",
+        "album": "Unknown Pleasures"
+    }
+
+Would be flipped as follows:
+
+    {
+        "Joy Division": "band",
+        "Unknown Pleasures": "album"
+    }
 
 #### Inputs:
 
@@ -5009,8 +5025,8 @@ and the values become the keys.
 
 #### Outputs:
 
-* `$document` is the given `IData` document flipped so that the keys are
-  now the values and the values are now the keys.
+* `$document` is the given `IData` document flipped so that the keys
+  are now the values and the values are now the keys.
 
 ---
 
@@ -7980,12 +7996,57 @@ Returns the first item from the given list.
 
 ### tundra.list.document:flip
 
-Flipes the given `IData[]` document list so that for each item the
-keys become the values and the values become the keys.
+Flips the given `IData[]` document list so that for each item the
+keys become the values and the values become the keys. Note that
+only top-level elements with `String` values are flipped; other
+elements are not included.
+
+For example, an `IData[]` document list with the following structure
+represented as [JSON]:
+
+    [
+        {
+            "name": "Ian Curtis",
+            "role": "Singer"
+        },
+        {
+            "name": "Bernard Sumner",
+            "role": "Guitarist"
+        },
+        {
+            "name": "Peter Hook",
+            "role": "Bassist"
+        },
+        {
+            "name": "Stephen Morris",
+            "role": "Drummer"
+        }
+    ]
+
+Would be flipped as follows:
+
+    [
+        {
+            "Ian Curtis": "name",
+            "Singer": "role"
+        },
+        {
+            "Bernard Sumner": "name",
+            "Guitarist": "role"
+        },
+        {
+            "Peter Hook": "name",
+            "Bassist": "role"
+        },
+        {
+            "Stephen Morris": "name",
+            "Drummer": "role"
+        }
+    ]
 
 #### Inputs:
 
-* `$list` is an`IData[]` document list to be flipped.
+* `$list` is an `IData[]` document list to be flipped.
 
 #### Outputs:
 

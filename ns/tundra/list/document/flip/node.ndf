@@ -64,8 +64,53 @@
   </record>
   <value name="node_comment">### tundra.list.document:flip
 
-Flipes the given IData[] document list so that for each item the 
-keys become the values and the values become the keys.
+Flips the given IData[] document list so that for each item the 
+keys become the values and the values become the keys. Note that 
+only top-level elements with String values are flipped; other 
+elements are not included.
+
+For example, an IData[] document list with the following structure
+represented as [JSON]:
+
+    [
+        {
+            "name": "Ian Curtis",
+            "role": "Singer"
+        },
+        {
+            "name": "Bernard Sumner",
+            "role": "Guitarist"
+        },
+        {
+            "name": "Peter Hook",
+            "role": "Bassist"
+        },
+        {
+            "name": "Stephen Morris",
+            "role": "Drummer"
+        }
+    ]
+
+Would be flipped as follows:
+
+    [
+        {
+            "Ian Curtis": "name",
+            "Singer": "role"
+        },
+        {
+            "Bernard Sumner": "name",
+            "Guitarist": "role"
+        },
+        {
+            "Peter Hook": "name",
+            "Bassist": "role"
+        },
+        {
+            "Stephen Morris": "name",
+            "Drummer": "role"
+        }
+    ]
 
 #### Inputs:
 
@@ -74,7 +119,9 @@ keys become the values and the values become the keys.
 #### Outputs:
 
 * $list is the given IData[] document list flipped so that for each 
-  item the keys are now the values and the values are now the keys.</value>
+  item the keys are now the values and the values are now the keys.
+
+[JSON]: &lt;http://www.json.org/&gt;</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
