@@ -13524,6 +13524,24 @@ Removes the given key value pair from current session state.
 
 ---
 
+### tundra.soap.fault:handle
+
+Handles a [SOAP] fault returned by a web service invocation by
+throwing an exception if one of the Integration Server [SOAP] fault
+structures exist in the pipeline.
+
+Supports both the Integration Server pre-8.2 `SOAP-FAULT` and the 8.2
+and higher `fault` structures.
+
+#### Inputs:
+
+* `fault` is an optional [SOAP] fault structure returned by an
+  Integration Server 8.2 and higher web service consumer.
+* `SOAP-FAULT` is an optional [SOAP] fault structure returned by an
+  Integration Server pre-8.2 web service consumer.
+
+---
+
 ### tundra.stream:close
 
 Closes the given input stream or output stream, and releases any associated
@@ -15386,6 +15404,7 @@ Decompresses the given content using the [zip] file compression format.
 [rounding algorithm]: <http://docs.oracle.com/javase/6/docs/api/java/math/RoundingMode.html>
 [SAX]: <http://en.wikipedia.org/wiki/Simple_API_for_XML>
 [set intersection]: <http://en.wikipedia.org/wiki/Intersection_(set_theory)>
+[SOAP]: <https://en.wikipedia.org/wiki/SOAP>
 [SQL GROUP BY]: <http://en.wikipedia.org/wiki/SQL#Queries>
 [try block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/try.html>
 [TSV]: <http://en.wikipedia.org/wiki/Tab-separated_values>
