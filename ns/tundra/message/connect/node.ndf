@@ -4,23 +4,22 @@
   <value name="svc_type">flow</value>
   <value name="svc_subtype">default</value>
   <value name="svc_sigtype">java 3.5</value>
-  <value name="node_comment">### tundra.support:access
+  <value name="node_comment">### tundra.message:connect
 
-Applies access control lists to specific Tundra folders and services as follows:
+Designed to be invoked via an [HTTP] request to test whether a client
+can connect and authenticate to Integration Server for publishing 
+messages via the tundra.message:receive service.
 
-Node                    List ACL          Read ACL          Write ACL         Execute ACL
-----------------------  ----------------  ----------------  ----------------  ----------------
-tundra                  Developers        Developers        Developers        Internal
-tundra.content:discard       "                 "                 "            Anonymous
-tundra.content:reject        "                 "                 "            Anonymous
-tundra.message:connect       "                 "                 "            MessageProducers
-tundra.message:receive       "                 "                 "            MessageProducers</value>
-  <value name="stateless">yes</value>
+Returns an [HTTP] response body in [HTML] format describing a successful 
+connection to the server.
+
+[HTML]: &lt;http://en.wikipedia.org/wiki/HTML&gt;
+[HTTP]: &lt;http://tools.ietf.org/search/rfc2616&gt;</value>
+  <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
-  <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
   <value name="icontext_policy">$null</value>

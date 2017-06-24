@@ -11042,6 +11042,17 @@ it is for the same class of measurement such as distance or mass.
 
 ---
 
+### tundra.message:connect
+
+Designed to be invoked via an [HTTP] request to test whether a client
+can connect and authenticate to Integration Server for publishing
+messages via the `tundra.message:receive` service.
+
+Returns an [HTTP] response body in [HTML] format describing a successful
+connection to the server.
+
+---
+
 ### tundra.message.format:clear
 
 Removes all registered message formats from memory.
