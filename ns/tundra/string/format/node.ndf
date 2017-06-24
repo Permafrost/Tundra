@@ -503,7 +503,7 @@ specified as a [java.util.Formatter format string].
     Supports absolute keys prefixed with `/`, which will always be
     resolved against $pipeline, if it exists, or the pipeline itself,
     if it does not exist. If not specified, then a value should be
-    provided directly in the value field. The following two special
+    provided directly in the value field. The following two special
     keys are also supported with their values set automatically when
     used:
     * $index is the zero-based index of the item in $list being
