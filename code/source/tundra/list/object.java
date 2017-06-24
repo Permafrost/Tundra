@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-06-03 18:56:23 EST
+// -----( CREATED: 2017-06-24 12:47:21 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -240,7 +240,7 @@ public final class object
 		// @sigtype java 3.5
 		// [i] record:0:optional $operands
 		// [i] field:0:optional $class
-		// [o] field:0:required $equal?
+		// [o] field:0:required $equal? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -371,7 +371,7 @@ public final class object
 		// @sigtype java 3.5
 		// [i] object:1:optional $list
 		// [i] object:0:optional $item
-		// [o] field:0:required $include?
+		// [o] field:0:required $include? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -451,7 +451,7 @@ public final class object
 		// @sigtype java 3.5
 		// [i] object:1:optional $list
 		// [i] field:0:optional $class
-		// [o] field:0:optional $instance?
+		// [o] field:0:optional $instance? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -1282,10 +1282,10 @@ public final class object
 	    try {
 	        for (Map.Entry<String, List<T>> entry : results.entrySet()) {
 	            List<T> list = entry.getValue();
-	            IDataHelper.put(cursor, entry.getKey(), ArrayHelper.toArray(list));
+	            IDataHelper.put(cursor, entry.getKey(), ArrayHelper.of(list));
 	            IDataHelper.put(cursor, entry.getKey() + PARTITION_LENGTH_KEY_SUFFIX, list.size(), String.class);
 	        }
-	        IDataHelper.put(cursor, PARTITION_REMAINDER_KEY, ArrayHelper.toArray(remainder));
+	        IDataHelper.put(cursor, PARTITION_REMAINDER_KEY, ArrayHelper.of(remainder));
 	        IDataHelper.put(cursor, PARTITION_REMAINDER_LENGTH_KEY, remainder.size(), String.class);
 	    } finally {
 	        cursor.destroy();
