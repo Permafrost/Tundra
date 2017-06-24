@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-06-19 20:25:14 EST
+// -----( CREATED: 2017-06-24 09:51:10 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -789,11 +789,11 @@ public final class document
 		
 		try {
 		    IData[] list = IDataHelper.get(cursor, "$list", IData[].class);
-		    IData scope = IDataHelper.get(cursor, "$pipeline", IData.class);
+		    IData scope = IDataHelper.getOrDefault(cursor, "$pipeline", IData.class, pipeline);
 		    String defaultValue = IDataHelper.get(cursor, "$default", String.class);
 		    EnumSet<SubstitutionType> mode = SubstitutionType.normalize(IDataHelper.get(cursor, "$mode", String.class));
 		
-		    if (list != null) IDataHelper.put(cursor, "$list", SubstitutionHelper.substitute(list, defaultValue, scope == null ? pipeline : scope, true, mode));
+		    if (list != null) IDataHelper.put(cursor, "$list", SubstitutionHelper.substitute(list, defaultValue, true, mode, scope));
 		} finally {
 		    cursor.destroy();
 		}

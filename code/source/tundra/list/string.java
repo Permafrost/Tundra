@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-20 15:13:47 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2017-06-24 09:51:43 EST
+// -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -252,9 +252,9 @@ public final class string
 		// [i] field:1:optional $list
 		// [i] field:0:optional $pattern
 		// [i] field:0:optional $literal? {"false","true"}
-		// [o] field:0:required $found.all?
-		// [o] field:0:required $found.any?
-		// [o] field:0:required $found.none?
+		// [o] field:0:required $found.all? {"false","true"}
+		// [o] field:0:required $found.any? {"false","true"}
+		// [o] field:0:required $found.none? {"false","true"}
 		// [o] field:1:optional $found
 		// [o] field:0:required $found.length
 		// [o] field:1:optional $unfound
@@ -480,9 +480,9 @@ public final class string
 		// [i] field:1:optional $list
 		// [i] field:0:optional $pattern
 		// [i] field:0:optional $literal? {"false","true"}
-		// [o] field:0:required $matched.all?
-		// [o] field:0:required $matched.any?
-		// [o] field:0:required $matched.none?
+		// [o] field:0:required $matched.all? {"false","true"}
+		// [o] field:0:required $matched.any? {"false","true"}
+		// [o] field:0:required $matched.none? {"false","true"}
 		// [o] field:1:optional $matched
 		// [o] field:0:required $matched.length
 		// [o] field:1:optional $unmatched
@@ -614,6 +614,15 @@ public final class string
 		// --- <<IS-START(partition)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
+		// [i] field:1:optional $list
+		// [i] record:1:optional $partitions
+		// [i] - field:0:required name
+		// [i] - field:0:required condition
+		// [i] - record:0:optional scope
+		// [i] record:0:optional $scope
+		// [o] record:0:optional $results
+		// [o] - field:1:required remainder
+		// [o] - field:0:required remainder.length
 		tundra.list.object.partition(pipeline);
 		// --- <<IS-END>> ---
 
@@ -799,11 +808,11 @@ public final class string
 		
 		try {
 		    String[] list = IDataHelper.get(cursor, "$list", String[].class);
-		    IData scope = IDataHelper.get(cursor, "$pipeline", IData.class);
+		    IData scope = IDataHelper.getOrDefault(cursor, "$pipeline", IData.class, pipeline);
 		    String defaultValue = IDataHelper.get(cursor, "$default", String.class);
 		    EnumSet<SubstitutionType> mode = SubstitutionType.normalize(IDataHelper.get(cursor, "$mode", String.class));
 		
-		    IDataHelper.put(cursor, "$list", SubstitutionHelper.substitute(list, defaultValue, scope == null ? pipeline : scope, mode));
+		    IDataHelper.put(cursor, "$list", SubstitutionHelper.substitute(list, defaultValue, mode, scope));
 		} finally {
 		    cursor.destroy();
 		}

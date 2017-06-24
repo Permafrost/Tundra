@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-07 15:58:39 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2017-06-24 09:47:57 EST
+// -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -485,7 +485,7 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData copy = SubstitutionHelper.substitute(pipeline, null, pipeline, true);
+		    IData copy = SubstitutionHelper.substitute(pipeline, null, true, pipeline);
 		    IDataHelper.clear(pipeline);
 		    merge(pipeline, copy);
 		} finally {

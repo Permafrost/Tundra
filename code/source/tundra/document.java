@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-06-19 20:20:19 EST
+// -----( CREATED: 2017-06-24 09:49:34 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -1054,11 +1054,11 @@ public final class document
 		
 		try {
 		    IData document = IDataHelper.get(cursor, "$document", IData.class);
-		    IData scope = IDataHelper.get(cursor, "$pipeline", IData.class);
+		    IData scope = IDataHelper.getOrDefault(cursor, "$pipeline", IData.class, pipeline);
 		    String defaultValue = IDataHelper.get(cursor, "$default", String.class);
 		    EnumSet<SubstitutionType> mode = SubstitutionType.normalize(IDataHelper.get(cursor, "$mode", String.class));
 		
-		    IDataHelper.put(cursor, "$document", SubstitutionHelper.substitute(document, defaultValue, scope == null ? pipeline : scope, true, mode), false);
+		    IDataHelper.put(cursor, "$document", SubstitutionHelper.substitute(document, defaultValue, true, mode, scope), false);
 		} finally {
 		    cursor.destroy();
 		}

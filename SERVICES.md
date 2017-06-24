@@ -2269,11 +2269,14 @@ substitution `%key%` substrings found in configuration values are
 automatically substituted as follows:
 
 * Keys prefixed with `$system` are resolved against the `$system`
-  document returned by `tundra.system:reflect`.
+  document returned by `tundra.system:reflect`. This approach allows
+  for server-specific global configuration values stored as
+  environment variables, java system properties, or global
+  variables to be included in the returned package configurations.
+* All other keys are resolved against the configuration itself. This
+  approach allows for values to be built using other values in the
+  configuration, which can be used to reduce repetition of values.
 
-This approach allows for server-specific global configuration values
-stored as environment variables, java system properties, or global
-variables to be included in the returned package configurations.
 Note that because the variable substitution occurs when the
 configuration is first read from disk and cached (to optimise
 performance), changes to environment variables, java system
