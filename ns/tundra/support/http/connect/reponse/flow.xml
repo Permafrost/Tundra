@@ -55,28 +55,28 @@
 <Values version="2.0">
   <value name="xml">&lt;html&gt;
     &lt;head&gt;
-        &lt;title&gt;Server connection successful&lt;/title&gt;
+        &lt;title&gt;Connected to %$server%&lt;/title&gt;
         &lt;style&gt;
             p {
-                border: 0.5em solid forestgreen;
-                background-color: palegreen;
-                font: normal 28pt/36pt Helvetica, Arial, sans-serif;
+                background: #98fb98;
+                border: .5em solid #228b22;
+                font: 400 28pt/36pt Helvetica, Arial, sans-serif;
                 margin: 1em;
                 padding: 1em;
             }
-            code {
-                background: limegreen;
+            i {
+                background: #32cd32;
                 font: bold 1em Monaco, Consolas, monospace;
-                padding: 0 0.125em;
+                padding: 0 .125em;
                 white-space: nowrap;
             }
         &lt;/style&gt;
     &lt;/head&gt;
     &lt;body&gt;
         &lt;p&gt;
-            You have successfully connected to server &lt;code&gt;%$server%&lt;/code&gt;
-            from client &lt;code&gt;%$client%&lt;/code&gt; as user &lt;code&gt;%$user%&lt;/code&gt;
-            at &lt;code&gt;%$datetime%&lt;/code&gt;.
+            You have successfully connected to server &lt;i&gt;%$server%&lt;/i&gt;
+            from client &lt;i&gt;%$client%&lt;/i&gt; as user &lt;i&gt;%$user%&lt;/i&gt;
+            at &lt;i&gt;%$datetime%&lt;/i&gt;.
         &lt;/p&gt;
     &lt;/body&gt;
 &lt;/html&gt;
