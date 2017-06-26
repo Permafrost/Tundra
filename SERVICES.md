@@ -5070,12 +5070,20 @@ objects in the top level of the given IData document.
   key. Defaults to false if not specified.
 * `$value.default` is an optional value to be returned when either
   the given `$key` does not exist or its associated value is null.
+* `$value.list.default` is an optional list value to be returned when
+  either the given `$key` does not exit or its associated value is
+  null.
 
 #### Outputs:
 
 * `$value` is the value associated with the given `$key` in the given
-  IData document, or the given `$value.default` if specified and the
-  associated value for `$key` either does not exist or is null.
+  `IData` document, or the given `$value.default` or `$value.list.default`
+  if specified and the associated value for `$key` either does not
+  exist or is null.
+* `$value.list` is the value associated with the given `$key` in the
+  given `IData` document if it is a list, or the given
+  `$value.list.default` if specified and the associated value for `$key`
+  either does not exist or is null.
 
 ---
 
