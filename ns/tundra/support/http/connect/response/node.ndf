@@ -53,7 +53,7 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">### tundra.support.http.connect:reponse
+  <value name="node_comment">### tundra.support.http.connect:response
 
 Returns an HTTP response body in HTML format describing a successful 
 connection to the server.</value>
