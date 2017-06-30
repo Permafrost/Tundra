@@ -9317,6 +9317,25 @@ Returns a new list containing all the items in the given lists.
 
 ---
 
+### tundra.list.object:create
+
+Returns a newly created empty array with the given length that can
+hold items of the class.
+
+#### Inputs:
+
+* `$length` is the desired length of the newly created array. Defaults
+  to `0`.
+* `$class` is an optional Java class name used to instantiate the
+  array. Defaults to `java.lang.Object`.
+
+#### Outputs:
+
+* `$list` is a newly created empty array with the given `$length` that
+  can hold items of the given `$class`.
+
+---
+
 ### tundra.list.object:difference
 
 Returns a list of only the items in `$list.x` that are not also
