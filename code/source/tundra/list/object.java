@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-06-30 12:46:19.800
+// -----( CREATED: 2017-07-06 15:01:00.830
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -627,7 +627,7 @@ public final class object
 		// [i] - record:0:optional scope
 		// [i] record:0:optional $scope
 		// [o] record:0:optional $results
-		// [o] - object:1:required remainder
+		// [o] - object:1:optional remainder
 		// [o] - field:0:required remainder.length
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -1311,7 +1311,7 @@ public final class object
 	            IDataHelper.put(cursor, entry.getKey(), ArrayHelper.of(list));
 	            IDataHelper.put(cursor, entry.getKey() + PARTITION_LENGTH_KEY_SUFFIX, list.size(), String.class);
 	        }
-	        IDataHelper.put(cursor, PARTITION_REMAINDER_KEY, ArrayHelper.of(remainder));
+	        if (remainder.size() > 0) IDataHelper.put(cursor, PARTITION_REMAINDER_KEY, ArrayHelper.of(remainder));
 	        IDataHelper.put(cursor, PARTITION_REMAINDER_LENGTH_KEY, remainder.size(), String.class);
 	    } finally {
 	        cursor.destroy();
