@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-07 15:27:44 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2017-07-11 16:23:55.454
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -12,6 +12,7 @@ import com.wm.app.b2b.server.ServiceException;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import permafrost.tundra.data.IDataHelper;
+import permafrost.tundra.data.IDataMap;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.CharsetHelper;
 import permafrost.tundra.lang.ExceptionHelper;
@@ -42,19 +43,27 @@ public final class object
 		// --- <<IS-START(coalesce)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] object:0:optional $object.x
-		// [i] object:0:optional $object.y
-		// [i] field:0:optional $mode {"missing","null"}
+		// [i] record:0:optional $operands
+		// [i] field:0:optional $mode {&quot;missing&quot;,&quot;null&quot;}
 		// [o] object:0:optional $object
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
-		    Object x = IDataHelper.get(cursor, "$object.x");
-		    Object y = IDataHelper.get(cursor, "$object.y");
+		    IData operands = IDataHelper.get(cursor, "$operands", IData.class);
 		    String mode = IDataHelper.get(cursor, "$mode", String.class);
-		
-		    Object result = tundra.object.coalesce(x, y);
-		
+
+		    if (operands == null) {
+		        Object x = IDataHelper.get(cursor, "$object.x");
+		        Object y = IDataHelper.get(cursor, "$object.y");
+
+		        IDataMap map = new IDataMap();
+		        map.put("$object.x", x);
+		        map.put("$object.y", y);
+		        operands = map;
+		    }
+
+		    Object result = ObjectHelper.coalesce(IDataHelper.getLeafValues(operands));
+
 		    if (result != null || (mode != null && mode.equals("null"))) {
 		        IDataHelper.put(cursor, "$object", result);
 		    }
@@ -63,7 +72,7 @@ public final class object
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -75,16 +84,16 @@ public final class object
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:0:optional $object
-		// [i] field:0:optional $mode {"stream","bytes","string"}
 		// [i] field:0:optional $encoding
+		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
 		// [o] object:0:optional $object
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Object object = IDataHelper.get(cursor, "$object");
 		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
 		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
-		
+
 		    IDataHelper.put(cursor, "$object", ObjectHelper.convert(object, charset, mode), false);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -93,7 +102,7 @@ public final class object
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -106,20 +115,20 @@ public final class object
 		// @sigtype java 3.5
 		// [i] object:0:optional $object.x
 		// [i] object:0:optional $object.y
-		// [o] field:0:required $equal?
+		// [o] field:0:required $equal? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Object x = IDataHelper.get(cursor, "$object.x");
 		    Object y = IDataHelper.get(cursor, "$object.y");
-		
+
 		    IDataHelper.put(cursor, "$equal?", equal(x, y), String.class);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -132,20 +141,20 @@ public final class object
 		// @sigtype java 3.5
 		// [i] object:0:optional $object
 		// [i] field:0:optional $class
-		// [o] field:0:required $instance?
+		// [o] field:0:required $instance? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Object object = IDataHelper.get(cursor, "$object");
 		    Class klass = IDataHelper.get(cursor, "$class", Class.class);
-		
+
 		    IDataHelper.put(cursor, "$instance?", instance(object, klass), String.class);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -162,7 +171,7 @@ public final class object
 		tundra.document.listify(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -175,7 +184,7 @@ public final class object
 		// @sigtype java 3.5
 		// [o] object:0:required $nothing
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IDataHelper.put(cursor, "$nothing", null);
 		} finally {
@@ -183,7 +192,7 @@ public final class object
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -198,14 +207,14 @@ public final class object
 		// [i] field:0:optional $key
 		// [o] field:0:required $id
 		// [o] field:0:optional $class
-		// [o] field:0:optional $array?
-		// [o] field:0:optional $primitive?
+		// [o] field:0:optional $array? {&quot;false&quot;,&quot;true&quot;}
+		// [o] field:0:optional $primitive? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
 		try {
 		    Object object = IDataHelper.get(cursor, "$object");
 		    String key = IDataHelper.get(cursor, "$key", String.class);
 		    if (object == null && key != null) object = IDataHelper.get(pipeline, key);
-		
+
 		    IDataHelper.put(cursor, "$id", System.identityHashCode(object), String.class);
 		    if (object != null) {
 		        Class klass = object.getClass();
@@ -218,7 +227,7 @@ public final class object
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -232,7 +241,7 @@ public final class object
 		// [i] object:0:optional $object
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Object object = IDataHelper.get(cursor, "$object");
 		    IDataHelper.put(cursor, "$string", ObjectHelper.stringify(object), false);
@@ -241,15 +250,10 @@ public final class object
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 	// --- <<IS-START-SHARED>> ---
-	// returns the first non-null item from the given list
-	public static <T> T coalesce(T x, T y) {
-	    return x != null ? x : y;
-	}
-	
 	// returns true if the two objects are equal
 	public static boolean equal(Object x, Object y) {
 	    boolean result = true;
@@ -262,23 +266,23 @@ public final class object
 	    } else {
 	        result = (x == null && y == null);
 	    }
-	
+
 	    return result;
 	}
-	
+
 	// is the given object a primitive or an array of primitives?
 	public static boolean primitive(Object object) {
 	    if (object == null) return false;
-	
+
 	    Class klass = object.getClass();
 	    return klass.isPrimitive() || (klass.isArray() && !(object instanceof Object[]));
 	}
-	
+
 	// is the given object an instance of the given class?
 	public static boolean instance(Object object, Class klass) {
 	  return object != null && klass != null && klass.isInstance(object);
 	}
-	
+
 	// converts a string, byte array or stream to a string, byte array or stream
 	public static Object convert(Object object, String encoding, String mode) throws java.io.IOException {
 	    return ObjectHelper.convert(object, encoding, mode);
