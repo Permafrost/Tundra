@@ -243,6 +243,8 @@
   </record>
   <value name="node_comment">### tundra.document.key:replace
 
+DEPRECATED: use tundra.document:replace instead.
+
 Replaces either the first or all occurrences of the given
 [regular expression pattern] in each key in the given IData 
 document with the replacement string.

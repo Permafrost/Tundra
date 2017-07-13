@@ -245,6 +245,8 @@
   </record>
   <value name="node_comment">### tundra.list.document.value:replace
 
+DEPRECATED: use tundra.list.document:replace instead.
+
 Replaces either the first or all occurrences of the given
 [regular expression pattern] in each item's string values in
 the given IData[] document list with the replacement string.

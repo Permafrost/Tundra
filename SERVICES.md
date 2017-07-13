@@ -5164,42 +5164,6 @@ document.
 
 ---
 
-### tundra.document.key:replace
-
-Replaces either the first or all occurrences of the given
-[regular expression pattern] in each key in the given `IData`
-document with the replacement string.
-
-#### Inputs:
-
-* `$document` is an `IData` document to have occurrences of the
-  given [regular expression pattern] in each key replaced.
-* `$pattern` is the [regular expression pattern] to match against
-  each key. If not specified, no replacement will occur.
-* `$replacement` is the replacement string to be substituted in
-  each key wherever the given pattern is found. If not specified,
-  no replacement will occur.
-* `$literal?` is a boolean indicating if the replacement string
-  should be treated as a literal string. If false, captured
-  groups can be referred to with dollar-sign references, such
-  as `$1`, and other special characters may need to be escaped.
-  Defaults to `false`.
-* `$mode` is a choice of whether to replace all occurrences of the
-  pattern, or just the first occurrence. If not specified,
-  defaults to all occurrences.
-* `$recurse?` is an optional boolean indicating if embedded
-  `IData` documents and `IData[]` document lists should also
-  have occurrences of the pattern in their keys replaced.
-  Defaults to `false`.
-
-#### Outputs:
-
-* `$document` is the given `IData` document with either the first
-  or all occurrences of the given [regular expression pattern] in
-  each key replaced with `$replacement`.
-
----
-
 ### tundra.document:keys
 
 Returns the top-level keys in the given IData document that match
@@ -5619,6 +5583,47 @@ in the given IData document.
 
 ---
 
+### tundra.document:replace
+
+Replaces either the first or all occurrences of the given pattern
+with the given replacement in either the values, the keys, or both
+the keys and values in the given `IData` document.
+
+#### Inputs:
+
+* `$document` is an `IData` document to have occurrences of the
+  given pattern replaced.
+* `$pattern` is either a literal or [regular expression pattern] to
+  be replaced. If not specified, no replacement will occur.
+* `$pattern.literal?` is a boolean indicating whether the pattern is a
+  literal or a [regular expression pattern]. If literal, the pattern
+  is converted to a [regular expression pattern] that matches the
+  given literal string. Defaults to `false`.
+* `$replacement` is the replacement string to be substituted in the
+  given string wherever the given pattern is found. If not
+  specified, no replacement will occur.
+* `$replacement.literal?` is a boolean indicating if the replacement
+  string should be treated as a literal string. If `false`, captured
+  groups can be referred to with dollar-sign references, such as `$1`,
+  and other special characters may need to be escaped. Defaults to
+  `false`.
+* `$occurrence.first?` is a boolean indicating if only the first
+  occurrence of the given pattern should be replaced. Defaults to
+  `false`, where all occurrences of the pattern are replaced.
+* `$recurse?` is an optional boolean indicating if embedded `IData`
+  documents and `IData[]` document lists should also have occurrences
+  of the pattern in their keys replaced. Defaults to `false`.
+* `$mode` is an optional choice for what should be replaced:
+  either the values, the keys, or both the keys and the values.
+  Defaults to replacing values only.
+
+#### Outputs:
+
+* `$document` is the given `IData` document with the given `$pattern`
+  replaced with the given `$replacement`.
+
+---
+
 ### tundra.document:sort
 
 Sorts the given IData document by its keys in natural ascending order.
@@ -5874,41 +5879,6 @@ given `IData` document.
 * `$document` is the given `IData` document with either the first
   or all occurrences of the given [regular expression pattern]
   in each string value removed.
-
----
-
-### tundra.document.value:replace
-
-Replaces either the first or all occurrences of the given
-[regular expression pattern] in each string value in the
-given `IData` document with the replacement string.
-
-#### Inputs:
-
-* `$document` is an `IData` document to have occurrences of the
-  given [regular expression pattern] in each string value replaced.
-* `$pattern` is the [regular expression pattern] to match against
-  each string value. If not specified, no replacement will occur.
-* `$replacement` is the replacement string to be substituted in
-  each string value wherever the given pattern is found.
-* `$literal?` is a boolean indicating if the replacement string
-  should be treated as a literal string. If false, captured
-  groups can be referred to with dollar-sign references, such
-  as `$1`, and other special characters may need to be escaped.
-  Defaults to `false`.
-* `$mode` is a choice of whether to replace all occurrences of the
-  pattern, or just the first occurrence. If not specified,
-  defaults to all occurrences.
-* `$recurse?` is an optional boolean indicating if embedded
-  `IData` documents and `IData[]` document lists should also
-  have occurrences of the pattern in their string values
-  replaced. Defaults to `false`.
-
-#### Outputs:
-
-* `$document` is the given `IData` document with either the first
-  or all occurrences of the given [regular expression pattern] in
-  each string value replaced with `$replacement`.
 
 ---
 
@@ -8261,41 +8231,6 @@ Removes either the first or all occurrences of the given
 
 ---
 
-### tundra.list.document.key:replace
-
-Replaces either the first or all occurrences of the given
-[regular expression pattern] in each item's keys in the given
-`IData[]` document list with the replacement string.
-
-#### Inputs:
-
-* `$list` is an `IData[]` document list to have occurrences of the
-  given [regular expression pattern] in each item's keys replaced.
-* `$pattern` is the [regular expression pattern] to match against
-  each key. If not specified, no replacement will occur.
-* `$replacement` is the replacement string to be substituted in
-  each key wherever the given pattern is found.
-* `$literal?` is a boolean indicating if the replacement string
-  should be treated as a literal string. If `false`, captured
-  groups can be referred to with dollar-sign references, such
-  as `$1`, and other special characters may need to be escaped.
-  Defaults to `false`.
-* `$mode` is a choice of whether to replace all occurrences of the
-  pattern, or just the first occurrence. If not specified,
-  defaults to all occurrences.
-* `$recurse?` is an optional boolean indicating if embedded
-  `IData` documents and `IData[]` document lists should also
-  have occurrences of the pattern in their keys replaced.
-  Defaults to `false`.
-
-#### Outputs:
-
-* `$list` is the given `IData[]` document list with either the first
-  or all occurrences of the given [regular expression pattern] in
-  each item's keys replaced with `$replacement`.
-
----
-
 ### tundra.list.document:keys
 
 Returns the union set of all top-level keys present in each IData
@@ -8703,6 +8638,47 @@ condition evaluates to true.
 
 ---
 
+### tundra.list.document:replace
+
+Replaces either the first or all occurrences of the given pattern
+with the given replacement in either the values, the keys, or both
+the keys and values in the given `IData[]` document list.
+
+#### Inputs:
+
+* `$list` is an `IData[]` document list to have occurrences of the
+  given pattern replaced.
+* `$pattern` is either a literal or [regular expression pattern] to
+  be replaced. If not specified, no replacement will occur.
+* `$pattern.literal?` is a boolean indicating whether the pattern is a
+  literal or a [regular expression pattern]. If literal, the pattern
+  is converted to a [regular expression pattern] that matches the
+  given literal string. Defaults to `false`.
+* `$replacement` is the replacement string to be substituted in the
+  given string wherever the given pattern is found. If not
+  specified, no replacement will occur.
+* `$replacement.literal?` is a boolean indicating if the replacement
+  string should be treated as a literal string. If false, captured
+  groups can be referred to with dollar-sign references, such as `$1`,
+  and other special characters may need to be escaped. Defaults to
+  `false`.
+* `$occurrence.first?` is a boolean indicating if only the first
+  occurrence of the given pattern should be replaced. Defaults to
+  `false`, where all occurrences of the pattern are replaced.
+* `$recurse?` is an optional boolean indicating if embedded `IData`
+  documents and `IData[]` document lists should also have occurrences
+  of the pattern in their keys replaced. Defaults to `false`.
+* `$mode` is an optional choice for what should be replaced:
+  either the values, the keys, or both the keys and the values.
+  Defaults to replacing values only.
+
+#### Outputs:
+
+* `$list` is the given `IData[]` document list with the given `$pattern`
+  replaced with the given `$replacement`.
+
+---
+
 ### tundra.list.document:resize
 
 Resizes the given list to the given length, truncated from the end when the
@@ -8977,42 +8953,6 @@ the given `IData[]` document list.
 * `$list` is the given `IData[]` document list with either the first
   or all occurrences of the given [regular expression pattern]
   in each item's string values removed.
-
----
-
-### tundra.list.document.value:replace
-
-Replaces either the first or all occurrences of the given
-[regular expression pattern] in each item's string values in
-the given `IData[]` document list with the replacement string.
-
-#### Inputs:
-
-* `$list` is an `IData[]` document list to have occurrences of
-  the given [regular expression pattern] in each item's string values
-  replaced.
-* `$pattern` is the [regular expression pattern] to match against
-  each string value. If not specified, no replacement will occur.
-* `$replacement` is the replacement string to be substituted in
-  each string value wherever the given pattern is found.
-* `$literal?` is a boolean indicating if the replacement string
-  should be treated as a literal string. If `false`, captured
-  groups can be referred to with dollar-sign references, such
-  as `$1`, and other special characters may need to be escaped.
-  Defaults to `false`.
-* `$mode` is a choice of whether to replace all occurrences of the
-  pattern, or just the first occurrence. If not specified,
-  defaults to all occurrences.
-* `$recurse?` is an optional boolean indicating if embedded
-  `IData` documents and `IData[]` document lists should also
-  have occurrences of the pattern in their string values
-  replaced. Defaults to false.
-
-#### Outputs:
-
-* `$list` is the given `IData[]` document list with either the first
-  or all occurrences of the given [regular expression pattern]
-  in each item's string values replaced with `$replacement`.
 
 ---
 

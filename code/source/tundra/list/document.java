@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-06-24 09:51:10 EST
+// -----( CREATED: 2017-07-13 21:16:03 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -531,7 +531,7 @@ public final class document
 		// [i] - record:0:optional scope
 		// [i] record:0:optional $scope
 		// [o] record:0:optional $results
-		// [o] - record:1:required remainder
+		// [o] - record:1:optional remainder
 		// [o] - field:0:required remainder.length
 		tundra.list.object.partition(pipeline);
 		// --- <<IS-END>> ---
@@ -623,6 +623,44 @@ public final class document
 		// [o] record:1:optional $list
 		// [o] field:0:required $list.length
 		tundra.list.object.reject(pipeline);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void replace (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(replace)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:1:optional $list
+		// [i] field:0:optional $pattern
+		// [i] field:0:optional $pattern.literal? {"false","true"}
+		// [i] field:0:optional $replacement
+		// [i] field:0:optional $replacement.literal? {"false","true"}
+		// [i] field:0:optional $occurrence.first? {"false","true"}
+		// [i] field:0:optional $recurse? {"false","true"}
+		// [i] field:0:optional $mode {"values","keys","keys and values"}
+		// [o] record:1:optional $list
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    IData[] list = IDataHelper.get(cursor, "$list", IData[].class);
+		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
+		    boolean literalPattern = IDataHelper.getOrDefault(cursor, "$pattern.literal?", Boolean.class, false);
+		    String replacement = IDataHelper.get(cursor, "$replacement", String.class);
+		    boolean literalReplacement = IDataHelper.getOrDefault(cursor, "$replacement.literal?", Boolean.class, false);
+		    boolean firstOccurrence = IDataHelper.getOrDefault(cursor, "$occurrence.first?", Boolean.class, false);
+		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
+		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
+		
+		    IDataHelper.put(cursor, "$list", IDataHelper.replace(list, pattern, literalPattern, replacement, literalReplacement, firstOccurrence, mode, recurse), false);
+		} finally {
+		    cursor.destroy();
+		}
 		// --- <<IS-END>> ---
 
                 
