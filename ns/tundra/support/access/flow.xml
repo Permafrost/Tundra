@@ -2664,6 +2664,15 @@
       </array>
     </record>
     <record javaclass="com.wm.util.Values">
+      <value name="node">tundra.document.key:remove</value>
+      <array name="permissions" type="record" depth="1">
+        <record javaclass="com.wm.util.Values">
+          <value name="type">list</value>
+          <value name="acl">WmPrivate</value>
+        </record>
+      </array>
+    </record>
+    <record javaclass="com.wm.util.Values">
       <value name="node">tundra.document.key:replace</value>
       <array name="permissions" type="record" depth="1">
         <record javaclass="com.wm.util.Values">
@@ -2691,7 +2700,7 @@
       </array>
     </record>
     <record javaclass="com.wm.util.Values">
-      <value name="node">tundra.document.value:lowercase</value>
+      <value name="node">tundra.document.value</value>
       <array name="permissions" type="record" depth="1">
         <record javaclass="com.wm.util.Values">
           <value name="type">list</value>
@@ -2700,7 +2709,7 @@
       </array>
     </record>
     <record javaclass="com.wm.util.Values">
-      <value name="node">tundra.document.value:replace</value>
+      <value name="node">tundra.list.document.key</value>
       <array name="permissions" type="record" depth="1">
         <record javaclass="com.wm.util.Values">
           <value name="type">list</value>
@@ -2709,88 +2718,7 @@
       </array>
     </record>
     <record javaclass="com.wm.util.Values">
-      <value name="node">tundra.document.value:trim</value>
-      <array name="permissions" type="record" depth="1">
-        <record javaclass="com.wm.util.Values">
-          <value name="type">list</value>
-          <value name="acl">WmPrivate</value>
-        </record>
-      </array>
-    </record>
-    <record javaclass="com.wm.util.Values">
-      <value name="node">tundra.document.value:uppercase</value>
-      <array name="permissions" type="record" depth="1">
-        <record javaclass="com.wm.util.Values">
-          <value name="type">list</value>
-          <value name="acl">WmPrivate</value>
-        </record>
-      </array>
-    </record>
-    <record javaclass="com.wm.util.Values">
-      <value name="node">tundra.list.document.key:lowercase</value>
-      <array name="permissions" type="record" depth="1">
-        <record javaclass="com.wm.util.Values">
-          <value name="type">list</value>
-          <value name="acl">WmPrivate</value>
-        </record>
-      </array>
-    </record>
-    <record javaclass="com.wm.util.Values">
-      <value name="node">tundra.list.document.key:replace</value>
-      <array name="permissions" type="record" depth="1">
-        <record javaclass="com.wm.util.Values">
-          <value name="type">list</value>
-          <value name="acl">WmPrivate</value>
-        </record>
-      </array>
-    </record>
-    <record javaclass="com.wm.util.Values">
-      <value name="node">tundra.list.document.key:trim</value>
-      <array name="permissions" type="record" depth="1">
-        <record javaclass="com.wm.util.Values">
-          <value name="type">list</value>
-          <value name="acl">WmPrivate</value>
-        </record>
-      </array>
-    </record>
-    <record javaclass="com.wm.util.Values">
-      <value name="node">tundra.list.document.key:uppercase</value>
-      <array name="permissions" type="record" depth="1">
-        <record javaclass="com.wm.util.Values">
-          <value name="type">list</value>
-          <value name="acl">WmPrivate</value>
-        </record>
-      </array>
-    </record>
-    <record javaclass="com.wm.util.Values">
-      <value name="node">tundra.list.document.value:lowercase</value>
-      <array name="permissions" type="record" depth="1">
-        <record javaclass="com.wm.util.Values">
-          <value name="type">list</value>
-          <value name="acl">WmPrivate</value>
-        </record>
-      </array>
-    </record>
-    <record javaclass="com.wm.util.Values">
-      <value name="node">tundra.list.document.value:replace</value>
-      <array name="permissions" type="record" depth="1">
-        <record javaclass="com.wm.util.Values">
-          <value name="type">list</value>
-          <value name="acl">WmPrivate</value>
-        </record>
-      </array>
-    </record>
-    <record javaclass="com.wm.util.Values">
-      <value name="node">tundra.list.document.value:trim</value>
-      <array name="permissions" type="record" depth="1">
-        <record javaclass="com.wm.util.Values">
-          <value name="type">list</value>
-          <value name="acl">WmPrivate</value>
-        </record>
-      </array>
-    </record>
-    <record javaclass="com.wm.util.Values">
-      <value name="node">tundra.list.document.value:uppercase</value>
+      <value name="node">tundra.list.document.value</value>
       <array name="permissions" type="record" depth="1">
         <record javaclass="com.wm.util.Values">
           <value name="type">list</value>

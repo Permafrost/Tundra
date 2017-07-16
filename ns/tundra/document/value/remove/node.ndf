@@ -185,6 +185,8 @@
   </record>
   <value name="node_comment">### tundra.document.value:remove
 
+DEPRECATED: use `tundra.document:remove` instead.
+
 Removes either the first or all occurrences of the given 
 [regular expression pattern] in each string value in the 
 given IData document.

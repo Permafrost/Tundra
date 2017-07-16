@@ -338,7 +338,7 @@ the keys and values in the given IData document.
   false, where all occurrences of the pattern are replaced.
 * $recurse? is an optional boolean indicating if embedded IData 
   documents and IData[] document lists should also have occurrences 
-  of the pattern in their keys replaced. Defaults to false.
+  of the pattern in their elements replaced. Defaults to false.
 * $mode is an optional choice for what should be replaced: 
   either the values, the keys, or both the keys and the values.
   Defaults to replacing values only.

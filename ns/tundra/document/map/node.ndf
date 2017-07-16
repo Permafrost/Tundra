@@ -280,9 +280,6 @@ document.
 This is an implementation of a higher-order [map function] for
 IData objects.
 
-For an example of how to use this service, refer to the
-tundra.document.key:* and tundra.document.value:* services.
-
 #### Inputs:
 
 * $document is an IData document whose elements are to be

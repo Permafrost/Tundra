@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-07-13 16:50:57 EST
+// -----( CREATED: 2017-07-16 15:07:44 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -920,6 +920,40 @@ public final class document
 		    Object value = IDataHelper.get(cursor, "$value");
 		
 		    IDataHelper.put(cursor, "$document", IDataHelper.put(document, key, value, literal));
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void remove (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(remove)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:0:optional $document
+		// [i] field:0:optional $pattern
+		// [i] field:0:optional $pattern.literal? {"false","true"}
+		// [i] field:0:optional $occurrence.first? {"false","true"}
+		// [i] field:0:optional $recurse? {"false","true"}
+		// [i] field:0:optional $mode {"values","keys","keys and values"}
+		// [o] record:0:optional $document
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
+		    boolean literalPattern = IDataHelper.getOrDefault(cursor, "$pattern.literal?", Boolean.class, false);
+		    boolean firstOccurrence = IDataHelper.getOrDefault(cursor, "$occurrence.first?", Boolean.class, false);
+		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
+		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
+		
+		    IDataHelper.put(cursor, "$document", IDataHelper.remove(document, pattern, literalPattern, firstOccurrence, mode, recurse), false);
 		} finally {
 		    cursor.destroy();
 		}

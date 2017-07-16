@@ -187,6 +187,8 @@
   </record>
   <value name="node_comment">### tundra.list.document.key:remove
 
+DEPRECATED: use `tundra.list.document:remove` instead.
+
 Removes either the first or all occurrences of the given
 [regular expression pattern] in each item's keys in the given 
 IData[] document list.

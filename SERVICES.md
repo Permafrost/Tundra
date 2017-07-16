@@ -5136,34 +5136,6 @@ underscore characters.
 
 ---
 
-### tundra.document.key:remove
-
-Removes either the first or all occurrences of the given
-[regular expression pattern] in each key in the given `IData`
-document.
-
-#### Inputs:
-
-* `$document` is an `IData` document to have occurrences of the
-  given [regular expression pattern] in each key removed.
-* `$pattern` is the [regular expression pattern] to match against
-  each key. If not specified, no removal will occur.
-* `$mode` is a choice of whether to remove all occurrences of the
-  pattern, or just the first occurrence. If not specified,
-  defaults to all occurrences.
-* `$recurse?` is an optional boolean indicating if embedded
-  `IData` documents and `IData[]` document lists should also
-  have occurrences of the pattern in their keys removed.
-  Defaults to `false`.
-
-#### Outputs:
-
-* `$document` is the given `IData` document with either the first
-  or all occurrences of the given [regular expression pattern]
-  in each key removed.
-
----
-
 ### tundra.document:keys
 
 Returns the top-level keys in the given IData document that match
@@ -5362,9 +5334,6 @@ document.
 This is an implementation of a higher-order [map function] for
 IData objects.
 
-For an example of how to use this service, refer to the
-tundra.document.key:* and tundra.document.value:* services.
-
 #### Inputs:
 
 * `$document` is an IData document whose elements are to be
@@ -5558,6 +5527,39 @@ Sets the value associated with the given key in the given IData document.
 
 ---
 
+### tundra.document:remove
+
+Removes either the first or all occurrences of the given pattern
+from either the values, the keys, or both the keys and values in the
+given `IData` document.
+
+#### Inputs:
+
+* `$document` is an `IData` document to have occurrences of the
+  given pattern removed.
+* `$pattern` is either a literal or [regular expression pattern] to
+  be removed. If not specified, no removal will occur.
+* `$pattern.literal?` is a boolean indicating whether the pattern is a
+  literal or a [regular expression pattern]. If literal, the pattern
+  is converted to a [regular expression pattern] that matches the
+  given literal string. Defaults to `false`.
+* `$occurrence.first?` is a boolean indicating if only the first
+  occurrence of the given pattern should be removed. Defaults to
+  `false`, where all occurrences of the pattern are removed.
+* `$recurse?` is an optional boolean indicating if embedded `IData`
+  documents and `IData[]` document lists should also have occurrences
+  of the pattern in their elements replaced. Defaults to `false`.
+* `$mode` is an optional choice for what should be replaced:
+  either the values, the keys, or both the keys and the values.
+  Defaults to replacing values only.
+
+#### Outputs:
+
+* `$document` is the given `IData` document with the given `$pattern`
+  removed.
+
+---
+
 ### tundra.document:rename
 
 Renames the value associated with the source key to have the target key
@@ -5612,7 +5614,7 @@ the keys and values in the given `IData` document.
   `false`, where all occurrences of the pattern are replaced.
 * `$recurse?` is an optional boolean indicating if embedded `IData`
   documents and `IData[]` document lists should also have occurrences
-  of the pattern in their keys replaced. Defaults to `false`.
+  of the pattern in their elements replaced. Defaults to `false`.
 * `$mode` is an optional choice for what should be replaced:
   either the values, the keys, or both the keys and the values.
   Defaults to replacing values only.
@@ -5851,34 +5853,6 @@ Converts all string values in the given `IData` document to uppercase.
 
 * `$document` is the given `IData` document with all string values
   converted to uppercase.
-
----
-
-### tundra.document.value:remove
-
-Removes either the first or all occurrences of the given
-[regular expression pattern] in each string value in the
-given `IData` document.
-
-#### Inputs:
-
-* `$document` is an `IData` document to have occurrences of the
-  given [regular expression pattern] in each string value removed.
-* `$pattern` is the [regular expression pattern] to match against
-  each string value. If not specified, no removal will occur.
-* `$mode` is a choice of whether to remove all occurrences of the
-  pattern, or just the first occurrence. If not specified,
-  defaults to all occurrences.
-* `$recurse?` is an optional boolean indicating if embedded
-  `IData` documents and `IData[]` document lists should also
-  have occurrences of the pattern in their string values
-  removed. Defaults to `false`.
-
-#### Outputs:
-
-* `$document` is the given `IData` document with either the first
-  or all occurrences of the given [regular expression pattern]
-  in each string value removed.
 
 ---
 
@@ -8203,34 +8177,6 @@ return a single IData document.
 
 ---
 
-### tundra.list.document.key:remove
-
-Removes either the first or all occurrences of the given
-[regular expression pattern] in each item's keys in the given
-`IData[]` document list.
-
-#### Inputs:
-
-* `$list` is an `IData[]` document list to have occurrences of the
-  given [regular expression pattern] in each item's keys removed.
-* `$pattern` is the [regular expression pattern] to match against
-  each key. If not specified, no removal will occur.
-* `$mode` is a choice of whether to remove all occurrences of the
-  pattern, or just the first occurrence. If not specified,
-  defaults to all occurrences.
-* `$recurse?` is an optional boolean indicating if embedded
-  `IData` documents and `IData[]` document lists should also
-  have occurrences of the pattern in their keys removed.
-  Defaults to `false`.
-
-#### Outputs:
-
-* `$list` is the given `IData[]` document list with either the first
-  or all occurrences of the given [regular expression pattern] in
-  each item's keys removed.
-
----
-
 ### tundra.list.document:keys
 
 Returns the union set of all top-level keys present in each IData
@@ -8638,6 +8584,39 @@ condition evaluates to true.
 
 ---
 
+### tundra.list.document:remove
+
+Removes either the first or all occurrences of the given pattern
+from either the values, the keys, or both the keys and values in the
+given `IData[]` document list.
+
+#### Inputs:
+
+* `$list` is an `IData[]` document list to have occurrences of the
+  given pattern removed.
+* `$pattern` is either a literal or [regular expression pattern] to
+  be removed. If not specified, no removal will occur.
+* `$pattern.literal?` is a boolean indicating whether the pattern is a
+  literal or a [regular expression pattern]. If literal, the pattern
+  is converted to a [regular expression pattern] that matches the
+  given literal string. Defaults to `false`.
+* `$occurrence.first?` is a boolean indicating if only the first
+  occurrence of the given pattern should be removed. Defaults to
+  `false`, where all occurrences of the pattern are removed.
+* `$recurse?` is an optional boolean indicating if embedded `IData`
+  documents and `IData[]` document lists should also have occurrences
+  of the pattern in their elements removed. Defaults to `false`.
+* `$mode` is an optional choice for what should be replaced:
+  either the values, the keys, or both the keys and the values.
+  Defaults to replacing values only.
+
+#### Outputs:
+
+* `$list` is the given `IData[]` document list with the given `$pattern`
+  removed.
+
+---
+
 ### tundra.list.document:replace
 
 Replaces either the first or all occurrences of the given pattern
@@ -8667,7 +8646,7 @@ the keys and values in the given `IData[]` document list.
   `false`, where all occurrences of the pattern are replaced.
 * `$recurse?` is an optional boolean indicating if embedded `IData`
   documents and `IData[]` document lists should also have occurrences
-  of the pattern in their keys replaced. Defaults to `false`.
+  of the pattern in their elements replaced. Defaults to `false`.
 * `$mode` is an optional choice for what should be replaced:
   either the values, the keys, or both the keys and the values.
   Defaults to replacing values only.
@@ -8924,35 +8903,6 @@ uppercase.
 
 * `$list` is the given `IData[]` document list with all string values
   converted to uppercase.
-
----
-
-### tundra.list.document.value:remove
-
-Remove either the first or all occurrences of the given
-[regular expression pattern] in each item's string values in
-the given `IData[]` document list.
-
-#### Inputs:
-
-* `$list` is an `IData[]` document list to have occurrences of the
-  given [regular expression pattern] in each item's string values
-  removed.
-* `$pattern` is the [regular expression pattern] to match against
-  each string value. If not specified, no removal will occur.
-* `$mode` is a choice of whether to remove all occurrences of the
-  pattern, or just the first occurrence. If not specified,
-  defaults to all occurrences.
-* `$recurse?` is an optional boolean indicating if embedded
-  `IData` documents and `IData[]` document lists should also
-  have occurrences of the pattern in their string values
-  removed. Defaults to `false`.
-
-#### Outputs:
-
-* `$list` is the given `IData[]` document list with either the first
-  or all occurrences of the given [regular expression pattern]
-  in each item's string values removed.
 
 ---
 
