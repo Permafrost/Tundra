@@ -2709,6 +2709,15 @@
       </array>
     </record>
     <record javaclass="com.wm.util.Values">
+      <value name="node">tundra.id:generate</value>
+      <array name="permissions" type="record" depth="1">
+        <record javaclass="com.wm.util.Values">
+          <value name="type">list</value>
+          <value name="acl">WmPrivate</value>
+        </record>
+      </array>
+    </record>
+    <record javaclass="com.wm.util.Values">
       <value name="node">tundra.list.document.key</value>
       <array name="permissions" type="record" depth="1">
         <record javaclass="com.wm.util.Values">

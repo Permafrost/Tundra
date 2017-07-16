@@ -117,9 +117,7 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">### tundra.id:generate
-
-DEPRECATED: use tundra.uuid:generate instead.
+  <value name="node_comment">### tundra.uuid:generate
 
 Generates an immutable universally unique identifier ([UUID]). A [UUID]
 represents a 128-bit value.

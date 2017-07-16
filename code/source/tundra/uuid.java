@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-07-16 15:48:13 EST
+// -----( CREATED: 2017-07-16 16:46:20 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -10,19 +10,20 @@ import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import permafrost.tundra.data.IDataHelper;
-import permafrost.tundra.lang.IdentityHelper;
+import permafrost.tundra.id.UUIDHelper;
+import permafrost.tundra.lang.ObjectConvertMode;
 // --- <<IS-END-IMPORTS>> ---
 
-public final class id
+public final class uuid
 
 {
 	// ---( internal utility methods )---
 
-	final static id _instance = new id();
+	final static uuid _instance = new uuid();
 
-	static id _newInstance() { return new id(); }
+	static uuid _newInstance() { return new uuid(); }
 
-	static id _cast(Object o) { return (id)o; }
+	static uuid _cast(Object o) { return (uuid)o; }
 
 	// ---( server methods )---
 
@@ -37,28 +38,10 @@ public final class id
 		// @sigtype java 3.5
 		// [i] field:0:optional $mode {"string","base64"}
 		// [o] field:0:required $id
-		tundra.uuid.generate(pipeline);
-		// --- <<IS-END>> ---
-
-                
-	}
-
-
-
-	public static final void normalize (IData pipeline)
-        throws ServiceException
-	{
-		// --- <<IS-START(normalize)>> ---
-		// @subtype unknown
-		// @sigtype java 3.5
-		// [i] field:0:optional $string
-		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String input = IDataHelper.get(cursor, "$string", String.class);
-		    String output = IdentityHelper.normalize(input);
-		    IDataHelper.put(cursor, "$string", output, false);
+		    IDataHelper.put(cursor, "$id", UUIDHelper.generate(IDataHelper.get(cursor, "$mode", ObjectConvertMode.class)));
 		} finally {
 		    cursor.destroy();
 		}
