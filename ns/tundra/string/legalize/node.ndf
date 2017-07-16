@@ -80,9 +80,7 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">### tundra.id:normalize
-
-DEPRECATED: use tundra.string:legalize instead.
+  <value name="node_comment">### tundra.string:legalize
 
 Converts the given string to a legal Java identifier by replacing illegal
 characters with underscore characters.

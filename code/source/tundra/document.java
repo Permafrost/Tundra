@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-07-16 15:07:44 EST
+// -----( CREATED: 2017-07-16 17:13:21 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -621,6 +621,34 @@ public final class document
 		    IDataHelper.put(cursor, "$values", values, false, false);
 		} catch(ClassNotFoundException ex) {
 		    ExceptionHelper.raise(ex);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void legalize (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(legalize)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:0:optional $document
+		// [i] field:0:optional $recurse? {"false","true"}
+		// [i] field:0:optional $mode {"values","keys","keys and values"}
+		// [o] record:0:optional $document
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
+		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
+		
+		    IDataHelper.put(cursor, "$document", IDataHelper.legalize(document, mode, recurse), false);
 		} finally {
 		    cursor.destroy();
 		}

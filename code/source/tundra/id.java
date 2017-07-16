@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-07-16 15:48:13 EST
+// -----( CREATED: 2017-07-16 16:59:49 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -9,8 +9,6 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
-import permafrost.tundra.data.IDataHelper;
-import permafrost.tundra.lang.IdentityHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class id
@@ -53,15 +51,7 @@ public final class id
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
 		// [o] field:0:optional $string
-		IDataCursor cursor = pipeline.getCursor();
-		
-		try {
-		    String input = IDataHelper.get(cursor, "$string", String.class);
-		    String output = IdentityHelper.normalize(input);
-		    IDataHelper.put(cursor, "$string", output, false);
-		} finally {
-		    cursor.destroy();
-		}
+		tundra.string.legalize(pipeline);
 		// --- <<IS-END>> ---
 
                 

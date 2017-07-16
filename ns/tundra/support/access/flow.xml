@@ -2655,43 +2655,7 @@
 <Values version="2.0">
   <array name="xml" type="record" depth="1">
     <record javaclass="com.wm.util.Values">
-      <value name="node">tundra.document.key:lowercase</value>
-      <array name="permissions" type="record" depth="1">
-        <record javaclass="com.wm.util.Values">
-          <value name="type">list</value>
-          <value name="acl">WmPrivate</value>
-        </record>
-      </array>
-    </record>
-    <record javaclass="com.wm.util.Values">
-      <value name="node">tundra.document.key:remove</value>
-      <array name="permissions" type="record" depth="1">
-        <record javaclass="com.wm.util.Values">
-          <value name="type">list</value>
-          <value name="acl">WmPrivate</value>
-        </record>
-      </array>
-    </record>
-    <record javaclass="com.wm.util.Values">
-      <value name="node">tundra.document.key:replace</value>
-      <array name="permissions" type="record" depth="1">
-        <record javaclass="com.wm.util.Values">
-          <value name="type">list</value>
-          <value name="acl">WmPrivate</value>
-        </record>
-      </array>
-    </record>
-    <record javaclass="com.wm.util.Values">
-      <value name="node">tundra.document.key:trim</value>
-      <array name="permissions" type="record" depth="1">
-        <record javaclass="com.wm.util.Values">
-          <value name="type">list</value>
-          <value name="acl">WmPrivate</value>
-        </record>
-      </array>
-    </record>
-    <record javaclass="com.wm.util.Values">
-      <value name="node">tundra.document.key:uppercase</value>
+      <value name="node">tundra.document.key</value>
       <array name="permissions" type="record" depth="1">
         <record javaclass="com.wm.util.Values">
           <value name="type">list</value>
@@ -2709,7 +2673,7 @@
       </array>
     </record>
     <record javaclass="com.wm.util.Values">
-      <value name="node">tundra.id:generate</value>
+      <value name="node">tundra.id</value>
       <array name="permissions" type="record" depth="1">
         <record javaclass="com.wm.util.Values">
           <value name="type">list</value>

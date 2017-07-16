@@ -5114,28 +5114,6 @@ representation, useful for logging or display to end users.
 
 ---
 
-### tundra.document.key:normalize
-
-Converts all keys in the given IData document to legal Java
-identifiers by replacing all illegal characters with
-underscore characters.
-
-#### Inputs:
-
-* `$document` is an IData document whose keys are to be
-  converted to legal Java identifiers.
-* `$recurse?` is an optional boolean indicating if embedded
-  IData documents and IData[] document lists should also
-  have their keys converted to legal Java identifiers.
-  Defaults to false.
-
-#### Outputs:
-
-* `$document` is the given IData document with all keys
-  converted to to legal Java identifiers.
-
----
-
 ### tundra.document:keys
 
 Returns the top-level keys in the given IData document that match
@@ -5245,6 +5223,31 @@ Would return the following list of leaf values:
 * `$values` is the list of all leaf values in the given `IData`
   document that are instances of the given classes, or all
   leaf values if no classes are specified.
+
+---
+
+### tundra.document:legalize
+
+Converts illegal characters to underscores to create legal Java
+identifiers in either the values, the keys, or both the keys and
+values in the given `IData` document.
+
+#### Inputs:
+
+* `$document` is an `IData` document in which the keys and/or values are
+  converted to legal Java identifiers.
+* `$recurse?` is an optional boolean indicating if embedded `IData`
+  documents and `IData[]` document lists should also have their keys
+  and/or values converted to legal Java identifiers. Defaults to
+  `false`.
+* `$mode` is an optional choice for what should be converted: either
+  the values, the keys, or both the keys and the values. Defaults to
+  converting values only.
+
+#### Outputs:
+
+* `$document` is the given `IData` document with its keys and/or values
+  converted to to legal Java identifiers.
 
 ---
 
@@ -6908,22 +6911,6 @@ the various configuration files do not override each other.
 Changes to these HTTP route configuration files do not take effect
 until this service is invoked, either manually or by reloading the
 Tundra package.
-
----
-
-### tundra.id:normalize
-
-Converts the given string to a legal Java identifier by replacing illegal
-characters with underscore characters.
-
-#### Inputs:
-
-* `$string` is a string to be converted to a legal Java identifier.
-
-#### Outputs:
-
-* `$string` is the given string with illegal characters replaced with
-  underscore characters.
 
 ---
 
@@ -13786,6 +13773,22 @@ specified as a [java.util.Formatter format string].
 #### Outputs:
 
 * `$string` is the resulting formatted string.
+
+---
+
+### tundra.string:legalize
+
+Converts the given string to a legal Java identifier by replacing illegal
+characters with underscore characters.
+
+#### Inputs:
+
+* `$string` is a string to be converted to a legal Java identifier.
+
+#### Outputs:
+
+* `$string` is the given string with illegal characters replaced with
+  underscore characters.
 
 ---
 
