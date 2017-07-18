@@ -1,9 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-06-20 10:07:55.078
+// -----( CREATED: 2017-07-18T16:56:05.161
 // -----( ON-HOST: -
-
 import com.wm.data.*;
 import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
@@ -101,21 +100,26 @@ public final class service
 		// [o] field:1:required $callstack
 		// [o] field:0:required $callers
 		// [o] field:0:required $caller
+		// [o] field:0:required $caller.initiator
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
 		    List<NSService> stack = ServiceHelper.getCallStack();
 		    if (stack.size() > 0) stack.remove(stack.size() - 1); // remove call to this service
 
-		    String caller = "";
+		    String caller = "", initiator = "";
 		    if (stack.size() > 1) {
-		        NSService service = stack.get(stack.size() - 2);
-		        if (service != null) caller = ObjectHelper.stringify(service);
+		        NSService callingService = stack.get(stack.size() - 2);
+		        if (callingService != null) caller = ObjectHelper.stringify(callingService);
+
+		        NSService initiatingService = stack.get(0);
+		        if (initiatingService != null) initiator = ObjectHelper.stringify(initiatingService);
 		    }
 
 		    IDataHelper.put(cursor, "$callstack", CollectionHelper.arrayify(CollectionHelper.stringify(stack), String.class));
 		    IDataHelper.put(cursor, "$callers", IterableHelper.join(stack, " \u2192 "));
 		    IDataHelper.put(cursor, "$caller", caller);
+		    IDataHelper.put(cursor, "$caller.initiator", initiator);
 		} finally {
 		    cursor.destroy();
 		}

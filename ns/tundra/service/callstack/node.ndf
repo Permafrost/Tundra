@@ -101,6 +101,32 @@
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
         </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <null name="field_usereditable"/>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="field_name">$caller.initiator</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">string</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">false</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
       </array>
     </record>
   </record>
@@ -110,17 +136,16 @@ Returns the current call stack.
 
 #### Outputs:
 
-* $callstack is a list of fully-qualified service names
-  in invocation order with the top-level service as the
-  first item.
-* $callers is a string representation of the call stack,
-  which is useful for diagnostics/logging.
-* $caller is the fully-qualified service name of the
-  immediate caller of the service which invoked
-  tundra.service:callstack, which is useful for obtaining
-  the name of the service which called the currently
-  executing service.
-
+* $callstack is a list of fully-qualified service names in 
+  invocation order with the top-level service as the first item.
+* $callers is a string representation of the call stack, which is 
+  useful for diagnostics/logging.
+* $caller is the fully-qualified service name of the immediate 
+  caller of the service which invoked tundra.service:callstack, 
+  which is useful for obtaining the name of the service which called 
+  the currently executing service.
+* $caller.initiator is the fully-qualified service name of the 
+  top-level service in the call stack.
 </value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>

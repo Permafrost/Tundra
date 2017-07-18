@@ -13041,16 +13041,16 @@ Returns the current call stack.
 
 #### Outputs:
 
-* `$callstack` is a list of fully-qualified service names
-  in invocation order with the top-level service as the
-  first item.
-* `$callers` is a string representation of the call stack,
-  which is useful for diagnostics/logging.
-* `$caller` is the fully-qualified service name of the
-  immediate caller of the service which invoked
-  tundra.service:callstack, which is useful for obtaining
-  the name of the service which called the currently
-  executing service.
+* `$callstack` is a list of fully-qualified service names in
+  invocation order with the top-level service as the first item.
+* `$callers` is a string representation of the call stack, which is
+  useful for diagnostics/logging.
+* `$caller` is the fully-qualified service name of the immediate
+  caller of the service which invoked `tundra.service:callstack`,
+  which is useful for obtaining the name of the service which called
+  the currently executing service.
+* `$caller.initiator` is the fully-qualified service name of the
+  top-level service in the call stack.
 
 ---
 
