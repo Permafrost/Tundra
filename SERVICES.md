@@ -8812,6 +8812,25 @@ value.
 
 ---
 
+### tundra.list.document:take
+
+Returns the given number of items from either the head or the tail
+of the given list.
+
+#### Inputs:
+
+* `$list` is a list to fetch the head and tail from.
+* `$count` is the number of items to take from either the head when
+  specified as a positive number, or the tail when specified as a
+  negative number.
+
+#### Outputs:
+
+* `$head` is a list containing the head items from the given `$list`.
+* `$tail` is a list containing the tail items from the given `$list`.
+
+---
+
 ### tundra.list.document:translate
 
 One-to-one conversion of one IData document list to another IData document
@@ -8840,6 +8859,28 @@ translated documents returned by the translation service as output.
 
 * `$translations` is the resulting IData document list containing the
   translated documents.
+
+---
+
+### tundra.list.document:trim
+
+Removes leading and trailing whitespace from all string values in
+the given `IData[]` document list.
+
+#### Inputs:
+
+* `$list` is an `IData[]` document list to process.
+* `$recurse?` is an optional boolean indicating if embedded `IData`
+  documents and `IData[]` document lists should also have their string
+  values trimmed. Defaults to `false`.
+* `$mode` is an optional choice for what should be trimmed: either the
+  values, the keys, or both the keys and the values. Defaults to
+  trimming values only.
+
+#### Outputs:
+
+* `$list` is the given `IData[]` document list with all string values
+  trimmed of leading and trailing whitespace characters.
 
 ---
 
@@ -8885,47 +8926,6 @@ uppercase.
 
 * `$list` is the given `IData[]` document list with all string values
   converted to uppercase.
-
----
-
-### tundra.list.document:take
-
-Returns the given number of items from either the head or the tail
-of the given list.
-
-#### Inputs:
-
-* `$list` is a list to fetch the head and tail from.
-* `$count` is the number of items to take from either the head when
-  specified as a positive number, or the tail when specified as a
-  negative number.
-
-#### Outputs:
-
-* `$head` is a list containing the head items from the given `$list`.
-* `$tail` is a list containing the tail items from the given `$list`.
-
----
-
-### tundra.list.document:trim
-
-Removes leading and trailing whitespace from all string values in
-the given `IData[]` document list.
-
-#### Inputs:
-
-* `$list` is an `IData[]` document list to process.
-* `$recurse?` is an optional boolean indicating if embedded `IData`
-  documents and `IData[]` document lists should also have their string
-  values trimmed. Defaults to `false`.
-* `$mode` is an optional choice for what should be trimmed: either the
-  values, the keys, or both the keys and the values. Defaults to
-  trimming values only.
-
-#### Outputs:
-
-* `$list` is the given `IData[]` document list with all string values
-  trimmed of leading and trailing whitespace characters.
 
 ---
 
@@ -9006,6 +9006,20 @@ Returns the sum of all the given durations, returning
 
 * `$duration` is the sum of the duration strings in the given list
   in [ISO8601] XML format.
+
+---
+
+### tundra.list.exception:raise
+
+Throws a new exception whose message is concatenated from the given
+list of exceptions.
+
+#### Inputs:
+
+* `$exceptions` is an optional list of [java.lang.Throwable] objects
+  to use to create the message for the resulting thrown exception.
+  If not specified, or the list is empty, or the list only contains
+  nulls, no exception is thrown.
 
 ---
 
