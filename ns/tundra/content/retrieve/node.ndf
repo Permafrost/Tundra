@@ -7,8 +7,10 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
+      <value name="wrapper_type">IData</value>
       <value name="nillable">true</value>
       <value name="form_qualified">false</value>
       <value name="is_global">false</value>
@@ -17,13 +19,16 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
+            <value name="field_usereditable">true</value>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$source</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
+          <array name="field_options" type="value" depth="1">
+          </array>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <value name="contentType">1</value>
             <value name="internalType">reference</value>
@@ -43,13 +48,16 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
+            <value name="field_usereditable">true</value>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$service</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
+          <array name="field_options" type="value" depth="1">
+          </array>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <value name="contentType">1</value>
             <value name="internalType">reference</value>
@@ -69,14 +77,17 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
+            <value name="field_usereditable">true</value>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$service.input</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
+          <array name="field_options" type="value" depth="1">
+          </array>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <value name="contentType">1</value>
             <value name="internalType">reference</value>
@@ -96,14 +107,17 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
+            <value name="field_usereditable">true</value>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$limit</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
+          <array name="field_options" type="value" depth="1">
+          </array>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <value name="contentType">1</value>
             <value name="internalType">reference</value>
@@ -120,16 +134,20 @@
           <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
+      <value name="wrapper_type">IData</value>
       <value name="nillable">true</value>
       <value name="form_qualified">false</value>
       <value name="is_global">false</value>
       <array name="rec_fields" type="record" depth="1">
       </array>
+      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">### tundra.content:retrieve
@@ -137,15 +155,16 @@
 Retrieves arbitrary content from the given $source URI, and calls the
 given content processing service to process it.
 
-Additional retrieval protocols can be implemented by creating a service
-named for the URI scheme in the folder tundra.content.retrieve.
-Services in this folder must implement the
+Additional retrieval protocols can be implemented by creating a 
+service named for the URI scheme in the folder 
+tundra.content.retrieve. Services in this folder must implement the
 tundra.schema.content.retrieve:handler specification.
 
 #### Inputs:
 
-* $source is a URI identifying the location from which content is to be
-  retrieved. Supports the following retrieval protocols / URI schemes:
+* $source is a URI identifying the location from which content is to 
+  be retrieved. Supports the following retrieval protocols / URI 
+  schemes:
   * file: processes each file matching the given $source URI with the
     given processing $service. The file component of the URI can
     include wildcards or globs (such as *.txt or *.j?r) for matching
@@ -156,10 +175,11 @@ tundra.schema.content.retrieve:handler specification.
 
         file:////server:port/directory/*.txt
 
-    To ensure each file processed is not locked or being written to by
-    another process, the file is first moved to a working directory. The
-    name of this directory can be configured by adding a query string
-    parameter called working to the URI, for example:
+    To ensure each file processed is not locked or being written to 
+    by another process, the file is first moved to a working 
+    directory. The name of this directory can be configured by 
+    adding a query string parameter called working to the URI, for 
+    example:
 
         file:////server:port/directory/*.txt?working=temp
 
@@ -168,8 +188,9 @@ tundra.schema.content.retrieve:handler specification.
     subdirectory named working.
 
     After successful processing, the file is then moved to an archive
-    directory. The name of this directory can be configured by adding a
-    query string parameter called archive to the URI, for example:
+    directory. The name of this directory can be configured by 
+    adding a query string parameter called archive to the URI, for 
+    example:
 
         file:////server:port/directory/*.txt?archive=backup
 
@@ -177,17 +198,39 @@ tundra.schema.content.retrieve:handler specification.
     after being successfully processed. If not specified, the archive
     directory defaults to a subdirectory named archive.
 
-    Optionally, archived files older than a given age can be cleaned up
-    automatically by the retrieve process by specifying a query string
-    parameter called purge with an XML duration value representing the
-    age an archived file must be before being purged, for example:
+    Optionally, archived files older than a given age can be cleaned 
+    up automatically by the retrieve process by specifying a query 
+    string parameter called purge with an XML duration value 
+    representing the age an archived file must be before being 
+    purged, for example:
 
         file:////server:port/directory/*.txt?purge=P14D
 
     In this example, any files in the archive directory older than 14
-    days will be automatically deleted by the retrieve process. If the
-    query string parameter purge is not specified, archived files will
-    not be automatically cleaned up.
+    days will be automatically deleted by the retrieve process. If 
+    the query string parameter purge is not specified, archived 
+    files will not be automatically cleaned up.
+  * ftp: processes each file matching the given $source URI with the
+    given processing $service. The file component of the URI can
+    include wildcards or globs (such as *.txt) for matching multiple 
+    files at once.
+
+    The following example would process all *.txt files in the
+    specified directory using active FTP with an ASCII transfer mode 
+    and a server timeout of 5 minutes:
+
+        ftp://user:password@server:port/directory/*.txt?active=true&amp;ascii=true&amp;timeout=PT5M
+
+    The following additional settings can be specified using query 
+    string parameters:
+    * active: optional boolean which when true uses active FTP. 
+      Defaults to passive FTP.
+    * ascii: optional boolean which when true sets the FTP transfer 
+      mode to ASCII. Defaults to binary transfer mode.
+    * timeout: optional XML duration specifying the time to wait for
+      a response from the FTP server before timing out and 
+      terminating the request. Defaults to PT1M (1 minute).
+  * ftps: refer to ftp.
 * $service is the fully-qualified name of the content processing
   service, which implements the
   tundra.schema.content.retrieve:processor specification, invoked to
@@ -196,27 +239,35 @@ tundra.schema.content.retrieve:handler specification.
   content in the input pipeline of $service. Defaults to $content if
   not specified.
 * $limit is an optional maximum number of content matches to be
-  processed in a single execution. Defaults to 1000, if not specified.</value>
+  processed in a single execution. Defaults to 1000, if not 
+  specified.
+</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
-  <value name="template">tundra_content_retrieve</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
   <value name="icontext_policy">$null</value>
+  <value name="svcInvkURLAlias"></value>
   <value name="system_service">no</value>
   <value name="retry_max">0</value>
   <value name="retry_interval">0</value>
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">2</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">1</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
 </Values>

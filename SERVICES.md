@@ -2543,7 +2543,7 @@ specification.
 
 ### tundra.content.deliver:file
 
-The file protocol handler for the `Tundra/tundra.content:deliver`
+The `file` protocol handler for the `Tundra/tundra.content:deliver`
 service, which delivers arbitrary content to a file URI
 destination.
 
@@ -2554,7 +2554,7 @@ specification.
 
 ### tundra.content.deliver:http
 
-The HTTP protocol handler for the `Tundra/tundra.content:deliver`
+The `HTTP` protocol handler for the `Tundra/tundra.content:deliver`
 service, which delivers arbitrary content to a HTTP URI
 destination.
 
@@ -2565,7 +2565,7 @@ specification.
 
 ### tundra.content.deliver:https
 
-The HTTPS protocol handler for the `Tundra/tundra.content:deliver`
+The `HTTPS` protocol handler for the `Tundra/tundra.content:deliver`
 service, which delivers arbitrary content to a HTTPS URI
 destination.
 
@@ -2576,7 +2576,7 @@ specification.
 
 ### tundra.content.deliver:mailto
 
-The email protocol handler for the `Tundra/tundra.content:deliver`
+The `email` protocol handler for the `Tundra/tundra.content:deliver`
 service, which delivers arbitrary content to a mailto URI
 destination.
 
@@ -2587,7 +2587,7 @@ specification.
 
 ### tundra.content.deliver:sap_idoc
 
-The SAP IDoc protocol handler for the `Tundra/tundra.content:deliver`
+The `SAP IDoc` protocol handler for the `Tundra/tundra.content:deliver`
 service, which delivers IDoc XML content to a sap+idoc URI
 destination.
 
@@ -2733,6 +2733,27 @@ Services in this folder must implement the
     days will be automatically deleted by the retrieve process. If the
     query string parameter `purge` is not specified, archived files will
     not be automatically cleaned up.
+  * `ftp`: processes each file matching the given `$source` URI with the
+    given processing `$service`. The file component of the URI can
+    include wildcards or globs (such as `*.txt`) for matching multiple
+    files at once.
+
+    The following example would process all `*.txt` files in the
+    specified directory using active FTP with an ASCII transfer mode
+    and a server timeout of 5 minutes:
+
+        ftp://user:password@server:port/directory/*.txt?active=true&ascii=true&timeout=PT5M
+
+    The following additional settings can be specified using query
+    string parameters:
+    * `active`: optional boolean which when true uses active FTP.
+      Defaults to passive FTP.
+    * `ascii`: optional boolean which when true sets the FTP transfer
+      mode to ASCII. Defaults to binary transfer mode.
+    * `timeout`: optional XML duration specifying the time to wait for
+      a response from the FTP server before timing out and
+      terminating the request. Defaults to PT1M (1 minute).
+  * `ftps`: refer to `ftp`.
 * `$service` is the fully-qualified name of the content processing
   service, which implements the
   `tundra.schema.content.retrieve:processor` specification, invoked to
@@ -2747,7 +2768,31 @@ Services in this folder must implement the
 
 ### tundra.content.retrieve:file
 
-The file protocol handler for the `Tundra/tundra.content:retrieve`
+The `file` protocol handler for the `Tundra/tundra.content:retrieve`
+service, which retrieves file content for files matching the given
+`$source` URI and calls the given `$service` content processing service
+to process each file.
+
+Implements the `Tundra/tundra.schema.content.retrieve:handler`
+specification.
+
+---
+
+### tundra.content.retrieve:ftp
+
+The `FTP` protocol handler for the `Tundra/tundra.content:retrieve`
+service, which retrieves file content for files matching the given
+`$source` URI and calls the given `$service` content processing service
+to process each file.
+
+Implements the `Tundra/tundra.schema.content.retrieve:handler`
+specification.
+
+---
+
+### tundra.content.retrieve:ftps
+
+The `FTPS` protocol handler for the `Tundra/tundra.content:retrieve`
 service, which retrieves file content for files matching the given
 `$source` URI and calls the given `$service` content processing service
 to process each file.
@@ -11155,7 +11200,27 @@ specification.
     14 days will be automatically deleted by the retrieve process.
     If the query string parameter purge is not specified, archived
     files will not be automatically cleaned up.
+  * `ftp`: processes each file matching the given `$source` URI with the
+    given processing `$service`. The file component of the URI can
+    include wildcards or globs (such as `*.txt`) for matching multiple
+    files at once.
 
+    The following example would process all `*.txt` files in the
+    specified directory using active FTP with an ASCII transfer mode
+    and a server timeout of 5 minutes:
+
+        ftp://user:password@server:port/directory/*.txt?active=true&ascii=true&timeout=PT5M
+
+    The following additional settings can be specified using query
+    string parameters:
+    * `active`: optional boolean which when true uses active FTP.
+      Defaults to passive FTP.
+    * `ascii`: optional boolean which when true sets the FTP transfer
+      mode to ASCII. Defaults to binary transfer mode.
+    * `timeout`: optional XML duration specifying the time to wait for
+      a response from the FTP server before timing out and
+      terminating the request. Defaults to PT1M (1 minute).
+  * `ftps`: refer to `ftp`.
 * `$message.format.name` is an optional message format name which if
   specified will skip the recognition step and instead use the
   format with the given name when routing.
