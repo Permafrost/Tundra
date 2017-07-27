@@ -1,8 +1,9 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-07-18T16:56:05.161
+// -----( CREATED: 2017-07-27T15:33:26.648
 // -----( ON-HOST: -
+
 import com.wm.data.*;
 import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
@@ -298,7 +299,7 @@ public final class service
 		        IDataHelper.put(cursor, "$thread", ServiceHelper.fork(service, scope));
 		    } else {
 		        long start = System.currentTimeMillis();
-		        scope = ServiceHelper.invoke(service, scope, raise);
+		        scope = ServiceHelper.invoke(service, scope, raise, true, true);
 		        long end = System.currentTimeMillis();
 
 		        if (scoped) {
