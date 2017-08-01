@@ -12878,6 +12878,8 @@ Content retrieval protocol handling services used by
 
 * `$message` is an optional diagnostic message describing the results of
   the retrieval.
+* `$exceptions` is an optional array of `java.lang.Throwable` exception
+  objects that were thrown while processing the retrieved contents.
 
 ---
 
