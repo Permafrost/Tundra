@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-06-03 18:27:50 EST
-// -----( ON-HOST: 192.168.66.132
+// -----( CREATED: 2017-08-02T08:45:45.119
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -52,14 +52,14 @@ public final class file
 		// @sigtype java 3.5
 		// [i] field:0:required $file.source
 		// [i] field:0:required $file.target
-		// [i] field:0:optional $mode {"append","write"}
+		// [i] field:0:optional $mode {&quot;append&quot;,&quot;write&quot;}
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String source = IDataHelper.get(cursor, "$file.source", String.class);
 		    String target = IDataHelper.get(cursor, "$file.target", String.class);
 		    String mode = IDataHelper.get(cursor, "$mode", String.class);
-		
+
 		    FileHelper.copy(source, target, mode == null || mode.equalsIgnoreCase("append"));
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -68,7 +68,7 @@ public final class file
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -81,7 +81,7 @@ public final class file
 		// @sigtype java 3.5
 		// [i] field:0:optional $file
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String file = IDataHelper.get(cursor, "$file", String.class);
 		    IDataHelper.put(cursor, "$file", FileHelper.create(file));
@@ -92,7 +92,7 @@ public final class file
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -106,7 +106,7 @@ public final class file
 		// [i] field:0:required $file
 		// [o] field:0:required $executable?
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String file = IDataHelper.get(cursor, "$file", String.class);
 		    IDataHelper.put(cursor, "$executable?", FileHelper.isExecutable(file), String.class);
@@ -115,7 +115,7 @@ public final class file
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -129,7 +129,7 @@ public final class file
 		// [i] field:0:required $file
 		// [o] field:0:required $exists?
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String file = IDataHelper.get(cursor, "$file", String.class);
 		    IDataHelper.put(cursor, "$exists?", FileHelper.exists(file), String.class);
@@ -138,7 +138,7 @@ public final class file
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -151,15 +151,15 @@ public final class file
 		// @sigtype java 3.5
 		// [i] field:0:required $file
 		// [i] field:0:optional $file.gzip
-		// [i] field:0:optional $replace? {"false","true"}
+		// [i] field:0:optional $replace? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:required $file.gzip
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String source = IDataHelper.get(cursor, "$file", String.class);
 		    String target = IDataHelper.get(cursor, "$file.gzip", String.class);
 		    boolean replace = IDataHelper.getOrDefault(cursor, "$replace?", Boolean.class, false);
-		
+
 		    IDataHelper.put(cursor, "$file.gzip", FileHelper.gzip(source, target, replace));
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -168,7 +168,7 @@ public final class file
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -182,7 +182,7 @@ public final class file
 		// [i] field:0:required $file
 		// [o] field:0:required $length
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String file = IDataHelper.get(cursor, "$file", String.class);
 		    IDataHelper.put(cursor, "$length", FileHelper.length(file), String.class);
@@ -191,7 +191,7 @@ public final class file
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -204,22 +204,22 @@ public final class file
 		// @sigtype java 3.5
 		// [i] field:0:required $file
 		// [i] field:0:required $pattern
-		// [i] field:0:optional $mode {"regular expression","wildcard"}
+		// [i] field:0:optional $mode {&quot;regular expression&quot;,&quot;wildcard&quot;}
 		// [o] field:0:required $match?
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String file = IDataHelper.get(cursor, "$file", String.class);
 		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
 		    String mode = IDataHelper.get(cursor, "$mode", String.class);
-		
+
 		    IDataHelper.put(cursor, "$match?", FileHelper.match(file, pattern, mode == null || mode.equalsIgnoreCase("regular expression")  || mode.equalsIgnoreCase("regex")), String.class);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -233,7 +233,7 @@ public final class file
 		// [i] field:0:required $file
 		// [o] field:0:required $file
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IDataHelper.put(cursor, "$file", FileHelper.normalize(IDataHelper.get(cursor, "$file", String.class)));
 		} finally {
@@ -241,7 +241,7 @@ public final class file
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -253,30 +253,31 @@ public final class file
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $file
-		// [i] field:0:optional $mode {"read","append","write"}
+		// [i] field:0:optional $mode {&quot;read&quot;,&quot;append&quot;,&quot;write&quot;}
 		// [i] field:0:required $service
 		// [i] record:0:optional $pipeline
 		// [i] field:0:optional $service.input
+		// [i] field:0:optional $raise? {&quot;true&quot;,&quot;false&quot;}
 		// [o] record:0:optional $pipeline
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String file = IDataHelper.get(cursor, "$file", String.class);
 		    String mode = IDataHelper.get(cursor, "$mode", String.class);
 		    String service = IDataHelper.get(cursor, "$service", String.class);
 		    String input = IDataHelper.get(cursor, "$service.input", String.class);
-		    IData scope = IDataHelper.get(cursor, "$pipeline", IData.class);
-		    boolean scoped = scope != null;
-		
-		    scope = process(file, mode, service, input, scoped? scope : pipeline);
-		
-		    if (scoped) IDataHelper.put(cursor, "$pipeline", scope);
+		    IData scope = IDataHelper.getOrDefault(cursor, "$pipeline", IData.class, pipeline);
+		    boolean raise = IDataHelper.getOrDefault(cursor, "$raise?", Boolean.class, true);
+
+		    scope = FileHelper.process(FileHelper.construct(file), mode, service, input, scope, raise, true);
+
+		    if (scope != pipeline) IDataHelper.put(cursor, "$pipeline", scope);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -288,17 +289,17 @@ public final class file
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $file
-		// [i] field:0:optional $mode {"stream","bytes","string"}
+		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
 		// [i] field:0:optional $encoding
 		// [o] object:0:required $content
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String file = IDataHelper.get(cursor, "$file", String.class);
 		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
-		
+
 		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
-		
+
 		    IDataHelper.put(cursor, "$content", ObjectHelper.convert(FileHelper.readToBytes(file), charset, mode));
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -307,7 +308,7 @@ public final class file
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -321,7 +322,7 @@ public final class file
 		// [i] field:0:required $file
 		// [o] field:0:required $readable?
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String file = IDataHelper.get(cursor, "$file", String.class);
 		    IDataHelper.put(cursor, "$readable?", FileHelper.isReadable(file), String.class);
@@ -330,7 +331,7 @@ public final class file
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -356,7 +357,7 @@ public final class file
 		// [o] - field:0:optional writable?
 		// [o] - field:0:required uri
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String file = IDataHelper.get(cursor, "$file", String.class);
 		    IDataHelper.put(cursor, "$file.properties", FileHelper.getPropertiesAsIData(file));
@@ -365,7 +366,7 @@ public final class file
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -378,7 +379,7 @@ public final class file
 		// @sigtype java 3.5
 		// [i] field:0:optional $file
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    FileHelper.remove(IDataHelper.get(cursor, "$file", String.class));
 		} catch(IOException ex) {
@@ -388,7 +389,7 @@ public final class file
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -402,11 +403,11 @@ public final class file
 		// [i] field:0:required $file.source
 		// [i] field:0:required $file.target
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String source = IDataHelper.get(cursor, "$file.source", String.class);
 		    String target = IDataHelper.get(cursor, "$file.target", String.class);
-		
+
 		    FileHelper.rename(source, target);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -415,7 +416,7 @@ public final class file
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -428,7 +429,7 @@ public final class file
 		// @sigtype java 3.5
 		// [i] field:0:required $file
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    FileHelper.touch(IDataHelper.get(cursor, "$file", String.class));
 		} catch(IOException ex) {
@@ -438,7 +439,7 @@ public final class file
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -452,7 +453,7 @@ public final class file
 		// [i] field:0:required $file
 		// [o] field:0:required $type
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String file = IDataHelper.get(cursor, "$file", String.class);
 		    IDataHelper.put(cursor, "$type", FileHelper.getMIMEType(file));
@@ -461,7 +462,7 @@ public final class file
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -475,7 +476,7 @@ public final class file
 		// [i] field:0:required $file
 		// [o] field:0:required $writable?
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String file = IDataHelper.get(cursor, "$file", String.class);
 		    IDataHelper.put(cursor, "$writable?", FileHelper.isWritable(file), String.class);
@@ -484,7 +485,7 @@ public final class file
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -496,20 +497,20 @@ public final class file
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $file
-		// [i] field:0:optional $mode {"append","write"}
+		// [i] field:0:optional $mode {&quot;append&quot;,&quot;write&quot;}
 		// [i] object:0:optional $content
 		// [i] field:0:optional $encoding
 		// [o] field:0:required $file
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String file = IDataHelper.get(cursor, "$file", String.class);
 		    String mode = IDataHelper.get(cursor, "$mode", String.class);
 		    Object content = IDataHelper.get(cursor, "$content");
 		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
-		
+
 		    file = FileHelper.writeFromStream(file, InputStreamHelper.normalize(content, charset), mode == null || mode.equalsIgnoreCase("append"));
-		
+
 		    IDataHelper.put(cursor, "$file", file);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -518,7 +519,7 @@ public final class file
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -531,15 +532,15 @@ public final class file
 		// @sigtype java 3.5
 		// [i] field:0:required $file
 		// [i] field:0:optional $file.zip
-		// [i] field:0:optional $replace? {"false","true"}
+		// [i] field:0:optional $replace? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:required $file.zip
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String source = IDataHelper.get(cursor, "$file", String.class);
 		    String target = IDataHelper.get(cursor, "$file.zip", String.class);
 		    boolean replace = IDataHelper.get(cursor, "$replace?", Boolean.class);
-		
+
 		    IDataHelper.put(cursor, "$file.zip", FileHelper.zip(source, target, replace));
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -548,46 +549,7 @@ public final class file
 		}
 		// --- <<IS-END>> ---
 
-                
-	}
 
-	// --- <<IS-START-SHARED>> ---
-	// opens a file for reading, appending, or writing, and processes it by calling the given service with the resulting $stream
-	public static IData process(java.io.File file, String mode, String service, String input, IData pipeline) throws ServiceException {
-	    if (file != null) {
-	        if (input == null) input = "$stream";
-	        Closeable stream = null;
-	
-	        try {
-	            if (mode == null || mode.equals("read")) {
-	                stream = InputStreamHelper.normalize(new FileInputStream(file));
-	            } else {
-	                if (!FileHelper.exists(file)) FileHelper.create(file);
-	                stream = OutputStreamHelper.normalize(new FileOutputStream(file, mode.equalsIgnoreCase("append")));
-	            }
-	
-	            IDataCursor cursor = pipeline.getCursor();
-	            IDataHelper.put(cursor, input, stream);
-	            cursor.destroy();
-	
-	            pipeline = ServiceHelper.invoke(service, pipeline);
-	        } catch (IOException ex) {
-	            ExceptionHelper.raise(ex);
-	        } finally {
-	            CloseableHelper.close(stream);
-	
-	            IDataCursor cursor = pipeline.getCursor();
-	            IDataHelper.remove(cursor, input);
-	            cursor.destroy();
-	        }
-	    }
-	    return pipeline;
 	}
-	
-	// opens a file for reading, appending, or writing, and processes it by calling the given service with the resulting $stream
-	public static IData process(String filename, String mode, String service, String input, IData pipeline) throws ServiceException {
-	    return process(FileHelper.construct(filename), mode, service, input, pipeline);
-	}
-	// --- <<IS-END-SHARED>> ---
 }
 
