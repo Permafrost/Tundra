@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-06 14:44:24 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2017-08-02 21:46:54 EST
+// -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -67,13 +67,17 @@ public final class bytes
 		// [i] object:0:optional $object
 		// [i] field:0:optional $encoding
 		// [o] object:0:optional $bytes
+		// [o] field:0:optional $encoding
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		    Object object = IDataHelper.get(cursor, "$object");
-		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
+		    Charset charset = IDataHelper.getOrDefault(cursor, "$encoding", Charset.class, CharsetHelper.DEFAULT_CHARSET);
 		
-		    IDataHelper.put(cursor, "$bytes", BytesHelper.normalize(object, charset), false);
+		    byte[] bytes = BytesHelper.normalize(object, charset);
+		
+		    IDataHelper.put(cursor, "$bytes", bytes, false);
+		    if (bytes != null && object instanceof String) IDataHelper.put(cursor, "$encoding", charset.name());
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {

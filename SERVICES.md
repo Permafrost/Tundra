@@ -580,6 +580,7 @@ Converts a string, byte array or input stream to a byte array.
 #### Outputs:
 
 * `$bytes` is a byte array representation of the input `$object` data.
+* `$encoding` is the character set used to encode `$object`.
 
 ---
 
