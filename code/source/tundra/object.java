@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-07-16 16:11:10 EST
+// -----( CREATED: 2017-08-02 21:15:03 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -62,7 +62,7 @@ public final class object
 		        operands = map;
 		    }
 		
-		    Object result = ObjectHelper.coalesce(IDataHelper.getLeafValues(operands));
+		    Object result = ObjectHelper.coalesce(IDataHelper.getLeaves(operands));
 		
 		    if (result != null || (mode != null && mode.equals("null"))) {
 		        IDataHelper.put(cursor, "$object", result);

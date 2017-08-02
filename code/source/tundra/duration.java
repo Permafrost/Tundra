@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-06-03 20:17:19 EST
+// -----( CREATED: 2017-08-02 21:14:19 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -61,7 +61,7 @@ public final class duration
 		        operands = map;
 		    }
 		
-		    String result = DurationHelper.emit(DurationHelper.add(DurationHelper.normalize(IDataHelper.getLeafValues(operands), inPattern)), outPattern);
+		    String result = DurationHelper.emit(DurationHelper.add(DurationHelper.normalize(IDataHelper.getLeaves(operands), inPattern)), outPattern);
 		    
 		    IDataHelper.put(cursor, "$duration", result, false);
 		} finally {
@@ -84,7 +84,6 @@ public final class duration
 		// [i] field:0:optional $duration.first.pattern {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
 		// [i] field:0:optional $duration.second
 		// [i] field:0:optional $duration.second.pattern {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
-		// [i] field:0:optional $pattern {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
 		// [o] field:0:required $lesser?
 		// [o] field:0:required $equal?
 		// [o] field:0:required $greater?
@@ -126,7 +125,7 @@ public final class duration
 		// @sigtype java 3.5
 		// [i] field:0:optional $duration
 		// [i] field:0:optional $pattern.input {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
-		// [i] field:0:optional $pattern.output {"xml","milliseconds","seconds","minutes","hours","days","weeks"}
+		// [i] field:0:optional $pattern.output {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
 		// [i] field:0:optional $datetime
 		// [i] field:0:optional $datetime.pattern {"datetime","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
 		// [o] field:0:optional $duration

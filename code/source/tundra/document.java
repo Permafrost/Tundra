@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-07-16 17:13:21 EST
+// -----( CREATED: 2017-08-02 21:16:56 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -608,19 +608,17 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
-		// [i] field:1:optional $classes
+		// [i] field:0:optional $class
 		// [o] object:1:optional $values
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		    IData document = IDataHelper.get(cursor, "$document", IData.class);
-		    String[] classes = IDataHelper.get(cursor, "$classes", String[].class);
+		    Class klass = IDataHelper.getOrDefault(cursor, "$class", Class.class, Object.class);
 		
-		    Object[] values = IDataHelper.getLeafValues(document, ClassHelper.forName(classes));
+		    Object[] values = IDataHelper.getLeaves(document, klass);
 		
 		    IDataHelper.put(cursor, "$values", values, false, false);
-		} catch(ClassNotFoundException ex) {
-		    ExceptionHelper.raise(ex);
 		} finally {
 		    cursor.destroy();
 		}

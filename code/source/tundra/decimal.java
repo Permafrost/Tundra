@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-06-04 19:57:16 EST
+// -----( CREATED: 2017-08-02 21:13:46 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -93,7 +93,7 @@ public final class decimal
 		        backwardsCompatiblityRequired = true;
 		    }
 		
-		    BigDecimal[] decimals = BigDecimalHelper.normalize(IDataHelper.getLeafValues(operands));
+		    BigDecimal[] decimals = BigDecimalHelper.normalize(IDataHelper.getLeaves(operands));
 		    BigDecimal result = BigDecimalHelper.round(BigDecimalHelper.add(decimals), precision, rounding);
 		
 		    if (backwardsCompatiblityRequired) {
@@ -138,7 +138,7 @@ public final class decimal
 		        backwardsCompatiblityRequired = true;
 		    }
 		
-		    BigDecimal result = BigDecimalHelper.average(precision, rounding, BigDecimalHelper.normalize(IDataHelper.getLeafValues(operands)));
+		    BigDecimal result = BigDecimalHelper.average(precision, rounding, BigDecimalHelper.normalize(IDataHelper.getLeaves(operands)));
 		
 		    if (backwardsCompatiblityRequired) {
 		        IDataHelper.put(cursor, "$decimal", result, String.class, false);
@@ -175,7 +175,7 @@ public final class decimal
 		    int precision = IDataHelper.getOrDefault(cursor, "$precision", Integer.class, -1);
 		    RoundingMode rounding = IDataHelper.get(cursor, "$rounding", RoundingMode.class);
 		
-		    Object[] leaves = IDataHelper.getLeafValues(operands);
+		    Object[] leaves = IDataHelper.getLeaves(operands);
 		
 		    if (leaves != null && leaves.length > 0) {
 		        double[] samples = DoubleHelper.normalize(BigDecimalHelper.normalize(leaves));
@@ -331,7 +331,7 @@ public final class decimal
 		        backwardsCompatiblityRequired = true;
 		    }
 		
-		    BigDecimal[] decimals = BigDecimalHelper.normalize(IDataHelper.getLeafValues(operands));
+		    BigDecimal[] decimals = BigDecimalHelper.normalize(IDataHelper.getLeaves(operands));
 		    BigDecimal result = BigDecimalHelper.round(BigDecimalHelper.maximum(decimals), precision, rounding);
 		
 		    if (backwardsCompatiblityRequired) {
@@ -376,7 +376,7 @@ public final class decimal
 		        backwardsCompatiblityRequired = true;
 		    }
 		
-		    BigDecimal[] decimals = BigDecimalHelper.normalize(IDataHelper.getLeafValues(operands));
+		    BigDecimal[] decimals = BigDecimalHelper.normalize(IDataHelper.getLeaves(operands));
 		    BigDecimal result = BigDecimalHelper.round(BigDecimalHelper.minimum(decimals), precision, rounding);
 		
 		    if (backwardsCompatiblityRequired) {
@@ -423,7 +423,7 @@ public final class decimal
 		        backwardsCompatiblityRequired = true;
 		    }
 		
-		    BigDecimal[] decimals = BigDecimalHelper.normalize(IDataHelper.getLeafValues(operands));
+		    BigDecimal[] decimals = BigDecimalHelper.normalize(IDataHelper.getLeaves(operands));
 		    BigDecimal result = BigDecimalHelper.round(BigDecimalHelper.multiply(decimals), precision, rounding);
 		
 		    if (backwardsCompatiblityRequired) {

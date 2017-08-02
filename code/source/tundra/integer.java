@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-07 13:48:34 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2017-08-02 21:16:04 EST
+// -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -83,7 +83,7 @@ public final class integer
 		        backwardsCompatiblityRequired = true;
 		    }
 		
-		    BigInteger result = BigIntegerHelper.add(BigIntegerHelper.normalize(IDataHelper.getLeafValues(operands)));
+		    BigInteger result = BigIntegerHelper.add(BigIntegerHelper.normalize(IDataHelper.getLeaves(operands)));
 		
 		    if (backwardsCompatiblityRequired) {
 		        IDataHelper.put(cursor, "$integer", result, String.class, false);
@@ -123,7 +123,7 @@ public final class integer
 		        backwardsCompatiblityRequired = true;
 		    }
 		
-		    BigInteger result = BigIntegerHelper.average(BigIntegerHelper.normalize(IDataHelper.getLeafValues(operands)));
+		    BigInteger result = BigIntegerHelper.average(BigIntegerHelper.normalize(IDataHelper.getLeaves(operands)));
 		
 		    if (backwardsCompatiblityRequired) {
 		        IDataHelper.put(cursor, "$integer", result, String.class, false);
@@ -281,7 +281,7 @@ public final class integer
 		        backwardsCompatiblityRequired = true;
 		    }
 		
-		    BigInteger result = BigIntegerHelper.maximum(BigIntegerHelper.normalize(IDataHelper.getLeafValues(operands)));
+		    BigInteger result = BigIntegerHelper.maximum(BigIntegerHelper.normalize(IDataHelper.getLeaves(operands)));
 		
 		    if (backwardsCompatiblityRequired) {
 		        IDataHelper.put(cursor, "$integer", result, String.class, false);
@@ -321,7 +321,7 @@ public final class integer
 		        backwardsCompatiblityRequired = true;
 		    }
 		
-		    BigInteger result = BigIntegerHelper.minimum(BigIntegerHelper.normalize(IDataHelper.getLeafValues(operands)));
+		    BigInteger result = BigIntegerHelper.minimum(BigIntegerHelper.normalize(IDataHelper.getLeaves(operands)));
 		
 		    if (backwardsCompatiblityRequired) {
 		        IDataHelper.put(cursor, "$integer", result, String.class, false);
@@ -363,7 +363,7 @@ public final class integer
 		        backwardsCompatiblityRequired = true;
 		    }
 		
-		    BigInteger result = BigIntegerHelper.multiply(BigIntegerHelper.normalize(IDataHelper.getLeafValues(operands)));
+		    BigInteger result = BigIntegerHelper.multiply(BigIntegerHelper.normalize(IDataHelper.getLeaves(operands)));
 		
 		    if (backwardsCompatiblityRequired) {
 		        IDataHelper.put(cursor, "$integer", result, String.class, false);
@@ -604,7 +604,7 @@ public final class integer
 		// @sigtype java 3.5
 		// [i] field:0:optional $integer
 		// [i] field:0:optional $raise? {"false","true"}
-		// [o] field:0:required $valid?
+		// [o] field:0:required $valid? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {

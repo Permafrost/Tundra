@@ -1,8 +1,8 @@
 package tundra.collection.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-06 14:55:43 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2017-08-02 21:07:17 EST
+// -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -423,7 +423,7 @@ public final class object
 	        List<T> list = (List<T>)IDataHelper.get(cursor, "$list", List.class);
 	        IData items = IDataHelper.get(cursor, "$items", IData.class);
 	
-	        IDataHelper.put(cursor, "$list", ListHelper.append(list, (T[])IDataHelper.getLeafValues(items, klass)), false);
+	        IDataHelper.put(cursor, "$list", ListHelper.append(list, IDataHelper.getLeaves(items, klass)), false);
 	    } finally {
 	        cursor.destroy();
 	    }
@@ -527,7 +527,7 @@ public final class object
 	        int indexBase = IDataHelper.getOrDefault(cursor, "$index.base", Integer.class, 0);
 	        int index = IDataHelper.get(cursor, "$index", Integer.class) - indexBase;
 	
-	        IDataHelper.put(cursor, "$list", ListHelper.insert(list, index, (T[])IDataHelper.getLeafValues(items, klass)), false);
+	        IDataHelper.put(cursor, "$list", ListHelper.insert(list, index, IDataHelper.getLeaves(items, klass)), false);
 	    } finally {
 	        cursor.destroy();
 	    }
@@ -588,7 +588,7 @@ public final class object
 	        List<T> list = (List<T>)IDataHelper.get(cursor, "$list", List.class);
 	        IData items = IDataHelper.get(cursor, "$items", IData.class);
 	
-	        IDataHelper.put(cursor, "$list", ListHelper.prepend(list, (T[])IDataHelper.getLeafValues(items, klass)));
+	        IDataHelper.put(cursor, "$list", ListHelper.prepend(list, IDataHelper.getLeaves(items, klass)));
 	    } finally {
 	        cursor.destroy();
 	    }

@@ -5257,17 +5257,15 @@ Would return the following list of leaf values:
 
 * `$document` is an `IData` document from which all leaf
   values are to be fetched.
-* `$classes` is a list of Java class names that the is used
-  to filter the returned values: only those leaf values
-  that are instances of these classes are returned. If not
-  specified, all leaf values regardless of class are
-  returned.
+* `$class` is an optional Java class names that the returned leaf
+  values are required to be instances of. If not specified, defaults
+  to `java.lang.Object`.
 
 #### Outputs:
 
-* `$values` is the list of all leaf values in the given `IData`
-  document that are instances of the given classes, or all
-  leaf values if no classes are specified.
+* `$values` is the list of all leaf values in the given `IData` document
+  that are instances of the given class, or all leaf values if no
+  class was specified.
 
 ---
 
