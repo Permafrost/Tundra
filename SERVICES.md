@@ -15036,6 +15036,7 @@ webMethods parlance, to an [XML] string, byte array, or input stream.
 
 * `$content` is the given [org.w3c.dom.Node] object serialized to
   [XML].
+* `$encoding` is the character set used to serialize the content.
 
 ---
 

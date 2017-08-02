@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-08 18:33:31 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2017-08-02 21:41:02 EST
+// -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -105,16 +105,18 @@ public final class xml
 		// [i] field:0:optional $encoding
 		// [i] field:0:optional $mode {"stream","bytes","string"}
 		// [o] object:0:optional $content
+		// [o] field:0:optional $encoding
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		    Node node = IDataHelper.get(cursor, "$node", Node.class);
-		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
+		    Charset charset = IDataHelper.getOrDefault(cursor, "$encoding", Charset.class, CharsetHelper.DEFAULT_CHARSET);
 		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
 		
 		    Object content = ObjectHelper.convert(NodeHelper.emit(node, charset), mode);
 		
 		    IDataHelper.put(cursor, "$content", content, false);
+		    if (content != null && !(content instanceof String)) IDataHelper.put(cursor, "$encoding", charset.name());
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
