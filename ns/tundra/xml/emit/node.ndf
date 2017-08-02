@@ -198,7 +198,7 @@ webMethods parlance, to an [XML] string, byte array, or input stream.
 
 * $content is the given [org.w3c.dom.Document] object serialized to
   [XML].
-* $encoding is the character set used to serialize the content.
+* $encoding is the character set used to serialize the content.
 
 [org.w3c.dom.Node]: &lt;http://docs.oracle.com/javase/6/docs/api/org/w3c/dom/Node.html&gt;
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;
