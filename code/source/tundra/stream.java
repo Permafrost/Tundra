@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-07 14:32:53 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2017-08-02 21:54:12 EST
+// -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -103,9 +103,12 @@ public final class stream
 		
 		try {
 		    Object object = IDataHelper.get(cursor, "$object");
-		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
+		    Charset charset = IDataHelper.getOrDefault(cursor, "$encoding", Charset.class, CharsetHelper.DEFAULT_CHARSET);
 		
-		    IDataHelper.put(cursor, "$stream", InputStreamHelper.normalize(object, charset), false);
+		    InputStream stream = InputStreamHelper.normalize(object, charset);
+		
+		    IDataHelper.put(cursor, "$stream", stream, false);
+		    if (stream != null && object instanceof String) IDataHelper.put(cursor, "$encoding", charset.name());
 		} finally {
 		    cursor.destroy();
 		}

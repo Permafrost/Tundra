@@ -13539,6 +13539,7 @@ Converts a string, bytes or input stream to an input stream.
 * `$stream` is an optional [java.io.InputStream] object from which can
   be read the data represented by `$object`. If `$object` was not
   specified, no `$stream` is returned.
+* `$encoding` is the character set used to encode `$object`.
 
 ---
 
