@@ -10,7 +10,7 @@
 
   <!-- nodes -->
 
-<MAP NAME="true" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="true" MODE="STANDALONE">
   <COMMENT>set transfertype to active</COMMENT>
   <MAPTARGET>
 
@@ -179,7 +179,7 @@
 </MAPSET>
 </MAP>
 
-<MAP NAME="$default" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="$default" MODE="STANDALONE">
   <COMMENT>default transfertype to passive</COMMENT>
   <MAPTARGET>
 
@@ -1446,7 +1446,7 @@
 </MAP>
 </INVOKE>
 
-<MAP NAME="$null" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="$null" MODE="STANDALONE">
   <COMMENT>default timeout to 60 seconds</COMMENT>
   <MAPTARGET>
 
@@ -2725,6 +2725,40 @@
             <value name="form_qualified">false</value>
             <value name="is_global">false</value>
           </record>
+        </array>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="node_comment"></value>
+        <record name="node_hints" javaclass="com.wm.util.Values">
+          <value name="field_largerEditor">false</value>
+          <value name="field_password">false</value>
+        </record>
+        <value name="field_name">$pipeline.catch</value>
+        <value name="field_type">record</value>
+        <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+        <array name="rec_fields" type="record" depth="1">
+        </array>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="node_comment"></value>
+        <record name="node_hints" javaclass="com.wm.util.Values">
+          <value name="field_largerEditor">false</value>
+          <value name="field_password">false</value>
+        </record>
+        <value name="field_name">$pipeline.finally</value>
+        <value name="field_type">record</value>
+        <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+        <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
             <value name="field_name">sessionkey</value>
@@ -3027,15 +3061,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="field_name">$catch</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
         <value name="field_name">returncode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3061,15 +3086,23 @@
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
       </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="field_name">$pipeline.catch</value>
+        <value name="field_type">record</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+        <array name="rec_fields" type="record" depth="1">
+        </array>
+      </record>
     </array>
   </record>
 </Values>
 </MAPSOURCE>
 
   <!-- nodes -->
-
-<MAPDELETE FIELD="/$catch;1;0">
-</MAPDELETE>
 
 <MAPCOPY FROM="/sessionkey;1;0" TO="/$pipeline;2;0/$ftp.session.key;1;0">
 </MAPCOPY>
@@ -3084,9 +3117,6 @@
 </MAPCOPY>
 
 <MAPCOPY FROM="/$limit;1;0" TO="/$pipeline;2;0/$limit;1;0">
-</MAPCOPY>
-
-<MAPCOPY FROM="/sessionkey;1;0" TO="/$pipeline;2;0/sessionkey;1;0">
 </MAPCOPY>
 
 <MAPDELETE NAME="Dropper" FIELD="/returncode;1;0">
@@ -3109,6 +3139,48 @@
 
 <MAPDELETE NAME="Dropper" FIELD="/$limit;1;0">
 </MAPDELETE>
+
+<MAPCOPY NAME="Link" FROM="/sessionkey;1;0" TO="/$pipeline.finally;2;0/sessionkey;1;0">
+</MAPCOPY>
+
+<MAPDELETE NAME="Dropper" FIELD="/$pipeline.catch;2;0">
+</MAPDELETE>
+
+<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$catch;1;0">
+  <DATA ENCODING="XMLValues" I18N="true">
+
+<Values version="2.0">
+  <value name="xml">tundra.support.content.retrieve.ftp.exception:rescue</value>
+  <record name="type" javaclass="com.wm.util.Values">
+    <value name="node_type">record</value>
+    <value name="node_comment"></value>
+    <record name="node_hints" javaclass="com.wm.util.Values">
+      <null name="field_usereditable"/>
+      <value name="field_largerEditor">false</value>
+      <value name="field_password">false</value>
+    </record>
+    <value name="field_name">$catch</value>
+    <value name="field_type">string</value>
+    <value name="field_dim">0</value>
+    <value name="field_opt">true</value>
+    <record name="field_content_type" javaclass="com.wm.util.Values">
+      <value name="contentType">1</value>
+      <value name="internalType">reference</value>
+      <value name="dataTypeVersion">dtVersion2</value>
+      <array name="targetNames" type="record" depth="1">
+        <record javaclass="com.wm.util.Values">
+          <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+          <value name="ncName">string</value>
+        </record>
+      </array>
+    </record>
+    <value name="nillable">true</value>
+    <value name="form_qualified">false</value>
+    <value name="is_global">false</value>
+  </record>
+</Values>
+</DATA>
+</MAPSET>
 
 <MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$finally;1;0">
   <DATA ENCODING="XMLValues" I18N="true">
@@ -3223,6 +3295,15 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="field_name">$catch</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
         <value name="field_name">$finally</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3247,6 +3328,16 @@
             <value name="nillable">true</value>
             <value name="form_qualified">false</value>
             <value name="is_global">false</value>
+          </record>
+          <record javaclass="com.wm.util.Values">
+            <value name="node_type">unknown</value>
+            <value name="field_name">$exceptions</value>
+            <value name="field_type">object</value>
+            <value name="field_dim">1</value>
+            <value name="nillable">true</value>
+            <value name="form_qualified">false</value>
+            <value name="is_global">false</value>
+            <value name="is_soap_array_encoding_used">false</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
@@ -3295,15 +3386,6 @@
             <value name="form_qualified">false</value>
             <value name="is_global">false</value>
           </record>
-          <record javaclass="com.wm.util.Values">
-            <value name="node_type">unknown</value>
-            <value name="field_name">sessionkey</value>
-            <value name="field_type">string</value>
-            <value name="field_dim">0</value>
-            <value name="nillable">true</value>
-            <value name="form_qualified">false</value>
-            <value name="is_global">false</value>
-          </record>
         </array>
       </record>
       <record javaclass="com.wm.util.Values">
@@ -3332,6 +3414,42 @@
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="node_comment"></value>
+        <record name="node_hints" javaclass="com.wm.util.Values">
+          <value name="field_largerEditor">false</value>
+          <value name="field_password">false</value>
+        </record>
+        <value name="field_name">$exceptions</value>
+        <value name="field_type">object</value>
+        <value name="field_dim">1</value>
+        <value name="field_opt">true</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+        <value name="is_soap_array_encoding_used">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="field_name">$pipeline.finally</value>
+        <value name="field_type">record</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+        <array name="rec_fields" type="record" depth="1">
+          <record javaclass="com.wm.util.Values">
+            <value name="node_type">unknown</value>
+            <value name="field_name">sessionkey</value>
+            <value name="field_type">string</value>
+            <value name="field_dim">0</value>
+            <value name="nillable">true</value>
+            <value name="form_qualified">false</value>
+            <value name="is_global">false</value>
+          </record>
+        </array>
       </record>
     </array>
   </record>
@@ -3372,6 +3490,16 @@
             <value name="form_qualified">false</value>
             <value name="is_global">false</value>
           </record>
+          <record javaclass="com.wm.util.Values">
+            <value name="node_type">unknown</value>
+            <value name="field_name">$exceptions</value>
+            <value name="field_type">object</value>
+            <value name="field_dim">1</value>
+            <value name="nillable">true</value>
+            <value name="form_qualified">false</value>
+            <value name="is_global">false</value>
+            <value name="is_soap_array_encoding_used">false</value>
+          </record>
         </array>
       </record>
     </array>
@@ -3392,6 +3520,15 @@
 
 <MAPCOPY FROM="/$pipeline;2;0/$message;1;0" TO="/$message;1;0">
 </MAPCOPY>
+
+<MAPCOPY NAME="Link" FROM="/$pipeline;2;0/$exceptions;3;1" TO="/$exceptions;3;1">
+</MAPCOPY>
+
+<MAPDELETE NAME="Dropper" FIELD="/$pipeline.finally;2;0">
+</MAPDELETE>
+
+<MAPDELETE NAME="Dropper" FIELD="/$catch;1;0">
+</MAPDELETE>
 </MAP>
 </INVOKE>
 </FLOW>
