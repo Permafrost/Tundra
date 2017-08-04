@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-07-27T15:33:26.648
+// -----( CREATED: 2017-08-04T10:55:02.211
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -192,19 +192,24 @@ public final class service
 		// [i] field:0:optional $catch
 		// [i] field:0:optional $finally
 		// [i] record:0:optional $pipeline
+		// [i] record:0:optional $pipeline.catch
+		// [i] record:0:optional $pipeline.finally
 		// [o] record:0:optional $pipeline
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
-		    IData scope = IDataHelper.get(cursor, "$pipeline", IData.class);
-		    boolean scoped = scope != null;
-		    if (!scoped) scope = IDataHelper.clone(pipeline, "$service", "$catch", "$finally");
-
 		    String tryService = IDataHelper.get(cursor, "$service", String.class);
 		    String catchService = IDataHelper.get(cursor, "$catch", String.class);
 		    String finallyService = IDataHelper.get(cursor, "$finally", String.class);
+		    IData scope = IDataHelper.getOrDefault(cursor, "$pipeline", IData.class, pipeline);
+		    IData catchPipeline = IDataHelper.get(cursor, "$pipeline.catch", IData.class);
+		    IData finallyPipeline = IDataHelper.get(cursor, "$pipeline.finally", IData.class);
+		    boolean scoped = scope != pipeline;
 
-		    scope = ServiceHelper.ensure(tryService, catchService, finallyService, scope);
+		    // remove this service's input arguments from the pipeline if unscoped
+		    if (!scoped) scope = IDataHelper.clone(pipeline, "$service", "$catch", "$finally", "$pipeline.catch", "$pipeline.finally");
+
+		    scope = ServiceHelper.ensure(tryService, catchService, finallyService, scope, catchPipeline, finallyPipeline);
 
 		    if (scoped) {
 		        IDataHelper.put(cursor, "$pipeline", scope);

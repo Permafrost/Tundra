@@ -13185,12 +13185,18 @@ Provides a try/catch/finally pattern for flow services.
 * `$finally` is an optional fully-qualified name of a service
   invoked in the [finally block] (always invoked regardless
   of whether an exception is thrown by `$service` or not).
-* `$pipeline` is an optional IData document which, if specified,
+* `$pipeline` is an optional `IData` document which, if specified,
   contains the input arguments for the invocations of `$service`,
   `$catch`, and `$finally`; in other words, the calls to these
-  services are scoped to this IData document. If not specified,
+  services are scoped to this `IData` document. If not specified,
   the invocations are not scoped, and hence these services
   operate directly against the pipeline itself.
+* `$pipeline.catch` is an optional `IData` document which, if specified,
+  contains input arguments which is merged into the pipeline prior
+  to the invocation of `$catch`.
+* `$pipeline.finally` is an optional `IData` document which, if
+  specified, contains input arguments which is merged into the
+  pipeline prior to the invocation of `$finally`.
 
 #### Outputs:
 
