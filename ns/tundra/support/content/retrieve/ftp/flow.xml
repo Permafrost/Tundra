@@ -4041,21 +4041,18 @@
 <MAPDELETE FIELD="/$pipeline;2;0">
 </MAPDELETE>
 
-<MAPCOPY FROM="/$pipeline;2;0/$exception?;1;0" TO="/$exception?;1;0">
-</MAPCOPY>
-
 <MAPCOPY NAME="Link" FROM="/$pipeline;2;0/$exception;3;0" TO="/$exception;3;0">
 </MAPCOPY>
 </MAP>
 </INVOKE>
 
-<BRANCH TIMEOUT="" SWITCH="/$exception?">
+<BRANCH TIMEOUT="" SWITCH="/$exception">
   <COMMENT></COMMENT>
 
   <!-- nodes -->
 
-<INVOKE NAME="true" TIMEOUT="" SERVICE="tundra.integer:increment" VALIDATE-IN="$none" VALIDATE-OUT="$none">
-  <COMMENT></COMMENT>
+<INVOKE NAME="$default" TIMEOUT="" SERVICE="tundra.integer:increment" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+  <COMMENT>skipped</COMMENT>
 
   <!-- nodes -->
 
@@ -4212,15 +4209,6 @@
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
         <value name="field_name">dirlist</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="field_name">$exception?</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -4384,15 +4372,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="field_name">$exception?</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
         <value name="field_name">$exception</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -4456,8 +4435,8 @@
 </MAP>
 </INVOKE>
 
-<INVOKE NAME="$default" TIMEOUT="" SERVICE="tundra.integer:increment" VALIDATE-IN="$none" VALIDATE-OUT="$none">
-  <COMMENT></COMMENT>
+<INVOKE NAME="$null" TIMEOUT="" SERVICE="tundra.integer:increment" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+  <COMMENT>processed</COMMENT>
 
   <!-- nodes -->
 
@@ -4613,15 +4592,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="field_name">$exception?</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
         <value name="field_name">$exception</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -4760,15 +4730,6 @@
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
         <value name="field_name">dirlist</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="field_name">$exception?</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
