@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-08-02 21:16:56 EST
+// -----( CREATED: 2017-08-08 21:11:41 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -608,15 +608,17 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [i] field:0:optional $class
 		// [o] object:1:optional $values
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
 		    Class klass = IDataHelper.getOrDefault(cursor, "$class", Class.class, Object.class);
 		
-		    Object[] values = IDataHelper.getLeaves(document, klass);
+		    Object[] values = IDataHelper.getLeaves(document, klass, recurse);
 		
 		    IDataHelper.put(cursor, "$values", values, false, false);
 		} finally {

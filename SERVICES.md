@@ -5236,8 +5236,7 @@ represented as [JSON]:
         }
     }
 
-
-Would return the following list of leaf values:
+If recursing, the following list of leaf values would be returned:
 
     [
         "Joy Division",
@@ -5258,6 +5257,10 @@ Would return the following list of leaf values:
 
 * `$document` is an `IData` document from which all leaf
   values are to be fetched.
+* `$recurse?` is an optional boolean indicating if child `IData`
+  documents, `IData[]` document lists, `Object[][]` object tables, and
+  `Object[]` object lists should be recursed when collecting leaves.
+  Defaults to `false`.
 * `$class` is an optional Java class names that the returned leaf
   values are required to be instances of. If not specified, defaults
   to `java.lang.Object`.
