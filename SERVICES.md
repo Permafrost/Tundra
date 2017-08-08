@@ -13713,7 +13713,7 @@ Returns the first string argument that is not null.
 
 #### Inputs:
 * `$operands` is an `IData` document containing arbitrarily specified
-  strings to be coalesced.
+  top-level strings to be coalesced.
 * `$mode` determines what is returned when all arguments are null:
   * `missing`: `$string` is not returned when all arguments are null.
     This is the default, if `$mode` is not specified.
