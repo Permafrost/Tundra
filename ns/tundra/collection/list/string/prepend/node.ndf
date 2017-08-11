@@ -82,7 +82,7 @@ object.
 * $list is a [java.util.List] object to prepend items to. If not
   specified, a new [java.util.List] object is automatically created.
 * $items is an IData document containing arbitrarily specified 
-  strings to be prepended to the list. The leaf values from the
+  top-level strings to be prepended to the list. The values from the
   given document will be prepended in the order they appear.
 
 #### Outputs:

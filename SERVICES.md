@@ -719,8 +719,8 @@ object.
 * `$list` is a [java.util.List] object to append items to. If not
   specified, a new [java.util.List] object is automatically created.
 * `$items` is an `IData` document containing arbitrarily specified
-  IData documents to be appended to the list. The leaf values from
-  the given document will be appended in the order they appear.
+  top-level `IData` documents to be appended to the list. The values
+  from the given document will be appended in the order they appear.
 
 #### Outputs:
 
@@ -805,8 +805,8 @@ Inserts arbitrarily specified items at the specified index of a
 * `$list` is a [java.util.List] object to insert items into. If not
   specified, a new [java.util.List] object is automatically created.
 * `$items` is an `IData` document containing arbitrarily specified
-  `IData` documents to be inserted into the list. The leaf values from
-  the given document will be inserted in the order they appear.
+  top-level `IData` documents to be inserted into the list. The values
+  from the given document will be inserted in the order they appear.
 * `$index` is the index at which the given items will be inserted.
 * `$index.base` specifies whether the index is zero-based or one-
   based. Defaults to zero-based if not specified.
@@ -875,8 +875,8 @@ object.
 * `$list` is a [java.util.List] object to prepend items to. If not
   specified, a new [java.util.List] object is automatically created.
 * `$items` is an `IData` document containing arbitrarily specified
-  `IData` documents to be prepended to the list. The leaf values from
-  the given document will be prepended in the order they appear.
+  top-level `IData` documents to be prepended to the list. The values
+  from the given document will be prepended in the order they appear.
 
 #### Outputs:
 
@@ -983,7 +983,7 @@ object.
 * `$list` is a [java.util.List] object to append items to. If not
   specified, a new [java.util.List] object is automatically created.
 * `$items` is an `IData` document containing arbitrarily specified
-  objects to be appended to the list. The leaf values from the
+  top-level objects to be appended to the list. The values from the
   given document will be appended in the order they appear.
 * `$class` is an optional Java class name that the list items
   to be appended are required to be instances of.
@@ -1077,7 +1077,7 @@ Inserts arbitrarily specified items at the specified index of a
 * `$list` is a [java.util.List] object to insert items into. If not
   specified, a new [java.util.List] object is automatically created.
 * `$items` is an `IData` document containing arbitrarily specified
-  objects to be inserted into the list. The leaf values from the
+  top-level objects to be inserted into the list. The values from the
   given document will be inserted in the order they appear.
 * `$index` is the index at which the given items will be inserted.
 * `$index.base` specifies whether the index is zero-based or one-
@@ -1151,7 +1151,7 @@ object.
 * `$list` is a [java.util.List] object to prepend items to. If not
   specified, a new [java.util.List] object is automatically created.
 * `$items` is an `IData` document containing arbitrarily specified
-  objects to be prepended to the list. The leaf values from the
+  top-level objects to be prepended to the list. The values from the
   given document will be prepended in the order they appear.
 * `$class` is an optional Java class name that the list items
   to be prepended are required to be instances of.
@@ -1259,17 +1259,21 @@ unique items from the given [java.util.List] object.
 
 ### tundra.collection.list.string:append
 
-Appends a single item to the end of a [java.util.List] object.
+Appends arbitrarily specified items to the end of a [java.util.List]
+object.
 
 #### Inputs:
 
-* `$list` is a [java.util.List] object to append an item to.
-* `$item` is an item to be appended to the given list.
+* `$list` is a [java.util.List] object to append items to. If not
+  specified, a new [java.util.List] object is automatically created.
+* `$items` is an `IData` document containing arbitrarily specified
+  top-level strings to be appended to the list. The values from the
+  given document will be appended in the order they appear.
 
 #### Outputs:
 
-* `$list` is the resulting [java.util.List] with the given `$item`
-  appended to the end.
+* `$list` is the resulting [java.util.List] object with the given
+  items appended to the end.
 
 ---
 
@@ -1347,7 +1351,7 @@ Inserts arbitrarily specified items at the specified index of a
 * `$list` is a [java.util.List] object to insert items into. If not
   specified, a new [java.util.List] object is automatically created.
 * `$items` is an `IData` document containing arbitrarily specified
-  strings to be inserted into the list. The leaf values from the
+  top-level strings to be inserted into the list. The values from the
   given document will be inserted in the order they appear.
 * `$index` is the index at which the given items will be inserted.
 * `$index.base` specifies whether the index is zero-based or one-
@@ -1415,7 +1419,7 @@ object.
 * `$list` is a [java.util.List] object to prepend items to. If not
   specified, a new [java.util.List] object is automatically created.
 * `$items` is an `IData` document containing arbitrarily specified
-  strings to be prepended to the list. The leaf values from the
+  top-level strings to be prepended to the list. The values from the
   given document will be prepended in the order they appear.
 
 #### Outputs:

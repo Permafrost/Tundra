@@ -139,8 +139,8 @@ Inserts arbitrarily specified items at the specified index of a
 * $list is a [java.util.List] object to insert items into. If not
   specified, a new [java.util.List] object is automatically created.
 * $items is an IData document containing arbitrarily specified 
-  IData documents to be inserted into the list. The leaf values from
-  the given document will be inserted in the order they appear.
+  top-level IData documents to be inserted into the list. The values 
+  from the given document will be inserted in the order they appear.
 * $index is the index at which the given items will be inserted.
 * $index.base specifies whether the index is zero-based or one-
   based. Defaults to zero-based if not specified.
