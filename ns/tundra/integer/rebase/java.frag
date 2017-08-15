@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">rebase</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7DQoNCnRyeSB7DQogICAg
+U3RyaW5nIHN0cmluZyA9IElEYXRhSGVscGVyLmdldChjdXJzb3IsICIkc3RyaW5nIiwgU3RyaW5n
+LmNsYXNzKTsNCiAgICBpbnQgaW5wdXRSYWRpeCA9IElEYXRhSGVscGVyLmdldE9yRGVmYXVsdChj
+dXJzb3IsICIkcmFkaXguaW5wdXQiLCBJbnRlZ2VyLmNsYXNzLCBCaWdJbnRlZ2VySGVscGVyLkRF
+RkFVTFRfUkFESVgpOw0KDSAgICBpbnQgb3V0cHV0UmFkaXggPSBJRGF0YUhlbHBlci5nZXRPckRl
+ZmF1bHQoY3Vyc29yLCAiJHJhZGl4Lm91dHB1dCIsIEludGVnZXIuY2xhc3MsIEJpZ0ludGVnZXJI
+ZWxwZXIuREVGQVVMVF9SQURJWCk7CgogICAgSURhdGFIZWxwZXIucHV0KGN1cnNvciwgIiRzdHJp
+bmciLCBCaWdJbnRlZ2VySGVscGVyLnJlYmFzZShzdHJpbmcsIGlucHV0UmFkaXgsIG91dHB1dFJh
+ZGl4KSwgZmFsc2UpOwp9IGZpbmFsbHkgew0KICAgIGN1cnNvci5kZXN0cm95KCk7DQp9</value>
+</Values>

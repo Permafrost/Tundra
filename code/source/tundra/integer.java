@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-08-15T11:26:49.095
+// -----( CREATED: 2017-08-15T11:39:00.751
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -480,6 +480,35 @@ public final class integer
 		    } else {
 		        IDataHelper.put(cursor, "$result", result, String.class, false);
 		    }
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
+	public static final void rebase (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(rebase)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $string
+		// [i] field:0:optional $radix.input
+		// [i] field:0:optional $radix.output
+		// [o] object:0:optional $object
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    String string = IDataHelper.get(cursor, "$string", String.class);
+		    int inputRadix = IDataHelper.getOrDefault(cursor, "$radix.input", Integer.class, BigIntegerHelper.DEFAULT_RADIX);
+
+		    int outputRadix = IDataHelper.getOrDefault(cursor, "$radix.output", Integer.class, BigIntegerHelper.DEFAULT_RADIX);
+
+		    IDataHelper.put(cursor, "$string", BigIntegerHelper.rebase(string, inputRadix, outputRadix), false);
 		} finally {
 		    cursor.destroy();
 		}

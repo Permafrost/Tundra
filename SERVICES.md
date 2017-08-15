@@ -7228,6 +7228,27 @@ Raises the given integer to the power of the given exponent (b^e).
 
 ---
 
+### tundra.integer:rebase
+
+Converts a string representation of an integer from one radix or base
+to another.
+
+#### Inputs:
+
+* `$string` is a string of digits optionally preceded by a plus or
+  minus sign to be parsed.
+* `$radix.input` is an optional [radix] used to interpret the digits
+  in the given `$string`. Defaults to 10 (decimal), if not specified.
+* `$radix.output` is an optional [radix] to convert the given `$string`
+  to. Defaults to 10 (decimal), if not specified.
+
+#### Outputs:
+
+* `$string` is the resulting string representation of the integer
+  converted from the input radix to the output radix.
+
+---
+
 ### tundra.integer:remainder
 
 Returns the remainder from dividing the given integers.
