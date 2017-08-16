@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-08-16 16:19:32 EST
+// -----( CREATED: 2017-08-16 16:32:14 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -1313,6 +1313,37 @@ public final class document
 		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
 		
 		    if (prefix != null) IDataHelper.put(cursor, "$document", IDataHelper.unprefix(document, prefix, mode, recurse), false);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void unsuffix (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(unsuffix)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:0:optional $document
+		// [i] field:0:optional $suffix
+		// [i] field:0:optional $recurse? {"false","true"}
+		// [i] field:0:optional $force? {"false","true"}
+		// [i] field:0:optional $mode {"values","keys","keys and values"}
+		// [o] record:0:optional $document
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    String suffix = IDataHelper.get(cursor, "$suffix", String.class);
+		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
+		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
+		
+		    if (suffix != null) IDataHelper.put(cursor, "$document", IDataHelper.unsuffix(document, suffix, mode, recurse), false);
 		} finally {
 		    cursor.destroy();
 		}
