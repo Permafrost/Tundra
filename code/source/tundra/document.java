@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-08-08 21:11:41 EST
+// -----( CREATED: 2017-08-16 15:53:42 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -918,6 +918,38 @@ public final class document
 		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
 		
 		    IDataHelper.put(cursor, "$pivot", IDataHelper.pivot(document, recurse), false);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void prefix (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(prefix)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:0:optional $document
+		// [i] field:0:optional $prefix
+		// [i] field:0:optional $recurse? {"false","true"}
+		// [i] field:0:optional $force? {"false","true"}
+		// [i] field:0:optional $mode {"values","keys","keys and values"}
+		// [o] record:0:optional $document
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    String prefix = IDataHelper.get(cursor, "$prefix", String.class);
+		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
+		    boolean force = IDataHelper.getOrDefault(cursor, "$force?", Boolean.class, false);
+		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
+		
+		    if (prefix != null) IDataHelper.put(cursor, "$document", IDataHelper.prefix(document, prefix, force, mode, recurse), false);
 		} finally {
 		    cursor.destroy();
 		}

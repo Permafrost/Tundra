@@ -5557,6 +5557,34 @@ document.
 
 ---
 
+### tundra.document:prefix
+
+Prepends the given prefix to the keys, or values, or both in the
+given `IData` document.
+
+#### Inputs:
+
+* `$document` is an `IData` document to be prefixed.
+* `$prefix` is the string to be prepended to the keys, or values, or
+  both.
+* `$recurse?` is an optional boolean indicating if child `IData`
+  documents and `IData[]` document lists should also be recursively
+  processed. Defaults to `false`.
+* `$force?` is an optional boolean indicating if the prefix should be
+  always be prepended even if the key or value already starts with
+  the given prefix. Defaults to `false`, where the prefix is only
+  prepended on keys or values that do not already start with it.
+* `$mode` is an optional choice for what should be converted: either
+  the values, the keys, or both the keys and the values. Defaults to
+  values.
+
+#### Outputs:
+
+* `$document` is the given `IData` document with the given prefix
+  prepended to either the keys, or values, or both.
+
+---
+
 ### tundra.document:put
 
 Sets the value associated with the given key in the given IData document.
