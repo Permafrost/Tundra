@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-08-16 15:53:42 EST
+// -----( CREATED: 2017-08-16 16:11:21 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -1251,6 +1251,36 @@ public final class document
 		    Locale locale = IDataHelper.getOrDefault(cursor, "$locale", Locale.class, Locale.getDefault());
 		
 		    if (document != null) IDataHelper.put(cursor, "$document", new CaseInsensitiveIData(IDataHelper.duplicate(document, true), locale));
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void unprefix (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(unprefix)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:0:optional $document
+		// [i] field:0:optional $prefix
+		// [i] field:0:optional $recurse? {"false","true"}
+		// [i] field:0:optional $mode {"values","keys","keys and values"}
+		// [o] record:0:optional $document
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    String prefix = IDataHelper.get(cursor, "$prefix", String.class);
+		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
+		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
+		
+		    if (prefix != null) IDataHelper.put(cursor, "$document", IDataHelper.unprefix(document, prefix, mode, recurse), false);
 		} finally {
 		    cursor.destroy();
 		}
