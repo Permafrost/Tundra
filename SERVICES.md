@@ -9013,6 +9013,30 @@ with the given keys are unique.
 
 ---
 
+### tundra.list.document:unprefix
+
+Removes the given prefix from the keys, or values, or both in the
+given `IData[]` document list.
+
+#### Inputs:
+
+* `$list` is an `IData[]` document list to have prefixes removed.
+* `$prefix` is the string to be removed from the keys, or values, or
+  both.
+* `$recurse?` is an optional boolean indicating if child `IData`
+  documents and `IData[]` document lists should also be recursively
+  processed. Defaults to `false`.
+* `$mode` is an optional choice for what should be converted: either
+  the values, the keys, or both the keys and the values. Defaults to
+  values.
+
+#### Outputs:
+
+* `$list` is the given `IData[]` document list with with the given
+  prefix removed from either the keys, or values, or both.
+
+---
+
 ### tundra.list.document:uppercase
 
 Converts all string values in the given `IData[]` document list to
