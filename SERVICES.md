@@ -5573,7 +5573,7 @@ given `IData` document.
 * `$force?` is an optional boolean indicating if the prefix should be
   always be prepended even if the key or value already starts with
   the given prefix. Defaults to `false`, where the prefix is only
-  prepended on keys or values that do not already start with it.
+  prepended to keys or values that do not already start with it.
 * `$mode` is an optional choice for what should be converted: either
   the values, the keys, or both the keys and the values. Defaults to
   values.
@@ -5862,7 +5862,7 @@ given `IData` document.
 * `$force?` is an optional boolean indicating if the suffix should be
   always be appended even if the key or value already ends with
   the given suffix. Defaults to `false`, where the suffix is only
-  appended on keys or values that do not already end with it.
+  appended to keys or values that do not already end with it.
 * `$mode` is an optional choice for what should be converted: either
   the values, the keys, or both the keys and the values. Defaults to
   values.
@@ -8618,7 +8618,7 @@ given `IData[]` document list.
 * `$force?` is an optional boolean indicating if the prefix should be
   always be prepended even if the key or value already starts with
   the given prefix. Defaults to `false`, where the prefix is only
-  prepended on keys or values that do not already start with it.
+  prepended to keys or values that do not already start with it.
 * `$mode` is an optional choice for what should be converted: either
   the values, the keys, or both the keys and the values. Defaults to
   values.
@@ -8944,6 +8944,34 @@ value.
   substitution patterns in all item's values, such as "%key%", replaced
   with the value of the key (resolved against either `$pipeline`, if
   specified, or the pipeline itself).
+
+---
+
+### tundra.list.document:suffix
+
+Appends the given suffix to the keys, or values, or both in the
+given `IData[]` document list.
+
+#### Inputs:
+
+* `$list` is an `IData[]` document list to be suffixed.
+* `$suffix` is the string to be appended to the keys, or values, or
+  both.
+* `$recurse?` is an optional boolean indicating if child `IData`
+  documents and `IData[]` document lists should also be recursively
+  processed. Defaults to `false`.
+* `$force?` is an optional boolean indicating if the suffix should be
+  always be appended even if the key or value already starts with
+  the given suffix. Defaults to `false`, where the suffix is only
+  appended to keys or values that do not already start with it.
+* `$mode` is an optional choice for what should be converted: either
+  the values, the keys, or both the keys and the values. Defaults to
+  values.
+
+#### Outputs:
+
+* `$list` is the given `IData[]` document list with with the given
+  suffix appended to either the keys, or values, or both.
 
 ---
 

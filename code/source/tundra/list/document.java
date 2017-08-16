@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-08-16 16:16:23 EST
+// -----( CREATED: 2017-08-16 16:24:18 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -897,6 +897,37 @@ public final class document
 		    EnumSet<SubstitutionType> mode = SubstitutionType.normalize(IDataHelper.get(cursor, "$mode", String.class));
 		
 		    if (list != null) IDataHelper.put(cursor, "$list", SubstitutionHelper.substitute(list, defaultValue, true, mode, scope));
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void suffix (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(suffix)>> ---
+		// @sigtype java 3.5
+		// [i] record:1:optional $list
+		// [i] field:0:optional $suffix
+		// [i] field:0:optional $recurse? {"false","true"}
+		// [i] field:0:optional $force? {"false","true"}
+		// [i] field:0:optional $mode {"values","keys","keys and values"}
+		// [o] record:1:optional $list
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    IData[] list = IDataHelper.get(cursor, "$list", IData[].class);
+		    String suffix = IDataHelper.get(cursor, "$suffix", String.class);
+		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
+		    boolean force = IDataHelper.getOrDefault(cursor, "$force?", Boolean.class, false);
+		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
+		
+		    if (suffix != null) IDataHelper.put(cursor, "$list", IDataHelper.suffix(list, suffix, force, mode, recurse), false);
 		} finally {
 		    cursor.destroy();
 		}

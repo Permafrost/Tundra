@@ -238,7 +238,7 @@ given IData[] document list.
 * $force? is an optional boolean indicating if the prefix should be 
   always be prepended even if the key or value already starts with 
   the given prefix. Defaults to false, where the prefix is only 
-  prepended on keys or values that do not already start with it.
+  prepended to keys or values that do not already start with it.
 * $mode is an optional choice for what should be converted: either 
   the values, the keys, or both the keys and the values. Defaults to 
   values.
