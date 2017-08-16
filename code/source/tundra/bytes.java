@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-08-02 21:46:54 EST
+// -----( CREATED: 2017-08-16 18:22:18 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -78,6 +78,42 @@ public final class bytes
 		
 		    IDataHelper.put(cursor, "$bytes", bytes, false);
 		    if (bytes != null && object instanceof String) IDataHelper.put(cursor, "$encoding", charset.name());
+		} catch(IOException ex) {
+		    ExceptionHelper.raise(ex);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void transcode (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(transcode)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:0:optional $bytes
+		// [i] field:0:optional $encoding.input
+		// [i] field:0:optional $encoding.output
+		// [o] object:0:optional $bytes
+		// [o] field:0:optional $encoding.input
+		// [o] field:0:optional $encoding.output
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    byte[] bytes = IDataHelper.get(cursor, "$bytes", byte[].class);
+		    Charset sourceCharset = IDataHelper.getOrDefault(cursor, "$encoding.input", Charset.class, CharsetHelper.DEFAULT_CHARSET);
+		    Charset targetCharset = IDataHelper.getOrDefault(cursor, "$encoding.output", Charset.class, CharsetHelper.DEFAULT_CHARSET);
+		
+		    if (bytes != null) {
+		        IDataHelper.put(cursor, "$bytes", BytesHelper.transcode(bytes, sourceCharset, targetCharset));
+		        IDataHelper.put(cursor, "$encoding.input", sourceCharset.name());
+		        IDataHelper.put(cursor, "$encoding.output", targetCharset.name());
+		    }
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {

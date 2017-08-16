@@ -584,6 +584,28 @@ Converts a string, byte array or input stream to a byte array.
 
 ---
 
+### tundra.bytes:transcode
+
+Converts the given bytes containing text data from one encoding or
+character set to another.
+
+#### Inputs:
+
+* `$bytes` is a `byte[]` to be transcoded.
+* `$encoding.input` is the optional character set used to decode the
+  given `$bytes`. Defaults to [UTF-8].
+* `$encoding.output` is the optional character set used to encode the
+  text data decoded from the given `$bytes`. Defaults to [UTF-8].
+
+#### Outputs:
+
+* `$bytes` is the resulting transcoded `byte[]`.
+* `$encoding.input` is the character set used to decode the input data.
+* `$encoding.output` is the character set used to encode the output
+  data.
+
+---
+
 ### tundra.cache.memory:all
 
 Returns the cache with the given name.
