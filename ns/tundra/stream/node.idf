@@ -18,6 +18,7 @@
     <value>permafrost.tundra.io.CloseableHelper</value>
     <value>permafrost.tundra.io.InputOutputHelper</value>
     <value>permafrost.tundra.io.InputStreamHelper</value>
+    <value>permafrost.tundra.io.TranscodingInputStream</value>
     <value>permafrost.tundra.lang.BooleanHelper</value>
     <value>permafrost.tundra.lang.CharsetHelper</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>
