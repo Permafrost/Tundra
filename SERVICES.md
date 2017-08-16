@@ -5846,6 +5846,34 @@ value.
 
 ---
 
+### tundra.document:suffix
+
+Appends the given suffix to the keys, or values, or both in the
+given `IData` document.
+
+#### Inputs:
+
+* `$document` is an `IData` document to be suffixed.
+* `$suffix` is the string to be appended to the keys, or values, or
+  both.
+* `$recurse?` is an optional boolean indicating if child `IData`
+  documents and `IData[]` document lists should also be recursively
+  processed. Defaults to `false`.
+* `$force?` is an optional boolean indicating if the suffix should be
+  always be appended even if the key or value already ends with
+  the given suffix. Defaults to `false`, where the suffix is only
+  appended on keys or values that do not already end with it.
+* `$mode` is an optional choice for what should be converted: either
+  the values, the keys, or both the keys and the values. Defaults to
+  values.
+
+#### Outputs:
+
+* `$document` is the given `IData` document with the given suffix
+  appended to either the keys, or values, or both.
+
+---
+
 ### tundra.document:translate
 
 One-to-one conversion of one IData document to another IData document.
