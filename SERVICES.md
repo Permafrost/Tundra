@@ -6179,6 +6179,11 @@ number of days in a month varies).
 * `$pattern.input` is an optional pattern describing the type of
   duration specified by the `$duration` string. Defaults to an
   [ISO8601] XML string.
+* `$patterns.input` is an optional list of duration patterns that
+  `$duration` might conform to, useful when the exact pattern is not
+  known. A parse is attempted for each pattern until the first
+  successful parse, or until all patterns have been tried in which
+  case an unparseable duration exception will be thrown.
 * `$pattern.output` is an optional desired pattern used to format the
   `$duration` string. Defaults to an [ISO8601] XML string.
 * `$datetime` is an optional datetime string used as a
