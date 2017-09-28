@@ -1,7 +1,7 @@
 package tundra.support;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-06-20 09:00:09.538
+// -----( CREATED: 2017-09-28T12:07:21.807
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -79,7 +79,7 @@ public final class receive
 		            } else {
 		                responseCode = 500;
 		            }
-		            responseBody = InputStreamHelper.normalize(ExceptionHelper.getMessage(exception), charset);
+		            responseBody = InputStreamHelper.normalize(exception.getMessage(), charset);
 		        }
 
 		        ServiceHelper.respond(responseCode, null, null, responseBody, contentType, charset);
