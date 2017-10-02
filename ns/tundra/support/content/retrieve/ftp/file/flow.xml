@@ -3374,7 +3374,7 @@
 
   <!-- nodes -->
 
-<INVOKE NAME="%returncode% != &quot;250&quot;" TIMEOUT="" SERVICE="tundra.support.content.retrieve.ftp.exception:raise" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+<INVOKE NAME="%returncode% != &quot;250&quot;" TIMEOUT="" SERVICE="tundra.support.exception.ftp:raise" VALIDATE-IN="$none" VALIDATE-OUT="$none">
   <COMMENT></COMMENT>
 
   <!-- nodes -->
@@ -4560,7 +4560,7 @@
 </MAP>
 </INVOKE>
 
-<INVOKE TIMEOUT="" SERVICE="tundra.support.content.retrieve.ftp.exception:raise" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+<INVOKE TIMEOUT="" SERVICE="tundra.support.exception.ftp:raise" VALIDATE-IN="$none" VALIDATE-OUT="$none">
   <COMMENT></COMMENT>
 
   <!-- nodes -->
