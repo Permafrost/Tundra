@@ -5,13 +5,14 @@
 
   <!-- nodes -->
 
-<MAP NAME="init" MODE="STANDALONE">
+<MAP NAME="init" TIMEOUT="" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -20,6 +21,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
+        <value name="is_public">false</value>
         <value name="field_name">$tundra.support.retrieve.ftp:file</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -29,6 +31,7 @@
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.session.key</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -38,6 +41,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.filename.original</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -47,6 +51,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
+            <value name="is_public">false</value>
             <value name="field_name">$source</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -55,9 +60,11 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
+            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -67,6 +74,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service.input</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -75,8 +83,10 @@
             <value name="is_global">false</value>
           </record>
         </array>
+        <value name="modifiable">true</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -85,6 +95,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -99,6 +110,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$ftp.session.key</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -127,6 +139,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$ftp.filename</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -154,6 +167,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$source</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -169,6 +183,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">scheme</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -198,6 +213,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">body</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -226,6 +242,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">authority</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -235,6 +252,7 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
+            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
@@ -243,6 +261,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">path</value>
             <value name="field_type">string</value>
             <value name="field_dim">1</value>
@@ -271,6 +290,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">file</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -299,6 +319,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">query</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -308,6 +329,7 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
+            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
@@ -317,6 +339,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">fragment</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -339,6 +362,7 @@
             <value name="is_global">false</value>
           </record>
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
@@ -348,6 +372,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$service</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -376,6 +401,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$service.input</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -398,6 +424,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -434,13 +461,14 @@
 <MAPDELETE FIELD="/$service.input;1;0">
 </MAPDELETE>
 
-<MAPSET NAME="Setter" OVERWRITE="false" VARIABLES="false" FIELD="/$tundra.support.retrieve.ftp:file;2;0/$service.input;1;0">
+<MAPSET NAME="Setter" OVERWRITE="false" VARIABLES="false" GLOBALVARIABLES="false" FIELD="/$tundra.support.retrieve.ftp:file;2;0/$service.input;1;0">
   <DATA ENCODING="XMLValues" I18N="true">
 
 <Values version="2.0">
   <value name="xml">$content</value>
   <record name="type" javaclass="com.wm.util.Values">
     <value name="node_type">unknown</value>
+    <value name="is_public">false</value>
     <value name="field_name">$service.input</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
@@ -458,13 +486,14 @@
 
   <!-- nodes -->
 
-<MAP NAME="true" MODE="STANDALONE">
+<MAP NAME="true" TIMEOUT="" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -473,6 +502,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
+        <value name="is_public">false</value>
         <value name="field_name">$tundra.support.retrieve.ftp:file</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -482,6 +512,7 @@
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.session.key</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -491,6 +522,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.filename.original</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -500,6 +532,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
+            <value name="is_public">false</value>
             <value name="field_name">$source</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -508,9 +541,11 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
+            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -520,6 +555,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service.input</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -529,6 +565,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">transfermode</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -537,8 +574,10 @@
             <value name="is_global">false</value>
           </record>
         </array>
+        <value name="modifiable">true</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -547,6 +586,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -554,13 +594,14 @@
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
 
   <!-- nodes -->
 
-<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$tundra.support.retrieve.ftp:file;2;0/transfermode;1;0">
+<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" GLOBALVARIABLES="false" FIELD="/$tundra.support.retrieve.ftp:file;2;0/transfermode;1;0">
   <DATA ENCODING="XMLValues" I18N="true">
 
 <Values version="2.0">
@@ -573,6 +614,7 @@
       <value name="field_largerEditor">false</value>
       <value name="field_password">false</value>
     </record>
+    <value name="is_public">false</value>
     <value name="field_name">transfermode</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
@@ -589,13 +631,14 @@
 </MAPSET>
 </MAP>
 
-<MAP NAME="$default" MODE="STANDALONE">
+<MAP NAME="$default" TIMEOUT="" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -604,6 +647,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
+        <value name="is_public">false</value>
         <value name="field_name">$tundra.support.retrieve.ftp:file</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -613,6 +657,7 @@
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.session.key</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -622,6 +667,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.filename.original</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -631,6 +677,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
+            <value name="is_public">false</value>
             <value name="field_name">$source</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -639,9 +686,11 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
+            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -651,6 +700,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service.input</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -660,6 +710,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">transfermode</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -668,8 +719,10 @@
             <value name="is_global">false</value>
           </record>
         </array>
+        <value name="modifiable">true</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -678,6 +731,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -685,19 +739,21 @@
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
 
   <!-- nodes -->
 
-<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$tundra.support.retrieve.ftp:file;2;0/transfermode;1;0">
+<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" GLOBALVARIABLES="false" FIELD="/$tundra.support.retrieve.ftp:file;2;0/transfermode;1;0">
   <DATA ENCODING="XMLValues" I18N="true">
 
 <Values version="2.0">
   <value name="xml">binary</value>
   <record name="type" javaclass="com.wm.util.Values">
     <value name="node_type">unknown</value>
+    <value name="is_public">false</value>
     <value name="field_name">transfermode</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
@@ -735,13 +791,14 @@
 </MAP>
 </INVOKE>
 
-<MAP NAME="drop" MODE="STANDALONE">
+<MAP NAME="drop" TIMEOUT="" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -750,6 +807,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
+        <value name="is_public">false</value>
         <value name="field_name">$tundra.support.retrieve.ftp:file</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -759,6 +817,7 @@
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.session.key</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -768,6 +827,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.filename.original</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -777,6 +837,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.filename.working</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -786,6 +847,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
+            <value name="is_public">false</value>
             <value name="field_name">$source</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -794,9 +856,11 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
+            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -806,6 +870,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service.input</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -815,6 +880,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">transfermode</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -823,6 +889,7 @@
             <value name="is_global">false</value>
           </record>
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
@@ -831,6 +898,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$pipeline</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -839,8 +907,10 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
+        <value name="modifiable">true</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -849,6 +919,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -857,6 +928,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
+        <value name="is_public">false</value>
         <value name="field_name">$tundra.support.retrieve.ftp:file</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -865,6 +937,7 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
@@ -873,6 +946,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$pipeline</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -882,6 +956,7 @@
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
+            <value name="is_public">false</value>
             <value name="field_name">$tundra.support.retrieve.ftp:file</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -890,8 +965,10 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
+            <value name="modifiable">true</value>
           </record>
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
@@ -901,6 +978,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$id</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -920,6 +998,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -932,13 +1011,14 @@
 <MAPDELETE FIELD="/$id;1;0">
 </MAPDELETE>
 
-<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="true" FIELD="/$tundra.support.retrieve.ftp:file;2;0/$ftp.filename.working;1;0">
+<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="true" GLOBALVARIABLES="false" FIELD="/$tundra.support.retrieve.ftp:file;2;0/$ftp.filename.working;1;0">
   <DATA ENCODING="XMLValues" I18N="true">
 
 <Values version="2.0">
   <value name="xml">%$tundra.support.retrieve.ftp:file/$ftp.filename.original%.%$id%</value>
   <record name="type" javaclass="com.wm.util.Values">
     <value name="node_type">unknown</value>
+    <value name="is_public">false</value>
     <value name="field_name">$ftp.filename.working</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
@@ -962,6 +1042,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -975,6 +1056,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$uri</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -991,6 +1073,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">scheme</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1018,6 +1101,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">body</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1044,6 +1128,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">authority</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -1060,6 +1145,7 @@
                   <value name="field_largerEditor">false</value>
                   <value name="field_password">false</value>
                 </record>
+                <value name="is_public">false</value>
                 <value name="field_name">registry</value>
                 <value name="field_type">string</value>
                 <value name="field_dim">0</value>
@@ -1086,6 +1172,7 @@
                   <value name="field_largerEditor">false</value>
                   <value name="field_password">false</value>
                 </record>
+                <value name="is_public">false</value>
                 <value name="field_name">server</value>
                 <value name="field_type">record</value>
                 <value name="field_dim">0</value>
@@ -1102,6 +1189,7 @@
                       <value name="field_largerEditor">false</value>
                       <value name="field_password">false</value>
                     </record>
+                    <value name="is_public">false</value>
                     <value name="field_name">user</value>
                     <value name="field_type">string</value>
                     <value name="field_dim">0</value>
@@ -1129,6 +1217,7 @@
                       <value name="field_largerEditor">false</value>
                       <value name="field_password">false</value>
                     </record>
+                    <value name="is_public">false</value>
                     <value name="field_name">password</value>
                     <value name="field_type">string</value>
                     <value name="field_dim">0</value>
@@ -1156,6 +1245,7 @@
                       <value name="field_largerEditor">false</value>
                       <value name="field_password">false</value>
                     </record>
+                    <value name="is_public">false</value>
                     <value name="field_name">host</value>
                     <value name="field_type">string</value>
                     <value name="field_dim">0</value>
@@ -1182,6 +1272,7 @@
                       <value name="field_largerEditor">false</value>
                       <value name="field_password">false</value>
                     </record>
+                    <value name="is_public">false</value>
                     <value name="field_name">port</value>
                     <value name="field_type">string</value>
                     <value name="field_dim">0</value>
@@ -1202,8 +1293,10 @@
                     <value name="is_global">false</value>
                   </record>
                 </array>
+                <value name="modifiable">true</value>
               </record>
             </array>
+            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
@@ -1212,6 +1305,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">path</value>
             <value name="field_type">string</value>
             <value name="field_dim">1</value>
@@ -1240,6 +1334,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">file</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1266,6 +1361,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">query</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -1275,6 +1371,7 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
+            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
@@ -1284,6 +1381,7 @@
               <value name="field_largerEditor">false</value>
               <value name="field_password">false</value>
             </record>
+            <value name="is_public">false</value>
             <value name="field_name">fragment</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1304,8 +1402,10 @@
             <value name="is_global">false</value>
           </record>
         </array>
+        <value name="modifiable">true</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -1314,6 +1414,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -1322,6 +1423,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
+        <value name="is_public">false</value>
         <value name="field_name">$tundra.support.retrieve.ftp:file</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -1331,6 +1433,7 @@
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.session.key</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1340,6 +1443,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.filename.original</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1349,6 +1453,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.filename.working</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1358,6 +1463,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
+            <value name="is_public">false</value>
             <value name="field_name">$source</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -1367,6 +1473,7 @@
             <array name="rec_fields" type="record" depth="1">
               <record javaclass="com.wm.util.Values">
                 <value name="node_type">unknown</value>
+                <value name="is_public">false</value>
                 <value name="field_name">scheme</value>
                 <value name="field_type">string</value>
                 <value name="field_dim">0</value>
@@ -1376,6 +1483,7 @@
               </record>
               <record javaclass="com.wm.util.Values">
                 <value name="node_type">unknown</value>
+                <value name="is_public">false</value>
                 <value name="field_name">body</value>
                 <value name="field_type">string</value>
                 <value name="field_dim">0</value>
@@ -1385,6 +1493,7 @@
               </record>
               <record javaclass="com.wm.util.Values">
                 <value name="node_type">record</value>
+                <value name="is_public">false</value>
                 <value name="field_name">authority</value>
                 <value name="field_type">record</value>
                 <value name="field_dim">0</value>
@@ -1394,6 +1503,7 @@
                 <array name="rec_fields" type="record" depth="1">
                   <record javaclass="com.wm.util.Values">
                     <value name="node_type">unknown</value>
+                    <value name="is_public">false</value>
                     <value name="field_name">registry</value>
                     <value name="field_type">string</value>
                     <value name="field_dim">0</value>
@@ -1403,6 +1513,7 @@
                   </record>
                   <record javaclass="com.wm.util.Values">
                     <value name="node_type">record</value>
+                    <value name="is_public">false</value>
                     <value name="field_name">server</value>
                     <value name="field_type">record</value>
                     <value name="field_dim">0</value>
@@ -1412,6 +1523,7 @@
                     <array name="rec_fields" type="record" depth="1">
                       <record javaclass="com.wm.util.Values">
                         <value name="node_type">unknown</value>
+                        <value name="is_public">false</value>
                         <value name="field_name">host</value>
                         <value name="field_type">string</value>
                         <value name="field_dim">0</value>
@@ -1421,6 +1533,7 @@
                       </record>
                       <record javaclass="com.wm.util.Values">
                         <value name="node_type">unknown</value>
+                        <value name="is_public">false</value>
                         <value name="field_name">port</value>
                         <value name="field_type">string</value>
                         <value name="field_dim">0</value>
@@ -1429,11 +1542,14 @@
                         <value name="is_global">false</value>
                       </record>
                     </array>
+                    <value name="modifiable">true</value>
                   </record>
                 </array>
+                <value name="modifiable">true</value>
               </record>
               <record javaclass="com.wm.util.Values">
                 <value name="node_type">unknown</value>
+                <value name="is_public">false</value>
                 <value name="field_name">path</value>
                 <value name="field_type">string</value>
                 <value name="field_dim">1</value>
@@ -1443,9 +1559,11 @@
                 <value name="is_soap_array_encoding_used">false</value>
               </record>
             </array>
+            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1455,6 +1573,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service.input</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1464,6 +1583,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">transfermode</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1472,6 +1592,7 @@
             <value name="is_global">false</value>
           </record>
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
@@ -1480,6 +1601,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$pipeline</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -1488,9 +1610,11 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$password.mask</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1499,6 +1623,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -1533,6 +1658,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -1541,6 +1667,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
+        <value name="is_public">false</value>
         <value name="field_name">$uri</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -1550,6 +1677,7 @@
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">scheme</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1559,6 +1687,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">body</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1568,6 +1697,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
+            <value name="is_public">false</value>
             <value name="field_name">authority</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -1576,9 +1706,11 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
+            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">path</value>
             <value name="field_type">string</value>
             <value name="field_dim">1</value>
@@ -1588,9 +1720,11 @@
             <value name="is_soap_array_encoding_used">false</value>
           </record>
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
+        <value name="is_public">false</value>
         <value name="field_name">$tundra.support.retrieve.ftp:file</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -1600,6 +1734,7 @@
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.session.key</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1609,6 +1744,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.filename.original</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1618,6 +1754,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.filename.working</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1627,6 +1764,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
+            <value name="is_public">false</value>
             <value name="field_name">$source</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -1635,9 +1773,11 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
+            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$source.directory.uri</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1647,6 +1787,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1656,6 +1797,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service.input</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1665,6 +1807,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">transfermode</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1673,6 +1816,7 @@
             <value name="is_global">false</value>
           </record>
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
@@ -1681,6 +1825,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$pipeline</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -1689,6 +1834,7 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
@@ -1698,6 +1844,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$string</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1718,6 +1865,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -1726,6 +1874,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -1740,6 +1889,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$string</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1760,6 +1910,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -1788,6 +1939,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -1802,6 +1954,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$file</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1821,6 +1974,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -1829,6 +1983,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -1837,6 +1992,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
+        <value name="is_public">false</value>
         <value name="field_name">$tundra.support.retrieve.ftp:file</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -1846,6 +2002,7 @@
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.session.key</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1855,6 +2012,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.filename.original</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1864,6 +2022,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.filename.working</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1873,6 +2032,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
+            <value name="is_public">false</value>
             <value name="field_name">$source</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -1881,9 +2041,11 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
+            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$source.directory.uri</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1893,6 +2055,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1902,6 +2065,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service.input</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1911,6 +2075,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">transfermode</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1919,6 +2084,7 @@
             <value name="is_global">false</value>
           </record>
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
@@ -1927,6 +2093,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$pipeline</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -1935,8 +2102,10 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
+        <value name="modifiable">true</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -1953,6 +2122,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -1961,6 +2131,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$file</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -1970,6 +2141,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
+        <value name="is_public">false</value>
         <value name="field_name">$tundra.support.retrieve.ftp:file</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -1979,6 +2151,7 @@
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.session.key</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1988,6 +2161,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.filename.original</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -1997,6 +2171,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.filename.working</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2006,6 +2181,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
+            <value name="is_public">false</value>
             <value name="field_name">$source</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -2014,9 +2190,11 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
+            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$source.directory.uri</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2026,6 +2204,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2035,6 +2214,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service.input</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2044,6 +2224,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">transfermode</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2053,6 +2234,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content.type</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2061,6 +2243,7 @@
             <value name="is_global">false</value>
           </record>
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
@@ -2069,6 +2252,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$pipeline</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -2077,6 +2261,7 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
@@ -2086,6 +2271,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$type</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2105,6 +2291,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -2113,6 +2300,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -2127,6 +2315,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$type</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2146,6 +2335,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -2174,6 +2364,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -2187,6 +2378,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$list</value>
         <value name="field_type">string</value>
         <value name="field_dim">1</value>
@@ -2215,6 +2407,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$separator</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2242,6 +2435,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$default</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2269,6 +2463,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$sanitization</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2293,6 +2488,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -2301,6 +2497,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -2309,6 +2506,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
+        <value name="is_public">false</value>
         <value name="field_name">$tundra.support.retrieve.ftp:file</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -2318,6 +2516,7 @@
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.session.key</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2327,6 +2526,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.filename.original</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2336,6 +2536,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.filename.working</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2345,6 +2546,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
+            <value name="is_public">false</value>
             <value name="field_name">$source</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -2353,9 +2555,11 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
+            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$source.directory.uri</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2365,6 +2569,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2374,6 +2579,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service.input</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2383,6 +2589,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">transfermode</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2392,6 +2599,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content.type</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2400,6 +2608,7 @@
             <value name="is_global">false</value>
           </record>
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
@@ -2408,6 +2617,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$pipeline</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -2416,9 +2626,11 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$default</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2427,13 +2639,14 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
 
   <!-- nodes -->
 
-<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$separator;1;0">
+<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" GLOBALVARIABLES="false" FIELD="/$separator;1;0">
   <DATA ENCODING="XMLValues" I18N="true">
 
 <Values version="2.0">
@@ -2446,6 +2659,7 @@
       <value name="field_largerEditor">false</value>
       <value name="field_password">false</value>
     </record>
+    <value name="is_public">false</value>
     <value name="field_name">$separator</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
@@ -2469,7 +2683,7 @@
 </DATA>
 </MAPSET>
 
-<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$sanitization;1;0">
+<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" GLOBALVARIABLES="false" FIELD="/$sanitization;1;0">
   <DATA ENCODING="XMLValues" I18N="true">
 
 <Values version="2.0">
@@ -2482,6 +2696,7 @@
       <value name="field_largerEditor">false</value>
       <value name="field_password">false</value>
     </record>
+    <value name="is_public">false</value>
     <value name="field_name">$sanitization</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
@@ -2525,6 +2740,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -2533,6 +2749,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$list</value>
         <value name="field_type">string</value>
         <value name="field_dim">1</value>
@@ -2543,6 +2760,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$separator</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2552,6 +2770,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
+        <value name="is_public">false</value>
         <value name="field_name">$tundra.support.retrieve.ftp:file</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -2561,6 +2780,7 @@
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.session.key</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2570,6 +2790,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.filename.original</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2579,6 +2800,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.filename.working</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2588,6 +2810,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
+            <value name="is_public">false</value>
             <value name="field_name">$source</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -2596,9 +2819,11 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
+            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$source.directory.uri</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2608,6 +2833,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2617,6 +2843,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service.input</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2626,6 +2853,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">transfermode</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2635,6 +2863,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content.type</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2644,6 +2873,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content.source</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2652,9 +2882,11 @@
             <value name="is_global">false</value>
           </record>
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$sanitization</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2669,6 +2901,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$pipeline</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -2677,6 +2910,7 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
@@ -2686,6 +2920,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$result</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2706,6 +2941,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -2714,6 +2950,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -2728,6 +2965,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$result</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2748,6 +2986,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -2782,6 +3021,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_name">renameInput</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -2791,6 +3031,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">sessionkey</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2800,6 +3041,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">oldname</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2809,6 +3051,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">newname</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2817,6 +3060,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -2825,6 +3069,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -2833,6 +3078,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
+        <value name="is_public">false</value>
         <value name="field_name">$tundra.support.retrieve.ftp:file</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -2842,6 +3088,7 @@
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.session.key</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2851,6 +3098,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.filename.original</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2860,6 +3108,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.filename.working</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2869,6 +3118,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
+            <value name="is_public">false</value>
             <value name="field_name">$source</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -2877,9 +3127,11 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
+            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$source.directory.uri</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2889,6 +3141,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2898,6 +3151,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service.input</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2907,6 +3161,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">transfermode</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2916,6 +3171,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content.type</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2925,6 +3181,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content.source</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -2933,6 +3190,7 @@
             <value name="is_global">false</value>
           </record>
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
@@ -2941,6 +3199,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$pipeline</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -2949,8 +3208,10 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
+        <value name="modifiable">true</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -2973,6 +3234,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -2981,6 +3243,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">sessionkey</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2990,6 +3253,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">oldname</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -2999,6 +3263,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">newname</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3008,6 +3273,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
+        <value name="is_public">false</value>
         <value name="field_name">$tundra.support.retrieve.ftp:file</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -3016,6 +3282,7 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
@@ -3024,6 +3291,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$pipeline</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -3032,9 +3300,11 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">returncode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3044,6 +3314,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">returnmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3053,6 +3324,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">logmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3061,6 +3333,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -3069,6 +3342,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_name">renameOutput</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -3077,6 +3351,7 @@
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -3127,6 +3402,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_name">getInput</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -3136,6 +3412,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">sessionkey</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3145,6 +3422,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">transfermode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3158,6 +3436,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">localfile</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3168,6 +3447,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">remotefile</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3177,6 +3457,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">encoding</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3187,6 +3468,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">largefilethreshold</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3197,6 +3479,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">cleanlinefeeds</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3210,6 +3493,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -3218,6 +3502,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -3226,6 +3511,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
+        <value name="is_public">false</value>
         <value name="field_name">$tundra.support.retrieve.ftp:file</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -3235,6 +3521,7 @@
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.session.key</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -3244,6 +3531,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.filename.original</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -3253,6 +3541,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.filename.working</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -3262,6 +3551,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
+            <value name="is_public">false</value>
             <value name="field_name">$source</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -3271,6 +3561,7 @@
             <array name="rec_fields" type="record" depth="1">
               <record javaclass="com.wm.util.Values">
                 <value name="node_type">unknown</value>
+                <value name="is_public">false</value>
                 <value name="field_name">scheme</value>
                 <value name="field_type">string</value>
                 <value name="field_dim">0</value>
@@ -3280,6 +3571,7 @@
               </record>
               <record javaclass="com.wm.util.Values">
                 <value name="node_type">unknown</value>
+                <value name="is_public">false</value>
                 <value name="field_name">body</value>
                 <value name="field_type">string</value>
                 <value name="field_dim">0</value>
@@ -3289,6 +3581,7 @@
               </record>
               <record javaclass="com.wm.util.Values">
                 <value name="node_type">record</value>
+                <value name="is_public">false</value>
                 <value name="field_name">authority</value>
                 <value name="field_type">record</value>
                 <value name="field_dim">0</value>
@@ -3297,9 +3590,11 @@
                 <value name="is_global">false</value>
                 <array name="rec_fields" type="record" depth="1">
                 </array>
+                <value name="modifiable">true</value>
               </record>
               <record javaclass="com.wm.util.Values">
                 <value name="node_type">unknown</value>
+                <value name="is_public">false</value>
                 <value name="field_name">path</value>
                 <value name="field_type">string</value>
                 <value name="field_dim">1</value>
@@ -3310,6 +3605,7 @@
               </record>
               <record javaclass="com.wm.util.Values">
                 <value name="node_type">record</value>
+                <value name="is_public">false</value>
                 <value name="field_name">query</value>
                 <value name="field_type">record</value>
                 <value name="field_dim">0</value>
@@ -3319,6 +3615,7 @@
                 <array name="rec_fields" type="record" depth="1">
                   <record javaclass="com.wm.util.Values">
                     <value name="node_type">unknown</value>
+                    <value name="is_public">false</value>
                     <value name="field_name">encoding</value>
                     <value name="field_type">string</value>
                     <value name="field_dim">0</value>
@@ -3327,11 +3624,14 @@
                     <value name="is_global">false</value>
                   </record>
                 </array>
+                <value name="modifiable">true</value>
               </record>
             </array>
+            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$source.directory.uri</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -3341,6 +3641,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -3350,6 +3651,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service.input</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -3359,6 +3661,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">transfermode</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -3368,6 +3671,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content.type</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -3377,6 +3681,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content.source</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -3385,6 +3690,7 @@
             <value name="is_global">false</value>
           </record>
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
@@ -3393,6 +3699,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$pipeline</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -3401,9 +3708,11 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">returncode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3413,6 +3722,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">localfile</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3422,6 +3732,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">returnmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3431,6 +3742,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">cleanlinefeeds</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3440,6 +3752,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">logmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3448,6 +3761,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -3481,13 +3795,14 @@
 <MAPCOPY FROM="/$tundra.support.retrieve.ftp:file;2;0/$source;2;0/query;2;0/encoding;1;0" TO="/encoding;1;0">
 </MAPCOPY>
 
-<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/largefilethreshold;1;0">
+<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" GLOBALVARIABLES="false" FIELD="/largefilethreshold;1;0">
   <DATA ENCODING="XMLValues" I18N="true">
 
 <Values version="2.0">
   <value name="xml">0</value>
   <record name="type" javaclass="com.wm.util.Values">
     <value name="node_type">field</value>
+    <value name="is_public">false</value>
     <value name="field_name">largefilethreshold</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
@@ -3507,6 +3822,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -3515,6 +3831,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">sessionkey</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3524,6 +3841,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">transfermode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3533,6 +3851,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
+        <value name="is_public">false</value>
         <value name="field_name">$tundra.support.retrieve.ftp:file</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -3541,9 +3860,11 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">remotefile</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3553,6 +3874,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">encoding</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3562,6 +3884,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">largefilethreshold</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3576,6 +3899,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$pipeline</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -3584,9 +3908,11 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">islargefile</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3596,6 +3922,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -3606,6 +3933,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">contentstream</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -3616,6 +3944,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">returncode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3625,6 +3954,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">returnmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3634,6 +3964,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">logmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3642,6 +3973,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -3650,6 +3982,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_name">getOutput</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -3659,6 +3992,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">islargefile</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3668,6 +4002,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">content</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -3678,6 +4013,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">contentstream</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -3688,6 +4024,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">returncode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3697,6 +4034,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">returnmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3706,6 +4044,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">logmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3714,6 +4053,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -3743,7 +4083,7 @@
 </MAP>
 </INVOKE>
 
-<BRANCH TIMEOUT="" SWITCH="/returncode">
+<BRANCH TIMEOUT="" LABELEXPRESSIONS="true">
   <COMMENT></COMMENT>
 
   <!-- nodes -->
@@ -3764,6 +4104,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_name">renameInput</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -3773,6 +4114,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">sessionkey</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3782,6 +4124,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">oldname</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3791,6 +4134,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">newname</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3799,6 +4143,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -3807,6 +4152,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_name">$tundra.support.retrieve.ftp:file</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -3816,6 +4162,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
+        <value name="is_public">false</value>
         <value name="field_name">$tundra.support.retrieve.ftp:file</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -3824,9 +4171,11 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$ftp.session.key</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3836,6 +4185,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$ftp.filename.original</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3845,6 +4195,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$ftp.filename.working</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3854,6 +4205,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
+        <value name="is_public">false</value>
         <value name="field_name">$source</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -3862,9 +4214,11 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$source.directory.uri</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3874,6 +4228,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$service</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3883,6 +4238,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$service.input</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3892,6 +4248,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">transfermode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3901,6 +4258,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$content.type</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3910,6 +4268,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$content.source</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3918,6 +4277,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -3940,6 +4300,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_name">$tundra.support.retrieve.ftp:file</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -3949,6 +4310,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">sessionkey</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3958,6 +4320,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">oldname</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3967,6 +4330,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">newname</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3976,6 +4340,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
+        <value name="is_public">false</value>
         <value name="field_name">$tundra.support.retrieve.ftp:file</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -3984,9 +4349,11 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$ftp.session.key</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -3996,6 +4363,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$ftp.filename.original</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4005,6 +4373,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$ftp.filename.working</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4014,6 +4383,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
+        <value name="is_public">false</value>
         <value name="field_name">$source</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -4022,9 +4392,11 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$source.directory.uri</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4034,6 +4406,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$service</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4043,6 +4416,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$service.input</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4052,6 +4426,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">transfermode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4061,6 +4436,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$content.type</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4070,6 +4446,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$content.source</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4079,6 +4456,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">returncode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4088,6 +4466,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">returnmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4097,6 +4476,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">logmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4105,6 +4485,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -4113,6 +4494,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_name">renameOutput</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -4122,6 +4504,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">returncode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4131,6 +4514,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">returnmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4140,6 +4524,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">logmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4148,6 +4533,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -4199,6 +4585,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -4207,6 +4594,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
+        <value name="is_public">false</value>
         <value name="field_name">$tundra.support.retrieve.ftp:file</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -4215,6 +4603,7 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
@@ -4223,6 +4612,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$pipeline</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -4232,6 +4622,7 @@
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content.name</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -4241,6 +4632,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content.type</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -4250,6 +4642,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content.source</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -4259,6 +4652,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content</value>
             <value name="field_type">object</value>
             <value name="field_dim">0</value>
@@ -4267,8 +4661,10 @@
             <value name="is_global">false</value>
           </record>
         </array>
+        <value name="modifiable">true</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -4277,6 +4673,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -4285,6 +4682,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
+        <value name="is_public">false</value>
         <value name="field_name">$tundra.support.retrieve.ftp:file</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -4294,6 +4692,7 @@
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.session.key</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -4303,6 +4702,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.filename.original</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -4312,6 +4712,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.filename.working</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -4321,6 +4722,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
+            <value name="is_public">false</value>
             <value name="field_name">$source</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -4329,9 +4731,11 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
+            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$source.directory.uri</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -4341,6 +4745,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -4350,6 +4755,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service.input</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -4359,6 +4765,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">transfermode</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -4368,6 +4775,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content.type</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -4377,6 +4785,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content.source</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -4385,6 +4794,7 @@
             <value name="is_global">false</value>
           </record>
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
@@ -4393,6 +4803,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$pipeline</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -4401,9 +4812,11 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">contentstream</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -4414,6 +4827,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">returncode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4423,6 +4837,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">returnmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4432,6 +4847,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">logmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4440,6 +4856,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -4482,6 +4899,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -4495,6 +4913,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$document</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -4504,6 +4923,7 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
@@ -4513,6 +4933,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$key.source</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4539,6 +4960,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$key.target</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4565,6 +4987,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$key.literal?</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4589,6 +5012,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -4597,6 +5021,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -4605,6 +5030,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
+        <value name="is_public">false</value>
         <value name="field_name">$tundra.support.retrieve.ftp:file</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -4614,6 +5040,7 @@
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.session.key</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -4623,6 +5050,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.filename.original</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -4632,6 +5060,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.filename.working</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -4641,6 +5070,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
+            <value name="is_public">false</value>
             <value name="field_name">$source</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -4649,9 +5079,11 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
+            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$source.directory.uri</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -4661,6 +5093,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -4670,6 +5103,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service.input</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -4679,6 +5113,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">transfermode</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -4688,6 +5123,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content.type</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -4697,6 +5133,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content.source</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -4705,6 +5142,7 @@
             <value name="is_global">false</value>
           </record>
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
@@ -4713,6 +5151,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$pipeline</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -4722,6 +5161,7 @@
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content.name</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -4731,6 +5171,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content.type</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -4740,6 +5181,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content.source</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -4749,6 +5191,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content</value>
             <value name="field_type">object</value>
             <value name="field_dim">0</value>
@@ -4757,8 +5200,10 @@
             <value name="is_global">false</value>
           </record>
         </array>
+        <value name="modifiable">true</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -4771,7 +5216,7 @@
 <MAPCOPY FROM="/$tundra.support.retrieve.ftp:file;2;0/$service.input;1;0" TO="/$key.target;1;0">
 </MAPCOPY>
 
-<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$key.source;1;0">
+<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" GLOBALVARIABLES="false" FIELD="/$key.source;1;0">
   <DATA ENCODING="XMLValues" I18N="true">
 
 <Values version="2.0">
@@ -4784,6 +5229,7 @@
       <value name="field_largerEditor">false</value>
       <value name="field_password">false</value>
     </record>
+    <value name="is_public">false</value>
     <value name="field_name">$key.source</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
@@ -4806,7 +5252,7 @@
 </DATA>
 </MAPSET>
 
-<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$key.literal?;1;0">
+<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" GLOBALVARIABLES="false" FIELD="/$key.literal?;1;0">
   <DATA ENCODING="XMLValues" I18N="true">
 
 <Values version="2.0">
@@ -4819,6 +5265,7 @@
       <value name="field_largerEditor">false</value>
       <value name="field_password">false</value>
     </record>
+    <value name="is_public">false</value>
     <value name="field_name">$key.literal?</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
@@ -4853,6 +5300,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -4861,6 +5309,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
+        <value name="is_public">false</value>
         <value name="field_name">$document</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -4869,9 +5318,11 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$key.source</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4881,6 +5332,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$key.target</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4890,6 +5342,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$key.literal?</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4899,6 +5352,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
+        <value name="is_public">false</value>
         <value name="field_name">$tundra.support.retrieve.ftp:file</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -4907,6 +5361,7 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
@@ -4915,6 +5370,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$pipeline</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -4924,6 +5380,7 @@
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content.name</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -4933,6 +5390,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content.type</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -4942,6 +5400,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content.source</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -4951,6 +5410,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content</value>
             <value name="field_type">object</value>
             <value name="field_dim">0</value>
@@ -4959,8 +5419,10 @@
             <value name="is_global">false</value>
           </record>
         </array>
+        <value name="modifiable">true</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -4969,6 +5431,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -4982,6 +5445,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$document</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -4991,8 +5455,10 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
+        <value name="modifiable">true</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -5027,6 +5493,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -5041,6 +5508,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$service</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5066,6 +5534,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$pipeline</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -5075,6 +5544,7 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
@@ -5084,6 +5554,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$raise?</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5108,6 +5579,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -5116,6 +5588,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -5124,6 +5597,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
+        <value name="is_public">false</value>
         <value name="field_name">$tundra.support.retrieve.ftp:file</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -5133,6 +5607,7 @@
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.session.key</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -5142,6 +5617,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.filename.original</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -5151,6 +5627,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.filename.working</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -5160,6 +5637,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
+            <value name="is_public">false</value>
             <value name="field_name">$source</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -5168,9 +5646,11 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
+            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$source.directory.uri</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -5180,6 +5660,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -5189,6 +5670,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service.input</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -5198,6 +5680,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">transfermode</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -5207,6 +5690,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content.type</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -5216,6 +5700,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content.source</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -5224,6 +5709,7 @@
             <value name="is_global">false</value>
           </record>
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
@@ -5232,6 +5718,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$pipeline</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -5241,6 +5728,7 @@
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content.name</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -5250,6 +5738,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content.type</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -5259,6 +5748,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content.source</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -5268,6 +5758,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content</value>
             <value name="field_type">object</value>
             <value name="field_dim">0</value>
@@ -5276,8 +5767,10 @@
             <value name="is_global">false</value>
           </record>
         </array>
+        <value name="modifiable">true</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -5290,7 +5783,7 @@
 <MAPCOPY FROM="/$pipeline;2;0" TO="/$pipeline;2;0">
 </MAPCOPY>
 
-<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$raise?;1;0">
+<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" GLOBALVARIABLES="false" FIELD="/$raise?;1;0">
   <DATA ENCODING="XMLValues" I18N="true">
 
 <Values version="2.0">
@@ -5303,6 +5796,7 @@
       <value name="field_largerEditor">false</value>
       <value name="field_password">false</value>
     </record>
+    <value name="is_public">false</value>
     <value name="field_name">$raise?</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
@@ -5337,6 +5831,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -5345,6 +5840,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$service</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5354,6 +5850,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
+        <value name="is_public">false</value>
         <value name="field_name">$tundra.support.retrieve.ftp:file</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -5362,9 +5859,11 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$raise?</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5379,6 +5878,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$pipeline</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -5388,6 +5888,7 @@
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$exception</value>
             <value name="field_type">object</value>
             <value name="field_dim">0</value>
@@ -5397,6 +5898,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content.name</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -5406,6 +5908,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content.type</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -5415,6 +5918,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content.source</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -5424,6 +5928,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content</value>
             <value name="field_type">object</value>
             <value name="field_dim">0</value>
@@ -5432,6 +5937,7 @@
             <value name="is_global">false</value>
           </record>
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
@@ -5441,6 +5947,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$duration</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5462,6 +5969,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$exception</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -5470,6 +5978,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -5478,6 +5987,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -5491,6 +6001,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$pipeline</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -5501,6 +6012,7 @@
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$exception</value>
             <value name="field_type">object</value>
             <value name="field_dim">0</value>
@@ -5509,6 +6021,7 @@
             <value name="is_global">false</value>
           </record>
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
@@ -5518,6 +6031,7 @@
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
+        <value name="is_public">false</value>
         <value name="field_name">$duration</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5538,6 +6052,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -5577,6 +6092,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_name">renameInput</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -5586,6 +6102,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">sessionkey</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5595,6 +6112,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">oldname</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5604,6 +6122,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">newname</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5612,6 +6131,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -5620,6 +6140,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -5628,6 +6149,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
+        <value name="is_public">false</value>
         <value name="field_name">$tundra.support.retrieve.ftp:file</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -5637,6 +6159,7 @@
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.session.key</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -5646,6 +6169,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.filename.original</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -5655,6 +6179,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.filename.working</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -5664,6 +6189,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
+            <value name="is_public">false</value>
             <value name="field_name">$source</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -5672,9 +6198,11 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
+            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$source.directory.uri</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -5684,6 +6212,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -5693,6 +6222,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service.input</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -5702,6 +6232,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">transfermode</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -5711,6 +6242,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content.type</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -5720,6 +6252,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content.source</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -5728,9 +6261,11 @@
             <value name="is_global">false</value>
           </record>
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$exception</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -5739,6 +6274,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -5761,6 +6297,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -5769,6 +6306,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">sessionkey</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5778,6 +6316,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">oldname</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5787,6 +6326,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">newname</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5796,6 +6336,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
+        <value name="is_public">false</value>
         <value name="field_name">$tundra.support.retrieve.ftp:file</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -5804,9 +6345,11 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$exception</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -5816,6 +6359,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">returncode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5825,6 +6369,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">returnmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5834,6 +6379,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">logmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5842,6 +6388,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -5850,6 +6397,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_name">renameOutput</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -5859,6 +6407,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">returncode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5868,6 +6417,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">returnmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5877,6 +6427,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">logmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5885,6 +6436,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -5922,6 +6474,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_name">deleteInput</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -5931,6 +6484,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">sessionkey</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5940,6 +6494,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">remotefile</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -5948,6 +6503,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -5956,6 +6512,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -5964,6 +6521,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
+        <value name="is_public">false</value>
         <value name="field_name">$tundra.support.retrieve.ftp:file</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -5973,6 +6531,7 @@
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.session.key</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -5982,6 +6541,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.filename.original</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -5991,6 +6551,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.filename.working</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -6000,6 +6561,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
+            <value name="is_public">false</value>
             <value name="field_name">$source</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -6008,9 +6570,11 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
+            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$source.directory.uri</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -6020,6 +6584,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -6029,6 +6594,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service.input</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -6038,6 +6604,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">transfermode</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -6047,6 +6614,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content.type</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -6056,6 +6624,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content.source</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -6064,9 +6633,11 @@
             <value name="is_global">false</value>
           </record>
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$exception</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -6075,6 +6646,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -6094,6 +6666,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -6102,6 +6675,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">sessionkey</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6111,6 +6685,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">remotefile</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6120,6 +6695,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
+        <value name="is_public">false</value>
         <value name="field_name">$tundra.support.retrieve.ftp:file</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -6128,9 +6704,11 @@
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$exception</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -6140,6 +6718,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">returncode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6149,6 +6728,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">returnmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6158,6 +6738,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">logmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6166,6 +6747,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -6174,6 +6756,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_name">deleteOutput</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
@@ -6183,6 +6766,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">returncode</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6192,6 +6776,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">returnmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6201,6 +6786,7 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">logmsg</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -6209,6 +6795,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
@@ -6244,6 +6831,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -6251,6 +6839,7 @@
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPTARGET>
@@ -6259,6 +6848,7 @@
 <Values version="2.0">
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
+    <value name="is_public">false</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -6267,6 +6857,7 @@
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
+        <value name="is_public">false</value>
         <value name="field_name">$tundra.support.retrieve.ftp:file</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
@@ -6276,6 +6867,7 @@
         <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.session.key</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -6285,6 +6877,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.filename.original</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -6294,6 +6887,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$ftp.filename.working</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -6303,6 +6897,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">record</value>
+            <value name="is_public">false</value>
             <value name="field_name">$source</value>
             <value name="field_type">record</value>
             <value name="field_dim">0</value>
@@ -6311,9 +6906,11 @@
             <value name="is_global">false</value>
             <array name="rec_fields" type="record" depth="1">
             </array>
+            <value name="modifiable">true</value>
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$source.directory.uri</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -6323,6 +6920,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -6332,6 +6930,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$service.input</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -6341,6 +6940,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">transfermode</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -6350,6 +6950,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content.type</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -6359,6 +6960,7 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$content.source</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -6367,9 +6969,11 @@
             <value name="is_global">false</value>
           </record>
         </array>
+        <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$exception</value>
         <value name="field_type">object</value>
         <value name="field_dim">0</value>
@@ -6378,6 +6982,7 @@
         <value name="is_global">false</value>
       </record>
     </array>
+    <value name="modifiable">true</value>
   </record>
 </Values>
 </MAPSOURCE>
