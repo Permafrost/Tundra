@@ -2803,6 +2803,26 @@ Services in this folder must implement the
       a response from the FTP server before timing out and
       terminating the request. Defaults to PT1M (1 minute).
   * `ftps`: refer to `ftp`.
+  * `sftp`: processes each file matching the given `$source` URI with the
+    given processing `$service`. The file component of the URI can
+    include wildcards or globs (such as `*.txt`) for matching multiple
+    files at once. Note that SFTP retrieval is only supported on
+    Integration Server versions 9.0 and higher.
+
+    The following example would process all `*.txt` files in the
+    specified directory using SFTP:
+
+        sftp://useralias/path/*.txt
+
+    Where:
+    * `useralias` identifies the Integration Server SFTP User Alias to
+      be used for connecting to the source SFTP server.
+    * `path` is the absolute path to the directory where the files to be
+      processed exist, unless it starts with "." to indicate a relative
+      directory path, such as:
+
+          sftp://useralias/./path/*.txt
+
 * `$service` is the fully-qualified name of the content processing
   service, which implements the
   `tundra.schema.content.retrieve:processor` specification, invoked to
