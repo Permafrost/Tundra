@@ -2550,6 +2550,28 @@ specification.
       the SAP Adapter alias language.
     * `$queue`: the optional name of the SAP system inbound queue,
       required when using queued remote function calls (qRFC).
+  * `sftp`: uploads the given content to the [SFTP] server, directory and
+    file specified by the destination [URI]. Note that [SFTP] delivery
+    is only supported on Integration Server versions 9.0 and higher.
+    An example [SFTP] [URI] is as follows:
+
+        sftp://useralias/path/file?append=true
+
+    Where:
+    * `useralias` identifies the Integration Server [SFTP] User Alias to
+      be used for connecting to the destination [SFTP] server.
+    * `path` is the absolute path to the directory where the file should
+      be written, unless it starts with `.` to indicate a relative
+      directory path, such as:
+
+          sftp://useralias/./path/file
+
+    * `file` is the literal name of the remote file the content will be
+      written to.
+    * `append` is an optional query string boolean which if true will
+      append the content to the given file if it already exists.
+      Defaults to false if not specified, which overwrites the given
+      file if it already exists.
 * `$pipeline` is an optional `IData` document for providing arbitrary
   variables to the delivery implementation service. Variables
   provided will take precedence and override their corresponding
@@ -15707,6 +15729,7 @@ Decompresses the given content using the [zip] file compression format.
 [rounding algorithm]: <http://docs.oracle.com/javase/6/docs/api/java/math/RoundingMode.html>
 [SAX]: <http://en.wikipedia.org/wiki/Simple_API_for_XML>
 [set intersection]: <http://en.wikipedia.org/wiki/Intersection_(set_theory)>
+[SFTP]: <https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol>
 [SOAP]: <https://en.wikipedia.org/wiki/SOAP>
 [SQL GROUP BY]: <http://en.wikipedia.org/wiki/SQL#Queries>
 [try block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/try.html>
