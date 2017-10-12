@@ -7,8 +7,10 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
+      <value name="wrapper_type">IData</value>
       <value name="nillable">true</value>
       <value name="form_qualified">false</value>
       <value name="is_global">false</value>
@@ -17,14 +19,17 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
+            <value name="field_usereditable">true</value>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$string</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
+          <array name="field_options" type="value" depth="1">
+          </array>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <value name="contentType">1</value>
             <value name="internalType">reference</value>
@@ -41,11 +46,14 @@
           <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
+      <value name="wrapper_type">IData</value>
       <value name="nillable">true</value>
       <value name="form_qualified">false</value>
       <value name="is_global">false</value>
@@ -57,10 +65,12 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$uri</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
+          <value name="wrapper_type">IData</value>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
@@ -69,14 +79,17 @@
               <value name="node_type">record</value>
               <value name="node_comment"></value>
               <record name="node_hints" javaclass="com.wm.util.Values">
-                <null name="field_usereditable"/>
+                <value name="field_usereditable">true</value>
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">scheme</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
               <value name="field_opt">true</value>
+              <array name="field_options" type="value" depth="1">
+              </array>
               <record name="field_content_type" javaclass="com.wm.util.Values">
                 <value name="contentType">1</value>
                 <value name="internalType">reference</value>
@@ -96,14 +109,17 @@
               <value name="node_type">record</value>
               <value name="node_comment"></value>
               <record name="node_hints" javaclass="com.wm.util.Values">
-                <null name="field_usereditable"/>
+                <value name="field_usereditable">true</value>
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">body</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
               <value name="field_opt">true</value>
+              <array name="field_options" type="value" depth="1">
+              </array>
               <record name="field_content_type" javaclass="com.wm.util.Values">
                 <value name="contentType">1</value>
                 <value name="internalType">reference</value>
@@ -126,10 +142,12 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">authority</value>
               <value name="field_type">record</value>
               <value name="field_dim">0</value>
               <value name="field_opt">true</value>
+              <value name="wrapper_type">IData</value>
               <value name="nillable">true</value>
               <value name="form_qualified">false</value>
               <value name="is_global">false</value>
@@ -142,6 +160,7 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
+                  <value name="is_public">false</value>
                   <value name="field_name">registry</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -168,6 +187,7 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
+                  <value name="is_public">false</value>
                   <value name="field_name">server</value>
                   <value name="field_type">record</value>
                   <value name="field_dim">0</value>
@@ -184,6 +204,7 @@
                         <value name="field_largerEditor">false</value>
                         <value name="field_password">false</value>
                       </record>
+                      <value name="is_public">false</value>
                       <value name="field_name">user</value>
                       <value name="field_type">string</value>
                       <value name="field_dim">0</value>
@@ -211,6 +232,7 @@
                         <value name="field_largerEditor">false</value>
                         <value name="field_password">false</value>
                       </record>
+                      <value name="is_public">false</value>
                       <value name="field_name">password</value>
                       <value name="field_type">string</value>
                       <value name="field_dim">0</value>
@@ -238,6 +260,7 @@
                         <value name="field_largerEditor">false</value>
                         <value name="field_password">false</value>
                       </record>
+                      <value name="is_public">false</value>
                       <value name="field_name">host</value>
                       <value name="field_type">string</value>
                       <value name="field_dim">0</value>
@@ -264,6 +287,7 @@
                         <value name="field_largerEditor">false</value>
                         <value name="field_password">false</value>
                       </record>
+                      <value name="is_public">false</value>
                       <value name="field_name">port</value>
                       <value name="field_type">string</value>
                       <value name="field_dim">0</value>
@@ -284,8 +308,10 @@
                       <value name="is_global">false</value>
                     </record>
                   </array>
+                  <value name="modifiable">true</value>
                 </record>
               </array>
+              <value name="modifiable">true</value>
             </record>
             <record javaclass="com.wm.util.Values">
               <value name="node_type">record</value>
@@ -294,6 +320,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">path</value>
               <value name="field_type">string</value>
               <value name="field_dim">1</value>
@@ -318,14 +345,49 @@
               <value name="node_type">record</value>
               <value name="node_comment"></value>
               <record name="node_hints" javaclass="com.wm.util.Values">
-                <null name="field_usereditable"/>
+                <value name="field_usereditable">false</value>
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
+              <value name="field_name">path.absolute?</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <array name="field_options" type="value" depth="1">
+                <value>true</value>
+                <value>false</value>
+              </array>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">boolean</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">record</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_usereditable">true</value>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
               <value name="field_name">file</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
               <value name="field_opt">true</value>
+              <array name="field_options" type="value" depth="1">
+              </array>
               <record name="field_content_type" javaclass="com.wm.util.Values">
                 <value name="contentType">1</value>
                 <value name="internalType">reference</value>
@@ -348,28 +410,34 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">query</value>
               <value name="field_type">record</value>
               <value name="field_dim">0</value>
               <value name="field_opt">true</value>
+              <value name="wrapper_type">IData</value>
               <value name="nillable">true</value>
               <value name="form_qualified">false</value>
               <value name="is_global">false</value>
               <array name="rec_fields" type="record" depth="1">
               </array>
+              <value name="modifiable">true</value>
             </record>
             <record javaclass="com.wm.util.Values">
               <value name="node_type">record</value>
               <value name="node_comment"></value>
               <record name="node_hints" javaclass="com.wm.util.Values">
-                <null name="field_usereditable"/>
+                <value name="field_usereditable">true</value>
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">fragment</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
               <value name="field_opt">true</value>
+              <array name="field_options" type="value" depth="1">
+              </array>
               <record name="field_content_type" javaclass="com.wm.util.Values">
                 <value name="contentType">1</value>
                 <value name="internalType">reference</value>
@@ -389,13 +457,16 @@
               <value name="node_type">record</value>
               <value name="node_comment"></value>
               <record name="node_hints" javaclass="com.wm.util.Values">
-                <null name="field_usereditable"/>
+                <value name="field_usereditable">true</value>
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">absolute?</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
+              <array name="field_options" type="value" depth="1">
+              </array>
               <record name="field_content_type" javaclass="com.wm.util.Values">
                 <value name="contentType">1</value>
                 <value name="internalType">reference</value>
@@ -415,13 +486,16 @@
               <value name="node_type">record</value>
               <value name="node_comment"></value>
               <record name="node_hints" javaclass="com.wm.util.Values">
-                <null name="field_usereditable"/>
+                <value name="field_usereditable">true</value>
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">opaque?</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
+              <array name="field_options" type="value" depth="1">
+              </array>
               <record name="field_content_type" javaclass="com.wm.util.Values">
                 <value name="contentType">1</value>
                 <value name="internalType">reference</value>
@@ -438,8 +512,10 @@
               <value name="is_global">false</value>
             </record>
           </array>
+          <value name="modifiable">true</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">### tundra.uri:parse
@@ -505,7 +581,8 @@ Will be parsed to the following components, represented using [JSON]:
       "query": {
         "a": "1",
         "a": "2",
-        "b": "3",
+        "b": "3"
+,
         "c": ["4", "5"],
         "d": {
           "e": "6"
@@ -541,6 +618,9 @@ This service was implemented with the [java.net.URI] class.
   * path is the optional path component of the [URI], provided as 
     the list of string tokens that were separated by the '/' 
     character.
+  * path.absolute? is a boolean which when true indicates that the 
+    path is absolute, and when false indicates the path is relative.
+    Defaults to true if not specified.
   * file is the optional file component of the [URI], provided as
     the string token that follows the final '/' character of the 
     path component.
@@ -548,6 +628,10 @@ This service was implemented with the [java.net.URI] class.
     of [URI] query string key value parameters. Parameter keys are
     treated as fully-qualified IData keys.
   * fragment is the optional fragment component of the [URI].
+  * absolute? is a boolean indicating whether the given $string was
+    an absolute [URI].
+  * opaque? is a boolean indicating whether the given $string was an
+    opaque [URI].
 
 [JSON]: &lt;http://www.json.org/&gt;
 [RFC 2396]: &lt;http://www.ietf.org/rfc/rfc2396.txt&gt;
@@ -562,16 +646,23 @@ This service was implemented with the [java.net.URI] class.
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
   <value name="icontext_policy">$null</value>
+  <value name="svcInvkURLAlias"></value>
   <value name="system_service">no</value>
   <value name="retry_max">0</value>
   <value name="retry_interval">0</value>
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
 </Values>

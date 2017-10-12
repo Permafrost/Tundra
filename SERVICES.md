@@ -15026,6 +15026,9 @@ This service was implemented with the [java.net.URI] class.
   * `path` is the optional path component of the [URI], provided as
     the list of string tokens that were separated by the '/'
     character.
+  * `path.absolute?` is an optional boolean which when `true` indicates
+    that the path is absolute, and when `false` indicates the path is
+    relative. Defaults to `true` if not specified.
   * `file` is the optional file component of the [URI], provided as
     the string token that follows the final '/' character of the path component.
   * `query` is an optional IData document whose elements are the set
@@ -15215,6 +15218,9 @@ This service was implemented with the [java.net.URI] class.
   * `path` is the optional path component of the [URI], provided as
     the list of string tokens that were separated by the '/'
     character.
+  * `path.absolute?` is a boolean which when `true` indicates that the
+    path is absolute, and when `false` indicates the path is relative.
+    Defaults to `true` if not specified.
   * `file` is the optional file component of the [URI], provided as
     the string token that follows the final '/' character of the
     path component.
@@ -15222,7 +15228,10 @@ This service was implemented with the [java.net.URI] class.
     of [URI] query string key value parameters. Parameter keys are
     treated as fully-qualified IData keys.
   * `fragment` is the optional fragment component of the [URI].
-
+  * `absolute?` is a boolean indicating whether the given `$string` was
+    an absolute [URI].
+  * `opaque?` is a boolean indicating whether the given `$string` was an
+    opaque [URI].
 ---
 
 ### tundra.uri:substitute
