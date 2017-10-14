@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-06-03 18:24:44 EST
+// -----( CREATED: 2017-10-14 19:43:13 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -43,13 +43,20 @@ public final class html
 		// --- <<IS-START(decode)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional $string
-		// [o] field:0:optional $string
+		// [i] record:0:optional $document.encoded
+		// [o] record:0:optional $document.decoded
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String string = IDataHelper.get(cursor, "$string", String.class);
-		    IDataHelper.put(cursor, "$string", HTMLHelper.decode(string), false);
+		    IData document = IDataHelper.get(cursor, "$document.encoded", IData.class);
+		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
+		
+		    if (document == null) {
+		        String string = IDataHelper.get(cursor, "$string", String.class);
+		        IDataHelper.put(cursor, "$string", HTMLHelper.decode(string), false);
+		    } else {
+		        IDataHelper.put(cursor, "$document.decoded", HTMLHelper.decode(document, true), false);
+		    }
 		} finally {
 		    cursor.destroy();
 		}
@@ -100,13 +107,19 @@ public final class html
 		// --- <<IS-START(encode)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional $string
-		// [o] field:0:optional $string
+		// [i] record:0:optional $document.decoded
+		// [o] record:0:optional $document.encoded
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String string = IDataHelper.get(cursor, "$string", String.class);
-		    IDataHelper.put(cursor, "$string", HTMLHelper.encode(string), false);
+		    IData document = IDataHelper.get(cursor, "$document.decoded", IData.class);
+		
+		    if (document == null) {
+		        String string = IDataHelper.get(cursor, "$string", String.class);
+		        IDataHelper.put(cursor, "$string", HTMLHelper.encode(string), false);
+		    } else {
+		        IDataHelper.put(cursor, "$document.encoded", HTMLHelper.encode(document, true), false);
+		    }
 		} finally {
 		    cursor.destroy();
 		}

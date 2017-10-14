@@ -17,28 +17,18 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$string</value>
-          <value name="field_type">string</value>
+          <value name="field_name">$document.encoded</value>
+          <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
-          <record name="field_content_type" javaclass="com.wm.util.Values">
-            <value name="contentType">1</value>
-            <value name="internalType">reference</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-            <array name="targetNames" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">string</value>
-              </record>
-            </array>
-          </record>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
+          <array name="rec_fields" type="record" depth="1">
+          </array>
         </record>
       </array>
     </record>
@@ -54,50 +44,41 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$string</value>
-          <value name="field_type">string</value>
+          <value name="field_name">$document.decoded</value>
+          <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
-          <record name="field_content_type" javaclass="com.wm.util.Values">
-            <value name="contentType">1</value>
-            <value name="internalType">reference</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-            <array name="targetNames" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">string</value>
-              </record>
-            </array>
-          </record>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
+          <array name="rec_fields" type="record" depth="1">
+          </array>
         </record>
       </array>
     </record>
   </record>
   <value name="node_comment">### tundra.xml:decode
 
-[XML] decodes the given string.
+[XML] decodes the string values in the given IData document.
 
 [XML entities], such as &amp;lt; and &amp;gt;, are decoded to the
 appropriate character representation, such as &lt; and &gt;.
 
 #### Inputs:
 
-* $string is an optional string to be [XML] decoded.
+* $document.encoded is an optional IData document containing 
+  arbitrarily specified string values to be [XML] decoded.
 
 #### Outputs:
 
-* $string is the given string with [XML entities] decoded.
+* $document.decoded is an IData document containing the arbitrarily 
+  specified string values with [XML entities] decoded.
 
 [XML]: &lt;http://www.w3.org/XML/&gt;
-[XML entities]: &lt;http://www.w3.org/TR/html4/sgml/entities.html&gt;
-</value>
+[XML entities]: &lt;http://www.w3.org/TR/html4/sgml/entities.html&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

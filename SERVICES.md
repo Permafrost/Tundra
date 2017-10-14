@@ -6842,18 +6842,20 @@ stream into an IData document.
 
 ### tundra.html:decode
 
-[HTML] decodes the given string.
+[HTML] decodes the string values in the given `IData` document.
 
 [HTML entities], such as `&lt;` and `&gt;`, are decoded to the
 appropriate character representation, such as `<` and `>`.
 
 #### Inputs:
 
-* `$string` is an optional string to be [HTML] decoded.
+* `$document.encoded` is an optional `IData` document containing
+  arbitrarily specified string values to be [HTML] decoded.
 
 #### Outputs:
 
-* `$string` is the given string with [HTML entities] decoded.
+* `$document.decoded` is an `IData` document containing the arbitrarily
+  specified string values with [HTML entities] decoded.
 
 ---
 
@@ -6891,20 +6893,22 @@ serialized to clean [HTML] table elements.
 
 ### tundra.html:encode
 
-[HTML] encodes the given string.
+[HTML] encodes the string values in the given `IData` document.
 
 Reserved characters in [HTML], such as `<` and `>`, are encoded to the
-appropriate [HTML entity], such as `&lt;` and `&gt;`, to ensure the [HTML]
-is rendered correctly by web browsers and other [HTML] rendering
-software.
+appropriate [HTML entity], such as `&lt;` and `&gt;`, to ensure the
+[HTML] is rendered correctly by web browsers and other [HTML]
+rendering software.
 
 #### Inputs:
 
-* `$string` is an optional string to be [HTML] encoded.
+* `$document.decoded` is an optional `IData` document containing
+  arbitrarily specified string values to be [HTML] encoded.
 
 #### Outputs:
 
-* `$string` is the given string with special characters [HTML] encoded.
+* `$document.encoded` is an `IData` document containing the arbitrarily
+  specified string values with [HTML entities] encoded.
 
 ---
 
@@ -15349,18 +15353,20 @@ Implemented with the [Apache Santuario] XML Security library.
 
 ### tundra.xml:decode
 
-[XML] decodes the given string.
+[XML] decodes the string values in the given `IData` document.
 
 [XML entities], such as `&lt;` and `&gt;`, are decoded to the
 appropriate character representation, such as `<` and `>`.
 
 #### Inputs:
 
-* `$string` is an optional string to be [XML] decoded.
+* `$document.encoded` is an optional `IData` document containing
+  arbitrarily specified string values to be [XML] decoded.
 
 #### Outputs:
 
-* `$string` is the given string with [XML entities] decoded.
+* `$document.decoded` is an `IData` document containing the arbitrarily
+  specified string values with [XML entities] decoded.
 
 ---
 
@@ -15387,7 +15393,7 @@ webMethods parlance, to an [XML] string, byte array, or input stream.
 
 ### tundra.xml:encode
 
-[XML] encodes the given string.
+[XML] encodes the string values in the given `IData` document.
 
 Reserved characters in [XML], such as `<` and `>`, are encoded to the
 appropriate [XML entity], such as `&lt;` and `&gt;`, to ensure the [XML]
@@ -15396,11 +15402,13 @@ software.
 
 #### Inputs:
 
-* `$string` is an optional string to be [XML] encoded.
+* `$document.decoded` is an optional `IData` document containing
+  arbitrarily specified string values to be [HTML] encoded.
 
 #### Outputs:
 
-* `$string` is the given string with special characters [XML] encoded.
+* `$document.encoded` is an `IData` document containing the arbitrarily
+  specified string values with [XML entities] encoded.
 
 ---
 
