@@ -3303,8 +3303,8 @@ Custom datetime patterns can be specified using
 
 ### tundra.datetime:format
 
-Formats a datetime string that conforms to the input pattern, according to
-the output pattern.
+Formats arbitrarily specified datetime strings that conforms to the
+input pattern, according to the output pattern.
 
 Supports a handful of well-known named datetime patterns:
 
@@ -3324,37 +3324,39 @@ Custom datetime patterns can be specified using
 
 #### Inputs:
 
-* `$datetime` is the datetime string to be reformatted to a different
+* `$datetime.input` is an `IData` document containing arbitrarily
+  specified datetime strings to be reformatted to a different
   pattern.
-* `$pattern.input` is an optional datetime pattern that `$datetime`
-  conforms to, that will be used to parse the datetime string. Defaults
-  to an [ISO8601] XML datetime.
-* `$patterns.input` is an optional list of datetime patterns that `$datetime`
-  might conform to, useful when the exact pattern is not known. A parse is
-  attempted for each pattern until the first successful parse, or until
-  all patterns have been tried in which case an unparseable datetime
-  exception will be thrown.
-* `$pattern.output` is an optional datetime pattern that will be used to
-  format the resulting `$datetime` string. Defaults to an [ISO8601] XML
-  datetime.
+* `$pattern.input `is an optional datetime pattern that the datetime
+  strings conform to, that will be used to parse the datetime
+  strings. Defaults to an [ISO8601] XML datetime.
+* `$patterns.input` is an optional list of datetime patterns that
+  the input datetime strings might conform to, useful when the exact
+  pattern is not known. A parse is attempted for each pattern until
+  the first successful parse, or until all patterns have been tried
+  in which case an unparseable datetime exception will be thrown.
+* `$pattern.output` is an optional datetime pattern that will be used
+  to format the resulting datetime strings. Defaults to an [ISO8601]
+  XML datetime.
 * `$timezone.input` is an optional [java.util.TimeZone] ID, or a
-  `(+|-)HH:mm` time zone offset, or an XML duration string
+  (+|-)HH:mm time zone offset, or an XML duration string
   representing a time zone offset, or a raw millisecond time zone
-  offset, or `Z` for UTC, or `local` for the default localhost
-  time zone identifying the time zone the input `$datetime` will
-  be parsed with. If specified, this time zone will override any
-  zone specified in the `$datetime` string itself.
+  offset, or `Z` for UTC, or `local` for the default localhost time zone
+  identifying the time zone the input datetime strings will be
+  parsed with. If specified, this time zone will override any zone
+  specified in the datetime string itself.
 * `$timezone.output` is an optional [java.util.TimeZone] ID, or a
-  `(+|-)HH:mm` time zone offset, or an XML duration string
+  (+|-)HH:mm time zone offset, or an XML duration string
   representing a time zone offset, or a raw millisecond time zone
   offset, or `Z` for UTC, or `local` for the default localhost
-  time zone identifying the time zone the returned `$datetime` will
-  be formatted with.
+  time zone identifying the time zone the returned datetime strings
+  will be formatted with.
 
 #### Outputs:
 
-* `$datetime` is the datetime formatted as a string according to the
-  given `$pattern.output` in the given `$timezone.output`.
+* `$datetime.output` is an `IData` document containing the datetime
+  strings reformatted according to the given `$pattern.output` in the
+  given `$timezone.output`.
 
 ---
 

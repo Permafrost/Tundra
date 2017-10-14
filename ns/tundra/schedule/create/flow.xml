@@ -4111,7 +4111,7 @@
 </INVOKE>
 </BRANCH>
 
-<MAP NAME="format" MODE="STANDALONE">
+<MAP NAME="format" TIMEOUT="" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
@@ -4559,9 +4559,6 @@
 
   <!-- nodes -->
 
-<MAPCOPY NAME="Link" FROM="/$schedule;2;0/start;1;0" TO="/$datetime;1;0">
-</MAPCOPY>
-
 <MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$pattern.input;1;0">
   <DATA ENCODING="XMLValues" I18N="true">
 
@@ -4645,13 +4642,22 @@
 </Values>
 </DATA>
 </MAPSET>
+
+<MAPCOPY NAME="Link" FROM="/$schedule;2;0/start;1;0" TO="/$datetime.input;2;0/start;1;0">
+</MAPCOPY>
+
+<MAPCOPY NAME="Link" FROM="/$schedule;2;0/end;1;0" TO="/$datetime.input;2;0/end;1;0">
+</MAPCOPY>
 </MAP>
 
 <MAP MODE="INVOKEOUTPUT">
 
   <!-- nodes -->
 
-<MAPCOPY NAME="Link" FROM="/$datetime;1;0" TO="/$schedule;2;0/start.date;1;0">
+<MAPCOPY NAME="Link" FROM="/$datetime.output;2;0/start;1;0" TO="/$schedule;2;0/start.date;1;0">
+</MAPCOPY>
+
+<MAPCOPY NAME="Link" FROM="/$datetime.output;2;0/end;1;0" TO="/$schedule;2;0/end.date;1;0">
 </MAPCOPY>
 </MAP>
 </MAPINVOKE>
@@ -4663,9 +4669,6 @@
 <MAP MODE="INVOKEINPUT">
 
   <!-- nodes -->
-
-<MAPCOPY NAME="Link" FROM="/$schedule;2;0/start;1;0" TO="/$datetime;1;0">
-</MAPCOPY>
 
 <MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$pattern.input;1;0">
   <DATA ENCODING="XMLValues" I18N="true">
@@ -4750,223 +4753,22 @@
 </Values>
 </DATA>
 </MAPSET>
+
+<MAPCOPY NAME="Link" FROM="/$schedule;2;0/start;1;0" TO="/$datetime.input;2;0/start;1;0">
+</MAPCOPY>
+
+<MAPCOPY NAME="Link" FROM="/$schedule;2;0/end;1;0" TO="/$datetime.input;2;0/end;1;0">
+</MAPCOPY>
 </MAP>
 
 <MAP MODE="INVOKEOUTPUT">
 
   <!-- nodes -->
 
-<MAPCOPY NAME="Link" FROM="/$datetime;1;0" TO="/$schedule;2;0/start.time;1;0">
-</MAPCOPY>
-</MAP>
-</MAPINVOKE>
-
-<MAPINVOKE SERVICE="tundra.datetime:format" VALIDATE-IN="$none" VALIDATE-OUT="$none" INVOKE-ORDER="0">
-
-  <!-- nodes -->
-
-<MAP MODE="INVOKEINPUT">
-
-  <!-- nodes -->
-
-<MAPCOPY NAME="Link" FROM="/$schedule;2;0/end;1;0" TO="/$datetime;1;0">
+<MAPCOPY NAME="Link" FROM="/$datetime.output;2;0/start;1;0" TO="/$schedule;2;0/start.time;1;0">
 </MAPCOPY>
 
-<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$pattern.input;1;0">
-  <DATA ENCODING="XMLValues" I18N="true">
-
-<Values version="2.0">
-  <value name="xml">datetime</value>
-  <record name="type" javaclass="com.wm.util.Values">
-    <value name="node_type">record</value>
-    <value name="node_comment"></value>
-    <record name="node_hints" javaclass="com.wm.util.Values">
-      <value name="field_usereditable">true</value>
-      <value name="field_largerEditor">false</value>
-      <value name="field_password">false</value>
-    </record>
-    <value name="field_name">$pattern.input</value>
-    <value name="field_type">string</value>
-    <value name="field_dim">0</value>
-    <value name="field_opt">true</value>
-    <array name="field_options" type="value" depth="1">
-      <value>datetime</value>
-      <value>datetime.jdbc</value>
-      <value>date</value>
-      <value>date.jdbc</value>
-      <value>time</value>
-      <value>time.jdbc</value>
-      <value>milliseconds</value>
-    </array>
-    <record name="field_content_type" javaclass="com.wm.util.Values">
-      <value name="contentType">1</value>
-      <value name="internalType">reference</value>
-      <value name="dataTypeVersion">dtVersion2</value>
-      <array name="targetNames" type="record" depth="1">
-        <record javaclass="com.wm.util.Values">
-          <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-          <value name="ncName">string</value>
-        </record>
-      </array>
-    </record>
-    <value name="nillable">true</value>
-    <value name="form_qualified">false</value>
-    <value name="is_global">false</value>
-  </record>
-</Values>
-</DATA>
-</MAPSET>
-
-<MAPCOPY NAME="Link" FROM="/pattern.date;1;0" TO="/$pattern.output;1;0">
-</MAPCOPY>
-
-<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$timezone.output;1;0">
-  <DATA ENCODING="XMLValues" I18N="true">
-
-<Values version="2.0">
-  <value name="xml">local</value>
-  <record name="type" javaclass="com.wm.util.Values">
-    <value name="node_type">record</value>
-    <value name="node_comment"></value>
-    <record name="node_hints" javaclass="com.wm.util.Values">
-      <value name="field_usereditable">true</value>
-      <value name="field_largerEditor">false</value>
-      <value name="field_password">false</value>
-    </record>
-    <value name="field_name">$timezone.output</value>
-    <value name="field_type">string</value>
-    <value name="field_dim">0</value>
-    <value name="field_opt">true</value>
-    <record name="field_content_type" javaclass="com.wm.util.Values">
-      <value name="contentType">1</value>
-      <value name="internalType">reference</value>
-      <value name="dataTypeVersion">dtVersion2</value>
-      <array name="targetNames" type="record" depth="1">
-        <record javaclass="com.wm.util.Values">
-          <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-          <value name="ncName">string</value>
-        </record>
-      </array>
-    </record>
-    <value name="nillable">true</value>
-    <value name="form_qualified">false</value>
-    <value name="is_global">false</value>
-  </record>
-</Values>
-</DATA>
-</MAPSET>
-</MAP>
-
-<MAP MODE="INVOKEOUTPUT">
-
-  <!-- nodes -->
-
-<MAPCOPY NAME="Link" FROM="/$datetime;1;0" TO="/$schedule;2;0/end.date;1;0">
-</MAPCOPY>
-</MAP>
-</MAPINVOKE>
-
-<MAPINVOKE SERVICE="tundra.datetime:format" VALIDATE-IN="$none" VALIDATE-OUT="$none" INVOKE-ORDER="0">
-
-  <!-- nodes -->
-
-<MAP MODE="INVOKEINPUT">
-
-  <!-- nodes -->
-
-<MAPCOPY NAME="Link" FROM="/$schedule;2;0/end;1;0" TO="/$datetime;1;0">
-</MAPCOPY>
-
-<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$pattern.input;1;0">
-  <DATA ENCODING="XMLValues" I18N="true">
-
-<Values version="2.0">
-  <value name="xml">datetime</value>
-  <record name="type" javaclass="com.wm.util.Values">
-    <value name="node_type">record</value>
-    <value name="node_comment"></value>
-    <record name="node_hints" javaclass="com.wm.util.Values">
-      <value name="field_usereditable">true</value>
-      <value name="field_largerEditor">false</value>
-      <value name="field_password">false</value>
-    </record>
-    <value name="field_name">$pattern.input</value>
-    <value name="field_type">string</value>
-    <value name="field_dim">0</value>
-    <value name="field_opt">true</value>
-    <array name="field_options" type="value" depth="1">
-      <value>datetime</value>
-      <value>datetime.jdbc</value>
-      <value>date</value>
-      <value>date.jdbc</value>
-      <value>time</value>
-      <value>time.jdbc</value>
-      <value>milliseconds</value>
-    </array>
-    <record name="field_content_type" javaclass="com.wm.util.Values">
-      <value name="contentType">1</value>
-      <value name="internalType">reference</value>
-      <value name="dataTypeVersion">dtVersion2</value>
-      <array name="targetNames" type="record" depth="1">
-        <record javaclass="com.wm.util.Values">
-          <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-          <value name="ncName">string</value>
-        </record>
-      </array>
-    </record>
-    <value name="nillable">true</value>
-    <value name="form_qualified">false</value>
-    <value name="is_global">false</value>
-  </record>
-</Values>
-</DATA>
-</MAPSET>
-
-<MAPCOPY NAME="Link" FROM="/pattern.time;1;0" TO="/$pattern.output;1;0">
-</MAPCOPY>
-
-<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$timezone.output;1;0">
-  <DATA ENCODING="XMLValues" I18N="true">
-
-<Values version="2.0">
-  <value name="xml">local</value>
-  <record name="type" javaclass="com.wm.util.Values">
-    <value name="node_type">record</value>
-    <value name="node_comment"></value>
-    <record name="node_hints" javaclass="com.wm.util.Values">
-      <value name="field_usereditable">true</value>
-      <value name="field_largerEditor">false</value>
-      <value name="field_password">false</value>
-    </record>
-    <value name="field_name">$timezone.output</value>
-    <value name="field_type">string</value>
-    <value name="field_dim">0</value>
-    <value name="field_opt">true</value>
-    <record name="field_content_type" javaclass="com.wm.util.Values">
-      <value name="contentType">1</value>
-      <value name="internalType">reference</value>
-      <value name="dataTypeVersion">dtVersion2</value>
-      <array name="targetNames" type="record" depth="1">
-        <record javaclass="com.wm.util.Values">
-          <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-          <value name="ncName">string</value>
-        </record>
-      </array>
-    </record>
-    <value name="nillable">true</value>
-    <value name="form_qualified">false</value>
-    <value name="is_global">false</value>
-  </record>
-</Values>
-</DATA>
-</MAPSET>
-</MAP>
-
-<MAP MODE="INVOKEOUTPUT">
-
-  <!-- nodes -->
-
-<MAPCOPY NAME="Link" FROM="/$datetime;1;0" TO="/$schedule;2;0/end.time;1;0">
+<MAPCOPY NAME="Link" FROM="/$datetime.output;2;0/end;1;0" TO="/$schedule;2;0/end.time;1;0">
 </MAPCOPY>
 </MAP>
 </MAPINVOKE>

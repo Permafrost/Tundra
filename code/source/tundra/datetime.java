@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-06-03 18:06:42 EST
+// -----( CREATED: 2017-10-14 19:40:39 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -11,6 +11,7 @@ import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import java.util.Date;
 import java.util.Calendar;
+import java.util.TimeZone;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.ExceptionHelper;
@@ -40,9 +41,9 @@ public final class datetime
 		// --- <<IS-START(add)>> ---
 		// @sigtype java 3.5
 		// [i] field:0:optional $datetime
-		// [i] field:0:optional $datetime.pattern
+		// [i] field:0:optional $datetime.pattern {"datetime","datetime.db2","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
 		// [i] field:0:optional $duration
-		// [i] field:0:optional $duration.pattern
+		// [i] field:0:optional $duration.pattern {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
 		// [o] field:0:optional $datetime
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -241,29 +242,42 @@ public final class datetime
 		// --- <<IS-START(format)>> ---
 		// @sigtype java 3.5
 		// [i] field:0:optional $datetime
+		// [i] record:0:optional $datetime.input
 		// [i] field:0:optional $pattern.input {"datetime","datetime.db2","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
 		// [i] field:1:optional $patterns.input
 		// [i] field:0:optional $pattern.output {"datetime","datetime.db2","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
 		// [i] field:0:optional $timezone.input
 		// [i] field:0:optional $timezone.output
 		// [o] field:0:optional $datetime
+		// [o] record:0:optional $datetime.output
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String datetime = IDataHelper.get(cursor, "$datetime", String.class);
+		    IData document = IDataHelper.get(cursor, "$datetime.input", IData.class);
+		
 		    String inPattern = IDataHelper.get(cursor, "$pattern.input", String.class);
 		    String[] inPatterns = IDataHelper.get(cursor, "$patterns.input", String[].class);
 		    String outPattern = IDataHelper.get(cursor, "$pattern.output", String.class);
-		    String inTimeZone = IDataHelper.get(cursor, "$timezone.input", String.class);
-		    String outTimeZone = IDataHelper.get(cursor, "$timezone.output", String.class);
+		    TimeZone inTimeZone = IDataHelper.get(cursor, "$timezone.input", TimeZone.class);
+		    TimeZone outTimeZone = IDataHelper.get(cursor, "$timezone.output", TimeZone.class);
 		
-		    if (datetime != null) {
+		    if (document != null) {
 		        if (inPatterns == null) {
-		            datetime = DateTimeHelper.format(datetime, inPattern, inTimeZone, outPattern, outTimeZone);
+		            document = DateTimeHelper.format(document, inPattern, inTimeZone, outPattern, outTimeZone, true);
 		        } else {
-		            datetime = DateTimeHelper.format(datetime, inPatterns, inTimeZone, outPattern, outTimeZone);
+		            document = DateTimeHelper.format(document, inPatterns, inTimeZone, outPattern, outTimeZone, true);
 		        }
-		        IDataHelper.put(cursor, "$datetime", datetime);
+		        IDataHelper.put(cursor, "$datetime.output", document);
+		    } else {
+		        String datetime = IDataHelper.get(cursor, "$datetime", String.class);
+		        if (datetime != null) {
+		            if (inPatterns == null) {
+		                datetime = DateTimeHelper.format(datetime, inPattern, inTimeZone, outPattern, outTimeZone);
+		            } else {
+		                datetime = DateTimeHelper.format(datetime, inPatterns, inTimeZone, outPattern, outTimeZone);
+		            }
+		            IDataHelper.put(cursor, "$datetime", datetime);
+		        }
 		    }
 		} finally {
 		    cursor.destroy();
