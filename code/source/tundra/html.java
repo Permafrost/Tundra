@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-10-14 19:43:13 EST
+// -----( CREATED: 2017-10-15 12:30:24 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -49,13 +49,12 @@ public final class html
 		
 		try {
 		    IData document = IDataHelper.get(cursor, "$document.encoded", IData.class);
-		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
 		
 		    if (document == null) {
 		        String string = IDataHelper.get(cursor, "$string", String.class);
 		        IDataHelper.put(cursor, "$string", HTMLHelper.decode(string), false);
 		    } else {
-		        IDataHelper.put(cursor, "$document.decoded", HTMLHelper.decode(document, true), false);
+		        IDataHelper.put(cursor, "$document.decoded", HTMLHelper.decode(document), false);
 		    }
 		} finally {
 		    cursor.destroy();
@@ -118,7 +117,7 @@ public final class html
 		        String string = IDataHelper.get(cursor, "$string", String.class);
 		        IDataHelper.put(cursor, "$string", HTMLHelper.encode(string), false);
 		    } else {
-		        IDataHelper.put(cursor, "$document.encoded", HTMLHelper.encode(document, true), false);
+		        IDataHelper.put(cursor, "$document.encoded", HTMLHelper.encode(document), false);
 		    }
 		} finally {
 		    cursor.destroy();
