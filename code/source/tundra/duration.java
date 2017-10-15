@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-10-14 20:34:35 EST
+// -----( CREATED: 2017-10-15 14:52:20 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -148,9 +148,9 @@ public final class duration
 		
 		    if (document != null) {
 		        if (inPatterns == null) {
-		            document = DurationHelper.format(document, DurationPattern.normalize(inPattern), DurationPattern.normalize(outPattern), instant, true);
+		            document = DurationHelper.format(document, DurationPattern.normalize(inPattern), DurationPattern.normalize(outPattern), instant);
 		        } else {
-		            document = DurationHelper.format(document, DurationPattern.normalize(inPatterns), DurationPattern.normalize(outPattern), instant, true);
+		            document = DurationHelper.format(document, DurationPattern.normalize(inPatterns), DurationPattern.normalize(outPattern), instant);
 		        }
 		        IDataHelper.put(cursor, "$duration.output", document);
 		    } else {

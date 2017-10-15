@@ -14916,35 +14916,33 @@ character string.
 
 ### tundra.uri:decode
 
-Decodes a URI-encoded (application/x-www-form-urlencoded) string, according
-to [RFC 2396].
+Decodes arbitrarily specified URI-encoded strings, according to
+[RFC 2396] (application/x-www-form-urlencoded).
 
 The following rules are applied in the conversion:
-
-* The alphanumeric characters "a" through "z", "A" through "Z" and "0"
-through "9" remain the same.
-* The special characters ".", "-", "*", and "_" remain the same.
-* The plus sign "+" is converted into a space character " " .
-* A sequence of the form "%xy" will be treated as representing a byte
-where xy is the two-digit hexadecimal representation of the 8 bits. Then,
-all substrings that contain one or more of these byte sequences
-consecutively will be replaced by the character(s) whose encoding would
-result in those consecutive bytes. The encoding scheme used to decode
-these characters may be specified, or if unspecified, the default
-encoding of the platform will be used.
+* The alphanumeric characters `a` through `z`, `A` through `Z` and
+  `0` through `9` remain the same.
+* The special characters `.`, `-`, `*`, and `_` remain the same.
+* The plus sign `+` is converted into a space character.
+* A sequence of the form `%xy` will be treated as representing a byte
+  where xy is the two-digit hexadecimal representation of the 8
+  bits. Then, all substrings that contain one or more of these byte
+  sequences consecutively will be replaced by the character(s) whose
+  encoding would result in those consecutive bytes.
 
 Implemented with the [java.net.URLDecoder] class.
 
 #### Inputs:
 
-* `$string` is a string containing URI-encoded data to be decoded.
-* `$encoding` is the character set used to determine what characters are
-  represented by any consecutive sequences of the form "%xy". Defaults
-  to [UTF-8].
+* `$document.encoded` is an `IData` document containing arbitrarily
+  specified strings of URI-encoded data to be decoded.
+* `$encoding` is the character set used to determine what characters
+  are represented by any consecutive sequences of the form `%xy`.
+  Defaults to [UTF-8].
 
 #### Outputs:
 
-* `$string` is the decoded input string.
+* `$document.decoded` contains the decoded strings.
 
 ---
 
@@ -15056,34 +15054,32 @@ This service was implemented with the [java.net.URI] class.
 
 ### tundra.uri:encode
 
-URI encodes (application/x-www-form-urlencoded) a string, according
-to [RFC 2396].
+URI encodes arbitrarily specified strings, according to [RFC 2396]
+(application/x-www-form-urlencoded).
 
 The following rules are applied in the conversion:
-
-* The alphanumeric characters "a" through "z", "A" through "Z" and "0"
-  through "9" remain the same.
-* The special characters ".", "-", "*", and "_" remain the same.
-* The plus sign "+" is converted into a space character " " .
-* A sequence of the form "%xy" will be treated as representing a byte
-  where xy is the two-digit hexadecimal representation of the 8 bits. Then,
-  all substrings that contain one or more of these byte sequences
-  consecutively will be replaced by the character(s) whose encoding would
-  result in those consecutive bytes. The encoding scheme used to decode
-  these characters may be specified, or if unspecified, the default
-  encoding of the platform will be used.
+* The alphanumeric characters `a` through `z`, `A` through `Z` and
+  `0` through `9` remain the same.
+* The special characters `.`, `-`, `*`, and `_` remain the same.
+* The plus sign `+` is converted into a space character.
+* A sequence of the form `%xy` will be treated as representing a byte
+  where xy is the two-digit hexadecimal representation of the 8
+  bits. Then, all substrings that contain one or more of these byte
+  sequences consecutively will be replaced by the character(s) whose
+  encoding would result in those consecutive bytes.
 
 Implemented with the [java.net.URLEncoder] class.
 
 #### Inputs:
 
-* `$string` is a string containing data to be URI-encoded.
+* `$document.decoded` is an `IData` document containing arbitrarily
+  specified strings to be URI-encoded.
 * `$encoding` is the character set used to obtain the bytes for unsafe
   characters. Defaults to [UTF-8].
 
 #### Outputs:
 
-* `$string` is the URI-encoded input string.
+* `$document.encoded` contains the URI-encoded strings.
 
 ---
 

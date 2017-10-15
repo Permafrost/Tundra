@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-07 15:10:53 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2017-10-15 15:21:40 EST
+// -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -38,16 +38,21 @@ public final class uri
 		// --- <<IS-START(decode)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional $string
+		// [i] record:0:optional $document.encoded
 		// [i] field:0:optional $encoding
-		// [o] field:0:optional $string
+		// [o] record:0:optional $document.decoded
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String string = IDataHelper.get(cursor, "$string", String.class);
+		    IData document = IDataHelper.get(cursor, "$document.encoded", IData.class);
 		    Charset encoding = IDataHelper.get(cursor, "$encoding", Charset.class);
 		
-		    IDataHelper.put(cursor, "$string", URIHelper.decode(string, encoding), false);
+		    if (document != null) {
+		        IDataHelper.put(cursor, "$document.decoded", URIHelper.decode(document, encoding), false);
+		    } else {
+		        String string = IDataHelper.get(cursor, "$string", String.class);
+		        IDataHelper.put(cursor, "$string", URIHelper.decode(string, encoding), false);
+		    }
 		} finally {
 		    cursor.destroy();
 		}
@@ -75,6 +80,7 @@ public final class uri
 		// [i] --- field:0:required host
 		// [i] --- field:0:optional port
 		// [i] - field:1:optional path
+		// [i] - field:0:optional path.absolute? {"true","false"}
 		// [i] - field:0:optional file
 		// [i] - record:0:optional query
 		// [i] - field:0:optional fragment
@@ -102,16 +108,21 @@ public final class uri
 		// --- <<IS-START(encode)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional $string
+		// [i] record:0:optional $document.decoded
 		// [i] field:0:optional $encoding
-		// [o] field:0:optional $string
+		// [o] record:0:optional $document.encoded
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String string = IDataHelper.get(cursor, "$string", String.class);
+		    IData document = IDataHelper.get(cursor, "$document.decoded", IData.class);
 		    Charset encoding = IDataHelper.get(cursor, "$encoding", Charset.class);
 		
-		    IDataHelper.put(cursor, "$string", URIHelper.encode(string, encoding), false);
+		    if (document != null) {
+		        IDataHelper.put(cursor, "$document.encoded", URIHelper.encode(document, encoding), false);
+		    } else {
+		        String string = IDataHelper.get(cursor, "$string", String.class);
+		        IDataHelper.put(cursor, "$string", URIHelper.encode(string, encoding), false);
+		    }
 		} finally {
 		    cursor.destroy();
 		}
@@ -165,6 +176,7 @@ public final class uri
 		// [o] --- field:0:required host
 		// [o] --- field:0:optional port
 		// [o] - field:1:optional path
+		// [o] - field:0:optional path.absolute? {"true","false"}
 		// [o] - field:0:optional file
 		// [o] - record:0:optional query
 		// [o] - field:0:optional fragment

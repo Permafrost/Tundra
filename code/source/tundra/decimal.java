@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-10-15 12:17:00 EST
+// -----( CREATED: 2017-10-15 14:49:02 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -288,18 +288,18 @@ public final class decimal
 		
 		    if (document != null) {
 		        if (inPatterns == null) {
-		            document = BigDecimalHelper.format(document, outPattern, inPattern);
+		            document = BigDecimalHelper.format(document, inPattern, outPattern);
 		        } else {
-		            document = BigDecimalHelper.format(document, outPattern, inPatterns);
+		            document = BigDecimalHelper.format(document, inPatterns, outPattern);
 		        }
 		        IDataHelper.put(cursor, "$decimal.output", document);
 		    } else {
 		        String string = IDataHelper.get(cursor, "$decimal", String.class);
 		        if (string != null) {
 		            if (inPatterns == null) {
-		                string = BigDecimalHelper.format(string, outPattern, inPattern);
+		                string = BigDecimalHelper.format(string, inPattern, outPattern);
 		            } else {
-		                string = BigDecimalHelper.format(string, outPattern, inPatterns);
+		                string = BigDecimalHelper.format(string, inPatterns, outPattern);
 		            }
 		            IDataHelper.put(cursor, "$decimal", string);
 		        }

@@ -17,28 +17,18 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$string</value>
-          <value name="field_type">string</value>
+          <value name="field_name">$document.encoded</value>
+          <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
-          <record name="field_content_type" javaclass="com.wm.util.Values">
-            <value name="contentType">1</value>
-            <value name="internalType">reference</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-            <array name="targetNames" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">string</value>
-              </record>
-            </array>
-          </record>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
+          <array name="rec_fields" type="record" depth="1">
+          </array>
         </record>
         <record javaclass="com.wm.util.Values">
           <value name="node_type">record</value>
@@ -81,63 +71,52 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$string</value>
-          <value name="field_type">string</value>
+          <value name="field_name">$document.decoded</value>
+          <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
-          <record name="field_content_type" javaclass="com.wm.util.Values">
-            <value name="contentType">1</value>
-            <value name="internalType">reference</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-            <array name="targetNames" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">string</value>
-              </record>
-            </array>
-          </record>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
+          <array name="rec_fields" type="record" depth="1">
+          </array>
         </record>
       </array>
     </record>
   </record>
   <value name="node_comment">### tundra.uri:decode
 
-Decodes a URI-encoded (application/x-www-form-urlencoded) string, according
-to [RFC 2396].
+Decodes arbitrarily specified URI-encoded strings, according to 
+[RFC 2396] (application/x-www-form-urlencoded).
 
 The following rules are applied in the conversion:
 
-* The alphanumeric characters "a" through "z", "A" through "Z" and "0"
-through "9" remain the same.
+* The alphanumeric characters "a" through "z", "A" through "Z" and 
+  "0" through "9" remain the same.
 * The special characters ".", "-", "*", and "_" remain the same.
 * The plus sign "+" is converted into a space character " " .
 * A sequence of the form "%xy" will be treated as representing a byte
-where xy is the two-digit hexadecimal representation of the 8 bits. Then,
-all substrings that contain one or more of these byte sequences
-consecutively will be replaced by the character(s) whose encoding would
-result in those consecutive bytes. The encoding scheme used to decode
-these characters may be specified, or if unspecified, the default
-encoding of the platform will be used.
+  where xy is the two-digit hexadecimal representation of the 8 
+  bits. Then, all substrings that contain one or more of these byte 
+  sequences consecutively will be replaced by the character(s) whose 
+  encoding would result in those consecutive bytes.
 
 Implemented with the [java.net.URLDecoder] class.
 
 #### Inputs:
 
-* $string is a string containing URI-encoded data to be decoded.
-* $encoding is the character set used to determine what characters are
-  represented by any consecutive sequences of the form "%xy". Defaults
-  to [UTF-8].
+* $document.encoded is an IData document containing arbitrarily 
+  specified strings of URI-encoded data to be decoded.
+* $encoding is the character set used to determine what characters 
+  are represented by any consecutive sequences of the form "%xy". 
+  Defaults to [UTF-8].
 
 #### Outputs:
 
-* $string is the decoded input string.
+* $document.decoded contains the decoded strings.
 
 [RFC 2396]: &lt;http://www.ietf.org/rfc/rfc2396.txt&gt;
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;

@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-10-14 19:40:39 EST
+// -----( CREATED: 2017-10-15 14:49:31 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -241,14 +241,12 @@ public final class datetime
 	{
 		// --- <<IS-START(format)>> ---
 		// @sigtype java 3.5
-		// [i] field:0:optional $datetime
 		// [i] record:0:optional $datetime.input
 		// [i] field:0:optional $pattern.input {"datetime","datetime.db2","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
 		// [i] field:1:optional $patterns.input
 		// [i] field:0:optional $pattern.output {"datetime","datetime.db2","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
 		// [i] field:0:optional $timezone.input
 		// [i] field:0:optional $timezone.output
-		// [o] field:0:optional $datetime
 		// [o] record:0:optional $datetime.output
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -263,9 +261,9 @@ public final class datetime
 		
 		    if (document != null) {
 		        if (inPatterns == null) {
-		            document = DateTimeHelper.format(document, inPattern, inTimeZone, outPattern, outTimeZone, true);
+		            document = DateTimeHelper.format(document, inPattern, inTimeZone, outPattern, outTimeZone);
 		        } else {
-		            document = DateTimeHelper.format(document, inPatterns, inTimeZone, outPattern, outTimeZone, true);
+		            document = DateTimeHelper.format(document, inPatterns, inTimeZone, outPattern, outTimeZone);
 		        }
 		        IDataHelper.put(cursor, "$datetime.output", document);
 		    } else {
