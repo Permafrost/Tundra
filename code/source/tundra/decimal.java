@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-08-02 21:13:46 EST
+// -----( CREATED: 2017-10-15 12:17:00 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -273,27 +273,37 @@ public final class decimal
 		// --- <<IS-START(format)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional $decimal
+		// [i] record:0:optional $decimal.input
 		// [i] field:0:optional $pattern.input
 		// [i] field:1:optional $patterns.input
 		// [i] field:0:optional $pattern.output
-		// [o] field:0:optional $decimal
+		// [o] record:0:optional $decimal.output
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String string = IDataHelper.get(cursor, "$decimal", String.class);
+		    IData document = IDataHelper.get(cursor, "$decimal.input", IData.class);
 		    String inPattern = IDataHelper.get(cursor, "$pattern.input", String.class);
 		    String[] inPatterns = IDataHelper.get(cursor, "$patterns.input", String[].class);
 		    String outPattern = IDataHelper.get(cursor, "$pattern.output", String.class);
 		
-		    String result;
-		    if (inPatterns == null) {
-		        result = BigDecimalHelper.format(string, inPattern, outPattern);
+		    if (document != null) {
+		        if (inPatterns == null) {
+		            document = BigDecimalHelper.format(document, outPattern, inPattern);
+		        } else {
+		            document = BigDecimalHelper.format(document, outPattern, inPatterns);
+		        }
+		        IDataHelper.put(cursor, "$decimal.output", document);
 		    } else {
-		        result = BigDecimalHelper.format(string, inPatterns, outPattern);
+		        String string = IDataHelper.get(cursor, "$decimal", String.class);
+		        if (string != null) {
+		            if (inPatterns == null) {
+		                string = BigDecimalHelper.format(string, outPattern, inPattern);
+		            } else {
+		                string = BigDecimalHelper.format(string, outPattern, inPatterns);
+		            }
+		            IDataHelper.put(cursor, "$decimal", string);
+		        }
 		    }
-		
-		    IDataHelper.put(cursor, "$decimal", result, false);
 		} finally {
 		    cursor.destroy();
 		}

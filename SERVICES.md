@@ -3969,27 +3969,30 @@ Returns an string representation of the given decimal object.
 
 ### tundra.decimal:format
 
-Formats a decimal string that conforms to the input pattern, according to
-the output pattern.
+Formats arbitrarily specified decimal strings that conform to the
+input pattern, according to the output pattern.
 
 #### Inputs:
 
-* `$decimal` is a string representation of a decimal number.
-* `$pattern.input` is an optional [java.text.DecimalFormat] pattern that
-  the given string conforms to, and if specified will be used to parse
-  the string. If not specified, defaults to [java.math.BigDecimal grammar].
-* `$patterns.input` is an optional list of [java.text.DecimalFormat] patterns
-  that the given string might conform to, which is useful when the exact
-  pattern is not known. A parse is attempted for each pattern until the
-  first successful parse, or until all patterns have been tried in which
-  case an unparseable decimal exception will be thrown.
-* `$pattern.output` is an optional [java.text.DecimalFormat] pattern that
-  will be used to format the resulting decimal string. If not specified,
-  defaults to [java.math.BigDecimal grammar].
+* `$decimal.input` is an `IData` document containing arbitrarily
+  specified string representations of decimal numbers.
+* `$pattern.input` is an optional [java.text.DecimalFormat] pattern
+  that the given strings conform to, and if specified will be used
+  to parse the strings. If not specified, defaults to
+  [java.math.BigDecimal grammar].
+* `$patterns.input` is an optional list of [java.text.DecimalFormat]
+  patterns that the given strings might conform to, which is useful
+  when the exact pattern is not known. A parse is attempted for each
+  pattern until the first successful parse, or until all patterns
+  have been tried in which case an unparseable decimal exception
+  will be thrown.
+* `$pattern.output` is an optional [java.text.DecimalFormat] pattern
+  that will be used to format the resulting decimal strings. If not
+  specified, defaults to [java.math.BigDecimal grammar].
 
 #### Outputs:
 
-* `$decimal` is the resulting formatted decimal string.
+* `$decimal.output` contains the resulting formatted decimal strings.
 
 ---
 
