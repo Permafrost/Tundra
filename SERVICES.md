@@ -6211,7 +6211,8 @@ question, it is therefore considered indeterminate.
 
 ### tundra.duration:format
 
-Formats the given duration string according to the desired pattern.
+Formats arbitrarily specified duration strings according to the
+desired pattern.
 
 A start instant may be required when formatting fields with
 indeterminate values, such as converting months to days (because the
@@ -6219,28 +6220,29 @@ number of days in a month varies).
 
 #### Inputs:
 
-* `$duration` is a duration string to be formatted.
+* `$duration.input` is an `IData` document containing arbitrarily
+  specified duration strings to be formatted.
 * `$pattern.input` is an optional pattern describing the type of
-  duration specified by the `$duration` string. Defaults to an
+  duration specified by the duration strings. Defaults to an
   [ISO8601] XML string.
 * `$patterns.input` is an optional list of duration patterns that
-  `$duration` might conform to, useful when the exact pattern is not
-  known. A parse is attempted for each pattern until the first
-  successful parse, or until all patterns have been tried in which
-  case an unparseable duration exception will be thrown.
-* `$pattern.output` is an optional desired pattern used to format the
-  `$duration` string. Defaults to an [ISO8601] XML string.
-* `$datetime` is an optional datetime string used as a
-  starting instant to resolve indeterminate values (such as the
-  number of days in a month).
+  the duration strings might conform to, useful when the exact
+  pattern is not known. A parse is attempted for each pattern until
+  the first successful parse, or until all patterns have been tried
+  in which case an unparseable duration exception will be thrown.
+* `$pattern.output `is an optional desired pattern used to format the
+  duration strings. Defaults to an [ISO8601] XML string.
+* `$datetime` is an optional datetime string used as a starting
+  instant to resolve indeterminate values (such as the number of
+  days in a month).
 * `$datetime.pattern` is an optional datetime pattern that `$datetime`
   conforms to, that will be used to parse the datetime string.
   Defaults to an [ISO8601] XML datetime.
 
 #### Outputs:
 
-* `$duration` is the duration string formatted according to
-  `$pattern.output`.
+* `$duration.output` contains the duration strings formatted according
+  to `$pattern.output`.
 
 ---
 

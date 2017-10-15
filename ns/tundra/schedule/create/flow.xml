@@ -4802,9 +4802,6 @@
 
   <!-- nodes -->
 
-<MAPCOPY NAME="Link" FROM="/$schedule;2;0/repeat;2;0/interval;1;0" TO="/$duration;1;0">
-</MAPCOPY>
-
 <MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$pattern.input;1;0">
   <DATA ENCODING="XMLValues" I18N="true">
 
@@ -4896,13 +4893,16 @@
 </Values>
 </DATA>
 </MAPSET>
+
+<MAPCOPY NAME="Link" FROM="/$schedule;2;0/repeat;2;0/interval;1;0" TO="/$duration.input;2;0/interval;1;0">
+</MAPCOPY>
 </MAP>
 
 <MAP MODE="INVOKEOUTPUT">
 
   <!-- nodes -->
 
-<MAPCOPY NAME="Link" FROM="/$duration;1;0" TO="/$schedule;2;0/repeat;2;0/interval;1;0">
+<MAPCOPY NAME="Link" FROM="/$duration.output;2;0/interval;1;0" TO="/$schedule;2;0/repeat;2;0/interval;1;0">
 </MAPCOPY>
 </MAP>
 </MAPINVOKE>
@@ -4914,9 +4914,6 @@
 <MAP MODE="INVOKEINPUT">
 
   <!-- nodes -->
-
-<MAPCOPY NAME="Link" FROM="/$schedule;2;0/lateness;2;0/duration;1;0" TO="/$duration;1;0">
-</MAPCOPY>
 
 <MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$pattern.input;1;0">
   <DATA ENCODING="XMLValues" I18N="true">
@@ -5009,13 +5006,16 @@
 </Values>
 </DATA>
 </MAPSET>
+
+<MAPCOPY NAME="Link" FROM="/$schedule;2;0/lateness;2;0/duration;1;0" TO="/$duration.input;2;0/duration;1;0">
+</MAPCOPY>
 </MAP>
 
 <MAP MODE="INVOKEOUTPUT">
 
   <!-- nodes -->
 
-<MAPCOPY NAME="Link" FROM="/$duration;1;0" TO="/$schedule;2;0/lateness;2;0/duration;1;0">
+<MAPCOPY NAME="Link" FROM="/$duration.output;2;0/duration;1;0" TO="/$schedule;2;0/lateness;2;0/duration;1;0">
 </MAPCOPY>
 </MAP>
 </MAPINVOKE>
