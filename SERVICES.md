@@ -3327,6 +3327,14 @@ Custom datetime patterns can be specified using
 * `$datetime.input` is an `IData` document containing arbitrarily
   specified datetime strings to be reformatted to a different
   pattern.
+  * `value` is optional and specified as an input only for developer
+    convenience when using this service for a single string value.
+  * `value.list` is optional and specified as an input only for
+    developer convenience when using this service for a list of
+    string values.
+  * `value.table` is optional and specified as an input only for
+    developer convenience when using this service for a table of
+    string values.
 * `$pattern.input `is an optional datetime pattern that the datetime
   strings conform to, that will be used to parse the datetime
   strings. Defaults to an [ISO8601] XML datetime.
@@ -3357,6 +3365,14 @@ Custom datetime patterns can be specified using
 * `$datetime.output` is an `IData` document containing the datetime
   strings reformatted according to the given `$pattern.output` in the
   given `$timezone.output`.
+  * `value` is optional and specified as an output only for developer
+    convenience when using this service for a single string value.
+  * `value.list` is optional and specified as an output only for
+    developer convenience when using this service for a list of
+    string values.
+  * `value.table` is optional and specified as an output only for
+    developer convenience when using this service for a table of
+    string values.
 
 ---
 
