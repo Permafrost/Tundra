@@ -6241,6 +6241,14 @@ number of days in a month varies).
 
 * `$duration.input` is an `IData` document containing arbitrarily
   specified duration strings to be formatted.
+  * `value` is optional and specified as an input only for developer
+    convenience when using this service for a single string value.
+  * `value.list` is optional and specified as an input only for
+    developer convenience when using this service for a list of
+    string values.
+  * `value.table` is optional and specified as an input only for
+    developer convenience when using this service for a table of
+    string values.
 * `$pattern.input` is an optional pattern describing the type of
   duration specified by the duration strings. Defaults to an
   [ISO8601] XML string.
@@ -6262,6 +6270,14 @@ number of days in a month varies).
 
 * `$duration.output` contains the duration strings formatted according
   to `$pattern.output`.
+  * `value` is optional and specified as an output only for developer
+    convenience when using this service for a single string value.
+  * `value.list` is optional and specified as an output only for
+    developer convenience when using this service for a list of
+    string values.
+  * `value.table` is optional and specified as an output only for
+    developer convenience when using this service for a table of
+    string values.
 
 ---
 
