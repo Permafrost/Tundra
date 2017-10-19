@@ -6890,11 +6890,27 @@ appropriate character representation, such as `<` and `>`.
 
 * `$document.encoded` is an optional `IData` document containing
   arbitrarily specified string values to be [HTML] decoded.
+  * `value` is optional and specified as an input only for developer
+    convenience when using this service for a single string value.
+  * `value.list` is optional and specified as an input only for
+    developer convenience when using this service for a list of
+    string values.
+  * `value.table` is optional and specified as an input only for
+    developer convenience when using this service for a table of
+    string values.
 
 #### Outputs:
 
 * `$document.decoded` is an `IData` document containing the arbitrarily
   specified string values with [HTML entities] decoded.
+  * `value` is optional and specified as an output only for developer
+    convenience when using this service for a single string value.
+  * `value.list` is optional and specified as an output only for
+    developer convenience when using this service for a list of
+    string values.
+  * `value.table` is optional and specified as an output only for
+    developer convenience when using this service for a table of
+    string values.
 
 ---
 
@@ -6943,11 +6959,27 @@ rendering software.
 
 * `$document.decoded` is an optional `IData` document containing
   arbitrarily specified string values to be [HTML] encoded.
+  * `value` is optional and specified as an input only for developer
+    convenience when using this service for a single string value.
+  * `value.list` is optional and specified as an input only for
+    developer convenience when using this service for a list of
+    string values.
+  * `value.table` is optional and specified as an input only for
+    developer convenience when using this service for a table of
+    string values.
 
 #### Outputs:
 
 * `$document.encoded` is an `IData` document containing the arbitrarily
   specified string values with [HTML entities] encoded.
+  * `value` is optional and specified as an output only for developer
+    convenience when using this service for a single string value.
+  * `value.list` is optional and specified as an output only for
+    developer convenience when using this service for a list of
+    string values.
+  * `value.table` is optional and specified as an output only for
+    developer convenience when using this service for a table of
+    string values.
 
 ---
 
