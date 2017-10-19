@@ -15000,6 +15000,14 @@ Implemented with the [java.net.URLDecoder] class.
 
 * `$document.encoded` is an `IData` document containing arbitrarily
   specified strings of URI-encoded data to be decoded.
+  * `value` is optional and specified as an input only for developer
+    convenience when using this service for a single string value.
+  * `value.list` is optional and specified as an input only for
+    developer convenience when using this service for a list of
+    string values.
+  * `value.table` is optional and specified as an input only for
+    developer convenience when using this service for a table of
+    string values.
 * `$encoding` is the character set used to determine what characters
   are represented by any consecutive sequences of the form `%xy`.
   Defaults to [UTF-8].
@@ -15007,6 +15015,14 @@ Implemented with the [java.net.URLDecoder] class.
 #### Outputs:
 
 * `$document.decoded` contains the decoded strings.
+  * `value` is optional and specified as an output only for developer
+    convenience when using this service for a single string value.
+  * `value.list` is optional and specified as an output only for
+    developer convenience when using this service for a list of
+    string values.
+  * `value.table` is optional and specified as an output only for
+    developer convenience when using this service for a table of
+    string values.
 
 ---
 
@@ -15138,12 +15154,28 @@ Implemented with the [java.net.URLEncoder] class.
 
 * `$document.decoded` is an `IData` document containing arbitrarily
   specified strings to be URI-encoded.
+  * `value` is optional and specified as an input only for developer
+    convenience when using this service for a single string value.
+  * `value.list` is optional and specified as an input only for
+    developer convenience when using this service for a list of
+    string values.
+  * `value.table` is optional and specified as an input only for
+    developer convenience when using this service for a table of
+    string values.
 * `$encoding` is the character set used to obtain the bytes for unsafe
   characters. Defaults to [UTF-8].
 
 #### Outputs:
 
 * `$document.encoded` contains the URI-encoded strings.
+  * `value` is optional and specified as an output only for developer
+    convenience when using this service for a single string value.
+  * `value.list` is optional and specified as an output only for
+    developer convenience when using this service for a list of
+    string values.
+  * `value.table` is optional and specified as an output only for
+    developer convenience when using this service for a table of
+    string values.
 
 ---
 

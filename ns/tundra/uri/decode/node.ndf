@@ -28,6 +28,87 @@
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
           <array name="rec_fields" type="record" depth="1">
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">record</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <null name="field_usereditable"/>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="field_name">value</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">string</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">record</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="field_name">value.list</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">1</value>
+              <value name="field_opt">true</value>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">string</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+              <value name="is_soap_array_encoding_used">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">record</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="field_name">value.table</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">2</value>
+              <value name="field_opt">true</value>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">string</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+              <value name="is_soap_array_encoding_used">false</value>
+            </record>
           </array>
         </record>
         <record javaclass="com.wm.util.Values">
@@ -82,6 +163,87 @@
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
           <array name="rec_fields" type="record" depth="1">
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">record</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <null name="field_usereditable"/>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="field_name">value</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">string</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">record</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="field_name">value.list</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">1</value>
+              <value name="field_opt">true</value>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">string</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+              <value name="is_soap_array_encoding_used">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">record</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="field_name">value.table</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">2</value>
+              <value name="field_opt">true</value>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">string</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+              <value name="is_soap_array_encoding_used">false</value>
+            </record>
           </array>
         </record>
       </array>
@@ -110,6 +272,14 @@ Implemented with the [java.net.URLDecoder] class.
 
 * $document.encoded is an IData document containing arbitrarily 
   specified strings of URI-encoded data to be decoded.
+  * value is optional and specified as an input only for developer
+    convenience when using this service for a single string value.
+  * value.list is optional and specified as an input only for 
+    developer convenience when using this service for a list of 
+    string values.
+  * value.table is optional and specified as an input only for 
+    developer convenience when using this service for a table of
+    string values.
 * $encoding is the character set used to determine what characters 
   are represented by any consecutive sequences of the form "%xy". 
   Defaults to [UTF-8].
@@ -117,6 +287,14 @@ Implemented with the [java.net.URLDecoder] class.
 #### Outputs:
 
 * $document.decoded contains the decoded strings.
+  * value is optional and specified as an output only for developer
+    convenience when using this service for a single string value.
+  * value.list is optional and specified as an output only for 
+    developer convenience when using this service for a list of 
+    string values.
+  * value.table is optional and specified as an output only for 
+    developer convenience when using this service for a table of
+    string values.
 
 [RFC 2396]: &lt;http://www.ietf.org/rfc/rfc2396.txt&gt;
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;
