@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-10-15 14:49:02 EST
-// -----( ON-HOST: 192.168.66.132
+// -----( CREATED: 2017-10-19T11:11:00.389
+// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -72,7 +72,7 @@ public final class decimal
 		// @sigtype java 3.5
 		// [i] record:0:optional $operands
 		// [i] field:0:optional $precision
-		// [i] field:0:optional $rounding {"HALF_UP","CEILING","DOWN","FLOOR","HALF_DOWN","HALF_EVEN","UNNECESSARY","UP"}
+		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
 		// [o] field:0:optional $result
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -119,7 +119,7 @@ public final class decimal
 		// @sigtype java 3.5
 		// [i] record:0:optional $operands
 		// [i] field:0:optional $precision
-		// [i] field:0:optional $rounding {"HALF_UP","CEILING","DOWN","FLOOR","HALF_DOWN","HALF_EVEN","UNNECESSARY","UP"}
+		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
 		// [o] field:0:optional $average
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -163,7 +163,7 @@ public final class decimal
 		// @sigtype java 3.5
 		// [i] record:0:optional $operands
 		// [i] field:0:optional $precision
-		// [i] field:0:optional $rounding {"HALF_UP","CEILING","DOWN","FLOOR","HALF_DOWN","HALF_EVEN","UNNECESSARY","UP"}
+		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
 		// [o] field:0:optional $sample.deviation
 		// [o] field:0:optional $sample.variance
 		// [o] field:0:optional $sample.mean
@@ -206,7 +206,7 @@ public final class decimal
 		// [i] field:0:optional $dividend
 		// [i] field:0:optional $divisor
 		// [i] field:0:optional $precision
-		// [i] field:0:optional $rounding {"HALF_UP","CEILING","DOWN","FLOOR","HALF_DOWN","HALF_EVEN","UNNECESSARY","UP"}
+		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
 		// [o] field:0:optional $result
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -273,15 +273,21 @@ public final class decimal
 		// --- <<IS-START(format)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] record:0:optional $decimal.input
+		// [i] record:0:optional $number.input
+		// [i] - field:0:optional value
+		// [i] - field:1:optional value.list
+		// [i] - field:2:optional value.table
 		// [i] field:0:optional $pattern.input
 		// [i] field:1:optional $patterns.input
 		// [i] field:0:optional $pattern.output
-		// [o] record:0:optional $decimal.output
+		// [o] record:0:optional $number.output
+		// [o] - field:0:optional value
+		// [o] - field:1:optional value.list
+		// [o] - field:2:optional value.table
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData document = IDataHelper.get(cursor, "$decimal.input", IData.class);
+		    IData document = IDataHelper.get(cursor, "$number.input", IData.class);
 		    String inPattern = IDataHelper.get(cursor, "$pattern.input", String.class);
 		    String[] inPatterns = IDataHelper.get(cursor, "$patterns.input", String[].class);
 		    String outPattern = IDataHelper.get(cursor, "$pattern.output", String.class);
@@ -292,7 +298,7 @@ public final class decimal
 		        } else {
 		            document = BigDecimalHelper.format(document, inPatterns, outPattern);
 		        }
-		        IDataHelper.put(cursor, "$decimal.output", document);
+		        IDataHelper.put(cursor, "$number.output", document);
 		    } else {
 		        String string = IDataHelper.get(cursor, "$decimal", String.class);
 		        if (string != null) {
@@ -322,7 +328,7 @@ public final class decimal
 		// @sigtype java 3.5
 		// [i] record:0:optional $operands
 		// [i] field:0:optional $precision
-		// [i] field:0:optional $rounding {"HALF_UP","CEILING","DOWN","FLOOR","HALF_DOWN","HALF_EVEN","UNNECESSARY","UP"}
+		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
 		// [o] field:0:optional $maximum
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -367,7 +373,7 @@ public final class decimal
 		// @sigtype java 3.5
 		// [i] record:0:optional $operands
 		// [i] field:0:optional $precision
-		// [i] field:0:optional $rounding {"HALF_UP","CEILING","DOWN","FLOOR","HALF_DOWN","HALF_EVEN","UNNECESSARY","UP"}
+		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
 		// [o] field:0:optional $minimum
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -412,7 +418,7 @@ public final class decimal
 		// @sigtype java 3.5
 		// [i] record:0:optional $operands
 		// [i] field:0:optional $precision
-		// [i] field:0:optional $rounding {"HALF_UP","CEILING","DOWN","FLOOR","HALF_DOWN","HALF_EVEN","UNNECESSARY","UP"}
+		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
 		// [o] field:0:optional $result
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -485,7 +491,7 @@ public final class decimal
 		// [i] field:0:optional $string
 		// [i] field:0:optional $pattern
 		// [i] field:1:optional $patterns
-		// [i] field:0:optional $class {"java.math.BigDecimal","java.math.BigInteger","java.lang.Double","java.lang.Float","java.lang.Long","java.lang.Integer","java.lang.Short","java.lang.Byte"}
+		// [i] field:0:optional $class {&quot;java.math.BigDecimal&quot;,&quot;java.math.BigInteger&quot;,&quot;java.lang.Double&quot;,&quot;java.lang.Float&quot;,&quot;java.lang.Long&quot;,&quot;java.lang.Integer&quot;,&quot;java.lang.Short&quot;,&quot;java.lang.Byte&quot;}
 		// [o] object:0:optional $object
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -545,7 +551,7 @@ public final class decimal
 		// [i] field:0:optional $base
 		// [i] field:0:optional $exponent
 		// [i] field:0:optional $precision
-		// [i] field:0:optional $rounding {"HALF_UP","CEILING","DOWN","FLOOR","HALF_DOWN","HALF_EVEN","UNNECESSARY","UP"}
+		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
 		// [o] field:0:optional $result
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -587,7 +593,7 @@ public final class decimal
 		// @sigtype java 3.5
 		// [i] field:0:optional $decimal
 		// [i] field:0:optional $precision
-		// [i] field:0:optional $rounding {"HALF_UP","CEILING","DOWN","FLOOR","HALF_DOWN","HALF_EVEN","UNNECESSARY","UP"}
+		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
 		// [o] field:0:optional $decimal
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -618,7 +624,7 @@ public final class decimal
 		// [i] field:0:optional $minuend
 		// [i] field:0:optional $subtrahend
 		// [i] field:0:optional $precision
-		// [i] field:0:optional $rounding {"HALF_UP","CEILING","DOWN","FLOOR","HALF_DOWN","HALF_EVEN","UNNECESSARY","UP"}
+		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
 		// [o] field:0:optional $result
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -660,7 +666,7 @@ public final class decimal
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $decimal
-		// [i] field:0:optional $raise? {"false","true"}
+		// [i] field:0:optional $raise? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:required $valid?
 		IDataCursor cursor = pipeline.getCursor();
 		

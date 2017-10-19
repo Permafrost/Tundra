@@ -3985,13 +3985,13 @@ Returns an string representation of the given decimal object.
 
 ### tundra.decimal:format
 
-Formats arbitrarily specified decimal strings that conform to the
+Formats arbitrarily specified number strings that conform to the
 input pattern, according to the output pattern.
 
 #### Inputs:
 
 * `$decimal.input` is an `IData` document containing arbitrarily
-  specified string representations of decimal numbers.
+  specified string representations of numbers.
   * `value` is optional and specified as an input only for developer
     convenience when using this service for a single string value.
   * `value.list` is optional and specified as an input only for
@@ -4008,15 +4008,15 @@ input pattern, according to the output pattern.
   patterns that the given strings might conform to, which is useful
   when the exact pattern is not known. A parse is attempted for each
   pattern until the first successful parse, or until all patterns
-  have been tried in which case an unparseable decimal exception
+  have been tried in which case an unparseable number exception
   will be thrown.
 * `$pattern.output` is an optional [java.text.DecimalFormat] pattern
-  that will be used to format the resulting decimal strings. If not
+  that will be used to format the resulting number strings. If not
   specified, defaults to [java.math.BigDecimal grammar].
 
 #### Outputs:
 
-* `$decimal.output` contains the resulting formatted decimal strings.
+* `$decimal.output` contains the resulting formatted number strings.
   * `value` is optional and specified as an output only for developer
     convenience when using this service for a single string value.
   * `value.list` is optional and specified as an output only for
@@ -7343,6 +7343,51 @@ Returns an string representation of the given integer object.
 #### Outputs:
 
 * `$string` is the resulting string representation of the integer.
+
+---
+
+### tundra.integer:format
+
+Formats arbitrarily specified number strings that conform to the
+input pattern, according to the output pattern.
+
+#### Inputs:
+
+* `$number.input` is an `IData` document containing arbitrarily
+  specified string representations of numbers.
+  * `value` is optional and specified as an input only for developer
+    convenience when using this service for a single string value.
+  * `value.list` is optional and specified as an input only for
+    developer convenience when using this service for a list of
+    string values.
+  * `value.table` is optional and specified as an input only for
+    developer convenience when using this service for a table of
+    string values.
+* `$pattern.input` is an optional [java.text.DecimalFormat] pattern
+  that the given strings conform to, and if specified will be used
+  to parse the strings. If not specified, defaults to
+  [java.math.BigDecimal grammar].
+* `$patterns.input` is an optional list of [java.text.DecimalFormat]
+  patterns that the given strings might conform to, which is useful
+  when the exact pattern is not known. A parse is attempted for each
+  pattern until the first successful parse, or until all patterns
+  have been tried in which case an unparseable number exception
+  will be thrown.
+* `$pattern.output` is an optional [java.text.DecimalFormat] pattern
+  that will be used to format the resulting number strings. If not
+  specified, defaults to [java.math.BigDecimal grammar].
+
+#### Outputs:
+
+* `$number.output` contains the resulting formatted number strings.
+  * `value` is optional and specified as an output only for developer
+    convenience when using this service for a single string value.
+  * `value.list` is optional and specified as an output only for
+    developer convenience when using this service for a list of
+    string values.
+  * `value.table` is optional and specified as an output only for
+    developer convenience when using this service for a table of
+    string values.
 
 ---
 

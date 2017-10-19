@@ -303,7 +303,7 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">### tundra.decimal:format
+  <value name="node_comment">### tundra.integer:format
 
 Formats arbitrarily specified number strings that conform to the 
 input pattern, according to the output pattern.
@@ -328,10 +328,10 @@ input pattern, according to the output pattern.
   patterns that the given strings might conform to, which is useful 
   when the exact pattern is not known. A parse is attempted for each 
   pattern until the first successful parse, or until all patterns 
-  have been tried in which case an unparseable number exception 
+  have been tried in which case an unparseable decimal exception 
   will be thrown.
 * $pattern.output is an optional [java.text.DecimalFormat] pattern 
-  that will be used to format the resulting number strings. If not 
+  that will be used to format the resulting decimal strings. If not 
   specified, defaults to [java.math.BigDecimal grammar].
 
 #### Outputs:
@@ -348,12 +348,11 @@ input pattern, according to the output pattern.
 
 [java.math.BigDecimal grammar]: &lt;http://docs.oracle.com/javase/6/docs/api/java/math/BigDecimal.html#BigDecimal(java.lang.String)&gt;
 [java.text.DecimalFormat]: &lt;http://docs.oracle.com/javase/6/docs/api/java/text/DecimalFormat.html&gt;</value>
-  <value name="stateless">yes</value>
+  <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
-  <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
   <value name="icontext_policy">$null</value>
