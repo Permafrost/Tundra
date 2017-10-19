@@ -3992,6 +3992,14 @@ input pattern, according to the output pattern.
 
 * `$decimal.input` is an `IData` document containing arbitrarily
   specified string representations of decimal numbers.
+  * `value` is optional and specified as an input only for developer
+    convenience when using this service for a single string value.
+  * `value.list` is optional and specified as an input only for
+    developer convenience when using this service for a list of
+    string values.
+  * `value.table` is optional and specified as an input only for
+    developer convenience when using this service for a table of
+    string values.
 * `$pattern.input` is an optional [java.text.DecimalFormat] pattern
   that the given strings conform to, and if specified will be used
   to parse the strings. If not specified, defaults to
@@ -4009,6 +4017,14 @@ input pattern, according to the output pattern.
 #### Outputs:
 
 * `$decimal.output` contains the resulting formatted decimal strings.
+  * `value` is optional and specified as an output only for developer
+    convenience when using this service for a single string value.
+  * `value.list` is optional and specified as an output only for
+    developer convenience when using this service for a list of
+    string values.
+  * `value.table` is optional and specified as an output only for
+    developer convenience when using this service for a table of
+    string values.
 
 ---
 
