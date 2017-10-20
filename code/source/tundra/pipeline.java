@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-10-20 19:59:52 EST
+// -----( CREATED: 2017-10-20 20:08:14 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -508,6 +508,28 @@ public final class pipeline
 		
 		try {
 		    IData copy = SubstitutionHelper.substitute(pipeline, null, true, pipeline);
+		    IDataHelper.clear(pipeline);
+		    merge(pipeline, copy);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void trim (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(trim)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    IData copy = IDataHelper.trim(pipeline);
 		    IDataHelper.clear(pipeline);
 		    merge(pipeline, copy);
 		} finally {

@@ -12685,6 +12685,13 @@ pipeline by replacing all occurrences of substrings matching
 
 ---
 
+### tundra.pipeline:trim
+
+Removes leading and trailing whitespace from all string values in
+the pipeline.
+
+---
+
 ### tundra.schedule:create
 
 Schedules a service for execution once or periodically.
