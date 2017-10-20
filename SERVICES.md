@@ -5028,8 +5028,8 @@ the given service for each key value pair.
 
 ### tundra.document:emit
 
-Serializes the given IData document as an [IData XML] string,
-byte array, or input stream.
+Emits or serializes the given IData document as an [IData XML]
+string, byte array, or input stream.
 
 #### Inputs:
 
@@ -5602,7 +5602,7 @@ this example).
 
 ### tundra.document:parse
 
-Parses (or deserializes) the given [IData XML] string, byte array, or
+Parses or deserializes the given [IData XML] string, byte array, or
 input stream to an IData document.
 
 #### Inputs:
@@ -12390,11 +12390,13 @@ Drops the key value pair associated with the given key from the pipeline.
 
 ### tundra.pipeline:emit
 
-Emits (or encodes) the current pipeline as an [IData XML] string,
-byte array, or input stream.
+Emits or serializes the current pipeline as an string, byte array,
+or input stream.
 
 #### Inputs:
 
+* `$content.class` is an optional choice of the format to use: either
+  `xml`, `json`, or `yaml`. Defaults to `xml`.
 * `$encoding` is an optional character set to use when `$content` is
   returned as an input stream or byte array. Defaults to [UTF-8].
 * `$mode` is an optional choice of stream, bytes, or string,
@@ -12616,13 +12618,15 @@ this example).
 
 ### tundra.pipeline:parse
 
-Parses (or decodes) the given [IData XML] string, byte array,
-or input stream and merges it into the pipeline.
+Parses or deserializes the given string, byte array, or input stream
+and merges it into the pipeline.
 
 #### Inputs:
 
 * `$content` is a string, byte array, or input stream containing
   [IData XML] data to be parsed and merged into the pipeline.
+* `$content.class` is an optional choice of the format to use: either
+  `xml`, `json`, or `yaml`. Defaults to `xml`.
 * `$encoding` is an optional character set to use when `$content` is
   provided as a byte array or input stream. Defaults to [UTF-8].
 

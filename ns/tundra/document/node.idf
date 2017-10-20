@@ -113,11 +113,14 @@ dWxsLCB2YWx1ZUlucHV0LCBudWxsLCB2YWx1ZUNsYXNzLCByZWN1cnNlKTsKfQ==</value>
   <array name="imports" type="value" depth="1">
     <value>java.io.IOException</value>
     <value>java.nio.charset.Charset</value>
+    <value>java.text.MessageFormat</value>
     <value>java.util.EnumSet</value>
     <value>java.util.Locale</value>
     <value>permafrost.tundra.data.CaseInsensitiveIData</value>
     <value>permafrost.tundra.data.IDataHelper</value>
+    <value>permafrost.tundra.data.IDataJSONParser</value>
     <value>permafrost.tundra.data.IDataXMLParser</value>
+    <value>permafrost.tundra.data.IDataYAMLParser</value>
     <value>permafrost.tundra.data.ImmutableIData</value>
     <value>permafrost.tundra.data.transform.TransformerMode</value>
     <value>permafrost.tundra.flow.ConditionEvaluator</value>

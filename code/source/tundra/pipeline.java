@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-10-20 20:08:14 EST
+// -----( CREATED: 2017-10-20 21:07:39 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -11,9 +11,12 @@ import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.text.MessageFormat;
 import java.util.EnumSet;
 import permafrost.tundra.data.IDataHelper;
+import permafrost.tundra.data.IDataJSONParser;
 import permafrost.tundra.data.IDataXMLParser;
+import permafrost.tundra.data.IDataYAMLParser;
 import permafrost.tundra.flow.variable.SubstitutionHelper;
 import permafrost.tundra.flow.variable.SubstitutionType;
 import permafrost.tundra.io.InputStreamHelper;
@@ -164,6 +167,7 @@ public final class pipeline
 		// --- <<IS-START(emit)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
+		// [i] field:0:optional $content.class {"xml","json","yaml"}
 		// [i] field:0:optional $encoding
 		// [i] field:0:optional $mode {"stream","bytes","string"}
 		// [o] object:0:optional $content
@@ -171,10 +175,23 @@ public final class pipeline
 		
 		try {
 		    // remove input arguments so that they are not included in serialization of the pipeline
+		    String contentClass = IDataHelper.remove(cursor, "$content.class", String.class);
 		    Charset charset = IDataHelper.remove(cursor, "$encoding", Charset.class);
 		    ObjectConvertMode mode = IDataHelper.remove(cursor, "$mode", ObjectConvertMode.class);
 		
-		    IDataHelper.put(cursor, "$content", ObjectHelper.convert(IDataXMLParser.getInstance().emit(pipeline, charset), charset, mode));
+		    Object content;
+		
+		    if (contentClass == null || contentClass.equals("xml")) {
+		        content = ObjectHelper.convert(IDataXMLParser.getInstance().emit(pipeline, charset), charset, mode);
+		    } else if (contentClass.equals("json")) {
+		        content = ObjectHelper.convert(IDataJSONParser.getInstance().emit(pipeline, charset), charset, mode);
+		    } else if (contentClass.equals("yaml")) {
+		        content = ObjectHelper.convert(IDataYAMLParser.getInstance().emit(pipeline, charset), charset, mode);
+		    } else {
+		        throw new IllegalArgumentException(MessageFormat.format("$content.class must be either \"xml\", \"json\", or \"yaml\": {0}", contentClass));
+		    }
+		
+		    IDataHelper.put(cursor, "$content", content);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -388,14 +405,24 @@ public final class pipeline
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:0:optional $content
+		// [i] field:0:optional $content.class {"xml","json","yaml"}
 		// [i] field:0:optional $encoding
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		    Object content = IDataHelper.get(cursor, "$content");
+		    String contentClass = IDataHelper.get(cursor, "$content.class", String.class);
 		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
 		
-		    merge(pipeline, IDataXMLParser.getInstance().parse(InputStreamHelper.normalize(content, charset)));
+		    if (contentClass == null || contentClass.equals("xml")) {
+		        merge(pipeline, IDataXMLParser.getInstance().parse(InputStreamHelper.normalize(content, charset)));
+		    } else if (contentClass.equals("json")) {
+		        merge(pipeline, IDataJSONParser.getInstance().parse(InputStreamHelper.normalize(content, charset)));
+		    } else if (contentClass.equals("yaml")) {
+		        merge(pipeline, IDataYAMLParser.getInstance().parse(InputStreamHelper.normalize(content, charset)));
+		    } else {
+		        throw new IllegalArgumentException(MessageFormat.format("$content.class must be either \"xml\", \"json\", or \"yaml\": {0}", contentClass));
+		    }
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -549,7 +576,7 @@ public final class pipeline
 	// sorts the elements in the pipeline by its keys in natural ascending order
 	public static void sort(IData pipeline, boolean recurse) {
 	    IData sorted = IDataHelper.sort(pipeline, recurse);
-	    IDataHelper.clear(pipeline, null);
+	    IDataHelper.clear(pipeline);
 	    IDataUtil.append(sorted, pipeline);
 	}
 	// --- <<IS-END-SHARED>> ---

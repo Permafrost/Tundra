@@ -11,17 +11,20 @@ VXRpbC5tZXJnZShzb3VyY2UsIHRhcmdldCk7Cn0KCi8vIHNvcnRzIHRoZSBlbGVtZW50cyBpbiB0
 aGUgcGlwZWxpbmUgYnkgaXRzIGtleXMgaW4gbmF0dXJhbCBhc2NlbmRpbmcgb3JkZXIKcHVibGlj
 IHN0YXRpYyB2b2lkIHNvcnQoSURhdGEgcGlwZWxpbmUsIGJvb2xlYW4gcmVjdXJzZSkgewogICAg
 SURhdGEgc29ydGVkID0gSURhdGFIZWxwZXIuc29ydChwaXBlbGluZSwgcmVjdXJzZSk7CiAgICBJ
-RGF0YUhlbHBlci5jbGVhcihwaXBlbGluZSwgbnVsbCk7CiAgICBJRGF0YVV0aWwuYXBwZW5kKHNv
-cnRlZCwgcGlwZWxpbmUpOwp9</value>
+RGF0YUhlbHBlci5jbGVhcihwaXBlbGluZSk7CiAgICBJRGF0YVV0aWwuYXBwZW5kKHNvcnRlZCwg
+cGlwZWxpbmUpOwp9</value>
   <value name="extends"></value>
   <array name="implements" type="value" depth="1">
   </array>
   <array name="imports" type="value" depth="1">
     <value>java.io.IOException</value>
     <value>java.nio.charset.Charset</value>
+    <value>java.text.MessageFormat</value>
     <value>java.util.EnumSet</value>
     <value>permafrost.tundra.data.IDataHelper</value>
+    <value>permafrost.tundra.data.IDataJSONParser</value>
     <value>permafrost.tundra.data.IDataXMLParser</value>
+    <value>permafrost.tundra.data.IDataYAMLParser</value>
     <value>permafrost.tundra.flow.variable.SubstitutionHelper</value>
     <value>permafrost.tundra.flow.variable.SubstitutionType</value>
     <value>permafrost.tundra.io.InputStreamHelper</value>

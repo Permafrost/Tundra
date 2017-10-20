@@ -17,6 +17,77 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_usereditable">false</value>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="field_name">$content.class</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <array name="field_options" type="value" depth="1">
+            <value>xml</value>
+            <value>json</value>
+            <value>yaml</value>
+          </array>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <array name="enumeration" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="primitiveType">0</value>
+                <value name="lexRep">json</value>
+                <value name="isList">false</value>
+              </record>
+              <record javaclass="com.wm.util.Values">
+                <value name="primitiveType">0</value>
+                <value name="lexRep">xml</value>
+                <value name="isList">false</value>
+              </record>
+              <record javaclass="com.wm.util.Values">
+                <value name="primitiveType">0</value>
+                <value name="lexRep">yaml</value>
+                <value name="isList">false</value>
+              </record>
+            </array>
+            <value name="contentType">1</value>
+            <value name="internalType">instance</value>
+            <value name="ct_class">com.wm.lang.schema.datatypev2.WmString</value>
+            <value name="name">string_customized</value>
+            <array name="parent-ancestors" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">anySimpleType</value>
+              </record>
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">anyType</value>
+              </record>
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">string</value>
+              </record>
+            </array>
+            <record name="baseType" javaclass="com.wm.util.Values">
+              <record name="whiteSpace" javaclass="com.wm.util.Values">
+                <record name="FacetWSCValue" javaclass="com.wm.util.Values">
+                  <value name="cDecimalValue">3</value>
+                </record>
+                <value name="facetFixed">false</value>
+              </record>
+              <value name="contentType">1</value>
+              <value name="internalType">instance</value>
+              <value name="ct_class">com.wm.lang.schema.datatypev2.WmString</value>
+              <value name="dataTypeVersion">dtVersion2</value>
+            </record>
+            <value name="dataTypeVersion">dtVersion2</value>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
             <null name="field_usereditable"/>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
@@ -141,11 +212,14 @@
   </record>
   <value name="node_comment">### tundra.pipeline:emit
 
-Emits (or encodes) the current pipeline as an [IData XML] string,
-byte array, or input stream.
+Emits or serializes the current pipeline as an string, byte array, 
+or input stream.
 
 #### Inputs:
 
+* $content.class is an optional choice of the format to use: either 
+  xml, json, or yaml. When xml is chosen, the [IData XML] schema is 
+  used. Defaults to xml.
 * $encoding is an optional character set to use when $content is
   returned as an input stream or byte array. Defaults to [UTF-8].
 * $mode is an optional choice of stream, bytes, or string,

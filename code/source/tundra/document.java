@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-08-16 16:32:14 EST
+// -----( CREATED: 2017-10-21 10:15:24 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -11,11 +11,14 @@ import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.text.MessageFormat;
 import java.util.EnumSet;
 import java.util.Locale;
 import permafrost.tundra.data.CaseInsensitiveIData;
 import permafrost.tundra.data.IDataHelper;
+import permafrost.tundra.data.IDataJSONParser;
 import permafrost.tundra.data.IDataXMLParser;
+import permafrost.tundra.data.IDataYAMLParser;
 import permafrost.tundra.data.ImmutableIData;
 import permafrost.tundra.data.transform.TransformerMode;
 import permafrost.tundra.flow.ConditionEvaluator;
@@ -311,6 +314,7 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
+		// [i] field:0:optional $content.class {"xml","json","yaml"}
 		// [i] field:0:optional $encoding
 		// [i] field:0:optional $mode {"stream","bytes","string"}
 		// [o] object:0:optional $content
@@ -879,6 +883,7 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:0:optional $content
+		// [i] field:0:optional $content.class {"xml","json","yaml"}
 		// [i] field:0:optional $encoding
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
@@ -887,7 +892,7 @@ public final class document
 		    Object content = IDataHelper.get(cursor, "$content");
 		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
 		
-		    IDataHelper.put(cursor, "$document", IDataXMLParser.getInstance().parse(InputStreamHelper.normalize(content, charset)), false);
+		    IDataHelper.put(cursor, "$document", IDataXMLParser.getInstance().parse(InputStreamHelper.normalize(content, charset)));
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
