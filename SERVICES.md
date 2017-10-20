@@ -12668,6 +12668,15 @@ ascending order.
 
 ---
 
+### tundra.pipeline:squeeze
+
+Recursively trims all leading and trailing whitespace from all
+string values, then converts empty strings, empty IData documents,
+and empty lists to nulls, then compacts the pipeline by removing all
+null values.
+
+---
+
 ### tundra.pipeline:substitute
 
 Attempts variable substitution on every string element in the

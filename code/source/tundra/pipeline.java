@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-06-24 09:47:57 EST
+// -----( CREATED: 2017-10-20 19:59:52 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -469,6 +469,28 @@ public final class pipeline
 		// @subtype unknown
 		// @sigtype java 3.5
 		sort(pipeline, false);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void squeeze (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(squeeze)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    IData copy = IDataHelper.squeeze(pipeline);
+		    IDataHelper.clear(pipeline);
+		    merge(pipeline, copy);
+		} finally {
+		    cursor.destroy();
+		}
 		// --- <<IS-END>> ---
 
                 
