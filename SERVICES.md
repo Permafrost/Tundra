@@ -2555,7 +2555,7 @@ specification.
     is only supported on Integration Server versions 9.0 and higher.
     An example [SFTP] [URI] is as follows:
 
-        sftp://useralias/path/file?append=true
+        sftp://useralias/path/file?append=false&rename=true
 
     Where:
     * `useralias` identifies the Integration Server [SFTP] User Alias to
@@ -2572,6 +2572,12 @@ specification.
       append the content to the given file if it already exists.
       Defaults to false if not specified, which overwrites the given
       file if it already exists.
+    * `rename` is an optional query string boolean which if `true` will
+      first write the content to a unique temporary filename and then
+      rename it to its specified name once written. Defaults to `false`,
+      where the content is written directly to the filename specified
+      in the destination [URI]. Note if the append option is `true`,
+      this option has no effect.
 * `$pipeline` is an optional `IData` document for providing arbitrary
   variables to the delivery implementation service. Variables
   provided will take precedence and override their corresponding
