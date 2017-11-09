@@ -5271,6 +5271,25 @@ representation, useful for logging or display to end users.
 
 ---
 
+### tundra.document:key
+
+Returns the first key associated with the given value from the given
+`IData` document.
+
+#### Inputs:
+
+* `$document` is an `IData` document from which to fetch the key
+  associated with the given value.
+* `$value` is the value whose first associated key is to be returned.
+* `$value.list` is provided as a developer convenience when the value
+  whose first associated key is to be returned is a list.
+
+#### Outputs:
+
+* `$key` is the first key associated with the given value, if any.
+
+---
+
 ### tundra.document:keys
 
 Returns the top-level keys in the given IData document that match
