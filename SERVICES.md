@@ -5271,44 +5271,30 @@ representation, useful for logging or display to end users.
 
 ---
 
-### tundra.document:key
-
-Returns the first key associated with the given value from the given
-`IData` document.
-
-#### Inputs:
-
-* `$document` is an `IData` document from which to fetch the key
-  associated with the given value.
-* `$value` is the value whose first associated key is to be returned.
-* `$value.list` is provided as a developer convenience when the value
-  whose first associated key is to be returned is a list.
-
-#### Outputs:
-
-* `$key` is the first key associated with the given value, if any.
-
----
-
 ### tundra.document:keys
 
-Returns the top-level keys in the given `IData` document that match
-the given regular expression pattern if specified, or all top-level
-keys if no pattern is specified.
+Returns the top-level keys in the given `IData` document that either
+match the given regular expression pattern if specified, or are
+associated with the given value if specified, or all top-level keys
+if neither are specified.
 
 #### Inputs:
 
-* `$document` is an `IData` document from which all top-level
-  keys are to be fetched.
-* `$pattern` is an optional [regular expression pattern] that
-  is used to filter the list of keys returned. If not specified,
-  all keys are returned.
+* `$document` is an `IData` document from which all top-level keys are
+  to be fetched.
+* `$pattern` is an optional [regular expression pattern] that is used
+  to filter the list of keys returned.
+* `$value` is an optional value whose associated keys are to be
+  returned.
+* `$value.list` is an optional list value whose associated keys are to
+  be returned.
 
 #### Outputs:
 
 * `$keys` is the list of the top-level keys in the given `IData`
   document that match the given regular expression `$pattern` if
-  specified, or all top-level keys if no `$pattern` was specified.
+  specified, or are associated with the given `$value` or `$value.list`
+  if specified, or all top-level keys if no filtering was specified.
 * `$keys.length` is the number of items returned in the `$keys` list.
 
 ---

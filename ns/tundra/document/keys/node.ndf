@@ -57,6 +57,37 @@
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
         </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="field_name">$value</value>
+          <value name="field_type">object</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="field_name">$value.list</value>
+          <value name="field_type">object</value>
+          <value name="field_dim">1</value>
+          <value name="field_opt">true</value>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+          <value name="is_soap_array_encoding_used">false</value>
+        </record>
       </array>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
@@ -124,24 +155,28 @@
   </record>
   <value name="node_comment">### tundra.document:keys
 
-Returns the top-level keys in the given IData document that match
-the given regular expression pattern if specified, or all top-level
-keys if no pattern is specified.
+Returns the top-level keys in the given IData document that either 
+match the given regular expression pattern if specified, or are 
+associated with the given value if specified, or all top-level keys 
+if neither are specified.
 
 #### Inputs:
 
-* $document is an IData document from which all top-level
-  keys are to be fetched.
-* $pattern is an optional [regular expression pattern] that
-  is used to filter the list of keys returned. If not specified,
-  all keys are returned.
+* $document is an IData document from which all top-level keys are 
+  to be fetched.
+* $pattern is an optional [regular expression pattern] that is used 
+  to filter the list of keys returned.
+* $value is an optional value whose associated keys are to be 
+  returned.
+* $value.list is an optional list value whose associated keys are to 
+  be returned.
 
 #### Outputs:
 
 * $keys is the list of the top-level keys in the given IData
   document that match the given regular expression $pattern if
-  specified, or all top-level keys if no $pattern was specified.
-
+  specified, or are associated with the given $value or $value.list 
+  if specified, or all top-level keys if no filtering was specified.
 * $keys.length is the number of items returned in the $keys list.
 
 [regular expression pattern]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html&gt;</value>
@@ -157,7 +192,7 @@ keys if no pattern is specified.
   <value name="system_service">no</value>
   <value name="retry_max">0</value>
   <value name="retry_interval">0</value>
-  <value name="svc_in_validator_options">default</value>
+  <value name="svc_in_validator_options">none</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
   <record name="auditsettings" javaclass="com.wm.util.Values">

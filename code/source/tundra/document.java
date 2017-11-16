@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-11-17T08:10:46.197
+// -----( CREATED: 2017-11-17T08:43:03.775
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -547,33 +547,6 @@ public final class document
 
 
 
-	public static final void key (IData pipeline)
-        throws ServiceException
-	{
-		// --- <<IS-START(key)>> ---
-		// @subtype unknown
-		// @sigtype java 3.5
-		// [i] record:0:optional $document
-		// [i] object:0:optional $value
-		// [i] object:1:optional $value.list
-		// [o] field:0:optional $key
-		IDataCursor cursor = pipeline.getCursor();
-
-		try {
-		    IData document = IDataHelper.get(cursor, "$document", IData.class);
-		    Object value = IDataHelper.get(cursor, "$value", "$value.list");
-
-		    IDataHelper.put(cursor, "$key", IDataHelper.getKey(document, value), false);
-		} finally {
-		    cursor.destroy();
-		}
-		// --- <<IS-END>> ---
-
-
-	}
-
-
-
 	public static final void keys (IData pipeline)
         throws ServiceException
 	{
@@ -582,6 +555,8 @@ public final class document
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
 		// [i] field:0:optional $pattern
+		// [i] object:0:optional $value
+		// [i] object:1:optional $value.list
 		// [o] field:1:required $keys
 		// [o] field:0:required $keys.length
 		IDataCursor cursor = pipeline.getCursor();
@@ -589,8 +564,17 @@ public final class document
 		try {
 		    IData document = IDataHelper.get(cursor, "$document", IData.class);
 		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
+		    Object value = IDataHelper.get(cursor, "$value", "$value.list");
 
-		    String[] keys = IDataHelper.getKeys(document, pattern);
+		    String[] keys;
+
+		    if (pattern != null) {
+		        keys = IDataHelper.getKeys(document, pattern);
+		    } else if (value != null) {
+		        keys = IDataHelper.getKeys(document, value);
+		    } else {
+		        keys = IDataHelper.getKeys(document);
+		    }
 
 		    IDataHelper.put(cursor, "$keys", keys);
 		    IDataHelper.put(cursor, "$keys.length", keys.length, String.class);
