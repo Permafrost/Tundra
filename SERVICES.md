@@ -123,8 +123,8 @@ equal.
 
 #### Inputs:
 
-* `$expected` is the expected IData document.
-* `$actual` is the actual IData document. If this document is not equal
+* `$expected` is the expected `IData` document.
+* `$actual` is the actual `IData` document. If this document is not equal
   to the expected document, an assertion error will be thrown.
 * `$message` is an optional custom message to be used as the assertion
   error message if the assertion fails.
@@ -137,8 +137,8 @@ Throws an assertion error if the expected and actual documents are equal.
 
 #### Inputs:
 
-* `$expected` is the expected IData document.
-* `$actual` is the actual IData document. If this document is equal to
+* `$expected` is the expected `IData` document.
+* `$actual` is the actual `IData` document. If this document is equal to
   the expected document, an assertion error will be thrown.
 * `$message` is an optional custom message to be used as the assertion
   error message if the assertion fails.
@@ -154,12 +154,12 @@ not throw an exception matching the given criteria.
 
 * `$service` is the fully-qualified name of the service to be
   invoked that is expected to throw an exception.
-* `$pipeline` is an optional IData document which, if specified,
+* `$pipeline` is an optional `IData` document which, if specified,
   contains the input arguments for the invocation of `$service`; in
-  other words, the invocation is scoped to this IData document. If
+  other words, the invocation is scoped to this `IData` document. If
   not specified, the invocation is unscoped, and hence the service
   will operate directly against the pipeline itself.
-* `$exception` is an IData document containing optional criteria
+* `$exception` is an `IData` document containing optional criteria
   which a thrown exception will be expected meet.
   * `class` is the name of a Java class that the thrown exception
     must be an instance of.
@@ -167,9 +167,9 @@ not throw an exception matching the given criteria.
     * `pattern` is a [regular expression pattern] or literal string
       that must match the thrown exception's message.
     * `literal?` is a boolean indicating if the `pattern` string
-      should be treated as a literal string. If false, `pattern` is
-      treated as a [regular expression pattern]. If true, `pattern`
-      is treated as a literal string. Defaults to false, if not
+      should be treated as a literal string. If `false`, `pattern` is
+      treated as a [regular expression pattern]. If `true`, `pattern`
+      is treated as a literal string. Defaults to `false`, if not
       specified.
 * `$message` is an optional custom message to be used as the
   asertion error message if the assertion fails.
@@ -183,8 +183,8 @@ equal.
 
 #### Inputs:
 
-* `$expected` is the expected IData document list.
-* `$actual` is the actual IData document list. If this document list is
+* `$expected` is the expected `IData` document list.
+* `$actual` is the actual `IData` document list. If this document list is
   not equal to the expected document list, an assertion error will be
   thrown.
 * `$message` is an optional custom message to be used as the assertion
@@ -199,8 +199,8 @@ equal.
 
 #### Inputs:
 
-* `$expected` is the expected IData document list.
-* `$actual` is the actual IData document list. If this document list is
+* `$expected` is the expected `IData` document list.
+* `$actual` is the actual `IData` document list. If this document list is
   equal to the expected document list, an assertion error will be thrown.
 * `$message` is an optional custom message to be used as the assertion
   error message if the assertion fails.
@@ -460,16 +460,16 @@ Throws an assertion error if the expected and actual strings are equal.
 ### tundra.bool:emit
 
 Converts the given `$boolean` value to a string using the appropriate
-string values specified for true and false.
+string values specified for `true` and `false`.
 
 #### Inputs:
 
 * `$boolean` is the value to be converted, and can be either a string
   parseable as a boolean value, or a `java.lang.Boolean` object.
 * `$value.true` is an optional string value returned if `$boolean` is
-  true. Defaults to "true".
+  `true`. Defaults to "true".
 * `$value.false` is an optional string value returned if `$boolean` is
-  false. Defaults to "false".
+  `false`. Defaults to "false".
 
 #### Outputs:
 
@@ -480,7 +480,7 @@ string values specified for true and false.
 ### tundra.bool:format
 
 Formats the given boolean string using the appropriate
-boolean value specified for true and false.
+boolean value specified for `true` and `false`.
 
 #### Inputs:
 
@@ -517,7 +517,7 @@ either "true" or "false".
 
 ### tundra.bool:normalize
 
-Returns the canonical string form for the given $boolean string: either
+Returns the canonical string form for the given `$boolean` string: either
 "true" or "false".
 
 If `$boolean` is null and `$default` is not null, then `$default`'s boolean
@@ -632,7 +632,7 @@ Removes all entries from the cache with the given name.
 
 ### tundra.cache.memory:exists
 
-Returns true if the cache with the given name contains the given key.
+Returns `true` if the cache with the given name contains the given key.
 
 #### Inputs:
 
@@ -1029,8 +1029,7 @@ Converts a [java.util.List] object to an array.
 
 #### Outputs:
 
-* `$array` is an array representation of the given $list.
-
+* `$array` is an array representation of the given `$list.`
 ---
 
 ### tundra.collection.list.object:clear
@@ -1553,7 +1552,7 @@ Removes all of the mappings from the given map.
 ### tundra.collection.map.document:create
 
 Returns a newly constructed [java.util.Map] object with String
-keys and IData values.
+keys and `IData` values.
 
 #### Inputs:
 
@@ -2242,7 +2241,7 @@ Returns all configuration settings for all configured packages.
 
 #### Inputs:
 
-* `$refresh?` is an optional boolean which when true will force a
+* `$refresh?` is an optional boolean which when `true` will force a
   refresh of the cached configurations from disk. Defaults to
   `false`.
 
@@ -2334,7 +2333,7 @@ Returns all configuration settings for all configured packages.
 
 #### Inputs:
 
-* `$refresh?` is an optional boolean which when true will force a
+* `$refresh?` is an optional boolean which when `true` will force a
   refresh of the cached configurations from disk. Defaults to
   `false`.
 
@@ -2356,7 +2355,7 @@ emitting or serializing the amended content.
 
 * `$content` is a string, byte array, or input stream containing the
   content to be amended.
-* `$amendments` is an IData document list containing all the edits to be
+* `$amendments` is an `IData` document list containing all the edits to be
   made to the given `$content`.
   * `key` is a fully-qualified (for example, `a/b/c[0]`) key identifying
     the value in the parsed `$content` to be edited.
@@ -2366,7 +2365,7 @@ emitting or serializing the amended content.
     `$content`.
   * `condition` is an optional `Tundra/tundra.condition:evaluate`
     conditional statement, which is evaluated against the pipeline and
-    only if the condition evaluates to true will the associated amended
+    only if the condition evaluates to `true` will the associated amended
     value be applied. If not specified, the amended value will always be
     applied.
 * `$content.type` is the MIME media type that describes the format of the
@@ -2568,9 +2567,9 @@ specification.
 
     * `file` is the literal name of the remote file the content will be
       written to.
-    * `append` is an optional query string boolean which if true will
+    * `append` is an optional query string boolean which if `true` will
       append the content to the given file if it already exists.
-      Defaults to false if not specified, which overwrites the given
+      Defaults to `false` if not specified, which overwrites the given
       file if it already exists.
     * `rename` is an optional query string boolean which if `true` will
       first write the content to a unique temporary filename and then
@@ -2664,12 +2663,12 @@ This service is intended to be invoked by clients via HTTP or FTP.
 
 ### tundra.content:emit
 
-Emits or serializes an IData document to a string, byte array, or input
+Emits or serializes an `IData` document to a string, byte array, or input
 stream.
 
 #### Inputs:
 
-* `$document` is the IData document to be serialized as a string, byte
+* `$document` is the `IData` document to be serialized as a string, byte
   array, or input stream.
 * `$content.type` is the MIME media type that describes the format of the
   resulting serialized `$content`.
@@ -2696,7 +2695,7 @@ stream.
 ### tundra.content:parse
 
 Parses or deserializes content specified as a string, byte array, or
-input stream into an IData document.
+input stream into an `IData` document.
 
 #### Inputs:
 
@@ -2718,7 +2717,7 @@ input stream into an IData document.
 
 #### Outputs:
 
-* `$document` is the resulting IData document representing the parsed
+* `$document` is the resulting `IData` document representing the parsed
   `$content`.
 
 ---
@@ -2801,9 +2800,9 @@ Services in this folder must implement the
 
     The following additional settings can be specified using query
     string parameters:
-    * `active`: optional boolean which when true uses active FTP.
+    * `active`: optional boolean which when `true` uses active FTP.
       Defaults to passive FTP.
-    * `ascii`: optional boolean which when true sets the FTP transfer
+    * `ascii`: optional boolean which when `true` sets the FTP transfer
       mode to ASCII. Defaults to binary transfer mode.
     * `timeout`: optional XML duration specifying the time to wait for
       a response from the FTP server before timing out and
@@ -2888,9 +2887,9 @@ input, and emitting the split list of `$contents` as output.
 * `$content` is a string, byte array, or input stream of content to be
   split.
 * `$service` is the fully-qualified name of the splitting service, which
-  accepts a single IData document and returns an IData document list,
+  accepts a single `IData` document and returns an `IData` document list,
   called to split the parsed `$content`.
-* `$pipeline` is an optional IData document containing arbitrary
+* `$pipeline` is an optional `IData` document containing arbitrary
   variables to be included in the input pipeline of the invocation of
   `$service`.
 * `$content.type.input` is the MIME media type that describes the format
@@ -2912,7 +2911,7 @@ input, and emitting the split list of `$contents` as output.
   namespaces. Alternatively, it is permissible for the resulting list
   returned by `$service` to contain unlike documents (documents whose MIME
   types are different), and in this case `$service` is required to return an
-  IData document list `$namespaces`, where each item in `$namespaces`
+  `IData` document list `$namespaces`, where each item in `$namespaces`
   declares the namespace prefixes and URIs appropriate for serializing the
   corresponding indexed item in the returned document list.
 * `$schema.input` is the fully-qualified name of the document reference or
@@ -2930,7 +2929,7 @@ input, and emitting the split list of `$contents` as output.
   pipeline of the call to `$service` for the parsed `$content` IData
   document. Defaults to `$document`.
 * `$service.output` is an optional variable name used to extract the
-  output IData document list from the output pipeline of the call to
+  output `IData` document list from the output pipeline of the call to
   `$service`. Defaults to `$documents`.
 * `$encoding.input` is an optional character set used to decode the text
   data if `$content` is provided as a byte array or input stream.
@@ -2971,7 +2970,7 @@ input, and emitting or serializing the translated content as output.
 * `$content` is a string, byte array, or input stream containing content
   to be translated to another format.
 * `$service` is the fully-qualified name of the translation service,
-  which accepts a single IData document and returns a single IData
+  which accepts a single `IData` document and returns a single IData
   document, called to translate the parsed `$content`.
 * `$content.type.input` is the MIME media type that describes the format
   of the given `$content`.
@@ -2991,7 +2990,7 @@ input, and emitting or serializing the translated content as output.
   pipeline of the call to `$service` for the parsed `$content` IData
   document. Defaults to `$document`.
 * `$service.output` is an optional variable name used to extract the
-  output IData document from the output pipeline of the call to
+  output `IData` document from the output pipeline of the call to
   `$service`. Defaults to `$translation`.
 * `$encoding.input` is an optional character set used to decode the text
   data if `$content` is provided as a byte array or input stream.
@@ -3018,14 +3017,14 @@ input, and emitting or serializing the translated content as output.
 
 ### tundra.csv:emit
 
-Serializes an IData document containing a list of records as a [CSV]
+Serializes an `IData` document containing a list of records as a [CSV]
 formatted string, byte array, or input stream.
 
 #### Inputs:
 
-* `$document` is the IData document containing a list of records to be
+* `$document` is the `IData` document containing a list of records to be
   serialized as a [CSV] string, byte array, or input stream.
-  * `recordWithNoID` is the IData[] document list of records to be
+  * `recordWithNoID` is the `IData[]` document list of records to be
     serialized.
 * `$delimiter` is the character to use to delimit fields in the resulting
   serialization. Defaults to ',' (comma), if not specified.
@@ -3694,7 +3693,7 @@ Custom datetime patterns can be specified using
 
 ### tundra.datetime:validate
 
-Returns true if the given datetime string conforms to the given pattern.
+Returns `true` if the given datetime string conforms to the given pattern.
 
 Supports a handful of well-known named datetime patterns:
 
@@ -3719,7 +3718,7 @@ Custom datetime patterns can be specified using
   required to conform to. Defaults to an [ISO8601] XML datetime.
 * `$raise?` is an optional boolean flag indicating if an exception
   should be thrown if `$datetime` is found not to conform to `$pattern`.
-  Defaults to false.
+  Defaults to `false`.
 
 #### Outputs:
 
@@ -3942,8 +3941,8 @@ the given [rounding algorithm].
 
 #### Inputs:
 
-* $dividend is the numerator decimal for the division.
-* $divisor is the denominator decimal for the division.
+* `$dividend` is the numerator decimal for the division.
+* `$divisor` is the denominator decimal for the division.
 * `$precision` is an optional number of decimal places to be
   preserved in the result.
 * `$rounding` is an optional choice of the [rounding algorithm]
@@ -4206,7 +4205,7 @@ Returns an decimal object by parsing the given string.
   pattern is not known. A parse is attempted for each pattern until the
   first successful parse, or until all patterns have been tried in which
   case an unparseable decimal exception will be thrown.
-* $class is an optional Java class name that determines the type of
+* `$class` is an optional Java class name that determines the type of
   object returned, a choice of either java.math.BigDecimal,
   `java.math.BigInteger`, `java.lang.Double`, `java.lang.Float`,
   `java.lang.Long`, `java.lang.Integer`, `java.lang.Short`, or `java.lang.Byte`.
@@ -4330,14 +4329,14 @@ given [rounding algorithm].
 
 ### tundra.decimal:validate
 
-Returns true if the given string can be parsed as a decimal.
+Returns `true` if the given string can be parsed as a decimal.
 
 #### Inputs:
 
 * `$decimal` is a string to be validated as a decimal.
 * `$raise?` is an optional boolean indicating if an exception
   should be thrown if the given string is not a valid
-  decimal. Defaults to false.
+  decimal. Defaults to `false`.
 
 #### Outputs:
 
@@ -4375,13 +4374,13 @@ Creates a new directory.
   or file: [URI]; all directories on this path will be created.
 * `$raise?` is an optional boolean flag indicating if an exception
   should be thrown if the directory already exists. Defaults to
-  false.
+  `false`.
 
 ---
 
 ### tundra.directory:exists
 
-Returns true if the given directory exists.
+Returns `true` if the given directory exists.
 
 #### Inputs:
 
@@ -4390,7 +4389,7 @@ Returns true if the given directory exists.
 
 #### Outputs:
 
-* `$exists?` is true if `$directory` exists and is a directory.
+* `$exists?` is `true` if `$directory` exists and is a directory.
 
 ---
 
@@ -4564,7 +4563,7 @@ Returns useful details about the given directory.
 
 #### Outputs:
 
-* `$directory.properties` is an IData document containing the following
+* `$directory.properties` is an `IData` document containing the following
   details about the given `$directory`:
   * `exists?` is a boolean flag indicating if the given directory exists.
   * `parent` is the canonical file: [URI] that represents the parent
@@ -4587,9 +4586,9 @@ directories recursively if desired.
 * `$directory` is a relative or absolute path or file: [URI] to be
   deleted.
 * `$recurse?` is a boolean flag indicating that all child files and
-  directories should be recursively deleted also. If false, and
+  directories should be recursively deleted also. If `false`, and
   the directory is not empty, an exception will be thrown. Defaults
-  to false.
+  to `false`.
 
 ---
 
@@ -4651,7 +4650,7 @@ modified.
 * `$filter.type` is an optional choice if either 'regular expression',
   'wildcard', or 'literal', which determines the type of filter
   patterns provided. Defaults to 'regular expression'.
-* `$recurse?` is an optional boolean flag which when true will include
+* `$recurse?` is an optional boolean flag which when `true` will include
   all child directories in the squeezing process. Defaults to `false`.
 
 #### Outputs:
@@ -4663,13 +4662,13 @@ modified.
 
 ### tundra.document:amend
 
-Edits the given IData `$document` with the list of {key, value} pairs
+Edits the given `IData` `$document` with the list of {key, value} pairs
 specified in `$amendments`.
 
 #### Inputs:
 
-* `$document` is the IData document to be amended.
-* `$amendments` is an IData document list containing all the edits to be
+* `$document` is the `IData` document to be amended.
+* `$amendments` is an `IData` document list containing all the edits to be
   made to the given `$document`.
   * `key` is a fully-qualified (for example, `a/b/c[0]`) key identifying
     the value in `$document` to be edited.
@@ -4678,69 +4677,69 @@ specified in `$amendments`.
     will be substituted prior to being inserted into the `$document`.
   * `condition` is an optional `Tundra/tundra.condition:evaluate`
     conditional statement, which is evaluated against the pipeline and
-    only if the condition evaluates to true will the associated amended
+    only if the condition evaluates to `true` will the associated amended
     `value` be applied. If not specified, the amended `value` will always
     be applied.
 
 #### Outputs:
 
-* `$document` is the resulting edited IData document.
+* `$document` is the resulting edited `IData` document.
 
 ---
 
 ### tundra.document:blankify
 
-Converts all null values in the given IData document to empty strings.
+Converts all null values in the given `IData` document to empty strings.
 
 #### Inputs:
 
-* `$document` is an IData document whose null values are to be converted
+* `$document` is an `IData` document whose null values are to be converted
   to empty strings.
-* `$recurse` is an optional boolean indicating if embedded IData documents
-  and IData[] document lists should also have their null values converted
-  to empty strings. Defaults to false.
+* `$recurse` is an optional boolean indicating if embedded `IData` documents
+  and `IData[]` document lists should also have their null values converted
+  to empty strings. Defaults to `false`.
 
 #### Outputs:
 
-* `$document` is the given IData document with all null values converted to
+* `$document` is the given `IData` document with all null values converted to
   empty strings.
 
 ---
 
 ### tundra.document:clear
 
-Removes all elements from the given IData document, except for
+Removes all elements from the given `IData` document, except for
 any keys specified in the preserve list.
 
 #### Inputs:
 
-* `$document` is an IData document whose keys are to be removed.
+* `$document` is an `IData` document whose keys are to be removed.
 * `$preserve` is list of keys which will not be removed from
-  the given IData document. Keys can be simple or fully
+  the given `IData` document. Keys can be simple or fully
   qualified, such as `a/b/c[0]/d`.
 
 #### Outputs:
 
-* `$document` is the given IData document with all keys removed,
+* `$document` is the given `IData` document with all keys removed,
   except for those specified in `$preserve`.
 
 ---
 
 ### tundra.document:compact
 
-Removes all null values from the given IData document.
+Removes all null values from the given `IData` document.
 
 #### Inputs:
 
-* `$document` is an IData document from which null values are
+* `$document` is an `IData` document from which null values are
   to be removed.
 * `$recurse?` is an optional boolean indicating if embedded
-  IData documents and IData[] document lists should also
-  be compacted. Defaults to false.
+  `IData` documents and `IData[]` document lists should also
+  be compacted. Defaults to `false`.
 
 #### Outputs:
 
-* `$document` is the given IData document with all null values
+* `$document` is the given `IData` document with all null values
   removed.
 
 ---
@@ -4748,30 +4747,30 @@ Removes all null values from the given IData document.
 ### tundra.document:copy
 
 Copies the value associated with the source key to the target key in the
-given IData document.
+given `IData` document.
 
 #### Inputs:
 
-* `$document` is an IData document in which to copy the value associated
+* `$document` is an `IData` document in which to copy the value associated
   with the source key to the target key.
 * `$key.source` is a key identifying the value to be copied, and can be
   simple or fully qualified, such as `a/b/c[0]/d`.
 * `$key.target` is the key to which the source key value is copied, and can
   be simple or fully qualified, such as `a/b/c[0]/d`.
-* `$key.literal?` is an optional boolean flag which if true will treat the
+* `$key.literal?` is an optional boolean flag which if `true` will treat the
   given keys literally rather than as potentially fully-qualified keys.
-  Defaults to false if not specified.
+  Defaults to `false` if not specified.
 
 #### Outputs:
 
-* `$document` is the given IData document where the value associated with
+* `$document` is the given `IData` document where the value associated with
   `$key.source` has been copied to `$key.target`.
 
 ---
 
 ### tundra.document:deliver
 
-Serializes the given IData document, and delivers it to the given
+Serializes the given `IData` document, and delivers it to the given
 destination URI.
 
 Additional delivery protocols can be implemented by creating a service
@@ -4781,7 +4780,7 @@ specification.
 
 #### Inputs:
 
-* `$document` is the IData document to be serialized and delivered to the
+* `$document` is the `IData` document to be serialized and delivered to the
   given destination URI.
 * `$destination` is a URI identifying the location where the serialized
   document should be delivered. Supports the following delivery protocols
@@ -4804,14 +4803,14 @@ specification.
     * `$password` is the password used to log in to the FTP server.
       Defaults to the password specified in the authority section of the
       URI, if not specified.
-    * `$active` is a boolean which when true indicates that the
+    * `$active` is a boolean which when `true` indicates that the
       connection to the FTP server should be in active mode. Defaults to
-      false (passive mode), if not specified.
-    * `$append` is a boolean which when true will append the given
+      `false` (passive mode), if not specified.
+    * `$append` is a boolean which when `true` will append the given
       content to the file, rather than overwrite it, if the file already
-      exists. Defaults to false (overwriting), if not specified.
-    * `$ascii` is a boolean which when true indicates that the file
-      transfer should be made in ascii mode. Defaults to false (binary
+      exists. Defaults to `false` (overwriting), if not specified.
+    * `$ascii` is a boolean which when `true` indicates that the file
+      transfer should be made in ascii mode. Defaults to `false` (binary
       mode), if not specified.
     * `$timeout` is an optional XML duration string which specifies how
       long the client waits for a response from the server before timing
@@ -4829,7 +4828,7 @@ specification.
   * `jms`: sends the given content as a [JMS] [javax.jms.BytesMessage] to
     the specified [JMS] alias and queue or topic. The following
     additional settings can be specified:
-    * $headers/*: additional properties to be added to the [JMS] message
+    * `$headers/*`: additional properties to be added to the [JMS] message
       header, which can be used for filtering by [JMS] subscribers.
 
     The following example will deliver the given content as a [JMS] bytes
@@ -4852,7 +4851,7 @@ specification.
         mailto:bob@example.com?cc=jane@example.com&subject=Example&body=Example&attachment=message.xml
 
     The following additional override options can be provided via the
-    $pipeline document:
+    `$pipeline` document:
     * `$attachment`: the attached file's name
     * `$from`: email address to send the email from
     * `$subject`: the subject line text
@@ -4907,7 +4906,7 @@ specification.
   specified.
 * `$encoding` is an optional character set used to encode the serialized
   document data upon delivery. Defaults to [UTF-8].
-* `$pipeline` is an optional IData document for providing arbitrary
+* `$pipeline` is an optional `IData` document for providing arbitrary
   variables to the delivery implementation service.
 
 #### Outputs:
@@ -4963,21 +4962,21 @@ This is denormalized to the following:
 
 ### tundra.document:drop
 
-Removes the element with the given key from the given IData document.
+Removes the element with the given key from the given `IData` document.
 
 #### Inputs:
 
-* `$document` is an IData document from which to remove the element
+* `$document` is an `IData` document from which to remove the element
   identified by `$key`.
 * `$key` is a key identifying the element in `$document` to be removed,
   and can be simple or fully qualified, such as `a/b/c[0]/d`.
-* `$key.literal?` is an optional boolean flag which if true will treat
+* `$key.literal?` is an optional boolean flag which if `true` will treat
   the given key literally rather than as a potentially fully-qualified
-  key. Defaults to false if not specified.
+  key. Defaults to `false` if not specified.
 
 #### Outputs:
 
-* `$document` is the given IData document where the element
+* `$document` is the given `IData` document where the element
   associated with `$key` has been removed.
 
 ---
@@ -4989,27 +4988,27 @@ document.
 
 #### Inputs:
 
-* `$document` is an IData document to be cloned.
+* `$document` is an `IData` document to be cloned.
 * `$recurse?` is an optional boolean indicating if embedded
-  IData documents and IData[] document lists should also
-  be cloned. If not cloned, the resulting IData document
-  will reference the same IData and IData[] objects as
-  the input document. Defaults to false.
+  `IData` documents and `IData[]` document lists should also
+  be cloned. If not cloned, the resulting `IData` document
+  will reference the same `IData` and `IData[]` objects as
+  the input document. Defaults to `false`.
 
 #### Outputs:
 
-* `$duplicate` is the cloned input IData document.
+* `$duplicate` is the cloned input `IData` document.
 
 ---
 
 ### tundra.document:each
 
-Iterates over all elements in the given IData document, invoking
+Iterates over all elements in the given `IData` document, invoking
 the given service for each key value pair.
 
 #### Inputs:
 
-* `$document` is an IData document whose elements are to be
+* `$document` is an `IData` document whose elements are to be
   iterated over.
 * `$service` is the fully-qualifed name of the service to
   be called to process each element .
@@ -5017,29 +5016,29 @@ the given service for each key value pair.
   arbitrary input arguments to `$service`.
 * `$key.input` is the optional argument name used when
   passing each iteration's key in the input pipeline of
-  each invocation of `$service`. Defaults to $key.
+  each invocation of `$service`. Defaults to `$key`.
 * `$value.input` is the optional argument name used when
   passing each iteration's value in the input pipeline of
-  each invocation of `$service`. Defaults to $value.
+  each invocation of `$service`. Defaults to `$value`.
 * `$value.class` is an optional Java class name, which when
   specified restricts the elements iterated to only those
   whose value are an instance of the given class. When
   not specified, all elements in the `$document` are iterated
   over.
 * `$recurse` is an optional boolean indicating if embedded
-  IData documents and IData[] document lists should also
-  be iterated over. Defaults to false.
+  `IData` documents and `IData[]` document lists should also
+  be iterated over. Defaults to `false`.
 
 ---
 
 ### tundra.document:emit
 
-Emits or serializes the given IData document as an [IData XML]
+Emits or serializes the given `IData` document as an [IData XML]
 string, byte array, or input stream.
 
 #### Inputs:
 
-* `$document` is an IData document to be serialized.
+* `$document` is an `IData` document to be serialized.
 * `$encoding` is an optional character set used to encode the
   serialized document when returned as a byte array or input
   stream. Defaults to [UTF-8].
@@ -5055,13 +5054,13 @@ string, byte array, or input stream.
 
 ### tundra.document:equal
 
-Returns true if the given documents are equal (contain the same set
+Returns `true` if the given documents are equal (contain the same set
 of keys and values).
 
 #### Inputs:
 
-* `$document.x` is an IData document to be compared to `$document.y`.
-* `$document.y` is an IData document to be compared to `$document.x`.
+* `$document.x` is an `IData` document to be compared to `$document.y`.
+* `$document.y` is an `IData` document to be compared to `$document.x`.
 
 #### Outputs:
 
@@ -5072,11 +5071,11 @@ of keys and values).
 
 ### tundra.document:first
 
-Returns the first key value pair from the given IData document.
+Returns the first key value pair from the given `IData` document.
 
 #### Inputs:
 
-* `$document` is an IData document from which to fetch the first
+* `$document` is an `IData` document from which to fetch the first
   element.
 
 #### Outputs:
@@ -5213,7 +5212,7 @@ Returns the value associated with the given key from the given IData
 document.
 
 Also supports resolving [XPath] expressions against [org.w3c.dom.Node]
-objects in the top level of the given IData document.
+objects in the top level of the given `IData` document.
 
 #### Inputs:
 
@@ -5222,9 +5221,9 @@ objects in the top level of the given IData document.
 * `$key` is the key identifying the value in the given document to
   be returned, and can be simple or fully-qualified, such as
   `a/b/c[0]/d`.
-* `$key.literal?` is an optional boolean flag which if true will treat
+* `$key.literal?` is an optional boolean flag which if `true` will treat
   the given key literally rather than as a potentially fully-qualified
-  key. Defaults to false if not specified.
+  key. Defaults to `false` if not specified.
 * `$value.default` is an optional value to be returned when either
   the given `$key` does not exist or its associated value is null.
 * `$value.list.default` is an optional list value to be returned when
@@ -5301,11 +5300,11 @@ if neither are specified.
 
 ### tundra.document:last
 
-Returns the last key value pair from the given IData document.
+Returns the last key value pair from the given `IData` document.
 
 #### Inputs:
 
-* `$document` is an IData document from which to fetch the last
+* `$document` is an `IData` document from which to fetch the last
   element.
 
 #### Outputs:
@@ -5422,7 +5421,7 @@ IData document.
 
 #### Inputs:
 
-* `$document` is an IData document.
+* `$document` is an `IData` document.
 
 #### Outputs:
 
@@ -5493,8 +5492,8 @@ Converts all string values in the given `IData` document to lowercase.
 
 ### tundra.document:map
 
-Constructs a new IData document by invoking the given service for
-each key value pair in the given IData document, and inserting
+Constructs a new `IData` document by invoking the given service for
+each key value pair in the given `IData` document, and inserting
 the key value pair returned by the service in the resulting IData
 document.
 
@@ -5503,7 +5502,7 @@ IData objects.
 
 #### Inputs:
 
-* `$document` is an IData document whose elements are to be
+* `$document` is an `IData` document whose elements are to be
   processed by the given `$service`.
 * `$service` is the fully-qualifed name of the service to
   be called to process each element, and should return a
@@ -5511,24 +5510,24 @@ IData objects.
 * `$pipeline` is an optional input pipeline for providing
   arbitrary input arguments to `$service`.
 * `$key.input` is the optional argument name used when
-  passing each key to `$service`. Defaults to $key.
+  passing each key to `$service`. Defaults to `$key`.
 * `$key.output` is the optional argument name used by `$service`
-  when returning the resulting key. Defaults to $key.
+  when returning the resulting key. Defaults to `$key`.
 * `$value.input` is the optional argument name used when
-  passing each value to `$service`. Defaults to $value.
+  passing each value to `$service`. Defaults to `$value`.
 * `$value.output` is the optional argument name used by `$service`
-  when returning the resulting value. Defaults to $value.
+  when returning the resulting value. Defaults to `$value`.
 * `$value.class` is an optional Java class name, which when
   specified restricts the elements processed to only those
   whose value are an instance of the given class. When
   not specified, all elements in the `$document` are processed.
 * `$recurse` is an optional boolean indicating if embedded
-  IData documents and IData[] document lists should also
-  be processed. Defaults to false.
+  `IData` documents and `IData[]` document lists should also
+  be processed. Defaults to `false`.
 
 #### Outputs:
 
-* `$document` is the resulting IData document created from the
+* `$document` is the resulting `IData` document created from the
   key value pairs returned by `$service`.
 
 ---
@@ -5563,12 +5562,12 @@ sourced document.
 
 ### tundra.document:normalize
 
-Returns a new IData document with all fully qualified keys (for example,
+Returns a new `IData` document with all fully qualified keys (for example,
 'a/b/c' or 'x/y[0]/z[1]') deconstructed into their constituent parts, and
-any non-IData objects converted to an IData representation wherever
+any non-IData objects converted to an `IData` representation wherever
 possible.
 
-For example, if the IData document contains the following key value pairs
+For example, if the `IData` document contains the following key value pairs
 (using [JSON] notation to represent the pipeline):
 
     {
@@ -5593,7 +5592,7 @@ This is normalized to the following:
     }
 
 Keys using path-style notation, for example `a/b/c`, are
-converted to nested IData documents with the final key
+converted to nested `IData` documents with the final key
 in the path, `c` in this example, assigned the value of
 the original key.
 
@@ -5604,30 +5603,30 @@ this example).
 
 #### Inputs:
 
-* `$document` is an IData document to be normalized.
+* `$document` is an `IData` document to be normalized.
 
 #### Outputs:
 
-* `$document` is the resulting normalized IData document.
+* `$document` is the resulting normalized `IData` document.
 
 ---
 
 ### tundra.document:parse
 
 Parses or deserializes the given [IData XML] string, byte array, or
-input stream to an IData document.
+input stream to an `IData` document.
 
 #### Inputs:
 
 * `$content` is a string, byte array, or input stream containing a
-  serialized IData document.
+  serialized `IData` document.
 * `$encoding` is an optional character set used to decode the
   `$content` when provided as a byte array or input stream. Defaults
   to [UTF-8].
 
 #### Outputs:
 
-* `$document` is the resulting deserialized IData document.
+* `$document` is the resulting deserialized `IData` document.
 
 ---
 
@@ -5652,20 +5651,20 @@ Converts strings that contain only whitespace characters in the given
 
 ### tundra.document:pivot
 
-Returns an IData[] document list of each key value pair in the given IData
+Returns an `IData[]` document list of each key value pair in the given IData
 document.
 
 #### Inputs:
 
-* `$document` is an IData document to be pivoted.
+* `$document` is an `IData` document to be pivoted.
 * `$recurse?` is an optional boolean indicating if embedded IData
-  documents and IData[] document lists should also be pivoted. Note that
-  a pivoted IData[] document list is returned as a two dimensional IData
-  array (IData[][]). Defaults to false, if not specified.
+  documents and `IData[]` document lists should also be pivoted. Note that
+  a pivoted `IData[]` document list is returned as a two dimensional IData
+  array (IData[][]). Defaults to `false`, if not specified.
 
 #### Outputs:
 
-* `$pivot` is an IData[] document list where each item in the list
+* `$pivot` is an `IData[]` document list where each item in the list
   represents each key value pair present in the given `$document`.
 
 ---
@@ -5700,24 +5699,24 @@ given `IData` document.
 
 ### tundra.document:put
 
-Sets the value associated with the given key in the given IData document.
+Sets the value associated with the given key in the given `IData` document.
 
 #### Inputs:
 
-* `$document` is an IData document in which to insert the given key
+* `$document` is an `IData` document in which to insert the given key
   value pair.
-* `$key` is the key to be inserted into the given IData document, and
+* `$key` is the key to be inserted into the given `IData` document, and
   can be simple or fully-qualified, such as `a/b/c[0]/d`. If the key
   already exists, it's value will be overwritten with the given value.
-* `$key.literal?` is an optional boolean flag which if true will treat
+* `$key.literal?` is an optional boolean flag which if `true` will treat
   the given key literally rather than as a potentially fully-qualified
-  key. Defaults to false if not specified.
+  key. Defaults to `false` if not specified.
 * `$value` is the value to be associated with the given key. If not
   specified, a null value will be inserted.
 
 #### Outputs:
 
-* `$document` is the resulting IData document containing the new key
+* `$document` is the resulting `IData` document containing the new key
   value pair.
 
 ---
@@ -5758,24 +5757,24 @@ given `IData` document.
 ### tundra.document:rename
 
 Renames the value associated with the source key to have the target key
-in the given IData document.
+in the given `IData` document.
 
 #### Inputs:
 
-* `$document` is an IData document in which to rename the given key.
+* `$document` is an `IData` document in which to rename the given key.
 * `$key.source` is the key to be renamed, and can be simple or fully-
   qualified, such as `a/b/c[0]/d`.
 * `$key.target` is the new name that source key will be renamed to,
   and can be simple or fully-qualified, such as `a/b/c[0]/d`. If the
   target key already exists, its value will be overwitten with the
   value that was associated with the source key.
-* `$key.literal?` is an optional boolean flag which if true will treat
+* `$key.literal?` is an optional boolean flag which if `true` will treat
   the given keys literally rather than as potentially fully-qualified
-  keys. Defaults to false if not specified.
+  keys. Defaults to `false` if not specified.
 
 #### Outputs:
 
-* `$document` is the resulting IData document, where the source key
+* `$document` is the resulting `IData` document, where the source key
   has been renamed to the target key.
 
 ---
@@ -5823,34 +5822,34 @@ the keys and values in the given `IData` document.
 
 ### tundra.document:sort
 
-Sorts the given IData document by its keys in natural ascending order.
+Sorts the given `IData` document by its keys in natural ascending order.
 
 #### Inputs:
 
-* `$document` is an IData document to be sorted.
+* `$document` is an `IData` document to be sorted.
 * `$recurse` is an optional boolean indicating if embedded
-  IData documents and IData[] document lists should also
-  be sorted. Defaults to false.
+  `IData` documents and `IData[]` document lists should also
+  be sorted. Defaults to `false`.
 
 #### Outputs:
 
-* `$document` is the resulting IData document, where the elements have
+* `$document` is the resulting `IData` document, where the elements have
   been sorted by their keys into natural ascending order.
 
 ---
 
 ### tundra.document:split
 
-One-to-many conversion of an IData document to an IData[] document list.
+One-to-many conversion of an `IData` document to an `IData[]` document list.
 Calls the given splitting service, passing the document as an input, and
 returning the split list of documents as output.
 
 #### Inputs:
 
-* `$document` is an IData document to be processed by the given splitting
+* `$document` is an `IData` document to be processed by the given splitting
   service.
 * `$service` is the fully-qualified name of the splitting service, which
-  accepts a single IData document and returns an IData document list,
+  accepts a single `IData` document and returns an `IData` document list,
   called to split `$document`.
 
   It is permissible for the resulting list returned by `$service` to
@@ -5861,19 +5860,19 @@ returning the split list of documents as output.
   * `$schemas` specifies the fully-qualified document reference (for
     XML) or flat file schema (for Flat Files) per item in the returned
     list of documents, which can be used to serialize that item.
-* `$pipeline` is an optional IData document containing arbitrary
+* `$pipeline` is an optional `IData` document containing arbitrary
   variables to be included in the input pipeline of the invocation of
   `$service`.
 * `$service.input` is an optional variable name to use in the input
-  pipeline of the call to `$service` for the IData document. Defaults to
+  pipeline of the call to `$service` for the `IData` document. Defaults to
   `$document`.
 * `$service.output` is an optional variable name used to extract the
-  output IData document list from the output pipeline of the call to
+  output `IData` document list from the output pipeline of the call to
   `$service`. Defaults to `$documents`.
 
 #### Outputs:
 
-* `$documents` is the resulting list of IData documents.
+* `$documents` is the resulting list of `IData` documents.
 * `$content.types` is the list of MIME media types if the `$documents`
   list contains unlike media types.
 * `$schemas` is the list of fully-qualified document reference (for XML)
@@ -5885,21 +5884,21 @@ returning the split list of documents as output.
 ### tundra.document:squeeze
 
 Trims all leading and trailing whitespace from all string values, then
-converts empty strings, empty IData documents, and empty lists to nulls,
-then compacts the IData document by removing all null values.
+converts empty strings, empty `IData` documents, and empty lists to nulls,
+then compacts the `IData` document by removing all null values.
 
 #### Inputs:
 
-* `$document` is an IData document to be squeezed.
+* `$document` is an `IData` document to be squeezed.
 * `$recurse?` is an optional boolean indicating if embedded
-  IData documents and IData[] document lists should also
+  `IData` documents and `IData[]` document lists should also
   be squeezed. Defaults to `false`.
 
 #### Outputs:
 
-* `$document` is the resulting IData document with all string values
+* `$document` is the resulting `IData` document with all string values
   trimmed of leading and trailing whitespace characters, and all
-  empty string values, empty IData documents, empty lists, and null
+  empty string values, empty `IData` documents, empty lists, and null
   values removed.
 
 ---
@@ -5907,19 +5906,19 @@ then compacts the IData document by removing all null values.
 ### tundra.document:stringify
 
 Converts all non-IData document and non-IData[] document list values in the
-given IData document to strings.
+given `IData` document to strings.
 
 #### Inputs:
 
-* `$document` is an IData document whose values are to be converted to
+* `$document` is an `IData` document whose values are to be converted to
   strings.
-* `$recurse` is an optional boolean indicating if embedded IData documents
-  and IData[] document lists should also have their values converted to
+* `$recurse` is an optional boolean indicating if embedded `IData` documents
+  and `IData[]` document lists should also have their values converted to
   strings. Defaults to `false`.
 
 #### Outputs:
 
-* `$document` is the given IData document with all non-IData document and
+* `$document` is the given `IData` document with all non-IData document and
   non-IData[] document list values converted to strings.
 
 ---
@@ -5935,7 +5934,7 @@ value.
 
 #### Inputs:
 
-* `$document` is an IData document to perform variable substitution on.
+* `$document` is an `IData` document to perform variable substitution on.
 * `$pipeline` is an optional scope used to resolve key references. If
   not specified, keys are resolved against the pipeline itself.
 * `$default` is an optional default value to substitute in place of keys
@@ -5952,7 +5951,7 @@ value.
 
 #### Outputs:
 
-* `$document` is the resulting IData document with all variable
+* `$document` is the resulting `IData` document with all variable
   substitution patterns in all values, such as `%key%`, replaced with
   the value of the key (resolved against either `$pipeline`, if
   specified, or the pipeline itself).
@@ -5989,28 +5988,28 @@ given `IData` document.
 
 ### tundra.document:translate
 
-One-to-one conversion of one IData document to another IData document.
+One-to-one conversion of one `IData` document to another `IData` document.
 Calls the given translation service, passing the document as an input, and
 returning the translated document as output.
 
 #### Inputs:
 
-* `$document` is an IData document to be translated.
+* `$document` is an `IData` document to be translated.
 * `$service` is the fully-qualified name of the translation service,
-  which accepts a single IData document and returns a single IData
+  which accepts a single `IData` document and returns a single IData
   document, called to translate the given `$document`.
-* `$pipeline` is an optional IData document for providing arbitrary
-  variables to the invocation of $service.
+* `$pipeline` is an optional `IData` document for providing arbitrary
+  variables to the invocation of `$service.`
 * `$service.input` is an optional variable name to use in the input
-  pipeline of the call to `$service` for the given IData document.
+  pipeline of the call to `$service` for the given `IData` document.
   Defaults to `$document`.
 * `$service.output` is an optional variable name used to extract the
-  output IData document from the output pipeline of the call to
+  output `IData` document from the output pipeline of the call to
   `$service`. Defaults to `$translation`.
 
 #### Outputs:
 
-* `$translation` is the translated IData document.
+* `$translation` is the translated `IData` document.
 
 ---
 
@@ -6021,7 +6020,7 @@ given `IData` document.
 
 #### Inputs:
 
-* `$document` is an IData document whose string values are to be
+* `$document` is an `IData` document whose string values are to be
   trimmed of leading and trailing whitespace characters.
 * `$recurse?` is an optional boolean indicating if embedded
   `IData` documents and `IData[]` document lists should also
@@ -6129,11 +6128,11 @@ Converts all string values in the given `IData` document to uppercase.
 
 ### tundra.document:values
 
-Returns all the top-level values in the given IData document.
+Returns all the top-level values in the given `IData` document.
 
 #### Inputs:
 
-* `$document` is an IData document from which all top-level
+* `$document` is an `IData` document from which all top-level
   values are to be fetched.
 
 #### Outputs:
@@ -6145,12 +6144,12 @@ Returns all the top-level values in the given IData document.
 
 ### tundra.document:validate
 
-Validates the given IData document against the given document
+Validates the given `IData` document against the given document
 reference or flat file schema.
 
 #### Inputs:
 
-* `$document` is the IData document to be validated.
+* `$document` is the `IData` document to be validated.
 * `$schema` is the fully-qualified name of the document reference
   or flat file schema to be used to validate the given `$document`.
 * `$raise?` is an optional boolean which when `true` will cause
@@ -6160,7 +6159,7 @@ reference or flat file schema.
 #### Outputs:
 
 * `$valid?` is `true` when the given `$document` if validated
-  succesfully, otherwise false when `$document` is invalid.
+  succesfully, otherwise `false` when `$document` is invalid.
 * `$message` describes the validation errors encountered when
   validating `$document`.
 
@@ -6439,7 +6438,7 @@ to all other file system activities that might affect the file.
 
 ### tundra.file:executable
 
-Returns true if Integration Server can execute to the given file.
+Returns `true` if Integration Server can execute to the given file.
 
 #### Inputs:
 
@@ -6451,13 +6450,13 @@ Returns true if Integration Server can execute to the given file.
 
 * `$executable?` is a boolean flag indicating if Integration Server
   has permission to execute the given file. If the file does not
-  exist, false is returned.
+  exist, `false` is returned.
 
 ---
 
 ### tundra.file:exists
 
-Returns true if the given file exists.
+Returns `true` if the given file exists.
 
 #### Inputs:
 
@@ -6511,7 +6510,7 @@ Returns the length of the given file in bytes.
 
 ### tundra.file:match
 
-Returns true if the given file name matches the given
+Returns `true` if the given file name matches the given
 regular expression or wildcard pattern.
 
 #### Inputs:
@@ -6574,7 +6573,7 @@ of whether an exception is encountered by the service.
   reading, writing, or appending. Defaults to 'read'.
 * `$service` is the fully-qualified name of the service which
   will be called to process the opened file.
-* `$pipeline` is an optional IData document for specifying
+* `$pipeline` is an optional `IData` document for specifying
   arbitrary input parameters to the call to `$service`. If
   provided, the call to `$service` is scoped with this IData,
   and will not have access to the global pipeline.
@@ -6584,7 +6583,7 @@ of whether an exception is encountered by the service.
 
 #### Outputs:
 
-* `$pipeline` is an optional IData document representing the
+* `$pipeline` is an optional `IData` document representing the
   output pipeline of the call to `$service`. This will only
   be returned if an input `$pipeline` was provided. If no
   input `$pipeline` was provided, any outputs from the call
@@ -6627,7 +6626,7 @@ constrained environments.
 
 ### tundra.file:readable
 
-Returns true if Integration Server can read the given file.
+Returns `true` if Integration Server can read the given file.
 
 #### Inputs:
 
@@ -6639,7 +6638,7 @@ Returns true if Integration Server can read the given file.
 
 * `$readable?` is a boolean flag indicating if Integration Server
   has permission to read the given file. If the file does not
-  exist, false is returned.
+  exist, `false` is returned.
 
 ---
 
@@ -6654,7 +6653,7 @@ Returns useful details about the given file.
 
 #### Outputs:
 
-* `$file.properties` is an IData document containing the following
+* `$file.properties` is an `IData` document containing the following
   details about the given `$file`:
   * `exists?` is a boolean flag indicating if the given file exists.
   * `parent` is the canonical file: [URI] that represents the parent
@@ -6671,13 +6670,13 @@ Returns useful details about the given file.
   * `modified` is the last modified datetime of the given file.
   * `executable?` is a boolean flag indicating if Integration Server has
     permission to execute the given file. If the file does not exist,
-    false is returned.
+    `false` is returned.
   * `readable?` is a boolean flag indicating if Integration Server has
-    permission to read the given file. If the file does not exist, false
+    permission to read the given file. If the file does not exist, `false`
     is returned.
   * `writable?` is a boolean flag indicating if Integration Server has
     permission to write or append to the given file. If the file does not
-    exist, false is returned.
+    exist, `false` is returned.
   * `uri` is the canonical file: [URI] that represents the given file.
 
 ---
@@ -6749,7 +6748,7 @@ defaults to the [mime type] for arbitrary binary data:
 
 ### tundra.file:writable
 
-Returns true if Integration Server can write to the given file.
+Returns `true` if Integration Server can write to the given file.
 
 #### Inputs:
 
@@ -6761,7 +6760,7 @@ Returns true if Integration Server can write to the given file.
 
 * `$writable?` is a boolean flag indicating if Integration Server
   has permission to write or append to the given file. If the
-  file does not exist, false is returned.
+  file does not exist, `false` is returned.
 
 ---
 
@@ -6783,7 +6782,7 @@ If no file is specified, a new temporary file is created automatically.
   Defaults to 'append', since this is the safer option.
 * `$content` is a string, byte array, or input stream containing data
   to be written or appended to the given file.
-* `$encoding` is an optional character set to use when $content has
+* `$encoding` is an optional character set to use when `$content` has
   been provided as a string. Defaults to [UTF-8].
 
 #### Outputs:
@@ -6860,7 +6859,7 @@ Decompresses the given content using the [gzip] file compression format.
 
 ### tundra.hjson:emit
 
-Serializes an IData document as an [Hjson] formatted string, byte
+Serializes an `IData` document as an [Hjson] formatted string, byte
 array, or input stream.
 
 #### Inputs:
@@ -6887,7 +6886,7 @@ array, or input stream.
 ### tundra.hjson:parse
 
 Parses [Hjson] content specified as a string, byte array, or input
-stream into an IData document.
+stream into an `IData` document.
 
 #### Inputs:
 
@@ -7018,7 +7017,7 @@ servers.
 
 #### Inputs:
 
-* `$request` is an IData document containing the parameters required
+* `$request` is an `IData` document containing the parameters required
   for making an [HTTP] request to an [HTTP] server.
   * `uri` is the [URI] the request will be sent to.
   * `method` is the [HTTP] method for the request, a choice of: `get`,
@@ -7262,7 +7261,7 @@ Adds the given integers together, returning the result.
 
 #### Inputs:
 
-* `$operands` is an IData document containing arbitrary elements
+* `$operands` is an `IData` document containing arbitrary elements
   whose leaf values will be used as operands for this operation.
   Leaf values can be provided as objects with the following types:
   * `java.lang.String`
@@ -7287,7 +7286,7 @@ Returns the average value of the given integers.
 
 #### Inputs:
 
-* `$operands` is an IData document containing arbitrary elements
+* `$operands` is an `IData` document containing arbitrary elements
   whose leaf values will be used as operands for this operation.
   Leaf values can be provided as objects with the following types:
   * `java.lang.String`
@@ -7426,7 +7425,7 @@ Returns the maximum value from the given integers.
 
 #### Inputs:
 
-* `$operands` is an IData document containing arbitrary elements
+* `$operands` is an `IData` document containing arbitrary elements
   whose leaf values will be used as operands for this operation.
   Leaf values can be provided as objects with the following types:
   * `java.lang.String`
@@ -7451,7 +7450,7 @@ Returns the minimum value from the given integers.
 
 #### Inputs:
 
-* `$operands` is an IData document containing arbitrary elements
+* `$operands` is an `IData` document containing arbitrary elements
   whose leaf values will be used as operands for this operation.
   Leaf values can be provided as objects with the following types:
   * `java.lang.String`
@@ -7476,7 +7475,7 @@ Multiplies the given integers together, returning the result.
 
 #### Inputs:
 
-* `$operands` is an IData document containing arbitrary elements
+* `$operands` is an `IData` document containing arbitrary elements
   whose leaf values will be used as operands for this operation.
   Leaf values can be provided as objects with the following types:
   * `java.lang.String`
@@ -7620,14 +7619,14 @@ Subtracts one integer from another, returning the result.
 
 ### tundra.integer:validate
 
-Returns true if the given string can be parsed as an integer.
+Returns `true` if the given string can be parsed as an integer.
 
 #### Inputs:
 
 * `$integer` is a string to be validated as an integer.
 * `$raise?` is an optional boolean indicating whether an exception
   should be thrown if the given integer is invalid. Defaults to
-  false.
+  `false`.
 
 #### Outputs:
 
@@ -7669,19 +7668,19 @@ array, or input stream.
 ### tundra.json:parse
 
 Parses [JSON] content specified as a string, byte array, or input stream
-into an IData document.
+into an `IData` document.
 
 #### Inputs:
 
 * `$content` is a string, byte array, or input stream containing [JSON]
   content to be parsed.
-* `$encoding` is an optional character set to use when $content is
+* `$encoding` is an optional character set to use when `$content` is
   provided as a byte array or input stream to decode the contained text
   data. Defaults to [UTF-8].
 
 #### Outputs:
 
-* `$document` is the resulting IData document representing the parsed
+* `$document` is the resulting `IData` document representing the parsed
   `$content`.
   * `recordWithNoID` is an optional array which is returned only when
     the given [JSON] content represents an array rather than an
@@ -7691,13 +7690,13 @@ into an IData document.
 
 ### tundra.list.content:emit
 
-Emits (serializes) each item in the given IData[] document list
+Emits (serializes) each item in the given `IData[]` document list
 to a string, byte array, or input stream, resulting in a list of
 serialized content.
 
 #### Inputs:
 
-* `$documents` is a list of IData documents to be serialized as a
+* `$documents` is a list of `IData` documents to be serialized as a
   string, byte array, or input stream.
 * `$content.types` is a list of MIME media types with the same number
   of items as `$documents`, where `$content.types[n]` describes the
@@ -7729,9 +7728,9 @@ serialized content.
   when all items adhere to the exact same [XML] schema).
 * `$encoding` is an optional character set to use when the `$mode`
   selected is bytes or stream. Defaults to [UTF-8].
-* `$validate?` is an optional boolean flag which when true will
+* `$validate?` is an optional boolean flag which when `true` will
   validate each document's content against the given `$schema`, and
-  throw an exception if the content is invalid. Defaults to false.
+  throw an exception if the content is invalid. Defaults to `false`.
 * `$mode` is an optional choice of stream, bytes, or string which
   determines the type of object the documents are serialized to.
 
@@ -7751,7 +7750,7 @@ format.
 
 Calls the given joining service, passing the parsed list of contents
 as an input, and emitting the joined content as output. The joining
-service must accept an IData[] document list, and return a single
+service must accept an `IData[]` document list, and return a single
 IData document.
 
 #### Inputs:
@@ -7761,10 +7760,10 @@ IData document.
   aggregated together into one item of content.
 * `$service` is the fully-qualified joining service name that is
   called to join or aggregate the parsed contents. This service must
-  accept an IData[] document list, and return a single IData
+  accept an `IData[]` document list, and return a single IData
   document.
-* `$pipeline` is an optional IData document for specifying arbitrary
-  input arguments to the invocation of $service.
+* `$pipeline` is an optional `IData` document for specifying arbitrary
+  input arguments to the invocation of `$service`.
 * `$content.types.input` is a list of MIME media types with the same
   number of items as `$contents`, where `$content.types[n]` describes
   the format of the `$contents[n]`. Use this input argument when
@@ -7812,12 +7811,12 @@ IData document.
   Defaults to [UTF-8].
 * `$encoding.output` is an optional character set to use when the
   `$mode.output` selected is bytes or stream. Defaults to [UTF-8].
-* `$validate.input?` is an optional boolean flag which when true will
+* `$validate.input?` is an optional boolean flag which when `true` will
   validate the input content against the appropriate schema, and throw
-  an exception if the content is invalid. Defaults to false.
-* `$validate.output?` is an optional boolean flag which when true will
+  an exception if the content is invalid. Defaults to `false`.
+* `$validate.output?` is an optional boolean flag which when `true` will
   validate the output content against the given `$schema.output`, and
-  throw an exception if the content is invalid. Defaults to false.
+  throw an exception if the content is invalid. Defaults to `false`.
 * `$mode.output` is an optional choice of stream, bytes, or
   string, which determines the type of `$content` object returned.
   Defaults to stream.
@@ -7825,7 +7824,7 @@ IData document.
 #### Outputs:
 
 * `$content` is a string, byte array, or input stream, depending on
-  the `$mode.output` selected, of the serialized IData document
+  the `$mode.output` selected, of the serialized `IData` document
   returned by `$service`.
 
 ---
@@ -7833,7 +7832,7 @@ IData document.
 ### tundra.list.content:parse
 
 Parses a list of content (specified as a list of strings, bytes, or
-input streams) into an IData[] document list.
+input streams) into an `IData[]` document list.
 
 #### Inputs:
 
@@ -7870,13 +7869,13 @@ input streams) into an IData[] document list.
 * `$encoding` is an optional character set to use when the
   `$contents` is provided as a list of input streams or byte arrays.
   Defaults to [UTF-8].
-* `$validate?` is an optional boolean flag which when true will
+* `$validate?` is an optional boolean flag which when `true` will
   validate each parsed content against the appropriate schema, and
-  throw an exception if the content is invalid. Defaults to false.
+  throw an exception if the content is invalid. Defaults to `false`.
 
 #### Outputs:
 
-* `$documents` is an IData[] document list of the parsed `$contents`,
+* `$documents` is an `IData[]` document list of the parsed `$contents`,
   where `$documents[n]` is the parsed version of `$contents[n]`.
 
 ---
@@ -7968,7 +7967,7 @@ Custom datetime patterns can be specified using
   `(+|-)HH:mm` time zone offset, or an XML duration string
   representing a time zone offset, or a raw millisecond time zone
   offset, or `Z` for UTC, or `local` for the default localhost
-  time zone identifying the time zone the returned $list strings
+  time zone identifying the time zone the returned `$list` strings
   will be formatted with.
 
 #### Outputs:
@@ -7986,10 +7985,10 @@ also empty after compacting.
 
 #### Inputs:
 
-* `$directories is a list of directories specified as a relative or
+* `$directories` is a list of directories specified as a relative or
   absolute path or `file:` [URI] to be compacted.
 * `$delete?` is an optional boolean flag which when `true` will delete
-  the given $directory itself if it is emtpy after compaction.
+  the given `$directory` itself if it is emtpy after compaction.
   Defaults to `false`.
 * `$raise?` is an optional boolean flag which when `true` will throw
   an exception if the deletion of any directories fails. Defaults
@@ -8078,7 +8077,7 @@ modified.
   * `filter.type` is an optional choice if either 'regular
     expression', 'wildcard', or 'literal', which determines the type
     of filter patterns provided. Defaults to 'regular expression'.
-  * `recurse?` is an optional boolean flag which when true will
+  * `recurse?` is an optional boolean flag which when `true` will
     include all child directories in the squeezing process. Defaults
     to `false`.
 
@@ -8127,20 +8126,20 @@ to empty strings.
 
 ### tundra.list.document:clear
 
-Removes all elements from all items in the given IData document list,
+Removes all elements from all items in the given `IData` document list,
 except for any keys specified in the preserve list.
 
 #### Inputs:
 
-* `$list` is an IData document list for which to remove the keys in
+* `$list` is an `IData` document list for which to remove the keys in
   each item.
 * `$preserve` is list of keys which will not be removed from
-  the given IData document list. Keys can be simple or fully
+  the given `IData` document list. Keys can be simple or fully
   qualified, such as `a/b/c[0]/d`.
 
 #### Outputs:
 
-* `$list` is the given IData document list with all keys removed
+* `$list` is the given `IData` document list with all keys removed
   from each item, except for those specified in `$preserve`.
 
 ---
@@ -8154,8 +8153,8 @@ length of the list.
 
 * `$list` is a list to be compacted.
 * `$recurse?` is an optional boolean indicating if embedded
-  IData documents and IData[] document lists should also
-  be compacted. Defaults to false.
+  `IData` documents and `IData[]` document lists should also
+  be compacted. Defaults to `false`.
 
 #### Outputs:
 
@@ -8210,17 +8209,17 @@ variables.
 * `$list` is a list to be iterated over.
 * `$service` is a fully-qualified service name identifying the
   service to be invoked to process each item in the list.
-* `$pipeline` is an optional IData document containing arbitrary
+* `$pipeline` is an optional `IData` document containing arbitrary
   input arguments used when invoking `$service`.
 * `$item.input` is an optional variable name used when passing each
   item in the list to the invocation of `$service`. Defaults to
-  $item.
+  `$item`.
 
 ---
 
 ### tundra.list.document:equal
 
-Returns true if the given lists are equal.
+Returns `true` if the given lists are equal.
 
 #### Inputs:
 
@@ -8236,7 +8235,7 @@ Returns true if the given lists are equal.
 ### tundra.list.document:filter
 
 Filters the given list to only include items where the given
-condition evaluates to true.
+condition evaluates to `true`.
 
 #### Inputs:
 
@@ -8260,7 +8259,7 @@ condition evaluates to true.
 #### Outputs:
 
 * `$list` is the given list filtered to only include the items where
-  $condition evaluated to `true`.
+  `$condition` evaluated to `true`.
 * `$list.length` is the number of items in the returned `$list`.
 
 ---
@@ -8422,14 +8421,14 @@ with the given item (or null if not specified).
 
 #### Inputs:
 
-* `$list` is the IData[] list to be grown.
-* `$item` is an optional IData used to pad the newly grown section of the
+* `$list` is the `IData[]` list to be grown.
+* `$item` is an optional `IData` used to pad the newly grown section of the
   list with.
 * `$count` is the number of new items to add to the list.
 
 #### Outputs:
 
-* `$list` is the IData[] list grown by the desired `$count` of items,
+* `$list` is the `IData[]` list grown by the desired `$count` of items,
   with the original items preserved and the new items padded with `$item`
   (or null if not specified).
 
@@ -8437,7 +8436,7 @@ with the given item (or null if not specified).
 
 ### tundra.list.document:include
 
-Returns true if the given item is found in the given list.
+Returns `true` if the given item is found in the given list.
 
 #### Inputs:
 
@@ -8477,46 +8476,46 @@ index in the given list.
 
 ### tundra.list.document:join
 
-Many-to-one conversion of an IData document list to an IData document.
+Many-to-one conversion of an `IData` document list to an `IData` document.
 
-Calls the given joining service, passing the IData document list
-as an input, and returning the resulting IData document as output.
-The joining service must accept an IData document list, and
-return a single IData document.
+Calls the given joining service, passing the `IData` document list
+as an input, and returning the resulting `IData` document as output.
+The joining service must accept an `IData` document list, and
+return a single `IData` document.
 
 #### Inputs:
 
-* `$documents` is an IData document list to be joined or
-  aggregated together into one IData document.
+* `$documents` is an `IData` document list to be joined or
+  aggregated together into one `IData` document.
 * `$service` is the fully-qualified joining service name that is
-  called to join or aggregate the IData document list. This
-  service must accept an IData[] array, and return a single
-  IData object.
-* `$pipeline` is an optional IData document for specifying
+  called to join or aggregate the `IData` document list. This
+  service must accept an `IData[]` array, and return a single
+  `IData` object.
+* `$pipeline` is an optional `IData` document for specifying
   arbitrary input arguments to the invocation of `$service`.
 * `$service.input` is an optional name to use for the IData
   document list for the input pipeline of the `$service` invocation.
-  Defaults to $documents.
+  Defaults to `$documents`.
 * `$service.output` is an optional name to use for the output IData
   parameter returned by the `$service` invocation. Defaults to
-  $document.
+  `$document`.
 
 #### Outputs:
 
-* `$document` is the resulting IData document returned by `$service`.
+* `$document` is the resulting `IData` document returned by `$service`.
 
 ---
 
 ### tundra.list.document:keys
 
 Returns the union set of all top-level keys present in each IData
-item in the given IData[] document list that match the given regular
+item in the given `IData[]` document list that match the given regular
 expression pattern if specified, or all top-level keys if no pattern
 is specified.
 
 #### Inputs:
 
-* `$list` is an IData[] document list from which all top-level
+* `$list` is an `IData[]` document list from which all top-level
   keys are to be fetched.
 * `$pattern` is an optional [regular expression pattern] that
   is used to filter the list of keys returned. If not specified,
@@ -8596,14 +8595,14 @@ document lists.
 * `$list` is a list to be iterated over.
 * `$service` is a fully-qualified service name identifying the
   service to be invoked to process each item in the list.
-* `$pipeline` is an optional IData document containing arbitrary
+* `$pipeline` is an optional `IData` document containing arbitrary
   input arguments used when invoking `$service`.
 * `$item.input` is an optional variable name used when passing each
   item in the list to the invocation of `$service`. Defaults to
-  $item.
+  `$item`.
 * `$item.output` is an optional variable name used when extracting
   the resulting item from the invocation of `$service`. Defaults to
-  $item.
+  `$item`.
 
 #### Outputs:
 
@@ -8643,7 +8642,7 @@ sourced document.
 
 Returns a new `IData[]` document list with all fully qualified keys (for
 example, 'a/b/c' or 'x/y[0]/z[1]') deconstructed into their constituent
-parts, and any non-IData objects converted to an IData representation
+parts, and any non-IData objects converted to an `IData` representation
 wherever possible.
 
 For example, if an `IData` document contains the following key value pairs
@@ -8913,7 +8912,7 @@ Sets the value of the item at the given index in the given list.
 ### tundra.list.document:reject
 
 Filters the given list to not include items where the given
-condition evaluates to true.
+condition evaluates to `true`.
 
 #### Inputs:
 
@@ -8995,7 +8994,7 @@ the keys and values in the given `IData[]` document list.
   given string wherever the given pattern is found. If not
   specified, no replacement will occur.
 * `$replacement.literal?` is a boolean indicating if the replacement
-  string should be treated as a literal string. If false, captured
+  string should be treated as a literal string. If `false`, captured
   groups can be referred to with dollar-sign references, such as `$1`,
   and other special characters may need to be escaped. Defaults to
   `false`.
@@ -9024,8 +9023,8 @@ specified) when the length is increased.
 
 #### Inputs:
 
-* `$list` is the IData[] list to be grown.
-* `$item` is an optional IData used to pad the list if increasing the
+* `$list` is the `IData[]` list to be grown.
+* `$item` is an optional `IData` used to pad the list if increasing the
   size.
 * `$length` is the desired new length of the list if specified as a
   positive integer, or the relative number of items to truncate from the
@@ -9033,7 +9032,7 @@ specified) when the length is increased.
 
 #### Outputs:
 
-* `$list` is the IData[] list resized to the desired `$length`; if the
+* `$list` is the `IData[]` list resized to the desired `$length`; if the
   new length is less than the original length, the list is truncated from
   the end; if the new length is greater than the original length, the
   list is padded with `$item` (or null if not specified).
@@ -9062,12 +9061,12 @@ from the end.
 
 #### Inputs:
 
-* `$list` is the IData[] list to be shrunk.
+* `$list` is the `IData[]` list to be shrunk.
 * `$count` is the number of items to truncate from the end of the list.
 
 #### Outputs:
 
-* `$list` is the IData[] list shrunk from the end of the list by the
+* `$list` is the `IData[]` list shrunk from the end of the list by the
   desired item count by truncating items from the end of the list. If
   the list is smaller than the count, an empty list is returned.
 
@@ -9121,7 +9120,7 @@ item.
     with `Tundra/tundra.duration:format` must be specified).
   * `descending?` is an optional boolean indicating if the values
     associated with the `key` are to be sorted in descending
-    (largest to smallest) order. Defaults to false, if not
+    (largest to smallest) order. Defaults to `false`, if not
     specified.
 
 #### Outputs:
@@ -9133,22 +9132,22 @@ item.
 ### tundra.list.document:squeeze
 
 Trims all leading and trailing whitespace from all string values,
-then converts empty strings, empty IData documents, and empty lists
-to nulls, then compacts the IData[] document list by removing all
+then converts empty strings, empty `IData` documents, and empty lists
+to nulls, then compacts the `IData[]` document list by removing all
 null values.
 
 #### Inputs:
 
-* `$list` is an IData[] document list to be squeezed.
+* `$list` is an `IData[]` document list to be squeezed.
 * `$recurse?` is an optional boolean indicating if embedded
-  IData documents and IData[] document lists should also
-  be squeezed. Defaults to false.
+  `IData` documents and `IData[]` document lists should also
+  be squeezed. Defaults to `false`.
 
 #### Outputs:
 
-* `$list` is the resulting IData[] document list with all string
+* `$list` is the resulting `IData[]` document list with all string
   values trimmed of leading and trailing whitespace characters, and
-  all empty string values, empty IData documents, empty lists, and
+  all empty string values, empty `IData` documents, empty lists, and
   null values removed.
 
 ---
@@ -9164,7 +9163,7 @@ value.
 
 #### Inputs:
 
-* `$list` is an IData document list to perform variable substitution on.
+* `$list` is an `IData` document list to perform variable substitution on.
 * `$pipeline` is an optional scope used to resolve key references. If
   not specified, keys are resolved against the pipeline itself.
 * `$default` is an optional default value to substitute in place of keys
@@ -9181,7 +9180,7 @@ value.
 
 #### Outputs:
 
-* `$list` is the resulting IData document list with all variable
+* `$list` is the resulting `IData` document list with all variable
   substitution patterns in all item's values, such as "%key%", replaced
   with the value of the key (resolved against either `$pipeline`, if
   specified, or the pipeline itself).
@@ -9237,31 +9236,31 @@ of the given list.
 
 ### tundra.list.document:translate
 
-One-to-one conversion of one IData document list to another IData document
+One-to-one conversion of one `IData` document list to another `IData` document
 list.
 
-Calls the given translation service, passing the each IData document item
-in the list as an input, and building a new IData document list from the
+Calls the given translation service, passing the each `IData` document item
+in the list as an input, and building a new `IData` document list from the
 translated documents returned by the translation service as output.
 
 #### Inputs:
 
-* `$list` is an IData document list containing items to be translated.
+* `$list` is an `IData` document list containing items to be translated.
 * `$service` is the fully-qualified name of the translation service,
-  which accepts a single IData document and returns a single IData
+  which accepts a single `IData` document and returns a single IData
   document, called to translate the given `$document`.
-* `$pipeline` is an optional IData document for providing arbitrary
+* `$pipeline` is an optional `IData` document for providing arbitrary
   variables to the invocations of `$service`.
 * `$service.input` is an optional variable name to use in the input
-  pipeline of the call to `$service` for the given IData document.
-  Defaults to $document.
+  pipeline of the call to `$service` for the given `IData` document.
+  Defaults to `$document`.
 * `$service.output` is an optional variable name used to extract the
-  output IData document from the output pipeline of the call to
+  output `IData` document from the output pipeline of the call to
   `$service`. Defaults to `$translation`.
 
 #### Outputs:
 
-* `$translations` is the resulting IData document list containing the
+* `$translations` is the resulting `IData` document list containing the
   translated documents.
 
 ---
@@ -9722,17 +9721,17 @@ variables.
 * `$list` is a list to be iterated over.
 * `$service` is a fully-qualified service name identifying the
   service to be invoked to process each item in the list.
-* `$pipeline` is an optional IData document containing arbitrary
-  input arguments used when invoking $service.
+* `$pipeline` is an optional `IData` document containing arbitrary
+  input arguments used when invoking `$service`.
 * `$item.input` is an optional variable name used when passing each
-  item in the list to the invocation of $service. Defaults to
-  $item.
+  item in the list to the invocation of `$service`. Defaults to
+  `$item`.
 
 ---
 
 ### tundra.list.object:equal
 
-Returns true if the given lists are equal.
+Returns `true` if the given lists are equal.
 
 #### Inputs:
 
@@ -9748,7 +9747,7 @@ Returns true if the given lists are equal.
 ### tundra.list.object:filter
 
 Filters the given list to only include items where the given
-condition evaluates to true.
+condition evaluates to `true`.
 
 #### Inputs:
 
@@ -9839,13 +9838,13 @@ with the given item (or null if not specified).
 
 ### tundra.list.object:include
 
-Returns true if the given item is found in the given list.
+Returns `true` if the given item is found in the given list.
 
 #### Inputs:
 
-* `$list` is a list to check whether the given $item exists
+* `$list` is a list to check whether the given `$item` exists
   in.
-* `$item` is the item to be checked against the given $list.
+* `$item` is the item to be checked against the given `$list`.
 
 #### Outputs:
 
@@ -9904,7 +9903,7 @@ index in the given list.
 
 ### tundra.list.object:instance
 
-Returns true if the given list is an instance of the given class.
+Returns `true` if the given list is an instance of the given class.
 
 #### Inputs:
 
@@ -10005,14 +10004,14 @@ object lists.
 * `$list` is a list to be iterated over.
 * `$service` is a fully-qualified service name identifying the
   service to be invoked to process each item in the list.
-* `$pipeline` is an optional IData document containing arbitrary
-  input arguments used when invoking $service.
+* `$pipeline` is an optional `IData` document containing arbitrary
+  input arguments used when invoking `$service`.
 * `$item.input` is an optional variable name used when passing each
   item in the list to the invocation of `$service`. Defaults to
-  $item.
+  `$item`.
 * `$item.output` is an optional variable name used when extracting
   the resulting item from the invocation of `$service`. Defaults to
-  $item.
+  `$item`.
 
 #### Outputs:
 
@@ -10119,7 +10118,7 @@ Sets the value of the item at the given index in the given list.
 ### tundra.list.object:reject
 
 Filters the given list to not include items where the given
-condition evaluates to true.
+condition evaluates to `true`.
 
 #### Inputs:
 
@@ -10357,9 +10356,9 @@ level of concurrency) or asynchronously.
 * `$invocations` is a list of services and pipelines to be invoked.
   * `service` is the fully-qualified name of the service to be
     invoked.
-  * `pipeline` is an optional IData document which, if specified,
+  * `pipeline` is an optional `IData` document which, if specified,
     contains the input arguments for the invocation of `service`;
-    in other words, the invocation is scoped to this IData document.
+    in other words, the invocation is scoped to this `IData` document.
     If not specified, the invocation is unscoped, and hence the
     service will operate directly against the pipeline itself.
 * `$mode` is an optional choice of execution mode: either synchronous
@@ -10561,17 +10560,17 @@ variables.
 * `$list` is a list to be iterated over.
 * `$service` is a fully-qualified service name identifying the
   service to be invoked to process each item in the list.
-* `$pipeline` is an optional IData document containing arbitrary
+* `$pipeline` is an optional `IData` document containing arbitrary
   input arguments used when invoking `$service`.
 * `$item.input` is an optional variable name used when passing each
   item in the list to the invocation of `$service`. Defaults to
-  $item.
+  `$item`.
 
 ---
 
 ### tundra.list.string:equal
 
-Returns true if the given lists are equal.
+Returns `true` if the given lists are equal.
 
 #### Inputs:
 
@@ -10587,7 +10586,7 @@ Returns true if the given lists are equal.
 ### tundra.list.string:filter
 
 Filters the given list to only include items where the given
-condition evaluates to true.
+condition evaluates to `true`.
 
 #### Inputs:
 
@@ -10627,17 +10626,17 @@ of items which did not include any occurrences of the pattern.
 * `$pattern` is the [regular expression pattern] or literal string to
   search for against the given list.
 * `$literal?` is a boolean indicating if the `$pattern` string should be
-  treated as a literal string. If false, `$pattern` is treated as a
-  [regular expression pattern]. If true, `$pattern` is treated as a literal
-  string. Defaults to false, if not specified.
+  treated as a literal string. If `false`, `$pattern` is treated as a
+  [regular expression pattern]. If `true`, `$pattern` is treated as a literal
+  string. Defaults to `false`, if not specified.
 
 #### Outputs:
 
-* `$found.all?` is a boolean flag which when true indicates that all
+* `$found.all?` is a boolean flag which when `true` indicates that all
   items in the given list included the given pattern.
-* `$found.any?` is a boolean flag which when true indicates that at least
+* `$found.any?` is a boolean flag which when `true` indicates that at least
   one item in the given list included the given pattern.
-* `$found.none?` is a boolean flag which when true indicates that no
+* `$found.none?` is a boolean flag which when `true` indicates that no
   items in the given list included the given pattern.
 * `$found` is the list of items which included the given pattern.
 * `$found.length` is the number of items in the `$found` list.
@@ -10708,7 +10707,7 @@ with the given item (or null if not specified).
 
 ### tundra.list.string:include
 
-Returns true if the given item is found in the given list.
+Returns `true` if the given item is found in the given list.
 
 #### Inputs:
 
@@ -10850,14 +10849,14 @@ string lists.
 * `$list` is a list to be iterated over.
 * `$service` is a fully-qualified service name identifying the
   service to be invoked to process each item in the list.
-* `$pipeline` is an optional IData document containing arbitrary
+* `$pipeline` is an optional `IData` document containing arbitrary
   input arguments used when invoking `$service`.
 * `$item.input` is an optional variable name used when passing each
   item in the list to the invocation of `$service`. Defaults to
-  $item.
+  `$item`.
 * `$item.output` is an optional variable name used when extracting
   the resulting item from the invocation of `$service`. Defaults to
-  $item.
+  `$item`.
 
 #### Outputs:
 
@@ -10877,17 +10876,17 @@ not match the given [regular expression pattern] or literal string pattern.
 * `$pattern` is the [regular expression pattern] or literal string to
   match against the given list.
 * `$literal?` is a boolean indicating if the `$pattern` string should be
-  treated as a literal string. If false, `$pattern` is treated as a
-  [regular expression pattern]. If true, $pattern is treated as a
-  literal string. Defaults to false, if not specified.
+  treated as a literal string. If `false`, `$pattern` is treated as a
+  [regular expression pattern]. If `true`, `$pattern` is treated as a
+  literal string. Defaults to `false`, if not specified.
 
 #### Outputs:
 
-* `$matched.all?` is a boolean flag which when true indicates that all
+* `$matched.all?` is a boolean flag which when `true` indicates that all
   items in the given list matched the given pattern.
-* `$matched.any?` is a boolean flag which when true indicates that at
+* `$matched.any?` is a boolean flag which when `true` indicates that at
   least one item in the given list matched the given pattern.
-* `$matched.none?` is a boolean flag which when true indicates that no
+* `$matched.none?` is a boolean flag which when `true` indicates that no
   items in the given list matched the given pattern.
 * `$matched` is the list of items which matched the given pattern.
 * `$matched.length` is the number of items in the `$matched` list.
@@ -11066,7 +11065,7 @@ of the given strings literally.
 ### tundra.list.string:reject
 
 Filters the given list to not include items where the given
-condition evaluates to true.
+condition evaluates to `true`.
 
 #### Inputs:
 
@@ -11135,10 +11134,10 @@ with the replacement string.
 * `$replacement` is the replacement string to be substituted in
   the given string wherever the given pattern is found.
 * `$literal?` is a boolean indicating if the replacement string
-  should be treated as a literal string. If false, captured
+  should be treated as a literal string. If `false`, captured
   groups can be referred to with dollar-sign references, such
   as $1, and other special characters may need to be escaped.
-  Defaults to false.
+  Defaults to `false`.
 * `$mode` is a choice of whether to replace all occurrences of the
   pattern, or just the first occurrence. If not specified,
   defaults to all occurrences.
@@ -11271,7 +11270,7 @@ default value.
 #### Inputs:
 
 * `$list` is a list of strings to perform variable substitution on.
-* `$pipeline` is an optional IData document used to scope the
+* `$pipeline` is an optional `IData` document used to scope the
   variable substitution. If not specified, the substitution
   is unscoped (resolved against the pipeline itself).
 * `$default` is an optional default value to substitute in place
@@ -11461,7 +11460,7 @@ Attempts to recognize the message received by an Integration Server
 gateway service by checking the pipeline against each registered
 message format's recognition condition. Message formats are
 evaluated in ascending lexical name order, and the first format
-whose recognition condition evaluates to true against the pipeline
+whose recognition condition evaluates to `true` against the pipeline
 is returned.
 
 Message formats are registered by including the following
@@ -11679,9 +11678,9 @@ specification.
 
     The following additional settings can be specified using query
     string parameters:
-    * `active`: optional boolean which when true uses active FTP.
+    * `active`: optional boolean which when `true` uses active FTP.
       Defaults to passive FTP.
-    * `ascii`: optional boolean which when true sets the FTP transfer
+    * `ascii`: optional boolean which when `true` sets the FTP transfer
       mode to ASCII. Defaults to binary transfer mode.
     * `timeout`: optional XML duration specifying the time to wait for
       a response from the FTP server before timing out and
@@ -11791,7 +11790,7 @@ Implemented with the [javax.activation.MimeType] class.
 
 ### tundra.mime.type:equal
 
-Returns true if the given [mime type] strings are considered equal.
+Returns `true` if the given [mime type] strings are considered equal.
 
 #### Inputs:
 
@@ -11802,7 +11801,7 @@ Returns true if the given [mime type] strings are considered equal.
 
 #### Outputs:
 
-* `$equal?` is true if the given [mime type] strings are considered
+* `$equal?` is `true` if the given [mime type] strings are considered
   equal (their base and sub types both match).
 
 ---
@@ -11837,14 +11836,14 @@ Implemented with the [javax.activation.MimeType] class.
 
 #### Outputs:
 
-* `$type` is an IData data structure representing the constituent
+* `$type` is an `IData` data structure representing the constituent
   parts of a [mime type] string.
 
 ---
 
 ### tundra.mime.type:validate
 
-Returns true if the given string can be parsed as a valid Multipurpose
+Returns `true` if the given string can be parsed as a valid Multipurpose
 Internet Mail Extension ([MIME]) type, according to [RFC 2045] and
 [RFC 2046].
 
@@ -11855,7 +11854,7 @@ Implemented with the [javax.activation.MimeType] class.
 * `$string` is an optional [mime type] string to be validated.
 * `$raise?` is an optional boolean indicating whether to throw an
   exception if the given string is not a valid [mime type] string.
-  Defaults to false.
+  Defaults to `false`.
 
 #### Outputs:
 
@@ -11893,7 +11892,7 @@ Grants the specified permissions on the given namespace node.
 
 ### tundra.node:exists
 
-Returns true if the given namepace node exists.
+Returns `true` if the given namepace node exists.
 
 #### Inputs:
 
@@ -11935,7 +11934,7 @@ the given regular expression pattern, and node type.
   list of nodes (only nodes whose type matches are returned).
 * `$recurse?` is an optional boolean flag indicating whether to
   recursively list all items in all child folders/interfaces.
-  Defaults to false.
+  Defaults to `false`.
 
 #### Outputs:
 
@@ -11970,7 +11969,7 @@ interface, service, or record.
 
 ### tundra.packages:exists
 
-Returns true if a package with the given name exists on this
+Returns `true` if a package with the given name exists on this
 Integration Server.
 
 #### Inputs:
@@ -12201,7 +12200,7 @@ byte array or input stream object.
 
 ### tundra.object:equal
 
-Returns true if the two given objects are equal.
+Returns `true` if the two given objects are equal.
 
 #### Inputs:
 
@@ -12212,14 +12211,14 @@ Returns true if the two given objects are equal.
 
 #### Outputs:
 
-* `$equal?` is true if the two input objects are considered
+* `$equal?` is `true` if the two input objects are considered
   equivalent.
 
 ---
 
 ### tundra.object:instance
 
-Returns true if the given object is an instance of the given class.
+Returns `true` if the given object is an instance of the given class.
 
 #### Inputs:
 
@@ -12228,7 +12227,7 @@ Returns true if the given object is an instance of the given class.
 
 #### Outputs:
 
-* `$instance?` is true if the give object is an instance of the given
+* `$instance?` is `true` if the give object is an instance of the given
   Java class.
 
 ---
@@ -12321,7 +12320,7 @@ as input when calling a service for example.
 
 #### Outputs:
 
-* `$pipeline` is the captured pipeline as an IData document.
+* `$pipeline` is the captured pipeline as an `IData` document.
 
 ---
 
@@ -12349,9 +12348,9 @@ pipeline.
   fully qualified, such as `a/b/c[0]/d`.
 * `$key.target` is the key to copy the source value to, and can be simple or
   fully qualified, such as `a/b/c[0]/d`.
-* `$key.literal?` is an optional boolean flag which if true will treat the
+* `$key.literal?` is an optional boolean flag which if `true` will treat the
   given keys literally rather than as potentially fully-qualified keys.
-  Defaults to false if not specified.
+  Defaults to `false` if not specified.
 
 ---
 
@@ -12394,9 +12393,9 @@ Drops the key value pair associated with the given key from the pipeline.
 
 * `$key` identifies the key value pair to be dropped, and can be simple or
   fully qualified, such as `a/b/c[0]/d`.
-* `$key.literal?` is an optional boolean flag which if true will treat the
+* `$key.literal?` is an optional boolean flag which if `true` will treat the
   given keys literally rather than as potentially fully-qualified keys.
-  Defaults to false if not specified.
+  Defaults to `false` if not specified.
 
 ---
 
@@ -12512,9 +12511,9 @@ objects in the top level of the pipeline.
 
 * `$key` identifies the value to be retrieved from the pipeline, and can be
   simple or fully qualified, such as `a/b/c[0]/d`.
-* `$key.literal?` is an optional boolean flag which if true will treat the
+* `$key.literal?` is an optional boolean flag which if `true` will treat the
   given key literally rather than as a potentially fully-qualified key.
-  Defaults to false if not specified.
+  Defaults to `false` if not specified.
 * `$default.object` is an optional value to be returned when either the
   given `$key` does not exist or its associated value is null.
 * `$default.string` is an optional string value, provided for convenience
@@ -12577,12 +12576,12 @@ string, prefixed with the invoking user and call stack.
 
 ### tundra.pipeline:merge
 
-Merges the elements in the given IData document into the
+Merges the elements in the given `IData` document into the
 pipeline.
 
 #### Inputs:
 
-* `$document` is an IData document whose top-level elements
+* `$document` is an `IData` document whose top-level elements
   are to be copied directly into the pipeline.
 
 ---
@@ -12617,7 +12616,7 @@ This is normalized to the following:
     }
 
 Keys using path-style notation, for example "a/b/c", are
-converted to nested IData documents with the final key
+converted to nested `IData` documents with the final key
 in the path, "c" in this example, assigned the value of
 the original key.
 
@@ -12652,9 +12651,9 @@ Sets the value associated with the given key in the pipeline.
 
 * `$key` is a simple or fully qualified key (`a/b/c[0]/d`) to associate with
   the given `$value`.
-* `$key.literal?` is an optional boolean flag which if true will treat the
+* `$key.literal?` is an optional boolean flag which if `true` will treat the
   given key literally rather than as a potentially fully-qualified key.
-  Defaults to false if not specified.
+  Defaults to `false` if not specified.
 * `$value` is the value to be associated with the given `$key`.
 
 ---
@@ -12671,9 +12670,9 @@ the pipeline.
   renamed to the given target key.
 * `$key.target` is the new simple or fully qualified key that the source key
   will be renamed to.
-* `$key.literal?` is an optional boolean flag which if true will treat the
+* `$key.literal?` is an optional boolean flag which if `true` will treat the
   given key literally rather than as a potentially fully-qualified key.
-  Defaults to false if not specified.
+  Defaults to `false` if not specified.
 
 ---
 
@@ -12687,7 +12686,7 @@ ascending order.
 ### tundra.pipeline:squeeze
 
 Recursively trims all leading and trailing whitespace from all
-string values, then converts empty strings, empty IData documents,
+string values, then converts empty strings, empty `IData` documents,
 and empty lists to nulls, then compacts the pipeline by removing all
 null values.
 
@@ -12721,7 +12720,7 @@ is paused or cancelled.
 
 #### Inputs:
 
-* `$schedule` is an IData document representing the task to be
+* `$schedule` is an `IData` document representing the task to be
   scheduled.
   * `name` is an optional unique identity for this scheduled task,
     provided by the creator of the task. This value will be added to
@@ -12771,18 +12770,18 @@ is paused or cancelled.
     execution, for example when the execution duration exceeds the
     schedule interval.
 
-    When true, the next scheduled execution of the service will
+    When `true`, the next scheduled execution of the service will
     execute as per the schedule, even if the previous schedule is
     still executing, which can result in multiple concurrent
     executions of the service.
 
-    When false, the schedule will never be executed concurrently.
+    When `false`, the schedule will never be executed concurrently.
     For a repeat schedule, the next scheduled time is calculated
     from the end of execution of the previous schedule. For a complex
     schedule, any scheduled times that occur while the previous
     schedule is executing are skipped, and the service will execute
     at the next uncontested scheduled time.
-  * `lateness` is an optional IData document containing arguments for
+  * `lateness` is an optional `IData` document containing arguments for
     how to determine when, and then handle if, a schedule is late.
     * `duration` is an optional duration of time which when lapsed
       passed the scheduled time determines that the task is considered
@@ -12796,12 +12795,12 @@ is paused or cancelled.
       * `suspend`
 
       If not specified, defaults to `run immediately`.
-  * `repeat` is an optional IData document containing arguments only
+  * `repeat` is an optional `IData` document containing arguments only
     applicable when the schedule type is `repeat`.
     * `interval` is an optional [XML] duration determining how often
       the scheduled task will execute. If not specified, defaults to
       `PT60S` (60 seconds).
-  * `complex` is an optional IData document containing arguments only
+  * `complex` is an optional `IData` document containing arguments only
     applicable when the schedule type is `complex`.
     * `months` is an optional list of months of the year, provided as
       an integer between 1 (January) and 12 (December), the schedule
@@ -12821,7 +12820,7 @@ is paused or cancelled.
     * `minutes` is an optional list of minutes of the hour, provided as
       an integer between 0 and 59, the schedule should execute on. If
       not specified, the schedule will execute every minute.
-  * `pipeline` is an optional IData document containing the input
+  * `pipeline` is an optional `IData` document containing the input
     arguments used as the input pipeline when executing the service.
 * `$singleton?` is an optional boolean which when `true` indicates that
   only one scheduled task should ever exist for this `name`, if
@@ -12841,7 +12840,7 @@ is paused or cancelled.
 
 ### tundra.schedule:exists
 
-Returns true if a scheduled task with the given identity or name
+Returns `true` if a scheduled task with the given identity or name
 exists in the task scheduler on this Integration Server.
 
 #### Inputs:
@@ -12878,7 +12877,7 @@ identity or name.
 
 #### Outputs:
 
-* `$schedule` is an IData document containing the details of the
+* `$schedule` is an `IData` document containing the details of the
   scheduled task identified by the given `$id`, if it exists.
   * `id` is the identifying string for this scheduled task.
   * `name` is the name assigned to this scheduled task by the creator.
@@ -12919,18 +12918,18 @@ identity or name.
     execution, for example when the execution duration exceeds the
     schedule interval.
 
-    When true, the next scheduled execution of the service
+    When `true`, the next scheduled execution of the service
     executes as per the schedule, even if the previous schedule is
     still executing, which can result in multiple concurrent
     executions of the service.
 
-    When false, the schedule is never executed concurrently.
+    When `false`, the schedule is never executed concurrently.
     For a repeat schedule, the next scheduled time is calculated
     from the end of execution of the previous schedule. For a complex
     schedule, any scheduled times that occur while the previous
     schedule is executing are skipped, and the service will execute
     at the next uncontested scheduled time.
-  * `lateness` is an optional IData document containing arguments for
+  * `lateness` is an optional `IData` document containing arguments for
     how to determine when, and then handle if, a schedule is late.
     * `duration` is the duration of time which when lapsed passed the
       scheduled time determines that the task is considered late.
@@ -12939,11 +12938,11 @@ identity or name.
       * `run immediately`
       * `skip and run at next scheduled interval`
       * `suspend`
-  * `repeat` is an optional IData document containing arguments only
+  * `repeat` is an optional `IData` document containing arguments only
     applicable when the schedule type is `repeat`.
     * `interval` is the duration of time that determines how often
       the scheduled task will execute.
-  * `complex` is an optional IData document containing arguments only
+  * `complex` is an optional `IData` document containing arguments only
     applicable when the schedule type is `complex`.
     * `months` is an optional list of months of the year, provided as
       an integer between 1 (January) and 12 (December), the schedule
@@ -12962,7 +12961,7 @@ identity or name.
     * `minutes` is an optional list of minutes of the hour, provided as
       an integer between 0 and 59, the schedule executes on. If
       not specified, the schedule executes every minute.
-  * `pipeline` is an optional IData document containing the input
+  * `pipeline` is an optional `IData` document containing the input
     arguments used as the input pipeline when executing the service.
   * `status` is the current status of the scheduled task, and is a
     choice of one of the following:
@@ -12993,7 +12992,7 @@ or every task if no inputs were specified.
 * `$filter` is an optional `tundra.condition:evaluate` conditional
   statement, used to filter the list of scheduled tasks returned. The
   conditional statement is evaluated against the pipeline, which
-  includes the task being evaluated as an IData document named
+  includes the task being evaluated as an `IData` document named
   `$schedule` with the same structure as returned by
   `tundra.schedule:get`.
 
@@ -13061,18 +13060,18 @@ or every task if no inputs were specified.
     execution, for example when the execution duration exceeds the
     schedule interval.
 
-    When true, the next scheduled execution of the service
+    When `true`, the next scheduled execution of the service
     executes as per the schedule, even if the previous schedule is
     still executing, which can result in multiple concurrent
     executions of the service.
 
-    When false, the schedule is never executed concurrently.
+    When `false`, the schedule is never executed concurrently.
     For a repeat schedule, the next scheduled time is calculated
     from the end of execution of the previous schedule. For a complex
     schedule, any scheduled times that occur while the previous
     schedule is executing are skipped, and the service will execute
     at the next uncontested scheduled time.
-  * `lateness` is an optional IData document containing arguments for
+  * `lateness` is an optional `IData` document containing arguments for
     how to determine when, and then handle if, a schedule is late.
     * `duration` is the duration of time which when lapsed passed the
       scheduled time determines that the task is considered late.
@@ -13081,11 +13080,11 @@ or every task if no inputs were specified.
       * `run immediately`
       * `skip and run at next scheduled interval`
       * `suspend`
-  * `repeat` is an optional IData document containing arguments only
+  * `repeat` is an optional `IData` document containing arguments only
     applicable when the schedule type is `repeat`.
     * `interval` is the duration of time that determines how often
       the scheduled task will execute.
-  * `complex` is an optional IData document containing arguments only
+  * `complex` is an optional `IData` document containing arguments only
     applicable when the schedule type is `complex`.
     * `months` is an optional list of months of the year, provided as
       an integer between 1 (January) and 12 (December), the schedule
@@ -13104,7 +13103,7 @@ or every task if no inputs were specified.
     * `minutes` is an optional list of minutes of the hour, provided as
       an integer between 0 and 59, the schedule executes on. If
       not specified, the schedule executes every minute.
-  * `pipeline` is an optional IData document containing the input
+  * `pipeline` is an optional `IData` document containing the input
     arguments used as the input pipeline when executing the service.
   * `status` is the current status of the scheduled task, and is a
     choice of one of the following:
@@ -13137,7 +13136,7 @@ or name, service, and filter condition.
   statement. All scheduled tasks which satisfy the given filter
   condition will be deleted. The conditional statement is evaluated
   against the pipeline, which includes the task being evaluated as an
-  IData document named `$schedule` with the same structure as returned
+  `IData` document named `$schedule` with the same structure as returned
   by `tundra.schedule:get`.
 
   Examples of some filter strings are as follows:
@@ -13188,7 +13187,7 @@ the task, and results in no exception being thrown.
   statement. All scheduled tasks which satisfy the given filter
   condition will be resumed. The conditional statement is evaluated
   against the pipeline, which includes the task being evaluated as an
-  IData document named `$schedule` with the same structure as returned
+  `IData` document named `$schedule` with the same structure as returned
   by `tundra.schedule:get`.
 
   Examples of some filter strings are as follows:
@@ -13238,7 +13237,7 @@ on the task, and results in no exception being thrown.
   statement. All scheduled tasks which satisfy the given filter
   condition will be suspended. The conditional statement is evaluated
   against the pipeline, which includes the task being evaluated as an
-  IData document named `$schedule` with the same structure as returned
+  `IData` document named `$schedule` with the same structure as returned
   by `tundra.schedule:get`.
 
   Examples of some filter strings are as follows:
@@ -13315,7 +13314,7 @@ must implement this specification.
   provided as a string to encode the text data upon delivery. Defaults
   to [UTF-8].
 * `$destination` is a parsed URI identifying the location where the given
-  $content should be delivered.
+  `$content` should be delivered.
 
 #### Outputs:
 
@@ -13551,9 +13550,9 @@ deviation execution durations.
 
 * `$service` is the fully-qualified name of the service to be
   benchmarked.
-* `$pipeline` is an optional IData document which, if specified,
+* `$pipeline` is an optional `IData` document which, if specified,
   contains the input arguments for the invocation of `$service`; in
-  other words, the invocation is scoped to this IData document. If
+  other words, the invocation is scoped to this `IData` document. If
   not specified, the invocation is unscoped, and hence the service
   will operate directly against the pipeline itself.
 * `$count` is the number of times `$service` will be invoked, and must
@@ -13634,9 +13633,9 @@ executed until the defer thread becomes available.
 #### Inputs:
 
 * `$service` is the fully-qualified name of the service to be deferred.
-* `$pipeline` is an optional IData document which, if specified, contains
+* `$pipeline` is an optional `IData` document which, if specified, contains
   the input arguments for the invocation of `$service`; in other words, the
-  invocation is scoped to this IData document. If not specified, the
+  invocation is scoped to this `IData` document. If not specified, the
   invocation is unscoped, and hence the service will operate directly
   against the pipeline itself.
 
@@ -13704,7 +13703,7 @@ Invokes a service asynchronously, and either scoped or unscoped.
 
 ### tundra.service:initiator
 
-Returns true if the calling service is the initiating top-level
+Returns `true` if the calling service is the initiating top-level
 service for this thread.
 
 #### Outputs:
@@ -13831,7 +13830,7 @@ of the invoking transport.
 * `$message` is an optional message to be associated with the given
   status code. If not specified, the standard status message for
   the code will be used. This is only applicable to HTTP transports.
-* `$headers` is an optional IData document containing HTTP header
+* `$headers` is an optional `IData` document containing HTTP header
   keys and values to be added to the response. This is only applicable
   to HTTP transports.
 * `$content` is an optional string, byte array, or input stream
@@ -13840,7 +13839,7 @@ of the invoking transport.
 * `$content.type` is the mime type of the given response body content. If
   not specified, defaults to application/octet-stream (the mime type for
   arbitrary binary data).
-* `$encoding` is an optional character set used to encode $content when
+* `$encoding` is an optional character set used to encode `$content` when
   specified as a string. Defaults to [UTF-8].
 
 ---
@@ -13890,7 +13889,7 @@ This service is an alias for the `tundra.thread:sleep` service.
 
 ### tundra.service:validate
 
-Returns true if the given service name exists and is actually
+Returns `true` if the given service name exists and is actually
 a service.
 
 #### Inputs:
@@ -13898,7 +13897,7 @@ a service.
 * `$service` is the name to be validated.
 * `$raise?` is a boolean flag indicating if an exception should
   be thrown if the given service is not valid. Defaults to
-  false.
+  `false`.
 
 #### Outputs:
 
@@ -13914,7 +13913,7 @@ session state.
 
 #### Outputs:
 
-* `$session` is an IData document containing information about the
+* `$session` is an `IData` document containing information about the
   current session.
 
 ---
@@ -14155,7 +14154,7 @@ documentation:
 
 #### Outputs:
 
-* `$captured?` is a boolean which when true indicates that the [regular
+* `$captured?` is a boolean which when `true` indicates that the [regular
   expression pattern] was found at least once in the given `$string`.
 * `$captures` is an `IData[]` document list where each item contains the
   [capturing groups] associated with each time `$pattern` was found in
@@ -14163,19 +14162,19 @@ documentation:
   * `groups` is an `IData[]` document list where each item in the list
     represents a single [capturing group]. Note that the first (zeroth)
     item in the list always denotes the entire pattern.
-    * `captured?` is a boolean flag which when true indicates that this
+    * `captured?` is a boolean flag which when `true` indicates that this
       [capturing group] was captured in the matched substring. This flag
-      will be false for optional [capturing groups] that are not found in
+      will be `false` for optional [capturing groups] that are not found in
       the matched substring.
     * `index` is the zero-based start index of the captured substring for
       this [capturing group], and is only specified when `$captured?` is
-      true.
+      `true`.
     * `length` is the number of captured characters in the captured
       substring for this [capturing group], and is only specified when
-      `$captured?` is true.
+      `$captured?` is `true`.
     * `content` is captured substring for this [capturing group], and is
-      only specified when `$captured?` is true.
-  * `groups.length` is the number of items in the `groups` IData[] document
+      only specified when `$captured?` is `true`.
+  * `groups.length` is the number of items in the `groups` `IData[]` document
     list, which is equal to the number of [capturing groups] + 1 (where
     the additional item is the entire pattern) present in the [regular
     expression pattern].
@@ -14278,13 +14277,13 @@ string is found anywhere in the given string.
 * `$pattern` is the [regular expression pattern] or literal string
   to search for against the given string.
 * `$literal?` is a boolean indicating if the `$pattern` string should
-  be treated as a literal string. If false, `$pattern` is treated
-  as a [regular expression pattern]. If true, `$pattern` is treated
-  as a literal string. Defaults to false, if not specified.
+  be treated as a literal string. If `false`, `$pattern` is treated
+  as a [regular expression pattern]. If `true`, `$pattern` is treated
+  as a literal string. Defaults to `false`, if not specified.
 
 #### Outputs:
 
-* `$found?` is true if the given pattern is found anywhere in the
+* `$found?` is `true` if the given pattern is found anywhere in the
   given string.
 
 ---
@@ -14316,8 +14315,8 @@ specified as a [java.util.Formatter format string].
   for each item are then concatenated together separated by
   `$separator` before being returned. If not specified, argument
   keys are resolved against `$pipeline`.
-* $separator is an optional string used to separate each format
-  string for each item in $list. Only used if $list is specified.
+* `$separator` is an optional string used to separate each format
+  string for each item in `$list`. Only used if `$list` is specified.
 * `$arguments` is an optional list of arguments referenced by the
   given `$pattern` for inclusion in the resulting formatted string:
   * `key` is an optional simple or fully-qualified key identifying the
@@ -14328,9 +14327,9 @@ specified as a [java.util.Formatter format string].
     provided directly in the value field. The following two special
     keys are also supported with their values set automatically when
     used:
-    * `$index` is the zero-based index of the item in $list being
+    * `$index` is the zero-based index of the item in `$list` being
       formatted.
-    * `$iteration` is the one-based index of the item in $list being
+    * `$iteration` is the one-based index of the item in `$list` being
       formatted.
   * `value` is the optional value of the argument to be formatted in
     the resulting string. If not specified, then a `key` should be
@@ -14463,13 +14462,13 @@ string matches the given string.
 * `$pattern` is the [regular expression pattern] or literal string
   to match against the given string.
 * `$literal?` is a boolean indicating if the `$pattern` string should
-  be treated as a literal string. If false, `$pattern` is treated
-  as a [regular expression pattern]. If true, `$pattern` is treated
-  as a literal string. Defaults to false, if not specified.
+  be treated as a literal string. If `false`, `$pattern` is treated
+  as a [regular expression pattern]. If `true`, `$pattern` is treated
+  as a literal string. Defaults to `false`, if not specified.
 
 #### Outputs:
 
-* `$match?` is true if the given string matches the given pattern.
+* `$match?` is `true` if the given string matches the given pattern.
 
 ---
 
@@ -14518,7 +14517,7 @@ to reach the given length.
 * `$length` is the minimum desired length for the returned string. If
   specified as a positive integer, `$string` will be padded from the
   left by prepending it with `(|$length| - $string.length)` characters.
-  If specified as a negative integer, $string will be padded from the
+  If specified as a negative integer, `$string` will be padded from the
   right by appending it with `(|$length| - $string.length)` characters.
 * `$character` is the character to use when padding `$string`. If
   `$character.length` > 1, only the first character will be used.
@@ -14590,10 +14589,10 @@ replacement string.
   the given string wherever the given pattern is found. If not
   specified, no replacement will occur.
 * `$literal?` is a boolean indicating if the replacement string
-  should be treated as a literal string. If false, captured
+  should be treated as a literal string. If `false`, captured
   groups can be referred to with dollar-sign references, such
   as $1, and other special characters may need to be escaped.
-  Defaults to false.
+  Defaults to `false`.
 * `$mode` is a choice of whether to replace all occurrences of the
   pattern, or just the first occurrence. If not specified,
   defaults to all occurrences.
@@ -14669,7 +14668,7 @@ Splits the given string around matches of the given literal pattern or
   against the given string.
 * `$literal?` is a boolean indicating if the pattern should be
   treated as a literal string or a [regular expression pattern].
-  Defaults to false.
+  Defaults to `false`.
 
 #### Outputs:
 
@@ -14707,7 +14706,7 @@ value.
 #### Inputs:
 
 * `$string` is a string to perform variable substitution on.
-* `$pipeline` is an optional IData document used to scope the
+* `$pipeline` is an optional `IData` document used to scope the
   variable substitution. If not specified, the substitution
   is unscoped (resolved against the pipeline itself).
 * `$default` is an optional default value to substitute in place
@@ -14724,7 +14723,7 @@ value.
 
 * `$string` is the input string with variable substitution patterns,
   such as "%key%", replaced with the value of the key (resolved
-  against either $pipeline, if specified, or the pipeline itself).
+  against either `$pipeline`, if specified, or the pipeline itself).
 
 ---
 
@@ -14815,7 +14814,7 @@ locations, and memory usage.
   * `property` is an `IData` document containing all the Java
     configuration properties defined for the JVM process in which
     this service is executed.
-  * `global` is an IData document containing all the defined
+  * `global` is an `IData` document containing all the defined
     Integration Server global variables.
   * `directory` is an `IData` document containing all the well-known
     directory locations defined for the Integration Server on
@@ -14960,7 +14959,7 @@ Returns the time zone associated with the given ID.
 
 #### Outputs:
 
-* `$timezone` is an IData document describing the time zone
+* `$timezone` is an `IData` document describing the time zone
   associated with the given `$id`.
   * `id` is the [java.util.TimeZone] ID associated with the
     time zone.
@@ -14997,7 +14996,7 @@ Returns all time zones known to the Java Virtual Machine.
 
 #### Outputs:
 
-* `$timezones` is an IData document list of time zones known to
+* `$timezones` is an `IData` document list of time zones known to
   the running instance of the Java Virtual Machine.
   * `id` is the [java.util.TimeZone] ID associated with the
     time zone.
@@ -15034,7 +15033,7 @@ Returns the default time zone for this host.
 
 #### Outputs:
 
-* `$timezone` is an IData document describing the default time
+* `$timezone` is an `IData` document describing the default time
   zone.
   * `id` is the [java.util.TimeZone] ID associated with the
     default time zone.
@@ -15213,7 +15212,7 @@ This service was implemented with the [java.net.URI] class.
     relative. Defaults to `true` if not specified.
   * `file` is the optional file component of the [URI], provided as
     the string token that follows the final '/' character of the path component.
-  * `query` is an optional IData document whose elements are the set
+  * `query` is an optional `IData` document whose elements are the set
     of [URI] query string key value parameters. Lists are supported
     in query strings as follows: `?a=1&a=2&a=3` is parsed to a
     `String[] = { "1", "2", "3" }`.
@@ -15420,9 +15419,9 @@ This service was implemented with the [java.net.URI] class.
   * `file` is the optional file component of the [URI], provided as
     the string token that follows the final '/' character of the
     path component.
-  * `query` is an optional IData document whose elements are the set
+  * `query` is an optional `IData` document whose elements are the set
     of [URI] query string key value parameters. Parameter keys are
-    treated as fully-qualified IData keys.
+    treated as fully-qualified `IData` keys.
   * `fragment` is the optional fragment component of the [URI].
   * `absolute?` is a boolean indicating whether the given `$string` was
     an absolute [URI].
@@ -15645,7 +15644,7 @@ Removes all comments and extraneous whitespace from the given
 
 * `$content` is a string, byte array, or input stream containing
   [XML] data.
-* `$encoding` is the character set used by $content if provided
+* `$encoding` is the character set used by `$content` if provided
   as a byte array or input stream. Defaults to [UTF-8].
 * `$mode` is a choice of bytes, stream, or string, and determines
   the type of object `$content.minified` is returned as. Defaults
@@ -15676,7 +15675,7 @@ TODO: optionally reference an [XML] schema so that elements with a
 * `$content` is a string, byte array, input stream, [org.w3c.dom.Node]
   object (node in webMethods parlance), or [org.xml.sax.InputSource]
   object containing [XML] data.
-* `$encoding` is an optional character set to use when $content is
+* `$encoding` is an optional character set to use when `$content` is
   provided as a byte array or input stream to decode the contained
   text data. Defaults to [UTF-8].
 * `$namespace` is an optional list of namespace prefixes and the URIs
@@ -15710,22 +15709,22 @@ documents when parsing from an input stream.
   data.
 * `$schema.encoding` is the character set used by `$schema` if provided
   as a byte array or input stream. Defaults to [UTF-8].
-* `$raise?` is an optional boolean flag, if true and `$content` is
-  malformed or invalid an exception will be thrown. If false, no
-  exception will be thrown. Defaults to false.
+* `$raise?` is an optional boolean flag, if `true` and `$content` is
+  malformed or invalid an exception will be thrown. If `false`, no
+  exception will be thrown. Defaults to `false`.
 
 #### Outputs:
 
-* `$valid?` is true if the given `$content` is well-formed [XML] and, if
+* `$valid?` is `true` if the given `$content` is well-formed [XML] and, if
   a `$schema` was specified, valid when compared to the given `$schema`.
 * `$errors` is an optional list of the errors detected by the parser in
-  the given `$content`, provided when `$valid?` is false.
+  the given `$content`, provided when `$valid?` is `false`.
 
 ---
 
 ### tundra.xpath:exists
 
-Returns true if the given [XPath expression] exists the given [XML]
+Returns `true` if the given [XPath expression] exists the given [XML]
 content.
 
 #### Inputs:
@@ -15866,7 +15865,7 @@ Compresses the given contents using the [zip] file compression format.
 
 #### Inputs:
 
-* `$contents` is an IData document list containing the data to be
+* `$contents` is an `IData` document list containing the data to be
   compressed.
   * `name` is the file path and name given to this item in the
     resulting zip archive.
@@ -15902,7 +15901,7 @@ Decompresses the given content using the [zip] file compression format.
 
 #### Outputs:
 
-* `$contents` is an IData document list containing the resulting
+* `$contents` is an `IData` document list containing the resulting
   decompressed data.
   * `name` is the file path and name assigned to this item in the
     zip archive.
