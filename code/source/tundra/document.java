@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-11-09T16:08:26.972
+// -----( CREATED: 2017-11-17T08:10:46.197
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -583,13 +583,17 @@ public final class document
 		// [i] record:0:optional $document
 		// [i] field:0:optional $pattern
 		// [o] field:1:required $keys
+		// [o] field:0:required $keys.length
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
 		    IData document = IDataHelper.get(cursor, "$document", IData.class);
 		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
 
-		    IDataHelper.put(cursor, "$keys", IDataHelper.getKeys(document, pattern));
+		    String[] keys = IDataHelper.getKeys(document, pattern);
+
+		    IDataHelper.put(cursor, "$keys", keys);
+		    IDataHelper.put(cursor, "$keys.length", keys.length, String.class);
 		} finally {
 		    cursor.destroy();
 		}

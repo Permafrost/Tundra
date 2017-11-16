@@ -5292,13 +5292,13 @@ Returns the first key associated with the given value from the given
 
 ### tundra.document:keys
 
-Returns the top-level keys in the given IData document that match
+Returns the top-level keys in the given `IData` document that match
 the given regular expression pattern if specified, or all top-level
 keys if no pattern is specified.
 
 #### Inputs:
 
-* `$document` is an IData document from which all top-level
+* `$document` is an `IData` document from which all top-level
   keys are to be fetched.
 * `$pattern` is an optional [regular expression pattern] that
   is used to filter the list of keys returned. If not specified,
@@ -5306,9 +5306,10 @@ keys if no pattern is specified.
 
 #### Outputs:
 
-* `$keys` is the list of the top-level keys in the given IData
+* `$keys` is the list of the top-level keys in the given `IData`
   document that match the given regular expression `$pattern` if
   specified, or all top-level keys if no `$pattern` was specified.
+* `$keys.length` is the number of items returned in the `$keys` list.
 
 ---
 
