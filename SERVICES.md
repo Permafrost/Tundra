@@ -13260,12 +13260,37 @@ on the task, and results in no exception being thrown.
 
 ---
 
+### tundra.scheduler:pause
+
+Pauses the Integration Server task scheduler on the server on which
+this service is invoked. No user tasks will be executed on this
+server by the task scheduler until the scheduler is resumed again.
+If already paused, this service has no effect.
+
+On Integration Server 7.1, this service stops rather than pauses
+the scheduler, as the pause/resume function is not supported on this
+version.
+
+---
+
 ### tundra.scheduler:restart
 
 Stops and then starts the Integration Server task scheduler on
 the server on which this service is invoked. If already stopped,
 this service will start the scheduler. This service can be used
 to fix the task scheduler if it gets stuck.
+
+---
+
+### tundra.scheduler:resume
+
+Resumes the Integration Server task scheduler when paused on the
+server on which this service is invoked if it was paused. If already
+started, this service has no effect.
+
+On Integration Server 7.1, this service starts rather than resumes
+the scheduler, as the pause/resume function is not supported on this
+version.
 
 ---
 
@@ -13287,6 +13312,19 @@ Integration Server on which this service is run.
 Starts the Integration Server task scheduler on the server on
 which this service is invoked. If already started, this service
 has no effect.
+
+---
+
+### tundra.scheduler:status
+
+Returns the current status of the Integration Server task scheduler
+on the server on which this service is invoked.
+
+#### Outputs:
+
+* $scheduler.self.status is the current status of the scheduler as
+  an enumeration with the following possible states: `STARTED`,
+  `PAUSED`, `STOPPED`.
 
 ---
 

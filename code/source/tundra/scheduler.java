@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-07 14:55:32 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2017-11-17T11:03:07.600
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -29,6 +29,20 @@ public final class scheduler
 
 
 
+	public static final void pause (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(pause)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		SchedulerHelper.pause();
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
 	public static final void restart (IData pipeline)
         throws ServiceException
 	{
@@ -38,7 +52,21 @@ public final class scheduler
 		SchedulerHelper.restart();
 		// --- <<IS-END>> ---
 
-                
+
+	}
+
+
+
+	public static final void resume (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(resume)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		SchedulerHelper.resume();
+		// --- <<IS-END>> ---
+
+
 	}
 
 
@@ -51,7 +79,7 @@ public final class scheduler
 		// @sigtype java 3.5
 		// [o] field:0:required $scheduler.self.name
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IDataHelper.put(cursor, "$scheduler.self.name", SchedulerHelper.self());
 		} finally {
@@ -59,7 +87,7 @@ public final class scheduler
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -73,7 +101,28 @@ public final class scheduler
 		SchedulerHelper.start();
 		// --- <<IS-END>> ---
 
-                
+
+	}
+
+
+
+	public static final void status (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(status)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [o] field:0:required $scheduler.self.status
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    IDataHelper.put(cursor, "$scheduler.self.status", SchedulerHelper.status().toString());
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
 	}
 
 
@@ -87,7 +136,7 @@ public final class scheduler
 		SchedulerHelper.stop();
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 
