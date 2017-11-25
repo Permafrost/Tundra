@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-08-08 21:20:57 EST
+// -----( CREATED: 2017-11-26 15:56:21 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -270,16 +270,16 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
 		// [i] field:0:optional $pattern
-		// [i] field:0:optional $literal? {"false","true"}
+		// [i] field:0:optional $pattern.literal? {"false","true"}
 		// [o] field:0:required $found? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		    String string = IDataHelper.get(cursor, "$string", String.class);
 		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
-		    boolean literal = IDataHelper.getOrDefault(cursor, "$literal?", Boolean.class, false);
+		    boolean literalPattern = IDataHelper.getOrDefault(cursor, "$pattern.literal?", Boolean.class, IDataHelper.getOrDefault(cursor, "$literal?", Boolean.class, false));
 		
-		    IDataHelper.put(cursor, "$found?", StringHelper.find(string, pattern, literal), String.class);
+		    IDataHelper.put(cursor, "$found?", StringHelper.find(string, pattern, literalPattern), String.class);
 		} finally {
 		    cursor.destroy();
 		}
@@ -470,16 +470,16 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
 		// [i] field:0:optional $pattern
-		// [i] field:0:optional $literal? {"false","true"}
+		// [i] field:0:optional $pattern.literal? {"false","true"}
 		// [o] field:0:required $match? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		    String string = IDataHelper.get(cursor, "$string", String.class);
 		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
-		    boolean literal = IDataHelper.getOrDefault(cursor, "$literal?", Boolean.class, false);
+		    boolean literalPattern = IDataHelper.getOrDefault(cursor, "$pattern.literal?", Boolean.class, IDataHelper.getOrDefault(cursor, "$literal?", Boolean.class, false));
 		
-		    IDataHelper.put(cursor, "$match?", StringHelper.match(string, pattern, literal), String.class);
+		    IDataHelper.put(cursor, "$match?", StringHelper.match(string, pattern, literalPattern), String.class);
 		} finally {
 		    cursor.destroy();
 		}
@@ -604,18 +604,24 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
 		// [i] field:0:optional $pattern
-		// [i] field:0:optional $literal? {"false","true"}
-		// [i] field:0:optional $mode {"all","first"}
+		// [i] field:0:optional $pattern.literal? {"false","true"}
+		// [i] field:0:optional $occurrence.first? {"false","true"}
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		    String string = IDataHelper.get(cursor, "$string", String.class);
 		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
-		    boolean literal = IDataHelper.getOrDefault(cursor, "$literal?", Boolean.class, false);
-		    String mode = IDataHelper.get(cursor, "$mode", String.class);
+		    boolean literalPattern = IDataHelper.getOrDefault(cursor, "$pattern.literal?", Boolean.class, IDataHelper.getOrDefault(cursor, "$literal?", Boolean.class, false));
+		    Boolean firstOccurrence = IDataHelper.getOrDefault(cursor, "$occurrence.first?", Boolean.class, false);
 		
-		    IDataHelper.put(cursor, "$string", StringHelper.remove(string, pattern, literal, (!(mode == null || mode.equals("all")))), false);
+		    if (firstOccurrence == null) {
+		        // support mode for backwards compatibility
+		        String mode = IDataHelper.get(cursor, "$mode", String.class);
+		        firstOccurrence = mode != null && mode.equals("first");
+		    }
+		
+		    IDataHelper.put(cursor, "$string", StringHelper.remove(string, pattern, literalPattern, firstOccurrence), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -634,20 +640,28 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
 		// [i] field:0:optional $pattern
+		// [i] field:0:optional $pattern.literal? {"false","true"}
 		// [i] field:0:optional $replacement
-		// [i] field:0:optional $literal? {"false","true"}
-		// [i] field:0:optional $mode {"all","first"}
+		// [i] field:0:optional $replacement.literal? {"false","true"}
+		// [i] field:0:optional $occurrence.first? {"false","true"}
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		    String string = IDataHelper.get(cursor, "$string", String.class);
 		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
+		    boolean literalPattern = IDataHelper.getOrDefault(cursor, "$pattern.literal?", Boolean.class, false);
 		    String replacement = IDataHelper.get(cursor, "$replacement", String.class);
-		    boolean literal = IDataHelper.getOrDefault(cursor, "$literal?", Boolean.class, false);
-		    String mode = IDataHelper.get(cursor, "$mode", String.class);
+		    boolean literalReplacement = IDataHelper.getOrDefault(cursor, "$replacement.literal?", Boolean.class, IDataHelper.getOrDefault(cursor, "$literal?", Boolean.class, false));
+		    Boolean firstOccurrence = IDataHelper.getOrDefault(cursor, "$occurrence.first?", Boolean.class, false);
 		
-		    IDataHelper.put(cursor, "$string", StringHelper.replace(string, pattern, replacement, literal, (!(mode == null || mode.equals("all")))), false);
+		    if (firstOccurrence == null) {
+		        // support mode for backwards compatibility
+		        String mode = IDataHelper.get(cursor, "$mode", String.class);
+		        firstOccurrence = mode != null && mode.equals("first");
+		    }
+		
+		    IDataHelper.put(cursor, "$string", StringHelper.replace(string, pattern, literalPattern, replacement, literalReplacement, firstOccurrence.booleanValue()), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -724,9 +738,9 @@ public final class string
 		try {
 		    String string = IDataHelper.get(cursor, "$string", String.class);
 		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
-		    boolean literal = IDataHelper.getOrDefault(cursor, "$literal?", Boolean.class, false);
+		    boolean literalPattern = IDataHelper.getOrDefault(cursor, "$pattern.literal?", Boolean.class, IDataHelper.getOrDefault(cursor, "$literal?", Boolean.class, false));
 		
-		    IDataHelper.put(cursor, "$list", StringHelper.split(string, pattern, literal), false);
+		    IDataHelper.put(cursor, "$list", StringHelper.split(string, pattern, literalPattern), false);
 		} finally {
 		    cursor.destroy();
 		}

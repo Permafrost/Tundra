@@ -10625,10 +10625,10 @@ of items which did not include any occurrences of the pattern.
 * `$list` is a list to be searched for the given pattern.
 * `$pattern` is the [regular expression pattern] or literal string to
   search for against the given list.
-* `$literal?` is a boolean indicating if the `$pattern` string should be
-  treated as a literal string. If `false`, `$pattern` is treated as a
-  [regular expression pattern]. If `true`, `$pattern` is treated as a literal
-  string. Defaults to `false`, if not specified.
+* `$pattern.literal?` is a boolean indicating if the `$pattern` string
+  should be treated as a literal string. If `false`, `$pattern` is treated
+  as a [regular expression pattern]. If `true`, `$pattern` is treated as
+  a literal string. Defaults to `false`, if not specified.
 
 #### Outputs:
 
@@ -10875,10 +10875,10 @@ not match the given [regular expression pattern] or literal string pattern.
 * `$list` is a list to be matched against the given pattern.
 * `$pattern` is the [regular expression pattern] or literal string to
   match against the given list.
-* `$literal?` is a boolean indicating if the `$pattern` string should be
-  treated as a literal string. If `false`, `$pattern` is treated as a
-  [regular expression pattern]. If `true`, `$pattern` is treated as a
-  literal string. Defaults to `false`, if not specified.
+* `$pattern.literal?` is a boolean indicating if the `$pattern` string
+  should be treated as a literal string. If `false`, `$pattern` is
+  treated as a [regular expression pattern]. If `true`, `$pattern` is
+  treated as a literal string. Defaults to `false`, if not specified.
 
 #### Outputs:
 
@@ -11104,13 +11104,13 @@ pattern in the given list of strings.
   pattern removed.
 * `$pattern` is the pattern to match against the given string. If
   not specified, no removal will occur.
-* `$literal?` is a boolean indicating if the `$pattern` string should
-  be treated as a literal string. If `false`, `$pattern` is treated
-  as a [regular expression pattern]. If `true`, `$pattern` is treated
-  as a literal string. Defaults to `false`, if not specified.
-* `$mode` is a choice of whether to remove all occurrences of the
-  pattern, or just the first occurrence. If not specified,
-  defaults to all occurrences.
+* `$pattern.literal?` is a boolean indicating if the `$pattern` string
+  should be treated as a literal string. If `false`, `$pattern` is
+  treated as a [regular expression pattern]. If `true`, `$pattern` is
+  treated as a literal string. Defaults to `false`, if not specified.
+* `$occurrence.first?` is a boolean indicating if only the first
+  occurrence of the given pattern should be removed. Defaults to
+  `false`, where all occurrences of the pattern are removed.
 
 #### Outputs:
 
@@ -11131,16 +11131,21 @@ with the replacement string.
   [regular expression pattern] replaced.
 * `$pattern` is the [regular expression pattern] to match against
   the given string. If not specified, no replacement will occur.
+* `$pattern.literal?` is a boolean indicating whether the pattern is a
+  literal or a [regular expression pattern]. If literal, the pattern
+  is converted to a [regular expression pattern] that matches the
+  given literal string. Defaults to `false`.
 * `$replacement` is the replacement string to be substituted in
-  the given string wherever the given pattern is found.
-* `$literal?` is a boolean indicating if the replacement string
-  should be treated as a literal string. If `false`, captured
-  groups can be referred to with dollar-sign references, such
-  as $1, and other special characters may need to be escaped.
-  Defaults to `false`.
-* `$mode` is a choice of whether to replace all occurrences of the
-  pattern, or just the first occurrence. If not specified,
-  defaults to all occurrences.
+  the given string wherever the given pattern is found. If not
+  specified, no replacement will occur.
+* `$replacement.literal?` is a boolean indicating if the replacement
+  string should be treated as a literal string. If `false`, captured
+  groups can be referred to with dollar-sign references, such as `$1`,
+  and other special characters may need to be escaped. Defaults to
+  `false`.
+* `$occurrence.first?` is a boolean indicating if only the first
+  occurrence of the given pattern should be replaced. Defaults to
+  `false`, where all occurrences of the pattern are replaced.
 
 #### Outputs:
 
@@ -14314,10 +14319,10 @@ string is found anywhere in the given string.
 * `$string` is a string to be searched for the given pattern.
 * `$pattern` is the [regular expression pattern] or literal string
   to search for against the given string.
-* `$literal?` is a boolean indicating if the `$pattern` string should
-  be treated as a literal string. If `false`, `$pattern` is treated
-  as a [regular expression pattern]. If `true`, `$pattern` is treated
-  as a literal string. Defaults to `false`, if not specified.
+* `$pattern.literal?` is a boolean indicating if the `$pattern` string
+  should be treated as a literal string. If `false`, `$pattern` is
+  treated as a [regular expression pattern]. If `true`, `$pattern` is
+  treated as a literal string. Defaults to `false`, if not specified.
 
 #### Outputs:
 
@@ -14499,10 +14504,10 @@ string matches the given string.
 * `$string` is a string to be matched against the given pattern.
 * `$pattern` is the [regular expression pattern] or literal string
   to match against the given string.
-* `$literal?` is a boolean indicating if the `$pattern` string should
-  be treated as a literal string. If `false`, `$pattern` is treated
-  as a [regular expression pattern]. If `true`, `$pattern` is treated
-  as a literal string. Defaults to `false`, if not specified.
+* `$pattern.literal?` is a boolean indicating if the `$pattern` string
+  should be treated as a literal string. If `false`, `$pattern` is
+  treated as a [regular expression pattern]. If `true`, `$pattern` is
+  treated as a literal string. Defaults to `false`, if not specified.
 
 #### Outputs:
 
@@ -14596,13 +14601,13 @@ from the given string.
   removed.
 * `$pattern` is the pattern to match against the given string. If not
   specified, no removal will occur.
-* `$literal?` is a boolean indicating if the `$pattern` string should
-  be treated as a literal string. If `false`, `$pattern` is treated
-  as a [regular expression pattern]. If `true`, `$pattern` is treated
-  as a literal string. Defaults to `false`, if not specified.
-* `$mode` is a choice of whether to remove all occurrences of the
-  pattern, or just the first occurrence. Defaults to all occurrences,
-  if not specified.
+* `$pattern.literal?` is a boolean indicating if the `$pattern` string
+  should  be treated as a literal string. If false, `$pattern` is
+  treated as a [regular expression pattern]. If true, `$pattern` is
+  treated as a literal string. Defaults to `false`, if not specified.
+* `$occurrence.first?` is a boolean indicating if only the first
+  occurrence of the given pattern should be removed. Defaults to
+  `false`, where all occurrences of the pattern are removed.
 
 #### Outputs:
 
@@ -14623,17 +14628,21 @@ replacement string.
   [regular expression pattern] replaced.
 * `$pattern` is the [regular expression pattern] to match against
   the given string. If not specified, no replacement will occur.
+* `$pattern.literal?` is a boolean indicating whether the pattern is a
+  literal or a [regular expression pattern]. If literal, the pattern
+  is converted to a [regular expression pattern] that matches the
+  given literal string. Defaults to `false`.
 * `$replacement` is the replacement string to be substituted in
   the given string wherever the given pattern is found. If not
   specified, no replacement will occur.
-* `$literal?` is a boolean indicating if the replacement string
-  should be treated as a literal string. If `false`, captured
-  groups can be referred to with dollar-sign references, such
-  as $1, and other special characters may need to be escaped.
-  Defaults to `false`.
-* `$mode` is a choice of whether to replace all occurrences of the
-  pattern, or just the first occurrence. If not specified,
-  defaults to all occurrences.
+* `$replacement.literal?` is a boolean indicating if the replacement
+  string should be treated as a literal string. If `false`, captured
+  groups can be referred to with dollar-sign references, such as `$1`,
+  and other special characters may need to be escaped. Defaults to
+  `false`.
+* `$occurrence.first?` is a boolean indicating if only the first
+  occurrence of the given pattern should be replaced. Defaults to
+  `false`, where all occurrences of the pattern are replaced.
 
 #### Outputs:
 
@@ -14704,8 +14713,8 @@ Splits the given string around matches of the given literal pattern or
   pattern as the token separator.
 * `$pattern` is the literal or [regular expression pattern] to match
   against the given string.
-* `$literal?` is a boolean indicating if the pattern should be
-  treated as a literal string or a [regular expression pattern].
+* `$pattern.literal?` is a boolean indicating if the pattern should
+  be treated as a literal string or a [regular expression pattern].
   Defaults to `false`.
 
 #### Outputs:

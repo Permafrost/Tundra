@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-06-24 09:51:43 EST
+// -----( CREATED: 2017-11-26 16:18:30 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -264,9 +264,9 @@ public final class string
 		try {
 		    String[] list = IDataHelper.get(cursor, "$list", String[].class);
 		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
-		    boolean literal = IDataHelper.getOrDefault(cursor, "$literal?", Boolean.class, false);
+		    boolean literalPattern = IDataHelper.getOrDefault(cursor, "$pattern.literal?", Boolean.class, IDataHelper.getOrDefault(cursor, "$literal?", Boolean.class, false));
 		
-		    String[][] output = find(list, pattern, literal);
+		    String[][] output = find(list, pattern, literalPattern);
 		
 		    if (output != null && output.length > 1) {
 		        String[] found = output[0];
@@ -492,9 +492,9 @@ public final class string
 		try {
 		    String[] list = IDataHelper.get(cursor, "$list", String[].class);
 		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
-		    boolean literal = IDataHelper.getOrDefault(cursor, "$literal?", Boolean.class, false);
+		    boolean literalPattern = IDataHelper.getOrDefault(cursor, "$pattern.literal?", Boolean.class, IDataHelper.getOrDefault(cursor, "$literal?", Boolean.class, false));
 		
-		    String[][] output = match(list, pattern, literal);
+		    String[][] output = match(list, pattern, literalPattern);
 		
 		    if (output != null && output.length > 1) {
 		        String[] matched = output[0];
@@ -621,7 +621,7 @@ public final class string
 		// [i] - record:0:optional scope
 		// [i] record:0:optional $scope
 		// [o] record:0:optional $results
-		// [o] - field:1:required remainder
+		// [o] - field:1:optional remainder
 		// [o] - field:0:required remainder.length
 		tundra.list.object.partition(pipeline);
 		// --- <<IS-END>> ---
@@ -701,6 +701,82 @@ public final class string
 		// [o] field:1:optional $list
 		// [o] field:0:required $list.length
 		tundra.list.object.reject(pipeline);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void remove (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(remove)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:1:optional $list
+		// [i] field:0:optional $pattern
+		// [i] field:0:optional $pattern.literal? {"false","true"}
+		// [i] field:0:optional $occurrence.first? {"false","true"}
+		// [o] field:1:optional $list
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    String[] list = IDataHelper.get(cursor, "$list", String[].class);
+		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
+		    boolean literalPattern = IDataHelper.getOrDefault(cursor, "$pattern.literal?", Boolean.class, IDataHelper.getOrDefault(cursor, "$literal?", Boolean.class, false));
+		    Boolean firstOccurrence = IDataHelper.getOrDefault(cursor, "$occurrence.first?", Boolean.class, false);
+		
+		    if (firstOccurrence == null) {
+		        // support mode for backwards compatibility
+		        String mode = IDataHelper.get(cursor, "$mode", String.class);
+		        firstOccurrence = mode != null && mode.equals("first");
+		    }
+		
+		    IDataHelper.put(cursor, "$list", StringHelper.remove(list, pattern, literalPattern, firstOccurrence), false);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void replace (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(replace)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:1:optional $list
+		// [i] field:0:optional $pattern
+		// [i] field:0:optional $pattern.literal? {"false","true"}
+		// [i] field:0:optional $replacement
+		// [i] field:0:optional $replacement.literal? {"false","true"}
+		// [i] field:0:optional $occurrence.first? {"false","true"}
+		// [o] field:1:optional $list
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    String[] list = IDataHelper.get(cursor, "$list", String[].class);
+		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
+		    boolean literalPattern = IDataHelper.getOrDefault(cursor, "$pattern.literal?", Boolean.class, false);
+		    String replacement = IDataHelper.get(cursor, "$replacement", String.class);
+		    boolean literalReplacement = IDataHelper.getOrDefault(cursor, "$replacement.literal?", Boolean.class, IDataHelper.getOrDefault(cursor, "$literal?", Boolean.class, false));
+		    Boolean firstOccurrence = IDataHelper.getOrDefault(cursor, "$occurrence.first?", Boolean.class, false);
+		
+		    if (firstOccurrence == null) {
+		        // support mode for backwards compatibility
+		        String mode = IDataHelper.get(cursor, "$mode", String.class);
+		        firstOccurrence = mode != null && mode.equals("first");
+		    }
+		
+		    IDataHelper.put(cursor, "$list", StringHelper.replace(list, pattern, literalPattern, replacement, literalReplacement, firstOccurrence.booleanValue()), false);
+		} finally {
+		    cursor.destroy();
+		}
 		// --- <<IS-END>> ---
 
                 

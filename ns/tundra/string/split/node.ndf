@@ -140,8 +140,8 @@
   </record>
   <value name="node_comment">### tundra.string:split
 
-Splits the given string around matches of the given literal pattern or
-[regular expression pattern].
+Splits the given string around matches of the given literal pattern 
+or [regular expression pattern].
 
 #### Inputs:
 
@@ -149,7 +149,7 @@ Splits the given string around matches of the given literal pattern or
   pattern as the token separator.
 * $pattern is the literal or [regular expression pattern] to match
   against the given string.
-* $literal? is a boolean indicating if the pattern should be
+* $pattern.literal? is a boolean indicating if the pattern should be
   treated as a literal string or a [regular expression pattern].
   Defaults to false.
 
