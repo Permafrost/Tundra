@@ -53,6 +53,7 @@ dGNoZWQudG9BcnJheShuZXcgU3RyaW5nWzBdKTsKCiAgICByZXR1cm4gb3V0cHV0Owp9</value>
     <value>java.util.ArrayList</value>
     <value>java.util.EnumSet</value>
     <value>java.util.List</value>
+    <value>java.util.Locale</value>
     <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.flow.variable.SubstitutionHelper</value>
     <value>permafrost.tundra.flow.variable.SubstitutionType</value>

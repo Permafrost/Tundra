@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-11-26 15:56:21 EST
+// -----( CREATED: 2017-11-26 16:33:31 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -448,10 +448,8 @@ public final class string
 		    String string = IDataHelper.get(cursor, "$string", String.class);
 		    Locale locale = IDataHelper.getOrDefault(cursor, "$locale", Locale.class, Locale.getDefault());
 		
-		    if (string != null) {
-		        IDataHelper.put(cursor, "$string", string.toLowerCase(locale), false);
+		    IDataHelper.put(cursor, "$string", StringHelper.lowercase(string, locale), false);
 		
-		    }
 		} finally {
 		    cursor.destroy();
 		}
@@ -875,10 +873,8 @@ public final class string
 		    String string = IDataHelper.get(cursor, "$string", String.class);
 		    Locale locale = IDataHelper.getOrDefault(cursor, "$locale", Locale.class, Locale.getDefault());
 		
-		    if (string != null) {
-		        IDataHelper.put(cursor, "$string", string.toUpperCase(locale));
+		    IDataHelper.put(cursor, "$string", StringHelper.uppercase(string, locale), false);
 		
-		    }
 		} finally {
 		    cursor.destroy();
 		}

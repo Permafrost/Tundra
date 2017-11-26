@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-11-26 16:18:30 EST
+// -----( CREATED: 2017-11-26 16:45:12 EST
 // -----( ON-HOST: 192.168.66.132
 
 import com.wm.data.*;
@@ -14,6 +14,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
+import java.util.Locale;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.flow.variable.SubstitutionHelper;
 import permafrost.tundra.flow.variable.SubstitutionType;
@@ -451,6 +452,35 @@ public final class string
 
 
 
+	public static final void lowercase (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(lowercase)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:1:optional $list
+		// [i] record:0:optional $locale
+		// [i] - field:0:required language
+		// [i] - field:0:optional country
+		// [i] - field:0:optional variant
+		// [o] field:1:optional $list
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    String[] list = IDataHelper.get(cursor, "$list", String[].class);
+		    Locale locale = IDataHelper.getOrDefault(cursor, "$locale", Locale.class, Locale.getDefault());
+		
+		    IDataHelper.put(cursor, "$list", StringHelper.lowercase(list, locale), false);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void map (IData pipeline)
         throws ServiceException
 	{
@@ -869,6 +899,29 @@ public final class string
 
 
 
+	public static final void squeeze (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(squeeze)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:1:optional $list
+		// [o] field:1:optional $list
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    String[] list = IDataHelper.get(cursor, "$list", String[].class);
+		    IDataHelper.put(cursor, "$list", StringHelper.squeeze(list), false);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void substitute (IData pipeline)
         throws ServiceException
 	{
@@ -917,6 +970,29 @@ public final class string
 
 
 
+	public static final void trim (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(trim)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:1:optional $list
+		// [o] field:1:optional $list
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    String[] list = IDataHelper.get(cursor, "$list", String[].class);
+		    IDataHelper.put(cursor, "$list", StringHelper.trim(list), false);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void unique (IData pipeline)
         throws ServiceException
 	{
@@ -926,6 +1002,35 @@ public final class string
 		// [i] field:1:optional $list
 		// [o] field:1:optional $list
 		tundra.list.object.unique(pipeline);
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void uppercase (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(uppercase)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:1:optional $list
+		// [i] record:0:optional $locale
+		// [i] - field:0:required language
+		// [i] - field:0:optional country
+		// [i] - field:0:optional variant
+		// [o] field:1:optional $list
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    String[] list = IDataHelper.get(cursor, "$list", String[].class);
+		    Locale locale = IDataHelper.getOrDefault(cursor, "$locale", Locale.class, Locale.getDefault());
+		
+		    IDataHelper.put(cursor, "$list", StringHelper.uppercase(list, locale), false);
+		} finally {
+		    cursor.destroy();
+		}
 		// --- <<IS-END>> ---
 
                 
