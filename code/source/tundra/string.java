@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-11-27T10:39:21.662
+// -----( CREATED: 2017-11-27T12:48:17.381
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -26,6 +26,7 @@ import permafrost.tundra.lang.ObjectHelper;
 import permafrost.tundra.lang.Sanitization;
 import permafrost.tundra.lang.StringHelper;
 import permafrost.tundra.math.IntegerHelper;
+import permafrost.tundra.util.regex.PatternHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class string
@@ -583,7 +584,7 @@ public final class string
 
 		try {
 		    String string = IDataHelper.get(cursor, "$string", String.class);
-		    IDataHelper.put(cursor, "$pattern", StringHelper.quote(string), false);
+		    IDataHelper.put(cursor, "$pattern", PatternHelper.quote(string), false);
 		} finally {
 		    cursor.destroy();
 		}

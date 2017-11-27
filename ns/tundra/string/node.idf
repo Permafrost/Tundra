@@ -26,5 +26,6 @@
     <value>permafrost.tundra.lang.Sanitization</value>
     <value>permafrost.tundra.lang.StringHelper</value>
     <value>permafrost.tundra.math.IntegerHelper</value>
+    <value>permafrost.tundra.util.regex.PatternHelper</value>
   </array>
 </Values>
