@@ -20,7 +20,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$squeeze.input</value>
+          <value name="field_name">$condense.input</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -128,7 +128,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$squeeze.output</value>
+          <value name="field_name">$condense.output</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -222,15 +222,16 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">### tundra.string:squeeze
+  <value name="node_comment">### tundra.string:condense
 
-Trims all leading and trailing whitespace from all string values, 
-then converts empty strings to nulls, then removes all null values.
+Replaces runs of one or more whitespace characters (space, tab,
+carriage return, line feed) with a single space character, then 
+trims leading and trailing whitespace.
 
 #### Inputs:
 
-* $squeeze.input is an IData document containing arbitrarily 
-  specified strings to be squeezed.
+* $condense.input is an IData document containing arbitrarily 
+  specified strings to be condensed.
   * $value is optional and specified as an input only for developer
     convenience when using this service for a single string value.
   * $value.list is optional and specified as an input only for 
@@ -242,8 +243,8 @@ then converts empty strings to nulls, then removes all null values.
 
 #### Outputs:
 
-* $squeeze.output is an IData document containing the resulting 
-  squeezed strings.
+* $condense.output is an IData document containing the resulting 
+  condensed strings.
   * $value is optional and specified as an output only for developer
     convenience when using this service for a single string value.
   * $value.list is optional and specified as an output only for 
@@ -253,12 +254,11 @@ then converts empty strings to nulls, then removes all null values.
     developer convenience when using this service for a table of
     string values.
 </value>
-  <value name="stateless">yes</value>
+  <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
-  <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
   <value name="icontext_policy">$null</value>

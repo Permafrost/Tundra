@@ -2673,6 +2673,15 @@
       </array>
     </record>
     <record javaclass="com.wm.util.Values">
+      <value name="node">tundra.document:squeeze</value>
+      <array name="permissions" type="record" depth="1">
+        <record javaclass="com.wm.util.Values">
+          <value name="type">list</value>
+          <value name="acl">WmPrivate</value>
+        </record>
+      </array>
+    </record>
+    <record javaclass="com.wm.util.Values">
       <value name="node">tundra.id</value>
       <array name="permissions" type="record" depth="1">
         <record javaclass="com.wm.util.Values">
@@ -2692,6 +2701,24 @@
     </record>
     <record javaclass="com.wm.util.Values">
       <value name="node">tundra.list.document.value</value>
+      <array name="permissions" type="record" depth="1">
+        <record javaclass="com.wm.util.Values">
+          <value name="type">list</value>
+          <value name="acl">WmPrivate</value>
+        </record>
+      </array>
+    </record>
+    <record javaclass="com.wm.util.Values">
+      <value name="node">tundra.list.document:squeeze</value>
+      <array name="permissions" type="record" depth="1">
+        <record javaclass="com.wm.util.Values">
+          <value name="type">list</value>
+          <value name="acl">WmPrivate</value>
+        </record>
+      </array>
+    </record>
+    <record javaclass="com.wm.util.Values">
+      <value name="node">tundra.list.string:squeeze</value>
       <array name="permissions" type="record" depth="1">
         <record javaclass="com.wm.util.Values">
           <value name="type">list</value>

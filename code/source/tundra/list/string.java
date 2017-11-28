@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-11-27T12:32:44.459
+// -----( CREATED: 2017-11-28T15:39:26.031
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -912,7 +912,7 @@ public final class string
 
 		try {
 		    String[] list = IDataHelper.get(cursor, "$list", String[].class);
-		    IDataHelper.put(cursor, "$list", StringHelper.squeeze(list), false);
+		    IDataHelper.put(cursor, "$list", StringHelper.condense(list), false);
 		} finally {
 		    cursor.destroy();
 		}

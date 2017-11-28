@@ -5881,28 +5881,6 @@ returning the split list of documents as output.
 
 ---
 
-### tundra.document:squeeze
-
-Trims all leading and trailing whitespace from all string values, then
-converts empty strings, empty `IData` documents, and empty lists to nulls,
-then compacts the `IData` document by removing all null values.
-
-#### Inputs:
-
-* `$document` is an `IData` document to be squeezed.
-* `$recurse?` is an optional boolean indicating if embedded
-  `IData` documents and `IData[]` document lists should also
-  be squeezed. Defaults to `false`.
-
-#### Outputs:
-
-* `$document` is the resulting `IData` document with all string values
-  trimmed of leading and trailing whitespace characters, and all
-  empty string values, empty `IData` documents, empty lists, and null
-  values removed.
-
----
-
 ### tundra.document:stringify
 
 Converts all non-IData document and non-IData[] document list values in the
@@ -9129,29 +9107,6 @@ item.
 
 ---
 
-### tundra.list.document:squeeze
-
-Trims all leading and trailing whitespace from all string values,
-then converts empty strings, empty `IData` documents, and empty lists
-to nulls, then compacts the `IData[]` document list by removing all
-null values.
-
-#### Inputs:
-
-* `$list` is an `IData[]` document list to be squeezed.
-* `$recurse?` is an optional boolean indicating if embedded
-  `IData` documents and `IData[]` document lists should also
-  be squeezed. Defaults to `false`.
-
-#### Outputs:
-
-* `$list` is the resulting `IData[]` document list with all string
-  values trimmed of leading and trailing whitespace characters, and
-  all empty string values, empty `IData` documents, empty lists, and
-  null values removed.
-
----
-
 ### tundra.list.document:substitute
 
 Attempts variable substitution on each string value in the given IData
@@ -11242,24 +11197,6 @@ the given list's items.
 #### Outputs:
 
 * `$list` is the sorted list.
-
----
-
-### tundra.list.string:squeeze
-
-Replaces runs of one or more whitespace characters (space, tab,
-carriage return, line feed) with a single space character in
-the given list of strings.
-
-#### Inputs:
-
-* `$list` is a list of strings to squeeze extraneous whitespace
-  from.
-
-#### Outputs:
-
-* `$list` is the input list of strings with extraneous whitespace
-  characters removed and replaced with a single space character.
 
 ---
 
@@ -14309,6 +14246,40 @@ string tables in the given `IData` document.
 
 ---
 
+### tundra.string:condense
+
+Replaces runs of one or more whitespace characters (space, tab,
+carriage return, line feed) with a single space character, then
+trims leading and trailing whitespace.
+
+#### Inputs:
+
+* `$condense.input` is an `IData` document containing arbitrarily
+  specified strings to be condensed.
+  * `$value` is optional and specified as an input only for developer
+    convenience when using this service for a single string value.
+  * `$value.list` is optional and specified as an input only for
+    developer convenience when using this service for a list of
+    string values.
+  * `$value.table` is optional and specified as an input only for
+    developer convenience when using this service for a table of
+    string values.
+
+#### Outputs:
+
+* `$condense.output` is an `IData` document containing the resulting
+  condensed strings.
+  * `$value` is optional and specified as an output only for developer
+    convenience when using this service for a single string value.
+  * `$value.list` is optional and specified as an output only for
+    developer convenience when using this service for a list of
+    string values.
+  * `$value.table` is optional and specified as an output only for
+    developer convenience when using this service for a table of
+    string values.
+
+---
+
 ### tundra.string:find
 
 Returns whether the given [regular expression pattern] or literal
@@ -14726,18 +14697,34 @@ Splits the given string around matches of the given literal pattern or
 
 ### tundra.string:squeeze
 
-Replaces runs of one or more whitespace characters (space, tab,
-carriage return, line feed) with a single space character.
+Trims all leading and trailing whitespace from all string values,
+then converts empty strings to nulls, then removes all null values.
 
 #### Inputs:
 
-* `$string` is a string to squeeze extraneous whitespace from.
+* `$squeeze.input` is an `IData` document containing arbitrarily
+  specified strings to be squeezed.
+  * `$value` is optional and specified as an input only for developer
+    convenience when using this service for a single string value.
+  * `$value.list` is optional and specified as an input only for
+    developer convenience when using this service for a list of
+    string values.
+  * `$value.table` is optional and specified as an input only for
+    developer convenience when using this service for a table of
+    string values.
 
 #### Outputs:
 
-* `$string` is the input string with extraneous whitespace
-  characters removed and replaced with a single space
-  character.
+* `$squeeze.output` is an `IData` document containing the resulting
+  squeezed strings.
+  * `$value` is optional and specified as an output only for developer
+    convenience when using this service for a single string value.
+  * `$value.list` is optional and specified as an output only for
+    developer convenience when using this service for a list of
+    string values.
+  * `$value.table` is optional and specified as an output only for
+    developer convenience when using this service for a table of
+    string values.
 
 ---
 

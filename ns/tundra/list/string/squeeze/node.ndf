@@ -82,6 +82,8 @@
   </record>
   <value name="node_comment">### tundra.list.string:squeeze
 
+DEPRECATED: use tundra.string:condense instead.
+
 Replaces runs of one or more whitespace characters (space, tab,
 carriage return, line feed) with a single space character in
 the given list of strings.

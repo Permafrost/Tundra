@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-11-27T12:48:17.381
+// -----( CREATED: 2017-11-28T15:25:22.250
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -253,6 +253,35 @@ public final class string
 		    String result = StringHelper.concatenate(operands, separator);
 
 		    IDataHelper.put(cursor, "$string", result, false);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
+	public static final void condense (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(condense)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:0:optional $condense.input
+		// [i] - field:0:optional value
+		// [i] - field:1:optional value.list
+		// [i] - field:2:optional value.table
+		// [o] record:0:optional $condense.output
+		// [o] - field:0:optional value
+		// [o] - field:1:optional value.list
+		// [o] - field:2:optional value.table
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    IData document = IDataHelper.get(cursor, "$condense.input", IData.class);
+		    IDataHelper.put(cursor, "$condense.output", IDataHelper.condense(document, true), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -730,7 +759,7 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
 		// [i] field:0:optional $pattern
-		// [i] field:0:optional $literal? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $pattern.literal? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -756,13 +785,25 @@ public final class string
 		// --- <<IS-START(squeeze)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional $string
-		// [o] field:0:optional $string
+		// [i] record:0:optional $squeeze.input
+		// [i] - field:0:optional value
+		// [i] - field:1:optional value.list
+		// [i] - field:2:optional value.table
+		// [o] record:0:optional $squeeze.output
+		// [o] - field:0:optional value
+		// [o] - field:1:optional value.list
+		// [o] - field:2:optional value.table
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
-		    String string = IDataHelper.get(cursor, "$string", String.class);
-		    IDataHelper.put(cursor, "$string", StringHelper.squeeze(string), false);
+		    IData document = IDataHelper.get(cursor, "$squeeze.input", IData.class);
+		    if (document == null) {
+		        // support old version of squeeze for backwards-compatibility
+		        String string = IDataHelper.get(cursor, "$string", String.class);
+		        IDataHelper.put(cursor, "$string", StringHelper.condense(string));
+		    } else {
+		        IDataHelper.put(cursor, "$squeeze.output", IDataHelper.squeeze(document, true), false);
+		    }
 		} finally {
 		    cursor.destroy();
 		}
