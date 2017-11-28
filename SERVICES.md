@@ -3332,12 +3332,12 @@ Custom datetime patterns can be specified using
 * `$datetime.input` is an `IData` document containing arbitrarily
   specified datetime strings to be reformatted to a different
   pattern.
-  * `value` is optional and specified as an input only for developer
+  * `$value` is optional and specified as an input only for developer
     convenience when using this service for a single string value.
-  * `value.list` is optional and specified as an input only for
+  * `$value.list` is optional and specified as an input only for
     developer convenience when using this service for a list of
     string values.
-  * `value.table` is optional and specified as an input only for
+  * `$value.table` is optional and specified as an input only for
     developer convenience when using this service for a table of
     string values.
 * `$pattern.input `is an optional datetime pattern that the datetime
@@ -3370,12 +3370,12 @@ Custom datetime patterns can be specified using
 * `$datetime.output` is an `IData` document containing the datetime
   strings reformatted according to the given `$pattern.output` in the
   given `$timezone.output`.
-  * `value` is optional and specified as an output only for developer
+  * `$value` is optional and specified as an output only for developer
     convenience when using this service for a single string value.
-  * `value.list` is optional and specified as an output only for
+  * `$value.list` is optional and specified as an output only for
     developer convenience when using this service for a list of
     string values.
-  * `value.table` is optional and specified as an output only for
+  * `$value.table` is optional and specified as an output only for
     developer convenience when using this service for a table of
     string values.
 
@@ -3997,12 +3997,12 @@ input pattern, according to the output pattern.
 
 * `$decimal.input` is an `IData` document containing arbitrarily
   specified string representations of numbers.
-  * `value` is optional and specified as an input only for developer
+  * `$value` is optional and specified as an input only for developer
     convenience when using this service for a single string value.
-  * `value.list` is optional and specified as an input only for
+  * `$value.list` is optional and specified as an input only for
     developer convenience when using this service for a list of
     string values.
-  * `value.table` is optional and specified as an input only for
+  * `$value.table` is optional and specified as an input only for
     developer convenience when using this service for a table of
     string values.
 * `$pattern.input` is an optional [java.text.DecimalFormat] pattern
@@ -4022,12 +4022,12 @@ input pattern, according to the output pattern.
 #### Outputs:
 
 * `$decimal.output` contains the resulting formatted number strings.
-  * `value` is optional and specified as an output only for developer
+  * `$value` is optional and specified as an output only for developer
     convenience when using this service for a single string value.
-  * `value.list` is optional and specified as an output only for
+  * `$value.list` is optional and specified as an output only for
     developer convenience when using this service for a list of
     string values.
-  * `value.table` is optional and specified as an output only for
+  * `$value.table` is optional and specified as an output only for
     developer convenience when using this service for a table of
     string values.
 
@@ -6246,12 +6246,12 @@ number of days in a month varies).
 
 * `$duration.input` is an `IData` document containing arbitrarily
   specified duration strings to be formatted.
-  * `value` is optional and specified as an input only for developer
+  * `$value` is optional and specified as an input only for developer
     convenience when using this service for a single string value.
-  * `value.list` is optional and specified as an input only for
+  * `$value.list` is optional and specified as an input only for
     developer convenience when using this service for a list of
     string values.
-  * `value.table` is optional and specified as an input only for
+  * `$value.table` is optional and specified as an input only for
     developer convenience when using this service for a table of
     string values.
 * `$pattern.input` is an optional pattern describing the type of
@@ -6275,12 +6275,12 @@ number of days in a month varies).
 
 * `$duration.output` contains the duration strings formatted according
   to `$pattern.output`.
-  * `value` is optional and specified as an output only for developer
+  * `$value` is optional and specified as an output only for developer
     convenience when using this service for a single string value.
-  * `value.list` is optional and specified as an output only for
+  * `$value.list` is optional and specified as an output only for
     developer convenience when using this service for a list of
     string values.
-  * `value.table` is optional and specified as an output only for
+  * `$value.table` is optional and specified as an output only for
     developer convenience when using this service for a table of
     string values.
 
@@ -6893,27 +6893,27 @@ appropriate character representation, such as `<` and `>`.
 
 #### Inputs:
 
-* `$document.encoded` is an optional `IData` document containing
+* `$html.encoded` is an optional `IData` document containing
   arbitrarily specified string values to be [HTML] decoded.
-  * `value` is optional and specified as an input only for developer
+  * `$value` is optional and specified as an input only for developer
     convenience when using this service for a single string value.
-  * `value.list` is optional and specified as an input only for
+  * `$value.list` is optional and specified as an input only for
     developer convenience when using this service for a list of
     string values.
-  * `value.table` is optional and specified as an input only for
+  * `$value.table` is optional and specified as an input only for
     developer convenience when using this service for a table of
     string values.
 
 #### Outputs:
 
-* `$document.decoded` is an `IData` document containing the arbitrarily
+* `$html.decoded` is an `IData` document containing the arbitrarily
   specified string values with [HTML entities] decoded.
-  * `value` is optional and specified as an output only for developer
+  * `$value` is optional and specified as an output only for developer
     convenience when using this service for a single string value.
-  * `value.list` is optional and specified as an output only for
+  * `$value.list` is optional and specified as an output only for
     developer convenience when using this service for a list of
     string values.
-  * `value.table` is optional and specified as an output only for
+  * `$value.table` is optional and specified as an output only for
     developer convenience when using this service for a table of
     string values.
 
@@ -6962,27 +6962,27 @@ rendering software.
 
 #### Inputs:
 
-* `$document.decoded` is an optional `IData` document containing
+* `$html.decoded` is an optional `IData` document containing
   arbitrarily specified string values to be [HTML] encoded.
-  * `value` is optional and specified as an input only for developer
+  * `$value` is optional and specified as an input only for developer
     convenience when using this service for a single string value.
-  * `value.list` is optional and specified as an input only for
+  * `$value.list` is optional and specified as an input only for
     developer convenience when using this service for a list of
     string values.
-  * `value.table` is optional and specified as an input only for
+  * `$value.table` is optional and specified as an input only for
     developer convenience when using this service for a table of
     string values.
 
 #### Outputs:
 
-* `$document.encoded` is an `IData` document containing the arbitrarily
+* `$html.encoded` is an `IData` document containing the arbitrarily
   specified string values with [HTML entities] encoded.
-  * `value` is optional and specified as an output only for developer
+  * `$value` is optional and specified as an output only for developer
     convenience when using this service for a single string value.
-  * `value.list` is optional and specified as an output only for
+  * `$value.list` is optional and specified as an output only for
     developer convenience when using this service for a list of
     string values.
-  * `value.table` is optional and specified as an output only for
+  * `$value.table` is optional and specified as an output only for
     developer convenience when using this service for a table of
     string values.
 
@@ -7344,12 +7344,12 @@ input pattern, according to the output pattern.
 
 * `$number.input` is an `IData` document containing arbitrarily
   specified string representations of numbers.
-  * `value` is optional and specified as an input only for developer
+  * `$value` is optional and specified as an input only for developer
     convenience when using this service for a single string value.
-  * `value.list` is optional and specified as an input only for
+  * `$value.list` is optional and specified as an input only for
     developer convenience when using this service for a list of
     string values.
-  * `value.table` is optional and specified as an input only for
+  * `$value.table` is optional and specified as an input only for
     developer convenience when using this service for a table of
     string values.
 * `$pattern.input` is an optional [java.text.DecimalFormat] pattern
@@ -7369,12 +7369,12 @@ input pattern, according to the output pattern.
 #### Outputs:
 
 * `$number.output` contains the resulting formatted number strings.
-  * `value` is optional and specified as an output only for developer
+  * `$value` is optional and specified as an output only for developer
     convenience when using this service for a single string value.
-  * `value.list` is optional and specified as an output only for
+  * `$value.list` is optional and specified as an output only for
     developer convenience when using this service for a list of
     string values.
-  * `value.table` is optional and specified as an output only for
+  * `$value.table` is optional and specified as an output only for
     developer convenience when using this service for a table of
     string values.
 
@@ -14254,7 +14254,7 @@ trims leading and trailing whitespace.
 
 #### Inputs:
 
-* `$condense.input` is an `IData` document containing arbitrarily
+* `$string.input` is an `IData` document containing arbitrarily
   specified strings to be condensed.
   * `$value` is optional and specified as an input only for developer
     convenience when using this service for a single string value.
@@ -14267,7 +14267,7 @@ trims leading and trailing whitespace.
 
 #### Outputs:
 
-* `$condense.output` is an `IData` document containing the resulting
+* `$string.output` is an `IData` document containing the resulting
   condensed strings.
   * `$value` is optional and specified as an output only for developer
     convenience when using this service for a single string value.
@@ -14702,7 +14702,7 @@ then converts empty strings to nulls, then removes all null values.
 
 #### Inputs:
 
-* `$squeeze.input` is an `IData` document containing arbitrarily
+* `$string.input` is an `IData` document containing arbitrarily
   specified strings to be squeezed.
   * `$value` is optional and specified as an input only for developer
     convenience when using this service for a single string value.
@@ -14715,7 +14715,7 @@ then converts empty strings to nulls, then removes all null values.
 
 #### Outputs:
 
-* `$squeeze.output` is an `IData` document containing the resulting
+* `$string.output` is an `IData` document containing the resulting
   squeezed strings.
   * `$value` is optional and specified as an output only for developer
     convenience when using this service for a single string value.
@@ -15124,14 +15124,14 @@ Implemented with the [java.net.URLDecoder] class.
 
 #### Inputs:
 
-* `$document.encoded` is an `IData` document containing arbitrarily
+* `$uri.encoded` is an `IData` document containing arbitrarily
   specified strings of URI-encoded data to be decoded.
-  * `value` is optional and specified as an input only for developer
+  * `$value` is optional and specified as an input only for developer
     convenience when using this service for a single string value.
-  * `value.list` is optional and specified as an input only for
+  * `$value.list` is optional and specified as an input only for
     developer convenience when using this service for a list of
     string values.
-  * `value.table` is optional and specified as an input only for
+  * `$value.table` is optional and specified as an input only for
     developer convenience when using this service for a table of
     string values.
 * `$encoding` is the character set used to determine what characters
@@ -15140,13 +15140,13 @@ Implemented with the [java.net.URLDecoder] class.
 
 #### Outputs:
 
-* `$document.decoded` contains the decoded strings.
-  * `value` is optional and specified as an output only for developer
+* `$uri.decoded` contains the decoded strings.
+  * `$value` is optional and specified as an output only for developer
     convenience when using this service for a single string value.
-  * `value.list` is optional and specified as an output only for
+  * `$value.list` is optional and specified as an output only for
     developer convenience when using this service for a list of
     string values.
-  * `value.table` is optional and specified as an output only for
+  * `$value.table` is optional and specified as an output only for
     developer convenience when using this service for a table of
     string values.
 
@@ -15278,14 +15278,14 @@ Implemented with the [java.net.URLEncoder] class.
 
 #### Inputs:
 
-* `$document.decoded` is an `IData` document containing arbitrarily
+* `$uri.decoded` is an `IData` document containing arbitrarily
   specified strings to be URI-encoded.
-  * `value` is optional and specified as an input only for developer
+  * `$value` is optional and specified as an input only for developer
     convenience when using this service for a single string value.
-  * `value.list` is optional and specified as an input only for
+  * `$value.list` is optional and specified as an input only for
     developer convenience when using this service for a list of
     string values.
-  * `value.table` is optional and specified as an input only for
+  * `$value.table` is optional and specified as an input only for
     developer convenience when using this service for a table of
     string values.
 * `$encoding` is the character set used to obtain the bytes for unsafe
@@ -15293,13 +15293,13 @@ Implemented with the [java.net.URLEncoder] class.
 
 #### Outputs:
 
-* `$document.encoded` contains the URI-encoded strings.
-  * `value` is optional and specified as an output only for developer
+* `$uri.encoded` contains the URI-encoded strings.
+  * `$value` is optional and specified as an output only for developer
     convenience when using this service for a single string value.
-  * `value.list` is optional and specified as an output only for
+  * `$value.list` is optional and specified as an output only for
     developer convenience when using this service for a list of
     string values.
-  * `value.table` is optional and specified as an output only for
+  * `$value.table` is optional and specified as an output only for
     developer convenience when using this service for a table of
     string values.
 
@@ -15585,27 +15585,27 @@ appropriate character representation, such as `<` and `>`.
 
 #### Inputs:
 
-* `$document.encoded` is an optional `IData` document containing
+* `$xml.encoded` is an optional `IData` document containing
   arbitrarily specified string values to be [XML] decoded.
-  * `value` is optional and specified as an input only for developer
+  * `$value` is optional and specified as an input only for developer
     convenience when using this service for a single string value.
-  * `value.list` is optional and specified as an input only for
+  * `$value.list` is optional and specified as an input only for
     developer convenience when using this service for a list of
     string values.
-  * `value.table` is optional and specified as an input only for
+  * `$value.table` is optional and specified as an input only for
     developer convenience when using this service for a table of
     string values.
 
 #### Outputs:
 
-* `$document.decoded` is an `IData` document containing the arbitrarily
+* `$xml.decoded` is an `IData` document containing the arbitrarily
   specified string values with [XML entities] decoded.
-  * `value` is optional and specified as an output only for developer
+  * `$value` is optional and specified as an output only for developer
     convenience when using this service for a single string value.
-  * `value.list` is optional and specified as an output only for
+  * `$value.list` is optional and specified as an output only for
     developer convenience when using this service for a list of
     string values.
-  * `value.table` is optional and specified as an output only for
+  * `$value.table` is optional and specified as an output only for
     developer convenience when using this service for a table of
     string values.
 

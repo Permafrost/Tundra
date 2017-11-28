@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-10-15 12:30:24 EST
-// -----( ON-HOST: 192.168.66.132
+// -----( CREATED: 2017-11-28T16:29:59.953
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -43,25 +43,36 @@ public final class html
 		// --- <<IS-START(decode)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] record:0:optional $document.encoded
-		// [o] record:0:optional $document.decoded
+		// [i] record:0:optional $html.encoded
+		// [i] - field:0:optional $value
+		// [i] - field:1:optional $value.list
+		// [i] - field:2:optional $value.table
+		// [o] record:0:optional $html.decoded
+		// [o] - field:0:optional $value
+		// [o] - field:1:optional $value.list
+		// [o] - field:2:optional $value.table
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
-		    IData document = IDataHelper.get(cursor, "$document.encoded", IData.class);
-		
+		    IData document = IDataHelper.get(cursor, "$html.encoded", IData.class);
+
 		    if (document == null) {
-		        String string = IDataHelper.get(cursor, "$string", String.class);
-		        IDataHelper.put(cursor, "$string", HTMLHelper.decode(string), false);
+		        document = IDataHelper.get(cursor, "$document.encoded", IData.class);
+		        if (document == null) {
+		            String string = IDataHelper.get(cursor, "$string", String.class);
+		            IDataHelper.put(cursor, "$string", HTMLHelper.decode(string), false);
+		        } else {
+		            IDataHelper.put(cursor, "$document.decoded", HTMLHelper.decode(document), false);
+		        }
 		    } else {
-		        IDataHelper.put(cursor, "$document.decoded", HTMLHelper.decode(document), false);
+		        IDataHelper.put(cursor, "$html.decoded", HTMLHelper.decode(document), false);
 		    }
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -75,16 +86,16 @@ public final class html
 		// [i] record:0:optional $document
 		// [i] field:0:optional $encoding
 		// [i] field:0:optional $depth
-		// [i] field:0:optional $mode {"stream","bytes","string"}
+		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IData document = IDataHelper.get(cursor, "$document", IData.class);
 		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
 		    int depth = IDataHelper.getOrDefault(cursor, "$depth", Integer.class, Integer.MAX_VALUE);
 		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
-		
+
 		    if (document != null) {
 		        IDataHelper.put(cursor, "$content", ObjectHelper.convert(IDataHTMLParser.getInstance().encodeToString(document, depth), charset, mode), false);
 		    }
@@ -95,7 +106,7 @@ public final class html
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -106,25 +117,36 @@ public final class html
 		// --- <<IS-START(encode)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] record:0:optional $document.decoded
-		// [o] record:0:optional $document.encoded
+		// [i] record:0:optional $html.decoded
+		// [i] - field:0:optional $value
+		// [i] - field:1:optional $value.list
+		// [i] - field:2:optional $value.table
+		// [o] record:0:optional $html.encoded
+		// [o] - field:0:optional $value
+		// [o] - field:1:optional $value.list
+		// [o] - field:2:optional $value.table
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
-		    IData document = IDataHelper.get(cursor, "$document.decoded", IData.class);
-		
+		    IData document = IDataHelper.get(cursor, "$html.decoded", IData.class);
+
 		    if (document == null) {
-		        String string = IDataHelper.get(cursor, "$string", String.class);
-		        IDataHelper.put(cursor, "$string", HTMLHelper.encode(string), false);
+		        document = IDataHelper.get(cursor, "$document.decoded", IData.class);
+		        if (document == null) {
+		            String string = IDataHelper.get(cursor, "$string", String.class);
+		            IDataHelper.put(cursor, "$string", HTMLHelper.encode(string), false);
+		        } else {
+		            IDataHelper.put(cursor, "$document.encoded", HTMLHelper.encode(document), false);
+		        }
 		    } else {
-		        IDataHelper.put(cursor, "$document.encoded", HTMLHelper.encode(document), false);
+		        IDataHelper.put(cursor, "$html.encoded", HTMLHelper.encode(document), false);
 		    }
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 

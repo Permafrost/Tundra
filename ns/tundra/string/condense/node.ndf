@@ -20,7 +20,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$condense.input</value>
+          <value name="field_name">$string.input</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -128,7 +128,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$condense.output</value>
+          <value name="field_name">$string.output</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -230,7 +230,7 @@ trims leading and trailing whitespace.
 
 #### Inputs:
 
-* $condense.input is an IData document containing arbitrarily 
+* $string.input is an IData document containing arbitrarily 
   specified strings to be condensed.
   * $value is optional and specified as an input only for developer
     convenience when using this service for a single string value.
@@ -243,7 +243,7 @@ trims leading and trailing whitespace.
 
 #### Outputs:
 
-* $condense.output is an IData document containing the resulting 
+* $string.output is an IData document containing the resulting 
   condensed strings.
   * $value is optional and specified as an output only for developer
     convenience when using this service for a single string value.

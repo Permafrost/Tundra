@@ -36,7 +36,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
-              <value name="field_name">value</value>
+              <value name="field_name">$value</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
               <value name="field_opt">true</value>
@@ -62,7 +62,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
-              <value name="field_name">value.list</value>
+              <value name="field_name">$value.list</value>
               <value name="field_type">string</value>
               <value name="field_dim">1</value>
               <value name="field_opt">true</value>
@@ -89,7 +89,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
-              <value name="field_name">value.table</value>
+              <value name="field_name">$value.table</value>
               <value name="field_type">string</value>
               <value name="field_dim">2</value>
               <value name="field_opt">true</value>
@@ -299,7 +299,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
-              <value name="field_name">value</value>
+              <value name="field_name">$value</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
               <value name="field_opt">true</value>
@@ -325,7 +325,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
-              <value name="field_name">value.list</value>
+              <value name="field_name">$value.list</value>
               <value name="field_type">string</value>
               <value name="field_dim">1</value>
               <value name="field_opt">true</value>
@@ -352,7 +352,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
-              <value name="field_name">value.table</value>
+              <value name="field_name">$value.table</value>
               <value name="field_type">string</value>
               <value name="field_dim">2</value>
               <value name="field_opt">true</value>
@@ -403,12 +403,12 @@ Custom datetime patterns can be specified using
 * $datetime.input is an IData document containing arbitrarily 
   specified datetime strings to be reformatted to a different 
   pattern.
-  * value is optional and specified as an input only for developer
+  * $value is optional and specified as an input only for developer
     convenience when using this service for a single string value.
-  * value.list is optional and specified as an input only for 
+  * $value.list is optional and specified as an input only for 
     developer convenience when using this service for a list of 
     string values.
-  * value.table is optional and specified as an input only for 
+  * $value.table is optional and specified as an input only for 
     developer convenience when using this service for a table of
     string values.
 * $pattern.input is an optional datetime pattern that the datetime
@@ -441,12 +441,12 @@ Custom datetime patterns can be specified using
 * $datetime.output is an IData document containing the datetime 
   strings reformatted according to the given $pattern.output in the 
   given $timezone.output.
-  * value is optional and specified as an output only for developer
+  * $value is optional and specified as an output only for developer
     convenience when using this service for a single string value.
-  * value.list is optional and specified as an output only for 
+  * $value.list is optional and specified as an output only for 
     developer convenience when using this service for a list of 
     string values.
-  * value.table is optional and specified as an output only for 
+  * $value.table is optional and specified as an output only for 
     developer convenience when using this service for a table of
     string values.
 

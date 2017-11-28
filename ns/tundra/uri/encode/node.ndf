@@ -20,7 +20,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$document.decoded</value>
+          <value name="field_name">$uri.decoded</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -36,7 +36,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
-              <value name="field_name">value</value>
+              <value name="field_name">$value</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
               <value name="field_opt">true</value>
@@ -62,7 +62,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
-              <value name="field_name">value.list</value>
+              <value name="field_name">$value.list</value>
               <value name="field_type">string</value>
               <value name="field_dim">1</value>
               <value name="field_opt">true</value>
@@ -89,7 +89,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
-              <value name="field_name">value.table</value>
+              <value name="field_name">$value.table</value>
               <value name="field_type">string</value>
               <value name="field_dim">2</value>
               <value name="field_opt">true</value>
@@ -155,7 +155,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$document.encoded</value>
+          <value name="field_name">$uri.encoded</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -171,7 +171,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
-              <value name="field_name">value</value>
+              <value name="field_name">$value</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
               <value name="field_opt">true</value>
@@ -197,7 +197,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
-              <value name="field_name">value.list</value>
+              <value name="field_name">$value.list</value>
               <value name="field_type">string</value>
               <value name="field_dim">1</value>
               <value name="field_opt">true</value>
@@ -224,7 +224,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
-              <value name="field_name">value.table</value>
+              <value name="field_name">$value.table</value>
               <value name="field_type">string</value>
               <value name="field_dim">2</value>
               <value name="field_opt">true</value>
@@ -269,14 +269,14 @@ Implemented with the [java.net.URLEncoder] class.
 
 #### Inputs:
 
-* $document.decoded is an IData document containing arbitrarily 
+* $uri.decoded is an IData document containing arbitrarily 
   specified strings to be URI-encoded.
-  * value is optional and specified as an input only for developer
+  * $value is optional and specified as an input only for developer
     convenience when using this service for a single string value.
-  * value.list is optional and specified as an input only for 
+  * $value.list is optional and specified as an input only for 
     developer convenience when using this service for a list of 
     string values.
-  * value.table is optional and specified as an input only for 
+  * $value.table is optional and specified as an input only for 
     developer convenience when using this service for a table of
     string values.
 * $encoding is the character set used to obtain the bytes for unsafe
@@ -284,13 +284,13 @@ Implemented with the [java.net.URLEncoder] class.
 
 #### Outputs:
 
-* $document.encoded contains the URI-encoded strings.
-  * value is optional and specified as an output only for developer
+* $uri.encoded contains the URI-encoded strings.
+  * $value is optional and specified as an output only for developer
     convenience when using this service for a single string value.
-  * value.list is optional and specified as an output only for 
+  * $value.list is optional and specified as an output only for 
     developer convenience when using this service for a list of 
     string values.
-  * value.table is optional and specified as an output only for 
+  * $value.table is optional and specified as an output only for 
     developer convenience when using this service for a table of
     string values.
 

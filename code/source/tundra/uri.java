@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-10-15 15:21:40 EST
-// -----( ON-HOST: 192.168.66.132
+// -----( CREATED: 2017-11-28T16:39:44.375
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -38,27 +38,38 @@ public final class uri
 		// --- <<IS-START(decode)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] record:0:optional $document.encoded
+		// [i] record:0:optional $uri.encoded
+		// [i] - field:0:optional $value
+		// [i] - field:1:optional $value.list
+		// [i] - field:2:optional $value.table
 		// [i] field:0:optional $encoding
-		// [o] record:0:optional $document.decoded
+		// [o] record:0:optional $uri.decoded
+		// [o] - field:0:optional $value
+		// [o] - field:1:optional $value.list
+		// [o] - field:2:optional $value.table
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
-		    IData document = IDataHelper.get(cursor, "$document.encoded", IData.class);
+		    IData document = IDataHelper.get(cursor, "$uri.encoded", IData.class);
 		    Charset encoding = IDataHelper.get(cursor, "$encoding", Charset.class);
-		
-		    if (document != null) {
-		        IDataHelper.put(cursor, "$document.decoded", URIHelper.decode(document, encoding), false);
+
+		    if (document == null) {
+		        document = IDataHelper.get(cursor, "$document.encoded", IData.class);
+		        if (document == null) {
+		            String string = IDataHelper.get(cursor, "$string", String.class);
+		            IDataHelper.put(cursor, "$string", URIHelper.decode(string, encoding), false);
+		        } else {
+		            IDataHelper.put(cursor, "$document.decoded", URIHelper.decode(document, encoding), false);
+		        }
 		    } else {
-		        String string = IDataHelper.get(cursor, "$string", String.class);
-		        IDataHelper.put(cursor, "$string", URIHelper.decode(string, encoding), false);
+		        IDataHelper.put(cursor, "$uri.decoded", URIHelper.decode(document, encoding), false);
 		    }
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -80,13 +91,13 @@ public final class uri
 		// [i] --- field:0:required host
 		// [i] --- field:0:optional port
 		// [i] - field:1:optional path
-		// [i] - field:0:optional path.absolute? {"true","false"}
+		// [i] - field:0:optional path.absolute? {&quot;true&quot;,&quot;false&quot;}
 		// [i] - field:0:optional file
 		// [i] - record:0:optional query
 		// [i] - field:0:optional fragment
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IData uri = IDataHelper.get(cursor, "$uri", IData.class);
 		    IDataHelper.put(cursor, "$string", URIHelper.emit(uri), false);
@@ -97,7 +108,7 @@ public final class uri
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -108,27 +119,38 @@ public final class uri
 		// --- <<IS-START(encode)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] record:0:optional $document.decoded
+		// [i] record:0:optional $uri.decoded
+		// [i] - field:0:optional $value
+		// [i] - field:1:optional $value.list
+		// [i] - field:2:optional $value.table
 		// [i] field:0:optional $encoding
-		// [o] record:0:optional $document.encoded
+		// [o] record:0:optional $uri.encoded
+		// [o] - field:0:optional $value
+		// [o] - field:1:optional $value.list
+		// [o] - field:2:optional $value.table
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
-		    IData document = IDataHelper.get(cursor, "$document.decoded", IData.class);
+		    IData document = IDataHelper.get(cursor, "$uri.decoded", IData.class);
 		    Charset encoding = IDataHelper.get(cursor, "$encoding", Charset.class);
-		
-		    if (document != null) {
-		        IDataHelper.put(cursor, "$document.encoded", URIHelper.encode(document, encoding), false);
+
+		    if (document == null) {
+		        document = IDataHelper.get(cursor, "$document.decoded", IData.class);
+		        if (document == null) {
+		            String string = IDataHelper.get(cursor, "$string", String.class);
+		            IDataHelper.put(cursor, "$string", URIHelper.encode(string, encoding), false);
+		        } else {
+		            IDataHelper.put(cursor, "$document.encoded", URIHelper.encode(document, encoding), false);
+		        }
 		    } else {
-		        String string = IDataHelper.get(cursor, "$string", String.class);
-		        IDataHelper.put(cursor, "$string", URIHelper.encode(string, encoding), false);
+		        IDataHelper.put(cursor, "$uri.encoded", URIHelper.encode(document, encoding), false);
 		    }
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -142,7 +164,7 @@ public final class uri
 		// [i] field:0:optional $string
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String string = IDataHelper.get(cursor, "$string", String.class);
 		    IDataHelper.put(cursor, "$string", URIHelper.normalize(string), false);
@@ -153,7 +175,7 @@ public final class uri
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -176,14 +198,14 @@ public final class uri
 		// [o] --- field:0:required host
 		// [o] --- field:0:optional port
 		// [o] - field:1:optional path
-		// [o] - field:0:optional path.absolute? {"true","false"}
+		// [o] - field:0:optional path.absolute? {&quot;true&quot;,&quot;false&quot;}
 		// [o] - field:0:optional file
 		// [o] - record:0:optional query
 		// [o] - field:0:optional fragment
 		// [o] - field:0:required absolute?
 		// [o] - field:0:required opaque?
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String string = IDataHelper.get(cursor, "$string", String.class);
 		    IDataHelper.put(cursor, "$uri", URIHelper.parse(string), false);
@@ -194,7 +216,7 @@ public final class uri
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -209,11 +231,11 @@ public final class uri
 		// [i] record:0:optional $scope
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String uri = IDataHelper.get(cursor, "$string", String.class);
 		    IData scope = IDataHelper.get(cursor, "$scope", IData.class);
-		
+
 		    IDataHelper.put(cursor, "$string", URIHelper.substitute(uri, scope == null ? pipeline : scope), false);
 		} catch(URISyntaxException ex) {
 		    ExceptionHelper.raise(ex);
@@ -222,7 +244,7 @@ public final class uri
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 

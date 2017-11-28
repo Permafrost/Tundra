@@ -20,7 +20,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$squeeze.input</value>
+          <value name="field_name">$string.input</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -128,7 +128,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$squeeze.output</value>
+          <value name="field_name">$string.output</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -229,7 +229,7 @@ then converts empty strings to nulls, then removes all null values.
 
 #### Inputs:
 
-* $squeeze.input is an IData document containing arbitrarily 
+* $string.input is an IData document containing arbitrarily 
   specified strings to be squeezed.
   * $value is optional and specified as an input only for developer
     convenience when using this service for a single string value.
@@ -242,7 +242,7 @@ then converts empty strings to nulls, then removes all null values.
 
 #### Outputs:
 
-* $squeeze.output is an IData document containing the resulting 
+* $string.output is an IData document containing the resulting 
   squeezed strings.
   * $value is optional and specified as an output only for developer
     convenience when using this service for a single string value.
