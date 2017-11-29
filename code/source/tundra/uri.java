@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-11-28T16:39:44.375
+// -----( CREATED: 2017-11-29T16:36:59.126
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -38,31 +38,20 @@ public final class uri
 		// --- <<IS-START(decode)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] record:0:optional $uri.encoded
-		// [i] - field:0:optional $value
-		// [i] - field:1:optional $value.list
-		// [i] - field:2:optional $value.table
+		// [i] record:0:optional $document.encoded
 		// [i] field:0:optional $encoding
-		// [o] record:0:optional $uri.decoded
-		// [o] - field:0:optional $value
-		// [o] - field:1:optional $value.list
-		// [o] - field:2:optional $value.table
+		// [o] record:0:optional $document.decoded
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
-		    IData document = IDataHelper.get(cursor, "$uri.encoded", IData.class);
+		    IData document = IDataHelper.get(cursor, "$document.encoded", IData.class);
 		    Charset encoding = IDataHelper.get(cursor, "$encoding", Charset.class);
 
 		    if (document == null) {
-		        document = IDataHelper.get(cursor, "$document.encoded", IData.class);
-		        if (document == null) {
-		            String string = IDataHelper.get(cursor, "$string", String.class);
-		            IDataHelper.put(cursor, "$string", URIHelper.decode(string, encoding), false);
-		        } else {
-		            IDataHelper.put(cursor, "$document.decoded", URIHelper.decode(document, encoding), false);
-		        }
+		        String string = IDataHelper.get(cursor, "$string", String.class);
+		        IDataHelper.put(cursor, "$string", URIHelper.decode(string, encoding), false);
 		    } else {
-		        IDataHelper.put(cursor, "$uri.decoded", URIHelper.decode(document, encoding), false);
+		        IDataHelper.put(cursor, "$document.decoded", URIHelper.decode(document, encoding), false);
 		    }
 		} finally {
 		    cursor.destroy();

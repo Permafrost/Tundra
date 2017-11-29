@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-11-28T16:29:59.953
+// -----( CREATED: 2017-11-29T16:32:00.611
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -43,29 +43,18 @@ public final class html
 		// --- <<IS-START(decode)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] record:0:optional $html.encoded
-		// [i] - field:0:optional $value
-		// [i] - field:1:optional $value.list
-		// [i] - field:2:optional $value.table
-		// [o] record:0:optional $html.decoded
-		// [o] - field:0:optional $value
-		// [o] - field:1:optional $value.list
-		// [o] - field:2:optional $value.table
+		// [i] record:0:optional $document.encoded
+		// [o] record:0:optional $document.decoded
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
-		    IData document = IDataHelper.get(cursor, "$html.encoded", IData.class);
+		    IData document = IDataHelper.get(cursor, "$document.encoded", IData.class);
 
 		    if (document == null) {
-		        document = IDataHelper.get(cursor, "$document.encoded", IData.class);
-		        if (document == null) {
-		            String string = IDataHelper.get(cursor, "$string", String.class);
-		            IDataHelper.put(cursor, "$string", HTMLHelper.decode(string), false);
-		        } else {
-		            IDataHelper.put(cursor, "$document.decoded", HTMLHelper.decode(document), false);
-		        }
+		        String string = IDataHelper.get(cursor, "$string", String.class);
+		        IDataHelper.put(cursor, "$string", HTMLHelper.decode(string), false);
 		    } else {
-		        IDataHelper.put(cursor, "$html.decoded", HTMLHelper.decode(document), false);
+		        IDataHelper.put(cursor, "$document.decoded", HTMLHelper.decode(document), false);
 		    }
 		} finally {
 		    cursor.destroy();
@@ -117,29 +106,17 @@ public final class html
 		// --- <<IS-START(encode)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] record:0:optional $html.decoded
-		// [i] - field:0:optional $value
-		// [i] - field:1:optional $value.list
-		// [i] - field:2:optional $value.table
-		// [o] record:0:optional $html.encoded
-		// [o] - field:0:optional $value
-		// [o] - field:1:optional $value.list
-		// [o] - field:2:optional $value.table
+		// [i] record:0:optional $document.decoded
+		// [o] record:0:optional $document.encoded
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
-		    IData document = IDataHelper.get(cursor, "$html.decoded", IData.class);
-
+		    IData document = IDataHelper.get(cursor, "$document.decoded", IData.class);
 		    if (document == null) {
-		        document = IDataHelper.get(cursor, "$document.decoded", IData.class);
-		        if (document == null) {
-		            String string = IDataHelper.get(cursor, "$string", String.class);
-		            IDataHelper.put(cursor, "$string", HTMLHelper.encode(string), false);
-		        } else {
-		            IDataHelper.put(cursor, "$document.encoded", HTMLHelper.encode(document), false);
-		        }
+		        String string = IDataHelper.get(cursor, "$string", String.class);
+		        IDataHelper.put(cursor, "$string", HTMLHelper.encode(string), false);
 		    } else {
-		        IDataHelper.put(cursor, "$html.encoded", HTMLHelper.encode(document), false);
+		        IDataHelper.put(cursor, "$document.encoded", HTMLHelper.encode(document), false);
 		    }
 		} finally {
 		    cursor.destroy();

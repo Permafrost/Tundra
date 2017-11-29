@@ -312,14 +312,6 @@ input pattern, according to the output pattern.
 
 * $number.input is an IData document containing arbitrarily 
   specified string representations of numbers.
-  * $value is optional and specified as an input only for developer
-    convenience when using this service for a single string value.
-  * $value.list is optional and specified as an input only for 
-    developer convenience when using this service for a list of 
-    string values.
-  * $value.table is optional and specified as an input only for 
-    developer convenience when using this service for a table of
-    string values.
 * $pattern.input is an optional [java.text.DecimalFormat] pattern 
   that the given strings conform to, and if specified will be used 
   to parse the strings. If not specified, defaults to 
@@ -337,14 +329,6 @@ input pattern, according to the output pattern.
 #### Outputs:
 
 * $number.output contains the resulting formatted number strings.
-  * $value is optional and specified as an output only for developer
-    convenience when using this service for a single string value.
-  * $value.list is optional and specified as an output only for 
-    developer convenience when using this service for a list of 
-    string values.
-  * $value.table is optional and specified as an output only for 
-    developer convenience when using this service for a table of
-    string values.
 
 [java.math.BigDecimal grammar]: &lt;http://docs.oracle.com/javase/6/docs/api/java/math/BigDecimal.html#BigDecimal(java.lang.String)&gt;
 [java.text.DecimalFormat]: &lt;http://docs.oracle.com/javase/6/docs/api/java/text/DecimalFormat.html&gt;</value>

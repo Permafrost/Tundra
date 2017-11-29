@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-11-28T16:47:05.297
+// -----( CREATED: 2017-11-29T16:34:36.845
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -86,33 +86,9 @@ public final class xml
 		// --- <<IS-START(decode)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] record:0:optional $xml.encoded
-		// [i] - field:0:optional $value
-		// [i] - field:1:optional $value.list
-		// [i] - field:2:optional $value.table
-		// [o] record:0:optional $xml.decoded
-		// [o] - field:0:optional $value
-		// [o] - field:1:optional $value.list
-		// [o] - field:2:optional $value.table
-		IDataCursor cursor = pipeline.getCursor();
-
-		try {
-		    IData document = IDataHelper.get(cursor, "$xml.encoded", IData.class);
-
-		    if (document == null) {
-		        document = IDataHelper.get(cursor, "$document.encoded", IData.class);
-		        if (document == null) {
-		            String string = IDataHelper.get(cursor, "$string", String.class);
-		            IDataHelper.put(cursor, "$string", HTMLHelper.decode(string), false);
-		        } else {
-		            IDataHelper.put(cursor, "$document.decoded", HTMLHelper.decode(document), false);
-		        }
-		    } else {
-		        IDataHelper.put(cursor, "$xml.decoded", HTMLHelper.decode(document), false);
-		    }
-		} finally {
-		    cursor.destroy();
-		}
+		// [i] record:0:optional $document.encoded
+		// [o] record:0:optional $document.decoded
+		tundra.html.decode(pipeline);
 		// --- <<IS-END>> ---
 
 
@@ -168,25 +144,7 @@ public final class xml
 		// [o] - field:0:optional $value
 		// [o] - field:1:optional $value.list
 		// [o] - field:2:optional $value.table
-		IDataCursor cursor = pipeline.getCursor();
-
-		try {
-		    IData document = IDataHelper.get(cursor, "$xml.decoded", IData.class);
-
-		    if (document == null) {
-		        document = IDataHelper.get(cursor, "$document.decoded", IData.class);
-		        if (document == null) {
-		            String string = IDataHelper.get(cursor, "$string", String.class);
-		            IDataHelper.put(cursor, "$string", HTMLHelper.encode(string), false);
-		        } else {
-		            IDataHelper.put(cursor, "$document.encoded", HTMLHelper.encode(document), false);
-		        }
-		    } else {
-		        IDataHelper.put(cursor, "$xml.encoded", HTMLHelper.encode(document), false);
-		    }
-		} finally {
-		    cursor.destroy();
-		}
+		tundra.html.encode(pipeline);
 		// --- <<IS-END>> ---
 
 
