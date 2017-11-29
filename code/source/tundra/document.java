@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-11-17T08:43:03.775
+// -----( CREATED: 2017-11-29T16:19:57.611
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -151,6 +151,36 @@ public final class document
 
 		    if (input != null) {
 		        IData output = IDataHelper.compact(input, recurse);
+		        if (output == null) output = IDataFactory.create();
+		        IDataHelper.put(cursor, "$document", output);
+		    }
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
+	public static final void condense (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(condense)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:0:optional $document
+		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [o] record:0:optional $document
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    IData input = IDataHelper.get(cursor, "$document", IData.class);
+		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
+
+		    if (input != null) {
+		        IData output = IDataHelper.condense(input, recurse);
 		        if (output == null) output = IDataFactory.create();
 		        IDataHelper.put(cursor, "$document", output);
 		    }

@@ -4744,6 +4744,26 @@ Removes all null values from the given `IData` document.
 
 ---
 
+### tundra.document:condense
+
+Replaces runs of one or more whitespace characters (space, tab,
+carriage return, line feed) with a single space character, then
+trims leading and trailing whitespace.
+
+#### Inputs:
+
+* `$document` is an `IData` document to be condensed.
+* `$recurse?` is an optional boolean indicating if embedded
+  `IData` documents and `IData[]` document lists should also
+  be condensed. Defaults to `false`.
+
+#### Outputs:
+
+* `$document` is the resulting `IData` document with all string values
+  condensed into single lines.
+
+---
+
 ### tundra.document:copy
 
 Copies the value associated with the source key to the target key in the
@@ -5878,6 +5898,28 @@ returning the split list of documents as output.
 * `$schemas` is the list of fully-qualified document reference (for XML)
   or flat file schema (for flat files) names, returned by `$service` for
   when the `$documents` list contains unlike formats.
+
+---
+
+### tundra.document:squeeze
+
+Trims all leading and trailing whitespace from all string values, then
+converts empty strings, empty `IData` documents, and empty lists to nulls,
+then compacts the `IData` document by removing all null values.
+
+#### Inputs:
+
+* `$document` is an `IData` document to be squeezed.
+* `$recurse?` is an optional boolean indicating if embedded
+  `IData` documents and `IData[]` document lists should also
+  be squeezed. Defaults to `false`.
+
+#### Outputs:
+
+* `$document` is the resulting `IData` document with all string values
+  trimmed of leading and trailing whitespace characters, and all
+  empty string values, empty `IData` documents, empty lists, and null
+  values removed.
 
 ---
 
@@ -8156,6 +8198,26 @@ Returns a new list containing all the items in the given lists.
 
 ---
 
+### tundra.list.document:condense
+
+Replaces runs of one or more whitespace characters (space, tab,
+carriage return, line feed) with a single space character, then
+trims leading and trailing whitespace.
+
+#### Inputs:
+
+* `$list` is an `IData[]` document list to be condensed.
+* `$recurse?` is an optional boolean indicating if embedded
+  `IData` documents and `IData[]` document lists should also
+  be condensed. Defaults to `false`.
+
+#### Outputs:
+
+* `$list` is the resulting `IData[]` document list with all string
+  values condensed into single lines.
+
+---
+
 ### tundra.list.document:drop
 
 Removes the item stored at a given index in the given list.
@@ -9104,6 +9166,29 @@ item.
 #### Outputs:
 
 * `$list` is the sorted `IData[]` document list.
+
+---
+
+### tundra.list.document:squeeze
+
+Trims all leading and trailing whitespace from all string values,
+then converts empty strings, empty `IData` documents, and empty lists
+to nulls, then compacts the `IData[]` document list by removing all
+null values.
+
+#### Inputs:
+
+* `$list` is an `IData[]` document list to be squeezed.
+* `$recurse?` is an optional boolean indicating if embedded
+  IData documents and `IData[]` document lists should also
+  be squeezed. Defaults to `false`.
+
+#### Outputs:
+
+* `$list` is the resulting `IData[]` document list with all string
+  values trimmed of leading and trailing whitespace characters, and
+  all empty string values, empty IData documents, empty lists, and
+  null values removed.
 
 ---
 
@@ -14254,29 +14339,11 @@ trims leading and trailing whitespace.
 
 #### Inputs:
 
-* `$string.input` is an `IData` document containing arbitrarily
-  specified strings to be condensed.
-  * `$value` is optional and specified as an input only for developer
-    convenience when using this service for a single string value.
-  * `$value.list` is optional and specified as an input only for
-    developer convenience when using this service for a list of
-    string values.
-  * `$value.table` is optional and specified as an input only for
-    developer convenience when using this service for a table of
-    string values.
+* `$string` is a string to be condensed into a single line.
 
 #### Outputs:
 
-* `$string.output` is an `IData` document containing the resulting
-  condensed strings.
-  * `$value` is optional and specified as an output only for developer
-    convenience when using this service for a single string value.
-  * `$value.list` is optional and specified as an output only for
-    developer convenience when using this service for a list of
-    string values.
-  * `$value.table` is optional and specified as an output only for
-    developer convenience when using this service for a table of
-    string values.
+* `$string` is the given string condensed into a single line.
 
 ---
 
@@ -14692,39 +14759,6 @@ Splits the given string around matches of the given literal pattern or
 
 * `$list` is the list of tokens that were found in the input string
   that were separated with an occurence of the given pattern.
-
----
-
-### tundra.string:squeeze
-
-Trims all leading and trailing whitespace from all string values,
-then converts empty strings to nulls, then removes all null values.
-
-#### Inputs:
-
-* `$string.input` is an `IData` document containing arbitrarily
-  specified strings to be squeezed.
-  * `$value` is optional and specified as an input only for developer
-    convenience when using this service for a single string value.
-  * `$value.list` is optional and specified as an input only for
-    developer convenience when using this service for a list of
-    string values.
-  * `$value.table` is optional and specified as an input only for
-    developer convenience when using this service for a table of
-    string values.
-
-#### Outputs:
-
-* `$string.output` is an `IData` document containing the resulting
-  squeezed strings.
-  * `$value` is optional and specified as an output only for developer
-    convenience when using this service for a single string value.
-  * `$value.list` is optional and specified as an output only for
-    developer convenience when using this service for a list of
-    string values.
-  * `$value.table` is optional and specified as an output only for
-    developer convenience when using this service for a table of
-    string values.
 
 ---
 

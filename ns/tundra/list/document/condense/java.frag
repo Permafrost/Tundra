@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">condense</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7DQoNCnRyeSB7DQogICAg
+SURhdGFbXSBpbnB1dCA9IElEYXRhSGVscGVyLmdldChjdXJzb3IsICIkbGlzdCIsIElEYXRhW10u
+Y2xhc3MpOwogICAgYm9vbGVhbiByZWN1cnNlID0gSURhdGFIZWxwZXIuZ2V0T3JEZWZhdWx0KGN1
+cnNvciwgIiRyZWN1cnNlPyIsIEJvb2xlYW4uY2xhc3MsIGZhbHNlKTsKCiAgICBpZiAoaW5wdXQg
+IT0gbnVsbCkgewogICAgICAgIElEYXRhW10gb3V0cHV0ID0gSURhdGFIZWxwZXIuY29uZGVuc2Uo
+aW5wdXQsIHJlY3Vyc2UpOwogICAgICAgIGlmIChvdXRwdXQgPT0gbnVsbCkgb3V0cHV0ID0gbmV3
+IElEYXRhWzBdOwogICAgICAgIElEYXRhSGVscGVyLnB1dChjdXJzb3IsICIkbGlzdCIsIG91dHB1
+dCk7CiAgICB9Cn0gZmluYWxseSB7DQogICAgY3Vyc29yLmRlc3Ryb3koKTsNCn0=</value>
+</Values>

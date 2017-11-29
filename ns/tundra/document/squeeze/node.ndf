@@ -93,11 +93,10 @@
   </record>
   <value name="node_comment">### tundra.document:squeeze
 
-DEPRECATED: use tundra.string:squeeze instead.
-
-Trims all leading and trailing whitespace from all string values, then
-converts empty strings, empty IData documents, and empty lists to nulls,
-then compacts the IData document by removing all null values.
+Trims all leading and trailing whitespace from all string values, 
+then converts empty strings, empty IData documents, and empty lists 
+to nulls, then compacts the IData document by removing all null 
+values.
 
 #### Inputs:
 

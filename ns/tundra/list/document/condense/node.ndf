@@ -93,26 +93,23 @@
       </array>
     </record>
   </record>
-  <value name="node_comment">### tundra.list.document:squeeze
+  <value name="node_comment">### tundra.list.document:condense
 
-Trims all leading and trailing whitespace from all string values,
-then converts empty strings, empty IData documents, and empty lists
-to nulls, then compacts the IData[] document list by removing all
-null values.
+Replaces runs of one or more whitespace characters (space, tab,
+carriage return, line feed) with a single space character, then 
+trims leading and trailing whitespace.
 
 #### Inputs:
 
-* $list is an IData[] document list to be squeezed.
+* $list is an IData[] document list to be condensed.
 * $recurse? is an optional boolean indicating if embedded
   IData documents and IData[] document lists should also
-  be squeezed. Defaults to false.
+  be condensed. Defaults to false.
 
 #### Outputs:
 
 * $list is the resulting IData[] document list with all string
-  values trimmed of leading and trailing whitespace characters, and
-  all empty string values, empty IData documents, empty lists, and
-  null values removed.
+  values condensed into single lines.
 </value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
