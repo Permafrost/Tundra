@@ -80,6 +80,64 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_usereditable">false</value>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="field_name">$header?</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <array name="field_options" type="value" depth="1">
+            <value>true</value>
+            <value>false</value>
+          </array>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">boolean</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="field_name">$columns</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">1</value>
+          <value name="field_opt">true</value>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">string</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+          <value name="is_soap_array_encoding_used">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
             <null name="field_usereditable"/>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
@@ -213,10 +271,16 @@ formatted string, byte array, or input stream.
   serialized as a [CSV] string, byte array, or input stream.
   * recordWithNoID is the IData[] document list of records to be
     serialized.
-* $delimiter is the character to use to delimit fields in the resulting
-  serialization. Defaults to ',' (comma), if not specified.
+* $delimiter is the character to use to delimit fields in the 
+  resulting serialization. Defaults to ',' (comma), if not specified.
+* $header? is an optional boolean indicating if a header row should
+  be emitted. Defaults to true.
+* $columns is an optional list of column names to use in the header
+  row if applicable. If not specified, the IData keys are used as
+  the column names.
 * $encoding is an optional character set to use when encoding the
-  resulting text data to a byte array or input stream. Defaults to [UTF-8].
+  resulting text data to a byte array or input stream. Defaults to 
+  [UTF-8].
 * $mode is an optional choice of {stream, bytes, string} which
   specifies the type of object $content is returned as. Defaults to
   stream.

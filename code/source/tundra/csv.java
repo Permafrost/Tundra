@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-04 19:46:40 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2017-11-29T17:12:50.314
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -45,19 +45,24 @@ public final class csv
 		// [i] record:0:optional $document
 		// [i] - record:1:optional recordWithNoID
 		// [i] field:0:optional $delimiter
+		// [i] field:0:optional $header? {&quot;true&quot;,&quot;false&quot;}
+		// [i] field:1:optional $columns
 		// [i] field:0:optional $encoding
-		// [i] field:0:optional $mode {"stream","bytes","string"}
+		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IData document = IDataHelper.get(cursor, "$document", IData.class);
 		    String delimiter = IDataHelper.get(cursor, "$delimiter", String.class);
+		    boolean hasHeader = IDataHelper.getOrDefault(cursor, "$header?", Boolean.class, true);
+		    String[] columns = IDataHelper.get(cursor, "$columns", String[].class);
 		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
 		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
-		
+
 		    if (document != null) {
-		        IDataHelper.put(cursor, "$content", ObjectHelper.convert(new IDataCSVParser(delimiter).emit(document, charset), charset, mode));
+		        IDataCSVParser parser = new IDataCSVParser(delimiter, null, hasHeader, columns);
+		        IDataHelper.put(cursor, "$content", ObjectHelper.convert(parser.emit(document, charset), charset, mode));
 		    }
 		} catch (IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -66,7 +71,7 @@ public final class csv
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -79,18 +84,21 @@ public final class csv
 		// @sigtype java 3.5
 		// [i] object:0:optional $content
 		// [i] field:0:optional $delimiter
+		// [i] field:0:optional $header? {&quot;true&quot;,&quot;false&quot;}
 		// [i] field:0:optional $encoding
 		// [o] record:0:optional $document
 		// [o] - record:1:optional recordWithNoID
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Object content = IDataHelper.get(cursor, "$content");
 		    String delimiter = IDataHelper.get(cursor, "$delimiter", String.class);
+		    boolean hasHeader = IDataHelper.getOrDefault(cursor, "$header?", Boolean.class, true);
 		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
-		
+
 		    if (content != null) {
-		        IDataHelper.put(cursor, "$document", new IDataCSVParser(delimiter).parse(InputStreamHelper.normalize(content, charset)));
+		        IDataCSVParser parser = new IDataCSVParser(delimiter, null, hasHeader);
+		        IDataHelper.put(cursor, "$document", parser.parse(InputStreamHelper.normalize(content, charset)));
 		    }
 		} catch (IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -99,7 +107,7 @@ public final class csv
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 

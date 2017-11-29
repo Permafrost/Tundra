@@ -3028,6 +3028,11 @@ formatted string, byte array, or input stream.
     serialized.
 * `$delimiter` is the character to use to delimit fields in the resulting
   serialization. Defaults to ',' (comma), if not specified.
+* `$header?` is an optional boolean indicating if a header row should
+  be emitted. Defaults to `true`.
+* `$columns` is an optional list of column names to use in the header
+  row if applicable. If not specified, the `IData` keys are used as
+  the column names.
 * `$encoding` is an optional character set to use when encoding the
   resulting text data to a byte array or input stream. Defaults to [UTF-8].
 * `$mode` is an optional choice of {stream, bytes, string} which
@@ -3052,6 +3057,10 @@ into an `IData` document containing a list of records.
   content to be parsed.
 * `$delimiter` is the character used to delimit fields in the given
   `$content`. Defaults to `,` (comma), if not specified.
+* `$header?` is an optional boolean indicating if the first row should
+  be read as a header row containing column names. If `false`, columns
+  will be named for their position with a one-based index. Defaults
+  to `true`.
 * `$encoding` is an optional character set to use when `$content` is
   provided as a byte array or input stream to decode the contained text
   data. Defaults to [UTF-8].
