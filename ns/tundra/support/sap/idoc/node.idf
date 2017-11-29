@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="node_type">interface</value>
+  <value name="node_nsName">tundra.support.sap.idoc</value>
+  <value name="encodeutf8">true</value>
+  <value name="shared">cHVibGljIHN0YXRpYyBJRG9jRG9jdW1lbnRMaXN0IGlkZW50aWZ5KElEb2NEb2N1bWVudExpc3Qg
+bGlzdCkgdGhyb3dzIFNlcnZpY2VFeGNlcHRpb24gewogICAgdHJ5IHsKICAgICAgICBpZiAobGlz
+dCAhPSBudWxsKSB7CiAgICAgICAgICAgIGludCBpbmRleCA9IDA7CiAgICAgICAgICAgIElEb2NE
+b2N1bWVudEl0ZXJhdG9yIGl0ZXJhdG9yID0gbGlzdC5pdGVyYXRvcigpOwogICAgICAgICAgICB3
+aGlsZSAoaXRlcmF0b3IuaGFzTmV4dCgpKSB7CiAgICAgICAgICAgICAgICBpdGVyYXRvci5uZXh0
+KCkuc2V0SURvY051bWJlcihJbnRlZ2VyLnRvU3RyaW5nKGluZGV4KyspKTsKICAgICAgICAgICAg
+fQogICAgICAgIH0KICAgIH0gY2F0Y2goRXhjZXB0aW9uIGV4KSB7CiAgICAgICAgRXhjZXB0aW9u
+SGVscGVyLnJhaXNlKGV4KTsKICAgIH0KICAgIHJldHVybiBsaXN0Owp9</value>
+  <value name="extends"></value>
+  <array name="implements" type="value" depth="1">
+  </array>
+  <array name="imports" type="value" depth="1">
+    <value>com.sap.conn.idoc.IDocDocument</value>
+    <value>com.sap.conn.idoc.IDocDocumentIterator</value>
+    <value>com.sap.conn.idoc.IDocDocumentList</value>
+    <value>permafrost.tundra.data.IDataHelper</value>
+    <value>permafrost.tundra.lang.ExceptionHelper</value>
+  </array>
+</Values>
