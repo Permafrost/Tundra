@@ -14082,6 +14082,40 @@ returns the given input string unchanged.
 
 ---
 
+### tundra.string:build
+
+Appends the string values specified as strings, string lists or
+string tables in the given `IData` document to the given
+[java.lang.StringBuilder] object.
+
+Using a [java.lang.StringBuilder] object to build a string is more
+efficient than concatenating strings.
+
+When finished building, use `tundra.object:stringify` to convert
+the [java.lang.StringBuilder] object to a string.
+
+Note [java.lang.StringBuilder] objects are not thread-safe so that
+they do not incur thread synchronization overhead, and therefore
+this service should only be used by one thread per
+[java.lang.StringBuilder] object.
+
+#### Inputs:
+
+* `$builder` is an optional [java.lang.StringBuilder] object to append
+  the given strings to. A new [java.lang.StringBuilder] object is
+  created automatically, if not specified.
+* `$operands` is an `IData` document in which arbitrary string, string
+  list, and string table values can be specified for concatenation.
+* `$separator` is an optional string used to separate each list item
+  in the resulting string. Defaults to an empty string.
+
+#### Outputs:
+
+* `$builder` is the [java.lang.StringBuilder] object the given strings
+  were appended to.
+
+---
+
 ### tundra.string:capitalize
 
 Capitalizes the first character in either the first word or
@@ -15875,6 +15909,7 @@ Decompresses the given content using the [zip] file compression format.
 [java.io.InputStream]: <http://docs.oracle.com/javase/6/docs/api/java/io/InputStream.html>
 [java.io.OutputStream]: <http://docs.oracle.com/javase/6/docs/api/java/io/OutputStream.html>
 [java.lang.String]: <http://docs.oracle.com/javase/6/docs/api/java/lang/String.html>
+[java.lang.StringBuilder]: <https://docs.oracle.com/javase/6/docs/api/java/lang/StringBuilder.html>
 [java.lang.System.identityHashCode()]: <http://docs.oracle.com/javase/6/docs/api/java/lang/System.html#identityHashCode(java.lang.Object)>
 [java.lang.Throwable]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Throwable.html>
 [java.math.BigDecimal]: <http://docs.oracle.com/javase/6/docs/api/java/math/BigDecimal.html>

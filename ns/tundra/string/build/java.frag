@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">build</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7DQoNCnRyeSB7DQogICAg
+U3RyaW5nQnVpbGRlciBidWlsZGVyID0gSURhdGFIZWxwZXIuZ2V0KGN1cnNvciwgIiRidWlsZGVy
+IiwgU3RyaW5nQnVpbGRlci5jbGFzcyk7DQogICAgSURhdGEgb3BlcmFuZHMgPSBJRGF0YUhlbHBl
+ci5nZXQoY3Vyc29yLCAiJG9wZXJhbmRzIiwgSURhdGEuY2xhc3MpOw0KICAgIFN0cmluZyBzZXBh
+cmF0b3IgPSBJRGF0YUhlbHBlci5nZXQoY3Vyc29yLCAiJHNlcGFyYXRvciIsIFN0cmluZy5jbGFz
+cyk7DQoNCiAgICBJRGF0YUhlbHBlci5wdXQoY3Vyc29yLCAiJGJ1aWxkZXIiLCBTdHJpbmdIZWxw
+ZXIuYnVpbGQoYnVpbGRlciwgb3BlcmFuZHMsIHNlcGFyYXRvciksIGZhbHNlKTsNCn0gZmluYWxs
+eSB7DQogICAgY3Vyc29yLmRlc3Ryb3koKTsNCn0=</value>
+</Values>
