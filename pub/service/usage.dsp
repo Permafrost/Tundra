@@ -65,8 +65,8 @@
               <tbody>
               %loop $context/invocations.current%
                 <tr class="rowspan">
-                  <td rowspan="%value callstack.length encode(xml)%">%value thread.id encode(xml)%</td>
-                  <td rowspan="%value callstack.length encode(xml)%">%value thread.name encode(xml)%</td>
+                  <td rowspan="%ifvar callstack.length equals('0')%1%else%%value callstack.length encode(xml)%%endif%">%value thread.id encode(xml)%</td>
+                  <td rowspan="%ifvar callstack.length equals('0')%1%else%%value callstack.length encode(xml)%%endif%">%value thread.name encode(xml)%</td>
                   %loop callstack -$index%
                   <td>%value package encode(xml)%</td>
                   <td>%value service encode(xml)%</td>
