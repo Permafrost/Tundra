@@ -7295,7 +7295,7 @@ remainder.
 #### Inputs:
 
 * `$dividend` is the number to be divided.
-* `$divisor` is the to divide by.
+* `$divisor` is the number to divide by.
 
 #### Outputs:
 
@@ -7525,7 +7525,7 @@ Returns the remainder from dividing the given integers.
 #### Inputs:
 
 * `$dividend` is the number to be divided.
-* `$divisor` is the to divide by.
+* `$divisor` is the number to divide by.
 
 #### Outputs:
 
@@ -9518,6 +9518,114 @@ software.
 
 * `$list` is the given string list with special characters [HTML]
   encoded in each item in the list.
+
+---
+
+### tundra.list.integer:add
+
+Returns a new list where each item is equal to the value of the
+respective item in the given list added to the given operands.
+
+#### Inputs:
+
+* `$values` is a list of integer strings to be operated on.
+* `$operands` is an `IData` document containing arbitrary elements
+  whose leaf values will be used as operands for this operation.
+  Leaf values can be provided as objects with the following types:
+  * `java.lang.String`
+  * `java.lang.Integer`
+  * `java.lang.Long`
+  * `java.lang.Float`
+  * `java.lang.Double`
+  * `java.math.BigDecimal`
+  * `java.math.BigInteger`
+  Leaf values provided as a `java.lang.String` must be parseable
+  as an integer number.
+
+#### Outputs:
+
+* `$results` is a new list containing each given value added to the
+  given operands.
+
+---
+
+### tundra.list.integer:divide
+
+Returns a new list where each item is equal to the value of the
+respective item in the given list divided by the given divisor.
+
+#### Inputs:
+
+* `$dividends` is a list of integer strings to be operated on.
+* `$divisor` is the number to divide by.
+
+#### Outputs:
+
+* `$results` is a new list containing each given value divided by the
+  given divisor.
+
+---
+
+### tundra.list.integer:multiply
+
+Returns a new list where each item is equal to the value of the
+respective item in the given list multiplied by the given operands.
+
+#### Inputs:
+
+* `$values` is a list of integer strings to be operated on.
+* `$operands` is an `IData` document containing arbitrary elements
+  whose leaf values will be used as operands for this operation.
+  Leaf values can be provided as objects with the following types:
+  * `java.lang.String`
+  * `java.lang.Integer`
+  * `java.lang.Long`
+  * `java.lang.Float`
+  * `java.lang.Double`
+  * `java.math.BigDecimal`
+  * `java.math.BigInteger`
+  Leaf values provided as a `java.lang.String` must be parseable
+  as an integer number.
+
+#### Outputs:
+
+* `$results` is a new list containing each given value multiplied by
+  the given operands.
+
+---
+
+### tundra.list.integer:remainder
+
+Returns a new list where each item is equal to the remainder from
+dividing the value of the respective item in the given list by the
+given divisor.
+
+#### Inputs:
+
+* `$dividends` is a list of integer strings to be operated on.
+* `$divisor` is the number to divide by.
+
+#### Outputs:
+
+* `$remainders` is a new list containing the remainder from dividing
+  each given value by the given divisor.
+
+---
+
+### tundra.list.integer:remainder
+
+Returns a new list where each item is equal to the subtraction of
+the given subtrahend from the respective minuend in the given list.
+
+#### Inputs:
+
+* `$minuends` is a list of integer strings to be operated on.
+* `$subtrahend` is an integer value to be subtracted.
+
+#### Outputs:
+
+* `$results` is a new list containing the subtraction of the given
+  subtrahend from each given minuend.
 
 ---
 

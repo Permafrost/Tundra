@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">add</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogICAgU3Ry
+aW5nW10gdmFsdWVzID0gSURhdGFIZWxwZXIuZ2V0KGN1cnNvciwgIiR2YWx1ZXMiLCBTdHJpbmdb
+XS5jbGFzcyk7CiAgICBJRGF0YSBvcGVyYW5kcyA9IElEYXRhSGVscGVyLmdldChjdXJzb3IsICIk
+b3BlcmFuZHMiLCBJRGF0YS5jbGFzcyk7CgogICAgQmlnSW50ZWdlcltdIHJlc3VsdHMgPSBCaWdJ
+bnRlZ2VySGVscGVyLmFkZChCaWdJbnRlZ2VySGVscGVyLm5vcm1hbGl6ZSh2YWx1ZXMpLCBCaWdJ
+bnRlZ2VySGVscGVyLm5vcm1hbGl6ZShJRGF0YUhlbHBlci5nZXRMZWF2ZXMob3BlcmFuZHMpKSk7
+CgogICAgSURhdGFIZWxwZXIucHV0KGN1cnNvciwgIiRyZXN1bHRzIiwgQmlnSW50ZWdlckhlbHBl
+ci5lbWl0KHJlc3VsdHMpLCBmYWxzZSk7Cn0gZmluYWxseSB7CiAgICBjdXJzb3IuZGVzdHJveSgp
+Owp9</value>
+</Values>

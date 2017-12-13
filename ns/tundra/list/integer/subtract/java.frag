@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">subtract</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogICAgU3Ry
+aW5nW10gbWludWVuZHMgPSBJRGF0YUhlbHBlci5nZXQoY3Vyc29yLCAiJG1pbnVlbmRzIiwgU3Ry
+aW5nW10uY2xhc3MpOwogICAgQmlnSW50ZWdlciBzdWJ0cmFoZW5kID0gSURhdGFIZWxwZXIuZ2V0
+KGN1cnNvciwgIiRzdWJ0cmFoZW5kIiwgQmlnSW50ZWdlci5jbGFzcyk7CgogICAgQmlnSW50ZWdl
+cltdIHJlc3VsdHMgPSBCaWdJbnRlZ2VySGVscGVyLnN1YnRyYWN0KEJpZ0ludGVnZXJIZWxwZXIu
+bm9ybWFsaXplKG1pbnVlbmRzKSwgc3VidHJhaGVuZCk7CgogICAgSURhdGFIZWxwZXIucHV0KGN1
+cnNvciwgIiRyZXN1bHRzIiwgQmlnSW50ZWdlckhlbHBlci5lbWl0KHJlc3VsdHMpLCBmYWxzZSk7
+Cn0gZmluYWxseSB7CiAgICBjdXJzb3IuZGVzdHJveSgpOwp9</value>
+</Values>

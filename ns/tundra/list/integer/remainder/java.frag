@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">remainder</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogICAgU3Ry
+aW5nW10gZGl2aWRlbmRzID0gSURhdGFIZWxwZXIuZ2V0KGN1cnNvciwgIiRkaXZpZGVuZHMiLCBT
+dHJpbmdbXS5jbGFzcyk7CiAgICBCaWdJbnRlZ2VyIGRpdmlzb3IgPSBJRGF0YUhlbHBlci5nZXQo
+Y3Vyc29yLCAiJGRpdmlzb3IiLCBCaWdJbnRlZ2VyLmNsYXNzKTsKCiAgICBCaWdJbnRlZ2VyW10g
+cmVtYWluZGVycyA9IEJpZ0ludGVnZXJIZWxwZXIucmVtYWluZGVyKEJpZ0ludGVnZXJIZWxwZXIu
+bm9ybWFsaXplKGRpdmlkZW5kcyksIGRpdmlzb3IpOwoKICAgIElEYXRhSGVscGVyLnB1dChjdXJz
+b3IsICIkcmVtYWluZGVycyIsIEJpZ0ludGVnZXJIZWxwZXIuZW1pdChyZW1haW5kZXJzKSwgZmFs
+c2UpOwp9IGZpbmFsbHkgewogICAgY3Vyc29yLmRlc3Ryb3koKTsKfQ==</value>
+</Values>

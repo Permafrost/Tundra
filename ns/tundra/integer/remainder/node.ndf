@@ -114,7 +114,7 @@ Returns the remainder from dividing the given integers.
 #### Inputs:
 
 * $dividend is the number to be divided.
-* $divisor is the to divide by.
+* $divisor is the number to divide by.
 
 #### Outputs:
 
