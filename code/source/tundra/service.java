@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-08-04T10:55:02.211
+// -----( CREATED: 2017-12-14T14:12:58.464
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -303,16 +303,16 @@ public final class service
 		        // support asynchronous mode for backwards compatiblity
 		        IDataHelper.put(cursor, "$thread", ServiceHelper.fork(service, scope));
 		    } else {
-		        long start = System.currentTimeMillis();
+		        long start = System.nanoTime();
 		        scope = ServiceHelper.invoke(service, scope, raise, true, true);
-		        long end = System.currentTimeMillis();
+		        long end = System.nanoTime();
 
 		        if (scoped) {
 		            IDataHelper.put(cursor, "$pipeline", scope);
 		        } else {
 		            IDataHelper.mergeInto(pipeline, scope);
 		        }
-		        IDataHelper.put(cursor, "$duration", DurationHelper.format(end - start, DurationPattern.XML));
+		        IDataHelper.put(cursor, "$duration", DurationHelper.format(end - start, DurationPattern.NANOSECONDS, DurationPattern.XML));
 		    }
 		} finally {
 		    cursor.destroy();
