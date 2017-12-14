@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="svc_type">java</value>
+  <value name="svc_subtype">unknown</value>
+  <value name="svc_sigtype">java 3.5</value>
+  <record name="svc_sig" javaclass="com.wm.util.Values">
+    <record name="sig_in" javaclass="com.wm.util.Values">
+      <value name="node_type">record</value>
+      <value name="field_type">record</value>
+      <value name="field_dim">0</value>
+      <value name="nillable">true</value>
+      <value name="form_qualified">false</value>
+      <value name="is_global">false</value>
+      <array name="rec_fields" type="record" depth="1">
+      </array>
+    </record>
+    <record name="sig_out" javaclass="com.wm.util.Values">
+      <value name="node_type">record</value>
+      <value name="field_type">record</value>
+      <value name="field_dim">0</value>
+      <value name="nillable">true</value>
+      <value name="form_qualified">false</value>
+      <value name="is_global">false</value>
+      <array name="rec_fields" type="record" depth="1">
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="field_name">$datetime.monotonic.start</value>
+          <value name="field_type">object</value>
+          <value name="field_dim">0</value>
+          <value name="wrapper_type">java.lang.Long</value>
+          <value name="nillable">false</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+      </array>
+    </record>
+  </record>
+  <value name="node_comment">### tundra.duration:start
+
+Returns the current value of the running Java Virtual Machine's 
+high-resolution monotonic time source, in nanoseconds, for use when 
+measuring elapsed time.
+
+This service is designed to be used in conjunction with 
+tundra.duration:end, and uses [java.lang.System.nanoTime()] for 
+its implementation:
+
+&gt; This method can only be used to measure elapsed time and is not 
+&gt; related to any other notion of system or wall-clock time. The 
+&gt; value returned represents nanoseconds since some fixed but 
+&gt; arbitrary origin time (perhaps in the future, so values may be 
+&gt; negative). The same origin is used by all invocations of this 
+&gt; method in an instance of a Java virtual machine; other virtual 
+&gt; machine instances are likely to use a different origin.
+&gt; 
+&gt; This method provides nanosecond precision, but not necessarily 
+&gt; nanosecond resolution (that is, how frequently the value 
+&gt; changes) - no guarantees are made except that the resolution is 
+&gt; at least as good as that of currentTimeMillis().
+&gt; 
+&gt; Differences in successive calls that span greater than 
+&gt; approximately 292 years (263 nanoseconds) will not correctly 
+&gt; compute elapsed time due to numerical overflow.
+&gt; 
+&gt; The values returned by this method become meaningful only when 
+&gt; the difference between two such values, obtained within the same 
+&gt; instance of a Java virtual machine, is computed.
+
+#### Outputs:
+
+* $datetime.monotonic.start is the current monotonic time in 
+  nanoseconds.
+
+[java.lang.System.nanoTime()]: &lt;https://docs.oracle.com/javase/6/docs/api/java/lang/System.html#nanoTime()&gt;
+</value>
+  <value name="stateless">no</value>
+  <value name="caching">no</value>
+  <value name="prefetch">no</value>
+  <value name="cache_ttl">15</value>
+  <value name="prefetch_level">1</value>
+  <value name="audit_level">off</value>
+  <value name="check_internal_acls">no</value>
+  <value name="icontext_policy">$null</value>
+  <value name="system_service">no</value>
+  <value name="retry_max">0</value>
+  <value name="retry_interval">0</value>
+  <value name="svc_in_validator_options">none</value>
+  <value name="svc_out_validator_options">default</value>
+  <value name="auditoption">0</value>
+  <record name="auditsettings" javaclass="com.wm.util.Values">
+    <value name="document_data">0</value>
+    <value name="startExecution">false</value>
+    <value name="stopExecution">false</value>
+    <value name="onError">true</value>
+  </record>
+</Values>

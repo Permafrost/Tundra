@@ -6252,6 +6252,57 @@ question, it is therefore considered indeterminate.
 
 ---
 
+### tundra.duration:end
+
+Returns the duration between the given monotonic start time and the
+current monotonic time as a duration string.
+
+This service is designed to be used in conjunction with
+`tundra.duration:start`, and uses [java.lang.System.nanoTime()] for
+its implementation:
+
+> This method can only be used to measure elapsed time and is not
+> related to any other notion of system or wall-clock time. The
+> value returned represents nanoseconds since some fixed but
+> arbitrary origin time (perhaps in the future, so values may be
+> negative). The same origin is used by all invocations of this
+> method in an instance of a Java virtual machine; other virtual
+> machine instances are likely to use a different origin.
+>
+> This method provides nanosecond precision, but not necessarily
+> nanosecond resolution (that is, how frequently the value
+> changes) - no guarantees are made except that the resolution is
+> at least as good as that of currentTimeMillis().
+>
+> Differences in successive calls that span greater than
+> approximately 292 years (263 nanoseconds) will not correctly
+> compute elapsed time due to numerical overflow.
+>
+> The values returned by this method become meaningful only when
+> the difference between two such values, obtained within the same
+> instance of a Java virtual machine, is computed.
+
+#### Inputs:
+
+* `$datetime.monotonic.start` is the monotonic start time in
+  nanoseconds.
+* `$duration.pattern` is an optional desired pattern used to format
+  the duration strings. Defaults to an [ISO8601] XML string.
+
+#### Outputs:
+
+* `$datetime.monotonic.start` is the monotonic start time in
+  nanoseconds.
+* `$datetime.monotonic.end` is the monotonic end time in
+  nanoseconds.
+* `$duration.measured` is the measured duration from the given start
+  to the given end time.
+
+[java.lang.System.nanoTime()]: <https://docs.oracle.com/javase/6/docs/api/java/lang/System.html#nanoTime()>
+
+
+---
+
 ### tundra.duration:format
 
 Formats arbitrarily specified duration strings according to the
@@ -6337,6 +6388,44 @@ Reverses the sign of the given duration.
 
 * `$duration` is the negated duration string, formatted according to
   `$pattern.output`.
+
+---
+
+### tundra.duration:start
+
+Returns the current value of the running Java Virtual Machine's
+high-resolution monotonic time source, in nanoseconds, for use when
+measuring elapsed time.
+
+This service is designed to be used in conjunction with
+`tundra.duration:end`, and uses [java.lang.System.nanoTime()] for
+its implementation:
+
+> This method can only be used to measure elapsed time and is not
+> related to any other notion of system or wall-clock time. The
+> value returned represents nanoseconds since some fixed but
+> arbitrary origin time (perhaps in the future, so values may be
+> negative). The same origin is used by all invocations of this
+> method in an instance of a Java virtual machine; other virtual
+> machine instances are likely to use a different origin.
+>
+> This method provides nanosecond precision, but not necessarily
+> nanosecond resolution (that is, how frequently the value
+> changes) - no guarantees are made except that the resolution is
+> at least as good as that of currentTimeMillis().
+>
+> Differences in successive calls that span greater than
+> approximately 292 years (263 nanoseconds) will not correctly
+> compute elapsed time due to numerical overflow.
+>
+> The values returned by this method become meaningful only when
+> the difference between two such values, obtained within the same
+> instance of a Java virtual machine, is computed.
+
+#### Outputs:
+
+* `$datetime.monotonic.start` is the current monotonic time in
+  nanoseconds.
 
 ---
 
@@ -16019,6 +16108,7 @@ Decompresses the given content using the [zip] file compression format.
 [java.lang.String]: <http://docs.oracle.com/javase/6/docs/api/java/lang/String.html>
 [java.lang.StringBuilder]: <https://docs.oracle.com/javase/6/docs/api/java/lang/StringBuilder.html>
 [java.lang.System.identityHashCode()]: <http://docs.oracle.com/javase/6/docs/api/java/lang/System.html#identityHashCode(java.lang.Object)>
+[java.lang.System.nanoTime()]: <https://docs.oracle.com/javase/6/docs/api/java/lang/System.html#nanoTime()>
 [java.lang.Throwable]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Throwable.html>
 [java.math.BigDecimal]: <http://docs.oracle.com/javase/6/docs/api/java/math/BigDecimal.html>
 [java.math.BigDecimal grammar]: <http://docs.oracle.com/javase/6/docs/api/java/math/BigDecimal.html#BigDecimal(java.lang.String)>
