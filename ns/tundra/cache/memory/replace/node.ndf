@@ -166,7 +166,7 @@ the given name.
 
 * $cache.value.replaced? is true if the key exists and it's value was 
   replaced with the given new value in the cache with the given name.</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>

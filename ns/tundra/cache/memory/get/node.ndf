@@ -114,7 +114,7 @@ the given name.
 
 * $cache.value is the value associated with the given key from the 
   cache with the given name, if it exists.</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>

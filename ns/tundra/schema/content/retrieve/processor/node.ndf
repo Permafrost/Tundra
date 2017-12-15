@@ -187,16 +187,16 @@ implement this specification.
   [java.io.InputStream].
 * $content.name is the name associated with the content, such as a
   file name.
-* $content.type is the mime media type of the content to be 
+* $content.type is the mime media type of the content to be
   processed.
-* $content.length is the length in bytes of the content to be 
+* $content.length is the length in bytes of the content to be
   processed.
 * $content.source is the source of the content to be processed.
-* $content.archive is the archive location of the content after 
+* $content.archive is the archive location of the content after
   processing.
 
 [java.io.InputStream]: &lt;http://docs.oracle.com/javase/6/docs/api/java/io/InputStream.html&gt;</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>

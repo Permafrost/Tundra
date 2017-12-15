@@ -101,7 +101,7 @@ found in the package pre-uninstallation.
 * $pattern.uninstall is the regular expression used to find services 
   to be invoked in a package before it is uninstalled. If not 
   specified, no services are invoked pre-uninstallation.</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>

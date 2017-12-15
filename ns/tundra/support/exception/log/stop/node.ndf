@@ -7,7 +7,7 @@
   <value name="node_comment">### tundra.support.exception.logging:stop
 
 Stops logging exceptions to the server error log.</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>

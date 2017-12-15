@@ -327,7 +327,7 @@ service called by tundra.http:client.
   implementation.
 
 [HTTP]: &lt;http://tools.ietf.org/search/rfc2616&gt;</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>

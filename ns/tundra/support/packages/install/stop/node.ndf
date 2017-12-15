@@ -10,7 +10,7 @@ Unregisters the flow invocation processor which watches for package
 installation and uninstallation, and invokes any install services
 found in the package post-installation, or any uninstall services
 found in the package pre-uninstallation.</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>

@@ -496,9 +496,9 @@ tundra.content:retrieve must implement this specification.
   content to be retrieved.
 * $service is the content processing service that is called for each
   item of content retrieved from $source. This service is required to
-  implement the tundra.schema.content.retrieve:processor 
+  implement the tundra.schema.content.retrieve:processor
   specification.
-* $service.input is the optional variable name for the retrieved 
+* $service.input is the optional variable name for the retrieved
   content in the input pipeline of $service. Defaults to $content if
   not specified.
 * $limit is an optional maximum number of content items to be
@@ -506,12 +506,12 @@ tundra.content:retrieve must implement this specification.
 
 #### Outputs:
 
-* $message is an optional diagnostic message describing the results 
+* $message is an optional diagnostic message describing the results
   of the retrieval.
 * $exceptions is an optional array of java.lang.Throwable exception
   objects that were thrown while processing the retrieved contents.
 </value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>

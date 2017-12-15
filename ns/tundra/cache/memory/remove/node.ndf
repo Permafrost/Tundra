@@ -166,7 +166,7 @@ the given name.
   the cache with the given name.
 * $cache.value was the value associated with the given key at the 
   time of its removal.</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>

@@ -166,7 +166,7 @@ the given name.
   cache with the given name. If $cache.key.absent? was true and the 
   key already existed, this is the value already associated with the
   key.</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>

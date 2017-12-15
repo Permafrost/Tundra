@@ -144,7 +144,7 @@ Replaces the value associated with the given key in the given map.
   replaced with the given new value.
 
 [java.util.Map]: &lt;https://docs.oracle.com/javase/6/docs/api/java/util/Map.html&gt;</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>

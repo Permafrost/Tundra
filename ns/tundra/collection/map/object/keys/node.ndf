@@ -76,7 +76,7 @@ Returns the list of keys stored in the given [java.util.Map] object.
 * $keys is the list of keys currently stored in the given map.
 
 [java.util.Map]: &lt;https://docs.oracle.com/javase/6/docs/api/java/util/Map.html&gt;</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>

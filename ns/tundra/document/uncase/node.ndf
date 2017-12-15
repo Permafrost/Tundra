@@ -192,7 +192,7 @@ IData document.
 [default locale]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/Locale.html#getDefault()&gt;
 [Locale]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/Locale.html&gt;
 </value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>

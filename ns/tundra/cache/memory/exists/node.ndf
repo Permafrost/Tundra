@@ -129,7 +129,7 @@ Returns true if the cache with the given name contains the given key.
 
 * $cache.key.exists? is true if the given key exists in the cache 
   with the given name.</value>
-  <value name="stateless">no</value>
+  <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
