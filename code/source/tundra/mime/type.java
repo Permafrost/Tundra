@@ -1,14 +1,15 @@
 package tundra.mime;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-07 11:27:07 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2017-12-15 15:09:04 GMT+10:00
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import javax.activation.MimeType;
 import javax.activation.MimeTypeParseException;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.lang.BooleanHelper;
@@ -32,6 +33,29 @@ public final class type
 
 
 
+	public static final void classify (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(classify)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $content.type
+		// [o] field:0:optional $content.class {"csv","json","psv","tsv","xml","yaml"}
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    MimeType type = IDataHelper.get(cursor, "$content.type", MimeType.class);
+		    IDataHelper.put(cursor, "$content.class", MIMETypeHelper.classify(type), false);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
 	public static final void emit (IData pipeline)
         throws ServiceException
 	{
@@ -44,7 +68,7 @@ public final class type
 		// [i] - record:0:optional parameters
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IData type = IDataHelper.get(cursor, "$type", IData.class);
 		    IDataHelper.put(cursor, "$string", MIMETypeHelper.emit(type), false);
@@ -55,7 +79,7 @@ public final class type
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -70,11 +94,11 @@ public final class type
 		// [i] field:0:optional $string.y
 		// [o] field:0:required $equal?
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String string1 = IDataHelper.get(cursor, "$string.x", String.class);
 		    String string2 = IDataHelper.get(cursor, "$string.y", String.class);
-		
+
 		    IDataHelper.put(cursor, "$equal?", MIMETypeHelper.equal(string1, string2), String.class);
 		} catch(MimeTypeParseException ex) {
 		    ExceptionHelper.raise(ex);
@@ -83,7 +107,7 @@ public final class type
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -97,7 +121,7 @@ public final class type
 		// [i] field:0:optional $string
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String string = IDataHelper.get(cursor, "$string", String.class);
 		    IDataHelper.put(cursor, "$string", MIMETypeHelper.normalize(string), false);
@@ -108,7 +132,7 @@ public final class type
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -125,7 +149,7 @@ public final class type
 		// [o] - field:0:required subtype
 		// [o] - record:0:optional parameters
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String string = IDataHelper.get(cursor, "$string", String.class);
 		    IDataHelper.put(cursor, "$type", MIMETypeHelper.parse(string), false);
@@ -136,7 +160,7 @@ public final class type
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -151,18 +175,18 @@ public final class type
 		// [i] field:0:optional $raise? {"false","true"}
 		// [o] field:0:required $valid?
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String string = IDataHelper.get(cursor, "$string", String.class);
 		    boolean raise = IDataHelper.getOrDefault(cursor, "$raise?", Boolean.class, false);
-		
+
 		    IDataHelper.put(cursor, "$valid?", MIMETypeHelper.validate(string, raise), String.class);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 
