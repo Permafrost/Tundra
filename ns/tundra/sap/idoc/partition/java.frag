@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">partition</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogICAgSURv
+Y0RvY3VtZW50TGlzdCBsaXN0ID0gSURhdGFIZWxwZXIuZ2V0KGN1cnNvciwgIiRpZG9jbGlzdCIs
+IElEb2NEb2N1bWVudExpc3QuY2xhc3MpOwogICAgaW50IGxpbWl0ID0gSURhdGFIZWxwZXIuZ2V0
+T3JEZWZhdWx0KGN1cnNvciwgIiRsaW1pdCIsIEludGVnZXIuY2xhc3MsIDApOwoKICAgIElEb2NE
+b2N1bWVudExpc3RbXSB0YWJsZSA9IElEb2NEb2N1bWVudExpc3RIZWxwZXIucGFydGl0aW9uKGxp
+c3QsIGxpbWl0KTsKCiAgICBJRGF0YUhlbHBlci5wdXQoY3Vyc29yLCAiJGlkb2NsaXN0cyIsIHRh
+YmxlLCBmYWxzZSk7CiAgICBJRGF0YUhlbHBlci5wdXQoY3Vyc29yLCAiJGlkb2NsaXN0cy5sZW5n
+dGgiLCB0YWJsZSA9PSBudWxsID8gMCA6IHRhYmxlLmxlbmd0aCwgU3RyaW5nLmNsYXNzKTsKfSBj
+YXRjaChJRG9jRXhjZXB0aW9uIGV4KSB7CiAgICBFeGNlcHRpb25IZWxwZXIucmFpc2UoZXgpOwp9
+IGZpbmFsbHkgewogICAgY3Vyc29yLmRlc3Ryb3koKTsKfQ==</value>
+</Values>
