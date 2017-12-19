@@ -2528,13 +2528,13 @@ specification.
     the SAP Adapter alias name, and the user and password are
     provided as query string parameters:
 
-        sap+idoc:sap_r3?user=aladdin&password=opensesame&client=200&language=en&queue=xyz
+        sap+idoc:sap_r3?user=aladdin&password=opensesame&client=200&language=en&queue=xyz&limit=999
 
     An example non-opaque `sap+idoc` [URI] is as follows, where `sappr3`
     is the SAP Adapter alias name, and the user and password are
     provided in the authority section of the [URI]:
 
-        sap+idoc://aladdin:opensesame@sappr3?client=200&language=en&queue=xyz
+        sap+idoc://aladdin:opensesame@sappr3?client=200&language=en&queue=xyz&limit=999
 
     The following additional override options can be provided via the
     `$pipeline` document, and if specified will override the relevant
@@ -2549,6 +2549,9 @@ specification.
       the SAP Adapter alias language.
     * `$queue`: the optional name of the SAP system inbound queue,
       required when using queued remote function calls (qRFC).
+    * `$limit`: the maximum number of IDocs to send per transaction
+      (TID), used to partition the sending of a batch of IDocs across
+      multiple smaller TIDs. Defaults to no limit.
   * `sftp`: uploads the given content to the [SFTP] server, directory and
     file specified by the destination [URI]. Note that [SFTP] delivery
     is only supported on Integration Server versions 9.0 and higher.
@@ -12857,6 +12860,70 @@ pipeline by replacing all occurrences of substrings matching
 
 Removes leading and trailing whitespace from all string values in
 the pipeline.
+
+---
+
+### tundra.sap.idoc:identify
+
+Assigns a `DOCNUM` to each `IDocDocument` object equal to its index in
+the given in the given `IDocDocumentList` container.
+
+This service can be used to work around an issue with the hard-coded
+9,999 size limit that the SAP Adapter WmSAP package has when it
+auto-assigns `DOCNUM`s.
+
+#### Inputs:
+
+* `$idoclist` is an `IDocDocumentList` object containing `IDocDocument`
+  objects to assign `DOCNUM`s to.
+
+#### Outputs:
+
+* `$idoclist` is the given `IDocDocumentList` object where each
+  `IDocDocument` item has been assigned a `DOCNUM` equal to its
+  respective list index.
+
+---
+
+### tundra.sap.idoc:length
+
+Returns the number of `IDocDocument` items in the given
+`IDocDocumentList` container.
+
+#### Inputs:
+
+* `$idoclist` is an `IDocDocumentList` object containing zero or more
+  `IDocDocument` objects.
+
+#### Outputs:
+
+* `$idoclist.length` is the number of `IDocDocument` items in the given
+  `$idoclist`.
+
+---
+
+### tundra.sap.idoc:partition
+
+Partitions the given `IDocDocumentList` into an `IDocDocumentList[]`,
+where each array item contains a maximum of the given limit number
+of `IDocDocument` objects.
+
+This service can be used to split a batch of `IDocDocument` objects
+contained in an `IDocDocumentList` into smaller batches.
+
+#### Inputs:
+
+* `$idoclist` is an `IDocDocumentList` object to be partitioned.
+* `$limit` is the maximum number of `IDocDocument` items per
+  `IDocDocumentList` container returned.
+
+#### Outputs:
+
+* `$idoclists` is a `IDocDocumentList[]` containing all the `IDocDocument`
+  objects in the given `$idoclist`, partitioned in order across
+  `(($idoclist.length / $limit) + 1)` `IDocDocumentList` containers.
+* `$idoclists.length` is the number of items in the returned
+  `$idoclists` `IDocDocumentList[]` array.
 
 ---
 
