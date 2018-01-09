@@ -7,6 +7,7 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -20,11 +21,11 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$datetime.object</value>
           <value name="field_type">object</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
-          <value name="wrapper_type">java.util.Date</value>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
@@ -37,6 +38,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$pattern</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -74,6 +76,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$timezone</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -94,9 +97,11 @@
           <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -111,6 +116,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$datetime</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -131,12 +137,13 @@
           <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">### tundra.datetime:emit
 
-Returns the given [java.util.Date] object as a string formatted according
-to the given datetime pattern.
+Returns the given object as a string formatted according to the 
+given datetime pattern.
 
 Supports a handful of well-known named datetime patterns:
 
@@ -156,25 +163,28 @@ Custom datetime patterns can be specified using
 
 #### Inputs:
 
-* $datetime.object is the [java.util.Date] to be formatted as a
-  datetime string.
-* $pattern is an optional datetime pattern that will be used to format
-  the resulting $datetime string. Defaults to an [ISO8601] XML
+* $datetime.object is either a [java.lang.Number], [java.util.Date], 
+  or [java.util.Calendar] object to be formatted as a datetime 
+  string. When a [java.lang.Number] is specified, it is interpreted
+  as a milliseconds since epoch value.
+* $pattern is an optional datetime pattern that will be used to 
+  format the resulting $datetime string. Defaults to an [ISO8601] XML
   datetime.
-* $timezone is an optional [java.util.TimeZone] ID, or a
-  (+|-)HH:mm time zone offset, or an XML duration string
-  representing a time zone offset, or a raw millisecond time zone
-  offset, or Z for UTC, or local for the default localhost time
-  zone identifying the time zone the returned $datetime will be
-  formatted with.
+* $timezone is an optional [java.util.TimeZone] ID, or a (+|-)HH:mm 
+  time zone offset, or an XML duration string representing a time 
+  zone offset, or a raw millisecond time zone offset, or Z for UTC, 
+  or local for the default localhost time zone identifying the time 
+  zone the returned $datetime will be formatted with.
 
 #### Outputs:
 
-* $datetime is the [java.util.Date] object formatted as a string
-  according to the given $pattern in the given $timezone.
+* $datetime is the given object formatted as a string according to 
+  the given $pattern in the given $timezone.
 
 [ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;
+[java.lang.Number]: &lt;https://docs.oracle.com/javase/6/docs/api/java/lang/Number.html&gt;
 [java.text.SimpleDateFormat]: &lt;http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html&gt;
+[java.util.Calendar]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/Calendar.html&gt;
 [java.util.Date]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/Date.html&gt;
 [java.util.TimeZone]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/TimeZone.html&gt;</value>
   <value name="stateless">yes</value>
@@ -192,10 +202,16 @@ Custom datetime patterns can be specified using
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
 </Values>

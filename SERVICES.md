@@ -3278,8 +3278,8 @@ Custom datetime patterns can be specified using
 
 ### tundra.datetime:emit
 
-Returns the given [java.util.Date] object as a string formatted according
-to the given datetime pattern.
+Returns the given object as a string formatted according to the
+given datetime pattern.
 
 Supports a handful of well-known named datetime patterns:
 
@@ -3299,22 +3299,23 @@ Custom datetime patterns can be specified using
 
 #### Inputs:
 
-* `$datetime.object` is the [java.util.Date] to be formatted as a
-  datetime string.
-* `$pattern` is an optional datetime pattern that will be used to format
-  the resulting `$datetime` string. Defaults to an [ISO8601] XML
+* `$datetime.object` is either a [java.lang.Number], [java.util.Date],
+  or [java.util.Calendar] object to be formatted as a datetime
+  string. When a [java.lang.Number] is specified, it is interpreted
+  as a milliseconds since epoch value.
+* `$pattern` is an optional datetime pattern that will be used to
+  format the resulting `$datetime` string. Defaults to an [ISO8601] XML
   datetime.
-* `$timezone` is an optional [java.util.TimeZone] ID, or a
-  `(+|-)HH:mm` time zone offset, or an XML duration string
-  representing a time zone offset, or a raw millisecond time zone
-  offset, or `Z` for UTC, or `local` for the default localhost time
-  zone identifying the time zone the returned `$datetime` will be
-  formatted with.
+* `$timezone` is an optional [java.util.TimeZone] ID, or a `(+|-)HH:mm`
+  time zone offset, or an XML duration string representing a time
+  zone offset, or a raw millisecond time zone offset, or `Z` for UTC,
+  or `local` for the default localhost time zone identifying the time
+  zone the returned `$datetime` will be formatted with.
 
 #### Outputs:
 
-* `$datetime` is the [java.util.Date] object formatted as a string
-  according to the given `$pattern` in the given `$timezone`.
+* `$datetime` is the given object formatted as a string according to
+  the given `$pattern` in the given `$timezone`.
 
 ---
 
@@ -16172,6 +16173,7 @@ Decompresses the given content using the [zip] file compression format.
 [java.io.ByteArrayInputStream]: <http://docs.oracle.com/javase/6/docs/api/java/io/ByteArrayInputStream.html>
 [java.io.InputStream]: <http://docs.oracle.com/javase/6/docs/api/java/io/InputStream.html>
 [java.io.OutputStream]: <http://docs.oracle.com/javase/6/docs/api/java/io/OutputStream.html>
+[java.lang.Number]: <https://docs.oracle.com/javase/6/docs/api/java/lang/Number.html>
 [java.lang.String]: <http://docs.oracle.com/javase/6/docs/api/java/lang/String.html>
 [java.lang.StringBuilder]: <https://docs.oracle.com/javase/6/docs/api/java/lang/StringBuilder.html>
 [java.lang.System.identityHashCode()]: <http://docs.oracle.com/javase/6/docs/api/java/lang/System.html#identityHashCode(java.lang.Object)>
@@ -16186,6 +16188,7 @@ Decompresses the given content using the [zip] file compression format.
 [java.net.URLEncoder]: <http://docs.oracle.com/javase/6/docs/api/java/net/URLEncoder.html>
 [java.text.DecimalFormat]: <http://docs.oracle.com/javase/6/docs/api/java/text/DecimalFormat.html>
 [java.text.SimpleDateFormat]: <http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html>
+[java.util.Calendar]: <http://docs.oracle.com/javase/6/docs/api/java/util/Calendar.html>
 [java.util.Date]: <http://docs.oracle.com/javase/6/docs/api/java/util/Date.html>
 [java.util.Formatter format string]: <http://docs.oracle.com/javase/6/docs/api/java/util/Formatter.html#syntax>
 [java.util.Formatter format strings]: <http://docs.oracle.com/javase/6/docs/api/java/util/Formatter.html#syntax>
