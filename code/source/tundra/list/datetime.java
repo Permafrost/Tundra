@@ -1,14 +1,15 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-07 17:42:22 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2018-01-31 21:17:24 EST
+// -----( ON-HOST: 192.168.79.128
 
 import com.wm.data.*;
 import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import java.util.TimeZone;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.time.DateTimeHelper;
 import permafrost.tundra.time.DurationHelper;
@@ -39,8 +40,8 @@ public final class datetime
 		// [i] record:1:optional $datetimes
 		// [i] - field:0:optional start
 		// [i] - field:0:optional end
-		// [i] field:0:optional $datetime.pattern {"datetime","datetime.db2","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
-		// [i] field:0:optional $duration.pattern {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
+		// [i] field:0:optional $datetime.pattern {&quot;datetime&quot;,&quot;datetime.db2&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
+		// [i] field:0:optional $duration.pattern {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
 		// [o] field:1:optional $durations
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -82,9 +83,9 @@ public final class datetime
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:1:optional $list
-		// [i] field:0:optional $pattern.input {"datetime","datetime.db2","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
+		// [i] field:0:optional $pattern.input {&quot;datetime&quot;,&quot;datetime.db2&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
 		// [i] field:1:optional $patterns.input
-		// [i] field:0:optional $pattern.output {"datetime","datetime.db2","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
+		// [i] field:0:optional $pattern.output {&quot;datetime&quot;,&quot;datetime.db2&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
 		// [i] field:0:optional $timezone.input
 		// [i] field:0:optional $timezone.output
 		// [o] field:1:optional $list
@@ -95,8 +96,8 @@ public final class datetime
 		    String inPattern = IDataHelper.get(cursor, "$pattern.input", String.class);
 		    String[] inPatterns = IDataHelper.get(cursor, "$patterns.input", String[].class);
 		    String outPattern = IDataHelper.get(cursor, "$pattern.output", String.class);
-		    String inTimeZone = IDataHelper.get(cursor, "$timezone.input", String.class);
-		    String outTimeZone = IDataHelper.get(cursor, "$timezone.output", String.class);
+		    TimeZone inTimeZone = IDataHelper.get(cursor, "$timezone.input", TimeZone.class);
+		    TimeZone outTimeZone = IDataHelper.get(cursor, "$timezone.output", TimeZone.class);
 		
 		    if (list != null && list.length > 0) {
 		        if (inPatterns == null) {
