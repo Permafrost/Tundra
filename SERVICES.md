@@ -13195,6 +13195,25 @@ identity or name.
 
 ---
 
+### tundra.schedule:invoke
+
+Invokes a given scheduled task's service with the task's configured
+input pipeline of the under the invoking user's context.
+
+This service can be used to manually run a scheduled service outside
+of its normal schedule, with the convenience of not having to supply
+the task's configured inputs.
+
+Note the scheduled task's schedule is unaffected by the use of this
+service.
+
+#### Inputs:
+
+* `$schedule.id` is the identity of the scheduled task whose service
+  is to be invoked with the input pipeline specified on the task.
+
+---
+
 ### tundra.schedule:list
 
 Returns a list of all scheduled tasks that satisfy the given inputs,

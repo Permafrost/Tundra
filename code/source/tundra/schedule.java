@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-07 14:58:28 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2018-02-11 18:47:30 EST
+// -----( ON-HOST: 192.168.20.16
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -38,7 +38,7 @@ public final class schedule
 		// @sigtype java 3.5
 		// [i] field:0:optional $id
 		// [i] field:0:optional $name
-		// [o] field:0:required $exists?
+		// [o] field:0:required $exists? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -72,7 +72,7 @@ public final class schedule
 		// [o] - field:0:required id
 		// [o] - field:0:optional name
 		// [o] - field:0:optional description
-		// [o] - field:0:required type {"complex","once","repeat"}
+		// [o] - field:0:required type {&quot;complex&quot;,&quot;once&quot;,&quot;repeat&quot;}
 		// [o] - field:0:required service
 		// [o] - field:0:optional package
 		// [o] - field:0:required target
@@ -116,6 +116,29 @@ public final class schedule
 
 
 
+	public static final void invoke (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(invoke)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $schedule.id
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    String identity = IDataHelper.get(cursor, "$schedule.id", String.class);
+		    IData output = ScheduleHelper.invoke(identity);
+		    IDataUtil.merge(output, pipeline);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
 	public static final void list (IData pipeline)
         throws ServiceException
 	{
@@ -129,7 +152,7 @@ public final class schedule
 		// [o] - field:0:required id
 		// [o] - field:0:optional name
 		// [o] - field:0:optional description
-		// [o] - field:0:required type {"complex","once","repeat"}
+		// [o] - field:0:required type {&quot;complex&quot;,&quot;once&quot;,&quot;repeat&quot;}
 		// [o] - field:0:required service
 		// [o] - field:0:optional package
 		// [o] - field:0:required target
