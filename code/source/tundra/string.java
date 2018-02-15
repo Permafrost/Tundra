@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-12-10 11:24:19 EST
+// -----( CREATED: 2018-02-15 15:20:46 EST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -102,7 +102,7 @@ public final class string
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
-		// [i] field:0:optional $mode {"all words","first word"}
+		// [i] field:0:optional $mode {&quot;all words&quot;,&quot;first word&quot;}
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -129,7 +129,7 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
 		// [i] field:0:optional $pattern
-		// [o] field:0:required $captured? {"false","true"}
+		// [o] field:0:required $captured? {&quot;false&quot;,&quot;true&quot;}
 		// [o] record:1:optional $captures
 		// [o] - record:1:required groups
 		// [o] -- field:0:required captured?
@@ -194,7 +194,7 @@ public final class string
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $operands
-		// [i] field:0:optional $mode {"missing","null"}
+		// [i] field:0:optional $mode {&quot;missing&quot;,&quot;null&quot;}
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -233,11 +233,11 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:0:optional $string.x
 		// [i] field:0:optional $string.y
-		// [i] field:0:optional $insensitive.case? {"false","true"}
-		// [i] field:0:optional $insensitive.whitespace? {"false","true"}
-		// [o] field:0:required $before? {"false","true"}
-		// [o] field:0:required $equal? {"false","true"}
-		// [o] field:0:required $after? {"false","true"}
+		// [i] field:0:optional $insensitive.case? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $insensitive.whitespace? {&quot;false&quot;,&quot;true&quot;}
+		// [o] field:0:required $before? {&quot;false&quot;,&quot;true&quot;}
+		// [o] field:0:required $equal? {&quot;false&quot;,&quot;true&quot;}
+		// [o] field:0:required $after? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
@@ -321,8 +321,8 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
 		// [i] field:0:optional $pattern
-		// [i] field:0:optional $pattern.literal? {"false","true"}
-		// [o] field:0:required $found? {"false","true"}
+		// [i] field:0:optional $pattern.literal? {&quot;false&quot;,&quot;true&quot;}
+		// [o] field:0:required $found? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
@@ -355,9 +355,9 @@ public final class string
 		// [i] record:1:optional $arguments
 		// [i] - field:0:optional key
 		// [i] - object:0:optional value
-		// [i] - field:0:optional type {"string","integer","decimal","datetime"}
-		// [i] - field:0:optional pattern {"datetime","datetime.db2","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
-		// [i] - field:0:optional blankify? {"false","true"}
+		// [i] - field:0:optional type {&quot;string&quot;,&quot;integer&quot;,&quot;decimal&quot;,&quot;datetime&quot;}
+		// [i] - field:0:optional pattern {&quot;datetime&quot;,&quot;datetime.db2&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
+		// [i] - field:0:optional blankify? {&quot;false&quot;,&quot;true&quot;}
 		// [i] record:0:optional $locale
 		// [i] - field:0:required language
 		// [i] - field:0:optional country
@@ -519,8 +519,8 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
 		// [i] field:0:optional $pattern
-		// [i] field:0:optional $pattern.literal? {"false","true"}
-		// [o] field:0:required $match? {"false","true"}
+		// [i] field:0:optional $pattern.literal? {&quot;false&quot;,&quot;true&quot;}
+		// [o] field:0:required $match? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
@@ -653,8 +653,8 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
 		// [i] field:0:optional $pattern
-		// [i] field:0:optional $pattern.literal? {"false","true"}
-		// [i] field:0:optional $occurrence.first? {"false","true"}
+		// [i] field:0:optional $pattern.literal? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $occurrence.first? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -689,10 +689,10 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
 		// [i] field:0:optional $pattern
-		// [i] field:0:optional $pattern.literal? {"false","true"}
+		// [i] field:0:optional $pattern.literal? {&quot;false&quot;,&quot;true&quot;}
 		// [i] field:0:optional $replacement
-		// [i] field:0:optional $replacement.literal? {"false","true"}
-		// [i] field:0:optional $occurrence.first? {"false","true"}
+		// [i] field:0:optional $replacement.literal? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $occurrence.first? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -780,7 +780,7 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
 		// [i] field:0:optional $pattern
-		// [i] field:0:optional $pattern.literal? {"false","true"}
+		// [i] field:0:optional $pattern.literal? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -808,14 +808,7 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
 		// [o] field:0:optional $string
-		IDataCursor cursor = pipeline.getCursor();
-
-		try {
-		    String string = IDataHelper.get(cursor, "$string", String.class);
-		    IDataHelper.put(cursor, "$string", StringHelper.condense(string));
-		} finally {
-		    cursor.destroy();
-		}
+		tundra.string.condense(pipeline);
 		// --- <<IS-END>> ---
 
 
@@ -832,7 +825,7 @@ public final class string
 		// [i] field:0:optional $string
 		// [i] record:0:optional $pipeline
 		// [i] field:0:optional $default
-		// [i] field:0:optional $mode {"local","global","all"}
+		// [i] field:0:optional $mode {&quot;local&quot;,&quot;global&quot;,&quot;all&quot;}
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -884,7 +877,7 @@ public final class string
 		// @sigtype java 3.5
 		// [i] record:0:optional $operands
 		// [i] field:0:required $length
-		// [i] field:0:optional $ellipsis? {"false","true"}
+		// [i] field:0:optional $ellipsis? {&quot;false&quot;,&quot;true&quot;}
 		// [o] record:0:optional $results
 		IDataCursor cursor = pipeline.getCursor();
 
