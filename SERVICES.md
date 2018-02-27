@@ -5053,6 +5053,16 @@ string, byte array, or input stream.
 
 ---
 
+### tundra.document:empty
+
+Returns a newly created empty IData document.
+
+#### Outputs:
+
+* `$document` is a new empty IData document.
+
+---
+
 ### tundra.document:equal
 
 Returns `true` if the given documents are equal (contain the same set
