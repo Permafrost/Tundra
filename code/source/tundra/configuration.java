@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-04 19:40:03 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2018-02-28 10:25:25 EST
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -40,10 +40,10 @@ public final class configuration
 		// --- <<IS-START(all)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional $refresh? {"false","true"}
+		// [i] field:0:optional $refresh? {&quot;false&quot;,&quot;true&quot;}
 		// [o] record:0:required $configurations
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    boolean refresh = IDataHelper.getOrDefault(cursor, "$refresh?", Boolean.class, false);
 		    IData configurations = ConfigurationManager.all(refresh);
@@ -53,7 +53,7 @@ public final class configuration
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -65,23 +65,23 @@ public final class configuration
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $package
-		// [i] field:0:optional $refresh? {"false","true"}
+		// [i] field:0:optional $refresh? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:required $package
 		// [o] record:0:required $configuration
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String packageName = IDataHelper.get(cursor, "$package", String.class);
 		    boolean refresh = IDataHelper.getOrDefault(cursor, "$refresh?", Boolean.class, false);
-		
+
 		    if (packageName == null) {
 		        // infer package name from invoking service
 		        Package invokingPackage = PackageHelper.self();
 		        if (invokingPackage != null) packageName = invokingPackage.getName();
 		    }
-		
+
 		    IData configuration = ConfigurationManager.get(packageName, refresh);
-		
+
 		    IDataHelper.put(cursor, "$package", packageName);
 		    IDataHelper.put(cursor, "$configuration", configuration);
 		} catch(IOException ex) {
@@ -91,7 +91,7 @@ public final class configuration
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -102,12 +102,12 @@ public final class configuration
 		// --- <<IS-START(list)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional $refresh? {"false","true"}
+		// [i] field:0:optional $refresh? {&quot;false&quot;,&quot;true&quot;}
 		// [o] record:1:required $configurations
 		// [o] - field:0:required package
 		// [o] - record:0:required configuration
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    boolean refresh = IDataHelper.getOrDefault(cursor, "$refresh?", Boolean.class, false);
 		    IData[] configurations = ConfigurationManager.list(refresh);
@@ -117,7 +117,32 @@ public final class configuration
 		}
 		// --- <<IS-END>> ---
 
-                
+
+	}
+
+
+
+	public static final void peek (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(peek)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $package
+		// [o] record:0:required $configuration
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    String packageName = IDataHelper.get(cursor, "$package", String.class);
+		    IDataHelper.put(cursor, "$configuration", ConfigurationManager.peek(packageName));
+		} catch(IOException ex) {
+		    ExceptionHelper.raise(ex);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
 	}
 }
 

@@ -2344,6 +2344,28 @@ Returns all configuration settings for all configured packages.
 
 ---
 
+### tundra.configuration:peek
+
+Returns the configuration settings associated with the given package
+from disk.
+
+This service does not update the cached configuration, if any, and
+therefore can be used to inspect and verify changes staged on disk
+before refreshing the cached configuration using
+`tundra.configuration:get`.
+
+#### Inputs:
+
+* `$package` is the name of the package whose configuration is to be
+  read from disk and returned.
+
+#### Outputs:
+
+* `$configuration` is an `IData` document containing the on disk
+  configuration settings for the given package.
+
+---
+
 ### tundra.content:amend
 
 Edits the given content with the list of key value pairs specified in
