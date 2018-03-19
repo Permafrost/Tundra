@@ -14968,6 +14968,22 @@ to reach the given length.
 
 ---
 
+### tundra.string:prefixed
+
+Returns whether the given string starts with the given prefix.
+
+#### Inputs:
+
+* `$string` is the string to be checked.
+* `$prefix` is the prefix the given string is expected to start with.
+
+#### Outputs:
+
+* `$prefixed?` is `true` if the given string starts with the given
+  prefix.
+
+---
+
 ### tundra.string:quote
 
 Returns a [regular expression pattern] that can be used to match the
