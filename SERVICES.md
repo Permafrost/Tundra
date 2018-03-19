@@ -8369,9 +8369,9 @@ remaining `IData` documents.
 
 * `$list` is an `IData[]` document list containing values to be searched
   for the given `$pattern`.
-* `$key` is the key identifying the value in the given document to
-  be searched for the given `$pattern`, and can be simple or
-  fully-qualified, such as `a/b/c[0]/d`.
+* `$key` is the key identifying the value in the given document list to
+  be searched for the given `$pattern`, and can be simple or fully-
+  qualified, such as `a/b/c[0]/d`.
 * `$key.literal?` is an optional boolean flag which if `true` will treat
   the given `$key` literally rather than as a potentially fully-
   qualified key. Defaults to `false` if not specified.
@@ -8742,6 +8742,45 @@ document lists.
 
 * `$list` is the newly constructed list containing the returned
   items from invoking `$service` for each input list item.
+
+---
+
+### tundra.list.document:match
+
+Returns the list of `IData` documents where the values associated with
+the given key matched the given [regular expression pattern] or
+literal string pattern, and the list of remaining `IData` documents.
+
+#### Inputs:
+
+* `$list` is an `IData[]` document list containing values to be matched
+  against the given `$pattern`.
+* `$key` is the key identifying the value in the given document list to
+  be matched against the given `$pattern`, and can be simple or fully-
+  qualified, such as `a/b/c[0]/d`.
+* `$key.literal?` is an optional boolean flag which if `true` will treat
+  the given `$key` literally rather than as a potentially fully-
+  qualified key. Defaults to `false` if not specified.
+* `$pattern` is the [regular expression pattern] or literal string to
+  match against the given list.
+* `$pattern.literal?` is a boolean indicating if the `$pattern` string
+  should be treated as a literal string. If `false`, `$pattern` is
+  treated as a [regular expression pattern]. If `true`, `$pattern` is
+  treated as a literal string. Defaults to `false`, if not specified.
+
+#### Outputs:
+
+* `$matched.all?` is a boolean flag which when `true` indicates that all
+  items in the given list matched the given pattern.
+* `$matched.any?` is a boolean flag which when `true` indicates that at
+  least one item in the given list matched the given pattern.
+* `$matched.none?` is a boolean flag which when `true` indicates that no
+  items in the given list matched the given pattern.
+* `$matched` is the list of items which matched the given pattern.
+* `$matched.length` is the number of items in the `$matched` list.
+* `$unmatched` is the list of items which did not match the given
+  pattern.
+* `$unmatched.length` is the number of items in the `$unmatched` list.
 
 ---
 

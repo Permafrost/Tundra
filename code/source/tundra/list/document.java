@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2018-03-19 16:07:56 GMT+10:00
+// -----( CREATED: 2018-03-19 16:10:55 GMT+10:00
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -529,6 +529,64 @@ public final class document
 		// [i] field:0:optional $item.output
 		// [o] record:1:optional $list
 		tundra.list.object.map(pipeline, IData.class);
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
+	public static final void match (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(match)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:1:optional $list
+		// [i] field:0:required $key
+		// [i] field:0:optional $key.literal? {"false","true"}
+		// [i] field:0:optional $pattern
+		// [i] field:0:optional $pattern.literal? {"false","true"}
+		// [o] field:0:required $matched.all? {"false","true"}
+		// [o] field:0:required $matched.any? {"false","true"}
+		// [o] field:0:required $matched.none? {"false","true"}
+		// [o] record:1:optional $matched
+		// [o] field:0:required $matched.length
+		// [o] record:1:optional $unmatched
+		// [o] field:0:required $unmatched.length
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    IData[] list = IDataHelper.get(cursor, "$list", IData[].class);
+		    String key = IDataHelper.get(cursor, "$key", String.class);
+		    boolean literalKey = IDataHelper.getOrDefault(cursor, "$key.literal?", Boolean.class, false);
+		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
+		    boolean literalPattern = IDataHelper.getOrDefault(cursor, "$pattern.literal?", Boolean.class, false);
+
+		    IData[][] output = match(list, key, literalKey, pattern, literalPattern);
+
+		    if (output != null && output.length > 1) {
+		        IData[] matched = output[0];
+		        IData[] unmatched = output[1];
+
+		        IDataHelper.put(cursor, "$matched.all?", matched.length == list.length, String.class);
+		        IDataHelper.put(cursor, "$matched.any?", matched.length > 0, String.class);
+		        IDataHelper.put(cursor, "$matched.none?", matched.length == 0, String.class);
+
+		        IDataHelper.put(cursor, "$matched", matched);
+		        IDataHelper.put(cursor, "$matched.length", matched.length, String.class);
+		        IDataHelper.put(cursor, "$unmatched", unmatched);
+		        IDataHelper.put(cursor, "$unmatched.length", unmatched.length, String.class);
+		    } else {
+		        IDataHelper.put(cursor, "$matched.all?", "false");
+		        IDataHelper.put(cursor, "$matched.any?", "false");
+		        IDataHelper.put(cursor, "$matched.none?", "true");
+		        IDataHelper.put(cursor, "$matched.length", "0");
+		        IDataHelper.put(cursor, "$unmatched.length", "0");
+		    }
+		} finally {
+		    cursor.destroy();
+		}
 		// --- <<IS-END>> ---
 
 
@@ -1254,6 +1312,41 @@ public final class document
 	    IData[][] output = new IData[2][];
 	    output[0] = found.toArray(new IData[found.size()]);
 	    output[1] = unfound.toArray(new IData[unfound.size()]);
+
+	    return output;
+	}
+
+	/**
+	 * Returns the list of items that match and did not match the given regular
+	 * expression or literal string pattern.
+	 *
+	 * @param input          The IData[] document list to be processed.
+	 * @param key            The key whose value will be used for filtering.
+	 * @param literalKey     Whether the key is literal or fully-qualified.
+	 * @param pattern        The pattern to match against the given documents.
+	 * @param literalPattern Whether the pattern is literal or a regular expression.
+	 * @return               A pair of arrays, the first containing the IData documents
+	 *                       that match the pattern, the second contains the IData
+	 *                       documents that do not match the pattern.
+	 */
+	public static IData[][] match(IData[] input, String key, boolean literalKey, String pattern, boolean literalPattern) {
+	    if (input == null) return null;
+
+	    List<IData> matched = new ArrayList<IData>(input.length);
+	    List<IData> unmatched = new ArrayList<IData>(input.length);
+
+	    for (IData document : input) {
+	        String value = IDataHelper.get(document, key, literalKey, String.class);
+	        if (StringHelper.match(value, pattern, literalPattern)) {
+	            matched.add(document);
+	        } else {
+	            unmatched.add(document);
+	        }
+	    }
+
+	    IData[][] output = new IData[2][];
+	    output[0] = matched.toArray(new IData[matched.size()]);
+	    output[1] = unmatched.toArray(new IData[unmatched.size()]);
 
 	    return output;
 	}

@@ -174,7 +174,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$found.all?</value>
+          <value name="field_name">$matched.all?</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <array name="field_options" type="value" depth="1">
@@ -205,7 +205,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$found.any?</value>
+          <value name="field_name">$matched.any?</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <array name="field_options" type="value" depth="1">
@@ -236,7 +236,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$found.none?</value>
+          <value name="field_name">$matched.none?</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <array name="field_options" type="value" depth="1">
@@ -266,7 +266,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$found</value>
+          <value name="field_name">$matched</value>
           <value name="field_type">record</value>
           <value name="field_dim">1</value>
           <value name="field_opt">true</value>
@@ -287,7 +287,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$found.length</value>
+          <value name="field_name">$matched.length</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <record name="field_content_type" javaclass="com.wm.util.Values">
@@ -313,7 +313,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$unfound</value>
+          <value name="field_name">$unmatched</value>
           <value name="field_type">record</value>
           <value name="field_dim">1</value>
           <value name="field_opt">true</value>
@@ -334,7 +334,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$unfound.length</value>
+          <value name="field_name">$unmatched.length</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <record name="field_content_type" javaclass="com.wm.util.Values">
@@ -356,25 +356,24 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">### tundra.list.document:find
+  <value name="node_comment">### tundra.list.document:match
 
 Returns the list of IData documents where the values associated with 
-the given key included at least one occurrence of the given [regular 
-expression pattern] or literal string pattern, and the list of 
-remaining IData documents.
+the given key matched the given [regular expression pattern] or 
+literal string pattern, and the list of remaining IData documents.
 
 #### Inputs:
 
-* $list is an IData[] document list containing values to be searched 
-  for the given $pattern.
+* $list is an IData[] document list containing values to be matched
+  against the given $pattern.
 * $key is the key identifying the value in the given document list to
-  be searched for the given $pattern, and can be simple or fully-
+  be matched against the given $pattern, and can be simple or fully-
   qualified, such as a/b/c[0]/d.
 * $key.literal? is an optional boolean flag which if true will treat
   the given $key literally rather than as a potentially fully-
   qualified key. Defaults to false if not specified.
 * $pattern is the [regular expression pattern] or literal string to
-  search for against the given list.
+  match against the given list.
 * $pattern.literal? is a boolean indicating if the $pattern string 
   should be treated as a literal string. If false, $pattern is 
   treated as a [regular expression pattern]. If true, $pattern is 
@@ -382,17 +381,17 @@ remaining IData documents.
 
 #### Outputs:
 
-* $found.all? is a boolean flag which when true indicates that all
-  items in the given list included the given pattern.
-* $found.any? is a boolean flag which when true indicates that at 
-  least one item in the given list included the given pattern.
-* $found.none? is a boolean flag which when true indicates that no
-  items in the given list included the given pattern.
-* $found is the list of items which included the given pattern.
-* $found.length is the number of items in the $found list.
-* $unfound is the list of items which did not include the given
+* $matched.all? is a boolean flag which when true indicates that all
+  items in the given list matched the given pattern.
+* $matched.any? is a boolean flag which when true indicates that at
+  least one item in the given list matched the given pattern.
+* $matched.none? is a boolean flag which when true indicates that no
+  items in the given list matched the given pattern.
+* $matched is the list of items which matched the given pattern.
+* $matched.length is the number of items in the $matched list.
+* $unmatched is the list of items which did not match the given
   pattern.
-* $unfound.length is the number of items in the $unfound list.
+* $unmatched.length is the number of items in the $unmatched list.
 
 [regular expression pattern]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html&gt;</value>
   <value name="stateless">no</value>
