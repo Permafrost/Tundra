@@ -8358,6 +8358,46 @@ condition evaluates to `true`.
 
 ---
 
+### tundra.list.document:find
+
+Returns the list of `IData` documents where the values associated with
+the give key included at least one occurrence of the given [regular
+expression pattern] or literal string pattern, and the list of
+remaining `IData` documents.
+
+#### Inputs:
+
+* `$list` is an `IData[]` document list containing values to be searched
+  for the given `$pattern`.
+* `$key` is the key identifying the value in the given document to
+  be searched for the given `$pattern`, and can be simple or
+  fully-qualified, such as `a/b/c[0]/d`.
+* `$key.literal?` is an optional boolean flag which if `true` will treat
+  the given `$key` literally rather than as a potentially fully-
+  qualified key. Defaults to `false` if not specified.
+* `$pattern` is the [regular expression pattern] or literal string to
+  search for against the given list.
+* `$pattern.literal?` is a boolean indicating if the `$pattern` string
+  should be treated as a literal string. If `false`, `$pattern` is
+  treated as a [regular expression pattern]. If `true`, `$pattern` is
+  treated as a literal string. Defaults to `false`, if not specified.
+
+#### Outputs:
+
+* `$found.all?` is a boolean flag which when `true` indicates that all
+  items in the given list included the given pattern.
+* `$found.any?` is a boolean flag which when `true` indicates that at
+  least one item in the given list included the given pattern.
+* `$found.none?` is a boolean flag which when `true` indicates that no
+  items in the given list included the given pattern.
+* `$found` is the list of items which included the given pattern.
+* `$found.length` is the number of items in the `$found` list.
+* `$unfound` is the list of items which did not include the given
+  pattern.
+* `$unfound.length` is the number of items in the `$unfound` list.
+
+---
+
 ### tundra.list.document:first
 
 Returns the first item from the given list.

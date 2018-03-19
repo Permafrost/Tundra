@@ -3,18 +3,46 @@
 <Values version="2.0">
   <value name="node_type">interface</value>
   <value name="node_nsName">tundra.list.document</value>
-  <value name="shared"></value>
+  <value name="shared">LyoqCiAqIFJldHVybnMgdGhlIGxpc3Qgb2YgaXRlbXMgdGhhdCBpbmNsdWRlIGFuZCBkbyBub3Qg
+aW5jbHVkZSB0aGUgZ2l2ZW4gcmVndWxhciAKICogZXhwcmVzc2lvbiBvciBsaXRlcmFsIHN0cmlu
+ZyBwYXR0ZXJuLgogKiAKICogQHBhcmFtIGlucHV0ICAgICAgICAgIFRoZSBJRGF0YVtdIGRvY3Vt
+ZW50IGxpc3QgdG8gYmUgcHJvY2Vzc2VkLgogKiBAcGFyYW0ga2V5ICAgICAgICAgICAgVGhlIGtl
+eSB3aG9zZSB2YWx1ZSB3aWxsIGJlIHVzZWQgZm9yIGZpbHRlcmluZy4KICogQHBhcmFtIGxpdGVy
+YWxLZXkgICAgIFdoZXRoZXIgdGhlIGtleSBpcyBsaXRlcmFsIG9yIGZ1bGx5LXF1YWxpZmllZC4K
+ICogQHBhcmFtIHBhdHRlcm4gICAgICAgIFRoZSBwYXR0ZXJuIHRvIGxvb2sgZm9yIGluIHRoZSBn
+aXZlbiBkb2N1bWVudHMuCiAqIEBwYXJhbSBsaXRlcmFsUGF0dGVybiBXaGV0aGVyIHRoZSBwYXR0
+ZXJuIGlzIGxpdGVyYWwgb3IgYSByZWd1bGFyIGV4cHJlc3Npb24uCiAqIEByZXR1cm4gICAgICAg
+ICAgICAgICBBIHBhaXIgb2YgYXJyYXlzLCB0aGUgZmlyc3QgY29udGFpbmluZyB0aGUgSURhdGEg
+ZG9jdW1lbnRzIAogKiAgICAgICAgICAgICAgICAgICAgICAgdGhhdCBjb250YWluIHRoZSBwYXR0
+ZXJuLCB0aGUgc2Vjb25kIGNvbnRhaW5zIHRoZSBJRGF0YSAKICogICAgICAgICAgICAgICAgICAg
+ICAgIGRvY3VtZW50cyB0aGF0IGRvIG5vdCBjb250YWluIHRoZSBwYXR0ZXJuLgogKi8KcHVibGlj
+IHN0YXRpYyBJRGF0YVtdW10gZmluZChJRGF0YVtdIGlucHV0LCBTdHJpbmcga2V5LCBib29sZWFu
+IGxpdGVyYWxLZXksIFN0cmluZyBwYXR0ZXJuLCBib29sZWFuIGxpdGVyYWxQYXR0ZXJuKSB7CiAg
+ICBpZiAoaW5wdXQgPT0gbnVsbCkgcmV0dXJuIG51bGw7CgogICAgTGlzdDxJRGF0YT4gZm91bmQg
+PSBuZXcgQXJyYXlMaXN0PElEYXRhPihpbnB1dC5sZW5ndGgpOwogICAgTGlzdDxJRGF0YT4gdW5m
+b3VuZCA9IG5ldyBBcnJheUxpc3Q8SURhdGE+KGlucHV0Lmxlbmd0aCk7CgogICAgZm9yIChJRGF0
+YSBkb2N1bWVudCA6IGlucHV0KSB7CiAgICAgICAgU3RyaW5nIHZhbHVlID0gSURhdGFIZWxwZXIu
+Z2V0KGRvY3VtZW50LCBrZXksIGxpdGVyYWxLZXksIFN0cmluZy5jbGFzcyk7CiAgICAgICAgaWYg
+KFN0cmluZ0hlbHBlci5maW5kKHZhbHVlLCBwYXR0ZXJuLCBsaXRlcmFsUGF0dGVybikpIHsKICAg
+ICAgICAgICAgZm91bmQuYWRkKGRvY3VtZW50KTsKICAgICAgICB9IGVsc2UgewogICAgICAgICAg
+ICB1bmZvdW5kLmFkZChkb2N1bWVudCk7CiAgICAgICAgfQogICAgfQoKICAgIElEYXRhW11bXSBv
+dXRwdXQgPSBuZXcgSURhdGFbMl1bXTsKICAgIG91dHB1dFswXSA9IGZvdW5kLnRvQXJyYXkobmV3
+IElEYXRhW2ZvdW5kLnNpemUoKV0pOwogICAgb3V0cHV0WzFdID0gdW5mb3VuZC50b0FycmF5KG5l
+dyBJRGF0YVt1bmZvdW5kLnNpemUoKV0pOwoKICAgIHJldHVybiBvdXRwdXQ7Cn0K</value>
   <value name="encodeutf8">true</value>
   <value name="extends"></value>
   <array name="implements" type="value" depth="1">
   </array>
   <array name="imports" type="value" depth="1">
+    <value>java.util.ArrayList</value>
     <value>java.util.EnumSet</value>
+    <value>java.util.List</value>
     <value>java.util.Locale</value>
     <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.data.transform.TransformerMode</value>
     <value>permafrost.tundra.flow.variable.SubstitutionHelper</value>
     <value>permafrost.tundra.flow.variable.SubstitutionType</value>
     <value>permafrost.tundra.lang.BooleanHelper</value>
+    <value>permafrost.tundra.lang.StringHelper</value>
   </array>
 </Values>

@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-11-29T16:16:06.751
+// -----( CREATED: 2018-03-19 16:07:56 GMT+10:00
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -9,13 +9,16 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import java.util.ArrayList;
 import java.util.EnumSet;
+import java.util.List;
 import java.util.Locale;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.data.transform.TransformerMode;
 import permafrost.tundra.flow.variable.SubstitutionHelper;
 import permafrost.tundra.flow.variable.SubstitutionType;
 import permafrost.tundra.lang.BooleanHelper;
+import permafrost.tundra.lang.StringHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class document
@@ -58,7 +61,7 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:1:optional $list
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -84,7 +87,7 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:1:optional $list
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -130,7 +133,7 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:1:optional $list
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -223,6 +226,64 @@ public final class document
 
 
 
+	public static final void find (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(find)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:1:optional $list
+		// [i] field:0:required $key
+		// [i] field:0:optional $key.literal? {"false","true"}
+		// [i] field:0:optional $pattern
+		// [i] field:0:optional $pattern.literal? {"false","true"}
+		// [o] field:0:required $found.all? {"false","true"}
+		// [o] field:0:required $found.any? {"false","true"}
+		// [o] field:0:required $found.none? {"false","true"}
+		// [o] record:1:optional $found
+		// [o] field:0:required $found.length
+		// [o] record:1:optional $unfound
+		// [o] field:0:required $unfound.length
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    IData[] list = IDataHelper.get(cursor, "$list", IData[].class);
+		    String key = IDataHelper.get(cursor, "$key", String.class);
+		    boolean literalKey = IDataHelper.getOrDefault(cursor, "$key.literal?", Boolean.class, false);
+		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
+		    boolean literalPattern = IDataHelper.getOrDefault(cursor, "$pattern.literal?", Boolean.class, false);
+
+		    IData[][] output = find(list, key, literalKey, pattern, literalPattern);
+
+		    if (output != null && output.length > 1) {
+		        IData[] found = output[0];
+		        IData[] unfound = output[1];
+
+		        IDataHelper.put(cursor, "$found.all?", found.length == list.length, String.class);
+		        IDataHelper.put(cursor, "$found.any?", found.length > 0, String.class);
+		        IDataHelper.put(cursor, "$found.none?", found.length == 0, String.class);
+
+		        IDataHelper.put(cursor, "$found", found);
+		        IDataHelper.put(cursor, "$found.length", found.length, String.class);
+		        IDataHelper.put(cursor, "$unfound", unfound);
+		        IDataHelper.put(cursor, "$unfound.length", unfound.length, String.class);
+		    } else {
+		        IDataHelper.put(cursor, "$found.all?", "false");
+		        IDataHelper.put(cursor, "$found.any?", "false");
+		        IDataHelper.put(cursor, "$found.none?", "true");
+		        IDataHelper.put(cursor, "$found.length", "0");
+		        IDataHelper.put(cursor, "$unfound.length", "0");
+		    }
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
 	public static final void first (IData pipeline)
         throws ServiceException
 	{
@@ -286,6 +347,8 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:1:optional $list
+		// [i] recref:0:optional $group tundra.schema.list.document.group:input
+		// [o] recref:1:optional $list.groups tundra.schema.list.document.group:output
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
@@ -431,8 +494,8 @@ public final class document
 		// [i] - field:0:required language
 		// [i] - field:0:optional country
 		// [i] - field:0:optional variant
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
-		// [i] field:0:optional $mode {&quot;values&quot;,&quot;keys&quot;,&quot;keys and values&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
+		// [i] field:0:optional $mode {"values","keys","keys and values"}
 		// [o] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -480,7 +543,7 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:1:optional $list
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] record:0:required $document
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -529,7 +592,7 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:1:optional $list
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -613,9 +676,9 @@ public final class document
 		// @sigtype java 3.5
 		// [i] record:1:optional $list
 		// [i] field:0:optional $prefix
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
-		// [i] field:0:optional $force? {&quot;false&quot;,&quot;true&quot;}
-		// [i] field:0:optional $mode {&quot;values&quot;,&quot;keys&quot;,&quot;keys and values&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
+		// [i] field:0:optional $force? {"false","true"}
+		// [i] field:0:optional $mode {"values","keys","keys and values"}
 		// [o] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -699,10 +762,10 @@ public final class document
 		// @sigtype java 3.5
 		// [i] record:1:optional $list
 		// [i] field:0:optional $pattern
-		// [i] field:0:optional $pattern.literal? {&quot;false&quot;,&quot;true&quot;}
-		// [i] field:0:optional $occurrence.first? {&quot;false&quot;,&quot;true&quot;}
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
-		// [i] field:0:optional $mode {&quot;values&quot;,&quot;keys&quot;,&quot;keys and values&quot;}
+		// [i] field:0:optional $pattern.literal? {"false","true"}
+		// [i] field:0:optional $occurrence.first? {"false","true"}
+		// [i] field:0:optional $recurse? {"false","true"}
+		// [i] field:0:optional $mode {"values","keys","keys and values"}
 		// [o] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -733,12 +796,12 @@ public final class document
 		// @sigtype java 3.5
 		// [i] record:1:optional $list
 		// [i] field:0:optional $pattern
-		// [i] field:0:optional $pattern.literal? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $pattern.literal? {"false","true"}
 		// [i] field:0:optional $replacement
-		// [i] field:0:optional $replacement.literal? {&quot;false&quot;,&quot;true&quot;}
-		// [i] field:0:optional $occurrence.first? {&quot;false&quot;,&quot;true&quot;}
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
-		// [i] field:0:optional $mode {&quot;values&quot;,&quot;keys&quot;,&quot;keys and values&quot;}
+		// [i] field:0:optional $replacement.literal? {"false","true"}
+		// [i] field:0:optional $occurrence.first? {"false","true"}
+		// [i] field:0:optional $recurse? {"false","true"}
+		// [i] field:0:optional $mode {"values","keys","keys and values"}
 		// [o] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -841,9 +904,9 @@ public final class document
 		// [i] record:1:optional $list
 		// [i] record:1:optional $criteria
 		// [i] - field:0:required key
-		// [i] - field:0:optional type {&quot;string&quot;,&quot;integer&quot;,&quot;decimal&quot;,&quot;datetime&quot;,&quot;duration&quot;}
+		// [i] - field:0:optional type {"string","integer","decimal","datetime","duration"}
 		// [i] - field:0:optional pattern
-		// [i] - field:0:optional descending? {&quot;false&quot;,&quot;true&quot;}
+		// [i] - field:0:optional descending? {"false","true"}
 		// [o] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -884,7 +947,7 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:1:optional $list
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -916,7 +979,7 @@ public final class document
 		// [i] record:1:optional $list
 		// [i] record:0:optional $pipeline
 		// [i] field:0:optional $default
-		// [i] field:0:optional $mode {&quot;local&quot;,&quot;global&quot;,&quot;all&quot;}
+		// [i] field:0:optional $mode {"local","global","all"}
 		// [o] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -944,9 +1007,9 @@ public final class document
 		// @sigtype java 3.5
 		// [i] record:1:optional $list
 		// [i] field:0:optional $suffix
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
-		// [i] field:0:optional $force? {&quot;false&quot;,&quot;true&quot;}
-		// [i] field:0:optional $mode {&quot;values&quot;,&quot;keys&quot;,&quot;keys and values&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
+		// [i] field:0:optional $force? {"false","true"}
+		// [i] field:0:optional $mode {"values","keys","keys and values"}
 		// [o] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -992,8 +1055,8 @@ public final class document
 		// --- <<IS-START(trim)>> ---
 		// @sigtype java 3.5
 		// [i] record:1:optional $list
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
-		// [i] field:0:optional $mode {&quot;values&quot;,&quot;keys&quot;,&quot;keys and values&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
+		// [i] field:0:optional $mode {"values","keys","keys and values"}
 		// [o] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -1045,9 +1108,9 @@ public final class document
 		// @sigtype java 3.5
 		// [i] record:1:optional $list
 		// [i] field:0:optional $prefix
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
-		// [i] field:0:optional $force? {&quot;false&quot;,&quot;true&quot;}
-		// [i] field:0:optional $mode {&quot;values&quot;,&quot;keys&quot;,&quot;keys and values&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
+		// [i] field:0:optional $force? {"false","true"}
+		// [i] field:0:optional $mode {"values","keys","keys and values"}
 		// [o] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -1075,8 +1138,8 @@ public final class document
 		// @sigtype java 3.5
 		// [i] record:1:optional $list
 		// [i] field:0:optional $suffix
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
-		// [i] field:0:optional $mode {&quot;values&quot;,&quot;keys&quot;,&quot;keys and values&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
+		// [i] field:0:optional $mode {"values","keys","keys and values"}
 		// [o] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -1107,8 +1170,8 @@ public final class document
 		// [i] - field:0:required language
 		// [i] - field:0:optional country
 		// [i] - field:0:optional variant
-		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
-		// [i] field:0:optional $mode {&quot;values&quot;,&quot;keys&quot;,&quot;keys and values&quot;}
+		// [i] field:0:optional $recurse? {"false","true"}
+		// [i] field:0:optional $mode {"values","keys","keys and values"}
 		// [o] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -1158,5 +1221,42 @@ public final class document
 
 
 	}
+
+	// --- <<IS-START-SHARED>> ---
+	/**
+	 * Returns the list of items that include and do not include the given regular
+	 * expression or literal string pattern.
+	 *
+	 * @param input          The IData[] document list to be processed.
+	 * @param key            The key whose value will be used for filtering.
+	 * @param literalKey     Whether the key is literal or fully-qualified.
+	 * @param pattern        The pattern to look for in the given documents.
+	 * @param literalPattern Whether the pattern is literal or a regular expression.
+	 * @return               A pair of arrays, the first containing the IData documents
+	 *                       that contain the pattern, the second contains the IData
+	 *                       documents that do not contain the pattern.
+	 */
+	public static IData[][] find(IData[] input, String key, boolean literalKey, String pattern, boolean literalPattern) {
+	    if (input == null) return null;
+
+	    List<IData> found = new ArrayList<IData>(input.length);
+	    List<IData> unfound = new ArrayList<IData>(input.length);
+
+	    for (IData document : input) {
+	        String value = IDataHelper.get(document, key, literalKey, String.class);
+	        if (StringHelper.find(value, pattern, literalPattern)) {
+	            found.add(document);
+	        } else {
+	            unfound.add(document);
+	        }
+	    }
+
+	    IData[][] output = new IData[2][];
+	    output[0] = found.toArray(new IData[found.size()]);
+	    output[1] = unfound.toArray(new IData[unfound.size()]);
+
+	    return output;
+	}
+	// --- <<IS-END-SHARED>> ---
 }
 
