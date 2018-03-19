@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-11-28T15:39:26.031
+// -----( CREATED: 2018-03-19 15:38:18 GMT+10:00
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -89,7 +89,7 @@ public final class string
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:1:optional $list
-		// [i] field:0:optional $mode {&quot;all words&quot;,&quot;first word&quot;}
+		// [i] field:0:optional $mode {"all words","first word"}
 		// [o] field:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -116,7 +116,7 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:1:optional $list
 		// [i] field:0:optional $default
-		// [i] field:0:optional $mode {&quot;missing&quot;,&quot;null&quot;}
+		// [i] field:0:optional $mode {"missing","null"}
 		// [o] field:0:optional $item
 		tundra.list.object.coalesce(pipeline);
 		// --- <<IS-END>> ---
@@ -253,10 +253,10 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:1:optional $list
 		// [i] field:0:optional $pattern
-		// [i] field:0:optional $literal? {&quot;false&quot;,&quot;true&quot;}
-		// [o] field:0:required $found.all? {&quot;false&quot;,&quot;true&quot;}
-		// [o] field:0:required $found.any? {&quot;false&quot;,&quot;true&quot;}
-		// [o] field:0:required $found.none? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $literal? {"false","true"}
+		// [o] field:0:required $found.all? {"false","true"}
+		// [o] field:0:required $found.any? {"false","true"}
+		// [o] field:0:required $found.none? {"false","true"}
 		// [o] field:1:optional $found
 		// [o] field:0:required $found.length
 		// [o] field:1:optional $unfound
@@ -411,7 +411,7 @@ public final class string
 		// [i] field:1:optional $list
 		// [i] field:0:optional $separator
 		// [i] field:0:optional $default
-		// [i] field:0:optional $sanitization {&quot;remove nulls&quot;,&quot;remove nulls and blanks&quot;}
+		// [i] field:0:optional $sanitization {"remove nulls","remove nulls and blanks"}
 		// [o] field:0:optional $result
 		tundra.list.object.join(pipeline);
 		// --- <<IS-END>> ---
@@ -510,10 +510,10 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:1:optional $list
 		// [i] field:0:optional $pattern
-		// [i] field:0:optional $literal? {&quot;false&quot;,&quot;true&quot;}
-		// [o] field:0:required $matched.all? {&quot;false&quot;,&quot;true&quot;}
-		// [o] field:0:required $matched.any? {&quot;false&quot;,&quot;true&quot;}
-		// [o] field:0:required $matched.none? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $literal? {"false","true"}
+		// [o] field:0:required $matched.all? {"false","true"}
+		// [o] field:0:required $matched.any? {"false","true"}
+		// [o] field:0:required $matched.none? {"false","true"}
 		// [o] field:1:optional $matched
 		// [o] field:0:required $matched.length
 		// [o] field:1:optional $unmatched
@@ -747,8 +747,8 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:1:optional $list
 		// [i] field:0:optional $pattern
-		// [i] field:0:optional $pattern.literal? {&quot;false&quot;,&quot;true&quot;}
-		// [i] field:0:optional $occurrence.first? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $pattern.literal? {"false","true"}
+		// [i] field:0:optional $occurrence.first? {"false","true"}
 		// [o] field:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -783,10 +783,10 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:1:optional $list
 		// [i] field:0:optional $pattern
-		// [i] field:0:optional $pattern.literal? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $pattern.literal? {"false","true"}
 		// [i] field:0:optional $replacement
-		// [i] field:0:optional $replacement.literal? {&quot;false&quot;,&quot;true&quot;}
-		// [i] field:0:optional $occurrence.first? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $replacement.literal? {"false","true"}
+		// [i] field:0:optional $occurrence.first? {"false","true"}
 		// [o] field:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -932,7 +932,7 @@ public final class string
 		// [i] field:1:optional $list
 		// [i] record:0:optional $pipeline
 		// [i] field:0:optional $default
-		// [i] field:0:optional $mode {&quot;local&quot;,&quot;global&quot;,&quot;all&quot;}
+		// [i] field:0:optional $mode {"local","global","all"}
 		// [o] field:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -1053,11 +1053,11 @@ public final class string
 	    List<String> found = new ArrayList<String>(input.length);
 	    List<String> unfound = new ArrayList<String>(input.length);
 
-	    for (int i = 0; i < input.length; i++) {
-	        if (StringHelper.find(input[i], pattern, literal)) {
-	            found.add(input[i]);
+	    for (String value : input) {
+	        if (StringHelper.find(value, pattern, literal)) {
+	            found.add(value);
 	        } else {
-	            unfound.add(input[i]);
+	            unfound.add(value);
 	        }
 	    }
 
@@ -1083,17 +1083,17 @@ public final class string
 	    List<String> matched = new ArrayList<String>(input.length);
 	    List<String> unmatched = new ArrayList<String>(input.length);
 
-	    for (int i = 0; i < input.length; i++) {
-	        if (StringHelper.match(input[i], pattern, literal)) {
-	            matched.add(input[i]);
+	    for (String value : input) {
+	        if (StringHelper.match(value, pattern, literal)) {
+	            matched.add(value);
 	        } else {
-	            unmatched.add(input[i]);
+	            unmatched.add(value);
 	        }
 	    }
 
 	    String[][] output = new String[2][];
-	    output[0] = matched.toArray(new String[0]);
-	    output[1] = unmatched.toArray(new String[0]);
+	    output[0] = matched.toArray(new String[matched.size()]);
+	    output[1] = unmatched.toArray(new String[unmatched.size()]);
 
 	    return output;
 	}
