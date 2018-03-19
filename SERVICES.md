@@ -15169,6 +15169,22 @@ value.
 
 ---
 
+### tundra.string:suffixed
+
+Returns whether the given string ends with the given suffix.
+
+#### Inputs:
+
+* `$string` is the string to be checked.
+* `$suffix` is the suffix the given string is expected to end with.
+
+#### Outputs:
+
+* `$suffixed?` is `true` if the given string ends with the given
+  suffix.
+
+---
+
 ### tundra.string:trim
 
 Removes leading and trailing whitespace from the given string.

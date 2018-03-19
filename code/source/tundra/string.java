@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2018-03-19 16:36:40 GMT+10:00
+// -----( CREATED: 2018-03-19 16:44:57 GMT+10:00
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -864,6 +864,34 @@ public final class string
 		    EnumSet<SubstitutionType> mode = SubstitutionType.normalize(IDataHelper.get(cursor, "$mode", String.class));
 
 		    IDataHelper.put(cursor, "$string", SubstitutionHelper.substitute(string, defaultValue, mode, scope), false);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
+	public static final void suffixed (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(suffixed)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $string
+		// [i] field:0:required $suffix
+		// [o] field:0:required $suffixed?
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    String string = IDataHelper.get(cursor, "$string", String.class);
+		    String suffix = IDataHelper.get(cursor, "$suffix", String.class);
+
+		    boolean suffixed = string != null && string.endsWith(suffix);
+
+		    IDataHelper.put(cursor, "$suffixed?", suffixed, String.class);
 		} finally {
 		    cursor.destroy();
 		}
