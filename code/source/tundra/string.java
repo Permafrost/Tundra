@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2018-03-19 16:44:57 GMT+10:00
+// -----( CREATED: 2018-03-22 15:10:05 GMT+10:00
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -973,6 +973,36 @@ public final class string
 
 		    IDataHelper.put(cursor, "$string", StringHelper.uppercase(string, locale), false);
 
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
+	public static final void wrap (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(wrap)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $string
+		// [i] field:0:required $length
+		// [o] field:0:optional $string
+		// [o] field:1:optional $lines
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    String string = IDataHelper.get(cursor, "$string", String.class);
+		    int length = IDataHelper.get(cursor, "$length", Integer.class);
+
+		    String[] lines = StringHelper.wrap(string, length);
+
+		    IDataHelper.put(cursor, "$string", ArrayHelper.join(lines, "\n"), false);
+		    IDataHelper.put(cursor, "$lines", lines, false);
 		} finally {
 		    cursor.destroy();
 		}

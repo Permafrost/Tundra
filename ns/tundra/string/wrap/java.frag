@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">wrap</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogICAgU3Ry
+aW5nIHN0cmluZyA9IElEYXRhSGVscGVyLmdldChjdXJzb3IsICIkc3RyaW5nIiwgU3RyaW5nLmNs
+YXNzKTsKICAgIGludCBsZW5ndGggPSBJRGF0YUhlbHBlci5nZXQoY3Vyc29yLCAiJGxlbmd0aCIs
+IEludGVnZXIuY2xhc3MpOwoKICAgIFN0cmluZ1tdIGxpbmVzID0gU3RyaW5nSGVscGVyLndyYXAo
+c3RyaW5nLCBsZW5ndGgpOwoKICAgIElEYXRhSGVscGVyLnB1dChjdXJzb3IsICIkc3RyaW5nIiwg
+QXJyYXlIZWxwZXIuam9pbihsaW5lcywgIlxuIiksIGZhbHNlKTsKICAgIElEYXRhSGVscGVyLnB1
+dChjdXJzb3IsICIkbGluZXMiLCBsaW5lcywgZmFsc2UpOwp9IGZpbmFsbHkgewogICAgY3Vyc29y
+LmRlc3Ryb3koKTsKfQ==</value>
+</Values>

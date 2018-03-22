@@ -15247,6 +15247,25 @@ Returns the given string in upper case.
 
 ---
 
+### tundra.string:wrap
+
+Wraps the given string by breaking it into lines such that no line
+length is greater than the given character length.
+
+#### Inputs:
+
+* `$string` is a string to be wrapped.
+* `$length` is the maximum character length allowed per resulting line.
+
+#### Outputs:
+
+* `$string` is the given string wrapped at the given character length.
+* `$lines` is a `String[]` containing each line from the resulting
+  wrapped string.
+
+
+---
+
 ### tundra.system:reflect
 
 Returns information about Integration Server, such as the software
