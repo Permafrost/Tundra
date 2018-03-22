@@ -3630,6 +3630,56 @@ Custom datetime patterns can be specified using
 
 ---
 
+### tundra.datetime:timezone
+
+Returns information about the time zone that the given datetime
+string is associated with.
+
+Supports a handful of well-known named datetime patterns:
+
+Pattern Name  | Description
+------------- | --------------------------------------------
+datetime      | ISO8601 XML datetime
+datetime.db2  | yyyy-MM-dd-HH.mm.ss.SSSSSS
+datetime.jdbc | yyyy-MM-dd HH:mm:ss.SSS
+date          | ISO8601 XML date
+date.jdbc     | yyyy-mm-dd
+time          | ISO8601 XML time
+time.jdbc     | HH:mm:ss
+milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
+
+Custom datetime patterns can be specified using
+[java.text.SimpleDateFormat] compatible patterns.
+
+#### Inputs:
+
+* `$datetime` is the datetime string whose time zone is to be returned.
+* `$pattern` is an optional datetime pattern that `$datetime` conforms
+  to, and will be used to parse the datetime string. Defaults to an
+  [ISO8601] XML datetime.
+
+#### Outputs:
+
+* `$timezone` is an `IData` document describing the time zone
+  associated with the given datetime string.
+  * `id` is the [java.util.TimeZone] ID associated with the
+    time zone.
+  * `name` is a short name associated with the time zone.
+  * `description` is a long name associated with the time zone.
+  * `utc.offset` is the historically correct XML duration added
+    to UTC time to get local time in this time zone for the
+    given `$datetime` instant. If daylight savings time is in
+    effect for the given `$datetime` instant, then this value was
+    adjusted to include the daylight savings offset.
+  * `dst.used?` is a boolean indicating if daylight savings
+    time is used by this time zone.
+  * `dst.active?` is a boolean indicating if daylight savings
+    time is in effect for the given `$datetime` instant.
+  * `dst.offset` is the XML duration added to the UTC offset
+    when daylight savings time is in effect.
+
+---
+
 ### tundra.datetime:today
 
 Returns the current date at midnight formatted according to the

@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2018-02-27 15:51:31 GMT+10:00
+// -----( CREATED: 2018-03-22 16:48:14 GMT+10:00
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -17,6 +17,7 @@ import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.time.DateTimeHelper;
 import permafrost.tundra.time.DurationHelper;
+import permafrost.tundra.time.TimeZoneHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class datetime
@@ -459,6 +460,42 @@ public final class datetime
 		    String result = DateTimeHelper.emit(DateTimeHelper.subtract(DateTimeHelper.parse(datetime, datetimePattern), DurationHelper.parse(duration, durationPattern)), datetimePattern);
 
 		    IDataHelper.put(cursor, "$datetime", result, false);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
+	public static final void timezone (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(timezone)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $datetime
+		// [i] field:0:optional $pattern {"datetime","datetime.db2","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
+		// [o] record:0:optional $timezone
+		// [o] - field:0:required id
+		// [o] - field:0:required name
+		// [o] - field:0:required description
+		// [o] - field:0:required utc.offset
+		// [o] - field:0:required dst.used?
+		// [o] - field:0:required dst.active?
+		// [o] - field:0:required dst.offset
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    String datetime = IDataHelper.get(cursor, "$datetime", String.class);
+		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
+
+		    if (datetime != null) {
+		        Calendar calendar = DateTimeHelper.parse(datetime, pattern);
+		        IDataHelper.put(cursor, "$timezone", TimeZoneHelper.toIData(calendar.getTimeZone(), calendar));
+		    }
 		} finally {
 		    cursor.destroy();
 		}

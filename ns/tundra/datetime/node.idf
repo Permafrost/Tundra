@@ -17,5 +17,6 @@
     <value>permafrost.tundra.lang.ExceptionHelper</value>
     <value>permafrost.tundra.time.DateTimeHelper</value>
     <value>permafrost.tundra.time.DurationHelper</value>
+    <value>permafrost.tundra.time.TimeZoneHelper</value>
   </array>
 </Values>

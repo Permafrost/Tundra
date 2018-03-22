@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">timezone</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogICAgU3Ry
+aW5nIGRhdGV0aW1lID0gSURhdGFIZWxwZXIuZ2V0KGN1cnNvciwgIiRkYXRldGltZSIsIFN0cmlu
+Zy5jbGFzcyk7CiAgICBTdHJpbmcgcGF0dGVybiA9IElEYXRhSGVscGVyLmdldChjdXJzb3IsICIk
+cGF0dGVybiIsIFN0cmluZy5jbGFzcyk7CgogICAgaWYgKGRhdGV0aW1lICE9IG51bGwpIHsKICAg
+ICAgICBDYWxlbmRhciBjYWxlbmRhciA9IERhdGVUaW1lSGVscGVyLnBhcnNlKGRhdGV0aW1lLCBw
+YXR0ZXJuKTsKICAgICAgICBJRGF0YUhlbHBlci5wdXQoY3Vyc29yLCAiJHRpbWV6b25lIiwgVGlt
+ZVpvbmVIZWxwZXIudG9JRGF0YShjYWxlbmRhci5nZXRUaW1lWm9uZSgpLCBjYWxlbmRhcikpOwog
+ICAgfQp9IGZpbmFsbHkgewogICAgY3Vyc29yLmRlc3Ryb3koKTsKfQ==</value>
+</Values>
