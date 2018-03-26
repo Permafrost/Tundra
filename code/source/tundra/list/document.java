@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2018-03-19 16:10:55 GMT+10:00
+// -----( CREATED: 2018-03-26 11:16:50 GMT+10:00
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -349,6 +349,8 @@ public final class document
 		// [i] record:1:optional $list
 		// [i] recref:0:optional $group tundra.schema.list.document.group:input
 		// [o] recref:1:optional $list.groups tundra.schema.list.document.group:output
+		// [o] field:0:required $list.groups.length
+		// [o] field:0:required $list.length
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
@@ -358,10 +360,18 @@ public final class document
 
 		    if (list != null) {
 		        if (keys != null) {
-		            IDataHelper.put(cursor, "$list.grouped", IDataHelper.group(list, keys));
+		            IData[] groups = IDataHelper.group(list, keys);
+		            IDataHelper.put(cursor, "$list.grouped", groups);
+		            IDataHelper.put(cursor, "$list.groups.length", groups.length, String.class);
 		        } else {
-		            IDataHelper.put(cursor, "$list.groups", IDataHelper.group(list, criteria));
+		            IData[] groups = IDataHelper.group(list, criteria);
+		            IDataHelper.put(cursor, "$list.groups", groups);
+		            IDataHelper.put(cursor, "$list.groups.length", groups.length, String.class);
 		        }
+		        IDataHelper.put(cursor, "$list.length", list.length, String.class);
+		    } else {
+		        IDataHelper.put(cursor, "$list.groups.length", 0, String.class);
+		        IDataHelper.put(cursor, "$list.length", 0, String.class);
 		    }
 		} finally {
 		    cursor.destroy();

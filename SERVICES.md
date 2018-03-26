@@ -8592,9 +8592,17 @@ level groupings.
     defined this group.
   * `items` is an `IData[]` document list containing all the items from
     `$list` whose values are equal to values of the associated group.
+  * `items.length` is the number of elements in the `items` `IData[]`
+    document list.
   * `then` is an `IData` document list containing the next level of
     grouped items as per the `$group` levels specified.
     * ... refer to `$list.groups` structure.
+  * `then.length` is the number of elements in the `then` `IData[]`
+    document list.
+* `$list.groups.length` is the number of elements in the `$list.groups`
+  `IData[]` document list.
+* `$list.length` is the number of elements in the input `$list` `IData[]`
+  document list.
 
 ---
 
