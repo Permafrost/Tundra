@@ -58,7 +58,7 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
+            <value name="field_usereditable">false</value>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
@@ -72,6 +72,8 @@
             <value>json</value>
             <value>psv</value>
             <value>tsv</value>
+            <value>xls</value>
+            <value>xlsx</value>
             <value>xml</value>
             <value>yaml</value>
           </array>
@@ -95,6 +97,16 @@
               <record javaclass="com.wm.util.Values">
                 <value name="primitiveType">0</value>
                 <value name="lexRep">tsv</value>
+                <value name="isList">false</value>
+              </record>
+              <record javaclass="com.wm.util.Values">
+                <value name="primitiveType">0</value>
+                <value name="lexRep">xls</value>
+                <value name="isList">false</value>
+              </record>
+              <record javaclass="com.wm.util.Values">
+                <value name="primitiveType">0</value>
+                <value name="lexRep">xlsx</value>
                 <value name="isList">false</value>
               </record>
               <record javaclass="com.wm.util.Values">

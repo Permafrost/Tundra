@@ -6537,6 +6537,42 @@ Subtracts one duration (x) from another (y), returning (x - y).
 
 ---
 
+### tundra.excel:emit
+
+Serializes an `IData` document as a Microsoft Excel spreadsheet.
+
+#### Inputs:
+
+* `$document` is the `IData` document containing one or more `IData[]`
+  document lists representing a sheet in the resulting spreadsheet.
+* `$extension` is an optional choice of `xlsx` or `xls`, which specifies
+  the Microsoft Excel version to be used. Defaults to `xlsx`.
+* `$mode` is an optional choice of `stream` or `bytes` which specifies
+  the type of object `$content` is returned as. Defaults to `stream`.
+
+#### Outputs:
+
+* `$content` is the resulting serialization of the sheets in `$document`
+  as a Microsoft Excel spreadsheet.
+
+---
+
+### tundra.excel:parse
+
+Parses a Microsoft Excel spreadsheet as an `IData` document.
+
+#### Inputs:
+
+* `$content` is a byte array or input stream containing a Microsoft
+  Excel spreadsheet to be parsed.
+
+#### Outputs:
+
+* `$document` is the resulting `IData` document containing `IData[]`
+  document lists representing the sheets from the given spreadsheet.
+
+---
+
 ### tundra.exception:raise
 
 Throws the given exception, or a new exception with the given message.
