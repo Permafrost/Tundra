@@ -205,6 +205,23 @@ Serializes an IData document as a Microsoft Excel spreadsheet.
 
 * $document is the IData document containing one or more IData[] 
   document lists representing a sheet in the resulting spreadsheet.
+  Spreadsheet cells are created using the values provided, with the 
+  resulting type of cell determined as follows:
+  * number: value is specified as an instance of java.lang.Number,
+    or value is specified as a string that is parseable using the 
+    java.lang.BigDecimal grammar.
+  * datetime: value is specified as an instance of java.util.Calendar
+    or java.util.Date, or value is specified as a string that is 
+    parseable as an ISO8601 date, time, or datetime.
+  * boolean: value is specified as an instance of java.lang.Boolean,
+    or value is specified as either the string "true" or "false".
+  * formula: value is specified as a string prefixed with an equals
+    character followed by an Excel formula.
+  * string: value is specified as a string, optionally enclosed with 
+    double-quotes if value is parseable as a number, datetime, 
+    boolean, or formula, but instead should be treated as a literal
+    string. Note the optional double-quotes are removed from the 
+    resulting cell value.
 * $extension is an optional choice of xlsx or xls, which specifies
   the Microsoft Excel version to be used. Defaults to xlsx.
 * $mode is an optional choice of stream or bytes which specifies 
