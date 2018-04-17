@@ -5,7 +5,7 @@
 
   <!-- nodes -->
 
-<MAP NAME="init" MODE="STANDALONE">
+<MAP NAME="init" TIMEOUT="" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
@@ -58,7 +58,8 @@
   <DATA ENCODING="XMLValues" I18N="true">
 
 <Values version="2.0">
-  <value name="xml">&lt;html&gt;
+  <value name="xml">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
     &lt;head&gt;
         &lt;title&gt;Connected to %$server%&lt;/title&gt;
         &lt;style&gt;
