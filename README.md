@@ -154,8 +154,6 @@ majority of services, and are included in the [Tundra] package as
 * `./code/jars/poi-ooxml-3.17.jar` - https://poi.apache.org/
 * `./code/jars/poi-ooxml-schemas-3.17.jar` - https://poi.apache.org/
 * `./code/jars/snakeyaml-1.18.jar` - http://www.snakeyaml.org
-* `./code/jars/static/spring-core-4.2.1.RELEASE.jar` - http://projects.spring.io/spring-framework/
-* `./code/jars/static/spring-web-4.2.1.RELEASE.jar` - http://projects.spring.io/spring-framework/
 * `./code/jars/Tundra.jar` - http://github.com/Permafrost/Tundra.java
 * `./code/jars/TundraConfiguration.jar` - http://github.com/Permafrost/TundraConfiguration.java
 * `./code/jars/TundraCSV.jar` - http://github.com/Permafrost/TundraCSV.java
