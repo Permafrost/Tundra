@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="node_type">interface</value>
+  <value name="node_nsName">tundra.support.http.client</value>
+  <value name="is_public">false</value>
+  <value name="encodeutf8">true</value>
+  <value name="shared">cHVibGljIHN0YXRpYyBmaW5hbCBib29sZWFuIGlzSlNTRVN1cHBvcnRlZCA9IGlzSlNTRVN1cHBv
+cnRlZCgpOwoKcHJpdmF0ZSBzdGF0aWMgYm9vbGVhbiBpc0pTU0VTdXBwb3J0ZWQoKSB7CiAgICBi
+b29sZWFuIGlzSlNTRVN1cHBvcnRlZCA9IHRydWU7CgogICAgTlNTZXJ2aWNlIHNlcnZpY2UgPSBO
+YW1lc3BhY2UuZ2V0U2VydmljZShOU05hbWUuY3JlYXRlKCJwdWIuY2xpZW50IiwgImh0dHAiKSk7
+CiAgICBpZiAoc2VydmljZSAhPSBudWxsKSB7CiAgICAgICAgTlNTaWduYXR1cmUgc2lnbmF0dXJl
+ID0gc2VydmljZS5nZXRTaWduYXR1cmUoKTsKICAgICAgICBpZiAoc2lnbmF0dXJlICE9IG51bGwp
+IHsKICAgICAgICAgICAgTlNSZWNvcmQgaW5wdXQgPSBzaWduYXR1cmUuZ2V0SW5wdXQoKTsKICAg
+ICAgICAgICAgaWYgKGlucHV0ICE9IG51bGwpIHsKICAgICAgICAgICAgICAgIE5TRmllbGQgZmll
+bGQgPSBpbnB1dC5nZXRGaWVsZEJ5TmFtZSgidXNlSlNTRSIpOwogICAgICAgICAgICAgICAgaXNK
+U1NFU3VwcG9ydGVkID0gZmllbGQgIT0gbnVsbDsKICAgICAgICAgICAgfQogICAgICAgIH0KICAg
+IH0KCiAgICByZXR1cm4gaXNKU1NFU3VwcG9ydGVkOwp9</value>
+  <value name="extends"></value>
+  <array name="implements" type="value" depth="1">
+  </array>
+  <array name="imports" type="value" depth="1">
+    <value>com.wm.app.b2b.server.ns.Namespace</value>
+    <value>com.wm.lang.ns.NSField</value>
+    <value>com.wm.lang.ns.NSName</value>
+    <value>com.wm.lang.ns.NSRecord</value>
+    <value>com.wm.lang.ns.NSService</value>
+    <value>com.wm.lang.ns.NSSignature</value>
+    <value>permafrost.tundra.data.IDataHelper</value>
+  </array>
+</Values>
