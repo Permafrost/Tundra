@@ -1,7 +1,7 @@
 package tundra.support.http;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2018-05-04 15:42:32 GMT+10:00
+// -----( CREATED: 2018-07-04 15:04:16 GMT+10:00
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -89,9 +89,13 @@ public final class client
 		    boolean isUnauthorized = message != null && message.contains("ISC.0064.9314");
 
 		    if (useJSSE && !isUnauthorized) {
-		        IDataHelper.put(cursor, "useJSSE", "no");
 		        // fallback to non-JSSE request
-		        pub.clientimpl.http(pipeline);
+		        IDataHelper.put(cursor, "useJSSE", "no");
+		        try {
+		            pub.clientimpl.http(pipeline);
+		        } catch(ServiceException fe) {
+		            throw ex;
+		        }
 		    } else {
 		        throw ex;
 		    }
