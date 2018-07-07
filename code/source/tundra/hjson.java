@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-07 10:50:33 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2018-07-07 17:30:51 EST
+// -----( ON-HOST: 192.168.20.13
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -45,7 +45,7 @@ public final class hjson
 		// [i] record:0:optional $document
 		// [i] - object:1:optional recordWithNoID
 		// [i] field:0:optional $encoding
-		// [i] field:0:optional $mode {"stream","bytes","string"}
+		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -55,7 +55,7 @@ public final class hjson
 		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
 		
 		    if (document != null) {
-		        IDataHelper.put(cursor, "$content", ObjectHelper.convert(IDataHjsonParser.getInstance().emit(document, charset), charset, mode), false);
+		        IDataHelper.put(cursor, "$content", ObjectHelper.convert(new IDataHjsonParser().emit(document, charset), charset, mode), false);
 		    }
 		} catch (IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -86,7 +86,7 @@ public final class hjson
 		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
 		
 		    if (content != null) {
-		        IDataHelper.put(cursor, "$document", IDataHjsonParser.getInstance().parse(InputStreamHelper.normalize(content, charset), charset), false);
+		        IDataHelper.put(cursor, "$document", new IDataHjsonParser().parse(InputStreamHelper.normalize(content, charset), charset), false);
 		    }
 		} catch (IOException ex) {
 		    ExceptionHelper.raise(ex);

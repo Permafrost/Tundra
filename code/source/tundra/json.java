@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-06-03 18:15:40 EST
-// -----( ON-HOST: 192.168.66.132
+// -----( CREATED: 2018-07-07 19:31:02 EST
+// -----( ON-HOST: 192.168.20.13
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -45,8 +45,8 @@ public final class json
 		// [i] record:0:optional $document
 		// [i] - object:1:optional recordWithNoID
 		// [i] field:0:optional $encoding
-		// [i] field:0:optional $mode {"stream","bytes","string"}
-		// [i] field:0:optional $minify? {"false","true"}
+		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
+		// [i] field:0:optional $minify? {&quot;false&quot;,&quot;true&quot;}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -57,8 +57,7 @@ public final class json
 		    boolean minify = IDataHelper.getOrDefault(cursor, "$minify?", Boolean.class, false);
 		
 		    if (document != null) {
-		        IDataJSONParser parser = minify ? new IDataJSONParser(!minify) : IDataJSONParser.getInstance();
-		        IDataHelper.put(cursor, "$content", ObjectHelper.convert(parser.emit(document, charset), charset, mode));
+		        IDataHelper.put(cursor, "$content", ObjectHelper.convert(new IDataJSONParser(!minify).emit(document, charset), charset, mode));
 		    }
 		} catch (IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -89,7 +88,7 @@ public final class json
 		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
 		
 		    if (content != null) {
-		        IDataHelper.put(cursor, "$document", IDataJSONParser.getInstance().parse(InputStreamHelper.normalize(content, charset), charset));
+		        IDataHelper.put(cursor, "$document", new IDataJSONParser().parse(InputStreamHelper.normalize(content, charset), charset));
 		    }
 		} catch (IOException ex) {
 		    ExceptionHelper.raise(ex);

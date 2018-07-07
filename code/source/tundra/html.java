@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-11-29T16:32:00.611
-// -----( ON-HOST: -
+// -----( CREATED: 2018-07-07 19:18:13 EST
+// -----( ON-HOST: 192.168.20.13
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -46,10 +46,10 @@ public final class html
 		// [i] record:0:optional $document.encoded
 		// [o] record:0:optional $document.decoded
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IData document = IDataHelper.get(cursor, "$document.encoded", IData.class);
-
+		
 		    if (document == null) {
 		        String string = IDataHelper.get(cursor, "$string", String.class);
 		        IDataHelper.put(cursor, "$string", HTMLHelper.decode(string), false);
@@ -61,7 +61,7 @@ public final class html
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -78,15 +78,15 @@ public final class html
 		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IData document = IDataHelper.get(cursor, "$document", IData.class);
 		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
 		    int depth = IDataHelper.getOrDefault(cursor, "$depth", Integer.class, Integer.MAX_VALUE);
 		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
-
+		
 		    if (document != null) {
-		        IDataHelper.put(cursor, "$content", ObjectHelper.convert(IDataHTMLParser.getInstance().encodeToString(document, depth), charset, mode), false);
+		        IDataHelper.put(cursor, "$content", ObjectHelper.convert(new IDataHTMLParser().emit(document, depth), charset, mode), false);
 		    }
 		} catch (IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -95,7 +95,7 @@ public final class html
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -109,7 +109,7 @@ public final class html
 		// [i] record:0:optional $document.decoded
 		// [o] record:0:optional $document.encoded
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IData document = IDataHelper.get(cursor, "$document.decoded", IData.class);
 		    if (document == null) {
@@ -123,7 +123,7 @@ public final class html
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 
