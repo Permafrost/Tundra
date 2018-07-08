@@ -122,6 +122,12 @@
                 # currently executing services, call stack, and pipelines.
                 enabled: true
             }
+            statistics: {
+                # When enabled, adds a Solutions | Tundra > Service Statistics page
+                # to the Integration Server web site, which can be used to collect
+                # and view service execution duration statistics.
+                enabled: true
+            }
         }
         thread: {
             name: {
