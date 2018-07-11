@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">purgable</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogICAgU3Ry
+aW5nIGRpcmVjdG9yeSA9IElEYXRhSGVscGVyLmdldChjdXJzb3IsICIkZGlyZWN0b3J5IiwgU3Ry
+aW5nLmNsYXNzKTsKICAgIFN0cmluZyBkdXJhdGlvblN0cmluZyA9IElEYXRhSGVscGVyLmdldChj
+dXJzb3IsICIkZHVyYXRpb24iLCBTdHJpbmcuY2xhc3MpOwogICAgU3RyaW5nIGR1cmF0aW9uUGF0
+dGVybiA9IElEYXRhSGVscGVyLmdldChjdXJzb3IsICIkZHVyYXRpb24ucGF0dGVybiIsIFN0cmlu
+Zy5jbGFzcyk7CgogICAgRHVyYXRpb24gZHVyYXRpb24gPSBEdXJhdGlvbkhlbHBlci5wYXJzZShk
+dXJhdGlvblN0cmluZywgZHVyYXRpb25QYXR0ZXJuKTsKCiAgICBJRGF0YUhlbHBlci5wdXQoY3Vy
+c29yLCAiJHB1cmdhYmxlPyIsIHNob3VsZFB1cmdlKGRpcmVjdG9yeSwgZHVyYXRpb24pLCBTdHJp
+bmcuY2xhc3MpOwogICAgSURhdGFIZWxwZXIucHV0KGN1cnNvciwgIiRwdXJnZS5uZXh0IiwgbmV4
+dFB1cmdlKGRpcmVjdG9yeSwgZHVyYXRpb24pLCBTdHJpbmcuY2xhc3MpOwp9IGZpbmFsbHkgewog
+ICAgY3Vyc29yLmRlc3Ryb3koKTsKfQ==</value>
+</Values>
