@@ -1,7 +1,7 @@
 package tundra.support.content.retrieve;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2018-07-12 13:18:21 GMT+10:00
+// -----( CREATED: 2018-07-13 09:08:28 GMT+10:00
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -11,13 +11,16 @@ import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.Duration;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.io.DirectoryHelper;
+import permafrost.tundra.io.FileHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.time.DateTimeHelper;
 import permafrost.tundra.time.DurationHelper;
@@ -36,6 +39,20 @@ public final class file
 
 	// ---( server methods )---
 
+
+
+
+	public static final void clear (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(clear)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		DIRECTORY_PURGES.clear();
+		// --- <<IS-END>> ---
+
+
+	}
 
 
 
@@ -58,6 +75,7 @@ public final class file
 		    String durationString = IDataHelper.get(cursor, "$duration", String.class);
 		    String durationPattern = IDataHelper.get(cursor, "$duration.pattern", String.class);
 
+		    directory = FileHelper.normalize(directory);
 		    Duration duration = DurationHelper.parse(durationString, durationPattern);
 
 		    IDataHelper.put(cursor, "$purgable?", shouldPurge(directory, duration), String.class);
@@ -82,7 +100,8 @@ public final class file
 		// [i] field:0:required $directory
 		// [i] field:0:required $duration
 		// [i] field:0:optional $duration.pattern {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
-		// [o] field:0:required $count
+		// [o] field:0:required $purged?
+		// [o] field:0:optional $count
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
@@ -91,16 +110,41 @@ public final class file
 		    String durationPattern = IDataHelper.get(cursor, "$duration.pattern", String.class);
 
 		    Duration duration = DurationHelper.parse(durationString, durationPattern);
-		    long count = 0;
+		    directory = FileHelper.normalize(directory);
+		    boolean shouldPurge = shouldPurge(directory, duration);
 
-		    if (shouldPurge(directory, duration)) {
-		        count = DirectoryHelper.purge(directory, duration, null, false);
+		    if (shouldPurge) {
+		        long count = DirectoryHelper.purge(directory, duration, null, false);
 		        hasPurged(directory);
+		        IDataHelper.put(cursor, "$count", count, String.class);
 		    }
 
-		    IDataHelper.put(cursor, "$count", count, String.class);
+		    IDataHelper.put(cursor, "$purged?", shouldPurge, String.class);
 		} catch(FileNotFoundException ex) {
 		    ExceptionHelper.raise(ex);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
+	public static final void reflect (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(reflect)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [o] record:1:required $directory.purge.context
+		// [o] - field:0:required directory
+		// [o] - field:0:required purge.last
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    IDataHelper.put(cursor, "$directory.purge.context", reflect());
 		} finally {
 		    cursor.destroy();
 		}
@@ -178,6 +222,31 @@ public final class file
 	 */
 	private static void hasPurged(String directory) {
 	    DIRECTORY_PURGES.put(directory, Calendar.getInstance());
+	}
+
+	/**
+	 * Returns the internal directory purge state for diagnostic purposes.
+	 *
+	 * @return The internal directory purge state.
+	 */
+	private static IData[] reflect() {
+	    List<IData> output = new ArrayList<IData>(DIRECTORY_PURGES.size());
+
+	    for (Map.Entry<String, Calendar> entry : DIRECTORY_PURGES.entrySet()) {
+	        IData document = IDataFactory.create();
+	        IDataCursor cursor = document.getCursor();
+
+	        try {
+	            IDataHelper.put(cursor, "directory", entry.getKey());
+	            IDataHelper.put(cursor, "purge.last", DateTimeHelper.emit(entry.getValue()));
+	        } finally {
+	            cursor.destroy();
+	        }
+
+	        output.add(document);
+	    }
+
+	    return output.toArray(new IData[output.size()]);
 	}
 	// --- <<IS-END-SHARED>> ---
 }

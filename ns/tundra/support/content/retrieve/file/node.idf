@@ -54,20 +54,36 @@ c2VkIGFzIGEgZmFjdG9yIGluIGRldGVybWluaW5nIHdoZW4gaXQgd2lsbCBuZXh0IGJlIAogKiBw
 dXJnZWQuCiAqIAogKiBAcGFyYW0gZGlyZWN0b3J5IFRoZSBkaXJlY3Rvcnkgd2hpY2ggd2FzIHB1
 cmdlZC4KICovCnByaXZhdGUgc3RhdGljIHZvaWQgaGFzUHVyZ2VkKFN0cmluZyBkaXJlY3Rvcnkp
 IHsKICAgIERJUkVDVE9SWV9QVVJHRVMucHV0KGRpcmVjdG9yeSwgQ2FsZW5kYXIuZ2V0SW5zdGFu
-Y2UoKSk7Cn0=</value>
+Y2UoKSk7Cn0KCi8qKgogKiBSZXR1cm5zIHRoZSBpbnRlcm5hbCBkaXJlY3RvcnkgcHVyZ2Ugc3Rh
+dGUgZm9yIGRpYWdub3N0aWMgcHVycG9zZXMuCiAqCiAqIEByZXR1cm4gVGhlIGludGVybmFsIGRp
+cmVjdG9yeSBwdXJnZSBzdGF0ZS4KICovCnByaXZhdGUgc3RhdGljIElEYXRhW10gcmVmbGVjdCgp
+IHsKICAgIExpc3Q8SURhdGE+IG91dHB1dCA9IG5ldyBBcnJheUxpc3Q8SURhdGE+KERJUkVDVE9S
+WV9QVVJHRVMuc2l6ZSgpKTsKCiAgICBmb3IgKE1hcC5FbnRyeTxTdHJpbmcsIENhbGVuZGFyPiBl
+bnRyeSA6IERJUkVDVE9SWV9QVVJHRVMuZW50cnlTZXQoKSkgewogICAgICAgIElEYXRhIGRvY3Vt
+ZW50ID0gSURhdGFGYWN0b3J5LmNyZWF0ZSgpOwogICAgICAgIElEYXRhQ3Vyc29yIGN1cnNvciA9
+IGRvY3VtZW50LmdldEN1cnNvcigpOwoKICAgICAgICB0cnkgewogICAgICAgICAgICBJRGF0YUhl
+bHBlci5wdXQoY3Vyc29yLCAiZGlyZWN0b3J5IiwgZW50cnkuZ2V0S2V5KCkpOwogICAgICAgICAg
+ICBJRGF0YUhlbHBlci5wdXQoY3Vyc29yLCAicHVyZ2UubGFzdCIsIERhdGVUaW1lSGVscGVyLmVt
+aXQoZW50cnkuZ2V0VmFsdWUoKSkpOwogICAgICAgIH0gZmluYWxseSB7CiAgICAgICAgICAgIGN1
+cnNvci5kZXN0cm95KCk7CiAgICAgICAgfQogICAgICAgIAogICAgICAgIG91dHB1dC5hZGQoZG9j
+dW1lbnQpOwogICAgfQoKICAgIHJldHVybiBvdXRwdXQudG9BcnJheShuZXcgSURhdGFbb3V0cHV0
+LnNpemUoKV0pOwp9</value>
   <value name="extends"></value>
   <array name="implements" type="value" depth="1">
   </array>
   <array name="imports" type="value" depth="1">
     <value>java.io.FileNotFoundException</value>
     <value>java.math.BigDecimal</value>
+    <value>java.util.ArrayList</value>
     <value>java.util.Calendar</value>
+    <value>java.util.List</value>
     <value>java.util.Map</value>
     <value>java.util.concurrent.ConcurrentHashMap</value>
     <value>javax.xml.datatype.DatatypeFactory</value>
     <value>javax.xml.datatype.Duration</value>
     <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.io.DirectoryHelper</value>
+    <value>permafrost.tundra.io.FileHelper</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>
     <value>permafrost.tundra.time.DateTimeHelper</value>
     <value>permafrost.tundra.time.DurationHelper</value>
