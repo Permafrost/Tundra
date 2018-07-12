@@ -11169,9 +11169,10 @@ separated by the given separator.
   in the resulting string. Defaults to an empty string.
 * `$default` is an optional string which is will be returned in `$result`
   if the given `$list` is null or empty.
-* `$sanitization` is an optional choice of whether to remove nulls, or
-  nulls and blanks (strings that only contain whitespace characters).
-  If not specified, no sanitization is performed prior to the join.
+* `$sanitization` is an optional choice of whether to remove nulls,
+  nulls and blanks (strings that only contain whitespace
+  characters), or convert nulls to blanks. If not specified, no
+  sanitization is performed prior to the join.
 
 #### Outputs:
 
