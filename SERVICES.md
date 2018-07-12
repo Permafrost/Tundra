@@ -5348,6 +5348,10 @@ representation, useful for logging or display to end users.
 * `$nulls?` is an optional boolean flag which if `true` will include all
   `null` values in the resulting string representation, otherwise these
   are excluded. Defaults to `false`, if not specified.
+* `$sanitization` is an optional choice of whether to remove nulls,
+  nulls and blanks (strings that only contain whitespace
+  characters), or convert nulls to blanks. If not specified, no
+  sanitization is performed prior to the join.
 
 #### Outputs:
 

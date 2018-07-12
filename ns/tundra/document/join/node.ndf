@@ -133,17 +133,57 @@
           <array name="field_options" type="value" depth="1">
             <value>remove nulls</value>
             <value>remove nulls and blanks</value>
+            <value>convert nulls to blanks</value>
           </array>
           <record name="field_content_type" javaclass="com.wm.util.Values">
+            <array name="enumeration" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="primitiveType">0</value>
+                <value name="lexRep">remove nulls</value>
+                <value name="isList">false</value>
+              </record>
+              <record javaclass="com.wm.util.Values">
+                <value name="primitiveType">0</value>
+                <value name="lexRep">remove nulls and blanks</value>
+                <value name="isList">false</value>
+              </record>
+              <record javaclass="com.wm.util.Values">
+                <value name="primitiveType">0</value>
+                <value name="lexRep">convert nulls to blanks</value>
+                <value name="isList">false</value>
+              </record>
+            </array>
             <value name="contentType">1</value>
-            <value name="internalType">reference</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-            <array name="targetNames" type="record" depth="1">
+            <value name="internalType">instance</value>
+            <value name="ct_class">com.wm.lang.schema.datatypev2.WmString</value>
+            <value name="name">string_customized</value>
+            <array name="parent-ancestors" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">anySimpleType</value>
+              </record>
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">anyType</value>
+              </record>
               <record javaclass="com.wm.util.Values">
                 <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
                 <value name="ncName">string</value>
               </record>
             </array>
+            <record name="baseType" javaclass="com.wm.util.Values">
+              <record name="whiteSpace" javaclass="com.wm.util.Values">
+                <record name="FacetWSCValue" javaclass="com.wm.util.Values">
+                  <value name="cDecimalValue">3</value>
+                </record>
+                <value name="facetFixed">false</value>
+              </record>
+              <value name="contentType">1</value>
+              <value name="internalType">instance</value>
+              <value name="ct_class">com.wm.lang.schema.datatypev2.WmString</value>
+              <value name="dataTypeVersion">dtVersion2</value>
+            </record>
+            <value name="dataTypeVersion">dtVersion2</value>
           </record>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
@@ -209,14 +249,16 @@ representation, useful for logging or display to end users.
   specified.
 * $separator.list is an optional string used to separate each list 
   item in the IData document. Defaults to ", ", if not specified.
-* $sanitization is an optional choice of whether to remove nulls, or
-  nulls and blanks (strings that only contain whitespace characters).
-  If not specified, no sanitization is performed prior to the join.
+* $sanitization is an optional choice of whether to remove nulls, 
+  nulls and blanks (strings that only contain whitespace 
+  characters), or convert nulls to blanks. If not specified, no 
+  sanitization is performed prior to the join.
 
 #### Outputs:
 
 * $result is the resulting string representation of the given IData 
-  document.</value>
+  document.
+</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
