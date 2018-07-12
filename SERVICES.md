@@ -4540,9 +4540,11 @@ selected mode.
 
 ### tundra.directory:ls
 
-Returns a raw directory listing with no additional processing: useful for
-when performance takes priority over ease of use; for example, when the
-directory contains hundreds of thousands or more files.
+Returns a sorted directory listing with no additional processing.
+
+This is useful for when performance takes priority over ease of use.
+For example, when the directory contains hundreds of thousands or
+more files.
 
 #### Inputs:
 
@@ -4551,7 +4553,8 @@ directory contains hundreds of thousands or more files.
 
 #### Outputs:
 
-* `$list` is a raw list of the names of all items in the directory.
+* `$list` is a sorted list of the names of all items in the directory.
+* `$list.length` is the number of items in the returned `$list`.
 
 ---
 

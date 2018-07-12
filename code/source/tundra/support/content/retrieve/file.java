@@ -1,7 +1,7 @@
 package tundra.support.content.retrieve;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2018-07-12 10:07:47 GMT+10:00
+// -----( CREATED: 2018-07-12 13:18:21 GMT+10:00
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -49,6 +49,8 @@ public final class file
 		// [i] field:0:required $duration
 		// [i] field:0:optional $duration.pattern {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
 		// [o] field:0:required $purgable?
+		// [o] field:0:optional $purge.last
+		// [o] field:0:required $purge.next
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
@@ -59,6 +61,7 @@ public final class file
 		    Duration duration = DurationHelper.parse(durationString, durationPattern);
 
 		    IDataHelper.put(cursor, "$purgable?", shouldPurge(directory, duration), String.class);
+		    IDataHelper.put(cursor, "$purge.last", DIRECTORY_PURGES.get(directory), String.class, false);
 		    IDataHelper.put(cursor, "$purge.next", nextPurge(directory, duration), String.class);
 		} finally {
 		    cursor.destroy();
