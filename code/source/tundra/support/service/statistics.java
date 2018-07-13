@@ -1,8 +1,8 @@
 package tundra.support.service;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2018-07-08 13:16:16 EST
-// -----( ON-HOST: 192.168.20.13
+// -----( CREATED: 2018-07-13 13:08:08 GMT+10:00
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -35,8 +35,25 @@ public final class statistics
 		// --- <<IS-START(list)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
+		// [o] record:0:required $context
+		// [o] - object:0:required sampling.started?
+		// [o] - field:0:optional sampling.start
+		// [o] - field:0:optional sampling.duration
+		// [o] - record:1:required statistics
+		// [o] -- field:0:required service
+		// [o] -- object:0:required minimum
+		// [o] -- field:0:required minimum.formatted
+		// [o] -- object:0:required average
+		// [o] -- field:0:required average.formatted
+		// [o] -- object:0:required deviation.standard
+		// [o] -- field:0:required deviation.standard.formatted
+		// [o] -- object:0:required maximum
+		// [o] -- field:0:required maximum.formatted
+		// [o] -- object:0:required count
+		// [o] -- field:0:required count.formatted
+		// [o] - object:0:required statistics.length
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IDataHelper.put(cursor, "$context", ServiceStatisticsProcessor.getInstance().getIData());
 		} finally {
@@ -44,7 +61,7 @@ public final class statistics
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -58,7 +75,7 @@ public final class statistics
 		ServiceStatisticsProcessor.getInstance().start();
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -72,7 +89,7 @@ public final class statistics
 		ServiceStatisticsProcessor.getInstance().stop();
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 

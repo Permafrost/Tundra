@@ -20,7 +20,7 @@
               %invoke tundra.support.service.statistics:start%
                 <div class="alert alert-success alert-dismissible" role="alert">
                   <button type="button" class="close" data-dismiss="alert">&times;</button>
-                  Service statistics collection <strong>started</strong>.
+                  Service Invocation Statistics sampling <strong>started</strong>.
                 </div>
               %onerror%
                 <div class="alert alert-danger alert-dismissible" role="alert">
@@ -32,7 +32,7 @@
               %invoke tundra.support.service.statistics:stop%
                 <div class="alert alert-warning alert-dismissible" role="alert">
                   <button type="button" class="close" data-dismiss="alert">&times;</button>
-                  Service statistics collection <strong>stopped</strong>.
+                  Service Invocation Statistics sampling <strong>stopped</strong>.
                 </div>
               %onerror%
                 <div class="alert alert-danger alert-dismissible" role="alert">
@@ -41,28 +41,32 @@
                 </div>
               %endinvoke%
           %endswitch%
-          %invoke tundra.support.service.statistics.ui:list%
+          %invoke tundra.support.service.statistics:list%
           <div class="table-responsive">
             <table class="table table-striped">
-              <caption>Service Execution Duration Statistics (measured in seconds)</caption>
+              <caption>Service Invocation Statistics%ifvar $context/statistics.length -notempty% &mdash; %ifvar $context/statistics.length equals('1')%1 service sampled%else%%value $context/statistics.length encode(xml)% services sampled%endif%%ifvar $context/sampling.start -notempty% since %value $context/sampling.start encode(xml)%%endif%</caption>
               <thead>
                 <tr>
                   <th>Service</th>
-                  <th class="text-right" width="20%">Average &plusmn; Standard Deviation</th>
-                  <th class="text-right" width="10%">Minimum</th>
-                  <th class="text-right" width="10%">Maximum</th>
-                  <th class="text-right" width="10%">Count</th>
+                  <th class="text-right" width="10%">Minimum Duration<br/><small>(seconds)</small></th>
+                  <th class="text-right" width="10%">Average Duration<br/><small>(seconds)</small></th>
+                  <th class="text-right" width="10%">Standard Deviation<br/><small>(seconds)</small></th>
+                  <th class="text-right" width="10%">Maximum Duration<br/><small>(seconds)</small></th>
+                  <th class="text-right" width="10%">Total Cumulative Duration<br/><small>(seconds)</small></th>
+                  <th class="text-right" width="10%">Invocation Count</th>
                 </tr>
               </thead>
-              %ifvar $context/collection.started? equals('true')%
+              %ifvar $context/sampling.started? equals('true')%
               <tbody>
               %loop $context/statistics%
                 <tr>
                   <td>%value service encode(xml)%</td>
-                  <td class="text-right">%value mean encode(xml)%&nbsp;&plusmn;&nbsp;%value stdev encode(xml)%</td>
-                  <td class="text-right">%value minimum encode(xml)%</td>
-                  <td class="text-right">%value maximum encode(xml)%</td>
-                  <td class="text-right">%value count encode(xml)%</td>
+                  <td class="text-right">%value minimum.formatted encode(xml)%</td>
+                  <td class="text-right">%value average.formatted encode(xml)%</td>
+                  <td class="text-right">%value deviation.standard.formatted encode(xml)%</td>
+                  <td class="text-right">%value maximum.formatted encode(xml)%</td>
+                  <td class="text-right">%value cumulative.formatted encode(xml)%</td>
+                  <td class="text-right">%value count.formatted encode(xml)%</td>
                 </tr>
               %endloop%
               </tbody>
@@ -71,21 +75,21 @@
                 <tr>
                   <td colspan="8">
                     <form role="form" class="form-inline" method="post">
-                      %ifvar $context/collection.started? equals('true')%
+                      %ifvar $context/sampling.started? equals('true')%
                         <div class="form-group">
-                          <button type="submit" style="width:100px">Stop Collection</button>
+                          <button type="submit" style="width:100px">Stop Sampling</button>
                           <input type="hidden" name="action" value="stop">
                         </div>
                         <div class="form-group">
-                          Service statistics collection is currently enabled; to disable click the Stop Collection button.
+                          Service Invocation Statistics sampling is currently enabled; to disable click the Stop Sampling button.
                         </div>
                       %else%
                         <div class="form-group">
-                          <button type="submit" style="width:100px">Start Collection</button>
+                          <button type="submit" style="width:100px">Start Sampling</button>
                           <input type="hidden" name="action" value="start">
                         </div>
                         <div class="form-group">
-                          Service statistics collection is currently disabled; to enable click the Start Collection button.
+                          Service Invocation Statistics sampling is currently disabled; to enable click the Start Sampling button.
                         </div>
                       %endif%
                     </form>
