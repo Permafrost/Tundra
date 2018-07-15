@@ -143,8 +143,9 @@ libraries, which provide the underlying implementation for the
 majority of services, and are included in the [Tundra] package as
 [JAR] files in the following locations:
 
-* `./code/jars/commons-csv-1.4.jar` - https://commons.apache.org/proper/commons-csv/
 * `./code/jars/commons-collections4-4.1.jar` - https://commons.apache.org/proper/commons-collections/
+* `./code/jars/commons-compress-1.12.jar` - https://commons.apache.org/proper/commons-compress/
+* `./code/jars/commons-csv-1.4.jar` - https://commons.apache.org/proper/commons-csv/
 * `./code/jars/hjson-2.1.1.jar` - https://github.com/Permafrost/hjson-java
 * `./code/jars/htmlcompressor-1.5.3.jar` - http://htmlcompressor.googlecode.com
 * `./code/jars/jakarta-oro-2.0.8.jar` - http://archive.apache.org/dist/jakarta/oro/
@@ -163,6 +164,7 @@ majority of services, and are included in the [Tundra] package as
 * `./code/jars/TundraJSON.jar` - http://github.com/Permafrost/TundraJSON.java
 * `./code/jars/TundraMeasure.jar` - http://github.com/Permafrost/TundraMeasure.java
 * `./code/jars/TundraOffice.jar` - http://github.com/Permafrost/TundraOffice.java
+* `./code/jars/TundraSAP.jar` - http://github.com/Permafrost/TundraSAP.java
 * `./code/jars/TundraXML.jar` - http://github.com/Permafrost/TundraXML.java
 * `./code/jars/TundraYAML.jar` - http://github.com/Permafrost/TundraYAML.java
 * `./code/jars/unbescape-1.1.3.RELEASE.jar` - http://www.unbescape.org/
