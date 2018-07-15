@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2018-07-12 11:21:02 GMT+10:00
+// -----( CREATED: 2018-07-15 13:27:56 EST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -26,6 +26,8 @@ import permafrost.tundra.io.filter.FilenameFilterType;
 import permafrost.tundra.lang.ArrayHelper;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.ExceptionHelper;
+import permafrost.tundra.lang.ObjectConvertMode;
+import permafrost.tundra.lang.ObjectHelper;
 import permafrost.tundra.math.BigIntegerHelper;
 import permafrost.tundra.math.IntegerHelper;
 import permafrost.tundra.math.LongHelper;
@@ -55,8 +57,8 @@ public final class directory
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $directory
-		// [i] field:0:optional $delete? {"false","true"}
-		// [i] field:0:optional $raise? {"false","true"}
+		// [i] field:0:optional $delete? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $raise? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
 
 		boolean raise = false;
@@ -86,7 +88,7 @@ public final class directory
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $directory
-		// [i] field:0:optional $raise? {"false","true"}
+		// [i] field:0:optional $raise? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
@@ -137,12 +139,12 @@ public final class directory
 		// @sigtype java 3.5
 		// [i] field:0:required $directory
 		// [i] field:0:optional $duration
-		// [i] field:0:optional $duration.pattern {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
+		// [i] field:0:optional $duration.pattern {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
 		// [i] field:1:optional $filter.inclusions
 		// [i] field:1:optional $filter.exclusions
-		// [i] field:0:optional $filter.type {"regular expression","wildcard","literal"}
-		// [i] field:0:optional $recurse? {"false","true"}
-		// [i] field:0:optional $replace? {"false","true"}
+		// [i] field:0:optional $filter.type {&quot;regular expression&quot;,&quot;wildcard&quot;,&quot;literal&quot;}
+		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $replace? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:required $count
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -236,8 +238,8 @@ public final class directory
 		// [i] field:0:required $directory
 		// [i] field:1:optional $filter.inclusions
 		// [i] field:1:optional $filter.exclusions
-		// [i] field:0:optional $filter.type {"regular expression","wildcard","literal"}
-		// [i] field:0:optional $recurse? {"false","true"}
+		// [i] field:0:optional $filter.type {&quot;regular expression&quot;,&quot;wildcard&quot;,&quot;literal&quot;}
+		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:1:required $directories
 		// [o] field:0:required $directories.length
 		// [o] field:1:required $files
@@ -353,11 +355,11 @@ public final class directory
 		// @sigtype java 3.5
 		// [i] field:0:required $directory
 		// [i] field:0:optional $duration
-		// [i] field:0:optional $duration.pattern {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
+		// [i] field:0:optional $duration.pattern {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
 		// [i] field:1:optional $filter.inclusions
 		// [i] field:1:optional $filter.exclusions
-		// [i] field:0:optional $filter.type {"regular expression","wildcard","literal"}
-		// [i] field:0:optional $recurse? {"false","true"}
+		// [i] field:0:optional $filter.type {&quot;regular expression&quot;,&quot;wildcard&quot;,&quot;literal&quot;}
+		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:required $count
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -432,7 +434,7 @@ public final class directory
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $directory
-		// [i] field:0:optional $recurse? {"false","true"}
+		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
@@ -486,7 +488,7 @@ public final class directory
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $directory
-		// [i] field:0:optional $recurse? {"false","true"}
+		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:required $size
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -519,8 +521,8 @@ public final class directory
 		// [i] field:0:required $size.required
 		// [i] field:1:optional $filter.inclusions
 		// [i] field:1:optional $filter.exclusions
-		// [i] field:0:optional $filter.type {"regular expression","wildcard","literal"}
-		// [i] field:0:optional $recurse? {"false","true"}
+		// [i] field:0:optional $filter.type {&quot;regular expression&quot;,&quot;wildcard&quot;,&quot;literal&quot;}
+		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:required $size.squeezed
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -549,6 +551,58 @@ public final class directory
 		    size = DirectoryHelper.squeeze(directory, size, filter, recurse);
 
 		    IDataHelper.put(cursor, "$size.squeezed", size, String.class);
+		} catch(IOException ex) {
+		    ExceptionHelper.raise(ex);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
+	public static final void zip (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(zip)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $directory
+		// [i] field:1:optional $filter.inclusions
+		// [i] field:1:optional $filter.exclusions
+		// [i] field:0:optional $filter.type {&quot;regular expression&quot;,&quot;wildcard&quot;,&quot;literal&quot;}
+		// [i] field:0:optional $path.parent? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;,&quot;base64&quot;}
+		// [o] object:0:required $directory.zip
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    File directory = IDataHelper.get(cursor, "$directory", File.class);
+		    String[] inclusions = IDataHelper.get(cursor, "$filter.inclusions", String[].class);
+		    String[] exclusions = IDataHelper.get(cursor, "$filter.exclusions", String[].class);
+		    FilenameFilterType type = IDataHelper.get(cursor, "$filter.type", FilenameFilterType.class);
+		    boolean includeParentInPath = IDataHelper.getOrDefault(cursor, "$path.parent?", Boolean.class, false);
+		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
+		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
+
+		    ConditionalFilenameFilter filter = null;
+
+		    if (inclusions != null || exclusions != null) {
+		        filter = new AndFilenameFilter();
+		        if (inclusions != null) {
+		            filter.add(new InclusionFilenameFilter(type, inclusions));
+		        }
+		        if (exclusions != null) {
+		            filter.add(new ExclusionFilenameFilter(type, exclusions));
+		        }
+		    }
+
+		    Object output = ObjectHelper.convert(DirectoryHelper.zip(directory, filter, recurse, includeParentInPath), mode);
+
+		    IDataHelper.put(cursor, "$directory.zip", output, false);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {

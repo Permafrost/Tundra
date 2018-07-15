@@ -4411,7 +4411,7 @@ also empty after compacting.
 * `$delete?` is an optional boolean flag which when `true` will delete
   the given `$directory` itself if it is emtpy after compaction.
   Defaults to `false`.
-* `$raise? is an optional boolean flag which when `true` will throw
+* `$raise?` is an optional boolean flag which when `true` will throw
   an exception if the deletion of any directories fails. Defaults
   to `false`.
 
@@ -4505,8 +4505,8 @@ or file name.
 ### tundra.directory:list
 
 Lists a directory, optionally filtering based on the given patterns,
-which can be either a regular expression (for example, "\w+\.\w+")
-or a wildcard expression (for example, "*.txt"), depending on the
+which can be either a regular expression (for example, `\w+\.\w+`)
+or a wildcard expression (for example, `*.txt`), depending on the
 selected mode.
 
 #### Inputs:
@@ -4713,6 +4713,41 @@ modified.
 
 * `$size.squeezed` is the resulting size in bytes of the directory
   after it has been squeezed.
+
+---
+
+### tundra.directory:zip
+
+Compresses files in the given directory into a [zip] archive.
+
+#### Inputs:
+
+* `$directory` is the directory containing files to be compressed,
+  specified as either a relative or absolute file path or file
+  [URI].
+* `$filter.inclusions` is an optional list of regular expression
+  patterns, wildcard file glob patterns, or literals used to
+  include files with matching names in the archive.
+* `$filter.exclusions` is an optional list of regular expression
+  patterns, wildcard file glob patterns, or literals used to
+  exclude files with matching names from the archive.
+* `$filter.type` is an optional choice if either 'regular expression',
+  'wildcard', or 'literal', which determines the type of filter
+  patterns provided. Defaults to 'regular expression'.
+* `$path.parent?` is an optional boolean flag indicating if the
+  archive file name paths should include the given `$directory` name
+  as the top-level path name. Defaults to `false`.
+* `$recurse?` is an optional boolean flag indicating if files in child
+  directories should also be archived. Defaults to `false`.
+* `$mode` is an optional choice of 'stream', 'bytes', or
+  'string', which determines the type of object returned by
+  this service. If the 'string' mode is chosen, the resulting
+  zipped data is base64-encoded. Defaults to 'stream'.
+
+#### Outputs:
+
+* `$directory.zip` is the resulting [zip] archive containing the
+  compressed files from the given `$directory`.
 
 ---
 
