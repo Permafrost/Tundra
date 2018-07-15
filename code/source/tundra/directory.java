@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2018-07-15 13:27:56 EST
+// -----( CREATED: 2018-07-15 15:03:03 EST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -551,6 +551,60 @@ public final class directory
 		    size = DirectoryHelper.squeeze(directory, size, filter, recurse);
 
 		    IDataHelper.put(cursor, "$size.squeezed", size, String.class);
+		} catch(IOException ex) {
+		    ExceptionHelper.raise(ex);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
+	public static final void tar (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(tar)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $directory
+		// [i] field:1:optional $filter.inclusions
+		// [i] field:1:optional $filter.exclusions
+		// [i] field:0:optional $filter.type {&quot;regular expression&quot;,&quot;wildcard&quot;,&quot;literal&quot;}
+		// [i] field:0:optional $path.parent? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $gzip? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;,&quot;base64&quot;}
+		// [o] object:0:required $directory.tar
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    File directory = IDataHelper.get(cursor, "$directory", File.class);
+		    String[] inclusions = IDataHelper.get(cursor, "$filter.inclusions", String[].class);
+		    String[] exclusions = IDataHelper.get(cursor, "$filter.exclusions", String[].class);
+		    FilenameFilterType type = IDataHelper.get(cursor, "$filter.type", FilenameFilterType.class);
+		    boolean includeParentInPath = IDataHelper.getOrDefault(cursor, "$path.parent?", Boolean.class, false);
+		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
+		    boolean gzip = IDataHelper.getOrDefault(cursor, "$gzip?", Boolean.class, false);
+		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
+
+		    ConditionalFilenameFilter filter = null;
+
+		    if (inclusions != null || exclusions != null) {
+		        filter = new AndFilenameFilter();
+		        if (inclusions != null) {
+		            filter.add(new InclusionFilenameFilter(type, inclusions));
+		        }
+		        if (exclusions != null) {
+		            filter.add(new ExclusionFilenameFilter(type, exclusions));
+		        }
+		    }
+
+		    Object output = ObjectHelper.convert(DirectoryHelper.tar(directory, filter, recurse, includeParentInPath, gzip), mode);
+
+		    IDataHelper.put(cursor, "$directory.tar", output, false);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {

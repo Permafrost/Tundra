@@ -4716,6 +4716,44 @@ modified.
 
 ---
 
+### tundra.directory:tar
+
+Adds files in the given directory into a new [tar] archive, and
+optionally compressed with [gzip].
+
+#### Inputs:
+
+* `$directory` is the directory containing files to be archived,
+  specified as either a relative or absolute file path or file
+  [URI].
+* `$filter.inclusions` is an optional list of regular expression
+  patterns, wildcard file glob patterns, or literals used to
+  include files with matching names in the archive.
+* `$filter.exclusions` is an optional list of regular expression
+  patterns, wildcard file glob patterns, or literals used to
+  exclude files with matching names from the archive.
+* `$filter.type` is an optional choice if either 'regular expression',
+  'wildcard', or 'literal', which determines the type of filter
+  patterns provided. Defaults to 'regular expression'.
+* `$path.parent?` is an optional boolean flag indicating if the
+  archive file name paths should include the given `$directory` name
+  as the top-level path name. Defaults to `false`.
+* `$recurse?` is an optional boolean flag indicating if files in child
+  directories should also be archived. Defaults to `false`.
+* `$gzip?` is an optional boolean flag indicating if the resulting
+  [tar] archive should also be compressed with [gzip].
+* `$mode` is an optional choice of 'stream', 'bytes', or
+  'string', which determines the type of object returned by
+  this service. If the 'string' mode is chosen, the resulting
+  zipped data is base64-encoded. Defaults to 'stream'.
+
+#### Outputs:
+
+* `$directory.tar` is the resulting [tar] archive containing the
+  files from the given `$directory`, optionally compressed with [gzip].
+
+---
+
 ### tundra.directory:zip
 
 Compresses files in the given directory into a [zip] archive.
@@ -16564,6 +16602,7 @@ Decompresses the given content using the [zip] file compression format.
 [SFTP]: <https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol>
 [SOAP]: <https://en.wikipedia.org/wiki/SOAP>
 [SQL GROUP BY]: <http://en.wikipedia.org/wiki/SQL#Queries>
+[tar]: <https://en.wikipedia.org/wiki/Tar_(computing)>
 [try block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/try.html>
 [TSV]: <http://en.wikipedia.org/wiki/Tab-separated_values>
 [Tundra]: <https://github.com/Permafrost/Tundra>
