@@ -156,17 +156,7 @@ majority of services, and are included in the [Tundra] package as
 * `./code/jars/poi-ooxml-schemas-3.17.jar` - https://poi.apache.org/
 * `./code/jars/snakeyaml-1.18.jar` - http://www.snakeyaml.org
 * `./code/jars/Tundra.jar` - http://github.com/Permafrost/Tundra.java
-* `./code/jars/TundraConfiguration.jar` - http://github.com/Permafrost/TundraConfiguration.java
-* `./code/jars/TundraCSV.jar` - http://github.com/Permafrost/TundraCSV.java
-* `./code/jars/TundraHjson.jar` - http://github.com/Permafrost/TundraHjson.java
-* `./code/jars/TundraHTML.jar` - http://github.com/Permafrost/TundraHTML.java
-* `./code/jars/TundraHTTP.jar` - http://github.com/Permafrost/TundraHTTP.java
-* `./code/jars/TundraJSON.jar` - http://github.com/Permafrost/TundraJSON.java
-* `./code/jars/TundraMeasure.jar` - http://github.com/Permafrost/TundraMeasure.java
-* `./code/jars/TundraOffice.jar` - http://github.com/Permafrost/TundraOffice.java
 * `./code/jars/TundraSAP.jar` - http://github.com/Permafrost/TundraSAP.java
-* `./code/jars/TundraXML.jar` - http://github.com/Permafrost/TundraXML.java
-* `./code/jars/TundraYAML.jar` - http://github.com/Permafrost/TundraYAML.java
 * `./code/jars/unbescape-1.1.3.RELEASE.jar` - http://www.unbescape.org/
 * `./code/jars/xmlsec-1.5.8.jar` - http://santuario.apache.org
 
