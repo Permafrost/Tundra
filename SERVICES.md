@@ -12267,6 +12267,23 @@ Returns `true` if the given [mime type] strings are considered equal.
 
 ---
 
+### tundra.mime.type:extensions
+
+Returns the list of file extensions that are associated with the
+given [mime type].
+
+#### Inputs:
+
+* `$mime.type` is a [mime type] whose associated file extensions are
+  to be returned.
+
+#### Outputs:
+
+* `$file.extensions` is the list of file extensions associated with
+  the given `$mime.type`.
+
+---
+
 ### tundra.mime.type:normalize
 
 Normalizes a mime type by removing extraneous whitespace characters,

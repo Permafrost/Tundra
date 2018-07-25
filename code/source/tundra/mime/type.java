@@ -1,7 +1,7 @@
 package tundra.mime;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-12-15 15:09:04 GMT+10:00
+// -----( CREATED: 2018-07-25 16:48:31 EST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -9,8 +9,10 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import java.util.Set;
 import javax.activation.MimeType;
 import javax.activation.MimeTypeParseException;
+import permafrost.tundra.collection.CollectionHelper;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.ExceptionHelper;
@@ -40,7 +42,7 @@ public final class type
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $content.type
-		// [o] field:0:optional $content.class {"csv","json","psv","tsv","xml","yaml"}
+		// [o] field:0:optional $content.class {&quot;csv&quot;,&quot;json&quot;,&quot;psv&quot;,&quot;tsv&quot;,&quot;xls&quot;,&quot;xlsx&quot;,&quot;xml&quot;,&quot;yaml&quot;}
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
@@ -112,6 +114,30 @@ public final class type
 
 
 
+	public static final void extensions (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(extensions)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $mime.type
+		// [o] field:1:optional $file.extensions
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    String mimeType = IDataHelper.get(cursor, "$mime.type", String.class);
+		    Set<String> extensions = MIMETypeHelper.getFileExtensions(mimeType);
+		    IDataHelper.put(cursor, "$file.extensions", CollectionHelper.arrayify(extensions, String.class), false);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
 	public static final void normalize (IData pipeline)
         throws ServiceException
 	{
@@ -172,7 +198,7 @@ public final class type
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
-		// [i] field:0:optional $raise? {"false","true"}
+		// [i] field:0:optional $raise? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:required $valid?
 		IDataCursor cursor = pipeline.getCursor();
 

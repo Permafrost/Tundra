@@ -9,8 +9,10 @@
   <array name="implements" type="value" depth="1">
   </array>
   <array name="imports" type="value" depth="1">
+    <value>java.util.Set</value>
     <value>javax.activation.MimeType</value>
     <value>javax.activation.MimeTypeParseException</value>
+    <value>permafrost.tundra.collection.CollectionHelper</value>
     <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.lang.BooleanHelper</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>
