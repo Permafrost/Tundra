@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2018-02-27 13:55:17 GMT+10:00
+// -----( CREATED: 2018-07-26 17:46:29 GMT+10:00
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -356,7 +356,7 @@ public final class document
 		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
 
 		    if (document != null) {
-		        IDataHelper.put(cursor, "$content", ObjectHelper.convert(IDataXMLParser.getInstance().emit(document, charset), charset, mode));
+		        IDataHelper.put(cursor, "$content", ObjectHelper.convert(new IDataXMLParser().emit(document, charset), charset, mode));
 		    }
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -576,7 +576,7 @@ public final class document
 		// [i] field:0:optional $separator.value
 		// [i] field:0:optional $separator.item
 		// [i] field:0:optional $separator.list
-		// [i] field:0:optional $sanitization {"remove nulls","remove nulls and blanks"}
+		// [i] field:0:optional $sanitization {"remove nulls","remove nulls and blanks","convert nulls to blanks"}
 		// [o] field:0:optional $result
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -958,7 +958,7 @@ public final class document
 		    Object content = IDataHelper.get(cursor, "$content");
 		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
 
-		    IDataHelper.put(cursor, "$document", IDataXMLParser.getInstance().parse(InputStreamHelper.normalize(content, charset)));
+		    IDataHelper.put(cursor, "$document", new IDataXMLParser().parse(InputStreamHelper.normalize(content, charset)));
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
