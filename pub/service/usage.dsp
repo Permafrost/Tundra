@@ -47,12 +47,8 @@
               <caption>Services Currently Executing (%value $context/invocations.current.length encode(xml)%) at %value $context/monitoring.datetime encode(xml)%</caption>
               <thead>
                 <tr>
-                  <th colspan="2" width="24%">Thread</th>
-                  <th colspan="6" width="80%">Call Stack</th>
-                </tr>
-                <tr>
-                  <th>#</th>
-                  <th>Name</th>
+                  <th width="5%">Thread ID</th>
+                  <th width="20%">Thread Name</th>
                   <th>Package</th>
                   <th>Service</th>
                   <th>User</th>
