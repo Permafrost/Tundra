@@ -10,6 +10,7 @@
     <script src="../assets/js/jquery.min.js"></script>
     <script src="../assets/js/bootstrap.min.js"></script>
     <script src="../assets/js/application.js"></script>
+    <script src="../assets/js/sorttable.js"></script>
   </head>
   <body>
     <div class="container-fluid">
@@ -43,7 +44,7 @@
           %endswitch%
           %invoke tundra.support.service.statistics:list%
           <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table table-striped sortable">
               <caption>Service Invocation Statistics%ifvar $context/statistics.length -notempty% &mdash; %ifvar $context/statistics.length equals('1')%1 service sampled%else%%value $context/statistics.length encode(xml)% services sampled%endif%%ifvar $context/sampling.start -notempty% since %value $context/sampling.start encode(xml)%%endif%</caption>
               <thead>
                 <tr>
