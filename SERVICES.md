@@ -19,33 +19,41 @@ current user and call stack.
 
 ### tundra:test
 
-Runs all `*test*:should*` services in the given package, returning the test
-results, where a test case passes if no exceptions are thrown.
+Runs all `*test*:should*` services in the given package, returning the
+test results, where a test case passes if no exceptions are thrown.
+
+Supports optional `:setup` and `:teardown` sibling services, which are
+invoked before and after each test case service respectively.
 
 This service is designed to either be invoked directly, or via a web
-browser. When invoked via a browser, a basic HTML test report is displayed:
+browser. When invoked via a browser, a basic HTML test report is
+displayed:
 
     http://server:port/invoke/tundra/test?$package=Tundra
 
 #### Inputs:
 
-* `$package` is the name of the package which contains the test cases to
-  be executed.
+* `$package` is the name of the package which contains the test cases
+  to be executed.
+* `$concurrency` is an optional number of threads to use when
+  executing the test cases. Defaults to 1.
 
 #### Outputs:
 
-* `$result` is a document containing the test results from executing all
-  the `*test*:should*` services in the given `$package`.
+* `$result` is a document containing the test results from executing
+  all the `*test*:should*` services in the given `$package`.
   * `package` is the name of package the test results relate to.
-  * `passed?` is a boolean indicating if all test cases executed passed.
+  * `passed?` is a boolean indicating if all test cases executed
+    passed.
   * `counts` is a document containing the test result counts.
     * `total` is the total number of test case services executed.
-    * `passed` is the number of test case services which passed (did not
-      throw an exception).
-    * `failed` is the number of test case services which failed (threw an
-      exception).
+    * `passed` is the number of test case services which passed (did
+      not throw an exception).
+    * `failed` is the number of test case services which failed (threw
+      an exception).
   * `cases` is a list of the test case services which were executed.
-    * `description` is the fully-qualified name of the test case service.
+    * `description` is the fully-qualified name of the test case
+      service.
     * `passed?` is a boolean indicating if the test case service passed
       (did not throw an exception).
     * `message` is an optional description returned if the test case
