@@ -7068,6 +7068,9 @@ stream, to the given file.
 
 If no file is specified, a new temporary file is created automatically.
 
+If the path to the file does not exist, this service will attempt to
+create the directories that comprise the path before writing the file.
+
 #### Inputs:
 
 * `$file` is the optional name of the file to which the given content
