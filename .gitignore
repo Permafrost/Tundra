@@ -1,4 +1,6 @@
 *.bak
 Thumbs.db
 .DS_Store
-ns/tundra/support/test
+ns/tundra/support/test/*
+!ns/tundra/support/test/node.idf
+!ns/tundra/support/test/execute
