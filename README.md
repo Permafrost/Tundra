@@ -157,7 +157,7 @@ majority of services, and are included in the [Tundra] package as
 * `./code/jars/snakeyaml-1.18.jar` - http://www.snakeyaml.org
 * `./code/jars/Tundra.jar` - http://github.com/Permafrost/Tundra.java
 * `./code/jars/TundraSAP.jar` - http://github.com/Permafrost/TundraSAP.java
-* `./code/jars/unbescape-1.1.3.RELEASE.jar` - http://www.unbescape.org/
+* `./code/jars/unbescape-1.1.6.RELEASE.jar` - http://www.unbescape.org/
 * `./code/jars/xmlsec-1.5.8.jar` - http://santuario.apache.org
 
 ## Contributions

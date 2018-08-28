@@ -3,5 +3,12 @@
 <Values version="2.0">
   <value name="name">decode</value>
   <value name="encodeutf8">true</value>
-  <value name="body">dHVuZHJhLmh0bWwuZGVjb2RlKHBpcGVsaW5lKTs=</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogICAgSURh
+dGEgZG9jdW1lbnQgPSBJRGF0YUhlbHBlci5nZXQoY3Vyc29yLCAiJGRvY3VtZW50LmVuY29kZWQi
+LCBJRGF0YS5jbGFzcyk7CgogICAgaWYgKGRvY3VtZW50ID09IG51bGwpIHsKICAgICAgICBTdHJp
+bmcgc3RyaW5nID0gSURhdGFIZWxwZXIuZ2V0KGN1cnNvciwgIiRzdHJpbmciLCBTdHJpbmcuY2xh
+c3MpOwogICAgICAgIElEYXRhSGVscGVyLnB1dChjdXJzb3IsICIkc3RyaW5nIiwgWE1MSGVscGVy
+LmRlY29kZShzdHJpbmcpLCBmYWxzZSk7CiAgICB9IGVsc2UgewogICAgICAgIElEYXRhSGVscGVy
+LnB1dChjdXJzb3IsICIkZG9jdW1lbnQuZGVjb2RlZCIsIFhNTEhlbHBlci5kZWNvZGUoZG9jdW1l
+bnQpLCBmYWxzZSk7CiAgICB9Cn0gZmluYWxseSB7CiAgICBjdXJzb3IuZGVzdHJveSgpOwp9</value>
 </Values>

@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-11-29T16:34:36.845
+// -----( CREATED: 2018-08-28 16:49:29 GMT+10:00
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -15,7 +15,6 @@ import javax.xml.namespace.NamespaceContext;
 import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
 import permafrost.tundra.data.IDataHelper;
-import permafrost.tundra.html.HTMLHelper;
 import permafrost.tundra.io.InputStreamHelper;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.BytesHelper;
@@ -56,8 +55,8 @@ public final class xml
 		// @sigtype java 3.5
 		// [i] object:0:optional $content
 		// [i] field:0:optional $encoding
-		// [i] field:0:optional $algorithm {&quot;Canonical XML Version 1.0&quot;,&quot;Canonical XML Version 1.0 With Comments&quot;,&quot;Canonical XML Version 1.1&quot;,&quot;Canonical XML Version 1.1 With Comments&quot;,&quot;Exclusive Canonical XML Version 1.0&quot;,&quot;Exclusive Canonical XML Version 1.0 With Comments&quot;}
-		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
+		// [i] field:0:optional $algorithm {"Canonical XML Version 1.0","Canonical XML Version 1.0 With Comments","Canonical XML Version 1.1","Canonical XML Version 1.1 With Comments","Exclusive Canonical XML Version 1.0","Exclusive Canonical XML Version 1.0 With Comments"}
+		// [i] field:0:optional $mode {"stream","bytes","string"}
 		// [o] object:0:optional $content.canonical
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -88,7 +87,20 @@ public final class xml
 		// @sigtype java 3.5
 		// [i] record:0:optional $document.encoded
 		// [o] record:0:optional $document.decoded
-		tundra.html.decode(pipeline);
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    IData document = IDataHelper.get(cursor, "$document.encoded", IData.class);
+
+		    if (document == null) {
+		        String string = IDataHelper.get(cursor, "$string", String.class);
+		        IDataHelper.put(cursor, "$string", XMLHelper.decode(string), false);
+		    } else {
+		        IDataHelper.put(cursor, "$document.decoded", XMLHelper.decode(document), false);
+		    }
+		} finally {
+		    cursor.destroy();
+		}
 		// --- <<IS-END>> ---
 
 
@@ -104,7 +116,7 @@ public final class xml
 		// @sigtype java 3.5
 		// [i] object:0:optional $node
 		// [i] field:0:optional $encoding
-		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
+		// [i] field:0:optional $mode {"stream","bytes","string"}
 		// [o] object:0:optional $content
 		// [o] field:0:optional $encoding
 		IDataCursor cursor = pipeline.getCursor();
@@ -136,15 +148,21 @@ public final class xml
 		// --- <<IS-START(encode)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] record:0:optional $xml.decoded
-		// [i] - field:0:optional $value
-		// [i] - field:1:optional $value.list
-		// [i] - field:2:optional $value.table
-		// [o] record:0:optional $xml.encoded
-		// [o] - field:0:optional $value
-		// [o] - field:1:optional $value.list
-		// [o] - field:2:optional $value.table
-		tundra.html.encode(pipeline);
+		// [i] record:0:optional $document.decoded
+		// [o] record:0:optional $document.encoded
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    IData document = IDataHelper.get(cursor, "$document.decoded", IData.class);
+		    if (document == null) {
+		        String string = IDataHelper.get(cursor, "$string", String.class);
+		        IDataHelper.put(cursor, "$string", XMLHelper.encode(string), false);
+		    } else {
+		        IDataHelper.put(cursor, "$document.encoded", XMLHelper.encode(document), false);
+		    }
+		} finally {
+		    cursor.destroy();
+		}
 		// --- <<IS-END>> ---
 
 
@@ -160,7 +178,7 @@ public final class xml
 		// @sigtype java 3.5
 		// [i] object:0:optional $content
 		// [i] field:0:optional $encoding
-		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
+		// [i] field:0:optional $mode {"stream","bytes","string"}
 		// [o] object:0:optional $content.minified
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -231,7 +249,7 @@ public final class xml
 		// [i] field:0:optional $content.encoding
 		// [i] object:0:optional $schema
 		// [i] field:0:optional $schema.encoding
-		// [i] field:0:optional $raise? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $raise? {"false","true"}
 		// [o] field:0:required $valid?
 		// [o] field:1:optional $errors
 		IDataCursor cursor = pipeline.getCursor();
