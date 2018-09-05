@@ -382,6 +382,7 @@ specification.
     specified priority of 1:
 
         jms://DEFAULT_IS_JMS_CONNECTION?queue=JMS::Temporary::Queue&amp;priority=1
+
   * mailto: sends an email, with the given content as an attachment 
     if specified. An example mailto [URI] is as follows:
 
@@ -431,19 +432,19 @@ specification.
     * $limit: the maximum number of IDocs to send per transaction 
       (TID), used to partition the sending of a batch of IDocs across
       multiple smaller TIDs. Defaults to no limit.
-  * sftp: uploads the given content to the [SFTP] server, directory and
-    file specified by the destination [URI]. Note that [SFTP] delivery
-    is only supported on Integration Server versions 9.0 and higher. 
-    An example [SFTP] [URI] is as follows:
+  * sftp: uploads the given content to the [SFTP] server, directory 
+    and file specified by the destination [URI]. Note that [SFTP] 
+    delivery is only supported on Integration Server versions 9.0 
+    and higher. An example [SFTP] [URI] is as follows:
 
         sftp://useralias/path/file?append=false&amp;rename=true
 
     Where:
-    * useralias identifies the Integration Server [SFTP] User Alias to
-      be used for connecting to the destination [SFTP] server.
-    * path is the absolute path to the directory where the file should
-      be written, unless it starts with "." to indicate a relative
-      directory path, such as:
+    * useralias identifies the Integration Server [SFTP] User Alias 
+      to be used for connecting to the destination [SFTP] server.
+    * path is the absolute path to the directory where the file 
+      should be written, unless it starts with "." to indicate a 
+      relative directory path, such as:
 
           sftp://useralias/./path/file
 
@@ -454,11 +455,11 @@ specification.
       Defaults to false if not specified, which overwrites the given
       file if it already exists.
     * rename is an optional query string boolean which if true will
-      first write the content to a unique temporary filename and then
-      rename it to its specified name once written. Defaults to false,
-      where the content is written directly to the filename specified
-      in the destination [URI]. Note if the append option is true, 
-      this option has no effect.
+      first write the content to the given file name with ".tmp" 
+      suffix and then rename it to its specified name once written. 
+      Defaults to false, where the content is written directly to 
+      the file name specified in the destination [URI]. Note if the 
+      append option is true, this option has no effect.
 * $pipeline is an optional IData document for providing arbitrary
   variables to the delivery implementation service. Variables 
   provided will take precedence and override their corresponding 
