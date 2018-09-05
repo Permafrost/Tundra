@@ -107,15 +107,16 @@ IData document to null.
 
 #### Inputs:
 
-* $document is an IData document whose string values are converted to 
-  null if they contain only whitespace characters.
-* $recurse is an optional boolean indicating if embedded IData documents
-  and IData[] document lists should also be nullified. Defaults to false.
+* $document is an IData document whose string values are converted 
+  to null if they contain only whitespace characters.
+* $recurse is an optional boolean indicating if embedded IData 
+  documents and IData[] document lists should also be nullified. 
+  Defaults to false.
 
 #### Outputs:
 
-* $document is the given IData document with all string values that contained
-  only whitespace characters converted to null.</value>
+* $document is the given IData document with all string values that 
+  contained only whitespace characters converted to null.</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
