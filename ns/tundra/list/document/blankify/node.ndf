@@ -117,7 +117,8 @@ to empty strings.
 #### Outputs:
 
 * $list is the resulting IData[] document list with all null
-  values converted to empty string values.</value>
+  values converted to empty string values.
+</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
