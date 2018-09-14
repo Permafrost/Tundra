@@ -16261,6 +16261,9 @@ software.
 
 * `$document.decoded` is an optional `IData` document containing
   arbitrarily specified string values to be [HTML] encoded.
+* `$attribute.prefix` is an optional custom prefix used to denote
+  [XML] attributes in the given `IData` document. Defaults to `@`, if
+  not specified.
 
 #### Outputs:
 

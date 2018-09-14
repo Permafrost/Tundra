@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2018-08-28 16:49:29 GMT+10:00
+// -----( CREATED: 2018-09-14 12:04:20 GMT+10:00
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -149,16 +149,19 @@ public final class xml
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $document.decoded
+		// [i] field:0:optional $attribute.prefix
 		// [o] record:0:optional $document.encoded
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
 		    IData document = IDataHelper.get(cursor, "$document.decoded", IData.class);
+		    String attributePrefix = IDataHelper.get(cursor, "$attribute.prefix", String.class);
+
 		    if (document == null) {
 		        String string = IDataHelper.get(cursor, "$string", String.class);
 		        IDataHelper.put(cursor, "$string", XMLHelper.encode(string), false);
 		    } else {
-		        IDataHelper.put(cursor, "$document.encoded", XMLHelper.encode(document), false);
+		        IDataHelper.put(cursor, "$document.encoded", XMLHelper.encode(document, attributePrefix), false);
 		    }
 		} finally {
 		    cursor.destroy();
