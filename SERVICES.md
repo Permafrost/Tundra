@@ -2260,6 +2260,12 @@ Returns all configuration settings for all configured packages.
 
 ---
 
+### tundra.configuration:clear
+
+Removes all cached configurations from the in-memory cache.
+
+---
+
 ### tundra.configuration:get
 
 Returns the configuration settings associated with the given package.
@@ -2371,6 +2377,12 @@ before refreshing the cached configuration using
 
 * `$configuration` is an `IData` document containing the on disk
   configuration settings for the given package.
+
+---
+
+### tundra.configuration:refresh
+
+Refreshes all cached configurations from disk.
 
 ---
 

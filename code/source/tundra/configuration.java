@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2018-02-28 10:25:25 EST
+// -----( CREATED: 2018-10-18 13:11:46 GMT+10:00
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -40,7 +40,7 @@ public final class configuration
 		// --- <<IS-START(all)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional $refresh? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $refresh? {"false","true"}
 		// [o] record:0:required $configurations
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -58,6 +58,20 @@ public final class configuration
 
 
 
+	public static final void clear (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(clear)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		ConfigurationManager.clear();
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
 	public static final void get (IData pipeline)
         throws ServiceException
 	{
@@ -65,7 +79,7 @@ public final class configuration
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $package
-		// [i] field:0:optional $refresh? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $refresh? {"false","true"}
 		// [o] field:0:required $package
 		// [o] record:0:required $configuration
 		IDataCursor cursor = pipeline.getCursor();
@@ -102,7 +116,7 @@ public final class configuration
 		// --- <<IS-START(list)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional $refresh? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $refresh? {"false","true"}
 		// [o] record:1:required $configurations
 		// [o] - field:0:required package
 		// [o] - record:0:required configuration
@@ -140,6 +154,20 @@ public final class configuration
 		} finally {
 		    cursor.destroy();
 		}
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
+	public static final void refresh (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(refresh)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		ConfigurationManager.refresh();
 		// --- <<IS-END>> ---
 
 
