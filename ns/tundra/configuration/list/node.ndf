@@ -119,9 +119,41 @@
               </array>
               <value name="modifiable">true</value>
             </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">record</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">configuration.length</value>
+              <value name="field_type">object</value>
+              <value name="field_dim">0</value>
+              <value name="wrapper_type">java.lang.Integer</value>
+              <value name="nillable">false</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
           </array>
           <value name="rec_closed">true</value>
           <value name="modifiable">true</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$configurations.length</value>
+          <value name="field_type">object</value>
+          <value name="field_dim">0</value>
+          <value name="wrapper_type">java.lang.Integer</value>
+          <value name="nillable">false</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
         </record>
       </array>
       <value name="modifiable">true</value>
@@ -141,6 +173,14 @@ Returns all configuration settings for all configured packages.
 
 * $configurations is an IData[] document list containing the 
   configuration settings for each configured package.
+  * package is the name of the package the associated configuration
+    relates to.
+  * configuration is an IData document containing the configuration 
+    settings for the associated package.
+  * configuration.length is the number of top-level elements in the
+    configuration document.
+* $configurations.length is the number of items in the returned
+  $configurations IData[] document list.
 
 [JSON]: &lt;http://www.json.org/&gt;
 [YAML]: &lt;http://www.yaml.org&gt;

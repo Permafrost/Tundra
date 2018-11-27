@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2018-10-18 13:11:46 GMT+10:00
+// -----( CREATED: 2018-11-27 14:46:04 GMT+10:00
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -120,12 +120,14 @@ public final class configuration
 		// [o] record:1:required $configurations
 		// [o] - field:0:required package
 		// [o] - record:0:required configuration
+		// [o] - object:0:required configuration.length
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
 		    boolean refresh = IDataHelper.getOrDefault(cursor, "$refresh?", Boolean.class, false);
 		    IData[] configurations = ConfigurationManager.list(refresh);
 		    IDataHelper.put(cursor, "$configurations", configurations, false);
+		    IDataHelper.put(cursor, "$configurations.length", configurations == null ? 0 : configurations.length);
 		} finally {
 		    cursor.destroy();
 		}

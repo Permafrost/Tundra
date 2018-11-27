@@ -2355,6 +2355,14 @@ Returns all configuration settings for all configured packages.
 
 * `$configurations` is an `IData[]` document list containing the
   configuration settings for each configured package.
+  * `package` is the name of the package the associated configuration
+    relates to.
+  * `configuration` is an `IData` document containing the configuration
+    settings for the associated package.
+  * `configuration.length` is the number of top-level elements in the
+    `configuration` document.
+* `$configurations.length` is the number of items in the returned
+  `$configurations` `IData[]` document list.
 
 ---
 
