@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-08-16 18:22:18 EST
-// -----( ON-HOST: 192.168.66.132
+// -----( CREATED: 2018-12-01 21:04:47 EST
+// -----( ON-HOST: 192.168.20.18
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -80,6 +80,31 @@ public final class bytes
 		    if (bytes != null && object instanceof String) IDataHelper.put(cursor, "$encoding", charset.name());
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void random (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(random)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $bytes.random.length
+		// [o] object:0:required $bytes.random
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    int length = IDataHelper.get(cursor, "$bytes.random.length", Integer.class);
+		    byte[] bytes = new byte[length];
+		    tundra.support.security.getRandom().nextBytes(bytes);
+		    IDataHelper.put(cursor, "$bytes.random", bytes);
 		} finally {
 		    cursor.destroy();
 		}

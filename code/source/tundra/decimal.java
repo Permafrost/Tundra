@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-10-19T11:11:00.389
-// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
+// -----( CREATED: 2018-12-01 21:06:03 EST
+// -----( ON-HOST: 192.168.20.18
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -274,16 +274,10 @@ public final class decimal
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $number.input
-		// [i] - field:0:optional value
-		// [i] - field:1:optional value.list
-		// [i] - field:2:optional value.table
 		// [i] field:0:optional $pattern.input
 		// [i] field:1:optional $patterns.input
 		// [i] field:0:optional $pattern.output
 		// [o] record:0:optional $number.output
-		// [o] - field:0:optional value
-		// [o] - field:1:optional value.list
-		// [o] - field:2:optional value.table
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -575,6 +569,30 @@ public final class decimal
 		    } else {
 		        IDataHelper.put(cursor, "$result", result, String.class, false);
 		    }
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void random (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(random)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $decimal.random.class {&quot;java.lang.Double&quot;,&quot;java.lang.String&quot;}
+		// [o] object:0:required $decimal.random
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    Class outputClass = IDataHelper.getOrDefault(cursor, "$decimal.random.class", Class.class, Double.class);
+		    Number number = tundra.support.security.getRandom().nextDouble();
+		    IDataHelper.put(cursor, "$decimal.random", number, outputClass);
 		} finally {
 		    cursor.destroy();
 		}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="node_type">interface</value>
+  <value name="node_nsName">tundra.support.security</value>
+  <value name="is_public">false</value>
+  <value name="encodeutf8">true</value>
+  <value name="shared">cHJpdmF0ZSBzdGF0aWMgY2xhc3MgSG9sZGVyIHsKICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIFNl
+Y3VyZVJhbmRvbSBSQU5ET01fR0VORVJBVE9SID0gbmV3IFNlY3VyZVJhbmRvbSgpOwp9CgpwdWJs
+aWMgc3RhdGljIFJhbmRvbSBnZXRSYW5kb20oKSB7CiAgICByZXR1cm4gSG9sZGVyLlJBTkRPTV9H
+RU5FUkFUT1I7Cn0=</value>
+  <value name="extends"></value>
+  <array name="implements" type="value" depth="1">
+  </array>
+  <array name="imports" type="value" depth="1">
+    <value>java.security.SecureRandom</value>
+    <value>java.util.Random</value>
+    <value>permafrost.tundra.data.IDataHelper</value>
+  </array>
+</Values>

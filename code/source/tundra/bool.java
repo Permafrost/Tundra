@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-01 18:56:13 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2018-12-01 21:18:37 EST
+// -----( ON-HOST: 192.168.20.18
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -154,6 +154,27 @@ public final class bool
 		    String falseValue = IDataHelper.get(cursor, "$value.false", String.class);
 		
 		    if (input != null) IDataHelper.put(cursor, "$boolean", BooleanHelper.parse(input, trueValue, falseValue));
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void random (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(random)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [o] object:0:required $boolean.random
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    IDataHelper.put(cursor, "$boolean.random", tundra.support.security.getRandom().nextBoolean());
 		} finally {
 		    cursor.destroy();
 		}

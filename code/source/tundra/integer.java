@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-10-19T11:14:32.340
-// -----( ON-HOST: EBZDEVWAP37.ebiztest.qr.com.au
+// -----( CREATED: 2018-12-01 21:09:43 EST
+// -----( ON-HOST: 192.168.20.18
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -242,16 +242,16 @@ public final class integer
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $number.input
-		// [i] - field:0:optional value
-		// [i] - field:1:optional value.list
-		// [i] - field:2:optional value.table
+		// [i] - field:0:optional $value
+		// [i] - field:1:optional $value.list
+		// [i] - field:2:optional $value.table
 		// [i] field:0:optional $pattern.input
 		// [i] field:1:optional $patterns.input
 		// [i] field:0:optional $pattern.output
 		// [o] record:0:optional $number.output
-		// [o] - field:0:optional value
-		// [o] - field:1:optional value.list
-		// [o] - field:2:optional value.table
+		// [o] - field:0:optional $value
+		// [o] - field:1:optional $value.list
+		// [o] - field:2:optional $value.table
 		tundra.decimal.format(pipeline);
 		// --- <<IS-END>> ---
 
@@ -505,6 +505,28 @@ public final class integer
 		    } else {
 		        IDataHelper.put(cursor, "$result", result, String.class, false);
 		    }
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void random (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(random)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		IDataCursor cursor = pipeline.getCursor();
+		
+		try {
+		    Class outputClass = IDataHelper.getOrDefault(cursor, "$integer.random.class", Class.class, Long.class);
+		    Number number = tundra.support.security.getRandom().nextLong();
+		    IDataHelper.put(cursor, "$integer.random", number, outputClass);
 		} finally {
 		    cursor.destroy();
 		}
