@@ -5980,9 +5980,9 @@ given `IData` document.
 * `$recurse?` is an optional boolean indicating if embedded `IData`
   documents and `IData[]` document lists should also have occurrences
   of the pattern in their elements replaced. Defaults to `false`.
-* `$mode` is an optional choice for what should be replaced:
+* `$mode` is an optional choice for what should be removed:
   either the values, the keys, or both the keys and the values.
-  Defaults to replacing values only.
+  Defaults to removing values only.
 
 #### Outputs:
 
