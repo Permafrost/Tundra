@@ -7390,14 +7390,13 @@ servers.
     whether a new [HTTP] connection is established for this request
     or whether an existing pooled [HTTP] connection can be used for
     this request respectively. Defaults to `new`.
-* `$service` is an optional custom [HTTP] response handler service,
-  which implements the `tundra.schema.http.response:handler`
-  specification, and can be specified when the standard
-  `tundra.http.response:handle` service does not suffice. The standard
-  handler does the following:
+* `$response.handler` is an optional custom [HTTP] response handler
+  service, which implements the `tundra.schema.http.response:handler`
+  specification. Defaults to `tundra.http.response:handle`, if not
+  specified, which performs the following:
   * checks the [HTTP response code] is < 400, and throws an exception
     when it is not
-  * normalizes the response header keys to lower case
+  * converts the response header keys to be case insensitive
   * converts the response body stream to bytes
 
 #### Outputs:
