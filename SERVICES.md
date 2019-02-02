@@ -7898,13 +7898,6 @@ an instance of the [java.security.SecureRandom] class.
 * `$integer.random` is the randomly generated integer provided as
   an instance of the specified class.
 
-[java.lang.Byte]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Byte.html>
-[java.lang.Integer]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Integer.html>
-[java.lang.Long]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Long.html>
-[java.lang.Short]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Short.html>
-[java.security.SecureRandom]: <https://docs.oracle.com/javase/6/docs/api/java/security/SecureRandom.html>
-
-
 ---
 
 ### tundra.integer:rebase
