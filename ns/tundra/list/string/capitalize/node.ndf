@@ -98,27 +98,28 @@
   </record>
   <value name="node_comment">### tundra.list.string:capitalize
 
-Capitalizes the first character in either the first word or
-all words in each of the given strings.
+Capitalizes the first character in either the first word or all 
+words in each of the given strings.
 
 #### Inputs:
 
 * $list is the list of strings to be capitalized.
-* $mode is an optional choice that determines whether
-  all words or only the first word is capitalized:
+* $mode is an optional choice that determines whether all words or 
+  only the first word is capitalized. Defaults to capitalizing all 
+  words, if not specified:
   * all words
   * first word
 
-  Defaults to all words, if not specified.
-
 #### Outputs:
 
-* $list is the given list of strings capitalized.</value>
+* $list is the given list of strings capitalized.
+</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template">tundra_list_string_capitalize</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>

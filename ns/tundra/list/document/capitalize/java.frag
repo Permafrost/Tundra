@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">capitalize</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7DQoNCnRyeSB7DQogICAg
+SURhdGFbXSBsaXN0ID0gSURhdGFIZWxwZXIuZ2V0KGN1cnNvciwgIiRsaXN0IiwgSURhdGFbXS5j
+bGFzcyk7DQogICAgYm9vbGVhbiBmaXJzdFdvcmRPbmx5ID0gSURhdGFIZWxwZXIuZ2V0T3JEZWZh
+dWx0KGN1cnNvciwgIiRjYXBpdGFsaXplIiwgU3RyaW5nLmNsYXNzLCAiYWxsIHdvcmRzIikuZXF1
+YWxzKCJmaXJzdCB3b3JkIik7CiAgICBib29sZWFuIHJlY3Vyc2UgPSBJRGF0YUhlbHBlci5nZXRP
+ckRlZmF1bHQoY3Vyc29yLCAiJHJlY3Vyc2U/IiwgQm9vbGVhbi5jbGFzcywgZmFsc2UpOwogICAg
+VHJhbnNmb3JtZXJNb2RlIG1vZGUgPSBJRGF0YUhlbHBlci5nZXQoY3Vyc29yLCAiJG1vZGUiLCBU
+cmFuc2Zvcm1lck1vZGUuY2xhc3MpOwoKICAgIElEYXRhSGVscGVyLnB1dChjdXJzb3IsICIkbGlz
+dCIsIElEYXRhSGVscGVyLmNhcGl0YWxpemUobGlzdCwgZmlyc3RXb3JkT25seSwgbW9kZSwgcmVj
+dXJzZSksIGZhbHNlKTsKfSBmaW5hbGx5IHsKICAgIGN1cnNvci5kZXN0cm95KCk7Cn0=</value>
+</Values>

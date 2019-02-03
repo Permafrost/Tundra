@@ -4909,6 +4909,34 @@ Converts all null values in the given `IData` document to empty strings.
 
 ---
 
+### tundra.document:capitalize
+
+Capitalizes the first character in either the first word or all
+words in strings in the given `IData` document.
+
+#### Inputs:
+
+* `$document` is an `IData` document whose string values are to be
+  capitalized.
+* `$capitalize` is an optional choice that determines whether all
+  words or only the first word is capitalized. Defaults to
+  capitalizing all words, if not specified:
+  * all words
+  * first word
+* `$recurse?` is an optional boolean indicating if embedded `IData`
+  documents and `IData[]` document lists should also have string
+  values capitalized. Defaults to `false`.
+* `$mode` is an optional choice for what should be capitalized: either
+  the values, the keys, or both the keys and the values. Defaults to
+  values only.
+
+#### Outputs:
+
+* `$document` is the given `IData` document with all string values
+  capitalized.
+
+---
+
 ### tundra.document:clear
 
 Removes all elements from the given `IData` document, except for
@@ -8476,6 +8504,33 @@ to empty strings.
 
 ---
 
+### tundra.list.document:capitalize
+
+Capitalizes all string values in the given `IData[]` document list.
+
+#### Inputs:
+
+* `$list` is an `IData[]` document list whose string values are to be
+  capitalized.
+* `$capitalize` is an optional choice that determines whether all
+  words or only the first word is capitalized. Defaults to
+  capitalizing all words, if not specified:
+  * all words
+  * first word
+* `$recurse?` is an optional boolean indicating if embedded `IData`
+  documents and `IData[]` document lists should also have string
+  values capitalized. Defaults to `false`.
+* `$mode` is an optional choice for what should be capitalized: either
+  the values, the keys, or both the keys and the values. Defaults to
+  values only.
+
+#### Outputs:
+
+* `$list` is the given `IData[]` document list with all string values
+  capitalized.
+
+---
+
 ### tundra.list.document:clear
 
 Removes all elements from all items in the given `IData` document list,
@@ -11007,18 +11062,17 @@ Converts any null items in the given string list to empty strings.
 
 ### tundra.list.string:capitalize
 
-Capitalizes the first character in either the first word or
-all words in each of the given strings.
+Capitalizes the first character in either the first word or all
+words in each of the given strings.
 
 #### Inputs:
 
 * `$list` is the list of strings to be capitalized.
-* `$mode` is an optional choice that determines whether
-  all words or only the first word is capitalized:
-  * `all words`
-  * `first word`
-
-  Defaults to all words, if not specified.
+* `$mode` is an optional choice that determines whether all words or
+  only the first word is capitalized. Defaults to capitalizing all
+  words, if not specified:
+  * all words
+  * first word
 
 #### Outputs:
 
@@ -14818,18 +14872,17 @@ this service should only be used by one thread per
 
 ### tundra.string:capitalize
 
-Capitalizes the first character in either the first word or
-all words in the given string.
+Capitalizes the first character in either the first word or all
+words in the given string.
 
 #### Inputs:
 
 * `$string` is the string to be capitalized.
-* `$mode `is an optional choice that determines whether
-  all words or only the first word is capitalized:
-  * `all words`
-  * `first word`
-
-  Defaults to `all words`, if not specified.
+* `$mode` is an optional choice that determines whether all words or
+  only the first word is capitalized. Defaults to capitalizing all
+  words, if not specified:
+  * all words
+  * first word
 
 #### Outputs:
 
