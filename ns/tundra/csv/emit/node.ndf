@@ -39,16 +39,13 @@
               </record>
               <value name="is_public">false</value>
               <value name="field_name">recordWithNoID</value>
-              <value name="field_type">record</value>
+              <value name="field_type">object</value>
               <value name="field_dim">1</value>
               <value name="field_opt">true</value>
               <value name="nillable">true</value>
               <value name="form_qualified">false</value>
               <value name="is_global">false</value>
               <value name="is_soap_array_encoding_used">false</value>
-              <array name="rec_fields" type="record" depth="1">
-              </array>
-              <value name="modifiable">true</value>
             </record>
           </array>
           <value name="rec_closed">true</value>
@@ -284,7 +281,7 @@ formatted string, byte array, or input stream.
 * $document is the IData document containing a list of records to be
   serialized as a [CSV] string, byte array, or input stream.
   * recordWithNoID is the IData[] document list of records to be
-    serialized.
+    serialized, or a String[] string list of values to be serialized.
 * $delimiter is the character to use to delimit fields in the 
   resulting serialization. Defaults to ',' (comma), if not specified.
 * $header? is an optional boolean indicating if a header row should
@@ -311,7 +308,6 @@ formatted string, byte array, or input stream.
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
-  <value name="template">tundra_csv_emit</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>

@@ -3106,7 +3106,7 @@ formatted string, byte array, or input stream.
 * `$document` is the `IData` document containing a list of records to be
   serialized as a [CSV] string, byte array, or input stream.
   * `recordWithNoID` is the `IData[]` document list of records to be
-    serialized.
+    serialized, or a `String[]` string list of values to be serialized.
 * `$delimiter` is the character to use to delimit fields in the resulting
   serialization. Defaults to ',' (comma), if not specified.
 * `$header?` is an optional boolean indicating if a header row should
