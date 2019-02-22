@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2018-03-22 15:10:05 GMT+10:00
+// -----( CREATED: 2019-02-22 20:30:47 GMT+10:00
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -17,6 +17,7 @@ import permafrost.tundra.flow.variable.SubstitutionHelper;
 import permafrost.tundra.flow.variable.SubstitutionType;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.data.IDataMap;
+import permafrost.tundra.data.transform.Translator;
 import permafrost.tundra.lang.ArrayHelper;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.CharsetHelper;
@@ -892,6 +893,34 @@ public final class string
 		    boolean suffixed = string != null && string.endsWith(suffix);
 
 		    IDataHelper.put(cursor, "$suffixed?", suffixed, String.class);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
+	public static final void translate (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(translate)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:0:optional $operands
+		// [i] record:0:optional $translations
+		// [i] field:0:required $reverse? {"false","true"}
+		// [o] record:0:optional $results
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    IData operands = IDataHelper.get(cursor, "$operands", IData.class);
+		    IData translations = IDataHelper.get(cursor, "$translations", IData.class);
+		    boolean reverse = IDataHelper.getOrDefault(cursor, "$reverse?", Boolean.class, false);
+
+		    IDataHelper.put(cursor, "$results", IDataHelper.transform(operands, new Translator(translations, reverse)), false);
 		} finally {
 		    cursor.destroy();
 		}

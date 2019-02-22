@@ -15563,6 +15563,67 @@ Returns whether the given string ends with the given suffix.
 
 ---
 
+### tundra.string:translate
+
+Translates strings from one value to another using the given
+translation table.
+
+For example, given the following translation table:
+
+    {
+        "a": "1",
+        "b": "2"
+    }
+
+And the following arbitrarily specified string operands:
+
+    {
+        "key1": "a",
+        "key2": "b",
+        "key3": "1",
+        "key4": "2",
+        "key5": "z"
+    }
+
+The resulting strings would be returned:
+
+    {
+        "key1": "1",
+        "key2": "2",
+        "key3": "1",
+        "key4": "2",
+        "key5": "z"
+    }
+
+If the translation table is reversed, the resulting strings would
+instead be returned:
+
+    {
+        "key1": "a",
+        "key2": "b",
+        "key3": "a",
+        "key4": "b",
+        "key5": "z"
+    }
+
+#### Inputs:
+
+* `$operands` is an `IData` document containing arbitrarily specified
+  `String`, `String[]`, or `String[][]` values to be translated.
+* `$translations` is an `IData` document containing key value pairs
+  which specify the from and to values used for translation.
+* `$reverse?` is an optional boolean which when `true` indicates that
+  the `$translations` table should be flipped such that the keys
+  become the values and vice versa. Defaults to `false`.
+
+#### Outputs:
+
+* `$results` is an `IData` document containing the translated values
+  specified using the same keys and structure as was specified in
+  `$operands`.
+
+---
+
 ### tundra.string:trim
 
 Removes leading and trailing whitespace from the given string.

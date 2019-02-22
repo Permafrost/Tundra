@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">translate</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogICAgSURh
+dGEgb3BlcmFuZHMgPSBJRGF0YUhlbHBlci5nZXQoY3Vyc29yLCAiJG9wZXJhbmRzIiwgSURhdGEu
+Y2xhc3MpOwogICAgSURhdGEgdHJhbnNsYXRpb25zID0gSURhdGFIZWxwZXIuZ2V0KGN1cnNvciwg
+IiR0cmFuc2xhdGlvbnMiLCBJRGF0YS5jbGFzcyk7CiAgICBib29sZWFuIHJldmVyc2UgPSBJRGF0
+YUhlbHBlci5nZXRPckRlZmF1bHQoY3Vyc29yLCAiJHJldmVyc2U/IiwgQm9vbGVhbi5jbGFzcywg
+ZmFsc2UpOwoKICAgIElEYXRhSGVscGVyLnB1dChjdXJzb3IsICIkcmVzdWx0cyIsIElEYXRhSGVs
+cGVyLnRyYW5zZm9ybShvcGVyYW5kcywgbmV3IFRyYW5zbGF0b3IodHJhbnNsYXRpb25zLCByZXZl
+cnNlKSksIGZhbHNlKTsKfSBmaW5hbGx5IHsKICAgIGN1cnNvci5kZXN0cm95KCk7Cn0=</value>
+</Values>
