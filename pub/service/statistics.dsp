@@ -54,27 +54,31 @@
                   <th class="text-right" width="10%">Standard Deviation<br/><small>(seconds)</small></th>
                   <th class="text-right" width="10%">Maximum Duration<br/><small>(seconds)</small></th>
                   <th class="text-right" width="10%">Total Cumulative Duration<br/><small>(seconds)</small></th>
-                  <th class="text-right" width="10%">Invocation Count</th>
+                  <th class="text-right" width="5%">Successful Invocation Count</th>
+                  <th class="text-right" width="5%">Failed Invocation Count</th>
+                  <th class="text-right" width="5%">Total Invocation Count</th>
                 </tr>
               </thead>
               %ifvar $context/sampling.started? equals('true')%
               <tbody>
               %loop $context/statistics%
                 <tr>
-                  <td>%value service encode(xml)%</td>
+                  <td>%value subject encode(xml)%</td>
                   <td class="text-right">%value minimum.formatted encode(xml)%</td>
                   <td class="text-right">%value average.formatted encode(xml)%</td>
                   <td class="text-right">%value deviation.standard.formatted encode(xml)%</td>
                   <td class="text-right">%value maximum.formatted encode(xml)%</td>
                   <td class="text-right">%value cumulative.formatted encode(xml)%</td>
-                  <td class="text-right">%value count.formatted encode(xml)%</td>
+                  <td class="text-right">%value count.successes.formatted encode(xml)%</td>
+                  <td class="text-right">%value count.failures.formatted encode(xml)%</td>
+                  <td class="text-right">%value count.total.formatted encode(xml)%</td>
                 </tr>
               %endloop%
               </tbody>
               %endif%
               <tfoot>
                 <tr>
-                  <td colspan="8">
+                  <td colspan="9">
                     <form role="form" class="form-inline" method="post">
                       %ifvar $context/sampling.started? equals('true')%
                         <div class="form-group">

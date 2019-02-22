@@ -14308,33 +14308,53 @@ deviation execution durations.
   invoked, the more reliable the resulting statistics will be (in
   other words, the more samples the better).
 * `$raise?` is an optional boolean flag which when `true` will halt the
-  benchmark immediately upon encountering the first exception thrown by
-  `$service`, and rethrows it. Defaults to `false`.
+  benchmark immediately upon encountering the first exception thrown
+  by `$service`, and rethrows it. Defaults to `false`.
 
 #### Outputs:
 
-* `$duration.average` is the calculated mean or average duration of
-  execution of the given service with the given input pipeline
-  formatted as an [ISO8601] XML duration string.
-* `$duration.standard.deviation` is the calculated standard
-  deviation duration of execution of the given service with the
-  given input pipeline formatted as an [ISO8601] XML duration
-  string.
-* `$duration.minimum` is the minimum duration of execution of the
-  given service with the given input pipeline formatted as an
-  [ISO8601] XML duration string.
-* `$duration.maximum` is the maximum duration of execution of the
-  given service with the given input pipeline formatted as an
-  [ISO8601] XML duration string.
-* `$duration.total` is the total duration of all executions of the
-  given service with the given input pipeline formatted as an
-  [ISO8601] XML duration string.
-* `$message` is a diagnostic message describing the execution
-  statistics of the benchmarked service, which can be used for
-  logging the results of the benchmark:
+* `$benchmark.results` is the results from measuring the execution of
+  the given service the given number of times.
+  * `description` is a diagnostic message describing the execution
+    statistics of the benchmarked service, which can be used for
+    logging the results of the benchmark:
 
-      tundra.service:sleep benchmark results: average = 250.460 ms, standard deviation = 1.711 ms, minimum = 250.000 ms, maximum = 277.000 ms, total = 25046.000 ms, sample count = 100
+        subject = tundra.service:nothing, average = 0.000052816 seconds, standard deviation = 0.000067587 seconds, minimum = 0.000024920 seconds, maximum = 0.000498029 seconds, cumulative = 0.005281598 seconds, successes = 100, failures = 0, total = 100
 
+  * `subject` is the name of the service that was executed.
+  * `unit` is the duration unit of measure, which is seconds.
+  * `minimum` is the minimum duration sampled when executing the given
+    service.
+  * `minimum.formatted` is the minimum duration sampled when executing
+    the given service formatted as a string.
+  * `average` is the calculated mean or average duration of execution
+    of the given service.
+  * `average.formatted` is the calculated mean or average duration of
+    execution of the given service as a string.
+  * `deviation.standard` is the calculated standard deviation duration
+    of execution of the given service.
+  * `deviation.standard.formatted` is the calculated standard
+    deviation duration
+  * `maximum` is the maximum duration sampled when executing the given
+    service.
+  * `maximum.formatted`  is the maximum duration sampled when
+    executing the given service formatted as a string.
+  * `cumulative` is the total duration for all executions of the given
+    service.
+  * `cumulative.formatted` is the total duration for all executions of
+    the given service formatted as a string.
+  * `count.successes` is the number of times the given service was
+    executed successfully.
+  * `count.successes.formatted` is the number of times the given
+    service was executed successfully formatted as a string.
+  * `count.failures` is the number of times the given service failed
+    during execution.
+  * `count.failures.formatted` is the number of times the given
+    service failed during execution formatted as a string.
+  * `count.total` is the total number of times the given service was
+    executed
+  * `count.total.formatted` is the total number of times the given
+    service was executed formatted as a string.
 ---
 
 ### tundra.service:callstack

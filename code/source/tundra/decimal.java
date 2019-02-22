@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2018-12-01 21:06:03 EST
-// -----( ON-HOST: 192.168.20.18
+// -----( CREATED: 2019-02-22 13:30:34 GMT+10:00
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -19,7 +19,7 @@ import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.math.BigDecimalHelper;
 import permafrost.tundra.math.BigIntegerHelper;
 import permafrost.tundra.math.DoubleHelper;
-import permafrost.tundra.math.NormalDistributionEstimator;
+import permafrost.tundra.math.gauss.Estimator;
 import permafrost.tundra.math.PrecisionHelper;
 // --- <<IS-END-IMPORTS>> ---
 
@@ -48,18 +48,18 @@ public final class decimal
 		// [i] field:0:optional $decimal
 		// [o] field:0:optional $decimal
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    BigDecimal decimal = IDataHelper.get(cursor, "$decimal", BigDecimal.class);
 		    BigDecimal result = BigDecimalHelper.absolute(decimal);
-		
+
 		    IDataHelper.put(cursor, "$decimal", result, String.class, false);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -72,15 +72,15 @@ public final class decimal
 		// @sigtype java 3.5
 		// [i] record:0:optional $operands
 		// [i] field:0:optional $precision
-		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
+		// [i] field:0:optional $rounding {"HALF_UP","CEILING","DOWN","FLOOR","HALF_DOWN","HALF_EVEN","UNNECESSARY","UP"}
 		// [o] field:0:optional $result
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IData operands = IDataHelper.get(cursor, "$operands", IData.class);
 		    int precision = IDataHelper.getOrDefault(cursor, "$precision", Integer.class, -1);
 		    RoundingMode rounding = IDataHelper.get(cursor, "$rounding", RoundingMode.class);
-		
+
 		    // support $decimals and $decimal inputs for backwards-compatibility
 		    boolean backwardsCompatiblityRequired = false;
 		    if (operands == null) {
@@ -92,10 +92,10 @@ public final class decimal
 		        operands = map;
 		        backwardsCompatiblityRequired = true;
 		    }
-		
+
 		    BigDecimal[] decimals = BigDecimalHelper.normalize(IDataHelper.getLeaves(operands));
 		    BigDecimal result = BigDecimalHelper.round(BigDecimalHelper.add(decimals), precision, rounding);
-		
+
 		    if (backwardsCompatiblityRequired) {
 		        IDataHelper.put(cursor, "$decimal", result, String.class, false);
 		    } else {
@@ -106,7 +106,7 @@ public final class decimal
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -119,15 +119,15 @@ public final class decimal
 		// @sigtype java 3.5
 		// [i] record:0:optional $operands
 		// [i] field:0:optional $precision
-		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
+		// [i] field:0:optional $rounding {"HALF_UP","CEILING","DOWN","FLOOR","HALF_DOWN","HALF_EVEN","UNNECESSARY","UP"}
 		// [o] field:0:optional $average
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IData operands = IDataHelper.get(cursor, "$operands", IData.class);
 		    int precision = IDataHelper.getOrDefault(cursor, "$precision", Integer.class, -1);
 		    RoundingMode rounding = IDataHelper.get(cursor, "$rounding", RoundingMode.class);
-		
+
 		    // support $decimals input for backwards-compatibility
 		    boolean backwardsCompatiblityRequired = false;
 		    if (operands == null) {
@@ -137,9 +137,9 @@ public final class decimal
 		        operands = map;
 		        backwardsCompatiblityRequired = true;
 		    }
-		
+
 		    BigDecimal result = BigDecimalHelper.average(precision, rounding, BigDecimalHelper.normalize(IDataHelper.getLeaves(operands)));
-		
+
 		    if (backwardsCompatiblityRequired) {
 		        IDataHelper.put(cursor, "$decimal", result, String.class, false);
 		    } else {
@@ -150,7 +150,7 @@ public final class decimal
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -163,36 +163,38 @@ public final class decimal
 		// @sigtype java 3.5
 		// [i] record:0:optional $operands
 		// [i] field:0:optional $precision
-		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
+		// [i] field:0:optional $rounding {"HALF_UP","CEILING","DOWN","FLOOR","HALF_DOWN","HALF_EVEN","UNNECESSARY","UP"}
 		// [o] field:0:optional $sample.deviation
 		// [o] field:0:optional $sample.variance
 		// [o] field:0:optional $sample.mean
 		// [o] field:0:optional $sample.count
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IData operands = IDataHelper.get(cursor, "$operands", IData.class);
 		    int precision = IDataHelper.getOrDefault(cursor, "$precision", Integer.class, -1);
 		    RoundingMode rounding = IDataHelper.get(cursor, "$rounding", RoundingMode.class);
-		
+
 		    Object[] leaves = IDataHelper.getLeaves(operands);
-		
+
 		    if (leaves != null && leaves.length > 0) {
 		        double[] samples = DoubleHelper.normalize(BigDecimalHelper.normalize(leaves));
-		
-		        NormalDistributionEstimator estimator = new NormalDistributionEstimator(samples);
-		
-		        IDataHelper.put(cursor, "$sample.deviation", BigDecimalHelper.round(new BigDecimal(estimator.getStandardDeviation()), precision, rounding), String.class, false);
-		        IDataHelper.put(cursor, "$sample.variance", BigDecimalHelper.round(new BigDecimal(estimator.getVariance()), precision, rounding), String.class, false);
-		        IDataHelper.put(cursor, "$sample.mean", BigDecimalHelper.round(new BigDecimal(estimator.getMean()), precision, rounding), String.class, false);
-		        IDataHelper.put(cursor, "$sample.count", estimator.getCount(), String.class, false);
+
+		        Estimator estimator = new Estimator();
+		        estimator.add(samples);
+		        Estimator.Results results = estimator.getResults();
+
+		        IDataHelper.put(cursor, "$sample.deviation", BigDecimalHelper.round(new BigDecimal(results.getStandardDeviation()), precision, rounding), String.class, false);
+		        IDataHelper.put(cursor, "$sample.variance", BigDecimalHelper.round(new BigDecimal(results.getVariance()), precision, rounding), String.class, false);
+		        IDataHelper.put(cursor, "$sample.mean", BigDecimalHelper.round(new BigDecimal(results.getMean()), precision, rounding), String.class, false);
+		        IDataHelper.put(cursor, "$sample.count", results.getCount(), String.class, false);
 		    }
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -206,16 +208,16 @@ public final class decimal
 		// [i] field:0:optional $dividend
 		// [i] field:0:optional $divisor
 		// [i] field:0:optional $precision
-		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
+		// [i] field:0:optional $rounding {"HALF_UP","CEILING","DOWN","FLOOR","HALF_DOWN","HALF_EVEN","UNNECESSARY","UP"}
 		// [o] field:0:optional $result
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    BigDecimal dividend = IDataHelper.get(cursor, "$dividend", BigDecimal.class);
 		    BigDecimal divisor = IDataHelper.get(cursor, "$divisor", BigDecimal.class);
 		    int precision = IDataHelper.getOrDefault(cursor, "$precision", Integer.class, -1);
 		    RoundingMode rounding = IDataHelper.get(cursor, "$rounding", RoundingMode.class);
-		
+
 		    // support $decimal.x and $decimal.y inputs for backwards-compatibility
 		    boolean backwardsCompatiblityRequired = false;
 		    if (dividend == null && divisor == null) {
@@ -223,9 +225,9 @@ public final class decimal
 		        divisor = IDataHelper.get(cursor, "$decimal.y", BigDecimal.class);
 		        backwardsCompatiblityRequired = true;
 		    }
-		
+
 		    BigDecimal result = BigDecimalHelper.divide(dividend, divisor, precision, rounding);
-		
+
 		    if (backwardsCompatiblityRequired) {
 		        IDataHelper.put(cursor, "$decimal", result, String.class, false);
 		    } else {
@@ -236,7 +238,7 @@ public final class decimal
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -251,18 +253,18 @@ public final class decimal
 		// [i] field:0:optional $pattern
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Object object = IDataHelper.get(cursor, "$object");
 		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
-		
+
 		    IDataHelper.put(cursor, "$string", BigDecimalHelper.emit(BigDecimalHelper.normalize(object), pattern), false);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -279,13 +281,13 @@ public final class decimal
 		// [i] field:0:optional $pattern.output
 		// [o] record:0:optional $number.output
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IData document = IDataHelper.get(cursor, "$number.input", IData.class);
 		    String inPattern = IDataHelper.get(cursor, "$pattern.input", String.class);
 		    String[] inPatterns = IDataHelper.get(cursor, "$patterns.input", String[].class);
 		    String outPattern = IDataHelper.get(cursor, "$pattern.output", String.class);
-		
+
 		    if (document != null) {
 		        if (inPatterns == null) {
 		            document = BigDecimalHelper.format(document, inPattern, outPattern);
@@ -309,7 +311,7 @@ public final class decimal
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -322,15 +324,15 @@ public final class decimal
 		// @sigtype java 3.5
 		// [i] record:0:optional $operands
 		// [i] field:0:optional $precision
-		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
+		// [i] field:0:optional $rounding {"HALF_UP","CEILING","DOWN","FLOOR","HALF_DOWN","HALF_EVEN","UNNECESSARY","UP"}
 		// [o] field:0:optional $maximum
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IData operands = IDataHelper.get(cursor, "$operands", IData.class);
 		    int precision = IDataHelper.getOrDefault(cursor, "$precision", Integer.class, -1);
 		    RoundingMode rounding = IDataHelper.get(cursor, "$rounding", RoundingMode.class);
-		
+
 		    // support $decimals input for backwards-compatibility
 		    boolean backwardsCompatiblityRequired = false;
 		    if (operands == null) {
@@ -340,10 +342,10 @@ public final class decimal
 		        operands = map;
 		        backwardsCompatiblityRequired = true;
 		    }
-		
+
 		    BigDecimal[] decimals = BigDecimalHelper.normalize(IDataHelper.getLeaves(operands));
 		    BigDecimal result = BigDecimalHelper.round(BigDecimalHelper.maximum(decimals), precision, rounding);
-		
+
 		    if (backwardsCompatiblityRequired) {
 		        IDataHelper.put(cursor, "$decimal", result, String.class, false);
 		    } else {
@@ -354,7 +356,7 @@ public final class decimal
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -367,15 +369,15 @@ public final class decimal
 		// @sigtype java 3.5
 		// [i] record:0:optional $operands
 		// [i] field:0:optional $precision
-		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
+		// [i] field:0:optional $rounding {"HALF_UP","CEILING","DOWN","FLOOR","HALF_DOWN","HALF_EVEN","UNNECESSARY","UP"}
 		// [o] field:0:optional $minimum
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IData operands = IDataHelper.get(cursor, "$operands", IData.class);
 		    int precision = IDataHelper.getOrDefault(cursor, "$precision", Integer.class, -1);
 		    RoundingMode rounding = IDataHelper.get(cursor, "$rounding", RoundingMode.class);
-		
+
 		    // support $decimals input for backwards-compatibility
 		    boolean backwardsCompatiblityRequired = false;
 		    if (operands == null) {
@@ -385,10 +387,10 @@ public final class decimal
 		        operands = map;
 		        backwardsCompatiblityRequired = true;
 		    }
-		
+
 		    BigDecimal[] decimals = BigDecimalHelper.normalize(IDataHelper.getLeaves(operands));
 		    BigDecimal result = BigDecimalHelper.round(BigDecimalHelper.minimum(decimals), precision, rounding);
-		
+
 		    if (backwardsCompatiblityRequired) {
 		        IDataHelper.put(cursor, "$decimal", result, String.class, false);
 		    } else {
@@ -399,7 +401,7 @@ public final class decimal
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -412,15 +414,15 @@ public final class decimal
 		// @sigtype java 3.5
 		// [i] record:0:optional $operands
 		// [i] field:0:optional $precision
-		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
+		// [i] field:0:optional $rounding {"HALF_UP","CEILING","DOWN","FLOOR","HALF_DOWN","HALF_EVEN","UNNECESSARY","UP"}
 		// [o] field:0:optional $result
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IData operands = IDataHelper.get(cursor, "$operands", IData.class);
 		    int precision = IDataHelper.getOrDefault(cursor, "$precision", Integer.class, -1);
 		    RoundingMode rounding = IDataHelper.get(cursor, "$rounding", RoundingMode.class);
-		
+
 		    // support $decimals and $decimal input for backwards-compatibility
 		    boolean backwardsCompatiblityRequired = false;
 		    if (operands == null) {
@@ -432,10 +434,10 @@ public final class decimal
 		        operands = map;
 		        backwardsCompatiblityRequired = true;
 		    }
-		
+
 		    BigDecimal[] decimals = BigDecimalHelper.normalize(IDataHelper.getLeaves(operands));
 		    BigDecimal result = BigDecimalHelper.round(BigDecimalHelper.multiply(decimals), precision, rounding);
-		
+
 		    if (backwardsCompatiblityRequired) {
 		        IDataHelper.put(cursor, "$decimal", result, String.class, false);
 		    } else {
@@ -446,7 +448,7 @@ public final class decimal
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -460,18 +462,18 @@ public final class decimal
 		// [i] field:0:optional $decimal
 		// [o] field:0:optional $decimal
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    BigDecimal decimal = IDataHelper.get(cursor, "$decimal", BigDecimal.class);
 		    BigDecimal result = BigDecimalHelper.negate(decimal);
-		    
+
 		    IDataHelper.put(cursor, "$decimal", result, String.class, false);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -485,27 +487,27 @@ public final class decimal
 		// [i] field:0:optional $string
 		// [i] field:0:optional $pattern
 		// [i] field:1:optional $patterns
-		// [i] field:0:optional $class {&quot;java.math.BigDecimal&quot;,&quot;java.math.BigInteger&quot;,&quot;java.lang.Double&quot;,&quot;java.lang.Float&quot;,&quot;java.lang.Long&quot;,&quot;java.lang.Integer&quot;,&quot;java.lang.Short&quot;,&quot;java.lang.Byte&quot;}
+		// [i] field:0:optional $class {"java.math.BigDecimal","java.math.BigInteger","java.lang.Double","java.lang.Float","java.lang.Long","java.lang.Integer","java.lang.Short","java.lang.Byte"}
 		// [o] object:0:optional $object
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String string = IDataHelper.get(cursor, "$string", String.class);
 		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
 		    String[] patterns = IDataHelper.get(cursor, "$patterns", String[].class);
 		    Class klass = IDataHelper.get(cursor, "$class", Class.class);
-		
+
 		    BigDecimal decimal = null;
-		
+
 		    if (patterns == null) {
 		        decimal = BigDecimalHelper.parse(string, pattern);
 		    } else {
 		        decimal = BigDecimalHelper.parse(string, patterns);
 		    }
-		
+
 		    if (decimal != null) {
 		        Object object = null;
-		
+
 		        if (klass == null || klass.equals(BigDecimal.class)) {
 		            object = decimal;
 		        } else if (klass.equals(BigInteger.class)) {
@@ -523,7 +525,7 @@ public final class decimal
 		        } else if (klass.equals(Byte.class)) {
 		            object = decimal.byteValue();
 		        }
-		
+
 		        IDataHelper.put(cursor, "$object", object, false);
 		    }
 		} finally {
@@ -531,7 +533,7 @@ public final class decimal
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -545,25 +547,25 @@ public final class decimal
 		// [i] field:0:optional $base
 		// [i] field:0:optional $exponent
 		// [i] field:0:optional $precision
-		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
+		// [i] field:0:optional $rounding {"HALF_UP","CEILING","DOWN","FLOOR","HALF_DOWN","HALF_EVEN","UNNECESSARY","UP"}
 		// [o] field:0:optional $result
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    BigDecimal base = IDataHelper.get(cursor, "$base", BigDecimal.class);
 		    int exponent = IDataHelper.getOrDefault(cursor, "$exponent", Integer.class, 1);
 		    int precision = IDataHelper.getOrDefault(cursor, "$precision", Integer.class, -1);
 		    RoundingMode rounding = IDataHelper.get(cursor, "$rounding", RoundingMode.class);
-		
+
 		    // support $decimal input for backwards-compatibility
 		    boolean backwardsCompatiblityRequired = false;
 		    if (base == null) {
 		        base = IDataHelper.get(cursor, "$decimal", BigDecimal.class);
 		        backwardsCompatiblityRequired = true;
 		    }
-		
+
 		    BigDecimal result = BigDecimalHelper.round(BigDecimalHelper.power(base, exponent), precision, rounding);
-		
+
 		    if (backwardsCompatiblityRequired) {
 		        IDataHelper.put(cursor, "$decimal", result, String.class, false);
 		    } else {
@@ -574,7 +576,7 @@ public final class decimal
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -585,10 +587,10 @@ public final class decimal
 		// --- <<IS-START(random)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional $decimal.random.class {&quot;java.lang.Double&quot;,&quot;java.lang.String&quot;}
+		// [i] field:0:optional $decimal.random.class {"java.lang.Double","java.lang.Float"}
 		// [o] object:0:required $decimal.random
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Class outputClass = IDataHelper.getOrDefault(cursor, "$decimal.random.class", Class.class, Double.class);
 		    Number number = tundra.support.security.getRandom().nextDouble();
@@ -598,7 +600,7 @@ public final class decimal
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -611,24 +613,24 @@ public final class decimal
 		// @sigtype java 3.5
 		// [i] field:0:optional $decimal
 		// [i] field:0:optional $precision
-		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
+		// [i] field:0:optional $rounding {"HALF_UP","CEILING","DOWN","FLOOR","HALF_DOWN","HALF_EVEN","UNNECESSARY","UP"}
 		// [o] field:0:optional $decimal
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    BigDecimal decimal = IDataHelper.get(cursor, "$decimal", BigDecimal.class);
 		    int precision = IDataHelper.getOrDefault(cursor, "$precision", Integer.class, -1);
 		    RoundingMode rounding = IDataHelper.get(cursor, "$rounding", RoundingMode.class);
-		
+
 		    BigDecimal result = BigDecimalHelper.round(decimal, precision, rounding);
-		
+
 		    IDataHelper.put(cursor, "$decimal", result, String.class, false);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -642,16 +644,16 @@ public final class decimal
 		// [i] field:0:optional $minuend
 		// [i] field:0:optional $subtrahend
 		// [i] field:0:optional $precision
-		// [i] field:0:optional $rounding {&quot;HALF_UP&quot;,&quot;CEILING&quot;,&quot;DOWN&quot;,&quot;FLOOR&quot;,&quot;HALF_DOWN&quot;,&quot;HALF_EVEN&quot;,&quot;UNNECESSARY&quot;,&quot;UP&quot;}
+		// [i] field:0:optional $rounding {"HALF_UP","CEILING","DOWN","FLOOR","HALF_DOWN","HALF_EVEN","UNNECESSARY","UP"}
 		// [o] field:0:optional $result
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    BigDecimal minuend = IDataHelper.get(cursor, "$minuend", BigDecimal.class);
 		    BigDecimal subtrahend = IDataHelper.get(cursor, "$subtrahend", BigDecimal.class);
 		    int precision = IDataHelper.getOrDefault(cursor, "$precision", Integer.class, -1);
 		    RoundingMode rounding = IDataHelper.get(cursor, "$rounding", RoundingMode.class);
-		
+
 		    // support $decimal.x and $decimal.y inputs for backwards-compatibility
 		    boolean backwardsCompatiblityRequired = false;
 		    if (minuend == null && subtrahend == null) {
@@ -659,9 +661,9 @@ public final class decimal
 		        subtrahend = IDataHelper.get(cursor, "$decimal.y", BigDecimal.class);
 		        backwardsCompatiblityRequired = true;
 		    }
-		
+
 		    BigDecimal result = BigDecimalHelper.round(BigDecimalHelper.subtract(minuend, subtrahend), precision, rounding);
-		
+
 		    if (backwardsCompatiblityRequired) {
 		        IDataHelper.put(cursor, "$decimal", result, String.class, false);
 		    } else {
@@ -672,7 +674,7 @@ public final class decimal
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -684,21 +686,21 @@ public final class decimal
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $decimal
-		// [i] field:0:optional $raise? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $raise? {"false","true"}
 		// [o] field:0:required $valid?
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String decimal = IDataHelper.get(cursor, "$decimal", String.class);
 		    boolean raise = IDataHelper.getOrDefault(cursor, "$raise?", Boolean.class, false);
-		
+
 		    IDataHelper.put(cursor, "$valid?", BigDecimalHelper.validate(decimal, raise), String.class);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 

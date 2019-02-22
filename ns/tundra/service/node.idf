@@ -25,7 +25,7 @@
     <value>permafrost.tundra.lang.StringHelper</value>
     <value>permafrost.tundra.lang.ThreadHelper</value>
     <value>permafrost.tundra.math.IntegerHelper</value>
-    <value>permafrost.tundra.math.NormalDistributionEstimator</value>
+    <value>permafrost.tundra.math.gauss.ServiceEstimator</value>
     <value>permafrost.tundra.net.http.HTTPHelper</value>
     <value>permafrost.tundra.server.invoke.DeferHelper</value>
     <value>permafrost.tundra.server.invoke.RetryableServiceProcessor</value>

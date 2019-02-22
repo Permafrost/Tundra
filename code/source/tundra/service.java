@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-12-14T14:12:58.464
+// -----( CREATED: 2019-02-22 14:46:50 GMT+10:00
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -25,7 +25,7 @@ import permafrost.tundra.lang.ObjectHelper;
 import permafrost.tundra.lang.StringHelper;
 import permafrost.tundra.lang.ThreadHelper;
 import permafrost.tundra.math.IntegerHelper;
-import permafrost.tundra.math.NormalDistributionEstimator;
+import permafrost.tundra.math.gauss.ServiceEstimator;
 import permafrost.tundra.net.http.HTTPHelper;
 import permafrost.tundra.server.invoke.DeferHelper;
 import permafrost.tundra.server.invoke.RetryableServiceProcessor;
@@ -60,12 +60,27 @@ public final class service
 		// [i] field:0:required $service
 		// [i] record:0:optional $pipeline
 		// [i] field:0:required $count
-		// [i] field:0:optional $raise? {&quot;false&quot;,&quot;true&quot;}
-		// [o] field:0:required $duration.average
-		// [o] field:0:required $duration.standard.deviation
-		// [o] field:0:required $duration.minimum
-		// [o] field:0:required $duration.maximum
-		// [o] field:0:required $message
+		// [i] field:0:optional $raise? {"false","true"}
+		// [o] record:0:required $benchmark.results
+		// [o] - field:0:required description
+		// [o] - field:0:required subject
+		// [o] - field:0:required unit
+		// [o] - object:0:required minimum
+		// [o] - field:0:required minimum.formatted
+		// [o] - object:0:required average
+		// [o] - field:0:required average.formatted
+		// [o] - object:0:required deviation.standard
+		// [o] - field:0:required deviation.standard.formatted
+		// [o] - object:0:required maximum
+		// [o] - field:0:required maximum.formatted
+		// [o] - object:0:required cumulative
+		// [o] - field:0:required cumulative.formatted
+		// [o] - object:0:required count.total
+		// [o] - field:0:required count.total.formatted
+		// [o] - object:0:required count.successes
+		// [o] - field:0:required count.successes.formatted
+		// [o] - object:0:required count.failures
+		// [o] - field:0:required count.failures.formatted
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
@@ -75,13 +90,9 @@ public final class service
 		    int count = IDataHelper.get(cursor, "$count", Integer.class);
 		    boolean raise = IDataHelper.getOrDefault(cursor, "$raise?", Boolean.class, false);
 
-		    NormalDistributionEstimator estimator = ServiceHelper.benchmark(service, scope, count, raise);
+		    ServiceEstimator.Results results = ServiceHelper.benchmark(service, scope, count, raise);
 
-		    IDataHelper.put(cursor, "$duration.average", DurationHelper.format(estimator.getMean()/1000.0, 6, DurationPattern.XML));
-		    IDataHelper.put(cursor, "$duration.standard.deviation", DurationHelper.format(estimator.getStandardDeviation()/1000.0, 6, DurationPattern.XML));
-		    IDataHelper.put(cursor, "$duration.minimum", DurationHelper.format(estimator.getMinimum()/1000.0, 6, DurationPattern.XML));
-		    IDataHelper.put(cursor, "$duration.maximum", DurationHelper.format(estimator.getMaximum()/1000.0, 6, DurationPattern.XML));
-		    IDataHelper.put(cursor, "$message", service + " benchmark results: " + estimator.toString());
+		    IDataHelper.put(cursor, "$benchmark.results", results.getIData());
 		} finally {
 		    cursor.destroy();
 		}
@@ -259,7 +270,7 @@ public final class service
 		// --- <<IS-START(initiator)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [o] field:0:required $initiator? {&quot;false&quot;,&quot;true&quot;}
+		// [o] field:0:required $initiator? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
@@ -285,7 +296,7 @@ public final class service
 		// @sigtype java 3.5
 		// [i] field:0:required $service
 		// [i] record:0:optional $pipeline
-		// [i] field:0:optional $raise? {&quot;true&quot;,&quot;false&quot;}
+		// [i] field:0:optional $raise? {"true","false"}
 		// [o] record:0:optional $pipeline
 		// [o] field:0:optional $duration
 		IDataCursor cursor = pipeline.getCursor();
@@ -331,7 +342,7 @@ public final class service
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:0:optional $thread
-		// [i] field:0:optional $raise? {&quot;true&quot;,&quot;false&quot;}
+		// [i] field:0:optional $raise? {"true","false"}
 		// [o] record:0:optional $pipeline
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -482,7 +493,7 @@ public final class service
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $duration
-		// [i] field:0:optional $duration.pattern {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
+		// [i] field:0:optional $duration.pattern {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
 		tundra.thread.sleep(pipeline);
 		// --- <<IS-END>> ---
 
@@ -498,8 +509,8 @@ public final class service
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $service
-		// [i] field:0:optional $raise? {&quot;false&quot;,&quot;true&quot;}
-		// [o] field:0:required $valid? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $raise? {"false","true"}
+		// [o] field:0:required $valid? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
