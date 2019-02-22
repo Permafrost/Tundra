@@ -17,6 +17,7 @@
     <value>permafrost.tundra.flow.variable.SubstitutionType</value>
     <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.data.IDataMap</value>
+    <value>permafrost.tundra.data.transform.Splitter</value>
     <value>permafrost.tundra.data.transform.Translator</value>
     <value>permafrost.tundra.lang.ArrayHelper</value>
     <value>permafrost.tundra.lang.BooleanHelper</value>

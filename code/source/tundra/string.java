@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-02-22 20:30:47 GMT+10:00
+// -----( CREATED: 2019-02-22 20:47:40 GMT+10:00
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -17,6 +17,7 @@ import permafrost.tundra.flow.variable.SubstitutionHelper;
 import permafrost.tundra.flow.variable.SubstitutionType;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.data.IDataMap;
+import permafrost.tundra.data.transform.Splitter;
 import permafrost.tundra.data.transform.Translator;
 import permafrost.tundra.lang.ArrayHelper;
 import permafrost.tundra.lang.BooleanHelper;
@@ -807,18 +808,23 @@ public final class string
 		// --- <<IS-START(split)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional $string
+		// [i] record:0:optional $operands
 		// [i] field:0:optional $pattern
 		// [i] field:0:optional $pattern.literal? {"false","true"}
-		// [o] field:1:optional $list
+		// [o] record:0:optional $results
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
-		    String string = IDataHelper.get(cursor, "$string", String.class);
+		    IData operands = IDataHelper.get(cursor, "$operands", IData.class);
 		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
-		    boolean literalPattern = IDataHelper.getOrDefault(cursor, "$pattern.literal?", Boolean.class, IDataHelper.getOrDefault(cursor, "$literal?", Boolean.class, false));
+		    boolean literal = IDataHelper.getOrDefault(cursor, "$pattern.literal?", Boolean.class, IDataHelper.getOrDefault(cursor, "$literal?", Boolean.class, false));
 
-		    IDataHelper.put(cursor, "$list", StringHelper.split(string, pattern, literalPattern), false);
+		    if (operands != null) {
+		        IDataHelper.put(cursor, "$results", IDataHelper.transform(operands, new Splitter(pattern, literal)), false);
+		    } else {
+		        String string = IDataHelper.get(cursor, "$string", String.class);
+		        IDataHelper.put(cursor, "$list", StringHelper.split(string, pattern, literal), false);
+		    }
 		} finally {
 		    cursor.destroy();
 		}
@@ -911,7 +917,7 @@ public final class string
 		// @sigtype java 3.5
 		// [i] record:0:optional $operands
 		// [i] record:0:optional $translations
-		// [i] field:0:required $reverse? {"false","true"}
+		// [i] field:0:optional $reverse? {"false","true"}
 		// [o] record:0:optional $results
 		IDataCursor cursor = pipeline.getCursor();
 

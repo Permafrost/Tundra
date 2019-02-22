@@ -15494,23 +15494,28 @@ Examples:
 
 ### tundra.string:split
 
-Splits the given string around matches of the given literal pattern or
-[regular expression pattern].
+Splits the given arbitrarily specified strings around matches of the
+given literal pattern or [regular expression pattern].
 
 #### Inputs:
 
-* `$string` is a string to be split into tokens using the given
-  pattern as the token separator.
+* `$operands` is an `IData` document containing arbitrarily specified
+  `String`, `String[]` or `String[][]` values to be split into tokens
+  using the given pattern as the token separator.
 * `$pattern` is the literal or [regular expression pattern] to match
-  against the given string.
-* `$pattern.literal?` is a boolean indicating if the pattern should
-  be treated as a literal string or a [regular expression pattern].
+  against the given strings.
+* `$pattern.literal?` is a boolean indicating if the pattern should be
+  treated as a literal string or a [regular expression pattern].
   Defaults to `false`.
 
 #### Outputs:
 
-* `$list` is the list of tokens that were found in the input string
-  that were separated with an occurence of the given pattern.
+* `$results` is an `IData` document containing the results of splitting
+  each given `String`, `String[]`, or `String[][]` specified using the
+  same keys and structure as was specified in `$operands`, however with
+  an additional dimension (i.e. an input `String` is returned as a
+  `String[]` containing the resulting tokens, and a `String[]` is
+  returned as a `String[][]`).
 
 ---
 
@@ -15611,7 +15616,11 @@ instead be returned:
 * `$operands` is an `IData` document containing arbitrarily specified
   `String`, `String[]`, or `String[][]` values to be translated.
 * `$translations` is an `IData` document containing key value pairs
-  which specify the from and to values used for translation.
+  which specify the from and to values used for translation. The
+  following special keys are also supported to provide a default value,
+  and a null replacement value, when required:
+  * $default - used when a value has no translation.
+  * $null - used when a value is null.
 * `$reverse?` is an optional boolean which when `true` indicates that
   the `$translations` table should be flipped such that the keys
   become the values and vice versa. Defaults to `false`.
