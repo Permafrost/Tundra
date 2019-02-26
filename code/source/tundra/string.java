@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-02-22 20:47:40 GMT+10:00
+// -----( CREATED: 2019-02-26 14:08:06 GMT+10:00
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -278,8 +278,9 @@ public final class string
 		try {
 		    IData operands = IDataHelper.get(cursor, "$operands", IData.class);
 		    String separator = IDataHelper.get(cursor, "$separator", String.class);
+		    Sanitization sanitization = IDataHelper.get(cursor, "$sanitization", Sanitization.class);
 
-		    String result = StringHelper.concatenate(operands, separator);
+		    String result = StringHelper.concatenate(operands, separator, sanitization);
 
 		    IDataHelper.put(cursor, "$string", result, false);
 		} finally {

@@ -15059,6 +15059,10 @@ string tables in the given `IData` document.
   list, and string table values can be specified for concatenation.
 * `$separator` is an optional string used to separate each list item
   in the resulting string. Defaults to an empty string.
+* `$sanitization` is an optional choice of whether to remove nulls,
+  nulls and blanks (strings that only contain whitespace
+  characters), or convert nulls to blanks. If not specified, no
+  sanitization is performed.
 
 #### Outputs:
 
