@@ -6,7 +6,7 @@
   <value name="svc_sigtype">java 3.5</value>
   <value name="node_comment">### tundra.support.content.log:start
 
-Enables logging of received content to ./logs/content.log.</value>
+Enables logging of received content to ./logs/tundra-content.log.</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

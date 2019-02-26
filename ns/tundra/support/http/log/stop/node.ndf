@@ -4,10 +4,11 @@
   <value name="svc_type">java</value>
   <value name="svc_subtype">unknown</value>
   <value name="svc_sigtype">java 3.5</value>
-  <value name="node_comment">### tundra.support.content.log:stop
+  <value name="node_comment">### tundra.support.http.log:stop
 
-Disables logging of received content to ./logs/tundra-content.log.</value>
-  <value name="stateless">yes</value>
+Disables logging of HTTP requests to ./logs/tundra-http.log.
+</value>
+  <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
