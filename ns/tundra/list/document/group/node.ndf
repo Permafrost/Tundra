@@ -179,7 +179,7 @@ level groupings.
 
 #### Outputs:
 
-* $list.groups is an IDat[]a document list containing one item per
+* $list.groups is an IData[] document list containing one item per
   each unique set of grouped value associated:
   * by is an IData document containing the keys and values that
     defined this group.
