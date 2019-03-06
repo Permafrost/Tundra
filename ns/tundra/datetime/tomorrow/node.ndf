@@ -159,17 +159,18 @@ Custom datetime patterns can be specified using
 #### Outputs:
 
 * $datetime is the current date plus one day formatted as a string
-  according to the given $pattern in the given $timezone.
+  according to
+ the given $pattern in the given $timezone.
 
 [ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;
 [java.text.SimpleDateFormat]: &lt;http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html&gt;
-[java.util.TimeZone]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/TimeZone.html&gt;</value>
+[java.util.TimeZone]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/TimeZone.html&gt;
+</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
-  <value name="template">tundra_datetime_tomorrow</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
