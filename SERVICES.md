@@ -3107,18 +3107,33 @@ formatted string, byte array, or input stream.
   serialized as a [CSV] string, byte array, or input stream.
   * `recordWithNoID` is the `IData[]` document list of records to be
     serialized, or a `String[]` string list of values to be serialized.
-* `$delimiter` is the character to use to delimit fields in the resulting
-  serialization. Defaults to ',' (comma), if not specified.
-* `$header?` is an optional boolean indicating if a header row should
-  be emitted. Defaults to `true`.
-* `$columns` is an optional list of column names to use in the header
-  row if applicable. If not specified, the `IData` keys are used as
-  the column names.
-* `$encoding` is an optional character set to use when encoding the
-  resulting text data to a byte array or input stream. Defaults to [UTF-8].
-* `$mode` is an optional choice of {stream, bytes, string} which
-  specifies the type of object `$content` is returned as. Defaults to
-  stream.
+* `$content.delimiter.character` is the character used to delimit
+  values in the given `$content`. Defaults to `,` (comma).
+* `$content.escape.character` is the character used to escape special
+  characters such as the delimiter in values. Defaults to `null`,
+  which disables escaping.
+* `$content.quote.character` is the character used to quote values
+  that contain special characters such as the delimiter or quote.
+  Defaults to `"` (double quote).
+* `$content.quote.mode` is an optional choice of value quoting mode.
+  Defaults to the `minimal` mode.
+  * `all`: quotes all values
+  * `minimal`: quotes values which contain special characters such as
+    the delimiter or quote character.
+  * `non-numeric`: quotes all non-numeric values.
+  * `none`: does not quote any values.
+* `$content.header?` is an optional boolean indicating if the first
+  row emitted should be a header row containing column heading.
+  Defaults to `true`.
+* `$content.headings` is an optional list of column headings to use in
+  the header row, if applicable. If not specified, the IData keys
+  are used as the column headings.
+* `$content.encoding` is an optional character set to use when
+  encoding the resulting text data to a byte array or input stream.
+  Defaults to [UTF-8].
+* `$content.mode` is an optional choice of stream, bytes, or string
+  which specifies the type of object `$content` is returned as.
+  Defaults to stream.
 
 #### Outputs:
 
@@ -3129,22 +3144,35 @@ formatted string, byte array, or input stream.
 
 ### tundra.csv:parse
 
-Parses [CSV] content specified as a string, byte array, or input stream
-into an `IData` document containing a list of records.
+Parses [CSV] content specified as a string, byte array, or input
+stream into an IData document containing a list of records.
 
 #### Inputs:
 
 * `$content` is a string, byte array, or input stream containing [CSV]
   content to be parsed.
-* `$delimiter` is the character used to delimit fields in the given
-  `$content`. Defaults to `,` (comma), if not specified.
-* `$header?` is an optional boolean indicating if the first row should
-  be read as a header row containing column names. If `false`, columns
-  will be named for their position with a one-based index. Defaults
-  to `true`.
-* `$encoding` is an optional character set to use when `$content` is
-  provided as a byte array or input stream to decode the contained text
-  data. Defaults to [UTF-8].
+* `$content.delimiter.character` is the character used to delimit
+  values in the given `$content`. Defaults to `,` (comma).
+* `$content.escape.character` is the character used to escape special
+  characters such as the delimiter in values. Defaults to `null`,
+  which disables escaping.
+* `$content.quote.character` is the character used to quote values
+  that contain special characters such as the delimiter or quote.
+  Defaults to `"` (double quote).
+* `$content.quote.mode` is an optional choice of value quoting mode.
+  Defaults to the `minimal` mode.
+  * `all`: quotes all values
+  * `minimal`: quotes values which contain special characters such as
+    the delimiter or quote character.
+  * `non-numeric`: quotes all non-numeric values.
+  * `none`: does not quote any values.
+* `$content.header?` is an optional boolean indicating if the first
+  row should be read as a header row containing column names. If
+  `false`, columns will be named for their position with a one-based
+  index. Defaults to `true`.
+* `$content.encoding` is an optional character set to use when
+  `$content` is provided as a byte array or input stream to decode the
+  contained text data. Defaults to [UTF-8].
 
 #### Outputs:
 

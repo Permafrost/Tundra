@@ -60,7 +60,63 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$delimiter</value>
+          <value name="field_name">$content.delimiter.character</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">string</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <null name="field_usereditable"/>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$content.escape.character</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">string</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <null name="field_usereditable"/>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$content.quote.character</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -88,7 +144,85 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$header?</value>
+          <value name="field_name">$content.quote.mode</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <array name="field_options" type="value" depth="1">
+            <value>minimal</value>
+            <value>non-numeric</value>
+            <value>none</value>
+            <value>all</value>
+          </array>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <array name="enumeration" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="primitiveType">0</value>
+                <value name="lexRep">all</value>
+                <value name="isList">false</value>
+              </record>
+              <record javaclass="com.wm.util.Values">
+                <value name="primitiveType">0</value>
+                <value name="lexRep">minimal</value>
+                <value name="isList">false</value>
+              </record>
+              <record javaclass="com.wm.util.Values">
+                <value name="primitiveType">0</value>
+                <value name="lexRep">non-numeric</value>
+                <value name="isList">false</value>
+              </record>
+              <record javaclass="com.wm.util.Values">
+                <value name="primitiveType">0</value>
+                <value name="lexRep">none</value>
+                <value name="isList">false</value>
+              </record>
+            </array>
+            <value name="contentType">1</value>
+            <value name="internalType">instance</value>
+            <value name="ct_class">com.wm.lang.schema.datatypev2.WmString</value>
+            <value name="name">string_customized</value>
+            <array name="parent-ancestors" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">anySimpleType</value>
+              </record>
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">anyType</value>
+              </record>
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">string</value>
+              </record>
+            </array>
+            <record name="baseType" javaclass="com.wm.util.Values">
+              <record name="whiteSpace" javaclass="com.wm.util.Values">
+                <record name="FacetWSCValue" javaclass="com.wm.util.Values">
+                  <value name="cDecimalValue">3</value>
+                </record>
+                <value name="facetFixed">false</value>
+              </record>
+              <value name="contentType">1</value>
+              <value name="internalType">instance</value>
+              <value name="ct_class">com.wm.lang.schema.datatypev2.WmString</value>
+              <value name="dataTypeVersion">dtVersion2</value>
+            </record>
+            <value name="dataTypeVersion">dtVersion2</value>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_usereditable">false</value>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$content.header?</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -119,7 +253,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$columns</value>
+          <value name="field_name">$content.headings</value>
           <value name="field_type">string</value>
           <value name="field_dim">1</value>
           <value name="field_opt">true</value>
@@ -148,7 +282,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$encoding</value>
+          <value name="field_name">$content.encoding</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -176,7 +310,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$mode</value>
+          <value name="field_name">$content.mode</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -282,19 +416,33 @@ formatted string, byte array, or input stream.
   serialized as a [CSV] string, byte array, or input stream.
   * recordWithNoID is the IData[] document list of records to be
     serialized, or a String[] string list of values to be serialized.
-* $delimiter is the character to use to delimit fields in the 
-  resulting serialization. Defaults to ',' (comma), if not specified.
-* $header? is an optional boolean indicating if a header row should
-  be emitted. Defaults to true.
-* $columns is an optional list of column names to use in the header
-  row if applicable. If not specified, the IData keys are used as
-  the column names.
-* $encoding is an optional character set to use when encoding the
-  resulting text data to a byte array or input stream. Defaults to 
-  [UTF-8].
-* $mode is an optional choice of {stream, bytes, string} which
-  specifies the type of object $content is returned as. Defaults to
-  stream.
+* $content.delimiter.character is the character used to delimit 
+  values in the given $content. Defaults to `,` (comma).
+* $content.escape.character is the character used to escape special 
+  characters such as the delimiter in values. Defaults to null, 
+  which disables escaping.
+* $content.quote.character is the character used to quote values 
+  that contain special characters such as the delimiter or quote. 
+  Defaults to `"` (double quote).
+* $content.quote.mode is an optional choice of value quoting mode.
+  Defaults to the minimal mode.
+  * all: quotes all values
+  * minimal: quotes values which contain special characters such as 
+    the delimiter or quote character.
+  * non-numeric: quotes all non-numeric values.
+  * none: does not quote any values.
+* $content.header? is an optional boolean indicating if the first 
+  row emitted should be a header row containing column heading. 
+  Defaults to true.
+* $content.headings is an optional list of column headings to use in 
+  the header row, if applicable. If not specified, the IData keys 
+  are used as the column headings.
+* $content.encoding is an optional character set to use when 
+  encoding the resulting text data to a byte array or input stream. 
+  Defaults to [UTF-8].
+* $content.mode is an optional choice of stream, bytes, or string 
+  which specifies the type of object $content is returned as. 
+  Defaults to stream.
 
 #### Outputs:
 
@@ -302,7 +450,8 @@ formatted string, byte array, or input stream.
   as [CSV] content.
 
 [CSV]: &lt;http://en.wikipedia.org/wiki/Comma-separated_values&gt;
-[UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;</value>
+[UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;
+</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

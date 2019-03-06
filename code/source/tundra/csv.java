@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-11-29T17:12:50.314
+// -----( CREATED: 2019-03-07 08:40:23 GMT+10:00
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -11,6 +11,7 @@ import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import java.io.IOException;
 import java.nio.charset.Charset;
+import org.apache.commons.csv.QuoteMode;
 import permafrost.tundra.data.IDataCSVParser;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.io.InputStreamHelper;
@@ -43,25 +44,31 @@ public final class csv
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
-		// [i] - record:1:optional recordWithNoID
-		// [i] field:0:optional $delimiter
-		// [i] field:0:optional $header? {&quot;true&quot;,&quot;false&quot;}
-		// [i] field:1:optional $columns
-		// [i] field:0:optional $encoding
-		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
+		// [i] - object:1:optional recordWithNoID
+		// [i] field:0:optional $content.delimiter.character
+		// [i] field:0:optional $content.escape.character
+		// [i] field:0:optional $content.quote.character
+		// [i] field:0:optional $content.quote.mode {"minimal","non-numeric","none","all"}
+		// [i] field:0:optional $content.header? {"true","false"}
+		// [i] field:1:optional $content.headings
+		// [i] field:0:optional $content.encoding
+		// [i] field:0:optional $content.mode {"stream","bytes","string"}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
 		    IData document = IDataHelper.get(cursor, "$document", IData.class);
-		    String delimiter = IDataHelper.get(cursor, "$delimiter", String.class);
-		    boolean hasHeader = IDataHelper.getOrDefault(cursor, "$header?", Boolean.class, true);
-		    String[] columns = IDataHelper.get(cursor, "$columns", String[].class);
-		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
-		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
+		    String delimiterCharacter = IDataHelper.first(cursor, String.class, "$content.delimiter.character", "$delimiter");
+		    String escapeCharacter = IDataHelper.get(cursor, "$content.escape.character", String.class);
+		    String quoteCharacter = IDataHelper.get(cursor, "$content.quote.character", String.class);
+		    QuoteMode quoteMode = IDataHelper.get(cursor, "$content.quote.mode", QuoteMode.class);
+		    boolean hasHeader = IDataHelper.firstOrDefault(cursor, Boolean.class, true, "$content.header?", "$header?");
+		    String[] columns = IDataHelper.first(cursor, String[].class, "$content.headings", "$columns");
+		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
+		    ObjectConvertMode mode = IDataHelper.first(cursor, ObjectConvertMode.class, "$content.mode", "$mode");
 
 		    if (document != null) {
-		        IDataCSVParser parser = new IDataCSVParser(delimiter, null, hasHeader, columns);
+		        IDataCSVParser parser = new IDataCSVParser(delimiterCharacter, escapeCharacter, quoteCharacter, quoteMode, null, hasHeader, columns);
 		        IDataHelper.put(cursor, "$content", ObjectHelper.convert(parser.emit(document, charset), charset, mode));
 		    }
 		} catch (IOException ex) {
@@ -83,21 +90,27 @@ public final class csv
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:0:optional $content
-		// [i] field:0:optional $delimiter
-		// [i] field:0:optional $header? {&quot;true&quot;,&quot;false&quot;}
-		// [i] field:0:optional $encoding
+		// [i] field:0:optional $content.delimiter.character
+		// [i] field:0:optional $content.escape.character
+		// [i] field:0:optional $content.quote.character
+		// [i] field:0:optional $content.quote.mode {"minimal","non-numeric","none","all"}
+		// [i] field:0:optional $content.header? {"true","false"}
+		// [i] field:0:optional $content.encoding
 		// [o] record:0:optional $document
 		// [o] - record:1:optional recordWithNoID
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
 		    Object content = IDataHelper.get(cursor, "$content");
-		    String delimiter = IDataHelper.get(cursor, "$delimiter", String.class);
-		    boolean hasHeader = IDataHelper.getOrDefault(cursor, "$header?", Boolean.class, true);
-		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
+		    String delimiterCharacter = IDataHelper.first(cursor, String.class, "$content.delimiter.character", "$delimiter");
+		    String escapeCharacter = IDataHelper.get(cursor, "$content.escape.character", String.class);
+		    String quoteCharacter = IDataHelper.get(cursor, "$content.quote.character", String.class);
+		    QuoteMode quoteMode = IDataHelper.get(cursor, "$content.quote.mode", QuoteMode.class);
+		    boolean hasHeader = IDataHelper.firstOrDefault(cursor, Boolean.class, true, "$content.header?", "$header?");
+		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
 
 		    if (content != null) {
-		        IDataCSVParser parser = new IDataCSVParser(delimiter, null, hasHeader);
+		        IDataCSVParser parser = new IDataCSVParser(delimiterCharacter, escapeCharacter, quoteCharacter, quoteMode, null, hasHeader);
 		        IDataHelper.put(cursor, "$document", parser.parse(InputStreamHelper.normalize(content, charset)));
 		    }
 		} catch (IOException ex) {
