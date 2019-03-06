@@ -8056,16 +8056,16 @@ array, or input stream.
   * `recordWithNoID` is an optional array such as an `IData[]` document
     list which if specified will be serialized directly as a [JSON]
     array.
-* `$encoding` is an optional character set to use when encoding the
-  resulting text data to a byte array or input stream. Defaults to
-  [UTF-8].
-* `$mode` is an optional choice of `stream`, `bytes`, or `string` which
-  specifies the type of object `$content` is returned as. Defaults to
-  `stream`.
-* `$minify?` is an optional boolean indicating whether the returned
-  [JSON] content should be minified by removing extraneous white
-  space. Defaults to `false`, and hence the returned content is pretty-
-  printed by default.
+* `$content.minify?` is an optional boolean indicating whether the
+  returned [JSON] content should be minified by removing extraneous
+  white space. Defaults to `false`, and hence the returned content is
+  pretty-printed by default.
+* `$content.encoding` is an optional character set to use when
+  encoding the resulting text data to a byte array or input stream.
+  Defaults to [UTF-8].
+* `$content.mode` is an optional choice of `stream`, `bytes`, or `string`
+  which specifies the type of object `$content` is returned as.
+  Defaults to `stream`.
 
 #### Outputs:
 
@@ -8083,9 +8083,9 @@ into an `IData` document.
 
 * `$content` is a string, byte array, or input stream containing [JSON]
   content to be parsed.
-* `$encoding` is an optional character set to use when `$content` is
-  provided as a byte array or input stream to decode the contained text
-  data. Defaults to [UTF-8].
+* `$content.encoding` is an optional character set to use when
+  `$content` is provided as a byte array or input stream to decode the
+  contained text data. Defaults to [UTF-8].
 
 #### Outputs:
 
