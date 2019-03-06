@@ -7364,14 +7364,14 @@ serialized to clean [HTML] table elements.
   string, byte array, or input stream.
   * `recordWithNoID` is an optional `IData[]` document list, which can
     be used to emit a document list rather than a document.
-* `$encoding` is an optional character set to use when encoding the
-  resulting text data to a byte array or input stream. Defaults to
-  [UTF-8].
-* `$depth` is an optional maximum depth to which child `IData` documents
-  and `IData[]` document lists are recursed.
-* `$mode` is an optional choice of stream, bytes, or string, which
-  specifies the type of object `$content` is returned as. Defaults
-  to stream.
+* `$content.depth` is an optional maximum depth to which child `IData`
+  documents and `IData[]` document lists are recursed.
+* `$content.encoding` is an optional character set to use when
+  encoding the resulting text data to a byte array or input stream.
+  Defaults to [UTF-8].
+* `$content.mode` is an optional choice of `stream`, `bytes`, or `string`,
+  which specifies the type of object `$content` is returned as. Defaults
+  to `stream`.
 
 #### Outputs:
 

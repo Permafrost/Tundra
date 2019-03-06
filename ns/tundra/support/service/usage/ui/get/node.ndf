@@ -569,6 +569,10 @@
       <value name="modifiable">true</value>
     </record>
   </record>
+  <value name="node_comment">### tundra.support.service.usage.ui:get
+
+Returns current service usage formatted for display in the Service 
+Usage web page.</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
