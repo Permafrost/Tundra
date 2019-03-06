@@ -6772,10 +6772,11 @@ Serializes an `IData` document as a Microsoft Excel spreadsheet.
     boolean, or formula, but instead should be treated as a literal
     string. Note the optional double-quotes are removed from the
     resulting cell value.
-* `$extension` is an optional choice of `xlsx` or `xls`, which specifies
-  the Microsoft Excel version to be used. Defaults to `xlsx`.
-* `$mode` is an optional choice of `stream` or `bytes` which specifies
-  the type of object `$content` is returned as. Defaults to `stream`.
+* `$content.extension` is an optional choice of `xlsx` or `xls`, which
+  specifies the Microsoft Excel version to be used. Defaults to `xlsx`.
+* `$content.mode` is an optional choice of `stream` or `bytes`, which
+  specifies the type of object `$content` is returned as. Defaults to
+  `stream`.
 
 #### Outputs:
 

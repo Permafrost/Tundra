@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2018-04-10 08:17:44 GMT+10:00
+// -----( CREATED: 2019-03-07 08:49:19 GMT+10:00
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -41,15 +41,15 @@ public final class excel
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
-		// [i] field:0:optional $extension {"xlsx","xls"}
-		// [i] field:0:optional $mode {"stream","bytes"}
+		// [i] field:0:optional $content.extension {"xlsx","xls"}
+		// [i] field:0:optional $content.mode {"stream","bytes"}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
 		    IData document = IDataHelper.get(cursor, "$document", IData.class);
-		    String extension = IDataHelper.getOrDefault(cursor, "$extension", String.class, "xlsx");
-		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
+		    String extension = IDataHelper.firstOrDefault(cursor, String.class, "xlsx", "$content.extension", "$extension");
+		    ObjectConvertMode mode = IDataHelper.first(cursor, ObjectConvertMode.class, "$content.mode", "$mode");
 
 		    if (document != null) {
 		        IDataExcelParser parser = new IDataExcelParser(extension.equals("xlsx"));
