@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2018-07-07 17:30:51 EST
-// -----( ON-HOST: 192.168.20.13
+// -----( CREATED: 2019-03-07 08:58:45 GMT+10:00
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -44,16 +44,16 @@ public final class hjson
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
 		// [i] - object:1:optional recordWithNoID
-		// [i] field:0:optional $encoding
-		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
+		// [i] field:0:optional $content.encoding
+		// [i] field:0:optional $content.mode {"stream","bytes","string"}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IData document = IDataHelper.get(cursor, "$document", IData.class);
-		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
-		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
-		
+		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
+		    ObjectConvertMode mode = IDataHelper.first(cursor, ObjectConvertMode.class, "$content.mode", "$mode");
+
 		    if (document != null) {
 		        IDataHelper.put(cursor, "$content", ObjectHelper.convert(new IDataHjsonParser().emit(document, charset), charset, mode), false);
 		    }
@@ -64,7 +64,7 @@ public final class hjson
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -76,15 +76,15 @@ public final class hjson
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:0:optional $content
-		// [i] field:0:optional $encoding
+		// [i] field:0:optional $content.encoding
 		// [o] record:0:optional $document
 		// [o] - object:1:optional recordWithNoID
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Object content = IDataHelper.get(cursor, "$content");
-		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
-		
+		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
+
 		    if (content != null) {
 		        IDataHelper.put(cursor, "$document", new IDataHjsonParser().parse(InputStreamHelper.normalize(content, charset), charset), false);
 		    }
@@ -95,7 +95,7 @@ public final class hjson
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 
