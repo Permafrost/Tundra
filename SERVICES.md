@@ -5318,12 +5318,15 @@ string, byte array, or input stream.
 #### Inputs:
 
 * `$document` is an `IData` document to be serialized.
-* `$encoding` is an optional character set used to encode the
+* `$content.class` is an optional choice of the format to use: either
+  `xml`, `json`, or `yaml`. When `xml` is chosen, the [IData XML] schema is
+  used. Defaults to `xml`.
+* `$content.encoding` is an optional character set used to encode the
   serialized document when returned as a byte array or input
   stream. Defaults to [UTF-8].
-* `$mode` is an optional choice of 'stream', 'bytes', or
-  'string', which determines the type of object returned by
-  this service. Defaults to 'stream'.
+* `$content.mode` is an optional choice of `stream`, `bytes`, or `string`,
+  which determines the type of object returned by this service.
+  Defaults to `stream`.
 
 #### Outputs:
 
@@ -5913,7 +5916,10 @@ input stream to an `IData` document.
 
 * `$content` is a string, byte array, or input stream containing a
   serialized `IData` document.
-* `$encoding` is an optional character set used to decode the
+* `$content.class` is an optional choice of the format to use: either
+  `xml`, `json`, or `yaml`. When `xml` is chosen, the [IData XML] schema is
+  used. Defaults to `xml`.
+* `$content.encoding` is an optional character set used to decode the
   `$content` when provided as a byte array or input stream. Defaults
   to [UTF-8].
 
