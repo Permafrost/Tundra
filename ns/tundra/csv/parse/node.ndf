@@ -324,7 +324,9 @@ stream into an IData document containing a list of records.
   which disables escaping.
 * $content.quote.character is the character used to quote values 
   that contain special characters such as the delimiter or quote. 
-  Defaults to `"` (double quote).
+  To disable quoting completely, set this to the literal string 
+  `$null` (not including the backticks). Defaults to `"` (double
+  quote).
 * $content.quote.mode is an optional choice of value quoting mode.
   Defaults to the minimal mode.
   * all: quotes all values
