@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2018-09-14 12:04:20 GMT+10:00
+// -----( CREATED: 2019-03-07 10:39:31 GMT+10:00
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -115,21 +115,21 @@ public final class xml
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:0:optional $node
-		// [i] field:0:optional $encoding
-		// [i] field:0:optional $mode {"stream","bytes","string"}
+		// [i] field:0:optional $content.encoding
+		// [i] field:0:optional $content.mode {"stream","bytes","string"}
 		// [o] object:0:optional $content
-		// [o] field:0:optional $encoding
+		// [o] field:0:optional $content.encoding
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
 		    Node node = IDataHelper.get(cursor, "$node", Node.class);
-		    Charset charset = IDataHelper.getOrDefault(cursor, "$encoding", Charset.class, CharsetHelper.DEFAULT_CHARSET);
-		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
+		    Charset charset = IDataHelper.firstOrDefault(cursor, Charset.class, CharsetHelper.DEFAULT_CHARSET, "$content.encoding", "$encoding");
+		    ObjectConvertMode mode = IDataHelper.first(cursor, ObjectConvertMode.class, "$content.mode", "$mode");
 
 		    Object content = ObjectHelper.convert(NodeHelper.emit(node, charset), mode);
 
 		    IDataHelper.put(cursor, "$content", content, false);
-		    if (content != null && !(content instanceof String)) IDataHelper.put(cursor, "$encoding", charset.name());
+		    if (content != null && !(content instanceof String)) IDataHelper.put(cursor, "$content.encoding", charset.name());
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -211,7 +211,7 @@ public final class xml
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:0:optional $content
-		// [i] field:0:optional $encoding
+		// [i] field:0:optional $content.encoding
 		// [i] record:0:optional $namespace
 		// [i] - field:0:optional default
 		// [o] record:0:optional $document
@@ -219,7 +219,7 @@ public final class xml
 
 		try {
 		    Object content = IDataHelper.get(cursor, "$content");
-		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
+		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
 		    NamespaceContext namespace = IDataHelper.get(cursor, "$namespace", IDataNamespaceContext.class);
 
 		    Node node = null;

@@ -16504,16 +16504,18 @@ webMethods parlance, to an [XML] string, byte array, or input stream.
 #### Inputs:
 
 * `$node` is an [org.w3c.dom.Node] object to be serialized.
-* `$encoding` is the character set used when serializing the content.
-  Defaults to [UTF-8].
-* `$mode` is a choice of `bytes`, `stream`, or `string`, and determines the
-  type of object `$content` is returned as. Defaults to `stream`.
+* `$content.encoding` is the character set used when serializing the
+  content. Defaults to [UTF-8].
+* `$content.mode` is a choice of `bytes`, `stream`, or `string`, and
+  determines the type of object `$content` is returned as. Defaults
+  to `stream`.
 
 #### Outputs:
 
 * `$content` is the given [org.w3c.dom.Node] object serialized to
   [XML].
-* `$encoding` is the character set used to serialize the content.
+* `$content.encoding` is the character set used to serialize the
+  content.
 
 ---
 
@@ -16581,9 +16583,9 @@ TODO: optionally reference an [XML] schema so that elements with a
 * `$content` is a string, byte array, input stream, [org.w3c.dom.Node]
   object (node in webMethods parlance), or [org.xml.sax.InputSource]
   object containing [XML] data.
-* `$encoding` is an optional character set to use when `$content` is
-  provided as a byte array or input stream to decode the contained
-  text data. Defaults to [UTF-8].
+* `$content.encoding` is an optional character set to use when
+  `$content` is provided as a byte array or input stream to decode
+  the contained text data. Defaults to [UTF-8].
 * `$namespace` is an optional list of namespace prefixes and the URIs
   they map to, used when parsing [XML] content with elements in one
   or more namespaces.
