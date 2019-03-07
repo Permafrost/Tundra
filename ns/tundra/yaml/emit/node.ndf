@@ -59,7 +59,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$encoding</value>
+          <value name="field_name">$content.encoding</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -87,7 +87,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$mode</value>
+          <value name="field_name">$content.mode</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -194,12 +194,12 @@ array, or input stream.
   * recordWithNoID is an optional object or array, which can be
     used to emit arbitrary objects or arrays at the top-level of the 
     resulting [YAML] content.
-* $encoding is an optional character set to use when encoding the
-  resulting text data to a byte array or input stream. Defaults to 
-  [UTF-8].
-* $mode is an optional choice of stream, bytes, or string which
-  specifies the type of object $content is returned as. Defaults to
-  stream.
+* $content.encoding is an optional character set to use when 
+  encoding the resulting text data to a byte array or input stream. 
+  Defaults to [UTF-8].
+* $content.mode is an optional choice of stream, bytes, or string 
+  which specifies the type of object $content is returned as. 
+  Defaults to stream.
 
 #### Outputs:
 
@@ -207,13 +207,13 @@ array, or input stream.
   content.
 
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;
-[YAML]: &lt;http://www.yaml.org&gt;</value>
+[YAML]: &lt;http://www.yaml.org&gt;
+</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
-  <value name="template">tundra_yaml_emit</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>

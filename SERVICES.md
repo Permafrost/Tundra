@@ -16733,12 +16733,12 @@ array, or input stream.
   * `recordWithNoID` is an optional object or array, which can be
     used to emit arbitrary objects or arrays at the top-level of the
     resulting [YAML] content.
-* `$encoding` is an optional character set to use when encoding the
-  resulting text data to a byte array or input stream. Defaults to
-  [UTF-8].
-* `$mode` is an optional choice of stream, bytes, or string which
-  specifies the type of object `$content` is returned as. Defaults to
-  stream.
+* `$content.encoding` is an optional character set to use when
+  encoding the resulting text data to a byte array or input stream.
+  Defaults to [UTF-8].
+* `$content.mode` is an optional choice of `stream`, `bytes`, or
+  `string` which specifies the type of object `$content` is returned
+  as. Defaults to `stream`.
 
 #### Outputs:
 
@@ -16756,9 +16756,9 @@ stream into an `IData` document.
 
 * `$content` is a string, byte array, or input stream containing [YAML]
   content to be parsed.
-* `$encoding` is an optional character set to use when `$content` is
-  provided as a byte array or input stream to decode the contained
-  text data. Defaults to [UTF-8].
+* `$content.encoding` is an optional character set to use when
+  `$content` is provided as a byte array or input stream to decode
+  the contained text data. Defaults to [UTF-8].
 
 #### Outputs:
 
