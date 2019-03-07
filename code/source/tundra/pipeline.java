@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2018-07-26 17:49:07 GMT+10:00
+// -----( CREATED: 2019-03-07 10:11:59 GMT+10:00
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -168,16 +168,16 @@ public final class pipeline
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $content.class {"xml","json","yaml"}
-		// [i] field:0:optional $encoding
-		// [i] field:0:optional $mode {"stream","bytes","string"}
+		// [i] field:0:optional $content.encoding
+		// [i] field:0:optional $content.mode {"stream","bytes","string"}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
 		    // remove input arguments so that they are not included in serialization of the pipeline
 		    String contentClass = IDataHelper.remove(cursor, "$content.class", String.class);
-		    Charset charset = IDataHelper.remove(cursor, "$encoding", Charset.class);
-		    ObjectConvertMode mode = IDataHelper.remove(cursor, "$mode", ObjectConvertMode.class);
+		    Charset charset = IDataHelper.remove(cursor, "$content.encoding", Charset.class);
+		    ObjectConvertMode mode = IDataHelper.remove(cursor, "$content.mode", ObjectConvertMode.class);
 
 		    Object content;
 
@@ -406,13 +406,13 @@ public final class pipeline
 		// @sigtype java 3.5
 		// [i] object:0:optional $content
 		// [i] field:0:optional $content.class {"xml","json","yaml"}
-		// [i] field:0:optional $encoding
+		// [i] field:0:optional $content.encoding
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
 		    Object content = IDataHelper.get(cursor, "$content");
 		    String contentClass = IDataHelper.get(cursor, "$content.class", String.class);
-		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
+		    Charset charset = IDataHelper.get(cursor, "$content.encoding", Charset.class);
 
 		    if (contentClass == null || contentClass.equals("xml")) {
 		        merge(pipeline, new IDataXMLParser().parse(InputStreamHelper.normalize(content, charset)));

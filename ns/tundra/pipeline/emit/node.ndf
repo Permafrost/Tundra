@@ -95,7 +95,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$encoding</value>
+          <value name="field_name">$content.encoding</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -123,7 +123,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$mode</value>
+          <value name="field_name">$content.mode</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -228,10 +228,12 @@ or input stream.
 * $content.class is an optional choice of the format to use: either 
   xml, json, or yaml. When xml is chosen, the [IData XML] schema is 
   used. Defaults to xml.
-* $encoding is an optional character set to use when $content is
-  returned as an input stream or byte array. Defaults to [UTF-8].
-* $mode is an optional choice of stream, bytes, or string,
-  and determines the type of content object returned.
+* $content.encoding is an optional character set to use when 
+  $content is returned as an input stream or byte array. Defaults to 
+  [UTF-8].
+* $content.mode is an optional choice of stream, bytes, or string,
+  and determines the type of content object returned. Defaults to 
+  stream.
 
 #### Outputs:
 
@@ -239,7 +241,8 @@ or input stream.
   the $mode selected) representing the encoded pipeline data.
 
 [IData XML]: &lt;http://documentation.softwareag.com/webmethods/wmsuites/wmsuite8-2_sp2/Integration_Server/8-2-SP1_Integration_Server_Java_API_Reference/com/wm/util/coder/IDataXMLCoder.html&gt;
-[UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;</value>
+[UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;
+</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

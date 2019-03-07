@@ -13070,10 +13070,12 @@ or input stream.
 
 * `$content.class` is an optional choice of the format to use: either
   `xml`, `json`, or `yaml`. Defaults to `xml`.
-* `$encoding` is an optional character set to use when `$content` is
-  returned as an input stream or byte array. Defaults to [UTF-8].
-* `$mode` is an optional choice of stream, bytes, or string,
-  and determines the type of content object returned.
+* `$content.encoding` is an optional character set to use when
+  `$content` is returned as an input stream or byte array. Defaults to
+  [UTF-8].
+* `$content.mode` is an optional choice of `stream`, `bytes`, or `string`,
+  and determines the type of content object returned. Defaults to
+  `stream`.
 
 #### Outputs:
 
@@ -13300,8 +13302,9 @@ and merges it into the pipeline.
   [IData XML] data to be parsed and merged into the pipeline.
 * `$content.class` is an optional choice of the format to use: either
   `xml`, `json`, or `yaml`. Defaults to `xml`.
-* `$encoding` is an optional character set to use when `$content` is
-  provided as a byte array or input stream. Defaults to [UTF-8].
+* `$content.encoding` is an optional character set to use when
+  `$content` is provided as a byte array or input stream. Defaults to
+  [UTF-8].
 
 ---
 
