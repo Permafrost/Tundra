@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-12-14T13:46:02.656
+// -----( CREATED: 2019-03-25 14:09:29 GMT+10:00
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -43,8 +43,8 @@ public final class duration
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $operands
-		// [i] field:0:optional $pattern.input {&quot;xml&quot;,&quot;nanoseconds&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
-		// [i] field:0:optional $pattern.output {&quot;xml&quot;,&quot;nanoseconds&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
+		// [i] field:0:optional $pattern.input {"xml","nanoseconds","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
+		// [i] field:0:optional $pattern.output {"xml","nanoseconds","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
 		// [o] field:0:required $duration
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -84,9 +84,9 @@ public final class duration
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $duration.first
-		// [i] field:0:optional $duration.first.pattern {&quot;xml&quot;,&quot;nanoseconds&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
+		// [i] field:0:optional $duration.first.pattern {"xml","nanoseconds","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
 		// [i] field:0:optional $duration.second
-		// [i] field:0:optional $duration.second.pattern {&quot;xml&quot;,&quot;nanoseconds&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
+		// [i] field:0:optional $duration.second.pattern {"xml","nanoseconds","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
 		// [o] field:0:required $lesser?
 		// [o] field:0:required $equal?
 		// [o] field:0:required $greater?
@@ -127,7 +127,7 @@ public final class duration
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:0:optional $datetime.monotonic.start
-		// [i] field:0:optional $duration.pattern {&quot;xml&quot;,&quot;nanoseconds&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
+		// [i] field:0:optional $duration.pattern {"xml","nanoseconds","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
 		// [o] object:0:optional $datetime.monotonic.start
 		// [o] object:0:optional $datetime.monotonic.end
 		// [o] field:0:required $duration.measured
@@ -158,11 +158,11 @@ public final class duration
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $duration.input
-		// [i] field:0:optional $pattern.input {&quot;xml&quot;,&quot;nanoseconds&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
+		// [i] field:0:optional $pattern.input {"xml","nanoseconds","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
 		// [i] field:1:optional $patterns.input
-		// [i] field:0:optional $pattern.output {&quot;xml&quot;,&quot;nanoseconds&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
+		// [i] field:0:optional $pattern.output {"xml","nanoseconds","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
 		// [i] field:0:optional $datetime
-		// [i] field:0:optional $datetime.pattern {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
+		// [i] field:0:optional $datetime.pattern {"datetime","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
 		// [o] record:0:optional $duration.output
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -212,10 +212,10 @@ public final class duration
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $duration
-		// [i] field:0:optional $pattern.input {&quot;xml&quot;,&quot;nanoseconds&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
-		// [i] field:0:optional $pattern.output {&quot;xml&quot;,&quot;nanoseconds&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
+		// [i] field:0:optional $pattern.input {"xml","nanoseconds","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
+		// [i] field:0:optional $pattern.output {"xml","nanoseconds","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
 		// [i] field:0:optional $datetime
-		// [i] field:0:optional $datetime.pattern {&quot;datetime&quot;,&quot;datetime.jdbc&quot;,&quot;date&quot;,&quot;date.jdbc&quot;,&quot;time&quot;,&quot;time.jdbc&quot;,&quot;milliseconds&quot;}
+		// [i] field:0:optional $datetime.pattern {"datetime","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
 		// [i] field:0:optional $factor
 		// [o] field:0:optional $duration
 		IDataCursor cursor = pipeline.getCursor();
@@ -228,7 +228,7 @@ public final class duration
 		    String datetimePattern = IDataHelper.get(cursor, "$datetime.pattern", String.class);
 		    BigDecimal factor = IDataHelper.get(cursor, "$factor", BigDecimal.class);
 
-		    duration = DurationHelper.emit(DurationHelper.multiply(DurationHelper.parse(duration, inPattern), factor, datetime, datetimePattern));
+		    duration = DurationHelper.emit(DurationHelper.multiply(DurationHelper.parse(duration, inPattern), factor, datetime, datetimePattern), outPattern);
 
 		    IDataHelper.put(cursor, "$duration", duration, false);
 		} finally {
@@ -248,8 +248,8 @@ public final class duration
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $duration
-		// [i] field:0:optional $pattern.input {&quot;xml&quot;,&quot;nanoseconds&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
-		// [i] field:0:optional $pattern.output {&quot;xml&quot;,&quot;nanoseconds&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
+		// [i] field:0:optional $pattern.input {"xml","nanoseconds","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
+		// [i] field:0:optional $pattern.output {"xml","nanoseconds","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
 		// [o] field:0:optional $duration
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -300,8 +300,8 @@ public final class duration
 		// @sigtype java 3.5
 		// [i] field:0:optional $duration.x
 		// [i] field:0:optional $duration.y
-		// [i] field:0:optional $pattern.input {&quot;xml&quot;,&quot;nanoseconds&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
-		// [i] field:0:optional $pattern.output {&quot;xml&quot;,&quot;nanoseconds&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
+		// [i] field:0:optional $pattern.input {"xml","nanoseconds","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
+		// [i] field:0:optional $pattern.output {"xml","nanoseconds","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
 		// [o] field:0:optional $duration
 		IDataCursor cursor = pipeline.getCursor();
 
