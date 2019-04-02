@@ -7,6 +7,7 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -20,6 +21,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$object</value>
           <value name="field_type">object</value>
           <value name="field_dim">0</value>
@@ -36,6 +38,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$encoding</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -63,6 +66,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$mode</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -71,6 +75,7 @@
             <value>stream</value>
             <value>bytes</value>
             <value>string</value>
+            <value>base64</value>
           </array>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <array name="enumeration" type="record" depth="1">
@@ -87,6 +92,11 @@
               <record javaclass="com.wm.util.Values">
                 <value name="primitiveType">0</value>
                 <value name="lexRep">string</value>
+                <value name="isList">false</value>
+              </record>
+              <record javaclass="com.wm.util.Values">
+                <value name="primitiveType">0</value>
+                <value name="lexRep">base64</value>
                 <value name="isList">false</value>
               </record>
             </array>
@@ -127,9 +137,11 @@
           <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -143,6 +155,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$object</value>
           <value name="field_type">object</value>
           <value name="field_dim">0</value>
@@ -152,6 +165,7 @@
           <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">### tundra.object:convert
@@ -165,15 +179,15 @@ byte array or input stream object.
   object. If null, this service does nothing.
 * $encoding is an optional character set to use when converting
   from or to a string. Defaults to [UTF-8].
-* $mode is an optional choice of stream, bytes, or
-  string, which determines the type of object returned by
-  this service. Defaults to stream.
+* $mode is an optional choice of stream, bytes, string, or 
+  base64-encoded string, which determines the type of object 
+  returned by this service. Defaults to stream.
 
 #### Outputs:
 
-* $object is the input object converted to be either a string,
-  byte array, or input stream as determined by the selected
-  $mode, or null if the input object was null.
+* $object is the input object converted to be either a string, 
+  base64-encoded string, byte array, or input stream as determined 
+  by the selected $mode, or null if the input object was null.
 
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;</value>
   <value name="stateless">yes</value>
@@ -191,10 +205,16 @@ byte array or input stream object.
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
 </Values>

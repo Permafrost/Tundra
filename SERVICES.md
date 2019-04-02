@@ -12850,15 +12850,15 @@ byte array or input stream object.
   object. If null, this service does nothing.
 * `$encoding` is an optional character set to use when converting
   from or to a string. Defaults to [UTF-8].
-* `$mode` is an optional choice of `stream`, `bytes`, or
-  `string`, which determines the type of object returned by
-  this service. Defaults to `stream`.
+* `$mode` is an optional choice of `stream`, `bytes`, `string`, or
+  `base64`-encoded string, which determines the type of object
+  returned by this service. Defaults to `stream`.
 
 #### Outputs:
 
 * `$object` is the input object converted to be either a string,
-  byte array, or input stream as determined by the selected
-  `$mode`, or null if the input object was null.
+  base64-encoded string, byte array, or input stream as determined
+  by the selected $mode, or null if the input object was null.
 
 ---
 
