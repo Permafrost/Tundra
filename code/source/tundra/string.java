@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-03-30 17:17:31 EST
+// -----( CREATED: 2019-04-03 20:59:21 EST
 // -----( ON-HOST: 192.168.20.19
 
 import com.wm.data.*;
@@ -17,9 +17,10 @@ import permafrost.tundra.flow.variable.SubstitutionHelper;
 import permafrost.tundra.flow.variable.SubstitutionType;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.data.IDataMap;
-import permafrost.tundra.data.transform.Splitter;
+import permafrost.tundra.data.transform.string.Slicer;
+import permafrost.tundra.data.transform.string.Splitter;
+import permafrost.tundra.data.transform.string.Translator;
 import permafrost.tundra.data.transform.TransformerMode;
-import permafrost.tundra.data.transform.Translator;
 import permafrost.tundra.lang.ArrayHelper;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.CharsetHelper;
@@ -789,18 +790,24 @@ public final class string
 		// --- <<IS-START(slice)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
+		// [i] record:0:optional $operands
 		// [i] field:0:optional $string
 		// [i] field:0:optional $index
 		// [i] field:0:optional $length
-		// [o] field:0:optional $string
+		// [o] record:0:optional $results
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String string = IDataHelper.get(cursor, "$string", String.class);
+		    IData operands = IDataHelper.get(cursor, "$operands", IData.class);
 		    int index = IDataHelper.getOrDefault(cursor, "$index", Integer.class, 0);
-		    int length = IDataHelper.getOrDefault(cursor, "$length", Integer.class, string == null ? 0 : (index < 0 ? -string.length() : string.length()));
+		    int length = IDataHelper.getOrDefault(cursor, "$length", Integer.class, index < 0 ? Integer.MIN_VALUE - index : Integer.MAX_VALUE - index);
 		
-		    if (string != null) IDataHelper.put(cursor, "$string", StringHelper.slice(string, index, length));
+		    if (operands == null) {
+		        String string = IDataHelper.get(cursor, "$string", String.class);
+		        IDataHelper.put(cursor, "$string", StringHelper.slice(string, index, length), false);
+		    } else {
+		        IDataHelper.put(cursor, "$results", IDataHelper.transform(operands, new Slicer(index, length)), false);
+		    }
 		} finally {
 		    cursor.destroy();
 		}

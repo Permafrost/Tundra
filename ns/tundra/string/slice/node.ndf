@@ -7,6 +7,7 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -17,28 +18,20 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$string</value>
-          <value name="field_type">string</value>
+          <value name="is_public">false</value>
+          <value name="field_name">$operands</value>
+          <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
-          <record name="field_content_type" javaclass="com.wm.util.Values">
-            <value name="contentType">1</value>
-            <value name="internalType">reference</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-            <array name="targetNames" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">string</value>
-              </record>
-            </array>
-          </record>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
+          <array name="rec_fields" type="record" depth="1">
+          </array>
+          <value name="modifiable">true</value>
         </record>
         <record javaclass="com.wm.util.Values">
           <value name="node_type">record</value>
@@ -48,6 +41,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$index</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -77,6 +71,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$length</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -99,9 +94,11 @@
           <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -112,73 +109,69 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$string</value>
-          <value name="field_type">string</value>
+          <value name="is_public">false</value>
+          <value name="field_name">$results</value>
+          <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
-          <record name="field_content_type" javaclass="com.wm.util.Values">
-            <value name="contentType">1</value>
-            <value name="internalType">reference</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-            <array name="targetNames" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">string</value>
-              </record>
-            </array>
-          </record>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
+          <array name="rec_fields" type="record" depth="1">
+          </array>
+          <value name="modifiable">true</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">### tundra.string:slice
 
-Returns a new string which is a subset of the characters in the given
-string.
+Takes a slice or subset of the characters in the given arbitrarily 
+specified String, String[], and String[][] values.
 
-Examples:
-
-    slice($string = "hamburger", $index =  0, $length =  3) == "ham"
-    slice($string = "hamburger", $index =  2, $length = -3) == "ham"
-    slice($string = "hamburger", $index = -7, $length = -3) == "ham"
-    slice($string = "hamburger", $index =  4, $length =  4) == "urge"
-    slice($string = "hamburger", $index =  7, $length = -4) == "urge"
-    slice($string = "hamburger", $index = -2, $length = -4) == "urge"
+For example, given a string "hamburger":
+1. With $index =  0, and $length =  3, the slice "ham" is returned.
+2. With $index =  2, and $length = -3, the slice "ham" is returned.
+3. With $index = -7, and $length = -3, the slice "ham" is returned.
+4. With $index =  4, and $length =  4, the slice "urge" is returned.
+5. With $index =  7, and $length = -4, the slice "urge" is returned.
+6. With $index = -2, and $length = -4, the slice "urge" is returned.
 
 #### Inputs:
 
-* $string is the string to be sliced.
-* $index is an optional zero-based index from which to take the slice.
-  Supports forward and reverse indexing where a positive index is a
-  normal zero-based array index from left to right, and a negative index
-  is a reverse array index from right to left (for example, an index of
-  -1 is the last item in the list, and an index of -2 is the second last
-  item in the list). If not specified, defaults to 0.
-* $length is the number of characters to include in the slice. Supports
-  positive and negative lengths where a positive length will slice from
-  left to right, and a negative length will slice from right to left.
-  If not specified, a left to right slice containing all remaining
-  characters after $index will be returned when $index is positive,
-  or a right to left slice containing all remaining characters before
-  $index will be returned when $index is negative.
+* $operands is an IData document containing arbitrarily specified 
+  String, String[], and String[][] values.
+* $index is an optional zero-based index from which to take the 
+  slice. Supports forward and reverse indexing where a positive 
+  index is a normal zero-based array index from left to right, and a 
+  negative index is a reverse array index from right to left (for 
+  example, an index of -1 is the last item in the list, and an index 
+  of -2 is the second last item in the list). If not specified, 
+  defaults to 0.
+* $length is the number of characters to include in the slice. 
+  Supports positive and negative lengths where a positive length 
+  will slice from left to right, and a negative length will slice 
+  from right to left. If not specified, a left to right slice 
+  containing all remaining characters after $index will be returned 
+  when $index is positive, or a right to left slice containing all 
+  remaining characters before $index will be returned when $index is 
+  negative.
 
 #### Outputs:
 
-* $string is the desired subset or slice of the given string.
-
+* $results is an IData document containing the subset or slice of 
+  the given String, String[], and String[][] values.
 </value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template">tundra_string_slice</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
@@ -189,10 +182,16 @@ Examples:
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
 </Values>
