@@ -4951,8 +4951,8 @@ words in strings in the given `IData` document.
 * `$capitalize` is an optional choice that determines whether all
   words or only the first word is capitalized. Defaults to
   capitalizing all words, if not specified:
-  * all words
-  * first word
+  * `all words`
+  * `first word`
 * `$recurse?` is an optional boolean indicating if embedded `IData`
   documents and `IData[]` document lists should also have string
   values capitalized. Defaults to `false`.
@@ -8552,8 +8552,8 @@ Capitalizes all string values in the given `IData[]` document list.
 * `$capitalize` is an optional choice that determines whether all
   words or only the first word is capitalized. Defaults to
   capitalizing all words, if not specified:
-  * all words
-  * first word
+  * `all words`
+  * `first word`
 * `$recurse?` is an optional boolean indicating if embedded `IData`
   documents and `IData[]` document lists should also have string
   values capitalized. Defaults to `false`.
@@ -11105,11 +11105,11 @@ words in each of the given strings.
 #### Inputs:
 
 * `$list` is the list of strings to be capitalized.
-* `$mode` is an optional choice that determines whether all words or
-  only the first word is capitalized. Defaults to capitalizing all
-  words, if not specified:
-  * all words
-  * first word
+* `$capitalize` is an optional choice that determines whether all
+  words or only the first word is capitalized. Defaults to
+  capitalizing all words, if not specified:
+  * `all words`
+  * `first word`
 
 #### Outputs:
 
@@ -14933,20 +14933,23 @@ this service should only be used by one thread per
 ### tundra.string:capitalize
 
 Capitalizes the first character in either the first word or all
-words in the given string.
+words in the given arbitrarily specified `String`, `String[]`, or
+`String[][]` values.
 
 #### Inputs:
 
-* `$string` is the string to be capitalized.
-* `$mode` is an optional choice that determines whether all words or
-  only the first word is capitalized. Defaults to capitalizing all
-  words, if not specified:
-  * all words
-  * first word
+* `$operands` is an `IData` document containing arbitrarily specified
+  `String`, `String[]`, or `String[][]` values.
+* `$capitalize` is an optional choice that determines whether all
+  words or only the first word is capitalized. Defaults to
+  capitalizing all words, if not specified:
+  * `all words`
+  * `first word`
 
 #### Outputs:
 
-* `$string` is the given string capitalized.
+* `$results` is an `IData` document containing the capitalized `String`,
+  `String[]`, or `String[][]` values.
 
 ---
 
