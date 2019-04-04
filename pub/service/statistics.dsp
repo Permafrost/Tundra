@@ -48,7 +48,7 @@
               <caption>Service Invocation Statistics%ifvar $context/statistics.length -notempty% &mdash; %ifvar $context/statistics.length equals('1')%1 service sampled%else%%value $context/statistics.length encode(xml)% services sampled%endif%%ifvar $context/sampling.start -notempty% since %value $context/sampling.start encode(xml)%%endif%</caption>
               <thead>
                 <tr>
-                  <th>Service</th>
+                  <th class="text-left sorttable_sorted" width="35%">Service</th>
                   <th class="text-right" width="10%">Minimum Duration<br/><small>(seconds)</small></th>
                   <th class="text-right" width="10%">Average Duration<br/><small>(seconds)</small></th>
                   <th class="text-right" width="10%">Standard Deviation<br/><small>(seconds)</small></th>

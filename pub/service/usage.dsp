@@ -58,8 +58,8 @@
                 </tr>
               </thead>
               %ifvar $context/monitoring.started? equals('true')%
-              <tbody>
               %loop $context/invocations.current%
+              <tbody>
                 <tr class="rowspan">
                   <td rowspan="%ifvar callstack.length equals('0')%1%else%%value callstack.length encode(xml)%%endif%">%value thread.id encode(xml)%</td>
                   <td rowspan="%ifvar callstack.length equals('0')%1%else%%value callstack.length encode(xml)%%endif%">%value thread.name encode(xml)%</td>
@@ -95,8 +95,8 @@
                   %loopsep '</tr><tr>'%
                   %endloop%
                 </tr>
-              %endloop%
               </tbody>
+              %endloop%
               %endif%
               <tfoot>
                 <tr>
