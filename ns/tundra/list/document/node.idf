@@ -65,6 +65,8 @@ bmV3IElEYXRhW3VubWF0Y2hlZC5zaXplKCldKTsKCiAgICByZXR1cm4gb3V0cHV0Owp9</value>
     <value>java.util.List</value>
     <value>java.util.Locale</value>
     <value>permafrost.tundra.data.IDataHelper</value>
+    <value>permafrost.tundra.data.transform.string.Condenser</value>
+    <value>permafrost.tundra.data.transform.Transformer</value>
     <value>permafrost.tundra.data.transform.TransformerMode</value>
     <value>permafrost.tundra.flow.variable.SubstitutionHelper</value>
     <value>permafrost.tundra.flow.variable.SubstitutionType</value>

@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-02-03 10:51:03 EST
-// -----( ON-HOST: 192.168.20.18
+// -----( CREATED: 2019-04-06 12:13:03 EST
+// -----( ON-HOST: 192.168.20.19
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -14,6 +14,8 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Locale;
 import permafrost.tundra.data.IDataHelper;
+import permafrost.tundra.data.transform.string.Condenser;
+import permafrost.tundra.data.transform.Transformer;
 import permafrost.tundra.data.transform.TransformerMode;
 import permafrost.tundra.flow.variable.SubstitutionHelper;
 import permafrost.tundra.flow.variable.SubstitutionType;
@@ -163,15 +165,17 @@ public final class document
 		// @sigtype java 3.5
 		// [i] record:1:optional $list
 		// [i] field:0:optional $recurse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $mode {&quot;values&quot;,&quot;keys&quot;,&quot;keys and values&quot;}
 		// [o] record:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		    IData[] input = IDataHelper.get(cursor, "$list", IData[].class);
 		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
+		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
 		
 		    if (input != null) {
-		        IData[] output = IDataHelper.condense(input, recurse);
+		        IData[] output = Transformer.transform(input, new Condenser(mode, recurse));
 		        if (output == null) output = new IData[0];
 		        IDataHelper.put(cursor, "$list", output);
 		    }

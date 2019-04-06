@@ -122,6 +122,8 @@ dWxsLCB2YWx1ZUlucHV0LCBudWxsLCB2YWx1ZUNsYXNzLCByZWN1cnNlKTsKfQ==</value>
     <value>permafrost.tundra.data.IDataXMLParser</value>
     <value>permafrost.tundra.data.IDataYAMLParser</value>
     <value>permafrost.tundra.data.ImmutableIData</value>
+    <value>permafrost.tundra.data.transform.string.Condenser</value>
+    <value>permafrost.tundra.data.transform.Transformer</value>
     <value>permafrost.tundra.data.transform.TransformerMode</value>
     <value>permafrost.tundra.flow.ConditionEvaluator</value>
     <value>permafrost.tundra.flow.variable.SubstitutionHelper</value>

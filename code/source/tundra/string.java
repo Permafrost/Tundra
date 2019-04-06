@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-04-03 20:59:21 EST
+// -----( CREATED: 2019-04-06 12:04:03 EST
 // -----( ON-HOST: 192.168.20.19
 
 import com.wm.data.*;
@@ -17,9 +17,11 @@ import permafrost.tundra.flow.variable.SubstitutionHelper;
 import permafrost.tundra.flow.variable.SubstitutionType;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.data.IDataMap;
+import permafrost.tundra.data.transform.string.Condenser;
 import permafrost.tundra.data.transform.string.Slicer;
 import permafrost.tundra.data.transform.string.Splitter;
 import permafrost.tundra.data.transform.string.Translator;
+import permafrost.tundra.data.transform.Transformer;
 import permafrost.tundra.data.transform.TransformerMode;
 import permafrost.tundra.lang.ArrayHelper;
 import permafrost.tundra.lang.BooleanHelper;
@@ -308,13 +310,19 @@ public final class string
 		// --- <<IS-START(condense)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional $string
-		// [o] field:0:optional $string
+		// [i] record:0:optional $operands
+		// [o] record:0:optional $results
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String string = IDataHelper.get(cursor, "$string", String.class);
-		    IDataHelper.put(cursor, "$string", StringHelper.condense(string), false);
+		    IData operands = IDataHelper.get(cursor, "$operands", IData.class);
+		
+		    if (operands == null) {
+		        String string = IDataHelper.get(cursor, "$string", String.class);
+		        IDataHelper.put(cursor, "$string", StringHelper.condense(string), false);
+		    } else {
+		        IDataHelper.put(cursor, "$results", Transformer.transform(operands, new Condenser(true)), false);
+		    }
 		} finally {
 		    cursor.destroy();
 		}
@@ -791,7 +799,6 @@ public final class string
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $operands
-		// [i] field:0:optional $string
 		// [i] field:0:optional $index
 		// [i] field:0:optional $length
 		// [o] record:0:optional $results

@@ -5014,14 +5014,17 @@ trims leading and trailing whitespace.
 #### Inputs:
 
 * `$document` is an `IData` document to be condensed.
-* `$recurse?` is an optional boolean indicating if embedded
-  `IData` documents and `IData[]` document lists should also
-  be condensed. Defaults to `false`.
+* `$recurse?` is an optional boolean indicating if embedded `IData`
+  documents and `IData[]` document lists should also be condensed.
+  Defaults to `false`.
+* `$mode` is an optional choice for what should be converted: either
+  the values, the keys, or both the keys and the values. Defaults to
+  values.
 
 #### Outputs:
 
-* `$document` is the resulting `IData` document with all string values
-  condensed into single lines.
+* `$document` is the resulting `IData` document with `String`, `String[]`,
+  and `String[][]` values condensed into single lines.
 
 ---
 
@@ -8631,14 +8634,17 @@ trims leading and trailing whitespace.
 #### Inputs:
 
 * `$list` is an `IData[]` document list to be condensed.
-* `$recurse?` is an optional boolean indicating if embedded
-  `IData` documents and `IData[]` document lists should also
-  be condensed. Defaults to `false`.
+* `$recurse?` is an optional boolean indicating if embedded `IData`
+  documents and `IData[]` document lists should also be condensed.
+  Defaults to `false`.
+* `$mode` is an optional choice for what should be converted: either
+  the values, the keys, or both the keys and the values. Defaults to
+  values.
 
 #### Outputs:
 
-* `$list` is the resulting `IData[]` document list with all string
-  values condensed into single lines.
+* `$list` is the resulting `IData[]` document list with `String`,
+  `String[]`, and `String[][]` values condensed into single lines.
 
 ---
 
@@ -15118,15 +15124,18 @@ string tables in the given `IData` document.
 
 Replaces runs of one or more whitespace characters (space, tab,
 carriage return, line feed) with a single space character, then
-trims leading and trailing whitespace.
+trims leading and trailing whitespace in arbitrarily specified
+`String`, `String[]`, or `String[][]` values.
 
 #### Inputs:
 
-* `$string` is a string to be condensed into a single line.
+* `$operands` is an `IData` document containing arbitrarily specified
+  `String`, `String[]`, and `String[][]` values.
 
 #### Outputs:
 
-* `$string` is the given string condensed into a single line.
+* `$results` is an `IData` document containing the condensed `String`,
+  `String[]`, and `String[][]` values.
 
 ---
 
