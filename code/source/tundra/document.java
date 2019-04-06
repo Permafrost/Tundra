@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-04-06 12:07:58 EST
+// -----( CREATED: 2019-04-06 19:45:16 EST
 // -----( ON-HOST: 192.168.20.19
 
 import com.wm.data.*;
@@ -20,7 +20,21 @@ import permafrost.tundra.data.IDataJSONParser;
 import permafrost.tundra.data.IDataXMLParser;
 import permafrost.tundra.data.IDataYAMLParser;
 import permafrost.tundra.data.ImmutableIData;
+import permafrost.tundra.data.transform.string.Blankifier;
+import permafrost.tundra.data.transform.string.Capitalizer;
 import permafrost.tundra.data.transform.string.Condenser;
+import permafrost.tundra.data.transform.string.Legalizer;
+import permafrost.tundra.data.transform.string.Lowercaser;
+import permafrost.tundra.data.transform.string.Nullifier;
+import permafrost.tundra.data.transform.string.Prefixer;
+import permafrost.tundra.data.transform.string.Replacer;
+import permafrost.tundra.data.transform.string.Squeezer;
+import permafrost.tundra.data.transform.string.Stringifier;
+import permafrost.tundra.data.transform.string.Suffixer;
+import permafrost.tundra.data.transform.string.Trimmer;
+import permafrost.tundra.data.transform.string.Unprefixer;
+import permafrost.tundra.data.transform.string.Unsuffixer;
+import permafrost.tundra.data.transform.string.Uppercaser;
 import permafrost.tundra.data.transform.Transformer;
 import permafrost.tundra.data.transform.TransformerMode;
 import permafrost.tundra.flow.ConditionEvaluator;
@@ -37,6 +51,8 @@ import permafrost.tundra.lang.ObjectHelper;
 import permafrost.tundra.lang.Sanitization;
 import permafrost.tundra.math.IntegerHelper;
 import permafrost.tundra.server.ServiceHelper;
+import permafrost.tundra.util.regex.PatternHelper;
+import permafrost.tundra.util.regex.ReplacementHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class document
@@ -99,7 +115,7 @@ public final class document
 		    IData document = IDataHelper.get(cursor, "$document", IData.class);
 		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
 		
-		    if (document != null) IDataHelper.put(cursor, "$document", IDataHelper.blankify(document, recurse));
+		    IDataHelper.put(cursor, "$document", Transformer.transform(document, new Blankifier(recurse)), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -129,7 +145,7 @@ public final class document
 		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
 		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
 		
-		    IDataHelper.put(cursor, "$document", IDataHelper.capitalize(document, firstWordOnly, mode, recurse), false);
+		    IDataHelper.put(cursor, "$document", Transformer.transform(document, new Capitalizer(mode, firstWordOnly, recurse)), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -766,7 +782,7 @@ public final class document
 		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
 		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
 		
-		    IDataHelper.put(cursor, "$document", IDataHelper.legalize(document, mode, recurse), false);
+		    IDataHelper.put(cursor, "$document", Transformer.transform(document, new Legalizer(mode, recurse)), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -857,7 +873,7 @@ public final class document
 		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
 		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
 		
-		    IDataHelper.put(cursor, "$document", IDataHelper.lowercase(document, locale, mode, recurse), false);
+		    IDataHelper.put(cursor, "$document", Transformer.transform(document, new Lowercaser(mode, locale, recurse)), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -979,7 +995,7 @@ public final class document
 		    IData document = IDataHelper.get(cursor, "$document", IData.class);
 		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
 		
-		    IDataHelper.put(cursor, "$document", IDataHelper.nullify(document, recurse), false);
+		    IDataHelper.put(cursor, "$document", Transformer.transform(document, new Nullifier(recurse)), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -1083,7 +1099,7 @@ public final class document
 		    boolean force = IDataHelper.getOrDefault(cursor, "$force?", Boolean.class, false);
 		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
 		
-		    if (prefix != null) IDataHelper.put(cursor, "$document", IDataHelper.prefix(document, prefix, force, mode, recurse), false);
+		    if (prefix != null) IDataHelper.put(cursor, "$document", Transformer.transform(document, new Prefixer(mode, prefix, force, recurse)), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -1147,7 +1163,7 @@ public final class document
 		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
 		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
 		
-		    IDataHelper.put(cursor, "$document", IDataHelper.remove(document, pattern, literalPattern, firstOccurrence, mode, recurse), false);
+		    IDataHelper.put(cursor, "$document", Transformer.transform(document, new Replacer(mode, PatternHelper.compile(pattern, literalPattern), "", firstOccurrence, recurse)), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -1215,7 +1231,7 @@ public final class document
 		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
 		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
 		
-		    IDataHelper.put(cursor, "$document", IDataHelper.replace(document, pattern, literalPattern, replacement, literalReplacement, firstOccurrence, mode, recurse), false);
+		    IDataHelper.put(cursor, "$document", Transformer.transform(document, new Replacer(mode, PatternHelper.compile(pattern, literalPattern), ReplacementHelper.quote(replacement, literalReplacement), firstOccurrence, recurse)), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -1268,7 +1284,7 @@ public final class document
 		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
 		
 		    if (input != null) {
-		        IData output = IDataHelper.squeeze(input, recurse);
+		        IData output = Transformer.transform(input, new Squeezer(recurse));
 		        if (output == null) output = IDataFactory.create();
 		        IDataHelper.put(cursor, "$document", output);
 		    }
@@ -1297,7 +1313,7 @@ public final class document
 		    IData document = IDataHelper.get(cursor, "$document", IData.class);
 		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
 		
-		    IDataHelper.put(cursor, "$document", IDataHelper.stringify(document, recurse), false);
+		    IDataHelper.put(cursor, "$document", Transformer.transform(document, new Stringifier(recurse)), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -1359,7 +1375,7 @@ public final class document
 		    boolean force = IDataHelper.getOrDefault(cursor, "$force?", Boolean.class, false);
 		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
 		
-		    if (suffix != null) IDataHelper.put(cursor, "$document", IDataHelper.suffix(document, suffix, force, mode, recurse), false);
+		    if (suffix != null) IDataHelper.put(cursor, "$document", Transformer.transform(document, new Suffixer(mode, suffix, force, recurse)), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -1387,7 +1403,7 @@ public final class document
 		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
 		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
 		
-		    IDataHelper.put(cursor, "$document", IDataHelper.trim(document, mode, recurse), false);
+		    IDataHelper.put(cursor, "$document", Transformer.transform(document, new Trimmer(mode, recurse)), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -1446,7 +1462,7 @@ public final class document
 		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
 		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
 		
-		    if (prefix != null) IDataHelper.put(cursor, "$document", IDataHelper.unprefix(document, prefix, mode, recurse), false);
+		    if (prefix != null) IDataHelper.put(cursor, "$document", Transformer.transform(document, new Unprefixer(mode, prefix, recurse)), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -1477,7 +1493,7 @@ public final class document
 		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
 		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
 		
-		    if (suffix != null) IDataHelper.put(cursor, "$document", IDataHelper.unsuffix(document, suffix, mode, recurse), false);
+		    if (suffix != null) IDataHelper.put(cursor, "$document", Transformer.transform(document, new Unsuffixer(mode, suffix, recurse)), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -1510,7 +1526,7 @@ public final class document
 		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
 		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
 		
-		    IDataHelper.put(cursor, "$document", IDataHelper.uppercase(document, locale, mode, recurse), false);
+		    IDataHelper.put(cursor, "$document", Transformer.transform(document, new Uppercaser(mode, locale, recurse)), false);
 		} finally {
 		    cursor.destroy();
 		}

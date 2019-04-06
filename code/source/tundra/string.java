@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-04-06 12:04:03 EST
+// -----( CREATED: 2019-04-06 20:01:40 EST
 // -----( ON-HOST: 192.168.20.19
 
 import com.wm.data.*;
@@ -17,10 +17,12 @@ import permafrost.tundra.flow.variable.SubstitutionHelper;
 import permafrost.tundra.flow.variable.SubstitutionType;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.data.IDataMap;
+import permafrost.tundra.data.transform.string.Capitalizer;
 import permafrost.tundra.data.transform.string.Condenser;
 import permafrost.tundra.data.transform.string.Slicer;
 import permafrost.tundra.data.transform.string.Splitter;
 import permafrost.tundra.data.transform.string.Translator;
+import permafrost.tundra.data.transform.string.Truncator;
 import permafrost.tundra.data.transform.Transformer;
 import permafrost.tundra.data.transform.TransformerMode;
 import permafrost.tundra.lang.ArrayHelper;
@@ -121,7 +123,7 @@ public final class string
 		        String input = IDataHelper.get(cursor, "$string", String.class);
 		        IDataHelper.put(cursor, "$string", StringHelper.capitalize(input, firstWordOnly), false);
 		    } else {
-		        IDataHelper.put(cursor, "$results", IDataHelper.capitalize(operands, firstWordOnly, TransformerMode.VALUES, true), false);
+		        IDataHelper.put(cursor, "$results", Transformer.transform(operands, new Capitalizer(TransformerMode.VALUES, firstWordOnly, true)), false);
 		    }
 		} finally {
 		    cursor.destroy();
@@ -813,7 +815,7 @@ public final class string
 		        String string = IDataHelper.get(cursor, "$string", String.class);
 		        IDataHelper.put(cursor, "$string", StringHelper.slice(string, index, length), false);
 		    } else {
-		        IDataHelper.put(cursor, "$results", IDataHelper.transform(operands, new Slicer(index, length)), false);
+		        IDataHelper.put(cursor, "$results", Transformer.transform(operands, new Slicer(index, length)), false);
 		    }
 		} finally {
 		    cursor.destroy();
@@ -842,11 +844,11 @@ public final class string
 		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
 		    boolean literal = IDataHelper.getOrDefault(cursor, "$pattern.literal?", Boolean.class, IDataHelper.getOrDefault(cursor, "$literal?", Boolean.class, false));
 		
-		    if (operands != null) {
-		        IDataHelper.put(cursor, "$results", IDataHelper.transform(operands, new Splitter(pattern, literal)), false);
-		    } else {
+		    if (operands == null) {
 		        String string = IDataHelper.get(cursor, "$string", String.class);
 		        IDataHelper.put(cursor, "$list", StringHelper.split(string, pattern, literal), false);
+		    } else {
+		        IDataHelper.put(cursor, "$results", Transformer.transform(operands, new Splitter(pattern, literal)), false);
 		    }
 		} finally {
 		    cursor.destroy();
@@ -949,7 +951,7 @@ public final class string
 		    IData translations = IDataHelper.get(cursor, "$translations", IData.class);
 		    boolean reverse = IDataHelper.getOrDefault(cursor, "$reverse?", Boolean.class, false);
 		
-		    IDataHelper.put(cursor, "$results", IDataHelper.transform(operands, new Translator(translations, reverse)), false);
+		    IDataHelper.put(cursor, "$results", Transformer.transform(operands, new Translator(translations, reverse)), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -1000,7 +1002,7 @@ public final class string
 		    int length = IDataHelper.get(cursor, "$length", Integer.class);
 		    boolean ellipsis = IDataHelper.getOrDefault(cursor, "$ellipsis?", Boolean.class, false);
 		
-		    IDataHelper.put(cursor, "$results", IDataHelper.truncate(operands, length, ellipsis), false);
+		    IDataHelper.put(cursor, "$results", Transformer.transform(operands, new Truncator(length, ellipsis)), false);
 		} finally {
 		    cursor.destroy();
 		}

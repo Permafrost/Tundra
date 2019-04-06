@@ -17,10 +17,12 @@
     <value>permafrost.tundra.flow.variable.SubstitutionType</value>
     <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.data.IDataMap</value>
+    <value>permafrost.tundra.data.transform.string.Capitalizer</value>
     <value>permafrost.tundra.data.transform.string.Condenser</value>
     <value>permafrost.tundra.data.transform.string.Slicer</value>
     <value>permafrost.tundra.data.transform.string.Splitter</value>
     <value>permafrost.tundra.data.transform.string.Translator</value>
+    <value>permafrost.tundra.data.transform.string.Truncator</value>
     <value>permafrost.tundra.data.transform.Transformer</value>
     <value>permafrost.tundra.data.transform.TransformerMode</value>
     <value>permafrost.tundra.lang.ArrayHelper</value>

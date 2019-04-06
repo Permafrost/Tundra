@@ -14,6 +14,8 @@ cigpOw==</value>
     <value>java.util.Collection</value>
     <value>java.util.List</value>
     <value>permafrost.tundra.configuration.ConfigurationManager</value>
+    <value>permafrost.tundra.data.transform.string.Stringifier</value>
+    <value>permafrost.tundra.data.transform.Transformer</value>
     <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.lang.BooleanHelper</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>

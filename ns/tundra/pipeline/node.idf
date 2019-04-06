@@ -25,6 +25,9 @@ cGlwZWxpbmUpOwp9</value>
     <value>permafrost.tundra.data.IDataJSONParser</value>
     <value>permafrost.tundra.data.IDataXMLParser</value>
     <value>permafrost.tundra.data.IDataYAMLParser</value>
+    <value>permafrost.tundra.data.transform.string.Squeezer</value>
+    <value>permafrost.tundra.data.transform.string.Trimmer</value>
+    <value>permafrost.tundra.data.transform.Transformer</value>
     <value>permafrost.tundra.flow.variable.SubstitutionHelper</value>
     <value>permafrost.tundra.flow.variable.SubstitutionType</value>
     <value>permafrost.tundra.io.InputStreamHelper</value>

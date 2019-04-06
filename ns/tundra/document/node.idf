@@ -122,7 +122,21 @@ dWxsLCB2YWx1ZUlucHV0LCBudWxsLCB2YWx1ZUNsYXNzLCByZWN1cnNlKTsKfQ==</value>
     <value>permafrost.tundra.data.IDataXMLParser</value>
     <value>permafrost.tundra.data.IDataYAMLParser</value>
     <value>permafrost.tundra.data.ImmutableIData</value>
+    <value>permafrost.tundra.data.transform.string.Blankifier</value>
+    <value>permafrost.tundra.data.transform.string.Capitalizer</value>
     <value>permafrost.tundra.data.transform.string.Condenser</value>
+    <value>permafrost.tundra.data.transform.string.Legalizer</value>
+    <value>permafrost.tundra.data.transform.string.Lowercaser</value>
+    <value>permafrost.tundra.data.transform.string.Nullifier</value>
+    <value>permafrost.tundra.data.transform.string.Prefixer</value>
+    <value>permafrost.tundra.data.transform.string.Replacer</value>
+    <value>permafrost.tundra.data.transform.string.Squeezer</value>
+    <value>permafrost.tundra.data.transform.string.Stringifier</value>
+    <value>permafrost.tundra.data.transform.string.Suffixer</value>
+    <value>permafrost.tundra.data.transform.string.Trimmer</value>
+    <value>permafrost.tundra.data.transform.string.Unprefixer</value>
+    <value>permafrost.tundra.data.transform.string.Unsuffixer</value>
+    <value>permafrost.tundra.data.transform.string.Uppercaser</value>
     <value>permafrost.tundra.data.transform.Transformer</value>
     <value>permafrost.tundra.data.transform.TransformerMode</value>
     <value>permafrost.tundra.flow.ConditionEvaluator</value>
@@ -139,5 +153,7 @@ dWxsLCB2YWx1ZUlucHV0LCBudWxsLCB2YWx1ZUNsYXNzLCByZWN1cnNlKTsKfQ==</value>
     <value>permafrost.tundra.lang.Sanitization</value>
     <value>permafrost.tundra.math.IntegerHelper</value>
     <value>permafrost.tundra.server.ServiceHelper</value>
+    <value>permafrost.tundra.util.regex.PatternHelper</value>
+    <value>permafrost.tundra.util.regex.ReplacementHelper</value>
   </array>
 </Values>

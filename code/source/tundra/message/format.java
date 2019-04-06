@@ -1,8 +1,8 @@
 package tundra.message;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-07 11:16:27 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2019-04-06 20:11:21 EST
+// -----( ON-HOST: 192.168.20.19
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -15,6 +15,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import permafrost.tundra.configuration.ConfigurationManager;
+import permafrost.tundra.data.transform.string.Stringifier;
+import permafrost.tundra.data.transform.Transformer;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.ExceptionHelper;
@@ -60,7 +62,6 @@ public final class format
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $message.format.name
-		// [o] recref:0:optional $message.format tundra.schema.message:format
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -84,7 +85,6 @@ public final class format
 		// --- <<IS-START(list)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [o] recref:1:required $message.formats tundra.schema.message:format
 		// [o] field:0:required $message.formats.length
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -110,7 +110,6 @@ public final class format
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [o] field:0:required $message.recognized?
-		// [o] recref:0:optional $message.format tundra.schema.message:format
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -143,7 +142,7 @@ public final class format
 		    List<Exception> exceptions = new ArrayList<Exception>();
 		
 		    for (IData configuration : configurations) {
-		        Object value = IDataHelper.get(IDataHelper.stringify(IDataHelper.normalize(configuration), true), "configuration/tundra/message/format");
+		        Object value = IDataHelper.get(Transformer.transform(IDataHelper.normalize(configuration), new Stringifier(true)), "configuration/tundra/message/format");
 		
 		        try {
 		            if (value instanceof IData) {

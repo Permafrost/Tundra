@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-04-06 12:13:03 EST
+// -----( CREATED: 2019-04-06 19:56:17 EST
 // -----( ON-HOST: 192.168.20.19
 
 import com.wm.data.*;
@@ -14,13 +14,27 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Locale;
 import permafrost.tundra.data.IDataHelper;
+import permafrost.tundra.data.transform.string.Blankifier;
+import permafrost.tundra.data.transform.string.Capitalizer;
 import permafrost.tundra.data.transform.string.Condenser;
+import permafrost.tundra.data.transform.string.Lowercaser;
+import permafrost.tundra.data.transform.string.Nullifier;
+import permafrost.tundra.data.transform.string.Prefixer;
+import permafrost.tundra.data.transform.string.Replacer;
+import permafrost.tundra.data.transform.string.Squeezer;
+import permafrost.tundra.data.transform.string.Suffixer;
+import permafrost.tundra.data.transform.string.Trimmer;
+import permafrost.tundra.data.transform.string.Unprefixer;
+import permafrost.tundra.data.transform.string.Unsuffixer;
+import permafrost.tundra.data.transform.string.Uppercaser;
 import permafrost.tundra.data.transform.Transformer;
 import permafrost.tundra.data.transform.TransformerMode;
 import permafrost.tundra.flow.variable.SubstitutionHelper;
 import permafrost.tundra.flow.variable.SubstitutionType;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.StringHelper;
+import permafrost.tundra.util.regex.PatternHelper;
+import permafrost.tundra.util.regex.ReplacementHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class document
@@ -71,7 +85,7 @@ public final class document
 		    IData[] list = IDataHelper.get(cursor, "$list", IData[].class);
 		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
 		
-		    IDataHelper.put(cursor, "$list", IDataHelper.blankify(list, recurse), false);
+		    IDataHelper.put(cursor, "$list", Transformer.transform(list, new Blankifier(recurse)), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -100,7 +114,7 @@ public final class document
 		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
 		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
 		
-		    IDataHelper.put(cursor, "$list", IDataHelper.capitalize(list, firstWordOnly, mode, recurse), false);
+		    IDataHelper.put(cursor, "$list", Transformer.transform(list, new Capitalizer(mode, firstWordOnly, recurse)), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -546,7 +560,7 @@ public final class document
 		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
 		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
 		
-		    IDataHelper.put(cursor, "$list", IDataHelper.lowercase(list, locale, mode, recurse), false);
+		    IDataHelper.put(cursor, "$list", Transformer.transform(list, new Lowercaser(mode, locale, recurse)), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -699,7 +713,7 @@ public final class document
 		    IData[] list = IDataHelper.get(cursor, "$list", IData[].class);
 		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
 		
-		    IDataHelper.put(cursor, "$list", IDataHelper.nullify(list, recurse), false);
+		    IDataHelper.put(cursor, "$list", Transformer.transform(list, new Nullifier(recurse)), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -788,7 +802,7 @@ public final class document
 		    boolean force = IDataHelper.getOrDefault(cursor, "$force?", Boolean.class, false);
 		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
 		
-		    if (prefix != null) IDataHelper.put(cursor, "$list", IDataHelper.prefix(list, prefix, force, mode, recurse), false);
+		    if (prefix != null) IDataHelper.put(cursor, "$list", Transformer.transform(list, new Prefixer(mode, prefix, force, recurse)), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -876,7 +890,7 @@ public final class document
 		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
 		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
 		
-		    IDataHelper.put(cursor, "$list", IDataHelper.remove(list, pattern, literalPattern, firstOccurrence, mode, recurse), false);
+		    IDataHelper.put(cursor, "$list", Transformer.transform(list, new Replacer(mode, PatternHelper.compile(pattern, literalPattern), "", firstOccurrence, recurse)), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -914,7 +928,7 @@ public final class document
 		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
 		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
 		
-		    IDataHelper.put(cursor, "$list", IDataHelper.replace(list, pattern, literalPattern, replacement, literalReplacement, firstOccurrence, mode, recurse), false);
+		    IDataHelper.put(cursor, "$list", Transformer.transform(list, new Replacer(mode, PatternHelper.compile(pattern, literalPattern), ReplacementHelper.quote(replacement, literalReplacement), firstOccurrence, recurse)), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -1055,7 +1069,7 @@ public final class document
 		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
 		
 		    if (input != null) {
-		        IData[] output = IDataHelper.squeeze(input, recurse);
+		        IData[] output = Transformer.transform(input, new Squeezer(recurse));
 		        if (output == null) output = new IData[0];
 		        IDataHelper.put(cursor, "$list", output);
 		    }
@@ -1119,7 +1133,7 @@ public final class document
 		    boolean force = IDataHelper.getOrDefault(cursor, "$force?", Boolean.class, false);
 		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
 		
-		    if (suffix != null) IDataHelper.put(cursor, "$list", IDataHelper.suffix(list, suffix, force, mode, recurse), false);
+		    if (suffix != null) IDataHelper.put(cursor, "$list", Transformer.transform(list, new Suffixer(mode, suffix, force, recurse)), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -1164,7 +1178,7 @@ public final class document
 		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
 		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
 		
-		    IDataHelper.put(cursor, "$list", IDataHelper.trim(list, mode, recurse), false);
+		    IDataHelper.put(cursor, "$list", Transformer.transform(list, new Trimmer(mode, recurse)), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -1219,7 +1233,7 @@ public final class document
 		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
 		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
 		
-		    if (prefix != null) IDataHelper.put(cursor, "$list", IDataHelper.unprefix(list, prefix, mode, recurse), false);
+		    if (prefix != null) IDataHelper.put(cursor, "$list", Transformer.transform(list, new Unprefixer(mode, prefix, recurse)), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -1248,7 +1262,7 @@ public final class document
 		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
 		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
 		
-		    if (suffix != null) IDataHelper.put(cursor, "$list", IDataHelper.unsuffix(list, suffix, mode, recurse), false);
+		    if (suffix != null) IDataHelper.put(cursor, "$list", Transformer.transform(list, new Unsuffixer(mode, suffix, recurse)), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -1280,7 +1294,7 @@ public final class document
 		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
 		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
 		
-		    IDataHelper.put(cursor, "$list", IDataHelper.uppercase(list, locale, mode, recurse), false);
+		    IDataHelper.put(cursor, "$list", Transformer.transform(list, new Uppercaser(mode, locale, recurse)), false);
 		} finally {
 		    cursor.destroy();
 		}
