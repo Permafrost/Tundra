@@ -1,8 +1,8 @@
 package tundra.assertion;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-03 12:57:59 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2019-04-11 19:51:31 EST
+// -----( ON-HOST: 192.168.20.19
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -38,14 +38,16 @@ public final class document
 		// [i] record:0:required $expected
 		// [i] record:0:required $actual
 		// [i] field:0:optional $message
+		// [i] field:0:required $ordered?
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
 		    IData expected = IDataHelper.get(cursor, "$expected", IData.class);
 		    IData actual = IDataHelper.get(cursor, "$actual", IData.class);
 		    String message = IDataHelper.get(cursor, "$message", String.class);
+		    boolean strict = IDataHelper.getOrDefault(cursor, "$strict?", Boolean.class, false);
 		
-		    equal(expected, actual, message);
+		    equal(expected, actual, message, strict);
 		} finally {
 		    cursor.destroy();
 		}
@@ -72,7 +74,9 @@ public final class document
 		    IData actual = IDataHelper.get(cursor, "$actual", IData.class);
 		    String message = IDataHelper.get(cursor, "$message", String.class);
 		
-		    unequal(expected, actual, message);
+		    boolean strict = IDataHelper.getOrDefault(cursor, "$strict?", Boolean.class, false);
+		
+		    unequal(expected, actual, message, strict);
 		} finally {
 		    cursor.destroy();
 		}
@@ -83,7 +87,12 @@ public final class document
 
 	// --- <<IS-START-SHARED>> ---
 	// asserts that two documents are equal
-	public static void equal(IData expected, IData actual, String message) {
+	public static void equal(IData expected, IData actual, String message, boolean strict) {
+	    if (!strict) {
+	        expected = IDataHelper.sort(expected, true);
+	        actual = IDataHelper.sort(actual, true);
+	    }
+	
 	    if (!ObjectHelper.equal(expected, actual)) {
 	        if (message == null) {
 	            message = java.text.MessageFormat.format("Assertion failed: expected '{'{0}'}' is not equal to actual '{'{1}'}'", expected, actual);
@@ -95,7 +104,12 @@ public final class document
 	}
 	
 	// asserts that two documents are not equal 
-	public static void unequal(IData expected, IData actual, String message) {
+	public static void unequal(IData expected, IData actual, String message, boolean strict) {
+	    if (!strict) {
+	        expected = IDataHelper.sort(expected, true);
+	        actual = IDataHelper.sort(actual, true);
+	    }
+	
 	    if (ObjectHelper.equal(expected, actual)) {
 	        if (message == null) {
 	            message = java.text.MessageFormat.format("Assertion failed: expected '{'{0}'}' is equal to actual '{'{1}'}'", expected, actual);

@@ -126,8 +126,8 @@ milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00
 
 ### tundra.assertion.document:equal
 
-Throws an assertion error if the expected and actual documents are not
-equal.
+Throws an assertion error if the expected and actual documents are
+not equal.
 
 #### Inputs:
 
@@ -136,12 +136,15 @@ equal.
   to the expected document, an assertion error will be thrown.
 * `$message` is an optional custom message to be used as the assertion
   error message if the assertion fails.
+* `$strict?` is an optional boolean indicating if key position is also
+  required for document equality. Defaults to `false`.
 
 ---
 
 ### tundra.assertion.document:unequal
 
-Throws an assertion error if the expected and actual documents are equal.
+Throws an assertion error if the expected and actual documents are
+equal.
 
 #### Inputs:
 
@@ -150,6 +153,8 @@ Throws an assertion error if the expected and actual documents are equal.
   the expected document, an assertion error will be thrown.
 * `$message` is an optional custom message to be used as the assertion
   error message if the assertion fails.
+* `$strict?` is an optional boolean indicating if key position is also
+  required for document equality. Defaults to `false`.
 
 ---
 
