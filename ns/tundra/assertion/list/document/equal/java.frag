@@ -3,5 +3,12 @@
 <Values version="2.0">
   <value name="name">equal</value>
   <value name="encodeutf8">true</value>
-  <value name="body">dHVuZHJhLmFzc2VydGlvbi5saXN0Lm9iamVjdC5lcXVhbChwaXBlbGluZSk7</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogICAgSURh
+dGFbXSBleHBlY3RlZCA9IElEYXRhSGVscGVyLmdldChjdXJzb3IsICIkZXhwZWN0ZWQiLCBJRGF0
+YVtdLmNsYXNzKTsKICAgIElEYXRhW10gYWN0dWFsID0gSURhdGFIZWxwZXIuZ2V0KGN1cnNvciwg
+IiRhY3R1YWwiLCBJRGF0YVtdLmNsYXNzKTsKICAgIFN0cmluZyBtZXNzYWdlID0gSURhdGFIZWxw
+ZXIuZ2V0KGN1cnNvciwgIiRtZXNzYWdlIiwgU3RyaW5nLmNsYXNzKTsKICAgIGJvb2xlYW4gc3Ry
+aWN0ID0gSURhdGFIZWxwZXIuZ2V0T3JEZWZhdWx0KGN1cnNvciwgIiRzdHJpY3Q/IiwgQm9vbGVh
+bi5jbGFzcywgZmFsc2UpOwoKICAgIGVxdWFsKGV4cGVjdGVkLCBhY3R1YWwsIG1lc3NhZ2UsIHN0
+cmljdCk7Cn0gZmluYWxseSB7CiAgICBjdXJzb3IuZGVzdHJveSgpOwp9</value>
 </Values>

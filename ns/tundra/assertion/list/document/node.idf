@@ -2,10 +2,23 @@
 
 <Values version="2.0">
   <value name="encodeutf8">true</value>
-  <value name="shared"></value>
+  <value name="shared">Ly8gYXNzZXJ0cyB0aGF0IHR3byBkb2N1bWVudHMgYXJlIGVxdWFsCnB1YmxpYyBzdGF0aWMgdm9p
+ZCBlcXVhbChJRGF0YVtdIGV4cGVjdGVkLCBJRGF0YVtdIGFjdHVhbCwgU3RyaW5nIG1lc3NhZ2Us
+IGJvb2xlYW4gc3RyaWN0KSB7CiAgICBpZiAoIXN0cmljdCkgewogICAgICAgIGV4cGVjdGVkID0g
+SURhdGFIZWxwZXIuc29ydChleHBlY3RlZCwgdHJ1ZSwgZmFsc2UpOwogICAgICAgIGFjdHVhbCA9
+IElEYXRhSGVscGVyLnNvcnQoYWN0dWFsLCB0cnVlLCBmYWxzZSk7CiAgICB9CgogICAgdHVuZHJh
+LmFzc2VydGlvbi5saXN0Lm9iamVjdC5lcXVhbChleHBlY3RlZCwgYWN0dWFsLCBtZXNzYWdlKTsK
+fQoKLy8gYXNzZXJ0cyB0aGF0IHR3byBkb2N1bWVudHMgYXJlIGVxdWFsCnB1YmxpYyBzdGF0aWMg
+dm9pZCB1bmVxdWFsKElEYXRhW10gZXhwZWN0ZWQsIElEYXRhW10gYWN0dWFsLCBTdHJpbmcgbWVz
+c2FnZSwgYm9vbGVhbiBzdHJpY3QpIHsKICAgIGlmICghc3RyaWN0KSB7CiAgICAgICAgZXhwZWN0
+ZWQgPSBJRGF0YUhlbHBlci5zb3J0KGV4cGVjdGVkLCB0cnVlLCBmYWxzZSk7CiAgICAgICAgYWN0
+dWFsID0gSURhdGFIZWxwZXIuc29ydChhY3R1YWwsIHRydWUsIGZhbHNlKTsKICAgIH0KCiAgICB0
+dW5kcmEuYXNzZXJ0aW9uLmxpc3Qub2JqZWN0LnVuZXF1YWwoZXhwZWN0ZWQsIGFjdHVhbCwgbWVz
+c2FnZSk7Cn0=</value>
   <value name="extends"></value>
   <array name="implements" type="value" depth="1">
   </array>
   <array name="imports" type="value" depth="1">
+    <value>permafrost.tundra.data.IDataHelper</value>
   </array>
 </Values>

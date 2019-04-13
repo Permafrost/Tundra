@@ -202,6 +202,8 @@ equal.
   thrown.
 * `$message` is an optional custom message to be used as the assertion
   error message if the assertion fails.
+* `$strict?` is an optional boolean indicating if key position is also
+  required for document equality. Defaults to `false`.
 
 ---
 
@@ -217,6 +219,8 @@ equal.
   equal to the expected document list, an assertion error will be thrown.
 * `$message` is an optional custom message to be used as the assertion
   error message if the assertion fails.
+* `$strict?` is an optional boolean indicating if key position is also
+  required for document equality. Defaults to `false`.
 
 ---
 
