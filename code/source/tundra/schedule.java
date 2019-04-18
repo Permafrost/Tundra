@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2018-02-11 18:47:30 EST
-// -----( ON-HOST: 192.168.20.16
+// -----( CREATED: 2019-04-18 16:30:14 GMT+10:00
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -38,13 +38,13 @@ public final class schedule
 		// @sigtype java 3.5
 		// [i] field:0:optional $id
 		// [i] field:0:optional $name
-		// [o] field:0:required $exists? {&quot;false&quot;,&quot;true&quot;}
+		// [o] field:0:required $exists? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String id = IDataHelper.get(cursor, "$id", String.class);
 		    String name = IDataHelper.get(cursor, "$name", String.class);
-		
+
 		    if (id != null) {
 		        IDataHelper.put(cursor, "$exists?", ScheduleHelper.exists(id), String.class);
 		    } else {
@@ -55,7 +55,7 @@ public final class schedule
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -72,7 +72,7 @@ public final class schedule
 		// [o] - field:0:required id
 		// [o] - field:0:optional name
 		// [o] - field:0:optional description
-		// [o] - field:0:required type {&quot;complex&quot;,&quot;once&quot;,&quot;repeat&quot;}
+		// [o] - field:0:required type {"complex","once","repeat"}
 		// [o] - field:0:required service
 		// [o] - field:0:optional package
 		// [o] - field:0:required target
@@ -96,11 +96,11 @@ public final class schedule
 		// [o] - field:0:required status
 		// [o] - field:0:optional next
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String id = IDataHelper.get(cursor, "$id", String.class);
 		    String name = IDataHelper.get(cursor, "$name", String.class);
-		
+
 		    if (id != null) {
 		        IDataHelper.put(cursor, "$schedule", ScheduleHelper.get(id), false);
 		    } else if (name != null) {
@@ -111,7 +111,7 @@ public final class schedule
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -124,7 +124,7 @@ public final class schedule
 		// @sigtype java 3.5
 		// [i] field:0:required $schedule.id
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String identity = IDataHelper.get(cursor, "$schedule.id", String.class);
 		    IData output = ScheduleHelper.invoke(identity);
@@ -134,7 +134,7 @@ public final class schedule
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -152,7 +152,7 @@ public final class schedule
 		// [o] - field:0:required id
 		// [o] - field:0:optional name
 		// [o] - field:0:optional description
-		// [o] - field:0:required type {&quot;complex&quot;,&quot;once&quot;,&quot;repeat&quot;}
+		// [o] - field:0:required type {"complex","once","repeat"}
 		// [o] - field:0:required service
 		// [o] - field:0:optional package
 		// [o] - field:0:required target
@@ -176,19 +176,42 @@ public final class schedule
 		// [o] - field:0:required status
 		// [o] - field:0:optional next
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String name = IDataHelper.get(cursor, "$name", String.class);
 		    String service = IDataHelper.get(cursor, "$service", String.class);
 		    String filter = IDataHelper.get(cursor, "$filter", String.class);
-		
+
 		    IDataHelper.put(cursor, "$schedules", ScheduleHelper.list(name, service, filter, pipeline), false, false);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
+	}
+
+
+
+	public static final void runnable (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(runnable)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $schedule.id
+		// [o] field:0:required $schedule.runnable? {"false","true"}
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    String id = IDataHelper.get(cursor, "$schedule.id", String.class);
+		    IDataHelper.put(cursor, "$schedule.runnable?", ScheduleHelper.isRunnable(id), String.class);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
 	}
 }
 

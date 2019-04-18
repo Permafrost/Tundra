@@ -5,7 +5,28 @@ current user and call stack.
 
 #### Inputs:
 
-* `$message` is the message to be written to the server log.
+* `$message` is the message to be written### tundra.schedule:runnable
+
+Returns true if a scheduled task with the given identity is runnable
+on this server.
+
+Use this service to check if a long-running scheduled task should
+continue to run, or should exit due to it's task being suspended or
+deleted, or the task scheduler on this server be paused or stopped.
+
+#### Inputs:
+
+* $schedule.id is the optional identity of a scheduled task. If not
+  specified, only the current state of the task scheduler on the
+  server is taken into account to determine if a task should run.
+
+#### Outputs:
+
+* $schedule.runnable? is a boolean indicating if this scheduled task
+  should run or continue to run on this server. A scheduled task is
+  considered runnable if it has a ready or running state, and if the
+  task scheduler on this server is running.
+ to the server log.
 * `$level` is the logging level of the message:
   * `Fatal`
   * `Error`
@@ -13972,6 +13993,31 @@ the task, and results in no exception being thrown.
 
   Refer to the `tundra.condition:evaluate` service documentation for the
   format of conditional statements.
+
+---
+
+### tundra.schedule:runnable
+
+Returns `true` if a scheduled task with the given identity is runnable
+on this server.
+
+Use this service to check if a long-running scheduled task should
+run or continue to run, or if it should exit due to the task being
+suspended or deleted, or the task scheduler on this server be paused
+or stopped.
+
+#### Inputs:
+
+* `$schedule.id` is the optional identity of a scheduled task. If not
+  specified, only the current state of the task scheduler on the
+  server is taken into account to determine if a task is runnable.
+
+#### Outputs:
+
+* `$schedule.runnable?` is a boolean indicating if this scheduled task
+  should run or continue to run on this server. A scheduled task is
+  considered runnable if it has a ready or running state, and if the
+  task scheduler on this server is running and not paused.
 
 ---
 
