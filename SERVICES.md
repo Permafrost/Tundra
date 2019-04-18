@@ -14817,7 +14817,31 @@ Removes the given key value pair from current session state.
 
 ---
 
-### tundra.soap.fault:handle
+### tundra.soap.fault:accept
+
+Handles a [SOAP] fault returned by a web service invocation by
+returning the fault including a summary message if one of the
+Integration Server [SOAP] fault structures exist in the pipeline.
+
+Supports both the Integration Server pre-8.2 SOAP-FAULT and the 8.2
+and higher fault structures.
+
+#### Inputs:
+
+* `fault` is an optional [SOAP] fault structure returned by an
+  Integration Server 8.2 and higher web service consumer.
+* `SOAP-FAULT` is an optional [SOAP] fault structure returned by an
+  Integration Server pre-8.2 web service consumer.
+
+#### Outputs:
+
+* `fault` is an optional [SOAP] fault structure specified if one of
+  the inputs were provided describing the fault that occurred.
+  * `message` is a summary of the [SOAP] fault for display use.
+
+---
+
+### tundra.soap.fault:raise
 
 Handles a [SOAP] fault returned by a web service invocation by
 throwing an exception if one of the Integration Server [SOAP] fault

@@ -769,7 +769,7 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">### tundra.soap.fault:handle
+  <value name="node_comment">### tundra.soap.fault:raise
 
 Handles a [SOAP] fault returned by a web service invocation by 
 throwing an exception if one of the Integration Server [SOAP] fault 
