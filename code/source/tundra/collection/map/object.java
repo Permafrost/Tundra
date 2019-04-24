@@ -1,7 +1,7 @@
 package tundra.collection.map;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-09 12:42:41 EST
+// -----( CREATED: 2019-04-24 14:46:53 GMT+10:00
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -65,7 +65,7 @@ public final class object
 		// @sigtype java 3.5
 		// [i] field:0:optional $key.class
 		// [i] field:0:optional $value.class
-		// [i] field:0:optional $sorted? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $sorted? {"false","true"}
 		// [o] object:0:optional $map
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -84,6 +84,29 @@ public final class object
 
 
 
+	public static final void documentify (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(documentify)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:0:optional $map
+		// [o] record:0:optional $document
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    Map map = IDataHelper.get(cursor, "$map", Map.class);
+		    IDataHelper.put(cursor, "$document", MapHelper.documentify(map), false);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
 	public static final void get (IData pipeline)
         throws ServiceException
 	{
@@ -92,8 +115,8 @@ public final class object
 		// @sigtype java 3.5
 		// [i] object:0:optional $map
 		// [i] object:0:required $key
+		// [o] field:0:required $key.exists? {"false","true"}
 		// [o] object:0:optional $value
-		// [o] field:0:required $value.exists? {&quot;false&quot;,&quot;true&quot;}
 		get(pipeline, Object.class, Object.class);
 		// --- <<IS-END>> ---
 
@@ -156,7 +179,7 @@ public final class object
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
 		// [i] field:0:optional $value.class
-		// [i] field:0:optional $sorted? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $sorted? {"false","true"}
 		// [o] object:0:optional $map
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -181,7 +204,7 @@ public final class object
 		// @sigtype java 3.5
 		// [i] object:0:optional $map
 		// [i] object:0:required $key
-		// [i] field:0:optional $key.absent? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $key.absent? {"false","true"}
 		// [i] object:0:required $value
 		// [o] object:0:required $map
 		// [o] object:0:required $value
@@ -223,7 +246,7 @@ public final class object
 		// [i] object:0:optional $map
 		// [i] object:0:required $key
 		// [i] object:0:optional $value
-		// [o] field:0:required $key.removed? {&quot;false&quot;,&quot;true&quot;}
+		// [o] field:0:required $key.removed? {"false","true"}
 		// [o] object:0:optional $value
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -261,7 +284,7 @@ public final class object
 		// [i] object:0:required $key
 		// [i] object:0:optional $value.old
 		// [i] object:0:required $value.new
-		// [o] field:0:required $value.replaced? {&quot;false&quot;,&quot;true&quot;}
+		// [o] field:0:required $value.replaced? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {

@@ -1,8 +1,8 @@
 package tundra.collection.map;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-03 20:25:43 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2019-04-24 14:48:35 GMT+10:00
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -37,7 +37,7 @@ public final class document
 		tundra.collection.map.object.clear(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -53,7 +53,23 @@ public final class document
 		tundra.collection.map.object.create(pipeline, String.class, IData.class);
 		// --- <<IS-END>> ---
 
-                
+
+	}
+
+
+
+	public static final void documentify (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(documentify)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] object:0:optional $map
+		// [o] record:0:optional $document
+		tundra.collection.map.object.documentify(pipeline);
+		// --- <<IS-END>> ---
+
+
 	}
 
 
@@ -66,11 +82,12 @@ public final class document
 		// @sigtype java 3.5
 		// [i] object:0:optional $map
 		// [i] field:0:required $key
+		// [o] field:0:required $key.exists? {"false","true"}
 		// [o] record:0:optional $value
 		tundra.collection.map.object.get(pipeline, String.class, IData.class);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -86,7 +103,7 @@ public final class document
 		tundra.collection.map.object.keys(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -102,7 +119,7 @@ public final class document
 		tundra.collection.map.object.length(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -119,7 +136,7 @@ public final class document
 		tundra.collection.map.object.mapify(pipeline, IData.class);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -135,11 +152,11 @@ public final class document
 		// [i] field:0:optional $key.absent? {"false","true"}
 		// [i] record:0:required $value
 		// [o] object:0:required $map
-		// [o] object:0:required $value
+		// [o] record:0:required $value
 		tundra.collection.map.object.put(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -151,14 +168,14 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:0:optional $map
-		// [i] object:0:required $key
-		// [i] object:0:optional $value
+		// [i] field:0:required $key
+		// [i] record:0:optional $value
 		// [o] field:0:required $key.removed? {"false","true"}
-		// [o] object:0:optional $value
+		// [o] record:0:optional $value
 		tundra.collection.map.object.remove(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -177,7 +194,7 @@ public final class document
 		tundra.collection.map.object.replace(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -193,7 +210,7 @@ public final class document
 		tundra.collection.map.object.values(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 

@@ -1632,6 +1632,21 @@ keys and `IData` values.
 
 ---
 
+### tundra.collection.map.document:documentify
+
+Returns an `IData` document representation of the given
+[java.util.Map] object.
+
+#### Inputs:
+
+* `$map` is a [java.util.Map] object.
+
+#### Outputs:
+
+* `$document` is an `IData` document representation of the given `$map`.
+
+---
+
 ### tundra.collection.map.document:get
 
 Returns the value associated with the given key in the given
@@ -1664,7 +1679,7 @@ Returns the list of keys stored in the given [java.util.Map] object.
 
 ---
 
-### tundra.collection.map.object:length
+### tundra.collection.map.document:length
 
 Returns the number of mappings stored in the given [java.util.Map] object.
 
@@ -1818,6 +1833,21 @@ Returns a newly constructed [java.util.Map] object.
 #### Outputs:
 
 * `$map` is a newly constructed [java.util.Map] object.
+
+---
+
+### tundra.collection.map.object:documentify
+
+Returns an `IData` document representation of the given
+[java.util.Map] object.
+
+#### Inputs:
+
+* `$map` is a [java.util.Map] object.
+
+#### Outputs:
+
+* `$document` is an `IData` document representation of the given `$map`.
 
 ---
 
@@ -2006,6 +2036,21 @@ keys and String values.
 #### Outputs:
 
 * `$map` is a newly constructed [java.util.Map] object.
+
+---
+
+### tundra.collection.map.string:documentify
+
+Returns an `IData` document representation of the given
+[java.util.Map] object.
+
+#### Inputs:
+
+* `$map` is a [java.util.Map] object.
+
+#### Outputs:
+
+* `$document` is an `IData` document representation of the given `$map`.
 
 ---
 
