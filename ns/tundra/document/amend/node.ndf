@@ -109,6 +109,84 @@
               <value name="node_type">record</value>
               <value name="node_comment"></value>
               <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_usereditable">false</value>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">action</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <array name="field_options" type="value" depth="1">
+                <value>merge</value>
+                <value>create</value>
+                <value>update</value>
+                <value>delete</value>
+              </array>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <array name="enumeration" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="primitiveType">0</value>
+                    <value name="lexRep">merge</value>
+                    <value name="isList">false</value>
+                  </record>
+                  <record javaclass="com.wm.util.Values">
+                    <value name="primitiveType">0</value>
+                    <value name="lexRep">create</value>
+                    <value name="isList">false</value>
+                  </record>
+                  <record javaclass="com.wm.util.Values">
+                    <value name="primitiveType">0</value>
+                    <value name="lexRep">update</value>
+                    <value name="isList">false</value>
+                  </record>
+                  <record javaclass="com.wm.util.Values">
+                    <value name="primitiveType">0</value>
+                    <value name="lexRep">delete</value>
+                    <value name="isList">false</value>
+                  </record>
+                </array>
+                <value name="contentType">1</value>
+                <value name="internalType">instance</value>
+                <value name="ct_class">com.wm.lang.schema.datatypev2.WmString</value>
+                <value name="name">string_customized</value>
+                <array name="parent-ancestors" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">anySimpleType</value>
+                  </record>
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">anyType</value>
+                  </record>
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">string</value>
+                  </record>
+                </array>
+                <record name="baseType" javaclass="com.wm.util.Values">
+                  <record name="whiteSpace" javaclass="com.wm.util.Values">
+                    <record name="FacetWSCValue" javaclass="com.wm.util.Values">
+                      <value name="cDecimalValue">3</value>
+                    </record>
+                    <value name="facetFixed">false</value>
+                  </record>
+                  <value name="contentType">1</value>
+                  <value name="internalType">instance</value>
+                  <value name="ct_class">com.wm.lang.schema.datatypev2.WmString</value>
+                  <value name="dataTypeVersion">dtVersion2</value>
+                </record>
+                <value name="dataTypeVersion">dtVersion2</value>
+              </record>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">record</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
                 <null name="field_usereditable"/>
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
@@ -180,23 +258,35 @@ specified in $amendments.
 #### Inputs:
 
 * $document is the IData document to be amended.
-* $amendments is an IData document list containing all the edits to be
-  made to the given $document.
+* $amendments is an IData document list containing all the edits to 
+  be made to the given $document.
   * key is a fully-qualified (for example, a/b/c[0]) key identifying
     the value in $document to be edited.
   * value is the value to be assigned to the item identified by key,
-    and can include percent-delimited variable substitution strings which
-    will be substituted prior to being inserted into the $document.
+    and can include percent-delimited variable substitution strings 
+    which will be substituted prior to being inserted into the 
+    $document.
+  * action is an optional choice of merge, create, update, or delete. 
+    Defaults to merge if not specified.
+    * merge will create the key and associate it with the given 
+      value if the key does not already exist, or update the the 
+      associated value if the key already exists.
+    * create will only create the key and associate it with the given
+      value if the key does not already exist. 
+    * update will only update the associated value if the key 
+      already exists.
+    * delete will remove the key and previously associated value 
+      from the document. No value is required to be specified when
+      using this action.
   * condition is an optional Tundra/tundra.condition:evaluate
-    conditional statement, which is evaluated against the pipeline and
-    only if the condition evaluates to true will the associated amended
-    value be applied. If not specified, the amended value will always
-    be applied.
+    conditional statement, which is evaluated against the pipeline 
+    and only if the condition evaluates to true will the associated 
+    amended value be applied. If not specified, the amended value 
+    will always be applied.
 
 #### Outputs:
 
 * $document is the resulting edited IData document.
-
 </value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>

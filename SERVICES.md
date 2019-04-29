@@ -2516,6 +2516,18 @@ emitting or serializing the amended content.
     and can include percent-delimited variable substitution strings
     which will be substituted prior to being inserted into the parsed
     `$content`.
+  * `action` is an optional choice of `merge`, `create`, `update`, or `delete`.
+    Defaults to `merge` if not specified.
+    * `merge` will create the key and associate it with the given
+      value if the key does not already exist, or update the the
+      associated value if the key already exists.
+    * `create` will only create the key and associate it with the given
+      value if the key does not already exist.
+    * `update` will only update the associated value if the key
+      already exists.
+    * `delete` will remove the key and previously associated value
+      from the document. No value is required to be specified when
+      using this action.
   * `condition` is an optional `Tundra/tundra.condition:evaluate`
     conditional statement, which is evaluated against the pipeline and
     only if the condition evaluates to `true` will the associated amended
@@ -4983,6 +4995,18 @@ specified in `$amendments`.
   * `value` is the value to be assigned to the item identified by `key`,
     and can include percent-delimited variable substitution strings which
     will be substituted prior to being inserted into the `$document`.
+  * `action` is an optional choice of `merge`, `create`, `update`, or `delete`.
+    Defaults to `merge` if not specified.
+    * `merge` will create the key and associate it with the given
+      value if the key does not already exist, or update the the
+      associated value if the key already exists.
+    * `create` will only create the key and associate it with the given
+      value if the key does not already exist.
+    * `update` will only update the associated value if the key
+      already exists.
+    * `delete` will remove the key and previously associated value
+      from the document. No value is required to be specified when
+      using this action.
   * `condition` is an optional `Tundra/tundra.condition:evaluate`
     conditional statement, which is evaluated against the pipeline and
     only if the condition evaluates to `true` will the associated amended
