@@ -14607,6 +14607,11 @@ Provides a try/catch/finally pattern for flow services.
 * `$pipeline.finally` is an optional `IData` document which, if
   specified, contains input arguments which is merged into the
   pipeline prior to the invocation of `$finally`.
+* `$thread.priority` is an optional new priority to set on the current
+  [thread], an integer value between 1 and 10, where larger values
+  have higher priority and thus are executed in preference to threads
+  with lower priority. The current thread's priority is restored to
+  its original value after the given service is invoked.
 
 #### Outputs:
 
@@ -14668,6 +14673,11 @@ Invokes a service synchronously, and either scoped or unscoped.
   the exception details if an exception was thrown to the pipeline
   or returned scope as appropriate as per the
   `tundra.schema.exception:handler` specification. Defaults to `true`.
+* `$thread.priority` is an optional new priority to set on the current
+  [thread], an integer value between 1 and 10, where larger values
+  have higher priority and thus are executed in preference to threads
+  with lower priority. The current thread's priority is restored to
+  its original value after the given service is invoked.
 
 #### Outputs:
 

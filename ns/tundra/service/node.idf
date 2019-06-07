@@ -11,6 +11,7 @@
   <array name="imports" type="value" depth="1">
     <value>com.wm.app.b2b.server.ServiceThread</value>
     <value>com.wm.lang.ns.NSService</value>
+    <value>java.math.BigDecimal</value>
     <value>java.nio.charset.Charset</value>
     <value>java.util.List</value>
     <value>permafrost.tundra.collection.CollectionHelper</value>

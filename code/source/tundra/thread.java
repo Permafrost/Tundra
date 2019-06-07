@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-06-07T14:57:57.564
+// -----( CREATED: 2019-06-07T16:32:42.567
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -9,6 +9,7 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import java.math.BigDecimal;
 import javax.xml.datatype.Duration;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.lang.ThreadHelper;
@@ -92,11 +93,11 @@ public final class thread
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
-		    int newPriority = IDataHelper.get(cursor, "$thread.priority", Integer.class);
+		    BigDecimal newPriority = IDataHelper.get(cursor, "$thread.priority", BigDecimal.class);
 
 		    Thread currentThread = Thread.currentThread();
 		    int previousPriority = currentThread.getPriority();
-		    currentThread.setPriority(newPriority);
+		    currentThread.setPriority(ThreadHelper.normalizePriority(newPriority.intValue()));
 
 		    IDataHelper.put(cursor, "$thread.priority.previous", previousPriority, String.class);
 		} finally {

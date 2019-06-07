@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-02-22 14:46:50 GMT+10:00
+// -----( CREATED: 2019-06-07T16:37:17.191
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -11,6 +11,7 @@ import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import com.wm.app.b2b.server.ServiceThread;
 import com.wm.lang.ns.NSService;
+import java.math.BigDecimal;
 import java.nio.charset.Charset;
 import java.util.List;
 import permafrost.tundra.collection.CollectionHelper;
@@ -205,8 +206,13 @@ public final class service
 		// [i] record:0:optional $pipeline
 		// [i] record:0:optional $pipeline.catch
 		// [i] record:0:optional $pipeline.finally
+		// [i] field:0:optional $thread.priority
 		// [o] record:0:optional $pipeline
 		IDataCursor cursor = pipeline.getCursor();
+
+		Thread currentThread = Thread.currentThread();
+		int currentThreadPriority = currentThread.getPriority();
+		boolean changeThreadPriority = false;
 
 		try {
 		    String tryService = IDataHelper.get(cursor, "$service", String.class);
@@ -215,10 +221,17 @@ public final class service
 		    IData scope = IDataHelper.getOrDefault(cursor, "$pipeline", IData.class, pipeline);
 		    IData catchPipeline = IDataHelper.get(cursor, "$pipeline.catch", IData.class);
 		    IData finallyPipeline = IDataHelper.get(cursor, "$pipeline.finally", IData.class);
+		    BigDecimal newThreadPriority = IDataHelper.get(cursor, "$thread.priority", BigDecimal.class);
 		    boolean scoped = scope != pipeline;
 
 		    // remove this service's input arguments from the pipeline if unscoped
 		    if (!scoped) scope = IDataHelper.clone(pipeline, "$service", "$catch", "$finally", "$pipeline.catch", "$pipeline.finally");
+
+		    if (newThreadPriority != null) {
+		        int priority = ThreadHelper.normalizePriority(newThreadPriority.intValue());
+		        changeThreadPriority = priority != currentThreadPriority;
+		        if (changeThreadPriority) currentThread.setPriority(priority);
+		    }
 
 		    scope = ServiceHelper.ensure(tryService, catchService, finallyService, scope, catchPipeline, finallyPipeline);
 
@@ -228,6 +241,7 @@ public final class service
 		        IDataHelper.mergeInto(pipeline, scope);
 		    }
 		} finally {
+		    if (changeThreadPriority) currentThread.setPriority(currentThreadPriority);
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
@@ -297,9 +311,14 @@ public final class service
 		// [i] field:0:required $service
 		// [i] record:0:optional $pipeline
 		// [i] field:0:optional $raise? {"true","false"}
+		// [i] field:0:optional $thread.priority
 		// [o] record:0:optional $pipeline
 		// [o] field:0:optional $duration
 		IDataCursor cursor = pipeline.getCursor();
+
+		Thread currentThread = Thread.currentThread();
+		int currentThreadPriority = currentThread.getPriority();
+		boolean changeThreadPriority = false;
 
 		try {
 		    IData scope = IDataHelper.remove(cursor, "$pipeline", IData.class);
@@ -309,11 +328,18 @@ public final class service
 		    String service = IDataHelper.get(cursor, "$service", String.class);
 		    String mode = IDataHelper.get(cursor, "$mode", String.class);
 		    boolean raise = IDataHelper.getOrDefault(cursor, "$raise?", Boolean.class, true);
+		    BigDecimal newThreadPriority = IDataHelper.get(cursor, "$thread.priority", BigDecimal.class);
 
 		    if (mode != null && mode.equals("asynchronous")) {
 		        // support asynchronous mode for backwards compatiblity
 		        IDataHelper.put(cursor, "$thread", ServiceHelper.fork(service, scope));
 		    } else {
+		        if (newThreadPriority != null) {
+		            int priority = ThreadHelper.normalizePriority(newThreadPriority.intValue());
+		            changeThreadPriority = priority != currentThreadPriority;
+		            if (changeThreadPriority) currentThread.setPriority(priority);
+		        }
+
 		        long start = System.nanoTime();
 		        scope = ServiceHelper.invoke(service, scope, raise, true, true);
 		        long end = System.nanoTime();
@@ -326,6 +352,7 @@ public final class service
 		        IDataHelper.put(cursor, "$duration", DurationHelper.format(end - start, DurationPattern.NANOSECONDS, DurationPattern.XML));
 		    }
 		} finally {
+		    if (changeThreadPriority) currentThread.setPriority(currentThreadPriority);
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---

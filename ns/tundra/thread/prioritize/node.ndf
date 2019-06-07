@@ -27,75 +27,15 @@
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <record name="field_content_type" javaclass="com.wm.util.Values">
-            <record name="minInclusive" javaclass="com.wm.util.Values">
-              <value name="facetFixed">false</value>
-              <value name="primitiveType">4</value>
-              <value name="lexRep">1</value>
-            </record>
-            <record name="maxInclusive" javaclass="com.wm.util.Values">
-              <value name="facetFixed">false</value>
-              <value name="primitiveType">4</value>
-              <value name="lexRep">10</value>
-            </record>
             <value name="contentType">1</value>
-            <value name="internalType">instance</value>
-            <value name="ct_class">com.wm.lang.schema.datatypev2.WmDecimal</value>
-            <value name="name">int_customized</value>
-            <array name="parent-ancestors" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">anySimpleType</value>
-              </record>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
               <record javaclass="com.wm.util.Values">
                 <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
                 <value name="ncName">decimal</value>
               </record>
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">integer</value>
-              </record>
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">long</value>
-              </record>
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">anyType</value>
-              </record>
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">int</value>
-              </record>
             </array>
-            <record name="baseType" javaclass="com.wm.util.Values">
-              <record name="minInclusive" javaclass="com.wm.util.Values">
-                <value name="facetFixed">false</value>
-                <value name="primitiveType">4</value>
-                <value name="lexRep">-2147483648</value>
-              </record>
-              <record name="maxInclusive" javaclass="com.wm.util.Values">
-                <value name="facetFixed">false</value>
-                <value name="primitiveType">4</value>
-                <value name="lexRep">2147483647</value>
-              </record>
-              <record name="fractionDigits" javaclass="com.wm.util.Values">
-                <record name="FacetFDCValue" javaclass="com.wm.util.Values">
-                  <value name="cDecimalValue">0</value>
-                </record>
-                <value name="facetFixed">true</value>
-              </record>
-              <record name="whiteSpace" javaclass="com.wm.util.Values">
-                <record name="FacetWSCValue" javaclass="com.wm.util.Values">
-                  <value name="cDecimalValue">1</value>
-                </record>
-                <value name="facetFixed">true</value>
-              </record>
-              <value name="contentType">1</value>
-              <value name="internalType">instance</value>
-              <value name="ct_class">com.wm.lang.schema.datatypev2.WmDecimal</value>
-              <value name="dataTypeVersion">dtVersion2</value>
-            </record>
-            <value name="dataTypeVersion">dtVersion2</value>
           </record>
           <value name="nillable">false</value>
           <value name="form_qualified">false</value>
