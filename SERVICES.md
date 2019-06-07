@@ -16051,6 +16051,27 @@ Returns a list of all threads known in the current execution context.
 
 ---
 
+### tundra.thread:prioritize
+
+Sets the priority of the current [thread]:
+
+> Every thread has a priority. Threads with higher priority are
+> executed in preference to threads with lower priority.
+
+#### Inputs:
+
+* $thread.priority is the new priority to set on the current
+  [thread], an integer value between 1 and 10.  Larger values have
+  higher priority.
+
+#### Outputs:
+
+* $thread.priority.previous is the previous priority of the current
+  [thread], which can be used to restore priority to its previous
+  value if required.
+
+---
+
 ### tundra.thread:sleep
 
 Sends the currently executing thread to sleep (temporarily cease
@@ -17078,6 +17099,7 @@ Decompresses the given content using the [zip] file compression format.
 [SOAP]: <https://en.wikipedia.org/wiki/SOAP>
 [SQL GROUP BY]: <http://en.wikipedia.org/wiki/SQL#Queries>
 [tar]: <https://en.wikipedia.org/wiki/Tar_(computing)>
+[thread]: <https://docs.oracle.com/javase/6/docs/api/java/lang/Thread.html>
 [try block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/try.html>
 [TSV]: <http://en.wikipedia.org/wiki/Tab-separated_values>
 [Tundra]: <https://github.com/Permafrost/Tundra>

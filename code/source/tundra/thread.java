@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-06-04 11:20:02 EST
-// -----( ON-HOST: 192.168.66.132
+// -----( CREATED: 2019-06-07T14:57:57.564
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -38,8 +38,9 @@ public final class thread
 		// --- <<IS-START(current)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
+		// [o] recref:0:required $thread tundra.schema:thread
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IDataHelper.put(cursor, "$thread", ThreadHelper.toIData(ThreadHelper.current()));
 		} finally {
@@ -47,7 +48,7 @@ public final class thread
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -58,9 +59,10 @@ public final class thread
 		// --- <<IS-START(list)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
+		// [o] recref:1:required $threads tundra.schema:thread
 		// [o] field:0:required $threads.length
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Thread[] threads = ThreadHelper.list();
 		    if (threads != null) {
@@ -74,7 +76,35 @@ public final class thread
 		}
 		// --- <<IS-END>> ---
 
-                
+
+	}
+
+
+
+	public static final void prioritize (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(prioritize)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $thread.priority
+		// [o] field:0:required $thread.priority.previous
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    int newPriority = IDataHelper.get(cursor, "$thread.priority", Integer.class);
+
+		    Thread currentThread = Thread.currentThread();
+		    int previousPriority = currentThread.getPriority();
+		    currentThread.setPriority(newPriority);
+
+		    IDataHelper.put(cursor, "$thread.priority.previous", previousPriority, String.class);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
 	}
 
 
@@ -86,20 +116,20 @@ public final class thread
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $duration
-		// [i] field:0:optional $duration.pattern
+		// [i] field:0:optional $duration.pattern {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String duration = IDataHelper.get(cursor, "$duration", String.class);
 		    String durationPattern = IDataHelper.get(cursor, "$duration.pattern", String.class);
-		
+
 		    ThreadHelper.sleep(DurationHelper.parse(duration, durationPattern));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 
