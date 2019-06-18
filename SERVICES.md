@@ -7296,26 +7296,32 @@ Returns `true` if Integration Server can write to the given file.
 
 ### tundra.file:write
 
-Writes or appends the content, provided as a string, byte array or input
-stream, to the given file.
+Writes or appends the content, provided as a string, byte array or
+input stream, to the given file.
 
-If no file is specified, a new temporary file is created automatically.
+If no file is specified, a new temporary file is created
+automatically.
 
 If the path to the file does not exist, this service will attempt to
-create the directories that comprise the path before writing the file.
+create the directories that comprise the path before writing the
+file.
 
 #### Inputs:
 
 * `$file` is the optional name of the file to which the given content
   is to be written or appended, specified as either a relative or
-  absolute file path or file: [URI]. If not specified, a new temporary
-  file will be created automatically.
-* `$mode` is an optional choice of 'write' or 'append', which determines
-  whether the file will be overwritten or appended to respectively.
-  Defaults to 'append', since this is the safer option.
+  absolute file path or file: [URI]. If not specified, a new
+  temporary file will be created automatically.
+* `$mode` determines what to do when the file already exists. Defaults
+  to `append` if not specified.
+  * `append` will append the given content to the file if it already
+    exists.
+  * `write` will overwrite the file with the given content if it
+    already exists.
+  * `create` will throw an exception if the file already exists.
 * `$content` is a string, byte array, or input stream containing data
   to be written or appended to the given file.
-* `$encoding` is an optional character set to use when `$content` has
+* `$encoding` is an optional character set to use when $content has
   been provided as a string. Defaults to [UTF-8].
 
 #### Outputs:

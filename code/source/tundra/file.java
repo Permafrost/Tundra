@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-08-02T08:45:45.119
+// -----( CREATED: 2019-06-21T09:22:22.641
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -52,7 +52,7 @@ public final class file
 		// @sigtype java 3.5
 		// [i] field:0:required $file.source
 		// [i] field:0:required $file.target
-		// [i] field:0:optional $mode {&quot;append&quot;,&quot;write&quot;}
+		// [i] field:0:optional $mode {"append","write"}
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
@@ -151,7 +151,7 @@ public final class file
 		// @sigtype java 3.5
 		// [i] field:0:required $file
 		// [i] field:0:optional $file.gzip
-		// [i] field:0:optional $replace? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $replace? {"false","true"}
 		// [o] field:0:required $file.gzip
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -204,7 +204,7 @@ public final class file
 		// @sigtype java 3.5
 		// [i] field:0:required $file
 		// [i] field:0:required $pattern
-		// [i] field:0:optional $mode {&quot;regular expression&quot;,&quot;wildcard&quot;}
+		// [i] field:0:optional $mode {"regular expression","wildcard"}
 		// [o] field:0:required $match?
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -253,11 +253,11 @@ public final class file
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $file
-		// [i] field:0:optional $mode {&quot;read&quot;,&quot;append&quot;,&quot;write&quot;}
+		// [i] field:0:optional $mode {"read","append","write"}
 		// [i] field:0:required $service
 		// [i] record:0:optional $pipeline
 		// [i] field:0:optional $service.input
-		// [i] field:0:optional $raise? {&quot;true&quot;,&quot;false&quot;}
+		// [i] field:0:optional $raise? {"true","false"}
 		// [o] record:0:optional $pipeline
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -289,7 +289,7 @@ public final class file
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $file
-		// [i] field:0:optional $mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
+		// [i] field:0:optional $mode {"stream","bytes","string"}
 		// [i] field:0:optional $encoding
 		// [o] object:0:required $content
 		IDataCursor cursor = pipeline.getCursor();
@@ -497,7 +497,7 @@ public final class file
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $file
-		// [i] field:0:optional $mode {&quot;append&quot;,&quot;write&quot;}
+		// [i] field:0:optional $mode {"append","write","create"}
 		// [i] object:0:optional $content
 		// [i] field:0:optional $encoding
 		// [o] field:0:required $file
@@ -505,13 +505,16 @@ public final class file
 
 		try {
 		    String file = IDataHelper.get(cursor, "$file", String.class);
-		    String mode = IDataHelper.get(cursor, "$mode", String.class);
+		    String mode = IDataHelper.getOrDefault(cursor, "$mode", String.class, "append");
 		    Object content = IDataHelper.get(cursor, "$content");
 		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
 
-		    file = FileHelper.writeFromStream(file, InputStreamHelper.normalize(content, charset), mode == null || mode.equalsIgnoreCase("append"));
-
-		    IDataHelper.put(cursor, "$file", file);
+		    if (mode.equalsIgnoreCase("create") && FileHelper.exists(file)) {
+		        throw new IOException("file already exists and will not be overwritten or appended to: " + file);
+		    } else {
+		        file = FileHelper.writeFromStream(file, InputStreamHelper.normalize(content, charset), mode.equalsIgnoreCase("append"));
+		        IDataHelper.put(cursor, "$file", file);
+		    }
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -532,7 +535,7 @@ public final class file
 		// @sigtype java 3.5
 		// [i] field:0:required $file
 		// [i] field:0:optional $file.zip
-		// [i] field:0:optional $replace? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $replace? {"false","true"}
 		// [o] field:0:required $file.zip
 		IDataCursor cursor = pipeline.getCursor();
 
