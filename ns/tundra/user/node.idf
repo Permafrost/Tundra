@@ -11,6 +11,6 @@
   </array>
   <array name="imports" type="value" depth="1">
     <value>permafrost.tundra.data.IDataHelper</value>
-    <value>permafrost.tundra.server.SessionHelper</value>
+    <value>permafrost.tundra.server.UserHelper</value>
   </array>
 </Values>

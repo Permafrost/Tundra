@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-07 14:08:58 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2019-06-26T09:07:02.541
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -10,7 +10,7 @@ import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import permafrost.tundra.data.IDataHelper;
-import permafrost.tundra.server.SessionHelper;
+import permafrost.tundra.server.UserHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class user
@@ -37,15 +37,15 @@ public final class user
 		// @sigtype java 3.5
 		// [o] field:0:optional $user
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
-		    IDataHelper.put(cursor, "$user", SessionHelper.getCurrentUserName());
+		    IDataHelper.put(cursor, "$user", UserHelper.getCurrentName(), false);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 
