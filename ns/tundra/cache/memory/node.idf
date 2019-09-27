@@ -4,35 +4,16 @@
   <value name="node_type">interface</value>
   <value name="node_nsName">tundra.cache.memory</value>
   <value name="is_public">false</value>
-  <value name="shared">LyoqCiAqIFRoZSBtYXAgY29udGFpbmluZyB0aGUgY2FjaGVzLgogKi8KcHJpdmF0ZSBzdGF0aWMg
-ZmluYWwgQ29uY3VycmVudE1hcDxTdHJpbmcsIENvbmN1cnJlbnRNYXA8U3RyaW5nLCBPYmplY3Q+
-PiBDQUNIRVMgPSBuZXcgQ29uY3VycmVudE1hcElEYXRhPFN0cmluZywgQ29uY3VycmVudE1hcDxT
-dHJpbmcsIE9iamVjdD4+KCk7CgoKLyoqCiAqIFJldHVybnMgdGhlIGNhY2hlIHdpdGggdGhlIGdp
-dmVuIG5hbWUuCiAqIAogKiBAcGFyYW0gY2FjaGVOYW1lIFRoZSBuYW1lIG9mIHRoZSBjYWNoZSB0
-byBiZSByZXR1cm5lZC4KICogQHJldHVybnMgICAgICAgICBUaGUgY2FjaGUgd2l0aCB0aGUgZ2l2
-ZW4gbmFtZS4KICovCnB1YmxpYyBzdGF0aWMgQ29uY3VycmVudE1hcDxTdHJpbmcsIE9iamVjdD4g
-Z2V0Q2FjaGUoU3RyaW5nIGNhY2hlTmFtZSkgewogICAgcmV0dXJuIGdldENhY2hlKGNhY2hlTmFt
-ZSwgZmFsc2UpOwp9CgovKioKICogUmV0dXJucyB0aGUgY2FjaGUgd2l0aCB0aGUgZ2l2ZW4gbmFt
-ZS4KICogCiAqIEBwYXJhbSBjYWNoZU5hbWUgVGhlIG5hbWUgb2YgdGhlIGNhY2hlIHRvIGJlIHJl
-dHVybmVkLgogKiBAcmV0dXJucyAgICAgICAgIFRoZSBjYWNoZSB3aXRoIHRoZSBnaXZlbiBuYW1l
-LgogKi8KcHVibGljIHN0YXRpYyBDb25jdXJyZW50TWFwPFN0cmluZywgT2JqZWN0PiBnZXRDYWNo
-ZShTdHJpbmcgY2FjaGVOYW1lLCBib29sZWFuIGNyZWF0ZUlmQWJzZW50KSB7CiAgICBDb25jdXJy
-ZW50TWFwPFN0cmluZywgT2JqZWN0PiBjYWNoZSA9IG51bGw7CgogICAgaWYgKENBQ0hFUy5jb250
-YWluc0tleShjYWNoZU5hbWUpKSB7CiAgICAgICAgY2FjaGUgPSBDQUNIRVMuZ2V0KGNhY2hlTmFt
-ZSk7CiAgICB9IGVsc2UgaWYgKGNyZWF0ZUlmQWJzZW50KSB7CiAgICAgICAgY2FjaGUgPSBuZXcg
-Q29uY3VycmVudE1hcElEYXRhPFN0cmluZywgT2JqZWN0PigpOwogICAgICAgIENvbmN1cnJlbnRN
-YXA8U3RyaW5nLCBPYmplY3Q+IG9sZENhY2hlID0gQ0FDSEVTLnB1dElmQWJzZW50KGNhY2hlTmFt
-ZSwgY2FjaGUpOwogICAgICAgIGlmIChvbGRDYWNoZSAhPSBudWxsKSBjYWNoZSA9IG9sZENhY2hl
-OwogICAgfQoKICAgIHJldHVybiBjYWNoZTsKfQ==</value>
+  <value name="shared"></value>
   <value name="encodeutf8">true</value>
   <value name="extends"></value>
   <array name="implements" type="value" depth="1">
   </array>
   <array name="imports" type="value" depth="1">
-    <value>java.util.concurrent.ConcurrentMap</value>
-    <value>permafrost.tundra.data.ConcurrentMapIData</value>
+    <value>java.util.Calendar</value>
+    <value>javax.xml.datatype.Duration</value>
+    <value>permafrost.tundra.cache.memory.CacheManager</value>
+    <value>permafrost.tundra.data.MapIData</value>
     <value>permafrost.tundra.data.IDataHelper</value>
-    <value>permafrost.tundra.lang.BooleanHelper</value>
-    <value>permafrost.tundra.math.IntegerHelper</value>
   </array>
 </Values>

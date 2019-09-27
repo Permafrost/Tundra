@@ -683,6 +683,7 @@ Returns the cache with the given name.
 #### Outputs:
 
 * `$cache` is the cache with the given name, if it exists.
+* `$cache.length` is the number of items in `$cache`.
 
 ---
 
@@ -742,6 +743,12 @@ the given name.
   only associate the given value with the given key if the key does
   not already exist in the cache. Defaults to `false`.
 * `$cache.value` is the value to be set.
+* `$cache.expiry.duration` is an optional duration specifying when from
+  now that this cache entry expires. If neither an expiry duration or
+  datetime is specified, the cache entry never expires.
+* `$cache.expiry.datetime` is an optional datetime specifing when this
+  cache entry expires. If neither an expiry duration or datetime is
+  specified, the cache entry never expires.
 
 #### Outputs:
 
@@ -789,6 +796,12 @@ the given name.
   current value is equal to this value. If not specified, the key's
   associated value will always be replaced with the given new value.
 * `$cache.value.new` is the new value to be associated with the key.
+* `$cache.expiry.duration` is an optional duration specifying when from
+  now that this cache entry expires. If neither an expiry duration or
+  datetime is specified, the cache entry never expires.
+* `$cache.expiry.datetime` is an optional datetime specifing when this
+  cache entry expires. If neither an expiry duration or datetime is
+  specified, the cache entry never expires.
 
 #### Outputs:
 

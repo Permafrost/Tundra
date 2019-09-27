@@ -1,19 +1,19 @@
 package tundra.cache;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-06 14:45:43 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2019-09-27T12:00:11.561
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
-import java.util.concurrent.ConcurrentMap;
-import permafrost.tundra.data.ConcurrentMapIData;
+import java.util.Calendar;
+import javax.xml.datatype.Duration;
+import permafrost.tundra.cache.memory.CacheManager;
+import permafrost.tundra.data.MapIData;
 import permafrost.tundra.data.IDataHelper;
-import permafrost.tundra.lang.BooleanHelper;
-import permafrost.tundra.math.IntegerHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class memory
@@ -41,16 +41,20 @@ public final class memory
 		// [i] field:0:required $cache.name
 		// [o] record:0:optional $cache
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String name = IDataHelper.get(cursor, "$cache.name", String.class);
-		    IDataHelper.put(cursor, "$cache", getCache(name), false);
+
+		    MapIData<String, Object> cache = CacheManager.getInstance().all(name);
+
+		    IDataHelper.put(cursor, "$cache", cache, false);
+		    IDataHelper.put(cursor, "$cache.length", cache.size());
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -63,18 +67,16 @@ public final class memory
 		// @sigtype java 3.5
 		// [i] field:0:required $cache.name
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String name = IDataHelper.get(cursor, "$cache.name", String.class);
-		
-		    ConcurrentMap<String, Object> cache = CACHES.remove(name);
-		    if (cache != null) cache.clear();
+		    CacheManager.getInstance().clear(name);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -89,22 +91,20 @@ public final class memory
 		// [i] field:0:required $cache.key
 		// [o] field:0:optional $cache.key.exists? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String name = IDataHelper.get(cursor, "$cache.name", String.class);
 		    String key = IDataHelper.get(cursor, "$cache.key", String.class);
-		
-		    ConcurrentMap<String, Object> cache = getCache(name);
-		    boolean exists = false;
-		    if (cache != null) exists = cache.containsKey(key);
-		
+
+		    boolean exists = CacheManager.getInstance().exists(name, key);
+
 		    IDataHelper.put(cursor, "$cache.key.exists?", exists, String.class);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -119,21 +119,18 @@ public final class memory
 		// [i] field:0:required $cache.key
 		// [o] object:0:optional $cache.value
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String name = IDataHelper.get(cursor, "$cache.name", String.class);
 		    String key = IDataHelper.get(cursor, "$cache.key", String.class);
-		
-		    ConcurrentMap<String, Object> cache = getCache(name);
-		    if (cache != null) {
-		        IDataHelper.put(cursor, "$cache.value", cache.get(key), false);
-		    }
+
+		    IDataHelper.put(cursor, "$cache.value", CacheManager.getInstance().get(name, key), false);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -150,29 +147,28 @@ public final class memory
 		// [i] object:0:required $cache.value
 		// [o] object:0:required $cache.value
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String name = IDataHelper.get(cursor, "$cache.name", String.class);
 		    String key = IDataHelper.get(cursor, "$cache.key", String.class);
-		    boolean absent = IDataHelper.get(cursor, "$cache.key.absent?", Boolean.class, false);
+		    boolean absent = IDataHelper.getOrDefault(cursor, "$cache.key.absent?", Boolean.class, false);
 		    Object value = IDataHelper.get(cursor, "$cache.value", Object.class);
-		
-		    ConcurrentMap<String, Object> cache = getCache(name, true);
-		
-		    if (absent) {
-		        Object oldValue = cache.putIfAbsent(key, value);
-		        if (oldValue != null) value = oldValue;
+		    Duration expiryDuration = IDataHelper.get(cursor, "$cache.expiry.duration", Duration.class);
+		    Calendar expiryDateTime = IDataHelper.get(cursor, "$cache.expiry.datetime", Calendar.class);
+
+		    if (expiryDuration != null) {
+		        value = CacheManager.getInstance().put(name, key, value, expiryDuration, absent);
 		    } else {
-		        cache.put(key, value);
+		        value = CacheManager.getInstance().put(name, key, value, expiryDateTime, absent);
 		    }
-		
+
 		    IDataHelper.put(cursor, "$cache.value", value, false);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -189,33 +185,22 @@ public final class memory
 		// [o] field:0:required $cache.key.removed? {"false","true"}
 		// [o] object:0:optional $cache.value
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String name = IDataHelper.get(cursor, "$cache.name", String.class);
 		    String key = IDataHelper.get(cursor, "$cache.key", String.class);
 		    Object value = IDataHelper.get(cursor, "$cache.value", Object.class);
-		   
-		    ConcurrentMap<String, Object> cache = getCache(name);
-		
-		    boolean removed = false;
-		
-		    if (cache != null) {
-		        if (value == null) {
-		            value = cache.remove(key);
-		            removed = value != null;
-		        } else {
-		            removed = cache.remove(key, value);
-		        }
-		    }
-		
-		    IDataHelper.put(cursor, "$cache.key.removed?", BooleanHelper.emit(removed));
-		    if (removed) IDataHelper.put(cursor, "$cache.value", value, false);
+
+		    value = CacheManager.getInstance().remove(name, key, value);
+
+		    IDataHelper.put(cursor, "$cache.key.removed?", value != null, String.class);
+		    IDataHelper.put(cursor, "$cache.value", value, false);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -232,71 +217,29 @@ public final class memory
 		// [i] object:0:required $cache.value.new
 		// [o] field:0:required $cache.value.replaced? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String name = IDataHelper.get(cursor, "$cache.name", String.class);
 		    String key = IDataHelper.get(cursor, "$cache.key", String.class);
 		    Object oldValue = IDataHelper.get(cursor, "$cache.value.old", Object.class);
 		    Object newValue = IDataHelper.get(cursor, "$cache.value.new", Object.class);
-		
-		    ConcurrentMap<String, Object> cache = getCache(name);
-		
-		    boolean replaced = false;
-		
-		    if (cache != null) {
-		        if (oldValue == null) {
-		            oldValue = cache.replace(key, newValue);
-		            replaced = oldValue != null;
-		        } else {
-		            replaced = cache.replace(key, oldValue, newValue);
-		        }
+		    Duration expiryDuration = IDataHelper.get(cursor, "$cache.expiry.duration", Duration.class);
+		    Calendar expiryDateTime = IDataHelper.get(cursor, "$cache.expiry.datetime", Calendar.class);
+
+		    boolean replaced;
+		    if (expiryDuration != null) {
+		        replaced = CacheManager.getInstance().replace(name, key, oldValue, newValue, expiryDuration);
+		    } else {
+		        replaced = CacheManager.getInstance().replace(name, key, oldValue, newValue, expiryDateTime);
 		    }
-		
+
 		    IDataHelper.put(cursor, "$cache.value.replaced?", replaced, String.class);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
-	}
 
-	// --- <<IS-START-SHARED>> ---
-	/**
-	 * The map containing the caches.
-	 */
-	private static final ConcurrentMap<String, ConcurrentMap<String, Object>> CACHES = new ConcurrentMapIData<String, ConcurrentMap<String, Object>>();
-	
-	
-	/**
-	 * Returns the cache with the given name.
-	 * 
-	 * @param cacheName The name of the cache to be returned.
-	 * @returns         The cache with the given name.
-	 */
-	public static ConcurrentMap<String, Object> getCache(String cacheName) {
-	    return getCache(cacheName, false);
 	}
-	
-	/**
-	 * Returns the cache with the given name.
-	 * 
-	 * @param cacheName The name of the cache to be returned.
-	 * @returns         The cache with the given name.
-	 */
-	public static ConcurrentMap<String, Object> getCache(String cacheName, boolean createIfAbsent) {
-	    ConcurrentMap<String, Object> cache = null;
-	
-	    if (CACHES.containsKey(cacheName)) {
-	        cache = CACHES.get(cacheName);
-	    } else if (createIfAbsent) {
-	        cache = new ConcurrentMapIData<String, Object>();
-	        ConcurrentMap<String, Object> oldCache = CACHES.putIfAbsent(cacheName, cache);
-	        if (oldCache != null) cache = oldCache;
-	    }
-	
-	    return cache;
-	}
-	// --- <<IS-END-SHARED>> ---
 }
 

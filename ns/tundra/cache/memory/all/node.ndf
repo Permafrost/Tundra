@@ -86,7 +86,9 @@ Returns the cache with the given name.
 
 #### Outputs:
 
-* $cache is the cache with the given name, if it exists.</value>
+* $cache is the cache with the given name, if it exists.
+* $cache.length is the number of items in $cache.
+</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
