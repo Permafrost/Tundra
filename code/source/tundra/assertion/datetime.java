@@ -1,8 +1,8 @@
 package tundra.assertion;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-03 12:56:23 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2019-09-27T10:25:53.853
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -11,6 +11,7 @@ import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.time.DateTimeHelper;
+import java.text.MessageFormat;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class datetime
@@ -40,20 +41,27 @@ public final class datetime
 		// [i] field:0:optional $pattern {"datetime","datetime.db2","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
 		// [i] field:0:optional $message
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String expected = IDataHelper.get(cursor, "$expected", String.class);
 		    String actual = IDataHelper.get(cursor, "$actual", String.class);
 		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
 		    String message = IDataHelper.get(cursor, "$message", String.class);
-		
-		    equal(expected, actual, pattern, message);
+
+		    if (DateTimeHelper.compare(expected, pattern, actual, pattern) != 0) {
+		        if (message == null) {
+		            message = MessageFormat.format("Assertion failed: expected '{'{0}'}' is not equal to actual '{'{1}'}'", expected, actual);
+		        } else {
+		            message = MessageFormat.format("Assertion failed: {0} (expected '{'{1}'}' is not equal to actual '{'{2}'}')", message, expected, actual);
+		        }
+		        throw new AssertionError(message);
+		    }
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -69,32 +77,27 @@ public final class datetime
 		// [i] field:0:optional $pattern {"datetime","datetime.db2","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
 		// [i] field:0:optional $message
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String expected = IDataHelper.get(cursor, "$expected", String.class);
 		    String actual = IDataHelper.get(cursor, "$actual", String.class);
 		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
 		    String message = IDataHelper.get(cursor, "$message", String.class);
-		
-		    equal(expected, actual, pattern, message);
+
+		    if (DateTimeHelper.compare(expected, pattern, actual, pattern) == 0) {
+		        if (message == null) {
+		            message = MessageFormat.format("Assertion failed: expected '{'{0}'}' is equal to actual '{'{1}'}'", expected, actual);
+		        } else {
+		            message = MessageFormat.format("Assertion failed: {0} (expected '{'{1}'}' is equal to actual '{'{2}'}')", message, expected, actual);
+		        }
+		        throw new AssertionError(message);
+		    }
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
-	}
 
-	// --- <<IS-START-SHARED>> ---
-	// asserts that two datetime strings formatted according to the given pattern are equal
-	public static void equal(String expected, String actual, String pattern, String message) {
-	    tundra.assertion.object.equal(DateTimeHelper.parse(expected, pattern), DateTimeHelper.parse(actual, pattern), message);
 	}
-	
-	// asserts that two datetime strings formatted according to the given pattern are not equal
-	public static void unequal(String expected, String actual, String pattern, String message) {
-	    tundra.assertion.object.unequal(DateTimeHelper.parse(expected, pattern), DateTimeHelper.parse(actual, pattern), message);
-	}
-	// --- <<IS-END-SHARED>> ---
 }
 

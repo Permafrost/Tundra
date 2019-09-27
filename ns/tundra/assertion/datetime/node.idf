@@ -4,22 +4,13 @@
   <value name="node_type">interface</value>
   <value name="node_nsName">tundra.assertion.datetime</value>
   <value name="encodeutf8">true</value>
-  <value name="shared">Ly8gYXNzZXJ0cyB0aGF0IHR3byBkYXRldGltZSBzdHJpbmdzIGZvcm1hdHRlZCBhY2NvcmRpbmcg
-dG8gdGhlIGdpdmVuIHBhdHRlcm4gYXJlIGVxdWFsCnB1YmxpYyBzdGF0aWMgdm9pZCBlcXVhbChT
-dHJpbmcgZXhwZWN0ZWQsIFN0cmluZyBhY3R1YWwsIFN0cmluZyBwYXR0ZXJuLCBTdHJpbmcgbWVz
-c2FnZSkgewogICAgdHVuZHJhLmFzc2VydGlvbi5vYmplY3QuZXF1YWwoRGF0ZVRpbWVIZWxwZXIu
-cGFyc2UoZXhwZWN0ZWQsIHBhdHRlcm4pLCBEYXRlVGltZUhlbHBlci5wYXJzZShhY3R1YWwsIHBh
-dHRlcm4pLCBtZXNzYWdlKTsKfQoKLy8gYXNzZXJ0cyB0aGF0IHR3byBkYXRldGltZSBzdHJpbmdz
-IGZvcm1hdHRlZCBhY2NvcmRpbmcgdG8gdGhlIGdpdmVuIHBhdHRlcm4gYXJlIG5vdCBlcXVhbApw
-dWJsaWMgc3RhdGljIHZvaWQgdW5lcXVhbChTdHJpbmcgZXhwZWN0ZWQsIFN0cmluZyBhY3R1YWws
-IFN0cmluZyBwYXR0ZXJuLCBTdHJpbmcgbWVzc2FnZSkgewogICAgdHVuZHJhLmFzc2VydGlvbi5v
-YmplY3QudW5lcXVhbChEYXRlVGltZUhlbHBlci5wYXJzZShleHBlY3RlZCwgcGF0dGVybiksIERh
-dGVUaW1lSGVscGVyLnBhcnNlKGFjdHVhbCwgcGF0dGVybiksIG1lc3NhZ2UpOwp9</value>
+  <value name="shared"></value>
   <value name="extends"></value>
   <array name="implements" type="value" depth="1">
   </array>
   <array name="imports" type="value" depth="1">
     <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.time.DateTimeHelper</value>
+    <value>java.text.MessageFormat</value>
   </array>
 </Values>
