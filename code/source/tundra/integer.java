@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2018-12-01 21:09:43 EST
-// -----( ON-HOST: 192.168.20.18
+// -----( CREATED: 2019-09-27T12:46:02.992
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -16,6 +16,7 @@ import permafrost.tundra.data.IDataMap;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.math.BigIntegerHelper;
+import permafrost.tundra.util.RandomHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class integer
@@ -43,7 +44,7 @@ public final class integer
 		// [i] field:0:optional $integer
 		// [o] field:0:optional $integer
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String string = IDataHelper.get(cursor, "$integer", String.class);
 		    BigInteger result = BigIntegerHelper.absolute(BigIntegerHelper.parse(string));
@@ -53,7 +54,7 @@ public final class integer
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -67,10 +68,10 @@ public final class integer
 		// [i] record:0:optional $operands
 		// [o] field:0:optional $result
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IData operands = IDataHelper.get(cursor, "$operands", IData.class);
-		
+
 		    // support $integers and $integer inputs for backwards-compatibility
 		    boolean backwardsCompatiblityRequired = false;
 		    if (operands == null) {
@@ -82,9 +83,9 @@ public final class integer
 		        operands = map;
 		        backwardsCompatiblityRequired = true;
 		    }
-		
+
 		    BigInteger result = BigIntegerHelper.add(BigIntegerHelper.normalize(IDataHelper.getLeaves(operands)));
-		
+
 		    if (backwardsCompatiblityRequired) {
 		        IDataHelper.put(cursor, "$integer", result, String.class, false);
 		    } else {
@@ -95,7 +96,7 @@ public final class integer
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -109,10 +110,10 @@ public final class integer
 		// [i] record:0:optional $operands
 		// [o] field:0:optional $average
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IData operands = IDataHelper.get(cursor, "$operands", IData.class);
-		
+
 		    // support $integers input for backwards-compatibility
 		    boolean backwardsCompatiblityRequired = false;
 		    if (operands == null) {
@@ -122,9 +123,9 @@ public final class integer
 		        operands = map;
 		        backwardsCompatiblityRequired = true;
 		    }
-		
+
 		    BigInteger result = BigIntegerHelper.average(BigIntegerHelper.normalize(IDataHelper.getLeaves(operands)));
-		
+
 		    if (backwardsCompatiblityRequired) {
 		        IDataHelper.put(cursor, "$integer", result, String.class, false);
 		    } else {
@@ -135,7 +136,7 @@ public final class integer
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -149,7 +150,7 @@ public final class integer
 		// [i] field:0:optional $integer
 		// [o] field:0:required $integer
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    BigInteger integer = IDataHelper.get(cursor, "$integer", BigInteger.class);
 		    IDataHelper.put(cursor, "$integer", BigIntegerHelper.decrement(integer), String.class);
@@ -158,7 +159,7 @@ public final class integer
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -174,11 +175,11 @@ public final class integer
 		// [o] field:0:optional $result
 		// [o] field:0:optional $remainder
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    BigInteger dividend = IDataHelper.get(cursor, "$dividend", BigInteger.class);
 		    BigInteger divisor = IDataHelper.get(cursor, "$divisor", BigInteger.class);
-		
+
 		    // support $integer.x and $integer.y inputs for backwards-compatibility
 		    boolean backwardsCompatiblityRequired = false;
 		    if (dividend == null && divisor == null) {
@@ -186,9 +187,9 @@ public final class integer
 		        divisor = IDataHelper.get(cursor, "$integer.y", BigInteger.class);
 		        backwardsCompatiblityRequired = true;
 		    }
-		
+
 		    BigInteger[] result = BigIntegerHelper.divideAndRemainder(dividend, divisor);
-		
+
 		    if (result != null && result.length == 2) {
 		        if (backwardsCompatiblityRequired) {
 		            IDataHelper.put(cursor, "$integer", result[0], String.class);
@@ -202,7 +203,7 @@ public final class integer
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -217,11 +218,11 @@ public final class integer
 		// [i] field:0:optional $radix
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Object object = IDataHelper.get(cursor, "$object");
 		    int radix = IDataHelper.getOrDefault(cursor, "$radix", Integer.class, BigIntegerHelper.DEFAULT_RADIX);
-		
+
 		    if (object != null) {
 		        IDataHelper.put(cursor, "$string", BigIntegerHelper.emit(BigIntegerHelper.normalize(object), radix));
 		    }
@@ -230,7 +231,7 @@ public final class integer
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -255,7 +256,7 @@ public final class integer
 		tundra.decimal.format(pipeline);
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -269,7 +270,7 @@ public final class integer
 		// [i] field:0:optional $integer
 		// [o] field:0:required $integer
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    BigInteger integer = IDataHelper.get(cursor, "$integer", BigInteger.class);
 		    IDataHelper.put(cursor, "$integer", BigIntegerHelper.increment(integer), String.class);
@@ -278,7 +279,7 @@ public final class integer
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -292,10 +293,10 @@ public final class integer
 		// [i] record:0:optional $operands
 		// [o] field:0:optional $maximum
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IData operands = IDataHelper.get(cursor, "$operands", IData.class);
-		
+
 		    // support $integers input for backwards-compatibility
 		    boolean backwardsCompatiblityRequired = false;
 		    if (operands == null) {
@@ -305,9 +306,9 @@ public final class integer
 		        operands = map;
 		        backwardsCompatiblityRequired = true;
 		    }
-		
+
 		    BigInteger result = BigIntegerHelper.maximum(BigIntegerHelper.normalize(IDataHelper.getLeaves(operands)));
-		
+
 		    if (backwardsCompatiblityRequired) {
 		        IDataHelper.put(cursor, "$integer", result, String.class, false);
 		    } else {
@@ -318,7 +319,7 @@ public final class integer
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -332,10 +333,10 @@ public final class integer
 		// [i] record:0:optional $operands
 		// [o] field:0:optional $minimum
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IData operands = IDataHelper.get(cursor, "$operands", IData.class);
-		
+
 		    // support $integers input for backwards-compatibility
 		    boolean backwardsCompatiblityRequired = false;
 		    if (operands == null) {
@@ -345,9 +346,9 @@ public final class integer
 		        operands = map;
 		        backwardsCompatiblityRequired = true;
 		    }
-		
+
 		    BigInteger result = BigIntegerHelper.minimum(BigIntegerHelper.normalize(IDataHelper.getLeaves(operands)));
-		
+
 		    if (backwardsCompatiblityRequired) {
 		        IDataHelper.put(cursor, "$integer", result, String.class, false);
 		    } else {
@@ -358,7 +359,7 @@ public final class integer
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -372,10 +373,10 @@ public final class integer
 		// [i] record:0:optional $operands
 		// [o] field:0:optional $result
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IData operands = IDataHelper.get(cursor, "$operands", IData.class);
-		
+
 		    // support $integers and $integer input for backwards-compatibility
 		    boolean backwardsCompatiblityRequired = false;
 		    if (operands == null) {
@@ -387,9 +388,9 @@ public final class integer
 		        operands = map;
 		        backwardsCompatiblityRequired = true;
 		    }
-		
+
 		    BigInteger result = BigIntegerHelper.multiply(BigIntegerHelper.normalize(IDataHelper.getLeaves(operands)));
-		
+
 		    if (backwardsCompatiblityRequired) {
 		        IDataHelper.put(cursor, "$integer", result, String.class, false);
 		    } else {
@@ -400,7 +401,7 @@ public final class integer
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -414,7 +415,7 @@ public final class integer
 		// [i] field:0:optional $integer
 		// [o] field:0:optional $integer
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    BigInteger integer = IDataHelper.get(cursor, "$integer", BigInteger.class);
 		    IDataHelper.put(cursor, "$integer", BigIntegerHelper.negate(integer), String.class, false);
@@ -423,7 +424,7 @@ public final class integer
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -435,18 +436,18 @@ public final class integer
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
-		// [i] field:0:optional $class {&quot;java.math.BigInteger&quot;,&quot;java.math.BigDecimal&quot;,&quot;java.lang.Double&quot;,&quot;java.lang.Float&quot;,&quot;java.lang.Long&quot;,&quot;java.lang.Integer&quot;,&quot;java.lang.Short&quot;,&quot;java.lang.Byte&quot;}
+		// [i] field:0:optional $class {"java.math.BigInteger","java.math.BigDecimal","java.lang.Double","java.lang.Float","java.lang.Long","java.lang.Integer","java.lang.Short","java.lang.Byte"}
 		// [i] field:0:optional $radix
 		// [o] object:0:optional $object
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String string = IDataHelper.get(cursor, "$string", String.class);
 		    Class klass = IDataHelper.get(cursor, "$class", Class.class);
 		    int radix = IDataHelper.getOrDefault(cursor, "$radix", Integer.class, BigIntegerHelper.DEFAULT_RADIX);
-		
+
 		    BigInteger integer = BigIntegerHelper.parse(string, radix);
-		
+
 		    if (integer != null) {
 		        if (klass == null || klass.equals(BigInteger.class)) {
 		            IDataHelper.put(cursor, "$object", integer);
@@ -471,7 +472,7 @@ public final class integer
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -486,20 +487,20 @@ public final class integer
 		// [i] field:0:optional $exponent
 		// [o] field:0:optional $result
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    BigInteger base = IDataHelper.get(cursor, "$base", BigInteger.class);
 		    int exponent = IDataHelper.getOrDefault(cursor, "$exponent", Integer.class, 1);
-		
+
 		    // support $integer input for backwards-compatibility
 		    boolean backwardsCompatiblityRequired = false;
 		    if (base == null) {
 		        base = IDataHelper.get(cursor, "$integer", BigInteger.class);
 		        backwardsCompatiblityRequired = true;
 		    }
-		
+
 		    BigInteger result = BigIntegerHelper.power(base, exponent);
-		
+
 		    if (backwardsCompatiblityRequired) {
 		        IDataHelper.put(cursor, "$integer", result, String.class, false);
 		    } else {
@@ -510,7 +511,7 @@ public final class integer
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -521,18 +522,20 @@ public final class integer
 		// --- <<IS-START(random)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
+		// [i] field:0:optional $integer.random.class {"java.lang.Long","java.lang.Integer","java.lang.Short","java.lang.Byte"}
+		// [o] object:0:required $integer.random
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Class outputClass = IDataHelper.getOrDefault(cursor, "$integer.random.class", Class.class, Long.class);
-		    Number number = tundra.support.security.getRandom().nextLong();
+		    Number number = RandomHelper.getInstance().nextLong();
 		    IDataHelper.put(cursor, "$integer.random", number, outputClass);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -548,20 +551,20 @@ public final class integer
 		// [i] field:0:optional $radix.output
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String string = IDataHelper.get(cursor, "$string", String.class);
 		    int inputRadix = IDataHelper.getOrDefault(cursor, "$radix.input", Integer.class, BigIntegerHelper.DEFAULT_RADIX);
-		
+
 		    int outputRadix = IDataHelper.getOrDefault(cursor, "$radix.output", Integer.class, BigIntegerHelper.DEFAULT_RADIX);
-		
+
 		    IDataHelper.put(cursor, "$string", BigIntegerHelper.rebase(string, inputRadix, outputRadix), false);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -576,11 +579,11 @@ public final class integer
 		// [i] field:0:optional $divisor
 		// [o] field:0:optional $remainder
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    BigInteger dividend = IDataHelper.get(cursor, "$dividend", BigInteger.class);
 		    BigInteger divisor = IDataHelper.get(cursor, "$divisor", BigInteger.class);
-		
+
 		    // support $integer.x and $integer.y inputs for backwards-compatibility
 		    boolean backwardsCompatiblityRequired = false;
 		    if (dividend == null && divisor == null) {
@@ -588,9 +591,9 @@ public final class integer
 		        divisor = IDataHelper.get(cursor, "$integer.y", BigInteger.class);
 		        backwardsCompatiblityRequired = true;
 		    }
-		
+
 		    BigInteger result = BigIntegerHelper.remainder(dividend, divisor);
-		
+
 		    if (backwardsCompatiblityRequired) {
 		        IDataHelper.put(cursor, "$integer", result, String.class, false);
 		    } else {
@@ -601,7 +604,7 @@ public final class integer
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -616,18 +619,18 @@ public final class integer
 		// [i] field:0:optional $distance
 		// [o] field:0:optional $integer
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    BigInteger integer = IDataHelper.get(cursor, "$integer", BigInteger.class);
 		    int distance = IDataHelper.getOrDefault(cursor, "$distance", Integer.class, 0);
-		
+
 		    IDataHelper.put(cursor, "$integer", BigIntegerHelper.shift(integer, distance), String.class, false);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -642,11 +645,11 @@ public final class integer
 		// [i] field:0:optional $subtrahend
 		// [o] field:0:optional $result
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    BigInteger minuend = IDataHelper.get(cursor, "$minuend", BigInteger.class);
 		    BigInteger subtrahend = IDataHelper.get(cursor, "$subtrahend", BigInteger.class);
-		
+
 		    // support $integer.x and $integer.y inputs for backwards-compatibility
 		    boolean backwardsCompatiblityRequired = false;
 		    if (minuend == null && subtrahend == null) {
@@ -654,9 +657,9 @@ public final class integer
 		        subtrahend = IDataHelper.get(cursor, "$integer.y", BigInteger.class);
 		        backwardsCompatiblityRequired = true;
 		    }
-		
+
 		    BigInteger result = BigIntegerHelper.subtract(minuend, subtrahend);
-		
+
 		    if (backwardsCompatiblityRequired) {
 		        IDataHelper.put(cursor, "$integer", result, String.class, false);
 		    } else {
@@ -667,7 +670,7 @@ public final class integer
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -679,21 +682,21 @@ public final class integer
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $integer
-		// [i] field:0:optional $raise? {&quot;false&quot;,&quot;true&quot;}
-		// [o] field:0:required $valid? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $raise? {"false","true"}
+		// [o] field:0:required $valid? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String integer = IDataHelper.get(cursor, "$integer", String.class);
 		    boolean raise = IDataHelper.getOrDefault(cursor, "$raise?", Boolean.class, false);
-		
+
 		    IDataHelper.put(cursor, "$valid?", BigIntegerHelper.validate(integer, raise), String.class);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 

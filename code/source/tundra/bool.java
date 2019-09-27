@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2018-12-01 21:18:37 EST
-// -----( ON-HOST: 192.168.20.18
+// -----( CREATED: 2019-09-27T12:47:37.087
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -11,6 +11,7 @@ import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.lang.BooleanHelper;
+import permafrost.tundra.util.RandomHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class bool
@@ -40,19 +41,19 @@ public final class bool
 		// [i] field:0:optional $value.false
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Object bool = IDataHelper.get(cursor, "$boolean");
 		    String trueValue = IDataHelper.get(cursor, "$value.true", String.class);
 		    String falseValue = IDataHelper.get(cursor, "$value.false", String.class);
-		
+
 		    if (bool != null) IDataHelper.put(cursor, "$string", BooleanHelper.emit(BooleanHelper.parse(bool.toString()), trueValue, falseValue));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -69,21 +70,21 @@ public final class bool
 		// [i] field:0:optional $value.false.output
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String inString = IDataHelper.get(cursor, "$string", String.class);
 		    String inTrueValue = IDataHelper.get(cursor, "$value.true.input", String.class);
 		    String inFalseValue = IDataHelper.get(cursor, "$value.false.input", String.class);
 		    String outTrueValue = IDataHelper.get(cursor, "$value.true.output", String.class);
 		    String outFalseValue = IDataHelper.get(cursor, "$value.false.output", String.class);
-		
+
 		    if (inString != null) IDataHelper.put(cursor,  "$string", BooleanHelper.format(inString, inTrueValue, inFalseValue, outTrueValue, outFalseValue));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -97,7 +98,7 @@ public final class bool
 		// [i] field:0:optional $boolean
 		// [o] field:0:optional $boolean
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String input = IDataHelper.get(cursor, "$boolean", String.class);
 		    if (input != null) IDataHelper.put(cursor, "$boolean", BooleanHelper.negate(input));
@@ -106,7 +107,7 @@ public final class bool
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -121,7 +122,7 @@ public final class bool
 		// [i] field:0:optional $default
 		// [o] field:0:required $boolean
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String input = IDataHelper.get(cursor, "$boolean", String.class);
 		    String defaultValue = IDataHelper.get(cursor, "$default", String.class);
@@ -131,7 +132,7 @@ public final class bool
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -147,19 +148,19 @@ public final class bool
 		// [i] field:0:optional $value.false
 		// [o] object:0:optional $boolean
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String input = IDataHelper.get(cursor, "$string", String.class);
 		    String trueValue = IDataHelper.get(cursor, "$value.true", String.class);
 		    String falseValue = IDataHelper.get(cursor, "$value.false", String.class);
-		
+
 		    if (input != null) IDataHelper.put(cursor, "$boolean", BooleanHelper.parse(input, trueValue, falseValue));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -172,15 +173,15 @@ public final class bool
 		// @sigtype java 3.5
 		// [o] object:0:required $boolean.random
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
-		    IDataHelper.put(cursor, "$boolean.random", tundra.support.security.getRandom().nextBoolean());
+		    IDataHelper.put(cursor, "$boolean.random", RandomHelper.getInstance().nextBoolean());
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 

@@ -15,6 +15,6 @@
     <value>permafrost.tundra.lang.BytesHelper</value>
     <value>permafrost.tundra.lang.CharsetHelper</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>
-    <value>permafrost.tundra.math.IntegerHelper</value>
+    <value>permafrost.tundra.util.RandomHelper</value>
   </array>
 </Values>

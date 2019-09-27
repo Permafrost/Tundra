@@ -22,5 +22,6 @@
     <value>permafrost.tundra.math.DoubleHelper</value>
     <value>permafrost.tundra.math.gauss.Estimator</value>
     <value>permafrost.tundra.math.PrecisionHelper</value>
+    <value>permafrost.tundra.util.RandomHelper</value>
   </array>
 </Values>

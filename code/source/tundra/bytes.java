@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2018-12-01 21:04:47 EST
-// -----( ON-HOST: 192.168.20.18
+// -----( CREATED: 2019-09-27T12:45:01.234
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -15,7 +15,7 @@ import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.lang.BytesHelper;
 import permafrost.tundra.lang.CharsetHelper;
 import permafrost.tundra.lang.ExceptionHelper;
-import permafrost.tundra.math.IntegerHelper;
+import permafrost.tundra.util.RandomHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class bytes
@@ -43,17 +43,17 @@ public final class bytes
 		// [i] object:0:optional $bytes
 		// [o] field:0:required $length
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    byte[] bytes = IDataHelper.get(cursor, "$bytes", byte[].class);
-		
+
 		    IDataHelper.put(cursor, "$length", bytes == null ? 0 : bytes.length, String.class);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -69,13 +69,13 @@ public final class bytes
 		// [o] object:0:optional $bytes
 		// [o] field:0:optional $encoding
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Object object = IDataHelper.get(cursor, "$object");
 		    Charset charset = IDataHelper.getOrDefault(cursor, "$encoding", Charset.class, CharsetHelper.DEFAULT_CHARSET);
-		
+
 		    byte[] bytes = BytesHelper.normalize(object, charset);
-		
+
 		    IDataHelper.put(cursor, "$bytes", bytes, false);
 		    if (bytes != null && object instanceof String) IDataHelper.put(cursor, "$encoding", charset.name());
 		} catch(IOException ex) {
@@ -85,7 +85,7 @@ public final class bytes
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -99,18 +99,18 @@ public final class bytes
 		// [i] field:0:required $bytes.random.length
 		// [o] object:0:required $bytes.random
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    int length = IDataHelper.get(cursor, "$bytes.random.length", Integer.class);
 		    byte[] bytes = new byte[length];
-		    tundra.support.security.getRandom().nextBytes(bytes);
+		    RandomHelper.getInstance().nextBytes(bytes);
 		    IDataHelper.put(cursor, "$bytes.random", bytes);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -128,12 +128,12 @@ public final class bytes
 		// [o] field:0:optional $encoding.input
 		// [o] field:0:optional $encoding.output
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    byte[] bytes = IDataHelper.get(cursor, "$bytes", byte[].class);
 		    Charset sourceCharset = IDataHelper.getOrDefault(cursor, "$encoding.input", Charset.class, CharsetHelper.DEFAULT_CHARSET);
 		    Charset targetCharset = IDataHelper.getOrDefault(cursor, "$encoding.output", Charset.class, CharsetHelper.DEFAULT_CHARSET);
-		
+
 		    if (bytes != null) {
 		        IDataHelper.put(cursor, "$bytes", BytesHelper.transcode(bytes, sourceCharset, targetCharset));
 		        IDataHelper.put(cursor, "$encoding.input", sourceCharset.name());
@@ -146,7 +146,7 @@ public final class bytes
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 

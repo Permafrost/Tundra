@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-02-22 13:30:34 GMT+10:00
+// -----( CREATED: 2019-09-27T12:46:42.964
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -21,6 +21,7 @@ import permafrost.tundra.math.BigIntegerHelper;
 import permafrost.tundra.math.DoubleHelper;
 import permafrost.tundra.math.gauss.Estimator;
 import permafrost.tundra.math.PrecisionHelper;
+import permafrost.tundra.util.RandomHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class decimal
@@ -593,7 +594,7 @@ public final class decimal
 
 		try {
 		    Class outputClass = IDataHelper.getOrDefault(cursor, "$decimal.random.class", Class.class, Double.class);
-		    Number number = tundra.support.security.getRandom().nextDouble();
+		    Number number = RandomHelper.getInstance().nextDouble();
 		    IDataHelper.put(cursor, "$decimal.random", number, outputClass);
 		} finally {
 		    cursor.destroy();
