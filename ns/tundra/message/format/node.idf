@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Values version="2.0">
-  <value name="shared">cHVibGljIHN0YXRpYyBmaW5hbCBSZWNvZ25pemVyIFJFQ09HTklaRVIgPSBuZXcgUmVjb2duaXpl
-cigpOw==</value>
+  <value name="shared"></value>
   <value name="encodeutf8">true</value>
   <value name="extends"></value>
   <array name="implements" type="value" depth="1">

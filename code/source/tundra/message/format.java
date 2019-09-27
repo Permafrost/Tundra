@@ -1,8 +1,8 @@
 package tundra.message;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-04-06 20:11:21 EST
-// -----( ON-HOST: 192.168.20.19
+// -----( CREATED: 2019-09-27T11:09:36.461
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -47,10 +47,10 @@ public final class format
 		// --- <<IS-START(clear)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		RECOGNIZER.clear();
+		Recognizer.getInstance().clear();
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -62,19 +62,20 @@ public final class format
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $message.format.name
+		// [o] recref:0:optional $message.format tundra.schema.message:format
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String name = IDataHelper.get(cursor, "$message.format.name", String.class);
-		    Format format = RECOGNIZER.get(name);
-		
+		    Format format = Recognizer.getInstance().get(name);
+
 		    IDataHelper.put(cursor, "$message.format", format, IData.class, false);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -85,12 +86,13 @@ public final class format
 		// --- <<IS-START(list)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
+		// [o] recref:1:required $message.formats tundra.schema.message:format
 		// [o] field:0:required $message.formats.length
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
-		    Collection<Format> collection = RECOGNIZER.list();
-		
+		    Collection<Format> collection = Recognizer.getInstance().list();
+
 		    IDataHelper.put(cursor, "$message.formats", Format.toIDataArray(collection));
 		    IDataHelper.put(cursor, "$message.formats.length", collection.size(), String.class);
 		} finally {
@@ -98,7 +100,7 @@ public final class format
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -110,11 +112,12 @@ public final class format
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [o] field:0:required $message.recognized?
+		// [o] recref:0:optional $message.format tundra.schema.message:format
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
-		    Format format = RECOGNIZER.recognize(pipeline);
-		
+		    Format format = Recognizer.getInstance().recognize(pipeline);
+
 		    IDataHelper.put(cursor, "$message.recognized?", format != null, String.class);
 		    IDataHelper.put(cursor, "$message.format", format, IData.class, false);
 		} finally {
@@ -122,7 +125,7 @@ public final class format
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -134,16 +137,16 @@ public final class format
 		// @subtype unknown
 		// @sigtype java 3.5
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IData[] configurations = ConfigurationManager.list(true, false);
-		
+
 		    List<Format> formats = new ArrayList<Format>();
 		    List<Exception> exceptions = new ArrayList<Exception>();
-		
+
 		    for (IData configuration : configurations) {
 		        Object value = IDataHelper.get(Transformer.transform(IDataHelper.normalize(configuration), new Stringifier(true)), "configuration/tundra/message/format");
-		
+
 		        try {
 		            if (value instanceof IData) {
 		                formats.add(Format.of((IData)value));
@@ -154,20 +157,16 @@ public final class format
 		            exceptions.add(ex);
 		        }
 		    }
-		
-		    RECOGNIZER.initialize(formats);
-		
+
+		    Recognizer.getInstance().initialize(formats);
+
 		    if (exceptions.size() > 0) ExceptionHelper.raise(exceptions);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
-	}
 
-	// --- <<IS-START-SHARED>> ---
-	public static final Recognizer RECOGNIZER = new Recognizer();
-	// --- <<IS-END-SHARED>> ---
+	}
 }
 
