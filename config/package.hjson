@@ -49,9 +49,12 @@
         }
         log: {
             compress: {
+                # When enabled, gzip compresses matching files older than the given
+                # duration in the configured directories at 12:05am daily.
                 enabled: false
                 directories: [
                     {
+                        enabled: true
                         directory: "./logs"
                         filter: {
                             inclusions: ["*.log", "*.log.*"]
@@ -64,9 +67,12 @@
                 ]
             }
             purge: {
+                # When enabled, purges matching files older than the given duration
+                # in the configured directories at 12:05am daily.
                 enabled: false
                 directories: [
                     {
+                        enabled: true
                         directory: "./logs"
                         filter: {
                             inclusions: ["*.log", "*.log.*"]

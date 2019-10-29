@@ -160,6 +160,16 @@
 
   <!-- nodes -->
 
+<BRANCH TIMEOUT="" SWITCH="/$configuration/feature/log/compress/directories/enabled">
+  <COMMENT></COMMENT>
+
+  <!-- nodes -->
+
+<SEQUENCE NAME="true" TIMEOUT="" EXIT-ON="DONE">
+  <COMMENT></COMMENT>
+
+  <!-- nodes -->
+
 <INVOKE TIMEOUT="" SERVICE="tundra.bool:emit" VALIDATE-IN="$none" VALIDATE-OUT="$none">
   <COMMENT></COMMENT>
 
@@ -198,7 +208,7 @@
         <value name="node_type">record</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
-          <value name="field_usereditable">true</value>
+          <null name="field_usereditable"/>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
@@ -207,8 +217,6 @@
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="field_opt">true</value>
-        <array name="field_options" type="value" depth="1">
-        </array>
         <record name="field_content_type" javaclass="com.wm.util.Values">
           <value name="contentType">1</value>
           <value name="internalType">reference</value>
@@ -228,7 +236,7 @@
         <value name="node_type">record</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
-          <value name="field_usereditable">true</value>
+          <null name="field_usereditable"/>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
@@ -237,8 +245,6 @@
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="field_opt">true</value>
-        <array name="field_options" type="value" depth="1">
-        </array>
         <record name="field_content_type" javaclass="com.wm.util.Values">
           <value name="contentType">1</value>
           <value name="internalType">reference</value>
@@ -425,6 +431,23 @@
                         <value name="form_qualified">false</value>
                         <value name="is_global">false</value>
                         <array name="rec_fields" type="record" depth="1">
+                          <record javaclass="com.wm.util.Values">
+                            <value name="node_type">unknown</value>
+                            <value name="node_comment"></value>
+                            <record name="node_hints" javaclass="com.wm.util.Values">
+                              <value name="field_largerEditor">false</value>
+                              <value name="field_password">false</value>
+                            </record>
+                            <value name="is_public">false</value>
+                            <value name="field_name">enabled</value>
+                            <value name="field_type">object</value>
+                            <value name="field_dim">0</value>
+                            <value name="field_opt">true</value>
+                            <value name="wrapper_type">java.lang.Boolean</value>
+                            <value name="nillable">true</value>
+                            <value name="form_qualified">false</value>
+                            <value name="is_global">false</value>
+                          </record>
                           <record javaclass="com.wm.util.Values">
                             <value name="node_type">unknown</value>
                             <value name="node_comment"></value>
@@ -730,7 +753,7 @@
         <value name="node_type">record</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
-          <value name="field_usereditable">true</value>
+          <null name="field_usereditable"/>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
@@ -739,8 +762,6 @@
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="field_opt">true</value>
-        <array name="field_options" type="value" depth="1">
-        </array>
         <record name="field_content_type" javaclass="com.wm.util.Values">
           <value name="contentType">1</value>
           <value name="internalType">reference</value>
@@ -777,7 +798,7 @@
         <value name="node_type">record</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
-          <value name="field_usereditable">true</value>
+          <null name="field_usereditable"/>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
@@ -786,8 +807,6 @@
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="field_opt">true</value>
-        <array name="field_options" type="value" depth="1">
-        </array>
         <record name="field_content_type" javaclass="com.wm.util.Values">
           <value name="contentType">1</value>
           <value name="internalType">reference</value>
@@ -1301,6 +1320,23 @@
                             <value name="node_type">unknown</value>
                             <value name="node_comment"></value>
                             <record name="node_hints" javaclass="com.wm.util.Values">
+                              <value name="field_largerEditor">false</value>
+                              <value name="field_password">false</value>
+                            </record>
+                            <value name="is_public">false</value>
+                            <value name="field_name">enabled</value>
+                            <value name="field_type">object</value>
+                            <value name="field_dim">0</value>
+                            <value name="field_opt">true</value>
+                            <value name="wrapper_type">java.lang.Boolean</value>
+                            <value name="nillable">true</value>
+                            <value name="form_qualified">false</value>
+                            <value name="is_global">false</value>
+                          </record>
+                          <record javaclass="com.wm.util.Values">
+                            <value name="node_type">unknown</value>
+                            <value name="node_comment"></value>
+                            <record name="node_hints" javaclass="com.wm.util.Values">
                               <null name="field_usereditable"/>
                               <value name="field_largerEditor">false</value>
                               <value name="field_password">false</value>
@@ -1663,46 +1699,14 @@
 <MAPCOPY NAME="Link" FROM="/$configuration;2;0/feature;2;0/log;2;0/compress;2;0/directories;2;0/duration;1;0" TO="/$duration;1;0">
 </MAPCOPY>
 
-<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$replace?;1;0">
-  <DATA ENCODING="XMLValues" I18N="true">
+<MAPCOPY NAME="Link" FROM="/$configuration;2;0/feature;2;0/log;2;0/compress;2;0/directories;2;0/filter;2;0/inclusions;1;1" TO="/$filter.inclusions;1;1">
+</MAPCOPY>
 
-<Values version="2.0">
-  <value name="xml">true</value>
-  <record name="type" javaclass="com.wm.util.Values">
-    <value name="node_type">record</value>
-    <value name="node_comment"></value>
-    <record name="node_hints" javaclass="com.wm.util.Values">
-      <value name="field_usereditable">false</value>
-      <value name="field_largerEditor">false</value>
-      <value name="field_password">false</value>
-    </record>
-    <value name="is_public">false</value>
-    <value name="field_name">$replace?</value>
-    <value name="field_type">string</value>
-    <value name="field_dim">0</value>
-    <value name="field_opt">true</value>
-    <array name="field_options" type="value" depth="1">
-      <value>false</value>
-      <value>true</value>
-    </array>
-    <record name="field_content_type" javaclass="com.wm.util.Values">
-      <value name="contentType">1</value>
-      <value name="internalType">reference</value>
-      <value name="dataTypeVersion">dtVersion2</value>
-      <array name="targetNames" type="record" depth="1">
-        <record javaclass="com.wm.util.Values">
-          <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-          <value name="ncName">boolean</value>
-        </record>
-      </array>
-    </record>
-    <value name="nillable">true</value>
-    <value name="form_qualified">false</value>
-    <value name="is_global">false</value>
-  </record>
-</Values>
-</DATA>
-</MAPSET>
+<MAPCOPY NAME="Link" FROM="/$configuration;2;0/feature;2;0/log;2;0/compress;2;0/directories;2;0/filter;2;0/exclusions;1;1" TO="/$filter.exclusions;1;1">
+</MAPCOPY>
+
+<MAPCOPY NAME="Link" FROM="/$configuration;2;0/feature;2;0/log;2;0/compress;2;0/directories;2;0/filter;2;0/type;1;0" TO="/$filter.type;1;0">
+</MAPCOPY>
 
 <MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$duration.pattern;1;0">
   <DATA ENCODING="XMLValues" I18N="true">
@@ -1752,14 +1756,46 @@
 </DATA>
 </MAPSET>
 
-<MAPCOPY NAME="Link" FROM="/$configuration;2;0/feature;2;0/log;2;0/compress;2;0/directories;2;0/filter;2;0/inclusions;1;1" TO="/$filter.inclusions;1;1">
-</MAPCOPY>
+<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$replace?;1;0">
+  <DATA ENCODING="XMLValues" I18N="true">
 
-<MAPCOPY NAME="Link" FROM="/$configuration;2;0/feature;2;0/log;2;0/compress;2;0/directories;2;0/filter;2;0/exclusions;1;1" TO="/$filter.exclusions;1;1">
-</MAPCOPY>
-
-<MAPCOPY NAME="Link" FROM="/$configuration;2;0/feature;2;0/log;2;0/compress;2;0/directories;2;0/filter;2;0/type;1;0" TO="/$filter.type;1;0">
-</MAPCOPY>
+<Values version="2.0">
+  <value name="xml">true</value>
+  <record name="type" javaclass="com.wm.util.Values">
+    <value name="node_type">record</value>
+    <value name="node_comment"></value>
+    <record name="node_hints" javaclass="com.wm.util.Values">
+      <value name="field_usereditable">false</value>
+      <value name="field_largerEditor">false</value>
+      <value name="field_password">false</value>
+    </record>
+    <value name="is_public">false</value>
+    <value name="field_name">$replace?</value>
+    <value name="field_type">string</value>
+    <value name="field_dim">0</value>
+    <value name="field_opt">true</value>
+    <array name="field_options" type="value" depth="1">
+      <value>false</value>
+      <value>true</value>
+    </array>
+    <record name="field_content_type" javaclass="com.wm.util.Values">
+      <value name="contentType">1</value>
+      <value name="internalType">reference</value>
+      <value name="dataTypeVersion">dtVersion2</value>
+      <array name="targetNames" type="record" depth="1">
+        <record javaclass="com.wm.util.Values">
+          <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+          <value name="ncName">boolean</value>
+        </record>
+      </array>
+    </record>
+    <value name="nillable">true</value>
+    <value name="form_qualified">false</value>
+    <value name="is_global">false</value>
+  </record>
+</Values>
+</DATA>
+</MAPSET>
 </MAP>
 
 <MAP MODE="OUTPUT">
@@ -1880,7 +1916,7 @@
         <value name="node_type">record</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
-          <value name="field_usereditable">true</value>
+          <null name="field_usereditable"/>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
@@ -1888,8 +1924,6 @@
         <value name="field_name">$count</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
-        <array name="field_options" type="value" depth="1">
-        </array>
         <record name="field_content_type" javaclass="com.wm.util.Values">
           <value name="contentType">1</value>
           <value name="internalType">reference</value>
@@ -1926,7 +1960,7 @@
         <value name="node_type">record</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
-          <value name="field_usereditable">true</value>
+          <null name="field_usereditable"/>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
@@ -1934,8 +1968,6 @@
         <value name="field_name">$count</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
-        <array name="field_options" type="value" depth="1">
-        </array>
         <record name="field_content_type" javaclass="com.wm.util.Values">
           <value name="contentType">1</value>
           <value name="internalType">reference</value>
@@ -1987,6 +2019,8 @@
 </MAPDELETE>
 </MAP>
 </INVOKE>
+</SEQUENCE>
+</BRANCH>
 </LOOP>
 </BRANCH>
 
@@ -1996,6 +2030,16 @@
   <!-- nodes -->
 
 <LOOP NAME="true" TIMEOUT="" IN-ARRAY="/$configuration/feature/log/purge/directories">
+  <COMMENT></COMMENT>
+
+  <!-- nodes -->
+
+<BRANCH TIMEOUT="" SWITCH="/$configuration/feature/log/purge/directories/enabled">
+  <COMMENT></COMMENT>
+
+  <!-- nodes -->
+
+<SEQUENCE NAME="true" TIMEOUT="" EXIT-ON="DONE">
   <COMMENT></COMMENT>
 
   <!-- nodes -->
@@ -2038,7 +2082,7 @@
         <value name="node_type">record</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
-          <value name="field_usereditable">true</value>
+          <null name="field_usereditable"/>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
@@ -2047,8 +2091,6 @@
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="field_opt">true</value>
-        <array name="field_options" type="value" depth="1">
-        </array>
         <record name="field_content_type" javaclass="com.wm.util.Values">
           <value name="contentType">1</value>
           <value name="internalType">reference</value>
@@ -2068,7 +2110,7 @@
         <value name="node_type">record</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
-          <value name="field_usereditable">true</value>
+          <null name="field_usereditable"/>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
@@ -2077,8 +2119,6 @@
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="field_opt">true</value>
-        <array name="field_options" type="value" depth="1">
-        </array>
         <record name="field_content_type" javaclass="com.wm.util.Values">
           <value name="contentType">1</value>
           <value name="internalType">reference</value>
@@ -2284,6 +2324,23 @@
                         <value name="form_qualified">false</value>
                         <value name="is_global">false</value>
                         <array name="rec_fields" type="record" depth="1">
+                          <record javaclass="com.wm.util.Values">
+                            <value name="node_type">unknown</value>
+                            <value name="node_comment"></value>
+                            <record name="node_hints" javaclass="com.wm.util.Values">
+                              <value name="field_largerEditor">false</value>
+                              <value name="field_password">false</value>
+                            </record>
+                            <value name="is_public">false</value>
+                            <value name="field_name">enabled</value>
+                            <value name="field_type">object</value>
+                            <value name="field_dim">0</value>
+                            <value name="field_opt">true</value>
+                            <value name="wrapper_type">java.lang.Boolean</value>
+                            <value name="nillable">true</value>
+                            <value name="form_qualified">false</value>
+                            <value name="is_global">false</value>
+                          </record>
                           <record javaclass="com.wm.util.Values">
                             <value name="node_type">unknown</value>
                             <value name="node_comment"></value>
@@ -2570,7 +2627,7 @@
         <value name="node_type">record</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
-          <value name="field_usereditable">true</value>
+          <null name="field_usereditable"/>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
@@ -2579,8 +2636,6 @@
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="field_opt">true</value>
-        <array name="field_options" type="value" depth="1">
-        </array>
         <record name="field_content_type" javaclass="com.wm.util.Values">
           <value name="contentType">1</value>
           <value name="internalType">reference</value>
@@ -2617,7 +2672,7 @@
         <value name="node_type">record</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
-          <value name="field_usereditable">true</value>
+          <null name="field_usereditable"/>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
@@ -2626,8 +2681,6 @@
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="field_opt">true</value>
-        <array name="field_options" type="value" depth="1">
-        </array>
         <record name="field_content_type" javaclass="com.wm.util.Values">
           <value name="contentType">1</value>
           <value name="internalType">reference</value>
@@ -2684,7 +2737,7 @@
         <value name="node_type">record</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
-          <value name="field_usereditable">true</value>
+          <null name="field_usereditable"/>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
@@ -2692,8 +2745,6 @@
         <value name="field_name">$directory</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
-        <array name="field_options" type="value" depth="1">
-        </array>
         <record name="field_content_type" javaclass="com.wm.util.Values">
           <value name="contentType">1</value>
           <value name="internalType">reference</value>
@@ -2713,7 +2764,7 @@
         <value name="node_type">record</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
-          <value name="field_usereditable">true</value>
+          <null name="field_usereditable"/>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
@@ -2722,8 +2773,6 @@
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="field_opt">true</value>
-        <array name="field_options" type="value" depth="1">
-        </array>
         <record name="field_content_type" javaclass="com.wm.util.Values">
           <value name="contentType">1</value>
           <value name="internalType">reference</value>
@@ -3132,6 +3181,23 @@
                             <value name="node_type">unknown</value>
                             <value name="node_comment"></value>
                             <record name="node_hints" javaclass="com.wm.util.Values">
+                              <value name="field_largerEditor">false</value>
+                              <value name="field_password">false</value>
+                            </record>
+                            <value name="is_public">false</value>
+                            <value name="field_name">enabled</value>
+                            <value name="field_type">object</value>
+                            <value name="field_dim">0</value>
+                            <value name="field_opt">true</value>
+                            <value name="wrapper_type">java.lang.Boolean</value>
+                            <value name="nillable">true</value>
+                            <value name="form_qualified">false</value>
+                            <value name="is_global">false</value>
+                          </record>
+                          <record javaclass="com.wm.util.Values">
+                            <value name="node_type">unknown</value>
+                            <value name="node_comment"></value>
+                            <record name="node_hints" javaclass="com.wm.util.Values">
                               <null name="field_usereditable"/>
                               <value name="field_largerEditor">false</value>
                               <value name="field_password">false</value>
@@ -3475,6 +3541,15 @@
 <MAPCOPY NAME="Link" FROM="/$configuration;2;0/feature;2;0/log;2;0/purge;2;0/directories;2;0/duration;1;0" TO="/$duration;1;0">
 </MAPCOPY>
 
+<MAPCOPY NAME="Link" FROM="/$configuration;2;0/feature;2;0/log;2;0/purge;2;0/directories;2;0/filter;2;0/inclusions;1;1" TO="/$filter.inclusions;1;1">
+</MAPCOPY>
+
+<MAPCOPY NAME="Link" FROM="/$configuration;2;0/feature;2;0/log;2;0/purge;2;0/directories;2;0/filter;2;0/exclusions;1;1" TO="/$filter.exclusions;1;1">
+</MAPCOPY>
+
+<MAPCOPY NAME="Link" FROM="/$configuration;2;0/feature;2;0/log;2;0/purge;2;0/directories;2;0/filter;2;0/type;1;0" TO="/$filter.type;1;0">
+</MAPCOPY>
+
 <MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$duration.pattern;1;0">
   <DATA ENCODING="XMLValues" I18N="true">
 
@@ -3522,15 +3597,6 @@
 </Values>
 </DATA>
 </MAPSET>
-
-<MAPCOPY NAME="Link" FROM="/$configuration;2;0/feature;2;0/log;2;0/purge;2;0/directories;2;0/filter;2;0/inclusions;1;1" TO="/$filter.inclusions;1;1">
-</MAPCOPY>
-
-<MAPCOPY NAME="Link" FROM="/$configuration;2;0/feature;2;0/log;2;0/purge;2;0/directories;2;0/filter;2;0/exclusions;1;1" TO="/$filter.exclusions;1;1">
-</MAPCOPY>
-
-<MAPCOPY NAME="Link" FROM="/$configuration;2;0/feature;2;0/log;2;0/purge;2;0/directories;2;0/filter;2;0/type;1;0" TO="/$filter.type;1;0">
-</MAPCOPY>
 </MAP>
 
 <MAP MODE="OUTPUT">
@@ -3641,7 +3707,7 @@
         <value name="node_type">record</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
-          <value name="field_usereditable">true</value>
+          <null name="field_usereditable"/>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
@@ -3649,8 +3715,6 @@
         <value name="field_name">$count</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
-        <array name="field_options" type="value" depth="1">
-        </array>
         <record name="field_content_type" javaclass="com.wm.util.Values">
           <value name="contentType">1</value>
           <value name="internalType">reference</value>
@@ -3687,7 +3751,7 @@
         <value name="node_type">record</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
-          <value name="field_usereditable">true</value>
+          <null name="field_usereditable"/>
           <value name="field_largerEditor">false</value>
           <value name="field_password">false</value>
         </record>
@@ -3695,8 +3759,6 @@
         <value name="field_name">$count</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
-        <array name="field_options" type="value" depth="1">
-        </array>
         <record name="field_content_type" javaclass="com.wm.util.Values">
           <value name="contentType">1</value>
           <value name="internalType">reference</value>
@@ -3745,6 +3807,8 @@
 </MAPDELETE>
 </MAP>
 </INVOKE>
+</SEQUENCE>
+</BRANCH>
 </LOOP>
 </BRANCH>
 
