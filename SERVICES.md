@@ -3036,6 +3036,18 @@ specification.
 
 ---
 
+### tundra.content.retrieve:sftp
+
+The `SFTP` protocol handler for the `Tundra/tundra.content:retrieve`
+service, which retrieves file content for files matching the given
+`$source` URI and calls the given `$service` content processing service
+to process each file.
+
+Implements the `Tundra/tundra.schema.content.retrieve:handler`
+specification.
+
+---
+
 ### tundra.content:split
 
 One-to-many (1:N) conversion of content in one format to another format.

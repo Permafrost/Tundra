@@ -5,15 +5,16 @@
   <value name="svc_subtype">default</value>
   <value name="svc_sigtype">java 3.5</value>
   <value name="svc_spec">tundra.schema.content.retrieve:handler</value>
-  <value name="node_comment">### tundra.content.retrieve:ftp
+  <value name="node_comment">### tundra.content.retrieve:sftp
 
-The FTP protocol handler for the Tundra/tundra.content:retrieve
+The SFTP protocol handler for the Tundra/tundra.content:retrieve
 service, which retrieves file content for files matching the given
 $source URI and calls the given $service content processing service
 to process each file.
 
 Implements the Tundra/tundra.schema.content.retrieve:handler
-specification.</value>
+specification.
+</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
