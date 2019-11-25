@@ -112,10 +112,10 @@ Then restart Integration Server to complete the upgrade.
 4. Service namespace is kept flat. Namespace folders are usually
    nouns. Service names are usually verbs, indicating the action
    performed on the noun (parent folder).
-5. Services declare all inputs and outputs, always explicitly marked
-   as optional or required, use constrained types where possible,
-   and enable input and output pipeline validation, which minimises
-   developer surprise.
+5. Services declare all inputs and outputs (except where deprecated),
+   always explicitly marked as optional or required, use constrained
+   types where possible, and enable input and output pipeline
+   validation where possible, to minimise surprise.
 6. Services often declare their inputs as optional, and either apply
    an appropriate default value, or take no action and return no
    output (whatever is more appropriate), to minimise the need for
