@@ -7048,26 +7048,26 @@ Returns the length of the given file in bytes.
 
 ### tundra.file:match
 
-Returns `true` if the given file name matches the given
-regular expression or wildcard pattern.
+Returns `true` if the given file name matches the given regular
+expression or wildcard pattern.
 
 #### Inputs:
 
-* `$file` is the name of the file to be checked against
-  the given `$pattern`, specified as either a relative or
-  absolute file path or file: [URI].
-* `$pattern` is either a regular expression or wildcard
-  pattern, depending on the `$mode` selected, to check
-  the file name against
-* `$mode` is an optional choice of either 'regex' or
-  'wildcard' which determines the type of pattern
-  specified. Defaults to 'regex'.
+* `$file` is the name of the file to be checked against the given
+  `$pattern`, specified as either a relative or absolute file path or
+  `file:` [URI].
+* `$pattern` is either a regular expression or wildcard pattern,
+  depending on the `$pattern.mode` selected, to check the file name
+  against.
+* `$pattern.mode` is an optional choice of `regular expression` or
+  `wildcard`, which determines the type of pattern specified.
+  Defaults to `regular expression`.
 
 #### Outputs:
 
-* `$match?` is a boolean flag indicating if the file name
-  matches the given `$pattern`. Only the file name is
-  considered in the match, not the path.
+* `$match?` is a boolean flag indicating if the file name matches the
+  given `$pattern`. Note that only the file name is considered in the
+  match, not the path.
 
 ---
 

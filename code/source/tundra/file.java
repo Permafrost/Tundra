@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-11-26T09:26:50.354
+// -----( CREATED: 2019-11-26T09:37:23.870
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -215,9 +215,9 @@ public final class file
 		try {
 		    String file = IDataHelper.get(cursor, "$file", String.class);
 		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
-		    String mode = IDataHelper.get(cursor, "$mode", String.class);
+		    String mode = IDataHelper.firstOrDefault(cursor, String.class, "regular expression", "$pattern.mode", "$mode");
 
-		    IDataHelper.put(cursor, "$match?", FileHelper.match(file, pattern, mode == null || mode.equalsIgnoreCase("regular expression")  || mode.equalsIgnoreCase("regex")), String.class);
+		    IDataHelper.put(cursor, "$match?", FileHelper.match(file, pattern, mode.equalsIgnoreCase("regular expression") || mode.equalsIgnoreCase("regex")), String.class);
 		} finally {
 		    cursor.destroy();
 		}
