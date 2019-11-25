@@ -7316,8 +7316,8 @@ file.
   is to be written or appended, specified as either a relative or
   absolute file path or file: [URI]. If not specified, a new
   temporary file will be created automatically.
-* `$mode` determines what to do when the file already exists. Defaults
-  to `append` if not specified.
+* `$file.mode` determines what to do when the file already exists. Defaults
+  to `create` if not specified.
   * `append` will append the given content to the file if it already
     exists.
   * `write` will overwrite the file with the given content if it

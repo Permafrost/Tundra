@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-06-21T09:22:22.641
+// -----( CREATED: 2019-11-26T09:19:56.528
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -505,7 +505,7 @@ public final class file
 
 		try {
 		    String file = IDataHelper.get(cursor, "$file", String.class);
-		    String mode = IDataHelper.getOrDefault(cursor, "$mode", String.class, "append");
+		    String mode = IDataHelper.firstOrDefault(cursor, String.class, "create", "$file.mode", "$mode");
 		    Object content = IDataHelper.get(cursor, "$content");
 		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
 
