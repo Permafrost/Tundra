@@ -6942,9 +6942,13 @@ Copies the content of the source file to the target file.
   either a relative or absolute file path or file: [URI]. If the
   target file already exists, it will be overwritten or appended to,
   depending on the `$mode` selected, with the source file content.
-* `$mode` is an optional choice of 'write' or 'append', which determines
-  whether the target file will be overwritten or appended to
-  respectively. Defaults to 'append', since this is the safer option.
+* `$file.mode` determines what to do when the target file already exists.
+  Defaults to `create` if not specified.
+  * `append` will append the given content to the file if it already
+    exists.
+  * `write` will overwrite the file with the given content if it
+    already exists.
+  * `create` will throw an exception if the file already exists.
 
 ---
 

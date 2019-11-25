@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-11-26T09:19:56.528
+// -----( CREATED: 2019-11-26T09:26:50.354
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -52,15 +52,19 @@ public final class file
 		// @sigtype java 3.5
 		// [i] field:0:required $file.source
 		// [i] field:0:required $file.target
-		// [i] field:0:optional $mode {"append","write"}
+		// [i] field:0:optional $file.mode {"append","write"}
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
 		    String source = IDataHelper.get(cursor, "$file.source", String.class);
 		    String target = IDataHelper.get(cursor, "$file.target", String.class);
-		    String mode = IDataHelper.get(cursor, "$mode", String.class);
+		    String mode = IDataHelper.firstOrDefault(cursor, String.class, "create", "$file.mode", "$mode");
 
-		    FileHelper.copy(source, target, mode == null || mode.equalsIgnoreCase("append"));
+		    if (mode.equalsIgnoreCase("create") && FileHelper.exists(target)) {
+		        throw new IOException("file already exists and will not be overwritten or appended to: " + target);
+		    } else {
+		        FileHelper.copy(source, target, mode.equalsIgnoreCase("append"));
+		    }
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -497,7 +501,7 @@ public final class file
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $file
-		// [i] field:0:optional $mode {"append","write","create"}
+		// [i] field:0:optional $file.mode {"append","write","create"}
 		// [i] object:0:optional $content
 		// [i] field:0:optional $encoding
 		// [o] field:0:required $file
