@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-01 18:51:22 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2019-11-27T11:57:19.743
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -43,18 +43,18 @@ public final class base64
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:0:optional $base64
-		// [i] field:0:optional $encoding
-		// [i] field:0:optional $mode {"stream","bytes","string"}
+		// [i] field:0:optional $content.encoding
+		// [i] field:0:optional $content.mode {"stream","bytes","string"}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Object input = IDataHelper.get(cursor, "$base64");
-		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
-		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
-		
+		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
+		    ObjectConvertMode mode = IDataHelper.first(cursor, ObjectConvertMode.class, "$content.mode", "$mode");
+
 		    Object output = ObjectHelper.convert(BytesHelper.base64Decode(StringHelper.normalize(input, charset)), charset, mode);
-		
+
 		    IDataHelper.put(cursor, "$content", output, false);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -63,7 +63,7 @@ public final class base64
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -75,18 +75,18 @@ public final class base64
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:0:optional $content
-		// [i] field:0:optional $encoding
-		// [i] field:0:optional $mode {"stream","bytes","string"}
+		// [i] field:0:optional $content.encoding
+		// [i] field:0:optional $content.mode {"stream","bytes","string"}
 		// [o] object:0:optional $base64
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Object input = IDataHelper.get(cursor, "$content");
-		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
-		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
-		
+		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
+		    ObjectConvertMode mode = IDataHelper.first(cursor, ObjectConvertMode.class, "$content.mode", "$mode");
+
 		    Object output = ObjectHelper.convert(BytesHelper.base64Encode(BytesHelper.normalize(input, charset)), charset, mode);
-		
+
 		    IDataHelper.put(cursor, "$base64", output, false);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -95,7 +95,7 @@ public final class base64
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 

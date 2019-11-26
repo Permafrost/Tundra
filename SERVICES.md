@@ -439,17 +439,18 @@ Throws an assertion error if the expected and actual strings are equal.
 
 * `$base64` is either a [Base64] encoded string, byte array, or input
   stream to be decoded.
-* `$encoding` is the optional character set used to decode the text data
-  when `$base64` is provided as a byte array or input stream. Defaults to
-  [UTF-8]. Not used when `$base64` is provided as a string.
-* `$mode` is an optional choice of stream, bytes, or string which
-  determines the type of the output `$content` object. Defaults to
-  stream.
+* `$content.encoding` is the optional character set used to decode
+  the text data when `$base64` is provided as a byte array or input
+  stream. Not used when `$base64` is provided as a string. Defaults
+  to [UTF-8].
+* `$content.mode` is an optional choice of `stream`, `bytes`, or
+  `string`, which determines the type of object `$content` is
+  returned as. Defaults to `stream`.
 
 #### Outputs:
 
 * `$content` is the [Base64] decoded data as a string, byte array, or
-  input stream (depending on the `$mode` chosen).
+  input stream, as determined by the `$content.mode` specified.
 
 ---
 
@@ -459,18 +460,19 @@ Throws an assertion error if the expected and actual strings are equal.
 
 #### Inputs:
 
-* `$content` is either a string, byte array, or input stream containing
-  data to be [Base64] encoded.
-* `$encoding` is the optional character set used to decode the text data
-  when `$content` is provided as a byte array or input stream. Defaults
-  to [UTF-8]. Not used when `$base64` is provided as a string.
-* `$mode` is an optional choice of stream, bytes, or string which
-  determines the type of the output `$base64` object. Defaults to stream.
+* `$content` is either a string, byte array, or input stream
+  containing data to be [Base64] encoded.
+* `$content.encoding` is the optional character set used to encode
+  the text data when `$content` is provided as a string. Defaults to
+  [UTF-8].
+* `$content.mode` is an optional choice of `stream`, `bytes`, or
+  `string` which determines the type of object `$base64` is returned
+  as. Defaults to `stream`.
 
 #### Outputs:
 
-* `$base64` is the [Base64] encoded data as a string, byte array, or input
-  stream (depending on the `$mode` chosen).
+* `$base64` is the [Base64] encoded data as a string, byte array, or
+  input stream, as determined by the `$content.mode` specified.
 
 ---
 
