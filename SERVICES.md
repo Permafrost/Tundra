@@ -14236,29 +14236,29 @@ started again. If already stopped, this service has no effect.
 
 ### tundra.schema.content.deliver:handler
 
-Content delivery protocol handling services used by tundra.content:deliver
-must implement this specification.
+Content delivery protocol handling services used by
+`tundra.content:deliver` must implement this specification.
 
 #### Inputs:
 
-* `$content` is a string, byte array, or input stream containing data to
-  be delivered to the `$destination` URI.
+* `$content` is a string, byte array, or input stream containing data
+  to be delivered to the `$destination` URI.
 * `$content.type` is an optional MIME media type describing the type
   content being delivered.
-* `$encoding` is an optional character set to use when `$content` is
-  provided as a string to encode the text data upon delivery. Defaults
-  to [UTF-8].
-* `$destination` is a parsed URI identifying the location where the given
-  `$content` should be delivered.
+* `$content.encoding` is an optional character set to use when
+  `$content` is provided as a string to encode the text data upon
+  delivery. Defaults to [UTF-8].
+* `$destination` is a parsed URI identifying the location where the
+  given `$content` should be delivered.
 
 #### Outputs:
 
-* `$message` is an optional response message, useful for logging, that
-  may be returned by specific delivery protocols.
-* `$response` is an optional response content returned by the delivery
-  (for example, the HTTP response body).
-* `$response.type` is an optional MIME media type describing the type of
-  `$response` returned.
+* `$message` is an optional response message, useful for logging,
+  that may be returned by specific delivery protocols.
+* `$response` is an optional response content returned by the
+  delivery (for example, the HTTP response body).
+* `$response.type` is an optional MIME media type describing the type
+  of `$response` returned.
 
 ---
 
