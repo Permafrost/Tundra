@@ -7139,30 +7139,30 @@ whether an exception is encountered by the service.
 Reads a file in full, returning the content as either an input
 stream, byte array, or string.
 
-As this service reads the entire file into memory, consider
-using tundra.file:process instead for large files or in memory
+As this service reads the entire file into memory, consider using
+`tundra.file:process` instead for large files or in memory
 constrained environments.
 
 #### Inputs:
 
-* `$file` is the name of the file to be read, specified as
-  either a relative or absolute file path or file: [URI].
-* `$mode` is an optional choice of 'stream', 'bytes', or
-  'string' which determines how the file contents are
-  returned. Defaults to 'stream'.
-* `$encoding` is an optional character set to use when reading
-  the file as a string. Defaults to [UTF-8].
+* `$file` is the name of the file to be read, specified as either a
+  relative or absolute file path or `file:` [URI].
+* `$content.mode` is an optional choice of `stream`, `bytes`, or
+  `string`, which specifies the type of object `$content` is returned
+   as. Defaults to `stream`.
+* `$content.encoding` is an optional character set to use when
+  reading the file as a string. Defaults to [UTF-8].
 
 #### Outputs:
 
-* `$content` is the file contents returned as either an input
-  stream, byte array, or string depending on the `$mode`
-  selected. Note that even when returned as an input stream,
-  the entire file has been read into memory. This mode is
-  provided as a convenience only, and since the file contents
-  are returned as a [java.io.ByteArrayInputStream] object the
-  stream does not need to be explicitly closed as no system
-  resources (file handles) are held.
+* `$content` is the file contents returned as either an input stream,
+  byte array, or string, depending on the `$content.mode` selected.
+  Note that even when returned as an input stream, the entire file
+  has been read into memory. This mode is provided as a convenience
+  only, and since the file contents are returned as a
+  [java.io.ByteArrayInputStream] object the stream does not need to
+  be explicitly closed as no system resources (file handles) are
+  held.
 
 ---
 

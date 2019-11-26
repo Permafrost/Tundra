@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-11-26T09:48:39.248
+// -----( CREATED: 2019-11-26T10:16:09.310
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -257,7 +257,7 @@ public final class file
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $file
-		// [i] field:0:optional $mode {"read","append","write"}
+		// [i] field:0:optional $file.mode {"read","append","write"}
 		// [i] field:0:required $service
 		// [i] record:0:optional $pipeline
 		// [i] field:0:optional $service.input
@@ -300,9 +300,8 @@ public final class file
 
 		try {
 		    String file = IDataHelper.get(cursor, "$file", String.class);
-		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
-
-		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
+		    ObjectConvertMode mode = IDataHelper.first(cursor, ObjectConvertMode.class, "$content.mode", "$mode");
+		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
 
 		    IDataHelper.put(cursor, "$content", ObjectHelper.convert(FileHelper.readToBytes(file), charset, mode));
 		} catch(IOException ex) {

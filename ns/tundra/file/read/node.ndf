@@ -7,6 +7,7 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -21,6 +22,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$file</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -47,7 +49,8 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$mode</value>
+          <value name="is_public">false</value>
+          <value name="field_name">$content.mode</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -118,7 +121,8 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$encoding</value>
+          <value name="is_public">false</value>
+          <value name="field_name">$content.encoding</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -138,9 +142,11 @@
           <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -154,6 +160,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$content</value>
           <value name="field_type">object</value>
           <value name="field_dim">0</value>
@@ -162,41 +169,43 @@
           <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">### tundra.file:read
 
-Reads a file in full, returning the content as either an input
+Reads a file in full, returning the content as either an input 
 stream, byte array, or string.
 
-As this service reads the entire file into memory, consider
-using tundra.file:process instead for large files or in memory
+As this service reads the entire file into memory, consider using 
+`tundra.file:process` instead for large files or in memory 
 constrained environments.
 
 #### Inputs:
 
-* $file is the name of the file to be read, specified as
-  either a relative or absolute file path or file: [URI].
-* $mode is an optional choice of 'stream', 'bytes', or
-  'string' which determines how the file contents are
-  returned. Defaults to 'stream'.
-* $encoding is an optional character set to use when reading
-  the file as a string. Defaults to [UTF-8].
+* `$file` is the name of the file to be read, specified as either a 
+  relative or absolute file path or `file:` [URI].
+* `$content.mode` is an optional choice of `stream`, `bytes`, or 
+  `string`, which specifies the type of object `$content` is returned
+   as. Defaults to `stream`.
+* `$content.encoding` is an optional character set to use when 
+  reading the file as a string. Defaults to [UTF-8].
 
 #### Outputs:
 
-* $content is the file contents returned as either an input
-  stream, byte array, or string depending on the $mode
-  selected. Note that even when returned as an input stream,
-  the entire file has been read into memory. This mode is
-  provided as a convenience only, and since the file contents
-  are returned as a [java.io.ByteArrayInputStream] object the
-  stream does not need to be explicitly closed as no system
-  resources (file handles) are held.
+* `$content` is the file contents returned as either an input stream, 
+  byte array, or string, depending on the `$content.mode` selected. 
+  Note that even when returned as an input stream, the entire file 
+  has been read into memory. This mode is provided as a convenience 
+  only, and since the file contents are returned as a 
+  [java.io.ByteArrayInputStream] object the stream does not need to 
+  be explicitly closed as no system resources (file handles) are 
+  held.
 
 [URI]: &lt;http://www.w3.org/Addressing/&gt;
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;
-[java.io.ByteArrayInputStream]: &lt;http://docs.oracle.com/javase/6/docs/api/java/io/ByteArrayInputStream.html&gt;</value>
+[java.io.ByteArrayInputStream]: &lt;http://docs.oracle.com/javase/6/docs/api/java/io/ByteArrayInputStream.html&gt;
+</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
@@ -212,10 +221,16 @@ constrained environments.
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
 </Values>
