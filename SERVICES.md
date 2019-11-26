@@ -7091,42 +7091,46 @@ file.
 
 ### tundra.file:process
 
-Provides a safe way of processing a file as a stream, which
-is useful for large files or memory constrained environments,
-by opening a file for reading, writing, or appending, calling
-the given service with the opened file stream object as an
-input, and finally closing the stream when done.
+Provides a safe way of processing a file as a stream, which is useful
+for large files or memory constrained environments, by opening a file
+for reading, writing, or appending, calling the given service with
+the opened file stream object as an input, and finally closing the
+stream when done.
 
 As such, the invoked service does not need to open or close the file
-stream itself, it only needs to process the opened file stream.
-The stream is guaranteed to be closed automatically, regardless
-of whether an exception is encountered by the service.
+stream itself, it only needs to process the opened file stream. The
+stream is guaranteed to be closed automatically, regardless of
+whether an exception is encountered by the service.
 
 #### Inputs:
 
 * `$file` is the name of the file to be processed, specified
-  as either a relative or absolute file path or file: [URI].
-* `$mode` is an optional choice of 'read', 'write', or
-  'append' which determines whether the file is opened for
-  reading, writing, or appending. Defaults to 'read'.
+  as either a relative or absolute file path or `file:` [URI].
+* `$file.mode` determines what how the file should be opened, and
+  what to do when the file already exists. Defaults to `read` if not
+  specified.
+    otherwise will create the file and open it for writing.
+  * `append` will open the file for appending.
+  * `create` will throw an exception if the file already exists,
+  * `read` will open the file for reading.
+  * `write` will open the file for (over)writing.
 * `$service` is the fully-qualified name of the service which
   will be called to process the opened file.
 * `$pipeline` is an optional `IData` document for specifying
-  arbitrary input parameters to the call to `$service`. If
-  provided, the call to `$service` is scoped with this IData,
-  and will not have access to the global pipeline.
-* `$service.input` is an optional input parameter name used
-  when adding the opened file stream to the input pipeline
-  of the call tor `$service`. Defaults to '$stream'.
+  arbitrary input parameters to the call to `$service`. If provided,
+  the call to `$service` is scoped with this `IData`, and will not
+  have access to the global pipeline.
+* `$service.input` is an optional input parameter name used when
+  adding the opened file stream to the input pipeline of the call to
+  `$service`. Defaults to `$stream`.
 
 #### Outputs:
 
-* `$pipeline` is an optional `IData` document representing the
-  output pipeline of the call to `$service`. This will only
-  be returned if an input `$pipeline` was provided. If no
-  input `$pipeline` was provided, any outputs from the call
-  to `$service` will be merged directly into the global
-  pipeline.
+* `$pipeline` is an optional `IData` document representing the output
+  pipeline of the call to `$service`. This will only be returned if
+  an input `$pipeline` was provided. If no input `$pipeline` was
+  provided, any outputs from the call to `$service` will be merged
+  directly into the global pipeline.
 
 ---
 

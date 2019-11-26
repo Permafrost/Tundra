@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-11-26T09:37:23.870
+// -----( CREATED: 2019-11-26T09:48:39.248
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -267,7 +267,7 @@ public final class file
 
 		try {
 		    String file = IDataHelper.get(cursor, "$file", String.class);
-		    String mode = IDataHelper.get(cursor, "$mode", String.class);
+		    String mode = IDataHelper.firstOrDefault(cursor, String.class, "read", "$file.mode", "$mode");
 		    String service = IDataHelper.get(cursor, "$service", String.class);
 		    String input = IDataHelper.get(cursor, "$service.input", String.class);
 		    IData scope = IDataHelper.getOrDefault(cursor, "$pipeline", IData.class, pipeline);
