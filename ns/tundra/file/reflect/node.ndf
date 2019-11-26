@@ -7,6 +7,7 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -21,6 +22,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$file</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -40,9 +42,11 @@
           <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -56,6 +60,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$file.properties</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
@@ -71,6 +76,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">exists?</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -97,6 +103,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">parent</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -124,6 +131,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">name</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -151,6 +159,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">base</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -178,6 +187,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">extension</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -205,6 +215,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">type</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -232,6 +243,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">length</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -259,6 +271,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">modified</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -286,6 +299,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">executable?</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -313,6 +327,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">readable?</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -340,6 +355,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">writable?</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -367,6 +383,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">uri</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -387,8 +404,10 @@
             </record>
           </array>
           <value name="rec_closed">true</value>
+          <value name="modifiable">true</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">### tundra.file:reflect
@@ -397,39 +416,39 @@ Returns useful details about the given file.
 
 #### Inputs:
 
-* $file is the name of the file to return details about, specified as
-  either a relative or absolute file path or file: [URI].
+* `$file` is the name of the file to return details about, specified 
+  as either a relative or absolute file path or `file:` [URI].
 
 #### Outputs:
 
-* $file.properties is an IData document containing the following
-  details about the given $file:
-  * exists? is a boolean flag indicating if the given file exists.
-  * parent is the canonical file: [URI] that represents the parent
-    directory that contains the given file.
-  * name is the name component not including the path of the given
-    file.
-  * base is the name component not including the path or extension of
-    the given file.
-  * extension is the part of the name after the final period used to
-    determine the type of the given file.
-  * type is the [mime type] associated with the given file.
-  * length is the length or size in bytes of the given file. If the
-    file does not exist, zero is returned.
-  * modified is the last modified datetime of the given file.
-  * executable? is a boolean flag indicating if Integration Server has
-    permission to execute the given file. If the file does not exist,
-    false is returned.
-  * readable? is a boolean flag indicating if Integration Server has
-    permission to read the given file. If the file does not exist, false
-    is returned.
-  * writable? is a boolean flag indicating if Integration Server has
-    permission to write or append to the given file. If the file does not
-    exist, false is returned.
-  * uri is the canonical file: [URI] that represents the given file.
+* `$file.properties` is an `IData` document containing the following
+  details about the given `$file`:
+  * `exists?` is a boolean flag indicating if the file exists.
+  * `parent` is the canonical `file:` [URI] that represents the 
+    parent directory that contains the file.
+  * `name` is the name component not including the path of the file.
+  * `base` is the name component not including the path or extension 
+    of the file.
+  * `extension` is the part of the name after the final period used 
+    to determine the type of the file.
+  * `type` is the [mime type] associated with the file.
+  * `length` is the length or size of the file in bytes. If the file 
+    does not exist, zero is returned.
+  * `modified` is the last modified datetime of the file.
+  * `executable?` is a boolean flag indicating if Integration Server 
+    has permission to execute the file. If the file does not exist,
+    `false` is returned.
+  * `readable?` is a boolean flag indicating if Integration Server
+    has permission to read the file. If the file does not exist, 
+    `false` is returned.
+  * `writable?` is a boolean flag indicating if Integration Server 
+    has permission to write or append to the file. If the file does 
+    not exist, `false` is returned.
+  * `uri` is the canonical `file:` [URI] that represents the file.
 
 [URI]: &lt;http://www.w3.org/Addressing/&gt;
-[mime type]: &lt;http://en.wikipedia.org/wiki/Internet_media_type&gt;</value>
+[mime type]: &lt;http://en.wikipedia.org/wiki/Internet_media_type&gt;
+</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
@@ -445,10 +464,16 @@ Returns useful details about the given file.
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
 </Values>

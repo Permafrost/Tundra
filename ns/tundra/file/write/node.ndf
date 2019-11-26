@@ -64,17 +64,17 @@
             <array name="enumeration" type="record" depth="1">
               <record javaclass="com.wm.util.Values">
                 <value name="primitiveType">0</value>
+                <value name="lexRep">create</value>
+                <value name="isList">false</value>
+              </record>
+              <record javaclass="com.wm.util.Values">
+                <value name="primitiveType">0</value>
                 <value name="lexRep">write</value>
                 <value name="isList">false</value>
               </record>
               <record javaclass="com.wm.util.Values">
                 <value name="primitiveType">0</value>
                 <value name="lexRep">append</value>
-                <value name="isList">false</value>
-              </record>
-              <record javaclass="com.wm.util.Values">
-                <value name="primitiveType">0</value>
-                <value name="lexRep">create</value>
                 <value name="isList">false</value>
               </record>
             </array>
@@ -139,7 +139,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$encoding</value>
+          <value name="field_name">$content.encoding</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -203,37 +203,37 @@
   </record>
   <value name="node_comment">### tundra.file:write
 
-Writes or appends the content, provided as a string, byte array or 
+Writes or appends the content, provided as a string, byte array or
 input stream, to the given file.
 
 If no file is specified, a new temporary file is created 
 automatically.
 
-If the path to the file does not exist, this service will attempt to 
-create the directories that comprise the path before writing the 
+If the path to the file does not exist, this service will attempt to
+create the directories that comprise the path before writing the
 file.
 
 #### Inputs:
 
-* $file is the optional name of the file to which the given content
+* `$file` is the optional name of the file to which the given content
   is to be written or appended, specified as either a relative or
-  absolute file path or file: [URI]. If not specified, a new 
+  absolute file path or `file:` [URI]. If not specified, a new
   temporary file will be created automatically.
-* $file.mode determines what to do when the file already exists. 
-  Defaults to create if not specified.
-  * append will append the given content to the file if it already 
+* `$file.mode` determines what to do when the file already exists. 
+  Defaults to `create` if not specified.
+  * `append` will append the given content to the file if it already
     exists.
-  * write will overwrite the file with the given content if it 
+  * `create` will throw an exception if the file already exists.
+  * `write` will overwrite the file with the given content if it
     already exists.
-  * create will throw an exception if the file already exists.
-* $content is a string, byte array, or input stream containing data
+* `$content` is a string, byte array, or input stream containing data
   to be written or appended to the given file.
-* $encoding is an optional character set to use when $content has
-  been provided as a string. Defaults to [UTF-8].
+* `$content.encoding` is an optional character set to use when 
+  `$content` has been provided as a string. Defaults to [UTF-8].
 
 #### Outputs:
 
-* $file is the name of the file that was written or appended to. If
+* `$file` is the name of the file that was written or appended to. If
   no input file name was specified, this is the name of the temporary
   file that was created automatically.
 

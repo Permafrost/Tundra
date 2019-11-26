@@ -7,6 +7,7 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -21,6 +22,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$file</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -40,9 +42,11 @@
           <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -57,6 +61,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$type</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -76,6 +81,7 @@
           <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">### tundra.file:type
@@ -83,24 +89,25 @@
 Determines the [mime type] for the given file.
 
 Integration Server file extension to [mime type] mappings are defined
-in the file ./lib/mime.types. If the [mime type] cannot be found, it
-defaults to the [mime type] for arbitrary binary data:
+in the file `./lib/mime.types`. If the [mime type] cannot be found, 
+it defaults to the [mime type] for arbitrary binary data:
 
-  application/octet-stream
+    application/octet-stream
 
 #### Inputs:
 
-* $file is the name of the file whose mime type is to be determined,
-  specified as either a relative or absolute file path or file: [URI].
-  The file is not required to exist, since the mime type is determined
-  purely from the file name itself.
+* `$file` is the name of the file whose mime type is to be 
+  determined, specified as either a relative or absolute file path or 
+  `file:` [URI]. The file is not required to exist, since the mime 
+  type is determined purely from the file name itself.
 
 #### Outputs:
 
-* $type is the [mime type] of the given file.
+* `$type` is the [mime type] of the given file.
 
 [URI]: &lt;http://www.w3.org/Addressing/&gt;
-[mime type]: &lt;http://en.wikipedia.org/wiki/Internet_media_type&gt;</value>
+[mime type]: &lt;http://en.wikipedia.org/wiki/Internet_media_type&gt;
+</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
@@ -116,10 +123,16 @@ defaults to the [mime type] for arbitrary binary data:
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
 </Values>

@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-11-26T10:16:09.310
+// -----( CREATED: 2019-11-26T10:44:48.928
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -155,14 +155,14 @@ public final class file
 		// @sigtype java 3.5
 		// [i] field:0:required $file
 		// [i] field:0:optional $file.gzip
-		// [i] field:0:optional $replace? {"false","true"}
+		// [i] field:0:optional $file.remove? {"false","true"}
 		// [o] field:0:required $file.gzip
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
 		    String source = IDataHelper.get(cursor, "$file", String.class);
 		    String target = IDataHelper.get(cursor, "$file.gzip", String.class);
-		    boolean replace = IDataHelper.getOrDefault(cursor, "$replace?", Boolean.class, false);
+		    boolean replace = IDataHelper.firstOrDefault(cursor, Boolean.class, false, "$file.remove?", "$replace?");
 
 		    IDataHelper.put(cursor, "$file.gzip", FileHelper.gzip(source, target, replace));
 		} catch(IOException ex) {
@@ -293,8 +293,8 @@ public final class file
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $file
-		// [i] field:0:optional $mode {"stream","bytes","string"}
-		// [i] field:0:optional $encoding
+		// [i] field:0:optional $content.mode {"stream","bytes","string"}
+		// [i] field:0:optional $content.encoding
 		// [o] object:0:required $content
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -510,7 +510,7 @@ public final class file
 		    String file = IDataHelper.get(cursor, "$file", String.class);
 		    String mode = IDataHelper.firstOrDefault(cursor, String.class, "create", "$file.mode", "$mode");
 		    Object content = IDataHelper.get(cursor, "$content");
-		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
+		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
 
 		    if (mode.equalsIgnoreCase("create") && FileHelper.exists(file)) {
 		        throw new IOException("file already exists and will not be overwritten or appended to: " + file);
@@ -538,14 +538,14 @@ public final class file
 		// @sigtype java 3.5
 		// [i] field:0:required $file
 		// [i] field:0:optional $file.zip
-		// [i] field:0:optional $replace? {"false","true"}
+		// [i] field:0:optional $file.remove? {"false","true"}
 		// [o] field:0:required $file.zip
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
 		    String source = IDataHelper.get(cursor, "$file", String.class);
 		    String target = IDataHelper.get(cursor, "$file.zip", String.class);
-		    boolean replace = IDataHelper.get(cursor, "$replace?", Boolean.class);
+		    boolean replace = IDataHelper.firstOrDefault(cursor, Boolean.class, false, "$file.remove?", "$replace?");
 
 		    IDataHelper.put(cursor, "$file.zip", FileHelper.zip(source, target, replace));
 		} catch(IOException ex) {

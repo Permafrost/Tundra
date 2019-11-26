@@ -6937,18 +6937,19 @@ Copies the content of the source file to the target file.
 #### Inputs:
 
 * `$file.source` is the name of the file to be copied from, specified
-  as either a relative or absolute file path or file: [URI].
-* `$file.target` is the name of the file to be copied to, specified as
-  either a relative or absolute file path or file: [URI]. If the
+  as either a relative or absolute file path or `file:` [URI].
+* `$file.target` is the name of the file to be copied to, specified
+  as either a relative or absolute file path or `file:` [URI]. If the
   target file already exists, it will be overwritten or appended to,
-  depending on the `$mode` selected, with the source file content.
-* `$file.mode` determines what to do when the target file already exists.
-  Defaults to `create` if not specified.
+  depending on the `$file.mode` selected, with the source file
+  content.
+* `$file.mode` determines what to do when the target file already
+  exists. Defaults to `create` if not specified.
   * `append` will append the given content to the file if it already
     exists.
+  * `create` will throw an exception if the file already exists.
   * `write` will overwrite the file with the given content if it
     already exists.
-  * `create` will throw an exception if the file already exists.
 
 ---
 
@@ -6964,7 +6965,7 @@ to all other file system activities that might affect the file.
 #### Inputs:
 
 * `$file` is the name of the file to be created, specified as either a
-  relative or absolute file path or file: [URI]. If the file already
+  relative or absolute file path or `file:` [URI]. If the file already
   exists, an exception will be thrown. If not specified, a new
   empty temporary file will be created.
 
@@ -6982,7 +6983,7 @@ Returns `true` if Integration Server can execute to the given file.
 
 * `$file` is the name of the file to test if Integration Server has
   execution permissions, specified as either a relative or absolute
-  file path or file: [URI].
+  file path or `file:` [URI].
 
 #### Outputs:
 
@@ -6999,7 +7000,7 @@ Returns `true` if the given file exists.
 #### Inputs:
 
 * `$file` is the name of the file to test existence of, specified as
-  either a relative or absolute file path or file: [URI].
+  either a relative or absolute file path or `file:` [URI].
 
 #### Outputs:
 
@@ -7014,18 +7015,18 @@ Compresses the given file using the gzip algorithm.
 #### Inputs:
 
 * `$file` is the name of the file to be read, specified as either a
-  relative or absolute file path or file [URI].
+  relative or absolute file path or `file:` [URI].
 * `$file.gzip` is the optional name of the resulting compressed file,
-  specified as either a relative or absolute file path or file
-  [URI]. Defaults to the source file suffixed with ".gz".
-* `$replace?` is an optional boolean flag indicating whether the
+  specified as either a relative or absolute file path or `file:`
+  [URI]. Defaults to the source file suffixed with `.gz`.
+* `$file.remove?` is an optional boolean flag indicating whether the
   source file should be deleted once it has been compressed.
   Defaults to `false`.
 
 #### Outputs:
 
-* `$file.gzip` is resulting compressed file name specifed as a file
-  [URI].
+* `$file.gzip` is resulting compressed file name specifed as a
+  `file:` [URI].
 
 ---
 
@@ -7035,14 +7036,14 @@ Returns the length of the given file in bytes.
 
 #### Inputs:
 
-* `$file` is the name of the file whose length is to be
-  checked, specified as either a relative or absolute
-  file path or file: [URI].
+* `$file` is the name of the file whose length is to be checked,
+  specified as either a relative or absolute file path or `file:`
+  [URI].
 
 #### Outputs:
 
-* `$length` is the length or size in bytes of the given
-  file. If the file does not exist, zero is returned.
+* `$length` is the length or size of the given file in bytes. If the
+  file does not exist, zero is returned.
 
 ---
 
@@ -7073,19 +7074,18 @@ expression or wildcard pattern.
 
 ### tundra.file:normalize
 
-Returns the canonical file: URI that represents the given
-file.
+Returns the canonical `file:` URI that represents the given file.
 
 #### Inputs:
 
-* `$file` is the file name to be normalized to the canonical
-  file: [URI], specified as either a relative or absolute
-  file path or file: [URI].
+* `$file` is the file name to be normalized to the canonical `file:`
+  [URI], specified as either a relative or absolute file path or
+  `file:` [URI].
 
 #### Outputs:
 
-* `$file` is the canonical file: [URI] that represents the
-  given file.
+* `$file` is the canonical `file:` [URI] that represents the given
+  file.
 
 ---
 
@@ -7174,7 +7174,7 @@ Returns `true` if Integration Server can read the given file.
 
 * `$file` is the name of the file to test if Integration Server has
   read permissions, specified as either a relative or absolute
-  file path or file: [URI].
+  file path or `file:` [URI].
 
 #### Outputs:
 
@@ -7190,49 +7190,48 @@ Returns useful details about the given file.
 
 #### Inputs:
 
-* `$file` is the name of the file to return details about, specified as
-  either a relative or absolute file path or file: [URI].
+* `$file` is the name of the file to return details about, specified
+  as either a relative or absolute file path or `file:` [URI].
 
 #### Outputs:
 
 * `$file.properties` is an `IData` document containing the following
   details about the given `$file`:
-  * `exists?` is a boolean flag indicating if the given file exists.
-  * `parent` is the canonical file: [URI] that represents the parent
-    directory that contains the given file.
-  * `name` is the name component not including the path of the given
-    file.
-  * `base` is the name component not including the path or extension of
-    the given file.
-  * `extension` is the part of the name after the final period used to
-    determine the type of the given file.
-  * `type` is the [mime type] associated with the given file.
-  * `length` is the length or size in bytes of the given file. If the
-    file does not exist, zero is returned.
-  * `modified` is the last modified datetime of the given file.
-  * `executable?` is a boolean flag indicating if Integration Server has
-    permission to execute the given file. If the file does not exist,
+  * `exists?` is a boolean flag indicating if the file exists.
+  * `parent` is the canonical `file:` [URI] that represents the
+    parent directory that contains the file.
+  * `name` is the name component not including the path of the file.
+  * `base` is the name component not including the path or extension
+    of the file.
+  * `extension` is the part of the name after the final period used
+    to determine the type of the file.
+  * `type` is the [mime type] associated with the file.
+  * `length` is the length or size of the file in bytes. If the file
+    does not exist, zero is returned.
+  * `modified` is the last modified datetime of the file.
+  * `executable?` is a boolean flag indicating if Integration Server
+    has permission to execute the file. If the file does not exist,
     `false` is returned.
-  * `readable?` is a boolean flag indicating if Integration Server has
-    permission to read the given file. If the file does not exist, `false`
-    is returned.
-  * `writable?` is a boolean flag indicating if Integration Server has
-    permission to write or append to the given file. If the file does not
-    exist, `false` is returned.
-  * `uri` is the canonical file: [URI] that represents the given file.
+  * `readable?` is a boolean flag indicating if Integration Server
+    has permission to read the file. If the file does not exist,
+    `false` is returned.
+  * `writable?` is a boolean flag indicating if Integration Server
+    has permission to write or append to the file. If the file does
+    not exist, `false` is returned.
+  * `uri` is the canonical `file:` [URI] that represents the file.
 
 ---
 
 ### tundra.file:remove
 
-Deletes the given file, if it exists. This service does nothing if the
-file does not exist (no exception is thrown).
+Deletes the given file, if it exists.
 
 #### Inputs:
 
-* `$file` is the name of the file to be deleted, specified as either a
-  relative or absolute file path or file: [URI]. If the file does not
-  exists, this service does nothing.
+* `$file` is the name of the file to be deleted, specified as either
+  a relative or absolute file path or `file:` [URI]. If the file does
+  not exists, this service does nothing (it does not throw an
+  exception).
 
 ---
 
@@ -7243,11 +7242,11 @@ Renames the source file to the target file name.
 #### Inputs:
 
 * `$file.source` is the name of the file to be renamed, specified as
-  either a relative or absolute file path or file: [URI]. If the source
-  file does not exist, an exception will be thrown.
+  either a relative or absolute file path or `file:` [URI]. If the
+  source file does not exist, an exception will be thrown.
 * `$file.target` is the new name for the renamed file, specified as
-  either a relative or absolute file path or file: [URI]. If the target
-  file already exists, an exception will be thrown.
+  either a relative or absolute file path or `file:` [URI]. If the
+  target file already exists, an exception will be thrown.
 
 ---
 
@@ -7258,10 +7257,10 @@ new file if it doesn't already exist.
 
 #### Inputs:
 
-* `$file` is the name of the file to be touched, specified as either a
-  relative or absolute file path or file: [URI]. If the file does not
-  exist, it will be created. If the file does exist, its modification
-  time will be updated to current time.
+* `$file` is the name of the file to be touched, specified as either
+  a relative or absolute file path or `file:` [URI]. If the file does
+  not exist, it will be created. If the file does exist, its last
+  modification time will be updated to current time.
 
 ---
 
@@ -7270,17 +7269,17 @@ new file if it doesn't already exist.
 Determines the [mime type] for the given file.
 
 Integration Server file extension to [mime type] mappings are defined
-in the file ./lib/mime.types. If the [mime type] cannot be found, it
-defaults to the [mime type] for arbitrary binary data:
+in the file `./lib/mime.types`. If the [mime type] cannot be found,
+it defaults to the [mime type] for arbitrary binary data:
 
-  application/octet-stream
+    application/octet-stream
 
 #### Inputs:
 
-* `$file` is the name of the file whose mime type is to be determined,
-  specified as either a relative or absolute file path or file: [URI].
-  The file is not required to exist, since the mime type is determined
-  purely from the file name itself.
+* `$file` is the name of the file whose mime type is to be
+  determined, specified as either a relative or absolute file path or
+  `file:` [URI]. The file is not required to exist, since the mime
+  type is determined purely from the file name itself.
 
 #### Outputs:
 
@@ -7296,7 +7295,7 @@ Returns `true` if Integration Server can write to the given file.
 
 * `$file` is the name of the file to test if Integration Server has
   write permissions, specified as either a relative or absolute
-  file path or file: [URI].
+  file path or `file:` [URI].
 
 #### Outputs:
 
@@ -7322,19 +7321,19 @@ file.
 
 * `$file` is the optional name of the file to which the given content
   is to be written or appended, specified as either a relative or
-  absolute file path or file: [URI]. If not specified, a new
+  absolute file path or `file:` [URI]. If not specified, a new
   temporary file will be created automatically.
-* `$file.mode` determines what to do when the file already exists. Defaults
-  to `create` if not specified.
+* `$file.mode` determines what to do when the file already exists.
+  Defaults to `create` if not specified.
   * `append` will append the given content to the file if it already
     exists.
+  * `create` will throw an exception if the file already exists.
   * `write` will overwrite the file with the given content if it
     already exists.
-  * `create` will throw an exception if the file already exists.
 * `$content` is a string, byte array, or input stream containing data
   to be written or appended to the given file.
-* `$encoding` is an optional character set to use when $content has
-  been provided as a string. Defaults to [UTF-8].
+* `$content.encoding` is an optional character set to use when
+  `$content` has been provided as a string. Defaults to [UTF-8].
 
 #### Outputs:
 
@@ -7351,17 +7350,17 @@ Compresses the given file using the zip algorithm.
 #### Inputs:
 
 * `$file` is the name of the file to be read, specified as either a
-  relative or absolute file path or file [URI].
+  relative or absolute file path or `file:` [URI].
 * `$file.zip` is the optional name of the resulting compressed file,
-  specified as either a relative or absolute file path or file
-  [URI]. Defaults to the source file suffixed with ".zip".
-* `$replace?` is an optional boolean flag indicating whether the
+  specified as either a relative or absolute file path or `file:`
+  [URI]. Defaults to the source file suffixed with `.zip`.
+* `$file.remove?` is an optional boolean flag indicating whether the
   source file should be deleted once it has been compressed.
   Defaults to `false`.
 
 #### Outputs:
 
-* `$file.zip` is resulting compressed file name specifed as a file
+* `$file.zip` is resulting compressed file name specifed as a `file:`
   [URI].
 
 ---
