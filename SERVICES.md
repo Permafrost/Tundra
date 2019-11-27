@@ -7373,18 +7373,19 @@ Compresses the given file using the zip algorithm.
 
 ### tundra.gzip:compress
 
-Compresses the given content using the [gzip] file compression format.
+Compresses the given content using the [gzip] file compression
+format.
 
 #### Inputs:
 
 * `$content` is the data to be compressed, specified as a string,
   byte array, or input stream.
-* `$encoding` is an optional character set used when `$content` is
-  specified as a string. Defaults to [UTF-8].
-* `$mode` is an optional choice of 'stream', 'bytes', or
-  'string', which determines the type of object returned by
-  this service. If the 'string' mode is chosen, the resulting
-  gzipped data is base64-encoded. Defaults to 'stream'.
+* `$content.encoding` is an optional character set used to encode
+  the text data when `$content` is specified as a string. Defaults to
+  [UTF-8].
+* `$content.mode` is an optional choice of `stream`, `bytes`, or
+  `string`, which determines the type of object `$content.gzip` is
+  returned as. Defaults to `stream`.
 
 #### Outputs:
 
@@ -7394,18 +7395,19 @@ Compresses the given content using the [gzip] file compression format.
 
 ### tundra.gzip:decompress
 
-Decompresses the given content using the [gzip] file compression format.
+Decompresses the given content using the [gzip] file compression
+format.
 
 #### Inputs:
 
 * `$content.gzip` is the [gzip] compressed data to be decompressed,
   specified as a base64-encoded string, byte array, or input stream.
-* `$encoding` is an optional character set used to decode the
-  decompressed data when the chosen `$mode` is 'string'. Defaults to
-  the [UTF-8].
-* `$mode` is an optional choice of 'stream', 'bytes', or
-  'string', which determines the type of object returned by
-  this service. Defaults to 'stream'.
+* `$content.encoding` is an optional character set used to decode the
+  decompressed data when the chosen `$content.mode` is `string`.
+  Defaults to [UTF-8].
+* `$content.mode` is an optional choice of `stream`, `bytes`, or
+  `string`, which determines the type of object `$content` is
+  returned as. Defaults to `stream`.
 
 #### Outputs:
 
