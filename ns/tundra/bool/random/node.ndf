@@ -48,12 +48,12 @@
   </record>
   <value name="node_comment">### tundra.bool:random
 
-Returns a cryptographically strong randomly generated boolean using 
+Returns a cryptographically strong randomly generated boolean using
 an instance of the [java.security.SecureRandom] class.
 
 #### Outputs:
 
-* $boolean.random is the randomly generated boolean provided as 
+* `$boolean.random` is the randomly generated boolean provided as
   a [java.lang.Boolean] object.
 
 [java.lang.Boolean]: &lt;http://docs.oracle.com/javase/6/docs/api/java/lang/Boolean.html&gt;

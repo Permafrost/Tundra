@@ -7,6 +7,7 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -21,6 +22,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$boolean</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -48,6 +50,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$default</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -68,9 +71,11 @@
           <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -85,6 +90,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$boolean</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -104,29 +110,29 @@
           <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">### tundra.bool:normalize
 
-Returns the canonical string form for the given $boolean string: either
-"true" or "false".
+Returns the canonical string form for the given `$boolean` string: 
+either "true" or "false".
 
-If $boolean is null and $default is not null, then $default's boolean
-value will be returned.
+If `$boolean` is null and `$default` is not null, then `$default`'s 
+boolean value will be returned.
 
-If $boolean is null and $default is null, then "false" will be
+If `$boolean` is null and `$default` is null, then "false" will be
 returned.
 
 #### Inputs:
 
-* $boolean is the value to be normalized.
-* $default is the value to use if $boolean is null.
+* `$boolean` is the value to be normalized.
+* `$default` is the value to use if `$boolean` is null.
 
 #### Outputs:
 
-* $boolean is the normalized input value, guaranteed to be either the
-  string "true" or "false".
-
+* `$boolean` is the normalized input value, guaranteed to be either 
+  the string "true" or "false".
 </value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
@@ -143,10 +149,16 @@ returned.
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
 </Values>
