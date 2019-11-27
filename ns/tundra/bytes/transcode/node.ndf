@@ -40,7 +40,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$encoding.input</value>
+          <value name="field_name">$content.encoding.input</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -68,7 +68,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$encoding.output</value>
+          <value name="field_name">$content.encoding.output</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -125,7 +125,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$encoding.input</value>
+          <value name="field_name">$content.encoding.input</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -153,7 +153,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$encoding.output</value>
+          <value name="field_name">$content.encoding.output</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -178,25 +178,28 @@
   </record>
   <value name="node_comment">### tundra.bytes:transcode
 
-Converts the given bytes containing text data from one encoding or 
+Converts the given bytes containing text data from one encoding or
 character set to another.
 
 #### Inputs:
 
-* $bytes is a byte[] to be transcoded.
-* $encoding.input is the optional character set used to decode the 
-  given $bytes. Defaults to [UTF-8].
-* $encoding.output is the optional character set used to encode the 
-  text data decoded from the given $bytes. Defaults to [UTF-8].
+* `$bytes` is a `byte[]` to be transcoded.
+* `$content.encoding.input` is the optional character set used to 
+  decode the given `$bytes`. Defaults to [UTF-8].
+* `$content.encoding.output` is the optional character set used to 
+  encode the text data decoded from the given `$bytes`. Defaults to 
+  [UTF-8].
 
 #### Outputs:
 
-* $bytes is the resulting transcoded byte[].
-* $encoding.input is the character set used to decode the input data.
-* $encoding.output is the character set used to encode the output 
-  data.
+* `$bytes` is the resulting transcoded `byte[]`.
+* `$content.encoding.input` is the character set used to decode the 
+  input data.
+* `$content.encoding.output` is the character set used to encode the 
+  output data.
 
-[UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;</value>
+[UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;
+</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

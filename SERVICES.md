@@ -604,14 +604,15 @@ Converts a string, byte array or input stream to a byte array.
 
 #### Inputs:
 
-* `$object` is the string, byte array or input stream to be normalized.
-* `$encoding` is the optional character set to use to encode `$object`
-  when it is a string. Defaults to [UTF-8].
+* `$content` is the string, byte array or input stream to be
+  normalized.
+* `$content.encoding` is the optional character set to use to encode
+  `$content` when it is a string. Defaults to [UTF-8].
 
 #### Outputs:
 
-* `$bytes` is a byte array representation of the input `$object` data.
-* `$encoding` is the character set used to encode `$object`.
+* `$bytes` is a byte array representation of the `$content` data.
+* `$content.encoding` is the character set used to encode `$content`.
 
 ---
 
@@ -622,7 +623,8 @@ instance of the [java.security.SecureRandom] class.
 
 #### Inputs:
 
-* `$bytes.random.length` is the desired number of bytes to be returned.
+* `$bytes.random.length` is the desired number of bytes to be
+  returned.
 
 #### Outputs:
 
@@ -639,17 +641,19 @@ character set to another.
 #### Inputs:
 
 * `$bytes` is a `byte[]` to be transcoded.
-* `$encoding.input` is the optional character set used to decode the
-  given `$bytes`. Defaults to [UTF-8].
-* `$encoding.output` is the optional character set used to encode the
-  text data decoded from the given `$bytes`. Defaults to [UTF-8].
+* `$content.encoding.input` is the optional character set used to
+  decode the given `$bytes`. Defaults to [UTF-8].
+* `$content.encoding.output` is the optional character set used to
+  encode the text data decoded from the given `$bytes`. Defaults to
+  [UTF-8].
 
 #### Outputs:
 
 * `$bytes` is the resulting transcoded `byte[]`.
-* `$encoding.input` is the character set used to decode the input data.
-* `$encoding.output` is the character set used to encode the output
-  data.
+* `$content.encoding.input` is the character set used to decode the
+  input data.
+* `$content.encoding.output` is the character set used to encode the
+  output data.
 
 ---
 

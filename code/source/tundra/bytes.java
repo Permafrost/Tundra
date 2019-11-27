@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-09-27T12:45:01.234
+// -----( CREATED: 2019-11-27T12:41:56.841
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -64,20 +64,27 @@ public final class bytes
 		// --- <<IS-START(normalize)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] object:0:optional $object
-		// [i] field:0:optional $encoding
+		// [i] object:0:optional $content
+		// [i] field:0:optional $content.encoding
 		// [o] object:0:optional $bytes
-		// [o] field:0:optional $encoding
+		// [o] field:0:optional $content.encoding
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
-		    Object object = IDataHelper.get(cursor, "$object");
-		    Charset charset = IDataHelper.getOrDefault(cursor, "$encoding", Charset.class, CharsetHelper.DEFAULT_CHARSET);
+		    String outputEncodingKey = "$content.encoding";
+		    Object content = IDataHelper.get(cursor, "$content");
 
-		    byte[] bytes = BytesHelper.normalize(object, charset);
+		    if (content == null) {
+		        content = IDataHelper.get(cursor, "$object");
+		        outputEncodingKey = "$encoding";
+		    }
+
+		    Charset charset = IDataHelper.firstOrDefault(cursor, Charset.class, CharsetHelper.DEFAULT_CHARSET, "$content.encoding", "$encoding");
+
+		    byte[] bytes = BytesHelper.normalize(content, charset);
 
 		    IDataHelper.put(cursor, "$bytes", bytes, false);
-		    if (bytes != null && object instanceof String) IDataHelper.put(cursor, "$encoding", charset.name());
+		    if (bytes != null && content instanceof String) IDataHelper.put(cursor, outputEncodingKey, charset.name());
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -122,22 +129,22 @@ public final class bytes
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:0:optional $bytes
-		// [i] field:0:optional $encoding.input
-		// [i] field:0:optional $encoding.output
+		// [i] field:0:optional $content.encoding.input
+		// [i] field:0:optional $content.encoding.output
 		// [o] object:0:optional $bytes
-		// [o] field:0:optional $encoding.input
-		// [o] field:0:optional $encoding.output
+		// [o] field:0:optional $content.encoding.input
+		// [o] field:0:optional $content.encoding.output
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
 		    byte[] bytes = IDataHelper.get(cursor, "$bytes", byte[].class);
-		    Charset sourceCharset = IDataHelper.getOrDefault(cursor, "$encoding.input", Charset.class, CharsetHelper.DEFAULT_CHARSET);
-		    Charset targetCharset = IDataHelper.getOrDefault(cursor, "$encoding.output", Charset.class, CharsetHelper.DEFAULT_CHARSET);
+		    Charset sourceCharset = IDataHelper.firstOrDefault(cursor, Charset.class, CharsetHelper.DEFAULT_CHARSET, "$content.encoding.input", "$encoding.input");
+		    Charset targetCharset = IDataHelper.firstOrDefault(cursor, Charset.class, CharsetHelper.DEFAULT_CHARSET, "$content.encoding.output", "$encoding.output");
 
 		    if (bytes != null) {
 		        IDataHelper.put(cursor, "$bytes", BytesHelper.transcode(bytes, sourceCharset, targetCharset));
-		        IDataHelper.put(cursor, "$encoding.input", sourceCharset.name());
-		        IDataHelper.put(cursor, "$encoding.output", targetCharset.name());
+		        IDataHelper.put(cursor, "$content.encoding.input", sourceCharset.name());
+		        IDataHelper.put(cursor, "$content.encoding.output", targetCharset.name());
 		    }
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
