@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-11-26T10:44:48.928
+// -----( CREATED: 2019-11-29T09:40:29.982
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -19,6 +19,7 @@ import permafrost.tundra.io.CloseableHelper;
 import permafrost.tundra.io.FileHelper;
 import permafrost.tundra.io.InputStreamHelper;
 import permafrost.tundra.io.OutputStreamHelper;
+import permafrost.tundra.io.filter.FilenameFilterType;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.CharsetHelper;
 import permafrost.tundra.lang.ExceptionHelper;
@@ -26,6 +27,7 @@ import permafrost.tundra.lang.ObjectConvertMode;
 import permafrost.tundra.lang.ObjectHelper;
 import permafrost.tundra.math.LongHelper;
 import permafrost.tundra.server.ServiceHelper;
+import permafrost.tundra.time.DurationHelper;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class file
@@ -286,6 +288,40 @@ public final class file
 
 
 
+	public static final void purge (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(purge)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $file
+		// [i] field:0:optional $duration
+		// [i] field:0:optional $duration.pattern {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
+		// [i] field:0:optional $filter.type {"regular expression","wildcard","literal"}
+		// [o] field:0:required $count
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    String file = IDataHelper.get(cursor, "$file", String.class);
+		    String duration = IDataHelper.get(cursor, "$duration", String.class);
+		    String pattern = IDataHelper.get(cursor, "$duration.pattern", String.class);
+		    FilenameFilterType filterType = IDataHelper.get(cursor, "$filter.type", FilenameFilterType.class);
+
+		    long count = FileHelper.purge(file, filterType, DurationHelper.parse(duration, pattern));
+
+		    IDataHelper.put(cursor, "$count", count, String.class);
+		} catch(IOException ex) {
+		    ExceptionHelper.raise(ex);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
 	public static final void read (IData pipeline)
         throws ServiceException
 	{
@@ -502,7 +538,7 @@ public final class file
 		// [i] field:0:optional $file
 		// [i] field:0:optional $file.mode {"append","write","create"}
 		// [i] object:0:optional $content
-		// [i] field:0:optional $encoding
+		// [i] field:0:optional $content.encoding
 		// [o] field:0:required $file
 		IDataCursor cursor = pipeline.getCursor();
 

@@ -7140,6 +7140,41 @@ whether an exception is encountered by the service.
 
 ---
 
+### tundra.file:purge
+
+Deletes all files that match the given filename pattern older than
+the given duration.
+
+For example, specifying the following input values will delete all
+files older than one day with a `txt` extension from the `C:\Temp`
+directory:
+
+    $file = C:\Temp\*.txt
+    $duration = P1D
+    $filter.type = wildcard
+
+#### Inputs:
+
+* `$file` is the file pattern used to determine which files to delete
+  specified as either a relative or absolute file path or `file:`
+  [URI], where the filename part is specified as a pattern used to
+  match multiple files in the same directory.
+* `$duration` is an optional duration of time representing the age of
+  files to be deleted. For example, a duration of P1D will delete
+  all files that were last modified 24 hours ago or earlier.
+* `$duration.pattern` is an optional pattern describing the type of
+  duration specified by the `$duration` string. Defaults to an
+  [ISO8601] XML string.
+* `$filter.type` is an optional choice of either `regular
+  expression`, `wildcard`, or `literal`, which determines the type of
+  filename pattern provided. Defaults to `regular expression`.
+
+#### Outputs:
+
+* `$count` is the number of files deleted by this service.
+
+---
+
 ### tundra.file:read
 
 Reads a file in full, returning the content as either an input
