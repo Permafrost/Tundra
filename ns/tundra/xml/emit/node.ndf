@@ -192,22 +192,23 @@
   </record>
   <value name="node_comment">### tundra.xml:emit
 
-Serializes an [org.w3c.dom.Node] object, known as a node in 
+Serializes an [org.w3c.dom.Node] object, known as a node in
 webMethods parlance, to an [XML] string, byte array, or input stream.
 
 #### Inputs:
 
-* $node is an [org.w3c.dom.Node] object to be serialized.
-* $content.encoding is the character set used when serializing the 
+* `$node` is an [org.w3c.dom.Node] object to be serialized.
+* `$content.encoding` is the character set used when serializing the
   content. Defaults to [UTF-8].
-* $content.mode is a choice of bytes, stream, or string, and 
-  determines the type of object $content is returned as. Defaults to stream.
+* `$content.mode` is a choice of `bytes`, `stream`, or `string`, and
+  determines the type of object `$content` is returned as. Defaults
+  to `stream`.
 
 #### Outputs:
 
-* $content is the given [org.w3c.dom.Document] object serialized to
+* `$content` is the given [org.w3c.dom.Node] object serialized to
   [XML].
-* $content.encoding is the character set used to serialize the 
+* `$content.encoding` is the character set used to serialize the
   content.
 
 [org.w3c.dom.Node]: &lt;http://docs.oracle.com/javase/6/docs/api/org/w3c/dom/Node.html&gt;

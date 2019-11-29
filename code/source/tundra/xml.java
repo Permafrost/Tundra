@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-03-07 10:39:31 GMT+10:00
+// -----( CREATED: 2019-11-29T15:09:57.212
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -54,17 +54,17 @@ public final class xml
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:0:optional $content
-		// [i] field:0:optional $encoding
+		// [i] field:0:optional $content.encoding
+		// [i] field:0:optional $content.mode {"stream","bytes","string"}
 		// [i] field:0:optional $algorithm {"Canonical XML Version 1.0","Canonical XML Version 1.0 With Comments","Canonical XML Version 1.1","Canonical XML Version 1.1 With Comments","Exclusive Canonical XML Version 1.0","Exclusive Canonical XML Version 1.0 With Comments"}
-		// [i] field:0:optional $mode {"stream","bytes","string"}
 		// [o] object:0:optional $content.canonical
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
 		    Object content = IDataHelper.get(cursor, "$content");
-		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
+		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
+		    ObjectConvertMode mode = IDataHelper.first(cursor, ObjectConvertMode.class, "$content.mode", "$mode");
 		    XMLCanonicalizationAlgorithm algorithm = XMLCanonicalizationAlgorithm.normalize(IDataHelper.get(cursor, "$algorithm", String.class));
-		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
 
 		    if (content != null) IDataHelper.put(cursor, "$content.canonical", ObjectHelper.convert(XMLCanonicalizationHelper.canonicalize(BytesHelper.normalize(content, charset), charset, algorithm), charset, mode));
 		} catch(IOException ex) {
@@ -180,16 +180,16 @@ public final class xml
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:0:optional $content
-		// [i] field:0:optional $encoding
-		// [i] field:0:optional $mode {"stream","bytes","string"}
+		// [i] field:0:optional $content.encoding
+		// [i] field:0:optional $content.mode {"stream","bytes","string"}
 		// [o] object:0:optional $content.minified
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
 		    Object content = IDataHelper.get(cursor, "$content");
-		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
+		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
 
-		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
+		    ObjectConvertMode mode = IDataHelper.first(cursor, ObjectConvertMode.class, "$content.mode", "$mode");
 
 		    IDataHelper.put(cursor, "$content.minified", ObjectHelper.convert(XMLMinificationHelper.minify(InputStreamHelper.normalize(content, charset)), charset, mode), false);
 		} catch(IOException ex) {
@@ -212,7 +212,7 @@ public final class xml
 		// @sigtype java 3.5
 		// [i] object:0:optional $content
 		// [i] field:0:optional $content.encoding
-		// [i] record:0:optional $namespace
+		// [i] record:0:optional $content.namespace
 		// [i] - field:0:optional default
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
@@ -220,7 +220,7 @@ public final class xml
 		try {
 		    Object content = IDataHelper.get(cursor, "$content");
 		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
-		    NamespaceContext namespace = IDataHelper.get(cursor, "$namespace", IDataNamespaceContext.class);
+		    NamespaceContext namespace = IDataHelper.first(cursor, IDataNamespaceContext.class, "$content.namespace", "$namespace");
 
 		    Node node = null;
 		    if (content instanceof Node) {

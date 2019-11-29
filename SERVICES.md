@@ -16771,9 +16771,12 @@ Implemented with the [Apache Santuario] XML Security library.
 
 * `$content` is the XML content to be canonicalized, specified as a
   string, byte array, or input stream.
-* `$encoding` is an optional character set to use when `$content` is
-  provided as a byte array or input stream to decode the contained
-  text data. Defaults to [UTF-8].
+* `$content.encoding` is an optional character set to use when
+  `$content` is provided as a byte array or input stream to decode
+  the contained text data. Defaults to [UTF-8].
+* `$content.mode` is a choice of `bytes`, `stream`, or `string`, and
+  determines the type of object `$content.canonical` is returned as.
+  Defaults to `stream`.
 * `$algorithm` determines the canonicalization algorithm used, and
   is a choice of:
   * [Canonical XML Version 1.0]
@@ -16782,9 +16785,6 @@ Implemented with the [Apache Santuario] XML Security library.
   * [Canonical XML Version 1.1 With Comments]
   * [Exclusive Canonical XML Version 1.0]
   * [Exclusive Canonical XML Version 1.0 With Comments]
-* `$mode` is a choice of bytes, stream, or string, and determines
-  the type of object `$content.canonical` is returned as. Defaults
-  to stream.
 
 #### Outputs:
 
@@ -16807,8 +16807,8 @@ appropriate character representation, such as `<` and `>`.
 
 #### Outputs:
 
-* `$document.decoded` is an `IData` document containing the arbitrarily
-  specified string values with [XML entities] decoded.
+* `$document.decoded` is an `IData` document containing the
+  arbitrarily specified string values with [XML entities] decoded.
 
 ---
 
@@ -16840,43 +16840,43 @@ webMethods parlance, to an [XML] string, byte array, or input stream.
 [XML] encodes the string values in the given `IData` document.
 
 Reserved characters in [XML], such as `<` and `>`, are encoded to the
-appropriate [XML entity], such as `&lt;` and `&gt;`, to ensure the [XML]
-is rendered correctly by web browsers and other [XML] rendering
+appropriate [XML entity], such as `&lt;` and `&gt;`, to ensure the
+[XML] is rendered correctly by web browsers and other [XML] rendering
 software.
 
 #### Inputs:
 
 * `$document.decoded` is an optional `IData` document containing
-  arbitrarily specified string values to be [HTML] encoded.
+  arbitrarily specified string values to be [XML] encoded.
 * `$attribute.prefix` is an optional custom prefix used to denote
   [XML] attributes in the given `IData` document. Defaults to `@`, if
   not specified.
 
 #### Outputs:
 
-* `$document.encoded` is an `IData` document containing the arbitrarily
-  specified string values with [XML entities] encoded.
+* `$document.encoded` is an `IData` document containing the
+  arbitrarily specified string values with [XML entities] encoded.
 
 ---
 
 ### tundra.xml:minify
 
-Removes all comments and extraneous whitespace from the given
-[XML] content.
+Removes all comments and extraneous whitespace from the given [XML]
+content.
 
 #### Inputs:
 
 * `$content` is a string, byte array, or input stream containing
   [XML] data.
-* `$encoding` is the character set used by `$content` if provided
-  as a byte array or input stream. Defaults to [UTF-8].
-* `$mode` is a choice of bytes, stream, or string, and determines
-  the type of object `$content.minified` is returned as. Defaults
-  to stream.
+* `$content.encoding` is the character set used by `$content` if
+  provided as a byte array or input stream. Defaults to [UTF-8].
+* `$content.mode` is a choice of `bytes`, `stream`, or `string`, and
+  determines the type of object `$content.minified` is returned as.
+  Defaults to `stream`.
 
 #### Outputs:
 
-* `$content.minified` is the given XML content with all comments
+* `$content.minified` is the given [XML] content with all comments
   and extraneous whitespace removed.
 
 ---
@@ -16902,9 +16902,9 @@ TODO: optionally reference an [XML] schema so that elements with a
 * `$content.encoding` is an optional character set to use when
   `$content` is provided as a byte array or input stream to decode
   the contained text data. Defaults to [UTF-8].
-* `$namespace` is an optional list of namespace prefixes and the URIs
-  they map to, used when parsing [XML] content with elements in one
-  or more namespaces.
+* `$content.namespace` is an optional list of namespace prefixes and
+  the URIs they map to, used when parsing [XML] content with elements
+  in one or more namespaces.
   * `default` is the [URI] for the default namespace, if applicable.
 
 #### Outputs:
@@ -16919,9 +16919,9 @@ TODO: optionally reference an [XML] schema so that elements with a
 Validates the given content as [XML], and optionally against an [XML]
 schema ([XSD]).
 
-Uses the Simple API for XML ([SAX]) algorithm for parsing which, as it is
-event-based, is not memory-constrained and can handle arbitrarily large
-documents when parsing from an input stream.
+Uses the Simple API for XML ([SAX]) algorithm for parsing which, as
+it is event-based, is not memory-constrained and can handle
+arbitrarily large documents when parsing from an input stream.
 
 #### Inputs:
 
@@ -16931,18 +16931,19 @@ documents when parsing from an input stream.
   provided as a byte array or input stream. Defaults to [UTF-8].
 * `$schema` is a string, byte array, or input stream containing [XSD]
   data.
-* `$schema.encoding` is the character set used by `$schema` if provided
-  as a byte array or input stream. Defaults to [UTF-8].
+* `$schema.encoding` is the character set used by `$schema` if
+  provided as a byte array or input stream. Defaults to [UTF-8].
 * `$raise?` is an optional boolean flag, if `true` and `$content` is
   malformed or invalid an exception will be thrown. If `false`, no
   exception will be thrown. Defaults to `false`.
 
 #### Outputs:
 
-* `$valid?` is `true` if the given `$content` is well-formed [XML] and, if
-  a `$schema` was specified, valid when compared to the given `$schema`.
-* `$errors` is an optional list of the errors detected by the parser in
-  the given `$content`, provided when `$valid?` is `false`.
+* `$valid?` is `true` if the given `$content` is well-formed [XML]
+  and, if a `$schema` was specified, valid when compared to the given
+  `$schema`.
+* `$errors` is an optional list of the errors detected by the parser
+  in the given `$content`, provided when `$valid?` is `false`.
 
 ---
 

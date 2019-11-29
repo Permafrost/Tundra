@@ -70,20 +70,20 @@
   </record>
   <value name="node_comment">### tundra.xml:decode
 
-[XML] decodes the string values in the given IData document.
+[XML] decodes the string values in the given `IData` document.
 
-[XML entities], such as &amp;lt; and &amp;gt;, are decoded to the
-appropriate character representation, such as &lt; and &gt;.
+[XML entities], such as `&amp;lt;` and `&amp;gt;`, are decoded to the
+appropriate character representation, such as `&lt;` and `&gt;`.
 
 #### Inputs:
 
-* $document.encoded is an optional IData document containing 
+* `$document.encoded` is an optional `IData` document containing
   arbitrarily specified string values to be [XML] decoded.
 
 #### Outputs:
 
-* $document.decoded is an IData document containing the arbitrarily 
-  specified string values with [XML entities] decoded.
+* `$document.decoded` is an `IData` document containing the 
+  arbitrarily specified string values with [XML entities] decoded.
 
 [XML]: &lt;http://www.w3.org/XML/&gt;
 [XML entities]: &lt;http://www.w3.org/TR/html4/sgml/entities.html&gt;</value>

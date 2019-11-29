@@ -98,25 +98,25 @@
   </record>
   <value name="node_comment">### tundra.xml:encode
 
-[XML] encodes the string values in the given IData document.
+[XML] encodes the string values in the given `IData` document.
 
-Reserved characters in [XML], such as &lt; and &gt;, are encoded to the
-appropriate [XML entity], such as &amp;lt; and &amp;gt;, to ensure the [XML]
-is rendered correctly by web browsers and other [XML] rendering
+Reserved characters in [XML], such as `&lt;` and `&gt;`, are encoded to the
+appropriate [XML entity], such as `&amp;lt;` and `&amp;gt;`, to ensure the 
+[XML] is rendered correctly by web browsers and other [XML] rendering
 software.
 
 #### Inputs:
 
-* $document.decoded is an optional IData document containing 
-  arbitrarily specified string values to be [HTML] encoded.
-* $attribute.prefix is an optional custom prefix used to denote 
-  [XML] attributes in the given IData document. Defaults to "@", if 
+* `$document.decoded` is an optional `IData` document containing
+  arbitrarily specified string values to be [XML] encoded.
+* `$attribute.prefix` is an optional custom prefix used to denote
+  [XML] attributes in the given `IData` document. Defaults to `@`, if
   not specified.
 
 #### Outputs:
 
-* $document.encoded is an IData document containing the arbitrarily 
-  specified string values with [XML entities] encoded.
+* `$document.encoded` is an `IData` document containing the 
+  arbitrarily specified string values with [XML entities] encoded.
 
 [XML]: &lt;http://www.w3.org/XML/&gt;
 [XML entity]: &lt;http://www.w3.org/TR/html4/sgml/entities.html&gt;

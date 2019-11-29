@@ -66,7 +66,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$namespace</value>
+          <value name="field_name">$content.namespace</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -142,34 +142,34 @@
   </record>
   <value name="node_comment">### tundra.xml:parse
 
-Parses [XML] content into an IData document.
+Parses [XML] content into an `IData` document.
 
-This service is not intended as a replacement for 
-pub.xml:xmlNodeToDocument. However, unlike that service, this 
-service can parse any implementation of the [org.w3c.dom.Node] 
-interface, not just the standard webMethods implementation class 
-com.wm.lang.xml.Node.
+This service is not intended as a replacement for
+`pub.xml:xmlNodeToDocument`. However, unlike that service, this
+service can parse any implementation of the [org.w3c.dom.Node]
+interface, not just the standard webMethods implementation class
+`com.wm.lang.xml.Node`.
 
-TODO: optionally reference an [XML] schema so that elements with a 
-maxOccurs of unbounded can be correctly represented as lists.
+TODO: optionally reference an [XML] schema so that elements with a
+`maxOccurs` of `unbounded` can be correctly represented as lists.
 
 #### Inputs:
 
-* $content is a string, byte array, input stream, [org.w3c.dom.Node] 
-  object (node in webMethods parlance), or [org.xml.sax.InputSource] 
+* `$content` is a string, byte array, input stream, [org.w3c.dom.Node]
+  object (node in webMethods parlance), or [org.xml.sax.InputSource]
   object containing [XML] data.
-* $content.encoding is an optional character set to use when 
-  $content is provided as a byte array or input stream to decode the 
-  contained text data. Defaults to [UTF-8].
-* $namespace is an optional list of namespace prefixes and the URIs 
-  they map to, used when parsing [XML] content with elements in one 
-  or more namespaces.
-  * default is the [URI] for the default namespace, if applicable.
+* `$content.encoding` is an optional character set to use when
+  `$content` is provided as a byte array or input stream to decode
+  the contained text data. Defaults to [UTF-8].
+* `$content.namespace` is an optional list of namespace prefixes and 
+  the URIs they map to, used when parsing [XML] content with elements 
+  in one or more namespaces.
+  * `default` is the [URI] for the default namespace, if applicable.
 
 #### Outputs:
 
-* $document is the resulting IData document representing the parsed
-  $content.
+* `$document` is the resulting `IData` document representing the parsed
+  `$content`.
 
 [org.w3c.dom.Node]: &lt;http://docs.oracle.com/javase/6/docs/api/org/w3c/dom/Node.html&gt;
 [org.xml.sax.InputSource]: &lt;http://docs.oracle.com/javase/6/docs/api/org/xml/sax/InputSource.html&gt;
