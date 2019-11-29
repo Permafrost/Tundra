@@ -17085,7 +17085,8 @@ stream into an `IData` document.
 
 ### tundra.zip:compress
 
-Compresses the given contents using the [zip] file compression format.
+Compresses the given contents using the [zip] file compression
+format.
 
 #### Inputs:
 
@@ -17097,10 +17098,9 @@ Compresses the given contents using the [zip] file compression format.
     string, byte array, or input stream.
   * `encoding` is an optional character set used when `content` is
     specified as a string. Defaults to [UTF-8].
-* `$mode` is an optional choice of 'stream', 'bytes', or
-  'string', which determines the type of object returned by
-  this service. If the 'string' mode is chosen, the resulting
-  zipped data is base64-encoded. Defaults to 'stream'.
+* `$content.mode` is an optional choice of `stream`, `bytes`, or
+  `string`, which determines the type of object `$contents.zip` is
+  returned as. Defaults to `stream`.
 
 #### Outputs:
 
@@ -17110,18 +17110,19 @@ Compresses the given contents using the [zip] file compression format.
 
 ### tundra.zip:decompress
 
-Decompresses the given content using the [zip] file compression format.
+Decompresses the given content using the [zip] file compression
+format.
 
 #### Inputs:
 
 * `$contents.zip` is the [zip] compressed data to be decompressed,
   specified as a base64-encoded string, byte array, or input stream.
-* `$encoding` is an optional character set used to decode the
-  decompressed data when the chosen `$mode` is 'string'. Defaults to
-  [UTF-8].
-* `$mode` is an optional choice of 'stream', 'bytes', or 'string',
-  which determines the type of content returned by this service.
-  Defaults to 'stream'.
+* `$content.encoding` is an optional character set used to decode the
+  decompressed data when the chosen `$content.mode` is `string`.
+  Defaults to [UTF-8].
+* `$content.mode` is an optional choice of `stream`, `bytes`, or
+  `string`, which determines the type of object `$contents/content`
+  is returned as. Defaults to `stream`.
 
 #### Outputs:
 
@@ -17130,6 +17131,7 @@ Decompresses the given content using the [zip] file compression format.
   * `name` is the file path and name assigned to this item in the
     zip archive.
   * `content` is the decompressed data associated with this item.
+  * `length` is the size of `content` in bytes.
 
 [Apache Santuario]: <http://santuario.apache.org/>
 [Base64]: <http://en.wikipedia.org/wiki/Base64>

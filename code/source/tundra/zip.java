@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-07 13:51:06 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2019-11-27T13:32:58.916
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -47,16 +47,16 @@ public final class zip
 		// [i] - field:0:required name
 		// [i] - object:0:required content
 		// [i] - field:0:optional encoding
-		// [i] field:0:optional $mode {"stream","bytes","string","base64"}
+		// [i] field:0:optional $content.mode {"stream","bytes","string","base64"}
 		// [o] object:0:optional $contents.zip
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IData[] contents = IDataHelper.get(cursor, "$contents", IData[].class);
-		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
-		
+		    ObjectConvertMode mode = IDataHelper.first(cursor, ObjectConvertMode.class, "$content.mode", "$mode");
+
 		    Object output = ObjectHelper.convert(ZipHelper.compress(ZipEntryWithData.valueOf(contents)), mode);
-		
+
 		    IDataHelper.put(cursor, "$contents.zip", output, false);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -65,7 +65,7 @@ public final class zip
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -77,20 +77,21 @@ public final class zip
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:0:optional $contents.zip
-		// [i] field:0:optional $encoding
-		// [i] field:0:optional $mode {"stream","bytes","string","base64"}
+		// [i] field:0:optional $content.encoding
+		// [i] field:0:optional $content.mode {"stream","bytes","string","base64"}
 		// [o] record:1:optional $contents
 		// [o] - field:0:required name
 		// [o] - object:0:required content
+		// [o] - object:0:required length
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Object input = IDataHelper.get(cursor, "$contents.zip");
-		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
-		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
-		
+		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
+		    ObjectConvertMode mode = IDataHelper.first(cursor, ObjectConvertMode.class, "$content.mode", "$mode");
+
 		    ZipEntryWithData[] entries = ZipHelper.decompress(InputStreamHelper.normalize(input, charset));
-		
+
 		    IDataHelper.put(cursor, "$contents", ZipEntryWithData.toIDataArray(entries, charset, mode), false);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -99,7 +100,7 @@ public final class zip
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 
