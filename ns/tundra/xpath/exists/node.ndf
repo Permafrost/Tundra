@@ -7,6 +7,7 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -20,6 +21,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$content</value>
           <value name="field_type">object</value>
           <value name="field_dim">0</value>
@@ -36,7 +38,8 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$encoding</value>
+          <value name="is_public">false</value>
+          <value name="field_name">$content.encoding</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -59,36 +62,11 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$expression</value>
-          <value name="field_type">string</value>
-          <value name="field_dim">0</value>
-          <record name="field_content_type" javaclass="com.wm.util.Values">
-            <value name="contentType">1</value>
-            <value name="internalType">reference</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-            <array name="targetNames" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">string</value>
-              </record>
-            </array>
-          </record>
-          <value name="nillable">false</value>
-          <value name="form_qualified">false</value>
-          <value name="is_global">false</value>
-        </record>
-        <record javaclass="com.wm.util.Values">
-          <value name="node_type">record</value>
-          <value name="node_comment"></value>
-          <record name="node_hints" javaclass="com.wm.util.Values">
-            <value name="field_largerEditor">false</value>
-            <value name="field_password">false</value>
-          </record>
-          <value name="field_name">$namespace</value>
+          <value name="is_public">false</value>
+          <value name="field_name">$content.namespace</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -104,6 +82,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">default</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -124,11 +103,41 @@
               <value name="is_global">false</value>
             </record>
           </array>
+          <value name="modifiable">true</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <null name="field_usereditable"/>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$expression</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">string</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">false</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -143,6 +152,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$exists?</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -162,32 +172,33 @@
           <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">### tundra.xpath:exists
 
-Returns true if the given [XPath expression] exists the given [XML] 
+Returns `true` if the given [XPath expression] exists the given [XML]
 content.
 
 #### Inputs:
 
-* $content is a string, byte array, input stream, [org.w3c.dom.Node] 
-  object (node in webMethods parlance), or [org.xml.sax.InputSource] 
-  object containing [XML] data.
-* $encoding is the character set used by $content if provided as a
-  byte array or input stream. Defaults to [UTF-8].
-* $expression is the [XPath expression] to be tested against 
-  $content.
-* $namespace is an optional list of namespace prefixes and the URIs 
-  they map to, used when parsing [XML] content with elements in one 
-  or more namespaces.
-  * default is the URI for the default namespace, if applicable.
+* `$content` is a string, byte array, input stream, 
+  [org.w3c.dom.Node] object (node in webMethods parlance), or 
+  [org.xml.sax.InputSource] object containing [XML] data.
+* `$content.encoding` is the character set used by `$content` if 
+  provided as a byte array or input stream. Defaults to [UTF-8].
+* `$content.namespace` is an optional list of namespace prefixes and 
+  the URIs they map to, used when parsing [XML] content with elements 
+  in one or more namespaces.
+  * `default` is the URI for the default namespace, if applicable.
+* `$expression` is the [XPath expression] to be tested against
+  `$content`.
 
 #### Outputs:
 
-* $exists? is true if the given $expression was found to exist in the
-  given $content (in other words the expression returned one or more
-  [org.w3c.dom.Node] objects when evaluated).
+* `$exists?` is `true` if the given `$expression` was found to exist 
+  in the given `$content` (in other words the expression returned one 
+  or more [org.w3c.dom.Node] objects when evaluated).
 
 [org.w3c.dom.Node]: &lt;http://docs.oracle.com/javase/6/docs/api/org/w3c/dom/Node.html&gt;
 [org.xml.sax.InputSource]: &lt;http://docs.oracle.com/javase/6/docs/api/org/xml/sax/InputSource.html&gt;
@@ -209,10 +220,16 @@ content.
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
 </Values>

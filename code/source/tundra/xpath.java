@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-06-03 18:14:03 EST
-// -----( ON-HOST: 192.168.66.132
+// -----( CREATED: 2019-11-29T10:29:28.882
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -54,22 +54,22 @@ public final class xpath
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:0:optional $content
-		// [i] field:0:optional $encoding
-		// [i] field:0:required $expression
-		// [i] record:0:optional $namespace
+		// [i] field:0:optional $content.encoding
+		// [i] record:0:optional $content.namespace
 		// [i] - field:0:optional default
+		// [i] field:0:required $expression
 		// [o] field:0:required $exists?
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Object content = IDataHelper.get(cursor, "$content");
-		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
+		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
+		    NamespaceContext namespace =  IDataHelper.first(cursor, IDataNamespaceContext.class, "$content.namespace", "$namespace");
 		    String expression = IDataHelper.get(cursor, "$expression", String.class);
-		    NamespaceContext namespace =  IDataHelper.get(cursor, "$namespace", IDataNamespaceContext.class);
-		
+
 		    XPathExpression compiledExpression = XPathHelper.compile(expression, namespace);
 		    Node node = null;
-		
+
 		    if (content instanceof Node) {
 		        node = (Node)content;
 		    } else if (content instanceof InputSource) {
@@ -77,7 +77,7 @@ public final class xpath
 		    } else if (content != null) {
 		        node = DocumentHelper.parse(InputStreamHelper.normalize(content, charset), charset, true, namespace);
 		    }
-		
+
 		    IDataHelper.put(cursor, "$exists?", XPathHelper.exists(node, compiledExpression), String.class);
 		} catch(XPathExpressionException ex) {
 		    ExceptionHelper.raise(ex);
@@ -86,7 +86,7 @@ public final class xpath
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -98,10 +98,10 @@ public final class xpath
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:0:optional $content
-		// [i] field:0:optional $encoding
-		// [i] field:0:required $expression
-		// [i] record:0:optional $namespace
+		// [i] field:0:optional $content.encoding
+		// [i] record:0:optional $content.namespace
 		// [i] - field:0:optional default
+		// [i] field:0:required $expression
 		// [i] field:0:optional $recurse? {"false","true"}
 		// [o] record:1:optional $nodes
 		// [o] - object:0:required node
@@ -129,16 +129,16 @@ public final class xpath
 		// [o] -- field:0:optional value
 		// [o] field:0:required $nodes.length
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Object content = IDataHelper.get(cursor, "$content");
-		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
+		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
+		    NamespaceContext namespace = IDataHelper.first(cursor, IDataNamespaceContext.class, "$content.namespace", "$namespace");
 		    String expression = IDataHelper.get(cursor, "$expression", String.class);
-		    NamespaceContext namespace = IDataHelper.get(cursor, "$namespace", IDataNamespaceContext.class);
 		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
-		
+
 		    XPathExpression compiledExpression = XPathHelper.compile(expression, namespace);
-		
+
 		    Node node = null;
 		    if (content instanceof Node) {
 		        node = (Node)content;
@@ -147,9 +147,9 @@ public final class xpath
 		    } else if (content != null) {
 		        node = DocumentHelper.parse(InputStreamHelper.normalize(content, charset), charset, true, namespace);
 		    }
-		
+
 		    Nodes nodes = XPathHelper.get(node, compiledExpression);
-		
+
 		    if (nodes != null) {
 		        IDataHelper.put(cursor, "$nodes", nodes.reflect(namespace, recurse));
 		        IDataHelper.put(cursor, "$nodes.length", nodes.size(), String.class);
@@ -163,7 +163,7 @@ public final class xpath
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 

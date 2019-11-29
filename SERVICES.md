@@ -16953,23 +16953,23 @@ content.
 
 #### Inputs:
 
-* `$content` is a string, byte array, input stream, [org.w3c.dom.Node]
-  object (node in webMethods parlance), or [org.xml.sax.InputSource]
-  object containing [XML] data.
-* `$encoding` is the character set used by `$content` if provided as a
-  byte array or input stream. Defaults to [UTF-8].
+* `$content` is a string, byte array, input stream,
+  [org.w3c.dom.Node] object (node in webMethods parlance), or
+  [org.xml.sax.InputSource] object containing [XML] data.
+* `$content.encoding` is the character set used by `$content` if
+  provided as a byte array or input stream. Defaults to [UTF-8].
+* `$content.namespace` is an optional list of namespace prefixes and
+  the URIs they map to, used when parsing [XML] content with elements
+  in one or more namespaces.
+  * `default` is the URI for the default namespace, if applicable.
 * `$expression` is the [XPath expression] to be tested against
   `$content`.
-* `$namespace` is an optional list of namespace prefixes and the URIs
-  they map to, used when parsing [XML] content with elements in one
-  or more namespaces.
-  * `default` is the URI for the default namespace, if applicable.
 
 #### Outputs:
 
-* `$exists?` is `true` if the given `$expression` was found to exist in the
-  given `$content` (in other words the expression returned one or more
-  [org.w3c.dom.Node] objects when evaluated).
+* `$exists?` is `true` if the given `$expression` was found to exist
+  in the given `$content` (in other words the expression returned one
+  or more [org.w3c.dom.Node] objects when evaluated).
 
 ---
 
@@ -16980,20 +16980,20 @@ when resolved against the given [XML] content.
 
 #### Inputs:
 
-* `$content` is a string, byte array, input stream, [org.w3c.dom.Node]
-  object (node in webMethods parlance), or [org.xml.sax.InputSource]
-  object containing [XML] data.
-* `$encoding` is the character set used by `$content` if provided as a
-  byte array or input stream. Defaults to [UTF-8].
+* `$content` is a string, byte array, input stream,
+  [org.w3c.dom.Node] object (node in webMethods parlance), or
+  [org.xml.sax.InputSource] object containing [XML] data.
+* `$content.encoding` is the character set used by `$content` if
+  provided as a byte array or input stream. Defaults to [UTF-8].
+* `$content.namespace` is an optional list of namespace prefixes and
+  the URIs they map to, used when parsing [XML] content with elements
+  in one or more namespaces.
+  * `default` is the URI for the default namespace, if applicable.
 * `$expression` is the [XPath expression] to be resolved against
   `$content`.
-* `$namespace` is an optional list of namespace prefixes and the URIs
-  they map to, used when parsing [XML] content with elements in one
-  or more namespaces.
-  * `default` is the URI for the default namespace, if applicable.
-* `$recurse?` is an optional boolean which when `true` will recursively
-  return the child elements for the selected nodes. Defaults to
-  `false`.
+* `$recurse?` is an optional boolean which when `true` will
+  recursively return the child elements for the selected nodes.
+  Defaults to `false`.
 
 #### Outputs:
 
