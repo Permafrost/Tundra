@@ -17068,18 +17068,19 @@ stream into an `IData` document.
 
 #### Inputs:
 
-* `$content` is a string, byte array, or input stream containing [YAML]
-  content to be parsed.
+* `$content` is a string, byte array, or input stream containing
+  [YAML] content to be parsed.
 * `$content.encoding` is an optional character set to use when
   `$content` is provided as a byte array or input stream to decode
   the contained text data. Defaults to [UTF-8].
 
 #### Outputs:
 
-* `$document` is the resulting `IData` document representing the parsed
-  `$content`.
-  * `recordWithNoID` is an optional object or array, present only when
-    the top-level of the given [YAML] content is not a key value map.
+* `$document` is the resulting `IData` document representing the
+  parsed `$content`.
+  * `recordWithNoID` is an optional object or array, present only
+    when the top-level of the given [YAML] content is not a key value
+    map.
 
 ---
 

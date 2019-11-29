@@ -184,26 +184,26 @@
   </record>
   <value name="node_comment">### tundra.yaml:emit
 
-Serializes an IData document as a [YAML] formatted string, byte 
+Serializes an `IData` document as a [YAML] formatted string, byte
 array, or input stream.
 
 #### Inputs:
 
-* $document is the IData document to be serialized as a [YAML] 
+* `$document` is the `IData` document to be serialized as a [YAML]
   string, byte array, or input stream.
-  * recordWithNoID is an optional object or array, which can be
-    used to emit arbitrary objects or arrays at the top-level of the 
+  * `recordWithNoID` is an optional object or array, which can be
+    used to emit arbitrary objects or arrays at the top-level of the
     resulting [YAML] content.
-* $content.encoding is an optional character set to use when 
-  encoding the resulting text data to a byte array or input stream. 
+* `$content.encoding` is an optional character set to use when
+  encoding the resulting text data to a byte array or input stream.
   Defaults to [UTF-8].
-* $content.mode is an optional choice of stream, bytes, or string 
-  which specifies the type of object $content is returned as. 
-  Defaults to stream.
+* `$content.mode` is an optional choice of `stream`, `bytes`, or
+  `string` which specifies the type of object `$content` is returned
+  as. Defaults to `stream`.
 
 #### Outputs:
 
-* $content is the resulting serialization of $document as [YAML]
+* `$content` is the resulting serialization of `$document` as [YAML]
   content.
 
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;
