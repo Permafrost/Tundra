@@ -2763,8 +2763,30 @@ specification.
 
 ### tundra.content.deliver:file
 
-The `file` protocol handler for the `Tundra/tundra.content:deliver`
-service, which delivers arbitrary content to a file URI
+The file protocol handler for the `Tundra/tundra.content:deliver`
+service, which delivers arbitrary content to a `file:` [URI]
+destination.
+
+Implements the `Tundra/tundra.schema.content.deliver:handler`
+specification.
+
+---
+
+### tundra.content.deliver:ftp
+
+The FTP protocol handler for the `Tundra/tundra.content:deliver`
+service, which delivers arbitrary content to a `ftp:` [URI]
+destination.
+
+Implements the `Tundra/tundra.schema.content.deliver:handler`
+specification.
+
+---
+
+### tundra.content.deliver:ftps
+
+The FTPS protocol handler for the `Tundra/tundra.content:deliver`
+service, which delivers arbitrary content to a `ftps:` [URI]
 destination.
 
 Implements the `Tundra/tundra.schema.content.deliver:handler`
@@ -2774,8 +2796,8 @@ specification.
 
 ### tundra.content.deliver:http
 
-The `HTTP` protocol handler for the `Tundra/tundra.content:deliver`
-service, which delivers arbitrary content to a HTTP URI
+The HTTP protocol handler for the `Tundra/tundra.content:deliver`
+service, which delivers arbitrary content to an `http:` [URI]
 destination.
 
 Implements the `Tundra/tundra.schema.content.deliver:handler`
@@ -2785,8 +2807,19 @@ specification.
 
 ### tundra.content.deliver:https
 
-The `HTTPS` protocol handler for the `Tundra/tundra.content:deliver`
-service, which delivers arbitrary content to a HTTPS URI
+The HTTPS protocol handler for the `Tundra/tundra.content:deliver`
+service, which delivers arbitrary content to an `https:` [URI]
+destination.
+
+Implements the `Tundra/tundra.schema.content.deliver:handler`
+specification.
+
+---
+
+### tundra.content.deliver:jms
+
+The JMS protocol handler for the `Tundra/tundra.content:deliver`
+service, which delivers arbitrary content to an `jms:` [URI]
 destination.
 
 Implements the `Tundra/tundra.schema.content.deliver:handler`
@@ -2796,8 +2829,35 @@ specification.
 
 ### tundra.content.deliver:mailto
 
-The `email` protocol handler for the `Tundra/tundra.content:deliver`
-service, which delivers arbitrary content to a mailto URI
+The email protocol handler for the `Tundra/tundra.content:deliver`
+service, which delivers arbitrary content to a `mailto:` [URI]
+destination.
+
+Implements the `Tundra/tundra.schema.content.deliver:handler`
+specification.
+
+---
+
+### tundra.content.deliver:message
+
+The message protocol handler for the `Tundra/tundra.content:deliver`
+service, which routes arbitrary content to either the webMethods
+messaging subsystem via `pub.publish:publish`, a JMS destination, or
+a direct service invocation, as determined by the message format
+specified in the given `message:` [URI] destination.
+
+Refer to `Tundra/tundra.message:route` for message routing
+implementation details.
+
+Implements the `Tundra/tundra.schema.content.deliver:handler`
+specification.
+
+---
+
+### tundra.content.deliver:sap_idoc
+
+The SAP IDoc protocol handler for the `Tundra/tundra.content:deliver`
+service, which delivers IDoc XML content to an `sap+idoc:` [URI]
 destination.
 
 Implements the `Tundra/tundra.schema.content.deliver:handler`
@@ -2807,8 +2867,8 @@ specification.
 
 ### tundra.content.deliver:sap_idoc
 
-The `SAP IDoc` protocol handler for the `Tundra/tundra.content:deliver`
-service, which delivers IDoc XML content to a sap+idoc URI
+The SFTP protocol handler for the `Tundra/tundra.content:deliver`
+service, which delivers arbitrary content to an `sftp:` [URI]
 destination.
 
 Implements the `Tundra/tundra.schema.content.deliver:handler`

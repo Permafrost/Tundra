@@ -5,14 +5,17 @@
   <value name="svc_subtype">default</value>
   <value name="svc_sigtype">java 3.5</value>
   <value name="svc_spec">tundra.schema.content.deliver:handler</value>
-  <value name="node_comment">### tundra.content.deliver:sftp
+  <value name="node_comment">### tundra.content.deliver:sap_idoc
 
-The SFTP protocol handler for the Tundra/tundra.content:deliver 
-service, which delivers arbitrary content to an SFTP URI 
+The SFTP protocol handler for the `Tundra/tundra.content:deliver`
+service, which delivers arbitrary content to an `sftp:` [URI]
 destination.
 
-Implements the Tundra/tundra.schema.content.deliver:handler 
-specification.</value>
+Implements the `Tundra/tundra.schema.content.deliver:handler`
+specification.
+
+[URI]: &lt;http://www.w3.org/Addressing/&gt;
+</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
@@ -22,7 +25,6 @@ specification.</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
   <value name="icontext_policy">$null</value>
-  <value name="svcInvkURLAlias"></value>
   <value name="system_service">no</value>
   <value name="retry_max">0</value>
   <value name="retry_interval">0</value>

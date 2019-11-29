@@ -7,16 +7,19 @@
   <value name="svc_spec">tundra.schema.content.deliver:handler</value>
   <value name="node_comment">### tundra.content.deliver:message
 
-The message protocol handler for the Tundra/tundra.content:deliver
+The message protocol handler for the `Tundra/tundra.content:deliver`
 service, which routes arbitrary content to either the webMethods 
-messaging subsystem via pub.publish:publish, a JMS destination, or
-a direct service invocation.
+messaging subsystem via `pub.publish:publish`, a JMS destination, or
+a direct service invocation, as determined by the message format
+specified in the given `message:` [URI] destination.
 
-Refer to Tundra/tundra.message:route for message routing 
+Refer to `Tundra/tundra.message:route` for message routing 
 implementation details.
 
-Implements the Tundra/tundra.schema.content.deliver:handler
+Implements the `Tundra/tundra.schema.content.deliver:handler`
 specification.
+
+[URI]: &lt;http://www.w3.org/Addressing/&gt;
 </value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>

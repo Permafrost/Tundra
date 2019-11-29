@@ -7,12 +7,14 @@
   <value name="svc_spec">tundra.schema.content.deliver:handler</value>
   <value name="node_comment">### tundra.content.deliver:http
 
-The `HTTP` protocol handler for the `Tundra/tundra.content:deliver`
-service, which delivers arbitrary content to a HTTP URI
+The HTTP protocol handler for the `Tundra/tundra.content:deliver`
+service, which delivers arbitrary content to an `http:` [URI]
 destination.
 
 Implements the `Tundra/tundra.schema.content.deliver:handler`
 specification.
+
+[URI]: &lt;http://www.w3.org/Addressing/&gt;
 </value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>

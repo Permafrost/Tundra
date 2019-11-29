@@ -7,12 +7,15 @@
   <value name="svc_spec">tundra.schema.content.deliver:handler</value>
   <value name="node_comment">### tundra.content.deliver:sap_idoc
 
-The SAP IDoc protocol handler for the Tundra/tundra.content:deliver 
-service, which delivers IDoc XML content to a sap+idoc URI
+The SAP IDoc protocol handler for the `Tundra/tundra.content:deliver`
+service, which delivers IDoc XML content to an `sap+idoc:` [URI]
 destination.
 
-Implements the Tundra/tundra.schema.content.deliver:handler
-specification.</value>
+Implements the `Tundra/tundra.schema.content.deliver:handler`
+specification.
+
+[URI]: &lt;http://www.w3.org/Addressing/&gt;
+</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
