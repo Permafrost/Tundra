@@ -16059,8 +16059,8 @@ locations, and memory usage.
 
 #### Inputs:
 
-* `$refresh?` is an optional boolean which when `true` will reload the
-  system environment and system properties from the Java virtual
+* `$refresh?` is an optional boolean which when `true` will reload
+  the system environment and system properties from the Java virtual
   machine, and the system directories from Integration Server.
   Defaults to `false`.
 
@@ -16071,8 +16071,9 @@ locations, and memory usage.
   directory locations, and memory usage.
   * `version` is the Integration Server software version number for
     the Integration Server on which this service is executed.
-  * `environment` is an `IData` document containing all the environment
-    variables defined on the system on which this service is executed.
+  * `environment` is an `IData` document containing all the
+    environment variables defined on the system on which this service
+    is executed.
   * `property` is an `IData` document containing all the Java
     configuration properties defined for the JVM process in which
     this service is executed.

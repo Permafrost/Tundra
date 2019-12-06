@@ -7,6 +7,7 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -21,6 +22,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$refresh?</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -45,9 +47,11 @@
           <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -61,6 +65,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$system</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
@@ -76,6 +81,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">version</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -101,6 +107,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">environment</value>
               <value name="field_type">record</value>
               <value name="field_dim">0</value>
@@ -109,6 +116,7 @@
               <value name="is_global">false</value>
               <array name="rec_fields" type="record" depth="1">
               </array>
+              <value name="modifiable">true</value>
             </record>
             <record javaclass="com.wm.util.Values">
               <value name="node_type">record</value>
@@ -117,6 +125,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">property</value>
               <value name="field_type">record</value>
               <value name="field_dim">0</value>
@@ -125,6 +134,7 @@
               <value name="is_global">false</value>
               <array name="rec_fields" type="record" depth="1">
               </array>
+              <value name="modifiable">true</value>
             </record>
             <record javaclass="com.wm.util.Values">
               <value name="node_type">record</value>
@@ -133,6 +143,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">global</value>
               <value name="field_type">record</value>
               <value name="field_dim">0</value>
@@ -142,6 +153,7 @@
               <value name="is_global">false</value>
               <array name="rec_fields" type="record" depth="1">
               </array>
+              <value name="modifiable">true</value>
             </record>
             <record javaclass="com.wm.util.Values">
               <value name="node_type">record</value>
@@ -150,6 +162,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">directory</value>
               <value name="field_type">record</value>
               <value name="field_dim">0</value>
@@ -165,6 +178,7 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
+                  <value name="is_public">false</value>
                   <value name="field_name">root</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -191,6 +205,7 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
+                  <value name="is_public">false</value>
                   <value name="field_name">config</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -217,6 +232,7 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
+                  <value name="is_public">false</value>
                   <value name="field_name">datastore</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -243,6 +259,7 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
+                  <value name="is_public">false</value>
                   <value name="field_name">jobs</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -269,6 +286,7 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
+                  <value name="is_public">false</value>
                   <value name="field_name">lib</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -295,6 +313,7 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
+                  <value name="is_public">false</value>
                   <value name="field_name">logs</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -321,6 +340,7 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
+                  <value name="is_public">false</value>
                   <value name="field_name">packages</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -347,6 +367,7 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
+                  <value name="is_public">false</value>
                   <value name="field_name">recycle</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -373,6 +394,7 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
+                  <value name="is_public">false</value>
                   <value name="field_name">replicate</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -399,6 +421,7 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
+                  <value name="is_public">false</value>
                   <value name="field_name">replicate.inbound</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -425,6 +448,7 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
+                  <value name="is_public">false</value>
                   <value name="field_name">replicate.outbound</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -451,6 +475,7 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
+                  <value name="is_public">false</value>
                   <value name="field_name">replicate.salvage</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -471,6 +496,7 @@
                 </record>
               </array>
               <value name="rec_closed">true</value>
+              <value name="modifiable">true</value>
             </record>
             <record javaclass="com.wm.util.Values">
               <value name="node_type">record</value>
@@ -479,6 +505,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">memory</value>
               <value name="field_type">record</value>
               <value name="field_dim">0</value>
@@ -494,6 +521,7 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
+                  <value name="is_public">false</value>
                   <value name="field_name">used</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -520,6 +548,7 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
+                  <value name="is_public">false</value>
                   <value name="field_name">free</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -546,6 +575,7 @@
                     <value name="field_largerEditor">false</value>
                     <value name="field_password">false</value>
                   </record>
+                  <value name="is_public">false</value>
                   <value name="field_name">total</value>
                   <value name="field_type">string</value>
                   <value name="field_dim">0</value>
@@ -566,49 +596,53 @@
                 </record>
               </array>
               <value name="rec_closed">true</value>
+              <value name="modifiable">true</value>
             </record>
           </array>
+          <value name="modifiable">true</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">### tundra.system:reflect
 
-Returns information about Integration Server, such as the software 
+Returns information about Integration Server, such as the software
 version, environment settings, Java properties, well-known directory
 locations, and memory usage.
 
 #### Inputs:
 
-* $refresh? is an optional boolean which when true will reload the
-  system environment and system properties from the Java virtual
-  machine, and the system directories from Integration Server.
-  Defaults to false.
+* `$refresh?` is an optional boolean which when `true` will reload 
+  the system environment and system properties from the Java virtual
+  machine, and the system directories from Integration Server. 
+  Defaults to `false`.
 
 #### Outputs:
 
-* $system is an immutable IData document containing the software
+* `$system` is an immutable `IData` document containing the software
   version, environment settings, Java properties, well-known
   directory locations, and memory usage.
-  * version is the Integration Server software version number for
+  * `version` is the Integration Server software version number for
     the Integration Server on which this service is executed.
-  * environment is an IData document containing all the environment
-    variables defined on the system on which this service is executed.
-  * property is an IData document containing all the Java
+  * `environment` is an `IData` document containing all the 
+    environment variables defined on the system on which this service 
+    is executed.
+  * `property` is an `IData` document containing all the Java
     configuration properties defined for the JVM process in which
     this service is executed.
-  * global is an IData document containing all the defined 
+  * `global` is an `IData` document containing all the defined
     Integration Server global variables.
-  * directory is an IData document containing all the well-known
+  * `directory` is an `IData` document containing all the well-known
     directory locations defined for the Integration Server on
     which this service is executed.
-  * memory is an IData document containing the memory usage of the
+  * `memory` is an `IData` document containing the memory usage of the
     JVM process in which this service is executed:
-    * used is the number of bytes of memory allocated to the JVM
+    * `used` is the number of bytes of memory allocated to the JVM
       heap that are in use.
-    * free is the number of bytes of memory allocated to the JVM
+    * `free` is the number of bytes of memory allocated to the JVM
       heap that are not in use.
-    * total is the total number of bytes of memory allocated to
+    * `total` is the total number of bytes of memory allocated to
       the JVM heap.
 </value>
   <value name="stateless">yes</value>
@@ -626,10 +660,16 @@ locations, and memory usage.
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">none</value>
   <value name="auditoption">0</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
 </Values>
