@@ -16100,8 +16100,8 @@ Returns information about the currently executing thread.
 
 * `$thread` is an `IData` document containing information about the
   currently executing thread.
-  * `id` is the unique identifier of the thread in the current execution
-    context.
+  * `id` is the unique identifier of the thread in the current
+    execution context.
   * `name` is the human-readable name that was assigned to the thread
     when it was created.
   * `description` is the thread's built-in string representation of
@@ -16109,30 +16109,39 @@ Returns information about the currently executing thread.
   * `state` is the thread's current status, and can be one of the
     following values:
     * `NEW` - a thread that has not yet started is in this state.
-    * `RUNNABLE` - a thread executing in the Java virtual machine is in
-      this state.
-    * `BLOCKED` - a thread that is blocked waiting for a monitor lock is
+    * `RUNNABLE` - a thread executing in the Java virtual machine is
       in this state.
+    * `BLOCKED` - a thread that is blocked waiting for a monitor lock
+      is in this state.
     * `WAITING` - a thread that is waiting indefinitely for another
       thread to perform a particular action is in this state.
-    * `TIMED_WAITING` - a thread that is waiting for another thread to
-      perform an action for up to a specified waiting time is in this
-      state.
+    * `TIMED_WAITING` - a thread that is waiting for another thread
+      to perform an action for up to a specified waiting time is in
+      this state.
     * `TERMINATED` - a thread that has exited is in this state.
   * `priority` is the thread's priority as an integer. Threads with
     higher priority are executed in preference to threads with lower
     priority.
   * `group` is the name of the thread group this thread belongs to.
-  * `alive?` is a boolean indicating if the thread is currently alive. A
-    thread is alive if it has been started and has not yet died.
+  * `alive?` is a boolean indicating if the thread is currently
+    alive. A thread is alive if it has been started and has not yet
+    died.
+  * `daemon?` is a boolean indicating if the thread is a daemon
+    thread. Daemon threads do not block the JVM from exiting even if
+    they are still running.
   * `interrupted?` is a boolean indicating if the thread has been
     interrupted.
-  * `daemon?` is a boolean indicating if the thread is a daemon thread.
-    Daemon threads do not block the JVM from exiting even if they are
-    still running.
-  * `stack` is a document list describing the call stack associated with
-    this thread.
-  * `thread` is the actual `java.lang.Thread` object itself.
+  * `stack` is a document list describing the call stack associated
+    with this thread.
+    * `description` is a string representation of this stack item.
+    * `file` is the name of the source file containing executing
+      line.
+    * `class` is the fully qualified name of the executing class.
+    * `method` is the name of the executing method.
+    * `line` is the source file line number of the executing line.
+    * `native?` is true if the `method` is a native method.
+  * `stack.length` is the number of items in the `stack` list.
+  * `thread` is the actual [java.lang.Thread] object itself.
 
 ---
 
@@ -16142,10 +16151,10 @@ Returns a list of all threads known in the current execution context.
 
 #### Outputs:
 
-* `$threads` is an `IData[]` document list containing information about
-  the all threads known in the current execution context.
-  * `id` is the unique identifier of the thread in the current execution
-    context.
+* `$threads` is an `IData[]` document list containing information
+  about all the threads known in the current execution context.
+  * `id` is the unique identifier of the thread in the current
+    execution context.
   * `name` is the human-readable name that was assigned to the thread
     when it was created.
   * `description` is the thread's built-in string representation of
@@ -16153,52 +16162,62 @@ Returns a list of all threads known in the current execution context.
   * `state` is the thread's current status, and can be one of the
     following values:
     * `NEW` - a thread that has not yet started is in this state.
-    * `RUNNABLE` - a thread executing in the Java virtual machine is in
-      this state.
-    * `BLOCKED` - a thread that is blocked waiting for a monitor lock is
+    * `RUNNABLE` - a thread executing in the Java virtual machine is
       in this state.
+    * `BLOCKED` - a thread that is blocked waiting for a monitor lock
+      is in this state.
     * `WAITING` - a thread that is waiting indefinitely for another
       thread to perform a particular action is in this state.
-    * `TIMED_WAITING` - a thread that is waiting for another thread to
-      perform an action for up to a specified waiting time is in this
-      state.
+    * `TIMED_WAITING` - a thread that is waiting for another thread
+      to perform an action for up to a specified waiting time is in
+      this state.
     * `TERMINATED` - a thread that has exited is in this state.
   * `priority` is the thread's priority as an integer. Threads with
     higher priority are executed in preference to threads with lower
     priority.
   * `group` is the name of the thread group this thread belongs to.
-  * `alive?` is a boolean indicating if the thread is currently alive. A
-    thread is alive if it has been started and has not yet died.
+  * `alive?` is a boolean indicating if the thread is currently
+    alive. A thread is alive if it has been started and has not yet
+    died.
+  * `daemon?` is a boolean indicating if the thread is a daemon
+    thread. Daemon threads do not block the JVM from exiting even if
+    they are still running.
   * `interrupted?` is a boolean indicating if the thread has been
     interrupted.
-  * `daemon?` is a boolean indicating if the thread is a daemon thread.
-    Daemon threads do not block the JVM from exiting even if they are
-    still running.
-  * `stack` is a document list describing the call stack associated with
-    this thread.
-  * `thread` is the actual `java.lang.Thread` object itself.
-* `$threads.length` is the number of items returned in the `$threads` list.
+  * `stack` is a document list describing the call stack associated
+    with this thread.
+    * `description` is a string representation of this stack item.
+    * `file` is the name of the source file containing executing
+      line.
+    * `class` is the fully qualified name of the executing class.
+    * `method` is the name of the executing method.
+    * `line` is the source file line number of the executing line.
+    * `native?` is true if the `method` is a native method.
+  * `stack.length` is the number of items in the `stack` list.
+  * `thread` is the actual [java.lang.Thread] object itself.
+* `$threads.length` is the number of items returned in the `$threads`
+  list.
 
 ---
 
 ### tundra.thread:prioritize
 
-Sets the priority of the current [thread]:
+Sets the priority of the current thread:
 
 > Every thread has a priority. Threads with higher priority are
 > executed in preference to threads with lower priority.
 
 #### Inputs:
 
-* $thread.priority is the new priority to set on the current
-  [thread], an integer value between 1 and 10.  Larger values have
+* `$thread.priority` is the new priority to set on the current
+  thread, an integer value between 1 and 10. Larger values have
   higher priority.
 
 #### Outputs:
 
-* $thread.priority.previous is the previous priority of the current
-  [thread], which can be used to restore priority to its previous
-  value if required.
+* `$thread.priority.previous` is the previous priority of the current
+  thread, which can be used to restore priority to its previous value
+  if required.
 
 ---
 
@@ -17180,6 +17199,7 @@ format.
 [java.lang.StringBuilder]: <https://docs.oracle.com/javase/6/docs/api/java/lang/StringBuilder.html>
 [java.lang.System.identityHashCode()]: <http://docs.oracle.com/javase/6/docs/api/java/lang/System.html#identityHashCode(java.lang.Object)>
 [java.lang.System.nanoTime()]: <https://docs.oracle.com/javase/6/docs/api/java/lang/System.html#nanoTime()>
+[java.lang.Thread]: <https://docs.oracle.com/javase/6/docs/api/java/lang/Thread.html>
 [java.lang.Throwable]: <http://docs.oracle.com/javase/6/docs/api/java/lang/Throwable.html>
 [java.math.BigDecimal]: <http://docs.oracle.com/javase/6/docs/api/java/math/BigDecimal.html>
 [java.math.BigDecimal grammar]: <http://docs.oracle.com/javase/6/docs/api/java/math/BigDecimal.html#BigDecimal(java.lang.String)>

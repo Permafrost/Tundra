@@ -7,6 +7,7 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -14,9 +15,11 @@
       <value name="is_global">false</value>
       <array name="rec_fields" type="record" depth="1">
       </array>
+      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -30,6 +33,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$thread</value>
           <value name="field_type">recref</value>
           <value name="field_dim">0</value>
@@ -37,9 +41,11 @@
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
           <value name="rec_closed">true</value>
+          <value name="modifiable">true</value>
           <value name="rec_ref">tundra.schema:thread</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">### tundra.thread:current
@@ -48,42 +54,52 @@ Returns information about the currently executing thread.
 
 #### Outputs:
 
-* $thread is an IData document containing information about the
+* `$thread` is an `IData` document containing information about the
   currently executing thread.
-  * id is the unique identifier of the thread in the current execution
-    context.
-  * name is the human-readable name that was assigned to the thread
+  * `id` is the unique identifier of the thread in the current 
+    execution context.
+  * `name` is the human-readable name that was assigned to the thread
     when it was created.
-  * description is the thread's built-in string representation of
+  * `description` is the thread's built-in string representation of
     itself.
-  * state is the thread's current status, and can be one of the
+  * `state` is the thread's current status, and can be one of the
     following values:
-    * NEW - a thread that has not yet started is in this state.
-    * RUNNABLE - a thread executing in the Java virtual machine is in
-      this state.
-    * BLOCKED - a thread that is blocked waiting for a monitor lock is
+    * `NEW` - a thread that has not yet started is in this state.
+    * `RUNNABLE` - a thread executing in the Java virtual machine is 
       in this state.
-    * WAITING - a thread that is waiting indefinitely for another
+    * `BLOCKED` - a thread that is blocked waiting for a monitor lock
+      is in this state.
+    * `WAITING` - a thread that is waiting indefinitely for another
       thread to perform a particular action is in this state.
-    * TIMED_WAITING - a thread that is waiting for another thread to
-      perform an action for up to a specified waiting time is in this
-      state.
-    * TERMINATED - a thread that has exited is in this state.
-  * priority is the thread's priority as an integer. Threads with
+    * `TIMED_WAITING` - a thread that is waiting for another thread 
+      to perform an action for up to a specified waiting time is in 
+      this state.
+    * `TERMINATED` - a thread that has exited is in this state.
+  * `priority` is the thread's priority as an integer. Threads with
     higher priority are executed in preference to threads with lower
     priority.
-  * group is the name of the thread group this thread belongs to.
-  * alive? is a boolean indicating if the thread is currently alive. A
-    thread is alive if it has been started and has not yet died.
-  * interrupted? is a boolean indicating if the thread has been
+  * `group` is the name of the thread group this thread belongs to.
+  * `alive?` is a boolean indicating if the thread is currently 
+    alive. A thread is alive if it has been started and has not yet 
+    died.
+  * `daemon?` is a boolean indicating if the thread is a daemon 
+    thread. Daemon threads do not block the JVM from exiting even if 
+    they are still running.
+  * `interrupted?` is a boolean indicating if the thread has been
     interrupted.
-  * daemon? is a boolean indicating if the thread is a daemon thread.
-    Daemon threads do not block the JVM from exiting even if they are
-    still running.
-  * stack is a document list describing the call stack associated with
-    this thread.
-  * thread is the actual java.lang.Thread object itself.
+  * `stack` is a document list describing the call stack associated 
+    with this thread.
+    * `description` is a string representation of this stack item.
+    * `file` is the name of the source file containing executing 
+      line.
+    * `class` is the fully qualified name of the executing class.
+    * `method` is the name of the executing method.
+    * `line` is the source file line number of the executing line.
+    * `native?` is true if the `method` is a native method.
+  * `stack.length` is the number of items in the `stack` list.
+  * `thread` is the actual [java.lang.Thread] object itself.
 
+[java.lang.Thread]: &lt;https://docs.oracle.com/javase/6/docs/api/java/lang/Thread.html&gt;
 </value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
@@ -100,10 +116,16 @@ Returns information about the currently executing thread.
   <value name="svc_in_validator_options">none</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
 </Values>

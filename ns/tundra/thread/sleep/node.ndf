@@ -167,19 +167,21 @@
   </record>
   <value name="node_comment">### tundra.thread:sleep
 
-Sends the currently executing thread to sleep (temporarily cease 
-execution) for the specified duration, subject to the precision and 
+Sends the currently executing thread to sleep (temporarily cease
+execution) for the specified duration, subject to the precision and
 accuracy of system timers and schedulers.
 
 #### Inputs:
 
-* $duration is a duration of time specified as a string for which 
+* `$duration` is a duration of time specified as a string for which
   the current thread should sleep.
-* $duration.pattern is an optional pattern describing the type of
-  duration specified by $duration. Defaults to an [ISO8601] XML 
+* `$duration.pattern` is an optional pattern describing the type of
+  duration specified by `$duration`. Defaults to an [ISO8601] XML
   string.
 
-[ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;</value>
+[ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;
+[java.lang.Thread]: &lt;https://docs.oracle.com/javase/6/docs/api/java/lang/Thread.html&gt;
+</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

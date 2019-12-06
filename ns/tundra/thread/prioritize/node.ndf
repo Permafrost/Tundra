@@ -146,24 +146,24 @@
   </record>
   <value name="node_comment">### tundra.thread:prioritize
 
-Sets the priority of the current [thread]:
+Sets the priority of the current thread:
 
 &gt; Every thread has a priority. Threads with higher priority are 
 &gt; executed in preference to threads with lower priority.
 
 #### Inputs:
 
-* $thread.priority is the new priority to set on the current 
-  [thread], an integer value between 1 and 10. Larger values have
+* `$thread.priority` is the new priority to set on the current 
+  thread, an integer value between 1 and 10. Larger values have 
   higher priority.
 
 #### Outputs:
 
-* $thread.priority.previous is the previous priority of the current 
-  [thread], which can be used to restore priority to its previous 
-  value if required.
+* `$thread.priority.previous` is the previous priority of the current
+  thread, which can be used to restore priority to its previous value
+  if required.
 
-[thread]: &lt;https://docs.oracle.com/javase/6/docs/api/java/lang/Thread.html&gt;
+[java.lang.Thread]: &lt;https://docs.oracle.com/javase/6/docs/api/java/lang/Thread.html&gt;
 </value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
