@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-11-29T16:36:59.126
+// -----( CREATED: 2019-12-03T09:34:50.267
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -39,13 +39,13 @@ public final class uri
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $document.encoded
-		// [i] field:0:optional $encoding
+		// [i] field:0:optional $content.encoding
 		// [o] record:0:optional $document.decoded
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
 		    IData document = IDataHelper.get(cursor, "$document.encoded", IData.class);
-		    Charset encoding = IDataHelper.get(cursor, "$encoding", Charset.class);
+		    Charset encoding = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
 
 		    if (document == null) {
 		        String string = IDataHelper.get(cursor, "$string", String.class);
@@ -80,7 +80,7 @@ public final class uri
 		// [i] --- field:0:required host
 		// [i] --- field:0:optional port
 		// [i] - field:1:optional path
-		// [i] - field:0:optional path.absolute? {&quot;true&quot;,&quot;false&quot;}
+		// [i] - field:0:optional path.absolute? {"true","false"}
 		// [i] - field:0:optional file
 		// [i] - record:0:optional query
 		// [i] - field:0:optional fragment
@@ -108,20 +108,14 @@ public final class uri
 		// --- <<IS-START(encode)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] record:0:optional $uri.decoded
-		// [i] - field:0:optional $value
-		// [i] - field:1:optional $value.list
-		// [i] - field:2:optional $value.table
-		// [i] field:0:optional $encoding
-		// [o] record:0:optional $uri.encoded
-		// [o] - field:0:optional $value
-		// [o] - field:1:optional $value.list
-		// [o] - field:2:optional $value.table
+		// [i] record:0:optional $document.decoded
+		// [i] field:0:optional $content.encoding
+		// [o] record:0:optional $document.encoded
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
 		    IData document = IDataHelper.get(cursor, "$uri.decoded", IData.class);
-		    Charset encoding = IDataHelper.get(cursor, "$encoding", Charset.class);
+		    Charset encoding = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
 
 		    if (document == null) {
 		        document = IDataHelper.get(cursor, "$document.decoded", IData.class);
@@ -187,7 +181,7 @@ public final class uri
 		// [o] --- field:0:required host
 		// [o] --- field:0:optional port
 		// [o] - field:1:optional path
-		// [o] - field:0:optional path.absolute? {&quot;true&quot;,&quot;false&quot;}
+		// [o] - field:0:optional path.absolute? {"true","false"}
 		// [o] - field:0:optional file
 		// [o] - record:0:optional query
 		// [o] - field:0:optional fragment

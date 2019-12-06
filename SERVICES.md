@@ -16364,7 +16364,7 @@ The following rules are applied in the conversion:
 * The special characters `.`, `-`, `*`, and `_` remain the same.
 * The plus sign `+` is converted into a space character.
 * A sequence of the form `%xy` will be treated as representing a byte
-  where xy is the two-digit hexadecimal representation of the 8
+  where `xy` is the two-digit hexadecimal representation of the 8
   bits. Then, all substrings that contain one or more of these byte
   sequences consecutively will be replaced by the character(s) whose
   encoding would result in those consecutive bytes.
@@ -16375,9 +16375,9 @@ Implemented with the [java.net.URLDecoder] class.
 
 * `$document.encoded` is an `IData` document containing arbitrarily
   specified strings of URI-encoded data to be decoded.
-* `$encoding` is the character set used to determine what characters
-  are represented by any consecutive sequences of the form `%xy`.
-  Defaults to [UTF-8].
+* `$content.encoding` is the character set used to determine what
+  characters are represented by any consecutive sequences of the
+  form `%xy`. Defaults to [UTF-8].
 
 #### Outputs:
 
@@ -16391,30 +16391,32 @@ Emits a Uniform Resource Identifier ([URI]) string, according to
 [RFC 2396], given its constituent parts.
 
 URIs can be categorized as either hierarchical, where the scheme and
-body parts are separated by the character sequence '://', or opaque,
-where the scheme and body parts are separated by a ':' character.
+body parts are separated by the character sequence `://`, or opaque,
+where the scheme and body parts are separated by a `:` character.
 
 Examples of hierarchical URIs:
-* http://example.com/
-* ftp://example.com/path/file.txt
+
+    http://example.com/
+    ftp://example.com/path/file.txt
 
 Examples of opaque URIs:
-* mailto:john.doe@example.com
-* news:comp.lang.java
-* urn:isbn:096139210x
+
+    mailto:john.doe@example.com
+    news:comp.lang.java
+    urn:isbn:096139210x
 
 Opaque URIs are constructed according to the following syntax:
 
     (scheme:)body(?query)(#fragment)
 
 Where brackets (...) delineate optional components and the characters
-':', '?', and '#' stand for themselves.
+`:`, `?`, and `#` stand for themselves.
 
 Hierarchical URIs are constructed according to the following syntax:
 
     (scheme:)(//authority)(/path/)(file)(?query)(#fragment)
 
-Where the characters ':', '/', '?', and '#' stand for themselves. The
+Where the characters `:`, `/`, `?`, and `#` stand for themselves. The
 authority component, if specified, can be either server-based or
 registry-based. If server-based, it is constructed according to the
 syntax:
@@ -16464,7 +16466,8 @@ This service was implemented with the [java.net.URI] class.
     [URI].
     * `registry` is the authority for a registry-based hierarchical
       [URI].
-    * `server` is the authority for a server-based heirarchical [URI].
+    * `server` is the authority for a server-based heirarchical
+      [URI].
       * `user` is the optional user component of the [URI] authority.
       * `password` is the optional password component of the [URI]
         authority.
@@ -16472,17 +16475,18 @@ This service was implemented with the [java.net.URI] class.
         authority.
       * `port` is the port component of the [URI] authority.
   * `path` is the optional path component of the [URI], provided as
-    the list of string tokens that were separated by the '/'
+    the list of string tokens that were separated by the `/`
     character.
-  * `path.absolute?` is an optional boolean which when `true` indicates
-    that the path is absolute, and when `false` indicates the path is
-    relative. Defaults to `true` if not specified.
+  * `path.absolute?` is an optional boolean which when `true`
+    indicates that the path is absolute, and when `false` indicates
+    the path is relative. Defaults to `true` if not specified.
   * `file` is the optional file component of the [URI], provided as
-    the string token that follows the final '/' character of the path component.
-  * `query` is an optional `IData` document whose elements are the set
-    of [URI] query string key value parameters. Lists are supported
-    in query strings as follows: `?a=1&a=2&a=3` is parsed to a
-    `String[] = { "1", "2", "3" }`.
+    the string token that follows the final `/` character of the path
+    component.
+  * `query` is an optional `IData` document whose elements are the
+    set of [URI] query string key value parameters. Lists are
+    supported in query strings as follows: `?a=1&a=2&a=3` is parsed
+    to a `String[] = { "1", "2", "3" }`.
   * `fragment` is the optional fragment component of the [URI].
 
 #### Outputs:
@@ -16493,8 +16497,9 @@ This service was implemented with the [java.net.URI] class.
 
 ### tundra.uri:encode
 
-URI encodes arbitrarily specified strings, according to [RFC 2396]
-(application/x-www-form-urlencoded).
+URI encodes arbitrarily specified strings to be formatted as per
+MIME media type application/x-www-form-urlencoded according to
+[RFC 2396].
 
 The following rules are applied in the conversion:
 * The alphanumeric characters `a` through `z`, `A` through `Z` and
@@ -16502,7 +16507,7 @@ The following rules are applied in the conversion:
 * The special characters `.`, `-`, `*`, and `_` remain the same.
 * The plus sign `+` is converted into a space character.
 * A sequence of the form `%xy` will be treated as representing a byte
-  where xy is the two-digit hexadecimal representation of the 8
+  where `xy` is the two-digit hexadecimal representation of the 8
   bits. Then, all substrings that contain one or more of these byte
   sequences consecutively will be replaced by the character(s) whose
   encoding would result in those consecutive bytes.
@@ -16513,8 +16518,8 @@ Implemented with the [java.net.URLEncoder] class.
 
 * `$document.decoded` is an `IData` document containing arbitrarily
   specified strings to be URI-encoded.
-* `$encoding` is the character set used to obtain the bytes for unsafe
-  characters. Defaults to [UTF-8].
+* `$content.encoding` is the character set used to obtain the bytes
+  for unsafe characters. Defaults to [UTF-8].
 
 #### Outputs:
 
@@ -16526,32 +16531,32 @@ Implemented with the [java.net.URLEncoder] class.
 
 Normalizes a URI string.
 
-Refer to the following excerpt from the [java.net.URI normalize] method for
-a description of the normalization process:
+Refer to the following excerpt from the [java.net.URI normalize]
+method for a description of the normalization process:
 
-> If this URI is opaque, or if its path is already in normal form, then this
-> URI is returned. Otherwise a new URI is constructed that is identical to
-> this URI except that its path is computed by normalizing this URI's path
-> in a manner consistent with RFC 2396, section 5.2, step 6, sub-steps c
-> through f; that is:
+> If this URI is opaque, or if its path is already in normal form,
+> then this URI is returned. Otherwise a new URI is constructed that
+> is identical to this URI except that its path is computed by
+> normalizing this URI's path in a manner consistent with RFC 2396,
+> section 5.2, step 6, sub-steps c through f; that is:
 >
 > 1. All "." segments are removed.
 >
-> 2. If a ".." segment is preceded by a non-".." segment then both of these
->    segments are removed. This step is repeated until it is no longer
->    applicable.
+> 2. If a ".." segment is preceded by a non-".." segment then both of
+>    these segments are removed. This step is repeated until it is no
+>    longer applicable.
 >
-> 3. If the path is relative, and if its first segment contains a colon
->    character (':'), then a "." segment is prepended. This prevents a
->    relative URI with a path such as "a:b/c/d" from later being re-parsed
->    as an opaque URI with a scheme of "a" and a scheme-specific part of
->    "b/c/d". (Deviation from RFC 2396.)
+> 3. If the path is relative, and if its first segment contains a
+>    colon character (':'), then a "." segment is prepended. This
+>    prevents a relative URI with a path such as "a:b/c/d" from later
+>    being re-parsed as an opaque URI with a scheme of "a" and a
+>    scheme-specific part of "b/c/d". (Deviation from RFC 2396.)
 >
-> A normalized path will begin with one or more ".." segments if there were
-> insufficient non-".." segments preceding them to allow their removal. A
-> normalized path will begin with a "." segment if one was inserted by step
-> 3 above. Otherwise, a normalized path will not contain any "." or ".."
-> segments.
+> A normalized path will begin with one or more ".." segments if
+> there were insufficient non-".." segments preceding them to allow
+> their removal. A normalized path will begin with a "." segment if
+> one was inserted by step 3 above. Otherwise, a normalized path will
+> not contain any "." or ".." segments.
 
 #### Inputs:
 
@@ -16568,42 +16573,46 @@ a description of the normalization process:
 Parses a Uniform Resource Identifier ([URI]) string, according to
 [RFC 2396], to its constituent parts.
 
-URIs can be categorized as either hierarchical, where the scheme and body
-parts are separated by the character sequence '://', or opaque, where the
-scheme and body parts are separated by a ':' character.
+URIs can be categorized as either hierarchical, where the scheme and
+body parts are separated by the character sequence `://`, or opaque,
+where the scheme and body parts are separated by a `:` character.
 
 Examples of hierarchical URIs:
-* http://example.com/
-* ftp://example.com/path/file.txt
+
+    http://example.com/
+    ftp://example.com/path/file.txt
 
 Examples of opaque URIs:
-* mailto:john.doe@example.com
-* news:comp.lang.java
-* urn:isbn:096139210x
+
+    mailto:john.doe@example.com
+    news:comp.lang.java
+    urn:isbn:096139210x
 
 Opaque URIs are constructed according to the following syntax:
 
     (scheme:)body(?query)(#fragment)
 
 Where brackets (...) delineate optional components and the characters
-':', '?', and '#' stand for themselves.
+`:`, `?`, and `#` stand for themselves.
 
 Hierarchical URIs are constructed according to the following syntax:
 
     (scheme:)(//authority)(/path/)(file)(?query)(#fragment)
 
-Where the characters ':', '/', '?', and '#' stand for themselves. The
-authority component, if specified, can be either server-based or registry-
-based. If server-based, it is constructed according to the syntax:
+Where the characters `:`, `/`, `?`, and `#` stand for themselves. The
+authority component, if specified, can be either server-based or
+registry-based. If server-based, it is constructed according to the
+syntax:
 
     (user:password@)host(:port)
 
-Where the characters '@' and ':' stand for themselves.
+Where the characters `@` and `:` stand for themselves.
 
 Opaque URI bodies are not subject to further parsing, however, to
-accomodate the mailto: URI's use of a query string for additional data
-(such as cc, bcc, subject, and body), this service checks if the body
-contains a query string and, if so, parses the query string also.
+accomodate the `mailto:` URI's use of a query string for additional
+data (such as `cc`, `bcc`, `subject`, and `body`), this service
+checks if the body contains a query string and, if so, parses the
+query string also.
 
 For example, the following [URI]:
 
@@ -16626,8 +16635,7 @@ Will be parsed to the following components, represented using [JSON]:
       "query": {
         "a": "1",
         "a": "2",
-        "b": "3"
-,
+        "b": "3",
         "c": ["4", "5"],
         "d": {
           "e": "6"
@@ -16635,7 +16643,6 @@ Will be parsed to the following components, represented using [JSON]:
       },
       "fragment": "footer"
     }
-
 
 This service was implemented with the [java.net.URI] class.
 
@@ -16645,8 +16652,8 @@ This service was implemented with the [java.net.URI] class.
 
 #### Outputs:
 
-* `$uri` is an `IData` document containing the constituent parts of the
-  parsed [URI] string.
+* `$uri` is an `IData` document containing the constituent parts of
+  the parsed [URI] string.
   * `scheme` is the optional scheme for this [URI]; for an
     hierarchical [URI] this is typically a protocol such as http.
   * `body` is the scheme-specific part of an opaque [URI].
@@ -16654,7 +16661,8 @@ This service was implemented with the [java.net.URI] class.
     [URI].
     * `registry` is the authority for a registry-based hierarchical
       [URI].
-    * `server` is the authority for a server-based heirarchical [URI].
+    * `server` is the authority for a server-based heirarchical
+      [URI].
       * `user` is the optional user component of the [URI] authority.
       * `password` is the optional password component of the [URI]
         authority.
@@ -16662,22 +16670,23 @@ This service was implemented with the [java.net.URI] class.
         authority.
       * `port` is the port component of the [URI] authority.
   * `path` is the optional path component of the [URI], provided as
-    the list of string tokens that were separated by the '/'
+    the list of string tokens that were separated by the `/`
     character.
-  * `path.absolute?` is a boolean which when `true` indicates that the
-    path is absolute, and when `false` indicates the path is relative.
-    Defaults to `true` if not specified.
+  * `path.absolute?` is a boolean which when `true` indicates that
+    the path is absolute, and when `false` indicates the path is
+    relative. Defaults to `true` if not specified.
   * `file` is the optional file component of the [URI], provided as
-    the string token that follows the final '/' character of the
+    the string token that follows the final `/` character of the
     path component.
-  * `query` is an optional `IData` document whose elements are the set
-    of [URI] query string key value parameters. Parameter keys are
-    treated as fully-qualified `IData` keys.
+  * `query` is an optional `IData` document whose elements are the
+    set of [URI] query string key value parameters. Parameter keys
+    are treated as fully-qualified `IData` keys.
   * `fragment` is the optional fragment component of the [URI].
-  * `absolute?` is a boolean indicating whether the given `$string` was
-    an absolute [URI].
-  * `opaque?` is a boolean indicating whether the given `$string` was an
-    opaque [URI].
+  * `absolute?` is a boolean indicating whether the given `$string`
+    was an absolute [URI].
+  * `opaque?` is a boolean indicating whether the given `$string` was
+    an opaque [URI].
+
 ---
 
 ### tundra.uri:substitute
@@ -16687,10 +16696,10 @@ Resource Identifier ([URI]) string.
 
 #### Inputs:
 
-* `$string` is the a [URI] string to perform variable substitution
+* `$string` is the [URI] string to perform variable substitution
   against.
-* `$scope` is an optional `IData` document against which variables are
-  resolved. If not specified, the substitution is unscoped, and
+* `$scope` is an optional `IData` document against which variables
+  are resolved. If not specified, the substitution is unscoped, and
   variables are resolved against the pipeline itself.
 
 #### Outputs:

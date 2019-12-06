@@ -7,6 +7,7 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -21,6 +22,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$string</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -41,9 +43,11 @@
           <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -58,6 +62,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$string</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -78,49 +83,51 @@
           <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">### tundra.uri:normalize
 
 Normalizes a URI string.
 
-Refer to the following excerpt from the [java.net.URI normalize] method for
-a description of the normalization process:
+Refer to the following excerpt from the [java.net.URI normalize] 
+method for a description of the normalization process:
 
-&gt; If this URI is opaque, or if its path is already in normal form, then this
-&gt; URI is returned. Otherwise a new URI is constructed that is identical to
-&gt; this URI except that its path is computed by normalizing this URI's path
-&gt; in a manner consistent with RFC 2396, section 5.2, step 6, sub-steps c
-&gt; through f; that is:
+&gt; If this URI is opaque, or if its path is already in normal form, 
+&gt; then this URI is returned. Otherwise a new URI is constructed that 
+&gt; is identical to this URI except that its path is computed by 
+&gt; normalizing this URI's path in a manner consistent with RFC 2396, 
+&gt; section 5.2, step 6, sub-steps c through f; that is:
 &gt;
 &gt; 1. All "." segments are removed.
 &gt;
-&gt; 2. If a ".." segment is preceded by a non-".." segment then both of these
-&gt;    segments are removed. This step is repeated until it is no longer
-&gt;    applicable.
+&gt; 2. If a ".." segment is preceded by a non-".." segment then both of 
+&gt;    these segments are removed. This step is repeated until it is no 
+&gt;    longer applicable.
 &gt;
-&gt; 3. If the path is relative, and if its first segment contains a colon
-&gt;    character (':'), then a "." segment is prepended. This prevents a
-&gt;    relative URI with a path such as "a:b/c/d" from later being re-parsed
-&gt;    as an opaque URI with a scheme of "a" and a scheme-specific part of
-&gt;    "b/c/d". (Deviation from RFC 2396.)
+&gt; 3. If the path is relative, and if its first segment contains a 
+&gt;    colon character (':'), then a "." segment is prepended. This 
+&gt;    prevents a relative URI with a path such as "a:b/c/d" from later 
+&gt;    being re-parsed as an opaque URI with a scheme of "a" and a 
+&gt;    scheme-specific part of "b/c/d". (Deviation from RFC 2396.)
 &gt;
-&gt; A normalized path will begin with one or more ".." segments if there were
-&gt; insufficient non-".." segments preceding them to allow their removal. A
-&gt; normalized path will begin with a "." segment if one was inserted by step
-&gt; 3 above. Otherwise, a normalized path will not contain any "." or ".."
-&gt; segments.
+&gt; A normalized path will begin with one or more ".." segments if 
+&gt; there were insufficient non-".." segments preceding them to allow 
+&gt; their removal. A normalized path will begin with a "." segment if 
+&gt; one was inserted by step 3 above. Otherwise, a normalized path will 
+&gt; not contain any "." or ".." segments.
 
 #### Inputs:
 
-* $string is the [URI] to be normalized.
+* `$string` is the [URI] to be normalized.
 
 #### Outputs:
 
-* $string is the given [URI] in normalized form.
+* `$string` is the given [URI] in normalized form.
 
 [URI]: &lt;http://www.w3.org/Addressing/&gt;
-[java.net.URI normalize]: &lt;http://docs.oracle.com/javase/6/docs/api/java/net/URI.html#normalize()&gt;</value>
+[java.net.URI normalize]: &lt;http://docs.oracle.com/javase/6/docs/api/java/net/URI.html#normalize()&gt;
+</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
@@ -136,10 +143,16 @@ a description of the normalization process:
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
 </Values>

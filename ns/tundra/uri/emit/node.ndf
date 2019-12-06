@@ -10,7 +10,6 @@
       <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
-      <value name="wrapper_type">IData</value>
       <value name="nillable">true</value>
       <value name="form_qualified">false</value>
       <value name="is_global">false</value>
@@ -27,7 +26,6 @@
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
-          <value name="wrapper_type">IData</value>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
@@ -104,7 +102,6 @@
               <value name="field_type">record</value>
               <value name="field_dim">0</value>
               <value name="field_opt">true</value>
-              <value name="wrapper_type">IData</value>
               <value name="nillable">true</value>
               <value name="form_qualified">false</value>
               <value name="is_global">false</value>
@@ -372,7 +369,6 @@
               <value name="field_type">record</value>
               <value name="field_dim">0</value>
               <value name="field_opt">true</value>
-              <value name="wrapper_type">IData</value>
               <value name="nillable">true</value>
               <value name="form_qualified">false</value>
               <value name="is_global">false</value>
@@ -421,7 +417,6 @@
       <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
-      <value name="wrapper_type">IData</value>
       <value name="nillable">true</value>
       <value name="form_qualified">false</value>
       <value name="is_global">false</value>
@@ -465,33 +460,35 @@
 Emits a Uniform Resource Identifier ([URI]) string, according to
 [RFC 2396], given its constituent parts.
 
-URIs can be categorized as either hierarchical, where the scheme and 
-body parts are separated by the character sequence '://', or opaque, 
-where the scheme and body parts are separated by a ':' character.
+URIs can be categorized as either hierarchical, where the scheme and
+body parts are separated by the character sequence `://`, or opaque,
+where the scheme and body parts are separated by a `:` character.
 
 Examples of hierarchical URIs:
-* http://example.com/
-* ftp://example.com/path/file.txt
+
+    http://example.com/
+    ftp://example.com/path/file.txt
 
 Examples of opaque URIs:
-* mailto:john.doe@example.com
-* news:comp.lang.java
-* urn:isbn:096139210x
+
+    mailto:john.doe@example.com
+    news:comp.lang.java
+    urn:isbn:096139210x
 
 Opaque URIs are constructed according to the following syntax:
 
     (scheme:)body(?query)(#fragment)
 
 Where brackets (...) delineate optional components and the characters
-':', '?', and '#' stand for themselves.
+`:`, `?`, and `#` stand for themselves.
 
 Hierarchical URIs are constructed according to the following syntax:
 
     (scheme:)(//authority)(/path/)(file)(?query)(#fragment)
 
-Where the characters ':', '/', '?', and '#' stand for themselves. The
-authority component, if specified, can be either server-based or 
-registry-based. If server-based, it is constructed according to the 
+Where the characters `:`, `/`, `?`, and `#` stand for themselves. The
+authority component, if specified, can be either server-based or
+registry-based. If server-based, it is constructed according to the
 syntax:
 
     (user:password@)host(:port)
@@ -530,43 +527,47 @@ This service was implemented with the [java.net.URI] class.
 
 #### Inputs:
 
-* $uri is an IData document containing the constituent parts to
+* `$uri` is an `IData` document containing the constituent parts to
   construct a new [URI] string with.
-  * scheme is the optional scheme for this [URI]; for an 
+  * `scheme` is the optional scheme for this [URI]; for an
     hierarchical [URI] this is typically a protocol such as http.
-  * body is the scheme-specific part of an opaque [URI].
-  * authority is the optional authority part of an hierarchical 
+  * `body` is the scheme-specific part of an opaque [URI].
+  * `authority` is the optional authority part of an hierarchical
     [URI].
-    * registry is the authority for a registry-based hierarchical 
+    * `registry` is the authority for a registry-based hierarchical
       [URI].
-    * server is the authority for a server-based heirarchical [URI].
-      * user is the optional user component of the [URI] authority.
-      * password is the optional password component of the [URI]
+    * `server` is the authority for a server-based heirarchical 
+      [URI].
+      * `user` is the optional user component of the [URI] authority.
+      * `password` is the optional password component of the [URI]
         authority.
-      * host is the host or domain name component of the [URI] 
+      * `host` is the host or domain name component of the [URI]
         authority.
-      * port is the port component of the [URI] authority.
-  * path is the optional path component of the [URI], provided as 
-    the list of string tokens that were separated by the '/' 
+      * `port` is the port component of the [URI] authority.
+  * `path` is the optional path component of the [URI], provided as
+    the list of string tokens that were separated by the `/`
     character.
-  * path.absolute? is an optional boolean which when true indicates
-    that the path is absolute, and when false indicates the path is
-    relative. Defaults to true if not specified.
-  * file is the optional file component of the [URI], provided as
-    the string token that follows the final '/' character of the
-    path component.
-  * query is an optional IData document whose elements are the set 
-    of [URI] query string key value parameters.
-  * fragment is the optional fragment component of the [URI].
+  * `path.absolute?` is an optional boolean which when `true` 
+    indicates that the path is absolute, and when `false` indicates 
+    the path is relative. Defaults to `true` if not specified.
+  * `file` is the optional file component of the [URI], provided as
+    the string token that follows the final `/` character of the path 
+    component.
+  * `query` is an optional `IData` document whose elements are the 
+    set of [URI] query string key value parameters. Lists are 
+    supported in query strings as follows: `?a=1&amp;a=2&amp;a=3` is parsed 
+    to a `String[] = { "1", "2", "3" }`.
+  * `fragment` is the optional fragment component of the [URI].
 
 #### Outputs:
 
-* $string is the resulting [URI] input string.
+* `$string` is the resulting [URI] input string.
 
 [JSON]: &lt;http://www.json.org/&gt;
 [RFC 2396]: &lt;http://www.ietf.org/rfc/rfc2396.txt&gt;
 [URI]: &lt;http://www.w3.org/Addressing/&gt;
-[java.net.URI]: &lt;http://docs.oracle.com/javase/6/docs/api/java/net/URI.html&gt;</value>
+[java.net.URI]: &lt;http://docs.oracle.com/javase/6/docs/api/java/net/URI.html&gt;
+</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
@@ -576,7 +577,6 @@ This service was implemented with the [java.net.URI] class.
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
   <value name="icontext_policy">$null</value>
-  <value name="svcInvkURLAlias"></value>
   <value name="system_service">no</value>
   <value name="retry_max">0</value>
   <value name="retry_interval">0</value>
