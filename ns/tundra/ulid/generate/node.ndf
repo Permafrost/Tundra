@@ -59,15 +59,17 @@
   </record>
   <value name="node_comment">### tundra.ulid:generate
 
-Returns a newly generated [ULID], a 128-bit universally unique 
-lexicographically sortable identifier base-32 encoded to a 26 
+Returns a newly generated [ULID], a 128-bit universally unique
+lexicographically sortable identifier base-32 encoded to a 26
 character string.
 
 #### Outputs:
 
-* $id is a 26 character string representing a newly generated [ULID].
+* `$id` is a 26 character string representing a newly generated
+  [ULID].
 
-[ULID]: &lt;https://github.com/alizain/ulid&gt;</value>
+[ULID]: &lt;https://github.com/alizain/ulid&gt;
+</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

@@ -16349,8 +16349,6 @@ character string.
 * `$id` is a 26 character string representing a newly generated
   [ULID].
 
-[ULID]: <https://github.com/alizain/ulid>
-
 ---
 
 ### tundra.uri:decode
@@ -16721,14 +16719,10 @@ Returns the current Integration Server user used to invoke this service.
 
 ### tundra.uuid:generate
 
-Generates an immutable universally unique identifier ([UUID]). A [UUID]
-represents a 128-bit value.
+Generates an immutable universally unique identifier ([UUID]). A
+[UUID] represents a 128-bit value.
 
-There exist different variants of these global identifiers. The methods
-of this class are for manipulating the Leach-Salz variant, although the
-constructors allow the creation of any variant of [UUID] (described below).
-
-The layout of a variant 2 (Leach-Salz) [UUID] is as follows: The most
+The layout of a variant 2 (Leach-Salz) [UUID] is as follows. The most
 significant long consists of the following unsigned fields:
 
   0xFFFFFFFF00000000 time_low
@@ -16743,17 +16737,17 @@ The least significant long consists of the following unsigned fields:
   0x0000FFFFFFFFFFFF node
 
 The variant field contains a value which identifies the layout of the
-[UUID]. The bit layout described above is valid only for a [UUID] with a
-variant value of 2, which indicates the Leach-Salz variant.
+[UUID]. The bit layout described above is valid only for a [UUID]
+with a variant value of 2, which indicates the Leach-Salz variant.
 
-The version field holds a value that describes the type of this [UUID].
-There are four different basic types of UUIDs: time-based, DCE
-security, name-based, and randomly generated UUIDs. These types
+The version field holds a value that describes the type of this
+[UUID]. There are four different basic types of UUIDs: time-based,
+DCE security, name-based, and randomly generated UUIDs. These types
 have a version value of 1, 2, 3 and 4, respectively.
 
-For more information including algorithms used to create UUIDs,
-see the Internet-Draft UUIDs and GUIDs or the standards body
-definition at ISO/IEC 11578:1996.
+For more information including algorithms used to create UUIDs, see
+the Internet-Draft UUIDs and GUIDs or the standards body definition
+at ISO/IEC 11578:1996.
 
 #### Inputs:
 
@@ -16766,8 +16760,6 @@ definition at ISO/IEC 11578:1996.
 #### Outputs:
 
 * `$id` is the generated [UUID].
-
----
 
 ---
 
@@ -17255,6 +17247,7 @@ format.
 [TundraJSON.java]: <https://github.com/Permafrost/TundraJSON.java>
 [TundraXML.java]: <https://github.com/Permafrost/TundraXML.java>
 [TundraYAML.java]: <https://github.com/Permafrost/TundraYAML.java>
+[ULID]: <https://github.com/alizain/ulid>
 [URI]: <http://www.w3.org/Addressing/>
 [URI template]: <https://tools.ietf.org/html/rfc6570>
 [UTF-8]: <http://en.wikipedia.org/wiki/UTF-8>
