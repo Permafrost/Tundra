@@ -1,7 +1,7 @@
 package tundra.support;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-03-22 12:05:11 GMT+10:00
+// -----( CREATED: 2019-12-06T09:43:18.985
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -67,6 +67,7 @@ public final class receive
 		            responseCode = 202;
 		            responseBody = InputStreamHelper.normalize(content, charset);
 		        } else {
+		            exception = ExceptionHelper.getInitialCause(exception);
 		            String exceptionClass = exception.getClass().getName();
 		            if ("permafrost.tundra.content.MalformedException".equals(exceptionClass)) {
 		                responseCode = 400;
