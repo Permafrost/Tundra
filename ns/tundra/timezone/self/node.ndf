@@ -7,6 +7,7 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -21,6 +22,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$datetime</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -48,6 +50,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$datetime.pattern</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -77,9 +80,11 @@
           <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -93,6 +98,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$timezone</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
@@ -109,6 +115,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">id</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -135,6 +142,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">name</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -161,6 +169,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">description</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -187,6 +196,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">utc.offset</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -213,6 +223,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">dst.used?</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -239,6 +250,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">dst.active?</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -265,6 +277,7 @@
                 <value name="field_largerEditor">false</value>
                 <value name="field_password">false</value>
               </record>
+              <value name="is_public">false</value>
               <value name="field_name">dst.offset</value>
               <value name="field_type">string</value>
               <value name="field_dim">0</value>
@@ -285,8 +298,10 @@
             </record>
           </array>
           <value name="rec_closed">true</value>
+          <value name="modifiable">true</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">### tundra.timezone:self
@@ -295,39 +310,38 @@ Returns the default time zone for this host.
 
 #### Inputs:
 
-* $datetime is an optional XML datetime string identifying
-  the instant in time to be used to determine the Universal
-  Coordinated Time (UTC) offset and whether Daylight Savings
-  Time (DST) is applicable. If not specified, defaults to
-  the current datetime.
-* $datetime.pattern is an optional datetime pattern that
-  $datetime conforms to, and will be used to parse the
-  datetime string. Defaults to an [ISO8601] XML datetime.
+* `$datetime` is an optional datetime string identifying the instant 
+  in time to be used to determine the Universal Coordinated Time 
+  (UTC) offset and whether Daylight Savings Time (DST) is applicable.
+  If not specified, defaults to the current datetime.
+* `$datetime.pattern` is an optional datetime pattern that
+  `$datetime` conforms to, and will be used to parse the datetime 
+  string. Defaults to an [ISO8601] XML datetime.
 
 #### Outputs:
 
-* $timezone is an IData document describing the default time
+* `$timezone` is an `IData` document describing the default time 
   zone.
-  * id is the [java.util.TimeZone] ID associated with the
-    default time zone.
-  * name is a short name associated with the default time
-    zone.
-  * description is a long name associated with the default
+  * `id` is the [java.util.TimeZone] ID associated with the default 
     time zone.
-  * utc.offset is the historically correct XML duration added
-    to UTC time to get local time in the default time zone for
-    the given $datetime instant. If daylight savings time is in
-    effect for the given $datetime instant, then this value was
-    adjusted to include the daylight savings offset.
-  * dst.used? is a boolean indicating if daylight savings
-    time is used by this time zone.
-  * dst.active? is a boolean indicating if daylight savings
-    time is in effect for the given $datetime instant.
-  * dst.offset is the XML duration added to the UTC offset
-    when daylight savings time is in effect.
+  * `name` is a short name associated with the default time zone.
+  * `description` is a long name associated with the default time 
+    zone.
+  * `utc.offset` is the historically correct XML duration added to 
+    UTC time to get local time in the default time zone for the given
+    `$datetime` instant. If daylight savings time is in effect for 
+    the given `$datetime` instant, then this value was adjusted to 
+    include the daylight savings offset.
+  * `dst.used?` is a boolean indicating if daylight savings time is 
+    used by this time zone.
+  * `dst.active?` is a boolean indicating if daylight savings time is
+    in effect for the given `$datetime` instant.
+  * `dst.offset` is the XML duration added to the UTC offset when 
+    daylight savings time is in effect.
 
 [ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;
-[java.util.TimeZone]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/TimeZone.html&gt;</value>
+[java.util.TimeZone]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/TimeZone.html&gt;
+</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
@@ -343,10 +357,16 @@ Returns the default time zone for this host.
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
 </Values>
