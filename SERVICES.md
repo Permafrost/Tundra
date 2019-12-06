@@ -16709,11 +16709,13 @@ Resource Identifier ([URI]) string.
 
 ### tundra.user:current
 
-Returns the current Integration Server user used to invoke this service.
+Returns the current Integration Server user used to invoke this
+service.
 
 #### Outputs:
 
-* `$user` is the currently logged on user name that invoked this service.
+* `$user` is the currently logged on user name that invoked this
+  service.
 
 ---
 
