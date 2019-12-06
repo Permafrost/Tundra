@@ -340,37 +340,41 @@
   </record>
   <value name="node_comment">### tundra.content:emit
 
-Emits or serializes an `IData` document to a string, byte array, or 
+Emits or serializes an `IData` document to a string, byte array, or
 input stream.
 
-Supports serializing to the following formats: [CSV], Flat File, 
+Supports serializing to the following formats: [CSV], Flat File,
 [HJSON], [JSON], [PSV], [TSV], [XLS], [XLSX], [XML], or [YAML].
 
 #### Inputs:
 
-* `$document` is the `IData` document to be serialized as a string, 
+* `$document` is the `IData` document to be serialized as a string,
   byte array, or input stream.
 * `$content.type` is the MIME media type that describes the format of
   the resulting serialized `$content`.
-* `$content.namespace` is a list of namespace prefixes and the URIs 
-  they map to, used when emitting [XML] content with elements in one 
-  or more namespaces.
-* `$content.schema` is the fully-qualified name of the document 
-  reference or flat file schema to use when validating and 
-  serializing `$document`.
-* `$content.encoding` is an optional character set to use when 
-  encoding the resulting text data to a byte array or input stream. 
+* `$content.encoding` is an optional character set to use when
+  encoding the resulting text data to a byte array or input stream.
   Defaults to [UTF-8].
-* `$content.validate?` is an optional boolean flag which when `true` 
+* `$content.schema` is the fully-qualified name of the document
+  reference or flat file schema to use when validating and
+  serializing `$document`.
+* `$content.namespace` is a list of namespace prefixes and the URIs
+  they map to, used when emitting [XML] content with elements in one
+  or more namespaces.
+* `$content.validate?` is an optional boolean flag which when `true`
   will validate the document content against the given `$schema`, and
   throw an exception if the content is invalid. Defaults to `false`.
-* `$content.mode` is an optional choice of `stream`, `bytes`, 
+* `$content.mode` is an optional choice of `stream`, `bytes`,
   `string` which specifies the type of object `$content` is returned
   as. Defaults to `stream`.
 
 #### Outputs:
 
 * `$content` is the resulting serialization of `$document`.
+* `$content.type` is the MIME media type that describes the format of
+  the resulting serialized `$content`.
+* `$content.encoding` is the character set that was used for
+  serialization.
 
 [CSV]: &lt;http://en.wikipedia.org/wiki/Comma-separated_values&gt;
 [HJSON]: &lt;http://hjson.org/&gt;

@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-12-06T15:40:30.383
+// -----( CREATED: 2019-12-06T16:41:57.439
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -70,7 +70,7 @@ public final class content
 
 		    IDataHelper.put(cursor, "$content", ObjectHelper.convert(content, contentEncoding, contentMode), false);
 		    IDataHelper.put(cursor, "$content.type", parser.getContentType(), false);
-		    IDataHelper.put(cursor, "$content.encoding", contentEncoding, false);
+		    if (contentEncoding != null) IDataHelper.put(cursor, "$content.encoding", contentEncoding.displayName());
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
