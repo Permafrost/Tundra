@@ -1,7 +1,7 @@
 package tundra.mime;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2018-07-25 16:48:31 EST
+// -----( CREATED: 2019-12-06T14:24:59.396
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -42,12 +42,12 @@ public final class type
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $content.type
-		// [o] field:0:optional $content.class {&quot;csv&quot;,&quot;json&quot;,&quot;psv&quot;,&quot;tsv&quot;,&quot;xls&quot;,&quot;xlsx&quot;,&quot;xml&quot;,&quot;yaml&quot;}
+		// [o] field:0:optional $content.class {"csv","json","plain","psv","tsv","unknown","xls","xlsx","xml","yaml"}
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
 		    MimeType type = IDataHelper.get(cursor, "$content.type", MimeType.class);
-		    IDataHelper.put(cursor, "$content.class", MIMETypeHelper.classify(type), false);
+		    IDataHelper.put(cursor, "$content.class", MIMETypeHelper.classify(type).toString().toLowerCase(), false);
 		} finally {
 		    cursor.destroy();
 		}
@@ -198,7 +198,7 @@ public final class type
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
-		// [i] field:0:optional $raise? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $raise? {"false","true"}
 		// [o] field:0:required $valid?
 		IDataCursor cursor = pipeline.getCursor();
 

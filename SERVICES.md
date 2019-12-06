@@ -12647,11 +12647,14 @@ Returns a well-known content class for the given MIME media type.
   media type, and is one of the following values or null if it could
   not be classified as one of these values:
   * `csv` - comma-separated values
+  * `hjson` - humane javascript object notation
   * `json` - javascript object notation
+  * `plain` - plain text
   * `psv` - pipe-separated values
   * `tsv` - tab-separated values
   * `xml` - extensible markup language
   * `yaml` - yaml ain't markup language
+  * `unknown` - the content type was not well-known
 
 ---
 
@@ -16062,7 +16065,6 @@ length is greater than the given character length.
 * `$string` is the given string wrapped at the given character length.
 * `$lines` is a `String[]` containing each line from the resulting
   wrapped string.
-
 
 ---
 

@@ -69,9 +69,12 @@
           <value name="field_opt">true</value>
           <array name="field_options" type="value" depth="1">
             <value>csv</value>
+            <value>hjson</value>
             <value>json</value>
+            <value>plain</value>
             <value>psv</value>
             <value>tsv</value>
+            <value>unknown</value>
             <value>xls</value>
             <value>xlsx</value>
             <value>xml</value>
@@ -86,7 +89,17 @@
               </record>
               <record javaclass="com.wm.util.Values">
                 <value name="primitiveType">0</value>
+                <value name="lexRep">hjson</value>
+                <value name="isList">false</value>
+              </record>
+              <record javaclass="com.wm.util.Values">
+                <value name="primitiveType">0</value>
                 <value name="lexRep">json</value>
+                <value name="isList">false</value>
+              </record>
+              <record javaclass="com.wm.util.Values">
+                <value name="primitiveType">0</value>
+                <value name="lexRep">plain</value>
                 <value name="isList">false</value>
               </record>
               <record javaclass="com.wm.util.Values">
@@ -97,6 +110,11 @@
               <record javaclass="com.wm.util.Values">
                 <value name="primitiveType">0</value>
                 <value name="lexRep">tsv</value>
+                <value name="isList">false</value>
+              </record>
+              <record javaclass="com.wm.util.Values">
+                <value name="primitiveType">0</value>
+                <value name="lexRep">unknown</value>
                 <value name="isList">false</value>
               </record>
               <record javaclass="com.wm.util.Values">
@@ -166,19 +184,22 @@ Returns a well-known content class for the given MIME media type.
 
 #### Inputs:
 
-* $content.type is the MIME media type to be classified.
+* `$content.type` is the MIME media type to be classified.
 
 #### Outputs:
 
-* $content.class is the resulting classification of the given MIME 
-  media type, and is one of the following values or null if it could 
+* `$content.class` is the resulting classification of the given MIME
+  media type, and is one of the following values or null if it could
   not be classified as one of these values:
-  * csv - comma-separated values
-  * json - javascript object notation
-  * psv - pipe-separated values
-  * tsv - tab-separated values
-  * xml - extensible markup language
-  * yaml - yaml ain't markup language
+  * `csv` - comma-separated values
+  * `hjson` - humane javascript object notation
+  * `json` - javascript object notation
+  * `plain` - plain text
+  * `psv` - pipe-separated values
+  * `tsv` - tab-separated values
+  * `xml` - extensible markup language
+  * `yaml` - yaml ain't markup language
+  * `unknown` - the content type was not well-known
 </value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
