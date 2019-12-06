@@ -2889,32 +2889,41 @@ This service is intended to be invoked by clients via HTTP or FTP.
 
 ### tundra.content:emit
 
-Emits or serializes an `IData` document to a string, byte array, or input
-stream.
+Emits or serializes an `IData` document to a string, byte array, or
+input stream.
+
+Supports serializing to the following formats: [CSV], Flat File,
+[HJSON], [JSON], [PSV], [TSV], [XLS], [XLSX], [XML], or [YAML].
 
 #### Inputs:
 
-* `$document` is the `IData` document to be serialized as a string, byte
-  array, or input stream.
-* `$content.type` is the MIME media type that describes the format of the
-  resulting serialized `$content`.
-* `$namespace` is a list of namespace prefixes and the URIs they map to,
-  used when emitting [XML] content with elements in one or more
-  namespaces.
-* `$schema` is the fully-qualified name of the document reference or flat
-  file schema to use when validating and serializing `$document`.
-* `$encoding` is an optional character set to use when encoding the
-  resulting text data to a byte array or input stream. Defaults to [UTF-8].
-* `$validate?` is an optional boolean flag which when `true` will validate
-  the document content against the given `$schema`, and throw an exception
-  if the content is invalid. Defaults to `false`.
-* `$mode` is an optional choice of {stream, bytes, string} which
-  specifies the type of object `$content` is returned as. Defaults to
-  stream.
+* `$document` is the `IData` document to be serialized as a string,
+  byte array, or input stream.
+* `$content.type` is the MIME media type that describes the format of
+  the resulting serialized `$content`.
+* `$content.encoding` is an optional character set to use when
+  encoding the resulting text data to a byte array or input stream.
+  Defaults to [UTF-8].
+* `$content.schema` is the fully-qualified name of the document
+  reference or flat file schema to use when validating and
+  serializing `$document`.
+* `$content.namespace` is a list of namespace prefixes and the URIs
+  they map to, used when emitting [XML] content with elements in one
+  or more namespaces.
+* `$content.validate?` is an optional boolean flag which when `true`
+  will validate the document content against the given `$schema`, and
+  throw an exception if the content is invalid. Defaults to `false`.
+* `$content.mode` is an optional choice of `stream`, `bytes`,
+  `string` which specifies the type of object `$content` is returned
+  as. Defaults to `stream`.
 
 #### Outputs:
 
 * `$content` is the resulting serialization of `$document`.
+* `$content.type` is the MIME media type that describes the format of
+  the resulting serialized `$content`.
+* `$content.encoding` is the character set that was used for
+  serialization.
 
 ---
 
@@ -2923,28 +2932,33 @@ stream.
 Parses or deserializes content specified as a string, byte array, or
 input stream into an `IData` document.
 
+Supports deserializing from the following formats: [CSV], Flat File,
+[HJSON], [JSON], [PSV], [TSV], [XLS], [XLSX], [XML], or [YAML].
+
 #### Inputs:
 
-* `$content` is a string, byte array, or input stream containing content
-  to be parsed.
-* `$content.type` is the MIME media type that describes the format of the
-  given `$content`.
-* `$namespace` is a list of namespace prefixes and the URIs they map to,
-  used when parsing [XML] content with elements in one or more
-  namespaces.
-* `$schema` is the fully-qualified name of the document reference or
-  flat file schema to be used when parsing and validating `$content`.
-* `$encoding` is an optional character set to use when `$content` is
-  provided as a byte array or input stream to decode the contained text
-  data. Defaults to [UTF-8].
-* `$validate?` is an optional boolean flag which when `true` will validate
-  the parsed content against the given `$schema`, and throw an exception
-  if the content is invalid. Defaults to `false`.
+* `$content` is a string, byte array, [org.w3c.dom.Node] object (node
+  in webMethods parlance), or input stream containing content to be
+  parsed.
+* `$content.type` is the MIME media type that describes the format of
+  the given `$content`.
+* `$content.encoding` is an optional character set to use when
+  `$content` is provided as a byte array or input stream to decode
+  the contained text data. Defaults to [UTF-8].
+* `$content.schema` is the fully-qualified name of the document
+  reference or flat file schema to be used when parsing and
+  validating `$content`.
+* `$content.namespace` is a list of namespace prefixes and the URIs
+  they map to, used when parsing [XML] content with elements in one
+  or more namespaces.
+* `$content.validate?` is an optional boolean flag which when `true`
+  will validate the parsed content against the given `$schema`, and
+  throw an exception if the content is invalid. Defaults to `false`.
 
 #### Outputs:
 
-* `$document` is the resulting `IData` document representing the parsed
-  `$content`.
+* `$document` is the resulting `IData` document representing the
+  parsed `$content`.
 
 ---
 
@@ -17175,6 +17189,7 @@ format.
 [finally block]: <http://docs.oracle.com/javase/tutorial/essential/exceptions/finally.html>
 [gzip]: <http://en.wikipedia.org/wiki/Gzip>
 [Hjson]: <http://hjson.org/>
+[HJSON]: <http://hjson.org/>
 [HTML]: <http://en.wikipedia.org/wiki/HTML>
 [HTML entities]: <http://www.w3.org/TR/html4/sgml/entities.html>
 [HTML entity]: <http://www.w3.org/TR/html4/sgml/entities.html>

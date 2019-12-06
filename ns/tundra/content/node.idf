@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Values version="2.0">
+  <value name="encodeutf8">true</value>
+  <value name="shared"></value>
+  <value name="extends"></value>
+  <array name="implements" type="value" depth="1">
+  </array>
+  <array name="imports" type="value" depth="1">
+    <value>java.io.IOException</value>
+    <value>java.io.InputStream</value>
+    <value>java.nio.charset.Charset</value>
+    <value>javax.activation.MimeType</value>
+    <value>permafrost.tundra.content.ContentParser</value>
+    <value>permafrost.tundra.data.IDataHelper</value>
+    <value>permafrost.tundra.lang.CharsetHelper</value>
+    <value>permafrost.tundra.lang.ExceptionHelper</value>
+    <value>permafrost.tundra.lang.ObjectConvertMode</value>
+    <value>permafrost.tundra.lang.ObjectHelper</value>
+  </array>
 </Values>
