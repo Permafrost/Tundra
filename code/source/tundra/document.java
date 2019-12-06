@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-09-27T12:56:27.044
+// -----( CREATED: 2019-12-06T09:46:03.912
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -14,6 +14,8 @@ import java.nio.charset.Charset;
 import java.text.MessageFormat;
 import java.util.EnumSet;
 import java.util.Locale;
+import permafrost.tundra.content.ValidationHelper;
+import permafrost.tundra.content.ValidationResult;
 import permafrost.tundra.data.CaseInsensitiveIData;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.data.IDataJSONParser;
@@ -1528,6 +1530,39 @@ public final class document
 		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
 
 		    IDataHelper.put(cursor, "$document", Transformer.transform(document, new Uppercaser(mode, locale, recurse)), false);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
+	public static final void validate (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(validate)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:0:optional $document
+		// [i] field:0:optional $content.schema
+		// [i] field:0:optional $raise? {"false","true"}
+		// [o] field:0:required $valid?
+		// [o] field:0:optional $message
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    String contentSchema = IDataHelper.first(cursor, String.class, "$content.schema", "$schema");
+		    boolean raise = IDataHelper.getOrDefault(cursor, "$raise?", Boolean.class, false);
+
+		    ValidationResult result = ValidationHelper.validate(document, contentSchema);
+		    result.raiseIfInvalid(raise);
+
+		    IDataHelper.put(cursor, "$valid?", result.isValid(), String.class);
+		    IDataHelper.put(cursor, "$message", result.getMessage(), false);
 		} finally {
 		    cursor.destroy();
 		}

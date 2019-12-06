@@ -6637,8 +6637,9 @@ reference or flat file schema.
 #### Inputs:
 
 * `$document` is the `IData` document to be validated.
-* `$schema` is the fully-qualified name of the document reference
-  or flat file schema to be used to validate the given `$document`.
+* `$content.schema` is the fully-qualified name of the document
+  reference or flat file schema to be used to validate the given
+  `$document`.
 * `$raise?` is an optional boolean which when `true` will cause
   this service to throw an exception if the given `$document`
   is invalid. Defaults to `false`.

@@ -14,6 +14,8 @@
     <value>java.text.MessageFormat</value>
     <value>java.util.EnumSet</value>
     <value>java.util.Locale</value>
+    <value>permafrost.tundra.content.ValidationHelper</value>
+    <value>permafrost.tundra.content.ValidationResult</value>
     <value>permafrost.tundra.data.CaseInsensitiveIData</value>
     <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.data.IDataJSONParser</value>
