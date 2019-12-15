@@ -11,7 +11,6 @@
   <array name="imports" type="value" depth="1">
     <value>java.io.IOException</value>
     <value>java.nio.charset.Charset</value>
-    <value>java.util.EnumSet</value>
     <value>java.util.Locale</value>
     <value>permafrost.tundra.flow.variable.SubstitutionHelper</value>
     <value>permafrost.tundra.flow.variable.SubstitutionType</value>

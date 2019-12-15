@@ -51,7 +51,6 @@ dGNoZWQuc2l6ZSgpXSk7CgogICAgcmV0dXJuIG91dHB1dDsKfQ==</value>
     <value>java.io.IOException</value>
     <value>java.nio.charset.Charset</value>
     <value>java.util.ArrayList</value>
-    <value>java.util.EnumSet</value>
     <value>java.util.List</value>
     <value>java.util.Locale</value>
     <value>permafrost.tundra.data.IDataHelper</value>

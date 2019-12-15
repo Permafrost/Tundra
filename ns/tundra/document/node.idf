@@ -12,7 +12,6 @@
     <value>java.io.IOException</value>
     <value>java.nio.charset.Charset</value>
     <value>java.text.MessageFormat</value>
-    <value>java.util.EnumSet</value>
     <value>java.util.Locale</value>
     <value>permafrost.tundra.content.ValidationHelper</value>
     <value>permafrost.tundra.content.ValidationResult</value>

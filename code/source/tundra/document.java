@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-12-06T09:46:03.912
+// -----( CREATED: 2019-12-13T15:54:03.668
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -12,7 +12,6 @@ import com.wm.app.b2b.server.ServiceException;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.text.MessageFormat;
-import java.util.EnumSet;
 import java.util.Locale;
 import permafrost.tundra.content.ValidationHelper;
 import permafrost.tundra.content.ValidationResult;
@@ -1342,11 +1341,11 @@ public final class document
 
 		try {
 		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    String defaultValue = IDataHelper.first(cursor, String.class, "$substitution.default", "$default");
+		    SubstitutionType mode = IDataHelper.first(cursor, SubstitutionType.class, "$substitution.mode", "$mode");
 		    IData scope = IDataHelper.getOrDefault(cursor, "$pipeline", IData.class, pipeline);
-		    String defaultValue = IDataHelper.get(cursor, "$default", String.class);
-		    EnumSet<SubstitutionType> mode = SubstitutionType.normalize(IDataHelper.get(cursor, "$mode", String.class));
 
-		    IDataHelper.put(cursor, "$document", SubstitutionHelper.substitute(document, defaultValue, true, mode, scope), false);
+		    IDataHelper.put(cursor, "$document", SubstitutionHelper.substitute(document, defaultValue, true, false, mode, scope), false);
 		} finally {
 		    cursor.destroy();
 		}

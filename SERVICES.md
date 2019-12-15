@@ -6412,29 +6412,27 @@ given `IData` document to strings.
 
 ### tundra.document:substitute
 
-Attempts variable substitution on each string value in the given IData
-document by replacing all occurrences of substrings matching `%key%` with
-the associated (optionally scoped) value.
-
-Optionally replaces null or non-existent values with the given default
-value.
+Attempts variable substitution on each string value in the given
+`IData` document by replacing all occurrences of substrings matching
+`%key%` with the associated (optionally scoped) value.
 
 #### Inputs:
 
-* `$document` is an `IData` document to perform variable substitution on.
+* `$document` is an `IData` document to perform variable substitution
+  on.
+* `$substitution.default` is an optional default value to substitute
+  in place of keys that resolve to null or missing values. If not
+  specified, no substitution will be made for keys that resolve to
+  null or missing values.
+* `$substitution.mode` is an optional choice of whether the
+  substitution scope should be `local` variables only, `global`
+  variables only, or `all` variables (local and global variables
+  where local variables take precedence). Note that choosing `global`
+  on an Integration Server version that does not support global
+  variables will result in all values being substituted with the
+  default value if one is provided. Defaults to `local`.
 * `$pipeline` is an optional scope used to resolve key references. If
   not specified, keys are resolved against the pipeline itself.
-* `$default` is an optional default value to substitute in place of keys
-  that resolve to null or missing values. If not specified, no
-  substitution will be made for keys that resolve to null or missing
-  values.
-* `$mode` is an optional choice of whether the substitution scope
-  should be `local` variables only, `global` variables only, or `all`
-  variables (local and global variables where local variables take
-  precedence). Note that choosing `global` on an Integration Server
-  version that does not support global variables will result in
-  all values being substituted with the default value if one is
-  provided. Defaults to `local`.
 
 #### Outputs:
 
@@ -9945,36 +9943,34 @@ null values.
 
 ### tundra.list.document:substitute
 
-Attempts variable substitution on each string value in the given IData
-document list by replacing all occurrences of substrings matching "%key%"
-with the associated (optionally scoped) value.
-
-Optionally replaces null or non-existent values with the given default
-value.
+Attempts variable substitution on each string value in the given
+`IData` document list by replacing all occurrences of substrings
+matching `%key%` with the associated (optionally scoped) value.
 
 #### Inputs:
 
-* `$list` is an `IData` document list to perform variable substitution on.
+* `$list` is an `IData` document list to perform variable
+  substitution on.
+* `$substitution.default` is an optional default value to substitute
+  in place of keys that resolve to null or missing values. If not
+  specified, no substitution will be made for keys that resolve to
+  null or missing values.
+* `$substitution.mode` is an optional choice of whether the
+  substitution scope should be `local` variables only, `global`
+  variables only, or `all` variables (local and global variables
+  where local variables take precedence). Note that choosing `global`
+  on an Integration Server version that does not support global
+  variables will result in all values being substituted with the
+  default value if one is provided. Defaults to `local`.
 * `$pipeline` is an optional scope used to resolve key references. If
   not specified, keys are resolved against the pipeline itself.
-* `$default` is an optional default value to substitute in place of keys
-  that resolve to null or missing values. If not specified, no
-  substitution will be made for keys that resolve to null or missing
-  values.
-* `$mode` is an optional choice of whether the substitution scope
-  should be `local` variables only, `global` variables only, or `all`
-  variables (local and global variables where local variables take
-  precedence). Note that choosing `global` on an Integration Server
-  version that does not support global variables will result in
-  all values being substituted with the default value if one is
-  provided. Defaults to `local`.
 
 #### Outputs:
 
 * `$list` is the resulting `IData` document list with all variable
-  substitution patterns in all item's values, such as "%key%", replaced
-  with the value of the key (resolved against either `$pipeline`, if
-  specified, or the pipeline itself).
+  substitution patterns in all item's values, such as `%key%`,
+  replaced with the value of the key (resolved against either
+  `$pipeline`, if specified, or the pipeline itself).
 
 ---
 
@@ -12147,33 +12143,30 @@ the given list's items.
 
 ### tundra.list.string:substitute
 
-Attempts variable substitution on each string in the given list
-by replacing all occurrences of substrings matching "%key%" with
-the associated (optionally scoped) value.
-
-Optionally replaces null or non-existent values with the given
-default value.
+Attempts variable substitution on each string in the given list by
+replacing all occurrences of substrings matching `%key%` with the
+associated (optionally scoped) value.
 
 #### Inputs:
 
 * `$list` is a list of strings to perform variable substitution on.
+* `$substitution.default` is an optional default value to substitute
+  in place of null or missing values.
+* `$substitution.mode` is an optional choice of whether the
+  substitution scope should be `local` variables only, `global`
+  variables only, or `all` variables (local and global variables
+  where local variables take precedence). Note that choosing `global`
+  on an Integration Server version that does not support global
+  variables will result in all values being substituted with the
+  default value if one is provided. Defaults to `local`.
 * `$pipeline` is an optional `IData` document used to scope the
-  variable substitution. If not specified, the substitution
-  is unscoped (resolved against the pipeline itself).
-* `$default` is an optional default value to substitute in place
-  of null or missing values.
-* `$mode` is an optional choice of whether the substitution scope
-  should be `local` variables only, `global` variables only, or `all`
-  variables (local and global variables where local variables take
-  precedence). Note that choosing `global` on an Integration Server
-  version that does not support global variables will result in
-  all values being substituted with the default value if one is
-  provided. Defaults to `local`.
+  variable substitution. If not specified, the substitution is
+  unscoped (resolved against the pipeline itself).
 
 #### Outputs:
 
 * `$list` is the input list of strings with variable substitution
-  patterns, such as "%key%", replaced with the value of the key
+  patterns, such as `%key%`, replaced with the value of the key
   (resolved against either `$pipeline`, if specified, or the pipeline
   itself).
 
@@ -13605,8 +13598,8 @@ null values.
 ### tundra.pipeline:substitute
 
 Attempts variable substitution on every string element in the
-pipeline by replacing all occurrences of substrings matching
-"%key%" with the associated value.
+pipeline by replacing all occurrences of substrings matching `%key%`
+with the associated value.
 
 ---
 
@@ -15877,32 +15870,29 @@ given literal pattern or [regular expression pattern].
 ### tundra.string:substitute
 
 Attempts variable substitution on the given string by replacing all
-occurrences of substrings matching "%key%" with the associated
+occurrences of substrings matching `%key%` with the associated
 (optionally scoped) value.
-
-Optionally replaces null or non-existent values with the given default
-value.
 
 #### Inputs:
 
 * `$string` is a string to perform variable substitution on.
+* `$substitution.default` is an optional default value to substitute
+  in place of null or missing values.
+* `$substitution.mode` is an optional choice of whether the
+  substitution scope should be `local` variables only, `global`
+  variables only, or `all` variables (local and global variables
+  where local variables take precedence). Note that choosing `global`
+  on an Integration Server version that does not support global
+  variables will result in all values being substituted with the
+  default value if one is provided. Defaults to `local`.
 * `$pipeline` is an optional `IData` document used to scope the
-  variable substitution. If not specified, the substitution
-  is unscoped (resolved against the pipeline itself).
-* `$default` is an optional default value to substitute in place
-  of null or missing values.
-* `$mode` is an optional choice of whether the substitution scope
-  should be `local` variables only, `global` variables only, or `all`
-  variables (local and global variables where local variables take
-  precedence). Note that choosing `global` on an Integration Server
-  version that does not support global variables will result in
-  all values being substituted with the default value if one is
-  provided. Defaults to `local`.
+  variable substitution. If not specified, the substitution is
+  unscoped (resolved against the pipeline itself).
 
 #### Outputs:
 
 * `$string` is the input string with variable substitution patterns,
-  such as "%key%", replaced with the value of the key (resolved
+  such as `%key%`, replaced with the value of the key (resolved
   against either `$pipeline`, if specified, or the pipeline itself).
 
 ---

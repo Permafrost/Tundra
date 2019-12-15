@@ -7,6 +7,7 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -20,6 +21,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$document</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
@@ -29,23 +31,7 @@
           <value name="is_global">false</value>
           <array name="rec_fields" type="record" depth="1">
           </array>
-        </record>
-        <record javaclass="com.wm.util.Values">
-          <value name="node_type">record</value>
-          <value name="node_comment"></value>
-          <record name="node_hints" javaclass="com.wm.util.Values">
-            <value name="field_largerEditor">false</value>
-            <value name="field_password">false</value>
-          </record>
-          <value name="field_name">$pipeline</value>
-          <value name="field_type">record</value>
-          <value name="field_dim">0</value>
-          <value name="field_opt">true</value>
-          <value name="nillable">true</value>
-          <value name="form_qualified">false</value>
-          <value name="is_global">false</value>
-          <array name="rec_fields" type="record" depth="1">
-          </array>
+          <value name="modifiable">true</value>
         </record>
         <record javaclass="com.wm.util.Values">
           <value name="node_type">record</value>
@@ -55,7 +41,8 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$default</value>
+          <value name="is_public">false</value>
+          <value name="field_name">$substitution.default</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -82,7 +69,8 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$mode</value>
+          <value name="is_public">false</value>
+          <value name="field_name">$substitution.mode</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -145,10 +133,31 @@
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
         </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$pipeline</value>
+          <value name="field_type">record</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+          <array name="rec_fields" type="record" depth="1">
+          </array>
+          <value name="modifiable">true</value>
+        </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -162,6 +171,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$document</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
@@ -171,43 +181,42 @@
           <value name="is_global">false</value>
           <array name="rec_fields" type="record" depth="1">
           </array>
+          <value name="modifiable">true</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">### tundra.document:substitute
 
-Attempts variable substitution on each string value in the given IData
-document by replacing all occurrences of substrings matching %key% with
-the associated (optionally scoped) value.
-
-Optionally replaces null or non-existent values with the given default
-value.
+Attempts variable substitution on each string value in the given 
+`IData` document by replacing all occurrences of substrings matching 
+`%key%` with the associated (optionally scoped) value.
 
 #### Inputs:
 
-* $document is an IData document to perform variable substitution on.
-* $pipeline is an optional scope used to resolve key references. If
+* `$document` is an `IData` document to perform variable substitution 
+  on.
+* `$substitution.default` is an optional default value to substitute 
+  in place of keys that resolve to null or missing values. If not 
+  specified, no substitution will be made for keys that resolve to 
+  null or missing values.
+* `$substitution.mode` is an optional choice of whether the 
+  substitution scope should be `local` variables only, `global` 
+  variables only, or `all` variables (local and global variables 
+  where local variables take precedence). Note that choosing `global` 
+  on an Integration Server version that does not support global 
+  variables will result in all values being substituted with the 
+  default value if one is provided. Defaults to `local`.
+* `$pipeline` is an optional scope used to resolve key references. If
   not specified, keys are resolved against the pipeline itself.
-* $default is an optional default value to substitute in place of keys
-  that resolve to null or missing values. If not specified, no
-  substitution will be made for keys that resolve to null or missing
-  values.
-* $mode is an optional choice of whether the substitution scope
-  should be local variables only, global variables only, or all
-  variables (local and global variables where local variables take
-  precedence). Note that choosing global on an Integration Server 
-  version that does not support global variables will result in 
-  all values being substituted with the default value if one is 
-  provided. Defaults to local.
 
 #### Outputs:
 
-* $document is the resulting IData document with all variable
-  substitution patterns in all values, such as %key%, replaced with
-  the value of the key (resolved against either $pipeline, if
+* `$document` is the resulting `IData` document with all variable
+  substitution patterns in all values, such as `%key%`, replaced with
+  the value of the key (resolved against either `$pipeline`, if
   specified, or the pipeline itself).
-
 </value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
@@ -224,10 +233,16 @@ value.
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
 </Values>
