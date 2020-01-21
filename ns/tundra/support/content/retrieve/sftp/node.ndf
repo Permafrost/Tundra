@@ -10,7 +10,6 @@
       <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
-      <value name="wrapper_type">IData</value>
       <value name="nillable">true</value>
       <value name="form_qualified">false</value>
       <value name="is_global">false</value>
@@ -55,7 +54,6 @@
           <value name="field_name">$source</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
-          <value name="wrapper_type">IData</value>
           <value name="nillable">false</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
@@ -514,7 +512,6 @@
       <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
-      <value name="wrapper_type">IData</value>
       <value name="nillable">true</value>
       <value name="form_qualified">false</value>
       <value name="is_global">false</value>
@@ -572,16 +569,18 @@
   </record>
   <value name="node_comment">### tundra.support.content.retrieve:sftp
 
-Provides the implementation of the main logic for the service tundra.content.retrieve:sftp.</value>
+Provides the implementation of the main logic for the service 
+`tundra.content.retrieve:sftp`.
+</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
   <value name="icontext_policy">$null</value>
-  <value name="svcInvkURLAlias"></value>
   <value name="system_service">no</value>
   <value name="retry_max">0</value>
   <value name="retry_interval">0</value>
