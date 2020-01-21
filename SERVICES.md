@@ -4093,6 +4093,45 @@ Custom datetime patterns can be specified using
 
 ---
 
+### tundra.datetime:within
+
+Returns whether the given datetime is within a given inclusive range.
+
+The range can be specified as either a datetime range provided as a
+start and end datetime, or as a duration range and epoch datetime.
+
+When a duration range is provided, it can be specified as either a
+start and end duration, or as a duration range string in the
+following format:
+
+    start..end
+
+For example, the following duration range string specifies a range
+from -10 minutes to -10 seconds:
+
+    -PT10M..-PT10S
+
+#### Inputs:
+
+* `$datetime` is the datetime to check if its within the given range.
+* `$datetime.pattern` is the optional pattern to use to parse the
+  given `$datetime`.
+* `$datetime.range.start` is an optional datetime range start.
+* `$datetime.range.end` is an optional datetime range end.
+* `$duration.range` is an optional duration range string.
+* `$duration.range.start` is an optional duration range start.
+* `$duration.range.end` is an optional duration range end.
+* `$duration.range.epoch` is an optional datetime against which the
+  given duration range is resolved to absolute time. Defaults to
+  the current time.
+
+#### Outputs:
+
+* `$datetime.within.range?` is `true` if the given `$datetime` is
+  within the specified inclusive range.
+
+---
+
 ### tundra.decimal:absolute
 
 Returns the absolute value of the given decimal.

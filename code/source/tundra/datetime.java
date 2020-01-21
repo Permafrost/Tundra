@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2018-03-22 16:48:14 GMT+10:00
+// -----( CREATED: 2020-01-21T22:10:52.511
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -12,11 +12,13 @@ import com.wm.app.b2b.server.ServiceException;
 import java.util.Date;
 import java.util.Calendar;
 import java.util.TimeZone;
+import javax.xml.datatype.Duration;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.time.DateTimeHelper;
 import permafrost.tundra.time.DurationHelper;
+import permafrost.tundra.time.DurationRange;
 import permafrost.tundra.time.TimeZoneHelper;
 // --- <<IS-END-IMPORTS>> ---
 
@@ -587,6 +589,62 @@ public final class datetime
 		    if (raise) ExceptionHelper.raise(ex);
 		} finally {
 		    IDataHelper.put(cursor, "$valid?", valid, String.class);
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
+	public static final void within (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(within)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $datetime
+		// [i] field:0:optional $datetime.pattern {"datetime","datetime.db2","datetime.jdbc","date","date.jdbc","time","time.jdbc","milliseconds"}
+		// [i] field:0:optional $datetime.range.start
+		// [i] field:0:optional $datetime.range.end
+		// [i] field:0:optional $duration.range
+		// [i] field:0:optional $duration.range.start
+		// [i] field:0:optional $duration.range.end
+		// [i] field:0:optional $duration.range.epoch
+		// [o] field:0:required $datetime.within.range?
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    String datetimeString = IDataHelper.get(cursor, "$datetime", String.class);
+		    String datetimePattern = IDataHelper.get(cursor, "$datetime.pattern", String.class);
+		    Calendar datetimeRangeStart = IDataHelper.get(cursor, "$datetime.range.start", Calendar.class);
+		    Calendar datetimeRangeEnd = IDataHelper.get(cursor, "$datetime.range.end", Calendar.class);
+		    String durationRangeString = IDataHelper.get(cursor, "$duration.range", String.class);
+		    Duration durationRangeStart = IDataHelper.get(cursor, "$duration.range.start", Duration.class);
+		    Duration durationRangeEnd = IDataHelper.get(cursor, "$duration.range.end", Duration.class);
+		    Calendar durationRangeEpoch = IDataHelper.get(cursor, "$duration.range.epoch", Calendar.class);
+
+		    boolean within = false;
+
+		    if (datetimeString != null) {
+		        Calendar instance = DateTimeHelper.parse(datetimeString, datetimePattern);
+
+		        if (datetimeRangeStart != null || datetimeRangeEnd != null) {
+		            within = DateTimeHelper.within(instance, datetimeRangeStart, datetimeRangeEnd);
+		        } else {
+		            DurationRange durationRange;
+		            if (durationRangeString == null) {
+		                durationRange = new DurationRange(durationRangeStart, durationRangeEnd);
+		            } else {
+		                durationRange = DurationRange.parse(durationRangeString);
+		            }
+		            within = durationRange.within(instance, durationRangeEpoch);
+		        }
+		    }
+
+		    IDataHelper.put(cursor, "$datetime.within.range?", within, String.class);
+		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
