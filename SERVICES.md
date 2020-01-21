@@ -14416,12 +14416,15 @@ implement this specification.
   [java.io.InputStream].
 * `$content.name` is the name associated with the content, such as a
   file name.
-* `$content.type` is the mime media type of the content to be processed.
+* `$content.type` is the mime media type of the content to be
+  processed.
 * `$content.length` is the length in bytes of the content to be
   processed.
 * `$content.source` is the source of the content to be processed.
 * `$content.archive` is the archive location of the content after
   processing.
+* `$content.created` is an optional datetime the content was created.
+* `$content.updated` is an optional datetime the content was updated.
 
 ---
 
