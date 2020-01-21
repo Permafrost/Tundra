@@ -7375,6 +7375,8 @@ new file if it doesn't already exist.
   a relative or absolute file path or `file:` [URI]. If the file does
   not exist, it will be created. If the file does exist, its last
   modification time will be updated to current time.
+* `$file.modified` is an optional datetime to use when updating the
+  last modification time of the file. Defaults to current time.
 
 ---
 

@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-11-29T09:40:29.982
+// -----( CREATED: 2020-01-21T18:46:29.493
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -11,9 +11,11 @@ import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import java.io.Closeable;
 import java.io.IOException;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.nio.charset.Charset;
+import java.util.Calendar;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.io.CloseableHelper;
 import permafrost.tundra.io.FileHelper;
@@ -467,10 +469,14 @@ public final class file
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $file
+		// [i] field:0:optional $file.modified
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
-		    FileHelper.touch(IDataHelper.get(cursor, "$file", String.class));
+		    File file = IDataHelper.get(cursor, "$file", File.class);
+		    Calendar modified = IDataHelper.get(cursor, "$file.modified", Calendar.class);
+
+		    FileHelper.touch(file, modified);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
