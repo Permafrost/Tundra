@@ -3089,6 +3089,22 @@ service named for the URI scheme in the folder
 
         sftp://useralias/./path/*.txt
 
+    If only files modified or updated within a specific time range
+    are required to be retrieved, this can configured by adding a
+    query string parameter called `updated` to the URI and specifying
+    a duration range that is resolved against the current time:
+
+        sftp://useralias/./path/*.txt?updated=-PT10M..-PT5M
+        sftp://useralias/./path/*.txt?updated=-PT10M..
+        sftp://useralias/./path/*.txt?updated=..-PT5M
+
+    In the first example above, only files updated between the last
+    10 minutes and the last 5 minutes will be retrieved. In the
+    second example, an endless range is specified, where all files
+    updated in the last 10 minutes or newer will be retrieved. In
+    the third example, a beginless range is specified, where all
+    files updated 5 minutes ago or older will be retrieved.
+
 * `$service` is the fully-qualified name of the content processing
   service, which implements the
   `tundra.schema.content.retrieve:processor` specification, invoked
