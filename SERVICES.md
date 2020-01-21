@@ -2973,32 +2973,50 @@ This service is intended to be invoked by clients via HTTP or FTP.
 
 ### tundra.content:retrieve
 
-Retrieves arbitrary content from the given `$source` URI, and calls the
-given content processing service to process it.
+Retrieves arbitrary content from the given `$source` URI, and calls
+the given content processing service to process it.
 
-Additional retrieval protocols can be implemented by creating a service
-named for the URI scheme in the folder `tundra.content.retrieve`.
-Services in this folder must implement the
+Additional retrieval protocols can be implemented by creating a
+service named for the URI scheme in the folder
+`tundra.content.retrieve`. Services in this folder must implement the
 `tundra.schema.content.retrieve:handler` specification.
 
 #### Inputs:
 
-* `$source` is a URI identifying the location from which content is to be
-  retrieved. Supports the following retrieval protocols / URI schemes:
-  * `file`: processes each file matching the given `$source` URI with the
-    given processing `$service`. The file component of the URI can
-    include wildcards or globs (such as `*.txt` or `*.j?r`) for matching
-    multiple files at once.
+* `$source` is a URI identifying the location from which content is
+  to be retrieved. Supports the following retrieval protocols / URI
+  schemes:
+  * `file`: processes each file matching the given `$source` URI with
+    the given processing `$service`. The file component of the URI
+    can include wildcards or globs (such as `*.txt` or `*.j?r`) for
+    matching multiple files at once.
 
     The following example would process all `*.txt` files in the
     specified directory:
 
         file:////server:port/directory/*.txt
 
-    To ensure each file processed is not locked or being written to by
-    another process, the file is first moved to a working directory. The
-    name of this directory can be configured by adding a query string
-    parameter called working to the URI, for example:
+    If only files modified or updated within a specific time range
+    are required to be retrieved, this can configured by adding a
+    query string parameter called `updated` to the URI and specifying
+    a duration range that is resolved against the current time:
+
+        file:////server:port/directory/*.txt?updated=-PT10M..-PT5M
+        file:////server:port/directory/*.txt?updated=-PT10M..
+        file:////server:port/directory/*.txt?updated=..-PT5M
+
+    In the first example above, only files updated between the last
+    10 minutes and the last 5 minutes will be retrieved. In the
+    second example, an endless range is specified, where all files
+    updated in the last 10 minutes or newer will be retrieved. In
+    the third example, a beginless range is specified, where all
+    files updated 5 minutes ago or older will be retrieved.
+
+    To ensure each file processed is not locked or being written to
+    by another process, the file is first moved to a working
+    directory. The name of this directory can be configured by adding
+    a query string parameter called `working` to the URI, for
+    example:
 
         file:////server:port/directory/*.txt?working=temp
 
@@ -3007,8 +3025,9 @@ Services in this folder must implement the
     subdirectory named `working`.
 
     After successful processing, the file is then moved to an archive
-    directory. The name of this directory can be configured by adding a
-    query string parameter called archive to the URI, for example:
+    directory. The name of this directory can be configured by adding
+    a query string parameter called `archive` to the URI, for
+    example:
 
         file:////server:port/directory/*.txt?archive=backup
 
@@ -3016,21 +3035,23 @@ Services in this folder must implement the
     after being successfully processed. If not specified, the archive
     directory defaults to a subdirectory named `archive`.
 
-    Optionally, archived files older than a given age can be cleaned up
-    automatically by the retrieve process by specifying a query string
-    parameter called `purge` with an XML duration value representing the
-    age an archived file must be before being purged, for example:
+    Optionally, archived files older than a given age can be cleaned
+    up automatically by the retrieve process by specifying a query
+    string parameter called `purge` with an XML duration value
+    representing the age an archived file must be before being
+    purged, for example:
 
         file:////server:port/directory/*.txt?purge=P14D
 
     In this example, any files in the archive directory older than 14
-    days will be automatically deleted by the retrieve process. If the
-    query string parameter `purge` is not specified, archived files will
-    not be automatically cleaned up.
-  * `ftp`: processes each file matching the given `$source` URI with the
-    given processing `$service`. The file component of the URI can
-    include wildcards or globs (such as `*.txt`) for matching multiple
-    files at once.
+    days will be automatically deleted by the retrieve process. If
+    the query string parameter `purge` is not specified, archived
+    files will not be automatically cleaned up.
+
+  * `ftp`: processes each file matching the given `$source` URI with
+    the given processing `$service`. The file component of the URI
+    can include wildcards or globs (such as `*.txt`) for matching
+    multiple files at once.
 
     The following example would process all `*.txt` files in the
     specified directory using active FTP with an ASCII transfer mode
@@ -3042,17 +3063,17 @@ Services in this folder must implement the
     string parameters:
     * `active`: optional boolean which when `true` uses active FTP.
       Defaults to passive FTP.
-    * `ascii`: optional boolean which when `true` sets the FTP transfer
-      mode to ASCII. Defaults to binary transfer mode.
-    * `timeout`: optional XML duration specifying the time to wait for
-      a response from the FTP server before timing out and
+    * `ascii`: optional boolean which when `true` sets the FTP
+      transfer  mode to ASCII. Defaults to binary transfer mode.
+    * `timeout`: optional XML duration specifying the time to wait
+      for a response from the FTP server before timing out and
       terminating the request. Defaults to PT1M (1 minute).
   * `ftps`: refer to `ftp`.
-  * `sftp`: processes each file matching the given `$source` URI with the
-    given processing `$service`. The file component of the URI can
-    include wildcards or globs (such as `*.txt`) for matching multiple
-    files at once. Note that SFTP retrieval is only supported on
-    Integration Server versions 9.0 and higher.
+  * `sftp`: processes each file matching the given `$source` URI with
+    the given processing `$service`. The file component of the URI
+    can include wildcards or globs (such as `*.txt`) for matching
+    multiple files at once. Note that SFTP retrieval is only
+    supported on Integration Server versions 9.0 and higher.
 
     The following example would process all `*.txt` files in the
     specified directory using SFTP:
@@ -3060,23 +3081,23 @@ Services in this folder must implement the
         sftp://useralias/path/*.txt
 
     Where:
-    * `useralias` identifies the Integration Server SFTP User Alias to
-      be used for connecting to the source SFTP server.
-    * `path` is the absolute path to the directory where the files to be
-      processed exist, unless it starts with "." to indicate a relative
-      directory path, such as:
+    * `useralias` identifies the Integration Server SFTP User Alias
+      to be used for connecting to the source SFTP server.
+    * `path` is the absolute path to the directory where the files to
+      be processed exist, unless it starts with "." to indicate a
+      relative directory path, such as:
 
-          sftp://useralias/./path/*.txt
+        sftp://useralias/./path/*.txt
 
 * `$service` is the fully-qualified name of the content processing
   service, which implements the
-  `tundra.schema.content.retrieve:processor` specification, invoked to
-  process each item of content retrieved from the `$source` URI.
+  `tundra.schema.content.retrieve:processor` specification, invoked
+  to process each item of content retrieved from the `$source` URI.
 * `$service.input` is the optional variable name for the retrieved
-  content in the input pipeline of `$service`. Defaults to `$content` if
-  not specified.
+  content in the input pipeline of `$service`. Defaults to `$content`
+  if not specified.
 * `$limit` is an optional maximum number of content matches to be
-  processed in a single execution. Defaults to 1000, if not specified.
+  processed in a single execution. Defaults to 1000 if not specified.
 
 ---
 
