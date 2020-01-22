@@ -18,6 +18,36 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_usereditable">true</value>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$destination</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <array name="field_options" type="value" depth="1">
+          </array>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">anyURI</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
@@ -124,36 +154,6 @@
           <value name="field_opt">true</value>
           <array name="field_options" type="value" depth="1">
           </array>
-          <value name="nillable">true</value>
-          <value name="form_qualified">false</value>
-          <value name="is_global">false</value>
-        </record>
-        <record javaclass="com.wm.util.Values">
-          <value name="node_type">record</value>
-          <value name="node_comment"></value>
-          <record name="node_hints" javaclass="com.wm.util.Values">
-            <value name="field_usereditable">true</value>
-            <value name="field_largerEditor">false</value>
-            <value name="field_password">false</value>
-          </record>
-          <value name="is_public">false</value>
-          <value name="field_name">$destination</value>
-          <value name="field_type">string</value>
-          <value name="field_dim">0</value>
-          <value name="field_opt">true</value>
-          <array name="field_options" type="value" depth="1">
-          </array>
-          <record name="field_content_type" javaclass="com.wm.util.Values">
-            <value name="contentType">1</value>
-            <value name="internalType">reference</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-            <array name="targetNames" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">anyURI</value>
-              </record>
-            </array>
-          </record>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
@@ -271,210 +271,219 @@
   </record>
   <value name="node_comment">### tundra.content:deliver
 
-Delivers arbitrary content specified as a string, byte array, input 
-stream, [org.w3c.dom.Node] object, or IData document to the given
+Delivers arbitrary content specified as a string, byte array, input
+stream, [org.w3c.dom.Node] object, or `IData` document to the given
 destination [URI].
 
-Additional delivery protocols can be implemented by creating a 
-service named for the [URI] scheme in the folder 
-Tundra/tundra.content.deliver. Services in this folder should 
-implement the Tundra/tundra.schema.content.deliver:handler 
+Additional delivery protocols can be implemented by creating a
+service named for the [URI] scheme in the folder
+`Tundra/tundra.content.deliver`. Services in this folder should
+implement the `Tundra/tundra.schema.content.deliver:handler`
 specification.
 
 #### Inputs:
 
-* $content is a string, byte array, input stream, [org.w3c.dom.Node] 
-  object, or IData document containing data to be delivered to the 
-  $destination [URI].
-
-  If $content is provided as an IData document, it will be serialized
-  using an emitter determined in order of precedence by $schema and
-  $content.type. If $schema is specified, the type of reference
-  determines the emitter to use: a document reference will use the 
-  [XML] emitter, a flat file schema reference will use the Flat File 
-  emitter. If $schema is not specified, $content.type is used to 
-  determine the most appropriate emitter for the MIME media type in 
-  question. If neither $schema, nor $content.type are specified, 
-  $content is serialized as [XML] by default.
-* $content.type is an optional MIME media type that describes the 
-  format of the given content.
-* $namespace is an optional list of namespace prefixes and the URIs 
-  they map to, used when emitting and IData document as [XML] 
-  content with elements in one or more namespaces.
-* $schema is an optional fully-qualified name of the document 
-  reference or flat file schema used to serialize `$content` when 
-  provided as an IData document.
-* $encoding is an optional character set to use when $content is
-  provided as a string or IData document which is used to encode the 
-  text data for delivery. Defaults to [UTF-8].
-* $destination is a [URI] identifying the location where the given
-  $content should be delivered. If not specified, no delivery will be
-  attempted. Supports the following delivery protocols / [URI] 
+* `$destination` is a [URI] identifying the location where the given
+  `$content` should be delivered. If not specified, no delivery will
+  be attempted. Supports the following delivery protocols / [URI]
   schemes:
-  * file: writes the given content to the file specified by the
-    destination [URI]. The following additional override options can 
-    be provided via the $pipeline document:
-    * $filename: the name of the file to be written. This value will
-      override the value provided in the destination [URI].
-    * $mode: append / write
-  * ftp: uploads the given content to the FTP server, directory and
-    file specified by the destination [URI]. An example FTP [URI] is 
+  * `file`: writes the given content to the file specified by the
+    destination [URI]. The following additional override options can
+    be provided via the `$pipeline` document:
+    * `$filename`: the name of the file to be written. This value
+      will override the value provided in the destination [URI].
+    * `$mode`: append / write
+ 
+  * `ftp`: uploads the given content to the FTP server, directory and
+    file specified by the destination [URI]. An example FTP [URI] is
     as follows:
 
         ftp://aladdin:opensesame@example.com:21/path/file?append=true&amp;active=true&amp;ascii=true
 
-    The following additional override options can be provided via 
-    the $pipeline document:
-    * $user: the username used to log in to the FTP server. 
-      Defaults to the username specified in the authority section of 
+    The following additional override options can be provided via
+    the `$pipeline` document:
+    * `$user`: the username used to log in to the FTP server.
+      Defaults to the username specified in the authority section of
       the [URI].
-    * $password: the password used to log in to the FTP server.
-      Defaults to the password specified in the authority section of 
+    * `$password`: the password used to log in to the FTP server.
+      Defaults to the password specified in the authority section of
       the [URI].
-    * $active: a boolean which when true indicates that the
-      connection to the FTP server should be in active mode. 
-      Defaults to false (passive mode).
-    * $append: a boolean which when true will append the given
-      content to the file, rather than overwrite it, if the file 
-      already exists. Defaults to false (overwriting).
-    * $ascii: a boolean which when true indicates that the file
-      transfer should be made in ascii mode. Defaults to false 
+    * `$active`: a boolean which when `true` indicates that the
+      connection to the FTP server should be in active mode.
+      Defaults to `false` (passive mode).
+    * `$append`: a boolean which when `true` will append the given
+      content to the file, rather than overwrite it, if the file
+      already exists. Defaults to `false` (overwriting).
+    * `$ascii`: a boolean which when `true` indicates that the file
+      transfer should be made in ascii mode. Defaults to `false`
       (binary mode).
-    * $timeout: an optional [XML] duration string which specifies 
-      how long the client waits for a response from the server 
-      before timing out and terminating the request with an error. 
-      Defaults to PT60S.
-  * ftps: refer to ftp
-  * http: transmits the given content to the destination [URI]. The
-    following additional override options can be provided via the 
-    $pipeline document:
-    * $method: get / put / post / delete / head / trace / options
-    * $headers/*: additional HTTP headers as required
-    * $authority/user: the username to log on to the remote web 
-      server. Defaults to the username specified in the authority 
+    * `$timeout`: an optional [XML] duration string which specifies
+      how long the client waits for a response from the server
+      before timing out and terminating the request with an error.
+      Defaults to `PT60S`.
+  
+  * `ftps`: refer to `ftp`
+  
+  * `http`: transmits the given content to the destination [URI]. The
+    following additional override options can be provided via the
+    `$pipeline` document:
+    * `$method`: get / put / post / delete / head / trace / options
+    * `$headers/*`: additional HTTP headers as required
+    * `$authority/user`: the username to log on to the remote web
+      server. Defaults to the username specified in the authority
       section of the [URI].
-    * $authority/password: the password to log on to the remote web
-      server. Defaults to the password specified in the authority 
+    * `$authority/password`: the password to log on to the remote web
+      server. Defaults to the password specified in the authority
       section of the [URI].
-    * $timeout is an optional [XML] duration string which specifies 
-      how long the client waits for a response from the server 
-      before timing out and terminating the request with an error. 
-      Defaults to PT60S.
-  * https: refer to http
-  * jms: sends the given content as a [JMS] [javax.jms.BytesMessage] 
-    to the specified [JMS] alias and queue or topic. The following 
-    additional override options can be provided via the $pipeline 
+    * `$timeout` is an optional [XML] duration string which specifies
+      how long the client waits for a response from the server
+      before timing out and terminating the request with an error.
+      Defaults to `PT60S`.
+  
+  * `https`: refer to `http`
+  
+  * `jms`: sends the given content as a [javax.jms.BytesMessage] to
+    the specified [JMS] alias and queue or topic. The following
+    additional override options can be provided via the `$pipeline`
     document:
-    * $headers/*: additional properties to be added to the [JMS] 
-      message header, which can be used for filtering by [JMS] 
+    * `$headers/*`: additional properties to be added to the [JMS]
+      message header, which can be used for filtering by [JMS]
       subscribers.
 
-    The following example will deliver the given content as a [JMS] 
-    bytes message to the JMS alias DEFAULT_IS_JMS_CONNECTION, [JMS] 
-    topic JMS::Temporary::Topic, with a time to live of 1 day, and 
+    The following example will deliver the given content as a [JMS]
+    bytes message to the JMS alias DEFAULT_IS_JMS_CONNECTION, [JMS]
+    topic JMS::Temporary::Topic, with a time to live of 1 day, and
     with the default priority of 4:
 
         jms://DEFAULT_IS_JMS_CONNECTION?topic=JMS::Temporary::Topic&amp;lifetime=P1D
 
-    The following example will deliver the given content as a [JMS] 
-    bytes message to the [JMS] alias DEFAULT_IS_JMS_CONNECTION, 
-    [JMS] queue JMS::Temporary::Queue, with no expiry, and with the 
+    The following example will deliver the given content as a [JMS]
+    bytes message to the [JMS] alias DEFAULT_IS_JMS_CONNECTION,
+    [JMS] queue JMS::Temporary::Queue, with no expiry, and with the
     specified priority of 1:
 
         jms://DEFAULT_IS_JMS_CONNECTION?queue=JMS::Temporary::Queue&amp;priority=1
-
-  * mailto: sends an email, with the given content as an attachment 
+  
+  * `mailto`: sends an email, with the given content as an attachment
     if specified. An example mailto [URI] is as follows:
 
         mailto:bob@example.com?cc=jane@example.com&amp;subject=Example&amp;body=Example&amp;attachment=message.xml
 
     The following additional override options can be provided via the
-    $pipeline document:
-    * $attachment: the attached file's name
-    * $from: email address to send the email from
-    * $subject: the subject line text
-    * $body: the main text of the email
-    * $smtp: an SMTP [URI] specifying the SMTP server to use (for
+    `$pipeline` document:
+    * `$attachment`: the attached file's name
+    * `$from`: email address to send the email from
+    * `$subject`: the subject line text
+    * `$body`: the main text of the email
+    * `$smtp`: an SMTP [URI] specifying the SMTP server to use (for
       example, smtp://user:password@host:port), defaults to the SMTP
       server configured in the Integration Server setting
-      watt.server.smtpServer.
-  * sap+idoc: sends an IDoc [XML] message to an SAP system. Note 
-    that this delivery scheme requires the webMethods SAP adapter be 
-    installed. Both opaque and non-opaque URIs are allowed: opaque 
-    URIs are useful if the SAP Adapter alias contains characters not 
+      `watt.server.smtpServer`.
+  
+  * `sap+idoc`: sends an IDoc [XML] message to an SAP system. Note
+    that this delivery scheme requires the webMethods SAP adapter be
+    installed. Both opaque and non-opaque URIs are allowed: opaque
+    URIs are useful if the SAP Adapter alias contains characters not
     permitted in a normal domain name, such as underscores.
 
-    An example opaque sap+idoc [URI] is as follows, where sap_r3 is 
-    the SAP Adapter alias name, and the user and password are 
+    An example opaque `sap+idoc` [URI] is as follows, where `sap_r3`
+    is the SAP Adapter alias name, and the user and password are
     provided as query string parameters:
 
         sap+idoc:sap_r3?user=aladdin&amp;password=opensesame&amp;client=200&amp;language=en&amp;queue=xyz&amp;limit=999
 
-    An example non-opaque sap+idoc [URI] is as follows, where sappr3 
-    is the SAP Adapter alias name, and the user and password are 
-    provided in the authority section of the [URI]:
+    An example non-opaque `sap+idoc` [URI] is as follows, where
+    `sappr3` is the SAP Adapter alias name, and the user and password
+    are provided in the authority section of the [URI]:
 
         sap+idoc://aladdin:opensesame@sappr3?client=200&amp;language=en&amp;queue=xyz&amp;limit=999
 
     The following additional override options can be provided via the
-    $pipeline document, and if specified will override the relevant
+    `$pipeline` document, and if specified will override the relevant
     parts of the destination [URI]:
-    * $user: the username used for the SAP session. Defaults to the
+    * `$user`: the username used for the SAP session. Defaults to the
       SAP Adapter alias username.
-    * $password: the password used for the SAP session. Defaults to
+    * `$password`: the password used for the SAP session. Defaults to
       the SAP Adapter alias password.
-    * $client: the SAP client used for the SAP session. Defaults to
+    * `$client`: the SAP client used for the SAP session. Defaults to
       the SAP Adapter alias client.
-    * $language: the language used for the SAP session. Defaults to
+    * `$language`: the language used for the SAP session. Defaults to
       the SAP Adapter alias language.
-    * $queue: the optional name of the SAP system inbound queue,
+    * `$queue`: the optional name of the SAP system inbound queue,
       required when using queued remote function calls (qRFC).
-    * $limit: the maximum number of IDocs to send per transaction 
+    * `$limit`: the maximum number of IDocs to send per transaction
       (TID), used to partition the sending of a batch of IDocs across
       multiple smaller TIDs. Defaults to no limit.
-  * sftp: uploads the given content to the [SFTP] server, directory 
-    and file specified by the destination [URI]. Note that [SFTP] 
-    delivery is only supported on Integration Server versions 9.0 
-    and higher. An example [SFTP] [URI] is as follows:
+  
+  * `sftp`: uploads the given content to the [SFTP] server, directory
+    and file specified by the destination [URI]. Note that [SFTP]
+    delivery is only supported on Integration Server versions 9.0 and
+    higher. An example [SFTP] [URI] is as follows:
 
         sftp://useralias/path/file?append=false&amp;rename=true
 
     Where:
-    * useralias identifies the Integration Server [SFTP] User Alias 
+    * `useralias` identifies the Integration Server [SFTP] User Alias
       to be used for connecting to the destination [SFTP] server.
-    * path is the absolute path to the directory where the file 
-      should be written, unless it starts with "." to indicate a 
+    * `path` is the absolute path to the directory where the file
+      should be written, unless it starts with `.` to indicate a
       relative directory path, such as:
 
-          sftp://useralias/./path/file
+        sftp://useralias/./path/file
 
-    * file is the literal name of the remote file the content will be
-      written to.
-    * append is an optional query string boolean which if true will 
-      append the content to the given file if it already exists. 
-      Defaults to false if not specified, which overwrites the given
-      file if it already exists.
-    * rename is an optional query string boolean which if true will
-      first write the content to the given file name with ".tmp" 
-      suffix and then rename it to its specified name once written. 
-      Defaults to false, where the content is written directly to 
-      the file name specified in the destination [URI]. Note if the 
-      append option is true, this option has no effect.
-* $pipeline is an optional IData document for providing arbitrary
-  variables to the delivery implementation service. Variables 
-  provided will take precedence and override their corresponding 
-  values in the $destination [URI] where applicable. See the 
-  $destination description above for transport-specific options 
-  which can be provided via this IData document.
+    * `file` is the literal name of the remote file the content will
+      be written to.
+    * `append` is an optional query string boolean which if `true`
+      will append the content to the given file if it already exists.
+      Defaults to `false` if not specified, which overwrites the
+      given file if it already exists.
+    * `rename` is an optional query string boolean which if `true`
+      will first write the content to the given file name with `.tmp`
+      suffix and then rename it to its specified name once written.
+      Defaults to `false`, where the content is written directly to
+      the file name specified in the destination [URI]. Note if the
+      append option is `true`, this option has no effect.
+
+* `$content` is a string, byte array, input stream, `IData` document,
+  or [org.w3c.dom.Node] object containing data to be delivered to the
+  `$destination` [URI].
+
+  If `$content` is provided as an `IData` document, it will be
+  serialized using an emitter determined in order of precedence by
+  `$schema` and `$content.type`. If `$schema` is specified, the type
+  of reference determines the emitter to use: a document reference
+  will use the [XML] emitter, a flat file schema reference will use
+  the Flat File emitter. If `$schema` is not specified,
+  `$content.type` is used to determine the most appropriate emitter
+  for the MIME media type in question. If neither `$schema`, nor
+  `$content.type` are specified,
+  `$content` is serialized as [XML] by default.
+* `$content.type` is an optional MIME media type that describes the
+  format of the given content.
+* `$namespace` is an optional list of namespace prefixes and the URIs
+  they map to, used when emitting and `IData` document as [XML]
+  content with elements in one or more namespaces.
+* `$schema` is an optional fully-qualified name of the document
+  reference or flat file schema used to serialize `$content` when
+  provided as an `IData` document.
+* `$encoding` is an optional character set to use when `$content` is
+  provided as a string or `IData` document which is used to encode
+  the text data for delivery. Defaults to [UTF-8].
+* `$pipeline` is an optional `IData` document for providing arbitrary
+  variables to the delivery implementation service. Variables
+  provided will take precedence and override their corresponding
+  values in the `$destination` [URI] where applicable. See the
+  `$destination` description above for transport-specific options
+  which can be provided via this `IData` document.
 
 #### Outputs:
 
-* $message is an optional response message, useful for logging, that
-  may be returned by specific delivery protocols.
-* $response is an optional response content returned by the delivery
-  (for example, the HTTP response body).
-* $response.type is an optional MIME media type describing the type 
-  of $response returned.
+* `$message` is an optional response message, useful for logging,
+  that may be returned by specific delivery protocols.
+* `$response` is an optional response content returned by the
+  delivery (for example, the HTTP response body).
+* `$response.type` is an optional MIME media type describing the type
+  of `$response` returned.
 
 [org.w3c.dom.Node]: &lt;http://docs.oracle.com/javase/6/docs/api/org/w3c/dom/Node.html&gt;
 [JMS]: &lt;http://en.wikipedia.org/wiki/Java_Message_Service&gt;
@@ -482,7 +491,8 @@ specification.
 [URI]: &lt;http://www.w3.org/Addressing/&gt;
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;
 [XML]: &lt;http://www.w3.org/XML/&gt;
-[javax.jms.BytesMessage]: &lt;http://docs.oracle.com/javaee/1.4/api/javax/jms/BytesMessage.html&gt;</value>
+[javax.jms.BytesMessage]: &lt;http://docs.oracle.com/javaee/1.4/api/javax/jms/BytesMessage.html&gt;
+</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

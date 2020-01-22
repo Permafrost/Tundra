@@ -2568,18 +2568,19 @@ specification.
 
 #### Inputs:
 
-* `$content` is a string, byte array, input stream, [org.w3c.dom.Node]
-  object, or `IData` document containing data to be delivered to the
+* `$content` is a string, byte array, input stream, `IData` document,
+  or [org.w3c.dom.Node] object containing data to be delivered to the
   `$destination` [URI].
 
-  If `$content` is provided as an `IData` document, it will be serialized
-  using an emitter determined in order of precedence by `$schema` and
-  `$content.type`. If `$schema` is specified, the type of reference
-  determines the emitter to use: a document reference will use the
-  [XML] emitter, a flat file schema reference will use the Flat File
-  emitter. If `$schema` is not specified, `$content.type` is used to
-  determine the most appropriate emitter for the MIME media type in
-  question. If neither `$schema`, nor `$content.type` are specified,
+  If `$content` is provided as an `IData` document, it will be
+  serialized using an emitter determined in order of precedence by
+  `$schema` and `$content.type`. If `$schema` is specified, the type
+  of reference determines the emitter to use: a document reference
+  will use the [XML] emitter, a flat file schema reference will use
+  the Flat File emitter. If `$schema` is not specified,
+  `$content.type` is used to determine the most appropriate emitter
+  for the MIME media type in question. If neither `$schema`, nor
+  `$content.type` are specified,
   `$content` is serialized as [XML] by default.
 * `$content.type` is an optional MIME media type that describes the
   format of the given content.
@@ -2590,17 +2591,19 @@ specification.
   reference or flat file schema used to serialize `$content` when
   provided as an `IData` document.
 * `$encoding` is an optional character set to use when `$content` is
-  provided as a string or `IData` document which is used to encode the
-  text data for delivery. Defaults to [UTF-8].
+  provided as a string or `IData` document which is used to encode
+  the text data for delivery. Defaults to [UTF-8].
 * `$destination` is a [URI] identifying the location where the given
-  `$content` should be delivered. If not specified, no delivery will be
-  attempted. Supports the following delivery protocols / [URI] schemes:
+  `$content` should be delivered. If not specified, no delivery will
+  be attempted. Supports the following delivery protocols / [URI]
+  schemes:
   * `file`: writes the given content to the file specified by the
     destination [URI]. The following additional override options can
     be provided via the `$pipeline` document:
-    * `$filename`: the name of the file to be written. This value will
-      override the value provided in the destination [URI].
+    * `$filename`: the name of the file to be written. This value
+      will override the value provided in the destination [URI].
     * `$mode`: append / write
+
   * `ftp`: uploads the given content to the FTP server, directory and
     file specified by the destination [URI]. An example FTP [URI] is
     as follows:
@@ -2628,7 +2631,9 @@ specification.
       how long the client waits for a response from the server
       before timing out and terminating the request with an error.
       Defaults to `PT60S`.
+
   * `ftps`: refer to `ftp`
+
   * `http`: transmits the given content to the destination [URI]. The
     following additional override options can be provided via the
     `$pipeline` document:
@@ -2644,9 +2649,11 @@ specification.
       how long the client waits for a response from the server
       before timing out and terminating the request with an error.
       Defaults to `PT60S`.
+
   * `https`: refer to `http`
-  * `jms`: sends the given content as a [JMS] [javax.jms.BytesMessage]
-    to the specified [JMS] alias and queue or topic. The following
+
+  * `jms`: sends the given content as a [javax.jms.BytesMessage] to
+    the specified [JMS] alias and queue or topic. The following
     additional override options can be provided via the `$pipeline`
     document:
     * `$headers/*`: additional properties to be added to the [JMS]
@@ -2666,6 +2673,7 @@ specification.
     specified priority of 1:
 
         jms://DEFAULT_IS_JMS_CONNECTION?queue=JMS::Temporary::Queue&priority=1
+
   * `mailto`: sends an email, with the given content as an attachment
     if specified. An example mailto [URI] is as follows:
 
@@ -2681,21 +2689,22 @@ specification.
       example, smtp://user:password@host:port), defaults to the SMTP
       server configured in the Integration Server setting
       `watt.server.smtpServer`.
+
   * `sap+idoc`: sends an IDoc [XML] message to an SAP system. Note
     that this delivery scheme requires the webMethods SAP adapter be
     installed. Both opaque and non-opaque URIs are allowed: opaque
     URIs are useful if the SAP Adapter alias contains characters not
     permitted in a normal domain name, such as underscores.
 
-    An example opaque `sap+idoc` [URI] is as follows, where `sap_r3` is
-    the SAP Adapter alias name, and the user and password are
+    An example opaque `sap+idoc` [URI] is as follows, where `sap_r3`
+    is the SAP Adapter alias name, and the user and password are
     provided as query string parameters:
 
         sap+idoc:sap_r3?user=aladdin&password=opensesame&client=200&language=en&queue=xyz&limit=999
 
-    An example non-opaque `sap+idoc` [URI] is as follows, where `sappr3`
-    is the SAP Adapter alias name, and the user and password are
-    provided in the authority section of the [URI]:
+    An example non-opaque `sap+idoc` [URI] is as follows, where
+    `sappr3` is the SAP Adapter alias name, and the user and password
+    are provided in the authority section of the [URI]:
 
         sap+idoc://aladdin:opensesame@sappr3?client=200&language=en&queue=xyz&limit=999
 
@@ -2715,34 +2724,36 @@ specification.
     * `$limit`: the maximum number of IDocs to send per transaction
       (TID), used to partition the sending of a batch of IDocs across
       multiple smaller TIDs. Defaults to no limit.
-  * `sftp`: uploads the given content to the [SFTP] server, directory and
-    file specified by the destination [URI]. Note that [SFTP] delivery
-    is only supported on Integration Server versions 9.0 and higher.
-    An example [SFTP] [URI] is as follows:
+
+  * `sftp`: uploads the given content to the [SFTP] server, directory
+    and file specified by the destination [URI]. Note that [SFTP]
+    delivery is only supported on Integration Server versions 9.0 and
+    higher. An example [SFTP] [URI] is as follows:
 
         sftp://useralias/path/file?append=false&rename=true
 
     Where:
-    * `useralias` identifies the Integration Server [SFTP] User Alias to
-      be used for connecting to the destination [SFTP] server.
-    * `path` is the absolute path to the directory where the file should
-      be written, unless it starts with `.` to indicate a relative
-      directory path, such as:
+    * `useralias` identifies the Integration Server [SFTP] User Alias
+      to be used for connecting to the destination [SFTP] server.
+    * `path` is the absolute path to the directory where the file
+      should be written, unless it starts with `.` to indicate a
+      relative directory path, such as:
 
-          sftp://useralias/./path/file
+        sftp://useralias/./path/file
 
-    * `file` is the literal name of the remote file the content will be
-      written to.
-    * `append` is an optional query string boolean which if `true` will
-      append the content to the given file if it already exists.
-      Defaults to `false` if not specified, which overwrites the given
-      file if it already exists.
-    * `rename` is an optional query string boolean which if `true` will
-      first write the content to the given file name with `.tmp`
+    * `file` is the literal name of the remote file the content will
+      be written to.
+    * `append` is an optional query string boolean which if `true`
+      will append the content to the given file if it already exists.
+      Defaults to `false` if not specified, which overwrites the
+      given file if it already exists.
+    * `rename` is an optional query string boolean which if `true`
+      will first write the content to the given file name with `.tmp`
       suffix and then rename it to its specified name once written.
       Defaults to `false`, where the content is written directly to
       the file name specified in the destination [URI]. Note if the
       append option is `true`, this option has no effect.
+
 * `$pipeline` is an optional `IData` document for providing arbitrary
   variables to the delivery implementation service. Variables
   provided will take precedence and override their corresponding
@@ -2752,10 +2763,10 @@ specification.
 
 #### Outputs:
 
-* `$message` is an optional response message, useful for logging, that
-  may be returned by specific delivery protocols.
-* `$response` is an optional response content returned by the delivery
-  (for example, the HTTP response body).
+* `$message` is an optional response message, useful for logging,
+  that may be returned by specific delivery protocols.
+* `$response` is an optional response content returned by the
+  delivery (for example, the HTTP response body).
 * `$response.type` is an optional MIME media type describing the type
   of `$response` returned.
 
@@ -3245,6 +3256,53 @@ input, and emitting the split list of `$contents` as output.
 * `$schemas` is the optional list of fully-qualified document references
   (for XML) or flat file schemas (for flat files) returned by `$service`
   if the `$contents` list contains unlike formats.
+
+---
+
+### tundra.content:transfer
+
+Transfers content retrieved from the given source location directly
+to the given destination location.
+
+Uses `tundra.content:retrieve` to retrieve content from a source
+location, and `tundra.content:deliver` to deliver the content to a
+destination location.
+
+For example, you can transfer files from an SFTP server to a CIFS
+file server with the following inputs:
+
+    $source = sftp://example_user_alias/inbox/*.xml
+    $destination = file://example_file_server/outbox/
+
+In this example, the source file names are appended to the
+destination location prior to delivery, because the destination
+location provided is a directory.
+
+#### Inputs:
+
+* `$source` is a URI identifying the location from which content is
+  to be retrieved.
+
+  Refer to the `tundra.content:retrieve` service documentation for
+  details on the protocols supported.
+
+* `$destination` is a URI identifying the location where the given
+  `$content` should be delivered. If a file component is provided in
+  the URI, this will be used as the destination file name. Otherwise,
+  if no file component is provided in the URI, the source file name
+  will be appended to the destination URI prior to delivery so that
+  the transferred content retains its file name.
+
+  If an opaque URI with the scheme `service` is provided that has the
+  name of a service in its body, this service will be invoked and is
+  expected to return a dynamically determined `$destination` to
+  deliver to.
+
+  Refer to the `tundra.content:deliver` service documentation for
+  details on the protocols supported.
+
+* `$limit` is an optional maximum number of content matches to be
+  processed in a single execution. Defaults to 1000 if not specified.
 
 ---
 
