@@ -7442,17 +7442,23 @@ Renames the source file to the target file name.
 
 ### tundra.file:touch
 
-Updates the modification time of the given file to now, or creates a
-new file if it doesn't already exist.
+Updates the modification time of the given file to a given datetime,
+or the current time.
+
+Also optionally creates the file if it does not already exist.
 
 #### Inputs:
 
 * `$file` is the name of the file to be touched, specified as either
   a relative or absolute file path or `file:` [URI]. If the file does
-  not exist, it will be created. If the file does exist, its last
-  modification time will be updated to current time.
-* `$file.modified` is an optional datetime to use when updating the
-  last modification time of the file. Defaults to current time.
+  not exist, it will be created if `$file.create?` is `true`. If the
+  file does exist or is created, its modification time will be
+  updated to either the `$file.updated` datetime if specified, or the
+  current time.
+* `$file.create?` is an optional boolean indicating whether to create
+  the file if it does not already exist. Defaults to `true`.
+* `$file.updated` is an optional datetime to use when updating the
+  modification time of the file. Defaults to the current time.
 
 ---
 

@@ -45,12 +45,44 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_usereditable">false</value>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$file.create?</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <array name="field_options" type="value" depth="1">
+            <value>true</value>
+            <value>false</value>
+          </array>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">boolean</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
             <null name="field_usereditable"/>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$file.modified</value>
+          <value name="field_name">$file.updated</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -87,17 +119,23 @@
   </record>
   <value name="node_comment">### tundra.file:touch
 
-Updates the modification time of the given file to now, or creates a
-new file if it doesn't already exist.
+Updates the modification time of the given file to a given datetime, 
+or the current time.
+
+Also optionally creates the file if it does not already exist.
 
 #### Inputs:
 
 * `$file` is the name of the file to be touched, specified as either 
   a relative or absolute file path or `file:` [URI]. If the file does 
-  not exist, it will be created. If the file does exist, its last
-  modification time will be updated to current time.
-* `$file.modified` is an optional datetime to use when updating the
-  last modification time of the file. Defaults to current time.
+  not exist, it will be created if `$file.create?` is `true`. If the
+  file does exist or is created, its modification time will be
+  updated to either the `$file.updated` datetime if specified, or the
+  current time.
+* `$file.create?` is an optional boolean indicating whether to create
+  the file if it does not already exist. Defaults to `true`.
+* `$file.updated` is an optional datetime to use when updating the
+  modification time of the file. Defaults to the current time.
 
 [URI]: &lt;http://www.w3.org/Addressing/&gt;
 </value>
@@ -114,7 +152,7 @@ new file if it doesn't already exist.
   <value name="retry_max">0</value>
   <value name="retry_interval">0</value>
   <value name="svc_in_validator_options">default</value>
-  <value name="svc_out_validator_options">default</value>
+  <value name="svc_out_validator_options">none</value>
   <value name="auditoption">0</value>
   <null name="auditfields_input"/>
   <null name="auditfields_output"/>

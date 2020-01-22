@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2020-01-21T18:46:29.493
+// -----( CREATED: 2020-01-22T18:12:03.269
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -469,14 +469,16 @@ public final class file
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $file
-		// [i] field:0:optional $file.modified
+		// [i] field:0:required $file.create?
+		// [i] field:0:optional $file.updated
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
 		    File file = IDataHelper.get(cursor, "$file", File.class);
-		    Calendar modified = IDataHelper.get(cursor, "$file.modified", Calendar.class);
+		    boolean create = IDataHelper.getOrDefault(cursor, "$file.create?", Boolean.class, true);
+		    Calendar updated = IDataHelper.get(cursor, "$file.updated", Calendar.class);
 
-		    FileHelper.touch(file, modified);
+		    FileHelper.touch(file, create, updated);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
