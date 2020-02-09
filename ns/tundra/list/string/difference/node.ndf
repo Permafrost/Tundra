@@ -7,6 +7,7 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -20,6 +21,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$list.x</value>
           <value name="field_type">string</value>
           <value name="field_dim">1</value>
@@ -47,6 +49,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$list.y</value>
           <value name="field_type">string</value>
           <value name="field_dim">1</value>
@@ -68,9 +71,11 @@
           <value name="is_soap_array_encoding_used">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -84,6 +89,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$list</value>
           <value name="field_type">string</value>
           <value name="field_dim">1</value>
@@ -104,24 +110,54 @@
           <value name="is_global">false</value>
           <value name="is_soap_array_encoding_used">false</value>
         </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <null name="field_usereditable"/>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$list.length</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">nonNegativeInteger</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">false</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">### tundra.list.string:difference
 
-Returns a list of only the items in $list.x that are not also
-present in $list.y.
+Returns a list of only the items in `$list.x` that are not also
+present in `$list.y`.
 
 #### Inputs:
 
-* $list.x is a list to be checked for differences against $list.y.
-* $list.y is a list to be checked against $list.x for differnces.
+* `$list.x` is a list to be checked for differences against
+  `$list.y`.
+* `$list.y` is a list to be checked against `$list.x` for
+  differences.
 
 #### Outputs:
 
-* $list is a new list containing only the items in $list.x that
-  are not also present in $list.y.
-
+* `$list` is a new list containing only the items in `$list.x`
+  that are not also present in `$list.y`.
+* `$list.length` is the number of items in the returned `$list`.
 </value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
@@ -138,10 +174,16 @@ present in $list.y.
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
 </Values>

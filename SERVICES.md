@@ -10717,13 +10717,16 @@ present in `$list.y`.
 
 #### Inputs:
 
-* `$list.x` is a list to be checked for differences against `$list.y`.
-* `$list.y` is a list to be checked against `$list.x` for differnces.
+* `$list.x` is a list to be checked for differences against
+  `$list.y`.
+* `$list.y` is a list to be checked against `$list.x` for
+  differences.
 
 #### Outputs:
 
-* `$list` is a new list containing only the items in `$list.x` that
-  are not also present in `$list.y`.
+* `$list` is a new list containing only the items in `$list.x`
+  that are not also present in `$list.y`.
+* `$list.length` is the number of items in the returned `$list`.
 
 ---
 
@@ -11556,13 +11559,16 @@ present in `$list.y`.
 
 #### Inputs:
 
-* `$list.x` is a list to be checked for differences against `$list.y`.
-* `$list.y` is a list to be checked against `$list.x` for differnces.
+* `$list.x` is a list to be checked for differences against
+  `$list.y`.
+* `$list.y` is a list to be checked against `$list.x` for
+  differences.
 
 #### Outputs:
 
-* `$list` is a new list containing only the items in `$list.x` that
-  are not also present in `$list.y`.
+* `$list` is a new list containing only the items in `$list.x`
+  that are not also present in `$list.y`.
+* `$list.length` is the number of items in the returned `$list`.
 
 ---
 

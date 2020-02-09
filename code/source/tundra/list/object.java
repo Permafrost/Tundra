@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-07-06 15:01:00.830
+// -----( CREATED: 2020-02-10T07:07:36.314
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -78,7 +78,7 @@ public final class object
 		// @sigtype java 3.5
 		// [i] object:1:optional $list
 		// [i] object:0:optional $default
-		// [i] field:0:optional $mode {&quot;missing&quot;,&quot;null&quot;}
+		// [i] field:0:optional $mode {"missing","null"}
 		// [o] object:0:optional $item
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -182,13 +182,21 @@ public final class object
 		// [i] object:1:optional $list.x
 		// [i] object:1:optional $list.y
 		// [o] object:1:optional $list
+		// [o] field:0:required $list.length
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
 		    Object[] listX = IDataHelper.get(cursor, "$list.x", Object[].class);
 		    Object[] listY = IDataHelper.get(cursor, "$list.y", Object[].class);
 
-		    if (listX != null) IDataHelper.put(cursor, "$list", ArrayHelper.difference(listX, listY));
+		    if (listX != null) {
+		        Object[] result = ArrayHelper.difference(listX, listY);
+		        IDataHelper.put(cursor, "$list", result);
+		        IDataHelper.put(cursor, "$list.length", result.length, String.class);
+		    } else {
+		        IDataHelper.put(cursor, "$list.length", "0");
+		    }
+
 		} finally {
 		    cursor.destroy();
 		}
@@ -266,7 +274,7 @@ public final class object
 		// @sigtype java 3.5
 		// [i] record:0:optional $operands
 		// [i] field:0:optional $class
-		// [o] field:0:required $equal? {&quot;false&quot;,&quot;true&quot;}
+		// [o] field:0:required $equal? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
@@ -397,7 +405,7 @@ public final class object
 		// @sigtype java 3.5
 		// [i] object:1:optional $list
 		// [i] object:0:optional $item
-		// [o] field:0:required $include? {&quot;false&quot;,&quot;true&quot;}
+		// [o] field:0:required $include? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
@@ -477,7 +485,7 @@ public final class object
 		// @sigtype java 3.5
 		// [i] object:1:optional $list
 		// [i] field:0:optional $class
-		// [o] field:0:optional $instance? {&quot;false&quot;,&quot;true&quot;}
+		// [o] field:0:optional $instance? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
@@ -528,7 +536,7 @@ public final class object
 		// [i] object:1:optional $list
 		// [i] field:0:optional $separator
 		// [i] field:0:optional $default
-		// [i] field:0:optional $sanitization {&quot;remove nulls&quot;,&quot;remove nulls and blanks&quot;}
+		// [i] field:0:optional $sanitization {"remove nulls","remove nulls and blanks","convert nulls to blanks"}
 		// [o] field:0:optional $result
 		IDataCursor cursor = pipeline.getCursor();
 
