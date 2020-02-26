@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-06-07T16:37:17.191
+// -----( CREATED: 2020-02-26T13:15:11.651
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -456,7 +456,7 @@ public final class service
 		// [i] record:0:optional $headers
 		// [i] object:0:optional $content
 		// [i] field:0:optional $content.type
-		// [i] field:0:optional $encoding
+		// [i] field:0:optional $content.encoding
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
@@ -465,7 +465,7 @@ public final class service
 		    IData headers = IDataHelper.get(cursor, "$headers", IData.class);
 		    Object content = IDataHelper.get(cursor, "$content");
 		    String contentType = IDataHelper.get(cursor, "$content.type", String.class);
-		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
+		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
 
 		    ServiceHelper.respond(code, message, headers, InputStreamHelper.normalize(content, charset), contentType, charset);
 		} finally {
