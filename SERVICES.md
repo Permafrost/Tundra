@@ -14717,12 +14717,14 @@ of arbitrary data.
 
 * `$content` is arbitrary data provided as a string, byte array, or
   input stream.
-* `$encoding` is the character set used to encode the character data
-  if `$content` is provided as a string. Defaults to `UTF-8`.
-* `$algorithm` is the name of the hashing algorithm to use when
-  calculating the message digest. Defaults to `SHA-512`.
-* `$mode` is a choice of `stream`, `bytes`, or `base64`, and determines
-  how the calculated digest is returned. Defaults to `stream`.
+* `$content.encoding` is the character set used to encode the
+  character data if `$content` is provided as a string. Defaults to
+  `UTF-8`.
+* `$digest.algorithm` is the name of the hashing algorithm to use
+  when calculating the message digest. Defaults to `SHA-512`.
+* `$digest.mode` is a choice of `stream`, `bytes`, or `base64`, and
+  determines how the calculated digest is returned. Defaults to
+  `stream`.
 
 #### Outputs:
 
@@ -14736,7 +14738,7 @@ of arbitrary data.
   processing of an input stream.
 * `$digest` is the calculated message digest for the given content,
   returned either as a byte array, input stream, or base64-encoded
-  string, depending on the `$mode` chosen.
+  string, depending on the `$digest.mode` chosen.
 
 ---
 

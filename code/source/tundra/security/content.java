@@ -1,8 +1,8 @@
 package tundra.security;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-07 14:54:06 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2020-02-27T16:39:39.989
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -45,19 +45,19 @@ public final class content
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:0:optional $content
-		// [i] field:0:optional $encoding
-		// [i] field:0:optional $algorithm {"SHA-512","SHA-384","SHA-256","SHA","MD5","MD2"}
-		// [i] field:0:optional $mode {"stream","bytes","base64"}
+		// [i] field:0:optional $content.encoding
+		// [i] field:0:optional $digest.algorithm {"SHA-512","SHA-384","SHA-256","SHA","MD5","MD2"}
+		// [i] field:0:optional $digest.mode {"stream","bytes","base64"}
 		// [o] object:0:optional $content
 		// [o] object:0:optional $digest
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    Object content = IDataHelper.get(cursor, "$content");
-		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
-		    MessageDigest algorithm = IDataHelper.getOrDefault(cursor, "$algorithm", MessageDigest.class, MessageDigestHelper.DEFAULT_ALGORITHM);
-		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
-		
+		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
+		    ObjectConvertMode mode = IDataHelper.first(cursor, ObjectConvertMode.class, "$digest.mode", "$mode");
+		    MessageDigest algorithm = IDataHelper.firstOrDefault(cursor, MessageDigest.class, MessageDigestHelper.DEFAULT_ALGORITHM, "$digest.algorithm", "$algorithm");
+
 		    if (content != null) {
 		        Map.Entry<? extends Object, byte[]> digest = MessageDigestHelper.digest(algorithm, content, charset);
 		        if (digest != null) {
@@ -74,7 +74,7 @@ public final class content
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 
