@@ -15307,6 +15307,8 @@ from one encoding or character set to another.
 #### Inputs:
 
 * `$base64` is a [Base64] encoded string to be decoded.
+* `$content.encoding` is the optional character set used to decode
+  the text data. Defaults to [UTF-8].
 
 #### Outputs:
 
@@ -15321,6 +15323,8 @@ from one encoding or character set to another.
 #### Inputs:
 
 * `$string` is a string containing data to be [Base64] encoded.
+* `$content.encoding` is the optional character set used to encode
+  the text data. Defaults to [UTF-8].
 
 #### Outputs:
 
