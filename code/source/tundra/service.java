@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2020-02-26T13:15:11.651
+// -----( CREATED: 2020-03-06T06:24:15.564
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -451,21 +451,21 @@ public final class service
 		// --- <<IS-START(respond)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:required $code
-		// [i] field:0:optional $message
-		// [i] record:0:optional $headers
-		// [i] object:0:optional $content
-		// [i] field:0:optional $content.type
-		// [i] field:0:optional $content.encoding
+		// [i] field:0:required $response.code
+		// [i] field:0:optional $response.message
+		// [i] record:0:optional $response.headers
+		// [i] object:0:optional $response.content
+		// [i] field:0:optional $response.content.type
+		// [i] field:0:optional $response.content.encoding
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
-		    int code = IDataHelper.get(cursor, "$code", Integer.class);
-		    String message = IDataHelper.get(cursor, "$message", String.class);
-		    IData headers = IDataHelper.get(cursor, "$headers", IData.class);
-		    Object content = IDataHelper.get(cursor, "$content");
-		    String contentType = IDataHelper.get(cursor, "$content.type", String.class);
-		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
+		    int code = IDataHelper.first(cursor, Integer.class, "$response.code", "$code");
+		    String message = IDataHelper.first(cursor, String.class, "$response.message", "$message");
+		    IData headers = IDataHelper.first(cursor, IData.class, "$response.headers", "$headers");
+		    Object content = IDataHelper.first(cursor, Object.class, "$response.content", "$content");
+		    String contentType = IDataHelper.first(cursor, String.class, "$response.content.type", "$content.type");
+		    Charset charset = IDataHelper.first(cursor, Charset.class, "$response.content.encoding", "$content.encoding", "$encoding");
 
 		    ServiceHelper.respond(code, message, headers, InputStreamHelper.normalize(content, charset), contentType, charset);
 		} finally {

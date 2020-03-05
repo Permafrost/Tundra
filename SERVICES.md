@@ -15106,27 +15106,31 @@ success.
 
 #### Inputs:
 
-* `$code` is the [HTTP status code] for the returned response. For
-  example, a `200` status code indicates the request was successful.
-  For transports other than HTTP, a status code >= `400` will result
-  in an exception being thrown. This is the appropriate response,
-  as it will result in the correct action for those transports
-  occurring (such as a SOAP fault for a SOAP invocation, or a file
-  transfer failure for an FTP invocation, for example).
-* `$message` is an optional message to be associated with the given
-  status code. If not specified, the standard status message for
-  the code will be used. This is only applicable to HTTP transports.
-* `$headers` is an optional `IData` document containing HTTP header
-  keys and values to be added to the response. This is only
+* `$response.code` is the [HTTP status code] for the returned
+  response. For example, a `200` status code indicates the request
+  was successful. For transports other than HTTP, a status code >=
+  `400` will result in an exception being thrown. This is the
+  appropriate response, as it will result in the correct action for
+  those transports occurring (such as a SOAP fault for a SOAP
+  invocation, or a file transfer failure for an FTP invocation, for
+  example).
+* `$response.message` is an optional message to be associated with
+  the given status code. If not specified, the standard status
+  message for the code will be used. This is only applicable to HTTP
+  transports.
+* `$response.headers` is an optional `IData` document containing HTTP
+  header keys and values to be added to the response. This is only
   applicable to HTTP transports.
-* `$content` is an optional string, byte array, or input stream
-  containing the response body to be returned. If not specified,
-  defaults to an empty string.
-* `$content.type` is the mime type of the given response body
-  content. If not specified, defaults to `application/octet-stream`
-  (the mime type for arbitrary binary data).
-* `$content.encoding` is an optional character set used to encode
-  `$content` when specified as a string. Defaults to [UTF-8].
+* `$response.content` is an optional string, byte array, or input
+  stream containing the response body to be returned. If not
+  specified, defaults to an empty string.
+* `$response.content.type` is the MIME media type of the given
+  response body content. If not specified, defaults to
+  `application/octet-stream` (the mime type for arbitrary binary
+  data).
+* `$response.content.encoding` is an optional character set used to
+  encode `$response.content` when it represents text data. Defaults
+  to [UTF-8] if the `$response.content.type` represents text data.
 
 ---
 
