@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2020-03-06T06:28:13.554
+// -----( CREATED: 2020-03-06T07:20:55.842
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -608,9 +608,10 @@ public final class pipeline
 		// [o] field:0:required $validation.result?
 		// [o] field:0:optional $validation.message
 		// [o] record:1:optional $validation.errors
-		// [o] - field:0:optional pathName
-		// [o] - field:0:optional errorCode
-		// [o] - field:0:optional errorMessage
+		// [o] - field:0:optional key
+		// [o] - object:0:optional value
+		// [o] - field:0:optional code
+		// [o] - field:0:optional message
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
