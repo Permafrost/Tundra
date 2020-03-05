@@ -13727,6 +13727,30 @@ the pipeline.
 
 ---
 
+### tundra.pipeline:sanitize
+
+Sanitizes the pipeline by dropping all undeclared top-level variables
+when compared to either the input or output signature of the current
+service.
+
+As the first step in a flow service, this service protects against
+undeclared input variables that exist in the pipeline from the caller
+that could inadvertently affect current service's logic.
+
+For example, REST services that accept JSON documents sent by clients
+that are then parsed by Integration Server automatically and provided
+as input variables can use this service to remove all unexpected
+inputs from the pipeline as a security measure when dealing with
+untrusted clients.
+
+#### Inputs:
+
+* `$service.signature.direction` determines whether to sanitize
+  the pipeline against the input or output signature of the current
+  service.
+
+---
+
 ### tundra.pipeline:sort
 
 Sorts the top-level elements in the pipeline by their keys in natural
@@ -13769,8 +13793,8 @@ service's Input/Output signature.
 
 #### Inputs:
 
-* `$validation.signature.direction` determines whether to validate
-  the pipeline against the input or output signature of the current
+* `$service.signature.direction` determines whether to validate the
+  pipeline against the input or output signature of the current
   service.
 * `$validation.raise?` is an optional boolean which when `true` will
   throw an exception if validation fails.

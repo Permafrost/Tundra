@@ -23,7 +23,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$validation.signature.direction</value>
+          <value name="field_name">$service.signature.direction</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <array name="field_options" type="value" depth="1">
@@ -297,8 +297,8 @@ service's Input/Output signature.
 
 #### Inputs:
 
-* `$validation.signature.direction` determines whether to validate
-  the pipeline against the input or output signature of the current
+* `$service.signature.direction` determines whether to validate the
+  pipeline against the input or output signature of the current
   service.
 * `$validation.raise?` is an optional boolean which when `true` will
   throw an exception if validation fails.

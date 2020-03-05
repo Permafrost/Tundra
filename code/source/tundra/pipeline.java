@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2020-03-06T05:53:34.379
+// -----( CREATED: 2020-03-06T06:28:13.554
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -495,6 +495,28 @@ public final class pipeline
 
 
 
+	public static final void sanitize (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(sanitize)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $service.signature.direction {"input","output"}
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    InputOutputSignature direction = IDataHelper.remove(cursor, "$service.signature.direction", InputOutputSignature.class);
+		    PipelineHelper.sanitize(pipeline, direction);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
 	public static final void sort (IData pipeline)
         throws ServiceException
 	{
@@ -581,7 +603,7 @@ public final class pipeline
 		// --- <<IS-START(validate)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:required $validation.signature.direction {"input","output"}
+		// [i] field:0:required $service.signature.direction {"input","output"}
 		// [i] field:0:optional $validation.raise? {"false","true"}
 		// [o] field:0:required $validation.result?
 		// [o] field:0:optional $validation.message
@@ -592,7 +614,7 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
-		    InputOutputSignature direction = IDataHelper.remove(cursor, "$validation.signature.direction", InputOutputSignature.class);
+		    InputOutputSignature direction = IDataHelper.remove(cursor, "$service.signature.direction", InputOutputSignature.class);
 		    boolean raise = IDataHelper.removeOrDefault(cursor, "$validation.raise?", Boolean.class, false);
 
 		    ValidationResult result = PipelineHelper.validate(pipeline, direction);
