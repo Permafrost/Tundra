@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-12-13T15:40:32.227
+// -----( CREATED: 2020-03-06T05:53:34.379
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.text.MessageFormat;
 import java.util.EnumSet;
+import permafrost.tundra.content.ValidationResult;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.data.IDataJSONParser;
 import permafrost.tundra.data.IDataXMLParser;
@@ -20,6 +21,8 @@ import permafrost.tundra.data.IDataYAMLParser;
 import permafrost.tundra.data.transform.string.Squeezer;
 import permafrost.tundra.data.transform.string.Trimmer;
 import permafrost.tundra.data.transform.Transformer;
+import permafrost.tundra.flow.PipelineHelper;
+import permafrost.tundra.flow.PipelineHelper.InputOutputSignature;
 import permafrost.tundra.flow.variable.SubstitutionHelper;
 import permafrost.tundra.flow.variable.SubstitutionType;
 import permafrost.tundra.io.InputStreamHelper;
@@ -562,6 +565,43 @@ public final class pipeline
 		    IData copy = Transformer.transform(pipeline, new Trimmer(true));
 		    IDataHelper.clear(pipeline);
 		    merge(pipeline, copy);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
+	public static final void validate (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(validate)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $validation.signature.direction {"input","output"}
+		// [i] field:0:optional $validation.raise? {"false","true"}
+		// [o] field:0:required $validation.result?
+		// [o] field:0:optional $validation.message
+		// [o] record:1:optional $validation.errors
+		// [o] - field:0:optional pathName
+		// [o] - field:0:optional errorCode
+		// [o] - field:0:optional errorMessage
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    InputOutputSignature direction = IDataHelper.remove(cursor, "$validation.signature.direction", InputOutputSignature.class);
+		    boolean raise = IDataHelper.removeOrDefault(cursor, "$validation.raise?", Boolean.class, false);
+
+		    ValidationResult result = PipelineHelper.validate(pipeline, direction);
+
+		    result.raiseIfInvalid(raise);
+
+		    IDataHelper.put(cursor, "$validation.result?", result.isValid(), String.class);
+		    IDataHelper.put(cursor, "$validation.message", result.getMessage(), false);
+		    IDataHelper.put(cursor, "$validation.errors", result.getErrors(), false);
 		} finally {
 		    cursor.destroy();
 		}

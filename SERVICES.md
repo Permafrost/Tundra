@@ -13758,6 +13758,34 @@ the pipeline.
 
 ---
 
+### tundra.pipeline:validate
+
+Validates the pipeline against either the input or output signature
+of the current service.
+
+This service provides an imperative alternative to the declarative
+approach of checking the validate input and output checkboxes on a
+service's Input/Output signature.
+
+#### Inputs:
+
+* `$validation.signature.direction` determines whether to validate
+  the pipeline against the input or output signature of the current
+  service.
+* `$validation.raise?` is an optional boolean which when `true` will
+  throw an exception if validation fails.
+
+#### Outputs:
+
+* `$validation.result?` is `true` if the pipeline was valid, or
+  `false` if the pipeline was invalid.
+* `$validation.message` is an optional message describing why the
+  pipeline was invalid.
+* `$validation.errors` is an optional list of errors for each reason
+  why the pipeline was invalid.
+
+---
+
 ### tundra.sap.idoc:identify
 
 Assigns a `DOCNUM` to each `IDocDocument` object equal to its index in
