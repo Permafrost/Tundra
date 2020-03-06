@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-09 08:32:07.180
+// -----( CREATED: 2020-03-06T17:44:47.883
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -11,6 +11,7 @@ import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.lang.BooleanHelper;
+import permafrost.tundra.server.ServerLogger;
 import permafrost.tundra.server.SystemHelper;
 // --- <<IS-END-IMPORTS>> ---
 
@@ -36,7 +37,7 @@ public final class system
 		// --- <<IS-START(reflect)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional $refresh? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $refresh? {"false","true"}
 		// [o] record:0:required $system
 		// [o] - field:0:required version
 		// [o] - record:0:required environment
@@ -71,5 +72,21 @@ public final class system
 
 
 	}
+
+	// --- <<IS-START-SHARED>> ---
+	public static void log(IData pipeline) throws ServiceException {
+	    IDataCursor cursor = pipeline.getCursor();
+
+	    try {
+	        String message = IDataHelper.first(cursor, String.class, "$log.message", "$message");
+	        String level = IDataHelper.first(cursor, String.class, "$log.level", "$level");
+	        IData context = IDataHelper.get(cursor, "$log.context", IData.class);
+
+	        ServerLogger.log(level, message, context);
+	    } finally {
+	        cursor.destroy();
+	    }
+	}
+	// --- <<IS-END-SHARED>> ---
 }
 

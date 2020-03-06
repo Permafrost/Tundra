@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Values version="2.0">
-  <value name="shared"></value>
+  <value name="shared">cHVibGljIHN0YXRpYyB2b2lkIGxvZyhJRGF0YSBwaXBlbGluZSkgdGhyb3dzIFNlcnZpY2VFeGNl
+cHRpb24gewogICAgSURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgog
+ICAgdHJ5IHsKICAgICAgICBTdHJpbmcgbWVzc2FnZSA9IElEYXRhSGVscGVyLmZpcnN0KGN1cnNv
+ciwgU3RyaW5nLmNsYXNzLCAiJGxvZy5tZXNzYWdlIiwgIiRtZXNzYWdlIik7CiAgICAgICAgU3Ry
+aW5nIGxldmVsID0gSURhdGFIZWxwZXIuZmlyc3QoY3Vyc29yLCBTdHJpbmcuY2xhc3MsICIkbG9n
+LmxldmVsIiwgIiRsZXZlbCIpOwogICAgICAgIElEYXRhIGNvbnRleHQgPSBJRGF0YUhlbHBlci5n
+ZXQoY3Vyc29yLCAiJGxvZy5jb250ZXh0IiwgSURhdGEuY2xhc3MpOwoKICAgICAgICBTZXJ2ZXJM
+b2dnZXIubG9nKGxldmVsLCBtZXNzYWdlLCBjb250ZXh0KTsKICAgIH0gZmluYWxseSB7CiAgICAg
+ICAgY3Vyc29yLmRlc3Ryb3koKTsKICAgIH0KfQ==</value>
   <value name="encodeutf8">true</value>
   <value name="extends"></value>
   <array name="implements" type="value" depth="1">
@@ -9,6 +17,7 @@
   <array name="imports" type="value" depth="1">
     <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.lang.BooleanHelper</value>
+    <value>permafrost.tundra.server.ServerLogger</value>
     <value>permafrost.tundra.server.SystemHelper</value>
   </array>
 </Values>

@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2020-03-06T07:20:55.842
+// -----( CREATED: 2020-03-06T17:33:53.816
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -32,6 +32,7 @@ import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.lang.ObjectConvertMode;
 import permafrost.tundra.lang.ObjectHelper;
 import permafrost.tundra.math.IntegerHelper;
+import permafrost.tundra.server.ServerLogger;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class pipeline
@@ -361,6 +362,32 @@ public final class pipeline
 
 
 
+	public static final void log (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(log)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $log.message
+		// [i] field:0:optional $log.level {"Fatal","Error","Warn","Info","Debug","Trace","Off"}
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    String message = IDataHelper.remove(cursor, "$log.message", String.class);
+		    String level = IDataHelper.remove(cursor, "$log.level", String.class);
+		    if (level == null) level = IDataHelper.get(cursor, "$level", String.class);
+
+		    ServerLogger.log(level, message, pipeline);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
 	public static final void merge (IData pipeline)
         throws ServiceException
 	{
@@ -608,10 +635,10 @@ public final class pipeline
 		// [o] field:0:required $validation.result?
 		// [o] field:0:optional $validation.message
 		// [o] record:1:optional $validation.errors
-		// [o] - field:0:optional key
-		// [o] - object:0:optional value
 		// [o] - field:0:optional code
 		// [o] - field:0:optional message
+		// [o] - field:0:optional key
+		// [o] - object:0:optional value
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {

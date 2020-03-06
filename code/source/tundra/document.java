@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-12-13T15:54:03.668
+// -----( CREATED: 2020-03-06T17:31:17.898
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -51,6 +51,7 @@ import permafrost.tundra.lang.ObjectConvertMode;
 import permafrost.tundra.lang.ObjectHelper;
 import permafrost.tundra.lang.Sanitization;
 import permafrost.tundra.math.IntegerHelper;
+import permafrost.tundra.server.ServerLogger;
 import permafrost.tundra.server.ServiceHelper;
 import permafrost.tundra.util.regex.PatternHelper;
 import permafrost.tundra.util.regex.ReplacementHelper;
@@ -853,6 +854,33 @@ public final class document
 
 
 
+	public static final void log (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(log)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:0:optional $document
+		// [i] field:0:optional $log.message
+		// [i] field:0:optional $log.level {"Fatal","Error","Warn","Info","Debug","Trace","Off"}
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    String message = IDataHelper.get(cursor, "$log.message", String.class);
+		    String level = IDataHelper.first(cursor, String.class, "$log.level", "$level");
+
+		    ServerLogger.log(level, message, document);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
 	public static final void lowercase (IData pipeline)
         throws ServiceException
 	{
@@ -1333,9 +1361,9 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
+		// [i] field:0:optional $substitution.default
+		// [i] field:0:optional $substitution.mode {"local","global","all"}
 		// [i] record:0:optional $pipeline
-		// [i] field:0:optional $default
-		// [i] field:0:optional $mode {"local","global","all"}
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
 

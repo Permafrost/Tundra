@@ -5,8 +5,9 @@ current user and call stack.
 
 #### Inputs:
 
-* `$message` is the message to be written to the server log.
-* `$level` is the logging level of the message:
+* `$log.message` is an optional message to be written to the server
+  log.
+* `$log.level` is an optional logging level of the message:
   * `Fatal`
   * `Error`
   * `Warn`
@@ -14,6 +15,8 @@ current user and call stack.
   * `Debug`
   * `Trace`
   * `Off`
+* `$log.context` is an optional `IData` document containing arbitrary
+  values that provide context to the log statement.
 
 ---
 
@@ -6076,13 +6079,16 @@ unmodified.
 ### tundra.document:log
 
 Writes the given `IData` document to the server log as a minified
-[JSON] string, prefixed with the invoking user and call stack.
+[JSON] string, prefixed with the invoking user, call stack, and
+message.
 
 #### Inputs:
 
 * `$document` is the `IData` document to be logged to the server log.
-* `$level` is the logging level used when writing the document to the
-  server log.
+* `$log.message` is an optional message to be written to the server
+  log.
+* `$log.level` is an optional logging level used when writing the
+  pipeline to the server log.
 
 ---
 
@@ -13615,12 +13621,14 @@ unmodified.
 ### tundra.pipeline:log
 
 Writes the current pipeline to the server log as a minified [JSON]
-string, prefixed with the invoking user and call stack.
+string, prefixed with the invoking user, call stack, and message.
 
 #### Inputs:
 
-* `$level` is the logging level used when writing the pipeline
-  contents to the server log.
+* `$log.message` is an optional message to be written to the server
+  log.
+* `$log.level` is an optional logging level used when writing the
+  pipeline to the server log.
 
 ---
 

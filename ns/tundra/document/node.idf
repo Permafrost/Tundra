@@ -51,6 +51,7 @@
     <value>permafrost.tundra.lang.ObjectHelper</value>
     <value>permafrost.tundra.lang.Sanitization</value>
     <value>permafrost.tundra.math.IntegerHelper</value>
+    <value>permafrost.tundra.server.ServerLogger</value>
     <value>permafrost.tundra.server.ServiceHelper</value>
     <value>permafrost.tundra.util.regex.PatternHelper</value>
     <value>permafrost.tundra.util.regex.ReplacementHelper</value>

@@ -40,5 +40,6 @@ cGlwZWxpbmUpOwp9</value>
     <value>permafrost.tundra.lang.ObjectConvertMode</value>
     <value>permafrost.tundra.lang.ObjectHelper</value>
     <value>permafrost.tundra.math.IntegerHelper</value>
+    <value>permafrost.tundra.server.ServerLogger</value>
   </array>
 </Values>
