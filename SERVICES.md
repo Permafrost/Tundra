@@ -15142,6 +15142,112 @@ success.
 
 ---
 
+### tundra.service:restful
+
+Registers the current invocation of the calling service to be treated
+as a REST service by Tundra, opting the service in to the features
+below.
+
+To provide the following features, this service requires the Tundra
+package configuration setting `feature/service/restful/enabled` to be
+set to `true`. If this setting is disabled, this service has no
+effect.
+
+* Sanitizes the input pipeline to only include top-level arguments
+  which are declared in the service's input signature. This guards
+  against erroneous or untrusted clients providing undeclared
+  arguments that could inadvertently affect the service's logic.
+  Implemented with `tundra.pipeline:sanitize`.
+
+* Validates the input pipeline against the service's input signature.
+  If the input pipeline is invalid, a validation exception will be
+  logged in the server's error log, and the following response status
+  and body is automatically returned to the client. Note the response
+  body is serialized as JSON or XML or YAML as appropriate based the
+  Content-Type negotiated by the client in the request's `Accept`
+  header (this example shows XML). Implemented with
+  `tundra.pipeline:validate`.
+
+        HTTP/1.1 422 Unprocessable Entity
+        Content-Type: application/xml; charset=UTF-8
+        Content-Length: nnn
+
+        <error>
+            <message>
+                Validation against input signature failed:
+                `xxx` value does not conform to datatype
+            </message>
+        </error>
+
+* Executes the service.
+
+* Sanitizes the output pipeline to only include top-level arguments
+  which are declared in the service's output signature. This guards
+  against erroneous services returning unspecified data to untrusted
+  clients. Implemented with `tundra.pipeline:sanitize`.
+
+* Validates the output pipeline against the service's output
+  signature. If the output pipeline is invalid, a validation
+  exception will be logged in the server's error log, and the
+  following response status and body is automatically returned to
+  the client. Note the response body is serialized as JSON or XML or
+  YAML as appropriate based the Content-Type negotiated by the client
+  in the request's `Accept` header (this example shows XML).
+  Implemented with `tundra.pipeline:validate`.
+
+        HTTP/1.1 500 Internal Server Error
+        Content-Type: application/xml; charset=UTF-8
+        Content-Length: nnn
+
+        <error>
+            <message>
+                Validation against output signature failed:
+                `yyy` value does not conform to datatype
+            </message>
+        </error>
+
+* Serializes the output pipeline automatically as JSON or XML or YAML
+  as appropriate based the Content-Type negotiated by the client in
+  the request's `Accept` header and returns it as an HTTP 200 OK
+  response to the client (the below example shows XML), if no
+  response has been explicitly set by the service itself already (by
+  calling `tundra.service:respond`, for example).
+
+        HTTP/1.1 200 OK
+        Content-Type: application/xml; charset=UTF-8
+        Content-Length: nnn
+
+        <example>
+            <name>
+                John Smith
+            </name>
+        </example>
+
+* Catches any uncaught exceptions thrown by the service or its
+  children, logs the exception in the server's error log, and
+  automatically returns the following response status and body to
+  the client. Note the response body is serialized as JSON or XML or
+  YAML as appropriate based the Content-Type negotiated by the client
+  in the request's `Accept` header (this example shows XML).
+
+        HTTP/1.1 500 Internal Server Error
+        Content-Type: application/xml; charset=UTF-8
+        Content-Length: nnn
+
+        <error>
+            <message>
+                Exception message describing the error
+            </message>
+        </error>
+
+* Logs the request duration, request method, request and response
+  headers, response status, and input and output pipelines in the
+  server log. The log level is set via the Tundra package
+  configuration setting `feature/service/restful/logging`. Configure
+  this to `OFF` to disable logging entirely.
+
+---
+
 ### tundra.service:retryable
 
 Registers the current invocation of the calling service to have any

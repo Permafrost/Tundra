@@ -1013,6 +1013,24 @@
 </INVOKE>
 </BRANCH>
 
+<BRANCH TIMEOUT="" SWITCH="/$configuration/feature/service/restful/enabled">
+  <COMMENT></COMMENT>
+
+  <!-- nodes -->
+
+<INVOKE NAME="true" TIMEOUT="" SERVICE="tundra.support.service.restful:start" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+  <COMMENT></COMMENT>
+
+  <!-- nodes -->
+
+<MAP MODE="INPUT">
+</MAP>
+
+<MAP MODE="OUTPUT">
+</MAP>
+</INVOKE>
+</BRANCH>
+
 <BRANCH TIMEOUT="" SWITCH="/$configuration/feature/content/filter/enabled">
   <COMMENT></COMMENT>
 

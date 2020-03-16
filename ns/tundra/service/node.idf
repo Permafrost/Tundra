@@ -14,6 +14,7 @@
     <value>java.math.BigDecimal</value>
     <value>java.nio.charset.Charset</value>
     <value>java.util.List</value>
+    <value>org.apache.log4j.Level</value>
     <value>permafrost.tundra.collection.CollectionHelper</value>
     <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.io.InputStreamHelper</value>

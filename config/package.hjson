@@ -113,6 +113,20 @@
             }
         }
         service: {
+            restful: {
+                # When enabled, registers an Integration Server invoke chain
+                # processor which automatically sanitizes, validates the input
+                # and output pipeline, and automatically serializes the output
+                # pipeline or uncaught exceptions in the HTTP response body
+                # and returns an appropriate HTTP response status code, for
+                # services which call tundra.service:restful.
+                # If disabled, calling tundra.service:restful has no effect.
+                enabled: true
+                # The logging level used by tundra.service:restful, which
+                # must be specified using one of the following values:
+                # FATAL, ERROR, WARN, INFO, DEBUG, TRACE, OFF
+                logging: INFO
+            }
             retryable: {
                 # When enabled, registers an Integration Server invoke chain
                 # processor which converts any exceptions thrown by services

@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2020-03-06T06:24:15.564
+// -----( CREATED: 2020-03-16T18:00:00.000
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -14,6 +14,7 @@ import com.wm.lang.ns.NSService;
 import java.math.BigDecimal;
 import java.nio.charset.Charset;
 import java.util.List;
+import org.apache.log4j.Level;
 import permafrost.tundra.collection.CollectionHelper;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.io.InputStreamHelper;
@@ -468,6 +469,26 @@ public final class service
 		    Charset charset = IDataHelper.first(cursor, Charset.class, "$response.content.encoding", "$content.encoding", "$encoding");
 
 		    ServiceHelper.respond(code, message, headers, InputStreamHelper.normalize(content, charset), contentType, charset);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
+	public static final void restful (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(restful)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    ServiceHelper.restful(pipeline);
 		} finally {
 		    cursor.destroy();
 		}

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Values version="2.0">
-  <value name="svc_type">flow</value>
-  <value name="svc_subtype">default</value>
+  <value name="svc_type">java</value>
+  <value name="svc_subtype">unknown</value>
   <value name="svc_sigtype">java 3.5</value>
-  <value name="node_comment">### tundra.support:startup
+  <value name="node_comment">### tundra.support.service.restful:stop
 
-Runs startup tasks required when the package is started.</value>
+Stops the invocation processor which provides the supporting 
+implementation for tundra.service:restful.</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
