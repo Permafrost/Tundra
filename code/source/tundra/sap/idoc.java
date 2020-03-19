@@ -1,8 +1,8 @@
 package tundra.sap;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-12-19 12:42:05 GMT+10:00
-// -----( ON-HOST: -
+// -----( CREATED: 2020-03-20T05:27:17.093
+// -----( ON-HOST: PCLBKJP4M2.internal.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -98,6 +98,7 @@ public final class idoc
 		// [i] object:0:optional $idoclist
 		// [i] field:0:optional $limit
 		// [o] object:1:optional $idoclists
+		// [o] field:0:required $idoclists.length
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
