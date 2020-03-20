@@ -282,6 +282,14 @@ service named for the URI scheme in the folder
     the third example, a beginless range is specified, where all 
     files updated 5 minutes ago or older will be retrieved.
 
+    By default, files will first be renamed to include the suffix
+    `.tmp` on the SFTP server prior to being retrieved, to ensure
+    no other processes have locked the file or are currently writing
+    to it. To disable this feature, set the query string parameter
+    `rename` to `false`:
+
+        sftp://useralias/./path/*.txt?rename=false
+
 * `$service` is the fully-qualified name of the content processing
   service, which implements the
   `tundra.schema.content.retrieve:processor` specification, invoked

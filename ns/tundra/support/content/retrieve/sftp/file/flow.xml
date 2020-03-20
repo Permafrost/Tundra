@@ -84,18 +84,10 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
-            <value name="node_comment"></value>
-            <record name="node_hints" javaclass="com.wm.util.Values">
-              <value name="field_usereditable">true</value>
-              <value name="field_largerEditor">false</value>
-              <value name="field_password">false</value>
-            </record>
             <value name="is_public">false</value>
             <value name="field_name">$sftp.filename.working.extension</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
-            <array name="field_options" type="value" depth="1">
-            </array>
             <value name="nillable">true</value>
             <value name="form_qualified">false</value>
             <value name="is_global">false</value>
@@ -535,10 +527,127 @@
 </MAP>
 
 <MAP MODE="OUTPUT">
+  <MAPTARGET>
+
+<Values version="2.0">
+  <record name="xml" javaclass="com.wm.util.Values">
+    <value name="node_type">record</value>
+    <value name="is_public">false</value>
+    <value name="field_type">record</value>
+    <value name="field_dim">0</value>
+    <value name="nillable">true</value>
+    <value name="form_qualified">false</value>
+    <value name="is_global">false</value>
+    <array name="rec_fields" type="record" depth="1">
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="node_comment"></value>
+        <record name="node_hints" javaclass="com.wm.util.Values">
+          <value name="field_largerEditor">false</value>
+          <value name="field_password">false</value>
+        </record>
+        <value name="is_public">false</value>
+        <value name="field_name">$tundra.support.retrieve.sftp:file</value>
+        <value name="field_type">record</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+        <array name="rec_fields" type="record" depth="1">
+        </array>
+        <value name="modifiable">true</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="node_comment"></value>
+        <record name="node_hints" javaclass="com.wm.util.Values">
+          <value name="field_largerEditor">false</value>
+          <value name="field_password">false</value>
+        </record>
+        <value name="is_public">false</value>
+        <value name="field_name">$pipeline</value>
+        <value name="field_type">record</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+        <array name="rec_fields" type="record" depth="1">
+          <record javaclass="com.wm.util.Values">
+            <value name="node_type">record</value>
+            <value name="node_comment"></value>
+            <record name="node_hints" javaclass="com.wm.util.Values">
+              <value name="field_largerEditor">false</value>
+              <value name="field_password">false</value>
+            </record>
+            <value name="is_public">false</value>
+            <value name="field_name">$tundra.support.retrieve.sftp:file</value>
+            <value name="field_type">record</value>
+            <value name="field_dim">0</value>
+            <value name="nillable">true</value>
+            <value name="form_qualified">false</value>
+            <value name="is_global">false</value>
+            <array name="rec_fields" type="record" depth="1">
+            </array>
+            <value name="rec_closed">true</value>
+            <value name="modifiable">true</value>
+          </record>
+        </array>
+        <value name="modifiable">true</value>
+      </record>
+    </array>
+    <value name="modifiable">true</value>
+  </record>
+</Values>
+</MAPTARGET>
+  <MAPSOURCE>
+
+<Values version="2.0">
+  <record name="xml" javaclass="com.wm.util.Values">
+    <value name="node_type">record</value>
+    <value name="is_public">false</value>
+    <value name="field_type">record</value>
+    <value name="field_dim">0</value>
+    <value name="nillable">true</value>
+    <value name="form_qualified">false</value>
+    <value name="is_global">false</value>
+    <array name="rec_fields" type="record" depth="1">
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="node_comment"></value>
+        <record name="node_hints" javaclass="com.wm.util.Values">
+          <value name="field_largerEditor">false</value>
+          <value name="field_password">false</value>
+        </record>
+        <value name="is_public">false</value>
+        <value name="field_name">$pipeline</value>
+        <value name="field_type">record</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+        <array name="rec_fields" type="record" depth="1">
+        </array>
+        <value name="modifiable">true</value>
+      </record>
+    </array>
+    <value name="modifiable">true</value>
+  </record>
+</Values>
+</MAPSOURCE>
+
+  <!-- nodes -->
+
+<MAPDELETE NAME="Dropper" FIELD="/$pipeline;2;0/$tundra.support.retrieve.sftp:file;2;0">
+</MAPDELETE>
 </MAP>
 </INVOKE>
 
-<INVOKE TIMEOUT="" SERVICE="tundra.list.string:join" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+<BRANCH TIMEOUT="" LABELEXPRESSIONS="true">
+  <COMMENT>build working filename, if required</COMMENT>
+
+  <!-- nodes -->
+
+<INVOKE NAME="%$tundra.support.retrieve.sftp:file/$source/query/rename% != &quot;false&quot;" TIMEOUT="" SERVICE="tundra.list.string:join" VALIDATE-IN="$none" VALIDATE-OUT="$none">
   <COMMENT></COMMENT>
 
   <!-- nodes -->
@@ -656,17 +765,57 @@
         <array name="field_options" type="value" depth="1">
           <value>remove nulls</value>
           <value>remove nulls and blanks</value>
+          <value>convert nulls to blanks</value>
         </array>
         <record name="field_content_type" javaclass="com.wm.util.Values">
+          <array name="enumeration" type="record" depth="1">
+            <record javaclass="com.wm.util.Values">
+              <value name="primitiveType">0</value>
+              <value name="lexRep">remove nulls</value>
+              <value name="isList">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="primitiveType">0</value>
+              <value name="lexRep">remove nulls and blanks</value>
+              <value name="isList">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="primitiveType">0</value>
+              <value name="lexRep">convert nulls to blanks</value>
+              <value name="isList">false</value>
+            </record>
+          </array>
           <value name="contentType">1</value>
-          <value name="internalType">reference</value>
-          <value name="dataTypeVersion">dtVersion2</value>
-          <array name="targetNames" type="record" depth="1">
+          <value name="internalType">instance</value>
+          <value name="ct_class">com.wm.lang.schema.datatypev2.WmString</value>
+          <value name="name">string_customized</value>
+          <array name="parent-ancestors" type="record" depth="1">
+            <record javaclass="com.wm.util.Values">
+              <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+              <value name="ncName">anySimpleType</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+              <value name="ncName">anyType</value>
+            </record>
             <record javaclass="com.wm.util.Values">
               <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
               <value name="ncName">string</value>
             </record>
           </array>
+          <record name="baseType" javaclass="com.wm.util.Values">
+            <record name="whiteSpace" javaclass="com.wm.util.Values">
+              <record name="FacetWSCValue" javaclass="com.wm.util.Values">
+                <value name="cDecimalValue">3</value>
+              </record>
+              <value name="facetFixed">false</value>
+            </record>
+            <value name="contentType">1</value>
+            <value name="internalType">instance</value>
+            <value name="ct_class">com.wm.lang.schema.datatypev2.WmString</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+          </record>
+          <value name="dataTypeVersion">dtVersion2</value>
         </record>
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
@@ -817,6 +966,12 @@
 <MAPCOPY FROM="/$tundra.support.retrieve.sftp:file;2;0/$sftp.filename.working.extension;1;0" TO="/$list[1];1;1">
 </MAPCOPY>
 
+<MAPDELETE FIELD="/$default;1;0">
+</MAPDELETE>
+
+<MAPDELETE FIELD="/$separator;1;0">
+</MAPDELETE>
+
 <MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$sanitization;1;0">
   <DATA ENCODING="XMLValues" I18N="true">
 
@@ -857,12 +1012,6 @@
 </Values>
 </DATA>
 </MAPSET>
-
-<MAPDELETE FIELD="/$default;1;0">
-</MAPDELETE>
-
-<MAPDELETE FIELD="/$separator;1;0">
-</MAPDELETE>
 </MAP>
 
 <MAP MODE="OUTPUT">
@@ -995,6 +1144,12 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
+        <value name="node_comment"></value>
+        <record name="node_hints" javaclass="com.wm.util.Values">
+          <null name="field_usereditable"/>
+          <value name="field_largerEditor">false</value>
+          <value name="field_password">false</value>
+        </record>
         <value name="is_public">false</value>
         <value name="field_name">$sanitization</value>
         <value name="field_type">string</value>
@@ -1092,8 +1247,12 @@
 
 <MAPDELETE FIELD="/$list;1;1">
 </MAPDELETE>
+
+<MAPDELETE NAME="Dropper" FIELD="/$sanitization;1;0">
+</MAPDELETE>
 </MAP>
 </INVOKE>
+</BRANCH>
 
 <INVOKE TIMEOUT="" SERVICE="tundra.uri:emit" VALIDATE-IN="$none" VALIDATE-OUT="$none">
   <COMMENT>source directory uri</COMMENT>
@@ -1697,16 +1856,6 @@
           </record>
         </array>
         <value name="modifiable">true</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">$password.mask</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
@@ -3230,16 +3379,6 @@
         </array>
         <value name="modifiable">true</value>
       </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">$sanitization</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
     </array>
     <value name="modifiable">true</value>
   </record>
@@ -3410,16 +3549,6 @@
         <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">$sanitization</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
@@ -3509,8 +3638,18 @@
 </MAP>
 </INVOKE>
 
-<INVOKE TIMEOUT="" SERVICE="pub.client.sftp:rename" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+<BRANCH TIMEOUT="" LABELEXPRESSIONS="true">
   <COMMENT>ensure file is not locked by another process</COMMENT>
+
+  <!-- nodes -->
+
+<SEQUENCE NAME="%$tundra.support.retrieve.sftp:file/$sftp.filename.working% != $null" TIMEOUT="" EXIT-ON="FAILURE">
+  <COMMENT></COMMENT>
+
+  <!-- nodes -->
+
+<INVOKE TIMEOUT="" SERVICE="pub.client.sftp:rename" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+  <COMMENT></COMMENT>
 
   <!-- nodes -->
 
@@ -3708,16 +3847,6 @@
         </array>
         <value name="modifiable">true</value>
       </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">$sanitization</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
     </array>
     <value name="modifiable">true</value>
   </record>
@@ -3809,16 +3938,6 @@
         <array name="rec_fields" type="record" depth="1">
         </array>
         <value name="modifiable">true</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">$sanitization</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
       </record>
     </array>
     <value name="modifiable">true</value>
@@ -3914,7 +4033,7 @@
         <value name="modifiable">true</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">field</value>
+        <value name="node_type">unknown</value>
         <value name="is_public">false</value>
         <value name="field_name">returnCode</value>
         <value name="field_type">string</value>
@@ -3924,9 +4043,19 @@
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">field</value>
+        <value name="node_type">unknown</value>
         <value name="is_public">false</value>
         <value name="field_name">returnMsg</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">$sanitization</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -3965,11 +4094,9 @@
 </MAPDELETE>
 </MAP>
 </INVOKE>
-
-<SEQUENCE NAME="$default" TIMEOUT="" EXIT-ON="FAILURE">
-  <COMMENT></COMMENT>
-
-  <!-- nodes -->
+</BRANCH>
+</SEQUENCE>
+</BRANCH>
 
 <INVOKE TIMEOUT="" SERVICE="pub.client.sftp:get" VALIDATE-IN="$none" VALIDATE-OUT="$none">
   <COMMENT></COMMENT>
@@ -4049,6 +4176,16 @@
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
             <value name="is_public">false</value>
+            <value name="field_name">$source.directory.uri</value>
+            <value name="field_type">string</value>
+            <value name="field_dim">0</value>
+            <value name="nillable">true</value>
+            <value name="form_qualified">false</value>
+            <value name="is_global">false</value>
+          </record>
+          <record javaclass="com.wm.util.Values">
+            <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$sftp.filename.original</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -4082,16 +4219,6 @@
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
             <value name="is_public">false</value>
-            <value name="field_name">$source.directory.uri</value>
-            <value name="field_type">string</value>
-            <value name="field_dim">0</value>
-            <value name="nillable">true</value>
-            <value name="form_qualified">false</value>
-            <value name="is_global">false</value>
-          </record>
-          <record javaclass="com.wm.util.Values">
-            <value name="node_type">unknown</value>
-            <value name="is_public">false</value>
             <value name="field_name">$service</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -4112,7 +4239,7 @@
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
             <value name="is_public">false</value>
-            <value name="field_name">$sftp.filename.working.extension</value>
+            <value name="field_name">$content.source</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
             <value name="nillable">true</value>
@@ -4132,7 +4259,7 @@
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
             <value name="is_public">false</value>
-            <value name="field_name">$content.source</value>
+            <value name="field_name">$sftp.filename.working.extension</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
             <value name="nillable">true</value>
@@ -4211,9 +4338,6 @@
 <MAPCOPY FROM="/$tundra.support.retrieve.sftp:file;2;0/$sftp.session.key;1;0" TO="/sessionKey;1;0">
 </MAPCOPY>
 
-<MAPCOPY FROM="/$tundra.support.retrieve.sftp:file;2;0/$sftp.filename.working;1;0" TO="/remoteFile;1;0">
-</MAPCOPY>
-
 <MAPDELETE FIELD="/returnMsg;1;0">
 </MAPDELETE>
 
@@ -4225,6 +4349,12 @@
 
 <MAPDELETE FIELD="/returnCode;1;0">
 </MAPDELETE>
+
+<MAPCOPY NAME="Link" FROM="/$tundra.support.retrieve.sftp:file;2;0/$sftp.filename.working;1;0" TO="/remoteFile;1;0" CONDITION="%$tundra.support.retrieve.sftp:file/$sftp.filename.working% != $null">
+</MAPCOPY>
+
+<MAPCOPY NAME="Link" FROM="/$tundra.support.retrieve.sftp:file;2;0/$sftp.filename.original;1;0" TO="/remoteFile;1;0" CONDITION="%$tundra.support.retrieve.sftp:file/$sftp.filename.working% == $null">
+</MAPCOPY>
 </MAP>
 
 <MAP MODE="OUTPUT">
@@ -4325,7 +4455,7 @@
 </INVOKE>
 
 <BRANCH TIMEOUT="" LABELEXPRESSIONS="true">
-  <COMMENT></COMMENT>
+  <COMMENT>retrieve the file's contents</COMMENT>
 
   <!-- nodes -->
 
@@ -4334,8 +4464,13 @@
 
   <!-- nodes -->
 
-<INVOKE SCOPE="$tundra.support.retrieve.sftp:file" TIMEOUT="" SERVICE="pub.client.sftp:rename" VALIDATE-IN="$none" VALIDATE-OUT="$none">
-  <COMMENT>restore file if processing failed</COMMENT>
+<BRANCH TIMEOUT="" LABELEXPRESSIONS="true">
+  <COMMENT>restore file if processing failed and we renamed it</COMMENT>
+
+  <!-- nodes -->
+
+<INVOKE NAME="%$tundra.support.retrieve.sftp:file/$sftp.filename.working% != $null" SCOPE="$tundra.support.retrieve.sftp:file" TIMEOUT="" SERVICE="pub.client.sftp:rename" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+  <COMMENT></COMMENT>
 
   <!-- nodes -->
 
@@ -4346,7 +4481,6 @@
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
     <value name="is_public">false</value>
-    <value name="field_name">renameInput</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -4354,7 +4488,7 @@
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">field</value>
+        <value name="node_type">unknown</value>
         <value name="is_public">false</value>
         <value name="field_name">sessionKey</value>
         <value name="field_type">string</value>
@@ -4364,9 +4498,9 @@
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">field</value>
+        <value name="node_type">unknown</value>
         <value name="is_public">false</value>
-        <value name="field_name">oldPath</value>
+        <value name="field_name">newPath</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -4374,9 +4508,9 @@
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">field</value>
+        <value name="node_type">unknown</value>
         <value name="is_public">false</value>
-        <value name="field_name">newPath</value>
+        <value name="field_name">oldPath</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -4405,6 +4539,16 @@
         <value name="node_type">unknown</value>
         <value name="is_public">false</value>
         <value name="field_name">$sftp.session.key</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">$source.directory.uri</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -4447,16 +4591,6 @@
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
         <value name="is_public">false</value>
-        <value name="field_name">$source.directory.uri</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$service</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4477,7 +4611,7 @@
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
         <value name="is_public">false</value>
-        <value name="field_name">transfermode</value>
+        <value name="field_name">$content.source</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -4497,7 +4631,7 @@
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
         <value name="is_public">false</value>
-        <value name="field_name">$content.source</value>
+        <value name="field_name">$sftp.filename.working.extension</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -4549,16 +4683,6 @@
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
         <value name="is_public">false</value>
-        <value name="field_name">oldPath</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">newPath</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4569,7 +4693,27 @@
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
         <value name="is_public">false</value>
+        <value name="field_name">oldPath</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">$sftp.session.key</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">$source.directory.uri</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -4612,16 +4756,6 @@
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
         <value name="is_public">false</value>
-        <value name="field_name">$source.directory.uri</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">$service</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -4642,7 +4776,7 @@
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
         <value name="is_public">false</value>
-        <value name="field_name">transfermode</value>
+        <value name="field_name">$content.source</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -4662,7 +4796,7 @@
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
         <value name="is_public">false</value>
-        <value name="field_name">$content.source</value>
+        <value name="field_name">$sftp.filename.working.extension</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -4670,7 +4804,7 @@
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">field</value>
+        <value name="node_type">unknown</value>
         <value name="is_public">false</value>
         <value name="field_name">returnCode</value>
         <value name="field_type">string</value>
@@ -4680,7 +4814,7 @@
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">field</value>
+        <value name="node_type">unknown</value>
         <value name="is_public">false</value>
         <value name="field_name">returnMsg</value>
         <value name="field_type">string</value>
@@ -4700,33 +4834,12 @@
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
     <value name="is_public">false</value>
-    <value name="field_name">renameOutput</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
     <value name="form_qualified">false</value>
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">field</value>
-        <value name="is_public">false</value>
-        <value name="field_name">returnCode</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">field</value>
-        <value name="is_public">false</value>
-        <value name="field_name">returnMsg</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
     </array>
     <value name="modifiable">true</value>
   </record>
@@ -4751,6 +4864,7 @@
 </MAPDELETE>
 </MAP>
 </INVOKE>
+</BRANCH>
 
 <INVOKE TIMEOUT="" SERVICE="tundra.support.exception.sftp:raise" VALIDATE-IN="$none" VALIDATE-OUT="$none">
   <COMMENT></COMMENT>
@@ -4914,12 +5028,6 @@
           </record>
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
-            <value name="node_comment"></value>
-            <record name="node_hints" javaclass="com.wm.util.Values">
-              <null name="field_usereditable"/>
-              <value name="field_largerEditor">false</value>
-              <value name="field_password">false</value>
-            </record>
             <value name="is_public">false</value>
             <value name="field_name">$sftp.filename.original</value>
             <value name="field_type">string</value>
@@ -5255,6 +5363,16 @@
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
             <value name="is_public">false</value>
+            <value name="field_name">$source.directory.uri</value>
+            <value name="field_type">string</value>
+            <value name="field_dim">0</value>
+            <value name="nillable">true</value>
+            <value name="form_qualified">false</value>
+            <value name="is_global">false</value>
+          </record>
+          <record javaclass="com.wm.util.Values">
+            <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$sftp.filename.original</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -5288,16 +5406,6 @@
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
             <value name="is_public">false</value>
-            <value name="field_name">$source.directory.uri</value>
-            <value name="field_type">string</value>
-            <value name="field_dim">0</value>
-            <value name="nillable">true</value>
-            <value name="form_qualified">false</value>
-            <value name="is_global">false</value>
-          </record>
-          <record javaclass="com.wm.util.Values">
-            <value name="node_type">unknown</value>
-            <value name="is_public">false</value>
             <value name="field_name">$service</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -5318,7 +5426,7 @@
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
             <value name="is_public">false</value>
-            <value name="field_name">transfermode</value>
+            <value name="field_name">$content.source</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
             <value name="nillable">true</value>
@@ -5338,7 +5446,7 @@
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
             <value name="is_public">false</value>
-            <value name="field_name">$content.source</value>
+            <value name="field_name">$sftp.filename.working.extension</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
             <value name="nillable">true</value>
@@ -5406,6 +5514,16 @@
         </array>
         <value name="modifiable">true</value>
       </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">$sanitization</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
     </array>
     <value name="modifiable">true</value>
   </record>
@@ -5419,42 +5537,6 @@
 
 <MAPCOPY FROM="/$tundra.support.retrieve.sftp:file;2;0/$service.input;1;0" TO="/$key.target;1;0">
 </MAPCOPY>
-
-<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$key.source;1;0">
-  <DATA ENCODING="XMLValues" I18N="true">
-
-<Values version="2.0">
-  <value name="xml">$content</value>
-  <record name="type" javaclass="com.wm.util.Values">
-    <value name="node_type">record</value>
-    <value name="node_comment"></value>
-    <record name="node_hints" javaclass="com.wm.util.Values">
-      <null name="field_usereditable"/>
-      <value name="field_largerEditor">false</value>
-      <value name="field_password">false</value>
-    </record>
-    <value name="is_public">false</value>
-    <value name="field_name">$key.source</value>
-    <value name="field_type">string</value>
-    <value name="field_dim">0</value>
-    <record name="field_content_type" javaclass="com.wm.util.Values">
-      <value name="contentType">1</value>
-      <value name="internalType">reference</value>
-      <value name="dataTypeVersion">dtVersion2</value>
-      <array name="targetNames" type="record" depth="1">
-        <record javaclass="com.wm.util.Values">
-          <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-          <value name="ncName">string</value>
-        </record>
-      </array>
-    </record>
-    <value name="nillable">false</value>
-    <value name="form_qualified">false</value>
-    <value name="is_global">false</value>
-  </record>
-</Values>
-</DATA>
-</MAPSET>
 
 <MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$key.literal?;1;0">
   <DATA ENCODING="XMLValues" I18N="true">
@@ -5490,6 +5572,42 @@
       </array>
     </record>
     <value name="nillable">true</value>
+    <value name="form_qualified">false</value>
+    <value name="is_global">false</value>
+  </record>
+</Values>
+</DATA>
+</MAPSET>
+
+<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" FIELD="/$key.source;1;0">
+  <DATA ENCODING="XMLValues" I18N="true">
+
+<Values version="2.0">
+  <value name="xml">$content</value>
+  <record name="type" javaclass="com.wm.util.Values">
+    <value name="node_type">record</value>
+    <value name="node_comment"></value>
+    <record name="node_hints" javaclass="com.wm.util.Values">
+      <null name="field_usereditable"/>
+      <value name="field_largerEditor">false</value>
+      <value name="field_password">false</value>
+    </record>
+    <value name="is_public">false</value>
+    <value name="field_name">$key.source</value>
+    <value name="field_type">string</value>
+    <value name="field_dim">0</value>
+    <record name="field_content_type" javaclass="com.wm.util.Values">
+      <value name="contentType">1</value>
+      <value name="internalType">reference</value>
+      <value name="dataTypeVersion">dtVersion2</value>
+      <array name="targetNames" type="record" depth="1">
+        <record javaclass="com.wm.util.Values">
+          <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+          <value name="ncName">string</value>
+        </record>
+      </array>
+    </record>
+    <value name="nillable">false</value>
     <value name="form_qualified">false</value>
     <value name="is_global">false</value>
   </record>
@@ -5624,6 +5742,16 @@
           </record>
         </array>
         <value name="modifiable">true</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">$sanitization</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
       </record>
     </array>
     <value name="modifiable">true</value>
@@ -5782,6 +5910,34 @@
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
       </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="node_comment"></value>
+        <record name="node_hints" javaclass="com.wm.util.Values">
+          <null name="field_usereditable"/>
+          <value name="field_largerEditor">false</value>
+          <value name="field_password">false</value>
+        </record>
+        <value name="is_public">false</value>
+        <value name="field_name">$thread.priority</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
+        <record name="field_content_type" javaclass="com.wm.util.Values">
+          <value name="contentType">1</value>
+          <value name="internalType">reference</value>
+          <value name="dataTypeVersion">dtVersion2</value>
+          <array name="targetNames" type="record" depth="1">
+            <record javaclass="com.wm.util.Values">
+              <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+              <value name="ncName">decimal</value>
+            </record>
+          </array>
+        </record>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
     </array>
     <value name="modifiable">true</value>
   </record>
@@ -5813,6 +5969,16 @@
             <value name="node_type">unknown</value>
             <value name="is_public">false</value>
             <value name="field_name">$sftp.session.key</value>
+            <value name="field_type">string</value>
+            <value name="field_dim">0</value>
+            <value name="nillable">true</value>
+            <value name="form_qualified">false</value>
+            <value name="is_global">false</value>
+          </record>
+          <record javaclass="com.wm.util.Values">
+            <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
+            <value name="field_name">$source.directory.uri</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
             <value name="nillable">true</value>
@@ -5855,16 +6021,6 @@
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
             <value name="is_public">false</value>
-            <value name="field_name">$source.directory.uri</value>
-            <value name="field_type">string</value>
-            <value name="field_dim">0</value>
-            <value name="nillable">true</value>
-            <value name="form_qualified">false</value>
-            <value name="is_global">false</value>
-          </record>
-          <record javaclass="com.wm.util.Values">
-            <value name="node_type">unknown</value>
-            <value name="is_public">false</value>
             <value name="field_name">$service</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -5885,7 +6041,7 @@
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
             <value name="is_public">false</value>
-            <value name="field_name">transfermode</value>
+            <value name="field_name">$content.source</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
             <value name="nillable">true</value>
@@ -5905,7 +6061,7 @@
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
             <value name="is_public">false</value>
-            <value name="field_name">$content.source</value>
+            <value name="field_name">$sftp.filename.working.extension</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
             <value name="nillable">true</value>
@@ -6280,13 +6436,13 @@
 </MAP>
 </INVOKE>
 
-<BRANCH TIMEOUT="" SWITCH="/$exception">
+<BRANCH TIMEOUT="" LABELEXPRESSIONS="true">
   <COMMENT></COMMENT>
 
   <!-- nodes -->
 
-<INVOKE NAME="$default" TIMEOUT="" SERVICE="pub.client.sftp:rename" VALIDATE-IN="$none" VALIDATE-OUT="$none">
-  <COMMENT>restore file if processing failed</COMMENT>
+<INVOKE NAME="%$exception% != $null and %$tundra.support.retrieve.sftp:file/$sftp.filename.working% != $null" TIMEOUT="" SERVICE="pub.client.sftp:rename" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+  <COMMENT>restore file if processing failed and we renamed it</COMMENT>
 
   <!-- nodes -->
 
@@ -6297,7 +6453,6 @@
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
     <value name="is_public">false</value>
-    <value name="field_name">renameInput</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -6305,7 +6460,7 @@
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">field</value>
+        <value name="node_type">unknown</value>
         <value name="is_public">false</value>
         <value name="field_name">sessionKey</value>
         <value name="field_type">string</value>
@@ -6315,9 +6470,9 @@
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">field</value>
+        <value name="node_type">unknown</value>
         <value name="is_public">false</value>
-        <value name="field_name">oldPath</value>
+        <value name="field_name">newPath</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -6325,9 +6480,9 @@
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">field</value>
+        <value name="node_type">unknown</value>
         <value name="is_public">false</value>
-        <value name="field_name">newPath</value>
+        <value name="field_name">oldPath</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -6374,6 +6529,16 @@
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
             <value name="is_public">false</value>
+            <value name="field_name">$source.directory.uri</value>
+            <value name="field_type">string</value>
+            <value name="field_dim">0</value>
+            <value name="nillable">true</value>
+            <value name="form_qualified">false</value>
+            <value name="is_global">false</value>
+          </record>
+          <record javaclass="com.wm.util.Values">
+            <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$sftp.filename.original</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -6407,16 +6572,6 @@
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
             <value name="is_public">false</value>
-            <value name="field_name">$source.directory.uri</value>
-            <value name="field_type">string</value>
-            <value name="field_dim">0</value>
-            <value name="nillable">true</value>
-            <value name="form_qualified">false</value>
-            <value name="is_global">false</value>
-          </record>
-          <record javaclass="com.wm.util.Values">
-            <value name="node_type">unknown</value>
-            <value name="is_public">false</value>
             <value name="field_name">$service</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -6437,7 +6592,7 @@
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
             <value name="is_public">false</value>
-            <value name="field_name">transfermode</value>
+            <value name="field_name">$content.source</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
             <value name="nillable">true</value>
@@ -6457,7 +6612,7 @@
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
             <value name="is_public">false</value>
-            <value name="field_name">$content.source</value>
+            <value name="field_name">$sftp.filename.working.extension</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
             <value name="nillable">true</value>
@@ -6496,6 +6651,113 @@
 </MAP>
 
 <MAP MODE="OUTPUT">
+  <MAPTARGET>
+
+<Values version="2.0">
+  <record name="xml" javaclass="com.wm.util.Values">
+    <value name="node_type">record</value>
+    <value name="is_public">false</value>
+    <value name="field_type">record</value>
+    <value name="field_dim">0</value>
+    <value name="nillable">true</value>
+    <value name="form_qualified">false</value>
+    <value name="is_global">false</value>
+    <array name="rec_fields" type="record" depth="1">
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">sessionKey</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">newPath</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">oldPath</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="is_public">false</value>
+        <value name="field_name">$tundra.support.retrieve.sftp:file</value>
+        <value name="field_type">record</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+        <array name="rec_fields" type="record" depth="1">
+        </array>
+        <value name="modifiable">true</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">$exception</value>
+        <value name="field_type">object</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">returnCode</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">returnMsg</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+    </array>
+    <value name="modifiable">true</value>
+  </record>
+</Values>
+</MAPTARGET>
+  <MAPSOURCE>
+
+<Values version="2.0">
+  <record name="xml" javaclass="com.wm.util.Values">
+    <value name="node_type">record</value>
+    <value name="is_public">false</value>
+    <value name="field_type">record</value>
+    <value name="field_dim">0</value>
+    <value name="nillable">true</value>
+    <value name="form_qualified">false</value>
+    <value name="is_global">false</value>
+    <array name="rec_fields" type="record" depth="1">
+    </array>
+    <value name="modifiable">true</value>
+  </record>
+</Values>
+</MAPSOURCE>
 
   <!-- nodes -->
 
@@ -6516,7 +6778,7 @@
 </MAP>
 </INVOKE>
 
-<INVOKE NAME="$null" TIMEOUT="" SERVICE="pub.client.sftp:rm" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+<INVOKE NAME="$default" TIMEOUT="" SERVICE="pub.client.sftp:rm" VALIDATE-IN="$none" VALIDATE-OUT="$none">
   <COMMENT>delete file if processing succeeded</COMMENT>
 
   <!-- nodes -->
@@ -6528,7 +6790,6 @@
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
     <value name="is_public">false</value>
-    <value name="field_name">rmInput</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -6536,7 +6797,7 @@
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">field</value>
+        <value name="node_type">unknown</value>
         <value name="is_public">false</value>
         <value name="field_name">sessionKey</value>
         <value name="field_type">string</value>
@@ -6546,7 +6807,7 @@
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">field</value>
+        <value name="node_type">unknown</value>
         <value name="is_public">false</value>
         <value name="field_name">path</value>
         <value name="field_type">string</value>
@@ -6595,6 +6856,16 @@
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
             <value name="is_public">false</value>
+            <value name="field_name">$source.directory.uri</value>
+            <value name="field_type">string</value>
+            <value name="field_dim">0</value>
+            <value name="nillable">true</value>
+            <value name="form_qualified">false</value>
+            <value name="is_global">false</value>
+          </record>
+          <record javaclass="com.wm.util.Values">
+            <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$sftp.filename.original</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -6628,16 +6899,6 @@
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
             <value name="is_public">false</value>
-            <value name="field_name">$source.directory.uri</value>
-            <value name="field_type">string</value>
-            <value name="field_dim">0</value>
-            <value name="nillable">true</value>
-            <value name="form_qualified">false</value>
-            <value name="is_global">false</value>
-          </record>
-          <record javaclass="com.wm.util.Values">
-            <value name="node_type">unknown</value>
-            <value name="is_public">false</value>
             <value name="field_name">$service</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -6658,7 +6919,7 @@
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
             <value name="is_public">false</value>
-            <value name="field_name">transfermode</value>
+            <value name="field_name">$content.source</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
             <value name="nillable">true</value>
@@ -6678,7 +6939,7 @@
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
             <value name="is_public">false</value>
-            <value name="field_name">$content.source</value>
+            <value name="field_name">$sftp.filename.working.extension</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
             <value name="nillable">true</value>
@@ -6770,7 +7031,7 @@
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">field</value>
+        <value name="node_type">unknown</value>
         <value name="is_public">false</value>
         <value name="field_name">returnCode</value>
         <value name="field_type">string</value>
@@ -6780,7 +7041,7 @@
         <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
-        <value name="node_type">field</value>
+        <value name="node_type">unknown</value>
         <value name="is_public">false</value>
         <value name="field_name">returnMsg</value>
         <value name="field_type">string</value>
@@ -6800,33 +7061,12 @@
   <record name="xml" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
     <value name="is_public">false</value>
-    <value name="field_name">rmOutput</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
     <value name="form_qualified">false</value>
     <value name="is_global">false</value>
     <array name="rec_fields" type="record" depth="1">
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">field</value>
-        <value name="is_public">false</value>
-        <value name="field_name">returnCode</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">field</value>
-        <value name="is_public">false</value>
-        <value name="field_name">returnMsg</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
     </array>
     <value name="modifiable">true</value>
   </record>
@@ -6848,8 +7088,6 @@
 </MAPDELETE>
 </MAP>
 </INVOKE>
-</BRANCH>
-</SEQUENCE>
 </BRANCH>
 </SEQUENCE>
 </BRANCH>
@@ -6908,6 +7146,16 @@
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
             <value name="is_public">false</value>
+            <value name="field_name">$source.directory.uri</value>
+            <value name="field_type">string</value>
+            <value name="field_dim">0</value>
+            <value name="nillable">true</value>
+            <value name="form_qualified">false</value>
+            <value name="is_global">false</value>
+          </record>
+          <record javaclass="com.wm.util.Values">
+            <value name="node_type">unknown</value>
+            <value name="is_public">false</value>
             <value name="field_name">$sftp.filename.original</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -6941,16 +7189,6 @@
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
             <value name="is_public">false</value>
-            <value name="field_name">$source.directory.uri</value>
-            <value name="field_type">string</value>
-            <value name="field_dim">0</value>
-            <value name="nillable">true</value>
-            <value name="form_qualified">false</value>
-            <value name="is_global">false</value>
-          </record>
-          <record javaclass="com.wm.util.Values">
-            <value name="node_type">unknown</value>
-            <value name="is_public">false</value>
             <value name="field_name">$service</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
@@ -6971,7 +7209,7 @@
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
             <value name="is_public">false</value>
-            <value name="field_name">transfermode</value>
+            <value name="field_name">$content.source</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
             <value name="nillable">true</value>
@@ -6991,7 +7229,7 @@
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
             <value name="is_public">false</value>
-            <value name="field_name">$content.source</value>
+            <value name="field_name">$sftp.filename.working.extension</value>
             <value name="field_type">string</value>
             <value name="field_dim">0</value>
             <value name="nillable">true</value>
@@ -7003,11 +7241,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
-        <value name="node_comment"></value>
-        <record name="node_hints" javaclass="com.wm.util.Values">
-          <value name="field_largerEditor">false</value>
-          <value name="field_password">false</value>
-        </record>
         <value name="is_public">false</value>
         <value name="field_name">$pipeline</value>
         <value name="field_type">record</value>
