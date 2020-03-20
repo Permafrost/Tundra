@@ -3082,6 +3082,15 @@ service named for the URI scheme in the folder
     * `timeout`: optional XML duration specifying the time to wait
       for a response from the FTP server before timing out and
       terminating the request. Defaults to PT1M (1 minute).
+
+    By default, files will first be renamed to include the suffix
+    `.tmp` on the FTP server prior to being retrieved, to ensure
+    no other processes have locked the file or are currently writing
+    to it. To disable this feature, set the query string parameter
+    `rename` to `false`:
+
+        ftp://user:password@server:port/directory/*.txt?rename=false
+
   * `ftps`: refer to `ftp`.
   * `sftp`: processes each file matching the given `$source` URI with
     the given processing `$service`. The file component of the URI
