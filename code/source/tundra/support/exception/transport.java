@@ -1,8 +1,8 @@
 package tundra.support.exception;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-07 17:37:52 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2020-04-01T17:32:15.903
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -44,12 +44,12 @@ public final class transport
 		// [i] object:0:optional $content
 		// [i] field:0:optional $content.type
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String message = IDataHelper.get(cursor, "$message", String.class);
 		    Object content = IDataHelper.get(cursor, "$content");
 		    String contentType = IDataHelper.get(cursor, "$content.type", String.class);
-		
+
 		    throw new TransportException(message, Content.of(BytesHelper.normalize(content), contentType));
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -58,7 +58,7 @@ public final class transport
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 

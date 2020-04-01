@@ -970,12 +970,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="node_comment"></value>
-        <record name="node_hints" javaclass="com.wm.util.Values">
-          <null name="field_usereditable"/>
-          <value name="field_largerEditor">false</value>
-          <value name="field_password">false</value>
-        </record>
         <value name="is_public">false</value>
         <value name="field_name">$response.handler</value>
         <value name="field_type">string</value>
@@ -986,12 +980,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="node_comment"></value>
-        <record name="node_hints" javaclass="com.wm.util.Values">
-          <null name="field_usereditable"/>
-          <value name="field_largerEditor">false</value>
-          <value name="field_password">false</value>
-        </record>
         <value name="is_public">false</value>
         <value name="field_name">connectTimeout</value>
         <value name="field_type">string</value>
@@ -1002,12 +990,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="node_comment"></value>
-        <record name="node_hints" javaclass="com.wm.util.Values">
-          <null name="field_usereditable"/>
-          <value name="field_largerEditor">false</value>
-          <value name="field_password">false</value>
-        </record>
         <value name="is_public">false</value>
         <value name="field_name">maxKeepAliveConnections</value>
         <value name="field_type">string</value>
@@ -1018,12 +1000,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="node_comment"></value>
-        <record name="node_hints" javaclass="com.wm.util.Values">
-          <null name="field_usereditable"/>
-          <value name="field_largerEditor">false</value>
-          <value name="field_password">false</value>
-        </record>
         <value name="is_public">false</value>
         <value name="field_name">keepAliveTimeout</value>
         <value name="field_type">string</value>
@@ -1034,12 +1010,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="node_comment"></value>
-        <record name="node_hints" javaclass="com.wm.util.Values">
-          <null name="field_usereditable"/>
-          <value name="field_largerEditor">false</value>
-          <value name="field_password">false</value>
-        </record>
         <value name="is_public">false</value>
         <value name="field_name">proxyAlias</value>
         <value name="field_type">string</value>
@@ -1050,12 +1020,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="node_comment"></value>
-        <record name="node_hints" javaclass="com.wm.util.Values">
-          <null name="field_usereditable"/>
-          <value name="field_largerEditor">false</value>
-          <value name="field_password">false</value>
-        </record>
         <value name="is_public">false</value>
         <value name="field_name">useJSSE</value>
         <value name="field_type">string</value>
@@ -7874,7 +7838,7 @@
 
   <!-- nodes -->
 
-<MAP NAME="%$request.scope/auth/user% != $null or %$request.scope/auth/pass% == $null" TIMEOUT="" MODE="STANDALONE">
+<MAP NAME="%$request.scope/auth/user% != $null or %$request.scope/auth/pass% != $null" TIMEOUT="" MODE="STANDALONE">
   <COMMENT></COMMENT>
   <MAPTARGET>
 
@@ -7964,12 +7928,6 @@
               </record>
               <record javaclass="com.wm.util.Values">
                 <value name="node_type">unknown</value>
-                <value name="node_comment"></value>
-                <record name="node_hints" javaclass="com.wm.util.Values">
-                  <null name="field_usereditable"/>
-                  <value name="field_largerEditor">false</value>
-                  <value name="field_password">false</value>
-                </record>
                 <value name="is_public">false</value>
                 <value name="field_name">user</value>
                 <value name="field_type">string</value>
@@ -8236,62 +8194,6 @@
                 <value name="form_qualified">false</value>
                 <value name="is_global">false</value>
                 <array name="rec_fields" type="record" depth="1">
-                  <record javaclass="com.wm.util.Values">
-                    <value name="node_type">record</value>
-                    <value name="node_comment"></value>
-                    <record name="node_hints" javaclass="com.wm.util.Values">
-                      <null name="field_usereditable"/>
-                      <value name="field_largerEditor">false</value>
-                      <value name="field_password">false</value>
-                    </record>
-                    <value name="is_public">false</value>
-                    <value name="field_name">user</value>
-                    <value name="field_type">string</value>
-                    <value name="field_dim">0</value>
-                    <value name="field_opt">true</value>
-                    <record name="field_content_type" javaclass="com.wm.util.Values">
-                      <value name="contentType">1</value>
-                      <value name="internalType">reference</value>
-                      <value name="dataTypeVersion">dtVersion2</value>
-                      <array name="targetNames" type="record" depth="1">
-                        <record javaclass="com.wm.util.Values">
-                          <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                          <value name="ncName">string</value>
-                        </record>
-                      </array>
-                    </record>
-                    <value name="nillable">true</value>
-                    <value name="form_qualified">false</value>
-                    <value name="is_global">false</value>
-                  </record>
-                  <record javaclass="com.wm.util.Values">
-                    <value name="node_type">record</value>
-                    <value name="node_comment"></value>
-                    <record name="node_hints" javaclass="com.wm.util.Values">
-                      <null name="field_usereditable"/>
-                      <value name="field_largerEditor">false</value>
-                      <value name="field_password">false</value>
-                    </record>
-                    <value name="is_public">false</value>
-                    <value name="field_name">password</value>
-                    <value name="field_type">string</value>
-                    <value name="field_dim">0</value>
-                    <value name="field_opt">true</value>
-                    <record name="field_content_type" javaclass="com.wm.util.Values">
-                      <value name="contentType">1</value>
-                      <value name="internalType">reference</value>
-                      <value name="dataTypeVersion">dtVersion2</value>
-                      <array name="targetNames" type="record" depth="1">
-                        <record javaclass="com.wm.util.Values">
-                          <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                          <value name="ncName">string</value>
-                        </record>
-                      </array>
-                    </record>
-                    <value name="nillable">true</value>
-                    <value name="form_qualified">false</value>
-                    <value name="is_global">false</value>
-                  </record>
                   <record javaclass="com.wm.util.Values">
                     <value name="node_type">record</value>
                     <value name="node_comment"></value>
@@ -9068,6 +8970,12 @@
 
   <!-- nodes -->
 
+<MAPDELETE NAME="Dropper" FIELD="/$uri;2;0/authority;2;0/server;2;0/user;1;0">
+</MAPDELETE>
+
+<MAPDELETE NAME="Dropper" FIELD="/$uri;2;0/authority;2;0/server;2;0/password;1;0">
+</MAPDELETE>
+
 <MAPSET NAME="Setter" OVERWRITE="false" VARIABLES="false" FIELD="/$request.scope;2;0/auth;2;0/user;1;0">
   <DATA ENCODING="XMLValues" I18N="true">
 
@@ -9111,12 +9019,6 @@
 </Values>
 </DATA>
 </MAPSET>
-
-<MAPDELETE NAME="Dropper" FIELD="/$uri;2;0/authority;2;0/server;2;0/user;1;0">
-</MAPDELETE>
-
-<MAPDELETE NAME="Dropper" FIELD="/$uri;2;0/authority;2;0/server;2;0/password;1;0">
-</MAPDELETE>
 </MAP>
 
 <MAP NAME="%$uri/authority/server/user% != $null or %$uri/authority/server/password% != $null" TIMEOUT="" MODE="STANDALONE">
@@ -10263,21 +10165,15 @@
 <MAPDELETE NAME="Dropper" FIELD="/$uri;2;0/authority;2;0/server;2;0/user;1;0">
 </MAPDELETE>
 
-<MAPSET NAME="Setter" OVERWRITE="false" VARIABLES="false" FIELD="/$request.scope;2;0/auth;2;0/user;1;0">
+<MAPSET NAME="Setter" OVERWRITE="false" VARIABLES="false" FIELD="/$request.scope;2;0/auth;2;0/pass;1;0">
   <DATA ENCODING="XMLValues" I18N="true">
 
 <Values version="2.0">
   <value name="xml"></value>
   <record name="type" javaclass="com.wm.util.Values">
     <value name="node_type">unknown</value>
-    <value name="node_comment"></value>
-    <record name="node_hints" javaclass="com.wm.util.Values">
-      <null name="field_usereditable"/>
-      <value name="field_largerEditor">false</value>
-      <value name="field_password">false</value>
-    </record>
     <value name="is_public">false</value>
-    <value name="field_name">user</value>
+    <value name="field_name">pass</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -10307,15 +10203,21 @@
 </DATA>
 </MAPSET>
 
-<MAPSET NAME="Setter" OVERWRITE="false" VARIABLES="false" FIELD="/$request.scope;2;0/auth;2;0/pass;1;0">
+<MAPSET NAME="Setter" OVERWRITE="false" VARIABLES="false" FIELD="/$request.scope;2;0/auth;2;0/user;1;0">
   <DATA ENCODING="XMLValues" I18N="true">
 
 <Values version="2.0">
   <value name="xml"></value>
   <record name="type" javaclass="com.wm.util.Values">
     <value name="node_type">unknown</value>
+    <value name="node_comment"></value>
+    <record name="node_hints" javaclass="com.wm.util.Values">
+      <null name="field_usereditable"/>
+      <value name="field_largerEditor">false</value>
+      <value name="field_password">false</value>
+    </record>
     <value name="is_public">false</value>
-    <value name="field_name">pass</value>
+    <value name="field_name">user</value>
     <value name="field_type">string</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
