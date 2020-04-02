@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2020-03-16T18:00:00.000
+// -----( CREATED: 2020-04-03T06:15:12.397
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -452,7 +452,7 @@ public final class service
 		// --- <<IS-START(respond)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:required $response.code
+		// [i] field:0:optional $response.code
 		// [i] field:0:optional $response.message
 		// [i] record:0:optional $response.headers
 		// [i] object:0:optional $response.content
@@ -461,7 +461,7 @@ public final class service
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
-		    int code = IDataHelper.first(cursor, Integer.class, "$response.code", "$code");
+		    int code = IDataHelper.firstOrDefault(cursor, Integer.class, 200, "$response.code", "$code");
 		    String message = IDataHelper.first(cursor, String.class, "$response.message", "$message");
 		    IData headers = IDataHelper.first(cursor, IData.class, "$response.headers", "$headers");
 		    Object content = IDataHelper.first(cursor, Object.class, "$response.content", "$content");
