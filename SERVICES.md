@@ -5394,129 +5394,25 @@ given `IData` document.
 Serializes the given `IData` document, and delivers it to the given
 destination URI.
 
-Additional delivery protocols can be implemented by creating a service
-named for the URI scheme in the folder `tundra.content.deliver`. Services
-in this folder should implement the `tundra.schema.content.deliver:handler`
-specification.
+Additional delivery protocols can be implemented by creating a
+service named for the URI scheme in the folder
+`tundra.content.deliver`. Services in this folder should implement
+the `tundra.schema.content.deliver:handler` specification.
 
 #### Inputs:
 
-* `$document` is the `IData` document to be serialized and delivered to the
-  given destination URI.
-* `$destination` is a URI identifying the location where the serialized
-  document should be delivered. Supports the following delivery protocols
-  (URI schemes):
-  * `file`: writes the given content to the file specified by the
-    destination URI. The following additional options can be provided
-    via the `$pipeline` document:
-    * `$mode`: append / write
-  * `ftp`: uploads the given content to the FTP server, directory and
-    file specified by the destination URI. An example FTP URI is as
-    follows:
-
-        ftp://aladdin:opensesame@example.com:21/path/file?append=true&active=true&ascii=true
-
-    The following additional options can be provided via the `$pipeline`
-    document:
-    * `$user` is the username used to log in to the FTP server. Defaults
-      to the username specified in the authority section of the URI, if
-      not specified.
-    * `$password` is the password used to log in to the FTP server.
-      Defaults to the password specified in the authority section of the
-      URI, if not specified.
-    * `$active` is a boolean which when `true` indicates that the
-      connection to the FTP server should be in active mode. Defaults to
-      `false` (passive mode), if not specified.
-    * `$append` is a boolean which when `true` will append the given
-      content to the file, rather than overwrite it, if the file already
-      exists. Defaults to `false` (overwriting), if not specified.
-    * `$ascii` is a boolean which when `true` indicates that the file
-      transfer should be made in ascii mode. Defaults to `false` (binary
-      mode), if not specified.
-    * `$timeout` is an optional XML duration string which specifies how
-      long the client waits for a response from the server before timing
-      out and terminating the request with an error. Defaults to PT60S,
-      if not specified.
-  * `http`: transmits the given content to the destination URI. The
-    following additional options can be provided via the `$pipeline`
-    document:
-    * `$method`: get / put / post / delete / head / trace / options
-    * `$headers/*`: additional HTTP headers as required
-    * `$authority/user`: the username to log on to the remote web server
-    * `$authority/password`: the password to log on to the remote web
-      server
-  * `https`: refer to http
-  * `jms`: sends the given content as a [JMS] [javax.jms.BytesMessage] to
-    the specified [JMS] alias and queue or topic. The following
-    additional settings can be specified:
-    * `$headers/*`: additional properties to be added to the [JMS] message
-      header, which can be used for filtering by [JMS] subscribers.
-
-    The following example will deliver the given content as a [JMS] bytes
-    message to the JMS alias DEFAULT_IS_JMS_CONNECTION, [JMS] topic
-    JMS::Temporary::Topic, with a time to live of 1 day, and with the
-    default priority of 4:
-
-        jms://DEFAULT_IS_JMS_CONNECTION?topic=JMS::Temporary::Topic&lifetime=P1D
-
-    The following example will deliver the given content as a [JMS] bytes
-    message to the [JMS] alias DEFAULT_IS_JMS_CONNECTION, [JMS] queue
-    JMS::Temporary::Queue, with no expiry, and with the specified
-    priority of 1:
-
-        jms://DEFAULT_IS_JMS_CONNECTION?queue=JMS::Temporary::Queue&priority=1
-
-  * `mailto`: sends an email with the given content attached. An example
-    mailto URI is as follows:
-
-        mailto:bob@example.com?cc=jane@example.com&subject=Example&body=Example&attachment=message.xml
-
-    The following additional override options can be provided via the
-    `$pipeline` document:
-    * `$attachment`: the attached file's name
-    * `$from`: email address to send the email from
-    * `$subject`: the subject line text
-    * `$body`: the main text of the email
-    * `$smtp`: an SMTP URI specifying the SMTP server to use (for
-      example, `smtp://user:password@host:port`), defaults to the SMTP
-      server configured in the Integration Server setting
-      `watt.server.smtpServer`.
-  * `sap+idoc`: sends an IDoc XML message to an SAP system. Both opaque
-    and non-opaque URIs are allowed: opaque URIs are useful if the SAP
-    Adapter alias contains characters not permitted in a normal domain
-    name, such as underscores.
-
-    An example opaque sap+idoc URI is as follows, where sap_r3 is the
-    SAP Adapter alias name, and the user and password are provided as
-    query string parameters:
-
-        sap+idoc:sap_r3?user=aladdin&password=opensesame&client=200&language=en&queue=xyz
-
-    An example non-opaque sap+idoc URI is as follows, where sappr3 is the
-    SAP Adapter alias name, and the user and password are provided in the
-    authority section of the URI:
-
-        sap+idoc://aladdin:opensesame@sappr3?client=200&languange=en&queue=xyz
-
-    The following additional override options can be provided via the
-    `$pipeline` document, and if specified will overrided the relevant
-    parts of the destination URI:
-    * `$user` is the username used for the SAP session. Defaults to the
-      SAP Adapter alias username, if not specified.
-    * `$password` is the password used for the SAP session. Defaults to
-      the SAP Adapter alias password, if not specified.
-    * `$client` is the SAP client used for the SAP session. Defaults to
-      the SAP Adapter alias client, if not specified.
-    * `$language` is the language used for the SAP session. Defaults to
-      the SAP Adapter alias language, if not specified.
-    * `$queue` is the optional name of the SAP system inbound queue,
-      required when using queued remote function calls (qRFC).
-
+* `$document` is the `IData` document to be serialized and delivered
+  to the given destination URI.
+* `$destination` is the delivery destination [URI] to which the
+  serialized document content will be delivered. If not specified, no
+  delivery will be attempted. The supported delivery protocols
+  ([URI] schemes) are as per `Tundra/tundra.content:deliver`. Please
+  refer to this service's documentation for further details.
 * `$content.type` is an optional MIME media type describing the type
   content being delivered.
-* `$schema` is an optional input which determines whether to serialize
-  the document as [XML], [JSON], Flat File, and can have the following
-  values:
+* `$schema` is an optional input which determines whether to
+  serialize the document as [XML], [JSON], Flat File, and can have
+  the following values:
   * For [XML] content, specify the fully-qualified name of the document
     reference that defines the [XML] format.
   * For [JSON] content specify the MIME media type "application/json".
@@ -5525,19 +5421,19 @@ specification.
 
   Defaults to serializing `$content` as [XML], if no `$schema` is
   specified.
-* `$encoding` is an optional character set used to encode the serialized
-  document data upon delivery. Defaults to [UTF-8].
+* `$encoding` is an optional character set used to encode the
+  serialized document data upon delivery. Defaults to [UTF-8].
 * `$pipeline` is an optional `IData` document for providing arbitrary
   variables to the delivery implementation service.
 
 #### Outputs:
 
-* `$message` is an optional response message, useful for logging, that
-  may be returned by specific delivery protocols.
-* `$response` is an optional response content returned by the delivery
-  (for example, the HTTP response body).
-* `$response.type` is an optional MIME media type describing the type of
-  `$response` returned.
+* `$message` is an optional response message, useful for logging,
+  that may be returned by specific delivery protocols.
+* `$response` is an optional response content returned by the
+  delivery (for example, the HTTP response body).
+* `$response.type` is an optional MIME media type describing the type
+  of `$response` returned.
 
 ---
 
