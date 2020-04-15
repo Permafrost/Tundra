@@ -36,6 +36,7 @@
             <value>time</value>
             <value>time.jdbc</value>
             <value>milliseconds</value>
+            <value>seconds</value>
           </array>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <value name="contentType">1</value>
@@ -276,6 +277,7 @@ date.jdbc     | yyyy-mm-dd
 time          | ISO8601 XML time
 time.jdbc     | HH:mm:ss
 milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
+seconds       | Number of seconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using
 [java.text.SimpleDateFormat] compatible patterns.
@@ -307,7 +309,6 @@ Custom datetime patterns can be specified using
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
-  <value name="template">tundra_datetime_later</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>

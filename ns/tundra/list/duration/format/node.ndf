@@ -7,6 +7,7 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -20,6 +21,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$list</value>
           <value name="field_type">string</value>
           <value name="field_dim">1</value>
@@ -48,6 +50,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$pattern.input</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -155,6 +158,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$pattern.output</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -262,6 +266,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$datetime</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -289,18 +294,21 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$datetime.pattern</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
           <array name="field_options" type="value" depth="1">
             <value>datetime</value>
+            <value>datetime.db2</value>
             <value>datetime.jdbc</value>
             <value>date</value>
             <value>date.jdbc</value>
             <value>time</value>
             <value>time.jdbc</value>
             <value>milliseconds</value>
+            <value>seconds</value>
           </array>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <value name="contentType">1</value>
@@ -318,9 +326,11 @@
           <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -334,6 +344,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$list</value>
           <value name="field_type">string</value>
           <value name="field_dim">1</value>
@@ -355,6 +366,7 @@
           <value name="is_soap_array_encoding_used">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">### tundra.list.duration:format
@@ -401,10 +413,16 @@ indeterminate values, such as converting months to days
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
 </Values>

@@ -10,7 +10,6 @@
       <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
-      <value name="wrapper_type">IData</value>
       <value name="nillable">true</value>
       <value name="form_qualified">false</value>
       <value name="is_global">false</value>
@@ -67,6 +66,7 @@
             <value>time</value>
             <value>time.jdbc</value>
             <value>milliseconds</value>
+            <value>seconds</value>
           </array>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <value name="contentType">1</value>
@@ -149,7 +149,6 @@
       <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
-      <value name="wrapper_type">IData</value>
       <value name="nillable">true</value>
       <value name="form_qualified">false</value>
       <value name="is_global">false</value>
@@ -192,6 +191,7 @@ date.jdbc     | yyyy-mm-dd
 time          | ISO8601 XML time
 time.jdbc     | HH:mm:ss
 milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
+seconds       | Number of seconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using
 [java.text.SimpleDateFormat] compatible patterns.
@@ -233,7 +233,6 @@ Custom datetime patterns can be specified using
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
   <value name="icontext_policy">$null</value>
-  <value name="svcInvkURLAlias"></value>
   <value name="system_service">no</value>
   <value name="retry_max">0</value>
   <value name="retry_interval">0</value>

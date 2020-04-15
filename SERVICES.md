@@ -81,6 +81,7 @@ date.jdbc     | yyyy-mm-dd
 time          | ISO8601 XML time
 time.jdbc     | HH:mm:ss
 milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
+seconds       | Number of seconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 #### Inputs:
 
@@ -112,6 +113,7 @@ date.jdbc     | yyyy-mm-dd
 time          | ISO8601 XML time
 time.jdbc     | HH:mm:ss
 milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
+seconds       | Number of seconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 #### Inputs:
 
@@ -3487,6 +3489,7 @@ date.jdbc     | yyyy-mm-dd
 time          | ISO8601 XML time
 time.jdbc     | HH:mm:ss
 milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
+seconds       | Number of seconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using
 [java.text.SimpleDateFormat] compatible patterns.
@@ -3523,6 +3526,7 @@ date.jdbc     | yyyy-mm-dd
 time          | ISO8601 XML time
 time.jdbc     | HH:mm:ss
 milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
+seconds       | Number of seconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using
 [java.text.SimpleDateFormat] compatible patterns.
@@ -3603,6 +3607,7 @@ date.jdbc     | yyyy-mm-dd
 time          | ISO8601 XML time
 time.jdbc     | HH:mm:ss
 milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
+seconds       | Number of seconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using
 [java.text.SimpleDateFormat] compatible patterns.
@@ -3645,6 +3650,7 @@ date.jdbc     | yyyy-mm-dd
 time          | ISO8601 XML time
 time.jdbc     | HH:mm:ss
 milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
+seconds       | Number of seconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using
 [java.text.SimpleDateFormat] compatible patterns.
@@ -3687,6 +3693,7 @@ date.jdbc     | yyyy-mm-dd
 time          | ISO8601 XML time
 time.jdbc     | HH:mm:ss
 milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
+seconds       | Number of seconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using
 [java.text.SimpleDateFormat] compatible patterns.
@@ -3730,6 +3737,7 @@ date.jdbc     | yyyy-mm-dd
 time          | ISO8601 XML time
 time.jdbc     | HH:mm:ss
 milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
+seconds       | Number of seconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using
 [java.text.SimpleDateFormat] compatible patterns.
@@ -3789,6 +3797,7 @@ date.jdbc     | yyyy-mm-dd
 time          | ISO8601 XML time
 time.jdbc     | HH:mm:ss
 milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
+seconds       | Number of seconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using
 [java.text.SimpleDateFormat] compatible patterns.
@@ -3830,6 +3839,7 @@ date.jdbc     | yyyy-mm-dd
 time          | ISO8601 XML time
 time.jdbc     | HH:mm:ss
 milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
+seconds       | Number of seconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using [java.text.SimpleDateFormat]
 compatible patterns.
@@ -3863,6 +3873,7 @@ date.jdbc     | yyyy-mm-dd
 time          | ISO8601 XML time
 time.jdbc     | HH:mm:ss
 milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
+seconds       | Number of seconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using [java.text.SimpleDateFormat]
 compatible patterns.
@@ -3896,6 +3907,7 @@ date.jdbc     | yyyy-mm-dd
 time          | ISO8601 XML time
 time.jdbc     | HH:mm:ss
 milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
+seconds       | Number of seconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using
 [java.text.SimpleDateFormat] compatible patterns.
@@ -3936,6 +3948,7 @@ date.jdbc     | yyyy-mm-dd
 time          | ISO8601 XML time
 time.jdbc     | HH:mm:ss
 milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
+seconds       | Number of seconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using
 [java.text.SimpleDateFormat] compatible patterns.
@@ -3983,6 +3996,7 @@ date.jdbc     | yyyy-mm-dd
 time          | ISO8601 XML time
 time.jdbc     | HH:mm:ss
 milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
+seconds       | Number of seconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using
 [java.text.SimpleDateFormat] compatible patterns.
@@ -4019,6 +4033,7 @@ date.jdbc     | yyyy-mm-dd
 time          | ISO8601 XML time
 time.jdbc     | HH:mm:ss
 milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
+seconds       | Number of seconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using
 [java.text.SimpleDateFormat] compatible patterns.
@@ -4069,6 +4084,7 @@ date.jdbc     | yyyy-mm-dd
 time          | ISO8601 XML time
 time.jdbc     | HH:mm:ss
 milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
+seconds       | Number of seconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using
 [java.text.SimpleDateFormat] compatible patterns.
@@ -4109,6 +4125,7 @@ date.jdbc     | yyyy-mm-dd
 time          | ISO8601 XML time
 time.jdbc     | HH:mm:ss
 milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
+seconds       | Number of seconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using
 [java.text.SimpleDateFormat] compatible patterns.
@@ -4148,6 +4165,7 @@ date.jdbc     | yyyy-mm-dd
 time          | ISO8601 XML time
 time.jdbc     | HH:mm:ss
 milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
+seconds       | Number of seconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using
 [java.text.SimpleDateFormat] compatible patterns.
@@ -4185,6 +4203,7 @@ date.jdbc     | yyyy-mm-dd
 time          | ISO8601 XML time
 time.jdbc     | HH:mm:ss
 milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
+seconds       | Number of seconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using
 [java.text.SimpleDateFormat] compatible patterns.
@@ -8609,6 +8628,7 @@ date.jdbc     | yyyy-mm-dd
 time          | ISO8601 XML time
 time.jdbc     | HH:mm:ss
 milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
+seconds       | Number of seconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using
 [java.text.SimpleDateFormat] compatible patterns.
@@ -8651,6 +8671,7 @@ date.jdbc     | yyyy-mm-dd
 time          | ISO8601 XML time
 time.jdbc     | HH:mm:ss
 milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
+seconds       | Number of seconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using
 [java.text.SimpleDateFormat] compatible patterns.

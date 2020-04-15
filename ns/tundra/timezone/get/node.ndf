@@ -90,6 +90,7 @@
             <value>time</value>
             <value>time.jdbc</value>
             <value>milliseconds</value>
+            <value>seconds</value>
           </array>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <value name="contentType">1</value>

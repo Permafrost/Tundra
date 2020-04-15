@@ -313,12 +313,14 @@
           <value name="field_opt">true</value>
           <array name="field_options" type="value" depth="1">
             <value>datetime</value>
+            <value>datetime.db2</value>
             <value>datetime.jdbc</value>
             <value>date</value>
             <value>date.jdbc</value>
             <value>time</value>
             <value>time.jdbc</value>
             <value>milliseconds</value>
+            <value>seconds</value>
           </array>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <value name="contentType">1</value>
