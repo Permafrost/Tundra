@@ -110,6 +110,26 @@
 Performs variable substitution on the components of a Uniform 
 Resource Identifier ([URI]) string.
 
+Supports both the use of percent-delimited variable substitution 
+strings where the percent characters are encoded as %25, and the use
+of URI template style variables delimited by curly brackets.
+
+For example, either of the following URI strings:
+
+    http://example.com/%25path%25/%25file%25
+    http://example.com/{path}/{file}
+
+With the following given scope:
+
+    {
+        "path": "a/b/c",
+        "file": "d"
+    }
+
+Will result in the following substitution:
+
+    http://example.com/a/b/c/d
+
 #### Inputs:
 
 * `$string` is the [URI] string to perform variable substitution
