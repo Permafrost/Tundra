@@ -1,7 +1,7 @@
 package tundra.cache;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-09-27T12:00:11.561
+// -----( CREATED: 2020-04-17T13:15:27.485
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -12,6 +12,7 @@ import com.wm.app.b2b.server.ServiceException;
 import java.util.Calendar;
 import javax.xml.datatype.Duration;
 import permafrost.tundra.cache.memory.CacheManager;
+import permafrost.tundra.cache.memory.CacheManager.ExpiringValue;
 import permafrost.tundra.data.MapIData;
 import permafrost.tundra.data.IDataHelper;
 // --- <<IS-END-IMPORTS>> ---
@@ -118,13 +119,19 @@ public final class memory
 		// [i] field:0:required $cache.name
 		// [i] field:0:required $cache.key
 		// [o] object:0:optional $cache.value
+		// [o] field:0:optional $cache.expiry.datetime
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
 		    String name = IDataHelper.get(cursor, "$cache.name", String.class);
 		    String key = IDataHelper.get(cursor, "$cache.key", String.class);
 
-		    IDataHelper.put(cursor, "$cache.value", CacheManager.getInstance().get(name, key), false);
+		    ExpiringValue value = CacheManager.getInstance().get(name, key);
+
+		    if (value != null) {
+		        IDataHelper.put(cursor, "$cache.value", value.getValue());
+		        IDataHelper.put(cursor, "$cache.expiry.datetime", value.getExpiry(), String.class, false);
+		    }
 		} finally {
 		    cursor.destroy();
 		}
@@ -145,7 +152,10 @@ public final class memory
 		// [i] field:0:required $cache.key
 		// [i] field:0:optional $cache.key.absent? {"false","true"}
 		// [i] object:0:required $cache.value
+		// [i] field:0:optional $cache.expiry.duration
+		// [i] field:0:optional $cache.expiry.datetime
 		// [o] object:0:required $cache.value
+		// [o] field:0:optional $cache.expiry.datetime
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
@@ -156,13 +166,17 @@ public final class memory
 		    Duration expiryDuration = IDataHelper.get(cursor, "$cache.expiry.duration", Duration.class);
 		    Calendar expiryDateTime = IDataHelper.get(cursor, "$cache.expiry.datetime", Calendar.class);
 
+		    ExpiringValue result;
+
 		    if (expiryDuration != null) {
-		        value = CacheManager.getInstance().put(name, key, value, expiryDuration, absent);
+		        result = CacheManager.getInstance().put(name, key, value, expiryDuration, absent);
 		    } else {
-		        value = CacheManager.getInstance().put(name, key, value, expiryDateTime, absent);
+		        result = CacheManager.getInstance().put(name, key, value, expiryDateTime, absent);
 		    }
 
-		    IDataHelper.put(cursor, "$cache.value", value, false);
+		    if (result != null) {
+		        IDataHelper.put(cursor, "$cache.value", result.getValue());
+		    }
 		} finally {
 		    cursor.destroy();
 		}
@@ -215,6 +229,8 @@ public final class memory
 		// [i] field:0:required $cache.key
 		// [i] object:0:optional $cache.value.old
 		// [i] object:0:required $cache.value.new
+		// [i] field:0:optional $cache.expiry.duration
+		// [i] field:0:optional $cache.expiry.datetime
 		// [o] field:0:required $cache.value.replaced? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
 

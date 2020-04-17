@@ -204,30 +204,31 @@
   </record>
   <value name="node_comment">### tundra.cache.memory:replace
 
-Replaces the value associated with the given key in the cache with 
+Replaces the value associated with the given key in the cache with
 the given name.
 
 #### Inputs:
 
-* $cache.name is the name of the cache to be updated.
-* $cache.key is the key whose associated value is to be replaced.
-* $cache.value.old is the optional value which is expected to 
-  already be associated with the key. If specified, the key's 
-  associated value is only replaced with the given new value if its 
-  current value is equal to this value. If not specified, the key's 
+* `$cache.name` is the name of the cache to be updated.
+* `$cache.key` is the key whose associated value is to be replaced.
+* `$cache.value.old` is the optional value which is expected to
+  already be associated with the key. If specified, the key's
+  associated value is only replaced with the given new value if its
+  current value is equal to this value. If not specified, the key's
   associated value will always be replaced with the given new value.
-* $cache.value.new is the new value to be associated with the key.
-* $cache.expiry.duration is an optional duration specifying when from
-  now that this cache entry expires. If neither an expiry duration or
-  datetime is specified, the cache entry never expires.
-* $cache.expiry.datetime is an optional datetime specifing when this
-  cache entry expires. If neither an expiry duration or datetime is 
-  specified, the cache entry never expires.
+* `$cache.value.new` is the new value to be associated with the key.
+* `$cache.expiry.duration` is an optional duration specifying when
+  from now that this cache entry expires. If neither an expiry
+  duration or datetime is specified, the cache entry never expires.
+* `$cache.expiry.datetime` is an optional datetime specifing when
+  this cache entry expires. If neither an expiry duration or datetime
+  is specified, the cache entry never expires.
 
 #### Outputs:
 
-* $cache.value.replaced? is true if the key exists and it's value was 
-  replaced with the given new value in the cache with the given name.
+* `$cache.value.replaced?` is `true` if the key exists and it's value
+  was replaced with the given new value in the cache with the given
+  name.
 </value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>

@@ -204,30 +204,30 @@
   </record>
   <value name="node_comment">### tundra.cache.memory:put
 
-Sets the value associated with the given key in the cache with 
+Sets the value associated with the given key in the cache with
 the given name.
 
 #### Inputs:
 
-* $cache.name is the name of the cache to be updated.
-* $cache.key is the key whose associated value is to be set.
-* $cache.key.absent? is an optional boolean which when true will 
-  only associate the given value with the given key if the key does 
-  not already exist in the cache. Defaults to false.
-* $cache.value is the value to be set.
-* $cache.expiry.duration is an optional duration specifying when from
-  now that this cache entry expires. If neither an expiry duration or
-  datetime is specified, the cache entry never expires.
-* $cache.expiry.datetime is an optional datetime specifing when this
-  cache entry expires. If neither an expiry duration or datetime is 
-  specified, the cache entry never expires.
+* `$cache.name` is the name of the cache to be updated.
+* `$cache.key` is the key whose associated value is to be set.
+* `$cache.key.absent?` is an optional boolean which when `true` will
+  only associate the given value with the given key if the key does
+  not already exist in the cache. Defaults to `false`.
+* `$cache.value` is the value to be set.
+* `$cache.expiry.duration` is an optional duration specifying when 
+  from now that this cache entry expires. If neither an expiry
+  duration or datetime is specified, the cache entry never expires.
+* `$cache.expiry.datetime` is an optional datetime specifing when
+  this cache entry expires. If neither an expiry duration or datetime
+  is specified, the cache entry never expires.
 
 #### Outputs:
 
-* $cache.value is the value associated with the given key in the 
-  cache with the given name. If $cache.key.absent? was true and the 
-  key already existed, this is the value already associated with the
-  key.
+* `$cache.value` is the value associated with the given key in the
+  cache with the given name. If `$cache.key.absent?` was `true` and
+  the key already existed, this is the value already associated with
+  the key.
 </value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>

@@ -92,7 +92,6 @@
           <value name="field_name">$cache.key.exists?</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
-          <value name="field_opt">true</value>
           <array name="field_options" type="value" depth="1">
             <value>false</value>
             <value>true</value>
@@ -108,7 +107,7 @@
               </record>
             </array>
           </record>
-          <value name="nillable">true</value>
+          <value name="nillable">false</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
         </record>
@@ -118,17 +117,19 @@
   </record>
   <value name="node_comment">### tundra.cache.memory:exists
 
-Returns true if the cache with the given name contains the given key.
+Returns `true` if the cache with the given name contains the given
+key.
 
 #### Inputs:
 
-* $cache.name is the name of the cache to be checked.
-* $cache.key is the key whose existence is to be checked.
+* `$cache.name` is the name of the cache to be checked.
+* `$cache.key` is the key whose existence is to be checked.
 
 #### Outputs:
 
-* $cache.key.exists? is true if the given key exists in the cache 
-  with the given name.</value>
+* `$cache.key.exists?` is `true` if the given key exists in the cache
+  with the given name.
+</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

@@ -13,6 +13,7 @@
     <value>java.util.Calendar</value>
     <value>javax.xml.datatype.Duration</value>
     <value>permafrost.tundra.cache.memory.CacheManager</value>
+    <value>permafrost.tundra.cache.memory.CacheManager.ExpiringValue</value>
     <value>permafrost.tundra.data.MapIData</value>
     <value>permafrost.tundra.data.IDataHelper</value>
   </array>

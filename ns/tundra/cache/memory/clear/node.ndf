@@ -63,7 +63,8 @@ Removes all entries from the cache with the given name.
 
 #### Inputs:
 
-* $cache.name is the name of the cache to be cleared.</value>
+* `$cache.name` is the name of the cache to be cleared.
+</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

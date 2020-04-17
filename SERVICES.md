@@ -689,7 +689,8 @@ Removes all entries from the cache with the given name.
 
 ### tundra.cache.memory:exists
 
-Returns `true` if the cache with the given name contains the given key.
+Returns `true` if the cache with the given name contains the given
+key.
 
 #### Inputs:
 
@@ -717,6 +718,8 @@ the given name.
 
 * `$cache.value` is the value associated with the given key from the
   cache with the given name, if it exists.
+* `$cache.expiry.datetime` is the datetime when this cache entry
+  expires, if applicable.
 
 ---
 
@@ -733,19 +736,19 @@ the given name.
   only associate the given value with the given key if the key does
   not already exist in the cache. Defaults to `false`.
 * `$cache.value` is the value to be set.
-* `$cache.expiry.duration` is an optional duration specifying when from
-  now that this cache entry expires. If neither an expiry duration or
-  datetime is specified, the cache entry never expires.
-* `$cache.expiry.datetime` is an optional datetime specifing when this
-  cache entry expires. If neither an expiry duration or datetime is
-  specified, the cache entry never expires.
+* `$cache.expiry.duration` is an optional duration specifying when
+  from now that this cache entry expires. If neither an expiry
+  duration or datetime is specified, the cache entry never expires.
+* `$cache.expiry.datetime` is an optional datetime specifing when
+  this cache entry expires. If neither an expiry duration or datetime
+  is specified, the cache entry never expires.
 
 #### Outputs:
 
 * `$cache.value` is the value associated with the given key in the
-  cache with the given name. If `$cache.key.absent?` was `true` and the
-  key already existed, this is the value already associated with the
-  key.
+  cache with the given name. If `$cache.key.absent?` was `true` and
+  the key already existed, this is the value already associated with
+  the key.
 
 ---
 
@@ -764,8 +767,8 @@ the given name.
 
 #### Outputs:
 
-* `$cache.key.removed?` is `true` if the key value pair was removed from
-  the cache with the given name.
+* `$cache.key.removed?` is `true` if the key value pair was removed
+  from the cache with the given name.
 * `$cache.value` was the value associated with the given key at the
   time of its removal.
 
@@ -786,17 +789,18 @@ the given name.
   current value is equal to this value. If not specified, the key's
   associated value will always be replaced with the given new value.
 * `$cache.value.new` is the new value to be associated with the key.
-* `$cache.expiry.duration` is an optional duration specifying when from
-  now that this cache entry expires. If neither an expiry duration or
-  datetime is specified, the cache entry never expires.
-* `$cache.expiry.datetime` is an optional datetime specifing when this
-  cache entry expires. If neither an expiry duration or datetime is
-  specified, the cache entry never expires.
+* `$cache.expiry.duration` is an optional duration specifying when
+  from now that this cache entry expires. If neither an expiry
+  duration or datetime is specified, the cache entry never expires.
+* `$cache.expiry.datetime` is an optional datetime specifing when
+  this cache entry expires. If neither an expiry duration or datetime
+  is specified, the cache entry never expires.
 
 #### Outputs:
 
-* `$cache.value.replaced?` is `true` if the key exists and it's value was
-  replaced with the given new value in the cache with the given name.
+* `$cache.value.replaced?` is `true` if the key exists and it's value
+  was replaced with the given new value in the cache with the given
+  name.
 
 ---
 
