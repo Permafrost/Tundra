@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-12-03T09:34:50.267
+// -----( CREATED: 2020-04-27T17:02:23.259
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -9,11 +9,14 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.Charset;
 import permafrost.tundra.data.IDataHelper;
+import permafrost.tundra.data.IDataMap;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.net.uri.URIHelper;
+import permafrost.tundra.org.springframework.web.util.UriTemplate;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class uri
@@ -48,8 +51,13 @@ public final class uri
 		    Charset encoding = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
 
 		    if (document == null) {
-		        String string = IDataHelper.get(cursor, "$string", String.class);
-		        IDataHelper.put(cursor, "$string", URIHelper.decode(string, encoding), false);
+		        document = IDataHelper.get(cursor, "$uri.encoded", IData.class);
+		        if (document == null) {
+		            String string = IDataHelper.get(cursor, "$string", String.class);
+		            IDataHelper.put(cursor, "$string", URIHelper.decode(string, encoding), false);
+		        } else {
+		            IDataHelper.put(cursor, "$uri.decoded", URIHelper.decode(document, encoding), false);
+		        }
 		    } else {
 		        IDataHelper.put(cursor, "$document.decoded", URIHelper.decode(document, encoding), false);
 		    }
@@ -114,19 +122,19 @@ public final class uri
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
-		    IData document = IDataHelper.get(cursor, "$uri.decoded", IData.class);
+		    IData document = IDataHelper.get(cursor, "$document.decoded", IData.class);
 		    Charset encoding = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
 
 		    if (document == null) {
-		        document = IDataHelper.get(cursor, "$document.decoded", IData.class);
+		        document = IDataHelper.get(cursor, "$uri.decoded", IData.class);
 		        if (document == null) {
 		            String string = IDataHelper.get(cursor, "$string", String.class);
 		            IDataHelper.put(cursor, "$string", URIHelper.encode(string, encoding), false);
 		        } else {
-		            IDataHelper.put(cursor, "$document.encoded", URIHelper.encode(document, encoding), false);
+		            IDataHelper.put(cursor, "$uri.encoded", URIHelper.encode(document, encoding), false);
 		        }
 		    } else {
-		        IDataHelper.put(cursor, "$uri.encoded", URIHelper.encode(document, encoding), false);
+		        IDataHelper.put(cursor, "$document.encoded", URIHelper.encode(document, encoding), false);
 		    }
 		} finally {
 		    cursor.destroy();
