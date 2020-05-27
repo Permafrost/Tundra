@@ -15229,6 +15229,34 @@ This service is an alias for the `tundra.thread:sleep` service.
 
 ---
 
+### tundra.service:synchronize
+
+Performs a thread-synchronized invoke of the given service, such that
+multiple parallel invocations of the given service have their
+execution serialized.
+
+#### Inputs:
+
+* `$service` is the fully-qualified name of the service to be
+  invoked.
+* `$pipeline` is an optional `IData` document which, if specified,
+  contains the input arguments for the invocation of `$service`, and
+  therefore the invocation is scoped to this `IData` document. If
+  not specified, the invocation is unscoped, and the service will
+  operate directly against the pipeline itself.
+
+#### Outputs:
+
+* `$pipeline` is the output pipeline of the invocation of `$service`.
+  This is only returned if the invocation was scoped by specifying
+  `$pipeline` was specified as an input. If the invocation was not
+  scoped, the outputs of the invocation are merged directly with the
+  pipeline itself.
+* `$service.duration` is how long the service took to execute
+  specified as an XML duration string.
+
+---
+
 ### tundra.service:validate
 
 Returns `true` if the given service name exists and is actually

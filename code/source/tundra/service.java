@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2020-04-03T06:15:12.397
+// -----( CREATED: 2020-05-28T05:35:34.828
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -543,6 +543,45 @@ public final class service
 		// [i] field:0:required $duration
 		// [i] field:0:optional $duration.pattern {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
 		tundra.thread.sleep(pipeline);
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
+	public static final void synchronize (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(synchronize)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $service
+		// [i] record:0:optional $pipeline
+		// [o] record:0:optional $pipeline
+		// [o] field:0:optional $service.duration
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    String service = IDataHelper.get(cursor, "$service", String.class);
+		    IData scope = IDataHelper.get(cursor, "$pipeline", IData.class);
+		    boolean scoped = scope != null;
+
+		    if (!scoped) scope = IDataHelper.clone(pipeline, "$service");
+
+		    long start = System.nanoTime();
+		    scope = ServiceHelper.synchronize(service, scope, false);
+		    long end = System.nanoTime();
+
+		    if (scoped) {
+		        IDataHelper.put(cursor, "$pipeline", scope);
+		    } else {
+		        IDataHelper.mergeInto(pipeline, scope);
+		    }
+		    IDataHelper.put(cursor, "$service.duration", DurationHelper.format(end - start, DurationPattern.NANOSECONDS, DurationPattern.XML));
+		} finally {
+		    cursor.destroy();
+		}
 		// --- <<IS-END>> ---
 
 
