@@ -745,10 +745,18 @@ the given name.
 
 #### Outputs:
 
+* `$cache.updated?` is `true` if the `$cache.key` is now associated
+  with the given `$cache.value`, or `false` if the given
+  `$cache.key.absent?` was `true` and `$cache.key` could not be
+  associated with the given `$cache.value` because it was already
+  associated with another value.
 * `$cache.value` is the value associated with the given key in the
   cache with the given name. If `$cache.key.absent?` was `true` and
   the key already existed, this is the value already associated with
   the key.
+* `$cache.value.previous` is the value that was previously already
+  associated with the given key in the cache with the given name, if
+  any.
 
 ---
 

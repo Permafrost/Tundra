@@ -1,7 +1,7 @@
 package tundra.cache;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2020-04-17T13:15:27.485
+// -----( CREATED: 2020-06-11T06:49:30.169
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -90,7 +90,7 @@ public final class memory
 		// @sigtype java 3.5
 		// [i] field:0:required $cache.name
 		// [i] field:0:required $cache.key
-		// [o] field:0:optional $cache.key.exists? {"false","true"}
+		// [o] field:0:required $cache.key.exists? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
@@ -154,8 +154,9 @@ public final class memory
 		// [i] object:0:required $cache.value
 		// [i] field:0:optional $cache.expiry.duration
 		// [i] field:0:optional $cache.expiry.datetime
+		// [o] field:0:required $cache.updated?
 		// [o] object:0:required $cache.value
-		// [o] field:0:optional $cache.expiry.datetime
+		// [o] object:0:optional $cache.value.previous
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
@@ -166,16 +167,23 @@ public final class memory
 		    Duration expiryDuration = IDataHelper.get(cursor, "$cache.expiry.duration", Duration.class);
 		    Calendar expiryDateTime = IDataHelper.get(cursor, "$cache.expiry.datetime", Calendar.class);
 
-		    ExpiringValue result;
+		    ExpiringValue previousValue;
 
 		    if (expiryDuration != null) {
-		        result = CacheManager.getInstance().put(name, key, value, expiryDuration, absent);
+		        previousValue = CacheManager.getInstance().put(name, key, value, expiryDuration, absent);
 		    } else {
-		        result = CacheManager.getInstance().put(name, key, value, expiryDateTime, absent);
+		        previousValue = CacheManager.getInstance().put(name, key, value, expiryDateTime, absent);
 		    }
 
-		    if (result != null) {
-		        IDataHelper.put(cursor, "$cache.value", result.getValue());
+		    if (absent && previousValue != null) {
+		        IDataHelper.put(cursor, "$cache.updated?", "false");
+		        IDataHelper.put(cursor, "$cache.value", previousValue.getValue());
+		    } else {
+		        IDataHelper.put(cursor, "$cache.updated?", "true");
+		        IDataHelper.put(cursor, "$cache.value", value);
+		    }
+		    if (previousValue != null) {
+		        IDataHelper.put(cursor, "$cache.value.previous", previousValue.getValue());
 		    }
 		} finally {
 		    cursor.destroy();
