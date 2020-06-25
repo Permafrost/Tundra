@@ -7138,6 +7138,31 @@ to all other file system activities that might affect the file.
 
 ---
 
+### tundra.file:digest
+
+Returns a message digest calculated from the given file's contents
+using the specified algorithm. A message digest is a secure one-way
+fixed-length hash of arbitrary data.
+
+#### Inputs:
+
+* `$file` is the name of the file to use, specified as either a
+  relative or absolute file path or `file:` [URI].
+* `$digest.algorithm` is the name of the hashing algorithm to use
+  when calculating the message digest. Defaults to `SHA-512`.
+* `$digest.mode` is a choice of `stream`, `bytes`, `base64`, or
+  `hex`, and determines how the calculated digest is returned.
+   Defaults to `stream`.
+
+#### Outputs:
+
+* `$digest` is the calculated message digest for the given file's
+  contents, returned either as a byte array, input stream,
+  base64-encoded or hex-encoded string, depending on the
+  `$digest.mode` specified.
+
+---
+
 ### tundra.file:executable
 
 Returns `true` if Integration Server can execute to the given file.
@@ -14728,9 +14753,9 @@ of arbitrary data.
   `UTF-8`.
 * `$digest.algorithm` is the name of the hashing algorithm to use
   when calculating the message digest. Defaults to `SHA-512`.
-* `$digest.mode` is a choice of `stream`, `bytes`, or `base64`, and
-  determines how the calculated digest is returned. Defaults to
-  `stream`.
+* `$digest.mode` is a choice of `stream`, `bytes`, `base64`, or
+  `hex`, and determines how the calculated digest is returned.
+   Defaults to `stream`.
 
 #### Outputs:
 
@@ -14742,9 +14767,10 @@ of arbitrary data.
   the start of the data stream and ready for further consumption.
   This allows a message digest to be calculated in advance of normal
   processing of an input stream.
-* `$digest` is the calculated message digest for the given content,
-  returned either as a byte array, input stream, or base64-encoded
-  string, depending on the `$digest.mode` chosen.
+* `$digest` is the calculated message digest for the given file's
+  contents, returned either as a byte array, input stream,
+  base64-encoded or hex-encoded string, depending on the
+  `$digest.mode` specified.
 
 ---
 

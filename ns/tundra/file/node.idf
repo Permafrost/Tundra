@@ -10,16 +10,21 @@
   </array>
   <array name="imports" type="value" depth="1">
     <value>java.io.Closeable</value>
+    <value>java.io.InputStream</value>
     <value>java.io.IOException</value>
     <value>java.io.File</value>
     <value>java.io.FileInputStream</value>
     <value>java.io.FileOutputStream</value>
     <value>java.nio.charset.Charset</value>
+    <value>java.security.MessageDigest</value>
+    <value>java.security.NoSuchAlgorithmException</value>
     <value>java.util.Calendar</value>
+    <value>java.util.Map</value>
     <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.io.CloseableHelper</value>
     <value>permafrost.tundra.io.FileHelper</value>
     <value>permafrost.tundra.io.InputStreamHelper</value>
+    <value>permafrost.tundra.io.MarkableFileInputStream</value>
     <value>permafrost.tundra.io.OutputStreamHelper</value>
     <value>permafrost.tundra.io.filter.FilenameFilterType</value>
     <value>permafrost.tundra.lang.BooleanHelper</value>
@@ -28,6 +33,7 @@
     <value>permafrost.tundra.lang.ObjectConvertMode</value>
     <value>permafrost.tundra.lang.ObjectHelper</value>
     <value>permafrost.tundra.math.LongHelper</value>
+    <value>permafrost.tundra.security.MessageDigestHelper</value>
     <value>permafrost.tundra.server.ServiceHelper</value>
     <value>permafrost.tundra.time.DurationHelper</value>
   </array>

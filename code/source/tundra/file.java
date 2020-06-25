@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2020-01-22T18:12:03.269
+// -----( CREATED: 2020-06-26T05:44:03.581
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -10,16 +10,21 @@ import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
 import java.io.Closeable;
+import java.io.InputStream;
 import java.io.IOException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.nio.charset.Charset;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Calendar;
+import java.util.Map;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.io.CloseableHelper;
 import permafrost.tundra.io.FileHelper;
 import permafrost.tundra.io.InputStreamHelper;
+import permafrost.tundra.io.MarkableFileInputStream;
 import permafrost.tundra.io.OutputStreamHelper;
 import permafrost.tundra.io.filter.FilenameFilterType;
 import permafrost.tundra.lang.BooleanHelper;
@@ -28,6 +33,7 @@ import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.lang.ObjectConvertMode;
 import permafrost.tundra.lang.ObjectHelper;
 import permafrost.tundra.math.LongHelper;
+import permafrost.tundra.security.MessageDigestHelper;
 import permafrost.tundra.server.ServiceHelper;
 import permafrost.tundra.time.DurationHelper;
 // --- <<IS-END-IMPORTS>> ---
@@ -96,6 +102,45 @@ public final class file
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
+	public static final void digest (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(digest)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $file
+		// [i] field:0:optional $digest.algorithm {"SHA-512","SHA-384","SHA-256","SHA","MD5","MD2"}
+		// [i] field:0:optional $digest.mode {"stream","bytes","base64","hex"}
+		// [o] object:0:optional $digest
+		IDataCursor cursor = pipeline.getCursor();
+		InputStream stream = null;
+
+		try {
+		    String file = IDataHelper.get(cursor, "$file", String.class);
+		    MessageDigest algorithm = IDataHelper.getOrDefault(cursor, "$digest.algorithm", MessageDigest.class, MessageDigestHelper.DEFAULT_ALGORITHM);
+		    ObjectConvertMode mode = IDataHelper.get(cursor, "$digest.mode", ObjectConvertMode.class);
+
+		    if (file != null) {
+		        stream = new MarkableFileInputStream(file);
+		        Map.Entry<? extends InputStream, byte[]> digest = MessageDigestHelper.digest(algorithm, stream);
+		        stream = digest.getKey();
+		        IDataHelper.put(cursor, "$digest", ObjectHelper.convert(digest.getValue(), mode));
+		    }
+		} catch(IOException ex) {
+		    ExceptionHelper.raise(ex);
+		} catch(NoSuchAlgorithmException ex) {
+		    ExceptionHelper.raise(ex);
+		} finally {
+		    CloseableHelper.close(stream);
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
@@ -469,7 +514,7 @@ public final class file
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $file
-		// [i] field:0:required $file.create?
+		// [i] field:0:optional $file.create? {"true","false"}
 		// [i] field:0:optional $file.updated
 		IDataCursor cursor = pipeline.getCursor();
 

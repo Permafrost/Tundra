@@ -18,31 +18,14 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <value name="field_largerEditor">false</value>
-            <value name="field_password">false</value>
-          </record>
-          <value name="is_public">false</value>
-          <value name="field_name">$content</value>
-          <value name="field_type">object</value>
-          <value name="field_dim">0</value>
-          <value name="field_opt">true</value>
-          <value name="nillable">false</value>
-          <value name="form_qualified">false</value>
-          <value name="is_global">false</value>
-        </record>
-        <record javaclass="com.wm.util.Values">
-          <value name="node_type">record</value>
-          <value name="node_comment"></value>
-          <record name="node_hints" javaclass="com.wm.util.Values">
             <null name="field_usereditable"/>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$content.encoding</value>
+          <value name="field_name">$file</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
-          <value name="field_opt">true</value>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <value name="contentType">1</value>
             <value name="internalType">reference</value>
@@ -54,7 +37,7 @@
               </record>
             </array>
           </record>
-          <value name="nillable">true</value>
+          <value name="nillable">false</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
         </record>
@@ -192,22 +175,6 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$content</value>
-          <value name="field_type">object</value>
-          <value name="field_dim">0</value>
-          <value name="field_opt">true</value>
-          <value name="nillable">false</value>
-          <value name="form_qualified">false</value>
-          <value name="is_global">false</value>
-        </record>
-        <record javaclass="com.wm.util.Values">
-          <value name="node_type">record</value>
-          <value name="node_comment"></value>
-          <record name="node_hints" javaclass="com.wm.util.Values">
-            <value name="field_largerEditor">false</value>
-            <value name="field_password">false</value>
-          </record>
-          <value name="is_public">false</value>
           <value name="field_name">$digest</value>
           <value name="field_type">object</value>
           <value name="field_dim">0</value>
@@ -220,40 +187,30 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">### tundra.security.content:digest
+  <value name="node_comment">### tundra.file:digest
 
-Returns a message digest for the given content using the specified
-algorithm. A message digest is a secure one-way fixed-length hash
-of arbitrary data.
+Returns a message digest calculated from the given file's contents 
+using the specified algorithm. A message digest is a secure one-way 
+fixed-length hash of arbitrary data.
 
 #### Inputs:
 
-* `$content` is arbitrary data provided as a string, byte array, or
-  input stream.
-* `$content.encoding` is the character set used to encode the
-  character data if `$content` is provided as a string. Defaults to
-  `UTF-8`.
-* `$digest.algorithm` is the name of the hashing algorithm to use
+* `$file` is the name of the file to use, specified as either a 
+  relative or absolute file path or `file:` [URI].
+* `$digest.algorithm` is the name of the hashing algorithm to use 
   when calculating the message digest. Defaults to `SHA-512`.
-* `$digest.mode` is a choice of `stream`, `bytes`, `base64`, or
-  `hex`, and determines how the calculated digest is returned.
+* `$digest.mode` is a choice of `stream`, `bytes`, `base64`, or 
+  `hex`, and determines how the calculated digest is returned. 
    Defaults to `stream`.
 
 #### Outputs:
 
-* `$content` is the given content which was used to calculate the
-  digest, and can now be further processed. The reason this is
-  returned is that when an input stream is provided calculating
-  the message digest necessarily requires consuming the stream,
-  therefore a new input stream is instead returned, positioned at
-  the start of the data stream and ready for further consumption.
-  This allows a message digest to be calculated in advance of normal
-  processing of an input stream.
-* `$digest` is the calculated message digest for the given content, 
-  returned either as a byte array, input stream, base64-encoded or 
-  hex-encoded string, depending on the `$digest.mode` specified.
+* `$digest` is the calculated message digest for the given file's
+  contents, returned either as a byte array, input stream, 
+  base64-encoded or hex-encoded string, depending on the 
+  `$digest.mode` specified.
 </value>
-  <value name="stateless">yes</value>
+  <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
