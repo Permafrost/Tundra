@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-03-07 09:02:56 GMT+10:00
+// -----( CREATED: 2020-06-28T08:13:39.276
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -73,6 +73,8 @@ public final class html
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
+		// [i] field:0:optional $content.length
+		// [i] field:0:optional $content.width
 		// [i] field:0:optional $content.depth
 		// [i] field:0:optional $content.encoding
 		// [i] field:0:optional $content.mode {"stream","bytes","string"}
@@ -81,12 +83,14 @@ public final class html
 
 		try {
 		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    int length = IDataHelper.getOrDefault(cursor, "$content.length", Integer.class, Integer.MAX_VALUE);
+		    int width = IDataHelper.getOrDefault(cursor, "$content.width", Integer.class, Integer.MAX_VALUE);
 		    int depth = IDataHelper.firstOrDefault(cursor, Integer.class, Integer.MAX_VALUE, "$content.depth", "$depth");
 		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
 		    ObjectConvertMode mode = IDataHelper.first(cursor, ObjectConvertMode.class, "$content.mode", "$mode");
 
 		    if (document != null) {
-		        IDataHelper.put(cursor, "$content", ObjectHelper.convert(new IDataHTMLParser().emit(document, depth), charset, mode), false);
+		        IDataHelper.put(cursor, "$content", ObjectHelper.convert(new IDataHTMLParser().emit(document, length, width, depth), charset, mode), false);
 		    }
 		} catch (IOException ex) {
 		    ExceptionHelper.raise(ex);

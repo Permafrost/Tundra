@@ -7715,23 +7715,27 @@ embedding in an [HTML] page, formatted as a string, byte array,
 or input stream.
 
 Child elements that are `IData` documents, `IData[]` document lists,
-`Object[]` object lists, or `Object[][]` object tables are recursively
-serialized to clean [HTML] table elements.
+`Object[]` object lists, or `Object[][]` object tables are
+recursively serialized to clean [HTML] table elements.
 
 #### Inputs:
 
 * `$document` is the `IData` document to be serialized as an [HTML]
   string, byte array, or input stream.
-  * `recordWithNoID` is an optional `IData[]` document list, which can
-    be used to emit a document list rather than a document.
-* `$content.depth` is an optional maximum depth to which child `IData`
-  documents and `IData[]` document lists are recursed.
+  * `recordWithNoID` is an optional `IData[]` document list, which
+    can be used to emit a document list rather than a document.
+* `$content.length` is an optional maximum length to which lists and
+  the first dimension of tables are serialized.
+* `$content.width`  is an optional maximum width which the second
+  dimension of tables are serialized.
+* `$content.depth` is an optional maximum depth to which children
+  `IData` documents and `IData[]` document lists are serialized.
 * `$content.encoding` is an optional character set to use when
   encoding the resulting text data to a byte array or input stream.
   Defaults to [UTF-8].
-* `$content.mode` is an optional choice of `stream`, `bytes`, or `string`,
-  which specifies the type of object `$content` is returned as. Defaults
-  to `stream`.
+* `$content.mode` is an optional choice of `stream`, `bytes`, or
+  `string`, which specifies the type of object `$content` is returned
+  as. Defaults to `stream`.
 
 #### Outputs:
 
