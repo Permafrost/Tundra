@@ -1,7 +1,7 @@
 package tundra.support.exception;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2020-04-01T17:32:15.903
+// -----( CREATED: 2020-06-30T05:35:12.592
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -9,7 +9,7 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
-import javax.activation.MimeTypeParseException;
+import javax.activation.MimeType;
 import java.io.IOException;
 import permafrost.tundra.content.Content;
 import permafrost.tundra.data.IDataHelper;
@@ -48,9 +48,9 @@ public final class transport
 		try {
 		    String message = IDataHelper.get(cursor, "$message", String.class);
 		    Object content = IDataHelper.get(cursor, "$content");
-		    String contentType = IDataHelper.get(cursor, "$content.type", String.class);
+		    MimeType contentType = IDataHelper.get(cursor, "$content.type", MimeType.class);
 
-		    throw new TransportException(message, Content.of(BytesHelper.normalize(content), contentType));
+		    throw new TransportException(message, new Content(BytesHelper.normalize(content), contentType));
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
