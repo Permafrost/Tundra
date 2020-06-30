@@ -16486,6 +16486,67 @@ Returns information about the currently executing thread.
 
 ---
 
+### tundra.thread:get
+
+Returns the thread with the given identity.
+
+#### Inputs:
+
+* `$thread.id` is the identity of the thread to be returned.
+
+#### Outputs:
+
+* `$thread.exists?` is a boolean indicating whether a thread with the
+  given identity exists in the current execution context.
+* `$thread` is an `IData` document containing information about the
+  thread with the given identity.
+  * `id` is the unique identifier of the thread in the current
+    execution context.
+  * `name` is the human-readable name that was assigned to the thread
+    when it was created.
+  * `description` is the thread's built-in string representation of
+    itself.
+  * `state` is the thread's current status, and can be one of the
+    following values:
+    * `NEW` - a thread that has not yet started is in this state.
+    * `RUNNABLE` - a thread executing in the Java virtual machine is
+      in this state.
+    * `BLOCKED` - a thread that is blocked waiting for a monitor lock
+      is in this state.
+    * `WAITING` - a thread that is waiting indefinitely for another
+      thread to perform a particular action is in this state.
+    * `TIMED_WAITING` - a thread that is waiting for another thread
+      to perform an action for up to a specified waiting time is in
+      this state.
+    * `TERMINATED` - a thread that has exited is in this state.
+  * `priority` is the thread's priority as an integer. Threads with
+    higher priority are executed in preference to threads with lower
+    priority.
+  * `group` is the name of the thread group this thread belongs to.
+  * `alive?` is a boolean indicating if the thread is currently
+    alive. A thread is alive if it has been started and has not yet
+    died.
+  * `daemon?` is a boolean indicating if the thread is a daemon
+    thread. Daemon threads do not block the JVM from exiting even if
+    they are still running.
+  * `interrupted?` is a boolean indicating if the thread has been
+    interrupted.
+  * `stack` is a document list describing the call stack associated
+    with this thread.
+    * `description` is a string representation of this stack item.
+    * `file` is the name of the source file containing executing
+      line.
+    * `class` is the fully qualified name of the executing class.
+    * `method` is the name of the executing method.
+    * `line` is the source file line number of the executing line.
+    * `native?` is true if the `method` is a native method.
+  * `stack.length` is the number of items in the `stack` list.
+  * `thread` is the actual [java.lang.Thread] object itself.
+* `$threads.length` is the number of items returned in the `$threads`
+  list.
+
+---
+
 ### tundra.thread:list
 
 Returns a list of all threads known in the current execution context.
