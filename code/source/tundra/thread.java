@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2020-07-01T06:54:17.634
+// -----( CREATED: 2020-07-01T06:59:46.038
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -70,6 +70,28 @@ public final class thread
 		    Thread thread = ThreadHelper.get(identity);
 		    IDataHelper.put(cursor, "$thread.exists?", thread != null, String.class);
 		    IDataHelper.put(cursor, "$thread", ThreadHelper.toIData(thread), false);
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
+	public static final void interrupt (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(interrupt)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $thread.id
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    int identity = IDataHelper.get(cursor, "$thread.id", Integer.class);
+		    ThreadHelper.interrupt(ThreadHelper.get(identity));
 		} finally {
 		    cursor.destroy();
 		}

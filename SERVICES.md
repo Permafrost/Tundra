@@ -16547,6 +16547,16 @@ Returns the thread with the given identity.
 
 ---
 
+### tundra.thread:interrupt
+
+Interrupts the thread with the given identity.
+
+#### Inputs:
+
+* `$thread.id` is the identity of the thread to be interrupted.
+
+---
+
 ### tundra.thread:list
 
 Returns a list of all threads known in the current execution context.
