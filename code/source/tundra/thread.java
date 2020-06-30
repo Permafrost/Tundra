@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2020-07-01T06:59:46.038
+// -----( CREATED: 2020-07-01T07:04:48.105
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -173,6 +173,27 @@ public final class thread
 		    String durationPattern = IDataHelper.get(cursor, "$duration.pattern", String.class);
 
 		    ThreadHelper.sleep(DurationHelper.parse(duration, durationPattern));
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
+	public static final void stop (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(stop)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    int identity = IDataHelper.get(cursor, "$thread.id", Integer.class);
+		    ThreadHelper.stop(ThreadHelper.get(identity));
 		} finally {
 		    cursor.destroy();
 		}

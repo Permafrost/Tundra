@@ -16649,6 +16649,16 @@ accuracy of system timers and schedulers.
 
 ---
 
+### tundra.thread:stop
+
+Stops the thread with the given identity.
+
+#### Inputs:
+
+* `$thread.id` is the identity of the thread to be stopped.
+
+---
+
 ### tundra.timezone:get
 
 Returns the time zone associated with the given ID.
