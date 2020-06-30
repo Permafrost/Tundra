@@ -41,7 +41,7 @@
                 </div>
               %endinvoke%
           %endswitch%
-          %invoke tundra.support.service.usage.ui:get%
+          %invoke tundra.support.service.usage:get%
           <div class="table-responsive">
             <table class="table table-striped">
               <caption>Services Currently Executing (%value $context/invocations.current.length encode(xml)%) at %value $context/monitoring.datetime encode(xml)%</caption>
@@ -54,7 +54,7 @@
                   <th>User</th>
                   <th>Start Time</th>
                   <th>Duration</th>
-                  <th><img src="../assets/icons/page_white.png" alt="Pipeline..."></th>
+                  <th><img src="../assets/icons/page_white.png" alt="Input Pipeline..."></th>
                 </tr>
               </thead>
               %ifvar $context/monitoring.started? equals('true')%
@@ -82,7 +82,7 @@
                         <div class="modal-content">
                           <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Pipeline</h4>
+                            <h4 class="modal-title">Input Pipeline</h4>
                           </div>
                           <div class="modal-body">
                             %value none pipeline.html encode(none)%
