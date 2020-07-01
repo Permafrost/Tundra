@@ -7724,12 +7724,6 @@ recursively serialized to clean [HTML] table elements.
   string, byte array, or input stream.
   * `recordWithNoID` is an optional `IData[]` document list, which
     can be used to emit a document list rather than a document.
-* `$content.length` is an optional maximum length to which lists and
-  the first dimension of tables are serialized.
-* `$content.width`  is an optional maximum width which the second
-  dimension of tables are serialized.
-* `$content.depth` is an optional maximum depth to which children
-  `IData` documents and `IData[]` document lists are serialized.
 * `$content.encoding` is an optional character set to use when
   encoding the resulting text data to a byte array or input stream.
   Defaults to [UTF-8].
