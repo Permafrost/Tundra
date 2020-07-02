@@ -84,7 +84,7 @@
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                             <h4 class="modal-title">Input Pipeline</h4>
                           </div>
-                          <div class="modal-body">
+                          <div class="modal-body pipeline">
                             %value none pipeline.html encode(none)%
                           </div>
                         </div>

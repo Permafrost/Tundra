@@ -110,3 +110,9 @@ button {
   right: -2px;
   top: -5px;
 }
+.pipeline .IData td {
+  overflow-wrap: anywhere;
+}
+.pipeline .IData th {
+  overflow-wrap: break-word;
+}
