@@ -1,3 +1,97 @@
+# 0.0.35 (2020-07-03)
+
+* add `tundra.content:transfer` for transferring content retrieved from a source location and delivering directly to a destination location
+* add `tundra.datetime:within` for determining if a given datetime is within a given range
+* add `tundra.file:digest` for calculating a message digest for a given file
+* add `tundra.file:purge` for deleting files matching the given filename pattern older than the given duration in the same directory
+* add `tundra.pipeline:sanitize` for dropping undeclared inputs or outputs when compared with the current service's signature
+* add `tundra.pipeline:validate` for imperatively validating the pipeline against the current service's input or output signature
+* add `tundra.service:restful` for marking a service as a REST service, which then automatically handles output serialization, exception handling, and pipeline validation
+* add `tundra.service:synchronize` for performing a thread-synchronized invoke of a service
+* add `tundra.thread:get` to return the thread with the given identity
+* add `tundra.thread:interrupt` to interrupt the thread with the given identity
+* add `tundra.thread:stop` to stop the thread with the given identity (use sparingly, and at your own peril)
+* change `tundra.base64:decode` to use `$content.mode` and `$content.encoding` inputs rather than `$mode` and `$encoding` respectively to remove ambiguity
+* change `tundra.base64:encode` to use `$content.mode` and `$content.encoding` inputs rather than `$mode` and `$encoding` respectively to remove ambiguity
+* change `tundra.bytes:normalize` to use `$content.mode` and `$content.encoding` inputs rather than `$mode` and `$encoding` respectively to remove ambiguity
+* change `tundra.bytes:transcode` to use `$content.mode` and `$content.encoding` inputs rather than `$mode` and `$encoding` respectively to remove ambiguity
+* change `tundra.cache.memory:*` services to support cache entry expiration
+* change `tundra.cache.memory:get` to also return `$cache.expiry.datetime` when it is applicable to the cache entry in question
+* change `tundra.cache.memory:put` to return the previously associated value if any and to return a boolean flag explicitly indicating if the attempted put updated the cache
+* change `tundra.content.deliver:file` to set the last modified datetime of the file to the given `$content.updated` datetime if specified
+* change `tundra.content.deliver:file` to support query string parameter `filemode` for specifying the file mode to use when calling `tundra.file:write`
+* change `tundra.content.deliver:http` to use new input arguments to `tundra.gzip:compress`
+* change `tundra.content.deliver:jms` to provide content schema and content type as `JMSMessage` properties named `Content-Schema` and `Content-Type` respectively
+* change `tundra.content.deliver:mailto` to use the following Integration Server settings if they exist when using the default SMTP server: `watt.server.smtpServerPort`, `watt.server.smtpTransportSecurity`, and `watt.server.smtpTrustStoreAlias`
+* change `tundra.content.deliver:sftp` to set the last modified datetime of the file to the given `$content.updated` datetime if specified
+* change `tundra.content.delivery:sap_idoc` return message format to be consistent with the other deliver protocol implementations
+* change `tundra.content.retrieve:file` to provide `$content.updated` to the content processing service
+* change `tundra.content.retrieve:sftp` to provide `$content.updated` to the content processing service
+* change `tundra.content:emit` implementation to Java for easier reuse by other components and better performance
+* change `tundra.content:parse` implementation to Java for easier reuse by other components and better performance
+* change `tundra.content:retrieve` `file` protocol handler to support limiting the files retrieved by specifying a new query string parameter `updated` to only retrieve files within the specified last modified time window
+* change `tundra.content:retrieve` `ftp` retrieval to support disabling the file rename prior to retrieval by setting the query string parameter `rename` to `false` (example: `ftp://user:password@server:port/directory/*.txt?rename=false`)
+* change `tundra.content:retrieve` `sftp` protocol handler to support limiting the files retrieved by specifying a new query string parameter `updated` to only retrieve files within the specified last modified time window
+* change `tundra.content:retrieve` `sftp` retrieval to support disabling the file rename prior to retrieval by setting the query string parameter `rename` to `false` (example: `sftp://useralias/./path/*.txt?rename=false`)
+* change `tundra.content:translate` to support translation service returning `$content` which can be used for `IData` to `byte[]` conversions
+* change `tundra.datetime:format` to support formatting non-String objects
+* change `tundra.datetime` services to support new named pattern `seconds` which is the seconds since the unix epoch
+* change `tundra.document:log` implementation to Java for 10x performance improvement, and add support for an optional log message to prefix the logged IData document
+* change `tundra.document:substitute` to support replacing an entire value with a non-String value
+* change `tundra.document:validate` implementation to Java for easier reuse by other components and better performance
+* change `tundra.file:copy` `$mode` input to be named `$file.mode` and default to `create` rather than `append`, which is now the safest default
+* change `tundra.file:match` `$mode` input to be named `$pattern.mode` to remove ambiguity
+* change `tundra.file:process` `$mode` input to be named `$file.mode` and add support for `create` mode which will not overwrite the file if it already exists
+* change `tundra.file:read` `$mode` input to be named `$content.mode`, and `$encoding` to be named `$content.encoding` to remove ambiguity
+* change `tundra.file:touch` to allow file creation to be optional rather than mandatory
+* change `tundra.file:touch` to support specifying the last modification datetime to use when touching the file
+* change `tundra.file:write` `$mode` input to be named `$file.mode` and default to `create` rather than `append`, which is now the safest default
+* change `tundra.gzip:compress` to use `$content.mode` and `$content.encoding` inputs rather than `$mode` and `$encoding` respectively to remove ambiguity
+* change `tundra.gzip:decompress` to use `$content.mode` and `$content.encoding` inputs rather than `$mode` and `$encoding` respectively to remove ambiguity
+* change `tundra.html:emit` to remove support for table dimension limits
+* change `tundra.http.response:handle` to include HTTP request context (URI, response status code and message, and headers) in exception if applicable
+* change `tundra.http.response:handle` to treat `4xx` response codes other than `429` as unrecoverable failures
+* change `tundra.http:client` to default password to an empty string if a user and no password has been specified in the request credentials
+* change `tundra.list.document:substitute` to support replacing an entire value with a non-String value
+* change `tundra.list.object:difference` to return `$list.length` with the number of items in the returned `$list` results
+* change `tundra.list.string:difference` to return `$list.length` with the number of items in the returned `$list` results
+* change `tundra.list.string:substitute` to support replacing an entire value with a non-String value
+* change `tundra.mesesage:route` to use new `tundra.zip:decompress` inputs
+* change `tundra.pipeline:log` implementation to Java for 10x performance improvement, and add support for an optional log message to prefix the logged pipeline
+* change `tundra.pipeline:substitute` to support replacing an entire value with a non-String value
+* change `tundra.schema.content.retrieve:processor` schema to optionally support providing the content creation and update datetimes to the content processing service
+* change `tundra.security.content:digest` input and output parameter names for clarity and consistency
+* change `tundra.service:respond` input names to be prefixed with `response` for clarity
+* change `tundra.service:respond` to make input argument `$response.code` optional and default to HTTP 200 OK response if not specified
+* change `tundra.service:respond` to rename `$encoding` input parameter to `$content.encoding` to remove ambiguity
+* change `tundra.soap.fault:accept` to serialize fault to minified JSON in exception message for brevity
+* change `tundra.string.base64:decode` to use new input parameters when calling `tundra.base64:decode`
+* change `tundra.string.base64:enocde` to use new input parameters when calling `tundra.base64:encode`
+* change `tundra.string:lines` to support both CRLF and LF line endings
+* change `tundra.string:substitute` to support replacing an entire value with a non-String value
+* change `tundra.support.receive:respond` to use the thrown exception's innermost cause when determining the HTTP response status code, which affects `Tundra/tundra.message:receive` and `TundraTN/tundra.tn:receive`
+* change `tundra.uri:substitute` to also support URI template variable curly bracket delimiters
+* change `tundra.xml:canonicalize` services to use `$content.encoding` and `$content.mode` instead of `$encoding` and `$mode` to remove ambiguity
+* change `tundra.xml:emit` services to use `$content.encoding` and `$content.mode` instead of `$encoding` and `$mode` to remove ambiguity
+* change `tundra.xml:minify` services to use `$content.encoding` and `$content.mode` instead of `$encoding` and `$mode` to remove ambiguity
+* change `tundra.xml:parse` services to use `$content.encoding` and `$content.namespace` instead of `$encoding` and `$namespace` to remove ambiguity
+* change `tundra.xpath:exists` to use `$content.encoding` and `$content.namespace` instead of `$encoding` and `$namespace` to remove ambiguity
+* change `tundra.xpath:get` to use `$content.encoding` and `$content.namespace` instead of `$encoding` and `$namespace` to remove ambiguity
+* change `tundra.zip:compress` to use `$content.mode` and `$content.encoding` inputs rather than `$mode` and `$encoding` respectively to remove ambiguity
+* change `tundra.zip:decompress` to use `$content.mode` and `$content.encoding` inputs rather than `$mode` and `$encoding` respectively to remove ambiguity
+* change `tundra:log` implementation to Java for 10x performance improvement
+* change Tundra > Service Usage DSP page `./pub/service/usage.dsp` to improve performance by moving the sorting of invocations and serializing of pipelines to HTML into the Java service `tundra.support.service.usage:get`
+* change Tundra > Service Usage DSP page `./pub/service/usage.dsp` to wrap long values when displaying the input pipeline modal dialog
+* change Tundra log purge feature to require an enabled boolean per directory
+* change Tundra variable substitution feature to support a new type of substitution for invoking a service dynamically and substituting in the returned output: `%invoke:example.employee:get/name?id=1%`
+* fix `tundra.assertion.datetime:unequal` to work correctly
+* fix `tundra.content.retrieve:sftp` service comment to be correct and to drop all variables not returned in the output pipeline
+* fix `tundra.content:parse` to default to using the first line as column headings when parsing CSV content
+* fix `tundra.content:parse` validation to throw an unrecoverable exception that halts retries and aborts message processing when applicable
+* fix `tundra.csv:emit` to handle content without a header record correctly
+* fix `tundra.csv:parse` to handle content without a header record correctly
+* fix `tundra.uri:decode` backwards compatibility with deprecated `$uri.encoded` input parameter
+
 # 0.0.34 (2019-08-06)
 
 * add `tundra.bool:random`, `tundra.bytes:random`, `tundra.decimal:random`, and `tundra.integer:random`, for returning cryptographically strong randomly generated numbers
