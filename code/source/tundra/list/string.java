@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-12-13T15:46:48.719
+// -----( CREATED: 2020-07-14T05:23:35.467
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -166,6 +166,7 @@ public final class string
 		// [i] field:1:optional $list.x
 		// [i] field:1:optional $list.y
 		// [o] field:1:optional $list
+		// [o] field:0:required $list.length
 		tundra.list.object.difference(pipeline);
 		// --- <<IS-END>> ---
 
@@ -1061,8 +1062,8 @@ public final class string
 	    }
 
 	    String[][] output = new String[2][];
-	    output[0] = found.toArray(new String[found.size()]);
-	    output[1] = unfound.toArray(new String[unfound.size()]);
+	    output[0] = found.toArray(new String[0]);
+	    output[1] = unfound.toArray(new String[0]);
 
 	    return output;
 	}
@@ -1091,8 +1092,8 @@ public final class string
 	    }
 
 	    String[][] output = new String[2][];
-	    output[0] = matched.toArray(new String[matched.size()]);
-	    output[1] = unmatched.toArray(new String[unmatched.size()]);
+	    output[0] = matched.toArray(new String[0]);
+	    output[1] = unmatched.toArray(new String[0]);
 
 	    return output;
 	}
