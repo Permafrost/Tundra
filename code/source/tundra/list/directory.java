@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-07 17:50:20 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2020-07-14T05:16:44.491
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -54,14 +54,14 @@ public final class directory
 		// [i] field:0:optional $delete? {"false","true"}
 		// [i] field:0:optional $raise? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String[] directories = IDataHelper.get(cursor, "$directories", String[].class);
 		    boolean deleteSelf = IDataHelper.getOrDefault(cursor, "$delete?", Boolean.class, false);
 		    boolean raise = IDataHelper.getOrDefault(cursor, "$raise?", Boolean.class, false);
-		
+
 		    List<Throwable> exceptions = new ArrayList<Throwable>();
-		
+
 		    for (String directory : directories) {
 		        try {
 		            DirectoryHelper.compact(FileHelper.construct(directory), deleteSelf);
@@ -69,14 +69,14 @@ public final class directory
 		            exceptions.add(ex);
 		        }
 		    }
-		
+
 		    if (raise && exceptions.size() > 0) ExceptionHelper.raise(exceptions);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -97,11 +97,11 @@ public final class directory
 		// [i] - field:0:optional recurse? {"false","true"}
 		// [o] field:1:optional $counts
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IData[] directories = IDataHelper.get(cursor, "$directories", IData[].class);
 		    List<Throwable> exceptions = new ArrayList<Throwable>();
-		
+
 		    if (directories != null) {
 		        List<String> counts = new ArrayList<String>(directories.length);
 		        for (IData document : directories) {
@@ -115,9 +115,9 @@ public final class directory
 		                    String[] exclusions = IDataHelper.get(dc, "filter.exclusions", String[].class);
 		                    FilenameFilterType type = IDataHelper.get(dc, "filter.type", FilenameFilterType.class);
 		                    boolean recurse = IDataHelper.getOrDefault(dc, "recurse?", Boolean.class, false);
-		
+
 		                    ConditionalFilenameFilter filter = null;
-		
+
 		                    if (inclusions != null || exclusions != null) {
 		                        filter = new AndFilenameFilter();
 		                        if (inclusions != null) {
@@ -127,7 +127,7 @@ public final class directory
 		                            filter.add(new ExclusionFilenameFilter(type, exclusions));
 		                        }
 		                    }
-		
+
 		                    counts.add(LongHelper.emit(DirectoryHelper.purge(directory, DurationHelper.parse(duration, pattern), filter, recurse)));
 		                } catch(IOException ex) {
 		                    exceptions.add(ex);
@@ -136,16 +136,16 @@ public final class directory
 		                }
 		            }
 		        }
-		        IDataHelper.put(cursor, "$counts", counts.toArray(new String[counts.size()]));
+		        IDataHelper.put(cursor, "$counts", counts.toArray(new String[0]));
 		    }
-		
+
 		    if (exceptions.size() > 0) ExceptionHelper.raise(exceptions);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -159,13 +159,13 @@ public final class directory
 		// [i] field:1:required $directories
 		// [i] field:0:optional $recurse? {"false","true"}
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    String[] directories = IDataHelper.get(cursor, "$directories", String[].class);
 		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
-		
+
 		    List<Throwable> exceptions = new ArrayList<Throwable>();
-		
+
 		    for (String directory : directories) {
 		        try {
 		            DirectoryHelper.remove(directory, recurse);
@@ -173,14 +173,14 @@ public final class directory
 		            exceptions.add(ex);
 		        }
 		    }
-		
+
 		    if (exceptions.size() > 0) ExceptionHelper.raise(exceptions);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 
 
@@ -200,17 +200,17 @@ public final class directory
 		// [i] - field:0:optional recurse? {"false","true"}
 		// [o] field:1:optional $sizes.squeezed
 		IDataCursor cursor = pipeline.getCursor();
-		
+
 		try {
 		    IData[] directories = IDataHelper.get(cursor, "$directories", IData[].class);
 		    List<Throwable> exceptions = new ArrayList<Throwable>();
-		
+
 		    if (directories != null) {
 		        List<String> sizes = new ArrayList<String>(directories.length);
 		        for (IData document : directories) {
 		            if (document != null) {
 		                IDataCursor dc = document.getCursor();
-		
+
 		                try {
 		                    String directory = IDataHelper.get(dc, "directory", String.class);
 		                    BigInteger size = IDataHelper.get(cursor, "size.required", BigInteger.class);
@@ -218,9 +218,9 @@ public final class directory
 		                    String[] exclusions = IDataHelper.get(dc, "filter.exclusions", String[].class);
 		                    FilenameFilterType type = IDataHelper.get(dc, "filter.type", FilenameFilterType.class);
 		                    boolean recurse = IDataHelper.getOrDefault(dc, "recurse?", Boolean.class, false);
-		
+
 		                    ConditionalFilenameFilter filter = null;
-		
+
 		                    if (inclusions != null || exclusions != null) {
 		                        filter = new AndFilenameFilter();
 		                        if (inclusions != null) {
@@ -230,7 +230,7 @@ public final class directory
 		                            filter.add(new ExclusionFilenameFilter(type, exclusions));
 		                        }
 		                    }
-		
+
 		                    sizes.add(BigIntegerHelper.emit(DirectoryHelper.squeeze(directory, size, filter, recurse)));
 		                } catch(IOException ex) {
 		                    exceptions.add(ex);
@@ -239,16 +239,16 @@ public final class directory
 		                }
 		            }
 		        }
-		        IDataHelper.put(cursor, "$sizes.squeezed", sizes.toArray(new String[sizes.size()]));
+		        IDataHelper.put(cursor, "$sizes.squeezed", sizes.toArray(new String[0]));
 		    }
-		
+
 		    if (exceptions.size() > 0) ExceptionHelper.raise(exceptions);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-                
+
 	}
 }
 
