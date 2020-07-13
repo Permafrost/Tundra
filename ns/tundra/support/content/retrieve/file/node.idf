@@ -66,8 +66,8 @@ bHBlci5wdXQoY3Vyc29yLCAiZGlyZWN0b3J5IiwgZW50cnkuZ2V0S2V5KCkpOwogICAgICAgICAg
 ICBJRGF0YUhlbHBlci5wdXQoY3Vyc29yLCAicHVyZ2UubGFzdCIsIERhdGVUaW1lSGVscGVyLmVt
 aXQoZW50cnkuZ2V0VmFsdWUoKSkpOwogICAgICAgIH0gZmluYWxseSB7CiAgICAgICAgICAgIGN1
 cnNvci5kZXN0cm95KCk7CiAgICAgICAgfQogICAgICAgIAogICAgICAgIG91dHB1dC5hZGQoZG9j
-dW1lbnQpOwogICAgfQoKICAgIHJldHVybiBvdXRwdXQudG9BcnJheShuZXcgSURhdGFbb3V0cHV0
-LnNpemUoKV0pOwp9</value>
+dW1lbnQpOwogICAgfQoKICAgIHJldHVybiBvdXRwdXQudG9BcnJheShuZXcgSURhdGFbMF0pOwp9
+</value>
   <value name="extends"></value>
   <array name="implements" type="value" depth="1">
   </array>

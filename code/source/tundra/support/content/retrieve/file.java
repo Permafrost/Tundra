@@ -1,7 +1,7 @@
 package tundra.support.content.retrieve;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2018-07-13 09:08:28 GMT+10:00
+// -----( CREATED: 2020-07-14T05:28:20.337
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -246,7 +246,7 @@ public final class file
 	        output.add(document);
 	    }
 
-	    return output.toArray(new IData[output.size()]);
+	    return output.toArray(new IData[0]);
 	}
 	// --- <<IS-END-SHARED>> ---
 }
