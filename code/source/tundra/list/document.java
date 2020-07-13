@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-12-13T15:52:41.394
+// -----( CREATED: 2020-07-14T05:21:02.185
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -1366,8 +1366,8 @@ public final class document
 	    }
 
 	    IData[][] output = new IData[2][];
-	    output[0] = found.toArray(new IData[found.size()]);
-	    output[1] = unfound.toArray(new IData[unfound.size()]);
+	    output[0] = found.toArray(new IData[0]);
+	    output[1] = unfound.toArray(new IData[0]);
 
 	    return output;
 	}
@@ -1401,8 +1401,8 @@ public final class document
 	    }
 
 	    IData[][] output = new IData[2][];
-	    output[0] = matched.toArray(new IData[matched.size()]);
-	    output[1] = unmatched.toArray(new IData[unmatched.size()]);
+	    output[0] = matched.toArray(new IData[0]);
+	    output[1] = unmatched.toArray(new IData[0]);
 
 	    return output;
 	}
