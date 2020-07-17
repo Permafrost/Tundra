@@ -50,7 +50,7 @@ instance in which you want to install:
 $ cd ./packages/
 $ git clone https://github.com/Permafrost/Tundra.git
 $ cd ./Tundra/
-$ git checkout v<n.n.n> # where <n.n.n> is the required version
+$ git reset --hard v<n.n.n> # where <n.n.n> is the required version
 ```
 
 Then restart Integration Server to complete the installation.
@@ -96,7 +96,7 @@ instance in which you want to install:
 ```sh
 $ cd ./packages/Tundra/
 $ git fetch
-$ git checkout v<n.n.n> # where <n.n.n> is the desired updated version
+$ git reset --hard v<n.n.n> # where <n.n.n> is the desired updated version
 ```
 
 Then restart Integration Server to complete the upgrade.
