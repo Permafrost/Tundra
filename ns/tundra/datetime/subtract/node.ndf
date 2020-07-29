@@ -18,29 +18,20 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$datetime</value>
-          <value name="field_type">string</value>
+          <value name="field_name">$datetime.input</value>
+          <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
-          <record name="field_content_type" javaclass="com.wm.util.Values">
-            <value name="contentType">1</value>
-            <value name="internalType">reference</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-            <array name="targetNames" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">string</value>
-              </record>
-            </array>
-          </record>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
+          <array name="rec_fields" type="record" depth="1">
+          </array>
+          <value name="modifiable">true</value>
         </record>
         <record javaclass="com.wm.util.Values">
           <value name="node_type">record</value>
@@ -233,29 +224,20 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$datetime</value>
-          <value name="field_type">string</value>
+          <value name="field_name">$datetime.output</value>
+          <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
-          <record name="field_content_type" javaclass="com.wm.util.Values">
-            <value name="contentType">1</value>
-            <value name="internalType">reference</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-            <array name="targetNames" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">string</value>
-              </record>
-            </array>
-          </record>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
+          <array name="rec_fields" type="record" depth="1">
+          </array>
+          <value name="modifiable">true</value>
         </record>
       </array>
       <value name="modifiable">true</value>
@@ -263,8 +245,8 @@
   </record>
   <value name="node_comment">### tundra.datetime:subtract
 
-Subtracts a duration of time from the given datetime, formatted according
-to the given patterns.
+Subtracts a duration of time from the given arbitrarily specified
+datetimes, formatted according to the given patterns.
 
 Supports a handful of well-known named datetime patterns:
 
@@ -278,26 +260,28 @@ date.jdbc     | yyyy-mm-dd
 time          | ISO8601 XML time
 time.jdbc     | HH:mm:ss
 milliseconds  | Number of milliseconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
-seconds       | Number of seconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
+seconds       | Number of seconds since the Epoch, January 1, 1970 00:00:00.000 GMT (Gregorian)
 
 Custom datetime patterns can be specified using
 [java.text.SimpleDateFormat] compatible patterns.
 
 #### Inputs:
 
-* $datetime is the datetime string to subtract the duration from.
-* $datetime.pattern is an optional datetime pattern that $datetime
-  conforms to. Defaults to an [ISO8601] XML datetime.
-* $duration is the duration to be subtracted from $datetime.
-* $duration.pattern is an optional duration pattern that $duration
-  conforms to. Defaults to an [ISO8601] XML duration.
+* `$datetime.input` is an `IData` document containing arbitrarily 
+  specified datetime strings to subtract the duration from.
+* `$datetime.pattern` is an optional datetime pattern that all the 
+  `$datetime.input` datetime strings conform to. Defaults to an 
+  [ISO8601] XML datetime.
+* `$duration` is the duration to be subtracted from all the datetime
+  strings specified in the given `$datetime.input`.
+* `$duration.pattern` is an optional duration pattern that the given
+  `$duration` conforms to. Defaults to an [ISO8601] XML duration.
 
 #### Outputs:
 
-* $datetime is the resulting datetime with the subtracted duration.
-
-[ISO8601]: &lt;http://en.wikipedia.org/wiki/ISO_8601&gt;
-[java.text.SimpleDateFormat]: &lt;http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html&gt;</value>
+* `$datetime.output` is an `IData` document containing the given
+  datetime strings with the given `$duration` subtracted.
+</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>

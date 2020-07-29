@@ -3486,8 +3486,8 @@ stream into an IData document containing a list of records.
 
 ### tundra.datetime:add
 
-Adds a duration of time to the given datetime, formatted according to
-the given patterns.
+Adds a duration of time to the given arbitrarily specified datetimes,
+formatted according to the given patterns.
 
 Supports a handful of well-known named datetime patterns:
 
@@ -3508,16 +3508,20 @@ Custom datetime patterns can be specified using
 
 #### Inputs:
 
-* `$datetime` is the datetime string to add the duration to.
-* `$datetime.pattern` is an optional datetime pattern that `$datetime`
-  conforms to. Defaults to an [ISO8601] XML datetime.
-* `$duration` is the duration to be added to `$datetime`.
-* `$duration.pattern` is an optional duration pattern that `$duration`
-  conforms to. Defaults to an [ISO8601] XML duration.
+* `$datetime.input` is an `IData` document containing arbitrarily
+  specified datetime strings to add the duration to.
+* `$datetime.pattern` is an optional datetime pattern that all the
+  `$datetime.input` datetime strings conform to. Defaults to an
+  [ISO8601] XML datetime.
+* `$duration` is the duration to be added to all the datetime strings
+  specified in the given `$datetime.input`.
+* `$duration.pattern` is an optional duration pattern that the given
+  `$duration` conforms to. Defaults to an [ISO8601] XML duration.
 
 #### Outputs:
 
-* `$datetime` is the resulting datetime with the added duration.
+* `$datetime.output` is an `IData` document containing the given
+  datetime strings with the given `$duration` added.
 
 ---
 
@@ -3993,8 +3997,8 @@ Custom datetime patterns can be specified using
 
 ### tundra.datetime:subtract
 
-Subtracts a duration of time from the given datetime, formatted according
-to the given patterns.
+Subtracts a duration of time from the given arbitrarily specified
+datetimes, formatted according to the given patterns.
 
 Supports a handful of well-known named datetime patterns:
 
@@ -4015,16 +4019,20 @@ Custom datetime patterns can be specified using
 
 #### Inputs:
 
-* `$datetime` is the datetime string to subtract the duration from.
-* `$datetime.pattern` is an optional datetime pattern that `$datetime`
-  conforms to. Defaults to an [ISO8601] XML datetime.
-* `$duration` is the duration to be subtracted from `$datetime`.
-* `$duration.pattern` is an optional duration pattern that `$duration`
-  conforms to. Defaults to an [ISO8601] XML duration.
+* `$datetime.input` is an `IData` document containing arbitrarily
+  specified datetime strings to subtract the duration from.
+* `$datetime.pattern` is an optional datetime pattern that all the
+  `$datetime.input` datetime strings conform to. Defaults to an
+  [ISO8601] XML datetime.
+* `$duration` is the duration to be subtracted from all the datetime
+  strings specified in the given `$datetime.input`.
+* `$duration.pattern` is an optional duration pattern that the given
+  `$duration` conforms to. Defaults to an [ISO8601] XML duration.
 
 #### Outputs:
 
-* `$datetime` is the resulting datetime with the subtracted duration.
+* `$datetime.output` is an `IData` document containing the given
+  datetime strings with the given `$duration` subtracted.
 
 ---
 

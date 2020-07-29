@@ -14,6 +14,8 @@
     <value>java.util.TimeZone</value>
     <value>javax.xml.datatype.Duration</value>
     <value>permafrost.tundra.data.IDataHelper</value>
+    <value>permafrost.tundra.data.transform.Transformer</value>
+    <value>permafrost.tundra.data.transform.time.DateTimeShifter</value>
     <value>permafrost.tundra.lang.BooleanHelper</value>
     <value>permafrost.tundra.lang.ExceptionHelper</value>
     <value>permafrost.tundra.time.DateTimeHelper</value>
