@@ -130,9 +130,10 @@ effect.
 
 * Logs the request duration, request method, request and response
   headers, response status, and input and output pipelines in the
-  server log. The log level is set via the Tundra package
-  configuration setting `feature/service/restful/logging`. Configure
-  this to `OFF` to disable logging entirely.
+  logical log `permafrost.tundra.server.invoke.RestServiceProcessor`.
+  The log level is set via the Tundra package configuration setting 
+  `feature/service/restful/logging`. Configure this to `OFF` to
+  disable logging entirely.
 </value>
   <value name="stateless">no</value>
   <value name="caching">no</value>

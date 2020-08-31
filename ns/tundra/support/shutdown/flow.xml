@@ -130,6 +130,18 @@
 </MAP>
 </INVOKE>
 
+<INVOKE TIMEOUT="" SERVICE="tundra.support.log.manager:stop" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+  <COMMENT></COMMENT>
+
+  <!-- nodes -->
+
+<MAP MODE="INPUT">
+</MAP>
+
+<MAP MODE="OUTPUT">
+</MAP>
+</INVOKE>
+
 <INVOKE TIMEOUT="" SERVICE="tundra.schedule:remove" VALIDATE-IN="$none" VALIDATE-OUT="$none">
   <COMMENT>tundra.support.log:purge</COMMENT>
 

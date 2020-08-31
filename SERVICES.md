@@ -1,22 +1,26 @@
 ### tundra:log
 
-Writes a message to the server log, automatically prefixed with the
-current user and call stack.
+Writes the given message to the server log, or a given named log,
+optionally prefixed with the current user and call stack, and
+suffixed with a given `IData` document that contains further context
+serialized as a minified [JSON] string.
 
 #### Inputs:
 
+* `$log.level` is an optional logging level used when writing the
+  pipeline to the server log.
 * `$log.message` is an optional message to be written to the server
   log.
-* `$log.level` is an optional logging level of the message:
-  * `Fatal`
-  * `Error`
-  * `Warn`
-  * `Info`
-  * `Debug`
-  * `Trace`
-  * `Off`
 * `$log.context` is an optional `IData` document containing arbitrary
   values that provide context to the log statement.
+* `$log.prefix?` is a boolean indicating whether to prefix the log
+  statement with the current user and callstack. Defaults to `true`.
+* `$log.name` is the optional logical name of the log to write to.
+  The logical log name can be mapped to a physical log target file
+  via the Tundra package configuration section `feature/log/target`.
+  If the logical log name cannot be found in this configuration
+  section, the default physical log target is `./logs/server.log`.
+  Defaults to the calling service's package name, if not specified.
 
 ---
 
@@ -6030,17 +6034,25 @@ unmodified.
 
 ### tundra.document:log
 
-Writes the given `IData` document to the server log as a minified
-[JSON] string, prefixed with the invoking user, call stack, and
-message.
+Writes the given `IData` document to the server log, or a given named
+log, as a minified [JSON] string, optionally prefixed with the
+invoking user, call stack, and message.
 
 #### Inputs:
 
 * `$document` is the `IData` document to be logged to the server log.
-* `$log.message` is an optional message to be written to the server
-  log.
 * `$log.level` is an optional logging level used when writing the
   pipeline to the server log.
+* `$log.message` is an optional message to be written to the server
+  log.
+* `$log.prefix?` is a boolean indicating whether to prefix the log
+  statement with the current user and callstack. Defaults to `true`.
+* `$log.name` is the optional logical name of the log to write to.
+  The logical log name can be mapped to a physical log target file
+  via the Tundra package configuration section `feature/log/target`.
+  If the logical log name cannot be found in this configuration
+  section, the default physical log target is `./logs/server.log`.
+  Defaults to the calling service's package name, if not specified.
 
 ---
 
@@ -13597,15 +13609,24 @@ unmodified.
 
 ### tundra.pipeline:log
 
-Writes the current pipeline to the server log as a minified [JSON]
-string, prefixed with the invoking user, call stack, and message.
+Writes the current pipeline to the server log, or a given named log,
+as a minified [JSON] string, optionally prefixed with the invoking
+user, call stack, and message.
 
 #### Inputs:
 
-* `$log.message` is an optional message to be written to the server
-  log.
 * `$log.level` is an optional logging level used when writing the
   pipeline to the server log.
+* `$log.message` is an optional message to be written to the server
+  log.
+* `$log.prefix?` is a boolean indicating whether to prefix the log
+  statement with the current user and callstack. Defaults to `true`.
+* `$log.name` is the optional logical name of the log to write to.
+  The logical log name can be mapped to a physical log target file
+  via the Tundra package configuration section `feature/log/target`.
+  If the logical log name cannot be found in this configuration
+  section, the default physical log target is `./logs/server.log`.
+  Defaults to the calling service's package name, if not specified.
 
 ---
 
@@ -15220,9 +15241,10 @@ effect.
 
 * Logs the request duration, request method, request and response
   headers, response status, and input and output pipelines in the
-  server log. The log level is set via the Tundra package
-  configuration setting `feature/service/restful/logging`. Configure
-  this to `OFF` to disable logging entirely.
+  logical log `permafrost.tundra.server.invoke.RestServiceProcessor`.
+  The log level is set via the Tundra package configuration setting
+  `feature/service/restful/logging`. Configure this to `OFF` to
+  disable logging entirely.
 
 ---
 

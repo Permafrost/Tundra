@@ -3,21 +3,32 @@
 <Values version="2.0">
   <value name="shared">cHVibGljIHN0YXRpYyB2b2lkIGxvZyhJRGF0YSBwaXBlbGluZSkgdGhyb3dzIFNlcnZpY2VFeGNl
 cHRpb24gewogICAgSURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgog
-ICAgdHJ5IHsKICAgICAgICBTdHJpbmcgbWVzc2FnZSA9IElEYXRhSGVscGVyLmZpcnN0KGN1cnNv
-ciwgU3RyaW5nLmNsYXNzLCAiJGxvZy5tZXNzYWdlIiwgIiRtZXNzYWdlIik7CiAgICAgICAgU3Ry
-aW5nIGxldmVsID0gSURhdGFIZWxwZXIuZmlyc3QoY3Vyc29yLCBTdHJpbmcuY2xhc3MsICIkbG9n
-LmxldmVsIiwgIiRsZXZlbCIpOwogICAgICAgIElEYXRhIGNvbnRleHQgPSBJRGF0YUhlbHBlci5n
-ZXQoY3Vyc29yLCAiJGxvZy5jb250ZXh0IiwgSURhdGEuY2xhc3MpOwoKICAgICAgICBTZXJ2ZXJM
-b2dnZXIubG9nKGxldmVsLCBtZXNzYWdlLCBjb250ZXh0KTsKICAgIH0gZmluYWxseSB7CiAgICAg
-ICAgY3Vyc29yLmRlc3Ryb3koKTsKICAgIH0KfQ==</value>
+ICAgdHJ5IHsKICAgICAgICBMZXZlbCBsZXZlbCA9IElEYXRhSGVscGVyLmZpcnN0KGN1cnNvciwg
+TGV2ZWwuY2xhc3MsICIkbG9nLmxldmVsIiwgIiRsZXZlbCIpOwogICAgICAgIFN0cmluZyBtZXNz
+YWdlID0gSURhdGFIZWxwZXIuZmlyc3QoY3Vyc29yLCBTdHJpbmcuY2xhc3MsICIkbG9nLm1lc3Nh
+Z2UiLCAiJG1lc3NhZ2UiKTsKICAgICAgICBJRGF0YSBjb250ZXh0ID0gSURhdGFIZWxwZXIuZ2V0
+KGN1cnNvciwgIiRsb2cuY29udGV4dCIsIElEYXRhLmNsYXNzKTsKICAgICAgICBib29sZWFuIGFk
+ZFByZWZpeCA9IElEYXRhSGVscGVyLmdldE9yRGVmYXVsdChjdXJzb3IsICIkbG9nLnByZWZpeD8i
+LCBCb29sZWFuLmNsYXNzLCB0cnVlKTsKICAgICAgICBTdHJpbmcgbmFtZSA9IElEYXRhSGVscGVy
+LmdldChjdXJzb3IsICIkbG9nLm5hbWUiLCBTdHJpbmcuY2xhc3MpOwoKICAgICAgICBpZiAobmFt
+ZSA9PSBudWxsKSB7CiAgICAgICAgICAgLy8gaW5mZXIgbG9nIG5hbWUgYXMgdGhlIGludm9raW5n
+IHNlcnZpY2UncyBwYWNrYWdlCiAgICAgICAgICAgUGFja2FnZSBpbnZva2luZ1BhY2thZ2UgPSBQ
+YWNrYWdlSGVscGVyLnNlbGYoKTsKICAgICAgICAgICBpZiAoaW52b2tpbmdQYWNrYWdlICE9IG51
+bGwpIG5hbWUgPSBpbnZva2luZ1BhY2thZ2UuZ2V0TmFtZSgpOwogICAgICAgIH0KCiAgICAgICAg
+U2VydmVyTG9nSGVscGVyLmxvZyhuYW1lLCBsZXZlbCwgbWVzc2FnZSwgY29udGV4dCwgYWRkUHJl
+Zml4KTsKICAgIH0gZmluYWxseSB7CiAgICAgICAgY3Vyc29yLmRlc3Ryb3koKTsKICAgIH0KfQ==
+</value>
   <value name="encodeutf8">true</value>
   <value name="extends"></value>
   <array name="implements" type="value" depth="1">
   </array>
   <array name="imports" type="value" depth="1">
+    <value>com.wm.app.b2b.server.Package</value>
+    <value>org.apache.log4j.Level</value>
     <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.lang.BooleanHelper</value>
-    <value>permafrost.tundra.server.ServerLogger</value>
+    <value>permafrost.tundra.server.PackageHelper</value>
+    <value>permafrost.tundra.server.ServerLogHelper</value>
     <value>permafrost.tundra.server.SystemHelper</value>
   </array>
 </Values>

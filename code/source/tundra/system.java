@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2020-03-06T17:44:47.883
+// -----( CREATED: 2020-09-02T05:23:56.803
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -9,9 +9,12 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import com.wm.app.b2b.server.Package;
+import org.apache.log4j.Level;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.lang.BooleanHelper;
-import permafrost.tundra.server.ServerLogger;
+import permafrost.tundra.server.PackageHelper;
+import permafrost.tundra.server.ServerLogHelper;
 import permafrost.tundra.server.SystemHelper;
 // --- <<IS-END-IMPORTS>> ---
 
@@ -78,11 +81,19 @@ public final class system
 	    IDataCursor cursor = pipeline.getCursor();
 
 	    try {
+	        Level level = IDataHelper.first(cursor, Level.class, "$log.level", "$level");
 	        String message = IDataHelper.first(cursor, String.class, "$log.message", "$message");
-	        String level = IDataHelper.first(cursor, String.class, "$log.level", "$level");
 	        IData context = IDataHelper.get(cursor, "$log.context", IData.class);
+	        boolean addPrefix = IDataHelper.getOrDefault(cursor, "$log.prefix?", Boolean.class, true);
+	        String name = IDataHelper.get(cursor, "$log.name", String.class);
 
-	        ServerLogger.log(level, message, context);
+	        if (name == null) {
+	           // infer log name as the invoking service's package
+	           Package invokingPackage = PackageHelper.self();
+	           if (invokingPackage != null) name = invokingPackage.getName();
+	        }
+
+	        ServerLogHelper.log(name, level, message, context, addPrefix);
 	    } finally {
 	        cursor.destroy();
 	    }

@@ -9,10 +9,12 @@
   <array name="implements" type="value" depth="1">
   </array>
   <array name="imports" type="value" depth="1">
+    <value>com.wm.app.b2b.server.Package</value>
     <value>java.io.IOException</value>
     <value>java.nio.charset.Charset</value>
     <value>java.text.MessageFormat</value>
     <value>java.util.Locale</value>
+    <value>org.apache.log4j.Level</value>
     <value>permafrost.tundra.content.ValidationHelper</value>
     <value>permafrost.tundra.content.ValidationResult</value>
     <value>permafrost.tundra.data.CaseInsensitiveIData</value>
@@ -51,7 +53,8 @@
     <value>permafrost.tundra.lang.ObjectHelper</value>
     <value>permafrost.tundra.lang.Sanitization</value>
     <value>permafrost.tundra.math.IntegerHelper</value>
-    <value>permafrost.tundra.server.ServerLogger</value>
+    <value>permafrost.tundra.server.PackageHelper</value>
+    <value>permafrost.tundra.server.ServerLogHelper</value>
     <value>permafrost.tundra.server.ServiceHelper</value>
     <value>permafrost.tundra.util.regex.PatternHelper</value>
     <value>permafrost.tundra.util.regex.ReplacementHelper</value>

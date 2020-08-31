@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2020-03-06T17:31:17.898
+// -----( CREATED: 2020-09-02T05:25:23.259
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -9,10 +9,12 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import com.wm.app.b2b.server.Package;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.text.MessageFormat;
 import java.util.Locale;
+import org.apache.log4j.Level;
 import permafrost.tundra.content.ValidationHelper;
 import permafrost.tundra.content.ValidationResult;
 import permafrost.tundra.data.CaseInsensitiveIData;
@@ -51,7 +53,8 @@ import permafrost.tundra.lang.ObjectConvertMode;
 import permafrost.tundra.lang.ObjectHelper;
 import permafrost.tundra.lang.Sanitization;
 import permafrost.tundra.math.IntegerHelper;
-import permafrost.tundra.server.ServerLogger;
+import permafrost.tundra.server.PackageHelper;
+import permafrost.tundra.server.ServerLogHelper;
 import permafrost.tundra.server.ServiceHelper;
 import permafrost.tundra.util.regex.PatternHelper;
 import permafrost.tundra.util.regex.ReplacementHelper;
@@ -861,16 +864,26 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
-		// [i] field:0:optional $log.message
 		// [i] field:0:optional $log.level {"Fatal","Error","Warn","Info","Debug","Trace","Off"}
+		// [i] field:0:optional $log.message
+		// [i] field:0:optional $log.prefix? {"true","false"}
+		// [i] field:0:optional $log.name
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
 		    IData document = IDataHelper.get(cursor, "$document", IData.class);
 		    String message = IDataHelper.get(cursor, "$log.message", String.class);
-		    String level = IDataHelper.first(cursor, String.class, "$log.level", "$level");
+		    Level level = IDataHelper.first(cursor, Level.class, "$log.level", "$level");
+		    boolean addPrefix = IDataHelper.removeOrDefault(cursor, "$log.prefix?", Boolean.class, true);
+		    String name = IDataHelper.remove(cursor, "$log.name", String.class);
 
-		    ServerLogger.log(level, message, document);
+		    if (name == null) {
+		       // infer log name as the invoking service's package
+		       Package invokingPackage = PackageHelper.self();
+		       if (invokingPackage != null) name = invokingPackage.getName();
+		    }
+
+		    ServerLogHelper.log(name, level, message, document, addPrefix);
 		} finally {
 		    cursor.destroy();
 		}
