@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2020-05-28T05:35:34.828
+// -----( CREATED: 2020-09-03T05:25:50.632
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -350,7 +350,7 @@ public final class service
 		        } else {
 		            IDataHelper.mergeInto(pipeline, scope);
 		        }
-		        IDataHelper.put(cursor, "$duration", DurationHelper.format(end - start, DurationPattern.NANOSECONDS, DurationPattern.XML));
+		        IDataHelper.put(cursor, "$duration", DurationHelper.format(end - start, DurationPattern.NANOSECONDS, DurationPattern.XML_MILLISECONDS));
 		    }
 		} finally {
 		    if (changeThreadPriority) currentThread.setPriority(currentThreadPriority);

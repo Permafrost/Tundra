@@ -57,6 +57,8 @@
           <value name="field_opt">true</value>
           <array name="field_options" type="value" depth="1">
             <value>xml</value>
+            <value>xml milliseconds</value>
+            <value>xml nanoseconds</value>
             <value>nanoseconds</value>
             <value>milliseconds</value>
             <value>seconds</value>
@@ -72,6 +74,16 @@
               <record javaclass="com.wm.util.Values">
                 <value name="primitiveType">0</value>
                 <value name="lexRep">xml</value>
+                <value name="isList">false</value>
+              </record>
+              <record javaclass="com.wm.util.Values">
+                <value name="primitiveType">0</value>
+                <value name="lexRep">xml milliseconds</value>
+                <value name="isList">false</value>
+              </record>
+              <record javaclass="com.wm.util.Values">
+                <value name="primitiveType">0</value>
+                <value name="lexRep">xml nanoseconds</value>
                 <value name="isList">false</value>
               </record>
               <record javaclass="com.wm.util.Values">
@@ -171,6 +183,8 @@
           <value name="field_opt">true</value>
           <array name="field_options" type="value" depth="1">
             <value>xml</value>
+            <value>xml milliseconds</value>
+            <value>xml nanoseconds</value>
             <value>nanoseconds</value>
             <value>milliseconds</value>
             <value>seconds</value>
@@ -186,6 +200,16 @@
               <record javaclass="com.wm.util.Values">
                 <value name="primitiveType">0</value>
                 <value name="lexRep">xml</value>
+                <value name="isList">false</value>
+              </record>
+              <record javaclass="com.wm.util.Values">
+                <value name="primitiveType">0</value>
+                <value name="lexRep">xml milliseconds</value>
+                <value name="isList">false</value>
+              </record>
+              <record javaclass="com.wm.util.Values">
+                <value name="primitiveType">0</value>
+                <value name="lexRep">xml nanoseconds</value>
                 <value name="isList">false</value>
               </record>
               <record javaclass="com.wm.util.Values">
