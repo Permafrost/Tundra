@@ -91,15 +91,15 @@
                 # log `./logs/server.log`.
                 #
                 # Classes
-                permafrost.tundra.server.content.LoggingContentHandler: tundra.log
-                permafrost.tundra.server.http.handler.Logger: tundra.log
-                permafrost.tundra.server.invoke.RestServiceProcessor: tundra.log
-                permafrost.tundra.tn.delivery.CallableGuaranteedJob: tundra.log
-                permafrost.tundra.tn.route.RoutingRuleHelper: tundra.log
+                #permafrost.tundra.server.content.LoggingContentHandler: tundra.log
+                #permafrost.tundra.server.http.handler.Logger: tundra.log
+                #permafrost.tundra.server.invoke.RestServiceProcessor: tundra.log
+                #permafrost.tundra.tn.delivery.CallableGuaranteedJob: tundra.log
+                #permafrost.tundra.tn.route.RoutingRuleHelper: tundra.log
                 #
                 # Packages
-                Tundra: tundra.log
-                TundraTN: tundra.log
+                #Tundra: tundra.log
+                #TundraTN: tundra.log
             }
         }
         message: {
