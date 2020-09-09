@@ -7183,6 +7183,27 @@ fixed-length hash of arbitrary data.
 
 ---
 
+### tundra.file:equal
+
+Returns whether the given file's equal, by comparing cryptographic
+message digests calculated from each file's contents.
+
+#### Inputs:
+
+* `$file.source` is the name of source file to use, specified as
+  either a relative or absolute file path or `file:` [URI].
+* `$file.target` is the name of target file to use, specified as
+  either a relative or absolute file path or `file:` [URI].
+* `$raise?` is an optional boolean specifying whether to throw an
+  exception if the file's contents are not equal. Defaults to
+  `false`.
+
+#### Outputs:
+
+* `$file.equal?` specifies whether the two file's contents are equal.
+
+---
+
 ### tundra.file:executable
 
 Returns `true` if Integration Server can execute to the given file.

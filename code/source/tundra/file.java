@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2020-06-26T05:44:03.581
+// -----( CREATED: 2020-09-10T05:09:41.617
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -141,6 +141,40 @@ public final class file
 		    ExceptionHelper.raise(ex);
 		} finally {
 		    CloseableHelper.close(stream);
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
+	public static final void equal (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(equal)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $file.source
+		// [i] field:0:required $file.target
+		// [i] field:0:optional $raise? {"false","true"}
+		// [o] field:0:required $file.equal? {"true","false"}
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    String source = IDataHelper.get(cursor, "$file.source", String.class);
+		    String target = IDataHelper.get(cursor, "$file.target", String.class);
+		    boolean raise = IDataHelper.getOrDefault(cursor, "$raise?", Boolean.class, false);
+
+		    boolean equal = FileHelper.equal(source, target, raise);
+
+		    IDataHelper.put(cursor, "$file.equal?", equal, String.class);
+		} catch(IOException ex) {
+		    ExceptionHelper.raise(ex);
+		} catch(NoSuchAlgorithmException ex) {
+		    ExceptionHelper.raise(ex);
+		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
