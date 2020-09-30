@@ -13,7 +13,9 @@
     <value>com.wm.lang.ns.NSService</value>
     <value>java.math.BigDecimal</value>
     <value>java.nio.charset.Charset</value>
+    <value>java.util.Calendar</value>
     <value>java.util.List</value>
+    <value>javax.xml.datatype.Duration</value>
     <value>org.apache.log4j.Level</value>
     <value>permafrost.tundra.collection.CollectionHelper</value>
     <value>permafrost.tundra.data.IDataHelper</value>

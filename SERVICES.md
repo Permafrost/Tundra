@@ -15269,6 +15269,52 @@ effect.
 
 ---
 
+### tundra.service:retry
+
+Invokes the given service synchronously, retrying the invocation
+if it fails.
+
+#### Inputs:
+
+* `$service` is the fully-qualified name of the service to be
+  invoked.
+* `$pipeline` is an optional `IData` document which, if specified,
+  contains the input arguments for the invocation of `$service`. In
+  other words, the invocation is scoped to this `IData` document. If
+  not specified, the invocation is unscoped, and hence the service
+  will operate directly against the pipeline itself.
+* `$retry.limit` is an optional maximum number of retries that will
+  be attempted if the service invocation fails, specified as a non-
+  negative integer. Defaults to `0`.
+* `$retry.wait` is the duration of time to wait between each retry,
+  specified as an XML duration string, such as `PT10S` for 10
+  seconds. Defaults to `PT0S`.
+* `$retry.factor` is an optional factor to use to exponentially
+  increase the time to wait between each subsequent retry. The time
+  to wait for a retry is calculated as:
+
+        ($retry.factor ^ ($retry.count - 1)) * $retry.wait
+
+* `$thread.priority` is an optional new priority to set on the
+  current thread, an integer value between `1` and `10`, where larger
+  values have higher priority and thus are executed in preference to
+  threads with lower priority. The current thread's priority is
+  restored to its original value after the given service is invoked.
+
+#### Outputs:
+
+* `$pipeline` is the output pipeline of the invocation of `$service`.
+  This is only returned if the invocation was scoped by specifying
+  `$pipeline` was specified as an input. If the invocation was not
+  scoped, the outputs of the invocation are merged directly with the
+  pipeline itself.
+* `$duration` is how long the service took to execute specified as an
+  XML duration string.
+* `$retry.count` is the number of retries that were attempted. If the
+  initial invocation of `$service` succeeded, `0` is returned.
+
+---
+
 ### tundra.service:retryable
 
 Registers the current invocation of the calling service to have any

@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2020-09-03T05:25:50.632
+// -----( CREATED: 2020-10-01T05:54:49.454
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -13,7 +13,9 @@ import com.wm.app.b2b.server.ServiceThread;
 import com.wm.lang.ns.NSService;
 import java.math.BigDecimal;
 import java.nio.charset.Charset;
+import java.util.Calendar;
 import java.util.List;
+import javax.xml.datatype.Duration;
 import org.apache.log4j.Level;
 import permafrost.tundra.collection.CollectionHelper;
 import permafrost.tundra.data.IDataHelper;
@@ -490,6 +492,87 @@ public final class service
 		try {
 		    ServiceHelper.restful(pipeline);
 		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
+	public static final void retry (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(retry)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:required $service
+		// [i] record:0:optional $pipeline
+		// [i] field:0:optional $retry.limit
+		// [i] field:0:optional $retry.wait
+		// [i] field:0:optional $retry.factor
+		// [i] field:0:optional $thread.priority
+		// [o] record:0:optional $pipeline
+		// [o] field:0:optional $duration
+		// [o] field:0:optional $retry.count
+		IDataCursor cursor = pipeline.getCursor();
+
+		Thread currentThread = Thread.currentThread();
+		int currentThreadPriority = currentThread.getPriority();
+		boolean changeThreadPriority = false;
+
+		try {
+		    IData scope = IDataHelper.remove(cursor, "$pipeline", IData.class);
+		    boolean scoped = scope != null;
+		    if (!scoped) scope = IDataHelper.clone(pipeline, "$service", "$mode", "$raise?", "$retry.limit", "$retry.wait", "$retry.factor");
+
+		    String service = IDataHelper.get(cursor, "$service", String.class);
+		    int retryLimit = IDataHelper.getOrDefault(cursor, "$retry.limit", Integer.class, 0);
+		    Duration retryWait = IDataHelper.get(cursor, "$retry.wait", Duration.class);
+		    float retryFactor = IDataHelper.getOrDefault(cursor, "$retry.factor", Float.class, 1.0f);
+		    BigDecimal newThreadPriority = IDataHelper.get(cursor, "$thread.priority", BigDecimal.class);
+
+		    if (newThreadPriority != null) {
+		        int priority = ThreadHelper.normalizePriority(newThreadPriority.intValue());
+		        changeThreadPriority = priority != currentThreadPriority;
+		        if (changeThreadPriority) currentThread.setPriority(priority);
+		    }
+
+		    int retryCount = 0;
+		    long retryWaitMilliseconds = retryWait == null ? 0 : retryWait.getTimeInMillis(Calendar.getInstance());
+
+		    long start = System.nanoTime();
+		    while(!Thread.interrupted()) {
+		        IData invokePipeline = IDataHelper.clone(scope);
+		        try {
+		            invokePipeline = ServiceHelper.invoke(service, invokePipeline, true, false, true);
+		            scope = invokePipeline;
+		            break;
+		        } catch(ServiceException ex) {
+		            if (retryCount < retryLimit) {
+		                long wait = retryWaitMilliseconds * Double.valueOf(Math.pow(retryFactor, retryCount - 1)).longValue();
+		                retryCount++;
+		                Thread.sleep(wait);
+		            } else {
+		                throw ex;
+		            }
+		        }
+		    }
+		    long end = System.nanoTime();
+
+		    if (scoped) {
+		        IDataHelper.put(cursor, "$pipeline", scope);
+		    } else {
+		        IDataHelper.mergeInto(pipeline, scope);
+		    }
+		    IDataHelper.put(cursor, "$duration", DurationHelper.format(end - start, DurationPattern.NANOSECONDS, DurationPattern.XML_MILLISECONDS));
+		    IDataHelper.put(cursor, "$retry.count", retryCount, String.class);
+		} catch(InterruptedException ex) {
+		    Thread.currentThread().interrupt();
+		    ExceptionHelper.raiseUnchecked(ex);
+		} finally {
+		    if (changeThreadPriority) currentThread.setPriority(currentThreadPriority);
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
