@@ -2623,7 +2623,7 @@ specification.
     be provided via the `$pipeline` document:
     * `$filename`: the name of the file to be written. This value
       will override the value provided in the destination [URI].
-    * `$mode`: append / write
+    * `$filemode`: append / write / create
 
   * `ftp`: uploads the given content to the FTP server, directory and
     file specified by the destination [URI]. An example FTP [URI] is
