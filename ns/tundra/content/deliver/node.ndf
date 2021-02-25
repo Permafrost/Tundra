@@ -292,13 +292,13 @@ specification.
     be provided via the `$pipeline` document:
     * `$filename`: the name of the file to be written. This value
       will override the value provided in the destination [URI].
-    * `$mode`: append / write
+    * `$filemode`: append / write / create
  
   * `ftp`: uploads the given content to the FTP server, directory and
     file specified by the destination [URI]. An example FTP [URI] is
     as follows:
 
-        ftp://aladdin:opensesame@example.com:21/path/file?append=true&amp;active=true&amp;ascii=true
+        ftp://aladdin:opensesame@example.com:21/path/file?append=true&amp;active=true&amp;ascii=true&amp;rename=false
 
     The following additional override options can be provided via
     the `$pipeline` document:
@@ -317,6 +317,12 @@ specification.
     * `$ascii`: a boolean which when `true` indicates that the file
       transfer should be made in ascii mode. Defaults to `false`
       (binary mode).
+    * `$rename` is an optional boolean which if `true` will first 
+      write the content to the given file name with `.tmp` suffix 
+      and then rename it to its specified name once written.
+      Defaults to `false`, where the content is written directly to
+      the file name specified in the destination [URI]. Note if the
+      append option is `true`, this option has no effect.
     * `$timeout`: an optional [XML] duration string which specifies
       how long the client waits for a response from the server
       before timing out and terminating the request with an error.
@@ -498,6 +504,7 @@ specification.
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template">tundra_content_deliver</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>

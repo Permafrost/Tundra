@@ -2589,31 +2589,6 @@ specification.
 
 #### Inputs:
 
-* `$content` is a string, byte array, input stream, `IData` document,
-  or [org.w3c.dom.Node] object containing data to be delivered to the
-  `$destination` [URI].
-
-  If `$content` is provided as an `IData` document, it will be
-  serialized using an emitter determined in order of precedence by
-  `$schema` and `$content.type`. If `$schema` is specified, the type
-  of reference determines the emitter to use: a document reference
-  will use the [XML] emitter, a flat file schema reference will use
-  the Flat File emitter. If `$schema` is not specified,
-  `$content.type` is used to determine the most appropriate emitter
-  for the MIME media type in question. If neither `$schema`, nor
-  `$content.type` are specified,
-  `$content` is serialized as [XML] by default.
-* `$content.type` is an optional MIME media type that describes the
-  format of the given content.
-* `$namespace` is an optional list of namespace prefixes and the URIs
-  they map to, used when emitting and `IData` document as [XML]
-  content with elements in one or more namespaces.
-* `$schema` is an optional fully-qualified name of the document
-  reference or flat file schema used to serialize `$content` when
-  provided as an `IData` document.
-* `$encoding` is an optional character set to use when `$content` is
-  provided as a string or `IData` document which is used to encode
-  the text data for delivery. Defaults to [UTF-8].
 * `$destination` is a [URI] identifying the location where the given
   `$content` should be delivered. If not specified, no delivery will
   be attempted. Supports the following delivery protocols / [URI]
@@ -2629,7 +2604,7 @@ specification.
     file specified by the destination [URI]. An example FTP [URI] is
     as follows:
 
-        ftp://aladdin:opensesame@example.com:21/path/file?append=true&active=true&ascii=true
+        ftp://aladdin:opensesame@example.com:21/path/file?append=true&active=true&ascii=true&rename=false
 
     The following additional override options can be provided via
     the `$pipeline` document:
@@ -2648,6 +2623,12 @@ specification.
     * `$ascii`: a boolean which when `true` indicates that the file
       transfer should be made in ascii mode. Defaults to `false`
       (binary mode).
+    * `$rename` is an optional boolean which if `true` will first
+      write the content to the given file name with `.tmp` suffix
+      and then rename it to its specified name once written.
+      Defaults to `false`, where the content is written directly to
+      the file name specified in the destination [URI]. Note if the
+      append option is `true`, this option has no effect.
     * `$timeout`: an optional [XML] duration string which specifies
       how long the client waits for a response from the server
       before timing out and terminating the request with an error.
@@ -2775,6 +2756,31 @@ specification.
       the file name specified in the destination [URI]. Note if the
       append option is `true`, this option has no effect.
 
+* `$content` is a string, byte array, input stream, `IData` document,
+  or [org.w3c.dom.Node] object containing data to be delivered to the
+  `$destination` [URI].
+
+  If `$content` is provided as an `IData` document, it will be
+  serialized using an emitter determined in order of precedence by
+  `$schema` and `$content.type`. If `$schema` is specified, the type
+  of reference determines the emitter to use: a document reference
+  will use the [XML] emitter, a flat file schema reference will use
+  the Flat File emitter. If `$schema` is not specified,
+  `$content.type` is used to determine the most appropriate emitter
+  for the MIME media type in question. If neither `$schema`, nor
+  `$content.type` are specified,
+  `$content` is serialized as [XML] by default.
+* `$content.type` is an optional MIME media type that describes the
+  format of the given content.
+* `$namespace` is an optional list of namespace prefixes and the URIs
+  they map to, used when emitting and `IData` document as [XML]
+  content with elements in one or more namespaces.
+* `$schema` is an optional fully-qualified name of the document
+  reference or flat file schema used to serialize `$content` when
+  provided as an `IData` document.
+* `$encoding` is an optional character set to use when `$content` is
+  provided as a string or `IData` document which is used to encode
+  the text data for delivery. Defaults to [UTF-8].
 * `$pipeline` is an optional `IData` document for providing arbitrary
   variables to the delivery implementation service. Variables
   provided will take precedence and override their corresponding
