@@ -2796,6 +2796,10 @@ specification.
   delivery (for example, the HTTP response body).
 * `$response.type` is an optional MIME media type describing the type
   of `$response` returned.
+* `$response.context` is an optional document containing additional
+  context for the returned response. For example, an HTTP delivery
+  could return the response status and headers to provide additional
+  context to the delivery result.
 
 ---
 
@@ -5483,6 +5487,10 @@ the `tundra.schema.content.deliver:handler` specification.
   delivery (for example, the HTTP response body).
 * `$response.type` is an optional MIME media type describing the type
   of `$response` returned.
+* `$response.context` is an optional document containing additional
+  context for the returned response. For example, an HTTP delivery
+  could return the response status and headers to provide additional
+  context to the delivery result.
 
 ---
 
@@ -14606,6 +14614,10 @@ Content delivery protocol handling services used by
   delivery (for example, the HTTP response body).
 * `$response.type` is an optional MIME media type describing the type
   of `$response` returned.
+* `$response.context` is an optional document containing additional
+  context for the returned response. For example, an HTTP delivery
+  could return the response status and headers to provide additional
+  context to the delivery result.
 
 ---
 

@@ -265,6 +265,25 @@
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
         </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$response.context</value>
+          <value name="field_type">record</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+          <array name="rec_fields" type="record" depth="1">
+          </array>
+          <value name="modifiable">true</value>
+        </record>
       </array>
       <value name="modifiable">true</value>
     </record>
@@ -490,6 +509,10 @@ specification.
   delivery (for example, the HTTP response body).
 * `$response.type` is an optional MIME media type describing the type
   of `$response` returned.
+* `$response.context` is an optional document containing additional
+  context for the returned response. For example, an HTTP delivery
+  could return the response status and headers to provide additional
+  context to the delivery result.
 
 [org.w3c.dom.Node]: &lt;http://docs.oracle.com/javase/6/docs/api/org/w3c/dom/Node.html&gt;
 [JMS]: &lt;http://en.wikipedia.org/wiki/Java_Message_Service&gt;
