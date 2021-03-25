@@ -16520,9 +16520,14 @@ locations, and memory usage.
   directory locations, and memory usage.
   * `version` is the Integration Server software version number for
     the Integration Server on which this service is executed.
+  * `localhost` is an `IData` document containing the localhost
+    address:
+    * `domain` is the localhost's domain name.
+    * `host` is the localhost's host name.
+    * `ip` is the localhost's IP address.
   * `environment` is an `IData` document containing all the
-    environment variables defined on the system on which this service
-    is executed.
+    environment variables defined on the system on which this
+    service is executed.
   * `property` is an `IData` document containing all the Java
     configuration properties defined for the JVM process in which
     this service is executed.
@@ -16531,14 +16536,32 @@ locations, and memory usage.
   * `directory` is an `IData` document containing all the well-known
     directory locations defined for the Integration Server on
     which this service is executed.
-  * `memory` is an `IData` document containing the memory usage of the
-    JVM process in which this service is executed:
+  * `memory` is an `IData` document containing the memory usage of
+    the JVM process in which this service is executed:
     * `used` is the number of bytes of memory allocated to the JVM
       heap that are in use.
     * `free` is the number of bytes of memory allocated to the JVM
       heap that are not in use.
     * `total` is the total number of bytes of memory allocated to
       the JVM heap.
+  * `reference` is an `IData` document which provides a unique
+    identity and the current datetime, which is useful for common
+    variable substitution scenarios.
+    * `uuid` is a newly generated random UUID.
+    * `datetime` is an `IData` document representing the current
+      datetime in either the local or UTC timezone.
+      * `local` is a special `IData` document which uses the
+        requested key as the datetime pattern to use to format the
+        current datetime in the local timezone. For example, if you
+        try to map the value for a key named `yyyy/MM/dd`, the value
+        returned will be the current datetime in the local timezone
+        formatted using the pattern `yyyy/MM/dd`.
+      * `utc` is a special `IData` document which uses the
+        requested key as the datetime pattern to use to format the
+        current datetime in the UTC timezone. For example, if you
+        try to map the value for a key named `yyyy/MM/dd`, the value
+        returned will be the current datetime in the UTC timezone
+        formatted using the pattern `yyyy/MM/dd`.
 
 ---
 
