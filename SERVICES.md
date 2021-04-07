@@ -13770,25 +13770,34 @@ the pipeline.
 
 ### tundra.pipeline:sanitize
 
-Sanitizes the pipeline by dropping all undeclared top-level variables
-when compared to either the input or output signature of the current
-service.
+Sanitizes the pipeline by dropping all undeclared inputs or
+outputs when compared to either the input or output signature
+of the current service respectively.
 
-As the first step in a flow service, this service protects against
-undeclared input variables that exist in the pipeline from the caller
-that could inadvertently affect current service's logic.
+When sanitizing against the input signature of a flow service,
+as the first step of that service, this service protects against
+undeclared input variables that exist in the pipeline from the
+caller that could inadvertently affect current service's logic,
+or could present a security risk. For example, REST services that
+accept JSON documents sent by clients that are then parsed by
+Integration Server automatically and provided as input variables
+can use this service to remove all unexpected inputs from the
+pipeline as a security measure when dealing with untrusted clients.
 
-For example, REST services that accept JSON documents sent by clients
-that are then parsed by Integration Server automatically and provided
-as input variables can use this service to remove all unexpected
-inputs from the pipeline as a security measure when dealing with
-untrusted clients.
+When sanitizing against the output signature of a flow service,
+as the last step of that service, this service automatically
+removes all undeclared outputs from the pipeline, saving the need
+to respecify the outputs such as would be required when using
+`WmPublic/pub.flow:clearPipeline` to achieve the same outcome.
 
 #### Inputs:
 
 * `$service.signature.direction` determines whether to sanitize
   the pipeline against the input or output signature of the current
   service.
+* `$pipeline.sanitize.recurse?` is an optional boolean which when
+  `true` will also recursively sanitize all child `IData` documents
+  and `IData[]` document lists. Defaults to `false`.
 
 ---
 

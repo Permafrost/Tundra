@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2020-09-02T05:24:49.130
+// -----( CREATED: 2021-04-08 05:08:57 EST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -105,7 +105,7 @@ public final class pipeline
 		// @sigtype java 3.5
 		// [i] field:0:required $key.source
 		// [i] field:0:required $key.target
-		// [i] field:0:optional $key.literal? {"false","true"}
+		// [i] field:0:optional $key.literal? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
@@ -153,7 +153,7 @@ public final class pipeline
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $key
-		// [i] field:0:optional $key.literal? {"false","true"}
+		// [i] field:0:optional $key.literal? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
@@ -177,9 +177,9 @@ public final class pipeline
 		// --- <<IS-START(emit)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional $content.class {"xml","json","yaml"}
+		// [i] field:0:optional $content.class {&quot;xml&quot;,&quot;json&quot;,&quot;yaml&quot;}
 		// [i] field:0:optional $content.encoding
-		// [i] field:0:optional $content.mode {"stream","bytes","string"}
+		// [i] field:0:optional $content.mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -245,7 +245,7 @@ public final class pipeline
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:1:optional $keys
-		// [i] field:0:optional $nulls? {"false","true"}
+		// [i] field:0:optional $nulls? {&quot;false&quot;,&quot;true&quot;}
 		// [o] object:1:optional $values
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -273,7 +273,7 @@ public final class pipeline
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $key
-		// [i] field:0:optional $key.literal? {"false","true"}
+		// [i] field:0:optional $key.literal? {&quot;false&quot;,&quot;true&quot;}
 		// [i] object:0:optional $default.object
 		// [i] field:0:optional $default.string
 		// [o] object:0:optional $value
@@ -371,9 +371,9 @@ public final class pipeline
 		// --- <<IS-START(log)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional $log.level {"Fatal","Error","Warn","Info","Debug","Trace","Off"}
+		// [i] field:0:optional $log.level {&quot;Fatal&quot;,&quot;Error&quot;,&quot;Warn&quot;,&quot;Info&quot;,&quot;Debug&quot;,&quot;Trace&quot;,&quot;Off&quot;}
 		// [i] field:0:optional $log.message
-		// [i] field:0:optional $log.prefix? {"true","false"}
+		// [i] field:0:optional $log.prefix? {&quot;true&quot;,&quot;false&quot;}
 		// [i] field:0:optional $log.name
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -451,7 +451,7 @@ public final class pipeline
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:0:optional $content
-		// [i] field:0:optional $content.class {"xml","json","yaml"}
+		// [i] field:0:optional $content.class {&quot;xml&quot;,&quot;json&quot;,&quot;yaml&quot;}
 		// [i] field:0:optional $content.encoding
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -488,7 +488,7 @@ public final class pipeline
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $key
-		// [i] field:0:optional $key.literal? {"false","true"}
+		// [i] field:0:optional $key.literal? {&quot;false&quot;,&quot;true&quot;}
 		// [i] object:0:optional $value
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -516,7 +516,7 @@ public final class pipeline
 		// @sigtype java 3.5
 		// [i] field:0:required $key.source
 		// [i] field:0:required $key.target
-		// [i] field:0:optional $key.literal? {"false","true"}
+		// [i] field:0:optional $key.literal? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
@@ -541,12 +541,14 @@ public final class pipeline
 		// --- <<IS-START(sanitize)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:required $service.signature.direction {"input","output"}
+		// [i] field:0:required $service.signature.direction {&quot;input&quot;,&quot;output&quot;}
+		// [i] field:0:optional $pipeline.sanitize.recurse? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
 		    InputOutputSignature direction = IDataHelper.remove(cursor, "$service.signature.direction", InputOutputSignature.class);
-		    PipelineHelper.sanitize(pipeline, direction);
+		    boolean recurse = IDataHelper.removeOrDefault(cursor, "$pipeline.sanitize.recurse?", Boolean.class, false);
+		    PipelineHelper.sanitize(pipeline, direction, recurse);
 		} finally {
 		    cursor.destroy();
 		}
@@ -643,8 +645,8 @@ public final class pipeline
 		// --- <<IS-START(validate)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:required $service.signature.direction {"input","output"}
-		// [i] field:0:optional $validation.raise? {"false","true"}
+		// [i] field:0:required $service.signature.direction {&quot;input&quot;,&quot;output&quot;}
+		// [i] field:0:optional $validation.raise? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:required $validation.result?
 		// [o] field:0:optional $validation.message
 		// [o] record:1:optional $validation.errors

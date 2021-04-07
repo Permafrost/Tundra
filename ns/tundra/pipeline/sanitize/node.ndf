@@ -79,6 +79,38 @@
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
         </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_usereditable">false</value>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$pipeline.sanitize.recurse?</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <array name="field_options" type="value" depth="1">
+            <value>false</value>
+            <value>true</value>
+          </array>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">boolean</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
       </array>
       <value name="modifiable">true</value>
     </record>
@@ -97,31 +129,41 @@
   </record>
   <value name="node_comment">### tundra.pipeline:sanitize
 
-Sanitizes the pipeline by dropping all undeclared top-level variables
-when compared to either the input or output signature of the current
-service.
+Sanitizes the pipeline by dropping all undeclared inputs or
+outputs when compared to either the input or output signature 
+of the current service respectively.
 
-As the first step in a flow service, this service protects against
-undeclared input variables that exist in the pipeline from the caller
-that could inadvertently affect current service's logic. 
+When sanitizing against the input signature of a flow service,
+as the first step of that service, this service protects against
+undeclared input variables that exist in the pipeline from the 
+caller that could inadvertently affect current service's logic, 
+or could present a security risk. For example, REST services that
+accept JSON documents sent by clients that are then parsed by
+Integration Server automatically and provided as input variables
+can use this service to remove all unexpected inputs from the
+pipeline as a security measure when dealing with untrusted clients.
 
-For example, REST services that accept JSON documents sent by clients
-that are then parsed by Integration Server automatically and provided
-as input variables can use this service to remove all unexpected
-inputs from the pipeline as a security measure when dealing with
-untrusted clients.
+When sanitizing against the output signature of a flow service, 
+as the last step of that service, this service automatically 
+removes all undeclared outputs from the pipeline, saving the need
+to respecify the outputs such as would be required when using 
+`WmPublic/pub.flow:clearPipeline` to achieve the same outcome.
 
 #### Inputs:
 
 * `$service.signature.direction` determines whether to sanitize
   the pipeline against the input or output signature of the current
   service.
+* `$pipeline.sanitize.recurse?` is an optional boolean which when 
+  `true` will also recursively sanitize all child `IData` documents
+  and `IData[]` document lists. Defaults to `false`.
 </value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template">tundra_pipeline_sanitize</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
