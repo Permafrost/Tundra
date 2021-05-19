@@ -2527,51 +2527,55 @@ emitting or serializing the amended content.
 
 * `$content` is a string, byte array, or input stream containing the
   content to be amended.
-* `$amendments` is an `IData` document list containing all the edits to be
-  made to the given `$content`.
-  * `key` is a fully-qualified (for example, `a/b/c[0]`) key identifying
-    the value in the parsed `$content` to be edited.
-  * `value` is the value to be assigned to the item identified by key,
-    and can include percent-delimited variable substitution strings
-    which will be substituted prior to being inserted into the parsed
-    `$content`.
-  * `action` is an optional choice of `merge`, `create`, `update`, or `delete`.
-    Defaults to `merge` if not specified.
+* `$amendments` is an `IData` document list containing all the edits
+  to be made to the given `$content`.
+  * `key` is a fully-qualified key identifying the value in the
+    parsed `$content` to be edited.
+  * `value` is the value to be assigned to the item identified by
+    key, and can include percent-delimited variable substitution
+    strings which will be substituted prior to being inserted into
+    the parsed `$content`.
+  * `action` is an optional choice of merge, create, update, or
+    delete. Defaults to merge if not specified.
     * `merge` will create the key and associate it with the given
       value if the key does not already exist, or update the the
       associated value if the key already exists.
-    * `create` will only create the key and associate it with the given
-      value if the key does not already exist.
+    * `create` will only create the key and associate it with the
+      given value if the key does not already exist.
     * `update` will only update the associated value if the key
       already exists.
     * `delete` will remove the key and previously associated value
       from the document. No value is required to be specified when
       using this action.
   * `condition` is an optional `Tundra/tundra.condition:evaluate`
-    conditional statement, which is evaluated against the pipeline and
-    only if the condition evaluates to `true` will the associated amended
-    value be applied. If not specified, the amended value will always be
-    applied.
-* `$content.type` is the MIME media type that describes the format of the
-  given `$content`.
-* `$namespace` is a list of namespace prefixes and the URIs they map to,
-  used when parsing and emitting [XML] content with elements in one or
-  more namespaces.
-* `$schema` is the fully-qualified name of the document reference or flat
-  file schema to use when parsing `$content`.
-* `$encoding.input` is an optional character set used to decode the text
-  data if `$content` is provided as a byte array or input stream.
-  Defaults to [UTF-8].
-* `$encoding.output` is an optional character set used to encode the
-  amended text data if `$mode.output` is a byte array or input stream.
-  Defaults to [UTF-8].
-* `$mode.output` is an optional choice of stream, bytes, or string which
-  specifies the type of object `$content` is returned as. Defaults to
-  stream.
+    conditional statement, which is evaluated against the pipeline
+    and only if the condition evaluates to true will the associated
+    amended value be applied. If not specified, the amended value
+    will always be applied.
+* `$content.type` is the MIME media type that describes the format
+  of the given `$content`.
+* `$content.encoding.input` is an optional character set used to
+  decode the text data if `$content` is provided as a byte array or
+  input stream. Defaults to [UTF-8].
+* `$content.encoding.output` is an optional character set used to
+  encode the amended text data if `$content.mode.output` is a byte
+  array or input stream. Defaults to [UTF-8].
+* `$content.schema` is the fully-qualified name of the document
+  reference or flat file schema to use when parsing `$content`.
+* `$content.namespace` is a list of namespace prefixes and the URIs
+  they map to, used when parsing and emitting [XML] content with
+  elements in one or more namespaces.
+* `$content.validate?` is an optional boolean which when `true` will
+  validate the document content against the given `$content.schema`,
+  and throw an exception if the content is invalid. Defaults to
+  `false`.
+* `$content.mode.output` is an optional choice of stream, bytes, or
+  string which specifies the type of object `$content` is returned
+  as. Defaults to stream.
 
 #### Outputs:
 
-* `$content` is the resulting edited content.
+* `$content` is the resulting amended content.
 
 ---
 
