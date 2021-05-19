@@ -8520,48 +8520,50 @@ serialized content.
 
 * `$documents` is a list of `IData` documents to be serialized as a
   string, byte array, or input stream.
-* `$content.types` is a list of MIME media types with the same number
-  of items as `$documents`, where `$content.types[n]` describes the
-  format of the resulting serialized `$document[n]`. Use this input
-  argument when `$documents` contains unlike formats (for example, a
-  mixture of [XML] and [JSON] MIME types).
-* `$content.type` is the MIME media type that describes the format of
-  all items in the resulting list of serialized content. Use this
-  input argument when `$documents` contains like formats (for example,
-  when all items adhere to the exact same [XML] MIME type).
-* `$namespaces` is a list of namespace prefixes and the URIs they map
-  to, used when emitting [XML] content with elements in one or more
-  namespaces. Use this input argument when `$documents` contains unlike
-  formats (for example, a mixture of [XML] formats that use different
-  namespaces).
-* `$namespace` is a list of namespace prefixes and the URIs they map
-  to, used when emitting [XML] content with elements in one or more
-  namespaces. Use this input argument when `$documents` contains like
-  formats (for example, when all items adhere to the exact same [XML]
-  MIME type using the same namespaces).
-* `$schemas` is an optional input list with the same number of items as
-  `$documents` of document reference or flat file schemas, where
-  `$schemas[n]` is used to serialize `$contents[n]`. Use this input
-  argument when `$documents` contains unlike formats (for example, a
-  mixture of Flat File and [XML] formats).
-* `$schema` is an optional input of the document reference or flat
-  file schema to use to serialize all items in `$documents.` Use this
-  input argument when `$documents` contains like formats (for example,
-  when all items adhere to the exact same [XML] schema).
-* `$encoding` is an optional character set to use when the `$mode`
-  selected is bytes or stream. Defaults to [UTF-8].
-* `$validate?` is an optional boolean flag which when `true` will
-  validate each document's content against the given `$schema`, and
-  throw an exception if the content is invalid. Defaults to `false`.
-* `$mode` is an optional choice of stream, bytes, or string which
-  determines the type of object the documents are serialized to.
+* `$content.type` is the MIME media type that describes the format
+  of all items in the resulting list of serialized content. Use this
+  input argument when `$documents` contains like formats (for
+  example, when all items adhere to the exact same [XML] MIME type).
+* `$content.types` is a list of MIME media types with the same
+  number of items as `$documents`, where `$content.types[n]`
+  describes the format of the resulting serialized `$document[n]`.
+  Use this input argument when `$documents` contains unlike formats
+  (for example, a mixture of [XML] and [JSON] MIME types).
+* `$content.encoding` is an optional character set to use when the
+  `$content.mode` selected is bytes or stream. Defaults to [UTF-8].
+* `$content.schema` is an optional input of the document reference
+  or flat file schema to use to serialize all items in $documents.
+  Use this input argument when $documents contains like formats (for
+  example, when all items adhere to the exact same [XML] schema).
+* `$content.schemas` is an optional input list with the same number
+  of items as `$documents` of document reference or flat file
+  schemas, where `$content.schemas[n]` is used to serialize
+  `$contents[n]`. Use this input argument when `$documents` contains
+  unlike formats (for example, a mixture of Flat File and [XML]
+  formats).
+* `$content.namespace` is a list of namespace prefixes and the URIs
+  they map to, used when emitting [XML] content with elements in one
+  or more namespaces. Use this input argument when `$documents`
+  contains like formats (for example, when all items adhere to the
+  exact same [XML] MIME type using the same namespaces).
+* `$content.namespaces` is a list of namespace prefixes and the URIs
+  they map to, used when emitting [XML] content with elements in one
+  or more namespaces. Use this input argument when `$documents`
+  contains unlike formats (for example, a mixture of [XML] formats
+  that use different namespaces).
+* `$content.validate?` is an optional boolean flag which when `true`
+  will validate each `$document[n]` against `$content.schemas[n]` if
+  specified, or `$content.schema` if specified, and throw an
+  exception if the content is invalid. Defaults to `false`.
+* `$content.mode` is an optional choice of stream, bytes, or string
+  which determines the type of object the documents are serialized
+  to.
 
 #### Outputs:
 
 * `$contents` is a list of strings, byte arrays, or input streams,
-  depending on the `$mode` selected, where each item is the serialized
-  version of the like-indexed document. In other words, `$contents[n]`
-  is the serialized version of `$documents[n]`.
+  depending on the `$content.mode` selected, where `$contents[n]` is
+  the serialized `$document[n]` content.
 
 ---
 

@@ -7,6 +7,7 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -20,6 +21,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$documents</value>
           <value name="field_type">record</value>
           <value name="field_dim">1</value>
@@ -30,33 +32,7 @@
           <value name="is_soap_array_encoding_used">false</value>
           <array name="rec_fields" type="record" depth="1">
           </array>
-        </record>
-        <record javaclass="com.wm.util.Values">
-          <value name="node_type">record</value>
-          <value name="node_comment"></value>
-          <record name="node_hints" javaclass="com.wm.util.Values">
-            <value name="field_largerEditor">false</value>
-            <value name="field_password">false</value>
-          </record>
-          <value name="field_name">$content.types</value>
-          <value name="field_type">string</value>
-          <value name="field_dim">1</value>
-          <value name="field_opt">true</value>
-          <record name="field_content_type" javaclass="com.wm.util.Values">
-            <value name="contentType">1</value>
-            <value name="internalType">reference</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-            <array name="targetNames" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">string</value>
-              </record>
-            </array>
-          </record>
-          <value name="nillable">true</value>
-          <value name="form_qualified">false</value>
-          <value name="is_global">false</value>
-          <value name="is_soap_array_encoding_used">false</value>
+          <value name="modifiable">true</value>
         </record>
         <record javaclass="com.wm.util.Values">
           <value name="node_type">unknown</value>
@@ -66,6 +42,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$content.type</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
@@ -92,42 +69,8 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$namespaces</value>
-          <value name="field_type">record</value>
-          <value name="field_dim">1</value>
-          <value name="field_opt">true</value>
-          <value name="nillable">true</value>
-          <value name="form_qualified">false</value>
-          <value name="is_global">false</value>
-          <value name="is_soap_array_encoding_used">false</value>
-          <array name="rec_fields" type="record" depth="1">
-          </array>
-        </record>
-        <record javaclass="com.wm.util.Values">
-          <value name="node_type">record</value>
-          <value name="node_comment"></value>
-          <record name="node_hints" javaclass="com.wm.util.Values">
-            <value name="field_largerEditor">false</value>
-            <value name="field_password">false</value>
-          </record>
-          <value name="field_name">$namespace</value>
-          <value name="field_type">record</value>
-          <value name="field_dim">0</value>
-          <value name="field_opt">true</value>
-          <value name="nillable">true</value>
-          <value name="form_qualified">false</value>
-          <value name="is_global">false</value>
-          <array name="rec_fields" type="record" depth="1">
-          </array>
-        </record>
-        <record javaclass="com.wm.util.Values">
-          <value name="node_type">record</value>
-          <value name="node_comment"></value>
-          <record name="node_hints" javaclass="com.wm.util.Values">
-            <value name="field_largerEditor">false</value>
-            <value name="field_password">false</value>
-          </record>
-          <value name="field_name">$schemas</value>
+          <value name="is_public">false</value>
+          <value name="field_name">$content.types</value>
           <value name="field_type">string</value>
           <value name="field_dim">1</value>
           <value name="field_opt">true</value>
@@ -151,14 +94,17 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
+            <value name="field_usereditable">true</value>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$schema</value>
+          <value name="is_public">false</value>
+          <value name="field_name">$content.encoding</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
+          <array name="field_options" type="value" depth="1">
+          </array>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <value name="contentType">1</value>
             <value name="internalType">reference</value>
@@ -178,13 +124,43 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
+            <value name="field_usereditable">true</value>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$encoding</value>
+          <value name="is_public">false</value>
+          <value name="field_name">$content.schema</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <array name="field_options" type="value" depth="1">
+          </array>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">string</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$content.schemas</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">1</value>
           <value name="field_opt">true</value>
           <record name="field_content_type" javaclass="com.wm.util.Values">
             <value name="contentType">1</value>
@@ -200,6 +176,46 @@
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
+          <value name="is_soap_array_encoding_used">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$content.namespace</value>
+          <value name="field_type">record</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+          <array name="rec_fields" type="record" depth="1">
+          </array>
+          <value name="modifiable">true</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$content.namespaces</value>
+          <value name="field_type">record</value>
+          <value name="field_dim">1</value>
+          <value name="field_opt">true</value>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+          <value name="is_soap_array_encoding_used">false</value>
+          <array name="rec_fields" type="record" depth="1">
+          </array>
+          <value name="modifiable">true</value>
         </record>
         <record javaclass="com.wm.util.Values">
           <value name="node_type">record</value>
@@ -209,7 +225,8 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$validate?</value>
+          <value name="is_public">false</value>
+          <value name="field_name">$content.validate?</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -240,7 +257,8 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$mode</value>
+          <value name="is_public">false</value>
+          <value name="field_name">$content.mode</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -304,9 +322,11 @@
           <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -320,6 +340,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$contents</value>
           <value name="field_type">object</value>
           <value name="field_dim">1</value>
@@ -330,64 +351,68 @@
           <value name="is_soap_array_encoding_used">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">### tundra.list.content:emit
 
-Emits (serializes) each item in the given IData[] document list 
+Emits (serializes) each item in the given `IData[]` document list 
 to a string, byte array, or input stream, resulting in a list of 
 serialized content.
 
 #### Inputs:
 
-* $documents is a list of IData documents to be serialized as a 
+* `$documents` is a list of `IData` documents to be serialized as a 
   string, byte array, or input stream.
-* $content.types is a list of MIME media types with the same number 
-  of items as $documents, where $content.types[n] describes the 
-  format of the resulting serialized $document[n]. Use this input 
-  argument when $documents contains unlike formats (for example, a 
-  mixture of [XML] and [JSON] MIME types).
-* $content.type is the MIME media type that describes the format of 
-  all items in the resulting list of serialized content. Use this 
-  input argument when $documents contains like formats (for example, 
-  when all items adhere to the exact same [XML] MIME type).
-* $namespaces is a list of namespace prefixes and the URIs they map 
-  to, used when emitting [XML] content with elements in one or more
-  namespaces. Use this input argument when $documents contains unlike
-  formats (for example, a mixture of [XML] formats that use different
-  namespaces).
-* $namespace is a list of namespace prefixes and the URIs they map 
-  to, used when emitting [XML] content with elements in one or more
-  namespaces. Use this input argument when $documents contains like
-  formats (for example, when all items adhere to the exact same [XML]
-  MIME type using the same namespaces).
-* $schemas is an optional input list with the same number of items as
-  $documents of document reference or flat file schemas, where 
-  $schemas[n] is used to serialize $contents[n]. Use this input 
-  argument when $documents contains unlike formats (for example, a 
-  mixture of Flat File and [XML] formats).
-* $schema is an optional input of the document reference or flat 
-  file schema to use to serialize all items in $documents. Use this 
-  input argument when $documents contains like formats (for example,
-  when all items adhere to the exact same [XML] schema).
-* $encoding is an optional character set to use when the $mode
-  selected is bytes or stream. Defaults to [UTF-8].
-* $validate? is an optional boolean flag which when true will 
-  validate each document's content against the given $schema, and 
-  throw an exception if the content is invalid. Defaults to false.
-* $mode is an optional choice of stream, bytes, or string which
-  determines the type of object the documents are serialized to.
+* `$content.type` is the MIME media type that describes the format 
+  of all items in the resulting list of serialized content. Use this 
+  input argument when `$documents` contains like formats (for 
+  example, when all items adhere to the exact same [XML] MIME type).
+* `$content.types` is a list of MIME media types with the same 
+  number of items as `$documents`, where `$content.types[n]` 
+  describes the format of the resulting serialized `$document[n]`. 
+  Use this input argument when `$documents` contains unlike formats 
+  (for example, a mixture of [XML] and [JSON] MIME types).
+* `$content.encoding` is an optional character set to use when the 
+  `$content.mode` selected is bytes or stream. Defaults to [UTF-8].
+* `$content.schema` is an optional input of the document reference 
+  or flat file schema to use to serialize all items in $documents. 
+  Use this input argument when $documents contains like formats (for 
+  example, when all items adhere to the exact same [XML] schema).
+* `$content.schemas` is an optional input list with the same number 
+  of items as `$documents` of document reference or flat file 
+  schemas, where `$content.schemas[n]` is used to serialize 
+  `$contents[n]`. Use this input argument when `$documents` contains 
+  unlike formats (for example, a mixture of Flat File and [XML] 
+  formats).
+* `$content.namespace` is a list of namespace prefixes and the URIs 
+  they map to, used when emitting [XML] content with elements in one 
+  or more namespaces. Use this input argument when `$documents`
+  contains like formats (for example, when all items adhere to the 
+  exact same [XML] MIME type using the same namespaces).
+* `$content.namespaces` is a list of namespace prefixes and the URIs 
+  they map to, used when emitting [XML] content with elements in one 
+  or more namespaces. Use this input argument when `$documents`
+  contains unlike formats (for example, a mixture of [XML] formats 
+  that use different namespaces).
+* `$content.validate?` is an optional boolean flag which when `true`
+  will validate each `$document[n]` against `$content.schemas[n]` if
+  specified, or `$content.schema` if specified, and throw an 
+  exception if the content is invalid. Defaults to `false`.
+* `$content.mode` is an optional choice of stream, bytes, or string 
+  which determines the type of object the documents are serialized 
+  to.
 
 #### Outputs:
 
-* $contents is a list of strings, byte arrays, or input streams,
-  depending on the $mode selected, where each item is the serialized
-  version of the like-indexed document. In other words, $contents[n]
-  is the serialized version of $documents[n].
+* `$contents` is a list of strings, byte arrays, or input streams,
+  depending on the `$content.mode` selected, where `$contents[n]` is 
+  the serialized `$document[n]` content.
 
 [JSON]: &lt;http://www.json.org/&gt;
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;
-[XML]: &lt;http://www.w3.org/XML/&gt;</value>
+[XML]: &lt;http://www.w3.org/XML/&gt;
+</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
@@ -404,10 +429,16 @@ serialized content.
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
 </Values>
