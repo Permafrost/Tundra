@@ -41,6 +41,25 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
+          <value name="field_name">$document.namespace</value>
+          <value name="field_type">record</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+          <array name="rec_fields" type="record" depth="1">
+          </array>
+          <value name="modifiable">true</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
           <value name="field_name">$amendments</value>
           <value name="field_type">record</value>
           <value name="field_dim">1</value>
@@ -252,47 +271,50 @@
   </record>
   <value name="node_comment">### tundra.document:amend
 
-Edits the given IData $document with the list of {key, value} pairs
-specified in $amendments.
+Edits the given `IData` `$document` with the list of key value pairs
+specified in `$amendments`.
 
 #### Inputs:
 
-* $document is the IData document to be amended.
-* $amendments is an IData document list containing all the edits to 
-  be made to the given $document.
-  * key is a fully-qualified (for example, a/b/c[0]) key identifying
-    the value in $document to be edited.
-  * value is the value to be assigned to the item identified by key,
-    and can include percent-delimited variable substitution strings 
-    which will be substituted prior to being inserted into the 
-    $document.
-  * action is an optional choice of merge, create, update, or delete. 
-    Defaults to merge if not specified.
-    * merge will create the key and associate it with the given 
-      value if the key does not already exist, or update the the 
+* `$document` is the `IData` document to be amended.
+* `$document.namespace` is an optional `IData` document containing
+  the namespace declarations used in the given `$document`.
+* `$amendments` is an `IData` document list containing all the edits
+  to be made to the given `$document`.
+  * `key` is a fully-qualified (for example, `a/b/c[0]`) key 
+    identifying the value in `$document` to be edited.
+  * `value` is the value to be assigned to the item identified by
+    `key`, and can include percent-delimited variable substitution 
+    strings which will be substituted prior to being inserted into the
+    `$document`.
+  * `action` is an optional choice of `merge`, `create`, `update`, or
+    `delete`. Defaults to `merge` if not specified.
+    * `merge` will create the key and associate it with the given
+      value if the key does not already exist, or update the the
       associated value if the key already exists.
-    * create will only create the key and associate it with the given
-      value if the key does not already exist. 
-    * update will only update the associated value if the key 
+    * `create` will only create the key and associate it with the
+      given value if the key does not already exist.
+    * `update` will only update the associated value if the key
       already exists.
-    * delete will remove the key and previously associated value 
+    * `delete` will remove the key and previously associated value
       from the document. No value is required to be specified when
       using this action.
-  * condition is an optional Tundra/tundra.condition:evaluate
-    conditional statement, which is evaluated against the pipeline 
-    and only if the condition evaluates to true will the associated 
-    amended value be applied. If not specified, the amended value 
+  * `condition` is an optional `Tundra/tundra.condition:evaluate`
+    conditional statement, which is evaluated against the pipeline and
+    only if the condition evaluates to `true` will the associated
+    amended `value` be applied. If not specified, the amended `value`
     will always be applied.
 
 #### Outputs:
 
-* $document is the resulting edited IData document.
+* `$document` is the resulting edited `IData` document.
 </value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template">tundra_document_amend</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>

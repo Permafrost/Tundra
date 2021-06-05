@@ -5277,26 +5277,29 @@ Compresses files in the given directory into a [zip] archive.
 
 ### tundra.document:amend
 
-Edits the given `IData` `$document` with the list of {key, value} pairs
+Edits the given `IData` `$document` with the list of key value pairs
 specified in `$amendments`.
 
 #### Inputs:
 
 * `$document` is the `IData` document to be amended.
-* `$amendments` is an `IData` document list containing all the edits to be
-  made to the given `$document`.
-  * `key` is a fully-qualified (for example, `a/b/c[0]`) key identifying
-    the value in `$document` to be edited.
-  * `value` is the value to be assigned to the item identified by `key`,
-    and can include percent-delimited variable substitution strings which
-    will be substituted prior to being inserted into the `$document`.
-  * `action` is an optional choice of `merge`, `create`, `update`, or `delete`.
-    Defaults to `merge` if not specified.
+* `$document.namespace` is an optional `IData` document containing
+  the namespace declarations used in the given `$document`.
+* `$amendments` is an `IData` document list containing all the edits
+  to be made to the given `$document`.
+  * `key` is a fully-qualified (for example, `a/b/c[0]`) key
+    identifying the value in `$document` to be edited.
+  * `value` is the value to be assigned to the item identified by
+    `key`, and can include percent-delimited variable substitution
+    strings which will be substituted prior to being inserted into the
+    `$document`.
+  * `action` is an optional choice of `merge`, `create`, `update`, or
+    `delete`. Defaults to `merge` if not specified.
     * `merge` will create the key and associate it with the given
       value if the key does not already exist, or update the the
       associated value if the key already exists.
-    * `create` will only create the key and associate it with the given
-      value if the key does not already exist.
+    * `create` will only create the key and associate it with the
+      given value if the key does not already exist.
     * `update` will only update the associated value if the key
       already exists.
     * `delete` will remove the key and previously associated value
@@ -5304,9 +5307,9 @@ specified in `$amendments`.
       using this action.
   * `condition` is an optional `Tundra/tundra.condition:evaluate`
     conditional statement, which is evaluated against the pipeline and
-    only if the condition evaluates to `true` will the associated amended
-    `value` be applied. If not specified, the amended `value` will always
-    be applied.
+    only if the condition evaluates to `true` will the associated
+    amended `value` be applied. If not specified, the amended `value`
+    will always be applied.
 
 #### Outputs:
 
