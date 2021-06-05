@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-11-29T15:09:57.212
+// -----( CREATED: 2021-06-05 14:10:10 EST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -15,6 +15,9 @@ import javax.xml.namespace.NamespaceContext;
 import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
 import permafrost.tundra.data.IDataHelper;
+import permafrost.tundra.data.transform.Transformer;
+import permafrost.tundra.data.transform.TransformerMode;
+import permafrost.tundra.data.transform.xml.namespace.Normalizer;
 import permafrost.tundra.io.InputStreamHelper;
 import permafrost.tundra.lang.BooleanHelper;
 import permafrost.tundra.lang.BytesHelper;
@@ -55,8 +58,8 @@ public final class xml
 		// @sigtype java 3.5
 		// [i] object:0:optional $content
 		// [i] field:0:optional $content.encoding
-		// [i] field:0:optional $content.mode {"stream","bytes","string"}
-		// [i] field:0:optional $algorithm {"Canonical XML Version 1.0","Canonical XML Version 1.0 With Comments","Canonical XML Version 1.1","Canonical XML Version 1.1 With Comments","Exclusive Canonical XML Version 1.0","Exclusive Canonical XML Version 1.0 With Comments"}
+		// [i] field:0:optional $content.mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
+		// [i] field:0:optional $algorithm {&quot;Canonical XML Version 1.0&quot;,&quot;Canonical XML Version 1.0 With Comments&quot;,&quot;Canonical XML Version 1.1&quot;,&quot;Canonical XML Version 1.1 With Comments&quot;,&quot;Exclusive Canonical XML Version 1.0&quot;,&quot;Exclusive Canonical XML Version 1.0 With Comments&quot;}
 		// [o] object:0:optional $content.canonical
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -116,7 +119,7 @@ public final class xml
 		// @sigtype java 3.5
 		// [i] object:0:optional $node
 		// [i] field:0:optional $content.encoding
-		// [i] field:0:optional $content.mode {"stream","bytes","string"}
+		// [i] field:0:optional $content.mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
 		// [o] object:0:optional $content
 		// [o] field:0:optional $content.encoding
 		IDataCursor cursor = pipeline.getCursor();
@@ -181,7 +184,7 @@ public final class xml
 		// @sigtype java 3.5
 		// [i] object:0:optional $content
 		// [i] field:0:optional $content.encoding
-		// [i] field:0:optional $content.mode {"stream","bytes","string"}
+		// [i] field:0:optional $content.mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
 		// [o] object:0:optional $content.minified
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -252,7 +255,7 @@ public final class xml
 		// [i] field:0:optional $content.encoding
 		// [i] object:0:optional $schema
 		// [i] field:0:optional $schema.encoding
-		// [i] field:0:optional $raise? {"false","true"}
+		// [i] field:0:optional $raise? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:required $valid?
 		// [o] field:1:optional $errors
 		IDataCursor cursor = pipeline.getCursor();
@@ -276,5 +279,26 @@ public final class xml
 
 
 	}
+
+	// --- <<IS-START-SHARED>> ---
+	public static class Namespace {
+	    public static final void normalize(IData pipeline) throws ServiceException {
+	        IDataCursor cursor = pipeline.getCursor();
+	        try {
+	            IData document = IDataHelper.get(cursor, "$document.operands", IData.class);
+	            IData namespace = IDataHelper.get(cursor, "$document.namespace", IData.class);
+	            boolean recurse = IDataHelper.getOrDefault(cursor, "$document.recurse?", Boolean.class, false);
+	            TransformerMode mode = IDataHelper.get(cursor, "$document.mode", TransformerMode.class);
+
+	            IDataNamespaceContext context = new IDataNamespaceContext(namespace);
+	            IData normalizedDocument = Transformer.transform(document, new Normalizer(context, mode, recurse));
+
+	            IDataHelper.put(cursor, "$document.normalized", normalizedDocument, false);
+	        } finally {
+	            cursor.destroy();
+	        }
+	    }
+	}
+	// --- <<IS-END-SHARED>> ---
 }
 

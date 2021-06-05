@@ -17488,6 +17488,30 @@ content.
 
 ---
 
+### tundra.xml.namespace:normalize
+
+Normalizes namespace prefixes to use the prefix with the highest
+precedence in the given declared namespaces.
+
+#### Inputs:
+
+* `$document.operands` contains arbitrarily specified keys and/or
+  values to be normalized.
+* `$document.namespace` specifies namespace prefixes mapped to URIs.
+* `$document.recurse?` is an optional boolean indicating if child
+  `IData` documents and `IData[]` document lists should also be
+  recursively processed. Defaults to `false`.
+* `$document.mode` is an optional choice for what should be converted:
+  either the values, the keys, or both the keys and the values.
+  Defaults to values.
+
+#### Outputs:
+
+* `$document.normalized` contains the given keys and/or values with
+  namespace prefixes normalized.
+
+---
+
 ### tundra.xml:parse
 
 Parses [XML] content into an `IData` document.
