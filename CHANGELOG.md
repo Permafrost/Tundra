@@ -1,3 +1,35 @@
+# 0.0.36 (2021-07-01)
+
+* add `tundra.file:equal` for comparing the contents of two files
+* add `tundra.service:retry` for invoking a service and retrying it when the invocation fails
+* add `tundra.xml.namespace:normalize` for normalizing namespace prefixes in the given `IData` document's keys and/or values to be the prefix with the highest precedence in the given namespace prefix declarations
+* change `README.md` to recommend using git reset rather than git checkout
+* change `tundra.content:amend` input variable names to be consistent with `tundra.content:parse` and `tundra.content:emit`
+* change `tundra.content:deliver` `ftp` delivery to support a `rename` setting which when `true` will first write the remote file with a `.tmp` extension and then rename it, which ensures existing files are not overwritten
+* change `tundra.datetime:add` to support datetime shifting arbitrarily specified datetime strings rather than just one string at a time
+* change `tundra.datetime:subtract` to support datetime shifting arbitrarily specified datetime strings rather than just one string at a time
+* change `tundra.datetime:within` to support start of range being after end of range
+* change `tundra.deliver:content` to return optional `$response.context` to provide additional context to the delivery response, for example the response status and headers for an HTTP delivery
+* change `tundra.document:log` to support disabling the prefixing of the log statement with the current user and callstack, and to support logging to arbitrarily named server log files
+* change `tundra.list.content:emit` input variable names to be consistent with `tundra.content:emit`
+* change `tundra.pipeline:log` to support disabling the prefixing of the log statement with the current user and callstack, and to support logging to arbitrarily named server log files
+* change `tundra.pipeline:sanitize` to support the option to recursively sanitize child `IData` documents and `IData[]` document lists, and to not remove undeclared fields from documents which have been configured to "Allow unspecified fields"
+* change `tundra.service:invoke` to return `$duration` truncated to millisecond precision
+* change `tundra.system:reflect` to return the localhost address and unique reference identity and datetime, which are useful for common variable substitution scenarios
+* change `tundra:log` to support disabling the prefixing of the log statement with the current user and callstack, and to support logging to arbitrarily named server log files
+* fix `tundra.content:amend` to normalize namespace prefixes in the given `$amendments/key` values to be the prefix with the highest precedence in the given `$content.namespace` namespace declarations, so that the amended keys use the same prefixes as the parsed content
+* fix `tundra.content:deliver` documentation of `file:` protocol to specify correct input pipeline parameter name `$filemode` which is used for controlling whether to append / write / create the file
+* fix `tundra.file:digest` to work correctly with `file://` URIs
+* fix `tundra.list.directory:compact` to use a new empty array when calling `List.toArray(T[])` method to take advantage of JVM optimizations
+* fix `tundra.list.directory:squeeze` to use a new empty array when calling `List.toArray(T[])` method to take advantage of JVM optimizations
+* fix `tundra.list.document:find` to use a new empty array when calling `List.toArray(T[])` method to take advantage of JVM optimizations
+* fix `tundra.list.document:match` to use a new empty array when calling `List.toArray(T[])` method to take advantage of JVM optimizations
+* fix `tundra.list.string:find` to use a new empty array when calling `List.toArray(T[])` method to take advantage of JVM optimizations
+* fix `tundra.list.string:match` to use a new empty array when calling `List.toArray(T[])` method to take advantage of JVM optimizations
+* fix `tundra.node:list` to use a new empty array when calling `List.toArray(T[])` method to take advantage of JVM optimizations
+* fix `tundra.pipeline:clear` to not throw `java.lang.NullPointerException` when `$preserve` argument is not specified
+* fix `tundra.support.content.retrieve.file:reflect` to use a new empty array when calling `List.toArray(T[])` method to take advantage of JVM optimizations
+
 # 0.0.35 (2020-07-03)
 
 * add `tundra.content:transfer` for transferring content retrieved from a source location and delivering directly to a destination location
