@@ -3124,6 +3124,20 @@ service named for the URI scheme in the folder
         ftp://user:password@server:port/directory/*.txt?rename=false
 
   * `ftps`: refer to `ftp`.
+
+  * `jms`: retrieves message content from the specified JMS alias
+    and queue or topic.
+
+    The following example will retrieve message content from the JMS
+    alias `DEFAULT_IS_JMS_CONNECTION` topic `JMS::Temporary::Topic`:
+
+        jms://DEFAULT_IS_JMS_CONNECTION?topic=JMS::Temporary::Topic
+
+    The following example will retrive message content from the JMS
+    alias `DEFAULT_IS_JMS_CONNECTION` queue `JMS::Temporary::Queue`:
+
+        jms://DEFAULT_IS_JMS_CONNECTION?queue=JMS::Temporary::Queue
+
   * `sftp`: processes each file matching the given `$source` URI with
     the given processing `$service`. The file component of the URI
     can include wildcards or globs (such as `*.txt`) for matching
@@ -3162,7 +3176,7 @@ service named for the URI scheme in the folder
 
     By default, files will first be renamed to include the suffix
     `.tmp` on the SFTP server prior to being retrieved, to ensure
-    no other processes have locked the file or are currently writing
+    no other processes have locked the file and are currently writing
     to it. To disable this feature, set the query string parameter
     `rename` to `false`:
 
@@ -3210,6 +3224,18 @@ The `FTPS` protocol handler for the `Tundra/tundra.content:retrieve`
 service, which retrieves file content for files matching the given
 `$source` URI and calls the given `$service` content processing service
 to process each file.
+
+Implements the `Tundra/tundra.schema.content.retrieve:handler`
+specification.
+
+---
+
+### tundra.content.retrieve:jms
+
+The JMS protocol handler for the `Tundra/tundra.content:retrieve`
+service, which retrieves message content from the given `$source` URI
+and calls the given `$service` content processing service to process
+each message.
 
 Implements the `Tundra/tundra.schema.content.retrieve:handler`
 specification.
