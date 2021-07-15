@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2020-10-01T05:54:49.454
+// -----( CREATED: 2021-07-16 05:07:00 AEST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -16,7 +16,6 @@ import java.nio.charset.Charset;
 import java.util.Calendar;
 import java.util.List;
 import javax.xml.datatype.Duration;
-import org.apache.log4j.Level;
 import permafrost.tundra.collection.CollectionHelper;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.io.InputStreamHelper;
@@ -64,7 +63,7 @@ public final class service
 		// [i] field:0:required $service
 		// [i] record:0:optional $pipeline
 		// [i] field:0:required $count
-		// [i] field:0:optional $raise? {"false","true"}
+		// [i] field:0:optional $raise? {&quot;false&quot;,&quot;true&quot;}
 		// [o] record:0:required $benchmark.results
 		// [o] - field:0:required description
 		// [o] - field:0:required subject
@@ -287,7 +286,7 @@ public final class service
 		// --- <<IS-START(initiator)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [o] field:0:required $initiator? {"false","true"}
+		// [o] field:0:required $initiator? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
@@ -313,7 +312,7 @@ public final class service
 		// @sigtype java 3.5
 		// [i] field:0:required $service
 		// [i] record:0:optional $pipeline
-		// [i] field:0:optional $raise? {"true","false"}
+		// [i] field:0:optional $raise? {&quot;true&quot;,&quot;false&quot;}
 		// [i] field:0:optional $thread.priority
 		// [o] record:0:optional $pipeline
 		// [o] field:0:optional $duration
@@ -372,7 +371,7 @@ public final class service
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] object:0:optional $thread
-		// [i] field:0:optional $raise? {"true","false"}
+		// [i] field:0:optional $raise? {&quot;true&quot;,&quot;false&quot;}
 		// [o] record:0:optional $pipeline
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -624,7 +623,7 @@ public final class service
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $duration
-		// [i] field:0:optional $duration.pattern {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
+		// [i] field:0:optional $duration.pattern {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
 		tundra.thread.sleep(pipeline);
 		// --- <<IS-END>> ---
 
@@ -679,8 +678,8 @@ public final class service
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $service
-		// [i] field:0:optional $raise? {"false","true"}
-		// [o] field:0:required $valid? {"false","true"}
+		// [i] field:0:optional $raise? {&quot;false&quot;,&quot;true&quot;}
+		// [o] field:0:required $valid? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {

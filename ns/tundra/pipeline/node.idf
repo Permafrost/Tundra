@@ -22,7 +22,6 @@ cGlwZWxpbmUpOwp9</value>
     <value>java.nio.charset.Charset</value>
     <value>java.text.MessageFormat</value>
     <value>java.util.EnumSet</value>
-    <value>org.apache.log4j.Level</value>
     <value>permafrost.tundra.content.ValidationResult</value>
     <value>permafrost.tundra.data.IDataHelper</value>
     <value>permafrost.tundra.data.IDataJSONParser</value>
@@ -44,5 +43,6 @@ cGlwZWxpbmUpOwp9</value>
     <value>permafrost.tundra.math.IntegerHelper</value>
     <value>permafrost.tundra.server.PackageHelper</value>
     <value>permafrost.tundra.server.ServerLogHelper</value>
+    <value>permafrost.tundra.server.ServerLogLevel</value>
   </array>
 </Values>

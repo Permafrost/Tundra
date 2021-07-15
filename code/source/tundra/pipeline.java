@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-04-08 05:08:57 EST
+// -----( CREATED: 2021-07-16 05:07:00 AEST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.text.MessageFormat;
 import java.util.EnumSet;
-import org.apache.log4j.Level;
 import permafrost.tundra.content.ValidationResult;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.data.IDataJSONParser;
@@ -36,6 +35,7 @@ import permafrost.tundra.lang.ObjectHelper;
 import permafrost.tundra.math.IntegerHelper;
 import permafrost.tundra.server.PackageHelper;
 import permafrost.tundra.server.ServerLogHelper;
+import permafrost.tundra.server.ServerLogLevel;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class pipeline
@@ -378,8 +378,8 @@ public final class pipeline
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
-		    Level level = IDataHelper.remove(cursor, "$log.level", Level.class);
-		    if (level == null) level = IDataHelper.get(cursor, "$level", Level.class);
+		    ServerLogLevel level = IDataHelper.remove(cursor, "$log.level", ServerLogLevel.class);
+		    if (level == null) level = IDataHelper.get(cursor, "$level", ServerLogLevel.class);
 		    String message = IDataHelper.remove(cursor, "$log.message", String.class);
 		    boolean addPrefix = IDataHelper.removeOrDefault(cursor, "$log.prefix?", Boolean.class, true);
 		    String name = IDataHelper.remove(cursor, "$log.name", String.class);
