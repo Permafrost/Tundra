@@ -16401,17 +16401,11 @@ Returns whether the given string ends with the given suffix.
 
 ### tundra.string:translate
 
-Translates strings from one value to another using the given
-translation table.
+Translates strings from one value to another using the specified
+translations.
 
-For example, given the following translation table:
-
-    {
-        "a": "1",
-        "b": "2"
-    }
-
-And the following arbitrarily specified string operands:
+For example, given the following `$translation.operands` containing
+arbitrarily specified string values:
 
     {
         "key1": "a",
@@ -16421,7 +16415,18 @@ And the following arbitrarily specified string operands:
         "key5": "z"
     }
 
-The resulting strings would be returned:
+And given the following `$translation.values` defining the
+translations from the specified keys to the specified values:
+
+    {
+        "a": "1",
+        "b": "2"
+    }
+
+
+If `$translation.exclude?` is `false`, the resulting translation
+returned in `$translation.result` is as follows (note the values with
+no translation were included in the results unchanged):
 
     {
         "key1": "1",
@@ -16431,36 +16436,49 @@ The resulting strings would be returned:
         "key5": "z"
     }
 
-If the translation table is reversed, the resulting strings would
-instead be returned:
+Or if `$translation.exclude?` is `true`, the resulting translation
+returned in `$translation.result` is as follows (note the values with
+no translation were excluded from the results):
 
     {
-        "key1": "a",
-        "key2": "b",
+        "key1": "1",
+        "key2": "2"
+    }
+
+Or if `$translation.exclude?` is `true` and `$translation.reverse?` is
+`true`, the `$translation.values` table is reversed, and the resulting
+translation returned in `$translation.result` is as follows:
+
+    {
         "key3": "a",
-        "key4": "b",
-        "key5": "z"
+        "key4": "b"
     }
 
 #### Inputs:
 
-* `$operands` is an `IData` document containing arbitrarily specified
-  `String`, `String[]`, or `String[][]` values to be translated.
-* `$translations` is an `IData` document containing key value pairs
-  which specify the from and to values used for translation. The
-  following special keys are also supported to provide a default value,
-  and a null replacement value, when required:
-  * $default - used when a value has no translation.
-  * $null - used when a value is null.
-* `$reverse?` is an optional boolean which when `true` indicates that
-  the `$translations` table should be flipped such that the keys
-  become the values and vice versa. Defaults to `false`.
+* `$translation.operands` is an `IData` document containing
+  arbitrarily specified `String`, `String[]`, or `String[][]` values
+  to be translated.
+* `$translation.values` is an `IData` document containing key value
+  pairs which specify the from and to values used for translation. The
+  following special keys are also supported to provide a default
+  value, and a null replacement value, when required:
+  * `$default` - used when a value has no translation
+  * `$default.reverse` - used when a value has no translation and
+    `$translation.reverse?` is `true`
+  * `$null` - used when a value is null
+  * `$null.reverse` - used when a value is null and
+    `$translation.reverse?` is `true`
+* `$translation.reverse?` is an optional boolean which when `true`
+  indicates that the `$translation.values` table should be flipped
+  such that the keys become the values and vice versa. Defaults to
+  `false`.
 
 #### Outputs:
 
-* `$results` is an `IData` document containing the translated values
-  specified using the same keys and structure as was specified in
-  `$operands`.
+* `$translation.results` is an `IData` document containing the
+  translated values specified using the same keys and structure as was
+  specified in `$translation.operands`.
 
 ---
 

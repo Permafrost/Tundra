@@ -22,7 +22,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$operands</value>
+          <value name="field_name">$translation.operands</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -41,7 +41,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$translations</value>
+          <value name="field_name">$translation.values</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -61,7 +61,39 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$reverse?</value>
+          <value name="field_name">$translation.exclude?</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <array name="field_options" type="value" depth="1">
+            <value>false</value>
+            <value>true</value>
+          </array>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">boolean</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_usereditable">false</value>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$translation.reverse?</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -104,7 +136,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$results</value>
+          <value name="field_name">$translation.results</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -121,17 +153,11 @@
   </record>
   <value name="node_comment">### tundra.string:translate
 
-Translates strings from one value to another using the given 
-translation table.
+Translates strings from one value to another using the specified 
+translations.
 
-For example, given the following translation table:
-
-    {
-        "a": "1",
-        "b": "2"
-    }
-
-And the following arbitrarily specified string operands:
+For example, given the following `$translation.operands` containing 
+arbitrarily specified string values:
 
     {
         "key1": "a",
@@ -141,7 +167,18 @@ And the following arbitrarily specified string operands:
         "key5": "z"
     }
 
-The resulting strings would be returned:
+And given the following `$translation.values` defining the 
+translations from the specified keys to the specified values:
+
+    {
+        "a": "1",
+        "b": "2"
+    }
+
+
+If `$translation.exclude?` is `false`, the resulting translation 
+returned in `$translation.result` is as follows (note the values with
+no translation were included in the results unchanged):
 
     {
         "key1": "1",
@@ -151,36 +188,49 @@ The resulting strings would be returned:
         "key5": "z"
     }
 
-If the translation table is reversed, the resulting strings would 
-instead be returned:
+Or if `$translation.exclude?` is `true`, the resulting translation 
+returned in `$translation.result` is as follows (note the values with
+no translation were excluded from the results):
 
     {
-        "key1": "a",
-        "key2": "b",
+        "key1": "1",
+        "key2": "2"
+    }
+
+Or if `$translation.exclude?` is `true` and `$translation.reverse?` is
+`true`, the `$translation.values` table is reversed, and the resulting
+translation returned in `$translation.result` is as follows:
+
+    {
         "key3": "a",
-        "key4": "b",
-        "key5": "z"
+        "key4": "b"
     }
 
 #### Inputs:
 
-* $operands is an IData document containing arbitrarily specified 
-  String, String[], or String[][] values to be translated.
-* $translations is an IData document containing key value pairs
-  which specify the from and to values used for translation. The 
+* `$translation.operands` is an `IData` document containing
+  arbitrarily specified `String`, `String[]`, or `String[][]` values 
+  to be translated.
+* `$translation.values` is an `IData` document containing key value 
+  pairs which specify the from and to values used for translation. The
   following special keys are also supported to provide a default 
   value, and a null replacement value, when required:
-  * $default - used when a value has no translation.
-  * $null - used when a value is null.
-* $reverse? is an optional boolean which when true indicates that 
-  the $translations table should be flipped such that the keys 
-  become the values and vice versa. Defaults to false.
+  * `$default` - used when a value has no translation
+  * `$default.reverse` - used when a value has no translation and 
+    `$translation.reverse?` is `true`
+  * `$null` - used when a value is null
+  * `$null.reverse` - used when a value is null and 
+    `$translation.reverse?` is `true`
+* `$translation.reverse?` is an optional boolean which when `true` 
+  indicates that the `$translation.values` table should be flipped 
+  such that the keys become the values and vice versa. Defaults to 
+  `false`.
 
 #### Outputs:
 
-* $results is an IData document containing the translated values 
-  specified using the same keys and structure as was specified in
-  $operands.
+* `$translation.results` is an `IData` document containing the 
+  translated values specified using the same keys and structure as was
+  specified in `$translation.operands`.
 </value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
