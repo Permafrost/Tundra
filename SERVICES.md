@@ -12954,6 +12954,22 @@ Implemented with the [javax.activation.MimeType] class.
 
 ---
 
+### tundra.mime.type:text
+
+Returns whether the given MIME media type describes a text-based type.
+
+#### Inputs:
+
+* `$content.type` is the MIME media type to check.
+
+#### Outputs:
+
+* `$content.type.text?` is `true` if the given `$content.type`
+  describes a text-based data type, otherwise `false` if it describes
+  a binary data type.
+
+---
+
 ### tundra.mime.type:validate
 
 Returns `true` if the given string can be parsed as a valid Multipurpose

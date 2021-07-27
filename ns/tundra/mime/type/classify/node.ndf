@@ -178,34 +178,26 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">### tundra.mime.type:classify
+  <value name="node_comment">### tundra.mime.type:text
 
-Returns a well-known content class for the given MIME media type.
+Returns whether the given MIME media type describes a text-based type.
 
 #### Inputs:
 
-* `$content.type` is the MIME media type to be classified.
+* `$content.type` is the MIME media type to check.
 
 #### Outputs:
 
-* `$content.class` is the resulting classification of the given MIME
-  media type, and is one of the following values or null if it could
-  not be classified as one of these values:
-  * `csv` - comma-separated values
-  * `hjson` - humane javascript object notation
-  * `json` - javascript object notation
-  * `plain` - plain text
-  * `psv` - pipe-separated values
-  * `tsv` - tab-separated values
-  * `xml` - extensible markup language
-  * `yaml` - yaml ain't markup language
-  * `unknown` - the content type was not well-known
+* `$content.type.text?` is `true` if the given `$content.type` 
+  describes a text-based data type, otherwise `false` if it describes
+  a binary data type.
 </value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template">tundra_mime_type_classify</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
