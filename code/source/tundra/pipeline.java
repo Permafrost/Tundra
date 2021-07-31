@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-07-16 05:07:00 AEST
+// -----( CREATED: 2021-08-01 10:28:32 AEST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -23,7 +23,7 @@ import permafrost.tundra.data.transform.string.Squeezer;
 import permafrost.tundra.data.transform.string.Trimmer;
 import permafrost.tundra.data.transform.Transformer;
 import permafrost.tundra.flow.PipelineHelper;
-import permafrost.tundra.flow.PipelineHelper.InputOutputSignature;
+import permafrost.tundra.flow.InputOutputSignature;
 import permafrost.tundra.flow.variable.SubstitutionHelper;
 import permafrost.tundra.flow.variable.SubstitutionType;
 import permafrost.tundra.io.InputStreamHelper;

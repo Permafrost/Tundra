@@ -34,6 +34,7 @@
     <value>permafrost.tundra.server.invoke.RetryableServiceProcessor</value>
     <value>permafrost.tundra.server.NodeHelper</value>
     <value>permafrost.tundra.server.ServiceHelper</value>
+    <value>permafrost.tundra.server.service.RedirectServiceManager</value>
     <value>permafrost.tundra.time.DurationHelper</value>
     <value>permafrost.tundra.time.DurationPattern</value>
   </array>

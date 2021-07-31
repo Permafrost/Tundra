@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Values version="2.0">
-  <value name="svc_type">flow</value>
-  <value name="svc_subtype">default</value>
+  <value name="svc_type">java</value>
+  <value name="svc_subtype">unknown</value>
   <value name="svc_sigtype">java 3.5</value>
-  <value name="node_comment">### tundra.support:shutdown
+  <value name="node_comment">### tundra.support.service.redirect:clear
 
-Runs shutdown tasks when the package is shutdown.</value>
-  <value name="stateless">yes</value>
+Unregisters all redirected services from the service redirect manager.
+</value>
+  <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
-  <value name="template">tundra_support_shutdown</value>
+  <value name="template">tundra_support_service_redirect_clear</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>

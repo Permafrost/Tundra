@@ -15160,6 +15160,62 @@ This service deliberately does nothing.
 
 ---
 
+### tundra.service:redirect
+
+Registers a service redirection, which then transparently redirects
+all subsequent invocations of the given source service to the
+given target service.
+
+If no target service is specified, the invocations of the source
+service are redirected to an empty service which does nothing.
+
+The source service is not required to exist in the current Integration
+Server namespace. This allows for the source service to be registered
+as a virtual service that is implemented by another existing service.
+
+The source service input and output signature can be translated or
+mapped to the target service input and output signature if required.
+
+#### Outputs:
+
+* `$service.redirect` defines a service redirection.
+  * `source` is the fully-qualified name of the service to be
+    redirected.
+  * `target` is an optional fully-qualified name of a service to which
+    all subsequent invocation of the given `source` service will be
+    redirected.
+  * `signature` defines the input and output signature redirections.
+    * `input` is a list of source to target input signature parameter
+      name redirection. The given `source` service input parameters
+      will be renamed to the given `target` service input parameters
+      prior to invocation.
+      * `source` is a fully-qualified `source` service input signature
+        parameter name.
+      * `target` is an optional fully-qualified `target` service input
+        signature parameter name. If not specified, the `source` input
+        signature parameter will be dropped from the input pipeline
+        prior to invocation.
+    * `output` is a list of target to source output signature
+      parameter name redirection. The given `target` service output
+      parameters will be renamed to the given `source` service output
+      parameters post invocation.
+      * `target` is a fully-qualified `target` service output
+        signature parameter name.
+      * `source` is an optional fully-qualified `source` service
+        output signature parameter name. If not specified, the
+        `target` output signature parameter will be dropped from the
+        output pipeline post invocation.
+  * `pipeline` defines optional additional input and output pipeline
+    arguments.
+    * `input` defines optional additional input pipeline arguments,
+    included in the input pipeline when the `target` service is
+    invoked.
+    * `output` defines optional additional output pipeline arguments,
+    merged into the output pipeline returned after the `target`
+    service is invoked.
+
+---
+
 ### tundra.service:reflect
 
 Returns information about the service with the given name.

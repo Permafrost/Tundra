@@ -130,6 +130,9 @@
 </MAP>
 </INVOKE>
 
+<INVOKE SERVICE="tundra.support.service.redirect:stop">
+</INVOKE>
+
 <INVOKE TIMEOUT="" SERVICE="tundra.support.log.manager:stop" VALIDATE-IN="$none" VALIDATE-OUT="$none">
   <COMMENT></COMMENT>
 

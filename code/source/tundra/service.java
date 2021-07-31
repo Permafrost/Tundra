@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-07-16 05:07:00 AEST
+// -----( CREATED: 2021-07-31 14:57:15 AEST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -34,6 +34,7 @@ import permafrost.tundra.server.invoke.DeferHelper;
 import permafrost.tundra.server.invoke.RetryableServiceProcessor;
 import permafrost.tundra.server.NodeHelper;
 import permafrost.tundra.server.ServiceHelper;
+import permafrost.tundra.server.service.RedirectServiceManager;
 import permafrost.tundra.time.DurationHelper;
 import permafrost.tundra.time.DurationPattern;
 // --- <<IS-END-IMPORTS>> ---
@@ -397,6 +398,36 @@ public final class service
 		// --- <<IS-START(nothing)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
+	public static final void redirect (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(redirect)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] record:0:optional $service.redirect
+		// [i] - field:0:required source
+		// [i] - field:0:optional target
+		// [i] - record:0:optional signature
+		// [i] -- record:0:optional input
+		// [i] -- record:0:optional output
+		// [i] - record:0:optional pipeline
+		// [i] -- record:0:optional input
+		// [i] -- record:0:optional output
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    IData serviceRedirect = IDataHelper.get(cursor, "$service.redirect", IData.class);
+		    RedirectServiceManager.getInstance().register(serviceRedirect);
+		} finally {
+		    cursor.destroy();
+		}
 		// --- <<IS-END>> ---
 
 

@@ -242,6 +242,9 @@
 <INVOKE SERVICE="tundra.support.log.manager:start">
 </INVOKE>
 
+<INVOKE SERVICE="tundra.support.service.redirect:start">
+</INVOKE>
+
 <BRANCH TIMEOUT="" SWITCH="/$configuration/feature/http/route/enabled">
   <COMMENT></COMMENT>
 
