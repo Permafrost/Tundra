@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2020-07-14T05:23:35.467
+// -----( CREATED: 2021-08-01 11:40:20 AEST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -88,7 +88,7 @@ public final class string
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:1:optional $list
-		// [i] field:0:optional $capitalize {"all words","first word"}
+		// [i] field:0:optional $capitalize {&quot;all words&quot;,&quot;first word&quot;}
 		// [o] field:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -115,7 +115,7 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:1:optional $list
 		// [i] field:0:optional $default
-		// [i] field:0:optional $mode {"missing","null"}
+		// [i] field:0:optional $mode {&quot;missing&quot;,&quot;null&quot;}
 		// [o] field:0:optional $item
 		tundra.list.object.coalesce(pipeline);
 		// --- <<IS-END>> ---
@@ -253,10 +253,10 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:1:optional $list
 		// [i] field:0:optional $pattern
-		// [i] field:0:optional $pattern.literal? {"false","true"}
-		// [o] field:0:required $found.all? {"false","true"}
-		// [o] field:0:required $found.any? {"false","true"}
-		// [o] field:0:required $found.none? {"false","true"}
+		// [i] field:0:optional $pattern.literal? {&quot;false&quot;,&quot;true&quot;}
+		// [o] field:0:required $found.all? {&quot;false&quot;,&quot;true&quot;}
+		// [o] field:0:required $found.any? {&quot;false&quot;,&quot;true&quot;}
+		// [o] field:0:required $found.none? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:1:optional $found
 		// [o] field:0:required $found.length
 		// [o] field:1:optional $unfound
@@ -411,7 +411,7 @@ public final class string
 		// [i] field:1:optional $list
 		// [i] field:0:optional $separator
 		// [i] field:0:optional $default
-		// [i] field:0:optional $sanitization {"remove nulls","remove nulls and blanks","convert nulls to blanks"}
+		// [i] field:0:optional $sanitization {&quot;remove nulls&quot;,&quot;remove nulls and blanks&quot;,&quot;convert nulls to blanks&quot;}
 		// [o] field:0:optional $result
 		tundra.list.object.join(pipeline);
 		// --- <<IS-END>> ---
@@ -510,10 +510,10 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:1:optional $list
 		// [i] field:0:optional $pattern
-		// [i] field:0:optional $pattern.literal? {"false","true"}
-		// [o] field:0:required $matched.all? {"false","true"}
-		// [o] field:0:required $matched.any? {"false","true"}
-		// [o] field:0:required $matched.none? {"false","true"}
+		// [i] field:0:optional $pattern.literal? {&quot;false&quot;,&quot;true&quot;}
+		// [o] field:0:required $matched.all? {&quot;false&quot;,&quot;true&quot;}
+		// [o] field:0:required $matched.any? {&quot;false&quot;,&quot;true&quot;}
+		// [o] field:0:required $matched.none? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:1:optional $matched
 		// [o] field:0:required $matched.length
 		// [o] field:1:optional $unmatched
@@ -747,8 +747,8 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:1:optional $list
 		// [i] field:0:optional $pattern
-		// [i] field:0:optional $pattern.literal? {"false","true"}
-		// [i] field:0:optional $occurrence.first? {"false","true"}
+		// [i] field:0:optional $pattern.literal? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $occurrence.first? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -783,10 +783,10 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:1:optional $list
 		// [i] field:0:optional $pattern
-		// [i] field:0:optional $pattern.literal? {"false","true"}
+		// [i] field:0:optional $pattern.literal? {&quot;false&quot;,&quot;true&quot;}
 		// [i] field:0:optional $replacement
-		// [i] field:0:optional $replacement.literal? {"false","true"}
-		// [i] field:0:optional $occurrence.first? {"false","true"}
+		// [i] field:0:optional $replacement.literal? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $occurrence.first? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -900,29 +900,6 @@ public final class string
 
 
 
-	public static final void squeeze (IData pipeline)
-        throws ServiceException
-	{
-		// --- <<IS-START(squeeze)>> ---
-		// @subtype unknown
-		// @sigtype java 3.5
-		// [i] field:1:optional $list
-		// [o] field:1:optional $list
-		IDataCursor cursor = pipeline.getCursor();
-
-		try {
-		    String[] list = IDataHelper.get(cursor, "$list", String[].class);
-		    IDataHelper.put(cursor, "$list", StringHelper.condense(list), false);
-		} finally {
-		    cursor.destroy();
-		}
-		// --- <<IS-END>> ---
-
-
-	}
-
-
-
 	public static final void substitute (IData pipeline)
         throws ServiceException
 	{
@@ -931,7 +908,7 @@ public final class string
 		// @sigtype java 3.5
 		// [i] field:1:optional $list
 		// [i] field:0:optional $substitution.default
-		// [i] field:0:optional $substitution.mode {"local","global","all"}
+		// [i] field:0:optional $substitution.mode {&quot;local&quot;,&quot;global&quot;,&quot;all&quot;}
 		// [i] record:0:optional $pipeline
 		// [o] field:1:optional $list
 		IDataCursor cursor = pipeline.getCursor();
