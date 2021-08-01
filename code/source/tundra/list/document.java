@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-08-01 14:19:26 AEST
+// -----( CREATED: 2021-08-01 14:27:36 AEST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -926,6 +926,8 @@ public final class document
 		    String replacement = IDataHelper.get(cursor, "$replacement", String.class);
 		    boolean literalReplacement = IDataHelper.getOrDefault(cursor, "$replacement.literal?", Boolean.class, false);
 		    boolean firstOccurrence = IDataHelper.getOrDefault(cursor, "$occurrence.first?", Boolean.class, false);
+		    String occurrenceMode = IDataHelper.get(cursor, "$occurrence.mode", String.class);
+		    if ("first".equals(occurrenceMode)) firstOccurrence = true;
 		    boolean recurse = IDataHelper.getOrDefault(cursor, "$recurse?", Boolean.class, false);
 		    TransformerMode mode = IDataHelper.get(cursor, "$mode", TransformerMode.class);
 
