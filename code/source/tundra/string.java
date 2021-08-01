@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-07-20 18:05:03 EST
+// -----( CREATED: 2021-08-01 11:34:57 AEST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -852,22 +852,6 @@ public final class string
 		} finally {
 		    cursor.destroy();
 		}
-		// --- <<IS-END>> ---
-
-                
-	}
-
-
-
-	public static final void squeeze (IData pipeline)
-        throws ServiceException
-	{
-		// --- <<IS-START(squeeze)>> ---
-		// @subtype unknown
-		// @sigtype java 3.5
-		// [i] field:0:optional $string
-		// [o] field:0:optional $string
-		tundra.string.condense(pipeline);
 		// --- <<IS-END>> ---
 
                 
