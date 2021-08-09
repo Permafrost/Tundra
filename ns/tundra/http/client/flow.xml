@@ -212,6 +212,7 @@
               <value>post</value>
               <value>head</value>
               <value>put</value>
+              <value>patch</value>
               <value>delete</value>
               <value>options</value>
               <value>trace</value>
