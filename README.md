@@ -125,10 +125,6 @@ Then restart Integration Server to complete the upgrade.
    private elements do not contribute to the public API, they are
    liable to change at any time. **Enter at your own risk.**
 
-## Tests
-
-Refer to the [TundraTest] project for unit testing [Tundra].
-
 ## Dependencies
 
 [Tundra] is compiled for Java 1.6, and is dependent on the following
