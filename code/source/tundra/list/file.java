@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-07 17:53:33 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2021-08-18 10:31:23 AEST
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -49,7 +49,7 @@ public final class file
 		
 		    for (String file : files) {
 		        try {
-		            FileHelper.remove(file);
+		            FileHelper.remove(FileHelper.construct(file));
 		        } catch(IOException ex) {
 		            exceptions.add(ex);
 		        }

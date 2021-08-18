@@ -1,7 +1,7 @@
 package tundra.support.content.retrieve;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2020-07-14T05:28:20.337
+// -----( CREATED: 2021-08-18 10:36:22 AEST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -9,6 +9,7 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -51,7 +52,7 @@ public final class file
 		DIRECTORY_PURGES.clear();
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -64,20 +65,19 @@ public final class file
 		// @sigtype java 3.5
 		// [i] field:0:required $directory
 		// [i] field:0:required $duration
-		// [i] field:0:optional $duration.pattern {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
+		// [i] field:0:optional $duration.pattern {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
 		// [o] field:0:required $purgable?
 		// [o] field:0:optional $purge.last
 		// [o] field:0:required $purge.next
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    String directory = IDataHelper.get(cursor, "$directory", String.class);
+		    File directory = IDataHelper.get(cursor, "$directory", File.class);
 		    String durationString = IDataHelper.get(cursor, "$duration", String.class);
 		    String durationPattern = IDataHelper.get(cursor, "$duration.pattern", String.class);
-
-		    directory = FileHelper.normalize(directory);
+		
 		    Duration duration = DurationHelper.parse(durationString, durationPattern);
-
+		
 		    IDataHelper.put(cursor, "$purgable?", shouldPurge(directory, duration), String.class);
 		    IDataHelper.put(cursor, "$purge.last", DIRECTORY_PURGES.get(directory), String.class, false);
 		    IDataHelper.put(cursor, "$purge.next", nextPurge(directory, duration), String.class);
@@ -86,7 +86,7 @@ public final class file
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -99,26 +99,25 @@ public final class file
 		// @sigtype java 3.5
 		// [i] field:0:required $directory
 		// [i] field:0:required $duration
-		// [i] field:0:optional $duration.pattern {"xml","milliseconds","seconds","minutes","hours","days","weeks","months","years"}
+		// [i] field:0:optional $duration.pattern {&quot;xml&quot;,&quot;milliseconds&quot;,&quot;seconds&quot;,&quot;minutes&quot;,&quot;hours&quot;,&quot;days&quot;,&quot;weeks&quot;,&quot;months&quot;,&quot;years&quot;}
 		// [o] field:0:required $purged?
 		// [o] field:0:optional $count
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
-		    String directory = IDataHelper.get(cursor, "$directory", String.class);
+		    File directory = IDataHelper.get(cursor, "$directory", File.class);
 		    String durationString = IDataHelper.get(cursor, "$duration", String.class);
 		    String durationPattern = IDataHelper.get(cursor, "$duration.pattern", String.class);
-
+		
 		    Duration duration = DurationHelper.parse(durationString, durationPattern);
-		    directory = FileHelper.normalize(directory);
 		    boolean shouldPurge = shouldPurge(directory, duration);
-
+		
 		    if (shouldPurge) {
 		        long count = DirectoryHelper.purge(directory, duration, null, false);
 		        hasPurged(directory);
 		        IDataHelper.put(cursor, "$count", count, String.class);
 		    }
-
+		
 		    IDataHelper.put(cursor, "$purged?", shouldPurge, String.class);
 		} catch(FileNotFoundException ex) {
 		    ExceptionHelper.raise(ex);
@@ -127,7 +126,7 @@ public final class file
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -142,7 +141,7 @@ public final class file
 		// [o] - field:0:required directory
 		// [o] - field:0:required purge.last
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IDataHelper.put(cursor, "$directory.purge.context", reflect());
 		} finally {
@@ -150,7 +149,7 @@ public final class file
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 	// --- <<IS-START-SHARED>> ---
@@ -158,7 +157,7 @@ public final class file
 	 * A cache of purged directories and the datetime they were last purged, used as a factor in determining when those
 	 * directories will next be purged.
 	 */
-	private static final Map<String, Calendar> DIRECTORY_PURGES = new ConcurrentHashMap<String, Calendar>();
+	private static final Map<File, Calendar> DIRECTORY_PURGES = new ConcurrentHashMap<File, Calendar>();
 	/**
 	 * The maximum allowed purge frequency for directories.
 	 */
@@ -167,44 +166,44 @@ public final class file
 	 * The factor applied to a directory's file retention period to determine frequency of purging.
 	 */
 	private static final BigDecimal DIRECTORY_PURGE_FREQUENCY_FACTOR = new BigDecimal("0.5");
-
+	
 	/**
 	 * Returns true if the given directory is eligible for purging, taking into account the last time it was purged
 	 * and the given retention period.
-	 *
+	 * 
 	 * @param directory The directory to be purged.
 	 * @param duration  The retention period for files in the given directory.
 	 * @return          Whether the directory is eligible for purging.
 	 */
-	private static boolean shouldPurge(String directory, Duration duration) {
+	private static boolean shouldPurge(File directory, Duration duration) {
 	    Calendar lastPurge = DIRECTORY_PURGES.get(directory);
 	    return lastPurge == null || lastPurge.compareTo(DateTimeHelper.earlier(calculateFrequency(duration))) <= 0;
 	}
-
+	
 	/**
-	 * Returns the datetime when the given directory is next eligible for purging, taking into account the last time it
+	 * Returns the datetime when the given directory is next eligible for purging, taking into account the last time it 
 	 * was purged and the given retention period.
 	 *
 	 * @param directory The directory to be purged.
 	 * @param duration  The retention period for files in the given directory.
 	 * @return          The datetime the directory is next eligible for purging.
 	 */
-	private static Calendar nextPurge(String directory, Duration duration) {
+	private static Calendar nextPurge(File directory, Duration duration) {
 	    Calendar lastPurge = DIRECTORY_PURGES.get(directory);
 	    Calendar nextPurge;
-
+	
 	    if (lastPurge == null) {
 	        nextPurge = Calendar.getInstance();
 	    } else {
 	        nextPurge = DateTimeHelper.add(lastPurge, calculateFrequency(duration));
 	    }
-
+	
 	    return nextPurge;
 	}
-
+	
 	/**
 	 * Returns the frequency for purging a directory given the retention period for files within it.
-	 *
+	 * 
 	 * @param duration  The retention period for files in a directory.
 	 * @return          How often the directory should be purged.
 	 */
@@ -213,17 +212,17 @@ public final class file
 	    if (frequency.isLongerThan(MAXIMUM_DIRECTORY_PURGE_FREQUENCY)) frequency = MAXIMUM_DIRECTORY_PURGE_FREQUENCY;
 	    return frequency;
 	}
-
+	
 	/**
-	 * Records when a directory has been purged, which is then used as a factor in determining when it will next be
+	 * Records when a directory has been purged, which is then used as a factor in determining when it will next be 
 	 * purged.
-	 *
+	 * 
 	 * @param directory The directory which was purged.
 	 */
-	private static void hasPurged(String directory) {
+	private static void hasPurged(File directory) {
 	    DIRECTORY_PURGES.put(directory, Calendar.getInstance());
 	}
-
+	
 	/**
 	 * Returns the internal directory purge state for diagnostic purposes.
 	 *
@@ -231,21 +230,22 @@ public final class file
 	 */
 	private static IData[] reflect() {
 	    List<IData> output = new ArrayList<IData>(DIRECTORY_PURGES.size());
-
-	    for (Map.Entry<String, Calendar> entry : DIRECTORY_PURGES.entrySet()) {
+	
+	    for (Map.Entry<File, Calendar> entry : DIRECTORY_PURGES.entrySet()) {
 	        IData document = IDataFactory.create();
 	        IDataCursor cursor = document.getCursor();
-
+	
 	        try {
-	            IDataHelper.put(cursor, "directory", entry.getKey());
+	            File directory = entry.getKey();
+	            IDataHelper.put(cursor, "directory", FileHelper.normalize(directory));
 	            IDataHelper.put(cursor, "purge.last", DateTimeHelper.emit(entry.getValue()));
 	        } finally {
 	            cursor.destroy();
 	        }
-
+	        
 	        output.add(document);
 	    }
-
+	
 	    return output.toArray(new IData[0]);
 	}
 	// --- <<IS-END-SHARED>> ---

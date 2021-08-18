@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-03-07 11:09:28 GMT+10:00
+// -----( CREATED: 2021-08-18 10:56:49 AEST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -45,15 +45,15 @@ public final class yaml
 		// [i] record:0:optional $document
 		// [i] - object:1:optional recordWithNoID
 		// [i] field:0:optional $content.encoding
-		// [i] field:0:optional $content.mode {"stream","bytes","string"}
+		// [i] field:0:optional $content.mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IData document = IDataHelper.get(cursor, "$document", IData.class);
 		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
 		    ObjectConvertMode mode = IDataHelper.first(cursor, ObjectConvertMode.class, "$content.mode", "$mode");
-
+		
 		    if (document != null) {
 		        IDataHelper.put(cursor, "$content", ObjectHelper.convert(new IDataYAMLParser().emit(document, charset), charset, mode));
 		    }
@@ -64,7 +64,7 @@ public final class yaml
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -80,11 +80,11 @@ public final class yaml
 		// [o] record:0:optional $document
 		// [o] - object:1:optional recordWithNoID
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    Object content = IDataHelper.get(cursor, "$content");
 		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
-
+		
 		    if (content != null) {
 		        IDataHelper.put(cursor, "$document", new IDataYAMLParser().parse(InputStreamHelper.normalize(content, charset)));
 		    }
@@ -95,7 +95,7 @@ public final class yaml
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 

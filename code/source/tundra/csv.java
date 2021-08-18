@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-03-07 08:40:23 GMT+10:00
+// -----( CREATED: 2021-08-18 10:53:39 AEST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -48,14 +48,14 @@ public final class csv
 		// [i] field:0:optional $content.delimiter.character
 		// [i] field:0:optional $content.escape.character
 		// [i] field:0:optional $content.quote.character
-		// [i] field:0:optional $content.quote.mode {"minimal","non-numeric","none","all"}
-		// [i] field:0:optional $content.header? {"true","false"}
+		// [i] field:0:optional $content.quote.mode {&quot;minimal&quot;,&quot;non-numeric&quot;,&quot;none&quot;,&quot;all&quot;}
+		// [i] field:0:optional $content.header? {&quot;true&quot;,&quot;false&quot;}
 		// [i] field:1:optional $content.headings
 		// [i] field:0:optional $content.encoding
-		// [i] field:0:optional $content.mode {"stream","bytes","string"}
+		// [i] field:0:optional $content.mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IData document = IDataHelper.get(cursor, "$document", IData.class);
 		    String delimiterCharacter = IDataHelper.first(cursor, String.class, "$content.delimiter.character", "$delimiter");
@@ -66,9 +66,9 @@ public final class csv
 		    String[] columns = IDataHelper.first(cursor, String[].class, "$content.headings", "$columns");
 		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
 		    ObjectConvertMode mode = IDataHelper.first(cursor, ObjectConvertMode.class, "$content.mode", "$mode");
-
+		
 		    if (document != null) {
-		        IDataCSVParser parser = new IDataCSVParser(delimiterCharacter, escapeCharacter, quoteCharacter, quoteMode, null, hasHeader, columns);
+		        IDataCSVParser parser = new IDataCSVParser(delimiterCharacter, escapeCharacter, quoteCharacter, quoteMode, (String)null, hasHeader, columns);
 		        IDataHelper.put(cursor, "$content", ObjectHelper.convert(parser.emit(document, charset), charset, mode));
 		    }
 		} catch (IOException ex) {
@@ -78,7 +78,7 @@ public final class csv
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -93,13 +93,13 @@ public final class csv
 		// [i] field:0:optional $content.delimiter.character
 		// [i] field:0:optional $content.escape.character
 		// [i] field:0:optional $content.quote.character
-		// [i] field:0:optional $content.quote.mode {"minimal","non-numeric","none","all"}
-		// [i] field:0:optional $content.header? {"true","false"}
+		// [i] field:0:optional $content.quote.mode {&quot;minimal&quot;,&quot;non-numeric&quot;,&quot;none&quot;,&quot;all&quot;}
+		// [i] field:0:optional $content.header? {&quot;true&quot;,&quot;false&quot;}
 		// [i] field:0:optional $content.encoding
 		// [o] record:0:optional $document
 		// [o] - record:1:optional recordWithNoID
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    Object content = IDataHelper.get(cursor, "$content");
 		    String delimiterCharacter = IDataHelper.first(cursor, String.class, "$content.delimiter.character", "$delimiter");
@@ -108,9 +108,9 @@ public final class csv
 		    QuoteMode quoteMode = IDataHelper.get(cursor, "$content.quote.mode", QuoteMode.class);
 		    boolean hasHeader = IDataHelper.firstOrDefault(cursor, Boolean.class, true, "$content.header?", "$header?");
 		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
-
+		
 		    if (content != null) {
-		        IDataCSVParser parser = new IDataCSVParser(delimiterCharacter, escapeCharacter, quoteCharacter, quoteMode, null, hasHeader);
+		        IDataCSVParser parser = new IDataCSVParser(delimiterCharacter, escapeCharacter, quoteCharacter, quoteMode, (String)null, hasHeader, null);
 		        IDataHelper.put(cursor, "$document", parser.parse(InputStreamHelper.normalize(content, charset)));
 		    }
 		} catch (IOException ex) {
@@ -120,7 +120,7 @@ public final class csv
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 

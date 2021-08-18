@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-06-05 14:10:10 EST
+// -----( CREATED: 2021-08-18 10:56:24 AEST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -62,13 +62,13 @@ public final class xml
 		// [i] field:0:optional $algorithm {&quot;Canonical XML Version 1.0&quot;,&quot;Canonical XML Version 1.0 With Comments&quot;,&quot;Canonical XML Version 1.1&quot;,&quot;Canonical XML Version 1.1 With Comments&quot;,&quot;Exclusive Canonical XML Version 1.0&quot;,&quot;Exclusive Canonical XML Version 1.0 With Comments&quot;}
 		// [o] object:0:optional $content.canonical
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    Object content = IDataHelper.get(cursor, "$content");
 		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
 		    ObjectConvertMode mode = IDataHelper.first(cursor, ObjectConvertMode.class, "$content.mode", "$mode");
 		    XMLCanonicalizationAlgorithm algorithm = XMLCanonicalizationAlgorithm.normalize(IDataHelper.get(cursor, "$algorithm", String.class));
-
+		
 		    if (content != null) IDataHelper.put(cursor, "$content.canonical", ObjectHelper.convert(XMLCanonicalizationHelper.canonicalize(BytesHelper.normalize(content, charset), charset, algorithm), charset, mode));
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -77,7 +77,7 @@ public final class xml
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -91,10 +91,10 @@ public final class xml
 		// [i] record:0:optional $document.encoded
 		// [o] record:0:optional $document.decoded
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IData document = IDataHelper.get(cursor, "$document.encoded", IData.class);
-
+		
 		    if (document == null) {
 		        String string = IDataHelper.get(cursor, "$string", String.class);
 		        IDataHelper.put(cursor, "$string", XMLHelper.decode(string), false);
@@ -106,7 +106,7 @@ public final class xml
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -123,14 +123,14 @@ public final class xml
 		// [o] object:0:optional $content
 		// [o] field:0:optional $content.encoding
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    Node node = IDataHelper.get(cursor, "$node", Node.class);
 		    Charset charset = IDataHelper.firstOrDefault(cursor, Charset.class, CharsetHelper.DEFAULT_CHARSET, "$content.encoding", "$encoding");
 		    ObjectConvertMode mode = IDataHelper.first(cursor, ObjectConvertMode.class, "$content.mode", "$mode");
-
+		
 		    Object content = ObjectHelper.convert(NodeHelper.emit(node, charset), mode);
-
+		
 		    IDataHelper.put(cursor, "$content", content, false);
 		    if (content != null && !(content instanceof String)) IDataHelper.put(cursor, "$content.encoding", charset.name());
 		} catch(IOException ex) {
@@ -140,7 +140,7 @@ public final class xml
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -155,11 +155,11 @@ public final class xml
 		// [i] field:0:optional $attribute.prefix
 		// [o] record:0:optional $document.encoded
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IData document = IDataHelper.get(cursor, "$document.decoded", IData.class);
 		    String attributePrefix = IDataHelper.get(cursor, "$attribute.prefix", String.class);
-
+		
 		    if (document == null) {
 		        String string = IDataHelper.get(cursor, "$string", String.class);
 		        IDataHelper.put(cursor, "$string", XMLHelper.encode(string), false);
@@ -171,7 +171,7 @@ public final class xml
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -187,13 +187,13 @@ public final class xml
 		// [i] field:0:optional $content.mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
 		// [o] object:0:optional $content.minified
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    Object content = IDataHelper.get(cursor, "$content");
 		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
-
+		
 		    ObjectConvertMode mode = IDataHelper.first(cursor, ObjectConvertMode.class, "$content.mode", "$mode");
-
+		
 		    IDataHelper.put(cursor, "$content.minified", ObjectHelper.convert(XMLMinificationHelper.minify(InputStreamHelper.normalize(content, charset)), charset, mode), false);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -202,7 +202,7 @@ public final class xml
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -219,12 +219,12 @@ public final class xml
 		// [i] - field:0:optional default
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    Object content = IDataHelper.get(cursor, "$content");
 		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
 		    NamespaceContext namespace = IDataHelper.first(cursor, IDataNamespaceContext.class, "$content.namespace", "$namespace");
-
+		
 		    Node node = null;
 		    if (content instanceof Node) {
 		        node = (Node)content;
@@ -233,14 +233,14 @@ public final class xml
 		    } else if (content != null) {
 		        node = DocumentHelper.parse(InputStreamHelper.normalize(content, charset), charset, true, namespace);
 		    }
-
+		
 		    if (node != null) IDataHelper.put(cursor, "$document", NodeHelper.parse(node, namespace, true));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -259,17 +259,17 @@ public final class xml
 		// [o] field:0:required $valid?
 		// [o] field:1:optional $errors
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    Object content = IDataHelper.get(cursor, "$content");
 		    Charset contentCharset = IDataHelper.get(cursor, "$content.encoding", Charset.class);
 		    Object schema = IDataHelper.get(cursor, "$schema");
 		    Charset schemaCharset = IDataHelper.get(cursor, "$schema.encoding", Charset.class);
 		    boolean raise = IDataHelper.getOrDefault(cursor, "$raise?", Boolean.class, false);
-
+		
 		    String[] errors = XMLHelper.validate(InputStreamHelper.normalize(content, contentCharset), contentCharset, InputStreamHelper.normalize(schema, schemaCharset), schemaCharset, raise);
 		    boolean valid = content != null && (errors == null || errors.length == 0);
-
+		
 		    IDataHelper.put(cursor, "$valid?", valid, String.class);
 		    IDataHelper.put(cursor, "$errors", errors, false, false);
 		} finally {
@@ -277,7 +277,7 @@ public final class xml
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 	// --- <<IS-START-SHARED>> ---
@@ -289,10 +289,10 @@ public final class xml
 	            IData namespace = IDataHelper.get(cursor, "$document.namespace", IData.class);
 	            boolean recurse = IDataHelper.getOrDefault(cursor, "$document.recurse?", Boolean.class, false);
 	            TransformerMode mode = IDataHelper.get(cursor, "$document.mode", TransformerMode.class);
-
+	
 	            IDataNamespaceContext context = new IDataNamespaceContext(namespace);
 	            IData normalizedDocument = Transformer.transform(document, new Normalizer(context, mode, recurse));
-
+	
 	            IDataHelper.put(cursor, "$document.normalized", normalizedDocument, false);
 	        } finally {
 	            cursor.destroy();

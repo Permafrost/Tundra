@@ -307,12 +307,21 @@ specification.
   be attempted. Supports the following delivery protocols / [URI]
   schemes:
   * `file`: writes the given content to the file specified by the
-    destination [URI]. The following additional override options can
-    be provided via the `$pipeline` document:
+    destination [URI]. The following parameters can be specified in
+    the query string:
+    * `buffer` is the optional size in bytes of the in memory buffer
+      used when writing the content to the file.
+    * `filemode` is the optional choice of:
+      * `append` will append the given content to the file if it 
+        already exists, or create it if it does not already exist.
+      * `create` will throw an exception if the file already exists.
+      * `write` will overwrite the file with the given content if it
+        already exists.
+    The following additional override options can be provided via the 
+    `$pipeline` document:
     * `$filename`: the name of the file to be written. This value
       will override the value provided in the destination [URI].
-    * `$filemode`: append / write / create
- 
+
   * `ftp`: uploads the given content to the FTP server, directory and
     file specified by the destination [URI]. An example FTP [URI] is
     as follows:
@@ -336,8 +345,8 @@ specification.
     * `$ascii`: a boolean which when `true` indicates that the file
       transfer should be made in ascii mode. Defaults to `false`
       (binary mode).
-    * `$rename` is an optional boolean which if `true` will first 
-      write the content to the given file name with `.tmp` suffix 
+    * `$rename` is an optional boolean which if `true` will first
+      write the content to the given file name with `.tmp` suffix
       and then rename it to its specified name once written.
       Defaults to `false`, where the content is written directly to
       the file name specified in the destination [URI]. Note if the
@@ -346,9 +355,9 @@ specification.
       how long the client waits for a response from the server
       before timing out and terminating the request with an error.
       Defaults to `PT60S`.
-  
+
   * `ftps`: refer to `ftp`
-  
+
   * `http`: transmits the given content to the destination [URI]. The
     following additional override options can be provided via the
     `$pipeline` document:
@@ -364,9 +373,9 @@ specification.
       how long the client waits for a response from the server
       before timing out and terminating the request with an error.
       Defaults to `PT60S`.
-  
+
   * `https`: refer to `http`
-  
+
   * `jms`: sends the given content as a [javax.jms.BytesMessage] to
     the specified [JMS] alias and queue or topic. The following
     additional override options can be provided via the `$pipeline`
@@ -388,7 +397,7 @@ specification.
     specified priority of 1:
 
         jms://DEFAULT_IS_JMS_CONNECTION?queue=JMS::Temporary::Queue&amp;priority=1
-  
+
   * `mailto`: sends an email, with the given content as an attachment
     if specified. An example mailto [URI] is as follows:
 
@@ -404,7 +413,7 @@ specification.
       example, smtp://user:password@host:port), defaults to the SMTP
       server configured in the Integration Server setting
       `watt.server.smtpServer`.
-  
+
   * `sap+idoc`: sends an IDoc [XML] message to an SAP system. Note
     that this delivery scheme requires the webMethods SAP adapter be
     installed. Both opaque and non-opaque URIs are allowed: opaque
@@ -439,7 +448,7 @@ specification.
     * `$limit`: the maximum number of IDocs to send per transaction
       (TID), used to partition the sending of a batch of IDocs across
       multiple smaller TIDs. Defaults to no limit.
-  
+
   * `sftp`: uploads the given content to the [SFTP] server, directory
     and file specified by the destination [URI]. Note that [SFTP]
     delivery is only supported on Integration Server versions 9.0 and

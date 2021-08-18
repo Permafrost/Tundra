@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-03-07 09:11:51 GMT+10:00
+// -----( CREATED: 2021-08-18 10:55:20 AEST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -44,18 +44,18 @@ public final class json
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
 		// [i] - object:1:optional recordWithNoID
-		// [i] field:0:optional $content.minify? {"false","true"}
+		// [i] field:0:optional $content.minify? {&quot;false&quot;,&quot;true&quot;}
 		// [i] field:0:optional $content.encoding
-		// [i] field:0:optional $content.mode {"stream","bytes","string"}
+		// [i] field:0:optional $content.mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IData document = IDataHelper.get(cursor, "$document", IData.class);
 		    boolean minify = IDataHelper.firstOrDefault(cursor, Boolean.class, false, "$content.minify?", "$minify?");
 		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
 		    ObjectConvertMode mode = IDataHelper.first(cursor, ObjectConvertMode.class, "$content.mode", "$mode");
-
+		
 		    if (document != null) {
 		        IDataHelper.put(cursor, "$content", ObjectHelper.convert(new IDataJSONParser(!minify).emit(document, charset), charset, mode));
 		    }
@@ -66,7 +66,7 @@ public final class json
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -82,11 +82,11 @@ public final class json
 		// [o] record:0:optional $document
 		// [o] - object:1:optional recordWithNoID
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    Object content = IDataHelper.get(cursor, "$content");
 		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
-
+		
 		    if (content != null) {
 		        IDataHelper.put(cursor, "$document", new IDataJSONParser().parse(InputStreamHelper.normalize(content, charset), charset));
 		    }
@@ -97,7 +97,7 @@ public final class json
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 

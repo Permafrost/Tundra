@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-03-07 08:49:19 GMT+10:00
+// -----( CREATED: 2021-08-18 10:54:44 AEST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -41,16 +41,16 @@ public final class excel
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
-		// [i] field:0:optional $content.extension {"xlsx","xls"}
-		// [i] field:0:optional $content.mode {"stream","bytes"}
+		// [i] field:0:optional $content.extension {&quot;xlsx&quot;,&quot;xls&quot;}
+		// [i] field:0:optional $content.mode {&quot;stream&quot;,&quot;bytes&quot;}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IData document = IDataHelper.get(cursor, "$document", IData.class);
 		    String extension = IDataHelper.firstOrDefault(cursor, String.class, "xlsx", "$content.extension", "$extension");
 		    ObjectConvertMode mode = IDataHelper.first(cursor, ObjectConvertMode.class, "$content.mode", "$mode");
-
+		
 		    if (document != null) {
 		        IDataExcelParser parser = new IDataExcelParser(extension.equals("xlsx"));
 		        IDataHelper.put(cursor, "$content", ObjectHelper.convert(parser.emit(document), mode));
@@ -62,7 +62,7 @@ public final class excel
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -76,7 +76,7 @@ public final class excel
 		// [i] object:0:optional $content
 		// [o] record:0:optional $document
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    Object content = IDataHelper.get(cursor, "$content");
 		    if (content != null) IDataHelper.put(cursor, "$document", new IDataExcelParser().parse(InputStreamHelper.normalize(content)));
@@ -87,7 +87,7 @@ public final class excel
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 

@@ -2598,11 +2598,20 @@ specification.
   be attempted. Supports the following delivery protocols / [URI]
   schemes:
   * `file`: writes the given content to the file specified by the
-    destination [URI]. The following additional override options can
-    be provided via the `$pipeline` document:
+    destination [URI]. The following parameters can be specified in
+    the query string:
+    * `buffer` is the optional size in bytes of the in memory buffer
+      used when writing the content to the file.
+    * `filemode` is the optional choice of:
+      * `append` will append the given content to the file if it
+        already exists, or create it if it does not already exist.
+      * `create` will throw an exception if the file already exists.
+      * `write` will overwrite the file with the given content if it
+        already exists.
+    The following additional override options can be provided via the
+    `$pipeline` document:
     * `$filename`: the name of the file to be written. This value
       will override the value provided in the destination [URI].
-    * `$filemode`: append / write / create
 
   * `ftp`: uploads the given content to the FTP server, directory and
     file specified by the destination [URI]. An example FTP [URI] is
@@ -7180,6 +7189,8 @@ Copies the content of the source file to the target file.
   * `create` will throw an exception if the file already exists.
   * `write` will overwrite the file with the given content if it
     already exists.
+* `$file.buffer.size` is an optional size in bytes to use when
+  buffering the data being copied in memory.
 
 ---
 
@@ -7649,6 +7660,8 @@ file.
   * `create` will throw an exception if the file already exists.
   * `write` will overwrite the file with the given content if it
     already exists.
+* `$file.buffer.size` is an optional size in bytes to use when
+  buffering the data being written in memory.
 * `$content` is a string, byte array, or input stream containing data
   to be written or appended to the given file.
 * `$content.encoding` is an optional character set to use when
@@ -15639,19 +15652,22 @@ system resources.
 
 ### tundra.stream:copy
 
-Copies all data from the given input stream (or string or bytes) to the
-given output stream, then closes the streams.
+Copies all data from the given input stream (or string or bytes) to
+the given output stream, then closes the streams.
 
 #### Inputs:
 
-* `$input` is an optional String, byte[], or [java.io.InputStream] object
-  containing data to be written to `$output`. If not specified, this
+* `$stream.input` is an optional [java.io.InputStream] object, byte[],
+  or String containing data to be written to `$output`. If not
+  specified, this service does nothing.
+* `$stream.output` is an optional [java.io.OutputStream] object where
+  data read from `$input` is to be written. If not specified, this
   service does nothing.
-* `$output` is an optional [java.io.OutputStream] object where data read
-  from `$input` is to be written. If not specified, this service does
-  nothing.
-* `$close?` is an optional boolean indicating whether the streams should be
-  closed after the copy is complete. Defaults to `true`.
+* `$stream.buffer.size` is an optional size in bytes to use when
+  buffering the data being copied in memory.
+* `$stream.close?` is an optional boolean indicating whether the
+  streams should be closed after the copy is complete. Defaults to
+  `true`.
 
 ---
 

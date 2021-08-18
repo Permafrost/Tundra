@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-08-16 18:24:09 EST
-// -----( ON-HOST: 192.168.66.132
+// -----( CREATED: 2021-08-18 10:39:51 AEST
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -68,17 +68,19 @@ public final class stream
 		// --- <<IS-START(copy)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] object:0:optional $input
-		// [i] object:0:optional $output
-		// [i] field:0:optional $close? {"true","false"}
+		// [i] object:0:optional $stream.input
+		// [i] object:0:optional $stream.output
+		// [i] object:0:optional $stream.buffer.size
+		// [i] field:0:optional $stream.close? {&quot;true&quot;,&quot;false&quot;}
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    InputStream input = IDataHelper.get(cursor, "$input", InputStream.class);
-		    OutputStream output = IDataHelper.get(cursor, "$output", OutputStream.class);
-		    boolean close = IDataHelper.getOrDefault(cursor, "$close?", Boolean.class, true);
+		    InputStream input = IDataHelper.first(cursor, InputStream.class, "$stream.input", "$input");
+		    OutputStream output = IDataHelper.first(cursor, OutputStream.class, "$stream.output", "$output");
+		    int bufferSize = IDataHelper.getOrDefault(cursor, "$stream.buffer.size", Integer.class, -1);
+		    boolean close = IDataHelper.firstOrDefault(cursor, Boolean.class, true, "$stream.close?", "$close?");
 		
-		    InputOutputHelper.copy(input, output, close);
+		    InputOutputHelper.copy(input, output, close, bufferSize);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {

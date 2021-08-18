@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-07-31 14:57:15 AEST
+// -----( CREATED: 2021-08-18 10:55:45 AEST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -86,23 +86,23 @@ public final class service
 		// [o] - object:0:required count.failures
 		// [o] - field:0:required count.failures.formatted
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IData scope = IDataHelper.get(cursor, "$pipeline", IData.class);
 		    if (scope == null) scope = IDataHelper.clone(pipeline, "$service", "$count", "$raise?");
 		    String service = IDataHelper.get(cursor, "$service", String.class);
 		    int count = IDataHelper.get(cursor, "$count", Integer.class);
 		    boolean raise = IDataHelper.getOrDefault(cursor, "$raise?", Boolean.class, false);
-
+		
 		    ServiceEstimator.Results results = ServiceHelper.benchmark(service, scope, count, raise);
-
+		
 		    IDataHelper.put(cursor, "$benchmark.results", results.getIData());
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -118,20 +118,20 @@ public final class service
 		// [o] field:0:required $caller
 		// [o] field:0:required $caller.initiator
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    List<NSService> stack = ServiceHelper.getCallStack();
 		    if (stack.size() > 0) stack.remove(stack.size() - 1); // remove call to this service
-
+		
 		    String caller = "", initiator = "";
 		    if (stack.size() > 1) {
 		        NSService callingService = stack.get(stack.size() - 2);
 		        if (callingService != null) caller = ObjectHelper.stringify(callingService);
-
+		
 		        NSService initiatingService = stack.get(0);
 		        if (initiatingService != null) initiator = ObjectHelper.stringify(initiatingService);
 		    }
-
+		
 		    IDataHelper.put(cursor, "$callstack", CollectionHelper.arrayify(CollectionHelper.stringify(stack), String.class));
 		    IDataHelper.put(cursor, "$callers", IterableHelper.join(stack, " \u2192 "));
 		    IDataHelper.put(cursor, "$caller", caller);
@@ -141,7 +141,7 @@ public final class service
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -155,18 +155,18 @@ public final class service
 		// [i] field:0:required $package
 		// [i] field:0:required $service
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String packageName = IDataHelper.get(cursor, "$package", String.class);
 		    String serviceName = IDataHelper.get(cursor, "$service", String.class);
-
+		
 		    ServiceHelper.create(packageName, serviceName);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -180,19 +180,19 @@ public final class service
 		// [i] field:0:required $service
 		// [i] record:0:optional $pipeline
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IData scope = IDataHelper.get(cursor, "$pipeline", IData.class);
 		    if (scope == null) scope = IDataHelper.clone(pipeline, "$service");
 		    String service = IDataHelper.get(cursor, "$service", String.class);
-
+		
 		    DeferHelper.defer(service, scope);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -212,11 +212,11 @@ public final class service
 		// [i] field:0:optional $thread.priority
 		// [o] record:0:optional $pipeline
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		Thread currentThread = Thread.currentThread();
 		int currentThreadPriority = currentThread.getPriority();
 		boolean changeThreadPriority = false;
-
+		
 		try {
 		    String tryService = IDataHelper.get(cursor, "$service", String.class);
 		    String catchService = IDataHelper.get(cursor, "$catch", String.class);
@@ -226,18 +226,18 @@ public final class service
 		    IData finallyPipeline = IDataHelper.get(cursor, "$pipeline.finally", IData.class);
 		    BigDecimal newThreadPriority = IDataHelper.get(cursor, "$thread.priority", BigDecimal.class);
 		    boolean scoped = scope != pipeline;
-
+		
 		    // remove this service's input arguments from the pipeline if unscoped
 		    if (!scoped) scope = IDataHelper.clone(pipeline, "$service", "$catch", "$finally", "$pipeline.catch", "$pipeline.finally");
-
+		
 		    if (newThreadPriority != null) {
 		        int priority = ThreadHelper.normalizePriority(newThreadPriority.intValue());
 		        changeThreadPriority = priority != currentThreadPriority;
 		        if (changeThreadPriority) currentThread.setPriority(priority);
 		    }
-
+		
 		    scope = ServiceHelper.ensure(tryService, catchService, finallyService, scope, catchPipeline, finallyPipeline);
-
+		
 		    if (scoped) {
 		        IDataHelper.put(cursor, "$pipeline", scope);
 		    } else {
@@ -249,7 +249,7 @@ public final class service
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -264,19 +264,19 @@ public final class service
 		// [i] record:0:optional $pipeline
 		// [o] object:0:required $thread
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IData scope = IDataHelper.get(cursor, "$pipeline", IData.class);
 		    if (scope == null) scope = IDataHelper.clone(pipeline, "$service");
 		    String service = IDataHelper.get(cursor, "$service", String.class);
-
+		
 		    IDataHelper.put(cursor, "$thread", ServiceHelper.fork(service, scope));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -289,18 +289,18 @@ public final class service
 		// @sigtype java 3.5
 		// [o] field:0:required $initiator? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    List<NSService> stack = ServiceHelper.getCallStack();
 		    if (stack.size() > 0) stack.remove(stack.size() - 1); // remove call to this service
-
+		
 		    IDataHelper.put(cursor, "$initiator?", stack.size() <= 1, String.class);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -318,21 +318,21 @@ public final class service
 		// [o] record:0:optional $pipeline
 		// [o] field:0:optional $duration
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		Thread currentThread = Thread.currentThread();
 		int currentThreadPriority = currentThread.getPriority();
 		boolean changeThreadPriority = false;
-
+		
 		try {
 		    IData scope = IDataHelper.remove(cursor, "$pipeline", IData.class);
 		    boolean scoped = scope != null;
 		    if (!scoped) scope = IDataHelper.clone(pipeline, "$service", "$mode", "$raise?");
-
+		
 		    String service = IDataHelper.get(cursor, "$service", String.class);
 		    String mode = IDataHelper.get(cursor, "$mode", String.class);
 		    boolean raise = IDataHelper.getOrDefault(cursor, "$raise?", Boolean.class, true);
 		    BigDecimal newThreadPriority = IDataHelper.get(cursor, "$thread.priority", BigDecimal.class);
-
+		
 		    if (mode != null && mode.equals("asynchronous")) {
 		        // support asynchronous mode for backwards compatiblity
 		        IDataHelper.put(cursor, "$thread", ServiceHelper.fork(service, scope));
@@ -342,11 +342,11 @@ public final class service
 		            changeThreadPriority = priority != currentThreadPriority;
 		            if (changeThreadPriority) currentThread.setPriority(priority);
 		        }
-
+		
 		        long start = System.nanoTime();
 		        scope = ServiceHelper.invoke(service, scope, raise, true, true);
 		        long end = System.nanoTime();
-
+		
 		        if (scoped) {
 		            IDataHelper.put(cursor, "$pipeline", scope);
 		        } else {
@@ -360,7 +360,7 @@ public final class service
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -375,19 +375,19 @@ public final class service
 		// [i] field:0:optional $raise? {&quot;true&quot;,&quot;false&quot;}
 		// [o] record:0:optional $pipeline
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    ServiceThread thread = IDataHelper.get(cursor, "$thread", ServiceThread.class);
-
+		
 		    boolean raise = IDataHelper.getOrDefault(cursor, "$raise", Boolean.class, true);
-
+		
 		    if (thread != null) IDataHelper.put(cursor, "$pipeline", ServiceHelper.join(thread, raise));
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -400,7 +400,7 @@ public final class service
 		// @sigtype java 3.5
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -415,13 +415,17 @@ public final class service
 		// [i] - field:0:required source
 		// [i] - field:0:optional target
 		// [i] - record:0:optional signature
-		// [i] -- record:0:optional input
-		// [i] -- record:0:optional output
+		// [i] -- record:1:optional input
+		// [i] --- field:0:required source
+		// [i] --- field:0:optional target
+		// [i] -- record:1:optional output
+		// [i] --- field:0:required target
+		// [i] --- field:0:optional source
 		// [i] - record:0:optional pipeline
 		// [i] -- record:0:optional input
 		// [i] -- record:0:optional output
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IData serviceRedirect = IDataHelper.get(cursor, "$service.redirect", IData.class);
 		    RedirectServiceManager.getInstance().register(serviceRedirect);
@@ -430,7 +434,7 @@ public final class service
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -464,7 +468,7 @@ public final class service
 		// [o] --- field:0:required node
 		// [o] -- field:0:required nodes.length
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String service = IDataHelper.get(cursor, "$service", String.class);
 		    IDataHelper.put(cursor, "$service.properties", ServiceHelper.reflect(service), false);
@@ -473,7 +477,7 @@ public final class service
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -491,7 +495,7 @@ public final class service
 		// [i] field:0:optional $response.content.type
 		// [i] field:0:optional $response.content.encoding
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    int code = IDataHelper.firstOrDefault(cursor, Integer.class, 200, "$response.code", "$code");
 		    String message = IDataHelper.first(cursor, String.class, "$response.message", "$message");
@@ -499,14 +503,14 @@ public final class service
 		    Object content = IDataHelper.first(cursor, Object.class, "$response.content", "$content");
 		    String contentType = IDataHelper.first(cursor, String.class, "$response.content.type", "$content.type");
 		    Charset charset = IDataHelper.first(cursor, Charset.class, "$response.content.encoding", "$content.encoding", "$encoding");
-
+		
 		    ServiceHelper.respond(code, message, headers, InputStreamHelper.normalize(content, charset), contentType, charset);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -518,7 +522,7 @@ public final class service
 		// @subtype unknown
 		// @sigtype java 3.5
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    ServiceHelper.restful(pipeline);
 		} finally {
@@ -526,7 +530,7 @@ public final class service
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -547,31 +551,31 @@ public final class service
 		// [o] field:0:optional $duration
 		// [o] field:0:optional $retry.count
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		Thread currentThread = Thread.currentThread();
 		int currentThreadPriority = currentThread.getPriority();
 		boolean changeThreadPriority = false;
-
+		
 		try {
 		    IData scope = IDataHelper.remove(cursor, "$pipeline", IData.class);
 		    boolean scoped = scope != null;
 		    if (!scoped) scope = IDataHelper.clone(pipeline, "$service", "$mode", "$raise?", "$retry.limit", "$retry.wait", "$retry.factor");
-
+		
 		    String service = IDataHelper.get(cursor, "$service", String.class);
 		    int retryLimit = IDataHelper.getOrDefault(cursor, "$retry.limit", Integer.class, 0);
 		    Duration retryWait = IDataHelper.get(cursor, "$retry.wait", Duration.class);
 		    float retryFactor = IDataHelper.getOrDefault(cursor, "$retry.factor", Float.class, 1.0f);
 		    BigDecimal newThreadPriority = IDataHelper.get(cursor, "$thread.priority", BigDecimal.class);
-
+		
 		    if (newThreadPriority != null) {
 		        int priority = ThreadHelper.normalizePriority(newThreadPriority.intValue());
 		        changeThreadPriority = priority != currentThreadPriority;
 		        if (changeThreadPriority) currentThread.setPriority(priority);
 		    }
-
+		
 		    int retryCount = 0;
 		    long retryWaitMilliseconds = retryWait == null ? 0 : retryWait.getTimeInMillis(Calendar.getInstance());
-
+		
 		    long start = System.nanoTime();
 		    while(!Thread.interrupted()) {
 		        IData invokePipeline = IDataHelper.clone(scope);
@@ -590,7 +594,7 @@ public final class service
 		        }
 		    }
 		    long end = System.nanoTime();
-
+		
 		    if (scoped) {
 		        IDataHelper.put(cursor, "$pipeline", scope);
 		    } else {
@@ -607,7 +611,7 @@ public final class service
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -621,7 +625,7 @@ public final class service
 		RetryableServiceProcessor.getInstance().register();
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -634,7 +638,7 @@ public final class service
 		// @sigtype java 3.5
 		// [o] field:0:optional $self
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IDataHelper.put(cursor, "$self", ServiceHelper.self(), String.class, false);
 		} finally {
@@ -642,7 +646,7 @@ public final class service
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -658,7 +662,7 @@ public final class service
 		tundra.thread.sleep(pipeline);
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -674,18 +678,18 @@ public final class service
 		// [o] record:0:optional $pipeline
 		// [o] field:0:optional $service.duration
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String service = IDataHelper.get(cursor, "$service", String.class);
 		    IData scope = IDataHelper.get(cursor, "$pipeline", IData.class);
 		    boolean scoped = scope != null;
-
+		
 		    if (!scoped) scope = IDataHelper.clone(pipeline, "$service");
-
+		
 		    long start = System.nanoTime();
 		    scope = ServiceHelper.synchronize(service, scope, false);
 		    long end = System.nanoTime();
-
+		
 		    if (scoped) {
 		        IDataHelper.put(cursor, "$pipeline", scope);
 		    } else {
@@ -697,7 +701,7 @@ public final class service
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -712,18 +716,18 @@ public final class service
 		// [i] field:0:optional $raise? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:required $valid? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    String service = IDataHelper.get(cursor, "$service", String.class);
 		    boolean raise = IDataHelper.getOrDefault(cursor, "$raise?", Boolean.class, false);
-
+		
 		    IDataHelper.put(cursor, "$valid?", ServiceHelper.exists(service, raise), String.class);
 		} finally {
 		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 

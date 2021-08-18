@@ -4,8 +4,8 @@
   <value name="name">reflect</value>
   <value name="encodeutf8">true</value>
   <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7DQoNCnRyeSB7DQogICAg
-U3RyaW5nIGZpbGUgPSBJRGF0YUhlbHBlci5nZXQoY3Vyc29yLCAiJGZpbGUiLCBTdHJpbmcuY2xh
-c3MpOw0KICAgIElEYXRhSGVscGVyLnB1dChjdXJzb3IsICIkZmlsZS5wcm9wZXJ0aWVzIiwgRmls
-ZUhlbHBlci5nZXRQcm9wZXJ0aWVzQXNJRGF0YShmaWxlKSk7DQp9IGZpbmFsbHkgew0KICAgIGN1
-cnNvci5kZXN0cm95KCk7DQp9</value>
+RmlsZSBmaWxlID0gSURhdGFIZWxwZXIuZ2V0KGN1cnNvciwgIiRmaWxlIiwgRmlsZS5jbGFzcyk7
+DQogICAgSURhdGFIZWxwZXIucHV0KGN1cnNvciwgIiRmaWxlLnByb3BlcnRpZXMiLCBGaWxlSGVs
+cGVyLmdldFByb3BlcnRpZXNBc0lEYXRhKGZpbGUpKTsNCn0gZmluYWxseSB7DQogICAgY3Vyc29y
+LmRlc3Ryb3koKTsNCn0=</value>
 </Values>

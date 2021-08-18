@@ -7,6 +7,7 @@
   <array name="implements" type="value" depth="1">
   </array>
   <array name="imports" type="value" depth="1">
+    <value>java.io.File</value>
     <value>java.io.IOException</value>
     <value>java.math.BigInteger</value>
     <value>java.util.ArrayList</value>

@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-11-27T12:51:48.776
+// -----( CREATED: 2021-08-18 10:54:58 AEST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -44,17 +44,17 @@ public final class gzip
 		// @sigtype java 3.5
 		// [i] object:0:optional $content
 		// [i] field:0:optional $content.encoding
-		// [i] field:0:optional $content.mode {"stream","bytes","string","base64"}
+		// [i] field:0:optional $content.mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;,&quot;base64&quot;}
 		// [o] object:0:optional $content.gzip
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    Object input = IDataHelper.get(cursor, "$content");
 		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
 		    ObjectConvertMode mode = IDataHelper.first(cursor, ObjectConvertMode.class, "$content.mode", "$mode");
-
+		
 		    Object output = ObjectHelper.convert(GzipHelper.compress(InputStreamHelper.normalize(input, charset)), charset, mode);
-
+		
 		    IDataHelper.put(cursor, "$content.gzip", output, false);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -63,7 +63,7 @@ public final class gzip
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -76,17 +76,17 @@ public final class gzip
 		// @sigtype java 3.5
 		// [i] object:0:optional $content.gzip
 		// [i] field:0:optional $content.encoding
-		// [i] field:0:optional $content.mode {"stream","bytes","string","base64"}
+		// [i] field:0:optional $content.mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;,&quot;base64&quot;}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    Object input = IDataHelper.get(cursor, "$content.gzip");
 		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
 		    ObjectConvertMode mode = IDataHelper.first(cursor, ObjectConvertMode.class, "$content.mode", "$mode");
-
+		
 		    Object output = ObjectHelper.convert(GzipHelper.decompress(InputStreamHelper.normalize(input, charset)), charset, mode);
-
+		
 		    IDataHelper.put(cursor, "$content", output, false);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -95,7 +95,7 @@ public final class gzip
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 

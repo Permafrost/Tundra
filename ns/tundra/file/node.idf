@@ -25,7 +25,6 @@
     <value>permafrost.tundra.io.FileHelper</value>
     <value>permafrost.tundra.io.InputStreamHelper</value>
     <value>permafrost.tundra.io.MarkableFileInputStream</value>
-    <value>permafrost.tundra.io.OutputStreamHelper</value>
     <value>permafrost.tundra.io.filter.FilenameFilterType</value>
     <value>permafrost.tundra.lang.BooleanHelper</value>
     <value>permafrost.tundra.lang.CharsetHelper</value>

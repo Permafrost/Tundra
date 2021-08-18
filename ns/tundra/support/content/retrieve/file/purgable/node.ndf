@@ -219,6 +219,7 @@ period, or one day, whichever is the lesser.
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template">tundra_support_content_retrieve_file_purgable</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>

@@ -1,7 +1,7 @@
 package tundra.support;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-12-06T09:43:18.985
+// -----( CREATED: 2021-08-18 10:56:08 AEST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -47,21 +47,21 @@ public final class receive
 		// [i] field:0:optional $response.content.id
 		// [i] object:0:optional $exception
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    Object content = IDataHelper.getOrDefault(cursor, "$response.content", Object.class, "");
 		    String contentType = IDataHelper.get(cursor, "$response.content.type", String.class);
 		    Charset charset = IDataHelper.get(cursor, "$response.content.encoding", Charset.class);
 		    String responseID = IDataHelper.get(cursor, "$response.content.id", String.class);
 		    Throwable exception = IDataHelper.get(cursor, "$exception", Throwable.class);
-
+		
 		    int responseCode;
 		    InputStream responseBody;
-
+		
 		    List<NSService> stack = ServiceHelper.getCallStack();
 		    if (stack.size() > 0) stack.remove(stack.size() - 1); // remove call to this service
 		    boolean initiator = stack.size() <= 1;
-
+		
 		    if (initiator) {
 		        if (exception == null) {
 		            responseCode = 202;
@@ -84,7 +84,7 @@ public final class receive
 		            }
 		            responseBody = InputStreamHelper.normalize(exception.getMessage(), charset);
 		        }
-
+		
 		        IData headers = null;
 		        if (responseID != null) {
 		            headers = IDataFactory.create();
@@ -92,7 +92,7 @@ public final class receive
 		            headersCursor.insertAfter("X-Response-ID", responseID);
 		            headersCursor.destroy();
 		        }
-
+		
 		        ServiceHelper.respond(responseCode, null, headers, responseBody, contentType, charset);
 		    } else if (exception != null) {
 		        ExceptionHelper.raise(exception);
@@ -102,7 +102,7 @@ public final class receive
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 

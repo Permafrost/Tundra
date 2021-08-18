@@ -122,6 +122,23 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
+          <value name="field_name">$file.buffer.size</value>
+          <value name="field_type">object</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <value name="wrapper_type">java.lang.Integer</value>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
           <value name="field_name">$content</value>
           <value name="field_type">object</value>
           <value name="field_dim">0</value>
@@ -206,7 +223,7 @@
 Writes or appends the content, provided as a string, byte array or
 input stream, to the given file.
 
-If no file is specified, a new temporary file is created 
+If no file is specified, a new temporary file is created
 automatically.
 
 If the path to the file does not exist, this service will attempt to
@@ -219,23 +236,19 @@ file.
   is to be written or appended, specified as either a relative or
   absolute file path or `file:` [URI]. If not specified, a new
   temporary file will be created automatically.
-* `$file.mode` determines what to do when the file already exists. 
+* `$file.mode` determines what to do when the file already exists.
   Defaults to `create` if not specified.
   * `append` will append the given content to the file if it already
     exists.
   * `create` will throw an exception if the file already exists.
   * `write` will overwrite the file with the given content if it
     already exists.
+* `$file.buffer.size` is an optional size in bytes to use when 
+  buffering the data being written in memory.
 * `$content` is a string, byte array, or input stream containing data
   to be written or appended to the given file.
-* `$content.encoding` is an optional character set to use when 
+* `$content.encoding` is an optional character set to use when
   `$content` has been provided as a string. Defaults to [UTF-8].
-
-#### Outputs:
-
-* `$file` is the name of the file that was written or appended to. If
-  no input file name was specified, this is the name of the temporary
-  file that was created automatically.
 
 [URI]: &lt;http://www.w3.org/Addressing/&gt;
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;
@@ -245,6 +258,7 @@ file.
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template">tundra_file_write</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
