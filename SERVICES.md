@@ -16561,6 +16561,12 @@ translation returned in `$translation.result` is as follows:
   indicates that the `$translation.values` table should be flipped
   such that the keys become the values and vice versa. Defaults to
   `false`.
+* `$translation.exclude?` is an optional boolean which when `true`
+  will exclude any operands that are missing translation values from
+  the returned `$translation.results`. Defaults to `false`.
+* `$translation.raise?` is an optional boolean which when `true` will
+  throw an exception if the translation value for a given operand is
+  missing from `$translation.values`. Defaults to `false`.
 
 #### Outputs:
 

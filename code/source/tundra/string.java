@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-08-01 11:34:57 AEST
+// -----( CREATED: 2021-08-20 05:16:20 AEST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -925,8 +925,9 @@ public final class string
 		// @sigtype java 3.5
 		// [i] record:0:optional $translation.operands
 		// [i] record:0:optional $translation.values
-		// [i] field:0:optional $translation.exclude? {&quot;false&quot;,&quot;true&quot;}
 		// [i] field:0:optional $translation.reverse? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $translation.exclude? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $translation.raise? {&quot;false&quot;,&quot;true&quot;}
 		// [o] record:0:optional $translation.results
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -938,10 +939,11 @@ public final class string
 		        outputKey = "$results";
 		    }
 		    IData translations = IDataHelper.first(cursor, IData.class, "$translation.values", "$translations");
-		    boolean exclude = IDataHelper.getOrDefault(cursor, "$translation.exclude?", Boolean.class, false);
 		    boolean reverse = IDataHelper.firstOrDefault(cursor, Boolean.class, false, "$translation.reverse?", "$reverse?");
+		    boolean exclude = IDataHelper.getOrDefault(cursor, "$translation.exclude?", Boolean.class, false);
+		    boolean raise = IDataHelper.getOrDefault(cursor, "$translation.raise?", Boolean.class, false);
 		
-		    IDataHelper.put(cursor, outputKey, Transformer.transform(operands, new Translator(translations, exclude, reverse)), false);
+		    IDataHelper.put(cursor, outputKey, Transformer.transform(operands, new Translator(translations, reverse, exclude, raise)), false);
 		} finally {
 		    cursor.destroy();
 		}
