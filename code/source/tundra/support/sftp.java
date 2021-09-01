@@ -45,17 +45,22 @@ public final class sftp
 		// [i] field:0:optional $file.updated
 		IDataCursor cursor = pipeline.getCursor();
 		
+		boolean raise = true;
+		
 		try {
-			String sessionKey = IDataHelper.get(cursor,  "$sftp.session.key", String.class);
-			String file = IDataHelper.get(cursor,  "$file", String.class);
-			boolean create = IDataHelper.getOrDefault(cursor, "$file.create?", Boolean.class, true);
-			Calendar updated = IDataHelper.get(cursor,  "$file.updated", Calendar.class);
+		    String sessionKey = IDataHelper.get(cursor,  "$sftp.session.key", String.class);
+		    String file = IDataHelper.get(cursor,  "$file", String.class);
+		    boolean create = IDataHelper.getOrDefault(cursor, "$file.create?", Boolean.class, true);
+		    Calendar updated = IDataHelper.get(cursor,  "$file.updated", Calendar.class);
+		    raise = IDataHelper.getOrDefault(cursor, "$raise?", Boolean.class, true);
 			
-			touch(sessionKey, file, create, updated);
+		    touch(sessionKey, file, create, updated);
 		} catch(SftpException ex) {
-			ExceptionHelper.raise(ex);
+		    if (raise) {
+		        ExceptionHelper.raise(ex);
+		    }
 		} finally {
-			cursor.destroy();
+		    cursor.destroy();
 		}
 		// --- <<IS-END>> ---
 
