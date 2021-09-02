@@ -22,6 +22,7 @@
     <value>permafrost.tundra.data.transform.string.Splitter</value>
     <value>permafrost.tundra.data.transform.string.Translator</value>
     <value>permafrost.tundra.data.transform.string.Truncator</value>
+    <value>permafrost.tundra.data.transform.string.Uppercaser</value>
     <value>permafrost.tundra.data.transform.Transformer</value>
     <value>permafrost.tundra.data.transform.TransformerMode</value>
     <value>permafrost.tundra.lang.ArrayHelper</value>

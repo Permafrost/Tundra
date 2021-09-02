@@ -16621,21 +16621,23 @@ length.
 
 ### tundra.string:uppercase
 
-Returns the given string in upper case.
+Returns the given arbitrarily specified strings converted to upper
+case.
 
 #### Inputs:
 
-* `$string` is a string to be converted to upper case.
-* `$locale` optionally identifies the case transformation rules
-  to be used for a given [Locale]. If not specified, the
+* `$uppercase.operands` is an `IData` document containing arbitrarily
+   specified strings to to be converted to upper case.
+* `$uppercase.locale` optionally identifies the case transformation
+  rules to be used for a given [Locale]. If not specified, the
   [default locale] is used.
 
 #### Outputs:
 
-* `$string` is an upper case version of the input string, where
-  all characters have been converted to their upper case
-  equivalent according to the transformation rules of the given
-  [Locale].
+* `$uppercase.results` is an `IData` document containing the specified
+  operands converted to upper case, where all characters have been
+  converted to their upper case equivalent according to the
+  transformation rules of the given [Locale].
 
 ---
 

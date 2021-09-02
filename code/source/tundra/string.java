@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-08-20 05:16:20 AEST
+// -----( CREATED: 2021-09-03 05:25:11 EST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -22,6 +22,7 @@ import permafrost.tundra.data.transform.string.Slicer;
 import permafrost.tundra.data.transform.string.Splitter;
 import permafrost.tundra.data.transform.string.Translator;
 import permafrost.tundra.data.transform.string.Truncator;
+import permafrost.tundra.data.transform.string.Uppercaser;
 import permafrost.tundra.data.transform.Transformer;
 import permafrost.tundra.data.transform.TransformerMode;
 import permafrost.tundra.lang.ArrayHelper;
@@ -1011,20 +1012,24 @@ public final class string
 		// --- <<IS-START(uppercase)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional $string
-		// [i] record:0:optional $locale
+		// [i] record:0:optional $uppercase.operands
+		// [i] record:0:optional $uppercase.locale
 		// [i] - field:0:required language
 		// [i] - field:0:optional country
 		// [i] - field:0:optional variant
-		// [o] field:0:optional $string
+		// [o] record:0:optional $uppercase.results
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String string = IDataHelper.get(cursor, "$string", String.class);
-		    Locale locale = IDataHelper.getOrDefault(cursor, "$locale", Locale.class, Locale.getDefault());
+		    IData operands = IDataHelper.get(cursor, "$uppercase.operands", IData.class);
+		    Locale locale = IDataHelper.firstOrDefault(cursor, Locale.class, Locale.getDefault(), "$uppercase.locale", "$locale");
+		    if (operands == null) {
+		        String string = IDataHelper.get(cursor, "$string", String.class);
+		        IDataHelper.put(cursor, "$string", StringHelper.uppercase(string, locale), false);
 		
-		    IDataHelper.put(cursor, "$string", StringHelper.uppercase(string, locale), false);
-		
+		    } else {
+		        IDataHelper.put(cursor, "$uppercase.results", Transformer.transform(operands, new Uppercaser(TransformerMode.VALUES, locale, true)), false);
+		    }
 		} finally {
 		    cursor.destroy();
 		}
