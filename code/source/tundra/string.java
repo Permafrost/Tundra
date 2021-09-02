@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-09-03 05:47:02 EST
+// -----( CREATED: 2021-09-03 06:04:32 EST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -293,20 +293,25 @@ public final class string
 		// --- <<IS-START(concatenate)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] record:0:optional $operands
-		// [i] field:0:optional $separator
-		// [i] field:0:optional $sanitization {&quot;remove nulls&quot;,&quot;remove nulls and blanks&quot;,&quot;convert nulls to blanks&quot;}
-		// [o] field:0:optional $string
+		// [i] record:0:optional $concatenate.operands
+		// [i] field:0:optional $concatenate.separator
+		// [i] field:0:optional $concatenate.sanitization {&quot;remove nulls&quot;,&quot;remove nulls and blanks&quot;,&quot;convert nulls to blanks&quot;}
+		// [o] field:0:optional $concatenate.result
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData operands = IDataHelper.get(cursor, "$operands", IData.class);
-		    String separator = IDataHelper.get(cursor, "$separator", String.class);
-		    Sanitization sanitization = IDataHelper.get(cursor, "$sanitization", Sanitization.class);
+		    String outputParameterName = "$concatenate.result";
+		    IData operands = IDataHelper.get(cursor, "$concatenate.operands", IData.class);
+		    if (operands == null) {
+		        operands = IDataHelper.get(cursor, "$operands", IData.class);
+		        outputParameterName = "$string";
+		    }
+		    String separator = IDataHelper.first(cursor, String.class, "$concatenate.separator", "$separator");
+		    Sanitization sanitization = IDataHelper.first(cursor, Sanitization.class, "$concatenate.sanitization", "$sanitization");
 		
 		    String result = StringHelper.concatenate(operands, separator, sanitization);
 		
-		    IDataHelper.put(cursor, "$string", result, false);
+		    IDataHelper.put(cursor, outputParameterName, result, false);
 		} finally {
 		    cursor.destroy();
 		}

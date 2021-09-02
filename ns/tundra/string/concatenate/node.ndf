@@ -22,7 +22,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$operands</value>
+          <value name="field_name">$concatenate.operands</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -42,7 +42,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$separator</value>
+          <value name="field_name">$concatenate.separator</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -70,7 +70,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$sanitization</value>
+          <value name="field_name">$concatenate.sanitization</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -154,7 +154,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$string</value>
+          <value name="field_name">$concatenate.result</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -179,30 +179,34 @@
   </record>
   <value name="node_comment">### tundra.string:concatenate
 
-Concatenates all string values specified as strings, string lists or
-string tables in the given IData document.
+Concatenates the given arbitrarily specified string values.
 
 #### Inputs:
 
-* $operands is an IData document in which arbitrary string, string 
-  list, and string table values can be specified for concatenation.
-* $separator is an optional string used to separate each list item
-  in the resulting string. Defaults to an empty string.
-* $sanitization is an optional choice of whether to remove nulls, 
-  nulls and blanks (strings that only contain whitespace 
-  characters), or convert nulls to blanks. If not specified, no 
+* `$concatenate.operands` is an `IData` document containing 
+  arbitrarily specified string values to be concatenated.
+* `$concatenate.separator` is an optional string used to separate each
+  list item in the resulting string. Defaults to an empty string.
+* `$concatenate.sanitization` is an optional choice that determines
+  how null and blank values should be treated. If not specified, no 
   sanitization is performed.
-
+  * `remove nulls` will remove any null values prior to concatenation.
+  * `remove nulls and blanks` will remove any null values and blank
+    string values prior to concatenation.
+  * `convert nulls to blanks` will convert any null values to blank
+    values prior to concatenation.
+  
 #### Outputs:
 
-* $string is the result of concatenating all the string values
-  provided in the given IData document.
+* `$concatenate.result` is the result of concatenating all the string
+  values provided in the given `IData` document.
 </value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template">tundra_string_concatenate</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>

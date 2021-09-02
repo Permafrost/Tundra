@@ -15966,24 +15966,27 @@ Implemented using the java.lang.String [compareTo] and
 
 ### tundra.string:concatenate
 
-Concatenates all string values specified as strings, string lists or
-string tables in the given `IData` document.
+Concatenates the given arbitrarily specified string values.
 
 #### Inputs:
 
-* `$operands` is an `IData` document in which arbitrary string, string
-  list, and string table values can be specified for concatenation.
-* `$separator` is an optional string used to separate each list item
-  in the resulting string. Defaults to an empty string.
-* `$sanitization` is an optional choice of whether to remove nulls,
-  nulls and blanks (strings that only contain whitespace
-  characters), or convert nulls to blanks. If not specified, no
+* `$concatenate.operands` is an `IData` document containing
+  arbitrarily specified string values to be concatenated.
+* `$concatenate.separator` is an optional string used to separate each
+  list item in the resulting string. Defaults to an empty string.
+* `$concatenate.sanitization` is an optional choice that determines
+  how null and blank values should be treated. If not specified, no
   sanitization is performed.
+  * `remove nulls` will remove any null values prior to concatenation.
+  * `remove nulls and blanks` will remove any null values and blank
+    string values prior to concatenation.
+  * `convert nulls to blanks` will convert any null values to blank
+    values prior to concatenation.
 
 #### Outputs:
 
-* `$string` is the result of concatenating all the string values
-  provided in the given `IData` document.
+* `$concatenate.result` is the result of concatenating all the string
+  values provided in the given `IData` document.
 
 ---
 
