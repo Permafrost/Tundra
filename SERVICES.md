@@ -16170,21 +16170,23 @@ unmodified.
 
 ### tundra.string:lowercase
 
-Returns the given string in lower case.
+Returns the given arbitrarily specified strings converted to lower
+case.
 
 #### Inputs:
 
-* `$string` is a string to be converted to lower case.
-* `$locale` optionally identifies the case transformation rules
-  to be used for a given [Locale]. If not specified, the
+* `$lowercase.operands` is an `IData` document containing arbitrarily
+   specified strings to to be converted to lower case.
+* `$lowercase.locale` optionally identifies the case transformation
+  rules to be used for a given [Locale]. If not specified, the
   [default locale] is used.
 
 #### Outputs:
 
-* `$string` is a lower case version of the input string, where
-  all characters have been converted to their lower case
-  equivalent according to the transformation rules of the given
-  [Locale].
+* `$lowercase.results` is an `IData` document containing the specified
+  operands converted to lower case, where all characters have been
+  converted to their lower case equivalent according to the
+  transformation rules of the given [Locale].
 
 ---
 

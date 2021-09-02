@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-09-03 05:25:11 EST
+// -----( CREATED: 2021-09-03 05:33:17 EST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -18,6 +18,7 @@ import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.data.IDataMap;
 import permafrost.tundra.data.transform.string.Capitalizer;
 import permafrost.tundra.data.transform.string.Condenser;
+import permafrost.tundra.data.transform.string.Lowercaser;
 import permafrost.tundra.data.transform.string.Slicer;
 import permafrost.tundra.data.transform.string.Splitter;
 import permafrost.tundra.data.transform.string.Translator;
@@ -509,20 +510,23 @@ public final class string
 		// --- <<IS-START(lowercase)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional $string
-		// [i] record:0:optional $locale
+		// [i] record:0:optional $lowercase.operands
+		// [i] record:0:optional $lowercase.locale
 		// [i] - field:0:required language
 		// [i] - field:0:optional country
 		// [i] - field:0:optional variant
-		// [o] field:0:optional $string
+		// [o] record:0:optional $lowercase.results
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String string = IDataHelper.get(cursor, "$string", String.class);
-		    Locale locale = IDataHelper.getOrDefault(cursor, "$locale", Locale.class, Locale.getDefault());
-		
-		    IDataHelper.put(cursor, "$string", StringHelper.lowercase(string, locale), false);
-		
+		    IData operands = IDataHelper.get(cursor, "$lowercase.operands", IData.class);
+		    Locale locale = IDataHelper.firstOrDefault(cursor, Locale.class, Locale.getDefault(), "$lowercase.locale", "$locale");
+		    if (operands == null) {
+		        String string = IDataHelper.get(cursor, "$string", String.class);
+		        IDataHelper.put(cursor, "$string", StringHelper.lowercase(string, locale), false);
+		    } else {
+		        IDataHelper.put(cursor, "$lowercase.results", Transformer.transform(operands, new Lowercaser(TransformerMode.VALUES, locale, true)), false);
+		    }
 		} finally {
 		    cursor.destroy();
 		}

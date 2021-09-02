@@ -18,6 +18,7 @@
     <value>permafrost.tundra.data.IDataMap</value>
     <value>permafrost.tundra.data.transform.string.Capitalizer</value>
     <value>permafrost.tundra.data.transform.string.Condenser</value>
+    <value>permafrost.tundra.data.transform.string.Lowercaser</value>
     <value>permafrost.tundra.data.transform.string.Slicer</value>
     <value>permafrost.tundra.data.transform.string.Splitter</value>
     <value>permafrost.tundra.data.transform.string.Translator</value>
