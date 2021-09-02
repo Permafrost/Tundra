@@ -15917,17 +15917,21 @@ Returns the given string as a list of characters.
 Returns the first string argument that is not null.
 
 #### Inputs:
-* `$operands` is an `IData` document containing arbitrarily specified
-  top-level strings to be coalesced.
-* `$mode` determines what is returned when all arguments are null:
-  * `missing`: `$string` is not returned when all arguments are null.
-    This is the default, if `$mode` is not specified.
-  * `null`: `$string` is returned as null when all arguments are null.
+* `$coalesce.operands` is an `IData` document containing arbitrarily
+  specified strings to be coalesced.
+* `$coalesce.mode` determines what is returned when all arguments are
+  null:
+  * `missing`: `$coalesce.result` is not returned when all arguments
+    are null. This is the default, if `$coalesce.mode` is not
+    specified.
+  * `null`: `$coalesce.result` is returned as null when all arguments
+    are null.
 
 #### Outputs:
 
-* `$string` is the first of the given strings whose value is not null,
-  or null if all arguments were null and `$mode` is `null`.
+* `$coalesce.result` is the first of the given strings whose value is
+  not null, or null if all arguments were null and the specified
+  `$coalesce.mode` was `null`.
 
 ---
 

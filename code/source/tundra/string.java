@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-09-03 05:39:27 EST
+// -----( CREATED: 2021-09-03 05:47:02 EST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -213,14 +213,19 @@ public final class string
 		// --- <<IS-START(coalesce)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] record:0:optional $operands
-		// [i] field:0:optional $mode {&quot;missing&quot;,&quot;null&quot;}
-		// [o] field:0:optional $string
+		// [i] record:0:optional $coalesce.operands
+		// [i] field:0:optional $coalesce.mode {&quot;missing&quot;,&quot;null&quot;}
+		// [o] field:0:optional $coalesce.result
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData operands = IDataHelper.get(cursor, "$operands", IData.class);
-		    String mode = IDataHelper.get(cursor, "$mode", String.class);
+		    String outputParameterName = "$coalesce.result";
+		    IData operands = IDataHelper.get(cursor, "$coalesce.operands", IData.class);
+		    if (operands == null) {
+		        operands = IDataHelper.get(cursor, "$operands", IData.class);
+		        outputParameterName = "$string";
+		    }
+		    String mode = IDataHelper.first(cursor, String.class, "$coalesce.mode", "$mode");
 		
 		    if (operands == null) {
 		        String x = IDataHelper.get(cursor, "$string.x", String.class);
@@ -234,7 +239,7 @@ public final class string
 		
 		    String result = ObjectHelper.coalesce(IDataHelper.getLeaves(operands, String.class, false));
 		
-		    if (result != null || (mode != null && mode.equals("null"))) IDataHelper.put(cursor, "$string", result);
+		    if (result != null || (mode != null && mode.equals("null"))) IDataHelper.put(cursor, outputParameterName, result);
 		} finally {
 		    cursor.destroy();
 		}
