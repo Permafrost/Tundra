@@ -15802,15 +15802,14 @@ this service should only be used by one thread per
 
 ### tundra.string:capitalize
 
-Capitalizes the first character in either the first word or all
-words in the given arbitrarily specified `String`, `String[]`, or
-`String[][]` values.
+Capitalizes the first character in either the first word or all words
+in the given arbitrarily strings.
 
 #### Inputs:
 
-* `$operands` is an `IData` document containing arbitrarily specified
-  `String`, `String[]`, or `String[][]` values.
-* `$capitalize` is an optional choice that determines whether all
+* `$capitalize.operands` is an `IData` document containing arbitrarily
+  specified strings to be capitalized.
+* `$capitalize.mode` is an optional choice that determines whether all
   words or only the first word is capitalized. Defaults to
   capitalizing all words, if not specified:
   * `all words`
@@ -15818,8 +15817,8 @@ words in the given arbitrarily specified `String`, `String[]`, or
 
 #### Outputs:
 
-* `$results` is an `IData` document containing the capitalized `String`,
-  `String[]`, or `String[][]` values.
+* `$capitalize.results` is an `IData` document containing the
+  capitalized strings.
 
 ---
 

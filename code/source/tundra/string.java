@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-09-03 05:33:17 EST
+// -----( CREATED: 2021-09-03 05:39:27 EST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -110,21 +110,26 @@ public final class string
 		// --- <<IS-START(capitalize)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] record:0:optional $operands
-		// [i] field:0:optional $capitalize {&quot;all words&quot;,&quot;first word&quot;}
-		// [o] record:0:optional $results
+		// [i] record:0:optional $capitalize.operands
+		// [i] field:0:optional $capitalize.mode {&quot;all words&quot;,&quot;first word&quot;}
+		// [o] record:0:optional $capitalize.results
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData operands = IDataHelper.get(cursor, "$operands", IData.class);
-		    String capitalize = IDataHelper.first(cursor, String.class, "$capitalize", "$mode");
+		    String outputParameterName = "$capitalize.results";
+		    IData operands = IDataHelper.get(cursor, "$capitalize.operands", IData.class);
+		    if (operands == null) {
+		        operands = IDataHelper.get(cursor, "$operands", IData.class);
+		        outputParameterName = "$results";
+		    }
+		    String capitalize = IDataHelper.first(cursor, String.class, "$capitalize.mode", "$capitalize", "$mode");
 		    boolean firstWordOnly = capitalize == null ? false : capitalize.equalsIgnoreCase("first word");
 		
 		    if (operands == null) {
 		        String input = IDataHelper.get(cursor, "$string", String.class);
 		        IDataHelper.put(cursor, "$string", StringHelper.capitalize(input, firstWordOnly), false);
 		    } else {
-		        IDataHelper.put(cursor, "$results", Transformer.transform(operands, new Capitalizer(TransformerMode.VALUES, firstWordOnly, true)), false);
+		        IDataHelper.put(cursor, outputParameterName, Transformer.transform(operands, new Capitalizer(TransformerMode.VALUES, firstWordOnly, true)), false);
 		    }
 		} finally {
 		    cursor.destroy();
