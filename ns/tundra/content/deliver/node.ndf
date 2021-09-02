@@ -317,6 +317,7 @@ specification.
       * `create` will throw an exception if the file already exists.
       * `write` will overwrite the file with the given content if it
         already exists.
+
     The following additional override options can be provided via the 
     `$pipeline` document:
     * `$filename`: the name of the file to be written. This value
@@ -463,7 +464,7 @@ specification.
       should be written, unless it starts with `.` to indicate a
       relative directory path, such as:
 
-        sftp://useralias/./path/file
+          sftp://useralias/./path/file
 
     * `file` is the literal name of the remote file the content will
       be written to.
