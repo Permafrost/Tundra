@@ -22,7 +22,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$operands</value>
+          <value name="field_name">$condense.operands</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -53,7 +53,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$results</value>
+          <value name="field_name">$condense.results</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -71,19 +71,19 @@
   <value name="node_comment">### tundra.string:condense
 
 Replaces runs of one or more whitespace characters (space, tab,
-carriage return, line feed) with a single space character, then
-trims leading and trailing whitespace in arbitrarily specified
-String, String[], or String[][] values.
+carriage return, line feed) with a single space character, then trims
+leading and trailing whitespace in the given arbitrarily specified 
+string values.
 
 #### Inputs:
 
-* $operands is an IData document containing arbitrarily specified 
-  String, String[], and String[][] values.
+* `$condense.operands` is an `IData` document containing arbitrarily
+  specified string values to be condensed.
 
 #### Outputs:
 
-* $results is an IData document containing the condensed String, 
-  String[], and String[][] values.
+* `$condense.results` is an `IData` document containing the condensed 
+  string values.
 </value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>

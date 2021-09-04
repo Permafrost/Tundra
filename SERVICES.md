@@ -15993,19 +15993,19 @@ Concatenates the given arbitrarily specified string values.
 ### tundra.string:condense
 
 Replaces runs of one or more whitespace characters (space, tab,
-carriage return, line feed) with a single space character, then
-trims leading and trailing whitespace in arbitrarily specified
-`String`, `String[]`, or `String[][]` values.
+carriage return, line feed) with a single space character, then trims
+leading and trailing whitespace in the given arbitrarily specified
+string values.
 
 #### Inputs:
 
-* `$operands` is an `IData` document containing arbitrarily specified
-  `String`, `String[]`, and `String[][]` values.
+* `$condense.operands` is an `IData` document containing arbitrarily
+  specified string values to be condensed.
 
 #### Outputs:
 
-* `$results` is an `IData` document containing the condensed `String`,
-  `String[]`, and `String[][]` values.
+* `$condense.results` is an `IData` document containing the condensed
+  string values.
 
 ---
 

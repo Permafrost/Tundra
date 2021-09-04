@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-09-03 06:04:32 EST
+// -----( CREATED: 2021-09-04 13:07:25 EST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -328,18 +328,23 @@ public final class string
 		// --- <<IS-START(condense)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] record:0:optional $operands
-		// [o] record:0:optional $results
+		// [i] record:0:optional $condense.operands
+		// [o] record:0:optional $condense.results
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData operands = IDataHelper.get(cursor, "$operands", IData.class);
+		    String outputParameterName = "$condense.results";
+		    IData operands = IDataHelper.get(cursor, "$condense.operands", IData.class);
+		    if (operands == null) {
+		        operands = IDataHelper.get(cursor, "$operands", IData.class);
+		        outputParameterName = "$results";
+		    }
 		
 		    if (operands == null) {
 		        String string = IDataHelper.get(cursor, "$string", String.class);
 		        IDataHelper.put(cursor, "$string", StringHelper.condense(string), false);
 		    } else {
-		        IDataHelper.put(cursor, "$results", Transformer.transform(operands, new Condenser(true)), false);
+		        IDataHelper.put(cursor, outputParameterName, Transformer.transform(operands, new Condenser(true)), false);
 		    }
 		} finally {
 		    cursor.destroy();
