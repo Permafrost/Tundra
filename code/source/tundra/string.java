@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-09-04 13:07:25 EST
+// -----( CREATED: 2021-09-08 05:15:13 EST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -18,6 +18,7 @@ import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.data.IDataMap;
 import permafrost.tundra.data.transform.string.Capitalizer;
 import permafrost.tundra.data.transform.string.Condenser;
+import permafrost.tundra.data.transform.string.Legalizer;
 import permafrost.tundra.data.transform.string.Lowercaser;
 import permafrost.tundra.data.transform.string.Slicer;
 import permafrost.tundra.data.transform.string.Splitter;
@@ -445,13 +446,19 @@ public final class string
 		// --- <<IS-START(legalize)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional $string
-		// [o] field:0:optional $string
+		// [i] record:0:optional $legalize.operands
+		// [o] record:0:optional $legalize.results
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String input = IDataHelper.get(cursor, "$string", String.class);
-		    IDataHelper.put(cursor, "$string", StringHelper.legalize(input), false);
+		    IData operands = IDataHelper.get(cursor, "$legalize.operands", IData.class);
+
+		    if (operands == null) {
+		        String input = IDataHelper.get(cursor, "$string", String.class);
+		        IDataHelper.put(cursor, "$string", StringHelper.legalize(input), false);
+		    } else {
+		        IDataHelper.put(cursor, "$legalize.results", Transformer.transform(operands, new Legalizer(TransformerMode.VALUES, true)), false);
+		    }
 		} finally {
 		    cursor.destroy();
 		}
