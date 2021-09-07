@@ -16252,25 +16252,27 @@ characters, otherwise returns the given input string unchanged.
 
 ### tundra.string:pad
 
-Pads the given string with the given character as many times as necessary
-to reach the given length.
+Pads arbitrarily specified strings with the given character as many
+times as necessary to reach the desired length.
 
 #### Inputs:
 
-* `$string` is the string to be padded to the given length. If
-  `$string.length >= |$length|`, `$string` is returned unmodified.
-* `$length` is the minimum desired length for the returned string. If
-  specified as a positive integer, `$string` will be padded from the
-  left by prepending it with `(|$length| - $string.length)` characters.
-  If specified as a negative integer, `$string` will be padded from the
-  right by appending it with `(|$length| - $string.length)` characters.
-* `$character` is the character to use when padding `$string`. If
-  `$character.length` > 1, only the first character will be used.
-  Defaults to " " (space character), if not specified.
+* `$pad.operands` is an `IData` document containing arbitrarily
+  specified strings to be padded to the given length. Strings whose
+  lengths are greater than or equal to `|$pad.length|` are returned
+  unmodified.
+* `$pad.length` is the minimum desired length for the returned string.
+  If specified as a positive integer, strings will be padded from the
+  left. If specified as a negative integer, strings will be padded
+  from the right.
+* `$pad.character` is the character to use when padding. If more than
+  one character is specified, only the first character will be used.
+  Defaults to ` ` (space character), if not specified.
 
 #### Outputs:
 
-* `$string` is the resulting padded string.
+* `$pad.results` contains the specified strings padded with the given
+  character to the desired length.
 
 ---
 

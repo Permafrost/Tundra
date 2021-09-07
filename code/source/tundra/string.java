@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-09-08 05:15:13 EST
+// -----( CREATED: 2021-09-08 05:27:26 EST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -20,6 +20,7 @@ import permafrost.tundra.data.transform.string.Capitalizer;
 import permafrost.tundra.data.transform.string.Condenser;
 import permafrost.tundra.data.transform.string.Legalizer;
 import permafrost.tundra.data.transform.string.Lowercaser;
+import permafrost.tundra.data.transform.string.Padder;
 import permafrost.tundra.data.transform.string.Slicer;
 import permafrost.tundra.data.transform.string.Splitter;
 import permafrost.tundra.data.transform.string.Translator;
@@ -649,21 +650,26 @@ public final class string
 		// --- <<IS-START(pad)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional $string
-		// [i] field:0:optional $length
-		// [i] field:0:optional $character
-		// [o] field:0:optional $string
+		// [i] record:0:optional $pad.operands
+		// [i] field:0:optional $pad.length
+		// [i] field:0:optional $pad.character
+		// [o] record:0:optional $pad.results
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String string = IDataHelper.get(cursor, "$string", String.class);
-		    int length = IDataHelper.getOrDefault(cursor, "$length", Integer.class, 0);
-		    String character = IDataHelper.get(cursor, "$character", String.class);
+		    IData operands = IDataHelper.get(cursor, "$pad.operands", IData.class);
+		    int length = IDataHelper.firstOrDefault(cursor, Integer.class, 0, "$pad.length", "$length");
+		    String character = IDataHelper.first(cursor, String.class, "$pad.character", "$character");
 		
 		    char c = (character == null || character.length() == 0) ? ' ' : character.charAt(0);
 		
-		    if (string != null) {
-		        IDataHelper.put(cursor, "$string", StringHelper.pad(string, length, c));
+		    if (operands == null) {
+		        String string = IDataHelper.get(cursor, "$string", String.class);
+		        if (string != null) {
+		            IDataHelper.put(cursor, "$string", StringHelper.pad(string, length, c));
+		        }
+		    } else {
+		        IDataHelper.put(cursor, "$pad.results", Transformer.transform(operands, new Padder(TransformerMode.VALUES, true, length, c)), false);
 		    }
 		} finally {
 		    cursor.destroy();

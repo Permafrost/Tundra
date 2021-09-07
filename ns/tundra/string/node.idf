@@ -20,6 +20,7 @@
     <value>permafrost.tundra.data.transform.string.Condenser</value>
     <value>permafrost.tundra.data.transform.string.Legalizer</value>
     <value>permafrost.tundra.data.transform.string.Lowercaser</value>
+    <value>permafrost.tundra.data.transform.string.Padder</value>
     <value>permafrost.tundra.data.transform.string.Slicer</value>
     <value>permafrost.tundra.data.transform.string.Splitter</value>
     <value>permafrost.tundra.data.transform.string.Translator</value>
