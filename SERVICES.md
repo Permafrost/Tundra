@@ -16748,6 +16748,7 @@ Returns information about the currently executing thread.
     when it was created.
   * `description` is the thread's built-in string representation of
     itself.
+  * `dump` is the Integration Server generated dump for this thread.
   * `state` is the thread's current status, and can be one of the
     following values:
     * `NEW` - a thread that has not yet started is in this state.
@@ -16807,6 +16808,7 @@ Returns the thread with the given identity.
     when it was created.
   * `description` is the thread's built-in string representation of
     itself.
+  * `dump` is the Integration Server generated dump for this thread.
   * `state` is the thread's current status, and can be one of the
     following values:
     * `NEW` - a thread that has not yet started is in this state.
@@ -16872,6 +16874,7 @@ Returns a list of all threads known in the current execution context.
     when it was created.
   * `description` is the thread's built-in string representation of
     itself.
+  * `dump` is the Integration Server generated dump for this thread.
   * `state` is the thread's current status, and can be one of the
     following values:
     * `NEW` - a thread that has not yet started is in this state.
