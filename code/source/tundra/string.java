@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-09-11 14:47:03 AEST
+// -----( CREATED: 2021-09-11 14:54:42 AEST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -867,15 +867,22 @@ public final class string
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData operands = IDataHelper.get(cursor, "$operands", IData.class);
-		    int index = IDataHelper.getOrDefault(cursor, "$index", Integer.class, 0);
-		    int length = IDataHelper.getOrDefault(cursor, "$length", Integer.class, index < 0 ? Integer.MIN_VALUE - index : Integer.MAX_VALUE - index);
+		    String outputParameterName = "$slice.results";
+		    IData operands = IDataHelper.get(cursor, "$slice.operands", IData.class);
+		    if (operands == null) {
+		        // support $operands for backwards-compatibility
+		        operands = IDataHelper.get(cursor, "$operands", IData.class);
+		        outputParameterName = "$results";
+		    }
+		    int index = IDataHelper.firstOrDefault(cursor, Integer.class, 0, "$slice.index", "$index");
+		    int length = IDataHelper.firstOrDefault(cursor, Integer.class, index < 0 ? Integer.MIN_VALUE - index : Integer.MAX_VALUE - index, "$slice.length", "$length");
 		
 		    if (operands == null) {
+		        // support $string for backwards-compatibility
 		        String string = IDataHelper.get(cursor, "$string", String.class);
 		        IDataHelper.put(cursor, "$string", StringHelper.slice(string, index, length), false);
 		    } else {
-		        IDataHelper.put(cursor, "$results", Transformer.transform(operands, new Slicer(index, length)), false);
+		        IDataHelper.put(cursor, outputParameterName, Transformer.transform(operands, new Slicer(index, length)), false);
 		    }
 		} finally {
 		    cursor.destroy();

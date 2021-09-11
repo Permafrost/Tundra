@@ -16392,41 +16392,40 @@ string values.
 
 ### tundra.string:slice
 
-Takes a slice or subset of the characters in the given arbitrarily
-specified `String`, `String[]`, and `String[][]` values.
+Takes a slice or subset of the characters in one or more arbitrarily
+specified string values. For example:
 
-For example, given a string "hamburger":
-1. With $index =  0, and $length =  3, the slice "ham" is returned.
-2. With $index =  2, and $length = -3, the slice "ham" is returned.
-3. With $index = -7, and $length = -3, the slice "ham" is returned.
-4. With $index =  4, and $length =  4, the slice "urge" is returned.
-5. With $index =  7, and $length = -4, the slice "urge" is returned.
-6. With $index = -2, and $length = -4, the slice "urge" is returned.
+    slice("hamburger", index =  0, length =  3) => "ham"
+    slice("hamburger", index =  2, length = -3) => "ham"
+    slice("hamburger", index = -7, length = -3) => "ham"
+    slice("hamburger", index =  4, length =  4) => "urge"
+    slice("hamburger", index =  7, length = -4) => "urge"
+    slice("hamburger", index = -2, length = -4) => "urge"
 
 #### Inputs:
 
-* `$operands` is an `IData` document containing arbitrarily specified
-  `String`, `String[]`, and `String[][]` values.
-* `$index` is an optional zero-based index from which to take the
-  slice. Supports forward and reverse indexing where a positive
+* `$slice.operands` is an `IData` document containing one or more
+  arbitrarily specified string values.
+* `$slice.index` is an optional zero-based index from which to take
+  the slice. Supports forward and reverse indexing, where a positive
   index is a normal zero-based array index from left to right, and a
-  negative index is a reverse array index from right to left (for
-  example, an index of -1 is the last item in the list, and an index
-  of -2 is the second last item in the list). If not specified,
-  defaults to 0.
-* `$length` is the number of characters to include in the slice.
-  Supports positive and negative lengths where a positive length
+  negative index is a reverse array index from right to left. For
+  example, an index of `-1` is the last item in the list, and an index
+  of `-2` is the second last item in the list. If not specified,
+  defaults to `0`.
+* `$slice.length` is the number of characters to include in the slice.
+  Supports positive and negative lengths, where a positive length
   will slice from left to right, and a negative length will slice
   from right to left. If not specified, a left to right slice
-  containing all remaining characters after `$index` will be returned
-  when `$index` is positive, or a right to left slice containing all
-  remaining characters before `$index` will be returned when `$index` is
-  negative.
+  containing all remaining characters after `$slice.index` will be
+  returned when `$slice.index` is positive, or a right to left slice
+  containing all remaining characters before `$slice.index` will be
+  returned when `$slice.index` is negative.
 
 #### Outputs:
 
-* `$results` is an `IData` document containing the subset or slice of
-  the given `String`, `String[]`, and `String[][]` values.
+* `$slice.results` is an `IData` document containing the sliced string
+  values.
 
 ---
 
