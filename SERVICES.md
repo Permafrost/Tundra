@@ -16219,18 +16219,21 @@ string matches the given string.
 
 ### tundra.string:normalize
 
-Converts a string, bytes or input stream to a string.
+Converts a `String`, `byte[]` or `java.io.InputStream` object to a
+`String` object.
 
 #### Inputs:
 
-* `$object` is a string, byte array, or input stream to be
-  converted to a string.
-* `$encoding` is an optional character set to use when `$object`
-  is a byte array or input stream. Defaults to [UTF-8].
+* `$content` is a `String`, `byte[]` or `java.io.InputStream` object
+  to be converted to a `String`.
+* `$content.encoding` is an optional character set to use when
+  `$content` is a `byte[]` or `java.io.InputStream` object. Defaults
+  to [UTF-8].
 
 #### Outputs:
 
-* `$string` is the given object converted to a string.
+* `$content.string` is the given content converted to a `String`
+  object.
 
 ---
 

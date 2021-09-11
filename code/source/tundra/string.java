@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-09-11 15:27:44 AEST
+// -----( CREATED: 2021-09-11 15:38:08 AEST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -604,16 +604,22 @@ public final class string
 		// --- <<IS-START(normalize)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] object:0:optional $object
-		// [i] field:0:optional $encoding
-		// [o] field:0:optional $string
+		// [i] object:0:optional $content
+		// [i] field:0:optional $content.encoding
+		// [o] field:0:optional $content.string
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object object = IDataHelper.get(cursor, "$object");
-		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
+		    String outputParameterName = "$content.string";
+		    Object content = IDataHelper.get(cursor, "$content");
+		    if (content == null) {
+		        // support $object for backwards-compatibility
+		        content = IDataHelper.get(cursor, "$object");
+		        outputParameterName = "$string";
+		    }
+		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
 		
-		    IDataHelper.put(cursor, "$string", StringHelper.normalize(object, charset), false);
+		    IDataHelper.put(cursor, outputParameterName, StringHelper.normalize(content, charset), false);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
