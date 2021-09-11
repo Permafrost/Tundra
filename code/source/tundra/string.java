@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-09-08 05:27:26 EST
+// -----( CREATED: 2021-09-11 14:04:51 AEST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -12,6 +12,7 @@ import com.wm.app.b2b.server.ServiceException;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Locale;
+import java.util.regex.Pattern;
 import permafrost.tundra.flow.variable.SubstitutionHelper;
 import permafrost.tundra.flow.variable.SubstitutionType;
 import permafrost.tundra.data.IDataHelper;
@@ -21,6 +22,7 @@ import permafrost.tundra.data.transform.string.Condenser;
 import permafrost.tundra.data.transform.string.Legalizer;
 import permafrost.tundra.data.transform.string.Lowercaser;
 import permafrost.tundra.data.transform.string.Padder;
+import permafrost.tundra.data.transform.string.Remover;
 import permafrost.tundra.data.transform.string.Slicer;
 import permafrost.tundra.data.transform.string.Splitter;
 import permafrost.tundra.data.transform.string.Translator;
@@ -739,25 +741,33 @@ public final class string
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
-		// [i] field:0:optional $pattern
-		// [i] field:0:optional $pattern.literal? {&quot;false&quot;,&quot;true&quot;}
-		// [i] field:0:optional $occurrence.first? {&quot;false&quot;,&quot;true&quot;}
+		// [i] record:0:optional $remove.operands
+		// [i] field:0:optional $remove.pattern
+		// [i] field:0:optional $remove.pattern.literal? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $remove.occurrence.first? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:optional $string
+		// [o] record:0:optional $remove.results
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String string = IDataHelper.get(cursor, "$string", String.class);
-		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
-		    boolean literalPattern = IDataHelper.getOrDefault(cursor, "$pattern.literal?", Boolean.class, IDataHelper.getOrDefault(cursor, "$literal?", Boolean.class, false));
-		    Boolean firstOccurrence = IDataHelper.getOrDefault(cursor, "$occurrence.first?", Boolean.class, false);
+		    IData operands = IDataHelper.get(cursor, "$remove.operands", IData.class);
+		    String pattern = IDataHelper.first(cursor, String.class, "$remove.pattern", "$pattern");
+		    boolean literalPattern = IDataHelper.firstOrDefault(cursor, Boolean.class, false, "$remove.pattern.literal?", "$pattern.literal?", "$literal?");
+		    Boolean firstOccurrence = IDataHelper.firstOrDefault(cursor, Boolean.class, false, "$remove.occurrence.first?", "$occurrence.first?");
 		
 		    if (firstOccurrence == null) {
-		        // support mode for backwards compatibility
+		        // support $mode for backwards compatibility
 		        String mode = IDataHelper.get(cursor, "$mode", String.class);
 		        firstOccurrence = mode != null && mode.equals("first");
 		    }
 		
-		    IDataHelper.put(cursor, "$string", StringHelper.remove(string, pattern, literalPattern, firstOccurrence), false);
+		    if (operands == null) {
+		        // support $string for backwards compatibility
+		        String string = IDataHelper.get(cursor, "$string", String.class);
+		        IDataHelper.put(cursor, "$string", StringHelper.remove(string, pattern, literalPattern, firstOccurrence), false);
+		    } else {
+		        IDataHelper.put(cursor, "$remove.results", Transformer.transform(operands, new Remover(TransformerMode.VALUES, pattern, literalPattern, firstOccurrence, true)), false);
+		    }
 		} finally {
 		    cursor.destroy();
 		}

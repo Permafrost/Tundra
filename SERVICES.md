@@ -16312,27 +16312,28 @@ sequences in the input sequence are given no special meaning.
 
 ### tundra.string:remove
 
-Removes either the first or all occurrences of the given pattern
-from the given string.
+Removes either the first or all of the occurrences of the given
+pattern from one or more arbitrarily specified string values.
 
 #### Inputs:
 
-* `$string` is a string to have occurrences of the given pattern
-  removed.
-* `$pattern` is the pattern to match against the given string. If not
-  specified, no removal will occur.
-* `$pattern.literal?` is a boolean indicating if the `$pattern` string
-  should  be treated as a literal string. If false, `$pattern` is
-  treated as a [regular expression pattern]. If true, `$pattern` is
-  treated as a literal string. Defaults to `false`, if not specified.
-* `$occurrence.first?` is a boolean indicating if only the first
-  occurrence of the given pattern should be removed. Defaults to
-  `false`, where all occurrences of the pattern are removed.
+* `$remove.operands` is an `IData` document containing one or more
+  arbitrarily specified string values from which to remove occurrences
+  of the given pattern.
+* `$remove.pattern` is the pattern to match against the given strings.
+  If not specified, no removal will occur.
+* `$remove.pattern.literal?` is a boolean indicating whether to treat
+  `$remove.pattern` as a literal string or a regular expression. If
+  not specified, defaults to `false` which treats the pattern as a
+  [regular expression pattern].
+* `$remove.occurrence.first?` is a boolean indicating whether only the
+  first occurrence of the pattern should be removed. Defaults to
+  `false`, which removes all occurrences of the pattern.
 
 #### Outputs:
 
-* `$string` is the input string with either the first or all
-  occurrences of the given pattern removed.
+* `$remove.results` are the given string values with occurrences of
+  the given pattern removed.
 
 ---
 

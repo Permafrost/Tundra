@@ -12,6 +12,7 @@
     <value>java.io.IOException</value>
     <value>java.nio.charset.Charset</value>
     <value>java.util.Locale</value>
+    <value>java.util.regex.Pattern</value>
     <value>permafrost.tundra.flow.variable.SubstitutionHelper</value>
     <value>permafrost.tundra.flow.variable.SubstitutionType</value>
     <value>permafrost.tundra.data.IDataHelper</value>
@@ -21,6 +22,7 @@
     <value>permafrost.tundra.data.transform.string.Legalizer</value>
     <value>permafrost.tundra.data.transform.string.Lowercaser</value>
     <value>permafrost.tundra.data.transform.string.Padder</value>
+    <value>permafrost.tundra.data.transform.string.Remover</value>
     <value>permafrost.tundra.data.transform.string.Slicer</value>
     <value>permafrost.tundra.data.transform.string.Splitter</value>
     <value>permafrost.tundra.data.transform.string.Translator</value>

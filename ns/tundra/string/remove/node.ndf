@@ -7,6 +7,7 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -17,28 +18,20 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$string</value>
-          <value name="field_type">string</value>
+          <value name="is_public">false</value>
+          <value name="field_name">$remove.operands</value>
+          <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
-          <record name="field_content_type" javaclass="com.wm.util.Values">
-            <value name="contentType">1</value>
-            <value name="internalType">reference</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-            <array name="targetNames" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">string</value>
-              </record>
-            </array>
-          </record>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
+          <array name="rec_fields" type="record" depth="1">
+          </array>
+          <value name="modifiable">true</value>
         </record>
         <record javaclass="com.wm.util.Values">
           <value name="node_type">record</value>
@@ -48,7 +41,8 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$pattern</value>
+          <value name="is_public">false</value>
+          <value name="field_name">$remove.pattern</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -75,7 +69,8 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$pattern.literal?</value>
+          <value name="is_public">false</value>
+          <value name="field_name">$remove.pattern.literal?</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -106,7 +101,8 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$occurrence.first?</value>
+          <value name="is_public">false</value>
+          <value name="field_name">$remove.occurrence.first?</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -130,9 +126,11 @@
           <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -143,62 +141,58 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$string</value>
-          <value name="field_type">string</value>
+          <value name="is_public">false</value>
+          <value name="field_name">$remove.results</value>
+          <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
-          <record name="field_content_type" javaclass="com.wm.util.Values">
-            <value name="contentType">1</value>
-            <value name="internalType">reference</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-            <array name="targetNames" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">string</value>
-              </record>
-            </array>
-          </record>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
+          <array name="rec_fields" type="record" depth="1">
+          </array>
+          <value name="modifiable">true</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">### tundra.string:remove
 
-Removes either the first or all occurrences of the given pattern 
-from the given string.
+Removes either the first or all of the occurrences of the given
+pattern from one or more arbitrarily specified string values.
 
 #### Inputs:
 
-* $string is a string to have occurrences of the given pattern 
-  removed.
-* $pattern is the pattern to match against the given string. If not 
-  specified, no removal will occur.
-* $pattern.literal? is a boolean indicating if the $pattern string 
-  should  be treated as a literal string. If false, $pattern is 
-  treated as a [regular expression pattern]. If true, $pattern is 
-  treated as a literal string. Defaults to false, if not specified.
-* $occurrence.first? is a boolean indicating if only the first 
-  occurrence of the given pattern should be removed. Defaults to 
-  false, where all occurrences of the pattern are removed.
+* `$remove.operands` is an `IData` document containing one or more 
+  arbitrarily specified string values from which to remove occurrences
+  of the given pattern.
+* `$remove.pattern` is the pattern to match against the given strings.
+  If not specified, no removal will occur.
+* `$remove.pattern.literal?` is a boolean indicating whether to treat
+  `$remove.pattern` as a literal string or a regular expression. If 
+  not specified, defaults to `false` which treats the pattern as a 
+  [regular expression pattern].
+* `$remove.occurrence.first?` is a boolean indicating whether only the 
+  first occurrence of the pattern should be removed. Defaults to
+  `false`, which removes all occurrences of the pattern.
 
 #### Outputs:
 
-* $string is the input string with either the first or all 
-  occurrences of the given pattern removed.
+* `$remove.results` are the given string values with occurrences of 
+  the given pattern removed.
 
-[regular expression pattern]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html&gt;</value>
+[regular expression pattern]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html&gt;
+</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template">tundra_string_remove</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
@@ -209,10 +203,16 @@ from the given string.
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
 </Values>
