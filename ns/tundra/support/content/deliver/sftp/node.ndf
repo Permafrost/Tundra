@@ -10,7 +10,6 @@
       <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
-      <value name="wrapper_type">IData</value>
       <value name="nillable">true</value>
       <value name="form_qualified">false</value>
       <value name="is_global">false</value>
@@ -87,7 +86,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$encoding</value>
+          <value name="field_name">$content.encoding</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -108,7 +107,6 @@
           <value name="field_name">$destination</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
-          <value name="wrapper_type">IData</value>
           <value name="nillable">false</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
@@ -185,7 +183,6 @@
               <value name="field_type">record</value>
               <value name="field_dim">0</value>
               <value name="field_opt">true</value>
-              <value name="wrapper_type">IData</value>
               <value name="nillable">true</value>
               <value name="form_qualified">false</value>
               <value name="is_global">false</value>
@@ -232,7 +229,6 @@
                   <value name="field_type">record</value>
                   <value name="field_dim">0</value>
                   <value name="field_opt">true</value>
-                  <value name="wrapper_type">IData</value>
                   <value name="nillable">true</value>
                   <value name="form_qualified">false</value>
                   <value name="is_global">false</value>
@@ -432,7 +428,6 @@
               <value name="field_type">record</value>
               <value name="field_dim">0</value>
               <value name="field_opt">true</value>
-              <value name="wrapper_type">IData</value>
               <value name="nillable">true</value>
               <value name="form_qualified">false</value>
               <value name="is_global">false</value>
@@ -481,7 +476,6 @@
       <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
-      <value name="wrapper_type">IData</value>
       <value name="nillable">true</value>
       <value name="form_qualified">false</value>
       <value name="is_global">false</value>
@@ -574,10 +568,11 @@ Provides the implementation of the main logic for the service tundra.content.del
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template">tundra_support_content_deliver_sftp</value>
+  <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
   <value name="icontext_policy">$null</value>
-  <value name="svcInvkURLAlias"></value>
   <value name="system_service">no</value>
   <value name="retry_max">0</value>
   <value name="retry_interval">0</value>
