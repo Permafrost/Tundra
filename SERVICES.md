@@ -16604,27 +16604,26 @@ Removes leading and trailing whitespace from the given string.
 
 ### tundra.string:truncate
 
-Truncates all strings in the given `IData` document to the desired
-length.
+Truncates one or more arbitrarily specified string values to the
+desired length.
 
 #### Inputs:
 
-* `$operands` is an `IData` document in which arbitrary string, string
-  list, and string table values can be specified for truncation.
-* `$length` is the desired length all strings will be truncated to.
-  When specified as a positive value, truncation occurs left to
-  right. When specified as a negative value, truncation occurs
-  right to left.
-* `$ellipsis?` is an optional boolean indicating whether truncated
-  strings should be suffixed for left to right truncations or
-  prefixed with right to left truncations with the ellipsis
-  character to show that truncation has occured. Defaults to `false`.
+* `$truncate.operands` is an `IData` document containing one or more
+  arbitrarily specified string values to be truncated.
+* `$truncate.length` is the desired length to truncate to. When
+  specified as a positive value, truncation occurs left to right. When
+  specified as a negative value, truncation occurs right to left.
+* `$truncate.ellipsis?` is an optional boolean indicating whether
+  truncated strings should be suffixed (for left to right truncations)
+  or prefixed (for right to left truncations) with an ellipsis
+  character as an indication that truncation has occurred. Defaults to
+  `false`.
 
 #### Outputs:
 
-* `$results` is a new `IData` document with the exact same structure as
-  the provided `$operands` `IData` document, but with all string values
-  truncated to the desired length.
+* `$truncate.results` is an `IData` document containing the truncated
+  string values.
 
 ---
 

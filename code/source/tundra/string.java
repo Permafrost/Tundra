@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-09-11 15:08:11 AEST
+// -----( CREATED: 2021-09-11 15:19:31 AEST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -1058,18 +1058,24 @@ public final class string
 		// --- <<IS-START(truncate)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] record:0:optional $operands
-		// [i] field:0:required $length
-		// [i] field:0:optional $ellipsis? {&quot;false&quot;,&quot;true&quot;}
-		// [o] record:0:optional $results
+		// [i] record:0:optional $truncate.operands
+		// [i] field:0:required $truncate.length
+		// [i] field:0:optional $truncate.ellipsis? {&quot;false&quot;,&quot;true&quot;}
+		// [o] record:0:optional $truncate.results
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData operands = IDataHelper.get(cursor, "$operands", IData.class);
-		    int length = IDataHelper.get(cursor, "$length", Integer.class);
-		    boolean ellipsis = IDataHelper.getOrDefault(cursor, "$ellipsis?", Boolean.class, false);
+		    String outputParameterName = "$truncate.results";
+		    IData operands = IDataHelper.get(cursor, "$truncate.operands", IData.class);
+		    if (operands == null) {
+		        // support $operands for backwards-compatibility
+		        operands = IDataHelper.get(cursor, "$operands", IData.class);
+		        outputParameterName = "$results";
+		    }
+		    int length = IDataHelper.first(cursor, Integer.class, "$truncate.length", "$length");
+		    boolean ellipsis = IDataHelper.firstOrDefault(cursor, Boolean.class, false, "$truncate.ellipsis?", "$ellipsis?");
 		
-		    IDataHelper.put(cursor, "$results", Transformer.transform(operands, new Truncator(length, ellipsis)), false);
+		    IDataHelper.put(cursor, outputParameterName, Transformer.transform(operands, new Truncator(length, ellipsis)), false);
 		} finally {
 		    cursor.destroy();
 		}
