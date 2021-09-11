@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-08-18 10:39:51 AEST
+// -----( CREATED: 2021-09-11 18:59:09 AEST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -129,24 +129,28 @@ public final class stream
 		// --- <<IS-START(transcode)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] object:0:optional $stream
-		// [i] field:0:optional $encoding.input
-		// [i] field:0:optional $encoding.output
-		// [o] object:0:optional $stream
-		// [o] field:0:optional $encoding.input
-		// [o] field:0:optional $encoding.output
+		// [i] object:0:optional $content.stream
+		// [i] field:0:optional $content.encoding.input
+		// [i] field:0:optional $content.encoding.output
+		// [o] object:0:optional $content.stream
+		// [o] field:0:optional $content.encoding.input
+		// [o] field:0:optional $content.encoding.output
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    InputStream inputStream = IDataHelper.get(cursor, "$stream", InputStream.class);
-		    Charset sourceCharset = IDataHelper.getOrDefault(cursor, "$encoding.input", Charset.class, CharsetHelper.DEFAULT_CHARSET);
-		
-		    Charset targetCharset = IDataHelper.getOrDefault(cursor, "$encoding.output", Charset.class, CharsetHelper.DEFAULT_CHARSET);
+		    boolean backwardsCompatible = false;
+		    InputStream inputStream = IDataHelper.get(cursor, "$content.stream", InputStream.class);
+		    if (inputStream == null) {
+		        inputStream = IDataHelper.get(cursor, "$stream", InputStream.class);
+		        backwardsCompatible = true;
+		    }
+		    Charset sourceCharset = IDataHelper.firstOrDefault(cursor, Charset.class, CharsetHelper.DEFAULT_CHARSET, "$content.encoding.input", "$encoding.input");
+		    Charset targetCharset = IDataHelper.firstOrDefault(cursor, Charset.class, CharsetHelper.DEFAULT_CHARSET, "$content.encoding.output", "$encoding.output");
 		
 		    if (inputStream != null) {
-		        IDataHelper.put(cursor, "$stream", new TranscodingInputStream(inputStream, sourceCharset, targetCharset));
-		        IDataHelper.put(cursor, "$encoding.input", sourceCharset.name());
-		        IDataHelper.put(cursor, "$encoding.output", targetCharset.name());
+		        IDataHelper.put(cursor, backwardsCompatible ? "$stream" : "$content.stream", new TranscodingInputStream(inputStream, sourceCharset, targetCharset));
+		        IDataHelper.put(cursor, backwardsCompatible ? "$encoding.input" : "$content.encoding.input", sourceCharset.name());
+		        IDataHelper.put(cursor, backwardsCompatible ? "$encoding.output" : "$content.encoding.output", targetCharset.name());
 		    }
 		} finally {
 		    cursor.destroy();

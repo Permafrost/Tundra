@@ -7,6 +7,7 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -20,7 +21,8 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$stream</value>
+          <value name="is_public">false</value>
+          <value name="field_name">$content.stream</value>
           <value name="field_type">object</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -36,7 +38,8 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$encoding.input</value>
+          <value name="is_public">false</value>
+          <value name="field_name">$content.encoding.input</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -63,7 +66,8 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$encoding.output</value>
+          <value name="is_public">false</value>
+          <value name="field_name">$content.encoding.output</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -83,9 +87,11 @@
           <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -99,7 +105,8 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$stream</value>
+          <value name="is_public">false</value>
+          <value name="field_name">$content.stream</value>
           <value name="field_type">object</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -115,7 +122,8 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$encoding.input</value>
+          <value name="is_public">false</value>
+          <value name="field_name">$content.encoding.input</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -142,7 +150,8 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$encoding.output</value>
+          <value name="is_public">false</value>
+          <value name="field_name">$content.encoding.output</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -162,36 +171,41 @@
           <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">### tundra.stream:transcode
 
-Converts the given [java.io.InputStream] containing text data in 
+Converts the given [java.io.InputStream] containing text data in
 from one encoding or character set to another.
 
 #### Inputs:
 
-* $stream is an [java.io.InputStream] to be transcoded.
-* $encoding.input is the optional character set used to decode the 
-  given $stream. Defaults to [UTF-8].
-* $encoding.output is the optional character set used to encode the 
-  text data decoded from the given $stream. Defaults to [UTF-8].
+* `$content.stream` is an [java.io.InputStream] to be transcoded.
+* `$content.encoding.input` is the optional character set used to
+  decode the given [java.io.InputStream]. Defaults to [UTF-8].
+* `$content.encoding.output` is the optional character set used to 
+  encode the text data decoded from the given [java.io.InputStream]. 
+  Defaults to [UTF-8].
 
 #### Outputs:
 
-* $stream is a new [java.io.InputStream] which contains the 
+* `$content.stream` is a new [java.io.InputStream] which contains the
   transcoded text data.
-* $encoding.input is the character set used to decode the input data.
-* $encoding.output is the character set used to encode the output 
-  data.
+* `$content.encoding.input` is the character set used to decode the 
+  input data.
+* `$content.encoding.output` is the character set used to encode the 
+  output data.
 
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;
-[java.io.InputStream]: &lt;http://docs.oracle.com/javase/6/docs/api/java/io/InputStream.html&gt;</value>
+[java.io.InputStream]: &lt;http://docs.oracle.com/javase/6/docs/api/java/io/InputStream.html&gt;
+</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template">tundra_stream_transcode</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
@@ -202,10 +216,16 @@ from one encoding or character set to another.
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
 </Values>

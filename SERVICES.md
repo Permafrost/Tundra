@@ -15702,19 +15702,21 @@ from one encoding or character set to another.
 
 #### Inputs:
 
-* `$stream` is an [java.io.InputStream] to be transcoded.
-* `$encoding.input` is the optional character set used to decode the
-  given `$stream`. Defaults to [UTF-8].
-* `$encoding.output` is the optional character set used to encode the
-  text data decoded from the given `$stream`. Defaults to [UTF-8].
+* `$content.stream` is an [java.io.InputStream] to be transcoded.
+* `$content.encoding.input` is the optional character set used to
+  decode the given [java.io.InputStream]. Defaults to [UTF-8].
+* `$content.encoding.output` is the optional character set used to
+  encode the text data decoded from the given [java.io.InputStream].
+  Defaults to [UTF-8].
 
 #### Outputs:
 
-* `$stream` is a new [java.io.InputStream] which contains the
+* `$content.stream` is a new [java.io.InputStream] which contains the
   transcoded text data.
-* `$encoding.input` is the character set used to decode the input data.
-* `$encoding.output` is the character set used to encode the output
-  data.
+* `$content.encoding.input` is the character set used to decode the
+  input data.
+* `$content.encoding.output` is the character set used to encode the
+  output data.
 
 ---
 
