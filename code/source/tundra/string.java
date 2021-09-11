@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-09-11 14:04:51 AEST
+// -----( CREATED: 2021-09-11 14:30:39 AEST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -23,6 +23,7 @@ import permafrost.tundra.data.transform.string.Legalizer;
 import permafrost.tundra.data.transform.string.Lowercaser;
 import permafrost.tundra.data.transform.string.Padder;
 import permafrost.tundra.data.transform.string.Remover;
+import permafrost.tundra.data.transform.string.Replacer;
 import permafrost.tundra.data.transform.string.Slicer;
 import permafrost.tundra.data.transform.string.Splitter;
 import permafrost.tundra.data.transform.string.Translator;
@@ -785,29 +786,38 @@ public final class string
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
-		// [i] field:0:optional $pattern
-		// [i] field:0:optional $pattern.literal? {&quot;false&quot;,&quot;true&quot;}
-		// [i] field:0:optional $replacement
-		// [i] field:0:optional $replacement.literal? {&quot;false&quot;,&quot;true&quot;}
-		// [i] field:0:optional $occurrence.first? {&quot;false&quot;,&quot;true&quot;}
+		// [i] record:0:optional $replace.operands
+		// [i] field:0:optional $replace.pattern
+		// [i] field:0:optional $replace.pattern.literal? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $replace.replacement
+		// [i] field:0:optional $replace.replacement.literal? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $replace.occurrence.first? {&quot;false&quot;,&quot;true&quot;}
 		// [o] field:0:optional $string
+		// [o] record:0:optional $replace.results
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String string = IDataHelper.get(cursor, "$string", String.class);
-		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
-		    boolean literalPattern = IDataHelper.getOrDefault(cursor, "$pattern.literal?", Boolean.class, false);
-		    String replacement = IDataHelper.get(cursor, "$replacement", String.class);
-		    boolean literalReplacement = IDataHelper.getOrDefault(cursor, "$replacement.literal?", Boolean.class, IDataHelper.getOrDefault(cursor, "$literal?", Boolean.class, false));
-		    Boolean firstOccurrence = IDataHelper.getOrDefault(cursor, "$occurrence.first?", Boolean.class, false);
+		    IData operands = IDataHelper.get(cursor, "$replace.operands", IData.class);
+		    String pattern = IDataHelper.first(cursor, String.class, "$replace.pattern", "$pattern");
+		    boolean literalPattern = IDataHelper.firstOrDefault(cursor, Boolean.class, false, "$replace.pattern.literal?", "$pattern.literal?");
+		    String replacement = IDataHelper.first(cursor, String.class, "$replace.replacement", "$replacement");
+		    boolean literalReplacement = IDataHelper.firstOrDefault(cursor, Boolean.class, false, "$replace.replacement.literal?", "$replacement.literal?", "$literal?");
+		    Boolean firstOccurrence = IDataHelper.firstOrDefault(cursor, Boolean.class, false, "$replace.occurrence.first?", "$occurrence.first?");
 		
 		    if (firstOccurrence == null) {
-		        // support mode for backwards compatibility
+		        // support $mode for backwards compatibility
 		        String mode = IDataHelper.get(cursor, "$mode", String.class);
 		        firstOccurrence = mode != null && mode.equals("first");
 		    }
 		
-		    IDataHelper.put(cursor, "$string", StringHelper.replace(string, pattern, literalPattern, replacement, literalReplacement, firstOccurrence.booleanValue()), false);
+		    if (operands == null) {
+		        // support $string for backwards compatibility
+		        String string = IDataHelper.get(cursor, "$string", String.class);
+		        IDataHelper.put(cursor, "$string", StringHelper.replace(string, pattern, literalPattern, replacement, literalReplacement, firstOccurrence.booleanValue()), false);
+		    } else {
+		        IDataHelper.put(cursor, "$replace.results", Transformer.transform(operands, new Replacer(TransformerMode.VALUES, pattern, literalPattern, replacement, literalReplacement, firstOccurrence, true)), false);
+		    }
+
 		} finally {
 		    cursor.destroy();
 		}

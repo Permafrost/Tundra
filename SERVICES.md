@@ -16339,36 +16339,37 @@ pattern from one or more arbitrarily specified string values.
 
 ### tundra.string:replace
 
-Replaces either the first or all occurrences of the given
-[regular expression pattern] in the given string, with the
-replacement string.
+Replaces either the first or all of the occurrences of the given
+pattern with the given replacement in one or more arbitrarily
+specified string values.
 
 #### Inputs:
 
-* `$string` is a string to have all occurrences of the given
-  [regular expression pattern] replaced.
-* `$pattern` is the [regular expression pattern] to match against
-  the given string. If not specified, no replacement will occur.
-* `$pattern.literal?` is a boolean indicating whether the pattern is a
-  literal or a [regular expression pattern]. If literal, the pattern
-  is converted to a [regular expression pattern] that matches the
-  given literal string. Defaults to `false`.
-* `$replacement` is the replacement string to be substituted in
-  the given string wherever the given pattern is found. If not
-  specified, no replacement will occur.
-* `$replacement.literal?` is a boolean indicating if the replacement
-  string should be treated as a literal string. If `false`, captured
-  groups can be referred to with dollar-sign references, such as `$1`,
-  and other special characters may need to be escaped. Defaults to
-  `false`.
-* `$occurrence.first?` is a boolean indicating if only the first
-  occurrence of the given pattern should be replaced. Defaults to
-  `false`, where all occurrences of the pattern are replaced.
+* `$replace.operands` is an `IData` document containing one or more
+  string values in which to replace occurrences of the given pattern.
+* `$replace.pattern` is the pattern to be replaced in the given string
+  values. If not specified, no replacement will occur.
+* `$replace.pattern.literal?` is a boolean indicating whether the
+  pattern is a literal or [regular expression pattern]. If not
+  specified, defaults to `false` which treats the pattern as a
+  [regular expression pattern].
+* `$replace.replacement` is the replacement string to be substituted
+  in the given string values wherever the given pattern is found. If
+  not specified, no replacement will occur.
+* `$replace.replacement.literal?` is a boolean indicating if the
+  replacement string should be treated as a literal or regular
+  expression replacement. If not specified, defaults to
+  `false` where captured groups can be referred to with dollar-
+  prefixed references, such as `$1`, and other special characters are
+  required to be escaped.
+* `$replace.occurrence.first?` is a boolean indicating if only the
+  first occurrence of the given pattern should be replaced. Defaults
+  to `false`, where all occurrences of the pattern are replaced.
 
 #### Outputs:
 
-* `$string` is the input string with all occurrences of the given
-  [regular expression pattern] replaced with `$replacement`.
+* `$replace.results` are the given string values with occurrences of
+  the given pattern replaced.
 
 ---
 
