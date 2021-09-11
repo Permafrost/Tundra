@@ -16431,28 +16431,23 @@ specified string values. For example:
 
 ### tundra.string:split
 
-Splits the given arbitrarily specified strings around matches of the
-given literal pattern or [regular expression pattern].
+Splits one or more arbitrarily specified strings around matches of the
+given literal or [regular expression pattern].
 
 #### Inputs:
 
-* `$operands` is an `IData` document containing arbitrarily specified
-  `String`, `String[]` or `String[][]` values to be split into tokens
-  using the given pattern as the token separator.
-* `$pattern` is the literal or [regular expression pattern] to match
-  against the given strings.
-* `$pattern.literal?` is a boolean indicating if the pattern should be
-  treated as a literal string or a [regular expression pattern].
+* `$split.operands` is an `IData` document containing one or more
+  arbitrarily specified string values to be split.
+* `$split.pattern` is the literal or [regular expression pattern] to
+  match against the given strings.
+* `$split.pattern.literal?` is a boolean indicating if the pattern
+  should be treated as a literal or [regular expression pattern].
   Defaults to `false`.
 
 #### Outputs:
 
-* `$results` is an `IData` document containing the results of splitting
-  each given `String`, `String[]`, or `String[][]` specified using the
-  same keys and structure as was specified in `$operands`, however with
-  an additional dimension (i.e. an input `String` is returned as a
-  `String[]` containing the resulting tokens, and a `String[]` is
-  returned as a `String[][]`).
+* `$split.results` is an `IData` document containing the results of
+  splitting each given string value into a list of strings.
 
 ---
 

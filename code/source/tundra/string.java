@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-09-11 14:54:42 AEST
+// -----( CREATED: 2021-09-11 15:08:11 AEST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -860,10 +860,10 @@ public final class string
 		// --- <<IS-START(slice)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] record:0:optional $operands
-		// [i] field:0:optional $index
-		// [i] field:0:optional $length
-		// [o] record:0:optional $results
+		// [i] record:0:optional $slice.operands
+		// [i] field:0:optional $slice.index
+		// [i] field:0:optional $slice.length
+		// [o] record:0:optional $slice.results
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -900,22 +900,29 @@ public final class string
 		// --- <<IS-START(split)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] record:0:optional $operands
-		// [i] field:0:optional $pattern
-		// [i] field:0:optional $pattern.literal? {&quot;false&quot;,&quot;true&quot;}
-		// [o] record:0:optional $results
+		// [i] record:0:optional $split.operands
+		// [i] field:0:optional $split.pattern
+		// [i] field:0:optional $split.pattern.literal? {&quot;false&quot;,&quot;true&quot;}
+		// [o] record:0:optional $split.results
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData operands = IDataHelper.get(cursor, "$operands", IData.class);
-		    String pattern = IDataHelper.get(cursor, "$pattern", String.class);
-		    boolean literal = IDataHelper.getOrDefault(cursor, "$pattern.literal?", Boolean.class, IDataHelper.getOrDefault(cursor, "$literal?", Boolean.class, false));
+		    String outputParameterName = "$split.results";
+		    IData operands = IDataHelper.get(cursor, "$split.operands", IData.class);
+		    if (operands == null) {
+		        // support $operands for backwards-compatibility
+		        operands = IDataHelper.get(cursor, "$operands", IData.class);
+		        outputParameterName = "$results";
+		    }
+		    String pattern = IDataHelper.first(cursor, String.class, "$split.pattern", "$pattern");
+		    boolean literal = IDataHelper.firstOrDefault(cursor, Boolean.class, false, "$split.pattern.literal?", "$pattern.literal?", "$literal?");
 		
 		    if (operands == null) {
+		        // support $string for backwards-compatibility
 		        String string = IDataHelper.get(cursor, "$string", String.class);
 		        IDataHelper.put(cursor, "$list", StringHelper.split(string, pattern, literal), false);
 		    } else {
-		        IDataHelper.put(cursor, "$results", Transformer.transform(operands, new Splitter(pattern, literal)), false);
+		        IDataHelper.put(cursor, outputParameterName, Transformer.transform(operands, new Splitter(pattern, literal)), false);
 		    }
 		} finally {
 		    cursor.destroy();

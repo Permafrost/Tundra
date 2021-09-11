@@ -22,7 +22,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$operands</value>
+          <value name="field_name">$split.operands</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -42,7 +42,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$pattern</value>
+          <value name="field_name">$split.pattern</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -70,7 +70,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$pattern.literal?</value>
+          <value name="field_name">$split.pattern.literal?</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -113,7 +113,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$results</value>
+          <value name="field_name">$split.results</value>
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -130,30 +130,23 @@
   </record>
   <value name="node_comment">### tundra.string:split
 
-Splits the given arbitrarily specified strings around matches of the 
-given literal pattern or [regular expression pattern].
+Splits one or more arbitrarily specified strings around matches of the
+given literal or [regular expression pattern].
 
 #### Inputs:
 
-* $operands is an IData document containing arbitrarily specified 
-  String, String[] or String[][] values to be split into tokens 
-  using the given pattern as the token separator.
-* $pattern is the literal or [regular expression pattern] to match
-  against the given strings.
-* $pattern.literal? is a boolean indicating if the pattern should be
-  treated as a literal string or a [regular expression pattern].
-  Defaults to false.
+* `$split.operands` is an `IData` document containing one or more 
+  arbitrarily specified string values to be split.
+* `$split.pattern` is the literal or [regular expression pattern] to 
+  match against the given strings.
+* `$split.pattern.literal?` is a boolean indicating if the pattern 
+  should be treated as a literal or [regular expression pattern].
+  Defaults to `false`.
 
 #### Outputs:
 
-* $results is an IData document containing the results of splitting 
-  each given String, String[], or String[][] specified using the 
-  same keys and structure as was specified in $operands, however with
-  an additional dimension (i.e. an input String is returned as a 
-  String[] containing the resulting tokens, and a String[] is 
-  returned as a String[][]).
-
-[regular expression pattern]: &lt;http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html&gt;
+* `$split.results` is an `IData` document containing the results of 
+  splitting each given string value into a list of strings.
 </value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
