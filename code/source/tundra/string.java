@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-09-11 14:30:39 AEST
+// -----( CREATED: 2021-09-11 14:47:03 AEST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -24,6 +24,7 @@ import permafrost.tundra.data.transform.string.Lowercaser;
 import permafrost.tundra.data.transform.string.Padder;
 import permafrost.tundra.data.transform.string.Remover;
 import permafrost.tundra.data.transform.string.Replacer;
+import permafrost.tundra.data.transform.string.Reverser;
 import permafrost.tundra.data.transform.string.Slicer;
 import permafrost.tundra.data.transform.string.Splitter;
 import permafrost.tundra.data.transform.string.Translator;
@@ -741,12 +742,10 @@ public final class string
 		// --- <<IS-START(remove)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional $string
 		// [i] record:0:optional $remove.operands
 		// [i] field:0:optional $remove.pattern
 		// [i] field:0:optional $remove.pattern.literal? {&quot;false&quot;,&quot;true&quot;}
 		// [i] field:0:optional $remove.occurrence.first? {&quot;false&quot;,&quot;true&quot;}
-		// [o] field:0:optional $string
 		// [o] record:0:optional $remove.results
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -785,14 +784,12 @@ public final class string
 		// --- <<IS-START(replace)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional $string
 		// [i] record:0:optional $replace.operands
 		// [i] field:0:optional $replace.pattern
 		// [i] field:0:optional $replace.pattern.literal? {&quot;false&quot;,&quot;true&quot;}
 		// [i] field:0:optional $replace.replacement
 		// [i] field:0:optional $replace.replacement.literal? {&quot;false&quot;,&quot;true&quot;}
 		// [i] field:0:optional $replace.occurrence.first? {&quot;false&quot;,&quot;true&quot;}
-		// [o] field:0:optional $string
 		// [o] record:0:optional $replace.results
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -834,13 +831,19 @@ public final class string
 		// --- <<IS-START(reverse)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional $string
-		// [o] field:0:optional $string
+		// [i] record:0:optional $reverse.operands
+		// [o] record:0:optional $reverse.results
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String input = IDataHelper.get(cursor, "$string", String.class);
-		    IDataHelper.put(cursor, "$string", StringHelper.reverse(input), false);
+		    IData operands = IDataHelper.get(cursor, "$reverse.operands", IData.class);
+		    if (operands == null) {
+		        // support $string for backwards-compatibility
+		        String input = IDataHelper.get(cursor, "$string", String.class);
+		        IDataHelper.put(cursor, "$string", StringHelper.reverse(input), false);
+		    } else {
+		        IDataHelper.put(cursor, "$reverse.results", Transformer.transform(operands, new Reverser(TransformerMode.VALUES, true)), false);
+		    }
 		} finally {
 		    cursor.destroy();
 		}

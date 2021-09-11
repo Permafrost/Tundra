@@ -24,6 +24,7 @@
     <value>permafrost.tundra.data.transform.string.Padder</value>
     <value>permafrost.tundra.data.transform.string.Remover</value>
     <value>permafrost.tundra.data.transform.string.Replacer</value>
+    <value>permafrost.tundra.data.transform.string.Reverser</value>
     <value>permafrost.tundra.data.transform.string.Slicer</value>
     <value>permafrost.tundra.data.transform.string.Splitter</value>
     <value>permafrost.tundra.data.transform.string.Translator</value>

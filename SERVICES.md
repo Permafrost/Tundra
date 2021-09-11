@@ -16375,15 +16375,18 @@ specified string values.
 
 ### tundra.string:reverse
 
-Reverses the order of characters in the given string.
+Reverses the order of characters in one or more arbitrarily specified
+string values.
 
 #### Input:
 
-* `$string` is a string to be reversed.
+* `$reverse.operands` is an `IData` document containing one or more
+  string values to be reversed.
 
 #### Output:
 
-* `$string` is the reverse of the given string.
+* `$reverse.results` is an `IData` document containing the reversed
+  string values.
 
 ---
 
