@@ -16588,17 +16588,19 @@ translation returned in `$translation.result` is as follows:
 
 ### tundra.string:trim
 
-Removes leading and trailing whitespace from the given string.
+Removes leading and trailing whitespace from one or more arbitrarily
+specified strings.
 
 #### Inputs:
 
-* `$string` is a string to be trimmed of leading and trailing
-  whitespace characters.
+* `$trim.operands` is an `IData` document containing one or more
+  string values to be trimmed of leading and trailing whitespace
+  characters.
 
 #### Outputs:
 
-* `$string` is the input string with leading and trailing whitespace
-  characters removed.
+* `$trim.results` is an `IData` document containing the trimmed string
+  values.
 
 ---
 

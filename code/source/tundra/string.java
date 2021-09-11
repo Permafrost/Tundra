@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-09-11 15:19:31 AEST
+// -----( CREATED: 2021-09-11 15:27:44 AEST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -28,6 +28,7 @@ import permafrost.tundra.data.transform.string.Reverser;
 import permafrost.tundra.data.transform.string.Slicer;
 import permafrost.tundra.data.transform.string.Splitter;
 import permafrost.tundra.data.transform.string.Translator;
+import permafrost.tundra.data.transform.string.Trimmer;
 import permafrost.tundra.data.transform.string.Truncator;
 import permafrost.tundra.data.transform.string.Uppercaser;
 import permafrost.tundra.data.transform.Transformer;
@@ -1035,13 +1036,19 @@ public final class string
 		// --- <<IS-START(trim)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional $string
-		// [o] field:0:optional $string
+		// [i] record:0:optional $trim.operands
+		// [o] record:0:optional $trim.results
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String string = IDataHelper.get(cursor, "$string", String.class);
-		    IDataHelper.put(cursor, "$string", StringHelper.trim(string), false);
+		    IData operands = IDataHelper.get(cursor, "$trim.operands", IData.class);
+		    if (operands == null) {
+		        // support $string for backwards-compatibility
+		        String string = IDataHelper.get(cursor, "$string", String.class);
+		        IDataHelper.put(cursor, "$string", StringHelper.trim(string), false);
+		    } else {
+		        IDataHelper.put(cursor, "$trim.results", Transformer.transform(operands, new Trimmer(TransformerMode.VALUES, true)), false);
+		    }
 		} finally {
 		    cursor.destroy();
 		}

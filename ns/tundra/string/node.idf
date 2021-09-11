@@ -28,6 +28,7 @@
     <value>permafrost.tundra.data.transform.string.Slicer</value>
     <value>permafrost.tundra.data.transform.string.Splitter</value>
     <value>permafrost.tundra.data.transform.string.Translator</value>
+    <value>permafrost.tundra.data.transform.string.Trimmer</value>
     <value>permafrost.tundra.data.transform.string.Truncator</value>
     <value>permafrost.tundra.data.transform.string.Uppercaser</value>
     <value>permafrost.tundra.data.transform.Transformer</value>
