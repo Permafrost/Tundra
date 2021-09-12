@@ -2796,29 +2796,27 @@ specification.
 
 * `$content` is a string, byte array, input stream, `IData` document,
   or [org.w3c.dom.Node] object containing data to be delivered to the
-  `$destination` [URI].
-
-  If `$content` is provided as an `IData` document, it will be
-  serialized using an emitter determined in order of precedence by
-  `$schema` and `$content.type`. If `$schema` is specified, the type
-  of reference determines the emitter to use: a document reference
-  will use the [XML] emitter, a flat file schema reference will use
-  the Flat File emitter. If `$schema` is not specified,
-  `$content.type` is used to determine the most appropriate emitter
-  for the MIME media type in question. If neither `$schema`, nor
-  `$content.type` are specified,
-  `$content` is serialized as [XML] by default.
+  `$destination` [URI]. If `$content` is provided as an `IData`
+  document, it will be serialized using an emitter determined in order
+  of precedence by `$content.schema` and `$content.type`. If
+  `$content.schema` is specified, the type of reference determines the
+  emitter to use: a document reference will use the [XML] emitter, a
+  flat file schema reference will use the Flat File emitter. If
+  `$content.schema` is not specified, `$content.type` is used to
+  determine the most appropriate emitter for the MIME media type in
+  question. If neither `$content.schema`, nor `$content.type` are
+  specified, `$content` is serialized as [XML] by default.
 * `$content.type` is an optional MIME media type that describes the
   format of the given content.
-* `$namespace` is an optional list of namespace prefixes and the URIs
-  they map to, used when emitting and `IData` document as [XML]
-  content with elements in one or more namespaces.
-* `$schema` is an optional fully-qualified name of the document
-  reference or flat file schema used to serialize `$content` when
-  provided as an `IData` document.
-* `$encoding` is an optional character set to use when `$content` is
-  provided as a string or `IData` document which is used to encode
-  the text data for delivery. Defaults to [UTF-8].
+* `$content.encoding` is an optional character set to use when
+  `$content` is provided as a string or `IData` document which is used
+  to encode the text data for delivery. Defaults to [UTF-8].
+* `$content.schema` is an optional fully-qualified name of the
+  document reference or flat file schema used to serialize `$content`
+  when provided as an `IData` document.
+* `$content.namespace` is an optional list of namespace prefixes and
+  the URIs they map to, used when emitting and `IData` document as
+  [XML] content with elements in one or more namespaces.
 * `$pipeline` is an optional `IData` document for providing arbitrary
   variables to the delivery implementation service. Variables
   provided will take precedence and override their corresponding
