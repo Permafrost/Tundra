@@ -5528,30 +5528,30 @@ the `tundra.schema.content.deliver:handler` specification.
 
 #### Inputs:
 
-* `$document` is the `IData` document to be serialized and delivered
-  to the given destination URI.
 * `$destination` is the delivery destination [URI] to which the
   serialized document content will be delivered. If not specified, no
   delivery will be attempted. The supported delivery protocols
   ([URI] schemes) are as per `Tundra/tundra.content:deliver`. Please
   refer to this service's documentation for further details.
-* `$content.type` is an optional MIME media type describing the type
-  content being delivered.
-* `$schema` is an optional input which determines whether to
-  serialize the document as [XML], [JSON], Flat File, and can have
-  the following values:
-  * For [XML] content, specify the fully-qualified name of the document
-    reference that defines the [XML] format.
-  * For [JSON] content specify the MIME media type "application/json".
-  * For Flat File content specify the fully-qualified name of the flat
-    file schema that defines the Flat File format.
-
-  Defaults to serializing `$content` as [XML], if no `$schema` is
-  specified.
-* `$encoding` is an optional character set used to encode the
-  serialized document data upon delivery. Defaults to [UTF-8].
+* `$document` is the `IData` document to be serialized and delivered
+  to the given destination URI.
+* `$content.type` is an optional MIME media type that describes the
+  format of the given content.
+* `$content.encoding` is an optional character set to use when
+  serializing `$document` to text data for delivery. Defaults to
+  [UTF-8].
+* `$content.schema` is an optional fully-qualified name of the
+  document reference or flat file schema used to serialize
+  `$document`.
+* `$content.namespace` is an optional list of namespace prefixes and
+  the URIs they map to, used when serializing `$document` to [XML]
+  content with elements in one or more namespaces.
 * `$pipeline` is an optional `IData` document for providing arbitrary
-  variables to the delivery implementation service.
+  variables to the delivery implementation service. Variables
+  provided will take precedence and override their corresponding
+  values in the `$destination` [URI] where applicable. See the
+  `$destination` description above for transport-specific options
+  which can be provided via this `IData` document.
 
 #### Outputs:
 
