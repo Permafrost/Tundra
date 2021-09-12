@@ -2579,6 +2579,30 @@ emitting or serializing the amended content.
 
 ---
 
+### tundra.content:convert
+
+Converts a `String`, `byte[]`, or `java.io.InputStream` object to a
+`String`, `byte[]`, or `java.io.InputStream` object.
+
+#### Inputs:
+
+* `$content` is a `String`, `byte[]`, or `java.io.InputStream` object.
+  If not specified, this service does nothing.
+* `$content.encoding` is the character set to use when converting from
+  or to a `String`. Defaults to [UTF-8].
+* `$content.mode` determines the type of object to convert the given
+  `$content` to. Defaults to `stream`.
+  * `stream` returns a `java.io.InputStream` object.
+  * `bytes` returns a `byte[]` object.
+  * `string` returns a `String` object.
+  * `base64` returns a base64-encoded `String` object.
+
+#### Outputs:
+
+* `$content` is the converted content object.
+
+---
+
 ### tundra.content:deliver
 
 Delivers arbitrary content specified as a string, byte array, input
@@ -3396,57 +3420,66 @@ location provided is a directory.
 
 ### tundra.content:translate
 
-One-to-one (1:1) conversion of content in one format to another format.
-Calls the given translation service, passing the parsed content as an
-input, and emitting or serializing the translated content as output.
+Performs a one-to-one (1:1) translation of content from one format to
+another format, via the given translation service.
 
 #### Inputs:
 
-* `$content` is a string, byte array, or input stream containing content
-  to be translated to another format.
 * `$service` is the fully-qualified name of the translation service,
   which accepts a single `IData` document and returns a single IData
   document, called to translate the parsed `$content`.
-* `$content.type.input` is the MIME media type that describes the format
-  of the given `$content`.
-* `$content.type.output` is the MIME media type that describes the
-  format of the resulting serialized translated content.
-* `$namespace.input` is a list of namespace prefixes and the URIs they
-  map to, used when parsing [XML] content with elements in one or more
-  namespaces.
-* `$namespace.output` is a list of namespace prefixes and the URIs they
-  map to, used when emitting [XML] content with elements in one or more
-  namespaces.
-* `$schema.input` is the fully-qualified name of the document reference
-  or flat file schema to use when parsing `$content`.
-* `$schema.output` is the fully-qualified name of the document reference
-  or flat file schema to use when serializing the translated content.
 * `$service.input` is an optional variable name to use in the input
   pipeline of the call to `$service` for the parsed `$content` IData
   document. Defaults to `$document`.
 * `$service.output` is an optional variable name used to extract the
   output `IData` document from the output pipeline of the call to
   `$service`. Defaults to `$translation`.
-* `$encoding.input` is an optional character set used to decode the text
-  data if `$content` is provided as a byte array or input stream.
-  Defaults to [UTF-8].
-* `$encoding.output` is an optional character set used to encode the
-  translated text data if the specified `$mode.output` is a byte array or
-  stream. Defaults to [UTF-8].
-* `$validate.input?` is an optional boolean flag which when `true` will
-  validate the input content against the given `$schema.input`, and throw
-  an exception if the content is invalid. Defaults to `false`.
-* `$validate.output?` is an optional boolean flag which when `true` will
-  validate the output content against the given `$schema.output`, and throw
-  an exception if the content is invalid. Defaults to `false`.
-* `$mode.output` is an optional choice of stream, bytes, or string which
-  specifies the type of object `$translation` is returned as. Defaults to
-  stream.
+* `$pipeline` is an optional `IData` document used as the input
+  pipeline for the invocation of `$service`.
+* `$content` is a `String`, `byte[]`, or `java.io.InputStream` object
+  containing the content to be translated to another format.
+* `$content.type.input` is the MIME media type that describes the
+  format of the given `$content`.
+* `$content.type.output` is the MIME media type that describes the
+  format of the resulting serialized translated content.
+* `$content.encoding.input` is an optional character set used to
+  decode the text data if `$content` is provided as a `byte[]` or
+  `java.io.InputStream` object. Defaults to [UTF-8].
+* `$content.encoding.output` is an optional character set used to
+  encode the translated text data if the `$content.mode.output`
+  specified is a `byte[]` or `java.io.InputStream` object. Defaults to
+  [UTF-8].
+* `$content.schema.input` is the fully-qualified name of the document
+  reference or flat file schema to use when parsing `$content`.
+* `$content.schema.output` is the fully-qualified name of the document
+  reference or flat file schema to use when serializing the translated
+  content.
+* `$content.namespace.input` is a list of namespace prefixes and the
+  URIs they map to, used when parsing [XML] content with elements in
+  one or more namespaces.
+* `$content.namespace.output` is a list of namespace prefixes and the
+  URIs they map to, used when emitting [XML] content with elements in
+  one or more namespaces.
+* `$content.validate.input?` is an optional boolean flag which when
+  `true` will validate the input content against the given
+  `$content.schema.input`, and throw an exception if the content is
+  invalid. Defaults to `false`.
+* `$content.validate.output?` is an optional boolean flag which when
+  `true` will validate the output content against the given
+  `$content.schema.output`, and throw an exception if the content is
+  invalid. Defaults to `false`.
+* `$content.mode.output` determines the type of object `$translation`
+  is returned as. Defaults to `stream`.
+  * `stream` returns a `java.io.InputStream` object.
+  * `bytes` returns a `byte[]` object.
+  * `string` returns a `String` object.
+  * `base64` returns a base64-encoded `String` object.
 
 #### Outputs:
 
-* `$translation` is the translated content returned as a string, byte
-  array or input stream, depending on the `$mode.output` chosen.
+* `$translation` is the translated content returned as a `String`,
+  `byte[]`, or `java.io.InputStream`, depending on the given
+  `$content.mode.output` value.
 
 ---
 
@@ -13315,29 +13348,6 @@ Returns the first object argument that is not null.
 
 * `$object` is the first of the given objects whose value is not null,
   or null if all arguments were null and `$mode` is `null`.
-
----
-
-### tundra.object:convert
-
-Converts a string, byte array, or input stream object to a string,
-byte array or input stream object.
-
-#### Inputs:
-
-* `$object` is an optional string, byte array, or input stream
-  object. If null, this service does nothing.
-* `$encoding` is an optional character set to use when converting
-  from or to a string. Defaults to [UTF-8].
-* `$mode` is an optional choice of `stream`, `bytes`, `string`, or
-  `base64`-encoded string, which determines the type of object
-  returned by this service. Defaults to `stream`.
-
-#### Outputs:
-
-* `$object` is the input object converted to be either a string,
-  base64-encoded string, byte array, or input stream as determined
-  by the selected $mode, or null if the input object was null.
 
 ---
 

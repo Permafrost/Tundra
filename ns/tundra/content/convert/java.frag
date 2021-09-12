@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">convert</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">SURhdGFDdXJzb3IgY3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vyc29yKCk7Cgp0cnkgewogICAgT2Jq
+ZWN0IGNvbnRlbnQgPSBJRGF0YUhlbHBlci5nZXQoY3Vyc29yLCAiJGNvbnRlbnQiKTsKICAgIENo
+YXJzZXQgY2hhcnNldCA9IElEYXRhSGVscGVyLmdldChjdXJzb3IsICIkY29udGVudC5lbmNvZGlu
+ZyIsIENoYXJzZXQuY2xhc3MpOwogICAgT2JqZWN0Q29udmVydE1vZGUgbW9kZSA9IElEYXRhSGVs
+cGVyLmdldChjdXJzb3IsICIkY29udGVudC5tb2RlIiwgT2JqZWN0Q29udmVydE1vZGUuY2xhc3Mp
+OwoKICAgIElEYXRhSGVscGVyLnB1dChjdXJzb3IsICIkY29udGVudCIsIE9iamVjdEhlbHBlci5j
+b252ZXJ0KGNvbnRlbnQsIGNoYXJzZXQsIG1vZGUpLCBmYWxzZSk7Cn0gY2F0Y2goSU9FeGNlcHRp
+b24gZXgpIHsKICAgIEV4Y2VwdGlvbkhlbHBlci5yYWlzZShleCk7Cn0gZmluYWxseSB7CiAgICBj
+dXJzb3IuZGVzdHJveSgpOwp9</value>
+</Values>

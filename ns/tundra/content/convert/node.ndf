@@ -22,7 +22,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$object</value>
+          <value name="field_name">$content</value>
           <value name="field_type">object</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -39,7 +39,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$encoding</value>
+          <value name="field_name">$content.encoding</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -67,7 +67,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$mode</value>
+          <value name="field_name">$content.mode</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -156,7 +156,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$object</value>
+          <value name="field_name">$content</value>
           <value name="field_type">object</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -168,33 +168,36 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">### tundra.object:convert
+  <value name="node_comment">### tundra.content:convert
 
-Converts a string, byte array, or input stream object to a string,
-byte array or input stream object.
+Converts a `String`, `byte[]`, or `java.io.InputStream` object to a 
+`String`, `byte[]`, or `java.io.InputStream` object.
 
 #### Inputs:
 
-* $object is an optional string, byte array, or input stream
-  object. If null, this service does nothing.
-* $encoding is an optional character set to use when converting
-  from or to a string. Defaults to [UTF-8].
-* $mode is an optional choice of stream, bytes, string, or 
-  base64-encoded string, which determines the type of object 
-  returned by this service. Defaults to stream.
+* `$content` is a `String`, `byte[]`, or `java.io.InputStream` object.
+  If not specified, this service does nothing.
+* `$content.encoding` is the character set to use when converting from
+  or to a `String`. Defaults to [UTF-8].
+* `$content.mode` determines the type of object to convert the given
+  `$content` to. Defaults to `stream`.
+  * `stream` returns a `java.io.InputStream` object.
+  * `bytes` returns a `byte[]` object.
+  * `string` returns a `String` object.
+  * `base64` returns a base64-encoded `String` object.
 
 #### Outputs:
 
-* $object is the input object converted to be either a string, 
-  base64-encoded string, byte array, or input stream as determined 
-  by the selected $mode, or null if the input object was null.
+* `$content` is the converted content object.
 
-[UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;</value>
-  <value name="stateless">yes</value>
+[UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;
+</value>
+  <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template">tundra_content_convert</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
