@@ -15653,21 +15653,22 @@ system resources.
 
 ### tundra.stream:copy
 
-Copies all data from the given input stream (or string or bytes) to
-the given output stream, then closes the streams.
+Copies all data from the given [java.io.InputStream] object to the
+given [java.io.OutputStream] object, then optionally closes both
+stream objects.
 
 #### Inputs:
 
-* `$stream.input` is an optional [java.io.InputStream] object, byte[],
-  or String containing data to be written to `$output`. If not
+* `$content.stream.input` is a [java.io.InputStream] object containing
+  data to be written to `$content.stream.output`. If not specified,
+  this service does nothing.
+* `$content.stream.output` is a [java.io.OutputStream] object where
+  data read from `$content.stream.input` is to be written. If not
   specified, this service does nothing.
-* `$stream.output` is an optional [java.io.OutputStream] object where
-  data read from `$input` is to be written. If not specified, this
-  service does nothing.
-* `$stream.buffer.size` is an optional size in bytes to use when
-  buffering the data being copied in memory.
-* `$stream.close?` is an optional boolean indicating whether the
-  streams should be closed after the copy is complete. Defaults to
+* `$content.stream.buffer.size` is an optional size in bytes to use
+  when buffering the data being copied in memory.
+* `$content.stream.close?` is an optional boolean indicating whether
+  the streams should be closed after the copy is complete. Defaults to
   `true`.
 
 ---

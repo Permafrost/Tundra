@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-09-13 05:05:34 AEST
+// -----( CREATED: 2021-09-13 05:09:57 AEST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -68,17 +68,17 @@ public final class stream
 		// --- <<IS-START(copy)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] object:0:optional $stream.input
-		// [i] object:0:optional $stream.output
-		// [i] object:0:optional $stream.buffer.size
-		// [i] field:0:optional $stream.close? {&quot;true&quot;,&quot;false&quot;}
+		// [i] object:0:optional $content.stream.input
+		// [i] object:0:optional $content.stream.output
+		// [i] object:0:optional $content.stream.buffer.size
+		// [i] field:0:optional $content.stream.close? {&quot;true&quot;,&quot;false&quot;}
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    InputStream input = IDataHelper.first(cursor, InputStream.class, "$stream.input", "$input");
-		    OutputStream output = IDataHelper.first(cursor, OutputStream.class, "$stream.output", "$output");
-		    int bufferSize = IDataHelper.getOrDefault(cursor, "$stream.buffer.size", Integer.class, -1);
-		    boolean close = IDataHelper.firstOrDefault(cursor, Boolean.class, true, "$stream.close?", "$close?");
+		    InputStream input = IDataHelper.first(cursor, InputStream.class, "$content.stream.input", "$stream.input", "$input");
+		    OutputStream output = IDataHelper.first(cursor, OutputStream.class, "$content.stream.output", "$stream.output", "$output");
+		    int bufferSize = IDataHelper.firstOrDefault(cursor, Integer.class, -1, "$content.stream.buffer.size", "$stream.buffer.size");
+		    boolean close = IDataHelper.firstOrDefault(cursor, Boolean.class, true, "$content.stream.close?", "$stream.close?", "$close?");
 		
 		    InputOutputHelper.copy(input, output, close, bufferSize);
 		} catch(IOException ex) {
