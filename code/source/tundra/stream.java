@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-09-11 19:05:49 AEST
+// -----( CREATED: 2021-09-13 05:05:34 AEST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -46,11 +46,11 @@ public final class stream
 		// --- <<IS-START(close)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] object:0:optional $stream
+		// [i] object:0:optional $content.stream
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Closeable closeable = IDataHelper.get(cursor, "$stream", Closeable.class);
+		    Closeable closeable = IDataHelper.first(cursor, Closeable.class, "$content.stream", "$stream");
 		    CloseableHelper.close(closeable);
 		} finally {
 		    cursor.destroy();

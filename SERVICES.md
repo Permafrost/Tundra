@@ -15639,12 +15639,12 @@ and higher `fault` structures.
 
 ### tundra.stream:close
 
-Closes the given input stream or output stream, and releases any associated
+Closes the given input or output stream, and releases any associated
 system resources.
 
 #### Inputs:
 
-* `$stream` is an optional [java.io.InputStream] or
+* `$content.stream` is an optional [java.io.InputStream] or
   [java.io.OutputStream] object to be closed. If specified, the stream
   is closed and any associated system resources are released. If not
   specified, this service does nothing.
