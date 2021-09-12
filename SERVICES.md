@@ -15674,24 +15674,23 @@ the given output stream, then closes the streams.
 
 ### tundra.stream:normalize
 
-Converts a string, bytes or input stream to an input stream.
+Converts a `String`, `byte[]` or `java.io.InputStream` object to a
+`java.io.InputStream` object.
 
 #### Inputs:
 
-* `$object` is an optional [java.lang.String], byte[], or
-  [java.io.InputStream] object to be converted to a
-  [java.io.InputStream] object. If not specified, this service does
-  nothing.
-* `$encoding` is the character set used to encode the character data
-  when `$object` is specified as a [java.lang.String]. Defaults to
+* `$content` is a `String`, `byte[]`, or `java.io.InputStream` object
+  to be converted to a `java.io.InputStream` object. If not specified,
+  this service does nothing.
+* `$content.encoding` is the character set used to encode character
+  data when `$content` is specified as a `String`. Defaults to
   [UTF-8].
 
 #### Outputs:
 
-* `$stream` is an optional [java.io.InputStream] object from which can
-  be read the data represented by `$object`. If `$object` was not
-  specified, no `$stream` is returned.
-* `$encoding` is the character set used to encode `$object`.
+* `$content.stream` is a `java.io.InputStream` object from which the
+  data represented by `$content` can be read.
+* `$content.encoding` is the character set used to encode `$content`.
 
 ---
 

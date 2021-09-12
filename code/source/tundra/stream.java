@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-09-11 18:59:09 AEST
+// -----( CREATED: 2021-09-11 19:05:49 AEST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -99,20 +99,25 @@ public final class stream
 		// --- <<IS-START(normalize)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] object:0:optional $object
-		// [i] field:0:optional $encoding
-		// [o] object:0:optional $stream
-		// [o] field:0:optional $encoding
+		// [i] object:0:optional $content
+		// [i] field:0:optional $content.encoding
+		// [o] object:0:optional $content.stream
+		// [o] field:0:optional $content.encoding
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    Object object = IDataHelper.get(cursor, "$object");
-		    Charset charset = IDataHelper.getOrDefault(cursor, "$encoding", Charset.class, CharsetHelper.DEFAULT_CHARSET);
+		    boolean backwardsCompatible = false;
+		    Object content = IDataHelper.get(cursor, "$content");
+		    if (content == null) {
+		        content = IDataHelper.get(cursor, "$object");
+		        backwardsCompatible = true;
+		    }
+		    Charset charset = IDataHelper.firstOrDefault(cursor, Charset.class, CharsetHelper.DEFAULT_CHARSET, "$content.encoding", "$encoding");
 		
-		    InputStream stream = InputStreamHelper.normalize(object, charset);
+		    InputStream stream = InputStreamHelper.normalize(content, charset);
 		
-		    IDataHelper.put(cursor, "$stream", stream, false);
-		    if (stream != null && object instanceof String) IDataHelper.put(cursor, "$encoding", charset.name());
+		    IDataHelper.put(cursor, backwardsCompatible ? "$stream" : "$content.stream", stream, false);
+		    if (stream != null && content instanceof String) IDataHelper.put(cursor, backwardsCompatible ? "$encoding" : "$content.encoding", charset.name());
 		} finally {
 		    cursor.destroy();
 		}
