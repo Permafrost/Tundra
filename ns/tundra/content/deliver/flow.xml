@@ -424,7 +424,8 @@
 
 <BRANCH TIMEOUT="" LABELEXPRESSIONS="true">
   <COMMENT></COMMENT>
-</BRANCH>
+
+  <!-- nodes -->
 
 <SEQUENCE NAME="%$destination% != null and (%$content% != $null or %$destination% == /^mailto:.*/)" TIMEOUT="" EXIT-ON="FAILURE">
   <COMMENT></COMMENT>
@@ -9465,6 +9466,7 @@
 </MAP>
 </INVOKE>
 </SEQUENCE>
+</BRANCH>
 
 <MAP NAME="drop" TIMEOUT="" MODE="STANDALONE">
   <COMMENT></COMMENT>
