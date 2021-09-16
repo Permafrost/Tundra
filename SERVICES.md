@@ -3288,84 +3288,90 @@ specification.
 
 ### tundra.content:split
 
-One-to-many (1:N) conversion of content in one format to another format.
-Calls the given splitting service, passing the parsed `$content` as an
-input, and emitting the split list of `$contents` as output.
+One-to-many (1:N) conversion of content in one format to another
+format. Calls the given splitting service, passing the parsed
+`$content` as an input, and emitting the split list of `$contents`
+as output.
 
 #### Inputs:
 
-* `$content` is a string, byte array, or input stream of content to be
-  split.
-* `$service` is the fully-qualified name of the splitting service, which
-  accepts a single `IData` document and returns an `IData` document list,
-  called to split the parsed `$content`.
-* `$pipeline` is an optional `IData` document containing arbitrary
-  variables to be included in the input pipeline of the invocation of
-  `$service`.
-* `$content.type.input` is the MIME media type that describes the format
-  of the given `$content`.
-* `$content.type.output` is the MIME media type that describes the
-  format of the resulting serialized split content, if all split content
-  formats are alike. Alternatively, it is permissible for the resulting
-  list returned by `$service` to contain unlike documents (documents whose
-  MIME types are different), and in this case `$service` is required to
-  return a string list `$content.types`, where each item in `$content.types`
-  has a value appropriate (for example, "application/json" for [JSON]
-  content) for serializing the corresponding indexed item in the returned
-  document list.
-* `$namespace.input` is a list of namespace prefixes and the URIs they
-  map to, used when parsing [XML] content with elements in one or more
-  namespaces.
-* `$namespace.output` is a list of namespace prefixes and the URIs they
-  map to, used when emitting [XML] content with elements in one or more
-  namespaces. Alternatively, it is permissible for the resulting list
-  returned by `$service` to contain unlike documents (documents whose MIME
-  types are different), and in this case `$service` is required to return an
-  `IData` document list `$namespaces`, where each item in `$namespaces`
-  declares the namespace prefixes and URIs appropriate for serializing the
-  corresponding indexed item in the returned document list.
-* `$schema.input` is the fully-qualified name of the document reference or
-  flat file schema to use when parsing `$content`.
-* `$schema.output` is the fully-qualified name of the document reference or
-  flat file schema to use when serializing the split documents.
-  Alternatively, it is permissible for the resulting list returned by
-  `$service` to contain unlike documents (documents whose formats are
-  different), and in this case `$service` is required to return a string
-  list `$schemas`, where each item in `$schemas` has a value appropriate
-  (document reference for [XML], flat file schema for Flat Files) for
-  serializing the corresponding indexed item in the returned document
-  list.
+* `$service` is the fully-qualified name of the splitting service,
+  which accepts a single `IData` document and returns an `IData`
+  document list, called to split the parsed `$content`.
 * `$service.input` is an optional variable name to use in the input
   pipeline of the call to `$service` for the parsed `$content` IData
   document. Defaults to `$document`.
 * `$service.output` is an optional variable name used to extract the
   output `IData` document list from the output pipeline of the call to
   `$service`. Defaults to `$documents`.
-* `$encoding.input` is an optional character set used to decode the text
-  data if `$content` is provided as a byte array or input stream.
-  Defaults to [UTF-8].
-* `$encoding.output` is an optional character set used to encode the
-  split text datum if the specified `$mode.output` is a byte array or
-  stream. Defaults to [UTF-8].
-* `$validate.input?` is an optional boolean flag which when `true` will
-  validate the input content against the given `$schema.input`, and throw
-  an exception if the content is invalid. Defaults to `false`.
-* `$validate.output?` is an optional boolean flag which when `true` will
-  validate each output content against the appropriate schema, and throw
-  an exception if the content is invalid. Defaults to `false`.
-* `$mode.output` is an optional choice of stream, bytes, or string which
-  specifies the type of object each item in `$contents` is returned as.
-  Defaults to stream.
+* `$pipeline` is an optional `IData` document containing arbitrary
+  variables to be included in the input pipeline of the invocation of
+  `$service`.
+* `$content` is a `String`, `byte[]`, or `java.io.InputStream` object
+  containing content to be split.
+* `$content.type.input` is the MIME media type that describes the
+  format of the given `$content`.
+* `$content.type.output` is the MIME media type that describes the
+  format of the resulting serialized split content, if all split
+  content formats are alike. Alternatively, it is permissible for the
+  resulting list returned by `$service` to contain unlike documents
+  (documents whose MIME types are different), and in this case
+  `$service` is required to return a string list `$content.types`,
+  where each item in `$content.types` has a value appropriate (for
+  example, "application/json" for [JSON] content) for serializing the
+  corresponding indexed item in the returned document list.
+* `$content.encoding.input` is an optional character set used to
+  decode the text data if `$content` is provided as a `byte[]` or
+  `java.io.InputStream` object. Defaults to [UTF-8].
+* `$content.encoding.output` is an optional character set used to
+  encode the split content if the specified `$content.mode.output`
+  is `bytes` or `stream`. Defaults to [UTF-8].
+* `$content.schema.input` is the fully-qualified name of the document
+  reference or flat file schema to use when parsing `$content`.
+* `$content.schema.output` is the fully-qualified name of the document
+  reference or flat file schema to use when serializing the split
+  documents. Alternatively, it is permissible for the resulting list
+  returned by `$service` to contain unlike documents (documents whose
+  formats are different), and in this case `$service` is required to
+  return a string list `$schemas`, where each item in `$schemas` has a
+  value appropriate (document reference for [XML], flat file schema
+  for Flat Files) for serializing the corresponding indexed item in
+  the returned document list.
+* `$content.namespace.input` is a list of namespace prefixes and the
+  URIs they map to, used when parsing [XML] content with elements in
+  one or more namespaces.
+* `$content.namespace.output` is a list of namespace prefixes and the
+  URIs they map to, used when emitting [XML] content with elements in
+  one or more namespaces. Alternatively, it is permissible for the
+  resulting list returned by `$service` to contain unlike documents
+  (documents whose MIME types are different), and in this case
+  `$service` is required to return an `IData` document list
+  `$namespaces`, where each item in `$namespaces` declares the
+  namespace prefixes and URIs appropriate for serializing the
+  corresponding indexed item in the returned document list.
+* `$content.validate.input?` is an optional boolean flag which when
+  `true` will validate the input content against the given
+  `$schema.input`, and throw an exception if the content is invalid.
+  Defaults to `false`.
+* `$content.validate.output?` is an optional boolean flag which when
+  `true` will validate each output content against the appropriate
+  schema, and throw an exception if the content is invalid. Defaults
+  to `false`.
+* `$content.mode.output` determines the type of object each item in
+  `$contents` is returned as. Defaults to `stream`.
+  * `stream` returns a `java.io.InputStream` object.
+  * `bytes` returns a `byte[]` object.
+  * `string` returns a `String` object.
 
 #### Outputs:
 
 * `$contents` is the resulting list of split content as a string, byte
   array, or input stream, depending on the `$mode.output` chosen.
-* `$content.types` is the optional list of MIME media types returned by
-  `$service` if the `$contents` list contains unlike media types.
-* `$schemas` is the optional list of fully-qualified document references
-  (for XML) or flat file schemas (for flat files) returned by `$service`
-  if the `$contents` list contains unlike formats.
+* `$content.types` is the optional list of MIME media types returned
+  by `$service` if the `$contents` list contains unlike media types.
+* `$schemas` is the optional list of fully-qualified document
+  references (for XML) or flat file schemas (for flat files) returned
+  by `$service` if the `$contents` list contains unlike formats.
 
 ---
 
@@ -3471,7 +3477,6 @@ another format, via the given translation service.
   * `stream` returns a `java.io.InputStream` object.
   * `bytes` returns a `byte[]` object.
   * `string` returns a `String` object.
-  * `base64` returns a base64-encoded `String` object.
 
 #### Outputs:
 

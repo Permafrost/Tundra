@@ -557,7 +557,6 @@ another format, via the given translation service.
   * `stream` returns a `java.io.InputStream` object.
   * `bytes` returns a `byte[]` object.
   * `string` returns a `String` object.
-  * `base64` returns a base64-encoded `String` object.  
 
 #### Outputs:
 
