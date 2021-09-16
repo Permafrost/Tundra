@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-09-11 15:38:08 AEST
+// -----( CREATED: 2021-09-17 05:49:16 EST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -1072,7 +1072,7 @@ public final class string
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $truncate.operands
-		// [i] field:0:required $truncate.length
+		// [i] field:0:optional $truncate.length
 		// [i] field:0:optional $truncate.ellipsis? {&quot;false&quot;,&quot;true&quot;}
 		// [o] record:0:optional $truncate.results
 		IDataCursor cursor = pipeline.getCursor();
@@ -1085,10 +1085,14 @@ public final class string
 		        operands = IDataHelper.get(cursor, "$operands", IData.class);
 		        outputParameterName = "$results";
 		    }
-		    int length = IDataHelper.first(cursor, Integer.class, "$truncate.length", "$length");
+		    Integer length = IDataHelper.first(cursor, Integer.class, "$truncate.length", "$length");
 		    boolean ellipsis = IDataHelper.firstOrDefault(cursor, Boolean.class, false, "$truncate.ellipsis?", "$ellipsis?");
 		
-		    IDataHelper.put(cursor, outputParameterName, Transformer.transform(operands, new Truncator(length, ellipsis)), false);
+		    if (length != null) {
+		        IDataHelper.put(cursor, outputParameterName, Transformer.transform(operands, new Truncator(length, ellipsis)), false);
+		    } else {
+		        IDataHelper.put(cursor, outputParameterName, IDataHelper.duplicate(operands), false);
+		    }
 		} finally {
 		    cursor.destroy();
 		}
