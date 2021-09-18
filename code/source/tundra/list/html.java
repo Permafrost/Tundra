@@ -1,8 +1,8 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-07 17:56:29 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2021-09-18 15:04:48 AEST
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -66,22 +66,21 @@ public final class html
 		// --- <<IS-START(emit)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] record:1:optional $list
-		// [i] field:0:optional $encoding
-		// [i] field:0:optional $mode {"stream","bytes","string"}
+		// [i] record:1:optional $document.list
+		// [i] field:0:optional $content.encoding
+		// [i] field:0:optional $content.mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    IData[] list = IDataHelper.get(cursor, "$list", IData[].class);
-		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
-		    ObjectConvertMode mode = IDataHelper.get(cursor, "$mode", ObjectConvertMode.class);
+		    IData[] list = IDataHelper.first(cursor, IData[].class, "$document.list", "$list");
+		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
+		    ObjectConvertMode mode = IDataHelper.first(cursor, ObjectConvertMode.class, "$content.mode", "$mode");
 		
 		    if (list != null) {
 		        IDataMap map = new IDataMap();
 		        map.put("recordWithNoID", list);
-		
-		        IDataHelper.put(cursor, "$content", ObjectHelper.convert(IDataHTMLParser.getInstance().emit(map, charset), charset, mode));
+		        IDataHelper.put(cursor, "$content", ObjectHelper.convert(new IDataHTMLParser().emit(map, charset), charset, mode));
 		    }
 		} catch (IOException ex) {
 		    ExceptionHelper.raise(ex);

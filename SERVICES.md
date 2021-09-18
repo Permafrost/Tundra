@@ -10560,14 +10560,16 @@ serialized to clean [HTML] table elements.
 
 #### Inputs:
 
-* `$list` is the `IData[]` document list to be serialized as an [HTML]
-  string, byte array, or input stream.
-* `$encoding` is an optional character set to use when encoding the
-  resulting text data to a byte array or input stream. Defaults to
-  [UTF-8].
-* `$mode` is an optional choice of stream, bytes, or string, which
-  specifies the type of object `$content` is returned as. Defaults
-  to stream.
+* `$document.list` is the `IData[]` document list to be serialized as
+  an [HTML] `String`, `byte[]`, or `java.io.InputStream` object.
+* `$content.encoding` is an optional character set to use when
+  encoding the resulting text data to a `byte[]` or
+  `java.io.InputStream` object. Defaults to [UTF-8].
+* `$content.mode` determines the type of object `$content` is returned
+  as. Defaults to `stream`.
+  * `stream` returns a `java.io.InputStream` object.
+  * `bytes` returns a `byte[]` object.
+  * `string` returns a `String` object.
 
 #### Outputs:
 

@@ -7,6 +7,7 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -20,7 +21,8 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$list</value>
+          <value name="is_public">false</value>
+          <value name="field_name">$document.list</value>
           <value name="field_type">record</value>
           <value name="field_dim">1</value>
           <value name="field_opt">true</value>
@@ -30,6 +32,7 @@
           <value name="is_soap_array_encoding_used">false</value>
           <array name="rec_fields" type="record" depth="1">
           </array>
+          <value name="modifiable">true</value>
         </record>
         <record javaclass="com.wm.util.Values">
           <value name="node_type">record</value>
@@ -39,7 +42,8 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$encoding</value>
+          <value name="is_public">false</value>
+          <value name="field_name">$content.encoding</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -66,7 +70,8 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$mode</value>
+          <value name="is_public">false</value>
+          <value name="field_name">$content.mode</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -130,9 +135,11 @@
           <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -146,6 +153,7 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
+          <value name="is_public">false</value>
           <value name="field_name">$content</value>
           <value name="field_type">object</value>
           <value name="field_dim">0</value>
@@ -155,41 +163,46 @@
           <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">### tundra.list.html:emit
 
-Serializes an IData[] document list as an [HTML] fragment suitable
+Serializes an `IData[]` document list as an [HTML] fragment suitable
 for embedding in an [HTML] page, formatted as a string, byte array,
 or input stream.
 
-Child elements that are IData documents, IData[] document lists,
-Object[] object lists, or Object[][] object tables are recursively
+Child elements that are `IData` documents, `IData[]` document lists,
+`Object[]` object lists, or `Object[][]` object tables are recursively
 serialized to clean [HTML] table elements.
 
 #### Inputs:
 
-* $list is the IData[] document list to be serialized as an [HTML]
-  string, byte array, or input stream.
-* $encoding is an optional character set to use when encoding the
-  resulting text data to a byte array or input stream. Defaults to
-  [UTF-8].
-* $mode is an optional choice of stream, bytes, or string, which
-  specifies the type of object $content is returned as. Defaults
-  to stream.
+* `$document.list` is the `IData[]` document list to be serialized as 
+  an [HTML] `String`, `byte[]`, or `java.io.InputStream` object.
+* `$content.encoding` is an optional character set to use when 
+  encoding the resulting text data to a `byte[]` or 
+  `java.io.InputStream` object. Defaults to [UTF-8].
+* `$content.mode` determines the type of object `$content` is returned
+  as. Defaults to `stream`.
+  * `stream` returns a `java.io.InputStream` object.
+  * `bytes` returns a `byte[]` object.
+  * `string` returns a `String` object.
 
 #### Outputs:
 
-* $content is the resulting serialization of $list as [HTML]
+* `$content` is the resulting serialization of `$list` as [HTML]
   content.
 
 [HTML]: &lt;http://en.wikipedia.org/wiki/HTML&gt;
-[UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;</value>
+[UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;
+</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template">tundra_list_html_emit</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
@@ -200,10 +213,16 @@ serialized to clean [HTML] table elements.
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
 </Values>
