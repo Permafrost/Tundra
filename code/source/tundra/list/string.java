@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-08-01 11:40:20 AEST
+// -----( CREATED: 2021-09-18 15:07:35 AEST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -562,18 +562,23 @@ public final class string
 		// --- <<IS-START(normalize)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] object:1:optional $objects
-		// [i] field:0:optional $encoding
-		// [o] field:1:optional $strings
+		// [i] object:1:optional $content.list
+		// [i] field:0:optional $content.encoding
+		// [o] field:1:optional $content.string.list
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
-		    Object[] objects = IDataHelper.get(cursor, "$objects", Object[].class);
-		    Charset charset = IDataHelper.get(cursor, "$encoding", Charset.class);
+		    String outputParameterName = "$content.string.list";
+		    Object[] contentList = IDataHelper.get(cursor, "$content.list", Object[].class);
+		    if (contentList == null) {
+		        contentList = IDataHelper.get(cursor, "$objects", Object[].class);
+		        outputParameterName = "$strings";
+		    }
+		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
 
-		    String[] strings = StringHelper.normalize(objects, charset);
+		    String[] stringList = StringHelper.normalize(contentList, charset);
 
-		    IDataHelper.put(cursor, "$strings", strings, false);
+		    IDataHelper.put(cursor, outputParameterName, stringList, false);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {

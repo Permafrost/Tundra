@@ -12059,19 +12059,20 @@ not match the given [regular expression pattern] or literal string pattern.
 
 ### tundra.list.string:normalize
 
-Converts a list of strings, byte arrays or input streams to a
-list of strings.
+Converts a list of `String`, `byte[]` or `java.io.InputStream` objects
+to a list of `String` objects.
 
 #### Inputs:
 
-* `$objects` is a list of strings, byte arrays, or input streams
-  to be converted to a string.
-* `$encoding` is an optional character set to use when `$objects`
-  is a list of byte arrays or input streams. Defaults to [UTF-8].
+* `$content.list` is a list of `String`, `byte[]`, or
+  `java.io.InputStream` objects to be converted to `String` objects.
+* `$content.encoding` is an optional character set to use when
+  `$content.list` is a list `byte[]` or `java.io.InputStream` objects.
+  Defaults to [UTF-8].
 
 #### Outputs:
 
-* `$strings` is the resulting list of strings.
+* `$content.string.list` is the resulting list of `String` objects.
 
 ---
 
