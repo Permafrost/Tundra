@@ -1826,6 +1826,8 @@ Returns the list of values stored in the given [java.util.Map] object.
 #### Outputs:
 
 * `$values` is the list of values currently stored in the given map.
+* `$values.length` is the number of items in the returned `$values`
+  array.
 
 ---
 
@@ -2033,6 +2035,8 @@ Returns the list of values stored in the given [java.util.Map] object.
 #### Outputs:
 
 * `$values` is the list of values currently stored in the given map.
+* `$values.length` is the number of items in the returned `$values`
+  array.
 
 ---
 
@@ -2235,6 +2239,8 @@ Returns the list of values stored in the given [java.util.Map] object.
 #### Outputs:
 
 * `$values` is the list of values currently stored in the given map.
+* `$values.length` is the number of items in the returned `$values`
+  array.
 
 ---
 

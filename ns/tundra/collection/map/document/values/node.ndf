@@ -62,6 +62,33 @@
           </array>
           <value name="modifiable">true</value>
         </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <null name="field_usereditable"/>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$values.length</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">nonNegativeInteger</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">false</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
       </array>
       <value name="modifiable">true</value>
     </record>
@@ -72,18 +99,22 @@ Returns the list of values stored in the given [java.util.Map] object.
 
 #### Inputs:
 
-* $map is a [java.util.Map] object.
+* `$map` is a [java.util.Map] object.
 
 #### Outputs:
 
-* $values is the list of values currently stored in the given map.
+* `$values` is the list of values currently stored in the given map.
+* `$values.length` is the number of items in the returned `$values` 
+  array.
 
-[java.util.Map]: &lt;https://docs.oracle.com/javase/6/docs/api/java/util/Map.html&gt;</value>
+[java.util.Map]: &lt;https://docs.oracle.com/javase/6/docs/api/java/util/Map.html&gt;
+</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template">tundra_collection_map_document_values</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>

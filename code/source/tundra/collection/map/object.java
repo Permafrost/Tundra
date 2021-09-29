@@ -1,7 +1,7 @@
 package tundra.collection.map;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-09-30 05:45:20 AEST
+// -----( CREATED: 2021-09-30 05:50:25 AEST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -325,7 +325,11 @@ public final class object
 
 		try {
 		    Map map = IDataHelper.get(cursor, "$map", Map.class);
-		    IDataHelper.put(cursor, "$values", MapHelper.values(map), false);
+
+		    Object[] values = MapHelper.values(map);
+
+		    IDataHelper.put(cursor, "$values", values, false);
+		    IDataHelper.put(cursor, "$values.length", values == null ? 0 : values.length, String.class);
 		} finally {
 		    cursor.destroy();
 		}
