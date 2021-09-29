@@ -298,12 +298,6 @@
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
-        <value name="node_comment"></value>
-        <record name="node_hints" javaclass="com.wm.util.Values">
-          <null name="field_usereditable"/>
-          <value name="field_largerEditor">false</value>
-          <value name="field_password">false</value>
-        </record>
         <value name="is_public">false</value>
         <value name="field_name">$content.encoding.original</value>
         <value name="field_type">string</value>
@@ -669,10 +663,10 @@
 
   <!-- nodes -->
 
-<MAPCOPY NAME="Link" FROM="/$schemas;1;1" TO="/$content.schemas;1;1" CONDITION="%$content.schemas% == $null and %$schemas% != $null">
+<MAPCOPY NAME="Link" FROM="/$schemas;1;1" TO="/$content.schemas;1;1" CONDITION="%$content.schemas% == $null">
 </MAPCOPY>
 
-<MAPCOPY NAME="Link" FROM="/$namespaces;2;1" TO="/$content.namespaces;2;1">
+<MAPCOPY NAME="Link" FROM="/$namespaces;2;1" TO="/$content.namespaces;2;1" CONDITION="%$content.namespaces% == $null">
 </MAPCOPY>
 
 <MAPDELETE NAME="Dropper" FIELD="/$schemas;1;1">
