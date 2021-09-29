@@ -1,7 +1,7 @@
 package tundra.collection.map;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-04-24 14:46:53 GMT+10:00
+// -----( CREATED: 2021-09-30 05:45:20 AEST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -65,7 +65,7 @@ public final class object
 		// @sigtype java 3.5
 		// [i] field:0:optional $key.class
 		// [i] field:0:optional $value.class
-		// [i] field:0:optional $sorted? {"false","true"}
+		// [i] field:0:optional $sorted? {&quot;false&quot;,&quot;true&quot;}
 		// [o] object:0:optional $map
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -115,7 +115,7 @@ public final class object
 		// @sigtype java 3.5
 		// [i] object:0:optional $map
 		// [i] object:0:required $key
-		// [o] field:0:required $key.exists? {"false","true"}
+		// [o] field:0:required $key.exists? {&quot;false&quot;,&quot;true&quot;}
 		// [o] object:0:optional $value
 		get(pipeline, Object.class, Object.class);
 		// --- <<IS-END>> ---
@@ -133,11 +133,16 @@ public final class object
 		// @sigtype java 3.5
 		// [i] object:0:optional $map
 		// [o] object:1:optional $keys
+		// [o] field:0:required $keys.length
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
 		    Map map = IDataHelper.get(cursor, "$map", Map.class);
-		    IDataHelper.put(cursor, "$keys", MapHelper.keys(map), false);
+
+		    Object[] keys = MapHelper.keys(map);
+
+		    IDataHelper.put(cursor, "$keys", keys, false);
+		    IDataHelper.put(cursor, "$keys.length", keys == null ? 0 : keys.length, String.class);
 		} finally {
 		    cursor.destroy();
 		}
@@ -179,7 +184,7 @@ public final class object
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
 		// [i] field:0:optional $value.class
-		// [i] field:0:optional $sorted? {"false","true"}
+		// [i] field:0:optional $sorted? {&quot;false&quot;,&quot;true&quot;}
 		// [o] object:0:optional $map
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -204,7 +209,7 @@ public final class object
 		// @sigtype java 3.5
 		// [i] object:0:optional $map
 		// [i] object:0:required $key
-		// [i] field:0:optional $key.absent? {"false","true"}
+		// [i] field:0:optional $key.absent? {&quot;false&quot;,&quot;true&quot;}
 		// [i] object:0:required $value
 		// [o] object:0:required $map
 		// [o] object:0:required $value
@@ -246,7 +251,7 @@ public final class object
 		// [i] object:0:optional $map
 		// [i] object:0:required $key
 		// [i] object:0:optional $value
-		// [o] field:0:required $key.removed? {"false","true"}
+		// [o] field:0:required $key.removed? {&quot;false&quot;,&quot;true&quot;}
 		// [o] object:0:optional $value
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -284,7 +289,7 @@ public final class object
 		// [i] object:0:required $key
 		// [i] object:0:optional $value.old
 		// [i] object:0:required $value.new
-		// [o] field:0:required $value.replaced? {"false","true"}
+		// [o] field:0:required $value.replaced? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
@@ -387,7 +392,7 @@ public final class object
 
 	    try {
 	        IData document = IDataHelper.get(cursor, "$document", IData.class);
-	        boolean sorted = IDataHelper.get(cursor, "$sorted?", Boolean.class);
+	        boolean sorted = IDataHelper.getOrDefault(cursor, "$sorted?", Boolean.class, false);
 
 	        IDataHelper.put(cursor, "$map", ConcurrentMapHelper.mapify(document, sorted, valueClass), false);
 	    } finally {

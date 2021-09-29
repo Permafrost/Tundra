@@ -1699,6 +1699,7 @@ Returns the list of keys stored in the given [java.util.Map] object.
 #### Outputs:
 
 * `$keys` is the list of keys currently stored in the given map.
+* `$keys.length` is the number of items in the returned `$keys` array.
 
 ---
 
@@ -1903,6 +1904,7 @@ Returns the list of keys stored in the given [java.util.Map] object.
 #### Outputs:
 
 * `$keys` is the list of keys currently stored in the given map.
+* `$keys.length` is the number of items in the returned `$keys` array.
 
 ---
 
@@ -2106,6 +2108,7 @@ Returns the list of keys stored in the given [java.util.Map] object.
 #### Outputs:
 
 * `$keys` is the list of keys currently stored in the given map.
+* `$keys.length` is the number of items in the returned `$keys` array.
 
 ---
 
