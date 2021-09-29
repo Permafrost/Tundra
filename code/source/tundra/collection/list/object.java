@@ -1,7 +1,7 @@
 package tundra.collection.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-08-11T10:33:49.333
+// -----( CREATED: 2021-09-30 05:27:00 AEST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -70,6 +70,7 @@ public final class object
 		// [i] object:0:optional $list
 		// [i] field:0:optional $class
 		// [o] object:1:optional $array
+		// [o] field:0:required $array.length
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
@@ -442,6 +443,7 @@ public final class object
 	    try {
 	        List<T> list = (List<T>)IDataHelper.get(cursor, "$list", List.class);
 	        IDataHelper.put(cursor, "$array", CollectionHelper.arrayify(list, klass), false);
+	        IDataHelper.put(cursor, "$array.length", list == null ? 0 : list.size(), String.class);
 	    } finally {
 	        cursor.destroy();
 	    }

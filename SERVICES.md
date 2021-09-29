@@ -847,6 +847,7 @@ Converts a [java.util.List] object to an array.
 #### Outputs:
 
 * `$array` is an array representation of the given `$list`.
+* `$array.length` is the number of items in the returned `$array`.
 
 ---
 
@@ -1115,6 +1116,8 @@ Converts a [java.util.List] object to an array.
 #### Outputs:
 
 * `$array` is an array representation of the given `$list.`
+* `$array.length` is the number of items in the returned `$array`.
+
 ---
 
 ### tundra.collection.list.object:clear
@@ -1394,6 +1397,7 @@ Converts a [java.util.List] object to an array.
 #### Outputs:
 
 * `$array` is an array representation of the given `$list`.
+* `$array.length` is the number of items in the returned `$array`.
 
 ---
 
