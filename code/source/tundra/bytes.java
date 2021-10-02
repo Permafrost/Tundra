@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-11-27T12:41:56.841
+// -----( CREATED: 2021-10-02 12:23:06 EST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -71,20 +71,25 @@ public final class bytes
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
-		    String outputEncodingKey = "$content.encoding";
 		    Object content = IDataHelper.get(cursor, "$content");
-
-		    if (content == null) {
-		        content = IDataHelper.get(cursor, "$object");
-		        outputEncodingKey = "$encoding";
-		    }
-
 		    Charset charset = IDataHelper.firstOrDefault(cursor, Charset.class, CharsetHelper.DEFAULT_CHARSET, "$content.encoding", "$encoding");
 
-		    byte[] bytes = BytesHelper.normalize(content, charset);
+		    if (content != null) {
+		        byte[] bytes = BytesHelper.normalize(content, charset);
+		        IDataHelper.put(cursor, "$bytes", bytes, false);
+		        if (bytes != null && content instanceof String) {
+		            IDataHelper.put(cursor, "$content.encoding", charset.name());
+		        }
+		    }
 
-		    IDataHelper.put(cursor, "$bytes", bytes, false);
-		    if (bytes != null && content instanceof String) IDataHelper.put(cursor, outputEncodingKey, charset.name());
+		    Object object = IDataHelper.get(cursor, "$object");
+		    if (object != null) {
+		        byte[] bytes = BytesHelper.normalize(object, charset);
+		        IDataHelper.put(cursor, "$bytes", bytes, false);
+		        if (bytes != null && object instanceof String) {
+		            IDataHelper.put(cursor, "$encoding", charset.name());
+		        }
+		    }
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {

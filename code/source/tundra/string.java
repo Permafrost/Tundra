@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-09-17 05:49:16 EST
+// -----( CREATED: 2021-10-02 12:20:27 EST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -610,16 +610,16 @@ public final class string
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String outputParameterName = "$content.string";
 		    Object content = IDataHelper.get(cursor, "$content");
-		    if (content == null) {
-		        // support $object for backwards-compatibility
-		        content = IDataHelper.get(cursor, "$object");
-		        outputParameterName = "$string";
-		    }
 		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
 		
-		    IDataHelper.put(cursor, outputParameterName, StringHelper.normalize(content, charset), false);
+		    IDataHelper.put(cursor, "$content.string", StringHelper.normalize(content, charset), false);
+
+		    Object object = IDataHelper.get(cursor, "$object");
+		    if (object != null) {
+		        // support $object for backwards-compatibility
+		        IDataHelper.put(cursor, "$string", StringHelper.normalize(object, charset), false);
+		    }
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
