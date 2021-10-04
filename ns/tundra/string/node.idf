@@ -9,6 +9,7 @@
   <array name="implements" type="value" depth="1">
   </array>
   <array name="imports" type="value" depth="1">
+    <value>java.io.InputStream</value>
     <value>java.io.IOException</value>
     <value>java.nio.charset.Charset</value>
     <value>java.util.Locale</value>

@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-10-02 12:20:27 EST
+// -----( CREATED: 2021-10-05 05:30:00 AEST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -9,6 +9,7 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import java.io.InputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Locale;
@@ -613,13 +614,22 @@ public final class string
 		    Object content = IDataHelper.get(cursor, "$content");
 		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
 		
-		    IDataHelper.put(cursor, "$content.string", StringHelper.normalize(content, charset), false);
+		    Object normalizedContent = null;
+		    if (content instanceof InputStream || content instanceof byte[] || content instanceof String) {
+		        normalizedContent = StringHelper.normalize(content, charset);
+		    }
 
 		    Object object = IDataHelper.get(cursor, "$object");
-		    if (object != null) {
+		    if (object instanceof InputStream || object instanceof byte[] || object instanceof String) {
 		        // support $object for backwards-compatibility
-		        IDataHelper.put(cursor, "$string", StringHelper.normalize(object, charset), false);
+		        if (object == content) {
+		            IDataHelper.put(cursor, "$string", normalizedContent, false);
+		        } else {
+		            IDataHelper.put(cursor, "$string", StringHelper.normalize(object, charset), false);
+		        }
 		    }
+
+		    IDataHelper.put(cursor, "$content.string", normalizedContent, false);
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
