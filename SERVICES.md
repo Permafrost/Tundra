@@ -11,8 +11,9 @@ serialized as a minified [JSON] string.
   pipeline to the server log.
 * `$log.message` is an optional message to be written to the server
   log.
-* `$log.context` is an optional `IData` document containing arbitrary
-  values that provide context to the log statement.
+* `$log.context` is an optional object that provides context to the
+  log statement. If an `IData` document is provided, it is logged as a
+  serialized [JSON] string.
 * `$log.prefix?` is a boolean indicating whether to prefix the log
   statement with the current user and callstack. Defaults to `true`.
 * `$log.name` is the optional logical name of the log to write to.

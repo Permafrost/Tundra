@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-07-16 05:07:00 AEST
+// -----( CREATED: 2021-11-10 05:53:30 EST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -108,7 +108,7 @@ public final class system
 	    try {
 	        ServerLogLevel level = IDataHelper.first(cursor, ServerLogLevel.class, "$log.level", "$level");
 	        String message = IDataHelper.first(cursor, String.class, "$log.message", "$message");
-	        IData context = IDataHelper.get(cursor, "$log.context", IData.class);
+	        Object context = IDataHelper.get(cursor, "$log.context");
 	        boolean addPrefix = IDataHelper.getOrDefault(cursor, "$log.prefix?", Boolean.class, true);
 	        String name = IDataHelper.get(cursor, "$log.name", String.class);
 

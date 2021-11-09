@@ -88,15 +88,12 @@
           </record>
           <value name="is_public">false</value>
           <value name="field_name">$log.context</value>
-          <value name="field_type">record</value>
+          <value name="field_type">object</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
-          <array name="rec_fields" type="record" depth="1">
-          </array>
-          <value name="modifiable">true</value>
         </record>
         <record javaclass="com.wm.util.Values">
           <value name="node_type">record</value>
@@ -187,8 +184,9 @@ serialized as a minified [JSON] string.
   pipeline to the server log.
 * `$log.message` is an optional message to be written to the server
   log.
-* `$log.context` is an optional `IData` document containing arbitrary
-  values that provide context to the log statement.
+* `$log.context` is an optional object that provides context to the 
+  log statement. If an `IData` document is provided, it is logged as a
+  serialized [JSON] string.
 * `$log.prefix?` is a boolean indicating whether to prefix the log
   statement with the current user and callstack. Defaults to `true`.
 * `$log.name` is the optional logical name of the log to write to. 
@@ -205,6 +203,7 @@ serialized as a minified [JSON] string.
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template">tundra_log</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
