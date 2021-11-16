@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-04-18 16:30:14 GMT+10:00
+// -----( CREATED: 2021-11-17 05:23:56 EST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -38,7 +38,7 @@ public final class schedule
 		// @sigtype java 3.5
 		// [i] field:0:optional $id
 		// [i] field:0:optional $name
-		// [o] field:0:required $exists? {"false","true"}
+		// [o] field:0:required $exists? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
@@ -50,6 +50,28 @@ public final class schedule
 		    } else {
 		        IDataHelper.put(cursor, "$exists?", ScheduleHelper.existsByName(name), String.class);
 		    }
+		} finally {
+		    cursor.destroy();
+		}
+		// --- <<IS-END>> ---
+
+
+	}
+
+
+
+	public static final void expedite (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(expedite)>> ---
+		// @subtype unknown
+		// @sigtype java 3.5
+		// [i] field:0:optional $schedule.id
+		IDataCursor cursor = pipeline.getCursor();
+
+		try {
+		    String identity = IDataHelper.get(cursor, "$schedule.id", String.class);
+		    ScheduleHelper.expedite(identity);
 		} finally {
 		    cursor.destroy();
 		}
@@ -72,7 +94,7 @@ public final class schedule
 		// [o] - field:0:required id
 		// [o] - field:0:optional name
 		// [o] - field:0:optional description
-		// [o] - field:0:required type {"complex","once","repeat"}
+		// [o] - field:0:required type {&quot;complex&quot;,&quot;once&quot;,&quot;repeat&quot;}
 		// [o] - field:0:required service
 		// [o] - field:0:optional package
 		// [o] - field:0:required target
@@ -152,7 +174,7 @@ public final class schedule
 		// [o] - field:0:required id
 		// [o] - field:0:optional name
 		// [o] - field:0:optional description
-		// [o] - field:0:required type {"complex","once","repeat"}
+		// [o] - field:0:required type {&quot;complex&quot;,&quot;once&quot;,&quot;repeat&quot;}
 		// [o] - field:0:required service
 		// [o] - field:0:optional package
 		// [o] - field:0:required target
@@ -200,7 +222,7 @@ public final class schedule
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $schedule.id
-		// [o] field:0:required $schedule.runnable? {"false","true"}
+		// [o] field:0:required $schedule.runnable? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {

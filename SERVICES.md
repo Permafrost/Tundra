@@ -14170,6 +14170,16 @@ exists in the task scheduler on this Integration Server.
   the given `$id` or `$name` (in order or precedence) exists in the task
   scheduler of this Integration Server.
 
+---
+
+### tundra.schedule:expedite
+
+Expedites the scheduled task with the given identity to run
+immediately rather than wait for its next scheduled time.
+
+#### Inputs:
+
+* `$schedule.id` is the identity of a scheduled task to be expedited.
 
 ---
 
