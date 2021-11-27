@@ -1,7 +1,7 @@
 package tundra.message;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2019-09-27T11:09:36.461
+// -----( CREATED: 2021-11-27 11:50:16 EST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -62,7 +62,6 @@ public final class format
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $message.format.name
-		// [o] recref:0:optional $message.format tundra.schema.message:format
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
@@ -86,7 +85,6 @@ public final class format
 		// --- <<IS-START(list)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [o] recref:1:required $message.formats tundra.schema.message:format
 		// [o] field:0:required $message.formats.length
 		IDataCursor cursor = pipeline.getCursor();
 
@@ -112,7 +110,6 @@ public final class format
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [o] field:0:required $message.recognized?
-		// [o] recref:0:optional $message.format tundra.schema.message:format
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {

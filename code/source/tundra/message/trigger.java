@@ -1,8 +1,8 @@
 package tundra.message;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-07 11:18:28 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2021-11-27 11:50:16 EST
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -12,6 +12,7 @@ import com.wm.app.b2b.server.ServiceException;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.message.format.Format;
+import permafrost.tundra.message.format.Recognizer;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class trigger
@@ -37,7 +38,6 @@ public final class trigger
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [o] record:0:required $message
-		// [o] recref:0:required $message.format tundra.schema.message:format
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -46,7 +46,7 @@ public final class trigger
 		        Object value = cursor.getValue();
 		
 		        if (value instanceof IData) {
-		            Format format = tundra.message.format.RECOGNIZER.getByPublishableDocumentType(key);
+		            Format format = Recognizer.getInstance().getByPublishableDocumentType(key);
 		
 		            if (format != null) {
 		                IDataHelper.put(cursor, "$message", value);
