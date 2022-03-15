@@ -1,7 +1,7 @@
 package tundra.support;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-08-18 10:56:08 AEST
+// -----( CREATED: 2022-03-03 05:40:14 EST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -71,6 +71,8 @@ public final class receive
 		            String exceptionClass = exception.getClass().getName();
 		            if ("permafrost.tundra.content.MalformedException".equals(exceptionClass)) {
 		                responseCode = 400;
+		            } else if ("permafrost.tundra.lang.AuthenticationException".equals(exceptionClass)) {
+		                responseCode = 401;
 		            } else if ("permafrost.tundra.lang.SecurityException".equals(exceptionClass)) {
 		                responseCode = 403;
 		            } else if ("permafrost.tundra.content.UnsupportedException".equals(exceptionClass)) {

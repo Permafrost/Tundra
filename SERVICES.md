@@ -14954,6 +14954,101 @@ of arbitrary data.
 
 ---
 
+### tundra.security.hmac:authenticate
+
+Authenticates the given [HMAC] authentication code against the given
+content, secret key, and algorithm. If the authentication code is
+invalid, an exception is thrown indicating the authenticity and
+integrity of the given content failed verification and is not trusted.
+
+#### Inputs:
+
+* `$content` is arbitrary data provided as a string, byte array, or
+  input stream.
+* `$content.encoding` is the character set used to encode the
+  character data if `$content` is provided as a string. Defaults to
+  `UTF-8`.
+* `$content.authentication.key` is the secret key used to calculate
+  the authentication code.
+* `$content.authentication.algorithm` is the name of the algorithm to
+  use when calculating the message digest.
+* `$content.authentication.code` is the [HMAC] authentication code to
+  be authenticated.
+
+#### Outputs:
+
+* `$content` is the provided content, which is returned because if it
+  was provided as an input stream then that stream was necessarily
+  consumed to calculate the authentication code, and in that case a
+  reset copy of the given stream will be returned so it can be
+  consumed again for processing.
+
+---
+
+### tundra.security.hmac:calculate
+
+Calculates the [HMAC] authentication code for the given content.
+
+#### Inputs:
+
+* `$content` is arbitrary data provided as a string, byte array, or
+  input stream.
+* `$content.encoding` is the character set used to encode the
+  character data if `$content` is provided as a string. Defaults to
+  `UTF-8`.
+* `$content.authentication.key` is the secret key used to calculate
+  the authentication code.
+* `$content.authentication.algorithm` is the name of the algorithm to
+  use when calculating the message digest.
+* `$content.authentication.code.mode` is a choice of `stream`,
+  `bytes`, or `hex`, and determines how the calculated authentication
+  code is returned. Defaults to `stream`.
+
+#### Outputs:
+
+* `$content` is the provided content, which is returned because if it
+  was provided as an input stream then that stream was necessarily
+  consumed to calculate the authentication code, and in that case a
+  reset copy of the given stream will be returned so it can be
+  consumed again for processing.
+* `$content.authentication.code` is the calculated [HMAC]
+  authentication code for the given `$content`.
+
+---
+
+### tundra.security.hmac:verify
+
+Verifies whether the given [HMAC] authentication code is valid for
+the given content, secret key, and algorithm.
+
+#### Inputs:
+
+* `$content` is arbitrary data provided as a string, byte array, or
+  input stream.
+* `$content.encoding` is the character set used to encode the
+  character data if `$content` is provided as a string. Defaults to
+  `UTF-8`.
+* `$content.authentication.key` is the secret key used to calculate
+  the authentication code.
+* `$content.authentication.algorithm` is the name of the algorithm to
+  use when calculating the message digest.
+* `$content.authentication.code` is the [HMAC] authentication code to
+  be verified.
+
+#### Outputs:
+
+* `$content` is the provided content, which is returned because if it
+  was provided as an input stream then that stream was necessarily
+  consumed to calculate the authentication code, and in that case a
+  reset copy of the given stream will be returned so it can be
+  consumed again for processing.
+* `$content.authentication.verified?` is `true` if the given
+  authentication code was verified as correct, or `false` otherwise.
+  If `false`, the authenticity and integrity of the given content
+  failed verification and should not be trusted.
+
+---
+
 ### tundra.service:benchmark
 
 Benchmarks the performance of the given service by invoking it the
@@ -17990,6 +18085,7 @@ format.
 [gzip]: <http://en.wikipedia.org/wiki/Gzip>
 [Hjson]: <http://hjson.org/>
 [HJSON]: <http://hjson.org/>
+[HMAC]: <https://en.wikipedia.org/wiki/HMAC>
 [HTML]: <http://en.wikipedia.org/wiki/HTML>
 [HTML entities]: <http://www.w3.org/TR/html4/sgml/entities.html>
 [HTML entity]: <http://www.w3.org/TR/html4/sgml/entities.html>
