@@ -150,7 +150,7 @@ majority of services, and are included in the [Tundra] package as
 * `./code/jars/poi-3.17.jar` - https://poi.apache.org/
 * `./code/jars/poi-ooxml-3.17.jar` - https://poi.apache.org/
 * `./code/jars/poi-ooxml-schemas-3.17.jar` - https://poi.apache.org/
-* `./code/jars/snakeyaml-1.18.jar` - http://www.snakeyaml.org
+* `./code/jars/snakeyaml-1.23.jar` - http://www.snakeyaml.org
 * `./code/jars/Tundra.jar` - http://github.com/Permafrost/Tundra.java
 * `./code/jars/TundraSAP.jar` - http://github.com/Permafrost/TundraSAP.java
 * `./code/jars/unbescape-1.1.6.RELEASE.jar` - http://www.unbescape.org/
