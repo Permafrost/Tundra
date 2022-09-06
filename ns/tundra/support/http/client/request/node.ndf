@@ -381,6 +381,11 @@
         </record>
         <record javaclass="com.wm.util.Values">
           <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
           <value name="is_public">false</value>
           <value name="field_name">header</value>
           <value name="field_type">record</value>
@@ -392,6 +397,11 @@
           <array name="rec_fields" type="record" depth="1">
             <record javaclass="com.wm.util.Values">
               <value name="node_type">record</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
               <value name="is_public">false</value>
               <value name="field_name">lines</value>
               <value name="field_type">record</value>
@@ -428,6 +438,11 @@
         </record>
         <record javaclass="com.wm.util.Values">
           <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
           <value name="is_public">false</value>
           <value name="field_name">body</value>
           <value name="field_type">record</value>
@@ -438,6 +453,11 @@
           <array name="rec_fields" type="record" depth="1">
             <record javaclass="com.wm.util.Values">
               <value name="node_type">unknown</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
               <value name="is_public">false</value>
               <value name="field_name">bytes</value>
               <value name="field_type">object</value>
@@ -449,6 +469,11 @@
             </record>
             <record javaclass="com.wm.util.Values">
               <value name="node_type">unknown</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
               <value name="is_public">false</value>
               <value name="field_name">stream</value>
               <value name="field_type">object</value>
@@ -476,6 +501,7 @@ re-attempting the HTTP request with JSSE disabled.</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template">tundra_support_http_client_request</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
