@@ -234,10 +234,9 @@
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">### tundra.security.hmac:verify
+  <value name="node_comment">### tundra.security.hmac:calculate
 
-Verifies whether the given [HMAC] authentication code is correct for 
-the given content, secret key, and algorithm.
+Calculates the [HMAC] authentication code for the given content.
 
 #### Inputs:
 
@@ -250,23 +249,21 @@ the given content, secret key, and algorithm.
   the authentication code.
 * `$content.authentication.algorithm` is the name of the algorithm to
   use when calculating the message digest.
-* `$content.authentication.code` is the [HMAC] authentication code to
-  be verified.
+* `$content.authentication.code.mode` is a choice of `stream`,
+  `bytes`, or `hex`, and determines how the calculated authentication
+  code is returned. Defaults to `stream`.
 
 #### Outputs:
 
 * `$content` is the provided content, which is returned because if it
   was provided as an input stream then that stream was necessarily
   consumed to calculate the authentication code, and in that case a
-  reset copy of the given stream will be returned so it can be 
+  reset copy of the given stream will be returned so it can be
   consumed again for processing.
-* `$content.authentication.verified?` is `true` if the given 
-  authentication code was verified as correct, or `false` otherwise. 
-  If `false`, the authenticity and integrity of the given content 
-  failed verification and should not be trusted.
+* `$content.authentication.code` is the calculated [HMAC]
+  authentication code for the given `$content`.
 
-[HMAC]: &lt;https://en.wikipedia.org/wiki/HMAC&gt;
-</value>
+[HMAC]: &lt;https://en.wikipedia.org/wiki/HMAC&gt;</value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
