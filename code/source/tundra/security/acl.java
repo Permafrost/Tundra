@@ -1,8 +1,8 @@
 package tundra.security;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-07 14:34:36 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2022-11-04 07:44:47 AEST
+// -----( ON-HOST: -
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -39,7 +39,7 @@ public final class acl
 		// [i] field:0:required $acl.name
 		// [i] field:1:optional $groups.allowed
 		// [i] field:1:optional $groups.denied
-		// [i] field:0:optional $force? {"false","true"}
+		// [i] field:0:optional $force? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
