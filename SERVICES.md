@@ -11463,6 +11463,19 @@ removed, such that no two items are equal.
 
 ---
 
+### tundra.list.schedule:create
+
+Schedules the given list of services for execution once or 
+periodically.
+
+#### Inputs:
+
+* `$schedules` is an `IData[]` document list representing the tasks to
+  be scheduled. Refer to `tundra.schedule:create` service comments for
+  further details on input parameters.
+
+---
+
 ### tundra.list.service:chain
 
 Invokes each service in the given list sequentially, sharing the pipeline
@@ -14077,10 +14090,10 @@ is paused or cancelled.
     will no longer be in effect (expires). If not specified, the
     schedule will never expire. Not applicable for `once` scheduled
     tasks.
-  * `overlap?` is an optional boolean determining how to handle when
-    one execution of the scheduled task overlaps the next scheduled
-    execution, for example when the execution duration exceeds the
-    schedule interval.
+  * `overlap?` is an optional boolean string determining how to handle
+    when one execution of the scheduled task overlaps the next 
+    scheduled execution, for example when the execution duration 
+    exceeds the schedule interval.
 
     When `true`, the next scheduled execution of the service will
     execute as per the schedule, even if the previous schedule is
@@ -14093,8 +14106,8 @@ is paused or cancelled.
     schedule, any scheduled times that occur while the previous
     schedule is executing are skipped, and the service will execute
     at the next uncontested scheduled time.
-  * `lateness` is an optional `IData` document containing arguments for
-    how to determine when, and then handle if, a schedule is late.
+  * `lateness` is an optional `IData` document containing arguments
+    for how to determine when, and then handle if, a schedule is late.
     * `duration` is an optional duration of time which when lapsed
       passed the scheduled time determines that the task is considered
       late. If not specified, defaults to 0 seconds (in other words a
@@ -14112,8 +14125,8 @@ is paused or cancelled.
     * `interval` is an optional [XML] duration determining how often
       the scheduled task will execute. If not specified, defaults to
       `PT60S` (60 seconds).
-  * `complex` is an optional `IData` document containing arguments only
-    applicable when the schedule type is `complex`.
+  * `complex` is an optional `IData` document containing arguments 
+    only applicable when the schedule type is `complex`.
     * `months` is an optional list of months of the year, provided as
       an integer between 1 (January) and 12 (December), the schedule
       should execute in. If not specified, the schedule will execute
@@ -14129,20 +14142,21 @@ is paused or cancelled.
     * `hours` is an optional list of hours of the day, provided as an
       integer between 0 and 23, the schedule should execute on. If
       not specified, the schedule will execute every hour.
-    * `minutes` is an optional list of minutes of the hour, provided as
-      an integer between 0 and 59, the schedule should execute on. If
-      not specified, the schedule will execute every minute.
+    * `minutes` is an optional list of minutes of the hour, provided 
+      as an integer between 0 and 59, the schedule should execute on. 
+      If not specified, the schedule will execute every minute.
   * `pipeline` is an optional `IData` document containing the input
     arguments used as the input pipeline when executing the service.
-* `$singleton?` is an optional boolean which when `true` indicates that
-  only one scheduled task should ever exist for this `name`, if
-  specified, or this `service` if no `name` is specified, and therefore
-  any existing instances of this scheduled task will be first
-  removed prior to creating a new scheduled task. Defaults to `false`.
-* `$enabled?` is an optional boolean which when `true` indicates that
-  the scheduled task should be created in an active state, and
-  when `false` indicates that the scheduled task should be created
-  in a suspended state. Defaults to `true`.
+  * `singleton?` is an optional boolean which when `true` indicates 
+    that only one scheduled task should ever exist for this `name`, if
+    specified, or this `service` if no `name` is specified, and 
+    therefore any existing instances of this scheduled task will be 
+    first removed prior to creating a new scheduled task. Defaults to 
+    `false`.
+  * `enabled?` is an optional boolean which when `true` indicates that
+    the scheduled task should be created in an active state, and
+    when `false` indicates that the scheduled task should be created
+    in a suspended state. Defaults to `true`.
 
 #### Outputs:
 
