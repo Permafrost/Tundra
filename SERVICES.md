@@ -11463,19 +11463,6 @@ removed, such that no two items are equal.
 
 ---
 
-### tundra.list.schedule:create
-
-Schedules the given list of services for execution once or 
-periodically.
-
-#### Inputs:
-
-* `$schedules` is an `IData[]` document list representing the tasks to
-  be scheduled. Refer to `tundra.schedule:create` service comments for
-  further details on input parameters.
-
----
-
 ### tundra.list.service:chain
 
 Invokes each service in the given list sequentially, sharing the pipeline
@@ -14032,6 +14019,43 @@ contained in an `IDocDocumentList` into smaller batches.
 
 ---
 
+### tundra.schedule.create:list
+
+Schedules the given list of services for execution once or
+periodically.
+
+#### Inputs:
+
+* `$schedule.create.list` is an `IData[]` document list representing
+  the tasks to be scheduled. Refer to `Tundra/tundra.schedule:create`
+  service comments for further details on input parameters.
+
+#### Outputs:
+
+* `$schedule.id.list` is an `IData[]` document list containing the
+  unique identities of the created schedule tasks.
+
+---
+
+### tundra.schedule.create:pivot
+
+Schedules the given list of services for execution once or
+periodically.
+
+#### Inputs:
+
+* `$schedule.create.pivot` is an `IData` document containing one child
+  `IData` document per scheduled task to be created conforming to the
+  `Tundra/tundra.schedule:create` input parameter `$schedule.create`
+  data structure.
+
+#### Outputs:
+
+* `$schedule.id.pivot` is an `IData` document containing the unique
+  identities of the created schedule tasks.
+
+---
+
 ### tundra.schedule:create
 
 Schedules a service for execution once or periodically.
@@ -14041,23 +14065,28 @@ of the scheduled service as a variable named `$schedule.id`,
 enabling the service itself to query its owning scheduled task.
 This can be useful if, for example, the service implements an
 [event loop] and should exit that loop if its owning schedule
-is paused or cancelled.
+is paused or cancelled, which can be determined using the service
+`Tundra/tundra.schedule:runnable`.
 
 #### Inputs:
 
-* `$schedule` is an `IData` document representing the task to be
-  scheduled.
-  * `name` is an optional unique identity for this scheduled task,
+* `$schedule.create` is an `IData` document representing the task to
+  be scheduled.
+  * `name` is a mandatory unique identity for this scheduled task,
     provided by the creator of the task. This value will be added to
     the input pipeline of the resulting scheduled task as
     `$schedule.name`, and provides easy identification for the creator
-    of instances of this task post-creation.
+    of instances of this task post-creation. Note that only one task
+    with the given `name` will ever be scheduled by this service, all
+    other instances if they exist will be first removed prior to
+    scheduling.
   * `type` describes the type of schedule to be created, and is
     a choice of the following:
     * `once` will schedule the service to execute one time only
       at the given `start` datetime.
     * `repeat` will schedule the service to execute periodically
-      at the given `repeat/interval` of time.
+      at the given `repeat/interval` of time. The default if `type` is
+      not specified.
     * `complex` will schedule the service to execute periodically
       on the given minutes, hours, week days, days of month, and
       months of the year.
@@ -14080,8 +14109,8 @@ is paused or cancelled.
     * `$self` executes the task on the same server used to create
       the task.
   * `user` is the optional user account under which the service will
-    be executed. If not specified, the service will execute under
-    the `Default` user account context.
+    be executed. Defaults to the built-in `Administrator` user if not
+    specified.
   * `start` is the optional datetime from which the scheduled task
     will be in effect or active. If not specified, defaults to the
     current datetime. For `once` only tasks, this is the datetime
@@ -14090,22 +14119,19 @@ is paused or cancelled.
     will no longer be in effect (expires). If not specified, the
     schedule will never expire. Not applicable for `once` scheduled
     tasks.
-  * `overlap?` is an optional boolean string determining how to handle
-    when one execution of the scheduled task overlaps the next 
-    scheduled execution, for example when the execution duration 
-    exceeds the schedule interval.
-
-    When `true`, the next scheduled execution of the service will
-    execute as per the schedule, even if the previous schedule is
-    still executing, which can result in multiple concurrent
-    executions of the service.
-
-    When `false`, the schedule will never be executed concurrently.
-    For a repeat schedule, the next scheduled time is calculated
-    from the end of execution of the previous schedule. For a complex
-    schedule, any scheduled times that occur while the previous
-    schedule is executing are skipped, and the service will execute
-    at the next uncontested scheduled time.
+  * `overlap` is an optional `java.lang.Boolean` determining how to
+    handle when one execution of the scheduled task overlaps the next
+    scheduled execution, for example when the execution duration
+    exceeds the schedule interval. When `true`, the next scheduled
+    execution of the service will execute as per the schedule, even if
+    the previous schedule is still executing, which can result in
+    multiple concurrent executions of the service. When `false`, the
+    schedule will never be executed concurrently. For a repeat
+    schedule, the next scheduled time is calculated from the end of
+    execution of the previous schedule. For a complex schedule, any
+    scheduled times that occur while the previous schedule is
+    executing are skipped, and the service will execute at the next
+    uncontested scheduled time. Defaults to `false`.
   * `lateness` is an optional `IData` document containing arguments
     for how to determine when, and then handle if, a schedule is late.
     * `duration` is an optional duration of time which when lapsed
@@ -14114,18 +14140,16 @@ is paused or cancelled.
       task is considered late if it doesn't execute exactly at its
       scheduled time).
     * `action` is an optional choice which determines what happens to
-      the task when its determined to be late:
-      * `run immediately`
+      the task when its determined to be late.
+      * `run immediately` - the default if `action` is not specified
       * `skip and run at next scheduled interval`
       * `suspend`
-
-      If not specified, defaults to `run immediately`.
   * `repeat` is an optional `IData` document containing arguments only
     applicable when the schedule type is `repeat`.
     * `interval` is an optional [XML] duration determining how often
       the scheduled task will execute. If not specified, defaults to
       `PT60S` (60 seconds).
-  * `complex` is an optional `IData` document containing arguments 
+  * `complex` is an optional `IData` document containing arguments
     only applicable when the schedule type is `complex`.
     * `months` is an optional list of months of the year, provided as
       an integer between 1 (January) and 12 (December), the schedule
@@ -14142,25 +14166,19 @@ is paused or cancelled.
     * `hours` is an optional list of hours of the day, provided as an
       integer between 0 and 23, the schedule should execute on. If
       not specified, the schedule will execute every hour.
-    * `minutes` is an optional list of minutes of the hour, provided 
-      as an integer between 0 and 59, the schedule should execute on. 
+    * `minutes` is an optional list of minutes of the hour, provided
+      as an integer between 0 and 59, the schedule should execute on.
       If not specified, the schedule will execute every minute.
   * `pipeline` is an optional `IData` document containing the input
     arguments used as the input pipeline when executing the service.
-  * `singleton?` is an optional boolean which when `true` indicates 
-    that only one scheduled task should ever exist for this `name`, if
-    specified, or this `service` if no `name` is specified, and 
-    therefore any existing instances of this scheduled task will be 
-    first removed prior to creating a new scheduled task. Defaults to 
-    `false`.
-  * `enabled?` is an optional boolean which when `true` indicates that
-    the scheduled task should be created in an active state, and
-    when `false` indicates that the scheduled task should be created
-    in a suspended state. Defaults to `true`.
+  * `enabled` is a mandatory `java.lang.Boolean` which when `true`
+    indicates that the scheduled task should be created in an active
+    state, and when `false` indicates that the scheduled task should
+    be created in a suspended state.
 
 #### Outputs:
 
-* `$id` uniquely identifies the resulting scheduled task.
+* `$schedule.id` is the unique identity of the created scheduled task.
 
 ---
 
@@ -14204,12 +14222,12 @@ identity or name.
 
 #### Inputs:
 
-* `$id` is the internal identity assigned by Integration Server to
-  the task when it was created. When specified, other input
+* `$schedule.id` is the internal identity assigned by Integration
+  Server to the task when it was created. When specified, other input
   arguments are ignored.
-* `$name` is an optional name given to the scheduled task by the
-  creator, which is stored in the input pipeline of the task by
-  `tundra.schedule:create` as `$schedule.name`.
+* `$schedule.name` is an optional name given to the scheduled task by
+  the creator, which is stored in the input pipeline of the task by
+  `Tundra/tundra.schedule:create` as `$schedule.name`.
 
 #### Outputs:
 
@@ -14219,12 +14237,13 @@ identity or name.
   * `name` is the name assigned to this scheduled task by the creator.
   * `description` is an optional description of the scheduled task.
   * `type` is the type of schedule, a choice of one of the following:
-    * `once` is a schedule that executes one time only at the specified
-      start datetime.
-    * `repeat` is a schedule that executes periodically at the specified
-      `repeat/interval` of time.
+    * `once` is a schedule that executes one time only at the
+      specified start datetime.
+    * `repeat` is a schedule that executes periodically at the
+      specified `repeat/interval` of time.
     * `complex` is a schedule that executes periodically on the given
-      minutes, hours, week days, days of month, and months of the year.
+      minutes, hours, week days, days of month, and months of the
+      year.
   * `service` is the fully-qualified name of the service executed by
     the schedule.
   * `package` is the name of the package the scheduled `service` is a
@@ -14265,8 +14284,8 @@ identity or name.
     schedule, any scheduled times that occur while the previous
     schedule is executing are skipped, and the service will execute
     at the next uncontested scheduled time.
-  * `lateness` is an optional `IData` document containing arguments for
-    how to determine when, and then handle if, a schedule is late.
+  * `lateness` is an optional `IData` document containing arguments
+    for how to determine when, and then handle if, a schedule is late.
     * `duration` is the duration of time which when lapsed passed the
       scheduled time determines that the task is considered late.
     * `action` determines what happens to the task when its determined
@@ -14278,8 +14297,8 @@ identity or name.
     applicable when the schedule type is `repeat`.
     * `interval` is the duration of time that determines how often
       the scheduled task will execute.
-  * `complex` is an optional `IData` document containing arguments only
-    applicable when the schedule type is `complex`.
+  * `complex` is an optional `IData` document containing arguments
+    only applicable when the schedule type is `complex`.
     * `months` is an optional list of months of the year, provided as
       an integer between 1 (January) and 12 (December), the schedule
       executes in. If not specified, the schedule executes in all
@@ -14294,8 +14313,8 @@ identity or name.
     * `hours` is an optional list of hours of the day, provided as an
       integer between 0 and 23, the schedule executes on. If not
       specified, the schedule executes every hour.
-    * `minutes` is an optional list of minutes of the hour, provided as
-      an integer between 0 and 59, the schedule executes on. If
+    * `minutes` is an optional list of minutes of the hour, provided
+      as an integer between 0 and 59, the schedule executes on. If
       not specified, the schedule executes every minute.
   * `pipeline` is an optional `IData` document containing the input
     arguments used as the input pipeline when executing the service.
@@ -14336,20 +14355,20 @@ or every task if no inputs were specified.
 
 #### Inputs:
 
-* `$name` is an optional name given to the scheduled task by the
-  creator, which is stored in the input pipeline of the task by
-  `tundra.schedule:create` as `$schedule.name`, which if specified
-  will filter the returned list to only be scheduled tasks with
-  this name.
-* `$service` is an optional fully-qualified service name which, if
-  specified, will filter the returned list to only be scheduled
-  tasks that execute this service.
-* `$filter` is an optional `tundra.condition:evaluate` conditional
-  statement, used to filter the list of scheduled tasks returned. The
-  conditional statement is evaluated against the pipeline, which
-  includes the task being evaluated as an `IData` document named
-  `$schedule` with the same structure as returned by
-  `tundra.schedule:get`.
+* `$schedule.name` is an optional name given to the scheduled task by
+  the creator, which is stored in the input pipeline of the task by
+  `Tundra/tundra.schedule:create` as `$schedule.name`, which if
+  specified will filter the returned list to only be scheduled tasks
+  with this name.
+* `$schedule.service` is an optional fully-qualified service name
+  which, if specified, will filter the returned list to only be
+  scheduled tasks that execute this service.
+* `$schedule.filter` is an optional `Tundra/tundra.condition:evaluate`
+  conditional statement, used to filter the list of scheduled tasks
+  returned. The conditional statement is evaluated against the
+  pipeline, which includes the task being evaluated as an `IData`
+  document named `$schedule` with the same structure as returned by
+  `Tundra/tundra.schedule:get`.
 
   Examples of some filter strings are as follows:
 
@@ -14367,25 +14386,26 @@ or every task if no inputs were specified.
 
      `%$schedule/status%=="suspended" and %$schedule/service%==%svc%`
 
-  Refer to the `tundra.condition:evaluate` service documentation for the
-  format of conditional statements.
+  Refer to the `Tundra/tundra.condition:evaluate` service
+  documentation for the format of conditional statements.
 
 #### Outputs:
 
-* `$schedules` is a `IData[]` document list containing the details of all
-  the scheduled tasks that satisfy the given inputs, or every
-  scheduled task known to the task scheduler on this Integration Server
-  if no inputs were specified.
+* `$schedules` is a `IData[]` document list containing the details of
+  all the scheduled tasks that satisfy the given inputs, or every
+  scheduled task known to the task scheduler on this Integration
+  Server if no inputs were specified.
   * `id` is the identifying string for this scheduled task.
   * `name` is the name assigned to this scheduled task by the creator.
   * `description` is an optional description of the scheduled task.
   * `type` is the type of schedule, a choice of one of the following:
-    * `once` is a schedule that executes one time only at the specified
-      start datetime.
-    * `repeat` is a schedule that executes periodically at the specified
-      `repeat/interval` of time.
+    * `once` is a schedule that executes one time only at the
+      specified start datetime.
+    * `repeat` is a schedule that executes periodically at the
+      specified `repeat/interval` of time.
     * `complex` is a schedule that executes periodically on the given
-      minutes, hours, week days, days of month, and months of the year.
+      minutes, hours, week days, days of month, and months of the
+      year.
   * `service` is the fully-qualified name of the service executed by
     the schedule.
   * `package` is the name of the package the scheduled `service` is a
@@ -14426,8 +14446,8 @@ or every task if no inputs were specified.
     schedule, any scheduled times that occur while the previous
     schedule is executing are skipped, and the service will execute
     at the next uncontested scheduled time.
-  * `lateness` is an optional `IData` document containing arguments for
-    how to determine when, and then handle if, a schedule is late.
+  * `lateness` is an optional `IData` document containing arguments
+    for how to determine when, and then handle if, a schedule is late.
     * `duration` is the duration of time which when lapsed passed the
       scheduled time determines that the task is considered late.
     * `action` determines what happens to the task when its determined
@@ -14439,8 +14459,8 @@ or every task if no inputs were specified.
     applicable when the schedule type is `repeat`.
     * `interval` is the duration of time that determines how often
       the scheduled task will execute.
-  * `complex` is an optional `IData` document containing arguments only
-    applicable when the schedule type is `complex`.
+  * `complex` is an optional `IData` document containing arguments
+    only applicable when the schedule type is `complex`.
     * `months` is an optional list of months of the year, provided as
       an integer between 1 (January) and 12 (December), the schedule
       executes in. If not specified, the schedule executes in all
@@ -14455,8 +14475,8 @@ or every task if no inputs were specified.
     * `hours` is an optional list of hours of the day, provided as an
       integer between 0 and 23, the schedule executes on. If not
       specified, the schedule executes every hour.
-    * `minutes` is an optional list of minutes of the hour, provided as
-      an integer between 0 and 59, the schedule executes on. If
+    * `minutes` is an optional list of minutes of the hour, provided
+      as an integer between 0 and 59, the schedule executes on. If
       not specified, the schedule executes every minute.
   * `pipeline` is an optional `IData` document containing the input
     arguments used as the input pipeline when executing the service.
@@ -14529,21 +14549,21 @@ the task, and results in no exception being thrown.
 
 #### Inputs:
 
-* `$id` is the internal identity assigned by Integration Server to
-  the task when it was created. When specified, other input
+* `$schedule.id` is the internal identity assigned by Integration
+  Server to the task when it was created. When specified, other input
   arguments are ignored.
-* `$name` is an optional name given to the scheduled task by the
-  creator, which is stored in the input pipeline of the task by
-  `tundra.schedule:create` as `$schedule.name`.
-* `$service` is an optional fully-qualified service name which, if
-  specified, will filter the scheduled tasks to be removed to only
-  those that execute this service.
-* `$filter` is an optional `tundra.condition:evaluate` conditional
-  statement. All scheduled tasks which satisfy the given filter
-  condition will be resumed. The conditional statement is evaluated
-  against the pipeline, which includes the task being evaluated as an
-  `IData` document named `$schedule` with the same structure as returned
-  by `tundra.schedule:get`.
+* `$schedule.name` is an optional name given to the scheduled task by
+  the creator, which is stored in the input pipeline of the task by
+  `Tundra/tundra.schedule:create` as `$schedule.name`.
+* `$schedule.service` is an optional fully-qualified service name
+  which, if specified, will filter the scheduled tasks to be removed
+  to only those that execute this service.
+* `$schedule.filter` is an optional `Tundra/tundra.condition:evaluate`
+  conditional statement. All scheduled tasks which satisfy the given
+  filter condition will be resumed. The conditional statement is
+  evaluated against the pipeline, which includes the task being
+  evaluated as an `IData` document named `$schedule` with the same
+  structure as returned by `Tundra/tundra.schedule:get`.
 
   Examples of some filter strings are as follows:
 
@@ -14560,8 +14580,8 @@ the task, and results in no exception being thrown.
 
      `%$schedule/status% == "suspended" and %$schedule/service% == %svc%`
 
-  Refer to the `tundra.condition:evaluate` service documentation for the
-  format of conditional statements.
+  Refer to the `Tundra/tundra.condition:evaluate` service
+  documentation for the format of conditional statements.
 
 ---
 

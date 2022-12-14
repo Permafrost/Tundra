@@ -1,0 +1,2806 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="svc_type">flow</value>
+  <value name="svc_subtype">default</value>
+  <value name="svc_sigtype">java 3.5</value>
+  <record name="svc_sig" javaclass="com.wm.util.Values">
+    <record name="sig_in" javaclass="com.wm.util.Values">
+      <value name="node_type">record</value>
+      <value name="is_public">false</value>
+      <value name="field_type">record</value>
+      <value name="field_dim">0</value>
+      <value name="nillable">true</value>
+      <value name="form_qualified">false</value>
+      <value name="is_global">false</value>
+      <array name="rec_fields" type="record" depth="1">
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$schedule.create</value>
+          <value name="field_type">record</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+          <array name="rec_fields" type="record" depth="1">
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">record</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <null name="field_usereditable"/>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">name</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">string</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">false</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">unknown</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <null name="field_usereditable"/>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">description</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">string</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">unknown</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_usereditable">false</value>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">type</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <array name="field_options" type="value" depth="1">
+                <value>complex</value>
+                <value>once</value>
+                <value>repeat</value>
+              </array>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <array name="enumeration" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="primitiveType">0</value>
+                    <value name="lexRep">complex</value>
+                    <value name="isList">false</value>
+                  </record>
+                  <record javaclass="com.wm.util.Values">
+                    <value name="primitiveType">0</value>
+                    <value name="lexRep">once</value>
+                    <value name="isList">false</value>
+                  </record>
+                  <record javaclass="com.wm.util.Values">
+                    <value name="primitiveType">0</value>
+                    <value name="lexRep">repeat</value>
+                    <value name="isList">false</value>
+                  </record>
+                </array>
+                <value name="contentType">1</value>
+                <value name="internalType">instance</value>
+                <value name="ct_class">com.wm.lang.schema.datatypev2.WmString</value>
+                <value name="name">string_customized</value>
+                <array name="parent-ancestors" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">anySimpleType</value>
+                  </record>
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">anyType</value>
+                  </record>
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">string</value>
+                  </record>
+                </array>
+                <record name="baseType" javaclass="com.wm.util.Values">
+                  <record name="whiteSpace" javaclass="com.wm.util.Values">
+                    <record name="FacetWSCValue" javaclass="com.wm.util.Values">
+                      <value name="cDecimalValue">3</value>
+                    </record>
+                    <value name="facetFixed">false</value>
+                  </record>
+                  <value name="contentType">1</value>
+                  <value name="internalType">instance</value>
+                  <value name="ct_class">com.wm.lang.schema.datatypev2.WmString</value>
+                  <value name="dataTypeVersion">dtVersion2</value>
+                </record>
+                <value name="dataTypeVersion">dtVersion2</value>
+              </record>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">unknown</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <null name="field_usereditable"/>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">service</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">string</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">false</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">unknown</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_usereditable">true</value>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">target</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <array name="field_options" type="value" depth="1">
+                <value>$any</value>
+                <value>$all</value>
+                <value>$self</value>
+              </array>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">string</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">unknown</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <null name="field_usereditable"/>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">user</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">string</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">unknown</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <null name="field_usereditable"/>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">start</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">dateTime</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">unknown</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <null name="field_usereditable"/>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">end</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">dateTime</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">record</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">overlap</value>
+              <value name="field_type">object</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <value name="wrapper_type">java.lang.Boolean</value>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">record</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">lateness</value>
+              <value name="field_type">record</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+              <array name="rec_fields" type="record" depth="1">
+                <record javaclass="com.wm.util.Values">
+                  <value name="node_type">record</value>
+                  <value name="node_comment"></value>
+                  <record name="node_hints" javaclass="com.wm.util.Values">
+                    <null name="field_usereditable"/>
+                    <value name="field_largerEditor">false</value>
+                    <value name="field_password">false</value>
+                  </record>
+                  <value name="is_public">false</value>
+                  <value name="field_name">duration</value>
+                  <value name="field_type">string</value>
+                  <value name="field_dim">0</value>
+                  <value name="field_opt">true</value>
+                  <record name="field_content_type" javaclass="com.wm.util.Values">
+                    <value name="contentType">1</value>
+                    <value name="internalType">reference</value>
+                    <value name="dataTypeVersion">dtVersion2</value>
+                    <array name="targetNames" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">duration</value>
+                      </record>
+                    </array>
+                  </record>
+                  <value name="nillable">true</value>
+                  <value name="form_qualified">false</value>
+                  <value name="is_global">false</value>
+                </record>
+                <record javaclass="com.wm.util.Values">
+                  <value name="node_type">record</value>
+                  <value name="node_comment"></value>
+                  <record name="node_hints" javaclass="com.wm.util.Values">
+                    <value name="field_usereditable">false</value>
+                    <value name="field_largerEditor">false</value>
+                    <value name="field_password">false</value>
+                  </record>
+                  <value name="is_public">false</value>
+                  <value name="field_name">action</value>
+                  <value name="field_type">string</value>
+                  <value name="field_dim">0</value>
+                  <value name="field_opt">true</value>
+                  <array name="field_options" type="value" depth="1">
+                    <value>run immediately</value>
+                    <value>skip and run at next scheduled interval</value>
+                    <value>suspend</value>
+                  </array>
+                  <record name="field_content_type" javaclass="com.wm.util.Values">
+                    <array name="enumeration" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="primitiveType">0</value>
+                        <value name="lexRep">run immediately</value>
+                        <value name="isList">false</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="primitiveType">0</value>
+                        <value name="lexRep">skip and run at next scheduled interval</value>
+                        <value name="isList">false</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="primitiveType">0</value>
+                        <value name="lexRep">suspend</value>
+                        <value name="isList">false</value>
+                      </record>
+                    </array>
+                    <value name="contentType">1</value>
+                    <value name="internalType">instance</value>
+                    <value name="ct_class">com.wm.lang.schema.datatypev2.WmString</value>
+                    <value name="name">string_customized</value>
+                    <array name="parent-ancestors" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anySimpleType</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anyType</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">string</value>
+                      </record>
+                    </array>
+                    <record name="baseType" javaclass="com.wm.util.Values">
+                      <record name="whiteSpace" javaclass="com.wm.util.Values">
+                        <record name="FacetWSCValue" javaclass="com.wm.util.Values">
+                          <value name="cDecimalValue">3</value>
+                        </record>
+                        <value name="facetFixed">false</value>
+                      </record>
+                      <value name="contentType">1</value>
+                      <value name="internalType">instance</value>
+                      <value name="ct_class">com.wm.lang.schema.datatypev2.WmString</value>
+                      <value name="dataTypeVersion">dtVersion2</value>
+                    </record>
+                    <value name="dataTypeVersion">dtVersion2</value>
+                  </record>
+                  <value name="nillable">true</value>
+                  <value name="form_qualified">false</value>
+                  <value name="is_global">false</value>
+                </record>
+              </array>
+              <value name="modifiable">true</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">record</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">repeat</value>
+              <value name="field_type">record</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+              <array name="rec_fields" type="record" depth="1">
+                <record javaclass="com.wm.util.Values">
+                  <value name="node_type">unknown</value>
+                  <value name="node_comment"></value>
+                  <record name="node_hints" javaclass="com.wm.util.Values">
+                    <null name="field_usereditable"/>
+                    <value name="field_largerEditor">false</value>
+                    <value name="field_password">false</value>
+                  </record>
+                  <value name="is_public">false</value>
+                  <value name="field_name">interval</value>
+                  <value name="field_type">string</value>
+                  <value name="field_dim">0</value>
+                  <value name="field_opt">true</value>
+                  <record name="field_content_type" javaclass="com.wm.util.Values">
+                    <value name="contentType">1</value>
+                    <value name="internalType">reference</value>
+                    <value name="dataTypeVersion">dtVersion2</value>
+                    <array name="targetNames" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">duration</value>
+                      </record>
+                    </array>
+                  </record>
+                  <value name="nillable">true</value>
+                  <value name="form_qualified">false</value>
+                  <value name="is_global">false</value>
+                </record>
+              </array>
+              <value name="modifiable">true</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">record</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">complex</value>
+              <value name="field_type">record</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+              <array name="rec_fields" type="record" depth="1">
+                <record javaclass="com.wm.util.Values">
+                  <value name="node_type">record</value>
+                  <value name="node_comment"></value>
+                  <record name="node_hints" javaclass="com.wm.util.Values">
+                    <value name="field_largerEditor">false</value>
+                    <value name="field_password">false</value>
+                  </record>
+                  <value name="is_public">false</value>
+                  <value name="field_name">months</value>
+                  <value name="field_type">string</value>
+                  <value name="field_dim">1</value>
+                  <value name="field_opt">true</value>
+                  <record name="field_content_type" javaclass="com.wm.util.Values">
+                    <record name="minInclusive" javaclass="com.wm.util.Values">
+                      <value name="facetFixed">false</value>
+                      <value name="primitiveType">4</value>
+                      <value name="lexRep">1</value>
+                    </record>
+                    <record name="maxInclusive" javaclass="com.wm.util.Values">
+                      <value name="facetFixed">false</value>
+                      <value name="primitiveType">4</value>
+                      <value name="lexRep">12</value>
+                    </record>
+                    <value name="contentType">1</value>
+                    <value name="internalType">instance</value>
+                    <value name="ct_class">com.wm.lang.schema.datatypev2.WmDecimal</value>
+                    <value name="name">integer_customized</value>
+                    <array name="parent-ancestors" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anySimpleType</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">decimal</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anyType</value>
+                      </record>
+                    </array>
+                    <record name="baseType" javaclass="com.wm.util.Values">
+                      <record name="fractionDigits" javaclass="com.wm.util.Values">
+                        <record name="FacetFDCValue" javaclass="com.wm.util.Values">
+                          <value name="cDecimalValue">0</value>
+                        </record>
+                        <value name="facetFixed">true</value>
+                      </record>
+                      <record name="whiteSpace" javaclass="com.wm.util.Values">
+                        <record name="FacetWSCValue" javaclass="com.wm.util.Values">
+                          <value name="cDecimalValue">1</value>
+                        </record>
+                        <value name="facetFixed">true</value>
+                      </record>
+                      <value name="contentType">1</value>
+                      <value name="internalType">instance</value>
+                      <value name="ct_class">com.wm.lang.schema.datatypev2.WmDecimal</value>
+                      <value name="dataTypeVersion">dtVersion2</value>
+                    </record>
+                    <value name="dataTypeVersion">dtVersion2</value>
+                  </record>
+                  <value name="field_encodingStyle"></value>
+                  <value name="nillable">true</value>
+                  <value name="form_qualified">false</value>
+                  <value name="is_global">false</value>
+                  <value name="is_soap_array_encoding_used">true</value>
+                </record>
+                <record javaclass="com.wm.util.Values">
+                  <value name="node_type">record</value>
+                  <value name="node_comment"></value>
+                  <record name="node_hints" javaclass="com.wm.util.Values">
+                    <value name="field_largerEditor">false</value>
+                    <value name="field_password">false</value>
+                  </record>
+                  <value name="is_public">false</value>
+                  <value name="field_name">days</value>
+                  <value name="field_type">string</value>
+                  <value name="field_dim">1</value>
+                  <value name="field_opt">true</value>
+                  <record name="field_content_type" javaclass="com.wm.util.Values">
+                    <record name="minInclusive" javaclass="com.wm.util.Values">
+                      <value name="facetFixed">false</value>
+                      <value name="primitiveType">4</value>
+                      <value name="lexRep">1</value>
+                    </record>
+                    <record name="maxInclusive" javaclass="com.wm.util.Values">
+                      <value name="facetFixed">false</value>
+                      <value name="primitiveType">4</value>
+                      <value name="lexRep">31</value>
+                    </record>
+                    <value name="contentType">1</value>
+                    <value name="internalType">instance</value>
+                    <value name="ct_class">com.wm.lang.schema.datatypev2.WmDecimal</value>
+                    <value name="name">integer_customized</value>
+                    <array name="parent-ancestors" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anySimpleType</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">decimal</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anyType</value>
+                      </record>
+                    </array>
+                    <record name="baseType" javaclass="com.wm.util.Values">
+                      <record name="fractionDigits" javaclass="com.wm.util.Values">
+                        <record name="FacetFDCValue" javaclass="com.wm.util.Values">
+                          <value name="cDecimalValue">0</value>
+                        </record>
+                        <value name="facetFixed">true</value>
+                      </record>
+                      <record name="whiteSpace" javaclass="com.wm.util.Values">
+                        <record name="FacetWSCValue" javaclass="com.wm.util.Values">
+                          <value name="cDecimalValue">1</value>
+                        </record>
+                        <value name="facetFixed">true</value>
+                      </record>
+                      <value name="contentType">1</value>
+                      <value name="internalType">instance</value>
+                      <value name="ct_class">com.wm.lang.schema.datatypev2.WmDecimal</value>
+                      <value name="dataTypeVersion">dtVersion2</value>
+                    </record>
+                    <value name="dataTypeVersion">dtVersion2</value>
+                  </record>
+                  <value name="field_encodingStyle"></value>
+                  <value name="nillable">true</value>
+                  <value name="form_qualified">false</value>
+                  <value name="is_global">false</value>
+                  <value name="is_soap_array_encoding_used">true</value>
+                </record>
+                <record javaclass="com.wm.util.Values">
+                  <value name="node_type">record</value>
+                  <value name="node_comment"></value>
+                  <record name="node_hints" javaclass="com.wm.util.Values">
+                    <value name="field_largerEditor">false</value>
+                    <value name="field_password">false</value>
+                  </record>
+                  <value name="is_public">false</value>
+                  <value name="field_name">weekdays</value>
+                  <value name="field_type">string</value>
+                  <value name="field_dim">1</value>
+                  <value name="field_opt">true</value>
+                  <record name="field_content_type" javaclass="com.wm.util.Values">
+                    <record name="minInclusive" javaclass="com.wm.util.Values">
+                      <value name="facetFixed">false</value>
+                      <value name="primitiveType">4</value>
+                      <value name="lexRep">1</value>
+                    </record>
+                    <record name="maxInclusive" javaclass="com.wm.util.Values">
+                      <value name="facetFixed">false</value>
+                      <value name="primitiveType">4</value>
+                      <value name="lexRep">7</value>
+                    </record>
+                    <value name="contentType">1</value>
+                    <value name="internalType">instance</value>
+                    <value name="ct_class">com.wm.lang.schema.datatypev2.WmDecimal</value>
+                    <value name="name">integer_customized</value>
+                    <array name="parent-ancestors" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anySimpleType</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">decimal</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anyType</value>
+                      </record>
+                    </array>
+                    <record name="baseType" javaclass="com.wm.util.Values">
+                      <record name="fractionDigits" javaclass="com.wm.util.Values">
+                        <record name="FacetFDCValue" javaclass="com.wm.util.Values">
+                          <value name="cDecimalValue">0</value>
+                        </record>
+                        <value name="facetFixed">true</value>
+                      </record>
+                      <record name="whiteSpace" javaclass="com.wm.util.Values">
+                        <record name="FacetWSCValue" javaclass="com.wm.util.Values">
+                          <value name="cDecimalValue">1</value>
+                        </record>
+                        <value name="facetFixed">true</value>
+                      </record>
+                      <value name="contentType">1</value>
+                      <value name="internalType">instance</value>
+                      <value name="ct_class">com.wm.lang.schema.datatypev2.WmDecimal</value>
+                      <value name="dataTypeVersion">dtVersion2</value>
+                    </record>
+                    <value name="dataTypeVersion">dtVersion2</value>
+                  </record>
+                  <value name="field_encodingStyle"></value>
+                  <value name="nillable">true</value>
+                  <value name="form_qualified">false</value>
+                  <value name="is_global">false</value>
+                  <value name="is_soap_array_encoding_used">true</value>
+                </record>
+                <record javaclass="com.wm.util.Values">
+                  <value name="node_type">record</value>
+                  <value name="node_comment"></value>
+                  <record name="node_hints" javaclass="com.wm.util.Values">
+                    <value name="field_largerEditor">false</value>
+                    <value name="field_password">false</value>
+                  </record>
+                  <value name="is_public">false</value>
+                  <value name="field_name">hours</value>
+                  <value name="field_type">string</value>
+                  <value name="field_dim">1</value>
+                  <value name="field_opt">true</value>
+                  <record name="field_content_type" javaclass="com.wm.util.Values">
+                    <record name="minInclusive" javaclass="com.wm.util.Values">
+                      <value name="facetFixed">false</value>
+                      <value name="primitiveType">4</value>
+                      <value name="lexRep">0</value>
+                    </record>
+                    <record name="maxInclusive" javaclass="com.wm.util.Values">
+                      <value name="facetFixed">false</value>
+                      <value name="primitiveType">4</value>
+                      <value name="lexRep">23</value>
+                    </record>
+                    <value name="contentType">1</value>
+                    <value name="internalType">instance</value>
+                    <value name="ct_class">com.wm.lang.schema.datatypev2.WmDecimal</value>
+                    <value name="name">integer_customized</value>
+                    <array name="parent-ancestors" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anySimpleType</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">decimal</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anyType</value>
+                      </record>
+                    </array>
+                    <record name="baseType" javaclass="com.wm.util.Values">
+                      <record name="fractionDigits" javaclass="com.wm.util.Values">
+                        <record name="FacetFDCValue" javaclass="com.wm.util.Values">
+                          <value name="cDecimalValue">0</value>
+                        </record>
+                        <value name="facetFixed">true</value>
+                      </record>
+                      <record name="whiteSpace" javaclass="com.wm.util.Values">
+                        <record name="FacetWSCValue" javaclass="com.wm.util.Values">
+                          <value name="cDecimalValue">1</value>
+                        </record>
+                        <value name="facetFixed">true</value>
+                      </record>
+                      <value name="contentType">1</value>
+                      <value name="internalType">instance</value>
+                      <value name="ct_class">com.wm.lang.schema.datatypev2.WmDecimal</value>
+                      <value name="dataTypeVersion">dtVersion2</value>
+                    </record>
+                    <value name="dataTypeVersion">dtVersion2</value>
+                  </record>
+                  <value name="field_encodingStyle"></value>
+                  <value name="nillable">true</value>
+                  <value name="form_qualified">false</value>
+                  <value name="is_global">false</value>
+                  <value name="is_soap_array_encoding_used">true</value>
+                </record>
+                <record javaclass="com.wm.util.Values">
+                  <value name="node_type">record</value>
+                  <value name="node_comment"></value>
+                  <record name="node_hints" javaclass="com.wm.util.Values">
+                    <value name="field_largerEditor">false</value>
+                    <value name="field_password">false</value>
+                  </record>
+                  <value name="is_public">false</value>
+                  <value name="field_name">minutes</value>
+                  <value name="field_type">string</value>
+                  <value name="field_dim">1</value>
+                  <value name="field_opt">true</value>
+                  <record name="field_content_type" javaclass="com.wm.util.Values">
+                    <record name="minInclusive" javaclass="com.wm.util.Values">
+                      <value name="facetFixed">false</value>
+                      <value name="primitiveType">4</value>
+                      <value name="lexRep">0</value>
+                    </record>
+                    <record name="maxInclusive" javaclass="com.wm.util.Values">
+                      <value name="facetFixed">false</value>
+                      <value name="primitiveType">4</value>
+                      <value name="lexRep">59</value>
+                    </record>
+                    <value name="contentType">1</value>
+                    <value name="internalType">instance</value>
+                    <value name="ct_class">com.wm.lang.schema.datatypev2.WmDecimal</value>
+                    <value name="name">integer_customized</value>
+                    <array name="parent-ancestors" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anySimpleType</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">decimal</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anyType</value>
+                      </record>
+                    </array>
+                    <record name="baseType" javaclass="com.wm.util.Values">
+                      <record name="fractionDigits" javaclass="com.wm.util.Values">
+                        <record name="FacetFDCValue" javaclass="com.wm.util.Values">
+                          <value name="cDecimalValue">0</value>
+                        </record>
+                        <value name="facetFixed">true</value>
+                      </record>
+                      <record name="whiteSpace" javaclass="com.wm.util.Values">
+                        <record name="FacetWSCValue" javaclass="com.wm.util.Values">
+                          <value name="cDecimalValue">1</value>
+                        </record>
+                        <value name="facetFixed">true</value>
+                      </record>
+                      <value name="contentType">1</value>
+                      <value name="internalType">instance</value>
+                      <value name="ct_class">com.wm.lang.schema.datatypev2.WmDecimal</value>
+                      <value name="dataTypeVersion">dtVersion2</value>
+                    </record>
+                    <value name="dataTypeVersion">dtVersion2</value>
+                  </record>
+                  <value name="field_encodingStyle"></value>
+                  <value name="nillable">true</value>
+                  <value name="form_qualified">false</value>
+                  <value name="is_global">false</value>
+                  <value name="is_soap_array_encoding_used">true</value>
+                </record>
+              </array>
+              <value name="modifiable">true</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">record</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">pipeline</value>
+              <value name="field_type">record</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+              <array name="rec_fields" type="record" depth="1">
+              </array>
+              <value name="modifiable">true</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">record</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">enabled</value>
+              <value name="field_type">object</value>
+              <value name="field_dim">0</value>
+              <value name="wrapper_type">java.lang.Boolean</value>
+              <value name="nillable">false</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+          </array>
+          <value name="modifiable">true</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$schedule</value>
+          <value name="field_type">record</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+          <array name="rec_fields" type="record" depth="1">
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">record</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_usereditable">true</value>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">name</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <array name="field_options" type="value" depth="1">
+              </array>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">string</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">unknown</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_usereditable">true</value>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">description</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <array name="field_options" type="value" depth="1">
+              </array>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">string</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">unknown</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_usereditable">false</value>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">type</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <array name="field_options" type="value" depth="1">
+                <value>complex</value>
+                <value>once</value>
+                <value>repeat</value>
+              </array>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <array name="enumeration" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="primitiveType">0</value>
+                    <value name="lexRep">complex</value>
+                    <value name="isList">false</value>
+                  </record>
+                  <record javaclass="com.wm.util.Values">
+                    <value name="primitiveType">0</value>
+                    <value name="lexRep">once</value>
+                    <value name="isList">false</value>
+                  </record>
+                  <record javaclass="com.wm.util.Values">
+                    <value name="primitiveType">0</value>
+                    <value name="lexRep">repeat</value>
+                    <value name="isList">false</value>
+                  </record>
+                </array>
+                <value name="contentType">1</value>
+                <value name="internalType">instance</value>
+                <value name="ct_class">com.wm.lang.schema.datatypev2.WmString</value>
+                <value name="name">string_customized</value>
+                <array name="parent-ancestors" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">anySimpleType</value>
+                  </record>
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">anyType</value>
+                  </record>
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">string</value>
+                  </record>
+                </array>
+                <record name="baseType" javaclass="com.wm.util.Values">
+                  <record name="whiteSpace" javaclass="com.wm.util.Values">
+                    <record name="FacetWSCValue" javaclass="com.wm.util.Values">
+                      <value name="cDecimalValue">3</value>
+                    </record>
+                    <value name="facetFixed">false</value>
+                  </record>
+                  <value name="contentType">1</value>
+                  <value name="internalType">instance</value>
+                  <value name="ct_class">com.wm.lang.schema.datatypev2.WmString</value>
+                  <value name="dataTypeVersion">dtVersion2</value>
+                </record>
+                <value name="dataTypeVersion">dtVersion2</value>
+              </record>
+              <value name="nillable">false</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">unknown</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_usereditable">true</value>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">service</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <array name="field_options" type="value" depth="1">
+              </array>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">string</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">false</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">unknown</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_usereditable">true</value>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">target</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <array name="field_options" type="value" depth="1">
+                <value>$any</value>
+                <value>$all</value>
+                <value>$self</value>
+              </array>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">string</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">unknown</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_usereditable">true</value>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">user</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <array name="field_options" type="value" depth="1">
+              </array>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">string</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">unknown</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_usereditable">true</value>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">start</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <array name="field_options" type="value" depth="1">
+              </array>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">dateTime</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">unknown</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_usereditable">true</value>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">end</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <array name="field_options" type="value" depth="1">
+              </array>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">dateTime</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">unknown</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_usereditable">false</value>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">overlap?</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <array name="field_options" type="value" depth="1">
+                <value>false</value>
+                <value>true</value>
+              </array>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">boolean</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">record</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">lateness</value>
+              <value name="field_type">record</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+              <array name="rec_fields" type="record" depth="1">
+                <record javaclass="com.wm.util.Values">
+                  <value name="node_type">record</value>
+                  <value name="node_comment"></value>
+                  <record name="node_hints" javaclass="com.wm.util.Values">
+                    <value name="field_usereditable">true</value>
+                    <value name="field_largerEditor">false</value>
+                    <value name="field_password">false</value>
+                  </record>
+                  <value name="is_public">false</value>
+                  <value name="field_name">duration</value>
+                  <value name="field_type">string</value>
+                  <value name="field_dim">0</value>
+                  <value name="field_opt">true</value>
+                  <array name="field_options" type="value" depth="1">
+                  </array>
+                  <record name="field_content_type" javaclass="com.wm.util.Values">
+                    <value name="contentType">1</value>
+                    <value name="internalType">reference</value>
+                    <value name="dataTypeVersion">dtVersion2</value>
+                    <array name="targetNames" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">duration</value>
+                      </record>
+                    </array>
+                  </record>
+                  <value name="nillable">true</value>
+                  <value name="form_qualified">false</value>
+                  <value name="is_global">false</value>
+                </record>
+                <record javaclass="com.wm.util.Values">
+                  <value name="node_type">record</value>
+                  <value name="node_comment"></value>
+                  <record name="node_hints" javaclass="com.wm.util.Values">
+                    <value name="field_usereditable">false</value>
+                    <value name="field_largerEditor">false</value>
+                    <value name="field_password">false</value>
+                  </record>
+                  <value name="is_public">false</value>
+                  <value name="field_name">action</value>
+                  <value name="field_type">string</value>
+                  <value name="field_dim">0</value>
+                  <value name="field_opt">true</value>
+                  <array name="field_options" type="value" depth="1">
+                    <value>run immediately</value>
+                    <value>skip and run at next scheduled interval</value>
+                    <value>suspend</value>
+                  </array>
+                  <record name="field_content_type" javaclass="com.wm.util.Values">
+                    <array name="enumeration" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="primitiveType">0</value>
+                        <value name="lexRep">run immediately</value>
+                        <value name="isList">false</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="primitiveType">0</value>
+                        <value name="lexRep">skip and run at next scheduled interval</value>
+                        <value name="isList">false</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="primitiveType">0</value>
+                        <value name="lexRep">suspend</value>
+                        <value name="isList">false</value>
+                      </record>
+                    </array>
+                    <value name="contentType">1</value>
+                    <value name="internalType">instance</value>
+                    <value name="ct_class">com.wm.lang.schema.datatypev2.WmString</value>
+                    <value name="name">string_customized</value>
+                    <array name="parent-ancestors" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anySimpleType</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anyType</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">string</value>
+                      </record>
+                    </array>
+                    <record name="baseType" javaclass="com.wm.util.Values">
+                      <record name="whiteSpace" javaclass="com.wm.util.Values">
+                        <record name="FacetWSCValue" javaclass="com.wm.util.Values">
+                          <value name="cDecimalValue">3</value>
+                        </record>
+                        <value name="facetFixed">false</value>
+                      </record>
+                      <value name="contentType">1</value>
+                      <value name="internalType">instance</value>
+                      <value name="ct_class">com.wm.lang.schema.datatypev2.WmString</value>
+                      <value name="dataTypeVersion">dtVersion2</value>
+                    </record>
+                    <value name="dataTypeVersion">dtVersion2</value>
+                  </record>
+                  <value name="nillable">true</value>
+                  <value name="form_qualified">false</value>
+                  <value name="is_global">false</value>
+                </record>
+              </array>
+              <value name="modifiable">true</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">record</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">repeat</value>
+              <value name="field_type">record</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+              <array name="rec_fields" type="record" depth="1">
+                <record javaclass="com.wm.util.Values">
+                  <value name="node_type">unknown</value>
+                  <value name="node_comment"></value>
+                  <record name="node_hints" javaclass="com.wm.util.Values">
+                    <value name="field_usereditable">true</value>
+                    <value name="field_largerEditor">false</value>
+                    <value name="field_password">false</value>
+                  </record>
+                  <value name="is_public">false</value>
+                  <value name="field_name">interval</value>
+                  <value name="field_type">string</value>
+                  <value name="field_dim">0</value>
+                  <value name="field_opt">true</value>
+                  <array name="field_options" type="value" depth="1">
+                  </array>
+                  <record name="field_content_type" javaclass="com.wm.util.Values">
+                    <value name="contentType">1</value>
+                    <value name="internalType">reference</value>
+                    <value name="dataTypeVersion">dtVersion2</value>
+                    <array name="targetNames" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">duration</value>
+                      </record>
+                    </array>
+                  </record>
+                  <value name="nillable">true</value>
+                  <value name="form_qualified">false</value>
+                  <value name="is_global">false</value>
+                </record>
+              </array>
+              <value name="modifiable">true</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">record</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">complex</value>
+              <value name="field_type">record</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+              <array name="rec_fields" type="record" depth="1">
+                <record javaclass="com.wm.util.Values">
+                  <value name="node_type">record</value>
+                  <value name="node_comment"></value>
+                  <record name="node_hints" javaclass="com.wm.util.Values">
+                    <value name="field_largerEditor">false</value>
+                    <value name="field_password">false</value>
+                  </record>
+                  <value name="is_public">false</value>
+                  <value name="field_name">months</value>
+                  <value name="field_type">string</value>
+                  <value name="field_dim">1</value>
+                  <value name="field_opt">true</value>
+                  <record name="field_content_type" javaclass="com.wm.util.Values">
+                    <record name="minInclusive" javaclass="com.wm.util.Values">
+                      <value name="facetFixed">false</value>
+                      <value name="primitiveType">4</value>
+                      <value name="lexRep">1</value>
+                    </record>
+                    <record name="maxInclusive" javaclass="com.wm.util.Values">
+                      <value name="facetFixed">false</value>
+                      <value name="primitiveType">4</value>
+                      <value name="lexRep">12</value>
+                    </record>
+                    <value name="contentType">1</value>
+                    <value name="internalType">instance</value>
+                    <value name="ct_class">com.wm.lang.schema.datatypev2.WmDecimal</value>
+                    <value name="name">integer_customized</value>
+                    <array name="parent-ancestors" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anySimpleType</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">decimal</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anyType</value>
+                      </record>
+                    </array>
+                    <record name="baseType" javaclass="com.wm.util.Values">
+                      <record name="fractionDigits" javaclass="com.wm.util.Values">
+                        <record name="FacetFDCValue" javaclass="com.wm.util.Values">
+                          <value name="cDecimalValue">0</value>
+                        </record>
+                        <value name="facetFixed">true</value>
+                      </record>
+                      <record name="whiteSpace" javaclass="com.wm.util.Values">
+                        <record name="FacetWSCValue" javaclass="com.wm.util.Values">
+                          <value name="cDecimalValue">1</value>
+                        </record>
+                        <value name="facetFixed">true</value>
+                      </record>
+                      <value name="contentType">1</value>
+                      <value name="internalType">instance</value>
+                      <value name="ct_class">com.wm.lang.schema.datatypev2.WmDecimal</value>
+                      <value name="dataTypeVersion">dtVersion2</value>
+                    </record>
+                    <value name="dataTypeVersion">dtVersion2</value>
+                  </record>
+                  <value name="field_encodingStyle"></value>
+                  <value name="nillable">true</value>
+                  <value name="form_qualified">false</value>
+                  <value name="is_global">false</value>
+                  <value name="is_soap_array_encoding_used">true</value>
+                </record>
+                <record javaclass="com.wm.util.Values">
+                  <value name="node_type">record</value>
+                  <value name="node_comment"></value>
+                  <record name="node_hints" javaclass="com.wm.util.Values">
+                    <value name="field_largerEditor">false</value>
+                    <value name="field_password">false</value>
+                  </record>
+                  <value name="is_public">false</value>
+                  <value name="field_name">days</value>
+                  <value name="field_type">string</value>
+                  <value name="field_dim">1</value>
+                  <value name="field_opt">true</value>
+                  <record name="field_content_type" javaclass="com.wm.util.Values">
+                    <record name="minInclusive" javaclass="com.wm.util.Values">
+                      <value name="facetFixed">false</value>
+                      <value name="primitiveType">4</value>
+                      <value name="lexRep">1</value>
+                    </record>
+                    <record name="maxInclusive" javaclass="com.wm.util.Values">
+                      <value name="facetFixed">false</value>
+                      <value name="primitiveType">4</value>
+                      <value name="lexRep">31</value>
+                    </record>
+                    <value name="contentType">1</value>
+                    <value name="internalType">instance</value>
+                    <value name="ct_class">com.wm.lang.schema.datatypev2.WmDecimal</value>
+                    <value name="name">integer_customized</value>
+                    <array name="parent-ancestors" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anySimpleType</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">decimal</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anyType</value>
+                      </record>
+                    </array>
+                    <record name="baseType" javaclass="com.wm.util.Values">
+                      <record name="fractionDigits" javaclass="com.wm.util.Values">
+                        <record name="FacetFDCValue" javaclass="com.wm.util.Values">
+                          <value name="cDecimalValue">0</value>
+                        </record>
+                        <value name="facetFixed">true</value>
+                      </record>
+                      <record name="whiteSpace" javaclass="com.wm.util.Values">
+                        <record name="FacetWSCValue" javaclass="com.wm.util.Values">
+                          <value name="cDecimalValue">1</value>
+                        </record>
+                        <value name="facetFixed">true</value>
+                      </record>
+                      <value name="contentType">1</value>
+                      <value name="internalType">instance</value>
+                      <value name="ct_class">com.wm.lang.schema.datatypev2.WmDecimal</value>
+                      <value name="dataTypeVersion">dtVersion2</value>
+                    </record>
+                    <value name="dataTypeVersion">dtVersion2</value>
+                  </record>
+                  <value name="field_encodingStyle"></value>
+                  <value name="nillable">true</value>
+                  <value name="form_qualified">false</value>
+                  <value name="is_global">false</value>
+                  <value name="is_soap_array_encoding_used">true</value>
+                </record>
+                <record javaclass="com.wm.util.Values">
+                  <value name="node_type">record</value>
+                  <value name="node_comment"></value>
+                  <record name="node_hints" javaclass="com.wm.util.Values">
+                    <value name="field_largerEditor">false</value>
+                    <value name="field_password">false</value>
+                  </record>
+                  <value name="is_public">false</value>
+                  <value name="field_name">weekdays</value>
+                  <value name="field_type">string</value>
+                  <value name="field_dim">1</value>
+                  <value name="field_opt">true</value>
+                  <record name="field_content_type" javaclass="com.wm.util.Values">
+                    <record name="minInclusive" javaclass="com.wm.util.Values">
+                      <value name="facetFixed">false</value>
+                      <value name="primitiveType">4</value>
+                      <value name="lexRep">1</value>
+                    </record>
+                    <record name="maxInclusive" javaclass="com.wm.util.Values">
+                      <value name="facetFixed">false</value>
+                      <value name="primitiveType">4</value>
+                      <value name="lexRep">7</value>
+                    </record>
+                    <value name="contentType">1</value>
+                    <value name="internalType">instance</value>
+                    <value name="ct_class">com.wm.lang.schema.datatypev2.WmDecimal</value>
+                    <value name="name">integer_customized</value>
+                    <array name="parent-ancestors" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anySimpleType</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">decimal</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anyType</value>
+                      </record>
+                    </array>
+                    <record name="baseType" javaclass="com.wm.util.Values">
+                      <record name="fractionDigits" javaclass="com.wm.util.Values">
+                        <record name="FacetFDCValue" javaclass="com.wm.util.Values">
+                          <value name="cDecimalValue">0</value>
+                        </record>
+                        <value name="facetFixed">true</value>
+                      </record>
+                      <record name="whiteSpace" javaclass="com.wm.util.Values">
+                        <record name="FacetWSCValue" javaclass="com.wm.util.Values">
+                          <value name="cDecimalValue">1</value>
+                        </record>
+                        <value name="facetFixed">true</value>
+                      </record>
+                      <value name="contentType">1</value>
+                      <value name="internalType">instance</value>
+                      <value name="ct_class">com.wm.lang.schema.datatypev2.WmDecimal</value>
+                      <value name="dataTypeVersion">dtVersion2</value>
+                    </record>
+                    <value name="dataTypeVersion">dtVersion2</value>
+                  </record>
+                  <value name="field_encodingStyle"></value>
+                  <value name="nillable">true</value>
+                  <value name="form_qualified">false</value>
+                  <value name="is_global">false</value>
+                  <value name="is_soap_array_encoding_used">true</value>
+                </record>
+                <record javaclass="com.wm.util.Values">
+                  <value name="node_type">record</value>
+                  <value name="node_comment"></value>
+                  <record name="node_hints" javaclass="com.wm.util.Values">
+                    <value name="field_largerEditor">false</value>
+                    <value name="field_password">false</value>
+                  </record>
+                  <value name="is_public">false</value>
+                  <value name="field_name">hours</value>
+                  <value name="field_type">string</value>
+                  <value name="field_dim">1</value>
+                  <value name="field_opt">true</value>
+                  <record name="field_content_type" javaclass="com.wm.util.Values">
+                    <record name="minInclusive" javaclass="com.wm.util.Values">
+                      <value name="facetFixed">false</value>
+                      <value name="primitiveType">4</value>
+                      <value name="lexRep">0</value>
+                    </record>
+                    <record name="maxInclusive" javaclass="com.wm.util.Values">
+                      <value name="facetFixed">false</value>
+                      <value name="primitiveType">4</value>
+                      <value name="lexRep">23</value>
+                    </record>
+                    <value name="contentType">1</value>
+                    <value name="internalType">instance</value>
+                    <value name="ct_class">com.wm.lang.schema.datatypev2.WmDecimal</value>
+                    <value name="name">integer_customized</value>
+                    <array name="parent-ancestors" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anySimpleType</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">decimal</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anyType</value>
+                      </record>
+                    </array>
+                    <record name="baseType" javaclass="com.wm.util.Values">
+                      <record name="fractionDigits" javaclass="com.wm.util.Values">
+                        <record name="FacetFDCValue" javaclass="com.wm.util.Values">
+                          <value name="cDecimalValue">0</value>
+                        </record>
+                        <value name="facetFixed">true</value>
+                      </record>
+                      <record name="whiteSpace" javaclass="com.wm.util.Values">
+                        <record name="FacetWSCValue" javaclass="com.wm.util.Values">
+                          <value name="cDecimalValue">1</value>
+                        </record>
+                        <value name="facetFixed">true</value>
+                      </record>
+                      <value name="contentType">1</value>
+                      <value name="internalType">instance</value>
+                      <value name="ct_class">com.wm.lang.schema.datatypev2.WmDecimal</value>
+                      <value name="dataTypeVersion">dtVersion2</value>
+                    </record>
+                    <value name="dataTypeVersion">dtVersion2</value>
+                  </record>
+                  <value name="field_encodingStyle"></value>
+                  <value name="nillable">true</value>
+                  <value name="form_qualified">false</value>
+                  <value name="is_global">false</value>
+                  <value name="is_soap_array_encoding_used">true</value>
+                </record>
+                <record javaclass="com.wm.util.Values">
+                  <value name="node_type">record</value>
+                  <value name="node_comment"></value>
+                  <record name="node_hints" javaclass="com.wm.util.Values">
+                    <value name="field_largerEditor">false</value>
+                    <value name="field_password">false</value>
+                  </record>
+                  <value name="is_public">false</value>
+                  <value name="field_name">minutes</value>
+                  <value name="field_type">string</value>
+                  <value name="field_dim">1</value>
+                  <value name="field_opt">true</value>
+                  <record name="field_content_type" javaclass="com.wm.util.Values">
+                    <record name="minInclusive" javaclass="com.wm.util.Values">
+                      <value name="facetFixed">false</value>
+                      <value name="primitiveType">4</value>
+                      <value name="lexRep">0</value>
+                    </record>
+                    <record name="maxInclusive" javaclass="com.wm.util.Values">
+                      <value name="facetFixed">false</value>
+                      <value name="primitiveType">4</value>
+                      <value name="lexRep">59</value>
+                    </record>
+                    <value name="contentType">1</value>
+                    <value name="internalType">instance</value>
+                    <value name="ct_class">com.wm.lang.schema.datatypev2.WmDecimal</value>
+                    <value name="name">integer_customized</value>
+                    <array name="parent-ancestors" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anySimpleType</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">decimal</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anyType</value>
+                      </record>
+                    </array>
+                    <record name="baseType" javaclass="com.wm.util.Values">
+                      <record name="fractionDigits" javaclass="com.wm.util.Values">
+                        <record name="FacetFDCValue" javaclass="com.wm.util.Values">
+                          <value name="cDecimalValue">0</value>
+                        </record>
+                        <value name="facetFixed">true</value>
+                      </record>
+                      <record name="whiteSpace" javaclass="com.wm.util.Values">
+                        <record name="FacetWSCValue" javaclass="com.wm.util.Values">
+                          <value name="cDecimalValue">1</value>
+                        </record>
+                        <value name="facetFixed">true</value>
+                      </record>
+                      <value name="contentType">1</value>
+                      <value name="internalType">instance</value>
+                      <value name="ct_class">com.wm.lang.schema.datatypev2.WmDecimal</value>
+                      <value name="dataTypeVersion">dtVersion2</value>
+                    </record>
+                    <value name="dataTypeVersion">dtVersion2</value>
+                  </record>
+                  <value name="field_encodingStyle"></value>
+                  <value name="nillable">true</value>
+                  <value name="form_qualified">false</value>
+                  <value name="is_global">false</value>
+                  <value name="is_soap_array_encoding_used">true</value>
+                </record>
+              </array>
+              <value name="modifiable">true</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">record</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">pipeline</value>
+              <value name="field_type">record</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+              <array name="rec_fields" type="record" depth="1">
+              </array>
+              <value name="modifiable">true</value>
+            </record>
+          </array>
+          <value name="modifiable">true</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_usereditable">false</value>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$singleton?</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <array name="field_options" type="value" depth="1">
+            <value>false</value>
+            <value>true</value>
+          </array>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">boolean</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_usereditable">false</value>
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$enabled?</value>
+          <value name="field_type">string</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <array name="field_options" type="value" depth="1">
+            <value>true</value>
+            <value>false</value>
+          </array>
+          <record name="field_content_type" javaclass="com.wm.util.Values">
+            <value name="contentType">1</value>
+            <value name="internalType">reference</value>
+            <value name="dataTypeVersion">dtVersion2</value>
+            <array name="targetNames" type="record" depth="1">
+              <record javaclass="com.wm.util.Values">
+                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                <value name="ncName">boolean</value>
+              </record>
+            </array>
+          </record>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+      </array>
+      <value name="modifiable">true</value>
+    </record>
+    <record name="sig_out" javaclass="com.wm.util.Values">
+      <value name="node_type">record</value>
+      <value name="is_public">false</value>
+      <value name="field_type">record</value>
+      <value name="field_dim">0</value>
+      <value name="nillable">true</value>
+      <value name="form_qualified">false</value>
+      <value name="is_global">false</value>
+      <array name="rec_fields" type="record" depth="1">
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$schedule.create</value>
+          <value name="field_type">record</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+          <array name="rec_fields" type="record" depth="1">
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">record</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <null name="field_usereditable"/>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">name</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">string</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">false</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">unknown</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <null name="field_usereditable"/>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">description</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">string</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">unknown</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_usereditable">false</value>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">type</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <array name="field_options" type="value" depth="1">
+                <value>complex</value>
+                <value>once</value>
+                <value>repeat</value>
+              </array>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <array name="enumeration" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="primitiveType">0</value>
+                    <value name="lexRep">complex</value>
+                    <value name="isList">false</value>
+                  </record>
+                  <record javaclass="com.wm.util.Values">
+                    <value name="primitiveType">0</value>
+                    <value name="lexRep">once</value>
+                    <value name="isList">false</value>
+                  </record>
+                  <record javaclass="com.wm.util.Values">
+                    <value name="primitiveType">0</value>
+                    <value name="lexRep">repeat</value>
+                    <value name="isList">false</value>
+                  </record>
+                </array>
+                <value name="contentType">1</value>
+                <value name="internalType">instance</value>
+                <value name="ct_class">com.wm.lang.schema.datatypev2.WmString</value>
+                <value name="name">string_customized</value>
+                <array name="parent-ancestors" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">anySimpleType</value>
+                  </record>
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">anyType</value>
+                  </record>
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">string</value>
+                  </record>
+                </array>
+                <record name="baseType" javaclass="com.wm.util.Values">
+                  <record name="whiteSpace" javaclass="com.wm.util.Values">
+                    <record name="FacetWSCValue" javaclass="com.wm.util.Values">
+                      <value name="cDecimalValue">3</value>
+                    </record>
+                    <value name="facetFixed">false</value>
+                  </record>
+                  <value name="contentType">1</value>
+                  <value name="internalType">instance</value>
+                  <value name="ct_class">com.wm.lang.schema.datatypev2.WmString</value>
+                  <value name="dataTypeVersion">dtVersion2</value>
+                </record>
+                <value name="dataTypeVersion">dtVersion2</value>
+              </record>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">unknown</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <null name="field_usereditable"/>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">service</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">string</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">false</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">unknown</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_usereditable">true</value>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">target</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <array name="field_options" type="value" depth="1">
+                <value>$any</value>
+                <value>$all</value>
+                <value>$self</value>
+              </array>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">string</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">unknown</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <null name="field_usereditable"/>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">user</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">string</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">unknown</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <null name="field_usereditable"/>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">start</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">dateTime</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">unknown</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <null name="field_usereditable"/>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">end</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">dateTime</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">record</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">overlap</value>
+              <value name="field_type">object</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <value name="wrapper_type">java.lang.Boolean</value>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">record</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">lateness</value>
+              <value name="field_type">record</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+              <array name="rec_fields" type="record" depth="1">
+                <record javaclass="com.wm.util.Values">
+                  <value name="node_type">record</value>
+                  <value name="node_comment"></value>
+                  <record name="node_hints" javaclass="com.wm.util.Values">
+                    <null name="field_usereditable"/>
+                    <value name="field_largerEditor">false</value>
+                    <value name="field_password">false</value>
+                  </record>
+                  <value name="is_public">false</value>
+                  <value name="field_name">duration</value>
+                  <value name="field_type">string</value>
+                  <value name="field_dim">0</value>
+                  <value name="field_opt">true</value>
+                  <record name="field_content_type" javaclass="com.wm.util.Values">
+                    <value name="contentType">1</value>
+                    <value name="internalType">reference</value>
+                    <value name="dataTypeVersion">dtVersion2</value>
+                    <array name="targetNames" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">duration</value>
+                      </record>
+                    </array>
+                  </record>
+                  <value name="nillable">true</value>
+                  <value name="form_qualified">false</value>
+                  <value name="is_global">false</value>
+                </record>
+                <record javaclass="com.wm.util.Values">
+                  <value name="node_type">record</value>
+                  <value name="node_comment"></value>
+                  <record name="node_hints" javaclass="com.wm.util.Values">
+                    <value name="field_usereditable">false</value>
+                    <value name="field_largerEditor">false</value>
+                    <value name="field_password">false</value>
+                  </record>
+                  <value name="is_public">false</value>
+                  <value name="field_name">action</value>
+                  <value name="field_type">string</value>
+                  <value name="field_dim">0</value>
+                  <value name="field_opt">true</value>
+                  <array name="field_options" type="value" depth="1">
+                    <value>run immediately</value>
+                    <value>skip and run at next scheduled interval</value>
+                    <value>suspend</value>
+                  </array>
+                  <record name="field_content_type" javaclass="com.wm.util.Values">
+                    <array name="enumeration" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="primitiveType">0</value>
+                        <value name="lexRep">run immediately</value>
+                        <value name="isList">false</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="primitiveType">0</value>
+                        <value name="lexRep">skip and run at next scheduled interval</value>
+                        <value name="isList">false</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="primitiveType">0</value>
+                        <value name="lexRep">suspend</value>
+                        <value name="isList">false</value>
+                      </record>
+                    </array>
+                    <value name="contentType">1</value>
+                    <value name="internalType">instance</value>
+                    <value name="ct_class">com.wm.lang.schema.datatypev2.WmString</value>
+                    <value name="name">string_customized</value>
+                    <array name="parent-ancestors" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anySimpleType</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anyType</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">string</value>
+                      </record>
+                    </array>
+                    <record name="baseType" javaclass="com.wm.util.Values">
+                      <record name="whiteSpace" javaclass="com.wm.util.Values">
+                        <record name="FacetWSCValue" javaclass="com.wm.util.Values">
+                          <value name="cDecimalValue">3</value>
+                        </record>
+                        <value name="facetFixed">false</value>
+                      </record>
+                      <value name="contentType">1</value>
+                      <value name="internalType">instance</value>
+                      <value name="ct_class">com.wm.lang.schema.datatypev2.WmString</value>
+                      <value name="dataTypeVersion">dtVersion2</value>
+                    </record>
+                    <value name="dataTypeVersion">dtVersion2</value>
+                  </record>
+                  <value name="nillable">true</value>
+                  <value name="form_qualified">false</value>
+                  <value name="is_global">false</value>
+                </record>
+              </array>
+              <value name="modifiable">true</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">record</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">repeat</value>
+              <value name="field_type">record</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+              <array name="rec_fields" type="record" depth="1">
+                <record javaclass="com.wm.util.Values">
+                  <value name="node_type">unknown</value>
+                  <value name="node_comment"></value>
+                  <record name="node_hints" javaclass="com.wm.util.Values">
+                    <null name="field_usereditable"/>
+                    <value name="field_largerEditor">false</value>
+                    <value name="field_password">false</value>
+                  </record>
+                  <value name="is_public">false</value>
+                  <value name="field_name">interval</value>
+                  <value name="field_type">string</value>
+                  <value name="field_dim">0</value>
+                  <value name="field_opt">true</value>
+                  <record name="field_content_type" javaclass="com.wm.util.Values">
+                    <value name="contentType">1</value>
+                    <value name="internalType">reference</value>
+                    <value name="dataTypeVersion">dtVersion2</value>
+                    <array name="targetNames" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">duration</value>
+                      </record>
+                    </array>
+                  </record>
+                  <value name="nillable">true</value>
+                  <value name="form_qualified">false</value>
+                  <value name="is_global">false</value>
+                </record>
+              </array>
+              <value name="modifiable">true</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">record</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">complex</value>
+              <value name="field_type">record</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+              <array name="rec_fields" type="record" depth="1">
+                <record javaclass="com.wm.util.Values">
+                  <value name="node_type">record</value>
+                  <value name="node_comment"></value>
+                  <record name="node_hints" javaclass="com.wm.util.Values">
+                    <value name="field_largerEditor">false</value>
+                    <value name="field_password">false</value>
+                  </record>
+                  <value name="is_public">false</value>
+                  <value name="field_name">months</value>
+                  <value name="field_type">string</value>
+                  <value name="field_dim">1</value>
+                  <value name="field_opt">true</value>
+                  <record name="field_content_type" javaclass="com.wm.util.Values">
+                    <record name="minInclusive" javaclass="com.wm.util.Values">
+                      <value name="facetFixed">false</value>
+                      <value name="primitiveType">4</value>
+                      <value name="lexRep">1</value>
+                    </record>
+                    <record name="maxInclusive" javaclass="com.wm.util.Values">
+                      <value name="facetFixed">false</value>
+                      <value name="primitiveType">4</value>
+                      <value name="lexRep">12</value>
+                    </record>
+                    <value name="contentType">1</value>
+                    <value name="internalType">instance</value>
+                    <value name="ct_class">com.wm.lang.schema.datatypev2.WmDecimal</value>
+                    <value name="name">integer_customized</value>
+                    <array name="parent-ancestors" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anySimpleType</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">decimal</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anyType</value>
+                      </record>
+                    </array>
+                    <record name="baseType" javaclass="com.wm.util.Values">
+                      <record name="fractionDigits" javaclass="com.wm.util.Values">
+                        <record name="FacetFDCValue" javaclass="com.wm.util.Values">
+                          <value name="cDecimalValue">0</value>
+                        </record>
+                        <value name="facetFixed">true</value>
+                      </record>
+                      <record name="whiteSpace" javaclass="com.wm.util.Values">
+                        <record name="FacetWSCValue" javaclass="com.wm.util.Values">
+                          <value name="cDecimalValue">1</value>
+                        </record>
+                        <value name="facetFixed">true</value>
+                      </record>
+                      <value name="contentType">1</value>
+                      <value name="internalType">instance</value>
+                      <value name="ct_class">com.wm.lang.schema.datatypev2.WmDecimal</value>
+                      <value name="dataTypeVersion">dtVersion2</value>
+                    </record>
+                    <value name="dataTypeVersion">dtVersion2</value>
+                  </record>
+                  <value name="field_encodingStyle"></value>
+                  <value name="nillable">true</value>
+                  <value name="form_qualified">false</value>
+                  <value name="is_global">false</value>
+                  <value name="is_soap_array_encoding_used">true</value>
+                </record>
+                <record javaclass="com.wm.util.Values">
+                  <value name="node_type">record</value>
+                  <value name="node_comment"></value>
+                  <record name="node_hints" javaclass="com.wm.util.Values">
+                    <value name="field_largerEditor">false</value>
+                    <value name="field_password">false</value>
+                  </record>
+                  <value name="is_public">false</value>
+                  <value name="field_name">days</value>
+                  <value name="field_type">string</value>
+                  <value name="field_dim">1</value>
+                  <value name="field_opt">true</value>
+                  <record name="field_content_type" javaclass="com.wm.util.Values">
+                    <record name="minInclusive" javaclass="com.wm.util.Values">
+                      <value name="facetFixed">false</value>
+                      <value name="primitiveType">4</value>
+                      <value name="lexRep">1</value>
+                    </record>
+                    <record name="maxInclusive" javaclass="com.wm.util.Values">
+                      <value name="facetFixed">false</value>
+                      <value name="primitiveType">4</value>
+                      <value name="lexRep">31</value>
+                    </record>
+                    <value name="contentType">1</value>
+                    <value name="internalType">instance</value>
+                    <value name="ct_class">com.wm.lang.schema.datatypev2.WmDecimal</value>
+                    <value name="name">integer_customized</value>
+                    <array name="parent-ancestors" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anySimpleType</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">decimal</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anyType</value>
+                      </record>
+                    </array>
+                    <record name="baseType" javaclass="com.wm.util.Values">
+                      <record name="fractionDigits" javaclass="com.wm.util.Values">
+                        <record name="FacetFDCValue" javaclass="com.wm.util.Values">
+                          <value name="cDecimalValue">0</value>
+                        </record>
+                        <value name="facetFixed">true</value>
+                      </record>
+                      <record name="whiteSpace" javaclass="com.wm.util.Values">
+                        <record name="FacetWSCValue" javaclass="com.wm.util.Values">
+                          <value name="cDecimalValue">1</value>
+                        </record>
+                        <value name="facetFixed">true</value>
+                      </record>
+                      <value name="contentType">1</value>
+                      <value name="internalType">instance</value>
+                      <value name="ct_class">com.wm.lang.schema.datatypev2.WmDecimal</value>
+                      <value name="dataTypeVersion">dtVersion2</value>
+                    </record>
+                    <value name="dataTypeVersion">dtVersion2</value>
+                  </record>
+                  <value name="field_encodingStyle"></value>
+                  <value name="nillable">true</value>
+                  <value name="form_qualified">false</value>
+                  <value name="is_global">false</value>
+                  <value name="is_soap_array_encoding_used">true</value>
+                </record>
+                <record javaclass="com.wm.util.Values">
+                  <value name="node_type">record</value>
+                  <value name="node_comment"></value>
+                  <record name="node_hints" javaclass="com.wm.util.Values">
+                    <value name="field_largerEditor">false</value>
+                    <value name="field_password">false</value>
+                  </record>
+                  <value name="is_public">false</value>
+                  <value name="field_name">weekdays</value>
+                  <value name="field_type">string</value>
+                  <value name="field_dim">1</value>
+                  <value name="field_opt">true</value>
+                  <record name="field_content_type" javaclass="com.wm.util.Values">
+                    <record name="minInclusive" javaclass="com.wm.util.Values">
+                      <value name="facetFixed">false</value>
+                      <value name="primitiveType">4</value>
+                      <value name="lexRep">1</value>
+                    </record>
+                    <record name="maxInclusive" javaclass="com.wm.util.Values">
+                      <value name="facetFixed">false</value>
+                      <value name="primitiveType">4</value>
+                      <value name="lexRep">7</value>
+                    </record>
+                    <value name="contentType">1</value>
+                    <value name="internalType">instance</value>
+                    <value name="ct_class">com.wm.lang.schema.datatypev2.WmDecimal</value>
+                    <value name="name">integer_customized</value>
+                    <array name="parent-ancestors" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anySimpleType</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">decimal</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anyType</value>
+                      </record>
+                    </array>
+                    <record name="baseType" javaclass="com.wm.util.Values">
+                      <record name="fractionDigits" javaclass="com.wm.util.Values">
+                        <record name="FacetFDCValue" javaclass="com.wm.util.Values">
+                          <value name="cDecimalValue">0</value>
+                        </record>
+                        <value name="facetFixed">true</value>
+                      </record>
+                      <record name="whiteSpace" javaclass="com.wm.util.Values">
+                        <record name="FacetWSCValue" javaclass="com.wm.util.Values">
+                          <value name="cDecimalValue">1</value>
+                        </record>
+                        <value name="facetFixed">true</value>
+                      </record>
+                      <value name="contentType">1</value>
+                      <value name="internalType">instance</value>
+                      <value name="ct_class">com.wm.lang.schema.datatypev2.WmDecimal</value>
+                      <value name="dataTypeVersion">dtVersion2</value>
+                    </record>
+                    <value name="dataTypeVersion">dtVersion2</value>
+                  </record>
+                  <value name="field_encodingStyle"></value>
+                  <value name="nillable">true</value>
+                  <value name="form_qualified">false</value>
+                  <value name="is_global">false</value>
+                  <value name="is_soap_array_encoding_used">true</value>
+                </record>
+                <record javaclass="com.wm.util.Values">
+                  <value name="node_type">record</value>
+                  <value name="node_comment"></value>
+                  <record name="node_hints" javaclass="com.wm.util.Values">
+                    <value name="field_largerEditor">false</value>
+                    <value name="field_password">false</value>
+                  </record>
+                  <value name="is_public">false</value>
+                  <value name="field_name">hours</value>
+                  <value name="field_type">string</value>
+                  <value name="field_dim">1</value>
+                  <value name="field_opt">true</value>
+                  <record name="field_content_type" javaclass="com.wm.util.Values">
+                    <record name="minInclusive" javaclass="com.wm.util.Values">
+                      <value name="facetFixed">false</value>
+                      <value name="primitiveType">4</value>
+                      <value name="lexRep">0</value>
+                    </record>
+                    <record name="maxInclusive" javaclass="com.wm.util.Values">
+                      <value name="facetFixed">false</value>
+                      <value name="primitiveType">4</value>
+                      <value name="lexRep">23</value>
+                    </record>
+                    <value name="contentType">1</value>
+                    <value name="internalType">instance</value>
+                    <value name="ct_class">com.wm.lang.schema.datatypev2.WmDecimal</value>
+                    <value name="name">integer_customized</value>
+                    <array name="parent-ancestors" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anySimpleType</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">decimal</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anyType</value>
+                      </record>
+                    </array>
+                    <record name="baseType" javaclass="com.wm.util.Values">
+                      <record name="fractionDigits" javaclass="com.wm.util.Values">
+                        <record name="FacetFDCValue" javaclass="com.wm.util.Values">
+                          <value name="cDecimalValue">0</value>
+                        </record>
+                        <value name="facetFixed">true</value>
+                      </record>
+                      <record name="whiteSpace" javaclass="com.wm.util.Values">
+                        <record name="FacetWSCValue" javaclass="com.wm.util.Values">
+                          <value name="cDecimalValue">1</value>
+                        </record>
+                        <value name="facetFixed">true</value>
+                      </record>
+                      <value name="contentType">1</value>
+                      <value name="internalType">instance</value>
+                      <value name="ct_class">com.wm.lang.schema.datatypev2.WmDecimal</value>
+                      <value name="dataTypeVersion">dtVersion2</value>
+                    </record>
+                    <value name="dataTypeVersion">dtVersion2</value>
+                  </record>
+                  <value name="field_encodingStyle"></value>
+                  <value name="nillable">true</value>
+                  <value name="form_qualified">false</value>
+                  <value name="is_global">false</value>
+                  <value name="is_soap_array_encoding_used">true</value>
+                </record>
+                <record javaclass="com.wm.util.Values">
+                  <value name="node_type">record</value>
+                  <value name="node_comment"></value>
+                  <record name="node_hints" javaclass="com.wm.util.Values">
+                    <value name="field_largerEditor">false</value>
+                    <value name="field_password">false</value>
+                  </record>
+                  <value name="is_public">false</value>
+                  <value name="field_name">minutes</value>
+                  <value name="field_type">string</value>
+                  <value name="field_dim">1</value>
+                  <value name="field_opt">true</value>
+                  <record name="field_content_type" javaclass="com.wm.util.Values">
+                    <record name="minInclusive" javaclass="com.wm.util.Values">
+                      <value name="facetFixed">false</value>
+                      <value name="primitiveType">4</value>
+                      <value name="lexRep">0</value>
+                    </record>
+                    <record name="maxInclusive" javaclass="com.wm.util.Values">
+                      <value name="facetFixed">false</value>
+                      <value name="primitiveType">4</value>
+                      <value name="lexRep">59</value>
+                    </record>
+                    <value name="contentType">1</value>
+                    <value name="internalType">instance</value>
+                    <value name="ct_class">com.wm.lang.schema.datatypev2.WmDecimal</value>
+                    <value name="name">integer_customized</value>
+                    <array name="parent-ancestors" type="record" depth="1">
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anySimpleType</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">decimal</value>
+                      </record>
+                      <record javaclass="com.wm.util.Values">
+                        <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                        <value name="ncName">anyType</value>
+                      </record>
+                    </array>
+                    <record name="baseType" javaclass="com.wm.util.Values">
+                      <record name="fractionDigits" javaclass="com.wm.util.Values">
+                        <record name="FacetFDCValue" javaclass="com.wm.util.Values">
+                          <value name="cDecimalValue">0</value>
+                        </record>
+                        <value name="facetFixed">true</value>
+                      </record>
+                      <record name="whiteSpace" javaclass="com.wm.util.Values">
+                        <record name="FacetWSCValue" javaclass="com.wm.util.Values">
+                          <value name="cDecimalValue">1</value>
+                        </record>
+                        <value name="facetFixed">true</value>
+                      </record>
+                      <value name="contentType">1</value>
+                      <value name="internalType">instance</value>
+                      <value name="ct_class">com.wm.lang.schema.datatypev2.WmDecimal</value>
+                      <value name="dataTypeVersion">dtVersion2</value>
+                    </record>
+                    <value name="dataTypeVersion">dtVersion2</value>
+                  </record>
+                  <value name="field_encodingStyle"></value>
+                  <value name="nillable">true</value>
+                  <value name="form_qualified">false</value>
+                  <value name="is_global">false</value>
+                  <value name="is_soap_array_encoding_used">true</value>
+                </record>
+              </array>
+              <value name="modifiable">true</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">record</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">pipeline</value>
+              <value name="field_type">record</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+              <array name="rec_fields" type="record" depth="1">
+              </array>
+              <value name="modifiable">true</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">record</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">enabled</value>
+              <value name="field_type">object</value>
+              <value name="field_dim">0</value>
+              <value name="wrapper_type">java.lang.Boolean</value>
+              <value name="nillable">false</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+          </array>
+          <value name="modifiable">true</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$service.settings</value>
+          <value name="field_type">record</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+          <array name="rec_fields" type="record" depth="1">
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">unknown</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <null name="field_usereditable"/>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">backwards.compatibility?</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">boolean</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+            <record javaclass="com.wm.util.Values">
+              <value name="node_type">unknown</value>
+              <value name="node_comment"></value>
+              <record name="node_hints" javaclass="com.wm.util.Values">
+                <null name="field_usereditable"/>
+                <value name="field_largerEditor">false</value>
+                <value name="field_password">false</value>
+              </record>
+              <value name="is_public">false</value>
+              <value name="field_name">backwards.compatibility.singleton?</value>
+              <value name="field_type">string</value>
+              <value name="field_dim">0</value>
+              <value name="field_opt">true</value>
+              <record name="field_content_type" javaclass="com.wm.util.Values">
+                <value name="contentType">1</value>
+                <value name="internalType">reference</value>
+                <value name="dataTypeVersion">dtVersion2</value>
+                <array name="targetNames" type="record" depth="1">
+                  <record javaclass="com.wm.util.Values">
+                    <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
+                    <value name="ncName">boolean</value>
+                  </record>
+                </array>
+              </record>
+              <value name="nillable">true</value>
+              <value name="form_qualified">false</value>
+              <value name="is_global">false</value>
+            </record>
+          </array>
+          <value name="modifiable">true</value>
+        </record>
+      </array>
+      <value name="modifiable">true</value>
+    </record>
+  </record>
+  <value name="node_comment">### tundra.support.schedule.create.input:normalize
+
+Normalizes and validates the inputs required for the service 
+`Tundra/tundra.schedule:create`.
+</value>
+  <value name="stateless">no</value>
+  <value name="caching">no</value>
+  <value name="prefetch">no</value>
+  <value name="cache_ttl">15</value>
+  <value name="prefetch_level">1</value>
+  <value name="template">tundra_support_schedule_create_input_normalize</value>
+  <value name="template_type">html</value>
+  <value name="audit_level">off</value>
+  <value name="check_internal_acls">no</value>
+  <value name="icontext_policy">$null</value>
+  <value name="system_service">no</value>
+  <value name="retry_max">0</value>
+  <value name="retry_interval">0</value>
+  <value name="svc_in_validator_options">none</value>
+  <value name="svc_out_validator_options">none</value>
+  <value name="auditoption">0</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
+  <record name="auditsettings" javaclass="com.wm.util.Values">
+    <value name="document_data">0</value>
+    <value name="startExecution">false</value>
+    <value name="stopExecution">false</value>
+    <value name="onError">true</value>
+  </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
+</Values>

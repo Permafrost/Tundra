@@ -23,7 +23,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$id</value>
+          <value name="field_name">$schedule.id</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -51,7 +51,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$name</value>
+          <value name="field_name">$schedule.name</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -91,7 +91,7 @@
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$exists?</value>
+          <value name="field_name">$schedule.exists?</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <array name="field_options" type="value" depth="1">
@@ -119,29 +119,30 @@
   </record>
   <value name="node_comment">### tundra.schedule:exists
 
-Returns true if a scheduled task with the given identity or name 
+Returns `true` if a scheduled task with the given identity or name
 exists in the task scheduler on this Integration Server.
 
 #### Inputs:
 
-* $id is the internal identity assigned by Integration Server to 
-  the task when it was created. When specified, other input
+* `$schedule.id` is the internal identity assigned by Integration 
+  Server to the task when it was created.  When specified, other input
   arguments are ignored.
-* $name is an optional name given to the scheduled task by the 
-  creator, which is stored in the input pipeline of the task by 
-  tundra.schedule:create as $schedule.name.
+* `$schedule.name` is an optional name given to the scheduled task by 
+  the creator, which is stored in the input pipeline of the task by
+  `Tundra/tundra.schedule:create` as `$schedule.name`.
 
 #### Outputs:
 
-* $exists? is a boolean indicating if a scheduled task identified by 
-  the given $id or $name (in order or precedence) exists in the task 
-  scheduler of this Integration Server.
+* `$schedule.exists?` is a boolean string indicating if a scheduled 
+  task identified by the given `$id` or `$name` (in order or 
+  precedence) exists in the task scheduler of this Integration Server.
 </value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template">tundra_schedule_exists</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>

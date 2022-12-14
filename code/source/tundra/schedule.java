@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-11-17 05:23:56 EST
+// -----( CREATED: 2022-12-14 17:49:18 EST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -36,19 +36,26 @@ public final class schedule
 		// --- <<IS-START(exists)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional $id
-		// [i] field:0:optional $name
-		// [o] field:0:required $exists? {&quot;false&quot;,&quot;true&quot;}
+		// [i] field:0:optional $schedule.id
+		// [i] field:0:optional $schedule.name
+		// [o] field:0:required $schedule.exists? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
-		    String id = IDataHelper.get(cursor, "$id", String.class);
-		    String name = IDataHelper.get(cursor, "$name", String.class);
+		    String id = IDataHelper.get(cursor, "$schedule.id", String.class);
+		    String name = IDataHelper.get(cursor, "$schedule.name", String.class);
+		    String outputKey = "$schedule.exists?";
+
+		    if (id == null && name == null) {
+		        id = IDataHelper.get(cursor, "$id", String.class);
+		        name = IDataHelper.get(cursor, "$name", String.class);
+		        outputKey = "$exists?";
+		    }
 
 		    if (id != null) {
-		        IDataHelper.put(cursor, "$exists?", ScheduleHelper.exists(id), String.class);
+		        IDataHelper.put(cursor, outputKey, ScheduleHelper.exists(id), String.class);
 		    } else {
-		        IDataHelper.put(cursor, "$exists?", ScheduleHelper.existsByName(name), String.class);
+		        IDataHelper.put(cursor, outputKey, ScheduleHelper.existsByName(name), String.class);
 		    }
 		} finally {
 		    cursor.destroy();
@@ -88,8 +95,8 @@ public final class schedule
 		// --- <<IS-START(get)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional $id
-		// [i] field:0:optional $name
+		// [i] field:0:optional $schedule.id
+		// [i] field:0:optional $schedule.name
 		// [o] record:0:optional $schedule
 		// [o] - field:0:required id
 		// [o] - field:0:optional name
@@ -120,8 +127,13 @@ public final class schedule
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
-		    String id = IDataHelper.get(cursor, "$id", String.class);
-		    String name = IDataHelper.get(cursor, "$name", String.class);
+		    String id = IDataHelper.get(cursor, "$schedule.id", String.class);
+		    String name = IDataHelper.get(cursor, "$schedule.name", String.class);
+
+		    if (id == null && name == null) {
+		        id = IDataHelper.get(cursor, "$id", String.class);
+		        name = IDataHelper.get(cursor, "$name", String.class);
+		    }
 
 		    if (id != null) {
 		        IDataHelper.put(cursor, "$schedule", ScheduleHelper.get(id), false);
@@ -167,9 +179,9 @@ public final class schedule
 		// --- <<IS-START(list)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
-		// [i] field:0:optional $name
-		// [i] field:0:optional $service
-		// [i] field:0:optional $filter
+		// [i] field:0:optional $schedule.name
+		// [i] field:0:optional $schedule.service
+		// [i] field:0:optional $schedule.filter
 		// [o] record:1:optional $schedules
 		// [o] - field:0:required id
 		// [o] - field:0:optional name
@@ -200,9 +212,15 @@ public final class schedule
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
-		    String name = IDataHelper.get(cursor, "$name", String.class);
-		    String service = IDataHelper.get(cursor, "$service", String.class);
-		    String filter = IDataHelper.get(cursor, "$filter", String.class);
+		    String name = IDataHelper.get(cursor, "$schedule.name", String.class);
+		    String service = IDataHelper.get(cursor, "$schedule.service", String.class);
+		    String filter = IDataHelper.get(cursor, "$schedule.filter", String.class);
+
+		    if (name == null && service == null && filter == null) {
+		        name = IDataHelper.get(cursor, "$name", String.class);
+		        service = IDataHelper.get(cursor, "$service", String.class);
+		        filter = IDataHelper.get(cursor, "$filter", String.class);
+		    }
 
 		    IDataHelper.put(cursor, "$schedules", ScheduleHelper.list(name, service, filter, pipeline), false, false);
 		} finally {

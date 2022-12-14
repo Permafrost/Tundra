@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Values version="2.0">
-  <value name="svc_type">java</value>
-  <value name="svc_subtype">unknown</value>
+  <value name="svc_type">flow</value>
+  <value name="svc_subtype">default</value>
   <value name="svc_sigtype">java 3.5</value>
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
@@ -18,29 +18,20 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <null name="field_usereditable"/>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$schedule.id</value>
-          <value name="field_type">string</value>
+          <value name="field_name">$schedule.create.pivot</value>
+          <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
-          <record name="field_content_type" javaclass="com.wm.util.Values">
-            <value name="contentType">1</value>
-            <value name="internalType">reference</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-            <array name="targetNames" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">string</value>
-              </record>
-            </array>
-          </record>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
+          <array name="rec_fields" type="record" depth="1">
+          </array>
+          <value name="modifiable">true</value>
         </record>
       </array>
       <value name="modifiable">true</value>
@@ -58,66 +49,48 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
-            <value name="field_usereditable">false</value>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
           <value name="is_public">false</value>
-          <value name="field_name">$schedule.runnable?</value>
-          <value name="field_type">string</value>
+          <value name="field_name">$schedule.id.pivot</value>
+          <value name="field_type">record</value>
           <value name="field_dim">0</value>
-          <array name="field_options" type="value" depth="1">
-            <value>false</value>
-            <value>true</value>
-          </array>
-          <record name="field_content_type" javaclass="com.wm.util.Values">
-            <value name="contentType">1</value>
-            <value name="internalType">reference</value>
-            <value name="dataTypeVersion">dtVersion2</value>
-            <array name="targetNames" type="record" depth="1">
-              <record javaclass="com.wm.util.Values">
-                <value name="xmlns">http://www.w3.org/2001/XMLSchema</value>
-                <value name="ncName">boolean</value>
-              </record>
-            </array>
-          </record>
-          <value name="nillable">false</value>
+          <value name="field_opt">true</value>
+          <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
+          <array name="rec_fields" type="record" depth="1">
+          </array>
+          <value name="modifiable">true</value>
         </record>
       </array>
       <value name="modifiable">true</value>
     </record>
   </record>
-  <value name="node_comment">### tundra.schedule:runnable
+  <value name="node_comment">### tundra.schedule.create:pivot
 
-Returns `true` if a scheduled task with the given identity is runnable
-on this server.
-
-Use this service to check if a long-running scheduled task should
-run or continue to run, or if it should exit due to the task being
-suspended or deleted, or the task scheduler on this server be paused
-or stopped.
+Schedules the given list of services for execution once or 
+periodically.
 
 #### Inputs:
 
-* `$schedule.id` is the optional identity of a scheduled task. If not
-  specified, only the current state of the task scheduler on the
-  server is taken into account to determine if a task is runnable.
+* `$schedule.create.pivot` is an `IData` document containing one child
+  `IData` document per scheduled task to be created conforming to the
+  `Tundra/tundra.schedule:create` input parameter `$schedule.create`
+  data structure.
 
 #### Outputs:
 
-* `$schedule.runnable?` is a boolean indicating if this scheduled task
-  should run or continue to run on this server. A scheduled task is
-  considered runnable if it has a ready or running state, and if the
-  task scheduler on this server is running and not paused.
+* `$schedule.id.pivot` is an `IData` document containing the unique 
+  identities of the created schedule tasks.
 </value>
   <value name="stateless">no</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
-  <value name="template">tundra_schedule_runnable</value>
+  <value name="template">tundra_schedule_create_pivot</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>

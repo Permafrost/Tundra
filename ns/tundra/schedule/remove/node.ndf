@@ -7,6 +7,7 @@
   <record name="svc_sig" javaclass="com.wm.util.Values">
     <record name="sig_in" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -21,7 +22,8 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$id</value>
+          <value name="is_public">false</value>
+          <value name="field_name">$schedule.id</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -48,7 +50,8 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$name</value>
+          <value name="is_public">false</value>
+          <value name="field_name">$schedule.name</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -75,7 +78,8 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$service</value>
+          <value name="is_public">false</value>
+          <value name="field_name">$schedule.service</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -102,7 +106,8 @@
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
           </record>
-          <value name="field_name">$filter</value>
+          <value name="is_public">false</value>
+          <value name="field_name">$schedule.filter</value>
           <value name="field_type">string</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
@@ -122,9 +127,11 @@
           <value name="is_global">false</value>
         </record>
       </array>
+      <value name="modifiable">true</value>
     </record>
     <record name="sig_out" javaclass="com.wm.util.Values">
       <value name="node_type">record</value>
+      <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
       <value name="nillable">true</value>
@@ -132,6 +139,7 @@
       <value name="is_global">false</value>
       <array name="rec_fields" type="record" depth="1">
       </array>
+      <value name="modifiable">true</value>
     </record>
   </record>
   <value name="node_comment">### tundra.schedule:remove
@@ -141,45 +149,46 @@ or name, service, and filter condition.
 
 #### Inputs:
 
-* $id is the internal identity assigned by Integration Server to 
-  the task when it was created. When specified, other input 
+* `$schedule.id` is the internal identity assigned by Integration 
+  Server to the task when it was created. When specified, other input
   arguments are ignored.
-* $name is an optional name given to the scheduled task by the 
-  creator, which is stored in the input pipeline of the task by 
-  tundra.schedule:create as $schedule.name.
-* $service is an optional fully-qualified service name which, if 
-  specified, will filter the scheduled tasks to be removed to only 
-  those that execute this service.
-* $filter is an optional tundra.condition:evaluate conditional
-  statement. All scheduled tasks which satisfy the given filter
-  condition will be deleted. The conditional statement is evaluated
-  against the pipeline, which includes the task being evaluated as an
-  IData document named $schedule with the same structure as returned
-  by tundra.schedule:get.
+* `$schedule.name` is an optional name given to the scheduled task by 
+  the creator, which is stored in the input pipeline of the task by
+  `Tundra/tundra.schedule:create` as `$schedule.name`.
+* `$schedule.service` is an optional fully-qualified service name 
+  which, if specified, will filter the scheduled tasks to be removed 
+  to only those that execute this service.
+* `$schedule.filter` is an optional `Tundra/tundra.condition:evaluate` 
+  conditional statement. All scheduled tasks which satisfy the given
+  filter condition will be deleted. The conditional statement is 
+  evaluated against the pipeline, which includes the task being 
+  evaluated as an `IData` document named `$schedule` with the same 
+  structure as returned by `Tundra/tundra.schedule:get`.
 
   Examples of some filter strings are as follows:
 
   1. Delete all complex scheduled tasks:
 
-     %$schedule/type% == "complex"
+     `%$schedule/type% == "complex"`
 
-  2. Delete all scheduled tasks that execute pub.string:concat:
+  2. Delete all scheduled tasks that execute `pub.string:concat`:
 
-     %$schedule/service% == "pub.string:concat"
+     `%$schedule/service% == "pub.string:concat"`
 
   3. Delete only the scheduled tasks that are suspended for a service
-     whose name is stored in the pipeline variable svc:
+     whose name is stored in the pipeline variable `svc`:
 
-     %$schedule/status% == "suspended" and %$schedule/service% == %svc%
+     `%$schedule/status% == "suspended" and %$schedule/service% == %svc%`
 
-  Refer to the tundra.condition:evaluate service documentation for 
-  the format of conditional statements.
+  Refer to the `Tundra/tundra.condition:evaluate` service 
+  documentation for the format of conditional statements.
 </value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template">tundra_schedule_remove</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
@@ -190,10 +199,16 @@ or name, service, and filter condition.
   <value name="svc_in_validator_options">default</value>
   <value name="svc_out_validator_options">default</value>
   <value name="auditoption">0</value>
+  <null name="auditfields_input"/>
+  <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
     <value name="document_data">0</value>
     <value name="startExecution">false</value>
     <value name="stopExecution">false</value>
     <value name="onError">true</value>
   </record>
+  <value name="pipeline_option">1</value>
+  <null name="originURI"/>
+  <value name="modifiable">true</value>
+  <value name="is_public">false</value>
 </Values>
