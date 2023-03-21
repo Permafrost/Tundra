@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2020-04-27T17:02:23.259
+// -----( CREATED: 2023-02-08 08:04:03 EST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -14,6 +14,7 @@ import java.net.URISyntaxException;
 import java.nio.charset.Charset;
 import permafrost.tundra.data.IDataHelper;
 import permafrost.tundra.data.IDataMap;
+import permafrost.tundra.flow.variable.SubstitutionType;
 import permafrost.tundra.lang.ExceptionHelper;
 import permafrost.tundra.net.uri.URIHelper;
 import permafrost.tundra.org.springframework.web.util.UriTemplate;
@@ -88,7 +89,7 @@ public final class uri
 		// [i] --- field:0:required host
 		// [i] --- field:0:optional port
 		// [i] - field:1:optional path
-		// [i] - field:0:optional path.absolute? {"true","false"}
+		// [i] - field:0:optional path.absolute? {&quot;true&quot;,&quot;false&quot;}
 		// [i] - field:0:optional file
 		// [i] - record:0:optional query
 		// [i] - field:0:optional fragment
@@ -189,7 +190,7 @@ public final class uri
 		// [o] --- field:0:required host
 		// [o] --- field:0:optional port
 		// [o] - field:1:optional path
-		// [o] - field:0:optional path.absolute? {"true","false"}
+		// [o] - field:0:optional path.absolute? {&quot;true&quot;,&quot;false&quot;}
 		// [o] - field:0:optional file
 		// [o] - record:0:optional query
 		// [o] - field:0:optional fragment
@@ -219,15 +220,19 @@ public final class uri
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:optional $string
-		// [i] record:0:optional $scope
+		// [i] field:0:optional $substitution.default
+		// [i] field:0:optional $substitution.mode {&quot;local&quot;,&quot;global&quot;,&quot;all&quot;}
+		// [i] record:0:optional $pipeline
 		// [o] field:0:optional $string
 		IDataCursor cursor = pipeline.getCursor();
 
 		try {
 		    String uri = IDataHelper.get(cursor, "$string", String.class);
-		    IData scope = IDataHelper.get(cursor, "$scope", IData.class);
+		    String defaultValue = IDataHelper.get(cursor, "$substitution.default", String.class);
+		    SubstitutionType mode = IDataHelper.get(cursor, "$substitution.mode", SubstitutionType.class);
+		    IData scope = IDataHelper.first(cursor, IData.class, "$pipeline", "$scope");
 
-		    IDataHelper.put(cursor, "$string", URIHelper.substitute(uri, scope == null ? pipeline : scope), false);
+		    IDataHelper.put(cursor, "$string", URIHelper.substitute(uri, defaultValue, mode, scope == null ? pipeline : scope), false);
 		} catch(URISyntaxException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
