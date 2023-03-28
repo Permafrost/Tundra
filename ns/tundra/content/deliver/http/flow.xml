@@ -1060,12 +1060,12 @@
 </MAP>
 </BRANCH>
 
-<BRANCH TIMEOUT="" SWITCH="/$headers/Content-Encoding">
-  <COMMENT></COMMENT>
+<BRANCH TIMEOUT="" LABELEXPRESSIONS="true">
+  <COMMENT>compress request body if required</COMMENT>
 
   <!-- nodes -->
 
-<INVOKE NAME="gzip" TIMEOUT="" SERVICE="tundra.gzip:compress" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+<INVOKE NAME="%$headers/Content-Encoding% == &quot;gzip&quot; or %$headers/X-Request-Body-Compression% == &quot;gzip&quot;" TIMEOUT="" SERVICE="tundra.gzip:compress" VALIDATE-IN="$none" VALIDATE-OUT="$none">
   <COMMENT></COMMENT>
 
   <!-- nodes -->
