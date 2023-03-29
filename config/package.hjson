@@ -158,12 +158,20 @@
                 # the Integration Server web site, which can be used to view
                 # currently executing services, call stack, and pipelines.
                 enabled: true
+                # When started is true, the service usage feature will be started
+                # automatically at package startup, otherwise it will need to be
+                # started manually. This setting has no effect when enabled is false.
+                started: false
             }
             statistics: {
                 # When enabled, adds a Solutions | Tundra > Service Statistics page
                 # to the Integration Server web site, which can be used to collect
                 # and view service execution duration statistics.
                 enabled: true
+                # When started is true, the service statistics feature will be started
+                # automatically at package startup, otherwise it will need to be
+                # started manually. This setting has no effect when enabled is false.
+                started: false
             }
         }
         thread: {
