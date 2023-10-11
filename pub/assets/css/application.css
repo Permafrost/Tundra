@@ -13,10 +13,14 @@ body {
   justify-content: end;
 }
 .modal-card {
-  min-height: 10%;
+  min-height: 25%;
   max-height: 90%;
   width: 90%;
-  margin-top: 2rem;
+  margin: 5%;
+  padding: 0;
+}
+.modal-background {
+  background-color: rgba(10,10,10,0.5);
 }
 table>caption {
   border: 2px solid white;
@@ -36,8 +40,8 @@ table>tbody>tr:nth-child(odd)>td,
 table>tbody>tr:nth-child(odd)>th,
 table>tbody>tr:nth-child(odd)>td[rowspan],
 table>tbody>tr:nth-child(odd)>th[rowspan],
-table>tbody>tr:nth-child(even)>td[rowspan],
-table>tbody>tr:nth-child(even)>td[rowspan] {
+table>tbody>tr:nth-child(even)>td[rowspan]:not([rowspan="1"]),
+table>tbody>tr:nth-child(even)>th[rowspan]:not([rowspan="1"]) {
   background-color: #F8F8F8;
 }
 table>thead>tr>th,
@@ -87,11 +91,19 @@ table>tfoot>tr>th {
 .table tr.selected>th {
   background-color: #d8f3e7;
 }
-tr.disabled td,
-tr.disabled td .tag,
-tr.disabled th,
-tr.disabled th .tag {
+.table tr.disabled td,
+.table tr.disabled td .tag,
+.table tr.disabled th,
+.table tr.disabled th .tag,
+.table tr.disabled td a:hover,
+.table tr.disabled th a:hover {
   color: #999;
+}
+.table tr.disabled td .button.is-ghost,
+.table tr.disabled th .button.is-ghost,
+.table tr.disabled td a,
+.table tr.disabled th a {
+  color: #93a1de;
 }
 table.sortable thead {
   cursor: pointer;
@@ -108,4 +120,23 @@ table.sortable .sorttable_sorted_reverse:after {
 table.sortable #sorttable_sortfwdind,
 table.sortable #sorttable_sortrevind {
   display:none;
+}
+.wrappable,
+.IData>.IData-Body>tr>td,
+.IDataArray>.IDataArray-Body>tr>td {
+  overflow-wrap: anywhere;
+}
+.IData th {
+  overflow-wrap: normal;
+}
+.unwrappable {
+  white-space: nowrap;
+}
+.button.is-primary[disabled],
+.button.is-link[disabled],
+.button.is-info[disabled],
+.button.is-success[disabled],
+.button.is-danger[disabled],
+.button.is-warning[disabled] {
+  border-color: transparent;
 }

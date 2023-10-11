@@ -66,9 +66,9 @@
         %ifvar $configurations -notempty%
           <table class="table is-fullwidth">
             <caption class="m-0 p-0">
-              <span class="is-pulled-left">
+              <p class="is-pulled-left">
                 Tundra &gt; Configuration
-              </span>
+              </p>
             </caption>
             <thead>
               <tr>
@@ -88,25 +88,36 @@
                     Configuration
                   </span>
                 </th>
-                <th width="1%" class="has-text-centered m-0 p-0" style="visibility:hidden">
-                  <span class="icon" title="Refresh package configuration from disk">
-                    <i class="fas fa-solid fa-rotate-right"></i>
-                  </span>
-                </th>
               </tr>
             </thead>
             <tbody>
               %loop $configurations%
               <tr>
                 <td class="m-0 p-0">
-                  <a class="button is-ghost" href="edit.dsp?package=%value package encode(url)%" title="Edit package configuration">
-                    <span class="icon">
-                      <i class="far fa-pen-to-square"></i>
-                    </span>
-                    <span>
-                      %value package encode(xml)%
-                    </span>
-                  </a>
+                  <div class="columns">
+                    <div class="column is-four-fifths">
+                      <a class="button is-ghost" href="edit.dsp?package=%value package encode(url)%" title="Edit package configuration: %value package encode(xml)%">
+                        <span class="icon">
+                          <i class="far fa-pen-to-square"></i>
+                        </span>
+                        <span>
+                          %value package encode(xml)%
+                        </span>
+                      </a>
+                    </div>
+                    <div class="column is-one-fifth">
+                      <div class="field has-addons is-pulled-right p-2">
+                        <form method="get" class="control">
+                          <input type="hidden" name="action" value="refresh">
+                          <input type="hidden" name="package" value="%value package encode(xml)%">
+                          <button type="submit" class="button is-light is-small" title="Refresh package configuration from disk: %value package encode(xml)%">
+                            <span class="icon">
+                              <i class="fa-solid fa-rotate-right"></i>
+                            </span>
+                          </button>
+                        </form>
+                      </div>
+                  </div>
                 </td>
                 <td>
                   %ifvar configuration.length equals('0')%
@@ -126,13 +137,6 @@
                       </div>
                     </details>
                   %endif%
-                </td>
-                <td class="has-text-centered m-0 p-0" style="background-color:white">
-                  <a class="button is-info is-light" href="?action=refresh&package=%value package encode(url)%" title="Refresh package configuration from disk: %value package encode(xml)%">
-                    <span class="icon" title="Refresh package configuration from disk: %value package encode(xml)%">
-                      <i class="fas fa-solid fa-rotate-right"></i>
-                    </span>
-                  </a>
                 </td>
               </tr>
               %endloop%

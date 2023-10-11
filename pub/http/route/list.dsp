@@ -28,7 +28,7 @@
       %endif%
 
       %invoke tundra.http.route:list%
-        <table class="table is-bordered is-striped is-fullwidth is-hoverable is-narrow">
+        <table class="table is-fullwidth is-narrow">
           <caption class="">
             <span class="is-pulled-left">
               Tundra &gt; HTTP Route
@@ -38,7 +38,7 @@
               <form role="form" method="post">
                 <div class="form-group">
                   <input type="hidden" name="action" value="refresh">
-                  <button type="submit" class="button is-success ml-2" title="Refresh all HTTP routes from server-specific and package-specific http-routes.cnf configuration files">
+                  <button type="submit" class="button ml-2" title="Refresh all HTTP routes from server-specific and package-specific http-routes.cnf configuration files">
                     <span class="icon">
                       <i class="fas fa-solid fa-rotate-right"></i>
                     </span>
@@ -50,12 +50,54 @@
 
           <thead>
             <tr>
-              <th>Directive</th>
-              <th>HTTP Method</th>
-              <th>URI Template</th>
-              <th>Target</th>
-              <th>Description</th>
-              <th>Source</th>
+              <th class="unwrappable">
+                <span class="icon" title="Directive">
+                  <i class="fa-solid fa-diamond-turn-right"></i>
+                </span>
+                <span>
+                  Directive
+                </span>
+              </th>
+              <th class="unwrappable">
+                <span class="icon" title="HTTP Method">
+                  <i class="fa-solid fa-paper-plane"></i>
+                </span>
+                <span>
+                  HTTP Method
+                </span>
+              </th>
+              <th class="unwrappable">
+                <span class="icon" title="URI Template">
+                  <i class="fa-solid fa-folder-tree"></i>
+                </span>
+                <span>
+                  URI Template
+                </span>
+              </th>
+              <th class="unwrappable">
+                <span class="icon" title="Target">
+                  <i class="fa-solid fa-gear"></i>
+                </span>
+                <span>
+                  Target
+                </span>
+              </th>
+              <th class="unwrappable">
+                <span class="icon" title="Description">
+                  <i class="fa-solid fa-bars"></i>
+                </span>
+                <span>
+                  Description
+                </span>
+              </th>
+              <th class="unwrappable">
+                <span class="icon" title="Source">
+                  <i class="fa-solid fa-file-code"></i>
+                </span>
+                <span>
+                  Source
+                </span>
+              </th>
             </tr>
           </thead>
 
@@ -110,7 +152,7 @@
                 by reloading the Tundra package, or by clicking the Refresh button
                 on this page.</p>
               </td>
-              <td>&ndash;</td>
+              <td>Path to source file the route was defined in</td>
             </tr>
           %else%
             %loop $routes -$index%

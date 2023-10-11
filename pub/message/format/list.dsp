@@ -28,7 +28,7 @@
       %endif%
 
       %invoke tundra.message.format:list%
-        <table class="table is-bordered is-striped is-fullwidth is-hoverable is-narrow">
+        <table class="table is-fullwidth is-narrow">
           <caption>
             <span class="is-pulled-left">
               Tundra &gt; Message Format
@@ -38,7 +38,7 @@
               <form role="form" method="post">
                 <div class="form-group">
                   <input type="hidden" name="action" value="refresh">
-                  <button type="submit" class="button is-success ml-2" title="Refresh all message formats from package configuration files">
+                  <button type="submit" class="button ml-2" title="Refresh all message formats from package configuration files">
                     <span class="icon">
                       <i class="fas fa-solid fa-rotate-right"></i>
                     </span>
@@ -50,17 +50,76 @@
 
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Description</th>
-              <th>Content Type</th>
-              <th>Namespace</th>
-              <th>Recognize</th>
-              <th>Parse</th>
-              <th>Validate</th>
-              <th>Route</th>
-              <th class="has-text-centered">
-                <span class="icon" title="Enabled / Disabled">
-                  <i class="fas fa-solid fa-circle is-size-5"></i>
+              <th class="unwrappable">
+                <span class="icon" title="Name">
+                  <i class="fa-solid fa-location-dot"></i>
+                </span>
+                <span>
+                  Name
+                </span>
+              </th>
+              <th class="unwrappable">
+                <span class="icon" title="Description">
+                  <i class="fa-solid fa-bars"></i>
+                </span>
+                <span>
+                  Description
+                </span>
+              </th>
+              <th class="unwrappable">
+                <span class="icon" title="Content Type">
+                  <i class="fa-solid fa-file-code"></i>
+                </span>
+                <span>
+                  Content Type
+                </span>
+              </th>
+              <th class="unwrappable">
+                <span class="icon" title="Namespace">
+                  <i class="fa-solid fa-box"></i>
+                </span>
+                <span>
+                  Namespace
+                </span>
+              </th>
+              <th class="unwrappable">
+                <span class="icon" title="Recognize">
+                  <i class="fa-solid fa-eye"></i>
+                </span>
+                <span>
+                  Recognize
+                </span>
+              </th>
+              <th class="unwrappable">
+                <span class="icon" title="Parse">
+                  <i class="fa-solid fa-book-open-reader"></i>
+                </span>
+                <span>
+                  Parse
+                </span>
+              </th>
+              <th class="unwrappable">
+                <span class="icon" title="Validate">
+                  <i class="fa-solid fa-list-check"></i>
+                </span>
+                <span>
+                  Validate
+                </span>
+              </th>
+              <th class="unwrappable">
+                <span class="icon" title="Route">
+                  <i class="fa-solid fa-diamond-turn-right"></i>
+                </span>
+                <span>
+                  Route
+                </span>
+              </th>
+              <th class="unwrappable has-text-centered">
+                <span class="icon" title="Enabled">
+                  <i class="fa-solid fa-circle-check"></i>
+                </span>
+                <span>
+                  Enabled
                 </span>
               </th>
             </tr>
@@ -212,14 +271,14 @@
                     &ndash;
                   %endif%
                 </td>
-                <td class="has-text-centered">
+                <td class="has-text-centered pt-2">
                   %ifvar enabled equals('true')%
                     <span class="icon" title="Enabled">
-                      <i class="fas fa-solid fa-circle-check has-text-success is-size-5"></i>
+                      <i class="fa-solid fa-circle-check has-text-success"></i>
                     </span>
                   %else%
                     <span class="icon" title="Disabled">
-                      <i class="far fa-regular fa-circle-xmark has-text-danger is-size-5"></i>
+                      <i class="fa-regular fa-circle-xmark has-text-danger"></i>
                     </span>
                   %endif%
                 </td>

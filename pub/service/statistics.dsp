@@ -44,7 +44,7 @@
       %endswitch%
 
       %invoke tundra.support.service.statistics:list%
-        <table class="table is-bordered is-striped is-fullwidth is-hoverable is-narrow sortable">
+        <table class="table is-fullwidth is-narrow sortable">
           <caption>
             <span class="is-pulled-left">
               Tundra &gt; Service Usage Statistics%ifvar $context/statistics.length -notempty%
@@ -63,50 +63,107 @@
               %endif%
             </span>
 
-            <div class="field is-grouped is-pulled-right">
-              <form role="form" class="" method="post">
-                %ifvar $context/sampling.started? equals('true')%
-                  <div class="form-group">
-                    <input type="hidden" name="action" value="stop">
-                    <button type="submit" class="button is-warning ml-2" title="Pause service statistics sampling">
-                      <span class="icon">
-                        <i class="fas fa-regular fa-pause"></i>
-                      </span>
-                    </button>
-                  </div>
-                %else%
-                  <div class="form-group">
-                    <input type="hidden" name="action" value="start">
-                    <button type="submit" class="button is-success ml-2" title="Start service statistics sampling">
-                      <span class="icon">
-                        <i class="fas fa-solid fa-play"></i>
-                      </span>
-                    </button>
-                  </div>
-                %endif%
-              </form>
-
-              <span class="">
-                <a href="#" class="button ml-2" onClick="window.location.reload();" title="Refresh service statistics">
+            <div class="field has-addons is-pulled-right">
+              <form method="post" class="control">
+                <input type="hidden" name="action" value="start">
+                <button type="submit" class="button is-outlined" title="Start service statistics sampling" %ifvar $context/sampling.started? equals('true')%disabled%endif%>
                   <span class="icon">
-                    <i class="fas fa-solid fa-rotate-right"></i>
+                    <i class="fa-solid fa-play"></i>
                   </span>
-                </a>
-              </span>
+                </button>
+              </form>
+              <form method="post" class="control">
+                <input type="hidden" name="action" value="stop">
+                <button type="submit" class="button is-outlined" title="Stop service statistics sampling" %ifvar $context/sampling.started? equals('true')%%else%disabled%endif%>
+                  <span class="icon">
+                    <i class="fa-solid fa-stop"></i>
+                  </span>
+                </button>
+              </form>
+              <form method="get" class="control">
+                <button type="submit" class="button is-outlined" title="Refresh service statistics" %ifvar $context/sampling.started? equals('true')%%else%disabled%endif%>
+                  <span class="icon">
+                    <i class="fa-solid fa-rotate-right"></i>
+                  </span>
+                </button>
+              </form>
             </div>
           </caption>
 
           <thead>
             <tr>
-              <th class="has-text-left sorttable_sorted" width="35%">Service</th>
-              <th class="has-text-right" width="10%">Minimum Duration<br/><small>(seconds)</small></th>
-              <th class="has-text-right" width="10%">Average Duration<br/><small>(seconds)</small></th>
-              <th class="has-text-right" width="10%">Standard Deviation<br/><small>(seconds)</small></th>
-              <th class="has-text-right" width="10%">Maximum Duration<br/><small>(seconds)</small></th>
-              <th class="has-text-right" width="10%">Total Cumulative Duration<br/><small>(seconds)</small></th>
-              <th class="has-text-right" width="5%">Successful Execution Count</th>
-              <th class="has-text-right" width="5%">Failed Execution Count</th>
-              <th class="has-text-right" width="5%">Total Execution Count</th>
+              <th class="unwrappable has-text-left sorttable_sorted" width="37%">
+                <span class="icon" title="Service">
+                  <i class="fa-solid fa-gear"></i>
+                </span>
+                <span>
+                  Service
+                </span>
+              </th>
+              <th class="unwrappable has-text-right" width="9%">
+                <span class="icon" title="Minimum Duration">
+                  <i class="fa-solid fa-stopwatch"></i>
+                </span>
+                <span>
+                  Minimum Duration<br><small>(seconds)</small>
+                </span>
+              </th>
+              <th class="unwrappable has-text-right" width="9%">
+                <span class="icon" title="Average Duration">
+                  <i class="fa-solid fa-stopwatch"></i>
+                </span>
+                <span>
+                  Average Duration<br><small>(seconds)</small>
+                </span>
+              </th>
+              <th class="unwrappable has-text-right" width="9%">
+                <span class="icon" title="Standard Deviation Duration">
+                  <i class="fa-solid fa-stopwatch"></i>
+                </span>
+                <span>
+                  Standard Deviation<br>Duration<br><small>(seconds)</small>
+                </span>
+              </th>
+              <th class="unwrappable has-text-right" width="9%">
+                <span class="icon" title="Maximum Duration">
+                  <i class="fa-solid fa-stopwatch"></i>
+                </span>
+                <span>
+                  Maximum Duration<br><small>(seconds)</small>
+                </span>
+              </th>
+              <th class="unwrappable has-text-right" width="9%">
+                <span class="icon" title="Total Cumulative Duration">
+                  <i class="fa-solid fa-stopwatch"></i>
+                </span>
+                <span>
+                  Total Cumulative<br>Duration<br><small>(seconds)</small>
+                </span>
+              </th>
+              <th class="unwrappable has-text-right" width="6%">
+                <span class="icon" title="Successful Execution Count">
+                  <i class="fa-solid fa-circle-check"></i>
+                </span>
+                <span>
+                  Successful<br>Execution<br>Count
+                </span>
+              </th>
+              <th class="unwrappable has-text-right" width="6%">
+                <span class="icon" title="Failed Execution Count">
+                  <i class="fa-solid fa-circle-xmark"></i>
+                </span>
+                <span>
+                  Failed<br>Execution<br>Count
+                </span>
+              </th>
+              <th class="unwrappable has-text-right" width="6%">
+                <span class="icon" title="Total Execution Count">
+                  <i class="fa-solid fa-circle"></i>
+                </span>
+                <span>
+                  Total<br>Execution<br>Count
+                </span>
+              </th>
             </tr>
           </thead>
 
