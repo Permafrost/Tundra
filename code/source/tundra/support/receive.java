@@ -1,7 +1,7 @@
 package tundra.support;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2022-03-03 05:40:14 EST
+// -----( CREATED: 2023-06-15 05:01:38 EST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -67,24 +67,24 @@ public final class receive
 		            responseCode = 202;
 		            responseBody = InputStreamHelper.normalize(content, charset);
 		        } else {
-		            exception = ExceptionHelper.getInitialCause(exception);
-		            String exceptionClass = exception.getClass().getName();
-		            if ("permafrost.tundra.content.MalformedException".equals(exceptionClass)) {
+		            Throwable initialException = ExceptionHelper.getInitialCause(exception);
+		            String initialExceptionClass = initialException.getClass().getName();
+		            if ("permafrost.tundra.content.MalformedException".equals(initialExceptionClass)) {
 		                responseCode = 400;
-		            } else if ("permafrost.tundra.lang.AuthenticationException".equals(exceptionClass)) {
+		            } else if ("permafrost.tundra.lang.AuthenticationException".equals(initialExceptionClass)) {
 		                responseCode = 401;
-		            } else if ("permafrost.tundra.lang.SecurityException".equals(exceptionClass)) {
+		            } else if ("permafrost.tundra.lang.SecurityException".equals(initialExceptionClass)) {
 		                responseCode = 403;
-		            } else if ("permafrost.tundra.content.UnsupportedException".equals(exceptionClass)) {
+		            } else if ("permafrost.tundra.content.UnsupportedException".equals(initialExceptionClass)) {
 		                responseCode = 406;
-		            } else if ("permafrost.tundra.content.DuplicateException".equals(exceptionClass)) {
+		            } else if ("permafrost.tundra.content.DuplicateException".equals(initialExceptionClass)) {
 		                responseCode = 409;
-		            } else if ("permafrost.tundra.content.ValidationException".equals(exceptionClass)) {
+		            } else if ("permafrost.tundra.content.ValidationException".equals(initialExceptionClass)) {
 		                responseCode = 422;
 		            } else {
 		                responseCode = 500;
 		            }
-		            responseBody = InputStreamHelper.normalize(exception.getMessage(), charset);
+		            responseBody = InputStreamHelper.normalize(ExceptionHelper.getMessage(exception, false, false), charset);
 		        }
 		
 		        IData headers = null;
