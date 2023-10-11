@@ -11,6 +11,18 @@
     # Tundra package features, which can be enabled with feature flags in
     # this configuration section.
     feature: {
+        configuration: {
+            ui: {
+                # When enabled, adds a Solutions | Tundra > Configuration page to
+                # the Integration Server web site, which can be used to view
+                # and edit package configuration settings.
+                enabled: true
+                # The file format to be used for package configuration files,
+                # must be one of the following supported formats:
+                # hjson, json, properties, values, xml, yaml.
+                format: hjson
+            }
+        }
         content: {
             filter: {
                 # When enabled, wraps all existing Integration Server content
