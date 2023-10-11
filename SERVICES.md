@@ -11405,11 +11405,14 @@ the given list's items.
 
 #### Inputs:
 
-* `$list` is the list to be sorted.
+* `$sort.input` is the list to be sorted.
+* `$sort.descending?` is an optional boolean which if `true` will sort
+  the given list in descending order. Defaults to `false` (ascending
+  order).
 
 #### Outputs:
 
-* `$list` is the sorted list.
+* `$sort.output` is the sorted list.
 
 ---
 
@@ -12416,11 +12419,14 @@ the given list's items.
 
 #### Inputs:
 
-* `$list` is the list to be sorted.
+* `$sort.input` is the list to be sorted.
+* `$sort.descending?` is an optional boolean which if `true` will sort
+  the given list in descending order. Defaults to `false` (ascending
+  order).
 
 #### Outputs:
 
-* `$list` is the sorted list.
+* `$sort.output` is the sorted list.
 
 ---
 
