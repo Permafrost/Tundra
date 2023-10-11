@@ -10,6 +10,8 @@
   </array>
   <array name="imports" type="value" depth="1">
     <value>permafrost.tundra.data.IDataHelper</value>
+    <value>permafrost.tundra.data.transform.bool.Formatter</value>
+    <value>permafrost.tundra.data.transform.Transformer</value>
     <value>permafrost.tundra.lang.BooleanHelper</value>
     <value>permafrost.tundra.util.RandomHelper</value>
   </array>

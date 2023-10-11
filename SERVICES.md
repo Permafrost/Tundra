@@ -508,12 +508,13 @@ string values specified for `true` and `false`.
 
 ### tundra.bool:format
 
-Formats the given boolean string using the appropriate
-boolean value specified for `true` and `false`.
+Formats the given boolean string using the appropriate boolean value
+specified for `true` and `false`.
 
 #### Inputs:
 
-* `$string` is the string value to be formatted.
+* `$format.operands`  is an `IData` document containing arbitrarily
+  specified boolean strings to be formatted.
 * `$value.true.input` is an optional string value used to determine
   if `$string` represents a boolean value of `true`.
 * `$value.false.input` is an optional string value used to determine
@@ -521,11 +522,13 @@ boolean value specified for `true` and `false`.
 * `$value.true.output` is an optional string value returned if
   `$string` represents the boolean value `true`. Defaults to "true".
 * `$value.false.output` is an optional string value returned if
-  `$string` represents the boolean value `false`. Defaults to "false".
+  `$string` represents the boolean value `false`. Defaults to
+  "false".
 
 #### Outputs:
 
-* `$string` is the reformatted boolean string.
+* `$format.results` is an `IData` document containing the reformatted
+  boolean strings.
 
 ---
 
