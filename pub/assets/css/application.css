@@ -15,8 +15,7 @@ body {
 .modal-card {
   min-height: 10%;
   max-height: 90%;
-  min-width: 10%;
-  max-width: 90%;
+  width: 90%;
   margin-top: 2rem;
 }
 table>caption {
@@ -102,9 +101,114 @@ table.sortable #sorttable_sortfwdind,
 table.sortable #sorttable_sortrevind {
   display:none;
 }
-.pipeline .IData td {
-  overflow-wrap: anywhere;
+html {
+  font-size: 11px;
+}
+body {
+  font-family: "Tahoma", "Verdana", "Arial", "Geneva", "Times", "Helvetica";
+}
+.modal-card-head {
+  text-align:  left;
+}
+.modal {
+  align-items: start;
+  flex-direction: row;
+  justify-content: end;
+}
+.modal-card {
+  min-height: 10%;
+  max-height: 90%;
+  width: 90%;
+  margin-top: 2rem;
+}
+table>caption {
+  border: 2px solid white;
+  font-weight: bold;
+  text-align: left;
+}
+table>thead>tr>th,
+table>tfoot>tr>td,
+table>tfoot>tr>th {
+  background-color: #DADADA;
+}
+table>tbody>tr:nth-child(even)>td,
+table>tbody>tr:nth-child(even)>th {
+  background-color: #F0F0F0;
+}
+table>tbody>tr:nth-child(odd)>td,
+table>tbody>tr:nth-child(odd)>th,
+table>tbody>tr:nth-child(odd)>td[rowspan],
+table>tbody>tr:nth-child(odd)>th[rowspan],
+table>tbody>tr:nth-child(even)>td[rowspan],
+table>tbody>tr:nth-child(even)>td[rowspan] {
+  background-color: #F8F8F8;
+}
+table>thead>tr>th,
+table>tbody>tr>th,
+table>tfoot>tr>th,
+table>thead>tr>td,
+table>tbody>tr>td,
+table>tfoot>tr>td,
+table.table>thead>tr>th,
+table.table>tbody>tr>th,
+table.table>tfoot>tr>th,
+table.table>thead>tr>td,
+table.table>tbody>tr>td,
+table.table>tfoot>tr>td,
+table.table.is-bordered>thead>tr>th,
+table.table.is-bordered>tbody>tr>th,
+table.table.is-bordered>tfoot>tr>th,
+table.table.is-bordered>thead>tr>td,
+table.table.is-bordered>tbody>tr>td,
+table.table.is-bordered>tfoot>tr>td,
+.pipeline table.IData th,
+.pipeline table.IData td {
+  border: 2px solid white;
+  padding: 5px;
+  text-align: left;
+}
+table>tbody>tr.rowspan:not(:first-child)>td,
+table>tbody+tbody>tr:first-child>td {
+  border-top: 16px solid white !important;
+}
+table>tfoot>tr>td,
+table>tfoot>tr>th {
+  vertical-align: middle;
+}
+.table>colgroup+thead>tr:first-child>th,
+.table>thead:first-child>tr:first-child>th,
+.table>colgroup+thead>tr:first-child>td,
+.table>thead:first-child>tr:first-child>td {
+  border-top: 2px solid white;
+}
+.table .table {
+  width: auto;
+}
+tr.disabled td,
+tr.disabled th {
+  color: #999;
+}
+table.sortable thead {
+  cursor: pointer;
+}
+table.sortable .sorttable_nosort {
+  cursor: default;
+}
+table.sortable .sorttable_sorted:after {
+  content: " \25B4";
+}
+table.sortable .sorttable_sorted_reverse:after {
+  content: " \25BE";
+}
+table.sortable #sorttable_sortfwdind,
+table.sortable #sorttable_sortrevind {
+  display:none;
 }
 .pipeline .IData th {
   overflow-wrap: break-word;
+  word-break: break-all;
+}
+.pipeline .IData td {
+  overflow-wrap: anywhere;
+  word-break: break-all;
 }
