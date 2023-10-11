@@ -1,7 +1,7 @@
 package tundra.support.http;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2022-09-07 06:23:57 EST
+// -----( CREATED: 2023-05-02 05:00:34 EST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -150,8 +150,10 @@ public final class client
 	        String connectTimeout = IDataHelper.get(cursor, "connectTimeout", String.class);
 	        String maxKeepAliveConnections = IDataHelper.get(cursor, "maxKeepAliveConnections", String.class);
 	        String keepAliveTimeout = IDataHelper.get(cursor, "keepAliveTimeout", String.class);
+	        String trustStore = IDataHelper.get(cursor, "trustStore", String.class);
 	        String proxyAlias = IDataHelper.get(cursor, "proxyAlias", String.class);
 	        String useJSSE = IDataHelper.get(cursor, "useJSSE", String.class);
+	        String followRedirect = IDataHelper.get(cursor, "followRedirect", String.class);
 	
 	        IDataCursor requestCursor = request.getCursor();
 	        String uri = IDataHelper.get(requestCursor, "uri", String.class);
@@ -284,8 +286,10 @@ public final class client
 	        IDataHelper.put(scopeCursor, "connectTimeout", connectTimeout, false);
 	        IDataHelper.put(scopeCursor, "maxKeepAliveConnections", maxKeepAliveConnections, false);
 	        IDataHelper.put(scopeCursor, "keepAliveTimeout", keepAliveTimeout, false);
+	        IDataHelper.put(scopeCursor, "trustStore", trustStore, false);
 	        IDataHelper.put(scopeCursor, "proxyAlias", proxyAlias, false);
 	        IDataHelper.put(scopeCursor, "useJSSE", useJSSE, false);
+	        IDataHelper.put(scopeCursor, "followRedirect", followRedirect, false);
 	        scopeCursor.destroy();
 	
 	        // execute request
