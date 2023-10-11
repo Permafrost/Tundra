@@ -13193,6 +13193,7 @@ Returns information about the package with the given name.
 * `$package` contains the following information about the package
   with the given name if it exists:
   * `name` is the name of the package.
+  * `description` is the optional description of the package.
   * `version` is the version of the package as per its manifest.
   * `enabled?` is a boolean indicating if the package is enabled.
   * `system?` is a boolean indicating if the package is considered
@@ -13258,6 +13259,7 @@ this Integration Server.
 * `$packages` is the list of either all known packages or only those
   enabled on this Integration Server:
   * `name` is the name of the package.
+  * `description` is the optional description of the package.
   * `version` is the version of the package as per its manifest.
   * `enabled?` is a boolean indicating if the package is enabled.
   * `system?` is a boolean indicating if the package is considered
@@ -13304,6 +13306,7 @@ is stored.
 * `$package` contains the following information about the package
   in which the calling service is stored.
   * `name` is the name of the package.
+  * `description` is the optional description of the package.
   * `version` is the version of the package as per its manifest.
   * `enabled?` is a boolean indicating if the package is enabled.
   * `system?` is a boolean indicating if the package is considered

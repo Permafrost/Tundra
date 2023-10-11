@@ -1,8 +1,8 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2017-05-07 15:02:36 EST
-// -----( ON-HOST: 192.168.66.129
+// -----( CREATED: 2023-08-17 12:32:10 EST
+// -----( ON-HOST: PCL39264Q2.internal.qr.com.au
 
 import com.wm.data.*;
 import com.wm.util.Values;
@@ -34,13 +34,21 @@ public final class packages
 	{
 		// --- <<IS-START(exists)>> ---
 		// @sigtype java 3.5
-		// [i] field:0:optional $name
-		// [o] field:0:required $exists?
+		// [i] field:0:optional $package.name
+		// [o] field:0:required $package.exists? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
-		    String packageName = IDataHelper.get(cursor, "$name", String.class);
-		    IDataHelper.put(cursor, "$exists?", PackageHelper.exists(packageName), String.class);
+		    boolean backwardsCompatible = false;
+		    String packageName = IDataHelper.get(cursor, "$package.name", String.class);
+		    if (packageName == null) {
+		        packageName = IDataHelper.get(cursor, "$name", String.class);
+		        backwardsCompatible = packageName != null;
+		    }
+		    IDataHelper.put(cursor, "$package.exists?", PackageHelper.exists(packageName), String.class);
+		    if (backwardsCompatible) {
+		        IDataHelper.put(cursor, "$exists?", PackageHelper.exists(packageName), String.class);
+		    }
 		} finally {
 		    cursor.destroy();
 		}
@@ -59,9 +67,10 @@ public final class packages
 		// [i] field:0:optional $name
 		// [o] record:0:optional $package
 		// [o] - field:0:required name
+		// [o] - field:0:optional description
 		// [o] - field:0:required version
-		// [o] - field:0:required enabled?
-		// [o] - field:0:required system?
+		// [o] - field:0:required enabled? {&quot;false&quot;,&quot;true&quot;}
+		// [o] - field:0:required system? {&quot;false&quot;,&quot;true&quot;}
 		// [o] - record:1:required dependencies
 		// [o] -- field:0:required package
 		// [o] -- field:0:required version
@@ -91,7 +100,7 @@ public final class packages
 		// [o] -- field:0:required nodes.length
 		// [o] -- field:1:required unresolved
 		// [o] -- field:0:required unresolved.length
-		// [o] field:0:required $exists?
+		// [o] field:0:required $exists? {&quot;false&quot;,&quot;true&quot;}
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
@@ -116,12 +125,13 @@ public final class packages
 	{
 		// --- <<IS-START(list)>> ---
 		// @sigtype java 3.5
-		// [i] field:0:optional $enabled? {"false","true"}
-		// [o] record:1:required $packages
+		// [i] field:0:optional $enabled? {&quot;false&quot;,&quot;true&quot;}
+		// [o] record:1:optional $packages
 		// [o] - field:0:required name
+		// [o] - field:0:optional description
 		// [o] - field:0:required version
-		// [o] - field:0:required enabled?
-		// [o] - field:0:required system?
+		// [o] - field:0:required enabled? {&quot;false&quot;,&quot;true&quot;}
+		// [o] - field:0:required system? {&quot;false&quot;,&quot;true&quot;}
 		// [o] - record:1:required dependencies
 		// [o] -- field:0:required package
 		// [o] -- field:0:required version
@@ -179,9 +189,10 @@ public final class packages
 		// @sigtype java 3.5
 		// [o] record:0:optional $package
 		// [o] - field:0:required name
+		// [o] - field:0:optional description
 		// [o] - field:0:required version
-		// [o] - field:0:required enabled?
-		// [o] - field:0:required system?
+		// [o] - field:0:required enabled? {&quot;false&quot;,&quot;true&quot;}
+		// [o] - field:0:required system? {&quot;false&quot;,&quot;true&quot;}
 		// [o] - record:1:required dependencies
 		// [o] -- field:0:required package
 		// [o] -- field:0:required version
