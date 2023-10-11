@@ -60,7 +60,7 @@
               <th>Route</th>
               <th class="has-text-centered">
                 <span class="icon" title="Enabled / Disabled">
-                  <i class="fas fa-solid fa-circle"></i>
+                  <i class="fas fa-solid fa-circle is-size-5"></i>
                 </span>
               </th>
             </tr>
@@ -215,11 +215,11 @@
                 <td class="has-text-centered">
                   %ifvar enabled equals('true')%
                     <span class="icon" title="Enabled">
-                      <i class="fas fa-solid fa-circle has-text-success"></i>
+                      <i class="fas fa-solid fa-circle-check has-text-success is-size-5"></i>
                     </span>
                   %else%
                     <span class="icon" title="Disabled">
-                      <i class="far fa-regular fa-circle has-text-danger"></i>
+                      <i class="far fa-regular fa-circle-xmark has-text-danger is-size-5"></i>
                     </span>
                   %endif%
                 </td>
