@@ -1,3 +1,110 @@
+# 0.0.37 (2023-10-12)
+
+* add `./pub/configuration/` DSP pages for viewing and editing package configuration (note that only server-specific package configuration files are supported for editing via this user interface)
+* add `tundra.mime.type:text` for returning whether a given MIME media type describes a text-based data type
+* add `tundra.schedule.create:list` for creating a list of scheduled tasks from an `IData[]` document list input
+* add `tundra.schedule.create:pivot` for creating a list of scheduled tasks from a pivoted `IData` document input
+* add `tundra.schedule:expedite` to run a given scheduled task immediately rather than wait for its next scheduled time
+* add `tundra.security.hmac:authenticate` authenticates a given HMAC authentication code against given content, secret key, and algorithm
+* add `tundra.security.hmac:calculate` calculates an HMAC authentication code for the given content, secret key, and algorithm
+* add `tundra.security.hmac:verify` verifies a given HMAC authentication code against the given content, secret key, and algorithm
+* add `tundra.service:redirect` for registering a service redirection which then routes all subsequent invocations of the given source service to the given target service
+* add `tundra.support.system.acl:export` and `tundra.support.system.acl:merge` services to support migrating ACLs from one Integration Server instance to another
+* add `tundra.support.system.global:export` and `:merge` services to support migrating global variables from one Integration Server instance to another
+* add Tundra package configuration settings to support auto-starting the service usage and service statistics features at package startup (note: both of the above settings default to `false` to preserve existing behaviour): `feature/service/usage/started` == `true` | `false`, and `feature/service/statistics/started` == `true` | `false`
+* change `pub/message/format/list.dsp` enabled/disabled icon to improve clarity
+* change `tundra.bool:format` to support formatting arbitrarily specified strings
+* change `tundra.collection.list.*:arrayify` to also return the array length for convenience
+* change `tundra.collection.map.*:keys` to also return the number of keys for convenience
+* change `tundra.collection.map.*:values` to also return the number of values for convenience
+* change `tundra.content.deliver:http` to gzip compress the request body if the following HTTP header is specified: `X-Request-Body-Compression: gzip` (note that this is an alternative to the standard and already supported approach for HTTP request body compression, which is to specify the HTTP header `Content-Encoding: gzip`; the `X-Request-Body-Compression` header, unlike the standard `Content-Encoding` header, will not be handled automatically by HTTP servers or intermediates, and therefore provides a way to tunnel gzip compressed content through HTTP intermediates to be handled in the software that is ultimately processing the HTTP request)
+* change `tundra.content.deliver:jms` to use a `javax.jms.TextMessage` when the content type is a text-based data type, otherwise a `javax.jms.BytesMessage` is used to send the JMS message
+* change `tundra.content.deliver:sftp` to only change directory when required, and to ignore errors when touching the delivered file to set the modification datetime as delivery should be considered successful even if the touch operation does not work for some reason
+* change `tundra.content.retrieve:jms` to support arbitrary pipeline variables being provided to the content processing service
+* change `tundra.content:deliver` file delivery to support specifying the size in bytes of the in memory buffer used when writing the content to the file using the query string parameter `buffer`
+* change `tundra.content:deliver` parameters to be consistent with other content processing services
+* change `tundra.content:retrieve` to support retrieving JMS message content from a JMS alias topic or queue using a source URI such as: `jms://jms-alias-name?queue=jms-queue-name` or `jms://jms-alias-name?topic=jms-topic-name`
+* change `tundra.content:split` parameter naming to be consistent with other content processing services
+* change `tundra.directory:purge` and `tundra.directory:gzip` to continue processing files even if an exception is encountered, and to throw all encountered exceptions after attempting to process all files rather than failing fast on the first exception encountered
+* change `tundra.document:deliver` parameter naming to be consistent with other content processing services
+* change `tundra.file:copy` and `tundra.file:write` to support specifying the size in bytes of the in memory buffer used when reading, copying, and writing data to files with the new input parameter `$file.buffer.size`
+* change `tundra.http:client` `$request/method` to include patch method in the pick list of methods
+* change `tundra.http:client` implementation to Java to improve performance
+* change `tundra.http:client` to silently support passing `trustStore` and `followRedirect` inputs to `pub.client:http` if they are provided
+* change `tundra.list.object:sort` and `tundra.list.string:sort` to support sorting in either ascending or descending order
+* change `tundra.list.string:normalize` to use parameter naming consistent with other content processing services
+* change `tundra.packages:get`, `tundra.packages:list`, and `tundra.packages:self` to include optional package description in output
+* change `tundra.schedule:create` to not set `$schedule.name` on the scheduled task's input pipeline unless it is a singleton task
+* change `tundra.schedule:create` to use a new single input parameter `$schedule.create`, which allows schedules to be created easily from an object stored in a JSON or similar configuration file format that supports hierarchical data structures.
+* change `tundra.stream:close` input parameter name to `$content.stream` to be consistent with other content processing services
+* change `tundra.stream:copy` parameter names to be consistent with other content processing services
+* change `tundra.stream:copy` to support specifying the size in bytes of the in memory buffer used when copying data between the input and output streams with the new input parameter `$stream.buffer.size`
+* change `tundra.stream:normalize` parameters to be consistent with other content processing services
+* change `tundra.stream:transcode` parameters to be consistent with other content processing services
+* change `tundra.string:capitalize` input parameter naming to be prefixed with the operation being performed
+* change `tundra.string:coalesce` input parameter naming to be prefixed with the operation being performed
+* change `tundra.string:concatenate` input parameter naming to be prefixed with the operation being performed
+* change `tundra.string:condense` input parameter naming to be prefixed with the operation being performed
+* change `tundra.string:legalize` input parameter naming to be prefixed with the operation being performed
+* change `tundra.string:lowercase` to support converting one or more arbitrarily specified strings to lower case
+* change `tundra.string:normalize` parameter naming to be consistent with other content related services
+* change `tundra.string:pad` to support padding one or more arbitrarily specified strings
+* change `tundra.string:remove` to support removing patterns from one or more arbitrarily specified strings
+* change `tundra.string:replace` to support replacing patterns in one or more arbitrarily specified string values
+* change `tundra.string:reverse` to support reversing one or more arbitrarily specified strings
+* change `tundra.string:slice` parameter naming to be prefixed with the operation being performed
+* change `tundra.string:split` parameter naming to be prefixed with the operation being performed
+* change `tundra.string:translate` to support excluding values with no translation, and to support dedicated reverse default and null values
+* change `tundra.string:translate` to support raising an exception when translation values are missing
+* change `tundra.string:trim` to support trimming one or more arbitrarily specified string values
+* change `tundra.string:truncate` parameter naming to be prefixed with the operation being performed
+* change `tundra.string:uppercase` to support converting one or more arbitrarily specified strings to upper case
+* change `tundra.support.content.deliver:sftp` to use `$content.encoding` rather than `$encoding` input parameter
+* change `tundra.thread:current`, `tundra.thread:get`, and `tundra.thread:list` to return the Integration Server generated thread dump for the thread in question
+* change `tundra.uri:emit` to not include explicit port in resulting URI string if port specified is the default port for the given scheme
+* change `tundra.uri:substitute` to support both local and global variable substitution
+* change `tundra:log` input parameter `$log.context` to support any type of object rather than just `IData` documents
+* change thread names used by Tundra thread pools for clarity and simplicity
+* change Tundra variable substitution feature to support mustache-template style double-curly brace delimited variables and to support resolving recursive variable references
+* fix `tundra.bytes:normalize`, `tundra.stream:normalize`, and `tundra.string:normalize` backwards-compatibility to work correctly when both old `$object` and new `$content` input parameters both exist in the pipeline
+* fix `tundra.content.deliver:jms` to use a `javax.jms.TextMessage` when the content type is a text-based data type, otherwise a `javax.jms.BytesMessage` is used to send the JMS message
+* fix `tundra.content.deliver:mailto` to correctly use `$content.encoding` input parameter
+* fix `tundra.content:deliver` branch on `$destination` to work correctly
+* fix `tundra.content:translate` to not drop `TN_parms`
+* fix `tundra.csv:emit` to support `IData[]` arrays where each `IData` item can specify its elements in different order (previously all items were strictly required to specify elements in the same order)
+* fix `tundra.csv:emit` to work correctly when `$content.headings` input parameter is specified with column names different to the keys in the provided `$document/recordWithNoID` `IData[]` document list
+* fix `tundra.datetime:format` unparseable exception message to be more readable
+* fix `tundra.list.content:emit` backwards compatibility support for `$namespaces` input parameter
+* fix `tundra.list.html:emit` to work correctly and use parameter naming consistent with other content processing services
+* fix `tundra.message.trigger:recognize` to work correctly rather than immediately throw a `java.lang.reflect.InvocationTargetException` exception
+* fix `tundra.schedule:expedite` to work correctly on webMethods 10.11, by replacing binary search of task scheduler database columns with linear search
+* fix `tundra.service:restful` to only log the output pipeline once, and to provide the correct original request URI in the log statement
+* fix `tundra.string:normalize` backwards-compatibility to work correctly when `$content` and `$object` refer to the same `java.io.InputStream` object
+* fix `tundra.string:truncate` to allow `$truncate.length` to be null
+* fix `tundra.uri:emit` to correctly handle query string parameters that include plus characters
+* fix `tundra.uri:emit` to support `mailto:` URIs that specify a query string but no scheme-specific part (body)
+* fix `tundra.uri:substitute` to correctly handle when `$string` is null and not throw a `NullPointerException`
+* fix compatibility with webMethods 10.7 by removing log4j dependency
+* remove dependency on Bootstrap and jQuery libraries, replacing their use in the Tundra DSP pages instead with Bulma and Fontawesome
+* remove deprecated `tundra.document.key:lowercase` and `tundra.document.value:lowercase` services, replaced with service redirections to `tundra.document:lowercase` to continue to provide backwards compatibility
+* remove deprecated `tundra.document.key:normalize`, replaced with service redirection to `tundra.document:legalize` to continue to provide backwards compatibility
+* remove deprecated `tundra.document.key:remove` and `tundra.document.value:remove` services, replaced with service redirections to `tundra.document:remove` to continue to provide backwards compatibility
+* remove deprecated `tundra.document.key:replace` and `tundra.document.value:replace` services, replaced with service redirections to `tundra.document:replace` to continue to provide backwards compatibility
+* remove deprecated `tundra.document.key:trim` and `tundra.document.value:trim` services, replaced with service redirections to `tundra.document:trim` to continue to provide backwards compatibility
+* remove deprecated `tundra.document.key:uppercase` and `tundra.document.value:uppercase` services, replaced with service redirections to `tundra.document:uppercase` to continue to provide backwards compatibility
+* remove deprecated `tundra.id:generate` service, replaced with a service redirection to `tundra.uuid:generate` to continue to provide backwards compatibility
+* remove deprecated `tundra.id:normalize` service, replaced with a service redirections to `tundra.string:legalize` to continue to provide backwards compatibility
+* remove deprecated `tundra.list.document.key:lowercase` and `tundra.list.document.value:lowercase` services, replaced with service redirections to `tundra.list.document:lowercase` to continue to provide backwards compatibility
+* remove deprecated `tundra.list.document.key:remove` and `tundra.list.document.value:remove` services, replaced with service redirections to `tundra.list.document:remove` to continue to provide backwards compatibility
+* remove deprecated `tundra.list.document.key:replace` and `tundra.list.document.value:replace` services, replaced with service redirections to `tundra.list.document:replace` to continue to provide backwards compatibility
+* remove deprecated `tundra.list.document.key:trim` and `tundra.list.document.value:trim` services, replaced with service redirections to `tundra.list.document:trim` to continue to provide backwards compatibility
+* remove deprecated `tundra.list.document.key:uppercase` and `tundra.list.document.value:uppercase` services, replaced with service redirections to `tundra.list.document:uppercase` to continue to provide backwards compatibility
+* remove deprecated `tundra.list.string:squeeze` service, replaced with a service redirection to `tundra.string:condense` to continue to provide backwards compatibility
+* remove deprecated `tundra.soap.fault:handle` service, replaced with a service redirection to `tundra.soap.fault:raise` to continue to provide backwards compatibility
+* remove deprecated `tundra.string:squeeze` service, replaced with a service redirection to `tundra.string:condense` to continue to provide backwards compatibility
+* replace `tundra.object:convert` with `tundra.content:convert`, and change `tundra.content:translate` parameter naming to be consistent with other content processing services
+* update snakeyaml dependency from v1.18 to v1.23
+
 # 0.0.36 (2021-07-01)
 
 * add `tundra.file:equal` for comparing the contents of two files
