@@ -402,14 +402,52 @@ specification.
   * `mailto`: sends an email, with the given content as an attachment
     if specified. An example mailto [URI] is as follows:
 
-        mailto:bob@example.com?cc=jane@example.com&amp;subject=Example&amp;body=Example&amp;attachment=message.xml
+        mailto:bob@example.com?cc=jane@example.com&amp;subject=Example&amp;body=Example&amp;content-type=text/plain&amp;attachment=message.xml&amp;compression=gzip
+
+    The following mailto query parameters are supported:
+    * `to`: optional comma-delimited list of email addressed to send
+      the email to.
+    * `cc`: optional comma-delimited list of email addresses to carbon
+      copy the email to.
+    * `bcc`: optional comma-delimited list of email addresses to blind
+      carbon copy the email to.
+    * `subject`: optional email subject line.
+    * `body`: optional email body text, can be provided as plain text,
+      or to send an HTML email email can be provided as a HTML string
+      along with a `content-type` of `text/html`.
+    * `content-type`: the MIME type of the email body content, such as
+      `text/plain` for plain text or `text/html` for HTML. Defaults to
+      `text/plain`.
+    * `attachment`: the filename to use when attaching the content to
+      the email. Defaults to `attachment.dat` if not specified.
+    * `compression`: an optional choice of whether to compress the 
+      attachment content before attaching it to the email:
+      * `none` - the attachment will not be compressed and will be 
+        attached as is to the email. This is the default.
+      * `gzip`: the attachment is gzip compressed and attached with 
+        the given attachment name suffixed with the gzip extension 
+        `.gz`.
+      * `zip`: the attachment is zip compressed and attached with the
+        given attachment name suffixed with the zip extension `.zip`.
 
     The following additional override options can be provided via the
     `$pipeline` document:
     * `$attachment`: the attached file's name
+    * `$compression`: an optional choice of whether to compress the 
+      attachment content before attaching it to the email:
+      * `none` - the attachment will not be compressed and will be 
+        attached as is to the email. This is the default.
+      * `gzip`: the attachment is gzip compressed and attached with 
+        the given attachment name suffixed with the gzip extension 
+        `.gz`.
+      * `zip`: the attachment is zip compressed and attached with the
+        given attachment name suffixed with the zip extension `.zip`.
     * `$from`: email address to send the email from
     * `$subject`: the subject line text
     * `$body`: the main text of the email
+    * `$body.content.type`: the MIME type used for the email body text
+      such as `text/plain` for plain text, or `text/html` for HTML for
+      example. Defaults to `text/plain` if not specified.
     * `$smtp`: an SMTP [URI] specifying the SMTP server to use (for
       example, smtp://user:password@host:port), defaults to the SMTP
       server configured in the Integration Server setting

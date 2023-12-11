@@ -146,6 +146,7 @@ majority of services, and are included in the [Tundra] package as
 * `./code/jars/htmlcompressor-1.5.3.jar` - http://htmlcompressor.googlecode.com
 * `./code/jars/jakarta-oro-2.0.8.jar` - http://archive.apache.org/dist/jakarta/oro/
 * `./code/jars/javax.json-1.0.jar` - https://jsonp.java.net
+* `./code/jars/javax.mail-1.6.2.jar` - https://javaee.github.io/javamail
 * `./code/jars/jscience-4.3.1.jar` - http://jscience.org
 * `./code/jars/poi-3.17.jar` - https://poi.apache.org/
 * `./code/jars/poi-ooxml-3.17.jar` - https://poi.apache.org/

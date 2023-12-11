@@ -2734,14 +2734,52 @@ specification.
   * `mailto`: sends an email, with the given content as an attachment
     if specified. An example mailto [URI] is as follows:
 
-        mailto:bob@example.com?cc=jane@example.com&subject=Example&body=Example&attachment=message.xml
+        mailto:bob@example.com?cc=jane@example.com&subject=Example&body=Example&content-type=text/plain&attachment=message.xml&compression=gzip
+
+    The following mailto query parameters are supported:
+    * `to`: optional comma-delimited list of email addressed to send
+      the email to.
+    * `cc`: optional comma-delimited list of email addresses to carbon
+      copy the email to.
+    * `bcc`: optional comma-delimited list of email addresses to blind
+      carbon copy the email to.
+    * `subject`: optional email subject line.
+    * `body`: optional email body text, can be provided as plain text,
+      or to send an HTML email email can be provided as a HTML string
+      along with a `content-type` of `text/html`.
+    * `content-type`: the MIME type of the email body content, such as
+      `text/plain` for plain text or `text/html` for HTML. Defaults to
+      `text/plain`.
+    * `attachment`: the filename to use when attaching the content to
+      the email. Defaults to `attachment.dat` if not specified.
+    * `compression`: an optional choice of whether to compress the
+      attachment content before attaching it to the email:
+      * `none` - the attachment will not be compressed and will be
+        attached as is to the email. This is the default.
+      * `gzip`: the attachment is gzip compressed and attached with
+        the given attachment name suffixed with the gzip extension
+        `.gz`.
+      * `zip`: the attachment is zip compressed and attached with the
+        given attachment name suffixed with the zip extension `.zip`.
 
     The following additional override options can be provided via the
     `$pipeline` document:
     * `$attachment`: the attached file's name
+    * `$compression`: an optional choice of whether to compress the
+      attachment content before attaching it to the email:
+      * `none` - the attachment will not be compressed and will be
+        attached as is to the email. This is the default.
+      * `gzip`: the attachment is gzip compressed and attached with
+        the given attachment name suffixed with the gzip extension
+        `.gz`.
+      * `zip`: the attachment is zip compressed and attached with the
+        given attachment name suffixed with the zip extension `.zip`.
     * `$from`: email address to send the email from
     * `$subject`: the subject line text
     * `$body`: the main text of the email
+    * `$body.content.type`: the MIME type used for the email body text
+      such as `text/plain` for plain text, or `text/html` for HTML for
+      example. Defaults to `text/plain` if not specified.
     * `$smtp`: an SMTP [URI] specifying the SMTP server to use (for
       example, smtp://user:password@host:port), defaults to the SMTP
       server configured in the Integration Server setting
@@ -15773,6 +15811,92 @@ Removes the given key value pair from current session state.
 #### Outputs:
 
 * `$value` was the value associated with the removed `$key`.
+
+---
+
+### tundra.smtp:send
+
+Sends an email message to recipients via the SMTP protocol.
+
+If the transport settings are not provided, will fallback to using the
+SMTP server settings configured on the Integration Server Resources
+page.
+
+#### Inputs:
+
+* `$email.message` is the message to be sent.
+  * `uri` is an optional `mailto:` URI specifying an email to be sent.
+  * `to` is an optional list of email addresses to send the email to.
+  * `cc` is an optional list of email addresses to send a carbon copy
+    of the email to.
+  * `bcc` is an optional list of email addresses to send a blind
+    carbon copy of the email to.
+  * `from` is an optional email address the email will be sent from.
+    If not specified, defaults to the system property `tn.mail.from`,
+    or the system property `mail.smtp.from` if it exists, otherwise
+    defaults to the value `Integration-Server@<hostname>`.
+  * `subject` is an optional subject line for the email.
+  * `body` is an optional body for the email, and can be specified as
+    plain text or HTML.
+  * `content.type` is the optional MIME type of the body content. If
+    sending an HTML email, then specify `text/html`. Defaults to
+    `text/plain` if not specified.
+  * `headers` is an optional list of headers specified as key value
+    pairs to be set on the email.
+  * `attachments` is an optional list of files to be attached to the
+    email:
+    * `name` is the filename of the attachment.
+    * `content` is the content of the attachment, specified as an
+      input stream, byte array, or string.
+    * `content.type` is the MIME type of the attachment `content`.
+    * `compression` is an optional choice to compress the content
+      before attaching it to the email:
+      * `none`: the content is not compressed and is attached as is,
+        this is the default.
+      * `gzip`: the content is gzip compressed and attached with the
+        given `name` suffixed with the gzip extension `.gz`.
+      * `zip`: the content is zip compressed and attached with the
+        given `name` suffixed with the zip extension `.zip`.
+    * `headers` is an optional list of headers specified as key value
+      pairs to be set on the attachment.
+  * `transport` contains settings for customising the SMTP transport
+    layer:
+    * `host` is an optional SMTP host to use to send the email. If not
+    specified, defaults to the system setting `watt.server.smtpServer`
+    then `mail.smtp.host`.
+    * `post` is an optional SMTP port to use to send the email. If not
+    specified, defaults to the system setting
+    `watt.server.smtpServerPort` then `mail.smtp.port` then the value
+    `25` (the default port used for SMTP).
+    * `auth` contains the authentication related settings:
+      * `type` is a choice of:
+        * `Basic`: used for user/password login
+        * `Bearer`: used for OAuth login
+      * `user` is the username to authenticate with the SMTP server.
+      * `password` is the optional password to authenticate with the
+        SMTP server when `type` is `Basic`.
+      * `token` is the OAuth token to authenticate with the SMTP
+        server when sending the email when `type` is `Bearer`.
+    * `secure` contains the security related settings:
+      * `encryption` is a choice of:
+        * `none`: do not use TLS encryption
+        * `explicit`: the initial connection to the SMTP server will
+          be unencrypted and the client will ask the server to upgrade
+          the connection TLS if supported.
+        * `implicit`: the initial connection to the SMTP server will
+          be encrypted using TLS.
+      * `truststore`: is the trust store alias to be used for TLS.
+
+#### Outputs:
+
+* `$email.response` contains the results of sending the email:
+  * `message.content` is the content of the email message sent.
+  * `message.content.type` is the MIME type of the `message.content`,
+    which is set to `message/rfc822`.
+  * `transport.uri` is the redacted URI used to connect to the SMTP
+    server.
+  * `transport.log` is the email session diagnostic logs.
+  * `transport.status` is a status message of the email.
 
 ---
 
