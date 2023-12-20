@@ -7917,6 +7917,12 @@ recursively serialized to clean [HTML] table elements.
   string, byte array, or input stream.
   * `recordWithNoID` is an optional `IData[]` document list, which
     can be used to emit a document list rather than a document.
+* `$content.orientation` is an optional choice of orientation to use
+  when emitting `IData` documents as HTML:
+  * `portrait`: will emit an `IData` document with each key value pair
+    as an [HTML] table row. This is the default, if not specified.
+  * `landscape`: will emit an `IData` document with each key value
+    pair represented as an [HTML] table column.
 * `$content.encoding` is an optional character set to use when
   encoding the resulting text data to a byte array or input stream.
   Defaults to [UTF-8].

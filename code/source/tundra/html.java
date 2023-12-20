@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2020-07-01T17:04:37.326
+// -----( CREATED: 2023-12-21 05:41:17 EST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -46,10 +46,10 @@ public final class html
 		// [i] record:0:optional $document.encoded
 		// [o] record:0:optional $document.decoded
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IData document = IDataHelper.get(cursor, "$document.encoded", IData.class);
-
+		
 		    if (document == null) {
 		        String string = IDataHelper.get(cursor, "$string", String.class);
 		        IDataHelper.put(cursor, "$string", HTMLHelper.decode(string), false);
@@ -61,7 +61,7 @@ public final class html
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -73,17 +73,19 @@ public final class html
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:0:optional $document
+		// [i] field:0:optional $content.orientation {&quot;portrait&quot;,&quot;landscape&quot;}
 		// [i] field:0:optional $content.encoding
-		// [i] field:0:optional $content.mode {"stream","bytes","string"}
+		// [i] field:0:optional $content.mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
 		// [o] object:0:optional $content
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IData document = IDataHelper.get(cursor, "$document", IData.class);
+		    boolean portraitOrientation = "portrait".equals(IDataHelper.getOrDefault(cursor, "$content.orientation", String.class, "portrait"));
 		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
 		    ObjectConvertMode mode = IDataHelper.first(cursor, ObjectConvertMode.class, "$content.mode", "$mode");
 		    if (document != null) {
-		        IDataHelper.put(cursor, "$content", ObjectHelper.convert(new IDataHTMLParser().emit(document, charset), charset, mode), false);
+		        IDataHelper.put(cursor, "$content", ObjectHelper.convert(new IDataHTMLParser(true, portraitOrientation).emit(document, charset), charset, mode), false);
 		    }
 		} catch (IOException ex) {
 		    ExceptionHelper.raise(ex);
@@ -92,7 +94,7 @@ public final class html
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 
 
@@ -106,7 +108,7 @@ public final class html
 		// [i] record:0:optional $document.decoded
 		// [o] record:0:optional $document.encoded
 		IDataCursor cursor = pipeline.getCursor();
-
+		
 		try {
 		    IData document = IDataHelper.get(cursor, "$document.decoded", IData.class);
 		    if (document == null) {
@@ -120,7 +122,7 @@ public final class html
 		}
 		// --- <<IS-END>> ---
 
-
+                
 	}
 }
 
