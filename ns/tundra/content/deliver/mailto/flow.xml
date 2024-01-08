@@ -11810,6 +11810,26 @@
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
         <value name="is_public">false</value>
+        <value name="field_name">$content.compression</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">$compression</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">to</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -11830,6 +11850,16 @@
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
         <value name="is_public">false</value>
+        <value name="field_name">body</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">bcc</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -11841,16 +11871,6 @@
         <value name="node_type">unknown</value>
         <value name="is_public">false</value>
         <value name="field_name">subject</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">body</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -12005,6 +12025,26 @@
         <value name="field_opt">true</value>
         <array name="field_options" type="value" depth="1">
         </array>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">$content.compression</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">$compression</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
         <value name="nillable">true</value>
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
@@ -12211,6 +12251,26 @@
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
         <value name="is_public">false</value>
+        <value name="field_name">$content.compression</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">$compression</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">to</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -12231,6 +12291,16 @@
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
         <value name="is_public">false</value>
+        <value name="field_name">body</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">bcc</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -12242,16 +12312,6 @@
         <value name="node_type">unknown</value>
         <value name="is_public">false</value>
         <value name="field_name">subject</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">body</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -12403,6 +12463,26 @@
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
         <value name="is_public">false</value>
+        <value name="field_name">$content.compression</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">$compression</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">to</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -12414,6 +12494,16 @@
         <value name="node_type">unknown</value>
         <value name="is_public">false</value>
         <value name="field_name">cc</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">body</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -12691,6 +12781,16 @@
                 <value name="form_qualified">false</value>
                 <value name="is_global">false</value>
               </record>
+              <record javaclass="com.wm.util.Values">
+                <value name="node_type">unknown</value>
+                <value name="is_public">false</value>
+                <value name="field_name">compression</value>
+                <value name="field_type">string</value>
+                <value name="field_dim">0</value>
+                <value name="nillable">true</value>
+                <value name="form_qualified">false</value>
+                <value name="is_global">false</value>
+              </record>
             </array>
             <value name="modifiable">true</value>
           </record>
@@ -12853,6 +12953,26 @@
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
         <value name="is_public">false</value>
+        <value name="field_name">$content.compression</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">$compression</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">to</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -12873,6 +12993,16 @@
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
         <value name="is_public">false</value>
+        <value name="field_name">body</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">bcc</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -12884,16 +13014,6 @@
         <value name="node_type">unknown</value>
         <value name="is_public">false</value>
         <value name="field_name">subject</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">body</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -13155,6 +13275,16 @@
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
         <value name="is_public">false</value>
+        <value name="field_name">$compression</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">to</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -13175,16 +13305,6 @@
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
         <value name="is_public">false</value>
-        <value name="field_name">bcc</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
         <value name="field_name">body</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -13196,6 +13316,16 @@
         <value name="node_type">unknown</value>
         <value name="is_public">false</value>
         <value name="field_name">$smtp</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">bcc</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -13388,6 +13518,16 @@
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
         <value name="is_public">false</value>
+        <value name="field_name">$compression</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">to</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -13399,16 +13539,6 @@
         <value name="node_type">unknown</value>
         <value name="is_public">false</value>
         <value name="field_name">cc</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">bcc</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -13510,6 +13640,16 @@
           </record>
         </array>
         <value name="modifiable">true</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">bcc</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
@@ -15302,6 +15442,16 @@
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
         <value name="is_public">false</value>
+        <value name="field_name">$compression</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">to</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -15313,16 +15463,6 @@
         <value name="node_type">unknown</value>
         <value name="is_public">false</value>
         <value name="field_name">cc</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">bcc</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -15434,6 +15574,16 @@
           </record>
         </array>
         <value name="modifiable">true</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">bcc</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
@@ -15698,8 +15848,14 @@
               </record>
               <record javaclass="com.wm.util.Values">
                 <value name="node_type">unknown</value>
+                <value name="node_comment"></value>
+                <record name="node_hints" javaclass="com.wm.util.Values">
+                  <null name="field_usereditable"/>
+                  <value name="field_largerEditor">false</value>
+                  <value name="field_password">false</value>
+                </record>
                 <value name="is_public">false</value>
-                <value name="field_name">content.type</value>
+                <value name="field_name">body.content.type</value>
                 <value name="field_type">string</value>
                 <value name="field_dim">0</value>
                 <value name="nillable">true</value>
@@ -15708,8 +15864,14 @@
               </record>
               <record javaclass="com.wm.util.Values">
                 <value name="node_type">unknown</value>
+                <value name="node_comment"></value>
+                <record name="node_hints" javaclass="com.wm.util.Values">
+                  <null name="field_usereditable"/>
+                  <value name="field_largerEditor">false</value>
+                  <value name="field_password">false</value>
+                </record>
                 <value name="is_public">false</value>
-                <value name="field_name">content-type</value>
+                <value name="field_name">body-content-type</value>
                 <value name="field_type">string</value>
                 <value name="field_dim">0</value>
                 <value name="nillable">true</value>
@@ -15833,10 +15995,10 @@
 <MAPCOPY FROM="/attachments;2;1/contenttype;1;0" TO="/$email.message;2;0/attachments;2;1/content.type;1;0">
 </MAPCOPY>
 
-<MAPCOPY FROM="/$destination;2;0/query;2;0/content.type;1;0" TO="/$email.message;2;0/content.type;1;0" CONDITION="%$destination/query/content.type% != $null">
+<MAPCOPY FROM="/$destination;2;0/query;2;0/body.content.type;1;0" TO="/$email.message;2;0/content.type;1;0" CONDITION="%$destination/query/body.content.type% != $null">
 </MAPCOPY>
 
-<MAPCOPY FROM="/$destination;2;0/query;2;0/content-type;1;0" TO="/$email.message;2;0/content.type;1;0" CONDITION="%$destination/query/content-type% != $null">
+<MAPCOPY FROM="/$destination;2;0/query;2;0/body-content-type;1;0" TO="/$email.message;2;0/content.type;1;0" CONDITION="%$destination/query/body-content-type% != $null">
 </MAPCOPY>
 
 <MAPCOPY FROM="/$body.content.type;1;0" TO="/$email.message;2;0/content.type;1;0" CONDITION="%$body.content.type% != $null">
@@ -16067,6 +16229,16 @@
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>
         <value name="is_public">false</value>
+        <value name="field_name">$compression</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
         <value name="field_name">to</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
@@ -16078,16 +16250,6 @@
         <value name="node_type">unknown</value>
         <value name="is_public">false</value>
         <value name="field_name">cc</value>
-        <value name="field_type">string</value>
-        <value name="field_dim">0</value>
-        <value name="nillable">true</value>
-        <value name="form_qualified">false</value>
-        <value name="is_global">false</value>
-      </record>
-      <record javaclass="com.wm.util.Values">
-        <value name="node_type">unknown</value>
-        <value name="is_public">false</value>
-        <value name="field_name">bcc</value>
         <value name="field_type">string</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -16149,6 +16311,16 @@
         <array name="rec_fields" type="record" depth="1">
         </array>
         <value name="modifiable">true</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">bcc</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
       </record>
       <record javaclass="com.wm.util.Values">
         <value name="node_type">unknown</value>

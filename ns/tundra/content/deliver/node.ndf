@@ -415,9 +415,9 @@ specification.
     * `body`: optional email body text, can be provided as plain text,
       or to send an HTML email email can be provided as a HTML string
       along with a `content-type` of `text/html`.
-    * `content-type`: the MIME type of the email body content, such as
-      `text/plain` for plain text or `text/html` for HTML. Defaults to
-      `text/plain`.
+    * `body-content-type`: the MIME type of the email body content,
+      such as `text/plain` for plain text or `text/html` for HTML.
+      Defaults to `text/plain`.
     * `attachment`: the filename to use when attaching the content to
       the email. Defaults to `attachment.dat` if not specified.
     * `compression`: an optional choice of whether to compress the 
