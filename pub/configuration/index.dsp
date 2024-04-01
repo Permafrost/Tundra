@@ -37,6 +37,29 @@
               </div>
             %endinvoke%
 
+          %case 'reset'%
+            %invoke tundra.configuration:refresh%
+              <div class="message is-success">
+                <div class="message-header">
+                  <p>Configuration Refreshed</p>
+                  <button class="delete"></button>
+                </div>
+                <div class="message-body">
+                   Package configurations were all refreshed from disk successfully
+                </div>
+              </div>
+             %onerror%
+              <div class="message is-danger">
+                <div class="message-header">
+                  <p>Error</p>
+                  <button class="delete"></button>
+                </div>
+                <div class="message-body">
+                   Package configurations could not be refreshed from disk: %value errorMessage encode(html)%
+                </div>
+              </div>
+            %endinvoke%
+
           %case 'edit'%
             %invoke tundra.support.configuration.ui:write%
               <div class="message is-success">
@@ -69,6 +92,19 @@
               <p class="is-pulled-left">
                 Tundra &gt; Configuration
               </p>
+
+              <div class="field is-grouped is-pulled-right">
+                <form role="form" method="post">
+                  <div class="form-group">
+                    <input type="hidden" name="action" value="reset">
+                    <button type="submit" class="button ml-2" title="Refresh all package configurations from disk">
+                      <span class="icon">
+                        <i class="fa-solid fa-rotate-right"></i>
+                      </span>
+                    </button>
+                  </div>
+                </form>
+              </div>
             </caption>
             <thead>
               <tr>
