@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Tundra &gt; Service Statistics</title>
-    <link href="../assets/libs/bulma/v0.9.4/css/bulma.min.css" rel="stylesheet">
-    <link href="../assets/libs/fontawesome/v6.4.0/css/all.css" rel="stylesheet">
+    <link href="../assets/libs/bulma/v1.0.0/css/bulma.min.css" rel="stylesheet">
+    <link href="../assets/libs/fontawesome/v6.5.1/css/all.css" rel="stylesheet">
     <link href="../assets/css/application.css" rel="stylesheet">
     <script src="../assets/libs/sorttable/v2/js/sorttable.js"></script>
     <script src="../assets/js/application.js"></script>
@@ -66,7 +66,7 @@
             <div class="field has-addons is-pulled-right">
               <form method="post" class="control">
                 <input type="hidden" name="action" value="start">
-                <button type="submit" class="button is-outlined" title="Start service statistics sampling" %ifvar $context/sampling.started? equals('true')%disabled%endif%>
+                <button type="submit" class="button" title="Start service statistics sampling" %ifvar $context/sampling.started? equals('true')%disabled%endif%>
                   <span class="icon">
                     <i class="fa-solid fa-play"></i>
                   </span>
@@ -74,14 +74,14 @@
               </form>
               <form method="post" class="control">
                 <input type="hidden" name="action" value="stop">
-                <button type="submit" class="button is-outlined" title="Stop service statistics sampling" %ifvar $context/sampling.started? equals('true')%%else%disabled%endif%>
+                <button type="submit" class="button" title="Stop service statistics sampling" %ifvar $context/sampling.started? equals('true')%%else%disabled%endif%>
                   <span class="icon">
                     <i class="fa-solid fa-stop"></i>
                   </span>
                 </button>
               </form>
               <form method="get" class="control">
-                <button type="submit" class="button is-outlined" title="Refresh service statistics" %ifvar $context/sampling.started? equals('true')%%else%disabled%endif%>
+                <button type="submit" class="button" title="Refresh service statistics" %ifvar $context/sampling.started? equals('true')%%else%disabled%endif%>
                   <span class="icon">
                     <i class="fa-solid fa-rotate-right"></i>
                   </span>

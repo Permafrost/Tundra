@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Tundra &gt; HTTP Route</title>
-    <link href="../../assets/libs/bulma/v0.9.4/css/bulma.min.css" rel="stylesheet">
-    <link href="../../assets/libs/fontawesome/v6.4.0/css/all.css" rel="stylesheet">
+    <link href="../../assets/libs/bulma/v1.0.0/css/bulma.min.css" rel="stylesheet">
+    <link href="../../assets/libs/fontawesome/v6.5.1/css/all.css" rel="stylesheet">
     <link href="../../assets/css/application.css" rel="stylesheet">
     <script src="../../assets/js/application.js"></script>
   </head>
