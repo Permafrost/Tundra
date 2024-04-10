@@ -402,7 +402,7 @@ specification.
   * `mailto`: sends an email, with the given content as an attachment
     if specified. An example mailto [URI] is as follows:
 
-        mailto:bob@example.com?cc=jane@example.com&amp;subject=Example&amp;body=Example&amp;content-type=text/plain&amp;attachment=message.xml&amp;compression=gzip
+        mailto:bob@example.com?cc=jane@example.com&amp;subject=Example&amp;body=Example&amp;body-content-type=text/plain&amp;attachment=message.xml&amp;compression=gzip
 
     The following mailto query parameters are supported:
     * `to`: optional comma-delimited list of email addressed to send
@@ -573,7 +573,6 @@ specification.
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
-  <value name="template">tundra_content_deliver</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>

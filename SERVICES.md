@@ -2734,7 +2734,7 @@ specification.
   * `mailto`: sends an email, with the given content as an attachment
     if specified. An example mailto [URI] is as follows:
 
-        mailto:bob@example.com?cc=jane@example.com&subject=Example&body=Example&content-type=text/plain&attachment=message.xml&compression=gzip
+        mailto:bob@example.com?cc=jane@example.com&subject=Example&body=Example&body-content-type=text/plain&attachment=message.xml&compression=gzip
 
     The following mailto query parameters are supported:
     * `to`: optional comma-delimited list of email addressed to send
