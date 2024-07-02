@@ -1,3 +1,16 @@
+# 0.0.38 (2024-07-03)
+
+* add `tundra.smtp:send` for sending emails via SMTP
+* change `./pub/configuration/index.dsp` to include a refresh all button
+* change `tundra.content.deliver:mailto` to use `tundra.smtp:send` rather than `pub.client:smtp` for its SMTP implementation
+* change `tundra.html:emit` to support specifying the orientation used when emitting `IData` documents
+* fix `tundra.excel:emit` when given a String value to suppress number format exceptions (if the value cannot be parsed as a number using the BigDecimal grammar) and fall back to treating the value as a `String`
+* fix `tundra.system:reflect` to support both package-level and server-level global variables in Integration Server 10.15
+* fix DSP pages to always use light mode/theme to match webMethods page style
+* fix scheduling of `tundra.support.log:purge` for log compression and purging to create and remove against target `$self` only
+* upgrade Bulma CSS framework to v1.0.0
+* upgrade Fontawesome icons to v6.5.1
+
 # 0.0.37 (2023-10-12)
 
 * add `./pub/configuration/` DSP pages for viewing and editing package configuration (note that only server-specific package configuration files are supported for editing via this user interface)
