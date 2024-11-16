@@ -123,6 +123,14 @@
                 # Broker or Universal Messaging or JMS.
                 enabled: true
             }
+            receive: {
+                response: {
+                    # The HTTP response status code returned upon successful
+                    # message receipt by `tundra.message:receive`. Defaults 
+                    # to 202 if not specified.
+                    code: null
+                }
+            }
         }
         package: {
             install: {

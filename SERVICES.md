@@ -12772,21 +12772,21 @@ are mutually exclusive.
 
 ### tundra.message:receive
 
-Receives arbitrary content and routes it to either the webMethods
-messaging subsystem via `pub.publish:publish`, a JMS destination,
+Receives arbitrary content and routes it to either the webMethods 
+messaging subsystem via `pub.publish:publish`, a JMS destination, 
 or a direct service invocation.
 
-The content can be specified as a string, byte array, `IData` document,
-`java.io.InputStream`, or `org.w3c.dom.Node` object.
+The content can be specified as a string, byte array, `IData` 
+document, `java.io.InputStream`, or `org.w3c.dom.Node` object.
 
-This service is either intended to be invoked directly by clients
-via HTTP or FTP, or it can be wrapped by another service which
-specifies appropriate pipeline variables to control the routing of
+This service is either intended to be invoked directly by clients 
+via HTTP or FTP, or it can be wrapped by another service which 
+specifies appropriate pipeline variables to control the routing of 
 the content.
 
-When invoked via HTTP, the service returns a 'text/plain' response
+When invoked via HTTP, the service returns a `text/plain` response 
 body that is empty on success, or contains a message describing the
-errors that occurred on failure, and an appropriate HTTP response
+errors that occurred on failure, and an appropriate HTTP response 
 code according to the following table:
 
 Response                   | Reason
@@ -12799,19 +12799,23 @@ Response                   | Reason
 422 Unprocessable Entity   | Received content failed validation
 500 Internal Server Error  | All other errors that occur while processing
 
-When invoked via transports other than HTTP, for example FTP, if the
-content is received successfully the service invocation will succeed
-and an empty response body is returned. If a security or any other
-exception is encountered, the service invocation will fail by
+When invoked via transports other than HTTP, for example FTP, if the 
+content is received successfully the service invocation will succeed 
+and an empty response body is returned. If a security or any other 
+exception is encountered, the service invocation will fail by 
 rethrowing the exception.
 
-When invoked by a wrapping service, any exceptions encountered will
-be thrown to the calling service. It is then the calling service's
-responsibility to set an appropriate response for the transport in
+When invoked by a wrapping service, any exceptions encountered will 
+be thrown to the calling service. It is then the calling service's 
+responsibility to set an appropriate response for the transport in 
 question.
 
-Refer to `tundra.message.format:recognize` for further details on how
+Refer to `tundra.message.format:recognize` for further details on how 
 message formats are recognized by this service.
+
+Note: the successful HTTP response code 202 can be overridden to 
+use a different code via the Tundra package configuration setting: 
+`feature/message/receive/response/code`.
 
 ---
 

@@ -1,7 +1,7 @@
 package tundra.support;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2023-06-15 05:01:38 EST
+// -----( CREATED: 2024-11-16 22:40:57 EST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -41,6 +41,7 @@ public final class receive
 		// --- <<IS-START(respond)>> ---
 		// @subtype unknown
 		// @sigtype java 3.5
+		// [i] object:0:optional $response.code
 		// [i] object:0:optional $response.content
 		// [i] field:0:optional $response.content.type
 		// [i] field:0:optional $response.content.encoding
@@ -49,13 +50,13 @@ public final class receive
 		IDataCursor cursor = pipeline.getCursor();
 		
 		try {
+		    int responseCode = IDataHelper.getOrDefault(cursor, "$response.code", Integer.class, 202);
 		    Object content = IDataHelper.getOrDefault(cursor, "$response.content", Object.class, "");
 		    String contentType = IDataHelper.get(cursor, "$response.content.type", String.class);
 		    Charset charset = IDataHelper.get(cursor, "$response.content.encoding", Charset.class);
 		    String responseID = IDataHelper.get(cursor, "$response.content.id", String.class);
 		    Throwable exception = IDataHelper.get(cursor, "$exception", Throwable.class);
 		
-		    int responseCode;
 		    InputStream responseBody;
 		
 		    List<NSService> stack = ServiceHelper.getCallStack();
@@ -64,7 +65,6 @@ public final class receive
 		
 		    if (initiator) {
 		        if (exception == null) {
-		            responseCode = 202;
 		            responseBody = InputStreamHelper.normalize(content, charset);
 		        } else {
 		            Throwable initialException = ExceptionHelper.getInitialCause(exception);
