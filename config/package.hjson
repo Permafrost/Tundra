@@ -28,7 +28,7 @@
                 # When enabled, wraps all existing Integration Server content
                 # handlers in a proxy class that adds support for extensible
                 # content filtering.
-                enabled: false
+                enabled: true
             }
             log: {
                 # When enabled, logs received content to ./logs/content.log
@@ -69,11 +69,11 @@
                         enabled: true
                         directory: "./logs"
                         filter: {
-                            inclusions: ["*.log", "*.log.*"]
-                            exclusions: ["*.log.gz", "*.log.*.gz"]
+                            inclusions: ["*.log", "*.log.*", "*.csv", "*.csv.*"]
+                            exclusions: ["*.log.gz", "*.log.*.gz", "*.csv.gz", "*.csv.*.gz", "install.log"]
                             type: wildcard
                         }
-                        duration: P14D
+                        duration: P32D
                         recurse: false
                     }
                 ]
@@ -87,11 +87,11 @@
                         enabled: true
                         directory: "./logs"
                         filter: {
-                            inclusions: ["*.log", "*.log.*"]
+                            inclusions: ["*.log.gz", "*.log.*.gz", "*.csv.gz", "*.csv.*.gz"]
                             #exclusions: [...]
                             type: wildcard
                         }
-                        duration: P1M
+                        duration: P96D
                         recurse: false
                     }
                 ]
@@ -181,7 +181,7 @@
                 # When started is true, the service usage feature will be started
                 # automatically at package startup, otherwise it will need to be
                 # started manually. This setting has no effect when enabled is false.
-                started: false
+                started: true
             }
             statistics: {
                 # When enabled, adds a Solutions | Tundra > Service Statistics page
