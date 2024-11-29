@@ -200,7 +200,7 @@
                 # processor which updates the current thread name to include
                 # the name of the service being executed and the time it
                 # started execution.
-                enabled: false
+                enabled: true
             }
         }
     }
