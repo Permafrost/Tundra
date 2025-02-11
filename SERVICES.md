@@ -17398,6 +17398,32 @@ Returns the default time zone for this host.
 
 ---
 
+### tundra.transport:log
+
+Writes transport information returned by `pub.flow:getTransportInfo`
+to the server log, or a given named log, as a minified [JSON] string,
+optionally prefixed with the invoking user, call stack, and message.
+
+Note that the value of the `Authorization` HTTP header, if any, will
+be redacted before writing to the log.
+
+#### Inputs:
+
+* `$log.level` is an optional logging level used when writing the
+  transport information to the server log.
+* `$log.message` is an optional message to be written to the server
+  log.
+* `$log.prefix?` is a boolean indicating whether to prefix the log
+  statement with the current user and callstack. Defaults to `true`.
+* `$log.name` is the optional logical name of the log to write to.
+  The logical log name can be mapped to a physical log target file
+  via the Tundra package configuration section `feature/log/target`.
+  If the logical log name cannot be found in this configuration
+  section, the default physical log target is `./logs/server.log`.
+  Defaults to the calling service's package name, if not specified.
+
+---
+
 ### tundra.ulid:generate
 
 Returns a newly generated [ULID], a 128-bit universally unique
