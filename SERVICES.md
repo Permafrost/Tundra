@@ -14175,6 +14175,11 @@ is paused or cancelled, which can be determined using the service
     will be in effect or active. If not specified, defaults to the
     current datetime. For `once` only tasks, this is the datetime
     the service will be executed once and only once.
+  * `start.delay` is an optional XML duration added to the `start`
+    datetime to calculate the actual start datetime of the scheduled
+    task. For example, if no `start` datetime is specified, then a
+    `start.delay` of `PT5M` will start the task 5 minutes after it
+    is scheduled. If not specified, no start delay is applied.
   * `end` is the optional datetime after which the scheduled task
     will no longer be in effect (expires). If not specified, the
     schedule will never expire. Not applicable for `once` scheduled
