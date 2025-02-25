@@ -116,7 +116,7 @@
               </th>
               <th class="unwrappable has-text-centered">
                 <span class="icon" title="Enabled">
-                  <i class="fa-solid fa-circle-check"></i>
+                  <i class="fa-solid fa-toggle-on"></i>
                 </span>
                 <span>
                   Enabled
@@ -274,11 +274,11 @@
                 <td class="has-text-centered pt-2">
                   %ifvar enabled equals('true')%
                     <span class="icon" title="Enabled">
-                      <i class="fa-solid fa-circle-check has-text-success"></i>
+                      <i class="fa-solid fa-toggle-on has-text-success"></i>
                     </span>
                   %else%
                     <span class="icon" title="Disabled">
-                      <i class="fa-regular fa-circle-xmark has-text-danger"></i>
+                      <i class="fa-solid fa-toggle-off has-text-danger"></i>
                     </span>
                   %endif%
                 </td>
