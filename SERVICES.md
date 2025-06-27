@@ -9452,13 +9452,16 @@ level groupings.
       compatible with `Tundra/tundra.datetime:format` must be
       specified), or `duration` (in which case a pattern compatible
       with `Tundra/tundra.duration:format` must be specified).
-    * `descending?` is an optional boolean indicating if the values
-      associated with the key are to be sorted in descending
-      (largest to smallest) order. Defaults to `false`, if not
-      specified.
   * `then` is an optional next level of grouping criteria, which is
     used to further group like items in `$list` together.
     * ... refer to `$group` structure.
+* `$group.sorting` is an optional choice of the type of sorting applied to
+  the list of groups, defaults to `ascending` order if not specified:
+  * `ascending` will sort the returned groups in ascending compound key order.
+  * `descending` will sort the returned groups into descending compound key
+    order.
+  * `none` will preserve the order of the compound keys in the provided input
+    `$list`.
 
 #### Outputs:
 

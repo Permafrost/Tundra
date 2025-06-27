@@ -1,7 +1,7 @@
 package tundra.list;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-08-01 14:27:36 AEST
+// -----( CREATED: 2025-06-27 09:20:33 EST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -393,6 +393,7 @@ public final class document
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] record:1:optional $list
+		// [i] field:0:optional $group.sorting {&quot;ascending&quot;,&quot;descending&quot;,&quot;none&quot;}
 		// [o] field:0:required $list.groups.length
 		// [o] field:0:required $list.length
 		IDataCursor cursor = pipeline.getCursor();
@@ -400,15 +401,16 @@ public final class document
 		try {
 		    IData[] list = IDataHelper.get(cursor, "$list", IData[].class);
 		    IData criteria = IDataHelper.get(cursor, "$group", IData.class);
+		    IDataHelper.IDataArrayGroupSortType sorting = IDataHelper.get(cursor, "$group.sorting", IDataHelper.IDataArrayGroupSortType.class);
 		    String[] keys = IDataHelper.get(cursor, "$keys", String[].class);
 
 		    if (list != null) {
-		        if (keys != null) {
+		        if (criteria == null && keys != null) {
 		            IData[] groups = IDataHelper.group(list, keys);
 		            IDataHelper.put(cursor, "$list.grouped", groups);
 		            IDataHelper.put(cursor, "$list.groups.length", groups.length, String.class);
 		        } else {
-		            IData[] groups = IDataHelper.group(list, criteria);
+		            IData[] groups = IDataHelper.group(list, criteria, sorting);
 		            IDataHelper.put(cursor, "$list.groups", groups);
 		            IDataHelper.put(cursor, "$list.groups.length", groups.length, String.class);
 		        }
