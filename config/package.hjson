@@ -194,6 +194,21 @@
                 started: false
             }
         }
+        system: {
+            backup: {
+                # Enables 4am daily scheduled task which saves a backup
+                # of all files in the ./config directory to the following
+                # directory and filename:
+                #
+                # ./backup/system/<directory>/TUNDRA_SYSTEM_BACKUP_<directory>_<datetime>.zip
+                enabled: false
+                # The list of Integration Server directories to be backed up.
+                directories: ["./config", "./packages"]
+                # How long backups are retained in the backup directory
+                # specified as an XML duration.
+                retention: P7D
+            }
+        }
         thread: {
             name: {
                 # When enabled, registers an Integration Server invoke chain
