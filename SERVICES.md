@@ -613,14 +613,19 @@ Returns the length of the given byte array.
 
 ### tundra.bytes:normalize
 
-Converts a string, byte array or input stream to a byte array.
+Converts a `String`, `byte[]` or `java.io.InputStream` object to a
+`byte[]` (byte array) object.
+
+If given an `java.io.InputStream` object, the input stream will be
+read completely and then closed.
 
 #### Inputs:
 
-* `$content` is the string, byte array or input stream to be
-  normalized.
-* `$content.encoding` is the optional character set to use to encode
-  `$content` when it is a string. Defaults to [UTF-8].
+* `$content` is a `String`, `byte[]`, or `java.io.InputStream` object
+  to be converted to a `byte[]` (byte array) object.
+* `$content.encoding` is the character set used to encode character
+  data when `$content` is specified as a `String`. Defaults to
+  [UTF-8].
 
 #### Outputs:
 
