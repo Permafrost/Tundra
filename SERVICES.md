@@ -16552,6 +16552,9 @@ string matches the given string.
 Converts a `String`, `byte[]` or `java.io.InputStream` object to a
 `String` object.
 
+If given an `java.io.InputStream` object, the input stream will be
+read completely and then closed.
+
 #### Inputs:
 
 * `$content` is a `String`, `byte[]` or `java.io.InputStream` object

@@ -104,20 +104,23 @@
   </record>
   <value name="node_comment">### tundra.string:normalize
 
-Converts a `String`, `byte[]` or `java.io.InputStream` object to a 
+Converts a `String`, `byte[]` or `java.io.InputStream` object to a
 `String` object.
+
+If given an `java.io.InputStream` object, the input stream will be 
+read completely and then closed.
 
 #### Inputs:
 
 * `$content` is a `String`, `byte[]` or `java.io.InputStream` object
   to be converted to a `String`.
 * `$content.encoding` is an optional character set to use when
-  `$content` is a `byte[]` or `java.io.InputStream` object. Defaults 
+  `$content` is a `byte[]` or `java.io.InputStream` object. Defaults
   to [UTF-8].
 
 #### Outputs:
 
-* `$content.string` is the given content converted to a `String` 
+* `$content.string` is the given content converted to a `String`
   object.
 
 [UTF-8]: &lt;http://en.wikipedia.org/wiki/UTF-8&gt;
