@@ -58,7 +58,13 @@
                 %endif%
                 sampled
                 %ifvar $context/sampling.start -notempty%
-                  since %value $context/sampling.start encode(xml)%
+                  from %value $context/sampling.start encode(xml)%
+                %endif%
+                %ifvar $context/sampling.end -notempty%
+                  to %value $context/sampling.end encode(xml)%
+                %endif%
+                %ifvar $context/sampling.duration -notempty%
+                  for duration %value $context/sampling.duration encode(xml)%
                 %endif%
               %endif%
             </span>
