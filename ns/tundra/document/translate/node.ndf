@@ -10,7 +10,6 @@
       <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
-      <value name="wrapper_type">IData</value>
       <value name="nillable">true</value>
       <value name="form_qualified">false</value>
       <value name="is_global">false</value>
@@ -27,7 +26,6 @@
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
-          <value name="wrapper_type">IData</value>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
@@ -76,7 +74,6 @@
           <value name="field_type">record</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
-          <value name="wrapper_type">IData</value>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
@@ -152,7 +149,6 @@
       <value name="is_public">false</value>
       <value name="field_type">record</value>
       <value name="field_dim">0</value>
-      <value name="wrapper_type">IData</value>
       <value name="nillable">true</value>
       <value name="form_qualified">false</value>
       <value name="is_global">false</value>
@@ -166,16 +162,12 @@
           </record>
           <value name="is_public">false</value>
           <value name="field_name">$translation</value>
-          <value name="field_type">record</value>
+          <value name="field_type">object</value>
           <value name="field_dim">0</value>
           <value name="field_opt">true</value>
-          <value name="wrapper_type">IData</value>
           <value name="nillable">true</value>
           <value name="form_qualified">false</value>
           <value name="is_global">false</value>
-          <array name="rec_fields" type="record" depth="1">
-          </array>
-          <value name="modifiable">true</value>
         </record>
       </array>
       <value name="modifiable">true</value>
@@ -183,40 +175,41 @@
   </record>
   <value name="node_comment">### tundra.document:translate
 
-One-to-one conversion of one IData document to another IData document.
-Calls the given translation service, passing the document as an input, and
-returning the translated document as output.
+One-to-one conversion of one `IData` document to another `IData`
+document or String, byte array, or input stream. Calls the given
+translation service, passing the document as an input, and returning
+the translated document as output.
 
 #### Inputs:
 
-* $document is an IData document to be translated.
-* $service is the fully-qualified name of the translation service,
-  which accepts a single IData document and returns a single IData
-  document, called to translate the given $document.
-* $pipeline is an optional IData document for providing arbitrary
-  variables to the invocation of $service.
-* $service.input is an optional variable name to use in the input
-  pipeline of the call to $service for the given IData document.
-  Defaults to $document.
-* $service.output is an optional variable name used to extract the
-  output IData document from the output pipeline of the call to
-  $service. Defaults to $translation.
+* `$document` is an `IData` document to be translated.
+* `$service` is the fully-qualified name of the translation service,
+  which accepts a single `IData` document and returns either a single
+  IData document or a String, byte array, or input stream, called to
+  translate the given `$document`.
+* `$pipeline` is an optional `IData` document for providing arbitrary
+  variables to the invocation of `$service.`
+* `$service.input` is an optional variable name to use in the input
+  pipeline of the call to `$service` for the given `IData` document.
+  Defaults to `$document`.
+* `$service.output` is an optional variable name used to extract the
+  output `IData` document from the output pipeline of the call to
+  `$service`. Defaults to `$translation`.
 
 #### Outputs:
 
-* $translation is the translated IData document.
-
-</value>
+* `$translation` is the translated `IData` document, returned as 
+  either an `IData` document, String, byte array, or input stream.</value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template">tundra_document_translate</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>
   <value name="icontext_policy">$null</value>
-  <value name="svcInvkURLAlias"></value>
   <value name="system_service">no</value>
   <value name="retry_max">0</value>
   <value name="retry_interval">0</value>

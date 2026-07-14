@@ -6730,16 +6730,18 @@ given `IData` document.
 
 ### tundra.document:translate
 
-One-to-one conversion of one `IData` document to another `IData` document.
-Calls the given translation service, passing the document as an input, and
-returning the translated document as output.
+One-to-one conversion of one `IData` document to another `IData`
+document or String, byte array, or input stream. Calls the given
+translation service, passing the document as an input, and returning
+the translated document as output.
 
 #### Inputs:
 
 * `$document` is an `IData` document to be translated.
 * `$service` is the fully-qualified name of the translation service,
-  which accepts a single `IData` document and returns a single IData
-  document, called to translate the given `$document`.
+  which accepts a single `IData` document and returns either a single
+  IData document or a String, byte array, or input stream, called to
+  translate the given `$document`.
 * `$pipeline` is an optional `IData` document for providing arbitrary
   variables to the invocation of `$service.`
 * `$service.input` is an optional variable name to use in the input
@@ -6751,7 +6753,8 @@ returning the translated document as output.
 
 #### Outputs:
 
-* `$translation` is the translated `IData` document.
+* `$translation` is the translated `IData` document, returned as
+  either an `IData` document, String, byte array, or input stream.
 
 ---
 
@@ -10349,19 +10352,20 @@ of the given list.
 
 ### tundra.list.document:translate
 
-One-to-one conversion of one `IData` document list to another `IData` document
-list.
+One-to-one conversion of one `IData` document list to another list.
 
-Calls the given translation service, passing the each `IData` document item
-in the list as an input, and building a new `IData` document list from the
-translated documents returned by the translation service as output.
+Calls the given translation service, passing the each `IData` document
+item in the list as an input, and building a new list from the
+translations returned by the translation service as output.
 
 #### Inputs:
 
-* `$list` is an `IData` document list containing items to be translated.
+* `$list` is an `IData` document list containing items to be
+  translated.
 * `$service` is the fully-qualified name of the translation service,
   which accepts a single `IData` document and returns a single IData
-  document, called to translate the given `$document`.
+  document or String, byte array, or input stream, called to translate
+  the given `$document`.
 * `$pipeline` is an optional `IData` document for providing arbitrary
   variables to the invocations of `$service`.
 * `$service.input` is an optional variable name to use in the input
@@ -10373,8 +10377,8 @@ translated documents returned by the translation service as output.
 
 #### Outputs:
 
-* `$translations` is the resulting `IData` document list containing the
-  translated documents.
+* `$translations` is the resulting object list containing the
+  translations.
 
 ---
 
