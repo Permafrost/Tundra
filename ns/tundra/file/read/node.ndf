@@ -45,6 +45,23 @@
           <value name="node_type">record</value>
           <value name="node_comment"></value>
           <record name="node_hints" javaclass="com.wm.util.Values">
+            <value name="field_largerEditor">false</value>
+            <value name="field_password">false</value>
+          </record>
+          <value name="is_public">false</value>
+          <value name="field_name">$file.buffer.size</value>
+          <value name="field_type">object</value>
+          <value name="field_dim">0</value>
+          <value name="field_opt">true</value>
+          <value name="wrapper_type">java.lang.Integer</value>
+          <value name="nillable">true</value>
+          <value name="form_qualified">false</value>
+          <value name="is_global">false</value>
+        </record>
+        <record javaclass="com.wm.util.Values">
+          <value name="node_type">record</value>
+          <value name="node_comment"></value>
+          <record name="node_hints" javaclass="com.wm.util.Values">
             <value name="field_usereditable">false</value>
             <value name="field_largerEditor">false</value>
             <value name="field_password">false</value>
@@ -185,9 +202,11 @@ constrained environments.
 
 * `$file` is the name of the file to be read, specified as either a 
   relative or absolute file path or `file:` [URI].
+* `$file.buffer.size` is an optional size in bytes to use when 
+  buffering the data in memory.
 * `$content.mode` is an optional choice of `stream`, `bytes`, or 
   `string`, which specifies the type of object `$content` is returned
-   as. Defaults to `stream`.
+  as. Defaults to `stream`.
 * `$content.encoding` is an optional character set to use when 
   reading the file as a string. Defaults to [UTF-8].
 

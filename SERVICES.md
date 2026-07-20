@@ -7409,6 +7409,8 @@ Compresses the given file using the gzip algorithm.
 * `$file.remove?` is an optional boolean flag indicating whether the
   source file should be deleted once it has been compressed.
   Defaults to `false`.
+* `$file.buffer.size` is an optional size in bytes to use when
+  buffering the data in memory.
 
 #### Outputs:
 
@@ -7501,6 +7503,8 @@ whether an exception is encountered by the service.
   * `create` will throw an exception if the file already exists,
   * `read` will open the file for reading.
   * `write` will open the file for (over)writing.
+* `$file.buffer.size` is an optional size in bytes to use when
+  buffering the data in memory.
 * `$service` is the fully-qualified name of the service which
   will be called to process the opened file.
 * `$pipeline` is an optional `IData` document for specifying
@@ -7569,9 +7573,11 @@ constrained environments.
 
 * `$file` is the name of the file to be read, specified as either a
   relative or absolute file path or `file:` [URI].
+* `$file.buffer.size` is an optional size in bytes to use when
+  buffering the data in memory.
 * `$content.mode` is an optional choice of `stream`, `bytes`, or
   `string`, which specifies the type of object `$content` is returned
-   as. Defaults to `stream`.
+  as. Defaults to `stream`.
 * `$content.encoding` is an optional character set to use when
   reading the file as a string. Defaults to [UTF-8].
 
@@ -7789,6 +7795,8 @@ Compresses the given file using the zip algorithm.
 * `$file.remove?` is an optional boolean flag indicating whether the
   source file should be deleted once it has been compressed.
   Defaults to `false`.
+* `$file.buffer.size` is an optional size in bytes to use when
+  buffering the data in memory.
 
 #### Outputs:
 

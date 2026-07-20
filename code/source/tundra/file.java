@@ -1,7 +1,7 @@
 package tundra;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2021-08-18 11:20:28 AEST
+// -----( CREATED: 2026-07-21 05:09:05 EST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -242,6 +242,7 @@ public final class file
 		// [i] field:0:required $file
 		// [i] field:0:optional $file.gzip
 		// [i] field:0:optional $file.remove? {&quot;false&quot;,&quot;true&quot;}
+		// [i] object:0:optional $file.buffer.size
 		// [o] field:0:required $file.gzip
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -249,8 +250,9 @@ public final class file
 		    File source = IDataHelper.get(cursor, "$file", File.class);
 		    File target = IDataHelper.get(cursor, "$file.gzip", File.class);
 		    boolean replace = IDataHelper.firstOrDefault(cursor, Boolean.class, false, "$file.remove?", "$replace?");
+		    int bufferSize = IDataHelper.getOrDefault(cursor, "$file.buffer.size", Integer.class, -1);
 		
-		    IDataHelper.put(cursor, "$file.gzip", FileHelper.normalize(FileHelper.gzip(source, target, replace)));
+		    IDataHelper.put(cursor, "$file.gzip", FileHelper.normalize(FileHelper.gzip(source, target, replace, bufferSize)));
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -344,6 +346,7 @@ public final class file
 		// @sigtype java 3.5
 		// [i] field:0:required $file
 		// [i] field:0:optional $file.mode {&quot;read&quot;,&quot;append&quot;,&quot;write&quot;}
+		// [i] object:0:optional $file.buffer.size
 		// [i] field:0:required $service
 		// [i] record:0:optional $pipeline
 		// [i] field:0:optional $service.input
@@ -354,12 +357,13 @@ public final class file
 		try {
 		    File file = IDataHelper.get(cursor, "$file", File.class);
 		    String mode = IDataHelper.firstOrDefault(cursor, String.class, "read", "$file.mode", "$mode");
+		    int bufferSize = IDataHelper.getOrDefault(cursor, "$file.buffer.size", Integer.class, -1);
 		    String service = IDataHelper.get(cursor, "$service", String.class);
 		    String input = IDataHelper.get(cursor, "$service.input", String.class);
 		    IData scope = IDataHelper.getOrDefault(cursor, "$pipeline", IData.class, pipeline);
 		    boolean raise = IDataHelper.getOrDefault(cursor, "$raise?", Boolean.class, true);
 		
-		    scope = FileHelper.process(file, mode, service, input, scope, raise, true);
+		    scope = FileHelper.process(file, mode, service, input, scope, raise, true, bufferSize);
 		
 		    if (scope != pipeline) IDataHelper.put(cursor, "$pipeline", scope);
 		} finally {
@@ -413,6 +417,7 @@ public final class file
 		// @subtype unknown
 		// @sigtype java 3.5
 		// [i] field:0:required $file
+		// [i] object:0:optional $file.buffer.size
 		// [i] field:0:optional $content.mode {&quot;stream&quot;,&quot;bytes&quot;,&quot;string&quot;}
 		// [i] field:0:optional $content.encoding
 		// [o] object:0:required $content
@@ -420,10 +425,11 @@ public final class file
 		
 		try {
 		    File file = IDataHelper.get(cursor, "$file", File.class);
+		    int bufferSize = IDataHelper.getOrDefault(cursor, "$file.buffer.size", Integer.class, -1);
 		    ObjectConvertMode mode = IDataHelper.first(cursor, ObjectConvertMode.class, "$content.mode", "$mode");
 		    Charset charset = IDataHelper.first(cursor, Charset.class, "$content.encoding", "$encoding");
 		
-		    IDataHelper.put(cursor, "$content", ObjectHelper.convert(FileHelper.readToBytes(file), charset, mode));
+		    IDataHelper.put(cursor, "$content", ObjectHelper.convert(FileHelper.readToBytes(file, bufferSize), charset, mode));
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
@@ -667,6 +673,7 @@ public final class file
 		// [i] field:0:required $file
 		// [i] field:0:optional $file.zip
 		// [i] field:0:optional $file.remove? {&quot;false&quot;,&quot;true&quot;}
+		// [i] object:0:optional $file.buffer.size
 		// [o] field:0:required $file.zip
 		IDataCursor cursor = pipeline.getCursor();
 		
@@ -674,8 +681,9 @@ public final class file
 		    File source = IDataHelper.get(cursor, "$file", File.class);
 		    File target = IDataHelper.get(cursor, "$file.zip", File.class);
 		    boolean replace = IDataHelper.firstOrDefault(cursor, Boolean.class, false, "$file.remove?", "$replace?");
+		    int bufferSize = IDataHelper.getOrDefault(cursor, "$file.buffer.size", Integer.class, -1);
 		
-		    IDataHelper.put(cursor, "$file.zip", FileHelper.normalize(FileHelper.zip(source, target, replace)));
+		    IDataHelper.put(cursor, "$file.zip", FileHelper.normalize(FileHelper.zip(source, target, replace, bufferSize)));
 		} catch(IOException ex) {
 		    ExceptionHelper.raise(ex);
 		} finally {
