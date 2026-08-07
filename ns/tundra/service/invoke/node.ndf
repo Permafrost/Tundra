@@ -189,38 +189,41 @@ Invokes a service synchronously, and either scoped or unscoped.
 
 #### Inputs:
 
-* $service is the fully-qualified name of the service to be invoked.
-* $pipeline is an optional IData document which, if specified, 
-  contains the input arguments for the invocation of $service; in 
-  other words, the invocation is scoped to this IData document. If 
-  not specified, the invocation is unscoped, and hence the service 
+* `$service` is the fully-qualified name of the service to be invoked.
+* `$pipeline` is an optional `IData` document which, if specified,
+  contains the input arguments for the invocation of `$service`; in
+  other words, the invocation is scoped to this `IData` document. If
+  not specified, the invocation is unscoped, and hence the service
   will operate directly against the pipeline itself.
-* $raise? is an optional boolean which when true will rethrow any 
-  exceptions thrown by the invoked service, and when false will add 
-  the exception details if an exception was thrown to the pipeline 
-  or returned scope as appropriate as per the 
-  tundra.schema.exception:handler specification. Defaults to true.
-* $thread.priority is an optional new priority to set on the current 
-  thread, an integer value between 1 and 10, where larger values 
+* `$raise?` is an optional boolean which when `true` will rethrow any
+  exceptions thrown by the invoked service, and when `false` will add
+  the exception details if an exception was thrown to the pipeline
+  or returned scope as appropriate as per the
+  `tundra.schema.exception:handler` specification. Defaults to `true`.
+* `$thread.priority` is an optional new priority to set on the current
+  [thread], an integer value between 1 and 10, where larger values
   have higher priority and thus are executed in preference to threads
   with lower priority. The current thread's priority is restored to
   its original value after the given service is invoked.
 
 #### Outputs:
 
-* $pipeline is the output pipeline of the invocation of $service. 
-  This is only returned if the invocation was scoped by specifying 
-  $pipeline was specified as an input. If the invocation was not 
-  scoped, the outputs of the invocation are merged directly with the 
+* `$pipeline` is the output pipeline of the invocation of `$service`.
+  This is only returned if the invocation was scoped by specifying
+  `$pipeline` was specified as an input. If the invocation was not
+  scoped, the outputs of the invocation are merged directly with the
   pipeline itself.
-* $duration is how long the service took to execute specified as an 
-  XML duration string.
+* `$duration` is how long the service took to execute specified as an
+  XML duration string measured to nanosecond precision.
+
+[thread]: &lt;https://docs.oracle.com/javase/6/docs/api/java/lang/Thread.html&gt;
 </value>
   <value name="stateless">yes</value>
   <value name="caching">no</value>
   <value name="prefetch">no</value>
   <value name="cache_ttl">15</value>
   <value name="prefetch_level">1</value>
+  <value name="template">tundra_service_invoke</value>
   <value name="template_type">html</value>
   <value name="audit_level">off</value>
   <value name="check_internal_acls">no</value>

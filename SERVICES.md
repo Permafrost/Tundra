@@ -15235,6 +15235,7 @@ deviation execution durations.
     executed
   * `count.total.formatted` is the total number of times the given
     service was executed formatted as a string.
+
 ---
 
 ### tundra.service:callstack
@@ -15397,7 +15398,7 @@ Invokes a service synchronously, and either scoped or unscoped.
   scoped, the outputs of the invocation are merged directly with the
   pipeline itself.
 * `$duration` is how long the service took to execute specified as an
-  XML duration string.
+  XML duration string measuredto nanosecond precision.
 
 ---
 
