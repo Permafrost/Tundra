@@ -2439,9 +2439,9 @@ File Extension | File Format
 -------------- | --------------------------------------------
 hjson          | [Hjson]
 json           | [JSON]
-properties     | Java properties
-values         | IData or Values encoded XML
-xml            | Aribtrary or IData or Values encoded XML
+properties     | [java.util.Properties]
+values         | IData or Values encoded [XML]
+xml            | Arbitrary or IData or Values encoded [XML]
 yaml           | [YAML]
 
 Package configurations are cached lazily in memory: read first from
@@ -18364,6 +18364,7 @@ format.
 [java.util.Formatter format strings]: <http://docs.oracle.com/javase/6/docs/api/java/util/Formatter.html#syntax>
 [java.util.List]: <http://docs.oracle.com/javase/6/docs/api/java/util/List.html>
 [java.util.Map]: <https://docs.oracle.com/javase/6/docs/api/java/util/Map.html>
+[java.util.Properties]: <https://docs.oracle.com/javase/6/docs/api/java/util/Properties.html>
 [java.util.TimeZone]: <http://docs.oracle.com/javase/6/docs/api/java/util/TimeZone.html>
 [java.util.concurrent.ConcurrentMap]: <https://docs.oracle.com/javase/6/docs/api/java/util/concurrent/ConcurrentMap.html>
 [java.util.regex.Pattern]: <http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html>
