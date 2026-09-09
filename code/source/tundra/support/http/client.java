@@ -1,7 +1,7 @@
 package tundra.support.http;
 
 // -----( IS Java Code Template v1.2
-// -----( CREATED: 2023-05-02 05:00:34 EST
+// -----( CREATED: 2026-09-09 16:20:52 EST
 // -----( ON-HOST: -
 
 import com.wm.data.*;
@@ -72,7 +72,14 @@ public final class client
 		// [i] field:0:optional maxKeepAliveConnections
 		// [i] field:0:optional keepAliveTimeout
 		// [i] field:0:optional newSession {&quot;no&quot;,&quot;yes&quot;}
+		// [i] field:0:optional trustStore
+		// [i] field:0:optional keyStoreAlias
+		// [i] field:0:optional keyAlias
+		// [i] field:0:optional hostNameVerification {&quot;true&quot;,&quot;false&quot;}
+		// [i] field:0:optional cipherSuites
+		// [i] field:0:optional checkCRL {&quot;true&quot;,&quot;false&quot;}
 		// [i] field:0:optional proxyAlias
+		// [i] field:0:optional followRedirect {&quot;yes&quot;,&quot;no&quot;}
 		// [i] field:0:optional useJSSE {&quot;no&quot;,&quot;yes&quot;}
 		// [o] field:0:required encodedURL
 		// [o] record:0:optional header
@@ -119,7 +126,7 @@ public final class client
 	}
 
 	// --- <<IS-START-SHARED>> ---
-	public static final boolean isJSSESupported = isJSSESupported();
+	 public static final boolean isJSSESupported = isJSSESupported();
 	
 	private static boolean isJSSESupported() {
 	    boolean isJSSESupported = true;
@@ -154,13 +161,18 @@ public final class client
 	        String proxyAlias = IDataHelper.get(cursor, "proxyAlias", String.class);
 	        String useJSSE = IDataHelper.get(cursor, "useJSSE", String.class);
 	        String followRedirect = IDataHelper.get(cursor, "followRedirect", String.class);
+	        String keyStoreAlias = IDataHelper.get(cursor, "keyStoreAlias", String.class);
+	        String keyAlias = IDataHelper.get(cursor, "keyAlias", String.class);
+	        String hostNameVerification = IDataHelper.get(cursor, "hostNameVerification", String.class);
+	        String cipherSuites = IDataHelper.get(cursor, "cipherSuites", String.class);
+	        String checkCRL = IDataHelper.get(cursor, "checkCRL", String.class);
 	
 	        IDataCursor requestCursor = request.getCursor();
 	        String uri = IDataHelper.get(requestCursor, "uri", String.class);
 	        String method = IDataHelper.getOrDefault(requestCursor, "method", String.class, "get");
 	        Object content = IDataHelper.get(requestCursor, "content");
 	        String encoding = IDataHelper.get(requestCursor, "encoding", String.class);
-	        
+
 	        IData authority = IDataHelper.get(requestCursor, "authority", IData.class);
 	        String authorityType = null, authorityUser = null, authorityPassword = null, authorityToken = null;
 	        if (authority != null) {
@@ -290,6 +302,13 @@ public final class client
 	        IDataHelper.put(scopeCursor, "proxyAlias", proxyAlias, false);
 	        IDataHelper.put(scopeCursor, "useJSSE", useJSSE, false);
 	        IDataHelper.put(scopeCursor, "followRedirect", followRedirect, false);
+
+	        IDataHelper.put(scopeCursor, "keyStoreAlias", keyStoreAlias, false);
+	        IDataHelper.put(scopeCursor, "keyAlias", keyAlias, false);
+	        IDataHelper.put(scopeCursor, "hostNameVerification", hostNameVerification, false);
+	        IDataHelper.put(scopeCursor, "cipherSuites", cipherSuites, false);
+	        IDataHelper.put(scopeCursor, "checkCRL", checkCRL, false);
+
 	        scopeCursor.destroy();
 	
 	        // execute request
